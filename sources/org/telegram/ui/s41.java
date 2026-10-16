@@ -5,10 +5,10 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class s41 extends org.telegram.ui.Components.lm0 {
-    public final Context f39971c;
+    public final Context f39695c;
 
     public s41(Context context) {
-        this.f39971c = context;
+        this.f39695c = context;
     }
 
     @Override
@@ -85,20 +85,20 @@ public final class s41 extends org.telegram.ui.Components.lm0 {
             org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) b1Var.f44838a;
             caVar.setEnabled(z11);
             if (i10 == 2) {
-                caVar.c(LocaleController.getString(R.string.RoundVideoOutputResolution), a1.g.n(((li.s0) si.e.e.a()).f14956a, "p", new StringBuilder()), false, true);
+                caVar.c(LocaleController.getString(R.string.RoundVideoOutputResolution), a1.g.n(((ri.p0) si.e.e.a()).f44668a, "p", new StringBuilder()), false, true);
             } else if (i10 == 3) {
                 String string5 = LocaleController.getString(R.string.RoundVideoCameraResolution);
-                li.o0 o0Var = (li.o0) si.e.f45487f.a();
-                if (o0Var == li.o0.f14934a) {
+                ri.l0 l0Var = (ri.l0) si.e.f45487f.a();
+                if (l0Var == ri.l0.f44626a) {
                     string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionHigh);
-                } else if (o0Var == li.o0.f14935b) {
+                } else if (l0Var == ri.l0.f44627b) {
                     string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionMedium);
                 } else {
                     string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionLow);
                 }
                 caVar.c(string5, string2, false, true);
             } else if (i10 == 4) {
-                caVar.c(LocaleController.getString(R.string.RoundVideoFrameRate), a1.g.n(((li.p0) si.e.f45488g.a()).f14942a, " FPS", new StringBuilder()), false, true);
+                caVar.c(LocaleController.getString(R.string.RoundVideoFrameRate), a1.g.n(((ri.m0) si.e.f45488g.a()).f44653a, " FPS", new StringBuilder()), false, true);
             } else {
                 caVar.c(LocaleController.getString(R.string.RoundVideoBitrate), t41.U(si.e.h.a()), false, false);
             }
@@ -116,7 +116,7 @@ public final class s41 extends org.telegram.ui.Components.lm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.ca caVar;
-        Context context = this.f39971c;
+        Context context = this.f39695c;
         if (i10 == 0) {
             caVar = new org.telegram.ui.Cells.m4(context);
         } else if (i10 == 1) {

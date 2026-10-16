@@ -11,21 +11,21 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class fa0 extends View {
-    public final Drawable f24987a;
-    public final Paint f24988b;
-    public final Paint f24989c;
+    public final Drawable f24675a;
+    public final Paint f24676b;
+    public final Paint f24677c;
     public final g6 d;
     public boolean e;
 
     public fa0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f24988b = paint;
+        this.f24676b = paint;
         Paint paint2 = new Paint(1);
-        this.f24989c = paint2;
+        this.f24677c = paint2;
         this.d = new g6(this, 0L, 320L, es.h);
-        w7.c6.a(this);
-        this.f24987a = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
+        w7.b6.a(this);
+        this.f24675a = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         paint2.setColor(-65536);
@@ -50,7 +50,7 @@ public final class fa0 extends View {
         Canvas canvas2;
         float e = this.d.e(!this.e);
         int width = getWidth();
-        Drawable drawable = this.f24987a;
+        Drawable drawable = this.f24675a;
         drawable.setBounds((width - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
         Rect bounds = drawable.getBounds();
         float width2 = (bounds.width() * 0.325f) + bounds.left;
@@ -59,7 +59,7 @@ public final class fa0 extends View {
         float width3 = bounds.right - (bounds.width() * 0.101f);
         int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
         if (i10 > 0) {
-            Paint paint = this.f24989c;
+            Paint paint = this.f24677c;
             paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
             drawable.draw(canvas);
@@ -76,7 +76,7 @@ public final class fa0 extends View {
             drawable.draw(canvas2);
         }
         if (i10 > 0) {
-            Paint paint2 = this.f24988b;
+            Paint paint2 = this.f24676b;
             paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
             if (this.e) {
                 canvas2.drawLine(width3, height2, AndroidUtilities.lerp(width3, width2, e), AndroidUtilities.lerp(height2, height, e), paint2);

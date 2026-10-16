@@ -1,37 +1,23 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class lc implements Utilities.Callback {
-    public final int f37914a;
-    public final hd f37915b;
+import org.telegram.messenger.R;
+public final class lc implements Runnable {
+    public final int f37677a;
+    public final gd f37678b;
 
-    public lc(hd hdVar, int i10) {
-        this.f37914a = i10;
-        this.f37915b = hdVar;
+    public lc(gd gdVar, int i10) {
+        this.f37677a = i10;
+        this.f37678b = gdVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f37914a) {
+    public final void run() {
+        switch (this.f37677a) {
             case 0:
-                TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) obj;
-                hd hdVar = this.f37915b;
-                hdVar.E = wallPaper;
-                hdVar.F = wallPaper;
-                hdVar.G = wallPaper;
-                hdVar.X0(false);
-                hdVar.a1(false);
-                AndroidUtilities.runOnUIThread(new mc(hdVar, 1), 350L);
-                return;
-            case 1:
-                hd.V(this.f37915b, (ChannelBoostsController.CanApplyBoost) obj);
+                gd.U(this.f37678b);
                 return;
             default:
-                this.f37915b.W0((TL_stories.TL_premium_boostsStatus) obj);
+                org.telegram.messenger.g0.q(R.string.ChannelWallpaperUpdated, org.telegram.ui.Components.zc.a0(this.f37678b), R.raw.done, 36);
                 return;
         }
     }

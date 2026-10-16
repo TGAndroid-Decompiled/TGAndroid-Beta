@@ -14,7 +14,7 @@ public final class ax extends vz {
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         bh.f fVar;
         super.b(recyclerView, i10, i11);
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = this.d.f31037j2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = this.d.f30730j2) != null) {
             fVar.f(i10, i11);
         }
     }

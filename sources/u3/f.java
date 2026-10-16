@@ -99,7 +99,7 @@ public final class f implements o {
     public boolean f46187z;
 
     static {
-        String str = m0.f8372a;
+        String str = m0.f8375a;
         f46152l0 = "Format: Start, End, ReadOrder, Layer, Style, Name, MarginL, MarginR, MarginV, Effect, Text".getBytes(StandardCharsets.UTF_8);
         m0 = new byte[]{68, 105, 97, 108, 111, 103, 117, 101, 58, 32, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44};
         f46153n0 = new byte[]{87, 69, 66, 86, 84, 84, 10, 10, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 10};
@@ -126,7 +126,7 @@ public final class f implements o {
         this.L = -1L;
         this.M = -9223372036854775807L;
         this.f46156a = bVar;
-        bVar.d = new l2.f(this, 21);
+        bVar.d = new m.l(this);
         this.f46164f = lVar;
         this.C = new SparseArray();
         if ((i10 & 1) == 0) {
@@ -141,7 +141,7 @@ public final class f implements o {
         this.f46169i = new x(4);
         this.f46171j = new x(ByteBuffer.allocate(4).putInt(-1).array());
         this.f46173k = new x(4);
-        this.f46166g = new x(p.f8889a);
+        this.f46166g = new x(p.f8892a);
         this.h = new x(4);
         this.f46174l = new x();
         this.f46175m = new x();
@@ -166,49 +166,49 @@ public final class f implements o {
         long j13 = j12 - (i11 * 60000000);
         int i12 = (int) (j13 / 1000000);
         String format = String.format(Locale.US, str, Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i12), Integer.valueOf((int) ((j13 - (i12 * 1000000)) / j11)));
-        String str2 = m0.f8372a;
+        String str2 = m0.f8375a;
         return format.getBytes(StandardCharsets.UTF_8);
     }
 
     @Override
     public final boolean a(c3.p pVar) {
-        long t10;
+        long p5;
         int i10;
         c0 c0Var = new c0(13, (short) 0);
-        x xVar = (x) c0Var.f4353c;
+        x xVar = (x) c0Var.f4356c;
         c3.l lVar = (c3.l) pVar;
-        long j10 = lVar.f4269c;
+        long j10 = lVar.f4273c;
         int i11 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
         long j11 = 1024;
         if (i11 != 0 && j10 <= 1024) {
             j11 = j10;
         }
         int i12 = (int) j11;
-        lVar.j(xVar.f8411a, 0, 4, false);
+        lVar.j(xVar.f8414a, 0, 4, false);
         long C = xVar.C();
-        c0Var.f4352b = 4;
+        c0Var.f4355b = 4;
         while (true) {
             if (C != 440786851) {
-                int i13 = c0Var.f4352b + 1;
-                c0Var.f4352b = i13;
+                int i13 = c0Var.f4355b + 1;
+                c0Var.f4355b = i13;
                 if (i13 == i12) {
                     break;
                 }
-                lVar.j(xVar.f8411a, 0, 1, false);
-                C = ((C << 8) & (-256)) | (xVar.f8411a[0] & 255);
+                lVar.j(xVar.f8414a, 0, 1, false);
+                C = ((C << 8) & (-256)) | (xVar.f8414a[0] & 255);
             } else {
-                long t11 = c0Var.t(lVar);
-                long j12 = c0Var.f4352b;
-                if (t11 != Long.MIN_VALUE && (i11 == 0 || j12 + t11 < j10)) {
+                long p9 = c0Var.p(lVar);
+                long j12 = c0Var.f4355b;
+                if (p9 != Long.MIN_VALUE && (i11 == 0 || j12 + p9 < j10)) {
                     while (true) {
-                        int i14 = (c0Var.f4352b > (j12 + t11) ? 1 : (c0Var.f4352b == (j12 + t11) ? 0 : -1));
+                        int i14 = (c0Var.f4355b > (j12 + p9) ? 1 : (c0Var.f4355b == (j12 + p9) ? 0 : -1));
                         if (i14 < 0) {
-                            if (c0Var.t(lVar) == Long.MIN_VALUE || (t10 = c0Var.t(lVar)) < 0 || t10 > 2147483647L) {
+                            if (c0Var.p(lVar) == Long.MIN_VALUE || (p5 = c0Var.p(lVar)) < 0 || p5 > 2147483647L) {
                                 break;
                             } else if (i10 != 0) {
-                                int i15 = (int) t10;
+                                int i15 = (int) p5;
                                 lVar.v(i15, false);
-                                c0Var.f4352b += i15;
+                                c0Var.f4355b += i15;
                             }
                         } else if (i14 == 0) {
                             return true;
@@ -256,8 +256,8 @@ public final class f implements o {
             if (i10 < sparseArray.size()) {
                 j0 j0Var = ((e) sparseArray.valueAt(i10)).V;
                 if (j0Var != null) {
-                    j0Var.f4257b = false;
-                    j0Var.f4258c = 0;
+                    j0Var.f4261b = false;
+                    j0Var.f4262c = 0;
                 }
                 i10++;
             } else {
@@ -268,7 +268,7 @@ public final class f implements o {
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8592b;
+        l0 l0Var = n0.f8595b;
         return x1.e;
     }
 
@@ -318,15 +318,15 @@ public final class f implements o {
 
     public final void l(c3.p pVar, int i10) {
         x xVar = this.f46169i;
-        if (xVar.f8413c >= i10) {
+        if (xVar.f8416c >= i10) {
             return;
         }
-        byte[] bArr = xVar.f8411a;
+        byte[] bArr = xVar.f8414a;
         if (bArr.length < i10) {
             xVar.c(Math.max(bArr.length * 2, i10));
         }
-        byte[] bArr2 = xVar.f8411a;
-        int i11 = xVar.f8413c;
+        byte[] bArr2 = xVar.f8414a;
+        int i11 = xVar.f8416c;
         pVar.readFully(bArr2, i11, i10 - i11);
         xVar.M(i10);
     }
@@ -347,7 +347,7 @@ public final class f implements o {
     public final long n(long j10) {
         long j11 = this.f46182t;
         if (j11 != -9223372036854775807L) {
-            String str = m0.f8372a;
+            String str = m0.f8375a;
             return m0.a0(j10, j11, 1000L, RoundingMode.DOWN);
         }
         throw x0.a(null, "Can't scale timecode prior to timecodeScale being set.");
@@ -375,7 +375,7 @@ public final class f implements o {
             if (eVar.W) {
                 eVar.f46129b0.getClass();
                 x xVar = new x(i10);
-                if (pVar.j(xVar.f8411a, 0, i10, true)) {
+                if (pVar.j(xVar.f8414a, 0, i10, true)) {
                     pVar.q();
                     if (c3.b.i(xVar.i()) == 1 && xVar.a() >= 10) {
                         byte[] bArr = new byte[10];
@@ -386,7 +386,7 @@ public final class f implements o {
                             xVar.O(g10);
                             if (c3.b.i(xVar.m()) == 2) {
                                 w a11 = eVar.f46129b0.a();
-                                a11.f2466r = w0.n("audio/vnd.dts.hd");
+                                a11.f2470r = w0.n("audio/vnd.dts.hd");
                                 eVar.f46129b0 = new b2.x(a11);
                             }
                         }
@@ -406,9 +406,9 @@ public final class f implements o {
                     this.W &= -1073741825;
                     int i14 = 128;
                     if (!this.f46163e0) {
-                        pVar.readFully(xVar3.f8411a, 0, 1);
+                        pVar.readFully(xVar3.f8414a, 0, 1);
                         this.f46157a0++;
-                        byte b10 = xVar3.f8411a[0];
+                        byte b10 = xVar3.f8414a[0];
                         if ((b10 & 128) != 128) {
                             this.f46168h0 = b10;
                             this.f46163e0 = true;
@@ -426,10 +426,10 @@ public final class f implements o {
                         this.W |= 1073741824;
                         if (!this.f46170i0) {
                             x xVar4 = this.f46176n;
-                            pVar.readFully(xVar4.f8411a, 0, 8);
+                            pVar.readFully(xVar4.f8414a, 0, 8);
                             this.f46157a0 += 8;
                             this.f46170i0 = true;
-                            byte[] bArr2 = xVar3.f8411a;
+                            byte[] bArr2 = xVar3.f8414a;
                             if (!z12) {
                                 i14 = 0;
                             }
@@ -443,7 +443,7 @@ public final class f implements o {
                         }
                         if (z12) {
                             if (!this.f46165f0) {
-                                pVar.readFully(xVar3.f8411a, 0, 1);
+                                pVar.readFully(xVar3.f8414a, 0, 1);
                                 this.f46157a0++;
                                 xVar3.N(0);
                                 this.f46167g0 = xVar3.A();
@@ -451,7 +451,7 @@ public final class f implements o {
                             }
                             int i15 = this.f46167g0 * 4;
                             xVar3.K(i15);
-                            pVar.readFully(xVar3.f8411a, 0, i15);
+                            pVar.readFully(xVar3.f8414a, 0, i15);
                             this.f46157a0 += i15;
                             short s10 = (short) ((this.f46167g0 / 2) + 1);
                             int i16 = (s10 * 6) + 2;
@@ -507,9 +507,9 @@ public final class f implements o {
                 if (z11) {
                     this.W |= 268435456;
                     this.f46178p.K(0);
-                    int i20 = (xVar2.f8413c + i10) - this.f46157a0;
+                    int i20 = (xVar2.f8416c + i10) - this.f46157a0;
                     xVar3.K(4);
-                    byte[] bArr4 = xVar3.f8411a;
+                    byte[] bArr4 = xVar3.f8414a;
                     bArr4[0] = (byte) ((i20 >> 24) & 255);
                     bArr4[1] = (byte) ((i20 >> 16) & 255);
                     bArr4[2] = (byte) ((i20 >> 8) & 255);
@@ -519,10 +519,10 @@ public final class f implements o {
                 }
                 this.f46162d0 = true;
             }
-            int i21 = i10 + xVar2.f8413c;
+            int i21 = i10 + xVar2.f8416c;
             if (!"V_MPEG4/ISO/AVC".equals(eVar.f46130c) && !"V_MPEGH/ISO/HEVC".equals(eVar.f46130c)) {
                 if (eVar.V != null) {
-                    if (xVar2.f8413c != 0) {
+                    if (xVar2.f8416c != 0) {
                         z13 = false;
                     }
                     u6.p(z13);
@@ -546,7 +546,7 @@ public final class f implements o {
                 }
             } else {
                 x xVar6 = this.h;
-                byte[] bArr5 = xVar6.f8411a;
+                byte[] bArr5 = xVar6.f8414a;
                 bArr5[0] = 0;
                 bArr5[1] = 0;
                 bArr5[2] = 0;
@@ -601,7 +601,7 @@ public final class f implements o {
     public final void p(c3.p pVar, byte[] bArr, int i10) {
         int length = bArr.length + i10;
         x xVar = this.f46175m;
-        byte[] bArr2 = xVar.f8411a;
+        byte[] bArr2 = xVar.f8414a;
         if (bArr2.length < length) {
             byte[] copyOf = Arrays.copyOf(bArr, length + i10);
             xVar.getClass();
@@ -609,7 +609,7 @@ public final class f implements o {
         } else {
             System.arraycopy(bArr, 0, bArr2, 0, bArr.length);
         }
-        pVar.readFully(xVar.f8411a, bArr.length, i10);
+        pVar.readFully(xVar.f8414a, bArr.length, i10);
         xVar.N(0);
         xVar.M(length);
     }

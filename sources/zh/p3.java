@@ -7,10 +7,10 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.er;
 public final class p3 extends er {
-    public final View f50980c;
+    public final View f50981c;
     public final Paint d;
     public final Path e;
-    public final long f50981f;
+    public final long f50982f;
     public float h;
 
     public p3(di.d dVar, int i10) {
@@ -19,10 +19,10 @@ public final class p3 extends er {
         this.d = paint;
         Path path = new Path();
         this.e = path;
-        this.f50981f = System.currentTimeMillis();
+        this.f50982f = System.currentTimeMillis();
         this.h = 1.0f;
-        this.f50980c = dVar;
-        ((Paint) this.f24769b).setColor(-1);
+        this.f50981c = dVar;
+        ((Paint) this.f24456b).setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -36,10 +36,10 @@ public final class p3 extends er {
     @Override
     public final void draw(Canvas canvas) {
         float f7;
-        Paint paint = (Paint) this.f24769b;
+        Paint paint = (Paint) this.f24456b;
         paint.setAlpha((int) (this.h * 255.0f));
         canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
-        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f50981f) % 400)) / 400.0f;
+        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f50982f) % 400)) / 400.0f;
         Paint paint2 = this.d;
         int alpha = paint2.getAlpha();
         paint2.setAlpha((int) (alpha * this.h));
@@ -64,7 +64,7 @@ public final class p3 extends er {
         }
         canvas.restore();
         paint2.setAlpha(alpha);
-        View view = this.f50980c;
+        View view = this.f50981c;
         if (view != null) {
             view.invalidate();
         }

@@ -33,7 +33,7 @@ public final class RenderSynchronizer {
         this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f7);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
-        handler.post(new o(this, 1));
+        handler.post(new n(this, 1));
         Logging.d("RenderSynchronizer", "Created");
     }
 
@@ -50,7 +50,7 @@ public final class RenderSynchronizer {
     }
 
     public void lambda$registerListener$1() {
-        this.choreographer.postFrameCallback(new p(this));
+        this.choreographer.postFrameCallback(new o(this));
     }
 
     public void onDisplayRefreshCycleBegin(long j10) {
@@ -61,7 +61,7 @@ public final class RenderSynchronizer {
                     this.isListening = false;
                     return;
                 }
-                this.choreographer.postFrameCallback(new p(this));
+                this.choreographer.postFrameCallback(new o(this));
                 long j11 = j10 - this.lastOpenedTimeNanos;
                 this.lastRefreshTimeNanos = j10;
                 if (Math.abs(j11 - this.targetFrameIntervalNanos) < Math.abs((j11 - this.targetFrameIntervalNanos) + (j10 - this.lastRefreshTimeNanos))) {
@@ -103,7 +103,7 @@ public final class RenderSynchronizer {
                 if (!this.isListening) {
                     Logging.d("RenderSynchronizer", "First listener, subscribing to frame callbacks");
                     this.isListening = true;
-                    this.mainThreadHandler.post(new o(this, 0));
+                    this.mainThreadHandler.post(new n(this, 0));
                 }
             } catch (Throwable th2) {
                 throw th2;

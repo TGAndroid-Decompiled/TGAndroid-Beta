@@ -20,10 +20,10 @@ public final class h extends t1 {
 
     public h(i iVar) {
         d(iVar);
-        this.J = iVar.f47756w0;
-        this.K = iVar.f47757x0;
-        this.L = iVar.f47758y0;
-        this.M = iVar.f47759z0;
+        this.J = iVar.f47755w0;
+        this.K = iVar.f47756x0;
+        this.L = iVar.f47757y0;
+        this.M = iVar.f47758z0;
         this.N = iVar.A0;
         this.O = iVar.B0;
         this.P = iVar.C0;
@@ -38,7 +38,7 @@ public final class h extends t1 {
 
     @Override
     public final void a(r1 r1Var) {
-        this.H.put(r1Var.f2318a, r1Var);
+        this.H.put(r1Var.f2322a, r1Var);
     }
 
     @Override

@@ -1,32 +1,121 @@
 package m;
 
-import android.view.View;
-import android.widget.AdapterView;
-import androidx.appcompat.widget.SearchView;
-public final class k0 implements AdapterView.OnItemClickListener {
-    public final int f15141a;
-    public final Object f15142b;
+import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.widget.ListAdapter;
+import androidx.appcompat.app.AlertController$RecycleListView;
+public final class k0 implements q0, DialogInterface.OnClickListener {
+    public g.f f14881a;
+    public l0 f14882b;
+    public CharSequence f14883c;
+    public final r0 d;
 
-    public k0(Object obj, int i10) {
-        this.f15141a = i10;
-        this.f15142b = obj;
+    public k0(r0 r0Var) {
+        this.d = r0Var;
     }
 
     @Override
-    public final void onItemClick(AdapterView adapterView, View view, int i10, long j10) {
-        switch (this.f15141a) {
-            case 0:
-                m0 m0Var = (m0) this.f15142b;
-                p0 p0Var = m0Var.W;
-                p0Var.setSelection(i10);
-                if (p0Var.getOnItemClickListener() != null) {
-                    p0Var.performItemClick(view, i10, m0Var.T.getItemId(i10));
-                }
-                m0Var.dismiss();
-                return;
-            default:
-                ((SearchView) this.f15142b).m(i10);
-                return;
+    public final boolean a() {
+        g.f fVar = this.f14881a;
+        if (fVar != null) {
+            return fVar.isShowing();
         }
+        return false;
+    }
+
+    @Override
+    public final int b() {
+        return 0;
+    }
+
+    @Override
+    public final void c(int i10) {
+        Log.e("AppCompatSpinner", "Cannot set horizontal offset for MODE_DIALOG, ignoring");
+    }
+
+    @Override
+    public final CharSequence d() {
+        return this.f14883c;
+    }
+
+    @Override
+    public final void dismiss() {
+        g.f fVar = this.f14881a;
+        if (fVar != null) {
+            fVar.dismiss();
+            this.f14881a = null;
+        }
+    }
+
+    @Override
+    public final Drawable e() {
+        return null;
+    }
+
+    @Override
+    public final void h(CharSequence charSequence) {
+        this.f14883c = charSequence;
+    }
+
+    @Override
+    public final void i(Drawable drawable) {
+        Log.e("AppCompatSpinner", "Cannot set popup background for MODE_DIALOG, ignoring");
+    }
+
+    @Override
+    public final void j(int i10) {
+        Log.e("AppCompatSpinner", "Cannot set vertical offset for MODE_DIALOG, ignoring");
+    }
+
+    @Override
+    public final void k(int i10) {
+        Log.e("AppCompatSpinner", "Cannot set horizontal (original) offset for MODE_DIALOG, ignoring");
+    }
+
+    @Override
+    public final void l(int i10, int i11) {
+        if (this.f14882b == null) {
+            return;
+        }
+        r0 r0Var = this.d;
+        c5.c0 c0Var = new c5.c0(r0Var.getPopupContext());
+        g.b bVar = (g.b) c0Var.f4356c;
+        CharSequence charSequence = this.f14883c;
+        if (charSequence != null) {
+            bVar.d = charSequence;
+        }
+        l0 l0Var = this.f14882b;
+        int selectedItemPosition = r0Var.getSelectedItemPosition();
+        bVar.f9738i = l0Var;
+        bVar.f9739j = this;
+        bVar.f9742m = selectedItemPosition;
+        bVar.f9741l = true;
+        g.f d = c0Var.d();
+        this.f14881a = d;
+        AlertController$RecycleListView alertController$RecycleListView = d.f9767f.e;
+        i0.d(alertController$RecycleListView, i10);
+        i0.c(alertController$RecycleListView, i11);
+        this.f14881a.show();
+    }
+
+    @Override
+    public final int m() {
+        return 0;
+    }
+
+    @Override
+    public final void n(ListAdapter listAdapter) {
+        this.f14882b = (l0) listAdapter;
+    }
+
+    @Override
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        r0 r0Var = this.d;
+        r0Var.setSelection(i10);
+        if (r0Var.getOnItemClickListener() != null) {
+            r0Var.performItemClick(null, i10, this.f14882b.getItemId(i10));
+        }
+        dismiss();
     }
 }

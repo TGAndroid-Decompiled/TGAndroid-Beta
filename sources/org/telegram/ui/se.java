@@ -17,12 +17,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class se implements Runnable {
-    public final int f40104a;
-    public final fo f40105b;
+    public final int f39800a;
+    public final fo f39801b;
 
     public se(fo foVar, int i10) {
-        this.f40104a = i10;
-        this.f40105b = foVar;
+        this.f39800a = i10;
+        this.f39801b = foVar;
     }
 
     @Override
@@ -32,17 +32,17 @@ public final class se implements Runnable {
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject;
         int i11;
-        int i12 = this.f40104a;
+        int i12 = this.f39800a;
         TLRPC.ChatTheme chatTheme = null;
         int i13 = 0;
-        fo foVar = this.f40105b;
+        fo foVar = this.f39801b;
         switch (i12) {
             case 0:
                 foVar.L5 = null;
                 if (foVar.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar.getParentActivity(), 0, foVar.f35932ea);
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar.getParentActivity(), 0, foVar.f35633ea);
                     boolean isChannel = ChatObject.isChannel(foVar.e);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
                     if (isChannel && !foVar.e.megagroup) {
                         a2Var.T = LocaleController.getString(R.string.JoinByPeekChannelText);
                         a2Var.R = LocaleController.getString(R.string.JoinByPeekChannelTitle);
@@ -63,8 +63,8 @@ public final class se implements Runnable {
                 fo.n0(foVar);
                 return;
             case 3:
-                foVar.ta(null, foVar.f36103s8);
-                foVar.f36103s8 = null;
+                foVar.ta(null, foVar.f35804s8);
+                foVar.f35804s8 = null;
                 return;
             case 4:
                 if (!org.telegram.ui.ActionBar.m2.hasSheets(foVar) && (skVar = foVar.Y) != null) {
@@ -75,7 +75,7 @@ public final class se implements Runnable {
                 return;
             case 5:
                 foVar.t9();
-                AndroidUtilities.forEachViews((RecyclerView) foVar.f36160x0, (Utilities.Callback<View>) new jf(foVar, 6));
+                AndroidUtilities.forEachViews((RecyclerView) foVar.f35861x0, (Utilities.Callback<View>) new jf(foVar, 6));
                 foVar.x7();
                 jk jkVar = foVar.X2;
                 if (jkVar != null) {
@@ -93,23 +93,23 @@ public final class se implements Runnable {
                 foVar.w7();
                 return;
             case 6:
-                hf1 a02 = hf1.a0(-foVar.T5, 0L);
-                a02.f36789y = foVar;
+                gf1 a02 = gf1.a0(-foVar.T5, 0L);
+                a02.f36189y = foVar;
                 foVar.presentFragment(a02);
                 return;
             case 7:
                 foVar.fc(true);
                 return;
             case 8:
-                foVar.f35984j1.d(true);
+                foVar.f35685j1.d(true);
                 return;
             case 9:
                 foVar.getNotificationCenter().onAnimationFinish(foVar.F9);
                 return;
             case 10:
-                int childCount = foVar.f36160x0.getChildCount();
+                int childCount = foVar.f35861x0.getChildCount();
                 while (i13 < childCount) {
-                    View childAt = foVar.f36160x0.getChildAt(i13);
+                    View childAt = foVar.f35861x0.getChildAt(i13);
                     if (childAt instanceof org.telegram.ui.Cells.u1) {
                         org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) childAt;
                         if (u1Var2.getMessageObject().type == 4) {
@@ -124,7 +124,7 @@ public final class se implements Runnable {
                 foVar.Bc(true);
                 return;
             case 12:
-                il ilVar = foVar.f35895bb;
+                il ilVar = foVar.f35596bb;
                 if (ilVar != null) {
                     ilVar.requestLayout();
                     return;
@@ -144,7 +144,7 @@ public final class se implements Runnable {
                 foVar.getNotificationCenter().runDelayedNotifications();
                 return;
             case 16:
-                TLRPC.UserFull userFull = foVar.f35878a8;
+                TLRPC.UserFull userFull = foVar.f35579a8;
                 if (userFull != null) {
                     chatTheme = userFull.theme;
                 }
@@ -172,7 +172,7 @@ public final class se implements Runnable {
                 foVar.Y.F0();
                 return;
             case 21:
-                AndroidUtilities.forEachViews((RecyclerView) foVar.f36160x0, (Utilities.Callback<View>) new bi.f(11));
+                AndroidUtilities.forEachViews((RecyclerView) foVar.f35861x0, (Utilities.Callback<View>) new bi.f(11));
                 rm rmVar = foVar.A0;
                 if (rmVar != null) {
                     rmVar.O(true);
@@ -180,40 +180,40 @@ public final class se implements Runnable {
                 }
                 return;
             case 22:
-                fo foVar2 = this.f40105b;
-                int i14 = foVar2.f36078qb;
+                fo foVar2 = this.f39801b;
+                int i14 = foVar2.f35779qb;
                 if (i14 != 0) {
-                    foVar2.j(i14, foVar2.f36092rb, foVar2.f36106sb, foVar2.f36119tb, foVar2.f36131ub, foVar2.f36144vb);
-                    foVar2.f36078qb = 0;
+                    foVar2.j(i14, foVar2.f35793rb, foVar2.f35807sb, foVar2.f35820tb, foVar2.f35832ub, foVar2.f35845vb);
+                    foVar2.f35779qb = 0;
                     return;
                 }
                 return;
             case 23:
-                if (!foVar.f36011l3 && foVar.f36160x0 != null && foVar.getParentActivity() != null && foVar.fragmentView != null) {
-                    org.telegram.ui.Components.dq dqVar = foVar.f36135v2;
+                if (!foVar.f35712l3 && foVar.f35861x0 != null && foVar.getParentActivity() != null && foVar.fragmentView != null) {
+                    org.telegram.ui.Components.dq dqVar = foVar.f35836v2;
                     if (dqVar == null || dqVar.getTag() == null) {
-                        if (foVar.f36135v2 == null) {
+                        if (foVar.f35836v2 == null) {
                             xm xmVar = foVar.X0;
                             int indexOfChild = xmVar.indexOfChild(foVar.S);
                             if (indexOfChild != -1) {
                                 i10 = 1;
-                                org.telegram.ui.Components.dq dqVar2 = new org.telegram.ui.Components.dq(foVar.getParentActivity(), foVar.f35932ea);
-                                foVar.f36135v2 = dqVar2;
-                                xmVar.addView(dqVar2, indexOfChild + 1, w7.a6.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
-                                foVar.f36135v2.setAlpha(0.0f);
-                                foVar.f36135v2.setVisibility(4);
+                                org.telegram.ui.Components.dq dqVar2 = new org.telegram.ui.Components.dq(foVar.getParentActivity(), foVar.f35633ea);
+                                foVar.f35836v2 = dqVar2;
+                                xmVar.addView(dqVar2, indexOfChild + 1, w7.z5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
+                                foVar.f35836v2.setAlpha(0.0f);
+                                foVar.f35836v2.setVisibility(4);
                             } else {
                                 return;
                             }
                         } else {
                             i10 = 1;
                         }
-                        int childCount2 = foVar.f36160x0.getChildCount();
+                        int childCount2 = foVar.f35861x0.getChildCount();
                         for (int i15 = 0; i15 < childCount2; i15++) {
-                            View childAt2 = foVar.f36160x0.getChildAt(i15);
+                            View childAt2 = foVar.f35861x0.getChildAt(i15);
                             if ((childAt2 instanceof org.telegram.ui.Cells.u1) && (messageObject = (u1Var = (org.telegram.ui.Cells.u1) childAt2).getMessageObject()) != null && messageObject.isOutOwner() && messageObject.isSent()) {
-                                org.telegram.ui.Components.dq dqVar3 = foVar.f36135v2;
-                                ImageView imageView = dqVar3.f24471c;
+                                org.telegram.ui.Components.dq dqVar3 = foVar.f35836v2;
+                                ImageView imageView = dqVar3.f24164c;
                                 org.telegram.ui.Components.qg qgVar = dqVar3.e;
                                 if (qgVar != null) {
                                     AndroidUtilities.cancelRunOnUIThread(qgVar);
@@ -227,11 +227,11 @@ public final class se implements Runnable {
                                 View view = (View) u1Var.getParent();
                                 dqVar3.measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
                                 if (i17 > AndroidUtilities.dp(10.0f) + dqVar3.getMeasuredHeight()) {
-                                    int c10 = org.telegram.messenger.yh.c(6.0f, u1Var.getChecksY(), i17);
+                                    int C = org.telegram.messenger.g0.C(6.0f, u1Var.getChecksY(), i17);
                                     int dp = AndroidUtilities.dp(5.0f) + u1Var.getChecksX();
                                     int measuredWidth = view.getMeasuredWidth();
-                                    float measuredHeight = c10 - dqVar3.getMeasuredHeight();
-                                    dqVar3.f24472f = measuredHeight;
+                                    float measuredHeight = C - dqVar3.getMeasuredHeight();
+                                    dqVar3.f24165f = measuredHeight;
                                     dqVar3.setTranslationY(measuredHeight);
                                     int left = u1Var.getLeft() + dp;
                                     int dp2 = AndroidUtilities.dp(15.0f);
@@ -282,7 +282,7 @@ public final class se implements Runnable {
                                     dqVar3.d.setDuration(180L);
                                     dqVar3.d.start();
                                     while (i13 < 2) {
-                                        ViewPropertyAnimator interpolator = dqVar3.f24469a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.es.f24773i);
+                                        ViewPropertyAnimator interpolator = dqVar3.f24162a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.es.f24467i);
                                         if (i13 == 0) {
                                             i11 = 132;
                                         } else {
@@ -305,7 +305,7 @@ public final class se implements Runnable {
                 fo.G0(foVar);
                 return;
             case 25:
-                AndroidUtilities.forEachViews((RecyclerView) foVar.f36160x0, (Utilities.Callback<View>) new bi.f(10));
+                AndroidUtilities.forEachViews((RecyclerView) foVar.f35861x0, (Utilities.Callback<View>) new bi.f(10));
                 rm rmVar2 = foVar.A0;
                 if (rmVar2 != null) {
                     rmVar2.O(false);
@@ -323,7 +323,7 @@ public final class se implements Runnable {
                 }
                 return;
             case 28:
-                org.telegram.ui.Components.dp dpVar = ((org.telegram.ui.Components.dp[]) foVar.f35871a0.f895b)[0];
+                org.telegram.ui.Components.dp dpVar = ((org.telegram.ui.Components.dp[]) foVar.f35572a0.f899b)[0];
                 org.telegram.ui.ActionBar.h5 h5Var = dpVar.d;
                 org.telegram.ui.ActionBar.h5 h5Var2 = dpVar.e;
                 foVar.F1 = !foVar.F1;

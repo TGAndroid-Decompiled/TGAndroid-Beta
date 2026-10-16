@@ -1,21 +1,21 @@
 package di;
 public final class lc implements Runnable {
-    public final int f7372a;
-    public final uc f7373b;
+    public final int f7375a;
+    public final uc f7376b;
 
     public lc(uc ucVar, int i10) {
-        this.f7372a = i10;
-        this.f7373b = ucVar;
+        this.f7375a = i10;
+        this.f7376b = ucVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f7372a) {
+        switch (this.f7375a) {
             case 0:
-                uc ucVar = this.f7373b;
+                uc ucVar = this.f7376b;
                 sc scVar = ucVar.M;
                 if (scVar != null) {
-                    long j10 = scVar.f7797a;
+                    long j10 = scVar.f7800a;
                     if (j10 > 0) {
                         ucVar.H = j10;
                         return;
@@ -24,14 +24,14 @@ public final class lc implements Runnable {
                 }
                 return;
             case 1:
-                oc ocVar = this.f7373b.f7908a;
+                oc ocVar = this.f7376b.f7911a;
                 if (ocVar != null) {
-                    ocVar.f0();
+                    ocVar.c0();
                     return;
                 }
                 return;
             default:
-                oc ocVar2 = this.f7373b.f7908a;
+                oc ocVar2 = this.f7376b.f7911a;
                 if (ocVar2 != null) {
                     ocVar2.r();
                     return;

@@ -15,7 +15,7 @@ public final class x6 extends y5 {
         super(context);
         this.O = e7Var;
         this.N = sbVar;
-        this.f4017w = -1;
+        this.f4021w = -1;
         this.E = new ArrayList();
         this.F = new ArrayList();
         this.G = new ArrayList();
@@ -29,7 +29,7 @@ public final class x6 extends y5 {
         ob obVar;
         e7 e7Var = this.O;
         y6 y6Var = e7Var.E;
-        if (!e7Var.f2995w) {
+        if (!e7Var.f2999w) {
             if (y6Var.getCurrentItem() != i10) {
                 try {
                     y6Var.x(i10, false);
@@ -40,11 +40,11 @@ public final class x6 extends y5 {
                 }
             }
             sb sbVar = this.N;
-            if (sbVar.O0 != null && (obVar = sbVar.f3703t0) != null) {
+            if (sbVar.O0 != null && (obVar = sbVar.f3707t0) != null) {
                 if (i10 < 10) {
                     obVar.b(false);
                 } else if (i10 >= this.E.size() - 10) {
-                    sbVar.f3703t0.b(true);
+                    sbVar.f3707t0.b(true);
                 }
             }
         }

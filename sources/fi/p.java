@@ -2,19 +2,19 @@ package fi;
 
 import org.telegram.messenger.FileLog;
 public final class p extends v7.l {
-    public final r f9459a;
+    public final r f9462a;
 
     public p(r rVar) {
-        this.f9459a = rVar;
+        this.f9462a = rVar;
     }
 
     @Override
     public final void a(int i10, CharSequence charSequence) {
         FileLog.d("BotBiometry onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
-        r rVar = this.f9459a;
-        bi.f0 f0Var = rVar.f9509j;
+        r rVar = this.f9462a;
+        bi.f0 f0Var = rVar.f9512j;
         if (f0Var != null) {
-            rVar.f9509j = null;
+            rVar.f9512j = null;
             f0Var.run(Boolean.FALSE, null);
         }
     }
@@ -27,10 +27,10 @@ public final class p extends v7.l {
     @Override
     public final void c(androidx.biometric.u uVar) {
         FileLog.d("BotBiometry onAuthenticationSucceeded");
-        r rVar = this.f9459a;
-        bi.f0 f0Var = rVar.f9509j;
+        r rVar = this.f9462a;
+        bi.f0 f0Var = rVar.f9512j;
         if (f0Var != null) {
-            rVar.f9509j = null;
+            rVar.f9512j = null;
             f0Var.run(Boolean.TRUE, uVar);
         }
     }

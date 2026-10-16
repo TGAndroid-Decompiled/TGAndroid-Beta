@@ -5,10 +5,10 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class p4 extends org.telegram.ui.Components.lm0 {
-    public final Context f39116c;
+    public final Context f38810c;
 
     public p4(Context context) {
-        this.f39116c = context;
+        this.f38810c = context;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class p4 extends org.telegram.ui.Components.lm0 {
             org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) b1Var.f44838a;
             caVar.setEnabled(z10);
             String string = LocaleController.getString(R.string.AudioRecorderNoiseSuppression);
-            if (((ri.j) si.e.f45486c.a()) == ri.j.f44734b) {
+            if (((qi.j) si.e.f45486c.a()) == qi.j.f43410b) {
                 i11 = R.string.AudioRecorderNoiseSuppressionRNNoise;
             } else {
                 i11 = R.string.AudioRecorderNoiseSuppressionOff;
@@ -72,7 +72,7 @@ public final class p4 extends org.telegram.ui.Components.lm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.ca caVar;
-        Context context = this.f39116c;
+        Context context = this.f38810c;
         if (i10 == 0) {
             caVar = new org.telegram.ui.Cells.m4(context);
         } else if (i10 == 1) {

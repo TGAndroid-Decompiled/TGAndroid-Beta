@@ -7,19 +7,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class d9 extends FrameLayout {
-    public final TextView f33104a;
-    public final ImageView f33105b;
-    public b6 f33106c;
+    public final TextView f32803a;
+    public final ImageView f32804b;
+    public c6 f32805c;
     public float d;
     public float e;
-    public boolean f33107f;
+    public boolean f32806f;
 
     public d9(Context context) {
         super(context);
         setClipChildren(false);
         setClipToPadding(false);
         TextView textView = new TextView(context);
-        this.f33104a = textView;
+        this.f32803a = textView;
         textView.setSingleLine(true);
         textView.setIncludeFontPadding(false);
         textView.setGravity(21);
@@ -27,42 +27,42 @@ public final class d9 extends FrameLayout {
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         addView(textView);
         ImageView imageView = new ImageView(context);
-        this.f33105b = imageView;
+        this.f32804b = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setImportantForAccessibility(2);
-        addView(imageView, w7.a6.d(16.0f, 16));
+        addView(imageView, w7.z5.d(16.0f, 16));
     }
 
     public final void a() {
         float f7;
         float height = (((getHeight() * 0.5f) - AndroidUtilities.dp(19.0f)) * this.d) + AndroidUtilities.dp(19.0f);
         float width = getWidth() - (c() * 0.5f);
-        TextView textView = this.f33104a;
+        TextView textView = this.f32803a;
         textView.setPivotX(textView.getWidth());
         textView.setPivotY(textView.getHeight() * 0.5f);
         textView.setScaleX((this.d * 0.42857146f) + 1.0f);
         textView.setScaleY((this.d * 0.42857146f) + 1.0f);
         textView.setTranslationX(((getWidth() - c()) - b()) - textView.getWidth());
         textView.setTranslationY(height - (textView.getHeight() * 0.5f));
-        ImageView imageView = this.f33105b;
+        ImageView imageView = this.f32804b;
         imageView.setTranslationX(width - AndroidUtilities.dp(8.0f));
         imageView.setTranslationY(height - AndroidUtilities.dp(8.0f));
         imageView.setAlpha(1.0f - this.d);
-        b6 b6Var = this.f33106c;
-        if (b6Var != null) {
-            b6Var.setTranslationX(width - AndroidUtilities.dp(20.0f));
-            this.f33106c.setTranslationY(height - AndroidUtilities.dp(20.0f));
-            this.f33106c.setPivotX(AndroidUtilities.dp(20.0f));
-            this.f33106c.setPivotY(AndroidUtilities.dp(20.0f));
-            this.f33106c.setScaleX(((this.d * 0.4f) + 0.6f) * ((this.e * 0.12f) + 1.0f));
-            this.f33106c.setScaleY(((this.d * 0.4f) + 0.6f) * (1.0f - (this.e * 0.18f)));
-            b6 b6Var2 = this.f33106c;
-            if (this.f33107f) {
+        c6 c6Var = this.f32805c;
+        if (c6Var != null) {
+            c6Var.setTranslationX(width - AndroidUtilities.dp(20.0f));
+            this.f32805c.setTranslationY(height - AndroidUtilities.dp(20.0f));
+            this.f32805c.setPivotX(AndroidUtilities.dp(20.0f));
+            this.f32805c.setPivotY(AndroidUtilities.dp(20.0f));
+            this.f32805c.setScaleX(((this.d * 0.4f) + 0.6f) * ((this.e * 0.12f) + 1.0f));
+            this.f32805c.setScaleY(((this.d * 0.4f) + 0.6f) * (1.0f - (this.e * 0.18f)));
+            c6 c6Var2 = this.f32805c;
+            if (this.f32806f) {
                 f7 = 0.0f;
             } else {
                 f7 = this.d;
             }
-            b6Var2.setAlpha(f7);
+            c6Var2.setAlpha(f7);
         }
     }
 
@@ -76,12 +76,12 @@ public final class d9 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        TextView textView = this.f33104a;
+        TextView textView = this.f32803a;
         textView.layout(0, 0, textView.getMeasuredWidth(), textView.getMeasuredHeight());
-        this.f33105b.layout(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        b6 b6Var = this.f33106c;
-        if (b6Var != null) {
-            b6Var.layout(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+        this.f32804b.layout(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        c6 c6Var = this.f32805c;
+        if (c6Var != null) {
+            c6Var.layout(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
         }
         a();
     }
@@ -90,12 +90,12 @@ public final class d9 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) (Math.max(0, View.MeasureSpec.getSize(i10) - Math.round(b() + c())) / ((this.d * 0.42857146f) + 1.0f)), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824);
-        TextView textView = this.f33104a;
+        TextView textView = this.f32803a;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f33105b.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
-        b6 b6Var = this.f33106c;
-        if (b6Var != null) {
-            b6Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+        this.f32804b.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
+        c6 c6Var = this.f32805c;
+        if (c6Var != null) {
+            c6Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
         }
         setMeasuredDimension(View.resolveSize((int) Math.ceil(c() + b() + com.google.android.gms.internal.play_billing.k3.A(this.d, 0.42857146f, 1.0f, textView.getMeasuredWidth())), i10), View.resolveSize(AndroidUtilities.dp(40.0f), i11));
     }

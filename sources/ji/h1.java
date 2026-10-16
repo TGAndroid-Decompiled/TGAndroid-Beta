@@ -19,8 +19,8 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.nu;
-import org.telegram.ui.Components.q11;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.r11;
+import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.x90;
 public final class h1 extends nu {
     public boolean E;
@@ -39,22 +39,22 @@ public final class h1 extends nu {
     public m4 R;
     public boolean S;
     public final b1 T;
-    public g1 f13292c;
+    public g1 f13295c;
     public f1 d;
     public final org.telegram.ui.ActionBar.c6 e;
-    public int f13293f;
+    public int f13296f;
     public boolean h;
-    public boolean f13294n;
-    public boolean f13295r;
-    public boolean f13296s;
+    public boolean f13297n;
+    public boolean f13298r;
+    public boolean f13299s;
     public boolean v;
-    public boolean f13297w;
-    public boolean f13298x;
-    public boolean f13299y;
+    public boolean f13300w;
+    public boolean f13301x;
+    public boolean f13302y;
 
     public h1(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context, c6Var);
-        this.f13293f = UserConfig.selectedAccount;
+        this.f13296f = UserConfig.selectedAccount;
         this.I = -1;
         this.J = true;
         this.K = new InputFilter() {
@@ -64,9 +64,9 @@ public final class h1 extends nu {
                 if (!h1Var.v || h1Var.h) {
                     return null;
                 }
-                g1 g1Var = h1Var.f13292c;
+                g1 g1Var = h1Var.f13295c;
                 if (g1Var != null && charSequence != null && i11 > i10 && i12 == i13) {
-                    g1Var.g0(charSequence.subSequence(i10, i11));
+                    g1Var.y(charSequence.subSequence(i10, i11));
                 }
                 return spanned.subSequence(i12, i13);
             }
@@ -105,7 +105,7 @@ public final class h1 extends nu {
     }
 
     @Override
-    public final r61 createUrlSpan(String str) {
+    public final s61 createUrlSpan(String str) {
         return k6.k(str);
     }
 
@@ -114,24 +114,24 @@ public final class h1 extends nu {
         boolean z10;
         g1 g1Var;
         if (keyEvent.getKeyCode() == 61) {
-            if (keyEvent.getAction() == 0 && (g1Var = this.f13292c) != null) {
-                g1Var.F0(keyEvent.isShiftPressed());
+            if (keyEvent.getAction() == 0 && (g1Var = this.f13295c) != null) {
+                g1Var.E(keyEvent.isShiftPressed());
                 return true;
             }
         } else {
             int keyCode = keyEvent.getKeyCode();
-            if ((keyCode == 66 || keyCode == 160) && this.f13292c != null && !this.f13297w) {
+            if ((keyCode == 66 || keyCode == 160) && this.f13295c != null && !this.f13300w) {
                 if (keyEvent.getAction() == 0) {
                     if ((keyEvent.getFlags() & 2) != 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (this.f13295r && (z10 || keyEvent.isShiftPressed())) {
+                    if (this.f13298r && (z10 || keyEvent.isShiftPressed())) {
                         p();
                         return true;
                     }
-                    this.f13292c.p0(this);
+                    this.f13295c.z(this);
                 }
             } else {
                 return super.dispatchKeyEvent(keyEvent);
@@ -164,7 +164,7 @@ public final class h1 extends nu {
                 m4Var.d(text);
             }
             for (m4 m4Var2 : m4VarArr) {
-                m4Var2.a(this.f13293f, this, this.e);
+                m4Var2.a(this.f13296f, this, this.e);
             }
         }
     }
@@ -224,10 +224,10 @@ public final class h1 extends nu {
         Editable text = getText();
         if (text != null) {
             for (m4 m4Var : (m4[]) text.getSpans(0, text.length(), m4.class)) {
-                RichMessageLayout.RichButtonSpan richButtonSpan = m4Var.f13408b;
-                if (richButtonSpan != null && m4Var.f13409c == this) {
+                RichMessageLayout.RichButtonSpan richButtonSpan = m4Var.f13411b;
+                if (richButtonSpan != null && m4Var.f13412c == this) {
                     richButtonSpan.detach(this);
-                    m4Var.f13409c = null;
+                    m4Var.f13412c = null;
                 }
             }
         }
@@ -236,7 +236,7 @@ public final class h1 extends nu {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        q11[] q11VarArr;
+        r11[] r11VarArr;
         int i10;
         int i11;
         float f7;
@@ -255,15 +255,15 @@ public final class h1 extends nu {
                 this.F = null;
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
-                    for (q11 q11Var : (q11[]) spanned.getSpans(0, spanned.length(), q11.class)) {
-                        int i12 = q11Var.f28484b.f28135a;
+                    for (r11 r11Var : (r11[]) spanned.getSpans(0, spanned.length(), r11.class)) {
+                        int i12 = r11Var.f28400b.f28163a;
                         if ((65536 & i12) != 0) {
-                            int spanStart = spanned.getSpanStart(q11Var);
-                            int spanEnd = spanned.getSpanEnd(q11Var);
+                            int spanStart = spanned.getSpanStart(r11Var);
+                            int spanEnd = spanned.getSpanEnd(r11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (x90Var == null) {
                                     x90Var = new x90(0);
-                                    x90Var.f31215n = false;
+                                    x90Var.f30898n = false;
                                 }
                                 x90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
@@ -283,13 +283,13 @@ public final class h1 extends nu {
                                 } else {
                                     i11 = 0;
                                 }
-                                x90Var.f31216o = i11;
+                                x90Var.f30899o = i11;
                                 layout.getSelectionPath(spanStart, spanEnd, x90Var);
                             }
                         }
                     }
                     if (x90Var != null) {
-                        x90Var.f31215n = true;
+                        x90Var.f30898n = true;
                     }
                     this.F = x90Var;
                 }
@@ -312,11 +312,11 @@ public final class h1 extends nu {
 
     @Override
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        if (i10 == 67 && this.f13292c != null) {
+        if (i10 == 67 && this.f13295c != null) {
             if (length() == 0) {
-                this.f13292c.W();
+                this.f13295c.r();
                 return true;
-            } else if (getSelectionStart() == 0 && getSelectionEnd() == 0 && this.f13292c.l(this)) {
+            } else if (getSelectionStart() == 0 && getSelectionEnd() == 0 && this.f13295c.e(this)) {
                 return true;
             }
         }
@@ -326,9 +326,9 @@ public final class h1 extends nu {
     @Override
     public final void onSelectionChanged(int i10, int i11) {
         super.onSelectionChanged(i10, i11);
-        g1 g1Var = this.f13292c;
+        g1 g1Var = this.f13295c;
         if (g1Var != null) {
-            g1Var.U(this, i10, i11);
+            g1Var.q(this, i10, i11);
         }
     }
 
@@ -342,8 +342,8 @@ public final class h1 extends nu {
     public final boolean onTextContextMenuItem(int i10) {
         g1 g1Var;
         g1 g1Var2;
-        if (i10 != 16908319 || (g1Var2 = this.f13292c) == null || !g1Var2.h()) {
-            if (i10 == 16908322 && (g1Var = this.f13292c) != null && g1Var.C(this)) {
+        if (i10 != 16908319 || (g1Var2 = this.f13295c) == null || !g1Var2.d()) {
+            if (i10 == 16908322 && (g1Var = this.f13295c) != null && g1Var.m(this)) {
                 return true;
             }
             return super.onTextContextMenuItem(i10);
@@ -356,8 +356,8 @@ public final class h1 extends nu {
         float f7;
         boolean z10;
         boolean z11;
-        if (motionEvent.getAction() == 0 && this.f13292c != null && isEnabled() && isFocusable()) {
-            this.f13292c.a(this);
+        if (motionEvent.getAction() == 0 && this.f13295c != null && isEnabled() && isFocusable()) {
+            this.f13295c.a(this);
         }
         if (!this.v) {
             int action = motionEvent.getAction();
@@ -447,7 +447,7 @@ public final class h1 extends nu {
                             }
                         }
                         if (tVar != null) {
-                            r.X(getContext(), tVar.f13514a, new bi.v2(20, this, tVar), this.e);
+                            r.X(getContext(), tVar.f13517a, new bi.v2(20, this, tVar), this.e);
                             return true;
                         }
                     }
@@ -464,17 +464,17 @@ public final class h1 extends nu {
             max2 = max;
             max = max2;
         }
-        this.f13294n = true;
+        this.f13297n = true;
         getText().replace(max, max2, "\n");
-        this.f13294n = false;
+        this.f13297n = false;
         setSelection(max + 1);
     }
 
     public final void q() {
-        if (!this.f13298x) {
+        if (!this.f13301x) {
             return;
         }
-        this.f13299y = true;
+        this.f13302y = true;
         int dp = AndroidUtilities.dp(2.0f);
         CharSequence hint = getHint();
         if (length() == 0 && getWidth() > 0 && !TextUtils.isEmpty(hint)) {
@@ -485,11 +485,11 @@ public final class h1 extends nu {
             super.setGravity(17);
             setPadding(dp, getPaddingTop(), dp, getPaddingBottom());
         }
-        this.f13299y = false;
+        this.f13302y = false;
     }
 
     public final void r() {
-        g1 g1Var = this.f13292c;
+        g1 g1Var = this.f13295c;
         if (g1Var != null) {
             g1Var.a(this);
         }
@@ -524,15 +524,15 @@ public final class h1 extends nu {
     }
 
     public void setAccentHint(boolean z10) {
-        if (this.f13296s == z10) {
+        if (this.f13299s == z10) {
             return;
         }
-        this.f13296s = z10;
+        this.f13299s = z10;
         t();
     }
 
     public void setAllowNewlines(boolean z10) {
-        this.f13297w = z10;
+        this.f13300w = z10;
     }
 
     public void setAutoBold(boolean z10) {
@@ -544,10 +544,10 @@ public final class h1 extends nu {
     }
 
     public void setCenterEmptyHint(boolean z10) {
-        if (this.f13298x == z10) {
+        if (this.f13301x == z10) {
             return;
         }
-        this.f13298x = z10;
+        this.f13301x = z10;
         if (z10) {
             q();
             return;
@@ -558,8 +558,8 @@ public final class h1 extends nu {
 
     @Override
     public void setGravity(int i10) {
-        if (!this.f13299y) {
-            this.f13298x = false;
+        if (!this.f13302y) {
+            this.f13301x = false;
         }
         super.setGravity(i10);
     }
@@ -569,7 +569,7 @@ public final class h1 extends nu {
     }
 
     public void setInlineButtonContext(int i10) {
-        this.f13293f = i10;
+        this.f13296f = i10;
         m();
     }
 
@@ -589,7 +589,7 @@ public final class h1 extends nu {
     }
 
     public void setListener(g1 g1Var) {
-        this.f13292c = g1Var;
+        this.f13295c = g1Var;
     }
 
     public void setLocked(boolean z10) {
@@ -627,7 +627,7 @@ public final class h1 extends nu {
     }
 
     public void setSoftEnterNewline(boolean z10) {
-        this.f13295r = z10;
+        this.f13298r = z10;
     }
 
     public void setTextColorKey(int i10) {
@@ -648,15 +648,15 @@ public final class h1 extends nu {
         int i10 = this.M;
         org.telegram.ui.ActionBar.c6 c6Var = this.e;
         setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
-        setLinkTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19960gc, c6Var));
-        if (this.f13296s) {
+        setLinkTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19660gc, c6Var));
+        if (this.f13299s) {
             w02 = org.telegram.ui.ActionBar.g6.m1(0.5f, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Oh, c6Var));
         } else {
             w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.H6, c6Var);
         }
         setHintTextColor(w02);
         setCursorColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.G6, c6Var));
-        setHandlesColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20045l6, c6Var));
+        setHandlesColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19745l6, c6Var));
         m();
     }
 

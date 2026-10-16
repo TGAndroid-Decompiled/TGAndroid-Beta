@@ -1,24 +1,24 @@
 package org.telegram.messenger;
 public final class b2 implements Runnable {
-    public final int f16826a;
-    public final DownloadController f16827b;
+    public final int f16526a;
+    public final DownloadController f16527b;
 
     public b2(DownloadController downloadController, int i10) {
-        this.f16826a = i10;
-        this.f16827b = downloadController;
+        this.f16526a = i10;
+        this.f16527b = downloadController;
     }
 
     @Override
     public final void run() {
-        switch (this.f16826a) {
+        switch (this.f16526a) {
             case 0:
-                DownloadController.m(this.f16827b);
+                DownloadController.m(this.f16527b);
                 return;
             case 1:
-                DownloadController.l(this.f16827b);
+                DownloadController.l(this.f16527b);
                 return;
             default:
-                DownloadController.a(this.f16827b);
+                DownloadController.a(this.f16527b);
                 return;
         }
     }

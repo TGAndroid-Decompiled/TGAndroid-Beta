@@ -6,7 +6,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.Utilities;
-import w7.s;
+import w7.r;
 public final class b extends Drawable {
     public final a f46997b;
     public Bitmap f46998c;
@@ -63,8 +63,8 @@ public final class b extends Drawable {
             double d10 = d / ((1.0d - d) * 6.0d);
             double d11 = 1.0d + d10;
             double sqrt = ((-d11) + Math.sqrt((d11 * d11) - (((-d10) * 4.0d) * (-d)))) / ((-2.0d) * d10);
-            int b10 = s.b((int) (d10 * sqrt * 255.0d), 0, 255);
-            int b11 = s.b((int) (sqrt * 255.0d), 0, 255);
+            int b10 = r.b((int) (d10 * sqrt * 255.0d), 0, 255);
+            int b11 = r.b((int) (sqrt * 255.0d), 0, 255);
             if (b11 > 0 && this.f46998c != null) {
                 Paint paint = this.f46996a;
                 paint.setAlpha(b11);

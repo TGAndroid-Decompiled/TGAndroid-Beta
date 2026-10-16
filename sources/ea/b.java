@@ -1,25 +1,26 @@
 package ea;
 
 import a1.g;
+import a4.l;
+import a6.m;
 import android.util.Log;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-import k6.h;
 import m1.j;
 import org.json.JSONObject;
 import t7.u;
 import z9.b0;
 import z9.k0;
 public final class b {
-    public Object f8663a;
-    public Object f8664b;
-    public Object f8665c;
+    public Object f8666a;
+    public Object f8667b;
+    public Object f8668c;
     public Object d;
     public Object e;
-    public Object f8666f;
-    public Object f8667g;
+    public Object f8669f;
+    public Object f8670g;
     public Object h;
-    public Object f8668i;
+    public Object f8671i;
 
     public static void f(String str, JSONObject jSONObject) {
         StringBuilder u10 = g.u(str);
@@ -32,15 +33,15 @@ public final class b {
 
     public b0 a() {
         String str;
-        if (((Integer) this.f8663a) == null) {
+        if (((Integer) this.f8666a) == null) {
             str = " pid";
         } else {
             str = "";
         }
-        if (((String) this.f8664b) == null) {
+        if (((String) this.f8667b) == null) {
             str = str.concat(" processName");
         }
-        if (((Integer) this.f8665c) == null) {
+        if (((Integer) this.f8668c) == null) {
             str = t8.b.u(str, " reasonCode");
         }
         if (((Integer) this.d) == null) {
@@ -49,29 +50,29 @@ public final class b {
         if (((Long) this.e) == null) {
             str = t8.b.u(str, " pss");
         }
-        if (((Long) this.f8666f) == null) {
+        if (((Long) this.f8669f) == null) {
             str = t8.b.u(str, " rss");
         }
-        if (((Long) this.f8667g) == null) {
+        if (((Long) this.f8670g) == null) {
             str = t8.b.u(str, " timestamp");
         }
         if (str.isEmpty()) {
-            return new b0(((Integer) this.f8663a).intValue(), (String) this.f8664b, ((Integer) this.f8665c).intValue(), ((Integer) this.d).intValue(), ((Long) this.e).longValue(), ((Long) this.f8666f).longValue(), ((Long) this.f8667g).longValue(), (String) this.h, (List) this.f8668i);
+            return new b0(((Integer) this.f8666a).intValue(), (String) this.f8667b, ((Integer) this.f8668c).intValue(), ((Integer) this.d).intValue(), ((Long) this.e).longValue(), ((Long) this.f8669f).longValue(), ((Long) this.f8670g).longValue(), (String) this.h, (List) this.f8671i);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     public k0 b() {
         String str;
-        if (((Integer) this.f8663a) == null) {
+        if (((Integer) this.f8666a) == null) {
             str = " arch";
         } else {
             str = "";
         }
-        if (((String) this.f8664b) == null) {
+        if (((String) this.f8667b) == null) {
             str = str.concat(" model");
         }
-        if (((Integer) this.f8665c) == null) {
+        if (((Integer) this.f8668c) == null) {
             str = t8.b.u(str, " cores");
         }
         if (((Long) this.d) == null) {
@@ -80,20 +81,20 @@ public final class b {
         if (((Long) this.e) == null) {
             str = t8.b.u(str, " diskSpace");
         }
-        if (((Boolean) this.f8666f) == null) {
+        if (((Boolean) this.f8669f) == null) {
             str = t8.b.u(str, " simulator");
         }
-        if (((Integer) this.f8667g) == null) {
+        if (((Integer) this.f8670g) == null) {
             str = t8.b.u(str, " state");
         }
         if (((String) this.h) == null) {
             str = t8.b.u(str, " manufacturer");
         }
-        if (((String) this.f8668i) == null) {
+        if (((String) this.f8671i) == null) {
             str = t8.b.u(str, " modelClass");
         }
         if (str.isEmpty()) {
-            return new k0(((Integer) this.f8663a).intValue(), (String) this.f8664b, ((Integer) this.f8665c).intValue(), ((Long) this.d).longValue(), ((Long) this.e).longValue(), ((Boolean) this.f8666f).booleanValue(), ((Integer) this.f8667g).intValue(), (String) this.h, (String) this.f8668i);
+            return new k0(((Integer) this.f8666a).intValue(), (String) this.f8667b, ((Integer) this.f8668c).intValue(), ((Long) this.d).longValue(), ((Long) this.e).longValue(), ((Boolean) this.f8669f).booleanValue(), ((Integer) this.f8670g).intValue(), (String) this.h, (String) this.f8671i);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
@@ -102,13 +103,13 @@ public final class b {
         a aVar = null;
         try {
             if (!j.b(2, i10)) {
-                JSONObject d02 = ((qb.c) this.e).d0();
-                if (d02 != null) {
-                    a q6 = ((h) this.f8665c).q(d02);
-                    f("Loaded cached settings: ", d02);
+                JSONObject V = ((m) this.e).V();
+                if (V != null) {
+                    a O = ((l) this.f8668c).O(V);
+                    f("Loaded cached settings: ", V);
                     ((u) this.d).getClass();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (!j.b(3, i10) && q6.f8661c < currentTimeMillis) {
+                    if (!j.b(3, i10) && O.f8664c < currentTimeMillis) {
                         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                             Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
                             return null;
@@ -118,10 +119,10 @@ public final class b {
                             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                                 Log.v("FirebaseCrashlytics", "Returning cached settings.", null);
                             }
-                            return q6;
+                            return O;
                         } catch (Exception e) {
                             e = e;
-                            aVar = q6;
+                            aVar = O;
                             Log.e("FirebaseCrashlytics", "Failed to get cached settings", e);
                             return aVar;
                         }

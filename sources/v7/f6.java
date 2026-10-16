@@ -2,7 +2,7 @@ package v7;
 public final class f6 {
     public final Float f46636a;
 
-    public f6(ji.d4 d4Var) {
-        this.f46636a = (Float) d4Var.f13233b;
+    public f6(m.h hVar) {
+        this.f46636a = (Float) hVar.f14848b;
     }
 }

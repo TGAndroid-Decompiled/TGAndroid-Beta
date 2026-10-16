@@ -10,10 +10,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 public final class qd1 extends org.telegram.ui.ActionBar.j {
-    public final ce1 f39392a;
+    public final ce1 f39114a;
 
     public qd1(ce1 ce1Var) {
-        this.f39392a = ce1Var;
+        this.f39114a = ce1Var;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class qd1 extends org.telegram.ui.ActionBar.j {
         String str;
         int i11;
         String str2;
-        ce1 ce1Var = this.f39392a;
-        org.telegram.ui.ActionBar.e6 e6Var = ce1Var.f34902s;
+        ce1 ce1Var = this.f39114a;
+        org.telegram.ui.ActionBar.e6 e6Var = ce1Var.f34626s;
         int i12 = 0;
         if (i10 == -1) {
             if (ce1Var.Q0(true)) {
@@ -47,26 +47,26 @@ public final class qd1 extends org.telegram.ui.ActionBar.j {
             } else {
                 str2 = "";
             }
-            e6Var.f19756o = str2;
-            e6Var.f19757p = ce1Var.l1;
-            e6Var.f19758q = ce1Var.E1;
-            if (((int) e6Var.f19751j) == 0) {
-                e6Var.f19751j = 4294967296L;
+            e6Var.f19456o = str2;
+            e6Var.f19457p = ce1Var.l1;
+            e6Var.f19458q = ce1Var.E1;
+            if (((int) e6Var.f19451j) == 0) {
+                e6Var.f19451j = 4294967296L;
             }
-            if (((int) e6Var.f19752k) == 0) {
-                e6Var.f19752k = 4294967296L;
+            if (((int) e6Var.f19452k) == 0) {
+                e6Var.f19452k = 4294967296L;
             }
-            if (((int) e6Var.f19753l) == 0) {
-                e6Var.f19753l = 4294967296L;
+            if (((int) e6Var.f19453l) == 0) {
+                e6Var.f19453l = 4294967296L;
             }
-            if (((int) e6Var.f19754m) == 0) {
-                e6Var.f19754m = 4294967296L;
+            if (((int) e6Var.f19454m) == 0) {
+                e6Var.f19454m = 4294967296L;
             }
             ce1Var.W0();
             NotificationCenter.getGlobalInstance().removeObserver(ce1Var, NotificationCenter.wallpapersDidLoad);
-            org.telegram.ui.ActionBar.g6.u1(ce1Var.f34867e0, true, false, false, true, false);
+            org.telegram.ui.ActionBar.g6.u1(ce1Var.f34591e0, true, false, false, true, false);
             org.telegram.ui.ActionBar.g6.o();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, ce1Var.f34867e0, Boolean.valueOf(ce1Var.f34871f0), null, -1);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, ce1Var.f34591e0, Boolean.valueOf(ce1Var.f34595f0), null, -1);
             ce1Var.finishFragment();
         } else if (i10 == 5) {
             if (ce1Var.getParentActivity() != null) {
@@ -93,31 +93,31 @@ public final class qd1 extends org.telegram.ui.ActionBar.j {
                         i13.append(sb2.toString());
                         b10 = i13.toString();
                     }
-                } else if (obj instanceof pj1) {
+                } else if (obj instanceof oj1) {
                     TLRPC.TL_wallPaper tL_wallPaper2 = ce1Var.W0;
                     if (tL_wallPaper2 != null) {
                         str = tL_wallPaper2.slug;
                     } else {
                         str = "c";
                     }
-                    pj1 pj1Var = new pj1(str, ce1Var.Z0, ce1Var.f34858b1, ce1Var.f34862c1, ce1Var.f34865d1, ce1Var.f34878h1, ce1Var.l1, ce1Var.E1, null);
-                    pj1Var.f39250g = tL_wallPaper2;
-                    b10 = pj1Var.b();
+                    oj1 oj1Var = new oj1(str, ce1Var.Z0, ce1Var.f34582b1, ce1Var.f34586c1, ce1Var.f34589d1, ce1Var.f34602h1, ce1Var.l1, ce1Var.E1, null);
+                    oj1Var.f38691g = tL_wallPaper2;
+                    b10 = oj1Var.b();
                 } else if (BuildVars.DEBUG_PRIVATE_VERSION && (k10 = org.telegram.ui.ActionBar.g6.I.k(false)) != null) {
-                    pj1 pj1Var2 = new pj1(k10.f19756o, (int) k10.f19751j, (int) k10.f19752k, (int) k10.f19753l, (int) k10.f19754m, k10.f19755n, k10.f19757p, k10.f19758q, null);
+                    oj1 oj1Var2 = new oj1(k10.f19456o, (int) k10.f19451j, (int) k10.f19452k, (int) k10.f19453l, (int) k10.f19454m, k10.f19455n, k10.f19457p, k10.f19458q, null);
                     int size = ce1Var.U0.size();
                     while (true) {
                         if (i12 >= size) {
                             break;
                         }
                         TLRPC.TL_wallPaper tL_wallPaper3 = (TLRPC.TL_wallPaper) ce1Var.U0.get(i12);
-                        if (tL_wallPaper3.pattern && k10.f19756o.equals(tL_wallPaper3.slug)) {
-                            pj1Var2.f39250g = tL_wallPaper3;
+                        if (tL_wallPaper3.pattern && k10.f19456o.equals(tL_wallPaper3.slug)) {
+                            oj1Var2.f38691g = tL_wallPaper3;
                             break;
                         }
                         i12++;
                     }
-                    b10 = pj1Var2.b();
+                    b10 = oj1Var2.b();
                 } else {
                     return;
                 }
@@ -128,14 +128,14 @@ public final class qd1 extends org.telegram.ui.ActionBar.j {
                 SharedConfig.dayNightWallpaperSwitchHint = 10;
                 SharedConfig.increaseDayNightWallpaperSiwtchHint();
             }
-            boolean a2 = ce1Var.f34896p1.a();
-            td1 td1Var = ce1Var.f34896p1;
+            boolean a2 = ce1Var.f34620p1.a();
+            td1 td1Var = ce1Var.f34620p1;
             if (td1Var != null) {
                 if (!td1Var.Y0()) {
                     ce1Var.g1();
                     return;
                 }
-                ce1Var.f34896p1.o1(true);
+                ce1Var.f34620p1.o1(true);
                 org.telegram.ui.Components.yj0 yj0Var = ce1Var.N1;
                 yj0Var.h = true;
                 if (a2) {
@@ -145,11 +145,11 @@ public final class qd1 extends org.telegram.ui.ActionBar.j {
                 }
                 ce1Var.N1.start();
                 if (ce1Var.M1) {
-                    td1 td1Var2 = ce1Var.f34896p1;
+                    td1 td1Var2 = ce1Var.f34620p1;
                     float f7 = 0.0f;
                     if (td1Var2 != null && td1Var2.a()) {
                         ce1Var.R1.setVisibility(0);
-                        ce1Var.R1.a(ce1Var.f34892n1);
+                        ce1Var.R1.a(ce1Var.f34616n1);
                     } else {
                         ce1Var.R1.a(0.0f);
                     }
@@ -158,22 +158,22 @@ public final class qd1 extends org.telegram.ui.ActionBar.j {
                         valueAnimator.removeAllListeners();
                         ce1Var.P1.cancel();
                     }
-                    float f10 = ce1Var.f34894o1;
-                    if (ce1Var.f34896p1.a()) {
+                    float f10 = ce1Var.f34618o1;
+                    if (ce1Var.f34620p1.a()) {
                         f7 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
                     ce1Var.P1 = ofFloat;
                     ofFloat.addUpdateListener(new f21(this, 14));
-                    ce1Var.P1.addListener(new lj0(this, 26));
+                    ce1Var.P1.addListener(new kj0(this, 26));
                     ce1Var.P1.setDuration(250L);
-                    ce1Var.P1.setInterpolator(org.telegram.ui.Components.es.f24771f);
+                    ce1Var.P1.setInterpolator(org.telegram.ui.Components.es.f24465f);
                     ce1Var.P1.start();
                 }
             }
         } else if (i10 == 7) {
             Object obj2 = ce1Var.B1;
-            if ((obj2 instanceof qj1) && (file = ((qj1) obj2).e) != null) {
+            if ((obj2 instanceof pj1) && (file = ((pj1) obj2).e) != null) {
                 MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L);
                 photoEntry.isVideo = false;
                 photoEntry.thumbPath = null;

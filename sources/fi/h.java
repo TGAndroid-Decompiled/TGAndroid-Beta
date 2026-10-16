@@ -3,29 +3,29 @@ package fi;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
-public final class h extends k61 {
+public final class h extends l61 {
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
-    public static l61 a(int i10, int i11, int i12, CharSequence charSequence, String str) {
-        l61 J = l61.J(h.class);
+    public static m61 a(int i10, int i11, int i12, CharSequence charSequence, String str) {
+        m61 J = m61.J(h.class);
         J.d = i10;
-        J.f26967z = i11;
-        J.f26953k = i12;
-        J.f26954l = charSequence;
-        J.f26955m = str;
+        J.f26959z = i11;
+        J.f26945k = i12;
+        J.f26946l = charSequence;
+        J.f26947m = str;
         return J;
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
-        ((i) view).a(l61Var.f26967z, l61Var.f26953k, l61Var.f26954l, l61Var.f26955m);
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
+        ((i) view).a(m61Var.f26959z, m61Var.f26945k, m61Var.f26946l, m61Var.f26947m);
     }
 
     @Override

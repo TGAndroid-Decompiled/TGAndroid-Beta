@@ -3,24 +3,24 @@ package ji;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class e1 implements TextWatcher {
-    public final h1 f13237a;
+    public final h1 f13240a;
 
     public e1(h1 h1Var) {
-        this.f13237a = h1Var;
+        this.f13240a = h1Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         Editable editable2;
-        h1 h1Var = this.f13237a;
-        if (!h1Var.h && h1Var.f13292c != null) {
+        h1 h1Var = this.f13240a;
+        if (!h1Var.h && h1Var.f13295c != null) {
             if (h1Var.E && editable.length() > 0) {
                 editable2 = editable;
                 k6.o(editable2, 0, editable.length(), 1, true, h1Var.L);
             } else {
                 editable2 = editable;
             }
-            if (!h1Var.f13297w && !h1Var.f13294n && !h1Var.f13295r) {
+            if (!h1Var.f13300w && !h1Var.f13297n && !h1Var.f13298r) {
                 h1Var.h = true;
                 boolean z10 = false;
                 for (int length = editable2.length() - 1; length >= 0; length--) {
@@ -31,29 +31,29 @@ public final class e1 implements TextWatcher {
                 }
                 h1Var.h = false;
                 if (z10) {
-                    h1Var.f13292c.p0(h1Var);
+                    h1Var.f13295c.z(h1Var);
                     return;
                 } else {
-                    h1Var.f13292c.s0(editable2);
+                    h1Var.f13295c.C(editable2);
                     return;
                 }
             }
-            h1Var.f13292c.s0(editable2);
+            h1Var.f13295c.C(editable2);
         }
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         g1 g1Var;
-        h1 h1Var = this.f13237a;
-        if (!h1Var.h && (g1Var = h1Var.f13292c) != null) {
-            g1Var.p(i11, i12);
+        h1 h1Var = this.f13240a;
+        if (!h1Var.h && (g1Var = h1Var.f13295c) != null) {
+            g1Var.f(i11, i12);
         }
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        h1 h1Var = this.f13237a;
+        h1 h1Var = this.f13240a;
         boolean z10 = true;
         h1Var.J = true;
         h1Var.q();

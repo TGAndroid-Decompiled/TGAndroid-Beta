@@ -1,36 +1,91 @@
 package org.telegram.ui;
 
-import android.os.AsyncTask;
+import android.text.Editable;
+import android.text.TextWatcher;
+import java.util.HashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class so0 extends AsyncTask {
-    public final wc.a f40187a;
-    public final cp0 f40188b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class so0 implements TextWatcher {
+    public final ap0 f39917a;
 
-    public so0(cp0 cp0Var, wc.a aVar) {
-        this.f40188b = cp0Var;
-        this.f40187a = aVar;
+    public so0(ap0 ap0Var) {
+        this.f39917a = ap0Var;
     }
 
     @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.so0.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        cp0 cp0Var = this.f40188b;
-        if (cp0Var.Q0) {
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        String str;
+        String str2;
+        ap0 ap0Var = this.f39917a;
+        HashMap hashMap = ap0Var.f34013c;
+        if (ap0Var.m0) {
             return;
         }
-        if (str == null) {
-            org.telegram.ui.Components.g5.v0(cp0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
+        ap0Var.m0 = true;
+        String d = jf.b.d(ap0Var.f34020f[8].getText().toString(), false);
+        ap0Var.f34020f[8].setText(d);
+        org.telegram.ui.Components.s40 s40Var = (org.telegram.ui.Components.s40) ap0Var.f34020f[9];
+        if (d.length() == 0) {
+            s40Var.setHintText((String) null);
+            s40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
         } else {
-            cp0Var.f35030w0 = str;
-            cp0Var.t0();
+            int i10 = 4;
+            if (d.length() > 4) {
+                while (true) {
+                    if (i10 >= 1) {
+                        String substring = d.substring(0, i10);
+                        if (((String) hashMap.get(substring)) != null) {
+                            ap0Var.f34020f[8].setText(substring);
+                            str = d.substring(i10) + ap0Var.f34020f[9].getText().toString();
+                            d = substring;
+                            z10 = true;
+                            break;
+                        }
+                        i10--;
+                    } else {
+                        z10 = false;
+                        str = null;
+                        break;
+                    }
+                }
+                if (!z10) {
+                    str = d.substring(1) + ap0Var.f34020f[9].getText().toString();
+                    EditTextBoldCursor editTextBoldCursor = ap0Var.f34020f[8];
+                    d = d.substring(0, 1);
+                    editTextBoldCursor.setText(d);
+                }
+            } else {
+                z10 = false;
+                str = null;
+            }
+            String str3 = (String) hashMap.get(d);
+            if (str3 != null && ap0Var.f34007a.indexOf(str3) != -1 && (str2 = (String) ap0Var.d.get(d)) != null) {
+                s40Var.setHintText(str2.replace('X', (char) 8211));
+                s40Var.setHint((CharSequence) null);
+            } else {
+                s40Var.setHintText((String) null);
+                s40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+            }
+            if (!z10) {
+                EditTextBoldCursor editTextBoldCursor2 = ap0Var.f34020f[8];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+            }
+            if (str != null) {
+                s40Var.requestFocus();
+                s40Var.setText(str);
+                s40Var.setSelection(s40Var.length());
+            }
         }
-        cp0Var.H0(true, false);
-        cp0Var.D0(false);
+        ap0Var.m0 = false;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

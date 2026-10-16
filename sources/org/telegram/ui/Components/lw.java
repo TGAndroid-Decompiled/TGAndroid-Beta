@@ -6,7 +6,7 @@ public final class lw extends kw {
     public final mw K;
 
     public lw(mw mwVar, Context context, int i10) {
-        super(mwVar.f27530s, context, i10);
+        super(mwVar.f27233s, context, i10);
         this.K = mwVar;
     }
 

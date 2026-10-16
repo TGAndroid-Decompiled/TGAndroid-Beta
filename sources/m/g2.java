@@ -1,8 +1,8 @@
 package m;
 
-import android.widget.PopupWindow;
-public abstract class g2 {
-    public static void a(PopupWindow popupWindow, boolean z10) {
-        popupWindow.setTouchModal(z10);
-    }
+import android.view.MenuItem;
+public interface g2 {
+    void w0(l.k kVar, l.m mVar);
+
+    void z(l.k kVar, MenuItem menuItem);
 }

@@ -1,13 +1,13 @@
 package xd;
 
-import w7.d0;
+import w7.c0;
 public final class i {
-    public static final i[] f48386a;
+    public static final i[] f48385a;
 
     static {
         i[] iVarArr = {new Enum("PUBLIC", 0), new Enum("PROTECTED", 1), new Enum("INTERNAL", 2), new Enum("PRIVATE", 3)};
-        f48386a = iVarArr;
-        d0.a(iVarArr);
+        f48385a = iVarArr;
+        c0.a(iVarArr);
     }
 
     public static i valueOf(String str) {
@@ -15,6 +15,6 @@ public final class i {
     }
 
     public static i[] values() {
-        return (i[]) f48386a.clone();
+        return (i[]) f48385a.clone();
     }
 }

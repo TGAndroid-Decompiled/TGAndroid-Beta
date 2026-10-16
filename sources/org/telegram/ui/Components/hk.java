@@ -2,6 +2,6 @@ package org.telegram.ui.Components;
 
 import java.io.File;
 public final class hk {
-    public File f25692a;
-    public String f25693b;
+    public File f25343a;
+    public String f25344b;
 }

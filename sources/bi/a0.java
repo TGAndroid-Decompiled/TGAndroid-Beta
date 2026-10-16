@@ -15,8 +15,8 @@ public final class a0 extends org.telegram.ui.Components.n9 {
     public void invalidate() {
         switch (this.e) {
             case 0:
-                if (b0.f2849c) {
-                    b0.f2848b.add(this);
+                if (b0.f2853c) {
+                    b0.f2852b.add(this);
                     return;
                 } else {
                     super.invalidate();
@@ -33,7 +33,7 @@ public final class a0 extends org.telegram.ui.Components.n9 {
         int v;
         switch (this.e) {
             case 1:
-                int i12 = this.f27627a.f27316n;
+                int i12 = this.f27318a.f27018n;
                 if (i12 == 0) {
                     v = 0;
                 } else {
@@ -51,8 +51,8 @@ public final class a0 extends org.telegram.ui.Components.n9 {
     public void invalidate(int i10, int i11, int i12, int i13) {
         switch (this.e) {
             case 0:
-                if (b0.f2849c) {
-                    b0.f2848b.add(this);
+                if (b0.f2853c) {
+                    b0.f2852b.add(this);
                     return;
                 } else {
                     super.invalidate(i10, i11, i12, i13);

@@ -183,16 +183,16 @@ public class b0 extends n0 {
                 break;
             }
             k2.k kVar = this.D;
-            kVar.f13922a = 0;
-            kVar.f13923b = false;
-            kVar.f13924c = false;
+            kVar.f13925a = 0;
+            kVar.f13926b = false;
+            kVar.f13927c = false;
             kVar.d = false;
             Z0(eVar, y0Var, zVar, kVar);
-            if (!kVar.f13923b) {
+            if (!kVar.f13926b) {
                 int i13 = zVar.f45006b;
-                int i14 = kVar.f13922a;
+                int i14 = kVar.f13925a;
                 zVar.f45006b = (zVar.f45008f * i14) + i13;
-                if (!kVar.f13924c || zVar.f45012k != null || !y0Var.f44998g) {
+                if (!kVar.f13927c || zVar.f45012k != null || !y0Var.f44998g) {
                     zVar.f45007c -= i14;
                     i12 -= i14;
                 }
@@ -448,7 +448,7 @@ public class b0 extends n0 {
 
     public boolean Y0() {
         RecyclerView recyclerView = this.f44931b;
-        WeakHashMap weakHashMap = r0.j0.f43732a;
+        WeakHashMap weakHashMap = r0.i0.f43485a;
         if (recyclerView.getLayoutDirection() == 1) {
             return true;
         }
@@ -464,7 +464,7 @@ public class b0 extends n0 {
         boolean z11;
         View c10 = zVar.c(eVar);
         if (c10 == null) {
-            kVar.f13923b = true;
+            kVar.f13926b = true;
             return;
         }
         o0 o0Var = (o0) c10.getLayoutParams();
@@ -494,7 +494,7 @@ public class b0 extends n0 {
             }
         }
         P(c10);
-        kVar.f13922a = this.f44828q.b(c10);
+        kVar.f13925a = this.f44828q.b(c10);
         if (this.f44826o == 1) {
             if (Y0()) {
                 i13 = this.f44939m - E();
@@ -505,24 +505,24 @@ public class b0 extends n0 {
             }
             if (zVar.f45008f == -1) {
                 i11 = zVar.f45006b;
-                i12 = i11 - kVar.f13922a;
+                i12 = i11 - kVar.f13925a;
             } else {
                 i12 = zVar.f45006b;
-                i11 = kVar.f13922a + i12;
+                i11 = kVar.f13925a + i12;
             }
         } else {
             int F = F();
             int c11 = this.f44828q.c(c10) + F;
             if (zVar.f45008f == -1) {
                 int i14 = zVar.f45006b;
-                int i15 = i14 - kVar.f13922a;
+                int i15 = i14 - kVar.f13925a;
                 i13 = i14;
                 i11 = c11;
                 i10 = i15;
                 i12 = F;
             } else {
                 int i16 = zVar.f45006b;
-                int i17 = kVar.f13922a + i16;
+                int i17 = kVar.f13925a + i16;
                 i10 = i16;
                 i11 = c11;
                 i12 = F;
@@ -531,7 +531,7 @@ public class b0 extends n0 {
         }
         n0.O(c10, i10, i12, i13, i11);
         if (o0Var.f44942a.j() || o0Var.f44942a.m()) {
-            kVar.f13924c = true;
+            kVar.f13927c = true;
         }
         kVar.d = c10.hasFocusable();
     }
@@ -777,7 +777,7 @@ public class b0 extends n0 {
     public final void j1(int i10) {
         e0 e0Var;
         if (i10 != 0 && i10 != 1) {
-            throw new IllegalArgumentException(i2.d.i(i10, "invalid orientation:"));
+            throw new IllegalArgumentException(i2.d.j(i10, "invalid orientation:"));
         }
         b(null);
         if (i10 == this.f44826o && this.f44828q != null) {
@@ -793,7 +793,7 @@ public class b0 extends n0 {
             e0Var = new e0(this, 0);
         }
         this.f44828q = e0Var;
-        this.C.f11124f = e0Var;
+        this.C.f11128f = e0Var;
         this.f44826o = i10;
         l0();
     }
@@ -841,7 +841,7 @@ public class b0 extends n0 {
             for (int i11 = 0; i11 < r11; i11++) {
                 View q10 = q(i11);
                 b1 U = RecyclerView.U(q10);
-                if (U != null && U.c() == i10 && !U.r() && (this.f44931b.f2013u0.f44998g || !U.j())) {
+                if (U != null && U.c() == i10 && !U.r() && (this.f44931b.f2017u0.f44998g || !U.j())) {
                     return q10;
                 }
             }

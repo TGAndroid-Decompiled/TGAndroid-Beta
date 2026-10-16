@@ -34,7 +34,7 @@ public final class x5 extends r2 {
                     this.container.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
-                new org.telegram.ui.Components.zc(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.g6.f19960gc, 0, new bi.la(this, 19), this.resourcesProvider), R.raw.star_premium_2).k(true);
+                new org.telegram.ui.Components.zc(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.g6.f19660gc, 0, new bi.la(this, 19), this.resourcesProvider), R.raw.star_premium_2).k(true);
                 return false;
             } else if (i10 >= MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium) {
                 try {
@@ -77,18 +77,18 @@ public final class x5 extends r2 {
     @Override
     public final boolean o0(Runnable runnable) {
         kc kcVar = ((mb) this.I).A2;
-        Activity activity = kcVar.f7237b;
+        Activity activity = kcVar.f7240b;
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    kcVar.f7315y2 = (ah.g) runnable;
+                    kcVar.f7318y2 = (ah.g) runnable;
                     return false;
                 }
                 return true;
             } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                kcVar.f7315y2 = (ah.g) runnable;
+                kcVar.f7318y2 = (ah.g) runnable;
                 return false;
             } else {
                 return true;

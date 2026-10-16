@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class lx0 extends lm0 {
-    public int f27135c;
+    public int f26842c;
     public final ux0 d;
 
     public lx0(ux0 ux0Var) {
@@ -33,12 +33,12 @@ public final class lx0 extends lm0 {
             length = qx0VarArr.length;
         }
         int i10 = length + 1;
-        if (i10 != this.f27135c) {
-            di.ab abVar = ux0Var.f29806j3;
+        if (i10 != this.f26842c) {
+            di.ab abVar = ux0Var.f29474j3;
             if (abVar != null) {
                 abVar.requestLayout();
             }
-            this.f27135c = i10;
+            this.f26842c = i10;
         }
         return i10;
     }
@@ -60,14 +60,14 @@ public final class lx0 extends lm0 {
             int i11 = i10 - 1;
             qx0 qx0Var = qx0VarArr[i11];
             final px0 px0Var = (px0) b1Var.f44838a;
-            if (ux0Var.f29807k3 != i11) {
+            if (ux0Var.f29475k3 != i11) {
                 z10 = false;
             }
             px0Var.getClass();
             if (!TextUtils.isEmpty(qx0Var.d)) {
                 px0Var.setContentDescription(qx0Var.d);
-            } else if (!TextUtils.isEmpty(qx0Var.f28689a)) {
-                px0Var.setContentDescription(qx0Var.f28689a);
+            } else if (!TextUtils.isEmpty(qx0Var.f28375a)) {
+                px0Var.setContentDescription(qx0Var.f28375a);
             } else {
                 px0Var.setContentDescription(null);
             }
@@ -79,9 +79,9 @@ public final class lx0 extends lm0 {
             px0Var.setImageResource(0);
             px0Var.a();
             final boolean B1 = px0Var.H.B1();
-            px0Var.f28443w = false;
-            px0Var.f28445y = 1.0f;
-            s5.h(UserConfig.selectedAccount).b(qx0Var.f28691c, new p5() {
+            px0Var.f28129w = false;
+            px0Var.f28131y = 1.0f;
+            s5.h(UserConfig.selectedAccount).b(qx0Var.f28377c, new p5() {
                 @Override
                 public final void a(TLRPC.Document document) {
                     px0 px0Var2 = px0.this;
@@ -90,11 +90,11 @@ public final class lx0 extends lm0 {
                     px0Var2.d();
                 }
             });
-            AndroidUtilities.runOnUIThread(new lr0(px0Var, 10), 60L);
+            AndroidUtilities.runOnUIThread(new kr0(px0Var, 10), 60L);
             px0Var.l(z10, false);
-            px0Var.setAlpha(ux0Var.f29809m3);
-            px0Var.setScaleX(ux0Var.f29809m3);
-            px0Var.setScaleY(ux0Var.f29809m3);
+            px0Var.setAlpha(ux0Var.f29477m3);
+            px0Var.setScaleX(ux0Var.f29477m3);
+            px0Var.setScaleY(ux0Var.f29477m3);
             px0Var.j();
         }
     }
@@ -105,7 +105,7 @@ public final class lx0 extends lm0 {
         ux0 ux0Var = this.d;
         if (i10 == 0) {
             di.ab abVar = new di.ab(this, ux0Var.getContext(), 25);
-            ux0Var.f29806j3 = abVar;
+            ux0Var.f29474j3 = abVar;
             px0Var = abVar;
         } else {
             px0Var = new px0(ux0Var, ux0Var.getContext());
@@ -118,7 +118,7 @@ public final class lx0 extends lm0 {
         boolean z10 = true;
         if (b1Var.f44841f == 1) {
             px0 px0Var = (px0) b1Var.f44838a;
-            if (this.d.f29807k3 != b1Var.b() - 1) {
+            if (this.d.f29475k3 != b1Var.b() - 1) {
                 z10 = false;
             }
             px0Var.l(z10, false);

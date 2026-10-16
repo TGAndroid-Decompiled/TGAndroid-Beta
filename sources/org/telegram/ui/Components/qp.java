@@ -13,29 +13,29 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.qj1;
+import org.telegram.ui.pj1;
 public final class qp implements ti {
-    public final zp f28659a;
+    public final zp f28342a;
 
     public qp(zp zpVar) {
-        this.f28659a = zpVar;
+        this.f28342a = zpVar;
     }
 
     @Override
-    public final void U(Object obj) {
+    public final void J(Object obj) {
         np npVar = new np(obj, null, true, 3);
-        zp zpVar = this.f28659a;
-        npVar.V1 = zpVar.f31948f0;
+        zp zpVar = this.f28342a;
+        npVar.V1 = zpVar.f31651f0;
         npVar.c1(zpVar.v.a());
         npVar.I1 = new pp(this, 1);
         zp.s(zpVar, npVar);
     }
 
     @Override
-    public final void g0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        zp zpVar = this.f28659a;
+    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+        zp zpVar = this.f28342a;
         try {
-            HashMap<Object, Object> selectedPhotos = zpVar.Y.f30013j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = zpVar.Y.f29684j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -48,11 +48,11 @@ public final class qp implements ti {
                     Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    np npVar = new np(new qj1(file, file, ""), loadBitmap, false, 2);
-                    npVar.V1 = zpVar.f31948f0;
+                    np npVar = new np(new pj1(file, file, ""), loadBitmap, false, 2);
+                    npVar.V1 = zpVar.f31651f0;
                     npVar.F1 = false;
                     npVar.E1 = false;
-                    npVar.f34892n1 = 0.2f;
+                    npVar.f34616n1 = 0.2f;
                     npVar.c1(zpVar.v.a());
                     npVar.I1 = new pp(this, 0);
                     zp.s(zpVar, npVar);
@@ -64,7 +64,7 @@ public final class qp implements ti {
     }
 
     @Override
-    public final boolean p0() {
+    public final boolean r0() {
         System.currentTimeMillis();
         return true;
     }
@@ -75,16 +75,16 @@ public final class qp implements ti {
     }
 
     @Override
-    public final boolean x() {
+    public final boolean w() {
         return false;
     }
 
     @Override
-    public final void H() {
+    public final void F() {
     }
 
     @Override
-    public final void W(TLRPC.User user) {
+    public final void U(TLRPC.User user) {
     }
 
     @Override
@@ -92,6 +92,6 @@ public final class qp implements ti {
     }
 
     @Override
-    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final void s0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
     }
 }

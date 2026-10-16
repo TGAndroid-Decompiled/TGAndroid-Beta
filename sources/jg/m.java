@@ -30,7 +30,7 @@ public final class m extends g {
         getMeasuredHeight();
         ArrayList arrayList3 = this.d;
         int size = arrayList3.size();
-        if (this.f13047h0 != null) {
+        if (this.f13051h0 != null) {
             int i13 = 0;
             while (i13 < size) {
                 lg.f fVar = (lg.f) arrayList3.get(i13);
@@ -44,8 +44,8 @@ public final class m extends g {
                     i10 = size;
                 } else {
                     path.reset();
-                    int length = this.f13047h0.f14250b.length;
-                    long[] jArr = fVar.f14710a.f14243a;
+                    int length = this.f13051h0.f14252b.length;
+                    long[] jArr = fVar.f14710a.f14245a;
                     fVar.f14713f.reset();
                     int i14 = 0;
                     int i15 = 0;
@@ -62,14 +62,14 @@ public final class m extends g {
                             i11 = size;
                             i12 = length;
                         } else {
-                            kg.b bVar = this.f13047h0;
+                            kg.b bVar = this.f13051h0;
                             arrayList2 = arrayList3;
-                            float f13 = this.C0 * bVar.f14250b[i14];
+                            float f13 = this.C0 * bVar.f14252b[i14];
                             boolean z12 = g.B1;
                             i11 = size;
                             if (z12) {
                                 i12 = length;
-                                f7 = this.f13051j0;
+                                f7 = this.f13055j0;
                                 paint = paint2;
                             } else {
                                 i12 = length;
@@ -77,11 +77,11 @@ public final class m extends g {
                                 f7 = (float) bVar.e;
                             }
                             if (z12) {
-                                f10 = this.f13053k0;
+                                f10 = this.f13057k0;
                                 paint2 = paint;
                             } else {
                                 paint2 = paint;
-                                f10 = (float) bVar.f14252f;
+                                f10 = (float) bVar.f14254f;
                             }
                             float f14 = (1.0f - ((((float) j10) - f10) / (f7 - f10))) * this.B0;
                             if (z10) {

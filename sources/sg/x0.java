@@ -9,7 +9,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.da0;
-import w7.a6;
+import w7.z5;
 public final class x0 extends LinearLayout {
     public int f45423a;
     public final TextView f45424b;
@@ -24,18 +24,18 @@ public final class x0 extends LinearLayout {
         super(context);
         this.f45427n = y0Var;
         setOrientation(1);
-        ViewGroup B = y0Var.B(context, i10);
-        this.f45426f = B;
-        addView(B);
-        this.e = (l0) B;
+        ViewGroup C = y0Var.C(context, i10);
+        this.f45426f = C;
+        addView(C);
+        this.e = (l0) C;
         TextView textView = new TextView(context);
         this.f45424b = textView;
         textView.setGravity(1);
-        int i11 = g6.f20007j5;
+        int i11 = g6.f19707j5;
         textView.setTextColor(y0Var.getThemedColor(i11));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, a6.a(-2.0f, 21.0f, 20.0f, 21.0f, 0.0f, -1, 0));
+        addView(textView, z5.a(-2.0f, 21.0f, 20.0f, 21.0f, 0.0f, -1, 0));
         da0 da0Var = new da0(context, null);
         this.f45425c = da0Var;
         da0Var.setGravity(1);
@@ -44,7 +44,7 @@ public final class x0 extends LinearLayout {
         if (!y0Var.E) {
             da0Var.setLines(2);
         }
-        addView(da0Var, a6.t(-1, -2, 1, 21, 10, 21, 16));
+        addView(da0Var, z5.t(-1, -2, 1, 21, 10, 21, 16));
         setImportantForAccessibility(2);
         setClipChildren(false);
     }

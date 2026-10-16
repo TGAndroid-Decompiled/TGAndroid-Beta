@@ -2,20 +2,20 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
 public final class a3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f19594a;
-    public final c3 f19595b;
+    public final int f19294a;
+    public final c3 f19295b;
 
     public a3(c3 c3Var, int i10) {
-        this.f19594a = i10;
-        this.f19595b = c3Var;
+        this.f19294a = i10;
+        this.f19295b = c3Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         int i10;
-        switch (this.f19594a) {
+        switch (this.f19294a) {
             case 0:
-                c3 c3Var = this.f19595b;
+                c3 c3Var = this.f19295b;
                 e3 e3Var = c3Var.G;
                 e3Var.containerView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 e3Var.onContainerViewTranslation();
@@ -23,25 +23,25 @@ public final class a3 implements ValueAnimator.AnimatorUpdateListener {
                 c3Var.invalidate();
                 return;
             case 1:
-                c3 c3Var2 = this.f19595b;
+                c3 c3Var2 = this.f19295b;
                 c3Var2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c3Var2.f19669y = floatValue;
+                c3Var2.f19369y = floatValue;
                 e3 e3Var2 = c3Var2.G;
                 e3Var2.containerView.setTranslationX(floatValue);
                 e3Var2.container.invalidate();
                 return;
             case 2:
-                c3 c3Var3 = this.f19595b;
+                c3 c3Var3 = this.f19295b;
                 c3Var3.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c3Var3.f19669y = floatValue2;
+                c3Var3.f19369y = floatValue2;
                 e3 e3Var3 = c3Var3.G;
                 e3Var3.containerView.setTranslationX(floatValue2);
                 e3Var3.container.invalidate();
                 return;
             case 3:
-                c3 c3Var4 = this.f19595b;
+                c3 c3Var4 = this.f19295b;
                 c3Var4.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 e3 e3Var4 = c3Var4.G;
@@ -54,7 +54,7 @@ public final class a3 implements ValueAnimator.AnimatorUpdateListener {
                 d3Var.setAlpha(i10);
                 return;
             default:
-                e3 e3Var5 = this.f19595b.G;
+                e3 e3Var5 = this.f19295b.G;
                 c3 c3Var5 = e3Var5.container;
                 if (c3Var5 != null) {
                     c3Var5.invalidate();

@@ -8,23 +8,23 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 public final class sc {
-    public long f7797a;
-    public volatile long f7798b;
-    public int f7799c;
-    public volatile int f7800f;
-    public volatile int f7801g;
+    public long f7800a;
+    public volatile long f7801b;
+    public int f7802c;
+    public volatile int f7803f;
+    public volatile int f7804g;
     public final boolean h;
-    public boolean f7802i;
-    public long f7803j;
-    public Path f7806m;
-    public final uc f7807n;
+    public boolean f7805i;
+    public long f7806j;
+    public Path f7809m;
+    public final uc f7810n;
     public final ArrayList d = new ArrayList();
-    public boolean f7804k = false;
-    public final Paint f7805l = new Paint(3);
+    public boolean f7807k = false;
+    public final Paint f7808l = new Paint(3);
     public MediaMetadataRetriever e = new MediaMetadataRetriever();
 
     public sc(uc ucVar, boolean z10, final String str, final int i10, final int i11, final Long l4, final long j10, final long j11, final long j12, final Runnable runnable) {
-        this.f7807n = ucVar;
+        this.f7810n = ucVar;
         this.h = z10;
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
@@ -35,7 +35,7 @@ public final class sc {
     }
 
     public final void b() {
-        this.f7802i = true;
+        this.f7805i = true;
         Utilities.themeQueue.cancelRunnable(new x8(this, 9));
         ArrayList arrayList = this.d;
         int size = arrayList.size();
@@ -43,7 +43,7 @@ public final class sc {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            Bitmap bitmap = ((rc) obj).f7728a;
+            Bitmap bitmap = ((rc) obj).f7731a;
             if (bitmap != null) {
                 bitmap.recycle();
             }
@@ -61,9 +61,9 @@ public final class sc {
     }
 
     public final void c() {
-        if (!this.f7804k && this.e != null && this.d.size() < this.f7799c) {
-            this.f7804k = true;
-            this.f7803j += this.f7798b;
+        if (!this.f7807k && this.e != null && this.d.size() < this.f7802c) {
+            this.f7807k = true;
+            this.f7806j += this.f7801b;
             Utilities.themeQueue.cancelRunnable(new x8(this, 9));
             Utilities.themeQueue.postRunnable(new x8(this, 9));
         }

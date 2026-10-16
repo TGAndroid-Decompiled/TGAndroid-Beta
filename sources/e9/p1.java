@@ -12,7 +12,7 @@ import java.util.SortedMap;
 import v7.u6;
 public final class p1 extends p implements f1, Serializable {
     public final transient Map e;
-    public transient int f8603f;
+    public transient int f8606f;
     public transient o1 h;
 
     public p1(Map map) {
@@ -27,7 +27,7 @@ public final class p1 extends p implements f1, Serializable {
             collection.clear();
         }
         map.clear();
-        this.f8603f = 0;
+        this.f8606f = 0;
     }
 
     @Override
@@ -83,6 +83,6 @@ public final class p1 extends p implements f1, Serializable {
 
     @Override
     public final int size() {
-        return this.f8603f;
+        return this.f8606f;
     }
 }

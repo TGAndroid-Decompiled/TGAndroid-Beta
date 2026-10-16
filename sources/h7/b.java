@@ -4,16 +4,16 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 public final class b implements d, IInterface {
-    public final IBinder f10370a;
+    public final IBinder f10374a;
 
     public b(IBinder iBinder) {
-        this.f10370a = iBinder;
+        this.f10374a = iBinder;
     }
 
     public final void F0(Parcel parcel, int i10) {
         Parcel obtain = Parcel.obtain();
         try {
-            this.f10370a.transact(i10, parcel, obtain, 0);
+            this.f10374a.transact(i10, parcel, obtain, 0);
             obtain.readException();
         } finally {
             parcel.recycle();
@@ -23,6 +23,6 @@ public final class b implements d, IInterface {
 
     @Override
     public final IBinder asBinder() {
-        return this.f10370a;
+        return this.f10374a;
     }
 }

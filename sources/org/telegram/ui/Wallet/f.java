@@ -14,18 +14,18 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class f {
-    public final int f33159a;
-    public final j0 f33160b;
-    public boolean f33161c;
+    public final int f32882a;
+    public final k0 f32883b;
+    public boolean f32884c;
     public TL_wallet.currencyRates d;
     public String e = "en";
-    public String f33162f;
+    public String f32885f;
 
-    public f(j0 j0Var) {
-        this.f33160b = j0Var;
-        this.f33159a = j0Var.f33319a;
+    public f(k0 k0Var) {
+        this.f32883b = k0Var;
+        this.f32882a = k0Var.f33092a;
         try {
-            this.f33162f = ApplicationLoader.applicationContext.getSharedPreferences("gram_wallet", 0).getString("currency", g());
+            this.f32885f = ApplicationLoader.applicationContext.getSharedPreferences("gram_wallet", 0).getString("currency", g());
         } catch (Exception e) {
             FileLog.e("[gram-wallet] failed to load currency prefs", e);
         }
@@ -108,11 +108,11 @@ public final class f {
     public final TL_wallet.currencyRates f() {
         String str;
         if (this.d == null) {
-            if (this.f33161c) {
+            if (this.f32884c) {
                 return null;
             }
-            this.f33161c = true;
-            ConnectionsManager.getInstance(this.f33159a).sendRequestTyped(new TL_wallet.getCurrencyRates(), new Object(), new d(this, 0));
+            this.f32884c = true;
+            ConnectionsManager.getInstance(this.f32882a).sendRequestTyped(new TL_wallet.getCurrencyRates(), new Object(), new d(this, 0));
         } else {
             Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
             if (currentLocale == null || TextUtils.isEmpty(currentLocale.getLanguage())) {
@@ -141,7 +141,7 @@ public final class f {
     }
 
     public final String g() {
-        String str = this.f33162f;
+        String str = this.f32885f;
         if (str == null) {
             return "USD";
         }

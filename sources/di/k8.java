@@ -77,75 +77,75 @@ public final class k8 {
     public File Y0;
     public float Z;
     public File Z0;
-    public MediaController.SavedFilterState f7174a1;
-    public long f7175b;
-    public boolean f7176b0;
-    public Bitmap f7177b1;
-    public boolean f7178c;
-    public TLRPC.Document f7179c0;
-    public boolean f7180c1;
+    public MediaController.SavedFilterState f7177a1;
+    public long f7178b;
+    public boolean f7179b0;
+    public Bitmap f7180b1;
+    public boolean f7181c;
+    public TLRPC.Document f7182c0;
+    public boolean f7183c1;
     public long d;
-    public bi.q4 f7181d0;
-    public j8 f7182d1;
+    public bi.q4 f7184d0;
+    public j8 f7185d1;
     public long e;
-    public int f7185f;
-    public boolean f7186f0;
-    public boolean f7187g;
-    public Bitmap f7188g0;
+    public int f7188f;
+    public boolean f7189f0;
+    public boolean f7190g;
+    public Bitmap f7191g0;
     public boolean h;
-    public long f7189h0;
-    public boolean f7192j;
-    public boolean f7194k;
-    public int f7195k0;
-    public boolean f7196l;
-    public int f7197l0;
-    public ArrayList f7198m;
+    public long f7192h0;
+    public boolean f7195j;
+    public boolean f7197k;
+    public int f7198k0;
+    public boolean f7199l;
+    public int f7200l0;
+    public ArrayList f7201m;
     public MediaController.CropState m0;
-    public boolean f7199n;
-    public boolean f7201o;
-    public File f7202o0;
-    public SpannableStringBuilder f7203p;
-    public String f7204p0;
-    public TLRPC.Peer f7205q;
-    public long f7206q0;
-    public int f7207r;
-    public long f7208r0;
-    public String f7209s;
-    public float f7210s0;
-    public TLRPC.MessageMedia f7211t;
-    public boolean f7213u;
+    public boolean f7202n;
+    public boolean f7204o;
+    public File f7205o0;
+    public SpannableStringBuilder f7206p;
+    public String f7207p0;
+    public TLRPC.Peer f7208q;
+    public long f7209q0;
+    public int f7210r;
+    public long f7211r0;
+    public String f7212s;
+    public float f7213s0;
+    public TLRPC.MessageMedia f7214t;
+    public boolean f7216u;
     public ArrayList v;
-    public TLRPC.InputPeer f7215v0;
-    public boolean f7216w;
-    public HashSet f7217w0;
-    public TLRPC.TL_error f7218x;
-    public Drawable f7219x0;
-    public String f7220y;
-    public TLRPC.InputDocument f7222z;
-    public final int f7172a = UserConfig.selectedAccount;
-    public double f7190i = -1.0d;
+    public TLRPC.InputPeer f7218v0;
+    public boolean f7219w;
+    public HashSet f7220w0;
+    public TLRPC.TL_error f7221x;
+    public Drawable f7222x0;
+    public String f7223y;
+    public TLRPC.InputDocument f7225z;
+    public final int f7175a = UserConfig.selectedAccount;
+    public double f7193i = -1.0d;
     public float F = 1.0f;
     public float G = 1.0f;
     public float P = 1.0f;
     public boolean U = false;
     public float V = 0.0f;
     public float W = 1.0f;
-    public float f7173a0 = 1.0f;
-    public long f7183e0 = -1;
-    public int f7191i0 = 720;
-    public int f7193j0 = 1280;
-    public final Matrix f7200n0 = new Matrix();
-    public float f7212t0 = 1.0f;
-    public float f7214u0 = 1.0f;
-    public boolean f7221y0 = org.telegram.ui.ActionBar.g6.I.q();
-    public long f7223z0 = Long.MIN_VALUE;
+    public float f7176a0 = 1.0f;
+    public long f7186e0 = -1;
+    public int f7194i0 = 720;
+    public int f7196j0 = 1280;
+    public final Matrix f7203n0 = new Matrix();
+    public float f7215t0 = 1.0f;
+    public float f7217u0 = 1.0f;
+    public boolean f7224y0 = org.telegram.ui.ActionBar.g6.I.q();
+    public long f7226z0 = Long.MIN_VALUE;
     public boolean D0 = true;
     public final ArrayList F0 = new ArrayList();
     public boolean G0 = true;
     public int I0 = 86400;
     public String K0 = "";
     public long S0 = 5000;
-    public int f7184e1 = 0;
+    public int f7187e1 = 0;
 
     public static void C(BitmapFactory.Options options, int i10) {
         Runtime runtime = Runtime.getRuntime();
@@ -194,19 +194,19 @@ public final class k8 {
             if (k8Var2.K) {
                 k8Var.K = true;
                 k8Var2.V = 0.0f;
-                k8Var2.W = Math.min(1.0f, 59000.0f / ((float) k8Var2.f7189h0));
+                k8Var2.W = Math.min(1.0f, 59000.0f / ((float) k8Var2.f7192h0));
             }
         }
         if (k8Var.K) {
-            k8Var.f7195k0 = 720;
-            k8Var.f7197l0 = 1280;
-            k8Var.f7191i0 = 720;
-            k8Var.f7193j0 = 1280;
+            k8Var.f7198k0 = 720;
+            k8Var.f7200l0 = 1280;
+            k8Var.f7194i0 = 720;
+            k8Var.f7196j0 = 1280;
         } else {
-            k8Var.f7195k0 = 1080;
-            k8Var.f7197l0 = 1920;
-            k8Var.f7191i0 = 1080;
-            k8Var.f7193j0 = 1920;
+            k8Var.f7198k0 = 1080;
+            k8Var.f7200l0 = 1920;
+            k8Var.f7194i0 = 1080;
+            k8Var.f7196j0 = 1920;
         }
         k8Var.A();
         return k8Var;
@@ -271,9 +271,9 @@ public final class k8 {
         k8Var.K = z10;
         k8Var.N = photoEntry.thumbPath;
         long j10 = photoEntry.duration * 1000;
-        k8Var.f7189h0 = j10;
+        k8Var.f7192h0 = j10;
         k8Var.Z = 0.0f;
-        k8Var.f7173a0 = Math.min(1.0f, 59000.0f / ((float) j10));
+        k8Var.f7176a0 = Math.min(1.0f, 59000.0f / ((float) j10));
         if (k8Var.K && k8Var.N == null) {
             k8Var.N = "vthumb://" + photoEntry.imageId;
         }
@@ -282,8 +282,8 @@ public final class k8 {
         k8Var.h(k8Var.L.getAbsolutePath());
         int i11 = photoEntry.width;
         if (i11 > 0 && (i10 = photoEntry.height) > 0) {
-            k8Var.f7195k0 = i11;
-            k8Var.f7197l0 = i10;
+            k8Var.f7198k0 = i11;
+            k8Var.f7200l0 = i10;
         }
         k8Var.A();
         return k8Var;
@@ -305,15 +305,15 @@ public final class k8 {
 
     public static k8 n(File file, TL_stories.StoryItem storyItem) {
         k8 k8Var = new k8();
-        k8Var.f7187g = true;
-        k8Var.f7185f = storyItem.f19451id;
+        k8Var.f7190g = true;
+        k8Var.f7188f = storyItem.f19151id;
         k8Var.L = file;
         k8Var.M = false;
-        k8Var.f7195k0 = 720;
-        k8Var.f7197l0 = 1280;
+        k8Var.f7198k0 = 720;
+        k8Var.f7200l0 = 1280;
         TLRPC.MessageMedia messageMedia = storyItem.media;
         boolean z10 = messageMedia instanceof TLRPC.TL_messageMediaPhoto;
-        int i10 = k8Var.f7172a;
+        int i10 = k8Var.f7175a;
         if (z10) {
             k8Var.K = false;
             if (file != null) {
@@ -330,9 +330,9 @@ public final class k8 {
                     }
                     TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i11);
                     if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                        k8Var.f7195k0 = documentAttribute.f19223w;
-                        k8Var.f7197l0 = documentAttribute.h;
-                        k8Var.f7190i = documentAttribute.duration;
+                        k8Var.f7198k0 = documentAttribute.f18923w;
+                        k8Var.f7200l0 = documentAttribute.h;
+                        k8Var.f7193i = documentAttribute.duration;
                         break;
                     }
                     i11++;
@@ -404,30 +404,30 @@ public final class k8 {
         arrayList.addAll(arrayList3);
         k8Var.I0 = storyItem.expire_date - storyItem.date;
         try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.g6.f20100o2.getFontMetricsInt(), true);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.g6.f19800o2.getFontMetricsInt(), true);
             MessageObject.addEntitiesToText(replaceEmoji, storyItem.entities, true, false, true, false);
-            k8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.g6.f20100o2.getFontMetricsInt());
+            k8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.g6.f19800o2.getFontMetricsInt());
         } catch (Exception unused) {
         }
         k8Var.A();
         k8Var.e(storyItem);
-        k8Var.f7198m = storyItem.media_areas;
-        k8Var.f7215v0 = MessagesController.getInstance(i10).getInputPeer(storyItem.dialogId);
+        k8Var.f7201m = storyItem.media_areas;
+        k8Var.f7218v0 = MessagesController.getInstance(i10).getInputPeer(storyItem.dialogId);
         return k8Var;
     }
 
     public static k8 o(File file, String str, long j10) {
         k8 k8Var = new k8();
-        k8Var.f7180c1 = true;
+        k8Var.f7183c1 = true;
         k8Var.L = file;
         k8Var.M = true;
         k8Var.Q = 0;
         k8Var.R = 0;
         k8Var.K = true;
-        k8Var.f7189h0 = j10;
+        k8Var.f7192h0 = j10;
         k8Var.N = str;
         k8Var.Z = 0.0f;
-        k8Var.f7173a0 = Math.min(1.0f, 59500.0f / ((float) j10));
+        k8Var.f7176a0 = Math.min(1.0f, 59500.0f / ((float) j10));
         return k8Var;
     }
 
@@ -498,7 +498,7 @@ public final class k8 {
                 if (MessageObject.isAnimatedStickerDocument(document, true)) {
                     RLottieNative a2 = RLottieNative.a(str, null, null, null, 0, null);
                     if (a2 != null) {
-                        int i10 = a2.f23242a[0];
+                        int i10 = a2.f22942a[0];
                         a2.d();
                         j10 = i10;
                     } else {
@@ -546,15 +546,15 @@ public final class k8 {
         MessageObject messageObject;
         int i10;
         k8 k8Var = new k8();
-        k8Var.f7213u = true;
+        k8Var.f7216u = true;
         k8Var.v = arrayList;
-        k8Var.f7191i0 = 1080;
-        k8Var.f7193j0 = 1920;
-        k8Var.f7223z0 = p((MessageObject) arrayList.get(0));
+        k8Var.f7194i0 = 1080;
+        k8Var.f7196j0 = 1920;
+        k8Var.f7226z0 = p((MessageObject) arrayList.get(0));
         VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
         mediaEntity.type = (byte) 6;
-        mediaEntity.f16731x = 0.5f;
-        mediaEntity.f16732y = 0.5f;
+        mediaEntity.f16423x = 0.5f;
+        mediaEntity.f16424y = 0.5f;
         ArrayList arrayList2 = new ArrayList();
         k8Var.T0 = arrayList2;
         arrayList2.add(mediaEntity);
@@ -565,16 +565,16 @@ public final class k8 {
             }
             File file = k8Var.L;
             if (file == null || !file.exists()) {
-                k8Var.L = FileLoader.getInstance(k8Var.f7172a).getPathToMessage(messageObject.messageOwner);
+                k8Var.L = FileLoader.getInstance(k8Var.f7175a).getPathToMessage(messageObject.messageOwner);
             }
             File file2 = k8Var.L;
             if (file2 != null && file2.exists()) {
                 k8Var.K = true;
                 k8Var.M = false;
                 long duration = (long) (messageObject.getDuration() * 1000.0d);
-                k8Var.f7189h0 = duration;
+                k8Var.f7192h0 = duration;
                 k8Var.Z = 0.0f;
-                k8Var.f7173a0 = Math.min(1.0f, 59500.0f / ((float) duration));
+                k8Var.f7176a0 = Math.min(1.0f, 59500.0f / ((float) duration));
                 return k8Var;
             }
             k8Var.L = null;
@@ -584,10 +584,10 @@ public final class k8 {
 
     public final void A() {
         float f7;
-        Matrix matrix = this.f7200n0;
+        Matrix matrix = this.f7203n0;
         matrix.reset();
-        int i10 = this.f7195k0;
-        int i11 = this.f7197l0;
+        int i10 = this.f7198k0;
+        int i11 = this.f7200l0;
         int i12 = this.Q;
         int i13 = this.R;
         float f10 = 1.0f;
@@ -610,33 +610,33 @@ public final class k8 {
             matrix.postTranslate(i10 / 2.0f, i11 / 2.0f);
         }
         float f11 = i10;
-        float f12 = this.f7191i0 / f11;
+        float f12 = this.f7194i0 / f11;
         if (this.J0 != 0) {
-            f12 = Math.min(f12, this.f7193j0 / i11);
+            f12 = Math.min(f12, this.f7196j0 / i11);
         } else {
             float f13 = i11;
             if (f13 / f11 > 1.29f) {
-                f12 = Math.max(f12, this.f7193j0 / f13);
+                f12 = Math.max(f12, this.f7196j0 / f13);
             }
         }
         matrix.postScale(f12, f12);
-        matrix.postTranslate(com.google.android.gms.internal.play_billing.k3.c(f11, f12, this.f7191i0, 2.0f), com.google.android.gms.internal.play_billing.k3.c(i11, f12, this.f7193j0, 2.0f));
+        matrix.postTranslate(com.google.android.gms.internal.play_billing.k3.c(f11, f12, this.f7194i0, 2.0f), com.google.android.gms.internal.play_billing.k3.c(i11, f12, this.f7196j0, 2.0f));
     }
 
     public final void B() {
         long j10;
-        if (this.K && !v() && !this.f7187g && !this.f7199n && this.f7189h0 > 69000 && UserConfig.getInstance(this.f7172a).isPremium()) {
-            long j11 = this.f7189h0 - 59000;
+        if (this.K && !v() && !this.f7190g && !this.f7202n && this.f7192h0 > 69000 && UserConfig.getInstance(this.f7175a).isPremium()) {
+            long j11 = this.f7192h0 - 59000;
             if (j11 > 10000) {
                 j10 = Math.min(59000L, j11) + 59000;
             } else {
                 j10 = 59000;
             }
-            long j12 = this.f7189h0 - j10;
+            long j12 = this.f7192h0 - j10;
             if (j12 > 10000) {
                 j10 += Math.min(59000L, j12);
             }
-            this.f7173a0 = Math.min(1.0f, ((float) j10) / ((float) this.f7189h0));
+            this.f7176a0 = Math.min(1.0f, ((float) j10) / ((float) this.f7192h0));
         }
     }
 
@@ -646,7 +646,7 @@ public final class k8 {
         MessageObject messageObject;
         TLRPC.Message message;
         ArrayList arrayList3 = this.T0;
-        if (!this.K && this.f7220y == null && this.f7202o0 == null && ((arrayList = this.v) == null || arrayList.size() != 1 || (messageObject = (MessageObject) this.v.get(0)) == null || (message = messageObject.messageOwner) == null || !(message.action instanceof TLRPC.TL_messageActionStarGiftUnique))) {
+        if (!this.K && this.f7223y == null && this.f7205o0 == null && ((arrayList = this.v) == null || arrayList.size() != 1 || (messageObject = (MessageObject) this.v.get(0)) == null || (message = messageObject.messageOwner) == null || !(message.action instanceof TLRPC.TL_messageActionStarGiftUnique))) {
             if (arrayList3 != null && !arrayList3.isEmpty()) {
                 for (int i10 = 0; i10 < arrayList3.size(); i10++) {
                     VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList3.get(i10);
@@ -677,12 +677,12 @@ public final class k8 {
 
     public final void c(File file) {
         Bitmap b10 = b(null, 1.0f);
-        Bitmap bitmap = this.f7177b1;
+        Bitmap bitmap = this.f7180b1;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f7177b1 = null;
+            this.f7180b1 = null;
         }
-        this.f7177b1 = Bitmap.createScaledBitmap(b10, 40, 22, true);
+        this.f7180b1 = Bitmap.createScaledBitmap(b10, 40, 22, true);
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             b10.compress(Bitmap.CompressFormat.JPEG, 95, fileOutputStream);
@@ -702,8 +702,8 @@ public final class k8 {
                 if (photo.has_stickers) {
                     TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
                     TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                    tL_inputStickeredMediaPhoto.f19286id = tL_inputPhoto;
-                    tL_inputPhoto.f19235id = photo.f19240id;
+                    tL_inputStickeredMediaPhoto.f18986id = tL_inputPhoto;
+                    tL_inputPhoto.f18935id = photo.f18940id;
                     tL_inputPhoto.access_hash = photo.access_hash;
                     byte[] bArr = photo.file_reference;
                     tL_inputPhoto.file_reference = bArr;
@@ -719,8 +719,8 @@ public final class k8 {
                 if (document != null && MessageObject.isDocumentHasAttachedStickers(document)) {
                     TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    tL_inputStickeredMediaDocument.f19285id = tL_inputDocument;
-                    tL_inputDocument.f19228id = document.f19222id;
+                    tL_inputStickeredMediaDocument.f18985id = tL_inputDocument;
+                    tL_inputDocument.f18928id = document.f18922id;
                     tL_inputDocument.access_hash = document.access_hash;
                     byte[] bArr2 = document.file_reference;
                     tL_inputDocument.file_reference = bArr2;
@@ -732,7 +732,7 @@ public final class k8 {
                     return;
                 }
             }
-            this.f7184e1 = ConnectionsManager.getInstance(this.f7172a).sendRequest(tL_messages_getAttachedStickers, new bi.f3(this, storyItem, tL_messages_getAttachedStickers, new bi.z7(this, 5)));
+            this.f7187e1 = ConnectionsManager.getInstance(this.f7175a).sendRequest(tL_messages_getAttachedStickers, new bi.f3(this, storyItem, tL_messages_getAttachedStickers, new bi.z7(this, 5)));
         }
     }
 
@@ -766,22 +766,22 @@ public final class k8 {
 
     public final k8 g() {
         k8 k8Var = new k8();
-        k8Var.f7175b = this.f7175b;
-        k8Var.f7178c = this.f7178c;
+        k8Var.f7178b = this.f7178b;
+        k8Var.f7181c = this.f7181c;
         k8Var.d = this.d;
         k8Var.e = this.e;
-        k8Var.f7185f = this.f7185f;
-        k8Var.f7187g = this.f7187g;
+        k8Var.f7188f = this.f7188f;
+        k8Var.f7190g = this.f7190g;
         k8Var.h = this.h;
-        k8Var.f7190i = this.f7190i;
-        k8Var.f7192j = this.f7192j;
-        k8Var.f7194k = this.f7194k;
-        k8Var.f7196l = this.f7196l;
-        k8Var.f7198m = this.f7198m;
-        k8Var.f7216w = this.f7216w;
-        k8Var.f7218x = this.f7218x;
-        k8Var.f7220y = this.f7220y;
-        k8Var.f7222z = this.f7222z;
+        k8Var.f7193i = this.f7193i;
+        k8Var.f7195j = this.f7195j;
+        k8Var.f7197k = this.f7197k;
+        k8Var.f7199l = this.f7199l;
+        k8Var.f7201m = this.f7201m;
+        k8Var.f7219w = this.f7219w;
+        k8Var.f7221x = this.f7221x;
+        k8Var.f7223y = this.f7223y;
+        k8Var.f7225z = this.f7225z;
         k8Var.A = this.A;
         k8Var.B = this.B;
         k8Var.C = this.C;
@@ -796,7 +796,7 @@ public final class k8 {
         k8Var.L = this.L;
         k8Var.M = this.M;
         boolean z10 = this.M;
-        int i10 = this.f7172a;
+        int i10 = this.f7175a;
         if (z10) {
             File w9 = w(i10, k(this.L));
             k8Var.L = w9;
@@ -805,15 +805,15 @@ public final class k8 {
         k8Var.N = this.N;
         k8Var.Y = this.Y;
         k8Var.Z = this.Z;
-        k8Var.f7173a0 = this.f7173a0;
-        k8Var.f7189h0 = this.f7189h0;
-        k8Var.f7195k0 = this.f7195k0;
-        k8Var.f7197l0 = this.f7197l0;
-        k8Var.f7191i0 = this.f7191i0;
-        k8Var.f7193j0 = this.f7193j0;
-        k8Var.f7215v0 = this.f7215v0;
+        k8Var.f7176a0 = this.f7176a0;
+        k8Var.f7192h0 = this.f7192h0;
+        k8Var.f7198k0 = this.f7198k0;
+        k8Var.f7200l0 = this.f7200l0;
+        k8Var.f7194i0 = this.f7194i0;
+        k8Var.f7196j0 = this.f7196j0;
+        k8Var.f7218v0 = this.f7218v0;
         k8Var.R = this.R;
-        k8Var.f7200n0.set(this.f7200n0);
+        k8Var.f7203n0.set(this.f7203n0);
         k8Var.A0 = this.A0;
         k8Var.B0 = this.B0;
         k8Var.C0 = this.C0;
@@ -827,7 +827,7 @@ public final class k8 {
         k8Var.I0 = this.I0;
         k8Var.M0 = this.M0;
         k8Var.N0 = this.N0;
-        k8Var.f7217w0 = this.f7217w0;
+        k8Var.f7220w0 = this.f7220w0;
         File file = this.N0;
         if (file != null && file.exists()) {
             File w10 = w(i10, k(this.N0));
@@ -892,24 +892,24 @@ public final class k8 {
             k8Var.Z0 = w17;
             AndroidUtilities.copyFileSafe(this.Z0, w17);
         }
-        k8Var.f7174a1 = this.f7174a1;
-        k8Var.f7177b1 = this.f7177b1;
-        k8Var.f7180c1 = this.f7180c1;
+        k8Var.f7177a1 = this.f7177a1;
+        k8Var.f7180b1 = this.f7180b1;
+        k8Var.f7183c1 = this.f7183c1;
         k8Var.O = this.O;
-        k8Var.f7199n = this.f7199n;
-        k8Var.f7201o = this.f7201o;
-        k8Var.f7202o0 = this.f7202o0;
-        k8Var.f7210s0 = this.f7210s0;
-        k8Var.f7212t0 = this.f7212t0;
-        k8Var.f7206q0 = this.f7206q0;
-        k8Var.f7204p0 = this.f7204p0;
-        k8Var.f7208r0 = this.f7208r0;
-        k8Var.f7214u0 = this.f7214u0;
-        k8Var.f7176b0 = this.f7176b0;
+        k8Var.f7202n = this.f7202n;
+        k8Var.f7204o = this.f7204o;
+        k8Var.f7205o0 = this.f7205o0;
+        k8Var.f7213s0 = this.f7213s0;
+        k8Var.f7215t0 = this.f7215t0;
+        k8Var.f7209q0 = this.f7209q0;
+        k8Var.f7207p0 = this.f7207p0;
+        k8Var.f7211r0 = this.f7211r0;
+        k8Var.f7217u0 = this.f7217u0;
+        k8Var.f7179b0 = this.f7179b0;
         k8Var.J0 = this.J0;
         k8Var.K0 = this.K0;
         k8Var.L0 = this.L0;
-        k8Var.f7183e0 = this.f7183e0;
+        k8Var.f7186e0 = this.f7186e0;
         k8Var.T = this.T;
         k8Var.S = this.S;
         k8Var.U = this.U;
@@ -924,19 +924,19 @@ public final class k8 {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
                 BitmapFactory.decodeFile(str, options);
-                this.f7195k0 = options.outWidth;
-                this.f7197l0 = options.outHeight;
+                this.f7198k0 = options.outWidth;
+                this.f7200l0 = options.outHeight;
             } catch (Exception unused) {
             }
         }
         if (!this.K) {
-            if (((int) Math.max(this.f7195k0, (this.f7197l0 / 16.0f) * 9.0f)) <= 900) {
-                this.f7191i0 = 720;
-                this.f7193j0 = 1280;
+            if (((int) Math.max(this.f7198k0, (this.f7200l0 / 16.0f) * 9.0f)) <= 900) {
+                this.f7194i0 = 720;
+                this.f7196j0 = 1280;
                 return;
             }
-            this.f7191i0 = 1080;
-            this.f7193j0 = 1920;
+            this.f7194i0 = 1080;
+            this.f7196j0 = 1920;
         }
     }
 
@@ -958,7 +958,7 @@ public final class k8 {
             }
             File file3 = this.L;
             if (file3 != null) {
-                if (this.M && (!this.f7187g || this.f7192j)) {
+                if (this.M && (!this.f7190g || this.f7195j)) {
                     file3.delete();
                 }
                 this.L = null;
@@ -987,17 +987,17 @@ public final class k8 {
                     }
                 }
             }
-            File file4 = this.f7202o0;
-            if (file4 != null && (!this.f7187g || this.f7192j)) {
+            File file4 = this.f7205o0;
+            if (file4 != null && (!this.f7190g || this.f7195j)) {
                 file4.delete();
-                this.f7202o0 = null;
+                this.f7205o0 = null;
             }
-            if (this.f7204p0 != null && (!this.f7187g || this.f7192j)) {
+            if (this.f7207p0 != null && (!this.f7190g || this.f7195j)) {
                 try {
-                    new File(this.f7204p0).delete();
+                    new File(this.f7207p0).delete();
                 } catch (Exception unused) {
                 }
-                this.f7204p0 = null;
+                this.f7207p0 = null;
             }
         }
         this.O = null;
@@ -1006,17 +1006,17 @@ public final class k8 {
                 ((k8) this.T.get(i11)).i(z10);
             }
         }
-        if (this.f7184e1 != 0) {
-            ConnectionsManager.getInstance(this.f7172a).cancelRequest(this.f7184e1, true);
+        if (this.f7187e1 != 0) {
+            ConnectionsManager.getInstance(this.f7175a).cancelRequest(this.f7187e1, true);
         }
     }
 
     public final int r() {
         long j10;
-        if (this.K && !v() && !this.f7187g) {
-            long j11 = this.f7189h0;
-            if (j11 > 0 && !this.f7199n) {
-                if ((this.f7173a0 - this.Z) * ((float) j11) >= 68999) {
+        if (this.K && !v() && !this.f7190g) {
+            long j11 = this.f7192h0;
+            if (j11 > 0 && !this.f7202n) {
+                if ((this.f7176a0 - this.Z) * ((float) j11) >= 68999) {
                     return (int) Math.ceil(((float) j10) / 59000.0f);
                 }
                 return 1;
@@ -1035,11 +1035,11 @@ public final class k8 {
             callback.run(null);
             return;
         }
-        if (!this.K && ((i11 = this.f7191i0) > 720 || this.f7193j0 > 1280)) {
+        if (!this.K && ((i11 = this.f7194i0) > 720 || this.f7196j0 > 1280)) {
             float f7 = 720.0f / i11;
-            this.f7200n0.postScale(f7, f7, 0.0f, 0.0f);
-            this.f7191i0 = 720;
-            this.f7193j0 = 1280;
+            this.f7203n0.postScale(f7, f7, 0.0f, 0.0f);
+            this.f7194i0 = 720;
+            this.f7196j0 = 1280;
         }
         File file = this.L;
         if (file == null) {

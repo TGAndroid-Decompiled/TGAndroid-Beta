@@ -50,7 +50,7 @@ public abstract class wb extends FrameLayout {
         b();
         setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         setWillNotDraw(false);
-        w7.c6.b(this, 0.02f, 1.5f);
+        w7.b6.b(this, 0.02f, 1.5f);
     }
 
     public static boolean a() {
@@ -105,7 +105,7 @@ public abstract class wb extends FrameLayout {
         this.inOutOffset = f7;
         updatePosition();
         sc scVar = this.bulletin;
-        if (scVar != null && scVar.f29103k) {
+        if (scVar != null && scVar.f28806k) {
             invalidate();
         }
     }
@@ -131,7 +131,7 @@ public abstract class wb extends FrameLayout {
         } else if (this.top) {
             i11 = 48;
         }
-        setLayoutParams(w7.a6.e(i10, -2, i11));
+        setLayoutParams(w7.z5.e(i10, -2, i11));
     }
 
     public vb createTransition() {
@@ -141,7 +141,7 @@ public abstract class wb extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         sc scVar = this.bulletin;
-        if (scVar != null && scVar.f29103k) {
+        if (scVar != null && scVar.f28806k) {
             if (this.blurVisibilityDrawable == null) {
                 this.blurVisibilityDrawable = new vh.b(new s(this, 16));
             }
@@ -149,7 +149,7 @@ public abstract class wb extends FrameLayout {
             if (bVar.f46998c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, AndroidUtilities.dp(10.0f));
             }
-            this.blurVisibilityDrawable.f47001i = w7.s.b((int) org.telegram.messenger.yh.x(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f47001i = w7.r.b((int) org.telegram.messenger.sk.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -166,9 +166,9 @@ public abstract class wb extends FrameLayout {
         if (this.bulletin != null && i10 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (qbVar = this.delegate) != null) {
-                float h = qbVar.h(this.bulletin.f29096a) - getY();
+                float h = qbVar.h(this.bulletin.f28799a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f29096a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f28799a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -243,14 +243,14 @@ public abstract class wb extends FrameLayout {
         qb qbVar;
         sc scVar;
         o1.k kVar;
-        if (this.bulletin != null && (((qbVar = this.delegate) == null || qbVar.e()) && (kVar = (scVar = this.bulletin).d) != null && kVar.f16461f)) {
-            f7 = scVar.f29107o;
+        if (this.bulletin != null && (((qbVar = this.delegate) == null || qbVar.e()) && (kVar = (scVar = this.bulletin).d) != null && kVar.f16154f)) {
+            f7 = scVar.f28810o;
         } else {
             qb qbVar2 = this.delegate;
             if (qbVar2 != null) {
                 sc scVar2 = this.bulletin;
                 if (scVar2 != null) {
-                    i10 = scVar2.f29096a;
+                    i10 = scVar2.f28799a;
                 } else {
                     i10 = 0;
                 }
@@ -280,7 +280,7 @@ public abstract class wb extends FrameLayout {
         if (qbVar != null) {
             sc scVar = this.bulletin;
             if (scVar != null) {
-                i10 = scVar.f29096a;
+                i10 = scVar.f28799a;
             } else {
                 i10 = 0;
             }
@@ -407,7 +407,7 @@ public abstract class wb extends FrameLayout {
             if (this.top) {
                 sc scVar = this.bulletin;
                 if (scVar != null) {
-                    i11 = scVar.f29096a;
+                    i11 = scVar.f28799a;
                 } else {
                     i11 = 0;
                 }

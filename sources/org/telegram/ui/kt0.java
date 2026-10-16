@@ -1,74 +1,19 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-public final class kt0 extends s4.x0 {
-    public final float f37731k;
-    public final LinearInterpolator f37729i = new LinearInterpolator();
-    public final DecelerateInterpolator f37730j = new DecelerateInterpolator(1.5f);
-    public int f37732l = 0;
-    public int f37733m = 0;
+import android.content.DialogInterface;
+import android.widget.ImageView;
+public final class kt0 implements DialogInterface.OnDismissListener {
+    public final PhotoViewer f37514a;
 
-    public kt0(Context context) {
-        this.f37731k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+    public kt0(PhotoViewer photoViewer) {
+        this.f37514a = photoViewer;
     }
 
     @Override
-    public final PointF a(int i10) {
-        s4.n0 n0Var = this.f44981c;
-        if (n0Var instanceof s4.b0) {
-            return ((s4.b0) n0Var).E0(i10);
+    public final void onDismiss(DialogInterface dialogInterface) {
+        ImageView imageView = this.f37514a.E3;
+        if (imageView != null) {
+            imageView.animate().alpha(0.0f).withEndAction(new xk0(this, 16)).setDuration(150L).start();
         }
-        return null;
-    }
-
-    @Override
-    public final void d(int i10, int i11, s4.w0 w0Var) {
-        if (this.f44980b.f2017x.r() == 0) {
-            h();
-            return;
-        }
-        int i12 = this.f37732l;
-        int i13 = i12 - i10;
-        int i14 = 0;
-        if (i12 * i13 <= 0) {
-            i13 = 0;
-        }
-        this.f37732l = i13;
-        int i15 = this.f37733m;
-        int i16 = i15 - i11;
-        if (i15 * i16 > 0) {
-            i14 = i16;
-        }
-        this.f37733m = i14;
-        if (i13 == 0 && i14 == 0) {
-            PointF a2 = a(this.f44979a);
-            if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
-                s4.x0.b(a2);
-                this.f37732l = (int) (a2.x * 10000.0f);
-                this.f37733m = (int) (a2.y * 10000.0f);
-                w0Var.b((int) (this.f37732l * 1.2f), (int) (this.f37733m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f37731k)) * 1.2f), this.f37729i);
-                return;
-            }
-            w0Var.d = this.f44979a;
-            h();
-        }
-    }
-
-    @Override
-    public final void f() {
-        this.f37733m = 0;
-        this.f37732l = 0;
-    }
-
-    @Override
-    public final void g(android.view.View r8, s4.w0 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kt0.g(android.view.View, s4.w0):void");
-    }
-
-    @Override
-    public final void e() {
     }
 }

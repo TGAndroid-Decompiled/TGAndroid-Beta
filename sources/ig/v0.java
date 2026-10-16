@@ -3,57 +3,57 @@ package ig;
 import android.os.Bundle;
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.fo;
 public final class v0 implements org.telegram.ui.ActionBar.z1, Utilities.Callback5 {
-    public final int f11662a;
-    public final w0 f11663b;
+    public final int f11666a;
+    public final w0 f11667b;
 
     public v0(w0 w0Var, int i10) {
-        this.f11662a = i10;
-        this.f11663b = w0Var;
+        this.f11666a = i10;
+        this.f11667b = w0Var;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f11662a) {
+        switch (this.f11666a) {
             case 0:
-                this.f11663b.X();
+                this.f11667b.X();
                 return;
             default:
-                this.f11663b.finishFragment();
+                this.f11667b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        l61 l61Var = (l61) obj;
+        m61 m61Var = (m61) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        w0 w0Var = this.f11663b;
-        if (!w0Var.d.h(l61Var)) {
-            int i10 = l61Var.d;
-            if (i10 != 2 && l61Var.f43203a != 17) {
+        w0 w0Var = this.f11667b;
+        if (!w0Var.d.h(m61Var)) {
+            int i10 = m61Var.d;
+            if (i10 != 2 && m61Var.f42904a != 17) {
                 if (i10 == 1) {
-                    w0Var.f11680s = !w0Var.f11680s;
-                    w0Var.f11676c.W2.N(true);
+                    w0Var.f11684s = !w0Var.f11684s;
+                    w0Var.f11680c.W2.N(true);
                     w0Var.V(true);
                     return;
                 } else if (i10 == 3) {
                     a0 a0Var = w0Var.d;
                     w0Var.v = true;
                     a0Var.h = true;
-                    w0Var.f11676c.W2.N(true);
+                    w0Var.f11680c.W2.N(true);
                     w0Var.V(true);
                     return;
                 } else if (i10 == 4) {
                     a0 a0Var2 = w0Var.d;
                     w0Var.v = false;
                     a0Var2.h = false;
-                    w0Var.f11676c.W2.N(true);
+                    w0Var.f11680c.W2.N(true);
                     w0Var.V(true);
                     return;
                 } else {

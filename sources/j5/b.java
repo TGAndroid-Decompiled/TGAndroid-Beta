@@ -6,14 +6,14 @@ import java.net.URL;
 import org.telegram.ui.Components.es;
 import v7.u8;
 public final class b {
-    public long f12840a;
-    public int f12841b;
-    public Object f12842c;
+    public long f12844a;
+    public int f12845b;
+    public Object f12846c;
 
     public b(int i10, URL url, long j10) {
-        this.f12841b = i10;
-        this.f12842c = url;
-        this.f12840a = j10;
+        this.f12845b = i10;
+        this.f12846c = url;
+        this.f12844a = j10;
     }
 
     public void a(ji.a aVar, f1.a aVar2) {
@@ -22,31 +22,31 @@ public final class b {
         int i10;
         int b10 = u8.b(aVar);
         if (aVar != null) {
-            j10 = aVar.f13102a;
+            j10 = aVar.f13106a;
         } else {
             j10 = Long.MIN_VALUE;
         }
-        if (j10 == this.f12840a && this.f12841b >= 0) {
+        if (j10 == this.f12844a && this.f12845b >= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f12840a = j10;
-        ValueAnimator valueAnimator = (ValueAnimator) this.f12842c;
+        this.f12844a = j10;
+        ValueAnimator valueAnimator = (ValueAnimator) this.f12846c;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f12842c = null;
+            this.f12846c = null;
         }
-        if (z10 && (i10 = this.f12841b) != b10) {
+        if (z10 && (i10 = this.f12845b) != b10) {
             ValueAnimator ofInt = ValueAnimator.ofInt(i10, b10);
             ofInt.addUpdateListener(new l0(7, this, aVar2));
-            ofInt.setInterpolator(es.f24771f);
+            ofInt.setInterpolator(es.f24465f);
             ofInt.setDuration(200L);
-            this.f12842c = ofInt;
+            this.f12846c = ofInt;
             ofInt.start();
             return;
         }
-        this.f12841b = b10;
+        this.f12845b = b10;
         aVar2.c(b10);
     }
 }

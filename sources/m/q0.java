@@ -1,14 +1,31 @@
 package m;
 
-import android.view.textclassifier.TextClassificationManager;
-import android.view.textclassifier.TextClassifier;
-import android.widget.TextView;
-public abstract class q0 {
-    public static TextClassifier a(TextView textView) {
-        TextClassificationManager textClassificationManager = (TextClassificationManager) textView.getContext().getSystemService(TextClassificationManager.class);
-        if (textClassificationManager != null) {
-            return textClassificationManager.getTextClassifier();
-        }
-        return TextClassifier.NO_OP;
-    }
+import android.graphics.drawable.Drawable;
+import android.widget.ListAdapter;
+public interface q0 {
+    boolean a();
+
+    int b();
+
+    void c(int i10);
+
+    CharSequence d();
+
+    void dismiss();
+
+    Drawable e();
+
+    void h(CharSequence charSequence);
+
+    void i(Drawable drawable);
+
+    void j(int i10);
+
+    void k(int i10);
+
+    void l(int i10, int i11);
+
+    int m();
+
+    void n(ListAdapter listAdapter);
 }

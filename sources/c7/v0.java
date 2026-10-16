@@ -8,26 +8,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class v0 extends o6.a {
     public static final Parcelable.Creator<v0> CREATOR = new r0(14);
-    public final boolean f4649a;
-    public final n7.s0 f4650b;
+    public final boolean f4652a;
+    public final n7.t0 f4653b;
 
-    public v0(boolean z10, n7.s0 s0Var) {
-        this.f4649a = z10;
-        this.f4650b = s0Var;
+    public v0(boolean z10, n7.t0 t0Var) {
+        this.f4652a = z10;
+        this.f4653b = t0Var;
     }
 
     public final JSONObject b() {
         byte[] t10;
         try {
             JSONObject jSONObject = new JSONObject();
-            if (this.f4649a) {
+            if (this.f4652a) {
                 jSONObject.put("enabled", true);
             }
-            n7.s0 s0Var = this.f4650b;
-            if (s0Var == null) {
+            n7.t0 t0Var = this.f4653b;
+            if (t0Var == null) {
                 t10 = null;
             } else {
-                t10 = s0Var.t();
+                t10 = t0Var.t();
             }
             if (t10 != null) {
                 JSONObject jSONObject2 = new JSONObject();
@@ -48,14 +48,14 @@ public final class v0 extends o6.a {
             return false;
         }
         v0 v0Var = (v0) obj;
-        if (this.f4649a != v0Var.f4649a || !n6.l.l(this.f4650b, v0Var.f4650b)) {
+        if (this.f4652a != v0Var.f4652a || !n6.l.l(this.f4653b, v0Var.f4653b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4649a), this.f4650b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4652a), this.f4653b});
     }
 
     public final String toString() {
@@ -65,16 +65,16 @@ public final class v0 extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] t10;
-        int q6 = w7.g0.q(parcel, 20293);
-        w7.g0.s(parcel, 1, 4);
-        parcel.writeInt(this.f4649a ? 1 : 0);
-        n7.s0 s0Var = this.f4650b;
-        if (s0Var == null) {
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.s(parcel, 1, 4);
+        parcel.writeInt(this.f4652a ? 1 : 0);
+        n7.t0 t0Var = this.f4653b;
+        if (t0Var == null) {
             t10 = null;
         } else {
-            t10 = s0Var.t();
+            t10 = t0Var.t();
         }
-        w7.g0.c(parcel, 2, t10);
-        w7.g0.r(parcel, q6);
+        w7.f0.c(parcel, 2, t10);
+        w7.f0.r(parcel, q6);
     }
 }

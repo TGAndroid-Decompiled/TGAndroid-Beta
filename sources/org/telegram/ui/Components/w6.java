@@ -7,21 +7,21 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 public final class w6 extends pb {
-    public w6(LaunchActivity launchActivity, org.telegram.ui.ob0 ob0Var) {
+    public w6(LaunchActivity launchActivity, org.telegram.ui.nb0 nb0Var) {
         super(launchActivity, null);
         org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
         TextView textView = new TextView(getContext());
-        addView(qVar, w7.a6.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
+        addView(qVar, w7.z5.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
         textView.setGravity(8388611);
         textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.Hi));
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(Typeface.SANS_SERIF);
-        addView(textView, w7.a6.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(ob0Var.f38917b));
+        addView(textView, w7.z5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        qVar.setImageDrawable(launchActivity.getDrawable(nb0Var.f38354b));
         qVar.setOuterPadding(AndroidUtilities.dp(8.0f));
         qVar.setBackgroundOuterPadding(AndroidUtilities.dp(24.0f));
-        qVar.setForeground(ob0Var.f38918c);
-        org.telegram.messenger.yh.q(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(ob0Var.d)}, textView);
+        qVar.setForeground(nb0Var.f38355c);
+        org.telegram.messenger.sk.r(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(nb0Var.d)}, textView);
     }
 }

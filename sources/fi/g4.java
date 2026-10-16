@@ -8,28 +8,28 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 public final class g4 extends FrameLayout {
-    public Path f9291a;
-    public float f9292b;
-    public int f9293c;
+    public Path f9294a;
+    public float f9295b;
+    public int f9296c;
     public int d;
     public int e;
-    public View f9294f;
+    public View f9297f;
     public b0 h;
 
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();
         float height = (getHeight() - AndroidUtilities.dp(32.0f)) / 2.0f;
-        float max = Math.max((getWidth() - this.e) - AndroidUtilities.dp(4.0f), getHeight()) * this.f9292b;
+        float max = Math.max((getWidth() - this.e) - AndroidUtilities.dp(4.0f), getHeight()) * this.f9295b;
         float dp = AndroidUtilities.dp(16.0f) + max;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(AndroidUtilities.dp(14.0f) - max, (AndroidUtilities.dp(4.0f) + height) - max, AndroidUtilities.dp(6.0f) + this.e + max, (getHeight() - AndroidUtilities.dp(12.0f)) + max);
-        Path path = this.f9291a;
+        Path path = this.f9294a;
         path.rewind();
         path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
         canvas.clipPath(path);
         canvas.drawColor(this.d);
-        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f9292b) / 0.5f)) * 255.0f), 31);
+        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f9295b) / 0.5f)) * 255.0f), 31);
         canvas.translate(AndroidUtilities.dp(10.0f), height);
         b0 b0Var = this.h;
         if (b0Var != null) {
@@ -38,7 +38,7 @@ public final class g4 extends FrameLayout {
             this.h.setDrawBackgroundDrawable(true);
         }
         canvas.restore();
-        canvas.translate((1.0f - this.f9292b) * (-AndroidUtilities.dp(8.0f)), 0.0f);
+        canvas.translate((1.0f - this.f9295b) * (-AndroidUtilities.dp(8.0f)), 0.0f);
         super.draw(canvas);
         canvas.restore();
     }
@@ -69,8 +69,8 @@ public final class g4 extends FrameLayout {
     }
 
     public void setProgress(float f7) {
-        this.f9292b = f7;
-        this.d = i0.a.d(f7, g6.x0(null, g6.f19891cf, false), this.f9293c);
+        this.f9295b = f7;
+        this.d = i0.a.d(f7, g6.x0(null, g6.f19591cf, false), this.f9296c);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             getChildAt(i10).setAlpha(f7);
         }

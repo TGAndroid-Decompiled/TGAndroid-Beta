@@ -39,8 +39,8 @@ public abstract class v {
         Object tag = view.getTag();
         if (tag instanceof Float) {
             float floatValue = ((Float) tag).floatValue();
-            WeakHashMap weakHashMap = r0.j0.f43732a;
-            r0.b0.h(view, floatValue);
+            WeakHashMap weakHashMap = r0.i0.f43485a;
+            r0.a0.h(view, floatValue);
         }
         view.setTag(null);
         view.setTranslationX(0.0f);
@@ -115,21 +115,21 @@ public abstract class v {
     public void m(Canvas canvas, RecyclerView recyclerView, b1 b1Var, float f7, float f10, int i10, boolean z10) {
         View view = b1Var.f44838a;
         if (z10 && view.getTag() == null) {
-            WeakHashMap weakHashMap = r0.j0.f43732a;
-            Float valueOf = Float.valueOf(r0.b0.e(view));
+            WeakHashMap weakHashMap = r0.i0.f43485a;
+            Float valueOf = Float.valueOf(r0.a0.e(view));
             int childCount = recyclerView.getChildCount();
             float f11 = 0.0f;
             for (int i11 = 0; i11 < childCount; i11++) {
                 View childAt = recyclerView.getChildAt(i11);
                 if (childAt != view) {
-                    WeakHashMap weakHashMap2 = r0.j0.f43732a;
-                    float e = r0.b0.e(childAt);
+                    WeakHashMap weakHashMap2 = r0.i0.f43485a;
+                    float e = r0.a0.e(childAt);
                     if (e > f11) {
                         f11 = e;
                     }
                 }
             }
-            r0.b0.h(view, f11 + 1.0f);
+            r0.a0.h(view, f11 + 1.0f);
             view.setTag(valueOf);
         }
         view.setTranslationX(f7);

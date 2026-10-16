@@ -13,41 +13,41 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.es;
 public final class o2 extends View {
-    public final Paint f50899a;
-    public final Paint f50900b;
-    public final Paint f50901c;
+    public final Paint f50900a;
+    public final Paint f50901b;
+    public final Paint f50902c;
     public final RadialGradient[] d;
     public final Matrix e;
-    public final org.telegram.ui.Components.g6 f50902f;
+    public final org.telegram.ui.Components.g6 f50903f;
     public final RadialGradient h;
-    public final Path f50903n;
-    public int f50904r;
-    public int f50905s;
+    public final Path f50904n;
+    public int f50905r;
+    public int f50906s;
 
     public o2(Context context) {
         super(context);
-        this.f50899a = new Paint(1);
-        this.f50900b = new Paint(1);
+        this.f50900a = new Paint(1);
+        this.f50901b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f50901c = paint;
+        this.f50902c = paint;
         this.d = new RadialGradient[2];
         this.e = new Matrix();
-        this.f50902f = new org.telegram.ui.Components.g6(1.0f, this, 0L, 420L, es.h);
+        this.f50903f = new org.telegram.ui.Components.g6(1.0f, this, 0L, 420L, es.h);
         this.h = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{0, -1, -1, 0}, new float[]{0.15f, 0.35f, 0.65f, 0.88f}, Shader.TileMode.CLAMP);
-        this.f50903n = new Path();
+        this.f50904n = new Path();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
 
     public final void a(int i10, int i11) {
-        if (this.f50904r == i10 && this.f50905s == i11) {
+        if (this.f50905r == i10 && this.f50906s == i11) {
             return;
         }
         RadialGradient[] radialGradientArr = this.d;
         radialGradientArr[0] = radialGradientArr[1];
-        this.f50904r = i10;
-        this.f50905s = i11;
+        this.f50905r = i10;
+        this.f50906s = i11;
         radialGradientArr[1] = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f50902f.d(0.0f, true);
+        this.f50903f.d(0.0f, true);
         invalidate();
     }
 
@@ -57,17 +57,17 @@ public final class o2 extends View {
         Paint paint;
         float f10 = 1.0f;
         int i10 = 0;
-        float d = this.f50902f.d(1.0f, false);
+        float d = this.f50903f.d(1.0f, false);
         float currentTimeMillis = (((float) (System.currentTimeMillis() % 15000)) / 15000.0f) * 360.0f;
         float f11 = 0.0f;
         if (getAlpha() > 0.0f) {
             invalidate();
         }
         Paint.Style style = Paint.Style.STROKE;
-        Paint paint2 = this.f50900b;
+        Paint paint2 = this.f50901b;
         paint2.setStyle(style);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        Path path = this.f50903n;
+        Path path = this.f50904n;
         path.rewind();
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
@@ -105,7 +105,7 @@ public final class o2 extends View {
                         matrix.postTranslate(width, height);
                         radialGradientArr[i10].setLocalMatrix(matrix);
                         RadialGradient radialGradient = radialGradientArr[i10];
-                        Paint paint3 = this.f50899a;
+                        Paint paint3 = this.f50900a;
                         paint3.setShader(radialGradient);
                         float f14 = pow * 255.0f;
                         paint3.setAlpha((int) (0.3f * f14));
@@ -125,7 +125,7 @@ public final class o2 extends View {
                 matrix.postTranslate(width, height);
                 RadialGradient radialGradient2 = this.h;
                 radialGradient2.setLocalMatrix(matrix);
-                Paint paint4 = this.f50901c;
+                Paint paint4 = this.f50902c;
                 paint4.setShader(radialGradient2);
                 canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint4);
                 canvas.restore();

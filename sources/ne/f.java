@@ -2,11 +2,11 @@ package ne;
 public interface f {
     void c();
 
-    void f(boolean z10);
+    void h(boolean z10);
 
-    boolean h();
+    boolean i();
 
-    boolean i(float f7);
+    boolean j(float f7);
 
     void m();
 

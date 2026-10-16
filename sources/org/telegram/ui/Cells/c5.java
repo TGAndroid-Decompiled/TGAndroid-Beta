@@ -6,13 +6,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.fp0;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.v61;
 import org.telegram.ui.lu;
 public final class c5 implements fp0 {
-    public final lu f21022a;
+    public final lu f20716a;
 
     public c5(lu luVar) {
-        this.f21022a = luVar;
+        this.f20716a = luVar;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class c5 implements fp0 {
             }
         }
         int i11 = (int) d;
-        lu luVar = this.f21022a;
+        lu luVar = this.f20716a;
         long j10 = i11;
         boolean z11 = true;
-        luVar.f21067b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        luVar.f20762b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
         luVar.d = j10;
         w8[] w8VarArr = luVar.h;
-        AnimatorSet[] animatorSetArr = luVar.f38090n;
+        AnimatorSet[] animatorSetArr = luVar.f37829n;
         int i12 = luVar.e;
-        i10 = luVar.f38091r.videosRow;
+        i10 = luVar.f37830r.videosRow;
         if (i12 == i10) {
-            luVar.f38089f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
+            luVar.f37828f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -60,7 +60,7 @@ public final class c5 implements fp0 {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new u61(luVar, 18));
+                animatorSetArr[0].addListener(new v61(luVar, 18));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }
@@ -70,10 +70,10 @@ public final class c5 implements fp0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        lu luVar = this.f21022a;
-        sb2.append((Object) luVar.f21066a.getText());
+        lu luVar = this.f20716a;
+        sb2.append((Object) luVar.f20761a.getText());
         sb2.append(" ");
-        sb2.append((Object) luVar.f21067b.getText());
+        sb2.append((Object) luVar.f20762b.getText());
         return sb2.toString();
     }
 

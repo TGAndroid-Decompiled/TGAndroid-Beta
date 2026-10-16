@@ -10,6 +10,6 @@ public final class q31 extends i71 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f39970n = null;
+        this.e.f39694n = null;
     }
 }

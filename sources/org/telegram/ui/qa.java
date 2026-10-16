@@ -33,12 +33,12 @@ public final class qa extends s4.v {
         if (b1Var.f44841f == b1Var2.f44841f) {
             View view = b1Var2.f44838a;
             if (!(view instanceof sa) || ((sa) view).G) {
-                ma maVar = this.d.f40937c;
+                ma maVar = this.d.f40624c;
                 int b10 = b1Var.b();
                 int b11 = b1Var2.b();
                 int i10 = b10 - 4;
                 int i11 = b11 - 4;
-                va vaVar = maVar.f38196c;
+                va vaVar = maVar.f37942c;
                 ArrayList arrayList = vaVar.v;
                 if (i10 < arrayList.size() && i11 < arrayList.size()) {
                     if (b10 != b11) {
@@ -67,7 +67,7 @@ public final class qa extends s4.v {
         if (i10 == 0) {
             va.Y(vaVar);
         } else {
-            vaVar.f40936b.I0(false);
+            vaVar.f40623b.I0(false);
             b1Var.f44838a.setPressed(true);
         }
         if (b1Var != null) {

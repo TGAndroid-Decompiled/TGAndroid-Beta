@@ -1,10 +1,10 @@
 package eh;
 public interface a {
-    int G();
+    int J();
 
-    int b0();
+    int j0();
 
-    int h();
+    int k();
 
-    int q();
+    int w();
 }

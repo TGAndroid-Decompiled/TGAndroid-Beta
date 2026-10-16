@@ -1,7 +1,7 @@
 package bi;
 
-import org.telegram.ui.nd0;
-public final class sa extends nd0 {
+import org.telegram.ui.ld0;
+public final class sa extends ld0 {
     public final int R0;
 
     public sa(int i10, int i11) {

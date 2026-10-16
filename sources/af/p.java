@@ -1,11 +1,11 @@
 package af;
 public final class p extends ff.a {
-    public final df.n f616a;
-    public boolean f617b;
-    public int f618c;
+    public final df.n f620a;
+    public boolean f621b;
+    public int f622c;
 
     public p(df.n nVar) {
-        this.f616a = nVar;
+        this.f620a = nVar;
     }
 
     @Override
@@ -13,15 +13,15 @@ public final class p extends ff.a {
         if (!(aVar instanceof df.o)) {
             return false;
         }
-        if (this.f617b && this.f618c == 1) {
-            this.f617b = false;
+        if (this.f621b && this.f622c == 1) {
+            this.f621b = false;
         }
         return true;
     }
 
     @Override
     public final df.a e() {
-        return this.f616a;
+        return this.f620a;
     }
 
     @Override
@@ -32,11 +32,11 @@ public final class p extends ff.a {
     @Override
     public final a h(h hVar) {
         if (hVar.h) {
-            this.f617b = true;
-            this.f618c = 0;
-        } else if (this.f617b) {
-            this.f618c++;
+            this.f621b = true;
+            this.f622c = 0;
+        } else if (this.f621b) {
+            this.f622c++;
         }
-        return a.a(hVar.f568b);
+        return a.a(hVar.f572b);
     }
 }

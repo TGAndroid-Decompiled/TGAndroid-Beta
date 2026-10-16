@@ -16,7 +16,7 @@ public final class q9 extends ba {
         int paddingTop;
         super.setContainerHeight(f7);
         x9 x9Var = this.L;
-        org.telegram.ui.Cells.v3 v3Var = x9Var.f8103y;
+        org.telegram.ui.Cells.v3 v3Var = x9Var.f8105y;
         float y3 = getY();
         FrameLayout frameLayout = x9Var.e;
         if (frameLayout == null) {
@@ -36,7 +36,7 @@ public final class q9 extends ba {
         int paddingTop;
         super.setTranslationY(f7);
         x9 x9Var = this.L;
-        org.telegram.ui.Cells.v3 v3Var = x9Var.f8103y;
+        org.telegram.ui.Cells.v3 v3Var = x9Var.f8105y;
         float y3 = getY();
         FrameLayout frameLayout = x9Var.e;
         if (frameLayout == null) {

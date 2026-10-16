@@ -6,10 +6,10 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class gt implements TextWatcher {
-    public final EditTextBoldCursor f36481a;
+    public final EditTextBoldCursor f36305a;
 
     public gt(EditTextBoldCursor editTextBoldCursor) {
-        this.f36481a = editTextBoldCursor;
+        this.f36305a = editTextBoldCursor;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class gt implements TextWatcher {
             String obj = editable.toString();
             if (!obj.isEmpty()) {
                 int intValue = Utilities.parseInt((CharSequence) obj).intValue();
-                EditTextBoldCursor editTextBoldCursor = this.f36481a;
+                EditTextBoldCursor editTextBoldCursor = this.f36305a;
                 if (intValue < 0) {
                     editTextBoldCursor.setText("0");
                     editTextBoldCursor.setSelection(editTextBoldCursor.length());

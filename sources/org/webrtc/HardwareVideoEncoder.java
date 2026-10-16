@@ -384,7 +384,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public final long createNativeVideoEncoder() {
-        return y.a(this);
+        return x.a(this);
     }
 
     public void deliverEncodedImage() {
@@ -432,7 +432,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
             if (z10) {
                 Logging.d("HardwareVideoEncoder", "Sync frame generated");
             }
-            j jVar = null;
+            i iVar = null;
             if (this.isEncodingStatisticsEnabled && (outputFormat = this.codec.getOutputFormat(dequeueOutputBuffer)) != null && outputFormat.containsKey("video-qp-average")) {
                 num = Integer.valueOf(outputFormat.getInteger("video-qp-average"));
             } else {
@@ -449,7 +449,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
             } else {
                 slice = outputBuffer.slice();
                 this.outputBuffersBusyCount.increment();
-                jVar = new j(this, dequeueOutputBuffer, 0);
+                iVar = new i(this, dequeueOutputBuffer, 0);
             }
             if (z10) {
                 frameType = EncodedImage.FrameType.VideoFrameKey;
@@ -457,7 +457,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
                 frameType = EncodedImage.FrameType.VideoFrameDelta;
             }
             EncodedImage.Builder poll = this.outputBuilders.poll();
-            poll.setBuffer(slice, jVar);
+            poll.setBuffer(slice, iVar);
             poll.setFrameType(frameType);
             poll.setQp(num);
             EncodedImage createEncodedImage = poll.createEncodedImage();
@@ -539,7 +539,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public final VideoEncoder.ResolutionBitrateLimits[] getResolutionBitrateLimits() {
-        return y.c(this);
+        return x.c(this);
     }
 
     @Override
@@ -586,13 +586,13 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public final boolean isHardwareEncoder() {
-        return y.d(this);
+        return x.d(this);
     }
 
     public boolean isSemiPlanar(int i10) {
         if (i10 != 19) {
             if (i10 != 21 && i10 != 2141391872 && i10 != 2141391876) {
-                throw new IllegalArgumentException(i2.d.i(i10, "Unsupported colorFormat: "));
+                throw new IllegalArgumentException(i2.d.j(i10, "Unsupported colorFormat: "));
             }
             return true;
         }

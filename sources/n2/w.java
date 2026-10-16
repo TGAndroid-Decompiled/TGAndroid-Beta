@@ -1,10 +1,19 @@
 package n2;
-public final class w {
-    public final byte[] f15981a;
-    public final u2.u f15982b;
 
-    public w(m4.c cVar) {
-        this.f15981a = (byte[]) cVar.f15392b;
-        this.f15982b = (u2.u) cVar.f15393c;
+import android.net.Uri;
+import java.io.IOException;
+import java.util.Map;
+public final class w extends IOException {
+    public final g2.m f15694a;
+    public final Uri f15695b;
+    public final Map f15696c;
+    public final long d;
+
+    public w(g2.m mVar, Uri uri, Map map, long j10, Exception exc) {
+        super(exc);
+        this.f15694a = mVar;
+        this.f15695b = uri;
+        this.f15696c = map;
+        this.d = j10;
     }
 }

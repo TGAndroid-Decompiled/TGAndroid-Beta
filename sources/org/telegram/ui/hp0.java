@@ -1,41 +1,40 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class hp0 implements Utilities.Callback {
-    public final int f36893a = 0;
-    public final ag.b f36894b;
-    public final TL_stars.TL_starGiftUnique f36895c;
-    public final long d;
-    public final Object e;
-    public final Object f36896f;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class hp0 extends kp0 {
+    public int G;
+    public final eq0 H;
 
-    public hp0(gq0 gq0Var, ag.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, ep0 ep0Var) {
-        this.e = gq0Var;
-        this.f36894b = bVar;
-        this.f36895c = tL_starGiftUnique;
-        this.d = j10;
-        this.f36896f = ep0Var;
+    public hp0(eq0 eq0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, c6Var);
+        this.H = eq0Var;
+        this.G = 0;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f36893a) {
-            case 0:
-                gq0.V((gq0) this.e, this.f36894b, this.f36895c, this.d, (ep0) this.f36896f, (TLRPC.TL_payments_paymentFormStarGift) obj);
-                return;
-            default:
-                yh.f4.V((yh.f4) this.e, (org.telegram.ui.ActionBar.a2) this.f36896f, this.f36894b, this.f36895c, this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
-                return;
+    public final void a() {
+        eq0 eq0Var = this.H;
+        if (eq0Var.getParentActivity() != null) {
+            AndroidUtilities.setLightStatusBar(eq0Var.getParentActivity(), eq0Var.isLightStatusBar());
         }
-    }
-
-    public hp0(yh.f4 f4Var, org.telegram.ui.ActionBar.a2 a2Var, ag.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10) {
-        this.e = f4Var;
-        this.f36896f = a2Var;
-        this.f36894b = bVar;
-        this.f36895c = tL_starGiftUnique;
-        this.d = j10;
+        int actionBarButtonColor = getActionBarButtonColor();
+        if (this.G != actionBarButtonColor) {
+            ImageView imageView = eq0Var.J;
+            if (imageView != null) {
+                this.G = actionBarButtonColor;
+                imageView.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
+            }
+            ImageView imageView2 = eq0Var.K;
+            if (imageView2 != null) {
+                this.G = actionBarButtonColor;
+                imageView2.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
+            }
+        }
+        eq0Var.G0();
+        eq0Var.A0();
     }
 }

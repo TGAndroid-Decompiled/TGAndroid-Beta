@@ -1,11 +1,11 @@
 package dc;
 public abstract class d {
-    public final int f6471a;
-    public final int f6472b;
+    public final int f6474a;
+    public final int f6475b;
 
     public d(int i10, int i11) {
-        this.f6471a = i10;
-        this.f6472b = i11;
+        this.f6474a = i10;
+        this.f6475b = i11;
     }
 
     public abstract byte[] a();
@@ -14,9 +14,9 @@ public abstract class d {
 
     public final String toString() {
         char c10;
-        int i10 = this.f6471a;
+        int i10 = this.f6474a;
         byte[] bArr = new byte[i10];
-        int i11 = this.f6472b;
+        int i11 = this.f6475b;
         StringBuilder sb2 = new StringBuilder((i10 + 1) * i11);
         for (int i12 = 0; i12 < i11; i12++) {
             bArr = b(i12, bArr);

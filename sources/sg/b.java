@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.mm0;
-import w7.a6;
+import w7.z5;
 public abstract class b extends FrameLayout implements l0 {
     public final c6 f45138a;
     public final mm0 f45139b;
@@ -24,7 +24,7 @@ public abstract class b extends FrameLayout implements l0 {
         this.f45140c = b0Var;
         mm0Var.setLayoutManager(b0Var);
         mm0Var.setClipToPadding(false);
-        addView(mm0Var, a6.d(-1.0f, -1));
+        addView(mm0Var, z5.d(-1.0f, -1));
     }
 
     public abstract s4.g0 a();
@@ -34,7 +34,7 @@ public abstract class b extends FrameLayout implements l0 {
         super.dispatchDraw(canvas);
         Paint U0 = g6.U0("paintDivider", this.f45138a);
         if (U0 == null) {
-            U0 = g6.f20022k0;
+            U0 = g6.f19722k0;
         }
         canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, U0);
     }

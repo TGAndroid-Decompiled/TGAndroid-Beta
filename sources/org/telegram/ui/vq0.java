@@ -1,39 +1,36 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class vq0 extends s4.r0 {
-    public final hr0 f41061a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class vq0 implements org.telegram.ui.ActionBar.r0 {
+    public final fr0 f40751a;
 
-    public vq0(hr0 hr0Var) {
-        this.f41061a = hr0Var;
+    public vq0(fr0 fr0Var) {
+        this.f40751a = fr0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 1) {
-            AndroidUtilities.hideKeyboard(this.f41061a.getParentActivity().getCurrentFocus());
+    public final void e() {
+        int i10;
+        int i11;
+        fr0 fr0Var = this.f40751a;
+        org.telegram.ui.ActionBar.e1 e1Var = fr0Var.Q;
+        if (fr0Var.Y) {
+            i10 = R.string.ShowAsGrid;
+        } else {
+            i10 = R.string.ShowAsList;
         }
+        e1Var.setText(LocaleController.getString(i10));
+        org.telegram.ui.ActionBar.e1 e1Var2 = fr0Var.Q;
+        if (fr0Var.Y) {
+            i11 = R.drawable.msg_media;
+        } else {
+            i11 = R.drawable.msg_list;
+        }
+        e1Var2.setIcon(i11);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int abs;
-        hr0 hr0Var = this.f41061a;
-        if (hr0Var.J == null) {
-            int L0 = hr0Var.M.L0();
-            boolean z10 = false;
-            if (L0 == -1) {
-                abs = 0;
-            } else {
-                abs = Math.abs(hr0Var.M.N0() - L0) + 1;
-            }
-            if (abs > 0 && L0 + abs > hr0Var.M.B() - 2 && !hr0Var.f36934r && !hr0Var.f36936s) {
-                if (hr0Var.f36913a == 1) {
-                    z10 = true;
-                }
-                hr0Var.d0(hr0Var.v, hr0Var.f36941w, z10, true);
-            }
-        }
+    public final void d() {
     }
 }

@@ -8,38 +8,38 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ze;
 import zh.r3;
 public final class f implements RequestDelegate {
-    public final int f48455a = 0;
-    public final boolean f48456b;
-    public final boolean f48457c;
+    public final int f48454a = 0;
+    public final boolean f48455b;
+    public final boolean f48456c;
     public final Object d;
     public final Object e;
-    public final Object f48458f;
+    public final Object f48457f;
 
     public f(l lVar, boolean z10, e eVar, String str, boolean z11) {
         this.d = lVar;
-        this.f48456b = z10;
+        this.f48455b = z10;
         this.e = eVar;
-        this.f48458f = str;
-        this.f48457c = z11;
+        this.f48457f = str;
+        this.f48456c = z11;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f48455a) {
+        switch (this.f48454a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ze((l) this.d, this.f48456b, (Runnable) this.e, (String) this.f48458f, tL_error, tLObject, this.f48457c));
+                AndroidUtilities.runOnUIThread(new ze((l) this.d, this.f48455b, (Runnable) this.e, (String) this.f48457f, tL_error, tLObject, this.f48456c));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ze((r3) this.d, tLObject, this.f48456b, (TLRPC.Document) this.e, this.f48457c, tL_error, (TL_stars.saveStarGift) this.f48458f));
+                AndroidUtilities.runOnUIThread(new ze((r3) this.d, tLObject, this.f48455b, (TLRPC.Document) this.e, this.f48456c, tL_error, (TL_stars.saveStarGift) this.f48457f));
                 return;
         }
     }
 
     public f(r3 r3Var, boolean z10, TLRPC.Document document, boolean z11, TL_stars.saveStarGift savestargift) {
         this.d = r3Var;
-        this.f48456b = z10;
+        this.f48455b = z10;
         this.e = document;
-        this.f48457c = z11;
-        this.f48458f = savestargift;
+        this.f48456c = z11;
+        this.f48457f = savestargift;
     }
 }

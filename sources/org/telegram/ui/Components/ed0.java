@@ -4,28 +4,28 @@ import android.graphics.RuntimeShader;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 public final class ed0 {
-    public final RuntimeShader f24685a;
-    public final float[] f24686b = {1.0f, 1.0f, 0.0f, 0.0f};
-    public final float[] f24687c = {1.0f, 1.0f, 0.0f, 0.0f};
+    public final RuntimeShader f24374a;
+    public final float[] f24375b = {1.0f, 1.0f, 0.0f, 0.0f};
+    public final float[] f24376c = {1.0f, 1.0f, 0.0f, 0.0f};
 
     public ed0(int i10) {
         dd0.b();
-        this.f24685a = dd0.a(AndroidUtilities.readRes(i10));
+        this.f24374a = dd0.a(AndroidUtilities.readRes(i10));
     }
 
     public final void a(float[] fArr) {
-        float[] fArr2 = this.f24686b;
+        float[] fArr2 = this.f24375b;
         if (!Arrays.equals(fArr, fArr2)) {
             System.arraycopy(fArr, 0, fArr2, 0, 4);
-            this.f24685a.setFloatUniform("transformGradient", fArr2);
+            this.f24374a.setFloatUniform("transformGradient", fArr2);
         }
     }
 
     public final void b(float[] fArr) {
-        float[] fArr2 = this.f24687c;
+        float[] fArr2 = this.f24376c;
         if (!Arrays.equals(fArr, fArr2)) {
             System.arraycopy(fArr, 0, fArr2, 0, 4);
-            this.f24685a.setFloatUniform("transformPattern", fArr2);
+            this.f24374a.setFloatUniform("transformPattern", fArr2);
         }
     }
 }

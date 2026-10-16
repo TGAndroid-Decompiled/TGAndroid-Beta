@@ -30,7 +30,7 @@ public final class g implements d1 {
     @Override
     public final boolean e() {
         i iVar = this.e;
-        if (!iVar.y() && this.f46505b.A(iVar.P)) {
+        if (!iVar.v() && this.f46505b.A(iVar.P)) {
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public final class g implements d1 {
     @Override
     public final int f(qf.b bVar, h2.h hVar, int i10) {
         i iVar = this.e;
-        if (!iVar.y()) {
+        if (!iVar.v()) {
             a aVar = iVar.L;
             c1 c1Var = this.f46505b;
             if (aVar != null && aVar.d(this.f46506c + 1) <= c1Var.v()) {
@@ -52,9 +52,9 @@ public final class g implements d1 {
     }
 
     @Override
-    public final int m(long j10) {
+    public final int j(long j10) {
         i iVar = this.e;
-        if (iVar.y()) {
+        if (iVar.v()) {
             return 0;
         }
         boolean z10 = iVar.P;
@@ -72,6 +72,6 @@ public final class g implements d1 {
     }
 
     @Override
-    public final void d() {
+    public final void b() {
     }
 }

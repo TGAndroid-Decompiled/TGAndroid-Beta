@@ -1,15 +1,22 @@
 package org.webrtc;
+public final class p implements Runnable {
+    public final int f42507a;
+    public final ScreenCapturerAndroid f42508b;
 
-import android.view.Choreographer;
-public final class p implements Choreographer.FrameCallback {
-    public final RenderSynchronizer f42806a;
-
-    public p(RenderSynchronizer renderSynchronizer) {
-        this.f42806a = renderSynchronizer;
+    public p(ScreenCapturerAndroid screenCapturerAndroid, int i10) {
+        this.f42507a = i10;
+        this.f42508b = screenCapturerAndroid;
     }
 
     @Override
-    public final void doFrame(long j10) {
-        this.f42806a.onDisplayRefreshCycleBegin(j10);
+    public final void run() {
+        switch (this.f42507a) {
+            case 0:
+                ScreenCapturerAndroid.a(this.f42508b);
+                return;
+            default:
+                ScreenCapturerAndroid.b(this.f42508b);
+                return;
+        }
     }
 }

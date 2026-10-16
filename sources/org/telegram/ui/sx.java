@@ -19,26 +19,26 @@ public final class sx extends r41 {
         this.U = ryVar;
         this.V = context2;
         this.e = 0.0f;
-        this.f39585n = new AnimationNotificationsLocker();
+        this.f39278n = new AnimationNotificationsLocker();
         this.M = true;
     }
 
     @Override
     public final void d(boolean z10) {
         xy xyVar = this.T;
-        xyVar.f41982c.G = true;
-        xyVar.d.O(this.T.f41980a, c());
+        xyVar.f41681c.G = true;
+        xyVar.d.O(this.T.f41679a, c());
         xy xyVar2 = this.T;
         xyVar2.d.G = false;
         xyVar2.G.G = false;
         yy yyVar = this.W;
-        yyVar.x4(false, true);
-        this.T.f41980a.setClipChildren(true);
-        this.T.f41980a.invalidate();
+        yyVar.y4(false, true);
+        this.T.f41679a.setClipChildren(true);
+        this.T.f41679a.invalidate();
         this.T.d.l();
         this.T.G.l();
-        this.T.f41980a.z1(null, 0.0f, z10);
-        yyVar.f42426y = false;
+        this.T.f41679a.z1(null, 0.0f, z10);
+        yyVar.f42106y = false;
         this.U.requestLayout();
         if (!c()) {
             yyVar.Q = true;
@@ -52,9 +52,9 @@ public final class sx extends r41 {
         if (iyVar != null) {
             iyVar.R();
         }
-        yyVar.S4(false, true);
-        yyVar.A3();
-        yyVar.R4();
+        yyVar.T4(false, true);
+        yyVar.B3();
+        yyVar.S4();
     }
 
     @Override
@@ -62,18 +62,18 @@ public final class sx extends r41 {
         float f7;
         int i10;
         yy yyVar = this.W;
-        yyVar.f42426y = true;
+        yyVar.f42106y = true;
         yyVar.E = z10;
         this.U.requestLayout();
-        xy xyVar = yyVar.f42325e0[0];
+        xy xyVar = yyVar.f42004e0[0];
         this.T = xyVar;
         if (xyVar.F == null) {
             xyVar.F = new org.telegram.ui.Components.mm0(this.V, null);
             this.T.F.setLayoutManager(new rx(this, this.T));
             xy xyVar2 = this.T;
-            int i11 = this.T.f41986s;
-            int i12 = yyVar.V2;
-            boolean z11 = yyVar.f42362l2;
+            int i11 = this.T.f41685s;
+            int i12 = yyVar.W2;
+            boolean z11 = yyVar.f42041l2;
             ArrayList arrayList = yyVar.I2;
             i10 = ((org.telegram.ui.ActionBar.m2) yyVar).currentAccount;
             xyVar2.G = new hg.m(yyVar, this.V, i11, i12, z11, arrayList, i10, yyVar.G);
@@ -86,21 +86,21 @@ public final class sx extends r41 {
         }
         if (!z10) {
             yyVar.Q = false;
-            yyVar.z4(-yyVar.Q3());
+            yyVar.A4(-yyVar.R3());
         }
-        this.T.f41980a.B0();
+        this.T.f41679a.B0();
         xy xyVar5 = this.T;
         hg.m mVar2 = xyVar5.G;
-        mVar2.h = xyVar5.f41986s;
+        mVar2.h = xyVar5.f41685s;
         mVar2.l();
         xy xyVar6 = this.T;
-        xyVar6.d.O(xyVar6.f41980a, false);
+        xyVar6.d.O(xyVar6.f41679a, false);
         xy xyVar7 = this.T;
         xyVar7.d.G = true;
         xyVar7.G.G = true;
-        xyVar7.f41982c.H = false;
-        yyVar.x4(true, true);
-        yyVar.Z3(this.S);
+        xyVar7.f41681c.H = false;
+        yyVar.y4(true, true);
+        yyVar.a4(this.S);
         this.T.d.l();
         this.T.G.l();
         if (!z10) {
@@ -109,11 +109,11 @@ public final class sx extends r41 {
             f7 = -yyVar.N;
         }
         xy xyVar8 = this.T;
-        xyVar8.f41980a.z1(xyVar8.F, f7, false);
-        this.T.f41980a.setClipChildren(false);
-        this.T.f41980a.B0();
-        yyVar.A3();
-        yyVar.R4();
+        xyVar8.f41679a.z1(xyVar8.F, f7, false);
+        this.T.f41679a.setClipChildren(false);
+        this.T.f41679a.B0();
+        yyVar.B3();
+        yyVar.S4();
     }
 
     @Override
@@ -175,21 +175,21 @@ public final class sx extends r41 {
             }
             backButton.setAlpha(f10);
         }
-        if (yyVar.V2 != 0 || yyVar.X2 != 0) {
-            Paint paint = yyVar.f42332f1;
-            int i10 = org.telegram.ui.ActionBar.g6.f19901d6;
+        if (yyVar.W2 != 0 || yyVar.Y2 != 0) {
+            Paint paint = yyVar.f42011f1;
+            int i10 = org.telegram.ui.ActionBar.g6.f19601d6;
             paint.setColor(i0.a.d(f7, yyVar.getThemedColor(i10), yyVar.getThemedColor(i10)));
         }
         xy xyVar = this.T;
         if (xyVar != null) {
-            xyVar.f41980a.setOpenRightFragmentProgress(f7);
+            xyVar.f41679a.setOpenRightFragmentProgress(f7);
         }
-        yyVar.z3();
-        yyVar.E3();
-        yyVar.r3();
-        yyVar.B3();
-        xy xyVar2 = yyVar.f42325e0[0];
-        if (xyVar2 != null && (uyVar = xyVar2.f41980a) != null) {
+        yyVar.A3();
+        yyVar.F3();
+        yyVar.s3();
+        yyVar.C3();
+        xy xyVar2 = yyVar.f42004e0[0];
+        if (xyVar2 != null && (uyVar = xyVar2.f41679a) != null) {
             uyVar.requestLayout();
         }
         View view2 = yyVar.fragmentView;

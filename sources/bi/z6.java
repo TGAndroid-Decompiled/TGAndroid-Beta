@@ -6,12 +6,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.de0;
 import org.telegram.ui.Components.gi0;
 public final class z6 implements z4.e {
-    public final int f4065a;
-    public final Object f4066b;
+    public final int f4069a;
+    public final Object f4070b;
 
     public z6(Object obj, int i10) {
-        this.f4065a = i10;
-        this.f4066b = obj;
+        this.f4069a = i10;
+        this.f4070b = obj;
     }
 
     @Override
@@ -20,10 +20,10 @@ public final class z6 implements z4.e {
         int i13;
         float f10;
         int i14;
-        switch (this.f4065a) {
+        switch (this.f4069a) {
             case 0:
-                e7 e7Var = (e7) this.f4066b;
-                if (e7Var.f2995w) {
+                e7 e7Var = (e7) this.f4070b;
+                if (e7Var.f2999w) {
                     x6 x6Var = e7Var.h;
                     x6Var.d.abortAnimation();
                     if (Math.abs(f7) <= 1.0f) {
@@ -32,11 +32,11 @@ public final class z6 implements z4.e {
                             valueAnimator.cancel();
                             x6Var.M = null;
                         }
-                        float f11 = (x6Var.f4016s / 2.0f) + ((-x6Var.getMeasuredWidth()) / 2.0f) + ((i12 + x6Var.f4014n) * i10);
+                        float f11 = (x6Var.f4020s / 2.0f) + ((-x6Var.getMeasuredWidth()) / 2.0f) + ((i12 + x6Var.f4018n) * i10);
                         if (f7 > 0.0f) {
-                            f10 = (x6Var.f4016s / 2.0f) + ((-x6Var.getMeasuredWidth()) / 2.0f) + ((i10 + 1) * (i14 + x6Var.f4014n));
+                            f10 = (x6Var.f4020s / 2.0f) + ((-x6Var.getMeasuredWidth()) / 2.0f) + ((i10 + 1) * (i14 + x6Var.f4018n));
                         } else {
-                            f10 = (x6Var.f4016s / 2.0f) + ((-x6Var.getMeasuredWidth()) / 2.0f) + ((i10 - 1) * (i13 + x6Var.f4014n));
+                            f10 = (x6Var.f4020s / 2.0f) + ((-x6Var.getMeasuredWidth()) / 2.0f) + ((i10 - 1) * (i13 + x6Var.f4018n));
                             f7 = -f7;
                         }
                         if (f7 == 0.0f) {
@@ -52,16 +52,16 @@ public final class z6 implements z4.e {
                 }
                 return;
             case 1:
-                ((ni.e) this.f4066b).f16394f++;
+                ((mi.e) this.f4070b).f15593f++;
                 return;
             case 2:
-                de0 de0Var = (de0) this.f4066b;
+                de0 de0Var = (de0) this.f4070b;
                 de0Var.h = i10;
-                de0Var.f24382n = f7;
+                de0Var.f24107n = f7;
                 if (de0Var.d.getChildAt(i10) != null) {
                     de0.a(de0Var, i10, (int) (de0Var.d.getChildAt(i10).getWidth() * f7));
                     de0Var.invalidate();
-                    z4.e eVar = de0Var.f24380c;
+                    z4.e eVar = de0Var.f24105c;
                     if (eVar != null) {
                         eVar.a(f7, i10, i11);
                         return;
@@ -70,9 +70,9 @@ public final class z6 implements z4.e {
                 }
                 return;
             default:
-                gi0 gi0Var = (gi0) this.f4066b;
-                if (!gi0Var.f25287a && Math.abs(i10 - gi0Var.f25294w) == 1) {
-                    int i15 = gi0Var.f25294w;
+                gi0 gi0Var = (gi0) this.f4070b;
+                if (!gi0Var.f24975a && Math.abs(i10 - gi0Var.f24982w) == 1) {
+                    int i15 = gi0Var.f24982w;
                     if (i10 > i15) {
                         gi0.a(gi0Var, 0, 1, 1);
                     } else if (i10 < i15) {
@@ -80,10 +80,10 @@ public final class z6 implements z4.e {
                         gi0.a(gi0Var, 2, 0, -1);
                     }
                 }
-                int i16 = gi0Var.f25294w;
-                int i17 = gi0Var.f25295x;
-                gi0Var.f25294w = i10;
-                gi0Var.f25295x = i11;
+                int i16 = gi0Var.f24982w;
+                int i17 = gi0Var.f24983x;
+                gi0Var.f24982w = i10;
+                gi0Var.f24983x = i11;
                 if (i16 != i10 || i17 != i11) {
                     gi0Var.H = true;
                     gi0Var.postInvalidateOnAnimation();
@@ -96,13 +96,13 @@ public final class z6 implements z4.e {
     @Override
     public final void b(int i10) {
         boolean z10;
-        switch (this.f4065a) {
+        switch (this.f4069a) {
             case 0:
             case 1:
                 return;
             case 2:
-                de0 de0Var = (de0) this.f4066b;
-                z4.e eVar = de0Var.f24380c;
+                de0 de0Var = (de0) this.f4070b;
+                z4.e eVar = de0Var.f24105c;
                 if (eVar != null) {
                     eVar.b(i10);
                 }
@@ -123,22 +123,22 @@ public final class z6 implements z4.e {
 
     @Override
     public final void c(int i10) {
-        switch (this.f4065a) {
+        switch (this.f4069a) {
             case 0:
-                e7 e7Var = (e7) this.f4066b;
+                e7 e7Var = (e7) this.f4070b;
                 if (i10 == 1) {
-                    e7Var.f2995w = true;
+                    e7Var.f2999w = true;
                     return;
                 }
                 return;
             case 1:
                 return;
             case 2:
-                de0 de0Var = (de0) this.f4066b;
+                de0 de0Var = (de0) this.f4070b;
                 if (i10 == 0) {
                     de0.a(de0Var, de0Var.e.getCurrentItem(), 0);
                 }
-                z4.e eVar = de0Var.f24380c;
+                z4.e eVar = de0Var.f24105c;
                 if (eVar != null) {
                     eVar.c(i10);
                     return;

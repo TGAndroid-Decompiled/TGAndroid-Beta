@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 import n6.l;
-import w7.g0;
+import w7.f0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new Object();
     public final List f45031a;
@@ -52,12 +52,12 @@ public final class a extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.p(parcel, 1, this.f45031a);
-        g0.s(parcel, 2, 4);
+        int q6 = f0.q(parcel, 20293);
+        f0.p(parcel, 1, this.f45031a);
+        f0.s(parcel, 2, 4);
         parcel.writeInt(this.f45032b ? 1 : 0);
-        g0.l(parcel, 3, this.f45033c);
-        g0.l(parcel, 4, this.d);
-        g0.r(parcel, q6);
+        f0.l(parcel, 3, this.f45033c);
+        f0.l(parcel, 4, this.d);
+        f0.r(parcel, q6);
     }
 }

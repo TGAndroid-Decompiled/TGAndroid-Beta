@@ -11,16 +11,16 @@ public final class k1 implements d1 {
     public final void a() {
         if (!this.f45960b) {
             m1 m1Var = this.f45961c;
-            m1Var.e.m(b2.w0.h(m1Var.f45985s.f2519s), m1Var.f45985s, 0, null, 0L);
+            m1Var.e.m(b2.w0.h(m1Var.f45985s.f2523s), m1Var.f45985s, 0, null, 0L);
             this.f45960b = true;
         }
     }
 
     @Override
-    public final void d() {
+    public final void b() {
         m1 m1Var = this.f45961c;
         if (!m1Var.v) {
-            m1Var.f45984r.d();
+            m1Var.f45984r.b();
         }
     }
 
@@ -50,21 +50,21 @@ public final class k1 implements d1 {
             hVar.e = 0L;
             if ((i10 & 4) == 0) {
                 hVar.b(m1Var.f45988y);
-                hVar.f10326c.put(m1Var.f45987x, 0, m1Var.f45988y);
+                hVar.f10330c.put(m1Var.f45987x, 0, m1Var.f45988y);
             }
             if ((i10 & 1) == 0) {
                 this.f45959a = 2;
             }
             return -4;
         } else {
-            bVar.f43356c = m1Var.f45985s;
+            bVar.f43098c = m1Var.f45985s;
             this.f45959a = 1;
             return -5;
         }
     }
 
     @Override
-    public final int m(long j10) {
+    public final int j(long j10) {
         a();
         if (j10 > 0 && this.f45959a != 2) {
             this.f45959a = 2;

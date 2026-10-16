@@ -7,7 +7,7 @@ public abstract class u6 {
         if (i11 >= 0) {
             return v6.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
         }
-        throw new IllegalArgumentException(i2.d.i(i11, "negative size: "));
+        throw new IllegalArgumentException(i2.d.j(i11, "negative size: "));
     }
 
     public static void b(int i10, String str, boolean z10) {
@@ -75,7 +75,7 @@ public abstract class u6 {
             if (i11 >= 0) {
                 a2 = v6.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
             } else {
-                throw new IllegalArgumentException(i2.d.i(i11, "negative size: "));
+                throw new IllegalArgumentException(i2.d.j(i11, "negative size: "));
             }
         } else {
             a2 = v6.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));

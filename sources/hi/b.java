@@ -21,44 +21,44 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.x5;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.z9;
-import w7.a6;
+import w7.z5;
 import zf.q;
 public final class b extends FrameLayout implements x5 {
-    public final c6 f10820a;
-    public final z9 f10821b;
-    public final TextView f10822c;
+    public final c6 f10824a;
+    public final z9 f10825b;
+    public final TextView f10826c;
     public final TextView d;
     public final ImageView e;
 
     public b(Context context, c6 c6Var) {
         super(context);
-        this.f10820a = c6Var;
+        this.f10824a = c6Var;
         z9 z9Var = new z9(context);
-        this.f10821b = z9Var;
+        this.f10825b = z9Var;
         z9Var.setRoundRadius(AndroidUtilities.dp(7.3125f));
-        addView(z9Var, a6.a(26.0f, 16.0f, 0.0f, 0.0f, 0.0f, 26, 19));
+        addView(z9Var, z5.a(26.0f, 16.0f, 0.0f, 0.0f, 0.0f, 26, 19));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
         TextView textView = new TextView(context);
-        this.f10822c = textView;
+        this.f10826c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        linearLayout.addView(textView, a6.n(-1, -2));
+        linearLayout.addView(textView, z5.n(-1, -2));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 13.0f);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, a6.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
-        addView(linearLayout, a6.a(-2.0f, 58.0f, 0.0f, 48.0f, 1.0f, -1, 19));
+        linearLayout.addView(textView2, z5.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
+        addView(linearLayout, z5.a(-2.0f, 58.0f, 0.0f, 48.0f, 1.0f, -1, 19));
         ImageView imageView = new ImageView(context);
         this.e = imageView;
         imageView.setImageResource(R.drawable.msg_inputarrow);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, a6.a(24.0f, 0.0f, 0.0f, 11.0f, 0.0f, 24, 21));
+        addView(imageView, z5.a(24.0f, 0.0f, 0.0f, 11.0f, 0.0f, 24, 21));
         d();
     }
 
@@ -67,7 +67,7 @@ public final class b extends FrameLayout implements x5 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f19216id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f18916id);
         setTitle(DialogObject.getShortName(chat));
         if (chatFull != null) {
             i11 = chatFull.linked_peers.size();
@@ -75,15 +75,15 @@ public final class b extends FrameLayout implements x5 {
             i11 = 0;
         }
         setSubtitle(LocaleController.formatPluralString("CommunityWithChats", i11, new Object[0]));
-        this.f10821b.e(chat, new k9(chat));
+        this.f10825b.e(chat, new k9(chat));
     }
 
     @Override
     public final void d() {
-        int i10 = g6.f20305z6;
-        c6 c6Var = this.f10820a;
+        int i10 = g6.f20005z6;
+        c6 c6Var = this.f10824a;
         this.e.setColorFilter(g6.w0(i10, c6Var));
-        this.f10822c.setTextColor(g6.w0(g6.G6, c6Var));
+        this.f10826c.setTextColor(g6.w0(g6.G6, c6Var));
         this.d.setTextColor(g6.w0(i10, c6Var));
     }
 
@@ -91,17 +91,17 @@ public final class b extends FrameLayout implements x5 {
     public final void dispatchDraw(Canvas canvas) {
         Paint paint;
         Drawable drawable = g6.S0;
-        z9 z9Var = this.f10821b;
+        z9 z9Var = this.f10825b;
         q.a(canvas, drawable, (z9Var.getWidth() / 2.0f) + z9Var.getLeft(), (z9Var.getHeight() / 2.0f) + z9Var.getTop(), z9Var.getHeight());
         super.dispatchDraw(canvas);
-        c6 c6Var = this.f10820a;
+        c6 c6Var = this.f10824a;
         if (c6Var != null) {
-            paint = c6Var.G("paintDivider");
+            paint = c6Var.F("paintDivider");
         } else {
             paint = null;
         }
         if (paint == null) {
-            paint = g6.f20022k0;
+            paint = g6.f19722k0;
         }
         canvas.drawLine(AndroidUtilities.dp(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
     }
@@ -120,6 +120,6 @@ public final class b extends FrameLayout implements x5 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f10822c.setText(charSequence);
+        this.f10826c.setText(charSequence);
     }
 }

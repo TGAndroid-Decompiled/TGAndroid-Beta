@@ -32,7 +32,7 @@ public final class c {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = o.f12974a;
+            list = o.f12978a;
         }
         ArrayList f7 = g.f(list);
         ArrayList arrayList = new ArrayList();
@@ -55,10 +55,10 @@ public final class c {
             s sVar = new s(13, false);
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                sVar.f6206b = str2;
+                sVar.f6209b = str2;
                 sVar.d = Integer.valueOf(runningAppProcessInfo.pid);
                 sVar.e = Integer.valueOf(runningAppProcessInfo.importance);
-                sVar.f6207c = Boolean.valueOf(i.a(runningAppProcessInfo.processName, str));
+                sVar.f6210c = Boolean.valueOf(i.a(runningAppProcessInfo.processName, str));
                 arrayList2.add(sVar.c());
             } else {
                 throw new NullPointerException("Null processName");
@@ -79,7 +79,7 @@ public final class c {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((t0) ((t1) obj)).f50092b == myPid) {
+                if (((t0) ((t1) obj)).f50093b == myPid) {
                     break;
                 }
             } else {
@@ -98,10 +98,10 @@ public final class c {
             }
             i.e(processName, "processName");
             s sVar = new s(13, false);
-            sVar.f6206b = processName;
+            sVar.f6209b = processName;
             sVar.d = Integer.valueOf(myPid);
             sVar.e = 0;
-            sVar.f6207c = false;
+            sVar.f6210c = false;
             return sVar.c();
         }
         return t1Var;

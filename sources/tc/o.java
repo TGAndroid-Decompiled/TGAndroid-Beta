@@ -34,27 +34,27 @@ public final class o extends w {
 
     public final byte[] c(byte[] bArr) {
         c0 c0Var = new c0(bArr.length + 4, 10);
-        c0Var.r(bArr);
-        c0Var.r(e);
+        c0Var.m(bArr);
+        c0Var.m(e);
         if (this.d == null) {
             this.d = new c0(0, 10);
         }
         c0 c0Var2 = this.d;
-        int i10 = c0Var2.f4352b;
+        int i10 = c0Var2.f4355b;
         try {
             c.a(c0Var, c0Var2);
             c0 c0Var3 = this.d;
-            byte[] w9 = c0Var3.w(i10, c0Var3.f4352b);
+            byte[] r10 = c0Var3.r(i10, c0Var3.f4355b);
             c0 c0Var4 = this.d;
-            if (((ByteBuffer) c0Var4.f4353c).capacity() > 0) {
-                int i11 = c0Var4.f4352b;
-                byte[] w10 = c0Var4.w(i11, i11);
-                ByteBuffer wrap = ByteBuffer.wrap(w10);
-                c0Var4.f4353c = wrap;
-                wrap.position(w10.length);
-                c0Var4.f4352b = w10.length;
+            if (((ByteBuffer) c0Var4.f4356c).capacity() > 0) {
+                int i11 = c0Var4.f4355b;
+                byte[] r11 = c0Var4.r(i11, i11);
+                ByteBuffer wrap = ByteBuffer.wrap(r11);
+                c0Var4.f4356c = wrap;
+                wrap.position(r11.length);
+                c0Var4.f4355b = r11.length;
             }
-            return w9;
+            return r10;
         } catch (Exception e7) {
             throw new v(43, t8.b.h("Failed to decompress the message: ", e7.getMessage()), e7);
         }

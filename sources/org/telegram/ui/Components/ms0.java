@@ -21,7 +21,7 @@ public final class ms0 extends ci.y {
         char c10;
         xv0 xv0Var = this.G;
         SparseArray[] sparseArrayArr = xv0Var.Z0;
-        if (messageObject.getDialogId() == xv0Var.f31363j1) {
+        if (messageObject.getDialogId() == xv0Var.f31044j1) {
             c10 = 0;
         } else {
             c10 = 1;
@@ -42,7 +42,7 @@ public final class ms0 extends ci.y {
         NumberTextView numberTextView = xv0Var.A0;
         SparseArray[] sparseArrayArr = xv0Var.Z0;
         if (messageObject != null) {
-            if (messageObject.getDialogId() == xv0Var.f31363j1) {
+            if (messageObject.getDialogId() == xv0Var.f31044j1) {
                 c10 = 0;
             } else {
                 c10 = 1;
@@ -51,19 +51,19 @@ public final class ms0 extends ci.y {
                 if (sparseArrayArr[1].size() + sparseArrayArr[0].size() < 100) {
                     sparseArrayArr[c10].put(messageObject.getId(), messageObject);
                     if (!messageObject.canDeleteMessage(false, null)) {
-                        xv0Var.f31340a1++;
+                        xv0Var.f31021a1++;
                     }
                     if (!xv0Var.C1) {
-                        AndroidUtilities.hideKeyboard(xv0Var.f31388v1.getParentActivity().getCurrentFocus());
-                        org.telegram.ui.ActionBar.u0 u0Var = xv0Var.f31366l0;
+                        AndroidUtilities.hideKeyboard(xv0Var.f31069v1.getParentActivity().getCurrentFocus());
+                        org.telegram.ui.ActionBar.u0 u0Var = xv0Var.f31047l0;
                         int i12 = 8;
-                        if (xv0Var.f31340a1 == 0) {
+                        if (xv0Var.f31021a1 == 0) {
                             i10 = 0;
                         } else {
                             i10 = 8;
                         }
                         u0Var.setVisibility(i10);
-                        org.telegram.ui.ActionBar.u0 u0Var2 = xv0Var.f31385u0;
+                        org.telegram.ui.ActionBar.u0 u0Var2 = xv0Var.f31066u0;
                         if (u0Var2 != null) {
                             if (xv0Var.getClosestTab() != 8 && xv0Var.getClosestTab() != 13) {
                                 i11 = 0;
@@ -72,15 +72,15 @@ public final class ms0 extends ci.y {
                             }
                             u0Var2.setVisibility(i11);
                         }
-                        org.telegram.ui.ActionBar.u0 u0Var3 = xv0Var.f31387v0;
+                        org.telegram.ui.ActionBar.u0 u0Var3 = xv0Var.f31068v0;
                         if (u0Var3 != null) {
                             u0Var3.setVisibility(8);
                         }
-                        org.telegram.ui.ActionBar.u0 u0Var4 = xv0Var.f31390w0;
+                        org.telegram.ui.ActionBar.u0 u0Var4 = xv0Var.f31071w0;
                         if (u0Var4 != null) {
                             u0Var4.setVisibility(8);
                         }
-                        org.telegram.ui.ActionBar.u0 u0Var5 = xv0Var.f31383t0;
+                        org.telegram.ui.ActionBar.u0 u0Var5 = xv0Var.f31064t0;
                         if (u0Var5 != null) {
                             if (xv0Var.getClosestTab() != 8 && xv0Var.getClosestTab() != 13) {
                                 i12 = 0;
@@ -98,8 +98,8 @@ public final class ms0 extends ci.y {
                         animatorSet.playTogether(arrayList2);
                         animatorSet.setDuration(250L);
                         animatorSet.start();
-                        xv0Var.f31343b1 = false;
-                        xv0Var.b1(true);
+                        xv0Var.f31024b1 = false;
+                        xv0Var.c1(true);
                     } else {
                         numberTextView.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);
                     }
@@ -120,7 +120,7 @@ public final class ms0 extends ci.y {
         ArrayList arrayList = xv0Var.N0;
         SparseArray[] sparseArrayArr = xv0Var.Z0;
         if (messageObject != null) {
-            if (messageObject.getDialogId() == xv0Var.f31363j1) {
+            if (messageObject.getDialogId() == xv0Var.f31044j1) {
                 c10 = 0;
             } else {
                 c10 = 1;
@@ -128,21 +128,21 @@ public final class ms0 extends ci.y {
             if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
                 sparseArrayArr[c10].remove(messageObject.getId());
                 if (!messageObject.canDeleteMessage(false, null)) {
-                    xv0Var.f31340a1--;
+                    xv0Var.f31021a1--;
                 }
                 if (sparseArrayArr[0].size() == 0 && sparseArrayArr[1].size() == 0) {
-                    AndroidUtilities.hideKeyboard(xv0Var.f31388v1.getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(xv0Var.f31069v1.getParentActivity().getCurrentFocus());
                     sparseArrayArr[0].clear();
                     sparseArrayArr[1].clear();
-                    org.telegram.ui.ActionBar.u0 u0Var = xv0Var.f31366l0;
+                    org.telegram.ui.ActionBar.u0 u0Var = xv0Var.f31047l0;
                     int i12 = 8;
-                    if (xv0Var.f31340a1 == 0) {
+                    if (xv0Var.f31021a1 == 0) {
                         i10 = 0;
                     } else {
                         i10 = 8;
                     }
                     u0Var.setVisibility(i10);
-                    org.telegram.ui.ActionBar.u0 u0Var2 = xv0Var.f31385u0;
+                    org.telegram.ui.ActionBar.u0 u0Var2 = xv0Var.f31066u0;
                     if (u0Var2 != null) {
                         if (xv0Var.getClosestTab() != 8 && xv0Var.getClosestTab() != 13) {
                             i11 = 0;
@@ -151,15 +151,15 @@ public final class ms0 extends ci.y {
                         }
                         u0Var2.setVisibility(i11);
                     }
-                    org.telegram.ui.ActionBar.u0 u0Var3 = xv0Var.f31387v0;
+                    org.telegram.ui.ActionBar.u0 u0Var3 = xv0Var.f31068v0;
                     if (u0Var3 != null) {
                         u0Var3.setVisibility(8);
                     }
-                    org.telegram.ui.ActionBar.u0 u0Var4 = xv0Var.f31390w0;
+                    org.telegram.ui.ActionBar.u0 u0Var4 = xv0Var.f31071w0;
                     if (u0Var4 != null) {
                         u0Var4.setVisibility(8);
                     }
-                    org.telegram.ui.ActionBar.u0 u0Var5 = xv0Var.f31383t0;
+                    org.telegram.ui.ActionBar.u0 u0Var5 = xv0Var.f31064t0;
                     if (u0Var5 != null) {
                         if (xv0Var.getClosestTab() != 8 && xv0Var.getClosestTab() != 13) {
                             i12 = 0;
@@ -176,8 +176,8 @@ public final class ms0 extends ci.y {
                     animatorSet.playTogether(arrayList2);
                     animatorSet.setDuration(250L);
                     animatorSet.start();
-                    xv0Var.f31343b1 = false;
-                    AndroidUtilities.runOnUIThread(new lr0(this, 2), 20L);
+                    xv0Var.f31024b1 = false;
+                    AndroidUtilities.runOnUIThread(new kr0(this, 2), 20L);
                 } else {
                     xv0Var.A0.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);
                 }
@@ -190,6 +190,6 @@ public final class ms0 extends ci.y {
 
     @Override
     public final int getStartedTrackingX() {
-        return this.G.f31399z1;
+        return this.G.f31080z1;
     }
 }

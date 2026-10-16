@@ -1,8 +1,8 @@
 package e0;
 public final class g {
-    public final boolean f8216a;
+    public final boolean f8219a;
 
     public g(boolean z10) {
-        this.f8216a = z10;
+        this.f8219a = z10;
     }
 }

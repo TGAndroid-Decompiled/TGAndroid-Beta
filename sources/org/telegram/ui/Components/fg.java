@@ -15,8 +15,8 @@ public final class fg extends wz {
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
         ChatActivityEnterView chatActivityEnterView = this.P2;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f22937o3 == 0) {
-            chatActivityEnterView.Z2.z(f7);
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f22637o3 == 0) {
+            chatActivityEnterView.Z2.A(f7);
         }
     }
 }

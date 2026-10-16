@@ -2,7 +2,6 @@ package s9;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import ji.d4;
 public final class d implements h {
     public final int f45054a;
     public final g f45055b;
@@ -21,14 +20,14 @@ public final class d implements h {
     }
 
     @Override
-    public final ScheduledFuture a(d4 d4Var) {
+    public final ScheduledFuture a(m.h hVar) {
         switch (this.f45054a) {
             case 0:
                 g gVar = this.f45055b;
-                return gVar.f45065b.scheduleAtFixedRate(new e(gVar, this.f45056c, d4Var, 0), this.d, this.e, this.f45057f);
+                return gVar.f45065b.scheduleAtFixedRate(new e(gVar, this.f45056c, hVar, 0), this.d, this.e, this.f45057f);
             default:
                 g gVar2 = this.f45055b;
-                return gVar2.f45065b.scheduleWithFixedDelay(new e(gVar2, this.f45056c, d4Var, 2), this.d, this.e, this.f45057f);
+                return gVar2.f45065b.scheduleWithFixedDelay(new e(gVar2, this.f45056c, hVar, 2), this.d, this.e, this.f45057f);
         }
     }
 }

@@ -5,9 +5,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.h5;
-import w7.a6;
+import w7.z5;
 public final class i extends c {
-    public final h5 f47587s;
+    public final h5 f47586s;
     public Object v;
 
     public i(Context context, c6 c6Var) {
@@ -15,12 +15,12 @@ public final class i extends c {
         int i10;
         float f7;
         float f10;
-        this.f47567c.setVisibility(8);
+        this.f47566c.setVisibility(8);
         h5 h5Var = this.e;
         int i11 = g6.B6;
         h5Var.setTextColor(g6.w0(i11, c6Var));
         h5 h5Var2 = new h5(context);
-        this.f47587s = h5Var2;
+        this.f47586s = h5Var2;
         h5Var2.setTextSize(16);
         h5Var2.setTextColor(g6.w0(i11, c6Var));
         if (LocaleController.isRTL) {
@@ -42,7 +42,7 @@ public final class i extends c {
         } else {
             f10 = 20.0f;
         }
-        h5Var2.setLayoutParams(a6.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i12));
+        h5Var2.setLayoutParams(z5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i12));
     }
 
     @Override

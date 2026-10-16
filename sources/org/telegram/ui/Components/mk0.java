@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class mk0 extends LinearLayout {
-    public boolean f27407a;
+    public boolean f27117a;
 
     public mk0(Context context) {
         super(context);
@@ -15,7 +15,7 @@ public final class mk0 extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         int i12;
         ik0 ik0Var = null;
-        if (!this.f27407a) {
+        if (!this.f27117a) {
             i12 = 0;
             for (int i13 = 0; i13 < getChildCount(); i13++) {
                 if (getChildAt(i13) instanceof qk0) {

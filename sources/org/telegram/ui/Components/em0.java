@@ -6,31 +6,31 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.fi1;
 public final class em0 implements Runnable {
-    public final int f24742a;
-    public final float f24743b;
-    public final float f24744c;
+    public final int f24429a;
+    public final float f24430b;
+    public final float f24431c;
     public final Object d;
 
     public em0(Object obj, float f7, float f10, int i10) {
-        this.f24742a = i10;
+        this.f24429a = i10;
         this.d = obj;
-        this.f24743b = f7;
-        this.f24744c = f10;
+        this.f24430b = f7;
+        this.f24431c = f10;
     }
 
     @Override
     public final void run() {
         View view;
-        int i10 = this.f24742a;
-        float f7 = this.f24744c;
-        float f10 = this.f24743b;
+        int i10 = this.f24429a;
+        float f7 = this.f24431c;
+        float f10 = this.f24430b;
         Object obj = this.d;
         switch (i10) {
             case 0:
-                mm0 mm0Var = (mm0) ((hm0) obj).f25711b;
-                if (mm0Var.f27417c1 != null && (view = mm0Var.L1) != null) {
+                mm0 mm0Var = (mm0) ((hm0) obj).f25362b;
+                if (mm0Var.f27126c1 != null && (view = mm0Var.L1) != null) {
                     mm0Var.h1(view, f10, f7, true);
-                    mm0Var.f27417c1 = null;
+                    mm0Var.f27126c1 = null;
                     return;
                 }
                 return;

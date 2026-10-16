@@ -1,39 +1,32 @@
 package n6;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.internal.BasePendingResult;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.util.concurrent.TimeUnit;
-import v7.g5;
-public final class u implements com.google.android.gms.common.api.o {
-    public final g5 f16148a;
-    public final TaskCompletionSource f16149b;
-    public final k f16150c;
+import android.accounts.Account;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+public final class u extends o6.a {
+    public static final Parcelable.Creator<u> CREATOR = new m8.h(13);
+    public final int f15860a;
+    public final Account f15861b;
+    public final int f15862c;
+    public final GoogleSignInAccount d;
 
-    public u(g5 g5Var, TaskCompletionSource taskCompletionSource, k kVar) {
-        this.f16148a = g5Var;
-        this.f16149b = taskCompletionSource;
-        this.f16150c = kVar;
+    public u(int i10, Account account, int i11, GoogleSignInAccount googleSignInAccount) {
+        this.f15860a = i10;
+        this.f15861b = account;
+        this.f15862c = i11;
+        this.d = googleSignInAccount;
     }
 
     @Override
-    public final void a(Status status) {
-        if (status.b()) {
-            g5 g5Var = this.f16148a;
-            TimeUnit timeUnit = TimeUnit.MILLISECONDS;
-            BasePendingResult basePendingResult = (BasePendingResult) g5Var;
-            l.j("Result has already been consumed.", !basePendingResult.f4907j);
-            try {
-                if (!basePendingResult.d.await(0L, timeUnit)) {
-                    basePendingResult.e(Status.f4883n);
-                }
-            } catch (InterruptedException unused) {
-                basePendingResult.e(Status.f4882f);
-            }
-            l.j("Result is not ready.", basePendingResult.g());
-            this.f16149b.setResult(this.f16150c.b(basePendingResult.j()));
-            return;
-        }
-        this.f16149b.setException(l.m(status));
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.s(parcel, 1, 4);
+        parcel.writeInt(this.f15860a);
+        w7.f0.k(parcel, 2, this.f15861b, i10);
+        w7.f0.s(parcel, 3, 4);
+        parcel.writeInt(this.f15862c);
+        w7.f0.k(parcel, 4, this.d, i10);
+        w7.f0.r(parcel, q6);
     }
 }

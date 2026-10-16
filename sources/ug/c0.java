@@ -25,7 +25,7 @@ public final class c0 extends db {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public b0 Z;
-    public final String f46289a0;
+    public final String f46288a0;
 
     public c0(m2 m2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(m2Var, true);
@@ -37,7 +37,7 @@ public final class c0 extends db {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f46289a0 = str;
+        this.f46288a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -94,7 +94,7 @@ public final class c0 extends db {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (cVar != null) {
             cVar.d();
-            cVar.f43197b = new e(atomicBoolean, 1);
+            cVar.f42898b = new e(atomicBoolean, 1);
         }
         u3 u3Var = new u3(atomicBoolean, m2Var, str, cVar, 16);
         g gVar = new g(atomicBoolean, cVar, 1);
@@ -106,7 +106,7 @@ public final class c0 extends db {
     }
 
     @Override
-    public final CharSequence A() {
+    public final CharSequence B() {
         if (this.Y) {
             return LocaleController.getString(R.string.BoostingGiftLink);
         }

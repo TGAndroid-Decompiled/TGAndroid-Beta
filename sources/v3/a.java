@@ -19,13 +19,13 @@ public final class a extends k implements h {
     }
 
     @Override
-    public final long a() {
-        return this.f46525m;
+    public final long a(long j10) {
+        return (Math.max(0L, j10 - this.f4266b) * 8000000) / this.e;
     }
 
     @Override
-    public final long b(long j10) {
-        return (Math.max(0L, j10 - this.f4262b) * 8000000) / this.e;
+    public final long b() {
+        return this.f46525m;
     }
 
     @Override

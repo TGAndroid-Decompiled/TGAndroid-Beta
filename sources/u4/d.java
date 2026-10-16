@@ -52,7 +52,7 @@ public abstract class d {
                     if (next == 1) {
                         break;
                     } else if (next == 2 && newPullParser.getName().equals("target") && (f7 = f(newPullParser, context)) != null) {
-                        lVar.put(f7.f46207c.f9835b, f7);
+                        lVar.put(f7.f46207c.f9838b, f7);
                     }
                 }
             }
@@ -200,29 +200,29 @@ public abstract class d {
             }
         }
         ?? obj = new Object();
-        obj.f9834a = context;
-        obj.f9835b = b10;
+        obj.f9837a = context;
+        obj.f9838b = b10;
         obj.e = b11;
-        obj.f9843m = parseInt;
+        obj.f9846m = parseInt;
         if (!TextUtils.isEmpty(b12)) {
-            obj.f9837f = b12;
+            obj.f9840f = b12;
         }
         if (!TextUtils.isEmpty(b13)) {
-            obj.f9838g = b13;
+            obj.f9841g = b13;
         }
         if (unflattenFromString != null) {
             obj.d = unflattenFromString;
         }
         if (!arrayList.isEmpty()) {
-            obj.f9836c = (Intent[]) arrayList.toArray(new Intent[0]);
+            obj.f9839c = (Intent[]) arrayList.toArray(new Intent[0]);
         }
         if (!hashSet.isEmpty()) {
             a0.g gVar = new a0.g(0);
             gVar.addAll(hashSet);
-            obj.f9840j = gVar;
+            obj.f9843j = gVar;
         }
         if (!TextUtils.isEmpty(obj.e)) {
-            Intent[] intentArr = obj.f9836c;
+            Intent[] intentArr = obj.f9839c;
             if (intentArr != null && intentArr.length != 0) {
                 return new g(obj, b15, b16);
             }
@@ -244,14 +244,14 @@ public abstract class d {
         g0.c cVar = gVar.f46207c;
         String str = gVar.f46206b;
         String str2 = gVar.f46205a;
-        g(xmlSerializer, "id", cVar.f9835b);
+        g(xmlSerializer, "id", cVar.f9838b);
         g(xmlSerializer, "short_label", cVar.e.toString());
-        g(xmlSerializer, "rank", Integer.toString(cVar.f9843m));
-        if (!TextUtils.isEmpty(cVar.f9837f)) {
-            g(xmlSerializer, "long_label", cVar.f9837f.toString());
+        g(xmlSerializer, "rank", Integer.toString(cVar.f9846m));
+        if (!TextUtils.isEmpty(cVar.f9840f)) {
+            g(xmlSerializer, "long_label", cVar.f9840f.toString());
         }
-        if (!TextUtils.isEmpty(cVar.f9838g)) {
-            g(xmlSerializer, "disabled_message", cVar.f9838g.toString());
+        if (!TextUtils.isEmpty(cVar.f9841g)) {
+            g(xmlSerializer, "disabled_message", cVar.f9841g.toString());
         }
         ComponentName componentName = cVar.d;
         if (componentName != null) {
@@ -263,7 +263,7 @@ public abstract class d {
         if (!TextUtils.isEmpty(str)) {
             g(xmlSerializer, "icon_bitmap_path", str);
         }
-        Intent[] intentArr2 = cVar.f9836c;
+        Intent[] intentArr2 = cVar.f9839c;
         for (Intent intent : (Intent[]) Arrays.copyOf(intentArr2, intentArr2.length)) {
             xmlSerializer.startTag(null, "intent");
             g(xmlSerializer, "action", intent.getAction());
@@ -273,7 +273,7 @@ public abstract class d {
             }
             xmlSerializer.endTag(null, "intent");
         }
-        for (String str3 : cVar.f9840j) {
+        for (String str3 : cVar.f9843j) {
             if (!TextUtils.isEmpty(str3)) {
                 xmlSerializer.startTag(null, "categories");
                 g(xmlSerializer, "name", str3);

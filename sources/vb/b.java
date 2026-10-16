@@ -15,10 +15,10 @@ public final class b implements r9.d {
     }
 
     @Override
-    public final Object j2(z5 z5Var) {
+    public final Object n2(z5 z5Var) {
         switch (this.f46940a) {
             case 0:
-                ArrayList arrayList = new ArrayList(z5Var.v(ub.a.class));
+                ArrayList arrayList = new ArrayList(z5Var.w(ub.a.class));
                 l.j("No delegate creator registered.", !arrayList.isEmpty());
                 Collections.sort(arrayList, c.f46941a);
                 return new e((Context) z5Var.a(Context.class), (ub.a) arrayList.get(0));

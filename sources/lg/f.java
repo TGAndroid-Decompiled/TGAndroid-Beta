@@ -54,14 +54,14 @@ public class f {
         paint3.setStyle(style);
         paint3.setStrokeCap(Paint.Cap.ROUND);
         paint3.setColor(aVar.h);
-        long[] jArr = aVar.f14243a;
+        long[] jArr = aVar.f14245a;
         if (z10) {
             length = jArr.length * 8;
         } else {
             length = jArr.length << 2;
         }
         this.f14717k = new float[length];
-        long[] jArr2 = aVar.f14243a;
+        long[] jArr2 = aVar.f14245a;
         if (z10) {
             length2 = jArr2.length * 8;
         } else {
@@ -73,13 +73,13 @@ public class f {
     public void a() {
         int i10;
         kg.a aVar = this.f14710a;
-        int i11 = aVar.f14247g;
+        int i11 = aVar.f14249g;
         c6 c6Var = this.f14722p;
         if (i11 >= 0 && g6.d1(i11)) {
-            this.f14719m = g6.w0(aVar.f14247g, c6Var);
+            this.f14719m = g6.w0(aVar.f14249g, c6Var);
         } else {
-            if (i0.a.f(g6.w0(g6.f19901d6, c6Var)) < 0.5d) {
-                i10 = aVar.f14248i;
+            if (i0.a.f(g6.w0(g6.f19601d6, c6Var)) < 0.5d) {
+                i10 = aVar.f14250i;
             } else {
                 i10 = aVar.h;
             }

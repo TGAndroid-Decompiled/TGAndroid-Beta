@@ -4,25 +4,25 @@ import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class d00 implements Runnable {
-    public final int f24249a;
-    public final h00 f24250b;
-    public final int f24251c;
+    public final int f23923a;
+    public final h00 f23924b;
+    public final int f23925c;
     public final int d;
 
     public d00(h00 h00Var, int i10, int i11, int i12) {
-        this.f24249a = i12;
-        this.f24250b = h00Var;
-        this.f24251c = i10;
+        this.f23923a = i12;
+        this.f23924b = h00Var;
+        this.f23925c = i10;
         this.d = i11;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f24249a) {
+        switch (this.f23923a) {
             case 0:
-                h00 h00Var = this.f24250b;
-                int i11 = this.f24251c;
+                h00 h00Var = this.f23924b;
+                int i11 = this.f23925c;
                 int i12 = this.d;
                 if (h00Var.W != i11 || h00Var.X != i12) {
                     h00Var.W = i11;
@@ -54,24 +54,24 @@ public final class d00 implements Runnable {
                     }
                     h00Var.Z = false;
                     h00Var.g();
-                    h00Var.f25448d0.run();
+                    h00Var.f25139d0.run();
                     return;
                 }
                 return;
             case 1:
-                h00 h00Var2 = this.f24250b;
-                int i16 = this.f24251c;
+                h00 h00Var2 = this.f23924b;
+                int i16 = this.f23925c;
                 int i17 = this.d;
-                h00Var2.f25450n = i16;
-                h00Var2.f25451r = i17;
+                h00Var2.f25141n = i16;
+                h00Var2.f25142r = i17;
                 return;
             default:
-                h00 h00Var3 = this.f24250b;
-                int i18 = this.f24251c;
+                h00 h00Var3 = this.f23924b;
+                int i18 = this.f23925c;
                 int i19 = this.d;
                 ra raVar = h00Var3.I;
-                raVar.f28789l = i18;
-                raVar.f28790m = i19;
+                raVar.f28479l = i18;
+                raVar.f28480m = i19;
                 return;
         }
     }

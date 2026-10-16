@@ -6,9 +6,9 @@ public interface y9 {
 
     void K(String str);
 
-    void W0(MrzRecognizer.Result result);
+    void V0(MrzRecognizer.Result result);
 
-    boolean e1(String str, o9 o9Var);
+    boolean d1(String str, o9 o9Var);
 
     void onDismiss();
 }

@@ -6,36 +6,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class nr implements rr {
-    public final yr f38784a;
+    public final yr f38464a;
 
     public nr(yr yrVar) {
-        this.f38784a = yrVar;
+        this.f38464a = yrVar;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        yr.c0(this.f38784a, user);
+        yr.c0(this.f38464a, user);
     }
 
     @Override
     public final void b(long j10) {
-        yr yrVar = this.f38784a;
+        yr yrVar = this.f38464a;
         ArrayList arrayList = yrVar.F;
         a0.h hVar = yrVar.K;
         TLRPC.User user = yrVar.getMessagesController().getUser(Long.valueOf(j10));
         if (user != null) {
-            AndroidUtilities.runOnUIThread(new rp(7, this, user), 200L);
+            AndroidUtilities.runOnUIThread(new vp(2, this, user), 200L);
         }
         if (hVar.f(j10) == null) {
             sr w02 = yrVar.w0();
             TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_channelParticipantAdmin.peer = tL_peerUser;
-            tL_peerUser.user_id = user.f19363id;
+            tL_peerUser.user_id = user.f19063id;
             tL_channelParticipantAdmin.date = yrVar.getConnectionsManager().getCurrentTime();
             tL_channelParticipantAdmin.promoted_by = yrVar.getAccountInstance().getUserConfig().clientUserId;
             arrayList.add(tL_channelParticipantAdmin);
-            hVar.k(tL_channelParticipantAdmin, user.f19363id);
+            hVar.k(tL_channelParticipantAdmin, user.f19063id);
             Collections.sort(arrayList, new org.telegram.ui.ActionBar.l5(8));
             yrVar.A0(w02);
         }
@@ -43,7 +43,7 @@ public final class nr implements rr {
 
     @Override
     public final void c(long j10, TLObject tLObject) {
-        yr yrVar = this.f38784a;
+        yr yrVar = this.f38464a;
         ArrayList arrayList = yrVar.F;
         a0.h hVar = yrVar.K;
         if (tLObject != null && hVar.f(j10) == null) {

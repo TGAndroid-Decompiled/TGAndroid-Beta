@@ -12,7 +12,7 @@ public final class dx0 extends db {
         super(context, null, true, false, null);
         fixNavigationBar();
         this.E = true;
-        this.f24350y = true;
+        this.f24075y = true;
         L();
         mm0 mm0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
@@ -23,7 +23,7 @@ public final class dx0 extends db {
 
     public static void Q(dx0 dx0Var, int i10) {
         Object obj;
-        l61 G = dx0Var.X.G(i10 - 1);
+        m61 G = dx0Var.X.G(i10 - 1);
         if (G != null) {
             obj = G.G;
         } else {
@@ -35,7 +35,7 @@ public final class dx0 extends db {
     }
 
     @Override
-    public final CharSequence A() {
+    public final CharSequence B() {
         return LocaleController.getString(R.string.SearchAppsExamples);
     }
 
@@ -43,7 +43,7 @@ public final class dx0 extends db {
     public final lm0 x(mm0 mm0Var) {
         et etVar = new et(mm0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
         this.X = etVar;
-        etVar.f31780r = false;
+        etVar.f23145r = false;
         return etVar;
     }
 }

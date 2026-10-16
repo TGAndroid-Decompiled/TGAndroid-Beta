@@ -3,43 +3,46 @@ package z7;
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.ArrayList;
-import java.util.List;
 public final class ig extends o6.a {
-    public static final Parcelable.Creator<ig> CREATOR = new cg(2);
-    public final List f49670a;
-    public final float[] f49671b;
-    public final Bitmap f49672c;
-    public final List d;
+    public static final Parcelable.Creator<ig> CREATOR = new dg(1);
+    public final float[] f49668a;
+    public final Bitmap f49669b;
+    public final int f49670c;
+    public final int d;
+    public final int e;
+    public final int f49671f;
+    public final int h;
 
-    public ig(ArrayList arrayList, float[] fArr, Bitmap bitmap, ArrayList arrayList2) {
-        this.f49670a = arrayList;
-        this.f49671b = fArr;
-        this.f49672c = bitmap;
-        this.d = arrayList2;
+    public ig(float[] fArr, Bitmap bitmap, int i10, int i11, int i12, int i13, int i14) {
+        this.f49668a = fArr;
+        this.f49669b = bitmap;
+        this.f49670c = i10;
+        this.d = i11;
+        this.e = i12;
+        this.f49671f = i13;
+        this.h = i14;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.g0.q(parcel, 20293);
-        w7.g0.p(parcel, 1, this.f49670a);
-        float[] fArr = this.f49671b;
+        int q6 = w7.f0.q(parcel, 20293);
+        float[] fArr = this.f49668a;
         if (fArr != null) {
-            int q10 = w7.g0.q(parcel, 2);
+            int q10 = w7.f0.q(parcel, 1);
             parcel.writeFloatArray(fArr);
-            w7.g0.r(parcel, q10);
+            w7.f0.r(parcel, q10);
         }
-        w7.g0.k(parcel, 3, this.f49672c, i10);
-        List list = this.d;
-        if (list != null) {
-            int q11 = w7.g0.q(parcel, 4);
-            int size = list.size();
-            parcel.writeInt(size);
-            for (int i11 = 0; i11 < size; i11++) {
-                parcel.writeFloat(((Float) list.get(i11)).floatValue());
-            }
-            w7.g0.r(parcel, q11);
-        }
-        w7.g0.r(parcel, q6);
+        w7.f0.k(parcel, 2, this.f49669b, i10);
+        w7.f0.s(parcel, 3, 4);
+        parcel.writeInt(this.f49670c);
+        w7.f0.s(parcel, 4, 4);
+        parcel.writeInt(this.d);
+        w7.f0.s(parcel, 5, 4);
+        parcel.writeInt(this.e);
+        w7.f0.s(parcel, 6, 4);
+        parcel.writeInt(this.f49671f);
+        w7.f0.s(parcel, 7, 4);
+        parcel.writeInt(this.h);
+        w7.f0.r(parcel, q6);
     }
 }

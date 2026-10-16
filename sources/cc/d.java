@@ -7,106 +7,105 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import k.i;
-import m.q3;
+import m.t3;
 import n6.l;
-import n6.o;
+import r0.l0;
 import r0.m0;
-import r0.n0;
 import w7.e9;
 import z7.ee;
 import z7.fb;
 import z7.g;
 import z7.gb;
-import z7.hg;
 import z7.ig;
+import z7.jg;
 import z7.qa;
 import z7.ra;
 import z7.te;
 import z7.va;
 import z7.vf;
 public final class d implements vf {
-    public long f4716a;
-    public boolean f4717b;
-    public final Object f4718c;
+    public long f4719a;
+    public boolean f4720b;
+    public final Object f4721c;
     public Object d;
     public Object e;
-    public final Object f4719f;
+    public final Object f4722f;
 
-    public d(f fVar, long j10, gb gbVar, boolean z10, wb.a aVar, ig igVar) {
-        this.f4718c = fVar;
-        this.f4716a = j10;
+    public d(f fVar, long j10, gb gbVar, boolean z10, wb.a aVar, jg jgVar) {
+        this.f4721c = fVar;
+        this.f4719a = j10;
         this.d = gbVar;
-        this.f4717b = z10;
+        this.f4720b = z10;
         this.e = aVar;
-        this.f4719f = igVar;
+        this.f4722f = jgVar;
     }
 
     public void a() {
-        if (!this.f4717b) {
+        if (!this.f4720b) {
             return;
         }
-        ArrayList arrayList = (ArrayList) this.f4718c;
+        ArrayList arrayList = (ArrayList) this.f4721c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            ((m0) obj).b();
+            ((l0) obj).b();
         }
-        this.f4717b = false;
+        this.f4720b = false;
     }
 
     public void b() {
         View view;
-        if (this.f4717b) {
+        if (this.f4720b) {
             return;
         }
-        ArrayList arrayList = (ArrayList) this.f4718c;
+        ArrayList arrayList = (ArrayList) this.f4721c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            m0 m0Var = (m0) obj;
-            long j10 = this.f4716a;
+            l0 l0Var = (l0) obj;
+            long j10 = this.f4719a;
             if (j10 >= 0) {
-                m0Var.c(j10);
+                l0Var.c(j10);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) m0Var.f43742a.get()) != null) {
+            if (interpolator != null && (view = (View) l0Var.f43495a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
-            if (((n0) this.e) != null) {
-                m0Var.d((i) this.f4719f);
+            if (((m0) this.e) != null) {
+                l0Var.d((i) this.f4722f);
             }
-            View view2 = (View) m0Var.f43742a.get();
+            View view2 = (View) l0Var.f43495a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
         }
-        this.f4717b = true;
+        this.f4720b = true;
     }
 
     @Override
     public a5.a zza() {
         int i10;
         qa qaVar;
-        f fVar = (f) this.f4718c;
-        long j10 = this.f4716a;
-        boolean z10 = this.f4717b;
+        f fVar = (f) this.f4721c;
+        long j10 = this.f4719a;
+        boolean z10 = this.f4720b;
         wb.a aVar = (wb.a) this.e;
-        ig igVar = (ig) this.f4719f;
+        jg jgVar = (jg) this.f4722f;
         ?? obj = new Object();
         u2.c cVar = new u2.c(18, false);
         cVar.f45875b = Long.valueOf(j10 & Long.MAX_VALUE);
         cVar.f45876c = (gb) this.d;
         cVar.d = Boolean.valueOf(z10);
-        obj.f5426b = new va(cVar);
+        obj.f5429b = new va(cVar);
         int i11 = aVar.e;
-        f.f4724l.getClass();
+        f.f4727l.getClass();
         int i12 = aVar.e;
         if (i12 == -1) {
-            Bitmap bitmap = aVar.f47511a;
+            Bitmap bitmap = aVar.f47510a;
             l.h(bitmap);
             i10 = bitmap.getAllocationByteCount();
         } else if (i12 != 17 && i12 != 842094169) {
@@ -120,7 +119,7 @@ public final class d implements vf {
             l.h(null);
             throw null;
         }
-        o oVar = new o(28, false);
+        n3.b bVar = new n3.b(29, false);
         if (i11 != -1) {
             if (i11 != 35) {
                 if (i11 != 842094169) {
@@ -142,27 +141,27 @@ public final class d implements vf {
         } else {
             qaVar = qa.BITMAP;
         }
-        oVar.f16131b = qaVar;
-        oVar.f16132c = Integer.valueOf(i10 & Integer.MAX_VALUE);
-        obj.f5427c = new ra(oVar);
-        obj.f5425a = fVar.e.a();
-        if (igVar != null) {
-            List list = igVar.d;
-            g gVar = z7.i.f49654b;
+        bVar.f15703b = qaVar;
+        bVar.f15704c = Integer.valueOf(i10 & Integer.MAX_VALUE);
+        obj.f5430c = new ra(bVar);
+        obj.f5428a = fVar.e.a();
+        if (jgVar != null) {
+            List list = jgVar.d;
+            g gVar = z7.i.f49652b;
             Object[] array = list.toArray();
             int length = array.length;
             e9.a(length, array);
             obj.e = z7.i.q(length, array);
-            List<hg> list2 = igVar.f49670a;
+            List<ig> list2 = jgVar.f49683a;
             if (!list2.isEmpty()) {
                 Object[] objArr = new Object[4];
                 int i13 = 0;
-                for (hg hgVar : list2) {
+                for (ig igVar : list2) {
                     ?? obj2 = new Object();
-                    obj2.f43662a = Integer.valueOf(hgVar.f49652c & Integer.MAX_VALUE);
-                    obj2.f43663b = Integer.valueOf(hgVar.d & Integer.MAX_VALUE);
-                    obj2.f43664c = Integer.valueOf(hgVar.e & Integer.MAX_VALUE);
-                    obj2.d = Integer.valueOf(hgVar.f49653f & Integer.MAX_VALUE);
+                    obj2.f42944a = Integer.valueOf(igVar.f49670c & Integer.MAX_VALUE);
+                    obj2.f42945b = Integer.valueOf(igVar.d & Integer.MAX_VALUE);
+                    obj2.f42946c = Integer.valueOf(igVar.e & Integer.MAX_VALUE);
+                    obj2.d = Integer.valueOf(igVar.f49671f & Integer.MAX_VALUE);
                     te teVar = new te(obj2);
                     int i14 = i13 + 1;
                     int length2 = objArr.length;
@@ -184,14 +183,14 @@ public final class d implements vf {
             }
         }
         ?? obj3 = new Object();
-        obj3.f15221c = fb.TYPE_THIN;
-        obj3.f15222f = new ee(obj);
-        return new a5.a((q3) obj3, 0);
+        obj3.f14985c = fb.TYPE_THIN;
+        obj3.f14986f = new ee(obj);
+        return new a5.a((t3) obj3, 0);
     }
 
     public d() {
-        this.f4716a = -1L;
-        this.f4719f = new i(this);
-        this.f4718c = new ArrayList();
+        this.f4719a = -1L;
+        this.f4722f = new i(this);
+        this.f4721c = new ArrayList();
     }
 }

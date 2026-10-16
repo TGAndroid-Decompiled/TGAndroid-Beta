@@ -34,7 +34,7 @@ import org.telegram.ui.qx0;
 import org.telegram.ui.rx0;
 import org.telegram.ui.w41;
 import org.telegram.ui.x5;
-import w7.a6;
+import w7.z5;
 import zh.r3;
 public final class y0 extends e3 implements NotificationCenter.NotificationCenterDelegate {
     public final boolean E;
@@ -65,7 +65,7 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
         this(null, context, UserConfig.selectedAccount, false, i10, true, null, c6Var);
     }
 
-    public final void A() {
+    public final void B() {
         v0 v0Var;
         int i10;
         float f7;
@@ -138,10 +138,10 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
         }
     }
 
-    public final ViewGroup B(Context context, int i10) {
+    public final ViewGroup C(Context context, int i10) {
         int i11;
         qx0 qx0Var = (qx0) this.d.get(i10);
-        int i12 = qx0Var.f39551a;
+        int i12 = qx0Var.f39234a;
         if (i12 == 0) {
             b bVar = new b(context, this.resourcesProvider);
             bVar.f45139b.setOnScrollListener(new s0(this, 1));
@@ -153,7 +153,7 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
             if (i12 == 10) {
                 return new n0(context, this.resourcesProvider);
             }
-            return new a2(context, this.f45442x, this.currentAccount, qx0Var.f39551a, this.resourcesProvider);
+            return new a2(context, this.f45442x, this.currentAccount, qx0Var.f39234a, this.resourcesProvider);
         } else {
             if (i12 == 28) {
                 i11 = 1;
@@ -250,29 +250,29 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         b8 b8Var = new b8(this, getContext(), 7);
         this.N = b8Var;
-        b8Var.setBackgroundColor(getThemedColor(g6.f19972h5));
+        b8Var.setBackgroundColor(getThemedColor(g6.f19672h5));
         this.N.setTitleColor(getThemedColor(g6.G6));
-        this.N.B(getThemedColor(g6.f20307z8), false);
+        this.N.C(getThemedColor(g6.f20007z8), false);
         b8 b8Var2 = this.N;
-        int i10 = g6.f20290y8;
+        int i10 = g6.f19990y8;
         b8Var2.D(getThemedColor(i10), false);
         this.N.D(getThemedColor(i10), true);
         this.N.setCastShadows(true);
         this.N.setExtraHeight(AndroidUtilities.dp(2.0f));
         this.N.setBackButtonImage(R.drawable.ic_ab_back);
         this.N.setActionBarMenuOnItemClick(new w41(this, 13));
-        this.containerView.addView(this.N, a6.a(-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
+        this.containerView.addView(this.N, z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
         ((FrameLayout.LayoutParams) this.N.getLayoutParams()).topMargin = (-this.backgroundPaddingTop) - AndroidUtilities.dp(2.0f);
         AndroidUtilities.updateViewVisibilityAnimated(this.N, false, 1.0f, false);
         int i11 = this.G;
         ArrayList arrayList = this.d;
-        if (((qx0) arrayList.get(i11)).f39551a == 14) {
+        if (((qx0) arrayList.get(i11)).f39234a == 14) {
             this.N.setTitle(LocaleController.getString(R.string.UpgradedStories));
             this.N.requestLayout();
-        } else if (((qx0) arrayList.get(this.G)).f39551a == 28) {
+        } else if (((qx0) arrayList.get(this.G)).f39234a == 28) {
             this.N.setTitle(LocaleController.getString(R.string.TelegramBusiness));
             this.N.requestLayout();
-        } else if (((qx0) arrayList.get(this.G)).f39551a == 40) {
+        } else if (((qx0) arrayList.get(this.G)).f39234a == 40) {
             this.N.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
             this.N.requestLayout();
         } else {
@@ -328,7 +328,7 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
         this.K = 255;
         this.f45435b = m2Var;
         this.J = rx0Var;
-        fixNavigationBar(getThemedColor(g6.f19972h5));
+        fixNavigationBar(getThemedColor(g6.f19672h5));
         this.f45443y = i11;
         this.E = z11;
         this.f45442x = SvgHelper.getDrawable(AndroidUtilities.readRes(R.raw.star_loader));
@@ -348,7 +348,7 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
             if (i12 >= this.d.size()) {
                 i12 = 0;
                 break;
-            } else if (((qx0) this.d.get(i12)).f39551a == i11) {
+            } else if (((qx0) this.d.get(i12)).f39234a == i11) {
                 break;
             } else {
                 i12++;
@@ -379,7 +379,7 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
         int k10 = i0.a.k(-1, 40);
         int k11 = i0.a.k(-1, 100);
         imageView.setBackground(g6.j0(dp, dp, dp, dp, k10, k11, k11));
-        frameLayout.addView(imageView, a6.e(24, 24, 17));
+        frameLayout.addView(imageView, z5.e(24, 24, 17));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
             public final y0 f45336b;
 
@@ -399,7 +399,7 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
                 }
             }
         });
-        p0Var.addView(m0Var, a6.t(-1, -2, 1, 0, 16, 0, 0));
+        p0Var.addView(m0Var, z5.t(-1, -2, 1, 0, 16, 0, 0));
         v0 v0Var = new v0(this, getContext());
         this.f45438n = v0Var;
         v0Var.setOverScrollMode(2);
@@ -407,8 +407,8 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
         v0Var.setAdapter(new g80(this, 2));
         this.G = i12;
         v0Var.setCurrentItem(i12);
-        p0Var.addView(v0Var, a6.a(100.0f, 0.0f, 18.0f, 0.0f, 0.0f, -1, 0));
-        p0Var.addView(frameLayout, a6.a(52.0f, 0.0f, 24.0f, 0.0f, 0.0f, 52, 53));
+        p0Var.addView(v0Var, z5.a(100.0f, 0.0f, 18.0f, 0.0f, 0.0f, -1, 0));
+        p0Var.addView(frameLayout, z5.a(52.0f, 0.0f, 24.0f, 0.0f, 0.0f, 52, 53));
         ua uaVar = new ua(getContext(), v0Var, this.d.size());
         v0Var.b(new w0(this, uaVar));
         LinearLayout linearLayout = new LinearLayout(getContext());
@@ -416,10 +416,10 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
         linearLayout.setOrientation(1);
         int i13 = g6.V8;
         int i14 = g6.P9;
-        uaVar.f29618n = i13;
-        uaVar.f29619r = i14;
+        uaVar.f29302n = i13;
+        uaVar.f29303r = i14;
         if (!z11) {
-            linearLayout.addView(uaVar, a6.t(this.d.size() * 11, 5, 1, 0, 0, 0, 10));
+            linearLayout.addView(uaVar, z5.t(this.d.size() * 11, 5, 1, 0, 0, 0, 10));
         }
         q0 q0Var = new q0(getContext(), c6Var, true);
         this.f45436c = q0Var;
@@ -444,9 +444,9 @@ public final class y0 extends e3 implements NotificationCenter.NotificationCente
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(getContext());
-        frameLayout2.addView(q0Var, a6.a(48.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, 16));
-        frameLayout2.setBackgroundColor(getThemedColor(g6.f19972h5));
-        linearLayout.addView(frameLayout2, a6.q(-1, 68, 80));
+        frameLayout2.addView(q0Var, z5.a(48.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, 16));
+        frameLayout2.setBackgroundColor(getThemedColor(g6.f19672h5));
+        linearLayout.addView(frameLayout2, z5.q(-1, 68, 80));
         if (i11 == 40) {
             q0Var.b(r3.i2(LocaleController.getString(R.string.Understood)), true, false);
         } else if (UserConfig.getInstance(i10).isPremium()) {

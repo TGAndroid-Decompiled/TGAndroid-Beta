@@ -130,7 +130,7 @@ public abstract class u0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (DialogObject.getPeerDialogId(communityPeer2.peer) == j10) {
                     if (user != null) {
-                        dialog = MessagesController.getInstance(i10).getDialog(user.f19363id);
+                        dialog = MessagesController.getInstance(i10).getDialog(user.f19063id);
                     }
                     return c(communityPeer2, chat, user, dialog);
                 }

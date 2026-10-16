@@ -4,13 +4,13 @@ import com.google.android.gms.internal.play_billing.k3;
 import java.nio.ByteBuffer;
 import ji.w4;
 public final class s extends a {
-    public static final w4 f9000f;
+    public static final w4 f9003f;
     public static final w4 h;
     public float e;
 
     static {
         te.a aVar = new te.a(s.class, "SoundMediaHeaderBox.java");
-        f9000f = aVar.e(aVar.d("getBalance", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "float"));
+        f9003f = aVar.e(aVar.d("getBalance", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "float"));
         h = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "java.lang.String"));
     }
 
@@ -38,7 +38,7 @@ public final class s extends a {
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("SoundMediaHeaderBox[balance=");
-        k3.p(te.a.b(f9000f, this, this));
+        k3.p(te.a.b(f9003f, this, this));
         sb2.append(this.e);
         sb2.append("]");
         return sb2.toString();

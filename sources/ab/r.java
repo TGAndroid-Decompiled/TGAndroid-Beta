@@ -24,7 +24,7 @@ public abstract class r {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = jd.o.f12974a;
+            list = jd.o.f12978a;
         }
         ArrayList f7 = jd.g.f(list);
         ArrayList arrayList = new ArrayList();
@@ -62,7 +62,7 @@ public abstract class r {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((q) obj).f452b == myPid) {
+                if (((q) obj).f456b == myPid) {
                     break;
                 }
             } else {

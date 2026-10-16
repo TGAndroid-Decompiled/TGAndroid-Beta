@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.StatsController;
 public final class wu implements org.telegram.ui.Components.xl0, org.telegram.ui.ActionBar.z1 {
-    public final av f41658a;
+    public final av f41361a;
 
     public wu(av avVar) {
-        this.f41658a = avVar;
+        this.f41361a = avVar;
     }
 
     @Override
@@ -15,13 +15,13 @@ public final class wu implements org.telegram.ui.Components.xl0, org.telegram.ui
         int i11;
         int i12;
         int i13;
-        av avVar = this.f41658a;
-        ev evVar = avVar.f34358m3;
-        ArrayList arrayList = avVar.f34349d3;
+        av avVar = this.f41361a;
+        ev evVar = avVar.f34102m3;
+        ArrayList arrayList = avVar.f34093d3;
         arrayList.clear();
         int i14 = 0;
         while (true) {
-            zu[] zuVarArr = avVar.f34350e3;
+            zu[] zuVarArr = avVar.f34094e3;
             if (i14 >= zuVarArr.length) {
                 i11 = ((org.telegram.ui.ActionBar.m2) evVar).currentAccount;
                 StatsController.getInstance(i11).resetStats(0);
@@ -35,7 +35,7 @@ public final class wu implements org.telegram.ui.Components.xl0, org.telegram.ui
                 return;
             }
             zu zuVar = zuVarArr[i14];
-            if (zuVar.f24684c > 0) {
+            if (zuVar.f24373c > 0) {
                 arrayList.add(Integer.valueOf(zuVar.d));
             }
             i14++;
@@ -44,12 +44,12 @@ public final class wu implements org.telegram.ui.Components.xl0, org.telegram.ui
 
     @Override
     public int run() {
-        av avVar = this.f41658a;
-        ArrayList arrayList = avVar.f34346a3;
+        av avVar = this.f41361a;
+        ArrayList arrayList = avVar.f34090a3;
         int i10 = 0;
         while (true) {
             if (i10 < arrayList.size()) {
-                if (((vu) arrayList.get(i10)).f43203a == 5) {
+                if (((vu) arrayList.get(i10)).f42904a == 5) {
                     break;
                 }
                 i10++;

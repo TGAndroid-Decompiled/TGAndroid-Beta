@@ -13,29 +13,29 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.es;
 public final class r2 extends Drawable {
-    public Drawable f51065g;
+    public Drawable f51066g;
     public int h;
-    public int f51066i;
-    public final Paint f51062b = new Paint(1);
-    public final Shader[] f51063c = new Shader[2];
+    public int f51067i;
+    public final Paint f51063b = new Paint(1);
+    public final Shader[] f51064c = new Shader[2];
     public final Matrix d = new Matrix();
     public final org.telegram.ui.Components.g6 e = new org.telegram.ui.Components.g6(1.0f, new zf.c(this, 12), 0, 420, es.h);
-    public final RectF f51064f = new RectF();
-    public final int f51061a = 1;
+    public final RectF f51065f = new RectF();
+    public final int f51062a = 1;
 
     public final void a(int i10, int i11) {
-        if (this.h == i10 && this.f51066i == i11) {
+        if (this.h == i10 && this.f51067i == i11) {
             return;
         }
-        Shader[] shaderArr = this.f51063c;
+        Shader[] shaderArr = this.f51064c;
         shaderArr[0] = shaderArr[1];
-        if (this.f51061a == 0) {
+        if (this.f51062a == 0) {
             this.h = i10;
-            this.f51066i = i11;
+            this.f51067i = i11;
             shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         } else {
             this.h = i10;
-            this.f51066i = i11;
+            this.f51067i = i11;
             shaderArr[1] = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(340.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         }
         this.e.d(0.0f, true);
@@ -45,13 +45,13 @@ public final class r2 extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f51064f;
+        RectF rectF = this.f51065f;
         rectF.set(bounds);
         rectF.right = rectF.width() + rectF.left;
         int i10 = 0;
         float d = this.e.d(1.0f, false);
         while (true) {
-            Shader[] shaderArr = this.f51063c;
+            Shader[] shaderArr = this.f51064c;
             if (i10 >= shaderArr.length) {
                 break;
             }
@@ -60,14 +60,14 @@ public final class r2 extends Drawable {
                 if (pow > 0.0f) {
                     Matrix matrix = this.d;
                     matrix.reset();
-                    if (this.f51061a == 1) {
+                    if (this.f51062a == 1) {
                         matrix.postTranslate(rectF.centerX(), AndroidUtilities.dp(145.0f));
                     } else {
                         matrix.postScale(getBounds().width() / 100.0f, 1.0f);
                     }
                     shaderArr[i10].setLocalMatrix(matrix);
                     Shader shader = shaderArr[i10];
-                    Paint paint = this.f51062b;
+                    Paint paint = this.f51063b;
                     paint.setShader(shader);
                     paint.setAlpha((int) (pow * 255.0f));
                     canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
@@ -75,10 +75,10 @@ public final class r2 extends Drawable {
             }
             i10++;
         }
-        if (this.f51065g != null) {
+        if (this.f51066g != null) {
             canvas.save();
             canvas.translate(rectF.centerX(), AndroidUtilities.dp(145.0f));
-            i0.a(canvas, 0, this.f51065g, rectF.width(), AndroidUtilities.dp(290.0f), 2.0f, 1.0f);
+            i0.a(canvas, 0, this.f51066g, rectF.width(), AndroidUtilities.dp(290.0f), 2.0f, 1.0f);
             canvas.restore();
         }
     }

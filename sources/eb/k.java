@@ -1,6 +1,6 @@
 package eb;
 public final class k extends i {
-    public static final k f8691a = new Object();
+    public static final k f8694a = new Object();
 
     public final boolean equals(Object obj) {
         return obj instanceof k;

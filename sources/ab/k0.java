@@ -1,18 +1,18 @@
 package ab;
 public final class k0 implements g0 {
-    public static final double f427f = Math.random();
-    public static final int f428g = 0;
-    public final l9.h f429a;
-    public final ra.d f430b;
-    public final cb.h f431c;
-    public final qb.c d;
+    public static final double f431f = Math.random();
+    public static final int f432g = 0;
+    public final l9.h f433a;
+    public final ra.d f434b;
+    public final cb.h f435c;
+    public final a6.m d;
     public final kd.h e;
 
-    public k0(l9.h hVar, ra.d dVar, cb.h hVar2, qb.c cVar, kd.h hVar3) {
-        this.f429a = hVar;
-        this.f430b = dVar;
-        this.f431c = hVar2;
-        this.d = cVar;
+    public k0(l9.h hVar, ra.d dVar, cb.h hVar2, a6.m mVar, kd.h hVar3) {
+        this.f433a = hVar;
+        this.f434b = dVar;
+        this.f435c = hVar2;
+        this.d = mVar;
         this.e = hVar3;
     }
 

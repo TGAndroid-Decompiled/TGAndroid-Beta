@@ -5,7 +5,7 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class bl extends wv0 {
+public final class bl extends vv0 {
     public bl(ViewGroup viewGroup, ViewGroup viewGroup2) {
         super(viewGroup, viewGroup2);
     }

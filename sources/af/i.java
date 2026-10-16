@@ -2,52 +2,52 @@ package af;
 
 import v7.f5;
 public final class i extends ff.a {
-    public final df.h f579a;
-    public String f580b;
-    public final StringBuilder f581c;
+    public final df.h f583a;
+    public String f584b;
+    public final StringBuilder f585c;
 
     public i(char c10, int i10, int i11) {
         ?? pVar = new df.p();
-        this.f579a = pVar;
-        this.f581c = new StringBuilder();
-        pVar.f6516g = c10;
+        this.f583a = pVar;
+        this.f585c = new StringBuilder();
+        pVar.f6519g = c10;
         pVar.h = i10;
-        pVar.f6517i = i11;
+        pVar.f6520i = i11;
     }
 
     @Override
     public final void a(CharSequence charSequence) {
-        if (this.f580b == null) {
-            this.f580b = charSequence.toString();
+        if (this.f584b == null) {
+            this.f584b = charSequence.toString();
             return;
         }
-        StringBuilder sb2 = this.f581c;
+        StringBuilder sb2 = this.f585c;
         sb2.append(charSequence);
         sb2.append('\n');
     }
 
     @Override
     public final void d() {
-        String a2 = cf.a.a(this.f580b.trim());
-        df.h hVar = this.f579a;
-        hVar.f6518j = a2;
-        hVar.f6519k = this.f581c.toString();
+        String a2 = cf.a.a(this.f584b.trim());
+        df.h hVar = this.f583a;
+        hVar.f6521j = a2;
+        hVar.f6522k = this.f585c.toString();
     }
 
     @Override
     public final df.a e() {
-        return this.f579a;
+        return this.f583a;
     }
 
     @Override
     public final a h(h hVar) {
         int i10 = hVar.e;
-        int i11 = hVar.f568b;
-        CharSequence charSequence = hVar.f567a;
-        int i12 = hVar.f571g;
-        df.h hVar2 = this.f579a;
+        int i11 = hVar.f572b;
+        CharSequence charSequence = hVar.f571a;
+        int i12 = hVar.f575g;
+        df.h hVar2 = this.f583a;
         if (i12 < 4) {
-            char c10 = hVar2.f6516g;
+            char c10 = hVar2.f6519g;
             int i13 = hVar2.h;
             int b10 = f5.b(c10, charSequence, i10, charSequence.length()) - i10;
             if (b10 >= i13 && f5.c(i10 + b10, charSequence.length(), charSequence) == charSequence.length()) {
@@ -55,7 +55,7 @@ public final class i extends ff.a {
             }
         }
         int length = charSequence.length();
-        for (int i14 = hVar2.f6517i; i14 > 0 && i11 < length && charSequence.charAt(i11) == ' '; i14--) {
+        for (int i14 = hVar2.f6520i; i14 > 0 && i11 < length && charSequence.charAt(i11) == ' '; i14--) {
             i11++;
         }
         return a.a(i11);

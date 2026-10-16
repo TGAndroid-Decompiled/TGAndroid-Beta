@@ -1,8 +1,4 @@
 package n7;
 public abstract class h0 {
-    public static final int f16182a = 0;
-
-    static {
-        System.currentTimeMillis();
-    }
+    public static final j0 f15894a = new j0();
 }

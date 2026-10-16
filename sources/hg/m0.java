@@ -13,7 +13,7 @@ import com.google.android.gms.internal.play_billing.k3;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c6;
@@ -29,24 +29,24 @@ import org.telegram.ui.Components.r6;
 import org.telegram.ui.Components.va;
 import org.telegram.ui.Components.wa;
 import org.telegram.ui.WallpapersListActivity;
+import org.telegram.ui.ji0;
 import org.telegram.ui.ki0;
-import org.telegram.ui.li0;
-import org.telegram.ui.oj1;
-import org.telegram.ui.sj1;
-import w7.a6;
+import org.telegram.ui.nj1;
+import org.telegram.ui.rj1;
+import w7.z5;
 import zh.r3;
 public final class m0 extends lm0 {
-    public final int f10669c;
+    public final int f10673c;
     public final Object d;
 
     public m0(Object obj, int i10) {
-        this.f10669c = i10;
+        this.f10673c = i10;
         this.d = obj;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        switch (this.f10669c) {
+        switch (this.f10673c) {
             case 0:
                 return true;
             case 1:
@@ -76,7 +76,7 @@ public final class m0 extends lm0 {
 
     @Override
     public final int h() {
-        int i10 = this.f10669c;
+        int i10 = this.f10673c;
         Object obj = this.d;
         switch (i10) {
             case 0:
@@ -84,11 +84,11 @@ public final class m0 extends lm0 {
             case 1:
                 return 1;
             case 2:
-                return ((ko0) obj).f26769r.size();
+                return ((ko0) obj).f26454r.size();
             case 3:
-                return ((li0) obj).f38021c.size();
+                return ((ki0) obj).f37435c.size();
             case 4:
-                int[][] iArr = WallpapersListActivity.f33971k0;
+                int[][] iArr = WallpapersListActivity.f33674k0;
                 return 12;
             case 5:
                 return ((sg.j) obj).d.size();
@@ -99,7 +99,7 @@ public final class m0 extends lm0 {
 
     @Override
     public int j(int i10) {
-        switch (this.f10669c) {
+        switch (this.f10673c) {
             case 1:
                 return i10;
             case 5:
@@ -114,7 +114,7 @@ public final class m0 extends lm0 {
         boolean z10;
         ir irVar;
         float f7;
-        switch (this.f10669c) {
+        switch (this.f10673c) {
             case 0:
                 ((q0) b1Var).v.setData((p0) ((r0) this.d).V2.get(i10));
                 return;
@@ -123,76 +123,76 @@ public final class m0 extends lm0 {
             case 2:
                 View view = b1Var.f44838a;
                 ko0 ko0Var = (ko0) this.d;
-                ArrayList arrayList = ko0Var.f26769r;
+                ArrayList arrayList = ko0Var.f26454r;
                 if (i10 >= 0 && i10 < arrayList.size()) {
                     ho0 ho0Var = (ho0) arrayList.get(i10);
                     jo0 jo0Var = (jo0) view;
                     ah.i1 i1Var = jo0Var.d;
                     boolean z11 = true;
-                    if (i1Var != null && i1Var.equals(ho0Var.f25716a)) {
+                    if (i1Var != null && i1Var.equals(ho0Var.f25367a)) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
                     if (z10) {
                         TLRPC.TL_reactionCount tL_reactionCount = new TLRPC.TL_reactionCount();
-                        tL_reactionCount.reaction = ho0Var.f25716a.g();
-                        tL_reactionCount.count = ho0Var.f25717b;
-                        ko0 ko0Var2 = jo0Var.f26426s;
-                        io0 io0Var = new io0(jo0Var, ko0Var2.f26764a, jo0Var, tL_reactionCount, ko0Var2.f26766c);
-                        jo0Var.f26420a = io0Var;
+                        tL_reactionCount.reaction = ho0Var.f25367a.g();
+                        tL_reactionCount.count = ho0Var.f25368b;
+                        ko0 ko0Var2 = jo0Var.f26095s;
+                        io0 io0Var = new io0(jo0Var, ko0Var2.f26449a, jo0Var, tL_reactionCount, ko0Var2.f26451c);
+                        jo0Var.f26089a = io0Var;
                         io0Var.F.d(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(100.0f));
-                        io0 io0Var2 = jo0Var.f26420a;
-                        io0Var2.f756q = true;
+                        io0 io0Var2 = jo0Var.f26089a;
+                        io0Var2.f760q = true;
                         io0Var2.S = true;
                     } else {
-                        jo0Var.f26420a.f761w = ho0Var.f25717b;
+                        jo0Var.f26089a.f765w = ho0Var.f25368b;
                     }
-                    jo0Var.d = ho0Var.f25716a;
+                    jo0Var.d = ho0Var.f25367a;
                     if (!z10) {
-                        io0 io0Var3 = jo0Var.f26420a;
-                        io0Var3.f744f = io0Var3.A;
+                        io0 io0Var3 = jo0Var.f26089a;
+                        io0Var3.f748f = io0Var3.A;
                     }
-                    jo0Var.f26420a.A = AndroidUtilities.dp(44.33f);
-                    jo0Var.f26420a.f760u = !TextUtils.isEmpty(ho0Var.f25718c);
-                    io0 io0Var4 = jo0Var.f26420a;
-                    boolean z12 = io0Var4.f760u;
+                    jo0Var.f26089a.A = AndroidUtilities.dp(44.33f);
+                    jo0Var.f26089a.f764u = !TextUtils.isEmpty(ho0Var.f25369c);
+                    io0 io0Var4 = jo0Var.f26089a;
+                    boolean z12 = io0Var4.f764u;
                     r6 r6Var = io0Var4.G;
                     if (z12) {
-                        r6Var.t(Emoji.replaceEmoji(ho0Var.f25718c, r6Var.f28746a.getFontMetricsInt(), false), !z10, true);
+                        r6Var.t(Emoji.replaceEmoji(ho0Var.f25369c, r6Var.f28433a.getFontMetricsInt(), false), !z10, true);
                     } else if (r6Var != null) {
                         r6Var.t("", !z10, true);
                     }
-                    io0 io0Var5 = jo0Var.f26420a;
-                    Integer.toString(ho0Var.f25717b);
+                    io0 io0Var5 = jo0Var.f26089a;
+                    Integer.toString(ho0Var.f25368b);
                     io0Var5.getClass();
-                    jo0Var.f26420a.F.c(ho0Var.f25717b, !z10);
-                    io0 io0Var6 = jo0Var.f26420a;
-                    if (io0Var6.F != null && (io0Var6.f761w > 0 || io0Var6.f760u)) {
+                    jo0Var.f26089a.F.c(ho0Var.f25368b, !z10);
+                    io0 io0Var6 = jo0Var.f26089a;
+                    if (io0Var6.F != null && (io0Var6.f765w > 0 || io0Var6.f764u)) {
                         float f10 = io0Var6.A;
-                        int ceil = (int) Math.ceil(irVar.f26063m);
-                        if (jo0Var.f26420a.f760u) {
+                        int ceil = (int) Math.ceil(irVar.f25726m);
+                        if (jo0Var.f26089a.f764u) {
                             f7 = 4.0f;
                         } else {
                             f7 = 0.0f;
                         }
-                        io0Var6.A = (int) (AndroidUtilities.dp(f7) + ceil + jo0Var.f26420a.G.d + f10);
+                        io0Var6.A = (int) (AndroidUtilities.dp(f7) + ceil + jo0Var.f26089a.G.d + f10);
                     }
                     if (z10) {
-                        io0 io0Var7 = jo0Var.f26420a;
-                        io0Var7.f744f = io0Var7.A;
+                        io0 io0Var7 = jo0Var.f26089a;
+                        io0Var7.f748f = io0Var7.A;
                     }
-                    jo0Var.f26420a.B = AndroidUtilities.dp(28.0f);
-                    io0 io0Var8 = jo0Var.f26420a;
-                    io0Var8.f755p = jo0Var.e;
-                    if (jo0Var.f26425r) {
+                    jo0Var.f26089a.B = AndroidUtilities.dp(28.0f);
+                    io0 io0Var8 = jo0Var.f26089a;
+                    io0Var8.f759p = jo0Var.e;
+                    if (jo0Var.f26094r) {
                         io0Var8.a();
                     }
                     if (!z10) {
                         jo0Var.requestLayout();
                     }
                     jo0 jo0Var2 = (jo0) view;
-                    if (ho0Var.f25716a.h != ko0Var.h) {
+                    if (ho0Var.f25367a.h != ko0Var.h) {
                         z11 = false;
                     }
                     jo0Var2.a(z11, false);
@@ -200,11 +200,11 @@ public final class m0 extends lm0 {
                 }
                 return;
             case 3:
-                li0 li0Var = (li0) this.d;
-                ((ki0) b1Var.f44838a).a((TLObject) li0Var.f38021c.get(i10), false, ((Integer) li0Var.f38020b.get(i10)).intValue());
+                ki0 ki0Var = (ki0) this.d;
+                ((ji0) b1Var.f44838a).a((TLObject) ki0Var.f37435c.get(i10), false, ((Integer) ki0Var.f37434b.get(i10)).intValue());
                 return;
             case 4:
-                ((oj1) b1Var.f44838a).f38988a = WallpapersListActivity.m0[i10];
+                ((nj1) b1Var.f44838a).f38408a = WallpapersListActivity.m0[i10];
                 return;
             case 5:
                 sg.j jVar = (sg.j) this.d;
@@ -222,8 +222,8 @@ public final class m0 extends lm0 {
                 int[] iArr = ((r3) this.d).Q0;
                 va vaVar = (va) b1Var.f44838a;
                 int i11 = iArr[(iArr.length - 1) - i10];
-                if (vaVar.f29926a != i11) {
-                    vaVar.f29926a = i11;
+                if (vaVar.f29611a != i11) {
+                    vaVar.f29611a = i11;
                     vaVar.requestLayout();
                     return;
                 }
@@ -234,9 +234,9 @@ public final class m0 extends lm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View view;
-        switch (this.f10669c) {
+        switch (this.f10673c) {
             case 0:
-                o0 o0Var = new o0(viewGroup.getContext(), ((r0) this.d).f27439n2);
+                o0 o0Var = new o0(viewGroup.getContext(), ((r0) this.d).f27148n2);
                 ?? b1Var = new s4.b1(o0Var);
                 b1Var.v = o0Var;
                 o0Var.setLayoutParams(new s4.o0(-2, AndroidUtilities.dp(30.0f)));
@@ -247,12 +247,12 @@ public final class m0 extends lm0 {
                 ko0 ko0Var = (ko0) this.d;
                 return new s4.b1(new jo0(ko0Var, ko0Var.getContext()));
             case 3:
-                ki0 ki0Var = new ki0(viewGroup.getContext());
-                ki0Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(50.0f)));
-                return new s4.b1(ki0Var);
+                ji0 ji0Var = new ji0(viewGroup.getContext());
+                ji0Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(50.0f)));
+                return new s4.b1(ji0Var);
             case 4:
-                sj1 sj1Var = (sj1) this.d;
-                return new s4.b1(new oj1(sj1Var.E, sj1Var.f40160c));
+                rj1 rj1Var = (rj1) this.d;
+                return new s4.b1(new nj1(rj1Var.E, rj1Var.f39534c));
             case 5:
                 sg.j jVar = (sg.j) this.d;
                 c6 c6Var = jVar.f45138a;
@@ -266,22 +266,22 @@ public final class m0 extends lm0 {
                     ImageView imageView = new ImageView(context);
                     frameLayout.f45195c = imageView;
                     imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                    frameLayout.addView(imageView, a6.a(28.0f, 25.0f, 12.0f, 16.0f, 0.0f, 28, 0));
+                    frameLayout.addView(imageView, z5.a(28.0f, 25.0f, 12.0f, 16.0f, 0.0f, 28, 0));
                     TextView textView = new TextView(context);
                     frameLayout.f45193a = textView;
                     textView.setTypeface(AndroidUtilities.bold());
-                    yh.n(g6.G6, c6Var, textView, 1, 14.0f);
-                    frameLayout.addView(textView, a6.a(-2.0f, 68.0f, 8.0f, 16.0f, 0.0f, -1, 0));
+                    sk.o(g6.G6, c6Var, textView, 1, 14.0f);
+                    frameLayout.addView(textView, z5.a(-2.0f, 68.0f, 8.0f, 16.0f, 0.0f, -1, 0));
                     TextView textView2 = new TextView(context);
                     frameLayout.f45194b = textView2;
-                    yh.n(g6.f20288y6, c6Var, textView2, 1, 14.0f);
-                    frameLayout.addView(textView2, a6.a(-2.0f, 68.0f, 28.0f, 16.0f, 8.0f, -1, 0));
+                    sk.o(g6.f19988y6, c6Var, textView2, 1, 14.0f);
+                    frameLayout.addView(textView2, z5.a(-2.0f, 68.0f, 28.0f, 16.0f, 8.0f, -1, 0));
                     view = frameLayout;
                 }
                 return k3.l(view, view, -1, -2);
             default:
                 ?? view2 = new View(((r3) this.d).getContext());
-                view2.f29926a = 0;
+                view2.f29611a = 0;
                 return new s4.b1(view2);
         }
     }
@@ -289,14 +289,14 @@ public final class m0 extends lm0 {
     @Override
     public void y(s4.b1 b1Var) {
         boolean z10;
-        switch (this.f10669c) {
+        switch (this.f10673c) {
             case 2:
                 ko0 ko0Var = (ko0) this.d;
-                ArrayList arrayList = ko0Var.f26769r;
+                ArrayList arrayList = ko0Var.f26454r;
                 int b10 = b1Var.b();
                 if (b10 >= 0 && b10 < arrayList.size()) {
                     jo0 jo0Var = (jo0) b1Var.f44838a;
-                    if (((ho0) arrayList.get(b10)).f25716a.h == ko0Var.h) {
+                    if (((ho0) arrayList.get(b10)).f25367a.h == ko0Var.h) {
                         z10 = true;
                     } else {
                         z10 = false;

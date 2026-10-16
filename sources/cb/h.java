@@ -1,33 +1,32 @@
 package cb;
 
 import ab.f0;
-import ab.s;
 import android.content.Context;
 import android.os.Bundle;
-import w7.t;
+import w7.s;
 public final class h {
-    public static final f f4696c = new Object();
-    public static final m1.c d = t.a(s.f458b);
-    public final android.support.v4.media.c f4697a;
-    public final d f4698b;
+    public static final f f4699c = new Object();
+    public static final m1.c d = s.a(ab.s.f462b);
+    public final android.support.v4.media.c f4700a;
+    public final d f4701b;
 
     public h(l9.h hVar, kd.h hVar2, kd.h hVar3, ra.d dVar) {
         hVar.a();
         Context context = hVar.f14626a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
-        f0 f0Var = f0.f395a;
+        f0 f0Var = f0.f399a;
         ab.b a2 = f0.a(hVar);
         android.support.v4.media.c cVar = new android.support.v4.media.c(context);
         androidx.biometric.e eVar = new androidx.biometric.e(a2, hVar2);
-        f4696c.getClass();
-        d dVar2 = new d(hVar3, dVar, a2, eVar, d.a(context, f.f4692a[0]));
-        this.f4697a = cVar;
-        this.f4698b = dVar2;
+        f4699c.getClass();
+        d dVar2 = new d(hVar3, dVar, a2, eVar, d.a(context, f.f4695a[0]));
+        this.f4700a = cVar;
+        this.f4701b = dVar2;
     }
 
     public final double a() {
         Double d10;
-        Bundle bundle = this.f4697a.f952a;
+        Bundle bundle = this.f4700a.f956a;
         if (bundle.containsKey("firebase_sessions_sampling_rate")) {
             d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
         } else {
@@ -39,9 +38,9 @@ public final class h {
                 return doubleValue;
             }
         }
-        e eVar = this.f4698b.f4688c.f4709b;
+        e eVar = this.f4701b.f4691c.f4712b;
         if (eVar != null) {
-            Double d11 = eVar.f4690b;
+            Double d11 = eVar.f4693b;
             if (d11 != null) {
                 double doubleValue2 = d11.doubleValue();
                 if (0.0d <= doubleValue2 && doubleValue2 <= 1.0d) {

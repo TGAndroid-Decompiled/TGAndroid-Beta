@@ -13,25 +13,25 @@ import org.telegram.ui.fo;
 import org.telegram.ui.yr;
 import org.telegram.ui.zw0;
 public final class a2 implements Runnable {
-    public final int f9161a;
-    public final int f9162b;
-    public final long f9163c;
+    public final int f9164a;
+    public final int f9165b;
+    public final long f9166c;
 
     public a2(int i10, long j10, int i11) {
-        this.f9161a = i11;
-        this.f9162b = i10;
-        this.f9163c = j10;
+        this.f9164a = i11;
+        this.f9165b = i10;
+        this.f9166c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f9161a) {
+        switch (this.f9164a) {
             case 0:
-                SendMessagesHelper.getInstance(this.f9162b).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", this.f9163c, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                SendMessagesHelper.getInstance(this.f9165b).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", this.f9166c, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 1:
-                int i10 = this.f9162b;
-                long j10 = this.f9163c;
+                int i10 = this.f9165b;
+                long j10 = this.f9166c;
                 try {
                     SQLitePreparedStatement executeFast = MessagesStorage.getInstance(i10).getDatabase().executeFast("REPLACE INTO search_recent VALUES(?, ?)");
                     executeFast.requery();
@@ -47,19 +47,19 @@ public final class a2 implements Runnable {
             case 2:
                 org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U != null) {
-                    U.presentFragment(fo.V9(this.f9162b, this.f9163c));
+                    U.presentFragment(fo.V9(this.f9165b, this.f9166c));
                     return;
                 }
                 return;
             default:
                 org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
                 if (U2 != null) {
-                    long j11 = this.f9163c;
+                    long j11 = this.f9166c;
                     if (j11 >= 0) {
                         U2.presentFragment(new PrivacyControlActivity(10, false));
                         return;
                     }
-                    int i11 = this.f9162b;
+                    int i11 = this.f9165b;
                     long j12 = -j11;
                     if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i11).getChat(Long.valueOf(j12)))) {
                         U2.presentFragment(new zw0(j12));
@@ -78,8 +78,8 @@ public final class a2 implements Runnable {
     }
 
     public a2(long j10, int i10, int i11) {
-        this.f9161a = i11;
-        this.f9163c = j10;
-        this.f9162b = i10;
+        this.f9164a = i11;
+        this.f9166c = j10;
+        this.f9165b = i10;
     }
 }

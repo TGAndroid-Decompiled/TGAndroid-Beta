@@ -8,14 +8,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class as {
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f34331a;
-    public final LinearLayout f34332b;
-    public final wr0 f34333c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f34077a;
+    public final LinearLayout f34078b;
+    public final vr0 f34079c;
 
-    public as(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.vh0 vh0Var, wr0 wr0Var) {
-        this.f34333c = wr0Var;
+    public as(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.vh0 vh0Var, vr0 vr0Var) {
+        this.f34079c = vr0Var;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, contextThemeWrapper, null);
-        this.f34331a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f34077a = actionBarPopupWindow$ActionBarPopupWindowLayout;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
         org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
         c10.setOnClickListener(new zr(vh0Var, 0));
@@ -33,7 +33,7 @@ public final class as {
         layoutParams.height = AndroidUtilities.dp(8.0f);
         i5Var.setLayoutParams(layoutParams);
         LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
-        this.f34332b = linearLayout;
+        this.f34078b = linearLayout;
         linearLayout.setOrientation(1);
         actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
     }

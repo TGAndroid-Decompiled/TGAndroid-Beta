@@ -7,16 +7,16 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class va0 extends org.telegram.ui.ActionBar.j {
-    public final cb0 f29927a;
+    public final cb0 f29612a;
 
     public va0(cb0 cb0Var) {
-        this.f29927a = cb0Var;
+        this.f29612a = cb0Var;
     }
 
     @Override
     public final void b(int i10) {
         int i11;
-        cb0 cb0Var = this.f29927a;
+        cb0 cb0Var = this.f29612a;
         if (i10 == -1) {
             if (!cb0Var.V.L(true)) {
                 cb0Var.finishFragment();
@@ -37,18 +37,18 @@ public final class va0 extends org.telegram.ui.ActionBar.j {
                     } else {
                         i11 = R.string.DeleteStoryTitle;
                     }
-                    alertDialog$Builder.f19548a.R = LocaleController.getString(i11);
-                    alertDialog$Builder.f19548a.T = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new t2(17, this, arrayList));
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new l2(17));
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
+                    alertDialog$Builder.f19248a.R = LocaleController.getString(i11);
+                    alertDialog$Builder.f19248a.T = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new u2(16, this, arrayList));
+                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new n2(15));
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
                     a2Var.show();
                     a2Var.h();
                 }
             }
         } else if (i10 == 10) {
             za0 za0Var = cb0Var.V;
-            za0Var.c1(za0Var.getClosestTab(), false);
+            za0Var.d1(za0Var.getClosestTab(), false);
         } else if (i10 == 11) {
             cb0Var.V.L(true);
             cb0Var.V.getSearchItem().z(false);

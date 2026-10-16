@@ -27,7 +27,7 @@ public final class v extends s {
         switch (this.f46060f) {
             case 1:
                 super.f(i10, m1Var, z10);
-                m1Var.f2214f = true;
+                m1Var.f2218f = true;
                 return m1Var;
             default:
                 return super.f(i10, m1Var, z10);
@@ -54,7 +54,7 @@ public final class v extends s {
         switch (this.f46060f) {
             case 1:
                 super.m(i10, o1Var, j10);
-                o1Var.f2265k = true;
+                o1Var.f2269k = true;
                 return o1Var;
             default:
                 return super.m(i10, o1Var, j10);

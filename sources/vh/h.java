@@ -26,7 +26,7 @@ import ji.p1;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.t8;
 import org.telegram.ui.Cells.u1;
@@ -371,10 +371,10 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                         M2.setAlpha(alpha2);
                                     }
                                     if (R2 || paint != null) {
-                                        int alpha3 = g6.f19969h2.getAlpha();
-                                        g6.f19969h2.setAlpha((int) (alpha3 * f27));
-                                        canvas3.drawRoundRect(rectF3, dp4, dp4, g6.f19969h2);
-                                        g6.f19969h2.setAlpha(alpha3);
+                                        int alpha3 = g6.f19669h2.getAlpha();
+                                        g6.f19669h2.setAlpha((int) (alpha3 * f27));
+                                        canvas3.drawRoundRect(rectF3, dp4, dp4, g6.f19669h2);
+                                        g6.f19669h2.setAlpha(alpha3);
                                     }
                                     canvas3.save();
                                     canvas3.translate(f25 + AndroidUtilities.dp(f28), ((AndroidUtilities.dp(f23) - dVar2.h.getHeight()) / 2.0f) + f26);
@@ -512,8 +512,8 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                         float f31 = dVar2.f47015o * f24;
                         i13 = i12;
                         i14 = 2;
-                        float y3 = yh.y(8, 2, dVar2.h.getWidth());
-                        dVar2.f47009i = d.b(d.b(f12, y3, f27, f28), y3, dp5, measuredWidth) - (y3 / 2.0f);
+                        float D = g0.D(8, 2, dVar2.h.getWidth());
+                        dVar2.f47009i = d.b(d.b(f12, D, f27, f28), D, dp5, measuredWidth) - (D / 2.0f);
                         dVar2.f47010j = centerY2 - AndroidUtilities.dp(58.0f);
                         if (dVar2.f47007f == null) {
                             h hVar2 = dVar2.f47004a;
@@ -563,10 +563,10 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                                     M2.setAlpha(alpha2);
                                                 }
                                                 if (R2 || paint2 != null) {
-                                                    int alpha3 = g6.f19969h2.getAlpha();
-                                                    g6.f19969h2.setAlpha((int) (alpha3 * f272));
-                                                    canvas3.drawRoundRect(rectF32, dp42, dp42, g6.f19969h2);
-                                                    g6.f19969h2.setAlpha(alpha3);
+                                                    int alpha3 = g6.f19669h2.getAlpha();
+                                                    g6.f19669h2.setAlpha((int) (alpha3 * f272));
+                                                    canvas3.drawRoundRect(rectF32, dp42, dp42, g6.f19669h2);
+                                                    g6.f19669h2.setAlpha(alpha3);
                                                 }
                                                 canvas3.save();
                                                 canvas3.translate(f252 + AndroidUtilities.dp(f282), ((AndroidUtilities.dp(f232) - dVar22.h.getHeight()) / 2.0f) + f262);
@@ -588,14 +588,14 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                     }
                                 });
                                 dVar2.f47007f = bVar4;
-                                bVar4.a((int) y3, AndroidUtilities.dp(21.0f), 3.0f, AndroidUtilities.dp(4));
+                                bVar4.a((int) D, AndroidUtilities.dp(21.0f), 3.0f, AndroidUtilities.dp(4));
                             }
                         }
                         b bVar5 = dVar2.f47007f;
                         if (bVar5 != null) {
                             float f32 = dVar2.f47009i;
                             float f33 = dVar2.f47010j;
-                            bVar5.setBounds((int) f32, (int) f33, (int) (f32 + y3), (int) (f33 + AndroidUtilities.dp(21.0f)));
+                            bVar5.setBounds((int) f32, (int) f33, (int) (f32 + D), (int) (f33 + AndroidUtilities.dp(21.0f)));
                             b bVar6 = dVar2.f47007f;
                             bVar6.f47001i = (int) (f31 * 255.0f);
                             bVar6.draw(canvas2);
@@ -646,7 +646,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
             invalidateSelf();
             ac acVar = this.W;
             if (acVar != null) {
-                acVar.f23512a.setVisibility(0);
+                acVar.f23191a.setVisibility(0);
             }
             if (this.M) {
                 bVar.run();

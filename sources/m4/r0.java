@@ -1,37 +1,49 @@
 package m4;
 
 import java.util.List;
-public final class r0 implements f1, g1, e2.j {
-    public final j1 f15594a;
-    public final int f15595b;
-    public final int f15596c;
+public final class r0 implements e1, f1 {
+    public final int f15342a;
+    public final i1 f15343b;
+    public final int f15344c;
 
-    public r0(j1 j1Var, int i10, int i11) {
-        this.f15594a = j1Var;
-        this.f15595b = i10;
-        this.f15596c = i11;
+    public r0(i1 i1Var, int i10, int i11) {
+        this.f15342a = i11;
+        this.f15343b = i1Var;
+        this.f15344c = i10;
     }
 
     @Override
-    public void a(n1 n1Var, w wVar, List list) {
-        j1 j1Var = this.f15594a;
-        n1Var.O(j1Var.K0(wVar, n1Var, this.f15595b), j1Var.K0(wVar, n1Var, this.f15596c), list);
-    }
-
-    @Override
-    public void accept(Object obj) {
-        n1 n1Var = (n1) obj;
-        j1 j1Var = this.f15594a;
-        ((f0) j1Var.f15474a.get()).getClass();
-        i1 i1Var = j1Var.f15478i;
-        if (i1Var != null) {
-            i1Var.setFixedSize(this.f15595b, this.f15596c);
+    public void a(m1 m1Var, v vVar, List list) {
+        switch (this.f15342a) {
+            case 1:
+                m1Var.b0(this.f15343b.K0(vVar, m1Var, this.f15344c), list);
+                return;
+            case 2:
+                i1 i1Var = this.f15343b;
+                i1Var.getClass();
+                int size = list.size();
+                int i10 = this.f15344c;
+                if (size == 1) {
+                    m1Var.u0((b2.p0) list.get(0), i1Var.K0(vVar, m1Var, i10));
+                    return;
+                }
+                m1Var.O(i1Var.K0(vVar, m1Var, i10), i1Var.K0(vVar, m1Var, i10 + 1), list);
+                return;
+            default:
+                m1Var.b0(this.f15343b.K0(vVar, m1Var, this.f15344c), list);
+                return;
         }
     }
 
     @Override
-    public void e(n1 n1Var, w wVar) {
-        j1 j1Var = this.f15594a;
-        n1Var.R(j1Var.K0(wVar, n1Var, this.f15595b), j1Var.K0(wVar, n1Var, this.f15596c));
+    public void h(m1 m1Var, v vVar) {
+        switch (this.f15342a) {
+            case 0:
+                m1Var.Y(this.f15343b.K0(vVar, m1Var, this.f15344c));
+                return;
+            default:
+                m1Var.Q(this.f15343b.K0(vVar, m1Var, this.f15344c));
+                return;
+        }
     }
 }

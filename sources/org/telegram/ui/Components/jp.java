@@ -4,26 +4,26 @@ import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class jp implements Utilities.Callback {
-    public final int f26427a;
-    public final zp f26428b;
+    public final int f26096a;
+    public final zp f26097b;
 
     public jp(zp zpVar, int i10) {
-        this.f26427a = i10;
-        this.f26428b = zpVar;
+        this.f26096a = i10;
+        this.f26097b = zpVar;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f26427a) {
+        switch (this.f26096a) {
             case 0:
-                zp zpVar = this.f26428b;
-                zpVar.f31948f0 = (TL_stories.TL_premium_boostsStatus) obj;
-                zpVar.f31946e0 = true;
+                zp zpVar = this.f26097b;
+                zpVar.f31651f0 = (TL_stories.TL_premium_boostsStatus) obj;
+                zpVar.f31649e0 = true;
                 zpVar.G(true);
-                zpVar.f31945d0 = false;
+                zpVar.f31648d0 = false;
                 return;
             default:
-                zp.n(this.f26428b, (ChannelBoostsController.CanApplyBoost) obj);
+                zp.n(this.f26097b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
         }
     }

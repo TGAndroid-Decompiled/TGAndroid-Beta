@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 public interface yq {
-    int L0(int i10);
+    int J0(int i10);
 
     void k(boolean z10);
 

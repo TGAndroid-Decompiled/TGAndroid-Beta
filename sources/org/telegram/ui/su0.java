@@ -1,10 +1,15 @@
 package org.telegram.ui;
+public final class su0 implements Runnable {
+    public final int f39946a;
+    public final Object f39947b;
 
-import android.view.animation.DecelerateInterpolator;
-public final class su0 {
-    public static final su0 e = new su0();
-    public DecelerateInterpolator f40214b;
-    public int f40213a = 200;
-    public boolean f40215c = true;
-    public boolean d = true;
+    public su0(Object obj, int i10) {
+        this.f39946a = i10;
+        this.f39947b = obj;
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.su0.run():void");
+    }
 }

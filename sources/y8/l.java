@@ -7,7 +7,7 @@ public final class l extends l6.a implements x8.f {
         DataHolder dataHolder = this.f14604a;
         int i10 = this.f14605b;
         dataHolder.c(i10, "asset_key");
-        return dataHolder.d[this.f14606c].getString(i10, dataHolder.f5086c.getInt("asset_key"));
+        return dataHolder.d[this.f14606c].getString(i10, dataHolder.f5089c.getInt("asset_key"));
     }
 
     @Override
@@ -15,6 +15,6 @@ public final class l extends l6.a implements x8.f {
         DataHolder dataHolder = this.f14604a;
         int i10 = this.f14605b;
         dataHolder.c(i10, "asset_id");
-        return dataHolder.d[this.f14606c].getString(i10, dataHolder.f5086c.getInt("asset_id"));
+        return dataHolder.d[this.f14606c].getString(i10, dataHolder.f5089c.getInt("asset_id"));
     }
 }

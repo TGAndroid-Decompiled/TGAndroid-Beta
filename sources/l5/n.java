@@ -1,8 +1,9 @@
 package l5;
 
 import java.util.HashMap;
+import m.h3;
 public abstract class n {
-    public static final li.k f14590a;
+    public static final h3 f14590a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -21,6 +22,6 @@ public abstract class n {
         hashMap2.remove(o5.b.class);
         hashMap.put(o5.f.class, f.f14570a);
         hashMap2.remove(o5.f.class);
-        f14590a = new li.k(new HashMap(hashMap), new HashMap(hashMap2), ma.g.f15729a, 5);
+        f14590a = new h3(new HashMap(hashMap), new HashMap(hashMap2), ma.g.f15464a, 4);
     }
 }

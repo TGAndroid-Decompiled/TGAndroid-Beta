@@ -4,7 +4,7 @@ import android.graphics.PointF;
 import android.os.Parcel;
 import android.os.Parcelable;
 import p7.m;
-import w7.g0;
+import w7.f0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new m(22);
     public final PointF[] f46225a;
@@ -17,10 +17,10 @@ public final class a extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.o(parcel, 2, this.f46225a, i10);
-        g0.s(parcel, 3, 4);
+        int q6 = f0.q(parcel, 20293);
+        f0.o(parcel, 2, this.f46225a, i10);
+        f0.s(parcel, 3, 4);
         parcel.writeInt(this.f46226b);
-        g0.r(parcel, q6);
+        f0.r(parcel, q6);
     }
 }

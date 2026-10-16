@@ -1,14 +1,22 @@
 package w3;
 
-import c3.h0;
+import e2.x;
 public final class s {
-    public final boolean f47172a;
-    public final String f47173b;
-    public final h0 f47174c;
-    public final int d;
-    public final byte[] e;
-
-    public s(boolean r5, java.lang.String r6, int r7, byte[] r8, int r9, int r10, byte[] r11) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.s.<init>(boolean, java.lang.String, int, byte[], int, int, byte[]):void");
-    }
+    public d f47174a;
+    public long f47175b;
+    public long f47176c;
+    public int d;
+    public int e;
+    public boolean f47181k;
+    public r f47183m;
+    public boolean f47185o;
+    public long f47186p;
+    public boolean f47187q;
+    public long[] f47177f = new long[0];
+    public int[] f47178g = new int[0];
+    public int[] h = new int[0];
+    public long[] f47179i = new long[0];
+    public boolean[] f47180j = new boolean[0];
+    public boolean[] f47182l = new boolean[0];
+    public final x f47184n = new x();
 }

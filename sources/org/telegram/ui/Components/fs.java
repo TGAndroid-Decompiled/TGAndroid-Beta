@@ -4,27 +4,27 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 public final class fs implements Runnable {
-    public final int f25117a;
-    public final is f25118b;
+    public final int f24807a;
+    public final is f24808b;
 
     public fs(is isVar, int i10) {
-        this.f25117a = i10;
-        this.f25118b = isVar;
+        this.f24807a = i10;
+        this.f24808b = isVar;
     }
 
     @Override
     public final void run() {
         View view;
-        switch (this.f25117a) {
+        switch (this.f24807a) {
             case 0:
-                is isVar = this.f25118b;
-                if (isVar.f26083b == null && (view = isVar.d) != null) {
+                is isVar = this.f24808b;
+                if (isVar.f25776b == null && (view = isVar.d) != null) {
                     View findFocus = view.findFocus();
                     if (findFocus instanceof EditText) {
-                        isVar.f26083b = (EditText) findFocus;
+                        isVar.f25776b = (EditText) findFocus;
                     }
                 }
-                EditText editText = isVar.f26083b;
+                EditText editText = isVar.f25776b;
                 if (editText != null) {
                     if (editText.length() != 0 || isVar.e) {
                         try {
@@ -32,9 +32,9 @@ public final class fs implements Runnable {
                             isVar.playSoundEffect(0);
                         } catch (Exception unused) {
                         }
-                        isVar.f26083b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        isVar.f26083b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (isVar.f26085f) {
+                        isVar.f25776b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        isVar.f25776b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (isVar.f25778f) {
                             isVar.postDelayed(isVar.h, 50L);
                             return;
                         }
@@ -44,9 +44,9 @@ public final class fs implements Runnable {
                 }
                 return;
             default:
-                is isVar2 = this.f25118b;
-                isVar2.f26086n = false;
-                isVar2.f26085f = true;
+                is isVar2 = this.f24808b;
+                isVar2.f25779n = false;
+                isVar2.f25778f = true;
                 isVar2.h.run();
                 return;
         }

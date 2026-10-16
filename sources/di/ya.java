@@ -16,14 +16,14 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.iw0;
 import org.telegram.ui.ProfileActivity;
 public final class ya implements Utilities.Callback2 {
-    public final int f8136a;
-    public final boolean f8137b;
-    public final Object f8138c;
+    public final int f8139a;
+    public final boolean f8140b;
+    public final Object f8141c;
 
     public ya(int i10, Object obj, boolean z10) {
-        this.f8136a = i10;
-        this.f8138c = obj;
-        this.f8137b = z10;
+        this.f8139a = i10;
+        this.f8141c = obj;
+        this.f8140b = z10;
     }
 
     @Override
@@ -33,27 +33,27 @@ public final class ya implements Utilities.Callback2 {
         iw0 iw0Var;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         String str;
-        switch (this.f8136a) {
+        switch (this.f8139a) {
             case 0:
-                kc kcVar = (kc) this.f8138c;
+                kc kcVar = (kc) this.f8141c;
                 Bitmap bitmap = (Bitmap) obj2;
-                int i10 = kcVar.f7241c;
-                if (obj != null && kcVar.f7283p2 == null && !kcVar.W && kcVar.I()) {
+                int i10 = kcVar.f7244c;
+                if (obj != null && kcVar.f7286p2 == null && !kcVar.W && kcVar.I()) {
                     int i11 = 0;
-                    if (this.f8137b) {
+                    if (this.f8140b) {
                         if (kcVar.K1 != null) {
                             kcVar.t();
-                            kcVar.K1.f7192j = true;
+                            kcVar.K1.f7195j = true;
                             if (obj instanceof MediaController.PhotoEntry) {
-                                mb mbVar = kcVar.f7302v1;
+                                mb mbVar = kcVar.f7305v1;
                                 mbVar.d0(mbVar.j0(((MediaController.PhotoEntry) obj).path, false));
                             } else if (obj instanceof TLObject) {
-                                mb mbVar2 = kcVar.f7302v1;
+                                mb mbVar2 = kcVar.f7305v1;
                                 TLObject tLObject = (TLObject) obj;
-                                mbVar2.f7533l2 = true;
+                                mbVar2.f7536l2 = true;
                                 i6 i6Var = mbVar2.R0;
                                 if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
-                                    f7 = closestPhotoSizeWithSize.f19241w / closestPhotoSizeWithSize.h;
+                                    f7 = closestPhotoSizeWithSize.f18941w / closestPhotoSizeWithSize.h;
                                 } else {
                                     f7 = 1.0f;
                                 }
@@ -83,8 +83,8 @@ public final class ya implements Utilities.Callback2 {
                         } else {
                             z10 = false;
                         }
-                        i7Var.f7062n0 = -1.0f;
-                        i7Var.f7063o0 = z10;
+                        i7Var.f7065n0 = -1.0f;
+                        i7Var.f7066o0 = z10;
                         i7Var.invalidate();
                         kcVar.e(false);
                         boolean z11 = obj instanceof MediaController.PhotoEntry;
@@ -96,8 +96,8 @@ public final class ya implements Utilities.Callback2 {
                             kcVar.O1 = i11;
                             k8 l4 = k8.l(photoEntry);
                             l4.M0 = bitmap;
-                            l4.J0 = kcVar.f7301v0;
-                            l4.K0 = kcVar.f7305w0;
+                            l4.J0 = kcVar.f7304v0;
+                            l4.K0 = kcVar.f7308w0;
                             l4.A();
                             kcVar.L1 = true;
                             if (kcVar.A0.j()) {
@@ -118,12 +118,12 @@ public final class ya implements Utilities.Callback2 {
                         } else if (obj instanceof k8) {
                             k8 k8Var = (k8) obj;
                             if (k8Var.L == null && !k8Var.v()) {
-                                kcVar.f7249e1.c(R.raw.error, "Failed to load draft");
-                                MessagesController.getInstance(i10).getStoriesController().f3980w.b(k8Var);
+                                kcVar.f7252e1.c(R.raw.error, "Failed to load draft");
+                                MessagesController.getInstance(i10).getStoriesController().f3984w.b(k8Var);
                                 return;
                             }
-                            k8Var.J0 = kcVar.f7301v0;
-                            k8Var.K0 = kcVar.f7305w0;
+                            k8Var.J0 = kcVar.f7304v0;
+                            k8Var.K0 = kcVar.f7308w0;
                             kcVar.O1 = k8Var.K ? 1 : 0;
                             k8Var.M0 = bitmap;
                             kcVar.L1 = false;
@@ -139,8 +139,8 @@ public final class ya implements Utilities.Callback2 {
                     }
                     jb jbVar = kcVar.M0;
                     if (jbVar != null) {
-                        kcVar.f7271l2 = jbVar.e.e0();
-                        kcVar.f7273m2 = kcVar.M0.getSelectedAlbum();
+                        kcVar.f7274l2 = jbVar.e.e0();
+                        kcVar.f7276m2 = kcVar.M0.getSelectedAlbum();
                         return;
                     }
                     return;
@@ -148,20 +148,20 @@ public final class ya implements Utilities.Callback2 {
                 return;
             case 1:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
-                gi.k0.n((gi.k0) this.f8138c, this.f8137b, (TLRPC.TL_error) obj2);
+                gi.k0.n((gi.k0) this.f8141c, this.f8140b, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                ProfileActivity profileActivity = (ProfileActivity) this.f8138c;
+                ProfileActivity profileActivity = (ProfileActivity) this.f8141c;
                 Integer num = (Integer) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (!profileActivity.M3()) {
                     if (org.telegram.ui.Components.zc.a(profileActivity)) {
                         int intValue = num.intValue();
-                        boolean z12 = this.f8137b;
+                        boolean z12 = this.f8140b;
                         if (intValue == 1) {
                             org.telegram.ui.Components.zc.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            org.telegram.ui.Components.zc.l(DialogObject.getShortName(profileActivity.f32559e1), profileActivity, z12).j();
+                            org.telegram.ui.Components.zc.l(DialogObject.getShortName(profileActivity.f32261e1), profileActivity, z12).j();
                         } else if (tL_error != null) {
                             org.telegram.ui.Components.zc.d0(tL_error);
                         }
@@ -175,15 +175,15 @@ public final class ya implements Utilities.Callback2 {
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.b0 b0Var = (org.telegram.ui.Wallet.b0) this.f8138c;
+                org.telegram.ui.Wallet.c0 c0Var = (org.telegram.ui.Wallet.c0) this.f8141c;
                 TL_wallet.nftItems nftitems = (TL_wallet.nftItems) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = b0Var.f32941b;
-                ArrayList arrayList2 = b0Var.f32942c;
-                b0Var.f32948l = -1;
-                b0Var.f32946j = false;
-                b0Var.f32945i = false;
-                boolean z13 = this.f8137b;
+                ArrayList arrayList = c0Var.f32717b;
+                ArrayList arrayList2 = c0Var.f32718c;
+                c0Var.f32724l = -1;
+                c0Var.f32722j = false;
+                c0Var.f32721i = false;
+                boolean z13 = this.f8140b;
                 if (nftitems != null) {
                     if (z13) {
                         arrayList.clear();
@@ -198,7 +198,7 @@ public final class ya implements Utilities.Callback2 {
                         int i13 = 0;
                         while (true) {
                             if (i13 < arrayList.size()) {
-                                if (org.telegram.ui.Wallet.j0.b(((TL_wallet.nftItem) arrayList.get(i13)).address, nftitem2.address)) {
+                                if (org.telegram.ui.Wallet.k0.b(((TL_wallet.nftItem) arrayList.get(i13)).address, nftitem2.address)) {
                                     arrayList.set(i13, nftitem2);
                                 } else {
                                     i13++;
@@ -209,10 +209,10 @@ public final class ya implements Utilities.Callback2 {
                         }
                     }
                     String str2 = nftitems.next_offset;
-                    b0Var.f32943f = str2;
+                    c0Var.f32719f = str2;
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    b0Var.f32944g = isEmpty;
-                    b0Var.h = true;
+                    c0Var.f32720g = isEmpty;
+                    c0Var.h = true;
                     if (isEmpty) {
                         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
                             TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) arrayList2.get(size2);
@@ -224,7 +224,7 @@ public final class ya implements Utilities.Callback2 {
                                     if (i14 < size3) {
                                         Object obj3 = arrayList.get(i14);
                                         i14++;
-                                        if (org.telegram.ui.Wallet.j0.b(((TL_wallet.nftItem) obj3).address, str3)) {
+                                        if (org.telegram.ui.Wallet.k0.b(((TL_wallet.nftItem) obj3).address, str3)) {
                                             break;
                                         }
                                     } else {
@@ -234,20 +234,20 @@ public final class ya implements Utilities.Callback2 {
                             }
                         }
                     }
-                    b0Var.g();
+                    c0Var.g();
                 } else {
                     if (z13) {
-                        b0Var.f32944g = false;
-                        b0Var.h = false;
+                        c0Var.f32720g = false;
+                        c0Var.h = false;
                     }
                     if (tL_error2 == null) {
                         str = "Could not load collectibles";
                     } else {
                         str = tL_error2.text;
                     }
-                    b0Var.f32947k = str;
+                    c0Var.f32723k = str;
                 }
-                b0Var.f();
+                c0Var.f();
                 return;
         }
     }

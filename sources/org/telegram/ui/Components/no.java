@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.lg1;
+import org.telegram.ui.kg1;
 public final class no extends z9 {
     public final org.telegram.ui.Cells.m6 G;
     public final org.telegram.ui.ActionBar.m2 H;
@@ -27,28 +27,28 @@ public final class no extends z9 {
     public final void onDraw(Canvas canvas) {
         long j10;
         ro roVar = this.K;
-        if (roVar.f28887b && this.e == null) {
+        if (roVar.f28588b && this.e == null) {
             org.telegram.ui.Cells.m6 m6Var = this.G;
             m6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            m6Var.f3324a = true;
+            m6Var.f3328a = true;
             m6Var.v = true;
             m6Var.J = this.J;
-            Integer num = roVar.f28889c;
+            Integer num = roVar.f28590c;
             if (num != null) {
-                m6Var.f3345z = num.intValue();
+                m6Var.f3349z = num.intValue();
             }
             org.telegram.ui.fo foVar = roVar.G;
             if (foVar != null) {
                 j10 = foVar.a();
             } else {
                 org.telegram.ui.ActionBar.m2 m2Var = this.H;
-                if (m2Var instanceof lg1) {
-                    j10 = -((lg1) m2Var).f37957a;
+                if (m2Var instanceof kg1) {
+                    j10 = -((kg1) m2Var).f37380a;
                 } else {
                     j10 = 0;
                 }
             }
-            bi.s9.h(j10, canvas, this.f31813a, m6Var);
+            bi.s9.h(j10, canvas, this.f31507a, m6Var);
             return;
         }
         super.onDraw(canvas);
@@ -67,7 +67,7 @@ public final class no extends z9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.K.f28887b && this.G.a(motionEvent, this)) {
+        if (this.K.f28588b && this.G.a(motionEvent, this)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

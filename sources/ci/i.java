@@ -7,16 +7,16 @@ import org.telegram.ui.Components.nv0;
 import org.telegram.ui.Components.pu0;
 import org.telegram.ui.Components.ul0;
 public final class i extends nv0 {
-    public final t f4762o3;
+    public final t f4765o3;
 
     public i(t tVar, Context context) {
         super(context);
-        this.f4762o3 = tVar;
+        this.f4765o3 = tVar;
     }
 
     @Override
     public final boolean A1() {
-        return this.f4762o3.f4781b;
+        return this.f4765o3.f4784b;
     }
 
     @Override
@@ -36,10 +36,10 @@ public final class i extends nv0 {
             }
         }
         float f7 = i11;
-        t tVar = this.f4762o3;
+        t tVar = this.f4765o3;
         q qVar = tVar.J;
-        if (tVar.f4781b) {
-            pu0 pu0Var = tVar.f4785r;
+        if (tVar.f4784b) {
+            pu0 pu0Var = tVar.f4788r;
             int i13 = 0;
             for (int i14 = 0; i14 < pu0Var.getChildCount(); i14++) {
                 int bottom2 = pu0Var.getChildAt(i14).getBottom() - pu0Var.getPaddingTop();
@@ -47,7 +47,7 @@ public final class i extends nv0 {
                     i13 = bottom2;
                 }
             }
-            f7 = AndroidUtilities.lerp(f7, i13, tVar.f4782c);
+            f7 = AndroidUtilities.lerp(f7, i13, tVar.f4785c);
         }
         if (tVar.v.h() <= 0) {
             i10 = 8;
@@ -58,22 +58,22 @@ public final class i extends nv0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f4762o3.e;
+        return this.f4765o3.e;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f4762o3.f4782c;
+        return this.f4765o3.f4785c;
     }
 
     @Override
     public final int getColumnsCount() {
-        return this.f4762o3.d;
+        return this.f4765o3.d;
     }
 
     @Override
     public final ul0 getMovingAdapter() {
-        t tVar = this.f4762o3;
+        t tVar = this.f4765o3;
         if (tVar.G.f44993y == 0 && !tVar.W.G.C1) {
             return tVar.v;
         }
@@ -82,11 +82,11 @@ public final class i extends nv0 {
 
     @Override
     public final ul0 getSupportingAdapter() {
-        return this.f4762o3.f4787w;
+        return this.f4765o3.f4790w;
     }
 
     @Override
     public final pu0 getSupportingListView() {
-        return this.f4762o3.f4785r;
+        return this.f4765o3.f4788r;
     }
 }

@@ -16,21 +16,21 @@ public final class ox extends ew {
     @Override
     public final void Y(boolean z10) {
         wz wzVar = this.X;
-        ArrayList arrayList = wzVar.f31053p1;
+        ArrayList arrayList = wzVar.f30746p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f19243id))) {
-                arrayList.add(Long.valueOf(stickerSet.f19243id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f18943id))) {
+                arrayList.add(Long.valueOf(stickerSet.f18943id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f19243id));
+            arrayList.remove(Long.valueOf(stickerSet.f18943id));
         }
         wzVar.T();
     }
 
     @Override
     public final void dismiss() {
-        this.X.f31074v2 = false;
+        this.X.f30767v2 = false;
         super.dismiss();
     }
 }

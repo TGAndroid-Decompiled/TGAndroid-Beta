@@ -80,7 +80,7 @@ public final class t implements g2.h {
                         if (!t0Var.f46050w) {
                             max = t0Var.f46048r;
                         } else {
-                            max = Math.max(t0Var.f46051x.m(true), t0Var.f46048r);
+                            max = Math.max(t0Var.f46051x.j(true), t0Var.f46048r);
                         }
                         long j10 = max;
                         int a2 = xVar.a();

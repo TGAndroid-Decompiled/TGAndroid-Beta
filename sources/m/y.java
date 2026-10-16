@@ -1,191 +1,187 @@
 package m;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Shader;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ClipDrawable;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RoundRectShape;
 import android.text.method.KeyListener;
 import android.text.method.NumberKeyListener;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
-import android.widget.AbsSeekBar;
-import android.widget.EditText;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import ji.d4;
-import w7.n6;
-public class y {
-    public static final int[] d = {16843067, 16843068};
-    public final int f15288a = 2;
-    public View f15289b;
-    public Object f15290c;
+import android.widget.MultiAutoCompleteTextView;
+import v7.q7;
+public final class y extends MultiAutoCompleteTextView implements u0.k {
+    public static final int[] d = {16843126};
+    public final e2.c f15012a;
+    public final y0 f15013b;
+    public final a0 f15014c;
 
-    public y() {
-    }
-
-    public KeyListener a(KeyListener keyListener) {
+    public y(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet, 2130968624);
+        e3.a(context);
+        d3.a(this, getContext());
+        h3 P = h3.P(getContext(), attributeSet, d, 2130968624);
+        if (((TypedArray) P.f14851c).hasValue(0)) {
+            setDropDownBackgroundDrawable(P.F(0));
+        }
+        P.Q();
+        e2.c cVar = new e2.c(this);
+        this.f15012a = cVar;
+        cVar.f(attributeSet, 2130968624);
+        y0 y0Var = new y0(this);
+        this.f15013b = y0Var;
+        y0Var.f(attributeSet, 2130968624);
+        y0Var.b();
+        a0 a0Var = new a0(this);
+        this.f15014c = a0Var;
+        a0Var.b(attributeSet, 2130968624);
+        KeyListener keyListener = getKeyListener();
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((m4.c) ((d4) this.f15290c).f13233b).getClass();
-            if (keyListener instanceof q1.e) {
-                return keyListener;
-            }
-            if (keyListener == null) {
-                return null;
-            }
-            if (keyListener instanceof NumberKeyListener) {
-                return keyListener;
-            }
-            return new q1.e(keyListener);
-        }
-        return keyListener;
-    }
-
-    public void b(AttributeSet attributeSet, int i10) {
-        boolean z10 = true;
-        switch (this.f15288a) {
-            case 0:
-                AbsSeekBar absSeekBar = (AbsSeekBar) this.f15289b;
-                li.k P = li.k.P(absSeekBar.getContext(), attributeSet, d, i10);
-                Drawable G = P.G(0);
-                if (G != null) {
-                    if (G instanceof AnimationDrawable) {
-                        AnimationDrawable animationDrawable = (AnimationDrawable) G;
-                        int numberOfFrames = animationDrawable.getNumberOfFrames();
-                        AnimationDrawable animationDrawable2 = new AnimationDrawable();
-                        animationDrawable2.setOneShot(animationDrawable.isOneShot());
-                        for (int i11 = 0; i11 < numberOfFrames; i11++) {
-                            Drawable e = e(animationDrawable.getFrame(i11), true);
-                            e.setLevel(10000);
-                            animationDrawable2.addFrame(e, animationDrawable.getDuration(i11));
-                        }
-                        animationDrawable2.setLevel(10000);
-                        G = animationDrawable2;
-                    }
-                    absSeekBar.setIndeterminateDrawable(G);
-                }
-                Drawable G2 = P.G(1);
-                if (G2 != null) {
-                    absSeekBar.setProgressDrawable(e(G2, false));
-                }
-                P.Q();
-                return;
-            default:
-                TypedArray obtainStyledAttributes = ((EditText) this.f15289b).getContext().obtainStyledAttributes(attributeSet, f.a.f8807i, i10, 0);
-                try {
-                    if (obtainStyledAttributes.hasValue(14)) {
-                        z10 = obtainStyledAttributes.getBoolean(14, true);
-                    }
-                    obtainStyledAttributes.recycle();
-                    d(z10);
-                    return;
-                } catch (Throwable th2) {
-                    obtainStyledAttributes.recycle();
-                    throw th2;
-                }
-        }
-    }
-
-    public q1.b c(InputConnection inputConnection, EditorInfo editorInfo) {
-        d4 d4Var = (d4) this.f15290c;
-        if (inputConnection == null) {
-            d4Var.getClass();
-            inputConnection = null;
-        } else {
-            m4.c cVar = (m4.c) d4Var.f13233b;
-            cVar.getClass();
-            if (!(inputConnection instanceof q1.b)) {
-                inputConnection = new q1.b((EditText) cVar.f15392b, inputConnection, editorInfo);
-            }
-        }
-        return (q1.b) inputConnection;
-    }
-
-    public void d(boolean z10) {
-        q1.i iVar = (q1.i) ((m4.c) ((d4) this.f15290c).f13233b).f15393c;
-        if (iVar.f43253c != z10) {
-            if (iVar.f43252b != null) {
-                androidx.emoji2.text.l a2 = androidx.emoji2.text.l.a();
-                q1.h hVar = iVar.f43252b;
-                a2.getClass();
-                n6.a(hVar, "initCallback cannot be null");
-                ReentrantReadWriteLock reentrantReadWriteLock = a2.f1491a;
-                reentrantReadWriteLock.writeLock().lock();
-                try {
-                    a2.f1492b.remove(hVar);
-                } finally {
-                    reentrantReadWriteLock.writeLock().unlock();
-                }
-            }
-            iVar.f43253c = z10;
-            if (z10) {
-                q1.i.a(iVar.f43251a, androidx.emoji2.text.l.a().b());
+            boolean isFocusable = isFocusable();
+            boolean isClickable = isClickable();
+            boolean isLongClickable = isLongClickable();
+            int inputType = getInputType();
+            KeyListener a2 = a0Var.a(keyListener);
+            if (a2 != keyListener) {
+                super.setKeyListener(a2);
+                setRawInputType(inputType);
+                setFocusable(isFocusable);
+                setClickable(isClickable);
+                setLongClickable(isLongClickable);
             }
         }
     }
 
-    public Drawable e(Drawable drawable, boolean z10) {
-        boolean z11;
-        if (drawable instanceof j0.b) {
-            ((j0.c) ((j0.b) drawable)).getClass();
-        } else if (drawable instanceof LayerDrawable) {
-            LayerDrawable layerDrawable = (LayerDrawable) drawable;
-            int numberOfLayers = layerDrawable.getNumberOfLayers();
-            Drawable[] drawableArr = new Drawable[numberOfLayers];
-            for (int i10 = 0; i10 < numberOfLayers; i10++) {
-                int id2 = layerDrawable.getId(i10);
-                Drawable drawable2 = layerDrawable.getDrawable(i10);
-                if (id2 != 16908301 && id2 != 16908303) {
-                    z11 = false;
-                } else {
-                    z11 = true;
-                }
-                drawableArr[i10] = e(drawable2, z11);
-            }
-            LayerDrawable layerDrawable2 = new LayerDrawable(drawableArr);
-            for (int i11 = 0; i11 < numberOfLayers; i11++) {
-                layerDrawable2.setId(i11, layerDrawable.getId(i11));
-                layerDrawable2.setLayerGravity(i11, layerDrawable.getLayerGravity(i11));
-                layerDrawable2.setLayerWidth(i11, layerDrawable.getLayerWidth(i11));
-                layerDrawable2.setLayerHeight(i11, layerDrawable.getLayerHeight(i11));
-                layerDrawable2.setLayerInsetLeft(i11, layerDrawable.getLayerInsetLeft(i11));
-                layerDrawable2.setLayerInsetRight(i11, layerDrawable.getLayerInsetRight(i11));
-                layerDrawable2.setLayerInsetTop(i11, layerDrawable.getLayerInsetTop(i11));
-                layerDrawable2.setLayerInsetBottom(i11, layerDrawable.getLayerInsetBottom(i11));
-                layerDrawable2.setLayerInsetStart(i11, layerDrawable.getLayerInsetStart(i11));
-                layerDrawable2.setLayerInsetEnd(i11, layerDrawable.getLayerInsetEnd(i11));
-            }
-            return layerDrawable2;
-        } else if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            Bitmap bitmap = bitmapDrawable.getBitmap();
-            if (((Bitmap) this.f15290c) == null) {
-                this.f15290c = bitmap;
-            }
-            ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null));
-            shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
-            shapeDrawable.getPaint().setColorFilter(bitmapDrawable.getPaint().getColorFilter());
-            if (z10) {
-                return new ClipDrawable(shapeDrawable, 3, 1);
-            }
-            return shapeDrawable;
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        e2.c cVar = this.f15012a;
+        if (cVar != null) {
+            cVar.b();
         }
-        return drawable;
+        y0 y0Var = this.f15013b;
+        if (y0Var != null) {
+            y0Var.b();
+        }
     }
 
-    public y(AbsSeekBar absSeekBar) {
-        this.f15289b = absSeekBar;
+    public ColorStateList getSupportBackgroundTintList() {
+        e2.c cVar = this.f15012a;
+        if (cVar != null) {
+            return cVar.d();
+        }
+        return null;
     }
 
-    public y(EditText editText) {
-        this.f15289b = editText;
-        this.f15290c = new d4(editText);
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
+        e2.c cVar = this.f15012a;
+        if (cVar != null) {
+            return cVar.e();
+        }
+        return null;
+    }
+
+    public ColorStateList getSupportCompoundDrawablesTintList() {
+        return this.f15013b.d();
+    }
+
+    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
+        return this.f15013b.e();
+    }
+
+    @Override
+    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        w7.p.a(editorInfo, onCreateInputConnection, this);
+        return this.f15014c.c(onCreateInputConnection, editorInfo);
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        super.setBackgroundDrawable(drawable);
+        e2.c cVar = this.f15012a;
+        if (cVar != null) {
+            cVar.g();
+        }
+    }
+
+    @Override
+    public void setBackgroundResource(int i10) {
+        super.setBackgroundResource(i10);
+        e2.c cVar = this.f15012a;
+        if (cVar != null) {
+            cVar.h(i10);
+        }
+    }
+
+    @Override
+    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        y0 y0Var = this.f15013b;
+        if (y0Var != null) {
+            y0Var.b();
+        }
+    }
+
+    @Override
+    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        y0 y0Var = this.f15013b;
+        if (y0Var != null) {
+            y0Var.b();
+        }
+    }
+
+    @Override
+    public void setDropDownBackgroundResource(int i10) {
+        setDropDownBackgroundDrawable(q7.b(getContext(), i10));
+    }
+
+    public void setEmojiCompatEnabled(boolean z10) {
+        this.f15014c.d(z10);
+    }
+
+    @Override
+    public void setKeyListener(KeyListener keyListener) {
+        super.setKeyListener(this.f15014c.a(keyListener));
+    }
+
+    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
+        e2.c cVar = this.f15012a;
+        if (cVar != null) {
+            cVar.l(colorStateList);
+        }
+    }
+
+    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
+        e2.c cVar = this.f15012a;
+        if (cVar != null) {
+            cVar.m(mode);
+        }
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
+        y0 y0Var = this.f15013b;
+        y0Var.l(colorStateList);
+        y0Var.b();
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
+        y0 y0Var = this.f15013b;
+        y0Var.m(mode);
+        y0Var.b();
+    }
+
+    @Override
+    public final void setTextAppearance(Context context, int i10) {
+        super.setTextAppearance(context, i10);
+        y0 y0Var = this.f15013b;
+        if (y0Var != null) {
+            y0Var.g(context, i10);
+        }
     }
 }

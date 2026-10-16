@@ -14,24 +14,24 @@ public final class mc0 extends org.telegram.ui.Cells.u1 {
     @Override
     public final void X3(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z10, boolean z11, boolean z12, boolean z13) {
         super.X3(messageObject, groupedMessages, z10, z11, z12, z13);
-        pc0.b(this.Ge.f27939c, this);
+        pc0.b(this.Ge.f27637c, this);
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.Ge.f27939c.f28287f.invalidate();
+        this.Ge.f27637c.f27968f.invalidate();
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        pc0.b(this.Ge.f27939c, this);
+        pc0.b(this.Ge.f27637c, this);
     }
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
         super.invalidate(i10, i11, i12, i13);
-        this.Ge.f27939c.f28287f.invalidate();
+        this.Ge.f27637c.f27968f.invalidate();
     }
 }

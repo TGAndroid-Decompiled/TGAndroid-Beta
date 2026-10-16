@@ -6,9 +6,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class vp0 extends LinearLayout {
-    public final ew0 f30621a;
-    public final TextView f30622b;
-    public final TextView f30623c;
+    public final ew0 f30290a;
+    public final TextView f30291b;
+    public final TextView f30292c;
 
     public vp0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
@@ -19,13 +19,13 @@ public final class vp0 extends LinearLayout {
         int i10 = dp / 2;
         setPadding(dp, i10, dp, i10);
         ew0 ew0Var = new ew0(context);
-        this.f30621a = ew0Var;
-        addView(ew0Var, w7.a6.d(40.0f, 40));
+        this.f30290a = ew0Var;
+        addView(ew0Var, w7.z5.d(40.0f, 40));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        addView(linearLayout, w7.a6.m(1.0f, 0, -1, 12, 0, 0));
+        addView(linearLayout, w7.z5.m(1.0f, 0, -1, 12, 0, 0));
         TextView textView = new TextView(context);
-        this.f30622b = textView;
+        this.f30291b = textView;
         int i11 = org.telegram.ui.ActionBar.g6.E8;
         textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
         textView.setTextSize(1, 16.0f);
@@ -33,7 +33,7 @@ public final class vp0 extends LinearLayout {
         textView.setMaxLines(1);
         linearLayout.addView(textView);
         TextView textView2 = new TextView(context);
-        this.f30623c = textView2;
+        this.f30292c = textView2;
         textView2.setTextColor(i0.a.k(org.telegram.ui.ActionBar.g6.w0(i11, c6Var), 102));
         textView2.setTextSize(1, 14.0f);
         textView2.setTag(textView2);

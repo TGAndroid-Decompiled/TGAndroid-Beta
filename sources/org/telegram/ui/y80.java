@@ -10,34 +10,34 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 public final class y80 implements Runnable {
-    public final int f42070a;
-    public final LaunchActivity f42071b;
-    public final int f42072c;
+    public final int f41773a;
+    public final LaunchActivity f41774b;
+    public final int f41775c;
 
     public y80(LaunchActivity launchActivity, int i10, int i11) {
-        this.f42070a = i11;
-        this.f42071b = launchActivity;
-        this.f42072c = i10;
+        this.f41773a = i11;
+        this.f41774b = launchActivity;
+        this.f41775c = i10;
     }
 
     @Override
     public final void run() {
         File directory;
-        int i10 = this.f42070a;
-        int i11 = this.f42072c;
-        LaunchActivity launchActivity = this.f42071b;
+        int i10 = this.f41773a;
+        int i11 = this.f41775c;
+        LaunchActivity launchActivity = this.f41774b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
                 if (UserConfig.getInstance(launchActivity.O).isClientActivated()) {
                     try {
                         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                        if ((((i11 == 2 || i11 == 1) && Math.abs(launchActivity.f32146w1 - System.currentTimeMillis()) > 240000) || Math.abs(globalMainSettings.getLong("last_space_check", 0L) - System.currentTimeMillis()) >= 259200000) && (directory = FileLoader.getDirectory(4)) != null) {
+                        if ((((i11 == 2 || i11 == 1) && Math.abs(launchActivity.f31848w1 - System.currentTimeMillis()) > 240000) || Math.abs(globalMainSettings.getLong("last_space_check", 0L) - System.currentTimeMillis()) >= 259200000) && (directory = FileLoader.getDirectory(4)) != null) {
                             StatFs statFs = new StatFs(directory.getAbsolutePath());
                             long availableBlocksLong = statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong();
                             if (i11 > 0 || availableBlocksLong < 52428800) {
                                 if (i11 > 0) {
-                                    launchActivity.f32146w1 = System.currentTimeMillis();
+                                    launchActivity.f31848w1 = System.currentTimeMillis();
                                 }
                                 globalMainSettings.edit().putLong("last_space_check", System.currentTimeMillis()).commit();
                                 AndroidUtilities.runOnUIThread(new k90(launchActivity, 6));

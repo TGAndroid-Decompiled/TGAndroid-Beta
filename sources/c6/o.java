@@ -7,37 +7,36 @@ import java.util.Arrays;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import w7.g0;
 public final class o extends o6.a {
     public static final Parcelable.Creator<o> CREATOR = new v(14);
-    public MediaInfo f4512a;
-    public int f4513b;
-    public boolean f4514c;
+    public MediaInfo f4515a;
+    public int f4516b;
+    public boolean f4517c;
     public double d;
     public double e;
-    public double f4515f;
+    public double f4518f;
     public long[] h;
-    public String f4516n;
-    public JSONObject f4517r;
+    public String f4519n;
+    public JSONObject f4520r;
 
     public o(MediaInfo mediaInfo, int i10, boolean z10, double d, double d10, double d11, long[] jArr, String str) {
-        this.f4512a = mediaInfo;
-        this.f4513b = i10;
-        this.f4514c = z10;
+        this.f4515a = mediaInfo;
+        this.f4516b = i10;
+        this.f4517c = z10;
         this.d = d;
         this.e = d10;
-        this.f4515f = d11;
+        this.f4518f = d11;
         this.h = jArr;
-        this.f4516n = str;
+        this.f4519n = str;
         if (str == null) {
-            this.f4517r = null;
+            this.f4520r = null;
             return;
         }
         try {
-            this.f4517r = new JSONObject(this.f4516n);
+            this.f4520r = new JSONObject(this.f4519n);
         } catch (JSONException unused) {
-            this.f4517r = null;
-            this.f4516n = null;
+            this.f4520r = null;
+            this.f4519n = null;
         }
     }
 
@@ -48,17 +47,17 @@ public final class o extends o6.a {
         int i10;
         boolean z12 = false;
         if (jSONObject.has("media")) {
-            this.f4512a = new MediaInfo(jSONObject.getJSONObject("media"));
+            this.f4515a = new MediaInfo(jSONObject.getJSONObject("media"));
             z10 = true;
         } else {
             z10 = false;
         }
-        if (jSONObject.has("itemId") && this.f4513b != (i10 = jSONObject.getInt("itemId"))) {
-            this.f4513b = i10;
+        if (jSONObject.has("itemId") && this.f4516b != (i10 = jSONObject.getInt("itemId"))) {
+            this.f4516b = i10;
             z10 = true;
         }
-        if (jSONObject.has("autoplay") && this.f4514c != (z11 = jSONObject.getBoolean("autoplay"))) {
-            this.f4514c = z11;
+        if (jSONObject.has("autoplay") && this.f4517c != (z11 = jSONObject.getBoolean("autoplay"))) {
+            this.f4517c = z11;
             z10 = true;
         }
         double optDouble = jSONObject.optDouble("startTime");
@@ -75,8 +74,8 @@ public final class o extends o6.a {
         }
         if (jSONObject.has("preloadTime")) {
             double d10 = jSONObject.getDouble("preloadTime");
-            if (Math.abs(d10 - this.f4515f) > 1.0E-7d) {
-                this.f4515f = d10;
+            if (Math.abs(d10 - this.f4518f) > 1.0E-7d) {
+                this.f4518f = d10;
                 z10 = true;
             }
         }
@@ -104,7 +103,7 @@ public final class o extends o6.a {
             z10 = true;
         }
         if (jSONObject.has("customData")) {
-            this.f4517r = jSONObject.getJSONObject("customData");
+            this.f4520r = jSONObject.getJSONObject("customData");
             return true;
         }
         return z10;
@@ -113,15 +112,15 @@ public final class o extends o6.a {
     public final JSONObject c() {
         JSONObject jSONObject = new JSONObject();
         try {
-            MediaInfo mediaInfo = this.f4512a;
+            MediaInfo mediaInfo = this.f4515a;
             if (mediaInfo != null) {
                 jSONObject.put("media", mediaInfo.b());
             }
-            int i10 = this.f4513b;
+            int i10 = this.f4516b;
             if (i10 != 0) {
                 jSONObject.put("itemId", i10);
             }
-            jSONObject.put("autoplay", this.f4514c);
+            jSONObject.put("autoplay", this.f4517c);
             if (!Double.isNaN(this.d)) {
                 jSONObject.put("startTime", this.d);
             }
@@ -129,7 +128,7 @@ public final class o extends o6.a {
             if (d != Double.POSITIVE_INFINITY) {
                 jSONObject.put("playbackDuration", d);
             }
-            jSONObject.put("preloadTime", this.f4515f);
+            jSONObject.put("preloadTime", this.f4518f);
             if (this.h != null) {
                 JSONArray jSONArray = new JSONArray();
                 for (long j10 : this.h) {
@@ -137,7 +136,7 @@ public final class o extends o6.a {
                 }
                 jSONObject.put("activeTrackIds", jSONArray);
             }
-            JSONObject jSONObject2 = this.f4517r;
+            JSONObject jSONObject2 = this.f4520r;
             if (jSONObject2 != null) {
                 jSONObject.put("customData", jSONObject2);
             }
@@ -156,13 +155,13 @@ public final class o extends o6.a {
             return false;
         }
         o oVar = (o) obj;
-        JSONObject jSONObject = this.f4517r;
+        JSONObject jSONObject = this.f4520r;
         if (jSONObject != null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        JSONObject jSONObject2 = oVar.f4517r;
+        JSONObject jSONObject2 = oVar.f4520r;
         if (jSONObject2 != null) {
             z11 = false;
         } else {
@@ -171,46 +170,46 @@ public final class o extends o6.a {
         if (z10 != z11) {
             return false;
         }
-        if ((jSONObject == null || jSONObject2 == null || u6.c.a(jSONObject, jSONObject2)) && g6.a.d(this.f4512a, oVar.f4512a) && this.f4513b == oVar.f4513b && this.f4514c == oVar.f4514c && (((Double.isNaN(this.d) && Double.isNaN(oVar.d)) || this.d == oVar.d) && this.e == oVar.e && this.f4515f == oVar.f4515f && Arrays.equals(this.h, oVar.h))) {
+        if ((jSONObject == null || jSONObject2 == null || u6.c.a(jSONObject, jSONObject2)) && g6.a.d(this.f4515a, oVar.f4515a) && this.f4516b == oVar.f4516b && this.f4517c == oVar.f4517c && (((Double.isNaN(this.d) && Double.isNaN(oVar.d)) || this.d == oVar.d) && this.e == oVar.e && this.f4518f == oVar.f4518f && Arrays.equals(this.h, oVar.h))) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4512a, Integer.valueOf(this.f4513b), Boolean.valueOf(this.f4514c), Double.valueOf(this.d), Double.valueOf(this.e), Double.valueOf(this.f4515f), Integer.valueOf(Arrays.hashCode(this.h)), String.valueOf(this.f4517r)});
+        return Arrays.hashCode(new Object[]{this.f4515a, Integer.valueOf(this.f4516b), Boolean.valueOf(this.f4517c), Double.valueOf(this.d), Double.valueOf(this.e), Double.valueOf(this.f4518f), Integer.valueOf(Arrays.hashCode(this.h)), String.valueOf(this.f4520r)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         String jSONObject;
-        JSONObject jSONObject2 = this.f4517r;
+        JSONObject jSONObject2 = this.f4520r;
         if (jSONObject2 == null) {
             jSONObject = null;
         } else {
             jSONObject = jSONObject2.toString();
         }
-        this.f4516n = jSONObject;
-        int q6 = g0.q(parcel, 20293);
-        g0.k(parcel, 2, this.f4512a, i10);
-        int i11 = this.f4513b;
-        g0.s(parcel, 3, 4);
+        this.f4519n = jSONObject;
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.k(parcel, 2, this.f4515a, i10);
+        int i11 = this.f4516b;
+        w7.f0.s(parcel, 3, 4);
         parcel.writeInt(i11);
-        boolean z10 = this.f4514c;
-        g0.s(parcel, 4, 4);
+        boolean z10 = this.f4517c;
+        w7.f0.s(parcel, 4, 4);
         parcel.writeInt(z10 ? 1 : 0);
         double d = this.d;
-        g0.s(parcel, 5, 8);
+        w7.f0.s(parcel, 5, 8);
         parcel.writeDouble(d);
         double d10 = this.e;
-        g0.s(parcel, 6, 8);
+        w7.f0.s(parcel, 6, 8);
         parcel.writeDouble(d10);
-        double d11 = this.f4515f;
-        g0.s(parcel, 7, 8);
+        double d11 = this.f4518f;
+        w7.f0.s(parcel, 7, 8);
         parcel.writeDouble(d11);
-        g0.j(parcel, 8, this.h);
-        g0.l(parcel, 9, this.f4516n);
-        g0.r(parcel, q6);
+        w7.f0.j(parcel, 8, this.h);
+        w7.f0.l(parcel, 9, this.f4519n);
+        w7.f0.r(parcel, q6);
     }
 
     public o(JSONObject jSONObject) {

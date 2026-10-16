@@ -4,11 +4,11 @@ import android.animation.ValueAnimator;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.e91;
+import org.telegram.ui.Components.f91;
 import org.telegram.ui.Components.gl0;
-import org.telegram.ui.Components.j91;
+import org.telegram.ui.Components.k91;
+import org.telegram.ui.Components.l80;
 import org.telegram.ui.Components.m31;
-import org.telegram.ui.Components.m80;
 import org.telegram.ui.Components.nb0;
 import org.telegram.ui.Components.ob0;
 import org.telegram.ui.Components.p00;
@@ -38,7 +38,7 @@ public final class i0 extends s4.b0 {
                 return;
             case 6:
                 super.S(eVar, y0Var, cVar);
-                if (((j91) this.J).V) {
+                if (((k91) this.J).V) {
                     cVar.p(false);
                     return;
                 }
@@ -68,7 +68,7 @@ public final class i0 extends s4.b0 {
         switch (this.I) {
             case 3:
                 super.k1(z10);
-                nb0 nb0Var = ((ob0) this.J).f27927b;
+                nb0 nb0Var = ((ob0) this.J).f27625b;
                 if (z10) {
                     i10 = -1;
                 } else {
@@ -90,8 +90,8 @@ public final class i0 extends s4.b0 {
         boolean z12;
         switch (this.I) {
             case 2:
-                m80 m80Var = ((xw) ((w00) this.J).J).f41972b.L0;
-                if (m80Var != null && m80Var.D()) {
+                l80 l80Var = ((xw) ((w00) this.J).J).f41671b.L0;
+                if (l80Var != null && l80Var.D()) {
                     i10 = 0;
                 }
                 return super.m0(i10, eVar, y0Var);
@@ -100,7 +100,7 @@ public final class i0 extends s4.b0 {
                 return super.m0(i10, eVar, y0Var);
             case 4:
                 gl0 gl0Var = (gl0) this.J;
-                bi.o0 o0Var = gl0Var.f25320b;
+                bi.o0 o0Var = gl0Var.f25009b;
                 boolean z13 = false;
                 if (i10 < 0 && gl0Var.B0 != 0.0f) {
                     float pullingLeftProgress = gl0Var.getPullingLeftProgress();
@@ -137,10 +137,10 @@ public final class i0 extends s4.b0 {
                 }
                 int m0 = super.m0(i10, eVar, y0Var);
                 if (i10 > 0 && m0 == 0 && o0Var.getScrollState() == 1 && gl0Var.q()) {
-                    ValueAnimator valueAnimator = gl0Var.f25360y0;
+                    ValueAnimator valueAnimator = gl0Var.f25049y0;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        gl0Var.f25360y0.cancel();
+                        gl0Var.f25049y0.cancel();
                     }
                     int i11 = (gl0Var.getPullingLeftProgress() > 1.0f ? 1 : (gl0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
                     if (i11 > 0) {
@@ -197,9 +197,9 @@ public final class i0 extends s4.b0 {
                 w0(p00Var);
                 return;
             case 6:
-                e91 e91Var = new e91(this, recyclerView.getContext());
-                e91Var.f44979a = i10;
-                w0(e91Var);
+                f91 f91Var = new f91(this, recyclerView.getContext());
+                f91Var.f44979a = i10;
+                w0(f91Var);
                 return;
             default:
                 super.v0(recyclerView, y0Var, i10);
@@ -227,7 +227,7 @@ public final class i0 extends s4.b0 {
     public void z0(s4.y0 y0Var, int[] iArr) {
         switch (this.I) {
             case 7:
-                iArr[1] = ((StickersActivity) this.J).f32799a.getHeight();
+                iArr[1] = ((StickersActivity) this.J).f32501a.getHeight();
                 return;
             default:
                 super.z0(y0Var, iArr);

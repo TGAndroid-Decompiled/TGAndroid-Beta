@@ -10,24 +10,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class n5 implements RequestDelegate {
-    public final int f38425a;
-    public final z5 f38426b;
-    public final CountDownLatch f38427c;
+    public final int f38140a;
+    public final z5 f38141b;
+    public final CountDownLatch f38142c;
     public final Runnable d;
 
     public n5(z5 z5Var, CountDownLatch countDownLatch, Runnable runnable, int i10) {
-        this.f38425a = i10;
-        this.f38426b = z5Var;
-        this.f38427c = countDownLatch;
+        this.f38140a = i10;
+        this.f38141b = z5Var;
+        this.f38142c = countDownLatch;
         this.d = runnable;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38425a) {
+        switch (this.f38140a) {
             case 0:
-                final z5 z5Var = this.f38426b;
-                final CountDownLatch countDownLatch = this.f38427c;
+                final z5 z5Var = this.f38141b;
+                final CountDownLatch countDownLatch = this.f38142c;
                 final Runnable runnable = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -42,11 +42,11 @@ public final class n5 implements RequestDelegate {
                                 }
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null) {
-                                    z5Var2.f42488j0 = 20;
+                                    z5Var2.f42162j0 = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z10 = false;
                                     MessagesController.getInstance(z5Var2.Q).putUsers(tL_premium_boostsList.users, false);
-                                    z5Var2.f42487i0 = tL_premium_boostsList.next_offset;
+                                    z5Var2.f42161i0 = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
                                     int i10 = 0;
@@ -67,7 +67,7 @@ public final class n5 implements RequestDelegate {
                                                 z10 = true;
                                             }
                                             z5Var2.Y = z10;
-                                            z5Var2.f42490l0 = tL_premium_boostsList.count;
+                                            z5Var2.f42164l0 = tL_premium_boostsList.count;
                                             Runnable runnable2 = runnable;
                                             if (runnable2 != null) {
                                                 runnable2.run();
@@ -89,11 +89,11 @@ public final class n5 implements RequestDelegate {
                                 }
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 != null) {
-                                    z5Var3.f42489k0 = 20;
+                                    z5Var3.f42163k0 = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z11 = false;
                                     MessagesController.getInstance(z5Var3.Q).putUsers(tL_premium_boostsList2.users, false);
-                                    z5Var3.f42486h0 = tL_premium_boostsList2.next_offset;
+                                    z5Var3.f42160h0 = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
                                     int i14 = 0;
@@ -132,8 +132,8 @@ public final class n5 implements RequestDelegate {
                 });
                 return;
             default:
-                final z5 z5Var2 = this.f38426b;
-                final CountDownLatch countDownLatch2 = this.f38427c;
+                final z5 z5Var2 = this.f38141b;
+                final CountDownLatch countDownLatch2 = this.f38142c;
                 final Runnable runnable2 = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -148,11 +148,11 @@ public final class n5 implements RequestDelegate {
                                 }
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null) {
-                                    z5Var22.f42488j0 = 20;
+                                    z5Var22.f42162j0 = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z10 = false;
                                     MessagesController.getInstance(z5Var22.Q).putUsers(tL_premium_boostsList.users, false);
-                                    z5Var22.f42487i0 = tL_premium_boostsList.next_offset;
+                                    z5Var22.f42161i0 = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
                                     int i10 = 0;
@@ -173,7 +173,7 @@ public final class n5 implements RequestDelegate {
                                                 z10 = true;
                                             }
                                             z5Var22.Y = z10;
-                                            z5Var22.f42490l0 = tL_premium_boostsList.count;
+                                            z5Var22.f42164l0 = tL_premium_boostsList.count;
                                             Runnable runnable22 = runnable2;
                                             if (runnable22 != null) {
                                                 runnable22.run();
@@ -195,11 +195,11 @@ public final class n5 implements RequestDelegate {
                                 }
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 != null) {
-                                    z5Var3.f42489k0 = 20;
+                                    z5Var3.f42163k0 = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z11 = false;
                                     MessagesController.getInstance(z5Var3.Q).putUsers(tL_premium_boostsList2.users, false);
-                                    z5Var3.f42486h0 = tL_premium_boostsList2.next_offset;
+                                    z5Var3.f42160h0 = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
                                     int i14 = 0;

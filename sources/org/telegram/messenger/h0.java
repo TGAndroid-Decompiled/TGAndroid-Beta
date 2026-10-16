@@ -25,122 +25,122 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 public final class h0 implements Runnable {
-    public final int f17359a;
-    public final Object f17360b;
-    public final Object f17361c;
+    public final int f17056a;
+    public final Object f17057b;
+    public final Object f17058c;
     public final Object d;
 
     public h0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f17359a = i10;
-        this.f17360b = obj;
-        this.f17361c = obj2;
+        this.f17056a = i10;
+        this.f17057b = obj;
+        this.f17058c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run() {
-        switch (this.f17359a) {
+        switch (this.f17056a) {
             case 0:
-                BirthdayController.c((BirthdayController) this.f17360b, (BirthdayController.TL_birthdays) this.f17361c, (ArrayList) this.d);
+                BirthdayController.c((BirthdayController) this.f17057b, (BirthdayController.TL_birthdays) this.f17058c, (ArrayList) this.d);
                 return;
             case 1:
-                ((ImageLoader.AnonymousClass5) this.f17360b).lambda$fileLoadProgressChanged$7((String) this.f17361c, (FileLoadOperation) this.d);
+                ((ImageLoader.AnonymousClass5) this.f17057b).lambda$fileLoadProgressChanged$7((String) this.f17058c, (FileLoadOperation) this.d);
                 return;
             case 2:
-                ((ImageLoader.CacheOutTask) this.f17360b).lambda$onPostExecute$0((Drawable) this.f17361c, (String) this.d);
+                ((ImageLoader.CacheOutTask) this.f17057b).lambda$onPostExecute$0((Drawable) this.f17058c, (String) this.d);
                 return;
             case 3:
-                ((SendMessagesHelper.ImportingHistory.AnonymousClass3) this.f17360b).lambda$run$0((TLRPC.TL_error) this.f17361c, (TLRPC.TL_messages_startHistoryImport) this.d);
+                ((SendMessagesHelper.ImportingHistory.AnonymousClass3) this.f17057b).lambda$run$0((TLRPC.TL_error) this.f17058c, (TLRPC.TL_messages_startHistoryImport) this.d);
                 return;
             case 4:
-                ((SendMessagesHelper.ImportingSticker.AnonymousClass1) this.f17360b).lambda$run$0((TLObject) this.f17361c, (Runnable) this.d);
+                ((SendMessagesHelper.ImportingSticker.AnonymousClass1) this.f17057b).lambda$run$0((TLObject) this.f17058c, (Runnable) this.d);
                 return;
             case 5:
-                ((TelegramMediaSession.SessionCallback) this.f17360b).lambda$onPlayFromMediaId$1((String) this.f17361c, (Bundle) this.d);
+                ((TelegramMediaSession.SessionCallback) this.f17057b).lambda$onPlayFromMediaId$1((String) this.f17058c, (Bundle) this.d);
                 return;
             case 6:
-                ((TranslateController) this.f17360b).lambda$detectStoryLanguage$33((TL_stories.StoryItem) this.f17361c, (TranslateController.StoryKey) this.d);
+                ((TranslateController) this.f17057b).lambda$detectStoryLanguage$33((TL_stories.StoryItem) this.f17058c, (TranslateController.StoryKey) this.d);
                 return;
             case 7:
-                AndroidUtilities.lambda$showProxyAlert$19((boolean[]) this.f17360b, (org.telegram.ui.Components.bd[]) this.f17361c, (qi.a) this.d);
+                AndroidUtilities.lambda$showProxyAlert$19((boolean[]) this.f17057b, (org.telegram.ui.Components.bd[]) this.f17058c, (pi.a) this.d);
                 return;
             case 8:
-                ((BetaUpdaterController) this.f17360b).lambda$checkForUpdate$1((String) this.f17361c, (Runnable) this.d);
+                ((BetaUpdaterController) this.f17057b).lambda$checkForUpdate$1((String) this.f17058c, (Runnable) this.d);
                 return;
             case 9:
-                BillingController.lambda$launchBillingFlow$3((ArrayList) this.d, (AtomicInteger) this.f17360b, (c0) this.f17361c);
+                BillingController.lambda$launchBillingFlow$3((ArrayList) this.d, (AtomicInteger) this.f17057b, (b0) this.f17058c);
                 return;
             case 10:
-                BillingController.lambda$onPurchasesUpdatedInternal$7((AccountInstance) this.f17360b, (TLRPC.TL_payments_assignPlayMarketTransaction) this.f17361c, (TL_update.TL_updateSentPhoneCode) this.d);
+                BillingController.lambda$onPurchasesUpdatedInternal$7((AccountInstance) this.f17057b, (TLRPC.TL_payments_assignPlayMarketTransaction) this.f17058c, (TL_update.TL_updateSentPhoneCode) this.d);
                 return;
             case 11:
-                CacheFetcher.a((CacheFetcher) this.f17360b, (Pair) this.f17361c, (Utilities.Callback) this.d);
+                CacheFetcher.a((CacheFetcher) this.f17057b, (Pair) this.f17058c, (Utilities.Callback) this.d);
                 return;
             case 12:
-                ChannelBoostsController.a((Utilities.Callback) this.f17361c, (TLObject) this.f17360b, (TLRPC.TL_error) this.d);
+                ChannelBoostsController.a((Utilities.Callback) this.f17058c, (TLObject) this.f17057b, (TLRPC.TL_error) this.d);
                 return;
             case 13:
-                ChatThemeController.lambda$saveWallpaperPatternBitmap$12((File) this.f17360b, (List) this.f17361c, (Bitmap) this.d);
+                ChatThemeController.lambda$saveWallpaperPatternBitmap$12((File) this.f17057b, (List) this.f17058c, (Bitmap) this.d);
                 return;
             case 14:
-                ((ContactsController) this.f17360b).lambda$addContact$51((TLRPC.Updates) this.f17361c, (TLRPC.User) this.d);
+                ((ContactsController) this.f17057b).lambda$addContact$51((TLRPC.Updates) this.f17058c, (TLRPC.User) this.d);
                 return;
             case 15:
-                ((ContactsController) this.f17360b).lambda$reloadContactsStatuses$58((SharedPreferences.Editor) this.f17361c, (Vector) this.d);
+                ((ContactsController) this.f17057b).lambda$reloadContactsStatuses$58((SharedPreferences.Editor) this.f17058c, (Vector) this.d);
                 return;
             case 16:
-                ((ContactsController) this.f17360b).lambda$applyContactsUpdates$48((ArrayList) this.d, (ArrayList) this.f17361c);
+                ((ContactsController) this.f17057b).lambda$applyContactsUpdates$48((ArrayList) this.d, (ArrayList) this.f17058c);
                 return;
             case 17:
-                ((DispatchQueuePoolBackground) this.f17360b).lambda$execute$1((Runnable) this.f17361c, (DispatchQueue) this.d);
+                ((DispatchQueuePoolBackground) this.f17057b).lambda$execute$1((Runnable) this.f17058c, (DispatchQueue) this.d);
                 return;
             case 18:
-                ((DownloadController) this.f17360b).lambda$loadDownloadingFiles$10((ArrayList) this.d, (ArrayList) this.f17361c);
+                ((DownloadController) this.f17057b).lambda$loadDownloadingFiles$10((ArrayList) this.d, (ArrayList) this.f17058c);
                 return;
             case 19:
-                FactCheckController.lambda$getFromDatabase$5((MessagesStorage) this.f17360b, (ArrayList) this.d, (Utilities.Callback) this.f17361c);
+                FactCheckController.lambda$getFromDatabase$5((MessagesStorage) this.f17057b, (ArrayList) this.d, (Utilities.Callback) this.f17058c);
                 return;
             case 20:
-                ((FileLoadOperation) this.f17360b).lambda$getCurrentFile$4((File[]) this.f17361c, (CountDownLatch) this.d);
+                ((FileLoadOperation) this.f17057b).lambda$getCurrentFile$4((File[]) this.f17058c, (CountDownLatch) this.d);
                 return;
             case 21:
-                FileLoadOperation.lambda$cancelRequests$16((FileLoadOperation.RequestInfo) this.f17360b, (int[]) this.f17361c, (Runnable) this.d);
+                FileLoadOperation.lambda$cancelRequests$16((FileLoadOperation.RequestInfo) this.f17057b, (int[]) this.f17058c, (Runnable) this.d);
                 return;
             case 22:
-                ((FileLoader) this.f17360b).lambda$setForceStreamLoadingFile$6((TLRPC.FileLocation) this.f17361c, (String) this.d);
+                ((FileLoader) this.f17057b).lambda$setForceStreamLoadingFile$6((TLRPC.FileLocation) this.f17058c, (String) this.d);
                 return;
             case 23:
-                ((FileLoader) this.f17360b).lambda$checkDownloadQueue$15((FileLoaderPriorityQueue) this.f17361c, (FileLoadOperation) this.d);
+                ((FileLoader) this.f17057b).lambda$checkDownloadQueue$15((FileLoaderPriorityQueue) this.f17058c, (FileLoadOperation) this.d);
                 return;
             case 24:
-                ((FilePathDatabase) this.f17360b).lambda$saveFileDialogId$5((File) this.f17361c, (FilePathDatabase.FileMeta) this.d);
+                ((FilePathDatabase) this.f17057b).lambda$saveFileDialogId$5((File) this.f17058c, (FilePathDatabase.FileMeta) this.d);
                 return;
             case 25:
-                LocaleController.lambda$applyRemoteLanguage$13((int[]) this.f17360b, (int[]) this.f17361c, (Runnable) this.d);
+                LocaleController.lambda$applyRemoteLanguage$13((int[]) this.f17057b, (int[]) this.f17058c, (Runnable) this.d);
                 return;
             case 26:
-                ((LocationController) this.f17360b).lambda$addSharingLocation$11((LocationController.SharingLocationInfo) this.f17361c, (LocationController.SharingLocationInfo) this.d);
+                ((LocationController) this.f17057b).lambda$addSharingLocation$11((LocationController.SharingLocationInfo) this.f17058c, (LocationController.SharingLocationInfo) this.d);
                 return;
             case 27:
-                ((MediaDataController) this.f17360b).lambda$saveToRingtones$204((TLObject) this.f17361c, (TLRPC.Document) this.d);
+                ((MediaDataController) this.f17057b).lambda$saveToRingtones$204((TLObject) this.f17058c, (TLRPC.Document) this.d);
                 return;
             default:
-                ((MediaDataController) this.f17360b).lambda$processLoadedDiceStickers$88((String) this.f17361c, (TLRPC.TL_messages_stickerSet) this.d);
+                ((MediaDataController) this.f17057b).lambda$processLoadedDiceStickers$88((String) this.f17058c, (TLRPC.TL_messages_stickerSet) this.d);
                 return;
         }
     }
 
-    public h0(ArrayList arrayList, AtomicInteger atomicInteger, c0 c0Var) {
-        this.f17359a = 9;
+    public h0(ArrayList arrayList, AtomicInteger atomicInteger, b0 b0Var) {
+        this.f17056a = 9;
         this.d = arrayList;
-        this.f17360b = atomicInteger;
-        this.f17361c = c0Var;
+        this.f17057b = atomicInteger;
+        this.f17058c = b0Var;
     }
 
     public h0(BaseController baseController, ArrayList arrayList, Object obj, int i10) {
-        this.f17359a = i10;
-        this.f17360b = baseController;
+        this.f17056a = i10;
+        this.f17057b = baseController;
         this.d = arrayList;
-        this.f17361c = obj;
+        this.f17058c = obj;
     }
 }

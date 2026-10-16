@@ -27,20 +27,20 @@ public final class wa extends ta {
 
     @Override
     public final int h(Object[] objArr) {
-        sa saVar = this.f47440b;
+        sa saVar = this.f47442b;
         if (saVar == null) {
             saVar = new va(this);
-            this.f47440b = saVar;
+            this.f47442b = saVar;
         }
         return saVar.h(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        sa saVar = this.f47440b;
+        sa saVar = this.f47442b;
         if (saVar == null) {
             saVar = new va(this);
-            this.f47440b = saVar;
+            this.f47442b = saVar;
         }
         return saVar.listIterator(0);
     }

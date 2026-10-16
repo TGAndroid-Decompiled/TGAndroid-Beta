@@ -5,40 +5,40 @@ import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.Emoji;
 public final class bo implements TextWatcher {
-    public final ao f23832a;
-    public final int f23833b;
-    public final go f23834c;
+    public final ao f23525a;
+    public final int f23526b;
+    public final go f23527c;
 
     public bo(go goVar, ao aoVar, int i10) {
-        this.f23834c = goVar;
-        this.f23832a = aoVar;
-        this.f23833b = i10;
+        this.f23527c = goVar;
+        this.f23525a = aoVar;
+        this.f23526b = i10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        io ioVar = this.f23834c.d;
-        ao aoVar = this.f23832a;
+        io ioVar = this.f23527c.d;
+        ao aoVar = this.f23525a;
         if (aoVar.getTag() != null) {
             return;
         }
-        int i11 = this.f23833b;
+        int i11 = this.f23526b;
         if (i11 == 11) {
-            i10 = ioVar.f26025n0;
+            i10 = ioVar.f25688n0;
         } else {
             i10 = ioVar.m0;
         }
-        s4.b1 K = ioVar.f26031s.K(i10);
-        if (K != null && ioVar.f26038x != null) {
+        s4.b1 K = ioVar.f25694s.K(i10);
+        if (K != null && ioVar.f25701x != null) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, aoVar.getEditField().getPaint().getFontMetricsInt(), false);
-            ioVar.f26038x.setDirection(1);
-            ioVar.f26038x.setDelegate(aoVar);
-            ioVar.f26038x.setTranslationY(K.f44838a.getY());
-            ioVar.f26038x.e();
+            ioVar.f25701x.setDirection(1);
+            ioVar.f25701x.setDelegate(aoVar);
+            ioVar.f25701x.setTranslationY(K.f44838a.getY());
+            ioVar.f25701x.e();
         }
         if (i11 == 11) {
             ioVar.O = editable;

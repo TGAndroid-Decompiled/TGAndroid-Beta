@@ -7,14 +7,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.mm0;
 import org.telegram.ui.Components.ow0;
-public final class f extends ow0 implements r0.n {
-    public final b2.v0 f50479w0;
-    public final g f50480x0;
+public final class f extends ow0 implements r0.m {
+    public final b2.v0 f50480w0;
+    public final g f50481x0;
 
     public f(g gVar, Context context) {
         super(context, null);
-        this.f50480x0 = gVar;
-        this.f50479w0 = new Object();
+        this.f50481x0 = gVar;
+        this.f50480w0 = new Object();
     }
 
     @Override
@@ -24,10 +24,10 @@ public final class f extends ow0 implements r0.n {
         org.telegram.ui.ActionBar.k kVar2;
         boolean z10;
         int max;
-        g gVar = this.f50480x0;
+        g gVar = this.f50481x0;
         if (viewGroup == gVar.e && gVar.F.isAttachedToWindow()) {
             kVar = ((org.telegram.ui.ActionBar.m2) gVar).actionBar;
-            boolean z11 = kVar.f20442n0;
+            boolean z11 = kVar.f20142n0;
             int top = (((View) gVar.F.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
             int bottom = ((View) gVar.F.getParent()).getBottom();
             boolean z12 = false;
@@ -91,7 +91,7 @@ public final class f extends ow0 implements r0.n {
     public final void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
         org.telegram.ui.ActionBar.k kVar;
         boolean z10;
-        g gVar = this.f50480x0;
+        g gVar = this.f50481x0;
         try {
             if (viewGroup == gVar.e && gVar.F.isAttachedToWindow()) {
                 mm0 currentListView = gVar.F.getCurrentListView();
@@ -116,7 +116,7 @@ public final class f extends ow0 implements r0.n {
 
     @Override
     public final void n(int i10, View view) {
-        this.f50479w0.f2444a = 0;
+        this.f50480w0.f2448a = 0;
     }
 
     @Override
@@ -134,7 +134,7 @@ public final class f extends ow0 implements r0.n {
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f50479w0.f2444a = i10;
+        this.f50480w0.f2448a = i10;
     }
 
     @Override

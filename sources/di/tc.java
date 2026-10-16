@@ -5,20 +5,20 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class tc extends Path {
-    public final int f7863a = AndroidUtilities.dp(10.0f);
-    public final float[] f7864b;
-    public ArrayList f7865c;
+    public final int f7866a = AndroidUtilities.dp(10.0f);
+    public final float[] f7867b;
+    public ArrayList f7868c;
     public ArrayList d;
     public float e;
-    public float f7866f;
-    public float f7867g;
+    public float f7869f;
+    public float f7870g;
     public float h;
-    public float f7868i;
-    public float f7869j;
-    public float f7870k;
+    public float f7871i;
+    public float f7872j;
+    public float f7873k;
 
     public tc() {
-        this.f7864b = r0;
+        this.f7867b = r0;
         float dp = AndroidUtilities.dp(2.0f);
         float[] fArr = {dp, dp, dp, dp, 0.0f, 0.0f, 0.0f, 0.0f};
     }
@@ -49,15 +49,15 @@ public final class tc extends Path {
         float f19 = f11;
         if (arrayList != null && !arrayList.isEmpty()) {
             float f20 = 0.0f;
-            if (Math.abs(this.e - f12) <= 1.0f && Math.abs(this.f7866f - f13) <= 0.01f && Math.abs(this.f7867g - 0.0f) <= 0.1f && Math.abs(this.h - f14) <= 1.0f && Math.abs(this.f7868i - f18) <= 1.0f && Math.abs(this.f7869j - f10) <= 1.0f && Math.abs(this.f7870k - f19) <= 1.0f) {
-                ArrayList arrayList2 = this.f7865c;
+            if (Math.abs(this.e - f12) <= 1.0f && Math.abs(this.f7869f - f13) <= 0.01f && Math.abs(this.f7870g - 0.0f) <= 0.1f && Math.abs(this.h - f14) <= 1.0f && Math.abs(this.f7871i - f18) <= 1.0f && Math.abs(this.f7872j - f10) <= 1.0f && Math.abs(this.f7873k - f19) <= 1.0f) {
+                ArrayList arrayList2 = this.f7868c;
                 if (arrayList2 != null && arrayList2.size() == arrayList.size()) {
                     for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                         int intValue = ((Integer) arrayList2.get(i12)).intValue();
                         if (arrayList.get(i12) == null) {
                             i11 = 0;
                         } else {
-                            i11 = ((nc) arrayList.get(i12)).f7481b;
+                            i11 = ((nc) arrayList.get(i12)).f7484b;
                         }
                         if (intValue == i11) {
                         }
@@ -70,7 +70,7 @@ public final class tc extends Path {
                         if (arrayList.get(i13) == null) {
                             d10 = 0.0f;
                         } else {
-                            d10 = ((nc) arrayList.get(i13)).f7480a.d(((nc) arrayList.get(i13)).f7482c, false);
+                            d10 = ((nc) arrayList.get(i13)).f7483a.d(((nc) arrayList.get(i13)).f7485c, false);
                         }
                         if (floatValue != d10) {
                             return;
@@ -80,19 +80,19 @@ public final class tc extends Path {
                     return;
                 }
             }
-            ArrayList arrayList4 = this.f7865c;
+            ArrayList arrayList4 = this.f7868c;
             if (arrayList4 == null) {
-                this.f7865c = new ArrayList();
+                this.f7868c = new ArrayList();
             } else {
                 arrayList4.clear();
             }
             int i14 = 0;
             while (i14 < arrayList.size()) {
-                ArrayList arrayList5 = this.f7865c;
+                ArrayList arrayList5 = this.f7868c;
                 if (arrayList.get(i14) == null) {
                     i10 = 0;
                 } else {
-                    i10 = ((nc) arrayList.get(i14)).f7481b;
+                    i10 = ((nc) arrayList.get(i14)).f7484b;
                 }
                 i14 = com.google.android.gms.internal.play_billing.k3.f(i10, i14, 1, arrayList5);
             }
@@ -107,15 +107,15 @@ public final class tc extends Path {
                 if (arrayList.get(i15) == null) {
                     d = 0.0f;
                 } else {
-                    d = ((nc) arrayList.get(i15)).f7480a.d(((nc) arrayList.get(i15)).f7482c, false);
+                    d = ((nc) arrayList.get(i15)).f7483a.d(((nc) arrayList.get(i15)).f7485c, false);
                 }
                 arrayList7.add(Float.valueOf(d));
             }
-            this.f7868i = f18;
-            this.f7869j = f10;
-            this.f7870k = f19;
-            this.f7867g = 0.0f;
-            this.f7866f = f13;
+            this.f7871i = f18;
+            this.f7872j = f10;
+            this.f7873k = f19;
+            this.f7870g = 0.0f;
+            this.f7869f = f13;
             this.e = f12;
             this.h = f14;
             ArrayList arrayList8 = this.d;
@@ -124,10 +124,10 @@ public final class tc extends Path {
             int i16 = 0;
             for (int i17 = 0; i17 < arrayList.size(); i17++) {
                 if (arrayList.get(i17) != null) {
-                    i16 = Math.max(i16, ((nc) arrayList.get(i17)).f7481b);
+                    i16 = Math.max(i16, ((nc) arrayList.get(i17)).f7484b);
                 }
             }
-            int max = Math.max(0, (int) (((f10 - this.f7863a) - f18) / round));
+            int max = Math.max(0, (int) (((f10 - this.f7866a) - f18) / round));
             int min = Math.min(i16 - 1, (int) Math.ceil(((f19 + f15) - f18) / round));
             while (max <= min) {
                 float f21 = max;
@@ -135,7 +135,7 @@ public final class tc extends Path {
                 float f22 = f20;
                 int i18 = 0;
                 for (int i19 = 0; i19 < arrayList.size(); i19++) {
-                    if (arrayList.get(i19) != null && max < ((nc) arrayList.get(i19)).f7481b) {
+                    if (arrayList.get(i19) != null && max < ((nc) arrayList.get(i19)).f7484b) {
                         s10 = ((nc) arrayList.get(i19)).d[max];
                     } else {
                         s10 = 0;
@@ -165,8 +165,8 @@ public final class tc extends Path {
                 f17 = f22;
                 float max2 = Math.max(f16, AndroidUtilities.lerp(AndroidUtilities.dpf2(0.66f), AndroidUtilities.dpf2(1.5f), f17));
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(dp, AndroidUtilities.lerp(f14 - max2, f14 - ((f12 + max2) / 2.0f), f17), AndroidUtilities.dpf2(1.66f) + dp, AndroidUtilities.lerp(f14, org.telegram.messenger.q.y(f12, max2, 2.0f, f14), f17));
-                addRoundRect(rectF, this.f7864b, Path.Direction.CW);
+                rectF.set(dp, AndroidUtilities.lerp(f14 - max2, f14 - ((f12 + max2) / 2.0f), f17), AndroidUtilities.dpf2(1.66f) + dp, AndroidUtilities.lerp(f14, org.telegram.messenger.g0.x(f12, max2, 2.0f, f14), f17));
+                addRoundRect(rectF, this.f7867b, Path.Direction.CW);
                 max++;
                 f18 = f7;
                 f19 = f11;
@@ -189,10 +189,10 @@ public final class tc extends Path {
             rewind();
             return;
         }
-        int i10 = ncVar.f7481b;
-        org.telegram.ui.Components.g6 g6Var = ncVar.f7480a;
-        float d = g6Var.d(ncVar.f7482c, false);
-        if (0 == j10 && Math.abs(this.e - f13) <= 1.0f && Math.abs(this.f7866f - f14) <= 0.01f && Math.abs(this.f7867g - f12) <= 0.1f && Math.abs(this.h - f15) <= 1.0f && Math.abs(this.f7868i - f19) <= 1.0f && Math.abs(this.f7869j - f20) <= 1.0f && Math.abs(this.f7870k - f21) <= 1.0f && (arrayList = this.f7865c) != null && arrayList.size() == 1) {
+        int i10 = ncVar.f7484b;
+        org.telegram.ui.Components.g6 g6Var = ncVar.f7483a;
+        float d = g6Var.d(ncVar.f7485c, false);
+        if (0 == j10 && Math.abs(this.e - f13) <= 1.0f && Math.abs(this.f7869f - f14) <= 0.01f && Math.abs(this.f7870g - f12) <= 0.1f && Math.abs(this.h - f15) <= 1.0f && Math.abs(this.f7871i - f19) <= 1.0f && Math.abs(this.f7872j - f20) <= 1.0f && Math.abs(this.f7873k - f21) <= 1.0f && (arrayList = this.f7868c) != null && arrayList.size() == 1) {
             ArrayList arrayList2 = this.d;
             if (arrayList2 != null && !arrayList2.isEmpty()) {
                 f18 = ((Float) this.d.get(0)).floatValue();
@@ -203,13 +203,13 @@ public final class tc extends Path {
                 return;
             }
         }
-        ArrayList arrayList3 = this.f7865c;
+        ArrayList arrayList3 = this.f7868c;
         if (arrayList3 == null) {
-            this.f7865c = new ArrayList();
+            this.f7868c = new ArrayList();
         } else {
             arrayList3.clear();
         }
-        this.f7865c.add(Integer.valueOf(i10));
+        this.f7868c.add(Integer.valueOf(i10));
         ArrayList arrayList4 = this.d;
         if (arrayList4 == null) {
             this.d = new ArrayList();
@@ -217,17 +217,17 @@ public final class tc extends Path {
             arrayList4.clear();
         }
         this.d.add(Float.valueOf(d));
-        this.f7868i = f19;
-        this.f7869j = f20;
-        this.f7870k = f21;
-        this.f7867g = f12;
-        this.f7866f = f14;
+        this.f7871i = f19;
+        this.f7872j = f20;
+        this.f7873k = f21;
+        this.f7870g = f12;
+        this.f7869f = f14;
         this.e = f13;
         this.h = f15;
-        float d10 = g6Var.d(ncVar.f7482c, false);
+        float d10 = g6Var.d(ncVar.f7485c, false);
         rewind();
         float round = Math.round(AndroidUtilities.dpf2(3.3333f));
-        int max = Math.max(0, (int) (((f20 - this.f7863a) - f19) / round));
+        int max = Math.max(0, (int) (((f20 - this.f7866a) - f19) / round));
         int min = Math.min(i10 - 1, (int) Math.ceil(((f16 + f21) - f19) / round));
         while (max <= min) {
             float f22 = max;
@@ -254,8 +254,8 @@ public final class tc extends Path {
             }
             float max2 = Math.max(f17, AndroidUtilities.lerp(AndroidUtilities.dpf2(0.66f), AndroidUtilities.dpf2(1.5f), f12));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(dp, AndroidUtilities.lerp(f15 - max2, f15 - ((f13 + max2) / 2.0f), f12), AndroidUtilities.dpf2(1.66f) + dp, AndroidUtilities.lerp(f15, org.telegram.messenger.q.y(f13, max2, 2.0f, f15), f12));
-            addRoundRect(rectF, this.f7864b, Path.Direction.CW);
+            rectF.set(dp, AndroidUtilities.lerp(f15 - max2, f15 - ((f13 + max2) / 2.0f), f12), AndroidUtilities.dpf2(1.66f) + dp, AndroidUtilities.lerp(f15, org.telegram.messenger.g0.x(f13, max2, 2.0f, f15), f12));
+            addRoundRect(rectF, this.f7867b, Path.Direction.CW);
             max++;
             f19 = f7;
             f20 = f10;

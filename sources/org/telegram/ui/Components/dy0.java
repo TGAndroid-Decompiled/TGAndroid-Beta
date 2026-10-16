@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessagesStorage;
 public final class dy0 implements org.telegram.ui.ActionBar.q0, MessagesStorage.StringCallback {
-    public final ty0 f24507a;
+    public final uy0 f24201a;
 
-    public dy0(ty0 ty0Var) {
-        this.f24507a = ty0Var;
+    public dy0(uy0 uy0Var) {
+        this.f24201a = uy0Var;
     }
 
     @Override
-    public void l(int i10) {
-        ty0.E(this.f24507a, i10);
+    public void k(int i10) {
+        uy0.E(this.f24201a, i10);
     }
 
     @Override
     public void run(String str) {
-        new k50(r1.getContext(), r1.f29518o0, null, this.f24507a.resourcesProvider).show();
+        new k50(r1.getContext(), r1.f29505o0, null, this.f24201a.resourcesProvider).show();
     }
 }

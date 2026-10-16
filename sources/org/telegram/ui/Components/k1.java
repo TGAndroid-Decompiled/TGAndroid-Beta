@@ -6,26 +6,26 @@ import android.net.Uri;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 public final class k1 implements org.telegram.ui.ActionBar.z1 {
-    public final int f26531a;
-    public final Activity f26532b;
+    public final int f26166a;
+    public final Activity f26167b;
 
     public k1(Activity activity, int i10) {
-        this.f26531a = i10;
-        this.f26532b = activity;
+        this.f26166a = i10;
+        this.f26167b = activity;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f26531a) {
+        switch (this.f26166a) {
             case 0:
-                Activity activity = this.f26532b;
+                Activity activity = this.f26167b;
                 if (activity.checkSelfPermission("android.permission.ACCESS_BACKGROUND_LOCATION") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.ACCESS_BACKGROUND_LOCATION"}, 30);
                     return;
                 }
                 return;
             case 1:
-                Activity activity2 = this.f26532b;
+                Activity activity2 = this.f26167b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -36,7 +36,7 @@ public final class k1 implements org.telegram.ui.ActionBar.z1 {
                     return;
                 }
             default:
-                Activity activity3 = this.f26532b;
+                Activity activity3 = this.f26167b;
                 try {
                     Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));

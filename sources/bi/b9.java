@@ -17,18 +17,18 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.Components.yj0;
 public final class b9 extends FrameLayout {
-    public final ArrayList f2876a;
-    public ValueAnimator f2877b;
-    public int f2878c;
+    public final ArrayList f2880a;
+    public ValueAnimator f2881b;
+    public int f2882c;
     public int d;
     public final a3.d e;
 
     public b9(Context context, gb gbVar) {
         super(context);
-        this.f2878c = -1;
+        this.f2882c = -1;
         int i10 = 0;
         this.d = 0;
         this.e = new a3.d(this, 25);
@@ -45,16 +45,16 @@ public final class b9 extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.bold());
-        yh.j(20.0f, R.string.StoriesIntroHeader, 1, textView);
-        linearLayout.addView(textView, w7.a6.n(-2, -2));
+        sk.j(20.0f, R.string.StoriesIntroHeader, 1, textView);
+        linearLayout.addView(textView, w7.z5.n(-2, -2));
         TextView textView2 = new TextView(context);
         textView2.setTextColor(-1761607681);
         textView2.setText(LocaleController.getString(R.string.StoriesIntroSubHeader));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
-        linearLayout.addView(textView2, w7.a6.k(68.0f, 8.0f, 68.0f, 36.0f, -2, -2));
+        linearLayout.addView(textView2, w7.z5.k(68.0f, 8.0f, 68.0f, 36.0f, -2, -2));
         ArrayList arrayList = new ArrayList(4);
-        this.f2876a = arrayList;
+        this.f2880a = arrayList;
         arrayList.add(new a9(context, R.raw.stories_intro_go_forward, LocaleController.getString(R.string.StoriesIntroGoForwardHeader), LocaleController.getString(R.string.StoriesIntroGoForwardSubHeader)));
         arrayList.add(new a9(context, R.raw.stories_intro_pause, LocaleController.getString(R.string.StoriesIntroPauseAndSeekHeader), LocaleController.getString(R.string.StoriesIntroPauseAndSeekSubHeader)));
         arrayList.add(new a9(context, R.raw.stories_intro_go_back, LocaleController.getString(R.string.StoriesIntroGoBackHeader), LocaleController.getString(R.string.StoriesIntroGoBackSubHeader)));
@@ -67,13 +67,13 @@ public final class b9 extends FrameLayout {
             i11++;
             a9 a9Var = (a9) obj;
             TextPaint textPaint = a9Var.e;
-            String str = a9Var.f2830a;
+            String str = a9Var.f2834a;
             int length = str.length();
-            Rect rect = a9Var.f2835r;
+            Rect rect = a9Var.f2839r;
             textPaint.getTextBounds(str, 0, length, rect);
             int width = rect.width();
-            TextPaint textPaint2 = a9Var.f2833f;
-            String str2 = a9Var.f2831b;
+            TextPaint textPaint2 = a9Var.f2837f;
+            String str2 = a9Var.f2835b;
             textPaint2.getTextBounds(str2, 0, str2.length(), rect);
             int max = Math.max(width, rect.width()) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(88.0f);
             if (max > measuredWidth) {
@@ -82,7 +82,7 @@ public final class b9 extends FrameLayout {
         }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(AndroidUtilities.dp(8.0f) + measuredWidth > gbVar.getMeasuredWidth() ? gbVar.getMeasuredWidth() - AndroidUtilities.dp(8.0f) : measuredWidth, AndroidUtilities.dp(64.0f));
         layoutParams.setMargins(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f));
-        ArrayList arrayList2 = this.f2876a;
+        ArrayList arrayList2 = this.f2880a;
         int size2 = arrayList2.size();
         while (i10 < size2) {
             Object obj2 = arrayList2.get(i10);
@@ -92,9 +92,9 @@ public final class b9 extends FrameLayout {
         TextView textView3 = new TextView(context);
         textView3.setTextColor(-1);
         textView3.setTypeface(AndroidUtilities.bold());
-        yh.j(14.0f, R.string.StoriesIntroDismiss, 1, textView3);
-        linearLayout.addView(textView3, w7.a6.k(0.0f, 73.0f, 0.0f, 0.0f, -2, -2));
-        addView(linearLayout, w7.a6.e(-1, -2, 17));
+        sk.j(14.0f, R.string.StoriesIntroDismiss, 1, textView3);
+        linearLayout.addView(textView3, w7.z5.k(0.0f, 73.0f, 0.0f, 0.0f, -2, -2));
+        addView(linearLayout, w7.z5.e(-1, -2, 17));
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), AndroidUtilities.makeBlurBitmap(gbVar, 12.0f, 10));
         bitmapDrawable.setColorFilter(new PorterDuffColorFilter(-587202560, PorterDuff.Mode.DST_OVER));
         imageView.setImageDrawable(bitmapDrawable);
@@ -102,46 +102,46 @@ public final class b9 extends FrameLayout {
     }
 
     public final void a(boolean z10) {
-        ValueAnimator valueAnimator = this.f2877b;
+        ValueAnimator valueAnimator = this.f2881b;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f2877b = ofFloat;
+        this.f2881b = ofFloat;
         if (z10) {
             ofFloat.setStartDelay(50L);
         }
-        this.f2877b.setDuration(350L);
-        this.f2877b.setInterpolator(new AccelerateDecelerateInterpolator());
-        this.f2877b.getCurrentPlayTime();
-        this.f2877b.addListener(new ah.b(this, 12));
-        this.f2877b.addUpdateListener(new ah.c0(this, 13));
-        this.f2877b.start();
-        AndroidUtilities.runOnUIThread(this.e, (((a9) this.f2876a.get(this.d)).f2832c.r() * 2) + 100);
+        this.f2881b.setDuration(350L);
+        this.f2881b.setInterpolator(new AccelerateDecelerateInterpolator());
+        this.f2881b.getCurrentPlayTime();
+        this.f2881b.addListener(new ah.b(this, 12));
+        this.f2881b.addUpdateListener(new ah.c0(this, 13));
+        this.f2881b.start();
+        AndroidUtilities.runOnUIThread(this.e, (((a9) this.f2880a.get(this.d)).f2836c.r() * 2) + 100);
     }
 
     public final void b() {
         AndroidUtilities.cancelRunOnUIThread(this.e);
-        ValueAnimator valueAnimator = this.f2877b;
+        ValueAnimator valueAnimator = this.f2881b;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f2877b = null;
+            this.f2881b = null;
         }
-        int i10 = this.f2878c;
-        ArrayList arrayList = this.f2876a;
+        int i10 = this.f2882c;
+        ArrayList arrayList = this.f2880a;
         if (i10 != -1) {
             a9 a9Var = (a9) arrayList.get(i10);
-            yj0 yj0Var = a9Var.f2832c;
+            yj0 yj0Var = a9Var.f2836c;
             yj0Var.M(0);
             yj0Var.stop();
-            a9Var.f2834n = 0.0f;
+            a9Var.f2838n = 0.0f;
             a9Var.invalidate();
         }
         a9 a9Var2 = (a9) arrayList.get(this.d);
-        yj0 yj0Var2 = a9Var2.f2832c;
+        yj0 yj0Var2 = a9Var2.f2836c;
         yj0Var2.M(0);
         yj0Var2.stop();
-        a9Var2.f2834n = 0.0f;
+        a9Var2.f2838n = 0.0f;
         a9Var2.invalidate();
         c();
     }
@@ -149,14 +149,14 @@ public final class b9 extends FrameLayout {
     public final void c() {
         int i10 = this.d + 1;
         this.d = i10;
-        ArrayList arrayList = this.f2876a;
+        ArrayList arrayList = this.f2880a;
         if (i10 >= arrayList.size()) {
             this.d = 0;
         }
-        int i11 = this.f2878c + 1;
-        this.f2878c = i11;
+        int i11 = this.f2882c + 1;
+        this.f2882c = i11;
         if (i11 >= arrayList.size()) {
-            this.f2878c = 0;
+            this.f2882c = 0;
         }
     }
 }

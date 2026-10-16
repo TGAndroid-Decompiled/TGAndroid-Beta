@@ -32,7 +32,7 @@ public final class a extends c implements ne.d {
         this.e = new int[]{16842910, 16842919};
         this.f45817f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
         this.h = new TextPaint(g6.P2);
-        int w02 = g6.w0(g6.f19990i6, c6Var);
+        int w02 = g6.w0(g6.f19690i6, c6Var);
         if (this.f45832b != w02) {
             g6.C1(this.f45831a, w02, false);
             this.f45832b = w02;
@@ -108,6 +108,6 @@ public final class a extends c implements ne.d {
     }
 
     @Override
-    public final void C(float f7, int i10) {
+    public final void A(float f7, int i10) {
     }
 }

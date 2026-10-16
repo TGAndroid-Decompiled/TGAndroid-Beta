@@ -1,21 +1,113 @@
 package m;
 
-import android.view.ViewTreeObserver;
-import android.widget.PopupWindow;
-public final class l0 implements PopupWindow.OnDismissListener {
-    public final androidx.mediarouter.app.i f15147a;
-    public final m0 f15148b;
+import android.database.DataSetObserver;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.SpinnerAdapter;
+public final class l0 implements ListAdapter, SpinnerAdapter {
+    public SpinnerAdapter f14890a;
+    public ListAdapter f14891b;
 
-    public l0(m0 m0Var, androidx.mediarouter.app.i iVar) {
-        this.f15148b = m0Var;
-        this.f15147a = iVar;
+    @Override
+    public final boolean areAllItemsEnabled() {
+        ListAdapter listAdapter = this.f14891b;
+        if (listAdapter != null) {
+            return listAdapter.areAllItemsEnabled();
+        }
+        return true;
     }
 
     @Override
-    public final void onDismiss() {
-        ViewTreeObserver viewTreeObserver = this.f15148b.W.getViewTreeObserver();
-        if (viewTreeObserver != null) {
-            viewTreeObserver.removeGlobalOnLayoutListener(this.f15147a);
+    public final int getCount() {
+        SpinnerAdapter spinnerAdapter = this.f14890a;
+        if (spinnerAdapter == null) {
+            return 0;
+        }
+        return spinnerAdapter.getCount();
+    }
+
+    @Override
+    public final View getDropDownView(int i10, View view, ViewGroup viewGroup) {
+        SpinnerAdapter spinnerAdapter = this.f14890a;
+        if (spinnerAdapter == null) {
+            return null;
+        }
+        return spinnerAdapter.getDropDownView(i10, view, viewGroup);
+    }
+
+    @Override
+    public final Object getItem(int i10) {
+        SpinnerAdapter spinnerAdapter = this.f14890a;
+        if (spinnerAdapter == null) {
+            return null;
+        }
+        return spinnerAdapter.getItem(i10);
+    }
+
+    @Override
+    public final long getItemId(int i10) {
+        SpinnerAdapter spinnerAdapter = this.f14890a;
+        if (spinnerAdapter == null) {
+            return -1L;
+        }
+        return spinnerAdapter.getItemId(i10);
+    }
+
+    @Override
+    public final int getItemViewType(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final View getView(int i10, View view, ViewGroup viewGroup) {
+        return getDropDownView(i10, view, viewGroup);
+    }
+
+    @Override
+    public final int getViewTypeCount() {
+        return 1;
+    }
+
+    @Override
+    public final boolean hasStableIds() {
+        SpinnerAdapter spinnerAdapter = this.f14890a;
+        if (spinnerAdapter != null && spinnerAdapter.hasStableIds()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        if (getCount() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean isEnabled(int i10) {
+        ListAdapter listAdapter = this.f14891b;
+        if (listAdapter != null) {
+            return listAdapter.isEnabled(i10);
+        }
+        return true;
+    }
+
+    @Override
+    public final void registerDataSetObserver(DataSetObserver dataSetObserver) {
+        SpinnerAdapter spinnerAdapter = this.f14890a;
+        if (spinnerAdapter != null) {
+            spinnerAdapter.registerDataSetObserver(dataSetObserver);
+        }
+    }
+
+    @Override
+    public final void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
+        SpinnerAdapter spinnerAdapter = this.f14890a;
+        if (spinnerAdapter != null) {
+            spinnerAdapter.unregisterDataSetObserver(dataSetObserver);
         }
     }
 }

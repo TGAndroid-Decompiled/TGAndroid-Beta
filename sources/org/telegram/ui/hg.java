@@ -7,25 +7,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class hg implements org.telegram.ui.Components.pk0 {
-    public final int f36790a;
-    public final fo f36791b;
-    public final boolean f36792c;
+    public final int f36543a;
+    public final fo f36544b;
+    public final boolean f36545c;
     public final MessageObject d;
 
     public hg(fo foVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f36790a = i10;
-        this.f36791b = foVar;
-        this.f36792c = z10;
+        this.f36543a = i10;
+        this.f36544b = foVar;
+        this.f36545c = z10;
         this.d = messageObject;
     }
 
     @Override
-    public final void e(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f36790a) {
+    public final void a(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
+        switch (this.f36543a) {
             case 0:
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final fo foVar = this.f36791b;
-                    if (j10 != foVar.getUserConfig().getClientUserId() && this.f36792c) {
+                    final fo foVar = this.f36544b;
+                    if (j10 != foVar.getUserConfig().getClientUserId() && this.f36545c) {
                         final ArrayList arrayList = new ArrayList(1);
                         arrayList.add(this.d);
                         TLObject userOrChat = foVar.getMessagesController().getUserOrChat(j10);
@@ -79,9 +79,9 @@ public final class hg implements org.telegram.ui.Components.pk0 {
                 }
                 return;
             default:
-                final fo foVar2 = this.f36791b;
+                final fo foVar2 = this.f36544b;
                 foVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != foVar2.getUserConfig().getClientUserId() && this.f36792c) {
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != foVar2.getUserConfig().getClientUserId() && this.f36545c) {
                     final ArrayList arrayList3 = new ArrayList(1);
                     arrayList3.add(this.d);
                     TLObject userOrChat2 = foVar2.getMessagesController().getUserOrChat(j10);

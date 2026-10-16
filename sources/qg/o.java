@@ -9,30 +9,30 @@ import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 public final class o extends ScrollView {
-    public final LinearLayout f43497a;
-    public final x f43498b;
+    public final LinearLayout f43239a;
+    public final x f43240b;
 
     public o(x xVar, Context context, LinearLayout linearLayout) {
         super(context);
-        this.f43498b = xVar;
-        this.f43497a = linearLayout;
+        this.f43240b = xVar;
+        this.f43239a = linearLayout;
         setWillNotDraw(false);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float y3 = this.f43497a.getY() + AndroidUtilities.dp(1.0f);
+        float y3 = this.f43239a.getY() + AndroidUtilities.dp(1.0f);
         int dp = AndroidUtilities.dp(36.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getMeasuredWidth() - dp) / 2.0f, y3, (getMeasuredWidth() + dp) / 2.0f, AndroidUtilities.dp(4.0f) + y3);
-        g6.f20191t0.setColor(-10790053);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), g6.f20191t0);
+        g6.f19891t0.setColor(-10790053);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), g6.f19891t0);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        ((LinearLayout.LayoutParams) this.f43498b.f43609b.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(24.0f)) * 0.8333333f) + AndroidUtilities.dp(88.0f));
+        ((LinearLayout.LayoutParams) this.f43240b.f43351b.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(24.0f)) * 0.8333333f) + AndroidUtilities.dp(88.0f));
     }
 }

@@ -1,22 +1,22 @@
 package qg;
 public final class m1 extends o1 {
-    public final int f43489f;
-    public final l1 f43490g;
+    public final int f43231f;
+    public final l1 f43232g;
     public final p1 h;
 
     public m1(p1 p1Var, l1 l1Var, int i10) {
-        this.f43489f = i10;
+        this.f43231f = i10;
         this.h = p1Var;
-        this.f43490g = l1Var;
+        this.f43232g = l1Var;
     }
 
     @Override
     public final void a() {
-        switch (this.f43489f) {
+        switch (this.f43231f) {
             case 0:
                 f1 f1Var = this.h.h;
-                float f7 = f1Var.f43440i;
-                float f10 = f1Var.f43441j;
+                float f7 = f1Var.f43182i;
+                float f10 = f1Var.f43183j;
                 this.d = f7;
                 this.e = f10;
                 return;
@@ -32,14 +32,14 @@ public final class m1 extends o1 {
 
     @Override
     public final void b(float f7, float f10) {
-        switch (this.f43489f) {
+        switch (this.f43231f) {
             case 0:
                 f1 f1Var = this.h.h;
-                f1Var.f43440i = f7;
-                f1Var.f43441j = f10;
+                f1Var.f43182i = f7;
+                f1Var.f43183j = f10;
                 this.d = f7;
                 this.e = f10;
-                this.f43490g.a();
+                this.f43232g.a();
                 return;
             default:
                 f1 f1Var2 = this.h.h;
@@ -47,7 +47,7 @@ public final class m1 extends o1 {
                 f1Var2.e = f10;
                 this.d = f7;
                 this.e = f10;
-                this.f43490g.a();
+                this.f43232g.a();
                 return;
         }
     }

@@ -1,10 +1,10 @@
 package af;
 public final class o {
-    public final df.n f614a;
-    public final int f615b;
+    public final df.n f618a;
+    public final int f619b;
 
     public o(df.n nVar, int i10) {
-        this.f614a = nVar;
-        this.f615b = i10;
+        this.f618a = nVar;
+        this.f619b = i10;
     }
 }

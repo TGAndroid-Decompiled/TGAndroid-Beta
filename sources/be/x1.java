@@ -1,6 +1,6 @@
 package be;
 public final class x1 implements p0, p {
-    public static final x1 f2725a = new Object();
+    public static final x1 f2729a = new Object();
 
     @Override
     public final boolean b(Throwable th2) {

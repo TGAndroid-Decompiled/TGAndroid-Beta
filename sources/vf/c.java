@@ -15,7 +15,7 @@ public final class c implements View.OnAttachStateChangeListener {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ((re.b) a2.f46950a.f2945b).add((ni.a) obj);
+                ((re.b) a2.f46950a.f2949b).add((mi.a) obj);
             }
         }
     }
@@ -31,7 +31,7 @@ public final class c implements View.OnAttachStateChangeListener {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ((re.b) bVar.f46950a.f2945b).remove((ni.a) obj);
+                ((re.b) bVar.f46950a.f2949b).remove((mi.a) obj);
             }
             dVar.f46952b = null;
         }

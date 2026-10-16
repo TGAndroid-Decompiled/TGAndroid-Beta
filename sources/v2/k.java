@@ -2,23 +2,17 @@ package v2;
 
 import b2.x;
 import g2.b0;
-import n6.o;
 import v7.k7;
 import v7.u6;
 public final class k extends f {
     public final e f46517s;
-    public o v;
+    public n3.b v;
     public long f46518w;
     public volatile boolean f46519x;
 
     public k(g2.h hVar, g2.m mVar, x xVar, int i10, Object obj, e eVar) {
         super(hVar, mVar, 2, xVar, i10, obj, -9223372036854775807L, -9223372036854775807L);
         this.f46517s = eVar;
-    }
-
-    @Override
-    public final void J() {
-        this.f46519x = true;
     }
 
     @Override
@@ -53,5 +47,10 @@ public final class k extends f {
         } finally {
             k7.a(this.f46503r);
         }
+    }
+
+    @Override
+    public final void a0() {
+        this.f46519x = true;
     }
 }

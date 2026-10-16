@@ -9,48 +9,48 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.k31;
-import w7.a6;
+import org.telegram.ui.Components.n51;
+import w7.z5;
 public final class k extends FrameLayout {
-    public final j f30260a;
-    public final TransitionSet f30261b;
-    public boolean f30262c;
+    public final j f29929a;
+    public final TransitionSet f29930b;
+    public boolean f29931c;
 
     public k(Activity activity) {
         super(activity);
-        this.f30262c = false;
+        this.f29931c = false;
         setWillNotDraw(false);
         j jVar = new j(activity);
-        this.f30260a = jVar;
-        addView(jVar, a6.e(52, 52, 5));
+        this.f29929a = jVar;
+        addView(jVar, z5.e(52, 52, 5));
         TransitionSet transitionSet = new TransitionSet();
-        this.f30261b = transitionSet;
+        this.f29930b = transitionSet;
         transitionSet.setOrdering(0);
         transitionSet.addTransition(new org.telegram.ui.ActionBar.i(1));
         transitionSet.setDuration(500L);
-        transitionSet.setInterpolator((TimeInterpolator) es.f24771f);
+        transitionSet.setInterpolator((TimeInterpolator) es.f24465f);
     }
 
     public final void a(View.OnClickListener onClickListener, boolean z10) {
-        if (this.f30262c) {
+        if (this.f29931c) {
             return;
         }
-        this.f30262c = true;
+        this.f29931c = true;
         if (z10) {
-            TransitionManager.beginDelayedTransition(this, this.f30261b);
+            TransitionManager.beginDelayedTransition(this, this.f29930b);
         }
-        j jVar = this.f30260a;
+        j jVar = this.f29929a;
         jVar.v = 255;
-        jVar.f30244n = -1;
-        jVar.f30246s = 0;
-        jVar.f30245r = AndroidUtilities.dp(8.0f);
+        jVar.f29913n = -1;
+        jVar.f29915s = 0;
+        jVar.f29914r = AndroidUtilities.dp(8.0f);
         ViewGroup.LayoutParams layoutParams = jVar.getLayoutParams();
         layoutParams.width = -1;
         jVar.setLayoutParams(layoutParams);
-        AndroidUtilities.runOnUIThread(new k31(12, this, onClickListener), 500L);
+        AndroidUtilities.runOnUIThread(new n51(7, this, onClickListener), 500L);
     }
 
     public j getEndCloseView() {
-        return this.f30260a;
+        return this.f29929a;
     }
 }

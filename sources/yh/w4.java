@@ -7,11 +7,11 @@ import di.ab;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.mm0;
 public final class w4 extends s4.m0 {
-    public final PointF f49189a = new PointF();
-    public final x4 f49190b;
+    public final PointF f49188a = new PointF();
+    public final x4 f49189b;
 
     public w4(x4 x4Var) {
-        this.f49190b = x4Var;
+        this.f49189b = x4Var;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class w4 extends s4.m0 {
         float f10;
         ab abVar;
         float height = recyclerView.getHeight();
-        x4 x4Var = this.f49190b;
-        s4 s4Var = x4Var.f49217s0;
-        r4 r4Var = x4Var.f49207h0;
+        x4 x4Var = this.f49189b;
+        s4 s4Var = x4Var.f49216s0;
+        r4 r4Var = x4Var.f49206h0;
         mm0 mm0Var = x4Var.d;
-        PointF pointF = this.f49189a;
+        PointF pointF = this.f49188a;
         if (ih.j.b(r4Var, mm0Var, pointF)) {
             f7 = pointF.x;
             height = Math.min(height, pointF.y);

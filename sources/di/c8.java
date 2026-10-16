@@ -26,17 +26,16 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.yh;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.mm0;
 import org.telegram.ui.Components.o20;
 import org.telegram.ui.Components.ui;
-import org.telegram.ui.Components.z61;
 public final class c8 extends org.telegram.ui.Components.db implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener, ne.d {
     public String A0;
     public boolean B0;
@@ -56,59 +55,59 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
     public final ne.b X;
     public final int Y;
     public boolean Z;
-    public final c8 f6711a0;
-    public final ArrayList f6712b0;
-    public final ArrayList f6713c0;
-    public final ArrayList f6714d0;
-    public final MessagesController.SavedMusicList f6715e0;
-    public final Utilities.Callback f6716f0;
-    public MessageObject f6717g0;
-    public boolean f6718h0;
-    public boolean f6719i0;
-    public final FrameLayout f6720j0;
-    public final ui f6721k0;
-    public final bh.f f6722l0;
+    public final c8 f6714a0;
+    public final ArrayList f6715b0;
+    public final ArrayList f6716c0;
+    public final ArrayList f6717d0;
+    public final MessagesController.SavedMusicList f6718e0;
+    public final Utilities.Callback f6719f0;
+    public MessageObject f6720g0;
+    public boolean f6721h0;
+    public boolean f6722i0;
+    public final FrameLayout f6723j0;
+    public final ui f6724k0;
+    public final bh.f f6725l0;
     public final gh.d m0;
-    public final gh.d f6723n0;
-    public final bh.b f6724o0;
-    public final v7 f6725p0;
-    public z61 f6726q0;
-    public MessageObject f6727r0;
-    public String f6728s0;
-    public int f6729t0;
-    public boolean f6730u0;
-    public boolean f6731v0;
-    public boolean f6732w0;
-    public String f6733x0;
-    public int f6734y0;
-    public final u7 f6735z0;
+    public final gh.d f6726n0;
+    public final bh.b f6727o0;
+    public final v7 f6728p0;
+    public a71 f6729q0;
+    public MessageObject f6730r0;
+    public String f6731s0;
+    public int f6732t0;
+    public boolean f6733u0;
+    public boolean f6734v0;
+    public boolean f6735w0;
+    public String f6736x0;
+    public int f6737y0;
+    public final u7 f6738z0;
 
     public c8(Context context, boolean z10, c8 c8Var, Utilities.Callback callback, org.telegram.ui.ActionBar.c6 c6Var) {
         super(2, context, c6Var, true);
         es esVar = es.h;
         this.X = new ne.b(0, this, esVar, 380L, false);
-        this.f6712b0 = new ArrayList();
-        this.f6713c0 = new ArrayList();
-        this.f6714d0 = new ArrayList();
-        this.f6734y0 = -1;
-        this.f6735z0 = new Runnable(this) {
-            public final c8 f7899b;
+        this.f6715b0 = new ArrayList();
+        this.f6716c0 = new ArrayList();
+        this.f6717d0 = new ArrayList();
+        this.f6737y0 = -1;
+        this.f6738z0 = new Runnable(this) {
+            public final c8 f7902b;
 
             {
-                this.f7899b = this;
+                this.f7902b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f7899b.c0();
+                        this.f7902b.c0();
                         return;
                     case 1:
-                        this.f7899b.b0();
+                        this.f7902b.b0();
                         return;
                     default:
-                        c8.U(this.f7899b);
+                        c8.U(this.f7902b);
                         return;
                 }
             }
@@ -116,23 +115,23 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
         this.H0 = -1;
         this.J0 = -2000000000;
         this.K0 = new Runnable(this) {
-            public final c8 f7899b;
+            public final c8 f7902b;
 
             {
-                this.f7899b = this;
+                this.f7902b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f7899b.c0();
+                        this.f7902b.c0();
                         return;
                     case 1:
-                        this.f7899b.b0();
+                        this.f7902b.b0();
                         return;
                     default:
-                        c8.U(this.f7899b);
+                        c8.U(this.f7902b);
                         return;
                 }
             }
@@ -150,48 +149,48 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
         this.J = AndroidUtilities.dp(-20.0f);
         this.Z = z10;
         this.Y = DownloadController.getInstance(this.currentAccount).generateObserverTag();
-        this.f6711a0 = c8Var;
-        this.f6716f0 = callback;
+        this.f6714a0 = c8Var;
+        this.f6719f0 = callback;
         gh.c cVar = new gh.c();
-        cVar.a(getThemedColor(org.telegram.ui.ActionBar.g6.f19901d6));
+        cVar.a(getThemedColor(org.telegram.ui.ActionBar.g6.f19601d6));
         if (Build.VERSION.SDK_INT >= 31) {
-            this.f6722l0 = new bh.f(false);
+            this.f6725l0 = new bh.f(false);
             gh.d dVar = new gh.d(null);
-            this.f6723n0 = dVar;
-            dVar.j(new x7(this));
+            this.f6726n0 = dVar;
+            dVar.k(new x7(this));
             gh.d dVar2 = new gh.d(null);
             this.m0 = dVar2;
-            dVar2.j(new y7(this));
+            dVar2.k(new y7(this));
             bh.b bVar = new bh.b(dVar);
-            this.f6724o0 = bVar;
-            bVar.f2747i = LiteMode.isEnabled(262144);
+            this.f6727o0 = bVar;
+            bVar.f2751i = LiteMode.isEnabled(262144);
             LiteMode.isEnabled(262144);
         } else {
-            this.f6722l0 = null;
+            this.f6725l0 = null;
             this.m0 = null;
-            this.f6723n0 = null;
-            this.f6724o0 = new bh.b(cVar);
+            this.f6726n0 = null;
+            this.f6727o0 = new bh.b(cVar);
         }
-        this.f6725p0 = new v7(this, 0);
-        int i10 = org.telegram.ui.ActionBar.g6.f19843a7;
+        this.f6728p0 = new v7(this, 0);
+        int i10 = org.telegram.ui.ActionBar.g6.f19543a7;
         ui uiVar = new ui(context, i10, c6Var);
-        this.f6721k0 = uiVar;
+        this.f6724k0 = uiVar;
         uiVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f6720j0 = frameLayout;
+        this.f6723j0 = frameLayout;
         o20 o20Var = new o20(context, c6Var);
-        o20Var.f27815r.setOnFocusChangeListener(new z7(this));
-        o20Var.f27817w = true;
+        o20Var.f27510r.setOnFocusChangeListener(new z7(this));
+        o20Var.f27512w = true;
         o20Var.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         o20Var.d();
         o20Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        o20Var.f27815r.addTextChangedListener(new a8(this));
-        o20Var.f27815r.setHint(LocaleController.getString(R.string.Search));
-        frameLayout.addView(uiVar, w7.a6.g());
-        frameLayout.addView(o20Var, w7.a6.a(48.0f, 0.0f, 8.0f, 0.0f, 4.0f, -1, 51));
-        o20Var.setupBlurredBackground(this.f6724o0.c(o20Var, fh.b.n(c6Var), false));
+        o20Var.f27510r.addTextChangedListener(new a8(this));
+        o20Var.f27510r.setHint(LocaleController.getString(R.string.Search));
+        frameLayout.addView(uiVar, w7.z5.g());
+        frameLayout.addView(o20Var, w7.z5.a(48.0f, 0.0f, 8.0f, 0.0f, 4.0f, -1, 51));
+        o20Var.setupBlurredBackground(this.f6727o0.c(o20Var, fh.b.n(c6Var), false));
         frameLayout.setPadding(AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0);
-        this.containerView.addView(frameLayout, w7.a6.e(-1, -2, 55));
+        this.containerView.addView(frameLayout, w7.z5.e(-1, -2, 55));
         setBackgroundColor(getThemedColor(i10));
         mm0 mm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
@@ -206,32 +205,32 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
         if (!z10) {
             int i12 = this.currentAccount;
             MessagesController.SavedMusicList savedMusicList = new MessagesController.SavedMusicList(i12, UserConfig.getInstance(i12).getClientUserId());
-            this.f6715e0 = savedMusicList;
+            this.f6718e0 = savedMusicList;
             savedMusicList.load();
             c0();
             b0();
         } else {
-            this.f6715e0 = null;
+            this.f6718e0 = null;
             if (this.Z && !this.L0) {
                 this.L0 = true;
                 Utilities.globalQueue.postRunnable(new Runnable(this) {
-                    public final c8 f7899b;
+                    public final c8 f7902b;
 
                     {
-                        this.f7899b = this;
+                        this.f7902b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                this.f7899b.c0();
+                                this.f7902b.c0();
                                 return;
                             case 1:
-                                this.f7899b.b0();
+                                this.f7902b.b0();
                                 return;
                             default:
-                                c8.U(this.f7899b);
+                                c8.U(this.f7902b);
                                 return;
                         }
                     }
@@ -243,7 +242,7 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
     }
 
     public static void Q(c8 c8Var, TLRPC.messages_BotResults messages_botresults) {
-        ArrayList arrayList = c8Var.f6714d0;
+        ArrayList arrayList = c8Var.f6717d0;
         boolean z10 = false;
         c8Var.C0 = false;
         c8Var.D0 = false;
@@ -263,7 +262,7 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
                         tL_message.out = true;
                         int i11 = c8Var.J0;
                         c8Var.J0 = i11 - 1;
-                        tL_message.f19237id = i11;
+                        tL_message.f18937id = i11;
                         tL_message.peer_id = new TLRPC.TL_peerUser();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                         tL_message.from_id = tL_peerUser;
@@ -287,33 +286,33 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
                 z10 = true;
             }
             c8Var.B0 = z10;
-            c8Var.f6726q0.N(true);
+            c8Var.f6729q0.N(true);
             return;
         }
-        c8Var.f6726q0.N(true);
+        c8Var.f6729q0.N(true);
     }
 
     public static void R(c8 c8Var, Utilities.Callback callback, org.telegram.ui.ActionBar.c6 c6Var, View view, int i10) {
-        if (view instanceof org.telegram.ui.Cells.j7) {
-            MessageObject message = ((org.telegram.ui.Cells.j7) view).getMessage();
+        if (view instanceof org.telegram.ui.Cells.i7) {
+            MessageObject message = ((org.telegram.ui.Cells.i7) view).getMessage();
             if (message != null) {
                 DownloadController.getInstance(c8Var.currentAccount).removeLoadingFileObserver(c8Var);
-                if (c8Var.f6717g0 != null) {
-                    FileLoader.getInstance(c8Var.currentAccount).cancelLoadFile(c8Var.f6717g0.getDocument());
-                    c8Var.f6717g0 = null;
+                if (c8Var.f6720g0 != null) {
+                    FileLoader.getInstance(c8Var.currentAccount).cancelLoadFile(c8Var.f6720g0.getDocument());
+                    c8Var.f6720g0 = null;
                 }
                 if (!message.attachPathExists && !message.mediaExists) {
                     String fileName = message.getFileName();
                     if (!TextUtils.isEmpty(fileName)) {
-                        c8Var.f6717g0 = message;
+                        c8Var.f6720g0 = message;
                         DownloadController.getInstance(c8Var.currentAccount).addLoadingFileObserver(fileName, message, c8Var);
                         FileLoader.getInstance(c8Var.currentAccount).loadFile(message.getDocument(), message, 1, 0);
                         return;
                     }
                     return;
                 }
-                c8Var.f6716f0.run(message);
-                c8 c8Var2 = c8Var.f6711a0;
+                c8Var.f6719f0.run(message);
+                c8 c8Var2 = c8Var.f6714a0;
                 if (c8Var2 != null) {
                     c8Var2.dismiss();
                 }
@@ -322,11 +321,11 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
             }
             return;
         }
-        l61 G = c8Var.f6726q0.G(i10 - 1);
+        m61 G = c8Var.f6729q0.G(i10 - 1);
         if (G != null && G.d == 1) {
             new c8(c8Var.getContext(), true, c8Var, callback, c6Var).show();
         } else if (G != null && G.d == 2) {
-            c8Var.f6715e0.load();
+            c8Var.f6718e0.load();
         } else if (G != null && G.d == 3) {
             c8Var.c0();
         } else if (G != null && G.d == 4) {
@@ -335,10 +334,10 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
     }
 
     public static void S(c8 c8Var, TLObject tLObject) {
-        ArrayList arrayList = c8Var.f6713c0;
+        ArrayList arrayList = c8Var.f6716c0;
         boolean z10 = false;
-        c8Var.f6732w0 = false;
-        c8Var.f6731v0 = false;
+        c8Var.f6735w0 = false;
+        c8Var.f6734v0 = false;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             MessagesController.getInstance(c8Var.currentAccount).putUsers(messages_messages.users, false);
@@ -354,13 +353,13 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
             if ((messages_messages instanceof TLRPC.TL_messages_messagesSlice) && arrayList.size() < messages_messages.count) {
                 z10 = true;
             }
-            c8Var.f6730u0 = z10;
-            c8Var.f6729t0 = messages_messages.next_rate;
+            c8Var.f6733u0 = z10;
+            c8Var.f6732t0 = messages_messages.next_rate;
         } else {
-            c8Var.f6730u0 = false;
-            c8Var.f6729t0 = 0;
+            c8Var.f6733u0 = false;
+            c8Var.f6732t0 = 0;
         }
-        c8Var.f6726q0.N(true);
+        c8Var.f6729q0.N(true);
     }
 
     public static void T(c8 c8Var, Long l4) {
@@ -390,7 +389,7 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
             int i10 = -2000000000;
             while (query.moveToNext()) {
                 MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                audioEntry.f16701id = query.getInt(0);
+                audioEntry.f16393id = query.getInt(0);
                 audioEntry.author = query.getString(1);
                 audioEntry.title = query.getString(2);
                 audioEntry.path = query.getString(3);
@@ -399,7 +398,7 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
                 File file = new File(audioEntry.path);
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f19237id = i10;
+                tL_message.f18937id = i10;
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
@@ -417,7 +416,7 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
                 tL_message.flags |= 768;
                 String fileExtension = FileLoader.getFileExtension(file);
                 TLRPC.Document document = tL_message.media.document;
-                document.f19222id = 0L;
+                document.f18922id = 0L;
                 document.access_hash = 0L;
                 document.file_reference = new byte[0];
                 document.date = tL_message.date;
@@ -448,15 +447,15 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
         } catch (Exception e) {
             FileLog.e(e);
         }
-        AndroidUtilities.runOnUIThread(new x6(6, c8Var, arrayList));
+        AndroidUtilities.runOnUIThread(new y6(6, c8Var, arrayList));
     }
 
     public static boolean d0(String str, String str2, String str3) {
         if (str3 != null) {
             String lowerCase = str3.toLowerCase();
-            if (!lowerCase.startsWith(str) && !yh.v(" ", str, lowerCase)) {
+            if (!lowerCase.startsWith(str) && !org.telegram.messenger.g0.w(" ", str, lowerCase)) {
                 String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                if (!translitSafe.startsWith(str2) && !yh.v(" ", str2, translitSafe)) {
+                if (!translitSafe.startsWith(str2) && !org.telegram.messenger.g0.w(" ", str2, translitSafe)) {
                     return false;
                 }
                 return true;
@@ -467,22 +466,22 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
     }
 
     @Override
-    public final CharSequence A() {
+    public final CharSequence B() {
         return LocaleController.getString(R.string.StoryMusicTitle2);
     }
 
     @Override
     public final void J(Canvas canvas, View view) {
-        if (Build.VERSION.SDK_INT >= 31 && this.f6722l0 != null) {
+        if (Build.VERSION.SDK_INT >= 31 && this.f6725l0 != null) {
             Y();
             gh.d dVar = this.m0;
             if (dVar != null) {
-                dVar.i(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+                dVar.j(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
                 dVar.l();
             }
-            gh.d dVar2 = this.f6723n0;
+            gh.d dVar2 = this.f6726n0;
             if (dVar2 != null) {
-                dVar2.i(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+                dVar2.j(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
                 dVar2.l();
             }
         }
@@ -495,7 +494,7 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
         int i11;
         if (arrayList2 != null && (!arrayList2.isEmpty() || z11)) {
             ArrayList arrayList3 = new ArrayList();
-            String str2 = this.f6728s0;
+            String str2 = this.f6731s0;
             if (str2 == null) {
                 lowerCase = null;
             } else {
@@ -509,13 +508,13 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
                 i12++;
                 MessageObject messageObject = (MessageObject) obj;
                 if (!z10) {
-                    messageObject.setQuery(this.f6728s0);
+                    messageObject.setQuery(this.f6731s0);
                     arrayList3.add(messageObject);
-                } else if (!TextUtils.isEmpty(lowerCase) && arrayList2 != this.f6713c0) {
+                } else if (!TextUtils.isEmpty(lowerCase) && arrayList2 != this.f6716c0) {
                     String musicTitle = messageObject.getMusicTitle();
                     String musicAuthor = messageObject.getMusicAuthor();
                     if (d0(lowerCase, translitSafe, musicTitle) || d0(lowerCase, translitSafe, musicAuthor)) {
-                        messageObject.setQuery(this.f6728s0);
+                        messageObject.setQuery(this.f6731s0);
                         arrayList3.add(messageObject);
                     }
                 } else {
@@ -525,39 +524,39 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
             }
             if (!arrayList3.isEmpty() || z11) {
                 if (!arrayList.isEmpty() && arrayList.size() > 1) {
-                    arrayList.add(l61.B(null));
+                    arrayList.add(m61.B(null));
                     i11 = AndroidUtilities.dp(12.0f);
                 } else {
                     i11 = 0;
                 }
-                this.f6726q0.U();
-                arrayList.add(l61.t(str));
+                this.f6729q0.U();
+                arrayList.add(m61.t(str));
                 int size2 = arrayList3.size();
                 int i13 = 0;
                 while (i13 < size2) {
                     Object obj2 = arrayList3.get(i13);
                     i13++;
                     w7 w7Var = new w7(this, 0);
-                    int i14 = org.telegram.ui.Cells.i7.f21347a;
-                    l61 J = l61.J(org.telegram.ui.Cells.i7.class);
+                    int i14 = org.telegram.ui.Cells.h7.f20983a;
+                    m61 J = m61.J(org.telegram.ui.Cells.h7.class);
                     J.G = (MessageObject) obj2;
                     J.H = w7Var;
                     arrayList.add(J);
                     i11 += AndroidUtilities.dp(56.0f);
                 }
                 if (z11) {
-                    arrayList.add(l61.n(4));
-                    arrayList.add(l61.n(4));
-                    arrayList.add(l61.n(4));
+                    arrayList.add(m61.n(4));
+                    arrayList.add(m61.n(4));
+                    arrayList.add(m61.n(4));
                     i11 += AndroidUtilities.dp(56.0f) * 3;
                 }
                 if (z12 && !z11) {
-                    l61 c10 = l61.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
-                    c10.f26959q = true;
+                    m61 c10 = m61.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
+                    c10.f26951q = true;
                     arrayList.add(c10);
                     i11 += AndroidUtilities.dp(50.0f);
                 }
-                this.f6726q0.T();
+                this.f6729q0.T();
                 return i11;
             }
         }
@@ -566,12 +565,12 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
 
     public final void Y() {
         bh.f fVar;
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = this.f6722l0) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = this.f6725l0) != null) {
             this.N0.set(0.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, this.containerView.getMeasuredWidth(), AndroidUtilities.dp(64.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight);
             ArrayList arrayList = this.M0;
             ArrayList arrayList2 = this.O0;
             fVar.g(zf.f0.a(arrayList, 1, arrayList2), arrayList2);
-            fVar.e(this.f6725p0, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+            fVar.e(this.f6728p0, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
         }
     }
 
@@ -582,27 +581,27 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
         this.H0 = -1;
         this.A0 = "";
         this.B0 = false;
-        this.f6714d0.clear();
+        this.f6717d0.clear();
         this.C0 = false;
         this.D0 = false;
     }
 
     public final void a0() {
-        if (this.f6734y0 >= 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f6734y0, true);
+        if (this.f6737y0 >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f6737y0, true);
         }
-        this.f6734y0 = -1;
-        this.f6729t0 = 0;
-        this.f6713c0.clear();
-        this.f6731v0 = false;
-        this.f6732w0 = false;
+        this.f6737y0 = -1;
+        this.f6732t0 = 0;
+        this.f6716c0.clear();
+        this.f6734v0 = false;
+        this.f6735w0 = false;
     }
 
     public final void b0() {
         String str = MessagesController.getInstance(this.currentAccount).config.musicSearchUsername.get();
         if (!TextUtils.isEmpty(str)) {
             String str2 = this.I0;
-            String str3 = this.f6728s0;
+            String str3 = this.f6731s0;
             String str4 = "";
             if (str3 == null) {
                 str3 = "";
@@ -610,8 +609,8 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
             if (!TextUtils.equals(str2, str3)) {
                 Z();
             }
-            if (!this.C0 && !TextUtils.isEmpty(this.f6728s0) && this.f6728s0.length() >= 3) {
-                ArrayList arrayList = this.f6714d0;
+            if (!this.C0 && !TextUtils.isEmpty(this.f6731s0) && this.f6731s0.length() >= 3) {
+                ArrayList arrayList = this.f6717d0;
                 if (arrayList.isEmpty() || this.B0) {
                     if (this.E0 == null) {
                         this.E0 = MessagesController.getInstance(this.currentAccount).getUser(str);
@@ -630,14 +629,14 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
                     tL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.E0);
                     tL_messages_getInlineBotResults.peer = MessagesController.getInputPeer(currentUser);
                     tL_messages_getInlineBotResults.offset = (arrayList.isEmpty() || (r0 = this.A0) == null) ? "" : "";
-                    String str5 = this.f6728s0;
+                    String str5 = this.f6731s0;
                     if (str5 != null) {
                         str4 = str5;
                     }
                     this.I0 = str4;
                     tL_messages_getInlineBotResults.query = str4;
                     this.H0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_getInlineBotResults, new Object(), new t7(this, 1));
-                    this.f6726q0.N(true);
+                    this.f6729q0.N(true);
                 }
             }
         }
@@ -645,8 +644,8 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
 
     public final void c0() {
         if (!this.Z) {
-            String str = this.f6733x0;
-            String str2 = this.f6728s0;
+            String str = this.f6736x0;
+            String str2 = this.f6731s0;
             String str3 = "";
             if (str2 == null) {
                 str2 = "";
@@ -654,33 +653,33 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
             if (!TextUtils.equals(str, str2)) {
                 a0();
             }
-            if (!this.f6731v0) {
-                ArrayList arrayList = this.f6713c0;
-                if (!arrayList.isEmpty() && !this.f6730u0) {
+            if (!this.f6734v0) {
+                ArrayList arrayList = this.f6716c0;
+                if (!arrayList.isEmpty() && !this.f6733u0) {
                     return;
                 }
-                this.f6731v0 = true;
+                this.f6734v0 = true;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
                 tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterMusic();
-                String str4 = this.f6728s0;
+                String str4 = this.f6731s0;
                 if (str4 != null) {
                     str3 = str4;
                 }
-                this.f6733x0 = str3;
-                tL_messages_searchGlobal.f19327q = str3;
+                this.f6736x0 = str3;
+                tL_messages_searchGlobal.f19027q = str3;
                 tL_messages_searchGlobal.limit = 20;
                 if (arrayList.size() > 0) {
-                    MessageObject messageObject = (MessageObject) i2.d.g(1, arrayList);
+                    MessageObject messageObject = (MessageObject) i2.d.h(1, arrayList);
                     tL_messages_searchGlobal.offset_id = messageObject.getId();
-                    tL_messages_searchGlobal.offset_rate = this.f6729t0;
+                    tL_messages_searchGlobal.offset_rate = this.f6732t0;
                     tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
                 } else {
                     tL_messages_searchGlobal.offset_rate = 0;
                     tL_messages_searchGlobal.offset_id = 0;
                     tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
                 }
-                this.f6734y0 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new bi.z7(this, 4));
-                this.f6726q0.N(true);
+                this.f6737y0 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new bi.z7(this, 4));
+                this.f6729q0.N(true);
             }
         }
     }
@@ -688,17 +687,17 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.musicListLoaded) {
-            this.f6726q0.N(true);
+            this.f6729q0.N(true);
         }
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        if (this.f6727r0 != null && MediaController.getInstance().isPlayingMessage(this.f6727r0)) {
+        if (this.f6730r0 != null && MediaController.getInstance().isPlayingMessage(this.f6730r0)) {
             MediaController.getInstance().cleanupPlayer(true, true);
         }
-        this.f6727r0 = null;
+        this.f6730r0 = null;
     }
 
     public final void e0() {
@@ -716,7 +715,7 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
             }
             i10++;
         }
-        this.f6720j0.setTranslationY(Math.max(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f7));
+        this.f6723j0.setTranslationY(Math.max(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f7));
         if (f7 <= org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) {
             z10 = true;
         }
@@ -742,10 +741,10 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
 
     @Override
     public final void onSuccessDownload(String str) {
-        MessageObject messageObject = this.f6717g0;
+        MessageObject messageObject = this.f6720g0;
         if (messageObject != null && TextUtils.equals(messageObject.getFileName(), str)) {
-            this.f6716f0.run(this.f6717g0);
-            c8 c8Var = this.f6711a0;
+            this.f6719f0.run(this.f6720g0);
+            c8 c8Var = this.f6714a0;
             if (c8Var != null) {
                 c8Var.dismiss();
             }
@@ -757,7 +756,7 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
     public final void p(int i10, float f7, float f10, ne.e eVar) {
         int i11;
         if (i10 == 0) {
-            ui uiVar = this.f6721k0;
+            ui uiVar = this.f6724k0;
             uiVar.setAlpha(f7);
             if (f7 > 0.0f) {
                 i11 = 0;
@@ -770,14 +769,14 @@ public final class c8 extends org.telegram.ui.Components.db implements Notificat
 
     @Override
     public final lm0 x(mm0 mm0Var) {
-        z61 z61Var = new z61(mm0Var, getContext(), this.currentAccount, 0, false, new t7(this, 0), this.resourcesProvider);
-        this.f6726q0 = z61Var;
-        z61Var.f31780r = false;
-        return z61Var;
+        a71 a71Var = new a71(mm0Var, getContext(), this.currentAccount, 0, false, new t7(this, 0), this.resourcesProvider);
+        this.f6729q0 = a71Var;
+        a71Var.f23145r = false;
+        return a71Var;
     }
 
     @Override
-    public final void C(float f7, int i10) {
+    public final void A(float f7, int i10) {
     }
 
     @Override

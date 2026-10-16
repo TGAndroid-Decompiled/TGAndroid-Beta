@@ -5,11 +5,11 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class d extends LinkedHashMap {
-    public final int f16486a;
+    public final int f16179a;
 
     public d(float f7, int i10, int i11, boolean z10) {
         super(i10, f7, z10);
-        this.f16486a = i11;
+        this.f16179a = i11;
     }
 
     public static Matcher a(String str, Pattern pattern, d dVar) {
@@ -25,7 +25,7 @@ public final class d extends LinkedHashMap {
 
     @Override
     public final boolean removeEldestEntry(Map.Entry entry) {
-        switch (this.f16486a) {
+        switch (this.f16179a) {
             case 0:
                 if (size() > 4) {
                     return true;

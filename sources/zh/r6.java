@@ -6,20 +6,20 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 public final class r6 extends sg.x1 {
-    public Paint[] f51116n;
-    public final int f51117r;
-    public final int f51118s;
+    public Paint[] f51117n;
+    public final int f51118r;
+    public final int f51119s;
 
     public r6(Context context, int i10, int i11) {
         super(context);
-        this.f51117r = i10;
-        this.f51118s = i11;
+        this.f51118r = i10;
+        this.f51119s = i11;
         c();
     }
 
     @Override
     public final void a() {
-        sg.w1 w1Var = new sg.w1(this.f51117r);
+        sg.w1 w1Var = new sg.w1(this.f51118r);
         this.f45428a = w1Var;
         w1Var.N = 105;
         int i10 = 0;
@@ -30,15 +30,15 @@ public final class r6 extends sg.x1 {
         w1Var.J = false;
         w1Var.f45408m = true;
         w1Var.h = true;
-        if (this.f51118s == 1) {
+        if (this.f51119s == 1) {
             w1Var.f45406k = AndroidUtilities.dp(24.0f);
         }
-        this.f51116n = new Paint[20];
+        this.f51117n = new Paint[20];
         while (true) {
-            Paint[] paintArr = this.f51116n;
+            Paint[] paintArr = this.f51117n;
             if (i10 < paintArr.length) {
                 paintArr[i10] = new Paint(1);
-                this.f51116n[i10].setColorFilter(new PorterDuffColorFilter(i0.a.d(i10 / (this.f51116n.length - 1), -371690, -14281), PorterDuff.Mode.SRC_IN));
+                this.f51117n[i10].setColorFilter(new PorterDuffColorFilter(i0.a.d(i10 / (this.f51117n.length - 1), -371690, -14281), PorterDuff.Mode.SRC_IN));
                 i10++;
             } else {
                 sg.w1 w1Var2 = this.f45428a;

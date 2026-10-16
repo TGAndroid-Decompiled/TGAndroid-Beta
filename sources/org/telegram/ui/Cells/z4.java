@@ -18,18 +18,18 @@ public final class z4 extends org.telegram.ui.Components.z9 {
     public final void onDraw(Canvas canvas) {
         int dp;
         b5 b5Var = this.H;
-        if (b5Var.f20949r != null) {
+        if (b5Var.f20647r != null) {
             float dp2 = AndroidUtilities.dp(1.0f);
             b5Var.N.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
             bi.m9 m9Var = b5Var.N;
-            m9Var.f3324a = false;
-            m9Var.f3325b = false;
+            m9Var.f3328a = false;
+            m9Var.f3329b = false;
             m9Var.v = true;
-            m9Var.f3335o = false;
+            m9Var.f3339o = false;
             m9Var.J = this.G;
-            TL_stories.StoryItem storyItem = b5Var.f20949r;
+            TL_stories.StoryItem storyItem = b5Var.f20647r;
             m9Var.d = storyItem;
-            bi.s9.h(storyItem.dialogId, canvas, this.f31813a, m9Var);
+            bi.s9.h(storyItem.dialogId, canvas, this.f31507a, m9Var);
             return;
         }
         super.onDraw(canvas);

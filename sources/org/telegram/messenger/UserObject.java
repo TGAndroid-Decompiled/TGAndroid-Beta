@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import android.text.TextUtils;
+import java.util.Locale;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -67,6 +68,29 @@ public class UserObject {
         return false;
     }
 
+    public static String getBotStatus(TLRPC.User user) {
+        String publicUsername = getPublicUsername(user);
+        if (publicUsername != null) {
+            String lowerCase = publicUsername.toLowerCase(Locale.ROOT);
+            if (lowerCase.endsWith("agent")) {
+                return LocaleController.getString(R.string.BotTypeAgent);
+            }
+            if (lowerCase.endsWith("game")) {
+                return LocaleController.getString(R.string.BotTypeGame);
+            }
+            if (lowerCase.endsWith("app")) {
+                return LocaleController.getString(R.string.BotTypeApp);
+            }
+            if (lowerCase.endsWith("ai")) {
+                return LocaleController.getString(R.string.BotTypeAI);
+            }
+            if (lowerCase.endsWith("gay")) {
+                return LocaleController.getString(R.string.BotTypeNonBinary);
+            }
+        }
+        return LocaleController.getString(R.string.Bot);
+    }
+
     public static int getColorId(TLRPC.User user) {
         if (user == null) {
             return 0;
@@ -75,7 +99,7 @@ public class UserObject {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f19363id % 7);
+        return (int) (user.f19063id % 7);
     }
 
     public static long getEmojiId(TLRPC.User user) {
@@ -213,7 +237,7 @@ public class UserObject {
         if (user != null && !isDeleted(user)) {
             String removeRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
             if (removeRTL.length() == 0 && !TextUtils.isEmpty(user.phone)) {
-                return yh.g(new StringBuilder("+"), user.phone, jf.b.c());
+                return sk.g(new StringBuilder("+"), user.phone, jf.b.c());
             }
             return removeRTL;
         }
@@ -254,7 +278,7 @@ public class UserObject {
     }
 
     public static boolean isAnonymous(TLRPC.User user) {
-        if (user != null && user.f19363id == 2666000) {
+        if (user != null && user.f19063id == 2666000) {
             return true;
         }
         return false;
@@ -315,7 +339,7 @@ public class UserObject {
 
     public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        return (userFull == null || userFull.f19364id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+        return (userFull == null || userFull.f19064id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
     }
 
     public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
@@ -354,7 +378,7 @@ public class UserObject {
 
     public static boolean isReplyUser(TLRPC.User user) {
         if (user != null) {
-            long j10 = user.f19363id;
+            long j10 = user.f19063id;
             return j10 == 708513 || j10 == 1271266957;
         }
         return false;

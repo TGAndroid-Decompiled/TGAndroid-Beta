@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.zip.CRC32;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public abstract class d {
@@ -38,7 +39,7 @@ public abstract class d {
                         Charset charset = StandardCharsets.UTF_8;
                         crc32.update(l4.getBytes(charset));
                         crc32.update(pollAnswer.option);
-                        crc32.update(Long.toString(poll.f19242id).getBytes(charset));
+                        crc32.update(Long.toString(poll.f18942id).getBytes(charset));
                         pollAnswer.shuffle_hash = crc32.getValue();
                     }
                 }
@@ -155,7 +156,7 @@ public abstract class d {
         int i10;
         int i11;
         int i12;
-        if (arrayList != null && !arrayList.isEmpty()) {
+        if (arrayList != null && !arrayList.isEmpty() && !ApplicationLoader.isAndroidTestEnvironment()) {
             if (str != null) {
                 i10 = str.length();
             } else {

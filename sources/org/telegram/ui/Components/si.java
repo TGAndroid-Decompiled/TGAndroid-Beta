@@ -17,22 +17,22 @@ public final class si extends lm0 {
     public int I;
     public int J;
     public final vi K;
-    public final Context f29136c;
+    public final Context f28838c;
     public int d;
     public int e;
-    public int f29137f;
+    public int f28839f;
     public final ArrayList h = new ArrayList();
-    public int f29138n;
-    public int f29139r;
-    public int f29140s;
+    public int f28840n;
+    public int f28841r;
+    public int f28842s;
     public int v;
-    public int f29141w;
-    public int f29142x;
-    public int f29143y;
+    public int f28843w;
+    public int f28844x;
+    public int f28845y;
 
     public si(vi viVar, Context context) {
         this.K = viVar;
-        this.f29136c = context;
+        this.f28838c = context;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class si extends lm0 {
     public final int h() {
         int i10 = this.J;
         vi viVar = this.K;
-        if (viVar.K1 == null && (viVar.f30001f0 instanceof org.telegram.ui.fo) && !viVar.H) {
+        if (viVar.K1 == null && (viVar.f29672f0 instanceof org.telegram.ui.fo) && !viVar.H) {
             return MediaDataController.getInstance(viVar.M1).inlineBots.size() + i10;
         }
         return i10;
@@ -55,7 +55,7 @@ public final class si extends lm0 {
         if (i10 >= this.J) {
             return 1;
         }
-        if (i10 >= this.e && i10 < this.f29137f) {
+        if (i10 >= this.e && i10 < this.f28839f) {
             return 1;
         }
         return 0;
@@ -67,59 +67,59 @@ public final class si extends lm0 {
         int i10 = 0;
         this.J = 0;
         this.d = -1;
-        this.f29138n = -1;
-        this.f29140s = -1;
+        this.f28840n = -1;
+        this.f28842s = -1;
         this.v = -1;
-        this.f29141w = -1;
-        this.f29142x = -1;
-        this.f29143y = -1;
+        this.f28843w = -1;
+        this.f28844x = -1;
+        this.f28845y = -1;
         this.E = -1;
         this.F = -1;
         this.H = -1;
         this.I = -1;
         this.G = -1;
         this.e = -1;
-        this.f29137f = -1;
-        this.f29139r = -1;
+        this.f28839f = -1;
+        this.f28841r = -1;
         vi viVar = this.K;
         int i11 = viVar.M1;
-        org.telegram.ui.ActionBar.m2 m2Var = viVar.f30001f0;
+        org.telegram.ui.ActionBar.m2 m2Var = viVar.f29672f0;
         boolean z10 = true;
         if (viVar.H) {
             this.J = 1;
             this.d = 0;
             int i12 = viVar.I;
-            if (i12 == 0 || w7.m6.a(i12, 16)) {
+            if (i12 == 0 || w7.l6.a(i12, 16)) {
                 int i13 = this.J;
                 this.J = i13 + 1;
-                this.f29138n = i13;
+                this.f28840n = i13;
             }
             int i14 = viVar.I;
-            if (i14 == 0 || w7.m6.a(i14, 8192)) {
+            if (i14 == 0 || w7.l6.a(i14, 8192)) {
                 int i15 = this.J;
                 this.J = i15 + 1;
                 this.F = i15;
             }
             int i16 = viVar.I;
-            if (i16 == 0 || w7.m6.a(i16, 16384)) {
+            if (i16 == 0 || w7.l6.a(i16, 16384)) {
                 int i17 = this.J;
                 this.J = i17 + 1;
                 this.G = i17;
             }
             int i18 = viVar.I;
-            if (i18 == 0 || w7.m6.a(i18, 8)) {
+            if (i18 == 0 || w7.l6.a(i18, 8)) {
                 int i19 = this.J;
                 this.J = i19 + 1;
-                this.f29140s = i19;
+                this.f28842s = i19;
             }
             int i20 = viVar.I;
-            if (i20 == 0 || w7.m6.a(i20, 64)) {
+            if (i20 == 0 || w7.l6.a(i20, 64)) {
                 int i21 = this.J;
                 this.J = i21 + 1;
                 this.E = i21;
             }
             int i22 = viVar.I;
-            if (i22 == 0 || w7.m6.a(i22, 32768)) {
+            if (i22 == 0 || w7.l6.a(i22, 32768)) {
                 int i23 = this.J;
                 this.J = i23 + 1;
                 this.H = i23;
@@ -127,18 +127,18 @@ public final class si extends lm0 {
         } else if (!(m2Var instanceof org.telegram.ui.fo)) {
             this.d = 0;
             this.J = 2;
-            this.f29138n = 1;
+            this.f28840n = 1;
             if (viVar.W) {
                 this.J = 3;
-                this.f29140s = 2;
+                this.f28842s = 2;
             }
         } else if (viVar.K1 != null) {
             int i24 = viVar.J1;
             if (i24 == -1) {
                 this.d = 0;
-                this.f29138n = 1;
+                this.f28840n = 1;
                 this.J = 3;
-                this.f29140s = 2;
+                this.f28842s = 2;
             } else {
                 if (i24 == 0) {
                     this.J = 1;
@@ -147,12 +147,12 @@ public final class si extends lm0 {
                 if (i24 == 1) {
                     int i25 = this.J;
                     this.J = i25 + 1;
-                    this.f29138n = i25;
+                    this.f28840n = i25;
                 }
                 if (i24 == 2) {
                     int i26 = this.J;
                     this.J = i26 + 1;
-                    this.f29140s = i26;
+                    this.f28842s = i26;
                 }
             }
         } else {
@@ -162,17 +162,17 @@ public final class si extends lm0 {
             } else {
                 chat = null;
             }
-            if (i27 == null || ((org.telegram.ui.fo) m2Var).getMessagesController().getSendPaidMessagesStars(i27.f19363id) <= 0) {
+            if (i27 == null || ((org.telegram.ui.fo) m2Var).getMessagesController().getSendPaidMessagesStars(i27.f19063id) <= 0) {
                 z10 = false;
             }
             int i28 = this.J;
             this.d = i28;
             this.J = i28 + 2;
-            this.f29138n = i28 + 1;
+            this.f28840n = i28 + 1;
             if (MessagesController.getInstance(i11).config.walletAvailable.get() && ((org.telegram.ui.fo) m2Var).R3 == 0 && vi.v1(i27)) {
                 int i29 = this.J;
                 this.J = i29 + 1;
-                this.f29139r = i29;
+                this.f28841r = i29;
             }
             boolean z11 = viVar.T1;
             if (z11) {
@@ -193,20 +193,20 @@ public final class si extends lm0 {
             if (viVar.T1) {
                 int i33 = this.J;
                 this.J = i33 + 1;
-                this.f29142x = i33;
+                this.f28844x = i33;
             }
             int i34 = this.J;
             int i35 = i34 + 1;
             this.J = i35;
-            this.f29140s = i34;
+            this.f28842s = i34;
             if (viVar.S1) {
                 this.J = i34 + 2;
-                this.f29141w = i35;
+                this.f28843w = i35;
             }
-            if ((m2Var instanceof org.telegram.ui.fo) && ((org.telegram.ui.fo) m2Var).R3 == 0 && i27 != null && !z10 && !i27.bot && !ig.b2.f(i11).f11448b.isEmpty()) {
+            if ((m2Var instanceof org.telegram.ui.fo) && ((org.telegram.ui.fo) m2Var).R3 == 0 && i27 != null && !z10 && !i27.bot && !ig.b2.f(i11).f11452b.isEmpty()) {
                 int i36 = this.J;
                 this.J = i36 + 1;
-                this.f29143y = i36;
+                this.f28845y = i36;
             }
             if ((viVar.O1 || viVar.P1) && !z10 && ((chat == null || !ChatObject.isMonoForum(chat)) && (m2Var instanceof org.telegram.ui.fo) && !((org.telegram.ui.fo) m2Var).c() && !((org.telegram.ui.fo) m2Var).x())) {
                 org.telegram.ui.fo foVar = (org.telegram.ui.fo) m2Var;
@@ -232,7 +232,7 @@ public final class si extends lm0 {
                     }
                     int size2 = arrayList.size() + this.J;
                     this.J = size2;
-                    this.f29137f = size2;
+                    this.f28839f = size2;
                 }
             }
         }
@@ -247,7 +247,7 @@ public final class si extends lm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View piVar;
-        Context context = this.f29136c;
+        Context context = this.f28838c;
         vi viVar = this.K;
         if (i10 != 0) {
             piVar = new oi(viVar, context);

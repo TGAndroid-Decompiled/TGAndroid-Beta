@@ -1,10 +1,10 @@
 package ab;
 public final class a0 implements ee.c {
-    public final int f363a = 1;
-    public final ee.c f364b;
+    public final int f367a = 1;
+    public final ee.c f368b;
 
     public a0(ee.c cVar, c0 c0Var) {
-        this.f364b = cVar;
+        this.f368b = cVar;
     }
 
     @Override
@@ -13,6 +13,6 @@ public final class a0 implements ee.c {
     }
 
     public a0(ee.c cVar) {
-        this.f364b = cVar;
+        this.f368b = cVar;
     }
 }

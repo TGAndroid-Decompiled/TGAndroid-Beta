@@ -1,9 +1,9 @@
 package y8;
 public final class j0 implements n6.k {
-    public static final j0 f48628a = new Object();
+    public static final j0 f48627a = new Object();
 
     @Override
-    public Object b(com.google.android.gms.common.api.q qVar) {
-        return Integer.valueOf(((i0) qVar).f48624b);
+    public Object a(com.google.android.gms.common.api.q qVar) {
+        return Integer.valueOf(((i0) qVar).f48623b);
     }
 }

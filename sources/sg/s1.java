@@ -13,13 +13,13 @@ import zh.b8;
 public final class s1 extends r8 {
     public final b8 R;
     public final int S;
-    public final rh.j T;
+    public final ri.h0 T;
 
     public s1(Context context, int i10, c6 c6Var) {
         super(context, c6Var);
         int i11;
         this.R = new b8(1, 15);
-        this.T = new rh.j(this, 6);
+        this.T = new ri.h0(this, 6);
         if (i10 == 1) {
             i11 = g6.fk;
         } else {
@@ -31,14 +31,14 @@ public final class s1 extends r8 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean isEnabled = LiteMode.isEnabled(131072);
-        rh.j jVar = this.T;
+        ri.h0 h0Var = this.T;
         if (isEnabled) {
             b8 b8Var = this.R;
             b8Var.d();
             b8Var.a(canvas, g6.x0(null, this.S, false));
-            zf.i.d().a(15, jVar);
+            zf.i.d().a(15, h0Var);
         } else {
-            zf.i.d().f(jVar);
+            zf.i.d().f(h0Var);
         }
         super.dispatchDraw(canvas);
     }

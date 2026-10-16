@@ -6,10 +6,10 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 public final class js implements ActionMode.Callback {
-    public final ks f37427a;
+    public final ks f37126a;
 
     public js(ks ksVar) {
-        this.f37427a = ksVar;
+        this.f37126a = ksVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class js implements ActionMode.Callback {
         if (menuItem.getItemId() != 16908322) {
             return true;
         }
-        ks ksVar = this.f37427a;
+        ks ksVar = this.f37126a;
         if (ksVar.getParent() instanceof hs) {
             hsVar = (hs) ksVar.getParent();
         } else {

@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import org.telegram.messenger.MessagesController;
-public final class yv extends p61 {
+public final class yv extends q61 {
     public final zv e;
 
     public yv(zv zvVar, String str) {
-        super(str, (p11) null);
+        super(str, (q11) null);
         this.e = zvVar;
     }
 
@@ -14,11 +14,11 @@ public final class yv extends p61 {
     public final void onClick(View view) {
         int i10;
         zv zvVar = this.e;
-        i10 = ((org.telegram.ui.ActionBar.e3) zvVar.f31995x).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.e3) zvVar.f31697x).currentAccount;
         MessagesController messagesController = MessagesController.getInstance(i10);
         String url = getURL();
-        ew ewVar = zvVar.f31995x;
-        messagesController.openByUserName(url, ewVar.f24803c, 1);
+        ew ewVar = zvVar.f31697x;
+        messagesController.openByUserName(url, ewVar.f24497c, 1);
         ewVar.Z();
         ewVar.dismiss();
     }

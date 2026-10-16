@@ -1,26 +1,44 @@
 package m;
-public final class e0 extends u1 {
-    public final m0 f15097s;
-    public final p0 v;
 
-    public e0(p0 p0Var, p0 p0Var2, m0 m0Var) {
-        super(p0Var2);
-        this.v = p0Var;
-        this.f15097s = m0Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.widget.SeekBar;
+public class e0 extends SeekBar {
+    public final f0 f14823a;
+
+    public e0(Context context, AttributeSet attributeSet, int i10) {
+        super(context, attributeSet, i10);
+        d3.a(this, getContext());
+        f0 f0Var = new f0(this);
+        this.f14823a = f0Var;
+        f0Var.b(attributeSet, i10);
     }
 
     @Override
-    public final l.b0 b() {
-        return this.f15097s;
-    }
-
-    @Override
-    public final boolean c() {
-        p0 p0Var = this.v;
-        if (!p0Var.getInternalPopup().a()) {
-            p0Var.f15201f.m(g0.b(p0Var), g0.a(p0Var));
-            return true;
+    public void drawableStateChanged() {
+        super.drawableStateChanged();
+        f0 f0Var = this.f14823a;
+        e0 e0Var = f0Var.e;
+        Drawable drawable = f0Var.f14829f;
+        if (drawable != null && drawable.isStateful() && drawable.setState(e0Var.getDrawableState())) {
+            e0Var.invalidateDrawable(drawable);
         }
-        return true;
+    }
+
+    @Override
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        Drawable drawable = this.f14823a.f14829f;
+        if (drawable != null) {
+            drawable.jumpToCurrentState();
+        }
+    }
+
+    @Override
+    public final synchronized void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        this.f14823a.g(canvas);
     }
 }

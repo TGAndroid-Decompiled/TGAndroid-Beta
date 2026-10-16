@@ -1,13 +1,24 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
-public final class gu0 extends rg.y0 {
-    public final PhotoViewer K;
+public final class gu0 extends rg.o0 {
+    public final PhotoViewer f36310o2;
 
-    public gu0(PhotoViewer photoViewer, Context context, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, MediaController.CropState cropState) {
-        super(context, i10, bitmap, bitmap2, i11, cropState);
-        this.K = photoViewer;
+    public gu0(PhotoViewer photoViewer, Context context, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, MediaController.CropState cropState, mr0 mr0Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, activity, i10, bitmap, bitmap2, i11, arrayList, cropState, mr0Var, c6Var);
+        this.f36310o2 = photoViewer;
+    }
+
+    @Override
+    public final int getPKeyboardHeight() {
+        di.h4 h4Var = this.f36310o2.K1;
+        if (h4Var != null) {
+            return h4Var.f7003l;
+        }
+        return 0;
     }
 }

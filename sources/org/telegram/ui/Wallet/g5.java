@@ -1,49 +1,39 @@
 package org.telegram.ui.Wallet;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.br;
-public final class g5 extends br {
-    public final h5 f33205a;
+public final class g5 extends org.telegram.ui.Components.s6 {
+    public final int f32953s;
+    public final i5 v;
 
-    public g5(m4 m4Var, int i10) {
-        super(i10, 0);
-        this.f33205a = m4Var;
+    public g5(i5 i5Var, Context context, int i10) {
+        super(context, false, true, true, true, true);
+        this.v = i5Var;
+        this.f32953s = i10;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        setAlpha(1.0f);
-        h5 h5Var = this.f33205a;
-        boolean z10 = h5Var.f33235a;
-        f5 f5Var = h5Var.L;
-        RectF rectF = h5Var.f33238f;
-        if (z10 && (h5Var.E instanceof p5) && h5Var.F.getWidth() > 0) {
-            p5 p5Var = (p5) h5Var.E;
-            float intrinsicWidth = this.drawable.getIntrinsicWidth() * h5Var.f33236b;
-            float f10 = h5Var.f33236b;
-            float intrinsicHeight = this.drawable.getIntrinsicHeight() * f10;
-            float f11 = f10 * f7;
-            float height = (f5Var.getHeight() / 2.0f) - (intrinsicHeight / 2.0f);
-            rectF.set(f11, height, intrinsicWidth + f11, intrinsicHeight + height);
-            if (h5Var.h && h5Var.R > 0.0f) {
-                h5Var.f33237c.mapRect(rectF);
-            } else {
-                rectF.offset(h5Var.N.leftMargin, (h5Var.F.getHeight() / 2.0f) - AndroidUtilities.dp(22.0f));
-            }
-            p5Var.c(rectF.left / h5Var.F.getWidth(), rectF.top / h5Var.F.getHeight(), rectF.width() / h5Var.F.getWidth(), rectF.height() / h5Var.F.getHeight());
-            if (!p5Var.d && p5Var.f33598c) {
-                f5Var.postInvalidateOnAnimation();
-            } else {
-                float max = Math.max(0.0f, Math.min(1.0f, h5Var.R));
-                setAlpha(max);
-                if (max == 0.0f) {
-                    return;
-                }
-            }
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        float c10 = getDrawable().c();
+        i5 i5Var = this.v;
+        float max = Math.max(0.0f, (((((336.0f - this.f32953s) - 50.0f) * i5Var.F.getWidth()) / 336.0f) - i5Var.N.leftMargin) - AndroidUtilities.dp(8.0f));
+        int i10 = (c10 > 0.0f ? 1 : (c10 == 0.0f ? 0 : -1));
+        float f10 = 1.0f;
+        if (i10 > 0) {
+            f7 = Math.min(1.0f, max / c10);
+        } else {
+            f7 = 1.0f;
         }
-        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+        if (i10 > 0) {
+            f10 = Math.min(1.0f, i5Var.S / c10);
+        }
+        float f11 = ((f10 - f7) * i5Var.R) + f7;
+        i5Var.f33019b = f11;
+        int save = canvas.save();
+        canvas.scale(f11, f11, 0.0f, getHeight() / 2.0f);
+        super.onDraw(canvas);
+        canvas.restoreToCount(save);
     }
 }

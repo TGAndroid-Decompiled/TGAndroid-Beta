@@ -2,22 +2,22 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.MessagesController;
 public final class pe implements Runnable {
-    public final int f18108a;
-    public final MessagesController.DialogPhotos f18109b;
+    public final int f17808a;
+    public final MessagesController.DialogPhotos f17809b;
 
     public pe(MessagesController.DialogPhotos dialogPhotos, int i10) {
-        this.f18108a = i10;
-        this.f18109b = dialogPhotos;
+        this.f17808a = i10;
+        this.f17809b = dialogPhotos;
     }
 
     @Override
     public final void run() {
-        switch (this.f18108a) {
+        switch (this.f17808a) {
             case 0:
-                this.f18109b.lambda$loadCache$5();
+                this.f17809b.lambda$loadCache$5();
                 return;
             default:
-                this.f18109b.lambda$saveCache$6();
+                this.f17809b.lambda$saveCache$6();
                 return;
         }
     }

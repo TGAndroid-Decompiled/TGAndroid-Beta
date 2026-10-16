@@ -6,7 +6,7 @@ import android.os.RemoteException;
 public abstract class o8 {
     public static s7.e f46717a;
 
-    public static qb.c a(Bitmap bitmap) {
+    public static a6.m a(Bitmap bitmap) {
         n6.l.i(bitmap, "image must not be null");
         try {
             s7.e eVar = f46717a;
@@ -17,13 +17,13 @@ public abstract class o8 {
             Parcel M0 = cVar.M0(N0, 6);
             x6.a K0 = x6.b.K0(M0.readStrongBinder());
             M0.recycle();
-            return new qb.c(K0);
+            return new a6.m(K0);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static qb.c b(int i10) {
+    public static a6.m b(int i10) {
         try {
             s7.e eVar = f46717a;
             n6.l.i(eVar, "IBitmapDescriptorFactory is not initialized");
@@ -33,7 +33,7 @@ public abstract class o8 {
             Parcel M0 = cVar.M0(N0, 1);
             x6.a K0 = x6.b.K0(M0.readStrongBinder());
             M0.recycle();
-            return new qb.c(K0);
+            return new a6.m(K0);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }

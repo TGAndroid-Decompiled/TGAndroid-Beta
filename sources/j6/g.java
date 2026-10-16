@@ -8,16 +8,16 @@ import com.google.firebase.iid.FirebaseInstanceIdReceiver;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.m2;
 public final class g implements Runnable {
-    public final int f12859a = 0;
-    public final boolean f12860b;
-    public final Object f12861c;
+    public final int f12863a = 0;
+    public final boolean f12864b;
+    public final Object f12865c;
     public final Object d;
     public final Object e;
 
     public g(FirebaseInstanceIdReceiver firebaseInstanceIdReceiver, Intent intent, Context context, boolean z10, BroadcastReceiver.PendingResult pendingResult) {
-        this.f12861c = intent;
+        this.f12865c = intent;
         this.d = context;
-        this.f12860b = z10;
+        this.f12864b = z10;
         this.e = pendingResult;
     }
 
@@ -25,9 +25,9 @@ public final class g implements Runnable {
     public final void run() {
         Intent intent;
         int a2;
-        switch (this.f12859a) {
+        switch (this.f12863a) {
             case 0:
-                Intent intent2 = (Intent) this.f12861c;
+                Intent intent2 = (Intent) this.f12865c;
                 Context context = (Context) this.d;
                 BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.e;
                 try {
@@ -42,7 +42,7 @@ public final class g implements Runnable {
                     } else {
                         a2 = FirebaseInstanceIdReceiver.a(context, intent2);
                     }
-                    if (this.f12860b) {
+                    if (this.f12864b) {
                         pendingResult.setResultCode(a2);
                     }
                     pendingResult.finish();
@@ -55,12 +55,12 @@ public final class g implements Runnable {
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.e;
                 if (actionBarLayout.e == this) {
                     actionBarLayout.e = null;
-                    m2 m2Var = (m2) this.f12861c;
+                    m2 m2Var = (m2) this.f12865c;
                     if (m2Var != null) {
                         m2Var.onTransitionAnimationStart(false, false);
                     }
                     ((m2) this.d).onTransitionAnimationStart(true, false);
-                    actionBarLayout.d0(true, true, this.f12860b);
+                    actionBarLayout.d0(true, true, this.f12864b);
                     return;
                 }
                 return;
@@ -69,8 +69,8 @@ public final class g implements Runnable {
 
     public g(ActionBarLayout actionBarLayout, m2 m2Var, m2 m2Var2, boolean z10) {
         this.e = actionBarLayout;
-        this.f12861c = m2Var;
+        this.f12865c = m2Var;
         this.d = m2Var2;
-        this.f12860b = z10;
+        this.f12864b = z10;
     }
 }

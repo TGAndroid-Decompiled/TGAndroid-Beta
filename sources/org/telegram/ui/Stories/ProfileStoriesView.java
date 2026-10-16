@@ -32,12 +32,12 @@ import org.telegram.ui.Components.es;
 import org.telegram.ui.Components.g6;
 import org.telegram.ui.Components.r6;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.s01;
-import org.telegram.ui.yz0;
+import org.telegram.ui.r01;
+import org.telegram.ui.xz0;
 import v7.f7;
 import ya.c;
 public class ProfileStoriesView extends View implements NotificationCenter.NotificationCenterDelegate {
-    public static final int f32809s0 = 0;
+    public static final int f32511s0 = 0;
     public boolean E;
     public boolean F;
     public float G;
@@ -57,50 +57,50 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     public final g6 U;
     public final g6 V;
     public float W;
-    public final Paint f32810a;
-    public ValueAnimator f32811a0;
-    public final Paint f32812b;
-    public final Path f32813b0;
-    public final int f32814c;
-    public final Matrix f32815c0;
+    public final Paint f32512a;
+    public ValueAnimator f32513a0;
+    public final Paint f32514b;
+    public final Path f32515b0;
+    public final int f32516c;
+    public final Matrix f32517c0;
     public final long d;
-    public final PathMeasure f32816d0;
+    public final PathMeasure f32518d0;
     public final boolean e;
-    public final Path f32817e0;
-    public final View f32818f;
-    public float f32819f0;
-    public float f32820g0;
-    public final s01 h;
-    public float f32821h0;
-    public float f32822i0;
-    public float f32823j0;
-    public boolean f32824k0;
-    public final g6 f32825l0;
+    public final Path f32519e0;
+    public final View f32520f;
+    public float f32521f0;
+    public float f32522g0;
+    public final r01 h;
+    public float f32523h0;
+    public float f32524i0;
+    public float f32525j0;
+    public boolean f32526k0;
+    public final g6 f32527l0;
     public final g6 m0;
-    public final r6 f32826n;
-    public final c f32827n0;
-    public final r5 f32828o0;
-    public long f32829p0;
-    public float f32830q0;
-    public int f32831r;
-    public float f32832r0;
-    public int f32833s;
+    public final r6 f32528n;
+    public final c f32529n0;
+    public final r5 f32530o0;
+    public long f32531p0;
+    public float f32532q0;
+    public int f32533r;
+    public float f32534r0;
+    public int f32535s;
     public t5 v;
-    public final ArrayList f32834w;
-    public boolean f32835x;
-    public ck0 f32836y;
+    public final ArrayList f32536w;
+    public boolean f32537x;
+    public ck0 f32538y;
 
-    public ProfileStoriesView(Context context, int i10, long j10, boolean z10, View view, s01 s01Var, c6 c6Var) {
+    public ProfileStoriesView(Context context, int i10, long j10, boolean z10, View view, r01 r01Var, c6 c6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f32810a = paint;
+        this.f32512a = paint;
         Paint paint2 = new Paint(1);
-        this.f32812b = paint2;
+        this.f32514b = paint2;
         Paint paint3 = new Paint(1);
         r6 r6Var = new r6(false, true, true);
-        this.f32826n = r6Var;
+        this.f32528n = r6Var;
         Paint paint4 = new Paint(1);
-        this.f32834w = new ArrayList();
+        this.f32536w = new ArrayList();
         Paint paint5 = new Paint(1);
         this.G = 1.0f;
         this.H = 1.0f;
@@ -112,49 +112,49 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         es esVar = es.h;
         this.T = new g6(this, 0L, 480L, esVar);
         this.U = new g6(this, 0L, 240L, esVar);
-        this.V = new g6(this, 0L, 150L, es.f24771f);
+        this.V = new g6(this, 0L, 150L, es.f24465f);
         this.W = 1.0f;
-        this.f32813b0 = new Path();
-        this.f32815c0 = new Matrix();
-        this.f32816d0 = new PathMeasure();
-        this.f32817e0 = new Path();
-        this.f32825l0 = new g6(this, 0L, 350L, esVar);
+        this.f32515b0 = new Path();
+        this.f32517c0 = new Matrix();
+        this.f32518d0 = new PathMeasure();
+        this.f32519e0 = new Path();
+        this.f32527l0 = new g6(this, 0L, 350L, esVar);
         this.m0 = new g6(this, 0L, 350L, esVar);
-        final yz0 yz0Var = (yz0) this;
-        this.f32827n0 = new c(yz0Var, 8);
-        this.f32828o0 = new Runnable() {
+        final xz0 xz0Var = (xz0) this;
+        this.f32529n0 = new c(xz0Var, 8);
+        this.f32530o0 = new Runnable() {
             @Override
             public final void run() {
                 int i11 = r2;
-                yz0 yz0Var2 = yz0Var;
+                xz0 xz0Var2 = xz0Var;
                 switch (i11) {
                     case 0:
-                        int i12 = ProfileStoriesView.f32809s0;
-                        yz0Var2.f42439u0.w4(false);
+                        int i12 = ProfileStoriesView.f32511s0;
+                        xz0Var2.f41693u0.w4(false);
                         return;
                     default:
-                        yz0Var2.invalidate();
+                        xz0Var2.invalidate();
                         return;
                 }
             }
         };
-        this.f32814c = i10;
+        this.f32516c = i10;
         this.d = j10;
         this.e = z10;
-        this.f32818f = view;
-        this.h = s01Var;
-        s01Var.getImageReceiver().setVisibleInvalidate(new Runnable() {
+        this.f32520f = view;
+        this.h = r01Var;
+        r01Var.getImageReceiver().setVisibleInvalidate(new Runnable() {
             @Override
             public final void run() {
                 int i11 = r2;
-                yz0 yz0Var2 = yz0Var;
+                xz0 xz0Var2 = xz0Var;
                 switch (i11) {
                     case 0:
-                        int i12 = ProfileStoriesView.f32809s0;
-                        yz0Var2.f42439u0.w4(false);
+                        int i12 = ProfileStoriesView.f32511s0;
+                        xz0Var2.f41693u0.w4(false);
                         return;
                     default:
-                        yz0Var2.invalidate();
+                        xz0Var2.invalidate();
                         return;
                 }
             }
@@ -171,7 +171,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         paint2.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
         paint2.setStyle(style);
         paint2.setStrokeCap(cap);
-        paint3.setColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19901d6, c6Var));
+        paint3.setColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19601d6, c6Var));
         r6Var.w(AndroidUtilities.dp(18.0f));
         r6Var.n(0.4f, 320L, esVar);
         r6Var.x(AndroidUtilities.bold());
@@ -186,12 +186,12 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
 
     public static t5 d(t5 t5Var, t5 t5Var2, t5 t5Var3) {
         if (t5Var3 != null) {
-            RectF rectF = t5Var3.f3747n;
+            RectF rectF = t5Var3.f3751n;
             if (t5Var != null || t5Var2 != null) {
                 if (t5Var != null) {
-                    RectF rectF2 = t5Var.f3747n;
+                    RectF rectF2 = t5Var.f3751n;
                     if (t5Var2 != null) {
-                        RectF rectF3 = t5Var2.f3747n;
+                        RectF rectF3 = t5Var2.f3751n;
                         if (Math.min(Math.abs(rectF2.left - rectF.right), Math.abs(rectF2.right - rectF.left)) > Math.min(Math.abs(rectF3.left - rectF.right), Math.abs(rectF3.right - rectF.left))) {
                             return t5Var;
                         }
@@ -209,21 +209,21 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     private float getExpandRight() {
-        return this.f32822i0 - (this.f32825l0.e(this.f32824k0) * AndroidUtilities.dp(71.0f));
+        return this.f32524i0 - (this.f32527l0.e(this.f32526k0) * AndroidUtilities.dp(71.0f));
     }
 
     public final void a(Canvas canvas, t5 t5Var, t5 t5Var2) {
         if (t5Var2 == null) {
             return;
         }
-        RectF rectF = t5Var2.f3746m;
+        RectF rectF = t5Var2.f3750m;
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(rectF);
-        float f7 = -(AndroidUtilities.dpf2(1.66f) * t5Var2.f3743j);
+        float f7 = -(AndroidUtilities.dpf2(1.66f) * t5Var2.f3747j);
         rectF2.inset(f7, f7);
         float centerX = rectF.centerX();
         float width = rectF.width() / 2.0f;
-        RectF rectF3 = t5Var.f3746m;
+        RectF rectF3 = t5Var.f3750m;
         float centerX2 = rectF3.centerX();
         float width2 = rectF3.width() / 2.0f;
         Path path = this.S;
@@ -253,17 +253,17 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             float f11 = f7 + f10;
             float f12 = (((int) f11) / 90) * 90;
             float f13 = (-199.0f) + f12;
-            Path path = this.f32813b0;
+            Path path = this.f32515b0;
             path.rewind();
             path.addRoundRect(rectF, height, height, Path.Direction.CW);
-            Matrix matrix = this.f32815c0;
+            Matrix matrix = this.f32517c0;
             matrix.reset();
             matrix.postRotate(f12, rectF.centerX(), rectF.centerY());
             path.transform(matrix);
-            PathMeasure pathMeasure = this.f32816d0;
+            PathMeasure pathMeasure = this.f32518d0;
             pathMeasure.setPath(path, false);
             float length = pathMeasure.getLength();
-            Path path2 = this.f32817e0;
+            Path path2 = this.f32519e0;
             path2.reset();
             pathMeasure.getSegment(((f11 - f13) / 360.0f) * length, length * (((f11 - f10) - f13) / 360.0f), path2, true);
             path2.rLineTo(0.0f, 0.0f);
@@ -279,15 +279,15 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         double degrees;
         double degrees2;
         t5 t5Var4 = t5Var;
-        RectF rectF = t5Var2.f3747n;
+        RectF rectF = t5Var2.f3751n;
         if (t5Var4 == null && t5Var3 == null) {
             b(0.0f, 360.0f, canvas, paint, rectF);
             return;
         }
         if (t5Var4 != null) {
-            RectF rectF2 = t5Var4.f3747n;
+            RectF rectF2 = t5Var4.f3751n;
             if (t5Var3 != null) {
-                RectF rectF3 = t5Var3.f3747n;
+                RectF rectF3 = t5Var3.f3751n;
                 float centerX = rectF2.centerX();
                 float width2 = rectF2.width() / 2.0f;
                 float centerX2 = rectF.centerX();
@@ -340,8 +340,8 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         if (t5Var4 == null) {
             t5Var4 = t5Var3;
         }
-        float centerX4 = t5Var4.f3747n.centerX();
-        float width5 = t5Var4.f3747n.width() / 2.0f;
+        float centerX4 = t5Var4.f3751n.centerX();
+        float width5 = t5Var4.f3751n.width() / 2.0f;
         float centerX5 = rectF.centerX();
         if (Math.abs(centerX4 - centerX5) > width5 + (rectF.width() / 2.0f)) {
             b(0.0f, 360.0f, canvas, paint, rectF);
@@ -377,15 +377,15 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f32835x = true;
+        this.f32537x = true;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f32834w;
+            ArrayList arrayList = this.f32536w;
             if (i10 < arrayList.size()) {
-                ((t5) arrayList.get(i10)).f3738b.onAttachedToWindow();
+                ((t5) arrayList.get(i10)).f3742b.onAttachedToWindow();
                 i10++;
             } else {
-                NotificationCenter.getInstance(this.f32814c).addObserver(this, NotificationCenter.storiesUpdated);
+                NotificationCenter.getInstance(this.f32516c).addObserver(this, NotificationCenter.storiesUpdated);
                 return;
             }
         }
@@ -395,14 +395,14 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i10 = 0;
-        this.f32835x = false;
+        this.f32537x = false;
         while (true) {
-            ArrayList arrayList = this.f32834w;
+            ArrayList arrayList = this.f32536w;
             if (i10 < arrayList.size()) {
-                ((t5) arrayList.get(i10)).f3738b.onDetachedFromWindow();
+                ((t5) arrayList.get(i10)).f3742b.onDetachedFromWindow();
                 i10++;
             } else {
-                NotificationCenter.getInstance(this.f32814c).removeObserver(this, NotificationCenter.storiesUpdated);
+                NotificationCenter.getInstance(this.f32516c).removeObserver(this, NotificationCenter.storiesUpdated);
                 return;
             }
         }
@@ -413,32 +413,32 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         boolean z10;
         if (this.N < 0.9f) {
             z10 = this.Q.contains(motionEvent.getX(), motionEvent.getY());
-        } else if (motionEvent.getX() >= this.f32819f0 && motionEvent.getX() <= this.f32820g0 && Math.abs(motionEvent.getY() - this.f32821h0) < AndroidUtilities.dp(32.0f)) {
+        } else if (motionEvent.getX() >= this.f32521f0 && motionEvent.getX() <= this.f32522g0 && Math.abs(motionEvent.getY() - this.f32523h0) < AndroidUtilities.dp(32.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        r5 r5Var = this.f32828o0;
+        r5 r5Var = this.f32530o0;
         if (z10 && motionEvent.getAction() == 0) {
-            this.f32829p0 = System.currentTimeMillis();
-            this.f32830q0 = motionEvent.getX();
-            this.f32832r0 = motionEvent.getY();
+            this.f32531p0 = System.currentTimeMillis();
+            this.f32532q0 = motionEvent.getX();
+            this.f32534r0 = motionEvent.getY();
             AndroidUtilities.cancelRunOnUIThread(r5Var);
             AndroidUtilities.runOnUIThread(r5Var, ViewConfiguration.getLongPressTimeout());
             return true;
         }
         if (motionEvent.getAction() == 1) {
             AndroidUtilities.cancelRunOnUIThread(r5Var);
-            if (z10 && System.currentTimeMillis() - this.f32829p0 <= ViewConfiguration.getTapTimeout() && f7.a(this.f32830q0, this.f32832r0, motionEvent.getX(), motionEvent.getY()) <= AndroidUtilities.dp(12.0f)) {
+            if (z10 && System.currentTimeMillis() - this.f32531p0 <= ViewConfiguration.getTapTimeout() && f7.a(this.f32532q0, this.f32534r0, motionEvent.getX(), motionEvent.getY()) <= AndroidUtilities.dp(12.0f)) {
                 x8 x8Var = this.M;
                 long j10 = this.d;
-                if (x8Var.K(j10) || x8Var.I(j10) || !this.f32834w.isEmpty()) {
-                    e(this.f32827n0);
+                if (x8Var.K(j10) || x8Var.I(j10) || !this.f32536w.isEmpty()) {
+                    e(this.f32529n0);
                     return true;
                 }
             }
         } else if (motionEvent.getAction() == 3) {
-            this.f32829p0 = -1L;
+            this.f32531p0 = -1L;
             AndroidUtilities.cancelRunOnUIThread(r5Var);
         }
         return super.onTouchEvent(motionEvent);
@@ -481,7 +481,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f32826n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f32528n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

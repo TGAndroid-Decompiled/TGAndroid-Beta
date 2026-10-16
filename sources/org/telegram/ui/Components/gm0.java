@@ -5,23 +5,23 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
 public final class gm0 extends y20 {
-    public View f25363a;
-    public final hm0 f25364b;
+    public View f25051a;
+    public final hm0 f25052b;
 
     public gm0(hm0 hm0Var) {
-        this.f25364b = hm0Var;
+        this.f25052b = hm0Var;
     }
 
     @Override
     public final boolean a() {
-        if (((mm0) this.f25364b.f25711b).W0 != null) {
+        if (((mm0) this.f25052b.f25362b).W0 != null) {
             return true;
         }
         return false;
     }
 
     public final void b(MotionEvent motionEvent, View view) {
-        mm0 mm0Var = (mm0) this.f25364b.f25711b;
+        mm0 mm0Var = (mm0) this.f25052b.f25362b;
         if (view != null) {
             if (mm0Var.T0 != null || mm0Var.U0 != null) {
                 float x10 = motionEvent.getX();
@@ -47,10 +47,10 @@ public final class gm0 extends y20 {
                 fm0 fm0Var = new fm0(this, view, i10, x10, y3);
                 mm0Var.Q1 = fm0Var;
                 AndroidUtilities.runOnUIThread(fm0Var, ViewConfiguration.getPressedStateDuration());
-                em0 em0Var = mm0Var.f27417c1;
+                em0 em0Var = mm0Var.f27126c1;
                 if (em0Var != null) {
                     AndroidUtilities.cancelRunOnUIThread(em0Var);
-                    mm0Var.f27417c1 = null;
+                    mm0Var.f27126c1 = null;
                     mm0Var.L1 = null;
                     mm0Var.N1 = false;
                     mm0Var.k1(motionEvent, view);
@@ -62,11 +62,11 @@ public final class gm0 extends y20 {
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
         bm0 bm0Var;
-        mm0 mm0Var = (mm0) this.f25364b.f25711b;
-        View view = this.f25363a;
+        mm0 mm0Var = (mm0) this.f25052b.f25362b;
+        View view = this.f25051a;
         if (view != null && (bm0Var = mm0Var.U0) != null && bm0Var.c1(view)) {
-            mm0Var.U0.p0(this.f25363a, motionEvent.getX(), motionEvent.getY());
-            this.f25363a = null;
+            mm0Var.U0.p0(this.f25051a, motionEvent.getX(), motionEvent.getY());
+            this.f25051a = null;
             return true;
         }
         return false;
@@ -80,7 +80,7 @@ public final class gm0 extends y20 {
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
         int i10;
-        mm0 mm0Var = (mm0) this.f25364b.f25711b;
+        mm0 mm0Var = (mm0) this.f25052b.f25362b;
         View view = mm0Var.L1;
         if (view != null && (i10 = mm0Var.M1) != -1) {
             cm0 cm0Var = mm0Var.V0;
@@ -108,10 +108,10 @@ public final class gm0 extends y20 {
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
         bm0 bm0Var;
-        View view = this.f25363a;
-        if (view != null && (bm0Var = ((mm0) this.f25364b.f25711b).U0) != null && bm0Var.c1(view)) {
-            b(motionEvent, this.f25363a);
-            this.f25363a = null;
+        View view = this.f25051a;
+        if (view != null && (bm0Var = ((mm0) this.f25052b.f25362b).U0) != null && bm0Var.c1(view)) {
+            b(motionEvent, this.f25051a);
+            this.f25051a = null;
             return true;
         }
         return false;
@@ -119,12 +119,12 @@ public final class gm0 extends y20 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        mm0 mm0Var = (mm0) this.f25364b.f25711b;
+        mm0 mm0Var = (mm0) this.f25052b.f25362b;
         View view = mm0Var.L1;
         if (view != null) {
             bm0 bm0Var = mm0Var.U0;
             if (bm0Var != null && bm0Var.c1(view)) {
-                this.f25363a = mm0Var.L1;
+                this.f25051a = mm0Var.L1;
                 return false;
             }
             b(motionEvent, mm0Var.L1);

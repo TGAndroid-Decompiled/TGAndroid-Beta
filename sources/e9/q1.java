@@ -7,12 +7,12 @@ import java.util.Map;
 import java.util.Set;
 public final class q1 extends p implements f1 {
     public final f1 e;
-    public final k6.h f8607f;
+    public final a4.l f8610f;
 
-    public q1(f1 f1Var, k6.h hVar) {
+    public q1(f1 f1Var, a4.l lVar) {
         f1Var.getClass();
         this.e = f1Var;
-        this.f8607f = hVar;
+        this.f8610f = lVar;
     }
 
     @Override
@@ -37,12 +37,12 @@ public final class q1 extends p implements f1 {
 
     @Override
     public final Iterator g() {
-        return new b1(this.e.a().iterator(), new a6.i(this.f8607f, 16));
+        return new b1(this.e.a().iterator(), new a6.i(this.f8610f, 16));
     }
 
     @Override
     public final Collection get(Object obj) {
-        return s.x((List) this.e.get(obj), new n4.s(14, this.f8607f, obj));
+        return s.x((List) this.e.get(obj), new n4.s(14, this.f8610f, obj));
     }
 
     @Override

@@ -3,7 +3,7 @@ package md;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import m.w2;
+import m.y2;
 import v7.i8;
 public abstract class a implements kd.c, d, Serializable {
     private final kd.c completion;
@@ -68,20 +68,20 @@ public abstract class a implements kd.c, d, Serializable {
             if (i10 >= 0) {
                 i12 = eVar.l()[i10];
             }
-            w2 w2Var = f.f15758b;
-            w2 w2Var2 = f.f15757a;
-            if (w2Var == null) {
+            y2 y2Var = f.f15493b;
+            y2 y2Var2 = f.f15492a;
+            if (y2Var == null) {
                 try {
-                    w2 w2Var3 = new w2(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    f.f15758b = w2Var3;
-                    w2Var = w2Var3;
+                    y2 y2Var3 = new y2(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
+                    f.f15493b = y2Var3;
+                    y2Var = y2Var3;
                 } catch (Exception unused2) {
-                    f.f15758b = w2Var2;
-                    w2Var = w2Var2;
+                    f.f15493b = y2Var2;
+                    y2Var = y2Var2;
                 }
             }
-            if (w2Var != w2Var2 && (method = w2Var.f15282a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = w2Var.f15283b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
-                Method method3 = w2Var.f15284c;
+            if (y2Var != y2Var2 && (method = y2Var.f15035a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = y2Var.f15036b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
+                Method method3 = y2Var.f15037c;
                 if (method3 != null) {
                     obj = method3.invoke(invoke2, null);
                 } else {

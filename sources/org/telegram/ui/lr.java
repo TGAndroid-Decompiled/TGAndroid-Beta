@@ -16,12 +16,12 @@ public final class lr extends s4.k {
 
     @Override
     public final void O() {
-        this.G.f42218c.invalidate();
+        this.G.f41895c.invalidate();
     }
 
     @Override
     public final void P(s4.b1 b1Var) {
-        this.G.f42218c.invalidate();
+        this.G.f41895c.invalidate();
     }
 
     @Override

@@ -14,31 +14,31 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public final class b91 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.z9 f34465a;
-    public final xk f34466b;
-    public final org.telegram.ui.Components.voip.h f34467c;
+    public final org.telegram.ui.Components.z9 f34249a;
+    public final xk f34250b;
+    public final org.telegram.ui.Components.voip.h f34251c;
     public final SessionsActivity d;
 
     public b91(SessionsActivity sessionsActivity, Context context) {
         super(context);
         this.d = sessionsActivity;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f34467c = hVar;
+        this.f34251c = hVar;
         org.telegram.ui.Components.z9 z9Var = new org.telegram.ui.Components.z9(context);
-        this.f34465a = z9Var;
-        addView(z9Var, w7.a6.a(120.0f, 0.0f, 16.0f, 0.0f, 0.0f, 120, 1));
-        hVar.f30199j = false;
-        hVar.f30203n = 1.2f;
+        this.f34249a = z9Var;
+        addView(z9Var, w7.z5.a(120.0f, 0.0f, 16.0f, 0.0f, 0.0f, 120, 1));
+        hVar.f29868j = false;
+        hVar.f29872n = 1.2f;
         z9Var.setOnClickListener(new c8(this, 2));
         int i10 = org.telegram.ui.ActionBar.g6.G6;
         org.telegram.ui.ActionBar.g6.x0(null, i10, false);
-        int i11 = org.telegram.ui.ActionBar.g6.f19901d6;
+        int i11 = org.telegram.ui.ActionBar.g6.f19601d6;
         org.telegram.ui.ActionBar.g6.x0(null, i11, false);
         int i12 = org.telegram.ui.ActionBar.g6.Oh;
         org.telegram.ui.ActionBar.g6.x0(null, i12, false);
         org.telegram.ui.ActionBar.g6.x0(null, i11, false);
         org.telegram.ui.Components.da0 da0Var = new org.telegram.ui.Components.da0(context, null);
-        addView(da0Var, w7.a6.a(-2.0f, 36.0f, 152.0f, 36.0f, 0.0f, -1, 0));
+        addView(da0Var, w7.z5.a(-2.0f, 36.0f, 152.0f, 36.0f, 0.0f, -1, 0));
         da0Var.setGravity(1);
         da0Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
         da0Var.setTextSize(1, 15.0f);
@@ -53,7 +53,7 @@ public final class b91 extends FrameLayout implements NotificationCenter.Notific
             da0Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
             spannableStringBuilder.replace(indexOf2, indexOf2 + 1, (CharSequence) "");
             spannableStringBuilder.replace(indexOf, i13, (CharSequence) "");
-            spannableStringBuilder.setSpan(new org.telegram.ui.Components.p61(LocaleController.getString(R.string.AuthAnotherClientDownloadClientUrl), (org.telegram.ui.Components.p11) null), indexOf, indexOf2 - 1, 33);
+            spannableStringBuilder.setSpan(new org.telegram.ui.Components.q61(LocaleController.getString(R.string.AuthAnotherClientDownloadClientUrl), (org.telegram.ui.Components.q11) null), indexOf, indexOf2 - 1, 33);
         }
         String spannableStringBuilder2 = spannableStringBuilder.toString();
         int indexOf3 = spannableStringBuilder2.indexOf(42);
@@ -63,11 +63,11 @@ public final class b91 extends FrameLayout implements NotificationCenter.Notific
             da0Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
             spannableStringBuilder.replace(indexOf4, indexOf4 + 1, (CharSequence) "");
             spannableStringBuilder.replace(indexOf3, i14, (CharSequence) "");
-            spannableStringBuilder.setSpan(new org.telegram.ui.Components.p61(LocaleController.getString(R.string.AuthAnotherWebClientUrl), (org.telegram.ui.Components.p11) null), indexOf3, indexOf4 - 1, 33);
+            spannableStringBuilder.setSpan(new org.telegram.ui.Components.q61(LocaleController.getString(R.string.AuthAnotherWebClientUrl), (org.telegram.ui.Components.q11) null), indexOf3, indexOf4 - 1, 33);
         }
         da0Var.setText(spannableStringBuilder);
         xk xkVar = new xk(this, context, 3);
-        this.f34466b = xkVar;
+        this.f34250b = xkVar;
         xkVar.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         xkVar.setGravity(17);
         xkVar.setTextSize(1, 14.0f);
@@ -82,7 +82,7 @@ public final class b91 extends FrameLayout implements NotificationCenter.Notific
         int x03 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Qh, false);
         xkVar.setBackground(org.telegram.ui.ActionBar.g6.j0(dp, dp, dp, dp, x02, x03, x03));
         xkVar.setOnClickListener(new v41(this, 4));
-        addView(xkVar, w7.a6.a(48.0f, 16.0f, 15.0f, 16.0f, 16.0f, -1, 80));
+        addView(xkVar, w7.z5.a(48.0f, 16.0f, 15.0f, 16.0f, 16.0f, -1, 80));
         a();
     }
 
@@ -107,7 +107,7 @@ public final class b91 extends FrameLayout implements NotificationCenter.Notific
             document = null;
         }
         if (document != null) {
-            svgDrawable = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.g6.f19883c7, 0.2f);
+            svgDrawable = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.g6.f19583c7, 0.2f);
         }
         SvgHelper.SvgDrawable svgDrawable2 = svgDrawable;
         if (svgDrawable2 != null) {
@@ -125,7 +125,7 @@ public final class b91 extends FrameLayout implements NotificationCenter.Notific
             return;
         }
         ImageLocation forDocument = ImageLocation.getForDocument(document);
-        org.telegram.ui.Components.z9 z9Var = this.f34465a;
+        org.telegram.ui.Components.z9 z9Var = this.f34249a;
         z9Var.i(forDocument, "130_130", "tgs", svgDrawable2, tL_messages_stickerSet);
         z9Var.getImageReceiver().setAutoRepeat(2);
     }

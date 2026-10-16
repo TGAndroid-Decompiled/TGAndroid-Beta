@@ -1,47 +1,33 @@
 package m4;
 
-import android.os.Bundle;
-import j$.util.Objects;
+import java.util.List;
+import v7.c8;
 public final class w {
-    public final n4.t f15670a;
-    public final int f15671b;
-    public final int f15672c;
-    public final v d;
-    public final Bundle e;
+    public final e9.n0 f15404a;
+    public final int f15405b;
+    public final long f15406c;
 
-    public w(n4.t tVar, int i10, int i11, boolean z10, v vVar, Bundle bundle) {
-        this.f15670a = tVar;
-        this.f15671b = i10;
-        this.f15672c = i11;
-        this.d = vVar;
-        this.e = bundle;
+    public w(long j10, int i10, List list) {
+        this.f15404a = e9.n0.u(list);
+        this.f15405b = i10;
+        this.f15406c = j10;
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof w)) {
-            return false;
-        }
         if (this == obj) {
             return true;
         }
-        w wVar = (w) obj;
-        v vVar = wVar.d;
-        v vVar2 = this.d;
-        if (vVar2 == null && vVar == null) {
-            return this.f15670a.equals(wVar.f15670a);
+        if (!(obj instanceof w)) {
+            return false;
         }
-        return Objects.equals(vVar2, vVar);
+        w wVar = (w) obj;
+        if (this.f15404a.equals(wVar.f15404a) && this.f15405b == wVar.f15405b && this.f15406c == wVar.f15406c) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.d, this.f15670a);
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("ControllerInfo {pkg=");
-        n4.t tVar = this.f15670a;
-        sb2.append(tVar.f16033a.f16034a);
-        sb2.append(", uid=");
-        return a1.g.n(tVar.f16033a.f16036c, "}", sb2);
+        return c8.b(this.f15406c) + (((this.f15404a.hashCode() * 31) + this.f15405b) * 31);
     }
 }

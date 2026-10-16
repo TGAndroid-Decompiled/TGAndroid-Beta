@@ -13,17 +13,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class rp0 extends lm0 {
-    public final org.telegram.ui.ActionBar.c6 f28918c;
+    public final org.telegram.ui.ActionBar.c6 f28619c;
     public final List d;
     public final MessagesController e;
-    public final int f28919f;
+    public final int f28620f;
     public final TLRPC.Peer h;
 
     public rp0(org.telegram.ui.ActionBar.c6 c6Var, List list, MessagesController messagesController, int i10, TLRPC.Peer peer) {
-        this.f28918c = c6Var;
+        this.f28619c = c6Var;
         this.d = list;
         this.e = messagesController;
-        this.f28919f = i10;
+        this.f28620f = i10;
         this.h = peer;
     }
 
@@ -66,8 +66,8 @@ public final class rp0 extends lm0 {
                 if (tL_sendAsPeer.premium_required) {
                     StringBuilder sb2 = new StringBuilder();
                     String str2 = chat.title;
-                    TextView textView = vp0Var.f30622b;
-                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f28919f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
+                    TextView textView = vp0Var.f30291b;
+                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f28620f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
                     sb2.append(" d");
                     SpannableString spannableString = new SpannableString(sb2.toString());
                     br brVar = new br(R.drawable.msg_mini_premiumlock, 0);
@@ -78,19 +78,19 @@ public final class rp0 extends lm0 {
                     textView.setEllipsize(null);
                     textView.setText(spannableString);
                 } else {
-                    vp0Var.f30622b.setEllipsize(TextUtils.TruncateAt.END);
-                    vp0Var.f30622b.setText(chat.title);
+                    vp0Var.f30291b.setEllipsize(TextUtils.TruncateAt.END);
+                    vp0Var.f30291b.setText(chat.title);
                 }
-                TextView textView2 = vp0Var.f30623c;
+                TextView textView2 = vp0Var.f30292c;
                 if (ChatObject.isChannel(chat) && !chat.megagroup) {
                     str = "Subscribers";
                 } else {
                     str = "Members";
                 }
                 textView2.setText(LocaleController.formatPluralString(str, chat.participants_count, new Object[0]));
-                vp0Var.f30621a.setAvatar(chat);
+                vp0Var.f30290a.setAvatar(chat);
             }
-            ew0 ew0Var = vp0Var.f30621a;
+            ew0 ew0Var = vp0Var.f30290a;
             if (peer2 == null ? i10 != 0 : peer2.channel_id != peer.channel_id) {
                 z10 = false;
             }
@@ -99,11 +99,11 @@ public final class rp0 extends lm0 {
         }
         TLRPC.User user = messagesController.getUser(Long.valueOf(j10));
         if (user != null) {
-            vp0Var.f30622b.setText(UserObject.getUserName(user));
-            vp0Var.f30623c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
-            vp0Var.f30621a.setAvatar(user);
+            vp0Var.f30291b.setText(UserObject.getUserName(user));
+            vp0Var.f30292c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
+            vp0Var.f30290a.setAvatar(user);
         }
-        ew0 ew0Var2 = vp0Var.f30621a;
+        ew0 ew0Var2 = vp0Var.f30290a;
         if (peer2 == null ? i10 != 0 : peer2.user_id != peer.user_id) {
             z10 = false;
         }
@@ -112,6 +112,6 @@ public final class rp0 extends lm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new vp0(viewGroup.getContext(), this.f28918c));
+        return new s4.b1(new vp0(viewGroup.getContext(), this.f28619c));
     }
 }

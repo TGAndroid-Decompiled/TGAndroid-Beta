@@ -8,32 +8,32 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class q6 implements Utilities.Callback2 {
-    public final int f39346a;
-    public final Object f39347b;
-    public final Object f39348c;
+    public final int f39067a;
+    public final Object f39068b;
+    public final Object f39069c;
     public final Object d;
 
     public q6(Object obj, Object obj2, Object obj3, int i10) {
-        this.f39346a = i10;
-        this.f39347b = obj;
-        this.f39348c = obj2;
+        this.f39067a = i10;
+        this.f39068b = obj;
+        this.f39069c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f39346a;
+        int i10 = this.f39067a;
         int i11 = 0;
         Object obj3 = this.d;
-        Object obj4 = this.f39348c;
-        Object obj5 = this.f39347b;
+        Object obj4 = this.f39069c;
+        Object obj5 = this.f39068b;
         switch (i10) {
             case 0:
-                p6 p6Var = (p6) obj3;
+                androidx.car.app.utils.b bVar = (androidx.car.app.utils.b) obj3;
                 ((float[]) obj5)[0] = ((Float) obj).floatValue();
                 ((boolean[]) obj4)[0] = ((Boolean) obj2).booleanValue();
-                AndroidUtilities.cancelRunOnUIThread(p6Var);
-                AndroidUtilities.runOnUIThread(p6Var);
+                AndroidUtilities.cancelRunOnUIThread(bVar);
+                AndroidUtilities.runOnUIThread(bVar);
                 return;
             case 1:
                 fo foVar = (fo) obj5;
@@ -42,12 +42,12 @@ public final class q6 implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj;
                 TLRPC.WebPage webPage = (TLRPC.WebPage) obj2;
                 if (bool.booleanValue() && !(webPage instanceof TLRPC.TL_webPagePending)) {
-                    Iterator it = foVar.f36030mb.keySet().iterator();
-                    while (it.hasNext() && foVar.f36030mb.size() > 5) {
+                    Iterator it = foVar.f35731mb.keySet().iterator();
+                    while (it.hasNext() && foVar.f35731mb.size() > 5) {
                         it.next();
                         it.remove();
                     }
-                    foVar.f36030mb.put(getwebpagepreview.message, webPage);
+                    foVar.f35731mb.put(getwebpagepreview.message, webPage);
                 }
                 pgVar.run(bool, webPage);
                 return;
@@ -57,7 +57,7 @@ public final class q6 implements Utilities.Callback2 {
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) obj3;
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj;
                 final Long l4 = (Long) obj2;
-                Utilities.doCallbacks(new bi.u3(yyVar, l4, sdVar, m2Var, 11), new z(yyVar, a2Var, l4, 8), new Utilities.Callback() {
+                Utilities.doCallbacks(new bi.u3(yyVar, l4, sdVar, m2Var, 11), new z(yyVar, a2Var, l4, 7), new Utilities.Callback() {
                     @Override
                     public final void run(Object obj6) {
                         boolean z10;
@@ -144,7 +144,7 @@ public final class q6 implements Utilities.Callback2 {
                 if (passkeys != null) {
                     e3Var.dismiss();
                     while (i11 < passkeys.passkeys.size()) {
-                        if (TextUtils.equals(passkeys.passkeys.get(i11).f19419id, passkey.f19419id)) {
+                        if (TextUtils.equals(passkeys.passkeys.get(i11).f19119id, passkey.f19119id)) {
                             passkeys.passkeys.remove(i11);
                             i11--;
                         }
@@ -154,7 +154,7 @@ public final class q6 implements Utilities.Callback2 {
                     if (U != null) {
                         PasskeysActivity passkeysActivity = new PasskeysActivity(passkeys.passkeys);
                         U.presentFragment(passkeysActivity);
-                        AndroidUtilities.runOnUIThread(new wc0(26, passkeysActivity, passkey), 150L);
+                        AndroidUtilities.runOnUIThread(new se0(21, passkeysActivity, passkey), 150L);
                         return;
                     }
                     return;

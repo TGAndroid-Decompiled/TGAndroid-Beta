@@ -3,31 +3,31 @@ package org.telegram.ui.Cells;
 import android.view.View;
 import org.telegram.ui.Components.es;
 public final class c4 {
-    public float f21015a;
-    public float f21016b;
-    public float f21017c;
+    public float f20709a;
+    public float f20710b;
+    public float f20711c;
     public boolean e;
-    public final org.telegram.ui.Components.ea f21018f;
-    public final org.telegram.ui.Components.ea f21019g;
+    public final org.telegram.ui.Components.ea f20712f;
+    public final org.telegram.ui.Components.ea f20713g;
     public boolean h;
-    public int f21020i;
+    public int f20714i;
     public float d = 0.0f;
-    public float f21021j = 0.0f;
+    public float f20715j = 0.0f;
 
     public c4(int i10, int i11) {
         org.telegram.ui.Components.ea eaVar = new org.telegram.ui.Components.ea(6);
-        this.f21018f = eaVar;
+        this.f20712f = eaVar;
         org.telegram.ui.Components.ea eaVar2 = new org.telegram.ui.Components.ea(8);
-        this.f21019g = eaVar2;
+        this.f20713g = eaVar2;
         float f7 = i10;
-        eaVar.f24634a = f7;
+        eaVar.f24333a = f7;
         float f10 = i11;
-        eaVar.f24635b = f10;
-        eaVar2.f24634a = f7;
-        eaVar2.f24635b = f10;
+        eaVar.f24334b = f10;
+        eaVar2.f24333a = f7;
+        eaVar2.f24334b = f10;
         eaVar.b();
         eaVar2.b();
-        int i12 = org.telegram.ui.ActionBar.g6.f20148qg;
+        int i12 = org.telegram.ui.ActionBar.g6.f19848qg;
         eaVar.d.setColor(i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, i12, false), 38));
         eaVar2.d.setColor(i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, i12, false), 38));
     }
@@ -37,8 +37,8 @@ public final class c4 {
     }
 
     public final float b() {
-        float interpolation = es.f24772g.getInterpolation(this.d);
-        return com.google.android.gms.internal.play_billing.k3.y(1.0f, interpolation, 1.0f, ((this.f21015a * 0.2f) + 0.9f) * interpolation);
+        float interpolation = es.f24466g.getInterpolation(this.d);
+        return com.google.android.gms.internal.play_billing.k3.y(1.0f, interpolation, 1.0f, ((this.f20709a * 0.2f) + 0.9f) * interpolation);
     }
 
     public final void c(double d) {
@@ -52,13 +52,13 @@ public final class c4 {
         } else if (f7 >= 0.0f) {
             f10 = f7;
         }
-        this.f21016b = f10;
-        this.f21017c = (f10 - this.f21015a) / 200.0f;
+        this.f20710b = f10;
+        this.f20711c = (f10 - this.f20709a) / 200.0f;
     }
 
     public final void d(int i10) {
         this.h = true;
-        this.f21018f.d.setColor(i10);
+        this.f20712f.d.setColor(i10);
     }
 
     public final void e(View view, boolean z10) {
@@ -69,18 +69,18 @@ public final class c4 {
     }
 
     public final void f() {
-        float f7 = this.f21016b;
-        float f10 = this.f21015a;
+        float f7 = this.f20710b;
+        float f10 = this.f20709a;
         if (f7 != f10) {
-            float f11 = this.f21017c;
+            float f11 = this.f20711c;
             float f12 = (16.0f * f11) + f10;
-            this.f21015a = f12;
+            this.f20709a = f12;
             if (f11 > 0.0f) {
                 if (f12 > f7) {
-                    this.f21015a = f7;
+                    this.f20709a = f7;
                 }
             } else if (f12 < f7) {
-                this.f21015a = f7;
+                this.f20709a = f7;
             }
         }
         boolean z10 = this.e;

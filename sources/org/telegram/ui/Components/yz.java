@@ -14,19 +14,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class yz extends FrameLayout {
     public static final int h = 0;
-    public final org.telegram.ui.ActionBar.c6 f31702a;
-    public final TextView f31703b;
-    public final View f31704c;
+    public final org.telegram.ui.ActionBar.c6 f31382a;
+    public final TextView f31383b;
+    public final View f31384c;
     public final bk0 d;
     public boolean e;
-    public int f31705f;
+    public int f31385f;
 
     public yz(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f31702a = c6Var;
+        this.f31382a = c6Var;
         View radialProgressView = new RadialProgressView(context, null);
-        addView(radialProgressView, w7.a6.d(-2.0f, -2));
-        this.f31704c = radialProgressView;
+        addView(radialProgressView, w7.z5.d(-2.0f, -2));
+        this.f31384c = radialProgressView;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
         linearLayout.setGravity(1);
@@ -38,15 +38,15 @@ public final class yz extends FrameLayout {
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setImportantForAccessibility(2);
         imageView.setVisibility(8);
-        linearLayout.addView((View) imageView, w7.a6.t(150, 150, 17, 0, 0, 0, 20));
+        linearLayout.addView((View) imageView, w7.z5.t(150, 150, 17, 0, 0, 0, 20));
         TextView textView = new TextView(context);
-        this.f31703b = textView;
+        this.f31383b = textView;
         textView.setTextSize(1, 20.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19883c7, c6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19583c7, c6Var));
         textView.setGravity(1);
         textView.setText(LocaleController.getString(R.string.NoResult));
-        linearLayout.addView(textView, w7.a6.q(-2, -2, 17));
-        addView(linearLayout, w7.a6.d(-2.0f, -2));
+        linearLayout.addView(textView, w7.z5.q(-2, -2, 17));
+        addView(linearLayout, w7.z5.d(-2.0f, -2));
         AndroidUtilities.updateViewVisibilityAnimated(textView, false, 2.0f, false);
         AndroidUtilities.updateViewVisibilityAnimated(radialProgressView, false, 1.0f, false);
         setOnTouchListener(new ci.d(18));
@@ -68,13 +68,13 @@ public final class yz extends FrameLayout {
     }
 
     public final void b() {
-        AndroidUtilities.updateViewVisibilityAnimated(this.f31703b, false, 0.9f, true);
-        AndroidUtilities.updateViewVisibilityAnimated(this.f31704c, true, 1.0f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f31383b, false, 0.9f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f31384c, true, 1.0f, true);
     }
 
     public final void c() {
-        AndroidUtilities.updateViewVisibilityAnimated(this.f31703b, true, 0.9f, true);
-        AndroidUtilities.updateViewVisibilityAnimated(this.f31704c, false, 1.0f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f31383b, true, 0.9f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f31384c, false, 1.0f, true);
     }
 
     @Override
@@ -94,12 +94,12 @@ public final class yz extends FrameLayout {
             View childAt = getChildAt(i16);
             if (childAt.getVisibility() != 8) {
                 int measuredWidth = (i14 - childAt.getMeasuredWidth()) / 2;
-                View view = this.f31704c;
+                View view = this.f31384c;
                 if (childAt == view && (view instanceof f10)) {
                     measuredHeight = (i15 - childAt.getMeasuredHeight()) / 2;
                     paddingTop = getPaddingTop();
                 } else {
-                    int i17 = this.f31705f;
+                    int i17 = this.f31385f;
                     if (i17 == 2) {
                         measuredHeight = (AndroidUtilities.dp(100.0f) - childAt.getMeasuredHeight()) / 2;
                         paddingTop = getPaddingTop();
@@ -126,14 +126,14 @@ public final class yz extends FrameLayout {
     }
 
     public void setProgressBarColor(int i10) {
-        View view = this.f31704c;
+        View view = this.f31384c;
         if (view instanceof RadialProgressView) {
             ((RadialProgressView) view).setProgressColor(i10);
         }
     }
 
     public void setShowAtCenter(boolean z10) {
-        this.f31705f = z10 ? 1 : 0;
+        this.f31385f = z10 ? 1 : 0;
     }
 
     public void setShowAtTop(boolean z10) {
@@ -143,30 +143,30 @@ public final class yz extends FrameLayout {
         } else {
             i10 = 0;
         }
-        this.f31705f = i10;
+        this.f31385f = i10;
     }
 
     public void setText(String str) {
-        this.f31703b.setText(str);
+        this.f31383b.setText(str);
     }
 
     public void setTextColor(int i10) {
-        this.f31703b.setTextColor(i10);
+        this.f31383b.setTextColor(i10);
     }
 
     public void setTextSize(int i10) {
-        this.f31703b.setTextSize(1, i10);
+        this.f31383b.setTextSize(1, i10);
     }
 
     public void setTopImage(int i10) {
-        TextView textView = this.f31703b;
+        TextView textView = this.f31383b;
         if (i10 == 0) {
             textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
             return;
         }
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
         if (mutate != null) {
-            mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19883c7, this.f31702a), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19583c7, this.f31382a), PorterDuff.Mode.MULTIPLY));
         }
         textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
         textView.setCompoundDrawablePadding(AndroidUtilities.dp(1.0f));

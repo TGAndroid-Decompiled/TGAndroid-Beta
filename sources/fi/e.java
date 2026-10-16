@@ -7,12 +7,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 public final class e implements Runnable {
-    public final int f9236a;
-    public final l f9237b;
+    public final int f9239a;
+    public final l f9240b;
 
     public e(l lVar, int i10) {
-        this.f9236a = i10;
-        this.f9237b = lVar;
+        this.f9239a = i10;
+        this.f9240b = lVar;
     }
 
     @Override
@@ -20,9 +20,9 @@ public final class e implements Runnable {
         int i10;
         String f7;
         int i11;
-        switch (this.f9236a) {
+        switch (this.f9239a) {
             case 0:
-                l lVar = this.f9237b;
+                l lVar = this.f9240b;
                 ci.p pVar = lVar.T;
                 if (lVar.Y.end_date == 0) {
                     f7 = null;
@@ -30,14 +30,14 @@ public final class e implements Runnable {
                     f7 = yg.l.f((i10 - lVar.getConnectionsManager().getCurrentTime()) * 1000);
                 }
                 pVar.f(f7, true);
-                if (lVar.Y.end_date != 0 && lVar.f9390b0) {
+                if (lVar.Y.end_date != 0 && lVar.f9393b0) {
                     AndroidUtilities.runOnUIThread(lVar.V, 1000L);
                     return;
                 }
                 return;
             case 1:
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
-                l lVar2 = this.f9237b;
+                l lVar2 = this.f9240b;
                 updatestarrefprogram.bot = lVar2.getMessagesController().getInputUser(lVar2.P);
                 TL_payments.starRefProgram starrefprogram = lVar2.Y;
                 updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
@@ -55,14 +55,14 @@ public final class e implements Runnable {
                 lVar2.getConnectionsManager().sendRequest(updatestarrefprogram, new b(lVar2, a2Var, 1));
                 return;
             default:
-                l lVar3 = this.f9237b;
+                l lVar3 = this.f9240b;
                 Activity parentActivity = lVar3.getParentActivity();
                 if (!lVar3.W && lVar3.Y.end_date == 0) {
                     i11 = R.string.AffiliateProgramStartInfoLink;
                 } else {
                     i11 = R.string.AffiliateProgramUpdateInfoLink;
                 }
-                pf.d.s(parentActivity, LocaleController.getString(i11));
+                pf.d.r(parentActivity, LocaleController.getString(i11));
                 return;
         }
     }

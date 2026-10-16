@@ -5,11 +5,11 @@ import j$.util.Objects;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-public class l implements gb.o {
-    public String f6436a;
+public class l implements gb.p {
+    public String f6439a;
 
     public l(String str, boolean z10) {
-        this.f6436a = str;
+        this.f6439a = str;
     }
 
     public static l c(x xVar) {
@@ -60,7 +60,7 @@ public class l implements gb.o {
             if (it.hasNext()) {
                 sb2.append(d(it.next()));
                 while (it.hasNext()) {
-                    sb2.append((CharSequence) this.f6436a);
+                    sb2.append((CharSequence) this.f6439a);
                     sb2.append(d(it.next()));
                 }
             }
@@ -77,12 +77,12 @@ public class l implements gb.o {
     }
 
     @Override
-    public Object f2() {
-        throw new RuntimeException(this.f6436a);
+    public Object i2() {
+        throw new RuntimeException(this.f6439a);
     }
 
     public l(String str) {
         str.getClass();
-        this.f6436a = str;
+        this.f6439a = str;
     }
 }

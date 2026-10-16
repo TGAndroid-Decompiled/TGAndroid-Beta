@@ -29,32 +29,32 @@ public final class hl0 extends View {
     public boolean T;
     public boolean U;
     public float V;
-    public final org.telegram.ui.ActionBar.c6 f25700a;
-    public final Paint f25701b;
-    public final Paint f25702c;
+    public final org.telegram.ui.ActionBar.c6 f25349a;
+    public final Paint f25350b;
+    public final Paint f25351c;
     public final Paint d;
     public final Paint e;
-    public final gh0 f25703f;
+    public final gh0 f25352f;
     public final r6 h;
-    public h81 f25704n;
-    public float f25705r;
-    public float f25706s;
+    public i81 f25353n;
+    public float f25354r;
+    public float f25355s;
     public float v;
-    public boolean f25707w;
-    public final yc0 f25708x;
-    public final RectF f25709y;
+    public boolean f25356w;
+    public final yc0 f25357x;
+    public final RectF f25358y;
 
     public hl0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f25701b = new Paint(1);
-        this.f25702c = new Paint(1);
+        this.f25350b = new Paint(1);
+        this.f25351c = new Paint(1);
         this.d = new Paint(1);
         this.e = new Paint(1);
-        this.f25706s = 0.0f;
+        this.f25355s = 0.0f;
         this.v = 1.0f;
-        this.f25707w = false;
-        this.f25708x = new yc0(this, 19);
-        this.f25709y = new RectF();
+        this.f25356w = false;
+        this.f25357x = new yc0(this, 19);
+        this.f25358y = new RectF();
         this.E = new RectF();
         this.F = new RectF();
         this.G = new Path();
@@ -66,10 +66,10 @@ public final class hl0 extends View {
         this.N = new g6(this, 0L, 340L, esVar);
         this.O = new g6(this, 0L, 340L, esVar);
         this.P = true;
-        this.f25700a = c6Var;
+        this.f25349a = c6Var;
         gh0 gh0Var = new gh0(12);
-        this.f25703f = gh0Var;
-        gh0Var.f25282f = this;
+        this.f25352f = gh0Var;
+        gh0Var.f24970f = this;
         gh0Var.setCallback(this);
         r6 r6Var = new r6(false, false, false);
         this.h = r6Var;
@@ -96,27 +96,27 @@ public final class hl0 extends View {
         float clamp;
         boolean z10;
         int i14 = org.telegram.ui.ActionBar.g6.kf;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f25700a;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f25349a;
         int w02 = org.telegram.ui.ActionBar.g6.w0(i14, c6Var);
-        Paint paint4 = this.f25701b;
+        Paint paint4 = this.f25350b;
         paint4.setColor(w02);
-        int w03 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20054lf, c6Var);
-        Paint paint5 = this.f25702c;
+        int w03 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19754lf, c6Var);
+        Paint paint5 = this.f25351c;
         paint5.setColor(w03);
-        int i15 = org.telegram.ui.ActionBar.g6.f19979hf;
+        int i15 = org.telegram.ui.ActionBar.g6.f19679hf;
         int w04 = org.telegram.ui.ActionBar.g6.w0(i15, c6Var);
         r6 r6Var2 = this.h;
         r6Var2.u(w04);
-        int w05 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19944ff, c6Var);
-        gh0 gh0Var2 = this.f25703f;
-        gh0Var2.f25279a.setColor(w05);
-        int w06 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19963gf, c6Var);
+        int w05 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19644ff, c6Var);
+        gh0 gh0Var2 = this.f25352f;
+        gh0Var2.f24967a.setColor(w05);
+        int w06 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19663gf, c6Var);
         Paint paint6 = this.d;
         paint6.setColor(w06);
         int w07 = org.telegram.ui.ActionBar.g6.w0(i15, c6Var);
         Paint paint7 = this.e;
         paint7.setColor(w07);
-        int lerp = (int) AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(11.33f), rectF.right - AndroidUtilities.dp(11.33f), Utilities.clamp01(this.f25706s));
+        int lerp = (int) AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(11.33f), rectF.right - AndroidUtilities.dp(11.33f), Utilities.clamp01(this.f25355s));
         int lerp2 = (int) AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(11.33f), rectF.right - AndroidUtilities.dp(11.33f), Utilities.clamp01(this.v));
         int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(27.0f);
         int i16 = this.K;
@@ -191,7 +191,7 @@ public final class hl0 extends View {
         canvas.drawRect(AndroidUtilities.dp(1.33f) + i10, rectF.top, rectF.right, rectF.bottom, paint9);
         canvas.save();
         canvas.translate(rectF.left + AndroidUtilities.dp(14.0f), rectF.centerY());
-        int i19 = org.telegram.ui.ActionBar.g6.f19963gf;
+        int i19 = org.telegram.ui.ActionBar.g6.f19663gf;
         paint6.setColor(org.telegram.ui.ActionBar.g6.m1(0.3f, org.telegram.ui.ActionBar.g6.w0(i19, c6Var)));
         canvas.drawPath(path, paint6);
         canvas.restore();
@@ -201,21 +201,21 @@ public final class hl0 extends View {
         if (this.U) {
             clamp = this.V;
         } else {
-            h81 h81Var = this.f25704n;
-            if (h81Var != null) {
-                f7 = ((float) h81Var.n()) / ((float) this.f25704n.p());
+            i81 i81Var = this.f25353n;
+            if (i81Var != null) {
+                f7 = ((float) i81Var.n()) / ((float) this.f25353n.p());
             } else {
                 f7 = 1.0f;
             }
-            clamp = Utilities.clamp(f7, this.v, this.f25706s);
+            clamp = Utilities.clamp(f7, this.v, this.f25355s);
         }
         float clamp2 = Utilities.clamp(AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(13.0f), rectF.right - AndroidUtilities.dp(14.0f), clamp), f11, f10);
         if (clamp2 < f11) {
             canvas.save();
             canvas.clipRect(clamp2, rectF.top, f11, rectF.bottom);
             canvas.translate(rectF.left + AndroidUtilities.dp(14.0f), rectF.centerY());
-            if (this.f25707w && clamp < this.f25706s && !this.U) {
-                paint6.setColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19979hf, c6Var));
+            if (this.f25356w && clamp < this.f25355s && !this.U) {
+                paint6.setColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19679hf, c6Var));
             } else {
                 paint6.setColor(org.telegram.ui.ActionBar.g6.w0(i19, c6Var));
             }
@@ -226,10 +226,10 @@ public final class hl0 extends View {
             canvas.save();
             canvas.clipRect(f10, rectF.top, clamp2, rectF.bottom);
             canvas.translate(rectF.left + AndroidUtilities.dp(14.0f), rectF.centerY());
-            if (!b() && !this.f25707w && !this.U) {
+            if (!b() && !this.f25356w && !this.U) {
                 paint6.setColor(org.telegram.ui.ActionBar.g6.w0(i19, c6Var));
             } else {
-                paint6.setColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19979hf, c6Var));
+                paint6.setColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19679hf, c6Var));
             }
             canvas.drawPath(path, paint6);
             canvas.restore();
@@ -270,7 +270,7 @@ public final class hl0 extends View {
             canvas.translate(AndroidUtilities.lerp(rectF4.centerX() - (dp6 / 2.0f), rectF4.left + AndroidUtilities.dp(6.0f), e7), rectF4.centerY());
             gh0 gh0Var3 = gh0Var;
             gh0Var3.setBounds(0, (-dp6) / 2, dp6, dp6 / 2);
-            gh0Var3.f25283g = (int) (e * 255.0f);
+            gh0Var3.f24971g = (int) (e * 255.0f);
             gh0Var3.draw(canvas);
             canvas.restore();
             if (e7 > 0.0f) {
@@ -287,8 +287,8 @@ public final class hl0 extends View {
     }
 
     public final boolean b() {
-        h81 h81Var = this.f25704n;
-        if (h81Var != null && h81Var.y()) {
+        i81 i81Var = this.f25353n;
+        if (i81Var != null && i81Var.y()) {
             return true;
         }
         return false;
@@ -298,7 +298,7 @@ public final class hl0 extends View {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.P) {
-            a(canvas, this.f25709y);
+            a(canvas, this.f25358y);
         }
     }
 
@@ -338,9 +338,9 @@ public final class hl0 extends View {
             this.U = z12;
             if (z12) {
                 b();
-                h81 h81Var = this.f25704n;
-                if (h81Var != null) {
-                    f7 = ((float) h81Var.n()) / ((float) this.f25704n.p());
+                i81 i81Var = this.f25353n;
+                if (i81Var != null) {
+                    f7 = ((float) i81Var.n()) / ((float) this.f25353n.p());
                 }
                 this.V = f7;
                 setPlaying(false);
@@ -350,35 +350,35 @@ public final class hl0 extends View {
             }
         } else if (motionEvent.getAction() == 2) {
             boolean z13 = this.R;
-            RectF rectF3 = this.f25709y;
+            RectF rectF3 = this.f25358y;
             if (z13) {
-                this.f25706s = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), rectF3.left + AndroidUtilities.dp(11.33f), rectF3.right - AndroidUtilities.dp(11.33f)), Utilities.clamp01(this.v - Math.max(1.0f / this.f25705r, AndroidUtilities.dp(30.0f) / (rectF3.width() - AndroidUtilities.dp(22.66f)))), 0.0f);
+                this.f25355s = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), rectF3.left + AndroidUtilities.dp(11.33f), rectF3.right - AndroidUtilities.dp(11.33f)), Utilities.clamp01(this.v - Math.max(1.0f / this.f25354r, AndroidUtilities.dp(30.0f) / (rectF3.width() - AndroidUtilities.dp(22.66f)))), 0.0f);
                 invalidate();
             } else if (this.S) {
-                this.v = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), rectF3.left + AndroidUtilities.dp(11.33f), rectF3.right - AndroidUtilities.dp(11.33f)), 1.0f, Utilities.clamp01(Math.max(1.0f / this.f25705r, AndroidUtilities.dp(30.0f) / (rectF3.width() - AndroidUtilities.dp(22.66f))) + this.f25706s));
+                this.v = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), rectF3.left + AndroidUtilities.dp(11.33f), rectF3.right - AndroidUtilities.dp(11.33f)), 1.0f, Utilities.clamp01(Math.max(1.0f / this.f25354r, AndroidUtilities.dp(30.0f) / (rectF3.width() - AndroidUtilities.dp(22.66f))) + this.f25355s));
                 invalidate();
             } else if (this.U) {
-                h81 h81Var2 = this.f25704n;
-                if (h81Var2 != null) {
-                    this.V = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), rectF3.left + AndroidUtilities.dp(11.33f), rectF3.right - AndroidUtilities.dp(11.33f)), this.v, this.f25706s);
-                    h81Var2.L(clamp * ((float) this.f25704n.p()), false);
+                i81 i81Var2 = this.f25353n;
+                if (i81Var2 != null) {
+                    this.V = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), rectF3.left + AndroidUtilities.dp(11.33f), rectF3.right - AndroidUtilities.dp(11.33f)), this.v, this.f25355s);
+                    i81Var2.L(clamp * ((float) this.f25353n.p()), false);
                 }
                 invalidate();
             }
-            this.h.t(AndroidUtilities.formatDuration(Math.round(Math.max(1.0f, (this.v - this.f25706s) * this.f25705r)), false), true, true);
+            this.h.t(AndroidUtilities.formatDuration(Math.round(Math.max(1.0f, (this.v - this.f25355s) * this.f25354r)), false), true, true);
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             if (motionEvent.getAction() == 1 && this.T) {
                 setPlaying(!b());
-            } else if (this.R && this.f25707w) {
-                h81 h81Var3 = this.f25704n;
-                if (h81Var3 != null) {
-                    h81Var3.L(this.f25706s * ((float) h81Var3.p()), false);
+            } else if (this.R && this.f25356w) {
+                i81 i81Var3 = this.f25353n;
+                if (i81Var3 != null) {
+                    i81Var3.L(this.f25355s * ((float) i81Var3.p()), false);
                 }
                 setPlaying(true);
-            } else if (this.S && this.f25707w) {
-                h81 h81Var4 = this.f25704n;
-                if (h81Var4 != null) {
-                    h81Var4.L(Math.max(this.f25706s * ((float) h81Var4.p()), (this.v * ((float) this.f25704n.p())) - 1500), false);
+            } else if (this.S && this.f25356w) {
+                i81 i81Var4 = this.f25353n;
+                if (i81Var4 != null) {
+                    i81Var4.L(Math.max(this.f25355s * ((float) i81Var4.p()), (this.v * ((float) this.f25353n.p())) - 1500), false);
                 }
                 setPlaying(true);
             } else if (this.U && !b()) {
@@ -396,11 +396,11 @@ public final class hl0 extends View {
     }
 
     public float getAudioLeft() {
-        return this.f25706s;
+        return this.f25355s;
     }
 
     public long getAudioLeftMs() {
-        return this.f25706s * ((float) getDuration());
+        return this.f25355s * ((float) getDuration());
     }
 
     public float getAudioRight() {
@@ -412,29 +412,29 @@ public final class hl0 extends View {
     }
 
     public long getDuration() {
-        h81 h81Var = this.f25704n;
-        if (h81Var == null) {
+        i81 i81Var = this.f25353n;
+        if (i81Var == null) {
             return 0L;
         }
-        return h81Var.p();
+        return i81Var.p();
     }
 
     public double getNewDuration() {
-        return ((this.v - this.f25706s) * ((float) getDuration())) / 1000.0d;
+        return ((this.v - this.f25355s) * ((float) getDuration())) / 1000.0d;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         float dp = AndroidUtilities.dp(32.0f);
-        this.f25709y.set(0.0f, (getHeight() - dp) / 2.0f, getWidth(), (getHeight() + dp) / 2.0f);
+        this.f25358y.set(0.0f, (getHeight() - dp) / 2.0f, getWidth(), (getHeight() + dp) / 2.0f);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         float dp = AndroidUtilities.dp(32.0f);
-        this.f25709y.set(0.0f, (getMeasuredHeight() - dp) / 2.0f, getMeasuredWidth(), (getMeasuredHeight() + dp) / 2.0f);
+        this.f25358y.set(0.0f, (getMeasuredHeight() - dp) / 2.0f, getMeasuredWidth(), (getMeasuredHeight() + dp) / 2.0f);
     }
 
     public void setAllowDraw(boolean z10) {
@@ -446,20 +446,20 @@ public final class hl0 extends View {
 
     public void setPlaying(boolean z10) {
         float f7;
-        h81 h81Var;
+        i81 i81Var;
         if (this.Q) {
             z10 = false;
         }
-        h81 h81Var2 = this.f25704n;
-        if (h81Var2 != null) {
-            float n10 = ((float) h81Var2.n()) / ((float) this.f25704n.p());
-            if (n10 < this.f25706s || n10 > this.v) {
-                this.f25704n.L(f7 * ((float) h81Var.p()), false);
+        i81 i81Var2 = this.f25353n;
+        if (i81Var2 != null) {
+            float n10 = ((float) i81Var2.n()) / ((float) this.f25353n.p());
+            if (n10 < this.f25355s || n10 > this.v) {
+                this.f25353n.L(f7 * ((float) i81Var.p()), false);
             }
-            this.f25704n.P(z10);
+            this.f25353n.P(z10);
         }
-        this.f25703f.a(z10, true);
-        yc0 yc0Var = this.f25708x;
+        this.f25352f.a(z10, true);
+        yc0 yc0Var = this.f25357x;
         AndroidUtilities.cancelRunOnUIThread(yc0Var);
         if (z10) {
             AndroidUtilities.runOnUIThread(yc0Var, 16L);
@@ -468,7 +468,7 @@ public final class hl0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.h != drawable && this.f25703f != drawable && !super.verifyDrawable(drawable)) {
+        if (this.h != drawable && this.f25352f != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

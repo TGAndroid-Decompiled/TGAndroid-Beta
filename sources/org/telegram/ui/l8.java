@@ -33,7 +33,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
     public int J;
     public int K;
     public a8 L;
-    public ji.d4 M;
+    public ji.h5 M;
     public fo N;
     public org.telegram.ui.Components.v40 O;
     public int P;
@@ -47,53 +47,53 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
     public final int X;
     public boolean Y;
     public final int Z;
-    public y7 f37866a;
-    public final int f37867a0;
-    public bi.o0 f37868b;
-    public bi.i5 f37869b0;
-    public s4.b0 f37870c;
-    public int f37871c0;
+    public y7 f37632a;
+    public final int f37633a0;
+    public bi.o0 f37634b;
+    public bi.i5 f37635b0;
+    public s4.b0 f37636c;
+    public int f37637c0;
     public final TextPaint d;
-    public boolean f37872d0;
+    public boolean f37638d0;
     public final TextPaint e;
-    public int f37873e0;
-    public final TextPaint f37874f;
-    public bi.o8 f37875f0;
-    public g f37876g0;
+    public int f37639e0;
+    public final TextPaint f37640f;
+    public bi.o8 f37641f0;
+    public g f37642g0;
     public TextView h;
-    public int f37877h0;
-    public b1 f37878i0;
-    public final Path f37879j0;
-    public final wh.g f37880k0;
-    public int f37881l0;
+    public int f37643h0;
+    public b1 f37644i0;
+    public final Path f37645j0;
+    public final wh.g f37646k0;
+    public int f37647l0;
     public boolean m0;
-    public TextView f37882n;
-    public final Paint f37883r;
-    public final Paint f37884s;
+    public TextView f37648n;
+    public final Paint f37649r;
+    public final Paint f37650s;
     public di.ab v;
-    public final Paint f37885w;
-    public long f37886x;
-    public long f37887y;
+    public final Paint f37651w;
+    public long f37652x;
+    public long f37653y;
 
     public l8(int i10, int i11, Bundle bundle) {
         super(bundle);
         this.d = new TextPaint(1);
         this.e = new TextPaint(1);
-        this.f37874f = new TextPaint(1);
+        this.f37640f = new TextPaint(1);
         Paint paint = new Paint(1);
-        this.f37883r = paint;
-        this.f37884s = new Paint(1);
-        this.f37885w = new Paint(1);
+        this.f37649r = paint;
+        this.f37650s = new Paint(1);
+        this.f37651w = new Paint(1);
         this.S = new SparseArray();
         this.U = 0;
-        this.f37879j0 = new Path();
-        this.f37880k0 = new wh.g();
+        this.f37645j0 = new Path();
+        this.f37646k0 = new wh.g();
         this.X = i10;
         if (i11 != 0) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(i11 * 1000);
             this.Z = calendar.get(1);
-            this.f37867a0 = calendar.get(2);
+            this.f37633a0 = calendar.get(2);
         }
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -113,13 +113,13 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
                     sparseArray.put(i11, sparseArray2);
                 }
                 j8 j8Var = new j8();
-                j8Var.f37302a = new MessageObject(l8Var.currentAccount, tL_messages_searchResultsCalendar.messages.get(i10), false, false);
+                j8Var.f36972a = new MessageObject(l8Var.currentAccount, tL_messages_searchResultsCalendar.messages.get(i10), false, false);
                 j8Var.h = (int) (calendar.getTimeInMillis() / 1000);
                 int i12 = l8Var.U + tL_messages_searchResultsCalendar.periods.get(i10).count;
                 l8Var.U = i12;
-                j8Var.f37304c = i12;
+                j8Var.f36974c = i12;
                 int i13 = calendar.get(5) - 1;
-                if (sparseArray2.get(i13, null) == null || !((j8) sparseArray2.get(i13, null)).f37306g) {
+                if (sparseArray2.get(i13, null) == null || !((j8) sparseArray2.get(i13, null)).f36976g) {
                     sparseArray2.put(i13, j8Var);
                 }
                 int i14 = l8Var.W;
@@ -129,7 +129,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             }
             int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
             int i15 = tL_messages_searchResultsCalendar.min_date;
-            l8Var.f37871c0 = i15;
+            l8Var.f37637c0 = i15;
             while (true) {
                 calendar.setTimeInMillis(i15 * 1000);
                 calendar.set(11, 0);
@@ -148,7 +148,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
                 int i17 = calendar.get(5) - 1;
                 if (sparseArray3.get(i17, null) == null) {
                     j8 j8Var2 = new j8();
-                    j8Var2.f37306g = false;
+                    j8Var2.f36976g = false;
                     j8Var2.h = (int) (calendar.getTimeInMillis() / 1000);
                     sparseArray3.put(i17, j8Var2);
                 }
@@ -156,7 +156,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             }
             l8Var.E = false;
             if (!tL_messages_searchResultsCalendar.messages.isEmpty()) {
-                l8Var.V = ((TLRPC.Message) i2.d.g(1, tL_messages_searchResultsCalendar.messages)).f19237id;
+                l8Var.V = ((TLRPC.Message) i2.d.h(1, tL_messages_searchResultsCalendar.messages)).f18937id;
                 l8Var.T = false;
                 l8Var.p0();
             } else {
@@ -165,7 +165,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             if (l8Var.Y) {
                 l8Var.F = true;
             }
-            l8Var.f37868b.invalidate();
+            l8Var.f37634b.invalidate();
             int timeInMillis = ((int) (((calendar.getTimeInMillis() / 1000) - tL_messages_searchResultsCalendar.min_date) / 2629800)) + 1;
             l8Var.L.q(0, l8Var.K);
             int i18 = l8Var.K;
@@ -227,7 +227,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         Paint.Align align = Paint.Align.CENTER;
         textPaint.setTextAlign(align);
-        TextPaint textPaint2 = this.f37874f;
+        TextPaint textPaint2 = this.f37640f;
         textPaint2.setTextSize(AndroidUtilities.dp(11.0f));
         textPaint2.setTextAlign(align);
         textPaint2.setTypeface(AndroidUtilities.bold());
@@ -235,47 +235,47 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
         textPaint3.setTextSize(AndroidUtilities.dp(16.0f));
         textPaint3.setTypeface(AndroidUtilities.bold());
         textPaint3.setTextAlign(align);
-        this.f37866a = new y7(this, context);
+        this.f37632a = new y7(this, context);
         createActionBar(context);
-        this.f37866a.addView(this.actionBar);
+        this.f37632a.addView(this.actionBar);
         this.actionBar.setTitle(LocaleController.getString(R.string.Calendar));
         this.actionBar.setCastShadows(false);
         bi.o0 o0Var = new bi.o0(this, context, 6);
-        this.f37868b = o0Var;
+        this.f37634b = o0Var;
         s4.b0 b0Var = new s4.b0();
-        this.f37870c = b0Var;
+        this.f37636c = b0Var;
         o0Var.setLayoutManager(b0Var);
-        this.f37870c.k1(true);
-        bi.o0 o0Var2 = this.f37868b;
+        this.f37636c.k1(true);
+        bi.o0 o0Var2 = this.f37634b;
         a8 a8Var = new a8(this, 0);
         this.L = a8Var;
         o0Var2.setAdapter(a8Var);
-        this.f37868b.j(new k3(this, 3));
-        if (this.f37873e0 == 0 && this.f37872d0) {
+        this.f37634b.j(new k3(this, 3));
+        if (this.f37639e0 == 0 && this.f37638d0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        y7 y7Var = this.f37866a;
-        bi.o0 o0Var3 = this.f37868b;
+        y7 y7Var = this.f37632a;
+        bi.o0 o0Var3 = this.f37634b;
         if (z10) {
             f7 = 48.0f;
         } else {
             f7 = 0.0f;
         }
-        y7Var.addView(o0Var3, w7.a6.a(-1.0f, 0.0f, 36.0f, 0.0f, f7, -1, 0));
-        this.f37866a.addView(new bi.d4(this, context, new String[]{LocaleController.getString(R.string.CalendarWeekNameShortMonday), LocaleController.getString(R.string.CalendarWeekNameShortTuesday), LocaleController.getString(R.string.CalendarWeekNameShortWednesday), LocaleController.getString(R.string.CalendarWeekNameShortThursday), LocaleController.getString(R.string.CalendarWeekNameShortFriday), LocaleController.getString(R.string.CalendarWeekNameShortSaturday), LocaleController.getString(R.string.CalendarWeekNameShortSunday)}, context.getDrawable(R.drawable.header_shadow).mutate()), w7.a6.a(38.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
+        y7Var.addView(o0Var3, w7.z5.a(-1.0f, 0.0f, 36.0f, 0.0f, f7, -1, 0));
+        this.f37632a.addView(new bi.d4(this, context, new String[]{LocaleController.getString(R.string.CalendarWeekNameShortMonday), LocaleController.getString(R.string.CalendarWeekNameShortTuesday), LocaleController.getString(R.string.CalendarWeekNameShortWednesday), LocaleController.getString(R.string.CalendarWeekNameShortThursday), LocaleController.getString(R.string.CalendarWeekNameShortFriday), LocaleController.getString(R.string.CalendarWeekNameShortSaturday), LocaleController.getString(R.string.CalendarWeekNameShortSunday)}, context.getDrawable(R.drawable.header_shadow).mutate()), w7.z5.a(38.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
         this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 25));
-        this.fragmentView = this.f37866a;
+        this.fragmentView = this.f37632a;
         Calendar calendar = Calendar.getInstance();
         this.I = calendar.get(1);
         int i10 = calendar.get(2);
         this.J = i10;
         int i11 = this.Z;
         if (i11 != 0) {
-            int v = com.google.android.gms.internal.play_billing.k3.v(this.I, i11, 12, i10) - this.f37867a0;
+            int v = com.google.android.gms.internal.play_billing.k3.v(this.I, i11, 12, i10) - this.f37633a0;
             this.K = v + 1;
-            this.f37870c.h1(v, AndroidUtilities.dp(120.0f));
+            this.f37636c.h1(v, AndroidUtilities.dp(120.0f));
         }
         if (this.K < 3) {
             this.K = 3;
@@ -285,122 +285,122 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
         this.actionBar.setBackButtonDrawable(f2Var);
         this.H.c(0.0f, false);
         q0();
-        this.actionBar.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19901d6, false));
+        this.actionBar.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false));
         this.e.setColor(-1);
         int i12 = org.telegram.ui.ActionBar.g6.G6;
         this.d.setColor(org.telegram.ui.ActionBar.g6.x0(null, i12, false));
-        this.f37874f.setColor(org.telegram.ui.ActionBar.g6.x0(null, i12, false));
+        this.f37640f.setColor(org.telegram.ui.ActionBar.g6.x0(null, i12, false));
         this.actionBar.setTitleColor(org.telegram.ui.ActionBar.g6.x0(null, i12, false));
         this.H.a(org.telegram.ui.ActionBar.g6.x0(null, i12, false));
         this.actionBar.D(org.telegram.ui.ActionBar.g6.x0(null, i12, false), false);
-        this.actionBar.B(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19990i6, false), false);
+        this.actionBar.C(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19690i6, false), false);
         textPaint3.setColor(-1);
         if (z10) {
             bi.i5 i5Var = new bi.i5(context, 8);
-            this.f37869b0 = i5Var;
+            this.f37635b0 = i5Var;
             i5Var.setWillNotDraw(false);
-            this.f37869b0.setPadding(0, AndroidUtilities.getShadowHeight(), 0, 0);
-            this.f37869b0.setClipChildren(false);
+            this.f37635b0.setPadding(0, AndroidUtilities.getShadowHeight(), 0, 0);
+            this.f37635b0.setClipChildren(false);
             TextView textView = new TextView(context);
             this.h = textView;
             textView.setGravity(17);
             this.h.setTextSize(1, 15.0f);
             this.h.setTypeface(AndroidUtilities.bold());
             this.h.setOnClickListener(new View.OnClickListener(this) {
-                public final l8 f41766b;
+                public final l8 f41450b;
 
                 {
-                    this.f41766b = this;
+                    this.f41450b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            l8 l8Var = this.f41766b;
+                            l8 l8Var = this.f41450b;
                             l8Var.G = true;
                             l8Var.t0();
                             return;
                         default:
-                            l8 l8Var2 = this.f41766b;
-                            int i13 = l8Var2.f37881l0;
+                            l8 l8Var2 = this.f41450b;
+                            int i13 = l8Var2.f37647l0;
                             if (i13 == 0) {
                                 if (l8Var2.O == null) {
-                                    org.telegram.ui.Components.v40 v40Var = new org.telegram.ui.Components.v40(l8Var2.f37866a.getContext(), 8);
+                                    org.telegram.ui.Components.v40 v40Var = new org.telegram.ui.Components.v40(l8Var2.f37632a.getContext(), 8);
                                     l8Var2.O = v40Var;
                                     v40Var.setExtraTranslationY(AndroidUtilities.dp(24.0f));
-                                    l8Var2.f37866a.addView(l8Var2.O, w7.a6.a(-2.0f, 19.0f, 0.0f, 19.0f, 0.0f, -2, 51));
+                                    l8Var2.f37632a.addView(l8Var2.O, w7.z5.a(-2.0f, 19.0f, 0.0f, 19.0f, 0.0f, -2, 51));
                                     l8Var2.O.setText(LocaleController.getString(R.string.SelectDaysTooltip));
                                 }
-                                l8Var2.O.f(l8Var2.f37869b0, true);
+                                l8Var2.O.f(l8Var2.f37635b0, true);
                                 return;
                             }
-                            org.telegram.ui.Components.g5.q(l8Var2, i13, l8Var2.getMessagesController().getUser(Long.valueOf(l8Var2.f37886x)), null, false, new z7(l8Var2), null);
+                            org.telegram.ui.Components.g5.q(l8Var2, i13, l8Var2.getMessagesController().getUser(Long.valueOf(l8Var2.f37652x)), null, false, new z7(l8Var2), null);
                             return;
                     }
                 }
             });
             this.h.setText(LocaleController.getString(R.string.SelectDays));
             this.h.setAllCaps(true);
-            this.f37869b0.addView(this.h, w7.a6.a(-1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
+            this.f37635b0.addView(this.h, w7.z5.a(-1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
             TextView textView2 = new TextView(context);
-            this.f37882n = textView2;
+            this.f37648n = textView2;
             textView2.setGravity(17);
-            this.f37882n.setTextSize(1, 15.0f);
-            this.f37882n.setTypeface(AndroidUtilities.bold());
-            this.f37882n.setOnClickListener(new View.OnClickListener(this) {
-                public final l8 f41766b;
+            this.f37648n.setTextSize(1, 15.0f);
+            this.f37648n.setTypeface(AndroidUtilities.bold());
+            this.f37648n.setOnClickListener(new View.OnClickListener(this) {
+                public final l8 f41450b;
 
                 {
-                    this.f41766b = this;
+                    this.f41450b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            l8 l8Var = this.f41766b;
+                            l8 l8Var = this.f41450b;
                             l8Var.G = true;
                             l8Var.t0();
                             return;
                         default:
-                            l8 l8Var2 = this.f41766b;
-                            int i13 = l8Var2.f37881l0;
+                            l8 l8Var2 = this.f41450b;
+                            int i13 = l8Var2.f37647l0;
                             if (i13 == 0) {
                                 if (l8Var2.O == null) {
-                                    org.telegram.ui.Components.v40 v40Var = new org.telegram.ui.Components.v40(l8Var2.f37866a.getContext(), 8);
+                                    org.telegram.ui.Components.v40 v40Var = new org.telegram.ui.Components.v40(l8Var2.f37632a.getContext(), 8);
                                     l8Var2.O = v40Var;
                                     v40Var.setExtraTranslationY(AndroidUtilities.dp(24.0f));
-                                    l8Var2.f37866a.addView(l8Var2.O, w7.a6.a(-2.0f, 19.0f, 0.0f, 19.0f, 0.0f, -2, 51));
+                                    l8Var2.f37632a.addView(l8Var2.O, w7.z5.a(-2.0f, 19.0f, 0.0f, 19.0f, 0.0f, -2, 51));
                                     l8Var2.O.setText(LocaleController.getString(R.string.SelectDaysTooltip));
                                 }
-                                l8Var2.O.f(l8Var2.f37869b0, true);
+                                l8Var2.O.f(l8Var2.f37635b0, true);
                                 return;
                             }
-                            org.telegram.ui.Components.g5.q(l8Var2, i13, l8Var2.getMessagesController().getUser(Long.valueOf(l8Var2.f37886x)), null, false, new z7(l8Var2), null);
+                            org.telegram.ui.Components.g5.q(l8Var2, i13, l8Var2.getMessagesController().getUser(Long.valueOf(l8Var2.f37652x)), null, false, new z7(l8Var2), null);
                             return;
                     }
                 }
             });
-            this.f37882n.setAllCaps(true);
-            this.f37882n.setVisibility(8);
-            this.f37869b0.addView(this.f37882n, w7.a6.a(-1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
-            this.f37866a.addView(this.f37869b0, w7.a6.a(48.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
+            this.f37648n.setAllCaps(true);
+            this.f37648n.setVisibility(8);
+            this.f37635b0.addView(this.f37648n, w7.z5.a(-1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
+            this.f37632a.addView(this.f37635b0, w7.z5.a(48.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
             TextView textView3 = this.h;
             int i13 = org.telegram.ui.ActionBar.g6.Ae;
             textView3.setBackground(org.telegram.ui.ActionBar.g6.g0(i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, i13, false), 51), 2, -1));
-            TextView textView4 = this.f37882n;
-            int i14 = org.telegram.ui.ActionBar.g6.f20139q7;
+            TextView textView4 = this.f37648n;
+            int i14 = org.telegram.ui.ActionBar.g6.f19839q7;
             textView4.setBackground(org.telegram.ui.ActionBar.g6.g0(i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, i14, false), 51), 2, -1));
             this.h.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i13, false));
-            this.f37882n.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i14, false));
+            this.f37648n.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i14, false));
         }
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.storiesListUpdated && this.f37875f0 == ((bi.o8) objArr[0])) {
+        if (i10 == NotificationCenter.storiesListUpdated && this.f37641f0 == ((bi.o8) objArr[0])) {
             r0();
         }
     }
@@ -408,15 +408,15 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
     @Override
     public final ArrayList getThemeDescriptions() {
         new ArrayList();
-        int i10 = org.telegram.ui.ActionBar.g6.f19836a;
-        int i11 = org.telegram.ui.ActionBar.g6.f19836a;
-        int i12 = org.telegram.ui.ActionBar.g6.f19836a;
+        int i10 = org.telegram.ui.ActionBar.g6.f19536a;
+        int i11 = org.telegram.ui.ActionBar.g6.f19536a;
+        int i12 = org.telegram.ui.ActionBar.g6.f19536a;
         return super.getThemeDescriptions();
     }
 
     @Override
     public final boolean isLightStatusBar() {
-        if (i0.a.f(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19901d6, true)) > 0.699999988079071d) {
+        if (i0.a.f(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, true)) > 0.699999988079071d) {
             return true;
         }
         return false;
@@ -429,28 +429,28 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
 
     public final void o0() {
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
-        duration.setInterpolator(org.telegram.ui.Components.es.f24771f);
+        duration.setInterpolator(org.telegram.ui.Components.es.f24465f);
         duration.addUpdateListener(new e3(this, 3));
         duration.addListener(new u0(this, 5));
         duration.start();
         this.R = duration;
-        for (int i10 = 0; i10 < this.f37868b.getChildCount(); i10++) {
-            s0((i8) this.f37868b.getChildAt(i10), true);
+        for (int i10 = 0; i10 < this.f37634b.getChildCount(); i10++) {
+            s0((i8) this.f37634b.getChildAt(i10), true);
         }
-        for (int i11 = 0; i11 < this.f37868b.getCachedChildCount(); i11++) {
-            i8 i8Var = (i8) this.f37868b.P(i11);
+        for (int i11 = 0; i11 < this.f37634b.getCachedChildCount(); i11++) {
+            i8 i8Var = (i8) this.f37634b.P(i11);
             s0(i8Var, false);
             i8.a(i8Var, this.P, this.Q);
             i8.b(i8Var, 1.0f);
         }
-        for (int i12 = 0; i12 < this.f37868b.getHiddenChildCount(); i12++) {
-            i8 i8Var2 = (i8) this.f37868b.V(i12);
+        for (int i12 = 0; i12 < this.f37634b.getHiddenChildCount(); i12++) {
+            i8 i8Var2 = (i8) this.f37634b.V(i12);
             s0(i8Var2, false);
             i8.a(i8Var2, this.P, this.Q);
             i8.b(i8Var2, 1.0f);
         }
-        for (int i13 = 0; i13 < this.f37868b.getAttachedScrapChildCount(); i13++) {
-            i8 i8Var3 = (i8) this.f37868b.O(i13);
+        for (int i13 = 0; i13 < this.f37634b.getAttachedScrapChildCount(); i13++) {
+            i8 i8Var3 = (i8) this.f37634b.O(i13);
             s0(i8Var3, false);
             i8.a(i8Var3, this.P, this.Q);
             i8.b(i8Var3, 1.0f);
@@ -474,23 +474,23 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f37886x = getArguments().getLong("dialog_id");
-        this.f37887y = getArguments().getLong("topic_id");
+        this.f37652x = getArguments().getLong("dialog_id");
+        this.f37653y = getArguments().getLong("topic_id");
         int i10 = getArguments().getInt("type");
-        this.f37873e0 = i10;
+        this.f37639e0 = i10;
         if (i10 == 2) {
-            this.f37875f0 = MessagesController.getInstance(this.currentAccount).getStoriesController().A(this.f37886x, 0, -1, true);
+            this.f37641f0 = MessagesController.getInstance(this.currentAccount).getStoriesController().A(this.f37652x, 0, -1, true);
         } else if (i10 == 3) {
-            this.f37875f0 = MessagesController.getInstance(this.currentAccount).getStoriesController().A(this.f37886x, 1, -1, true);
+            this.f37641f0 = MessagesController.getInstance(this.currentAccount).getStoriesController().A(this.f37652x, 1, -1, true);
         }
-        bi.o8 o8Var = this.f37875f0;
+        bi.o8 o8Var = this.f37641f0;
         if (o8Var != null) {
-            this.f37876g0 = new g(this, 8);
+            this.f37642g0 = new g(this, 8);
         }
-        if (this.f37886x >= 0) {
-            this.f37872d0 = true;
+        if (this.f37652x >= 0) {
+            this.f37638d0 = true;
         } else {
-            this.f37872d0 = false;
+            this.f37638d0 = false;
         }
         if (o8Var != null) {
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
@@ -501,7 +501,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        if (this.f37875f0 != null) {
+        if (this.f37641f0 != null) {
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
         }
     }
@@ -537,11 +537,11 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
     public final void p0() {
         if (!this.E && !this.T) {
             int i10 = Integer.MAX_VALUE;
-            for (int i11 = 0; i11 < this.f37868b.getChildCount(); i11++) {
-                View childAt = this.f37868b.getChildAt(i11);
+            for (int i11 = 0; i11 < this.f37634b.getChildCount(); i11++) {
+                View childAt = this.f37634b.getChildAt(i11);
                 if (childAt instanceof i8) {
                     i8 i8Var = (i8) childAt;
-                    int i12 = (i8Var.f37057b * 100) + i8Var.f37058c;
+                    int i12 = (i8Var.f36745b * 100) + i8Var.f36746c;
                     if (i12 < i10) {
                         i10 = i12;
                     }
@@ -556,10 +556,10 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
 
     public final void q0() {
         if (!this.E && !this.T) {
-            if (this.f37875f0 != null) {
+            if (this.f37641f0 != null) {
                 r0();
-                this.f37875f0.p(100, false);
-                this.E = this.f37875f0.k();
+                this.f37641f0.p(100, false);
+                this.E = this.f37641f0.k();
                 return;
             }
             this.E = true;
@@ -572,27 +572,27 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             } else {
                 tL_messages_getSearchResultsCalendar.filter = new TLRPC.TL_inputMessagesFilterPhotoVideo();
             }
-            tL_messages_getSearchResultsCalendar.peer = getMessagesController().getInputPeer(this.f37886x);
-            if (this.f37887y != 0 && this.f37886x == getUserConfig().getClientUserId()) {
+            tL_messages_getSearchResultsCalendar.peer = getMessagesController().getInputPeer(this.f37652x);
+            if (this.f37653y != 0 && this.f37652x == getUserConfig().getClientUserId()) {
                 tL_messages_getSearchResultsCalendar.flags |= 4;
-                tL_messages_getSearchResultsCalendar.saved_peer_id = getMessagesController().getInputPeer(this.f37887y);
+                tL_messages_getSearchResultsCalendar.saved_peer_id = getMessagesController().getInputPeer(this.f37653y);
             }
             tL_messages_getSearchResultsCalendar.offset_id = this.V;
             Calendar calendar = Calendar.getInstance();
-            this.f37868b.setItemAnimator(null);
+            this.f37634b.setItemAnimator(null);
             getConnectionsManager().sendRequest(tL_messages_getSearchResultsCalendar, new bi.m1(22, this, calendar));
         }
     }
 
     public final void r0() {
-        this.E = this.f37875f0.k();
+        this.E = this.f37641f0.k();
         Calendar calendar = Calendar.getInstance();
         SparseArray sparseArray = this.S;
         sparseArray.clear();
-        this.f37871c0 = Integer.MAX_VALUE;
-        for (int i10 = 0; i10 < this.f37875f0.f3429i.size(); i10++) {
-            MessageObject messageObject = (MessageObject) this.f37875f0.f3429i.get(i10);
-            this.f37871c0 = Math.min(this.f37871c0, messageObject.messageOwner.date);
+        this.f37637c0 = Integer.MAX_VALUE;
+        for (int i10 = 0; i10 < this.f37641f0.f3433i.size(); i10++) {
+            MessageObject messageObject = (MessageObject) this.f37641f0.f3433i.get(i10);
+            this.f37637c0 = Math.min(this.f37637c0, messageObject.messageOwner.date);
             calendar.setTimeInMillis(messageObject.messageOwner.date * 1000);
             int i11 = calendar.get(2) + (calendar.get(1) * 100);
             SparseArray sparseArray2 = (SparseArray) sparseArray.get(i11);
@@ -604,10 +604,10 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             j8 j8Var = (j8) sparseArray2.get(i12);
             if (j8Var == null) {
                 j8Var = new j8();
-                j8Var.f37303b = new ArrayList();
+                j8Var.f36973b = new ArrayList();
             }
-            j8Var.f37303b.add(Integer.valueOf(messageObject.getId()));
-            j8Var.f37302a = messageObject;
+            j8Var.f36973b.add(Integer.valueOf(messageObject.getId()));
+            j8Var.f36972a = messageObject;
             j8Var.h = (int) (calendar.getTimeInMillis() / 1000);
             sparseArray2.put(i12, j8Var);
             int i13 = this.W;
@@ -616,7 +616,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             }
         }
         int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-        for (int i14 = this.f37871c0; i14 < currentTimeMillis; i14 += 86400) {
+        for (int i14 = this.f37637c0; i14 < currentTimeMillis; i14 += 86400) {
             calendar.setTimeInMillis(i14 * 1000);
             calendar.set(11, 0);
             calendar.set(12, 0);
@@ -631,17 +631,17 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             int i16 = calendar.get(5) - 1;
             if (sparseArray3.get(i16, null) == null) {
                 j8 j8Var2 = new j8();
-                j8Var2.f37306g = false;
+                j8Var2.f36976g = false;
                 j8Var2.h = (int) (calendar.getTimeInMillis() / 1000);
                 sparseArray3.put(i16, j8Var2);
             }
         }
-        this.T = this.f37875f0.f3438r;
+        this.T = this.f37641f0.f3442r;
         if (this.Y) {
             this.F = true;
         }
-        this.f37868b.invalidate();
-        int timeInMillis = ((int) (((calendar.getTimeInMillis() / 1000) - this.f37871c0) / 2629800)) + 1;
+        this.f37634b.invalidate();
+        int timeInMillis = ((int) (((calendar.getTimeInMillis() / 1000) - this.f37637c0) / 2629800)) + 1;
         this.L.q(0, this.K);
         int i17 = this.K;
         if (timeInMillis > i17) {
@@ -657,9 +657,9 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
         int i10;
         int i11;
         if (this.P != 0 && this.Q != 0) {
-            if (i8Var.f37060n != null) {
+            if (i8Var.f36748n != null) {
                 if (!z10) {
-                    SparseArray sparseArray = i8Var.f37063w;
+                    SparseArray sparseArray = i8Var.f36751w;
                     for (int i12 = 0; i12 < sparseArray.size(); i12++) {
                         i8Var.c(sparseArray.keyAt(i12), 0, 0, false, false);
                     }
@@ -669,7 +669,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
                 int i15 = -1;
                 int i16 = 0;
                 for (int i17 = 0; i17 < i8Var.d; i17++) {
-                    j8 j8Var = (j8) i8Var.f37060n.get(i17, null);
+                    j8 j8Var = (j8) i8Var.f36748n.get(i17, null);
                     if (j8Var != null && (i11 = j8Var.h) >= this.P && i11 <= this.Q) {
                         if (i14 == -1) {
                             i14 = i13;
@@ -702,7 +702,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             }
             return;
         }
-        SparseArray sparseArray2 = i8Var.f37063w;
+        SparseArray sparseArray2 = i8Var.f36751w;
         for (int i19 = 0; i19 < sparseArray2.size(); i19++) {
             i8Var.c(sparseArray2.keyAt(i19), 0, 0, false, z10);
         }
@@ -713,7 +713,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
         boolean z10;
         String string;
         org.telegram.ui.Components.v40 v40Var;
-        if (!this.f37872d0) {
+        if (!this.f37638d0) {
             this.actionBar.setTitle(LocaleController.getString(R.string.Calendar));
             this.H.c(0.0f, true);
             return;
@@ -726,7 +726,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             abs = (Math.abs(i10 - i11) / 86400) + 1;
         }
         boolean z11 = this.m0;
-        int i12 = this.f37881l0;
+        int i12 = this.f37647l0;
         if (abs == i12 && z11 == this.G) {
             return;
         }
@@ -735,7 +735,7 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
         } else {
             z10 = false;
         }
-        this.f37881l0 = abs;
+        this.f37647l0 = abs;
         boolean z12 = this.G;
         this.m0 = z12;
         float f7 = 1.0f;
@@ -751,9 +751,9 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
         }
         String str = string;
         if (abs > 1) {
-            this.f37882n.setText(LocaleController.formatString("ClearHistoryForTheseDays", R.string.ClearHistoryForTheseDays, new Object[0]));
+            this.f37648n.setText(LocaleController.formatString("ClearHistoryForTheseDays", R.string.ClearHistoryForTheseDays, new Object[0]));
         } else if (abs > 0 || this.G) {
-            this.f37882n.setText(LocaleController.formatString("ClearHistoryForThisDay", R.string.ClearHistoryForThisDay, new Object[0]));
+            this.f37648n.setText(LocaleController.formatString("ClearHistoryForThisDay", R.string.ClearHistoryForThisDay, new Object[0]));
         }
         this.actionBar.J(str, z10, 150L, null);
         if ((!this.G || abs > 0) && (v40Var = this.O) != null) {
@@ -766,27 +766,27 @@ public final class l8 extends org.telegram.ui.ActionBar.m2 implements Notificati
             }
             this.h.setVisibility(0);
             this.h.animate().setListener(null).cancel();
-            this.f37882n.animate().setListener(null).cancel();
+            this.f37648n.animate().setListener(null).cancel();
             this.h.animate().alpha(1.0f).translationY(0.0f).start();
-            this.f37882n.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(20.0f)).setDuration(150L).setListener(new vo(this.f37882n)).start();
+            this.f37648n.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(20.0f)).setDuration(150L).setListener(new vo(this.f37648n)).start();
             this.h.setEnabled(true);
-            this.f37882n.setEnabled(false);
+            this.f37648n.setEnabled(false);
             return;
         }
-        if (this.f37882n.getVisibility() == 8) {
-            this.f37882n.setAlpha(0.0f);
-            this.f37882n.setTranslationY(-AndroidUtilities.dp(20.0f));
+        if (this.f37648n.getVisibility() == 8) {
+            this.f37648n.setAlpha(0.0f);
+            this.f37648n.setTranslationY(-AndroidUtilities.dp(20.0f));
         }
-        this.f37882n.setVisibility(0);
+        this.f37648n.setVisibility(0);
         this.h.animate().setListener(null).cancel();
-        this.f37882n.animate().setListener(null).cancel();
+        this.f37648n.animate().setListener(null).cancel();
         this.h.animate().alpha(0.0f).translationY(AndroidUtilities.dp(20.0f)).setDuration(150L).setListener(new vo(this.h)).start();
-        ViewPropertyAnimator animate = this.f37882n.animate();
+        ViewPropertyAnimator animate = this.f37648n.animate();
         if (abs == 0) {
             f7 = 0.5f;
         }
         animate.alpha(f7).translationY(0.0f).start();
         this.h.setEnabled(false);
-        this.f37882n.setEnabled(true);
+        this.f37648n.setEnabled(true);
     }
 }

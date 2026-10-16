@@ -6,11 +6,11 @@ public interface b {
 
     qa.b b(Class cls);
 
-    Object e(r rVar);
+    Object d(r rVar);
 
-    qa.b g(r rVar);
+    qa.b e(r rVar);
 
-    Set h(r rVar);
+    Set f(r rVar);
 
-    p k(r rVar);
+    p g(r rVar);
 }

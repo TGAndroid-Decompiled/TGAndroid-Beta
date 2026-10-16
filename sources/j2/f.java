@@ -34,36 +34,35 @@ import i2.a0;
 import i2.y;
 import java.io.IOException;
 import java.util.List;
-import n2.l;
 import u2.c0;
 import u2.k0;
 import u2.u;
 import v7.u6;
-public final class f implements e1, k0, l {
-    public final g0 f12525a;
-    public final m1 f12526b;
-    public final o1 f12527c;
+public final class f implements e1, k0, n2.k {
+    public final g0 f12529a;
+    public final m1 f12530b;
+    public final o1 f12531c;
     public final m d;
     public final SparseArray e;
-    public r f12528f;
+    public r f12532f;
     public g1 h;
-    public i0 f12529n;
-    public boolean f12530r;
+    public i0 f12533n;
+    public boolean f12534r;
 
     public f(g0 g0Var) {
         g0Var.getClass();
-        this.f12525a = g0Var;
-        String str = m0.f8372a;
+        this.f12529a = g0Var;
+        String str = m0.f8375a;
         Looper myLooper = Looper.myLooper();
-        this.f12528f = new r((myLooper == null ? Looper.getMainLooper() : myLooper).getThread());
+        this.f12532f = new r((myLooper == null ? Looper.getMainLooper() : myLooper).getThread());
         m1 m1Var = new m1();
-        this.f12526b = m1Var;
-        this.f12527c = new o1();
+        this.f12530b = m1Var;
+        this.f12531c = new o1();
         ?? obj = new Object();
-        obj.f6191a = m1Var;
-        l0 l0Var = n0.f8592b;
-        obj.f6192b = x1.e;
-        obj.f6193c = c2.h;
+        obj.f6194a = m1Var;
+        l0 l0Var = n0.f8595b;
+        obj.f6195b = x1.e;
+        obj.f6196c = c2.h;
         this.d = obj;
         this.e = new SparseArray();
     }
@@ -146,7 +145,7 @@ public final class f implements e1, k0, l {
         } else {
             g0Var2 = g0Var;
         }
-        this.f12525a.getClass();
+        this.f12529a.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (p1Var.equals(this.h.y0()) && i10 == this.h.n0()) {
             z10 = true;
@@ -161,7 +160,7 @@ public final class f implements e1, k0, l {
         } else if (z10) {
             j10 = this.h.a0();
         } else if (!p1Var.p()) {
-            j10 = m0.h0(p1Var.m(i10, this.f12527c, 0L).f2266l);
+            j10 = m0.h0(p1Var.m(i10, this.f12531c, 0L).f2270l);
         }
         return new a(elapsedRealtime, p1Var, i10, g0Var2, j10, this.h.y0(), this.h.n0(), (u2.g0) this.d.d, this.h.M0(), this.h.q());
     }
@@ -172,15 +171,15 @@ public final class f implements e1, k0, l {
         if (g0Var == null) {
             p1Var = null;
         } else {
-            p1Var = (p1) ((c2) this.d.f6193c).get(g0Var);
+            p1Var = (p1) ((c2) this.d.f6196c).get(g0Var);
         }
         if (g0Var != null && p1Var != null) {
-            return m(p1Var, p1Var.g(g0Var.f45920a, this.f12526b).f2213c, g0Var);
+            return m(p1Var, p1Var.g(g0Var.f45920a, this.f12530b).f2217c, g0Var);
         }
         int n02 = this.h.n0();
         p1 y02 = this.h.y0();
         if (n02 >= y02.o()) {
-            y02 = p1.f2281a;
+            y02 = p1.f2285a;
         }
         return m(y02, n02, null);
     }
@@ -188,14 +187,14 @@ public final class f implements e1, k0, l {
     public final a o(int i10, u2.g0 g0Var) {
         this.h.getClass();
         if (g0Var != null) {
-            if (((p1) ((c2) this.d.f6193c).get(g0Var)) != null) {
+            if (((p1) ((c2) this.d.f6196c).get(g0Var)) != null) {
                 return n(g0Var);
             }
-            return m(p1.f2281a, i10, g0Var);
+            return m(p1.f2285a, i10, g0Var);
         }
         p1 y02 = this.h.y0();
         if (i10 >= y02.o()) {
-            y02 = p1.f2281a;
+            y02 = p1.f2285a;
         }
         return m(y02, i10, null);
     }
@@ -347,7 +346,7 @@ public final class f implements e1, k0, l {
         g1 g1Var = this.h;
         g1Var.getClass();
         m mVar = this.d;
-        mVar.d = m.p(g1Var, (n0) mVar.f6192b, (u2.g0) mVar.e, (m1) mVar.f6191a);
+        mVar.d = m.p(g1Var, (n0) mVar.f6195b, (u2.g0) mVar.e, (m1) mVar.f6194a);
         mVar.H(g1Var.y0());
         a l4 = l();
         q(l4, 0, new e(l4, i10, 18));
@@ -378,18 +377,18 @@ public final class f implements e1, k0, l {
     }
 
     public final a p() {
-        return n((u2.g0) this.d.f6194f);
+        return n((u2.g0) this.d.f6197f);
     }
 
     public final void q(a aVar, int i10, o oVar) {
         this.e.put(i10, aVar);
-        this.f12528f.e(i10, oVar);
+        this.f12532f.e(i10, oVar);
     }
 
     public final void r(i2.h0 h0Var, Looper looper) {
         boolean z10;
         boolean z11 = true;
-        if (this.h != null && !((n0) this.d.f6192b).isEmpty()) {
+        if (this.h != null && !((n0) this.d.f6195b).isEmpty()) {
             z10 = false;
         } else {
             z10 = true;
@@ -397,27 +396,27 @@ public final class f implements e1, k0, l {
         u6.p(z10);
         h0Var.getClass();
         this.h = h0Var;
-        this.f12529n = this.f12525a.a(looper, null);
-        r rVar = this.f12528f;
+        this.f12533n = this.f12529a.a(looper, null);
+        r rVar = this.f12532f;
         h0 h0Var2 = new h0(17, this, h0Var);
         rVar.getClass();
-        g0 g0Var = this.f12525a;
+        g0 g0Var = this.f12529a;
         if (g0Var == null) {
             z11 = false;
         }
         u6.p(z11);
-        this.f12528f = new r(rVar.d, looper, looper.getThread(), g0Var, h0Var2, rVar.f8397i);
+        this.f12532f = new r(rVar.d, looper, looper.getThread(), g0Var, h0Var2, rVar.f8400i);
     }
 
     @Override
     public final void onPositionDiscontinuity(f1 f1Var, f1 f1Var2, int i10) {
         if (i10 == 1) {
-            this.f12530r = false;
+            this.f12534r = false;
         }
         g1 g1Var = this.h;
         g1Var.getClass();
         m mVar = this.d;
-        mVar.d = m.p(g1Var, (n0) mVar.f6192b, (u2.g0) mVar.e, (m1) mVar.f6191a);
+        mVar.d = m.p(g1Var, (n0) mVar.f6195b, (u2.g0) mVar.e, (m1) mVar.f6194a);
         a l4 = l();
         q(l4, 11, new i2.r(l4, i10, f1Var, f1Var2));
     }

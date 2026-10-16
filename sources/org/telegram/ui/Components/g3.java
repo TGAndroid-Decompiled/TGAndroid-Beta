@@ -4,33 +4,33 @@ import android.view.View;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class g3 implements View.OnClickListener {
-    public final int f25169a;
-    public final org.telegram.ui.ActionBar.e3 f25170b;
+    public final int f24865a;
+    public final org.telegram.ui.ActionBar.e3 f24866b;
 
     public g3(org.telegram.ui.ActionBar.e3 e3Var, int i10) {
-        this.f25169a = i10;
-        this.f25170b = e3Var;
+        this.f24865a = i10;
+        this.f24866b = e3Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f25169a) {
+        switch (this.f24865a) {
             case 0:
-                this.f25170b.dismiss();
+                this.f24866b.dismiss();
                 return;
             case 1:
                 org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != null) {
                     R.presentFragment(new PremiumPreviewFragment(0, "contact"));
-                    this.f25170b.dismiss();
+                    this.f24866b.dismiss();
                     return;
                 }
                 return;
             case 2:
-                this.f25170b.dismiss();
+                this.f24866b.dismiss();
                 return;
             default:
-                this.f25170b.dismiss();
+                this.f24866b.dismiss();
                 return;
         }
     }

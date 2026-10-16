@@ -1,18 +1,15 @@
 package org.telegram.ui.Components;
+public final class c01 {
+    public final int f23601a;
+    public final int f23602b;
 
-import android.view.ViewGroup;
-public final class c01 extends ViewGroup.MarginLayoutParams {
-    public e01 f23898a;
-    public e01 f23899b;
+    public c01(int i10, int i11) {
+        this.f23601a = i10;
+        this.f23602b = i11;
+    }
 
-    public c01() {
-        super(-2, -2);
-        e01 e01Var = e01.e;
-        this.f23898a = e01Var;
-        this.f23899b = e01Var;
-        setMargins(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
-        this.f23898a = e01Var;
-        this.f23899b = e01Var;
+    public final int a() {
+        return this.f23602b - this.f23601a;
     }
 
     public final boolean equals(Object obj) {
@@ -23,13 +20,13 @@ public final class c01 extends ViewGroup.MarginLayoutParams {
             return false;
         }
         c01 c01Var = (c01) obj;
-        if (this.f23899b.equals(c01Var.f23899b) && this.f23898a.equals(c01Var.f23898a)) {
+        if (this.f23602b == c01Var.f23602b && this.f23601a == c01Var.f23601a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f23899b.hashCode() + (this.f23898a.hashCode() * 31);
+        return (this.f23601a * 31) + this.f23602b;
     }
 }

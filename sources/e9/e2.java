@@ -1,31 +1,31 @@
 package e9;
 public final class e2 extends y0 {
-    public static final Object[] f8555r;
-    public static final e2 f8556s;
+    public static final Object[] f8558r;
+    public static final e2 f8559s;
     public final transient Object[] d;
     public final transient int e;
-    public final transient Object[] f8557f;
+    public final transient Object[] f8560f;
     public final transient int h;
-    public final transient int f8558n;
+    public final transient int f8561n;
 
     static {
         Object[] objArr = new Object[0];
-        f8555r = objArr;
-        f8556s = new e2(0, 0, 0, objArr, objArr);
+        f8558r = objArr;
+        f8559s = new e2(0, 0, 0, objArr, objArr);
     }
 
     public e2(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
         this.e = i10;
-        this.f8557f = objArr2;
+        this.f8560f = objArr2;
         this.h = i11;
-        this.f8558n = i12;
+        this.f8561n = i12;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f8557f;
+            Object[] objArr = this.f8560f;
             if (objArr.length != 0) {
                 int u10 = s.u(obj);
                 while (true) {
@@ -52,7 +52,7 @@ public final class e2 extends y0 {
     @Override
     public final int m(int i10, Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i11 = this.f8558n;
+        int i11 = this.f8561n;
         System.arraycopy(objArr2, 0, objArr, i10, i11);
         return i10 + i11;
     }
@@ -64,7 +64,7 @@ public final class e2 extends y0 {
 
     @Override
     public final int o() {
-        return this.f8558n;
+        return this.f8561n;
     }
 
     @Override
@@ -84,11 +84,11 @@ public final class e2 extends y0 {
 
     @Override
     public final int size() {
-        return this.f8558n;
+        return this.f8561n;
     }
 
     @Override
     public final n0 v() {
-        return n0.s(this.f8558n, this.d);
+        return n0.s(this.f8561n, this.d);
     }
 }

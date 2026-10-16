@@ -13,41 +13,41 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ur extends db {
-    public final u80 X;
+    public final t80 X;
     public final ArrayList Y;
     public final boolean Z;
-    public final boolean f29755a0;
-    public final boolean f29756b0;
-    public boolean f29757c0;
-    public TLRPC.Peer f29758d0;
-    public TLRPC.InputPeer f29759e0;
-    public final org.telegram.ui.ActionBar.m2 f29760f0;
-    public final long f29761g0;
+    public final boolean f29422a0;
+    public final boolean f29423b0;
+    public boolean f29424c0;
+    public TLRPC.Peer f29425d0;
+    public TLRPC.InputPeer f29426e0;
+    public final org.telegram.ui.ActionBar.m2 f29427f0;
+    public final long f29428g0;
 
-    public ur(org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, long j10, u80 u80Var) {
+    public ur(org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, long j10, t80 t80Var) {
         super(m2Var, false);
         boolean z10;
         String formatString;
         String formatString2;
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
-        this.f29760f0 = m2Var;
-        this.f29761g0 = j10;
+        this.f29427f0 = m2Var;
+        this.f29428g0 = j10;
         this.v = 0.26f;
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.Y = arrayList2;
-        this.X = u80Var;
+        this.X = t80Var;
         boolean isChannelOrGiga = ChatObject.isChannelOrGiga(chat);
-        this.f29756b0 = isChannelOrGiga;
-        this.f29758d0 = (TLRPC.Peer) arrayList2.get(0);
+        this.f29423b0 = isChannelOrGiga;
+        this.f29425d0 = (TLRPC.Peer) arrayList2.get(0);
         if (arrayList2.size() > 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.Z = z10;
-        this.f29755a0 = ChatObject.canManageCalls(chat);
+        this.f29422a0 = ChatObject.canManageCalls(chat);
         Context context = this.containerView.getContext();
-        this.containerView.addView(new di.ab(this, context, 16), w7.a6.a(120.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
+        this.containerView.addView(new di.ab(this, context, 16), w7.z5.a(120.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
         TextView textView = new TextView(context);
         textView.setGravity(17);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -65,9 +65,9 @@ public final class ur extends db {
         int dp = AndroidUtilities.dp(8.0f);
         int i10 = org.telegram.ui.ActionBar.g6.Oh;
         int x02 = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19901d6, false), 120);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false), 120);
         textView.setBackground(org.telegram.ui.ActionBar.g6.j0(dp, dp, dp, dp, x02, k10, k10));
-        this.containerView.addView(textView, w7.a6.a(48.0f, 16.0f, 0.0f, 16.0f, 60.0f, -1, 80));
+        this.containerView.addView(textView, w7.z5.a(48.0f, 16.0f, 0.0f, 16.0f, 60.0f, -1, 80));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
         textView2.setEllipsize(truncateAt);
@@ -85,41 +85,41 @@ public final class ur extends db {
         int dp2 = AndroidUtilities.dp(8.0f);
         int k11 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, i10, false), 120);
         textView2.setBackground(org.telegram.ui.ActionBar.g6.j0(dp2, dp2, dp2, dp2, 0, k11, k11));
-        this.containerView.addView(textView2, w7.a6.a(48.0f, 16.0f, 0.0f, 16.0f, 6.0f, -1, 80));
+        this.containerView.addView(textView2, w7.z5.a(48.0f, 16.0f, 0.0f, 16.0f, 6.0f, -1, 80));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final ur f28928b;
+            public final ur f28629b;
 
             {
-                this.f28928b = this;
+                this.f28629b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        ur.Q(this.f28928b);
+                        ur.Q(this.f28629b);
                         return;
                     default:
-                        ur.R(this.f28928b);
+                        ur.R(this.f28629b);
                         return;
                 }
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final ur f28928b;
+            public final ur f28629b;
 
             {
-                this.f28928b = this;
+                this.f28629b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        ur.Q(this.f28928b);
+                        ur.Q(this.f28629b);
                         return;
                     default:
-                        ur.R(this.f28928b);
+                        ur.R(this.f28629b);
                         return;
                 }
             }
@@ -133,19 +133,19 @@ public final class ur extends db {
     }
 
     public static void Q(ur urVar) {
-        urVar.f29759e0 = MessagesController.getInstance(urVar.currentAccount).getInputPeer(MessageObject.getPeerId(urVar.f29758d0));
+        urVar.f29426e0 = MessagesController.getInstance(urVar.currentAccount).getInputPeer(MessageObject.getPeerId(urVar.f29425d0));
         urVar.dismiss();
     }
 
     public static void R(ur urVar) {
-        urVar.f29759e0 = MessagesController.getInstance(urVar.currentAccount).getInputPeer(MessageObject.getPeerId(urVar.f29758d0));
-        urVar.f29757c0 = true;
+        urVar.f29426e0 = MessagesController.getInstance(urVar.currentAccount).getInputPeer(MessageObject.getPeerId(urVar.f29425d0));
+        urVar.f29424c0 = true;
         urVar.dismiss();
     }
 
     @Override
-    public final CharSequence A() {
-        if (this.f29756b0) {
+    public final CharSequence B() {
+        if (this.f29423b0) {
             return LocaleController.getString(R.string.StartVoipChannelTitle);
         }
         return LocaleController.getString(R.string.StartVoipChatTitle);
@@ -154,13 +154,13 @@ public final class ur extends db {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        TLRPC.InputPeer inputPeer = this.f29759e0;
+        TLRPC.InputPeer inputPeer = this.f29426e0;
         if (inputPeer != null) {
             boolean z10 = true;
             if (this.Y.size() <= 1) {
                 z10 = false;
             }
-            this.X.a(inputPeer, z10, this.f29757c0, false);
+            this.X.a(inputPeer, z10, this.f29424c0, false);
         }
     }
 

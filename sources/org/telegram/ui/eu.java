@@ -1,4 +1,4 @@
 package org.telegram.ui;
 public interface eu {
-    void a1(au auVar);
+    void Z0(au auVar);
 }

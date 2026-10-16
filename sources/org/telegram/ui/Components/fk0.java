@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fk0 {
-    public final TLObject f25073a;
-    public final long f25074b;
-    public int f25075c;
+    public final TLObject f24771a;
+    public final long f24772b;
+    public int f24773c;
 
     public fk0(int i10, TLObject tLObject) {
-        this.f25073a = tLObject;
-        this.f25075c = i10;
+        this.f24771a = tLObject;
+        this.f24773c = i10;
         if (tLObject instanceof TLRPC.User) {
-            this.f25074b = ((TLRPC.User) tLObject).f19363id;
+            this.f24772b = ((TLRPC.User) tLObject).f19063id;
         } else if (tLObject instanceof TLRPC.Chat) {
-            this.f25074b = -((TLRPC.Chat) tLObject).f19216id;
+            this.f24772b = -((TLRPC.Chat) tLObject).f18916id;
         }
     }
 }

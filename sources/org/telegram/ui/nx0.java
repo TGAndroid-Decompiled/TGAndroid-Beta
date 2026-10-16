@@ -20,8 +20,8 @@ public final class nx0 extends sg.r1 {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
             ox0 ox0Var = this.N;
-            ox0Var.d.f39304n.f32462n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f45341n.h, ox0Var.d.f39304n.O);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), ox0Var.d.f39304n.f32462n0.f45117f);
+            ox0Var.d.f39026n.f32164n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f45341n.h, ox0Var.d.f39026n.O);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), ox0Var.d.f39026n.f32164n0.f45117f);
         }
         super.dispatchDraw(canvas);
     }

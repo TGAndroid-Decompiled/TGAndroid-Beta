@@ -16,12 +16,12 @@ public final class l1 implements y2.i {
     @Override
     public final void a() {
         g2.b0 b0Var = this.f45968b;
-        b0Var.f9855b = 0L;
+        b0Var.f9858b = 0L;
         try {
             b0Var.open(this.f45967a);
             int i10 = 0;
             while (i10 != -1) {
-                int i11 = (int) b0Var.f9855b;
+                int i11 = (int) b0Var.f9858b;
                 byte[] bArr = this.f45969c;
                 if (bArr == null) {
                     this.f45969c = new byte[1024];
@@ -39,6 +39,6 @@ public final class l1 implements y2.i {
     }
 
     @Override
-    public final void J() {
+    public final void a0() {
     }
 }

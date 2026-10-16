@@ -1,6 +1,8 @@
 package m;
-public interface x0 {
-    void H0(int i10);
 
-    void J(int i10);
+import android.graphics.Typeface;
+public abstract class x0 {
+    public static Typeface a(Typeface typeface, int i10, boolean z10) {
+        return Typeface.create(typeface, i10, z10);
+    }
 }

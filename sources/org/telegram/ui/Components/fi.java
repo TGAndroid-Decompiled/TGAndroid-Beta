@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class fi extends wg {
-    public final vi f25058l0;
+    public final vi f24756l0;
 
     public fi(int i10, Context context, org.telegram.ui.ActionBar.c6 c6Var, vi viVar) {
         super(i10, context, c6Var, false);
-        this.f25058l0 = viVar;
+        this.f24756l0 = viVar;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class fi extends wg {
 
     @Override
     public final boolean e() {
-        return !this.f25058l0.X0;
+        return !this.f24756l0.X0;
     }
 
     @Override
@@ -26,6 +26,6 @@ public final class fi extends wg {
 
     @Override
     public final int getFillColor() {
-        return this.f25058l0.getThemedColor(org.telegram.ui.ActionBar.g6.S5);
+        return this.f24756l0.getThemedColor(org.telegram.ui.ActionBar.g6.S5);
     }
 }

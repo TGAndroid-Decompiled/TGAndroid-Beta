@@ -54,7 +54,6 @@ import ji.e3;
 import ji.h1;
 import ji.i6;
 import ji.k4;
-import ji.k6;
 import ji.l5;
 import ji.o0;
 import ji.t0;
@@ -85,20 +84,20 @@ import org.telegram.ui.Cells.j5;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.l80;
 import org.telegram.ui.Components.lu;
-import org.telegram.ui.Components.m80;
-import org.telegram.ui.lg1;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.kg1;
 import org.telegram.ui.sy;
 import org.telegram.ui.yy;
-import w7.l6;
+import w7.k6;
 public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o, v, lu, o0, sy {
-    public final int f8829a;
-    public final Object f8830b;
+    public final int f8832a;
+    public final Object f8833b;
 
     public a(j2.a aVar, Object obj, int i10) {
-        this.f8829a = i10;
-        this.f8830b = obj;
+        this.f8832a = i10;
+        this.f8833b = obj;
     }
 
     @Override
@@ -113,27 +112,27 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
 
     @Override
     public void a(long j10, x xVar) {
-        switch (this.f8829a) {
+        switch (this.f8832a) {
             case 19:
-                c3.b.c(j10, xVar, ((c0) this.f8830b).f12590c);
+                c3.b.c(j10, xVar, ((c0) this.f8833b).f12594c);
                 return;
             default:
-                c3.b.d(j10, xVar, ((c0) this.f8830b).f12590c);
+                c3.b.d(j10, xVar, ((c0) this.f8833b).f12594c);
                 return;
         }
     }
 
     public j5.b b(e eVar) {
         InputStream inputStream;
-        c cVar = (c) this.f8830b;
-        URL url = (URL) eVar.f1196b;
-        String c10 = l6.c("CctTransportBackend");
+        c cVar = (c) this.f8833b;
+        URL url = (URL) eVar.f1200b;
+        String c10 = k6.c("CctTransportBackend");
         if (Log.isLoggable(c10, 4)) {
             Log.i(c10, String.format("Making request to: %s", url));
         }
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setConnectTimeout(30000);
-        httpURLConnection.setReadTimeout(cVar.f12847g);
+        httpURLConnection.setReadTimeout(cVar.f12851g);
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setInstanceFollowRedirects(false);
         httpURLConnection.setRequestMethod("POST");
@@ -149,11 +148,11 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
             OutputStream outputStream = httpURLConnection.getOutputStream();
             try {
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
-                w4 w4Var = cVar.f12843a;
+                w4 w4Var = cVar.f12847a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
-                d dVar = (d) w4Var.f13592b;
+                d dVar = (d) w4Var.f13595b;
                 la.e eVar2 = new la.e(bufferedWriter, dVar.f14646a, dVar.f14647b, dVar.f14648c, dVar.d);
-                eVar2.h((i) eVar.f1197c);
+                eVar2.h((i) eVar.f1201c);
                 eVar2.j();
                 eVar2.f14650b.flush();
                 gZIPOutputStream.close();
@@ -162,12 +161,12 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                 }
                 int responseCode = httpURLConnection.getResponseCode();
                 Integer valueOf = Integer.valueOf(responseCode);
-                String c11 = l6.c("CctTransportBackend");
+                String c11 = k6.c("CctTransportBackend");
                 if (Log.isLoggable(c11, 4)) {
                     Log.i(c11, String.format("Status Code: %d", valueOf));
                 }
-                l6.a(httpURLConnection.getHeaderField("Content-Type"), "CctTransportBackend", "Content-Type: %s");
-                l6.a(httpURLConnection.getHeaderField("Content-Encoding"), "CctTransportBackend", "Content-Encoding: %s");
+                k6.a(httpURLConnection.getHeaderField("Content-Type"), "CctTransportBackend", "Content-Type: %s");
+                k6.a(httpURLConnection.getHeaderField("Content-Encoding"), "CctTransportBackend", "Content-Encoding: %s");
                 if (responseCode != 302 && responseCode != 301 && responseCode != 307) {
                     if (responseCode != 200) {
                         return new j5.b(responseCode, null, 0L);
@@ -179,7 +178,7 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                         } else {
                             inputStream = inputStream2;
                         }
-                        j5.b bVar = new j5.b(responseCode, null, m.a(new BufferedReader(new InputStreamReader(inputStream))).f14147a);
+                        j5.b bVar = new j5.b(responseCode, null, m.a(new BufferedReader(new InputStreamReader(inputStream))).f14150a);
                         if (inputStream != null) {
                             inputStream.close();
                         }
@@ -211,37 +210,37 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
             }
         } catch (ja.b e) {
             e = e;
-            l6.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
+            k6.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
             return new j5.b(400, null, 0L);
         } catch (ConnectException e7) {
             e = e7;
-            l6.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
+            k6.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
             return new j5.b(500, null, 0L);
         } catch (UnknownHostException e10) {
             e = e10;
-            l6.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
+            k6.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
             return new j5.b(500, null, 0L);
         } catch (IOException e11) {
             e = e11;
-            l6.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
+            k6.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
             return new j5.b(400, null, 0L);
         }
     }
 
     public void c(int i10) {
-        a0 a0Var = (a0) this.f8830b;
-        a0Var.f13121c = i10;
+        a0 a0Var = (a0) this.f8833b;
+        a0Var.f13125c = i10;
         a0Var.f(i10);
     }
 
     @Override
     public void g(a2 a2Var, int i10) {
-        switch (this.f8829a) {
+        switch (this.f8832a) {
             case 1:
-                ((fi.e) this.f8830b).run();
+                ((fi.e) this.f8833b).run();
                 return;
             case 2:
-                l lVar = (l) this.f8830b;
+                l lVar = (l) this.f8833b;
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
                 updatestarrefprogram.bot = lVar.getMessagesController().getInputUser(lVar.P);
                 updatestarrefprogram.commission_permille = 0;
@@ -250,10 +249,10 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                 lVar.getConnectionsManager().sendRequest(updatestarrefprogram, new fi.b(lVar, a2Var2, 0));
                 return;
             case 13:
-                y1 y1Var = ((p1) this.f8830b).f11604a;
+                y1 y1Var = ((p1) this.f8833b).f11608a;
                 b2 f7 = b2.f(y1.b0(y1Var));
-                ArrayList arrayList = y1Var.f11704b;
-                int i11 = f7.f11447a;
+                ArrayList arrayList = y1Var.f11708b;
+                int i11 = f7.f11451a;
                 int i12 = 0;
                 while (i12 < arrayList.size()) {
                     if (f7.c(((Integer) arrayList.get(i12)).intValue()) == null) {
@@ -265,12 +264,12 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                 if (!arrayList.isEmpty()) {
                     for (int i13 = 0; i13 < arrayList.size(); i13++) {
                         ig.a2 c10 = f7.c(((Integer) arrayList.get(i13)).intValue());
-                        f7.f11448b.remove(c10);
-                        f7.a(c10.f11435b);
+                        f7.f11452b.remove(c10);
+                        f7.a(c10.f11439b);
                         TLRPC.TL_messages_deleteQuickReplyShortcut tL_messages_deleteQuickReplyShortcut = new TLRPC.TL_messages_deleteQuickReplyShortcut();
-                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c10.f11434a;
+                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c10.f11438a;
                         ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteQuickReplyShortcut, new g7(6));
-                        if ("hello".equals(c10.f11435b)) {
+                        if ("hello".equals(c10.f11439b)) {
                             ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessGreetingMessage(), null);
                             TLRPC.UserFull userFull = MessagesController.getInstance(i11).getUserFull(UserConfig.getInstance(i11).getClientUserId());
                             if (userFull != null) {
@@ -278,7 +277,7 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                                 userFull.business_greeting_message = null;
                                 MessagesStorage.getInstance(i11).updateUserInfo(userFull, true);
                             }
-                        } else if ("away".equals(c10.f11435b)) {
+                        } else if ("away".equals(c10.f11439b)) {
                             ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessAwayMessage(), null);
                             TLRPC.UserFull userFull2 = MessagesController.getInstance(i11).getUserFull(UserConfig.getInstance(i11).getClientUserId());
                             if (userFull2 != null) {
@@ -296,33 +295,33 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                 y1.X(y1Var);
                 return;
             default:
-                ((h4) this.f8830b).run();
+                ((h4) this.f8833b).run();
                 return;
         }
     }
 
     @Override
-    public m80 i(h1 h1Var) {
-        return m80.H((d2) ((ya.c) this.f8830b).f48732b, h1Var);
+    public l80 h(h1 h1Var) {
+        return l80.H((d2) ((ya.c) this.f8833b).f48731b, h1Var);
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f8829a) {
+        switch (this.f8832a) {
             case 5:
-                ((e1) obj).onAudioAttributesChanged((f) this.f8830b);
+                ((e1) obj).onAudioAttributesChanged((f) this.f8833b);
                 return;
             case 6:
-                ((e1) obj).onTrackSelectionParametersChanged((u1) this.f8830b);
+                ((e1) obj).onTrackSelectionParametersChanged((u1) this.f8833b);
                 return;
             case 7:
-                ((e1) obj).onCues((d2.c) this.f8830b);
+                ((e1) obj).onCues((d2.c) this.f8833b);
                 return;
             case 8:
-                ((e1) obj).onMediaMetadataChanged(((b0) this.f8830b).f10925a.Q);
+                ((e1) obj).onMediaMetadataChanged(((b0) this.f8833b).f10929a.Q);
                 return;
             case 9:
-                ((e1) obj).onMetadata((u0) this.f8830b);
+                ((e1) obj).onMetadata((u0) this.f8833b);
                 return;
             case 10:
             case 11:
@@ -330,68 +329,68 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
             case 13:
             case 14:
             default:
-                ((j2.b) obj).b((u2.c0) this.f8830b);
+                ((j2.b) obj).b((u2.c0) this.f8833b);
                 return;
             case 15:
-                ((j2.b) obj).h((z0) this.f8830b);
+                ((j2.b) obj).h((z0) this.f8833b);
                 return;
             case 16:
-                ((j2.b) obj).onSeekStarted((j2.a) this.f8830b);
+                ((j2.b) obj).onSeekStarted((j2.a) this.f8833b);
                 return;
             case 17:
-                ((j2.b) obj).a((i2.e) this.f8830b);
+                ((j2.b) obj).a((i2.e) this.f8833b);
                 return;
         }
     }
 
     @Override
-    public long k(long j10) {
-        u uVar = (u) this.f8830b;
-        return m0.j((j10 * uVar.e) / 1000000, 0L, uVar.f4289j - 1);
+    public long l(long j10) {
+        u uVar = (u) this.f8833b;
+        return m0.j((j10 * uVar.e) / 1000000, 0L, uVar.f4293j - 1);
     }
 
     @Override
     public void onSuccess(Object obj) {
-        ((e1.b) this.f8830b).invoke(obj);
+        ((e1.b) this.f8833b).invoke(obj);
     }
 
     @Override
     public void p() {
-        switch (this.f8829a) {
+        switch (this.f8832a) {
             case 23:
-                t0 t0Var = (t0) this.f8830b;
+                t0 t0Var = (t0) this.f8833b;
                 h1 h1Var = t0Var.d;
-                ji.a aVar = t0Var.f13521f;
+                ji.a aVar = t0Var.f13524f;
                 if (aVar != null) {
-                    aVar.f13117s = true;
-                    aVar.f13116r = h1Var.E;
+                    aVar.f13121s = true;
+                    aVar.f13120r = h1Var.E;
                 }
                 if (aVar != null) {
-                    TL_iv.PageBlock pageBlock = aVar.f13103b;
+                    TL_iv.PageBlock pageBlock = aVar.f13107b;
                     if (pageBlock instanceof TL_iv.pageBlockDetails) {
-                        ((TL_iv.pageBlockDetails) pageBlock).title = k6.f(h1Var.getText());
+                        ((TL_iv.pageBlockDetails) pageBlock).title = ji.k6.f(h1Var.getText());
                     }
                 }
                 e3 e3Var = t0Var.h;
-                if (e3Var != null && t0Var.f13521f != null) {
-                    x3.P1(e3Var.f13241a);
+                if (e3Var != null && t0Var.f13524f != null) {
+                    x3.P1(e3Var.f13244a);
                     return;
                 }
                 return;
             case 28:
-                ((l5) this.f8830b).h();
+                ((l5) this.f8833b).h();
                 return;
             default:
-                u5 u5Var = (u5) this.f8830b;
-                ji.a aVar2 = u5Var.f13119a;
+                u5 u5Var = (u5) this.f8833b;
+                ji.a aVar2 = u5Var.f13123a;
                 if (aVar2 != null) {
-                    aVar2.f13117s = true;
-                    aVar2.f13116r = u5Var.f13561r.E;
+                    aVar2.f13121s = true;
+                    aVar2.f13120r = u5Var.f13564r.E;
                 }
                 u5Var.u();
                 d3 d3Var = u5Var.E;
-                if (d3Var != null && u5Var.f13119a != null) {
-                    x3.P1(d3Var.f13231a);
+                if (d3Var != null && u5Var.f13123a != null) {
+                    x3.P1(d3Var.f13235a);
                     return;
                 }
                 return;
@@ -404,67 +403,67 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
         f1 f1Var;
         f1 f1Var2;
         int i11;
-        switch (this.f8829a) {
+        switch (this.f8832a) {
             case 3:
                 View view = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                ((d5) this.f8830b).V((l61) obj);
+                ((d5) this.f8833b).V((m61) obj);
                 return;
             case 11:
-                g1 g1Var = (g1) this.f8830b;
-                l61 l61Var = (l61) obj;
+                g1 g1Var = (g1) this.f8833b;
+                m61 m61Var = (m61) obj;
                 View view2 = (View) obj2;
                 ((Integer) obj3).getClass();
                 float floatValue = ((Float) obj4).floatValue();
                 ((Float) obj5).getClass();
-                int i12 = l61Var.d;
+                int i12 = m61Var.d;
                 if (i12 == -1) {
                     boolean z10 = !g1Var.e;
                     g1Var.e = z10;
                     ((w8) view2).setChecked(z10);
-                    g1Var.f11512a.W2.N(true);
+                    g1Var.f11516a.W2.N(true);
                     g1Var.Y(true);
                     return;
                 } else if (i12 == -2) {
                     ?? m2Var = new m2(null);
-                    m2Var.f11493n = g1Var.f11517r;
-                    m2Var.f11491c = new v2(18, g1Var, view2);
+                    m2Var.f11497n = g1Var.f11521r;
+                    m2Var.f11495c = new v2(18, g1Var, view2);
                     g1Var.presentFragment((m2) m2Var);
                     return;
-                } else if (l61Var.f43203a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
+                } else if (m61Var.f42904a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
                     if (!LocaleController.isRTL ? floatValue >= view2.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
-                        if (g1Var.h[l61Var.d].isEmpty()) {
+                        if (g1Var.h[m61Var.d].isEmpty()) {
                             ((j5) view2).setChecked(true);
-                            g1Var.h[l61Var.d].add(new f1(0, 1439));
-                            g1Var.X(l61Var.d);
+                            g1Var.h[m61Var.d].add(new f1(0, 1439));
+                            g1Var.X(m61Var.d);
                         } else {
-                            g1Var.h[l61Var.d].clear();
+                            g1Var.h[m61Var.d].clear();
                             ((j5) view2).setChecked(false);
                         }
-                        ((j5) view2).setValue(g1.a0(g1Var.h[l61Var.d]));
+                        ((j5) view2).setValue(g1.a0(g1Var.h[m61Var.d]));
                         g1Var.Y(true);
                         return;
                     }
-                    int i13 = (l61Var.d + 6) % 7;
+                    int i13 = (m61Var.d + 6) % 7;
                     int i14 = 0;
                     for (int i15 = 0; i15 < g1Var.h[i13].size(); i15++) {
-                        if (((f1) g1Var.h[i13].get(i15)).f11503b > i14) {
-                            i14 = ((f1) g1Var.h[i13].get(i15)).f11503b;
+                        if (((f1) g1Var.h[i13].get(i15)).f11507b > i14) {
+                            i14 = ((f1) g1Var.h[i13].get(i15)).f11507b;
                         }
                     }
                     int max = Math.max(0, i14 - 1439);
-                    int i16 = (l61Var.d + 1) % 7;
+                    int i16 = (m61Var.d + 1) % 7;
                     int i17 = 1440;
                     for (int i18 = 0; i18 < g1Var.h[i16].size(); i18++) {
-                        if (((f1) g1Var.h[i16].get(i18)).f11502a < i17) {
-                            i17 = ((f1) g1Var.h[i16].get(i18)).f11502a;
+                        if (((f1) g1Var.h[i16].get(i18)).f11506a < i17) {
+                            i17 = ((f1) g1Var.h[i16].get(i18)).f11506a;
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = l61Var.f26954l;
-                    ArrayList arrayList = g1Var.h[l61Var.d];
+                    CharSequence charSequence = m61Var.f26946l;
+                    ArrayList arrayList = g1Var.h[m61Var.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
                         ArrayList arrayList2 = g1Var.h[i21];
@@ -473,43 +472,43 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                         }
                     }
                     i1 i1Var = new i1(charSequence, arrayList, max, i19, 28 - i20);
-                    i1Var.f11532f = new ig.t0(g1Var, 2);
-                    i1Var.h = new q3(17, g1Var, l61Var);
+                    i1Var.f11536f = new ig.t0(g1Var, 2);
+                    i1Var.h = new q3(17, g1Var, m61Var);
                     g1Var.presentFragment(i1Var);
                     return;
                 } else {
                     return;
                 }
             case 12:
-                final i1 i1Var2 = (i1) this.f8830b;
-                l61 l61Var2 = (l61) obj;
+                final i1 i1Var2 = (i1) this.f8833b;
+                m61 m61Var2 = (m61) obj;
                 final View view3 = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                int i22 = i1Var2.f11531c;
+                int i22 = i1Var2.f11535c;
                 int i23 = i1Var2.d;
-                ArrayList arrayList3 = i1Var2.f11530b;
-                int i24 = l61Var2.d;
+                ArrayList arrayList3 = i1Var2.f11534b;
+                int i24 = m61Var2.d;
                 if (i24 == -1) {
-                    i1Var2.f11534r = !i1Var2.f11534r;
+                    i1Var2.f11538r = !i1Var2.f11538r;
                     arrayList3.clear();
-                    if (i1Var2.f11534r) {
+                    if (i1Var2.f11538r) {
                         arrayList3.add(new f1(0, 1439));
                     }
                     w8 w8Var = (w8) view3;
-                    boolean z11 = i1Var2.f11534r;
-                    l61Var2.e = z11;
+                    boolean z11 = i1Var2.f11538r;
+                    m61Var2.e = z11;
                     w8Var.setChecked(z11);
-                    boolean z12 = i1Var2.f11534r;
+                    boolean z12 = i1Var2.f11538r;
                     if (z12) {
-                        i11 = g6.f19937f6;
+                        i11 = g6.f19637f6;
                     } else {
-                        i11 = g6.f19918e6;
+                        i11 = g6.f19618e6;
                     }
                     w8Var.b(g6.x0(null, i11, false), z12);
-                    i1Var2.f11533n.W2.N(true);
-                    ig.t0 t0Var = i1Var2.f11532f;
+                    i1Var2.f11537n.W2.N(true);
+                    ig.t0 t0Var = i1Var2.f11536f;
                     if (t0Var != null) {
                         t0Var.run();
                         return;
@@ -517,7 +516,7 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                     return;
                 } else if (i24 == -2) {
                     if (!arrayList3.isEmpty() && !i1Var2.U()) {
-                        int i25 = ((f1) i2.d.g(1, arrayList3)).f11503b;
+                        int i25 = ((f1) i2.d.h(1, arrayList3)).f11507b;
                         int clamp = Utilities.clamp(i25 + 30, i23 - 1, i22);
                         arrayList3.add(new f1(clamp, Utilities.clamp((i25 + 1560) / 2, i23, clamp + 1)));
                     } else {
@@ -527,13 +526,13 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                         int clamp2 = Utilities.clamp(480, i23 - 1, i22);
                         arrayList3.add(new f1(clamp2, Utilities.clamp(1200, i23, clamp2 + 1)));
                     }
-                    ig.t0 t0Var2 = i1Var2.f11532f;
+                    ig.t0 t0Var2 = i1Var2.f11536f;
                     if (t0Var2 != null) {
                         t0Var2.run();
                     }
-                    i1Var2.f11533n.W2.N(true);
+                    i1Var2.f11537n.W2.N(true);
                     return;
-                } else if (l61Var2.f43203a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
+                } else if (m61Var2.f42904a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i26 = i10 - 1;
                     if (i26 >= 0) {
                         f1Var = (f1) arrayList3.get(i26);
@@ -547,15 +546,15 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                     } else {
                         f1Var2 = null;
                     }
-                    int i28 = l61Var2.d % 3;
+                    int i28 = m61Var2.d % 3;
                     if (i28 == 0) {
                         Activity parentActivity = i1Var2.getParentActivity();
                         String string = LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker);
-                        int i29 = f1Var3.f11502a;
+                        int i29 = f1Var3.f11506a;
                         if (f1Var != null) {
-                            i22 = f1Var.f11503b + 1;
+                            i22 = f1Var.f11507b + 1;
                         }
-                        g5.W(parentActivity, string, i29, i22, f1Var3.f11503b - 1, new Utilities.Callback() {
+                        g5.W(parentActivity, string, i29, i22, f1Var3.f11507b - 1, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj6) {
                                 Integer num = (Integer) obj6;
@@ -564,12 +563,12 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                                         i1 i1Var3 = i1Var2;
                                         boolean V = i1Var3.V();
                                         int intValue = num.intValue();
-                                        f1Var3.f11502a = intValue;
+                                        f1Var3.f11506a = intValue;
                                         ((r8) view3).u(f1.a(intValue), true);
                                         if (V != i1Var3.V()) {
-                                            i1Var3.f11533n.W2.N(true);
+                                            i1Var3.f11537n.W2.N(true);
                                         }
-                                        t0 t0Var3 = i1Var3.f11532f;
+                                        t0 t0Var3 = i1Var3.f11536f;
                                         if (t0Var3 != null) {
                                             t0Var3.run();
                                             return;
@@ -579,12 +578,12 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                                         i1 i1Var4 = i1Var2;
                                         boolean V2 = i1Var4.V();
                                         int intValue2 = num.intValue();
-                                        f1Var3.f11503b = intValue2;
+                                        f1Var3.f11507b = intValue2;
                                         ((r8) view3).u(f1.a(intValue2), true);
                                         if (V2 != i1Var4.V()) {
-                                            i1Var4.f11533n.W2.N(true);
+                                            i1Var4.f11537n.W2.N(true);
                                         }
-                                        t0 t0Var4 = i1Var4.f11532f;
+                                        t0 t0Var4 = i1Var4.f11536f;
                                         if (t0Var4 != null) {
                                             t0Var4.run();
                                             return;
@@ -597,10 +596,10 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                     } else if (i28 == 1) {
                         Activity parentActivity2 = i1Var2.getParentActivity();
                         String string2 = LocaleController.getString(R.string.BusinessHoursDayCloseHourPicker);
-                        int i30 = f1Var3.f11503b;
-                        int i31 = f1Var3.f11502a + 1;
+                        int i30 = f1Var3.f11507b;
+                        int i31 = f1Var3.f11506a + 1;
                         if (f1Var2 != null) {
-                            i23 = f1Var2.f11502a - 1;
+                            i23 = f1Var2.f11506a - 1;
                         }
                         g5.W(parentActivity2, string2, i30, i31, i23, new Utilities.Callback() {
                             @Override
@@ -611,12 +610,12 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                                         i1 i1Var3 = i1Var2;
                                         boolean V = i1Var3.V();
                                         int intValue = num.intValue();
-                                        f1Var3.f11502a = intValue;
+                                        f1Var3.f11506a = intValue;
                                         ((r8) view3).u(f1.a(intValue), true);
                                         if (V != i1Var3.V()) {
-                                            i1Var3.f11533n.W2.N(true);
+                                            i1Var3.f11537n.W2.N(true);
                                         }
-                                        t0 t0Var3 = i1Var3.f11532f;
+                                        t0 t0Var3 = i1Var3.f11536f;
                                         if (t0Var3 != null) {
                                             t0Var3.run();
                                             return;
@@ -626,12 +625,12 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                                         i1 i1Var4 = i1Var2;
                                         boolean V2 = i1Var4.V();
                                         int intValue2 = num.intValue();
-                                        f1Var3.f11503b = intValue2;
+                                        f1Var3.f11507b = intValue2;
                                         ((r8) view3).u(f1.a(intValue2), true);
                                         if (V2 != i1Var4.V()) {
-                                            i1Var4.f11533n.W2.N(true);
+                                            i1Var4.f11537n.W2.N(true);
                                         }
-                                        t0 t0Var4 = i1Var4.f11532f;
+                                        t0 t0Var4 = i1Var4.f11536f;
                                         if (t0Var4 != null) {
                                             t0Var4.run();
                                             return;
@@ -646,8 +645,8 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new f1(0, 1439));
                         }
-                        i1Var2.f11533n.W2.N(true);
-                        ig.t0 t0Var3 = i1Var2.f11532f;
+                        i1Var2.f11537n.W2.N(true);
+                        ig.t0 t0Var3 = i1Var2.f11536f;
                         if (t0Var3 != null) {
                             t0Var3.run();
                             return;
@@ -663,15 +662,15 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                e2.U((e2) this.f8830b, (l61) obj, (View) obj2);
+                e2.U((e2) this.f8833b, (m61) obj, (View) obj2);
                 return;
             default:
-                l61 l61Var3 = (l61) obj;
+                m61 m61Var3 = (m61) obj;
                 View view4 = (View) obj2;
                 Integer num = (Integer) obj3;
                 Float f7 = (Float) obj4;
                 Float f10 = (Float) obj5;
-                if (((x3[]) this.f8830b)[0] != null) {
+                if (((x3[]) this.f8833b)[0] != null) {
                     num.intValue();
                     f7.floatValue();
                     f10.floatValue();
@@ -686,8 +685,8 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
     }
 
     @Override
-    public boolean w(yy yyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, lg1 lg1Var) {
-        k4 k4Var = (k4) this.f8830b;
+    public boolean w(yy yyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, kg1 kg1Var) {
+        k4 k4Var = (k4) this.f8833b;
         if (arrayList.isEmpty() || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId <= 0) {
             return false;
         }
@@ -697,12 +696,12 @@ public final class a implements OnSuccessListener, z1, Utilities.Callback5, g, o
     }
 
     public a(j2.a aVar, u2.u uVar, u2.c0 c0Var, IOException iOException, boolean z10) {
-        this.f8829a = 18;
-        this.f8830b = c0Var;
+        this.f8832a = 18;
+        this.f8833b = c0Var;
     }
 
     public a(Object obj, int i10) {
-        this.f8829a = i10;
-        this.f8830b = obj;
+        this.f8832a = i10;
+        this.f8833b = obj;
     }
 }

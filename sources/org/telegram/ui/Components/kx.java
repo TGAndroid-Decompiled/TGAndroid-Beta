@@ -5,16 +5,16 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 public final class kx extends z4.g {
-    public final wz f26824w0;
+    public final wz f26505w0;
 
     public kx(wz wzVar, Context context) {
         super(context);
-        this.f26824w0 = wzVar;
+        this.f26505w0 = wzVar;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f26824w0.f31022f) {
+        if (this.f26505w0.f30715f) {
             return false;
         }
         if (getParent() != null) {
@@ -30,7 +30,7 @@ public final class kx extends z4.g {
     @Override
     public final void x(int i10, boolean z10) {
         boolean z11;
-        wz wzVar = this.f26824w0;
+        wz wzVar = this.f26505w0;
         zx zxVar = wzVar.I;
         if (i10 == 1) {
             z11 = true;
@@ -52,7 +52,7 @@ public final class kx extends z4.g {
                 }
                 return;
             } else if (i10 == 1) {
-                wzVar.f31029h0.x0(0);
+                wzVar.f30722h0.x0(0);
                 return;
             } else {
                 wzVar.D0.x0(1);

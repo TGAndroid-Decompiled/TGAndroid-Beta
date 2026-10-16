@@ -4,38 +4,38 @@ import af.h;
 import df.p;
 import v7.f5;
 public final class b extends ff.a {
-    public final a f2640a = new p();
-    public final StringBuilder f2641b = new StringBuilder();
-    public final int f2642c;
+    public final a f2644a = new p();
+    public final StringBuilder f2645b = new StringBuilder();
+    public final int f2646c;
 
     public b(int i10) {
-        this.f2642c = i10;
+        this.f2646c = i10;
     }
 
     @Override
     public final void a(CharSequence charSequence) {
-        StringBuilder sb2 = this.f2641b;
+        StringBuilder sb2 = this.f2645b;
         sb2.append(charSequence);
         sb2.append('\n');
     }
 
     @Override
     public final void d() {
-        this.f2640a.f2639g = this.f2641b.toString();
+        this.f2644a.f2643g = this.f2645b.toString();
     }
 
     @Override
     public final df.a e() {
-        return this.f2640a;
+        return this.f2644a;
     }
 
     @Override
     public final af.a h(h hVar) {
         int i10;
         int i11 = hVar.e;
-        CharSequence charSequence = hVar.f567a;
+        CharSequence charSequence = hVar.f571a;
         int length = charSequence.length();
-        if (hVar.f571g < 4) {
+        if (hVar.f575g < 4) {
             int i12 = i11;
             while (true) {
                 if (i12 < length) {
@@ -49,11 +49,11 @@ public final class b extends ff.a {
                     break;
                 }
             }
-            int i13 = this.f2642c;
+            int i13 = this.f2646c;
             if (i10 == i13 && f5.b(' ', charSequence, i11 + i13, length) == length) {
                 return new af.a(-1, -1, true);
             }
         }
-        return af.a.a(hVar.f568b);
+        return af.a.a(hVar.f572b);
     }
 }

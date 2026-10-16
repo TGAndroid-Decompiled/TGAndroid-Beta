@@ -1,166 +1,104 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public class mp0 extends View {
-    public boolean E;
-    public boolean F;
-    public int f38302a;
-    public final org.telegram.ui.ActionBar.c6 f38303b;
-    public float f38304c;
-    public boolean d;
-    public int e;
-    public int f38305f;
-    public final org.telegram.ui.Components.j5 h;
-    public final org.telegram.ui.Components.j5 f38306n;
-    public int f38307r;
-    public int f38308s;
-    public int v;
-    public int f38309w;
-    public RadialGradient f38310x;
-    public final Paint f38311y;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class mp0 extends FrameLayout {
+    public long f38047a;
+    public TL_stars.starGiftAttributeBackdrop f38048b;
+    public TL_stars.starGiftAttributePattern f38049c;
+    public final FrameLayout d;
+    public final yh.e1 e;
+    public final org.telegram.ui.Components.z9 f38050f;
+    public final yh.i1 h;
+    public TLRPC.Document f38051n;
 
-    public mp0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+    public mp0(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
         super(context);
-        this.f38304c = 0.0f;
-        org.telegram.ui.Components.es esVar = org.telegram.ui.Components.es.h;
-        this.h = new org.telegram.ui.Components.j5(this, 350L, esVar);
-        this.f38306n = new org.telegram.ui.Components.j5(this, 350L, esVar);
-        this.f38311y = new Paint(1);
-        this.f38303b = c6Var;
-        this.f38302a = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20180s8, c6Var);
-        b(-1, -1, false);
-    }
-
-    public final void b(int i10, int i11, boolean z10) {
-        MessagesController.PeerColors peerColors;
-        MessagesController.PeerColor peerColor = null;
-        if (i11 >= 0 && i10 >= 0 && (peerColors = MessagesController.getInstance(i10).profilePeerColors) != null) {
-            peerColor = peerColors.getColor(i11);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.d = frameLayout;
+        yh.e1 e1Var = new yh.e1(frameLayout, c6Var, false);
+        this.e = e1Var;
+        frameLayout.setBackground(e1Var);
+        addView(frameLayout, w7.z5.e(-1, -1, 119));
+        w7.b6.b(frameLayout, 0.025f, 1.25f);
+        org.telegram.ui.Components.z9 z9Var = new org.telegram.ui.Components.z9(context);
+        this.f38050f = z9Var;
+        frameLayout.addView(z9Var, w7.z5.a(80.0f, 0.0f, 12.0f, 0.0f, 12.0f, 80, 17));
+        if (z10) {
+            yh.i1 i1Var = new yh.i1(context);
+            this.h = i1Var;
+            addView(i1Var, w7.z5.a(-2.0f, 0.0f, 2.0f, 1.0f, 0.0f, -2, 53));
+            return;
         }
-        c(peerColor, z10);
+        this.h = null;
     }
 
-    public final void c(MessagesController.PeerColor peerColor, boolean z10) {
-        boolean q6;
-        this.d = false;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f38303b;
-        if (peerColor == null) {
-            this.d = true;
-            int w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20180s8, c6Var);
-            this.f38305f = w02;
-            this.e = w02;
+    public final void a(int i10, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        int i11;
+        int i12;
+        this.f38047a = tL_starGiftUnique.f19141id;
+        boolean z10 = true;
+        if (i10 % 3 != 1) {
+            z10 = false;
+        }
+        if (z10) {
+            i11 = AndroidUtilities.dp(4.0f);
         } else {
-            if (c6Var != null) {
-                q6 = c6Var.a();
-            } else {
-                q6 = org.telegram.ui.ActionBar.g6.I.q();
-            }
-            this.e = peerColor.getBgColor1(q6);
-            this.f38305f = peerColor.getBgColor2(q6);
+            i11 = 0;
         }
-        if (!z10) {
-            this.h.a(this.e, true);
-            this.f38306n.a(this.f38305f, true);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        int i10;
-        int a2 = this.h.a(this.e, false);
-        int a10 = this.f38306n.a(this.f38305f, false);
-        RadialGradient radialGradient = this.f38310x;
-        Paint paint = this.f38311y;
-        if (radialGradient == null || this.f38307r != a2 || this.f38308s != a10 || this.v != getWidth() || this.f38309w != getHeight()) {
-            this.v = getWidth();
-            this.f38309w = getHeight();
-            float f7 = this.v;
-            float f10 = this.f38309w;
-            this.f38308s = a10;
-            this.f38307r = a2;
-            RadialGradient radialGradient2 = new RadialGradient(f7 / 2.0f, f10 * 0.4f, AndroidUtilities.distance(0.0f, 0.0f, f7, f10) * 0.75f, new int[]{a10, a2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-            this.f38310x = radialGradient2;
-            paint.setShader(radialGradient2);
-            a();
-        }
-        if (this.f38304c < 1.0f && !this.E) {
-            canvas2 = canvas;
-            canvas2.drawColor(this.f38302a);
+        if (z10) {
+            i12 = AndroidUtilities.dp(4.0f);
         } else {
-            canvas2 = canvas;
+            i12 = 0;
         }
-        if (this.E) {
-            i10 = 255;
+        setPadding(i11, 0, i12, 0);
+        c(tL_starGiftUnique.getDocument(), tL_starGiftUnique);
+        this.f38048b = (TL_stars.starGiftAttributeBackdrop) zh.n5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        this.f38049c = (TL_stars.starGiftAttributePattern) zh.n5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.f38048b;
+        yh.e1 e1Var = this.e;
+        e1Var.d(stargiftattributebackdrop);
+        e1Var.e(this.f38049c);
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        float f7;
+        this.e.f(z10, z11);
+        if (z10) {
+            f7 = 0.9f;
         } else {
-            i10 = (int) (this.f38304c * 255.0f);
+            f7 = 1.0f;
         }
-        paint.setAlpha(i10);
-        canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+        org.telegram.ui.Components.z9 z9Var = this.f38050f;
+        if (z11) {
+            z9Var.animate().scaleX(f7).scaleY(f7).start();
+            return;
+        }
+        z9Var.animate().cancel();
+        z9Var.setScaleX(f7);
+        z9Var.setScaleY(f7);
     }
 
-    public int getActionBarButtonColor() {
-        int i10;
-        int i11 = org.telegram.ui.ActionBar.g6.f20235v8;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f38303b;
-        int w02 = org.telegram.ui.ActionBar.g6.w0(i11, c6Var);
-        if (this.d) {
-            i10 = org.telegram.ui.ActionBar.g6.w0(i11, c6Var);
+    public final void c(TLRPC.Document document, TL_stars.StarGift starGift) {
+        org.telegram.ui.Components.z9 z9Var = this.f38050f;
+        if (document == null) {
+            z9Var.b();
+            this.f38051n = null;
+        } else if (this.f38051n == document) {
         } else {
-            i10 = -1;
-        }
-        return i0.a.d(this.f38304c, w02, i10);
-    }
-
-    public int getColor() {
-        return i0.a.d(this.f38304c, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20180s8, this.f38303b), i0.a.d(0.75f, this.h.f26184c, this.f38306n.f26184c));
-    }
-
-    public int getTabsViewBackgroundColor() {
-        int b10;
-        int b11;
-        int i10 = org.telegram.ui.ActionBar.g6.f20180s8;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f38303b;
-        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.g6.w0(i10, c6Var)) > 0.721f) {
-            b10 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20235v8, c6Var);
-        } else {
-            b10 = org.telegram.ui.ActionBar.g6.b(0.08f, -0.08f, org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
-        }
-        org.telegram.ui.Components.j5 j5Var = this.h;
-        int i11 = j5Var.f26184c;
-        org.telegram.ui.Components.j5 j5Var2 = this.f38306n;
-        if (AndroidUtilities.computePerceivedBrightness(i0.a.d(0.75f, i11, j5Var2.f26184c)) > 0.721f) {
-            b11 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20233v6, c6Var);
-        } else {
-            b11 = org.telegram.ui.ActionBar.g6.b(0.08f, -0.08f, i0.a.d(0.75f, j5Var.f26184c, j5Var2.f26184c));
-        }
-        return i0.a.d(this.f38304c, b10, b11);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        if (!this.F) {
-            i11 = org.telegram.messenger.yh.D(230.0f, AndroidUtilities.statusBarHeight, 1073741824);
-        }
-        super.onMeasure(i10, i11);
-    }
-
-    public void setProgressToGradient(float f7) {
-        if (Math.abs(this.f38304c - f7) > 0.001f) {
-            this.f38304c = f7;
-            a();
-            invalidate();
+            this.f38051n = document;
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
+            z9Var.l(ImageLocation.getForDocument(document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "100_100", DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.g6.f19543a7, 0.3f), starGift);
         }
     }
 
-    public void a() {
+    public long getGiftId() {
+        return this.f38047a;
     }
 }

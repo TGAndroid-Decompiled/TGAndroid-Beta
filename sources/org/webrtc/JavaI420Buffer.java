@@ -41,7 +41,7 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         ByteBuffer slice2 = nativeAllocateByteBuffer.slice();
         nativeAllocateByteBuffer.position(i16);
         nativeAllocateByteBuffer.limit(i16 + i15);
-        return new JavaI420Buffer(i10, i11, slice, i10, slice2, i13, nativeAllocateByteBuffer.slice(), i13, new k(0, nativeAllocateByteBuffer));
+        return new JavaI420Buffer(i10, i11, slice, i10, slice2, i13, nativeAllocateByteBuffer.slice(), i13, new j(0, nativeAllocateByteBuffer));
     }
 
     private static void checkCapacity(ByteBuffer byteBuffer, int i10, int i11, int i12) {
@@ -49,9 +49,9 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         if (byteBuffer.capacity() >= v) {
             return;
         }
-        StringBuilder k10 = i2.d.k(v, "Buffer must be at least ", " bytes, but was ");
-        k10.append(byteBuffer.capacity());
-        throw new IllegalArgumentException(k10.toString());
+        StringBuilder l4 = i2.d.l(v, "Buffer must be at least ", " bytes, but was ");
+        l4.append(byteBuffer.capacity());
+        throw new IllegalArgumentException(l4.toString());
     }
 
     public static VideoFrame.Buffer cropAndScaleI420(VideoFrame.I420Buffer i420Buffer, int i10, int i11, int i12, int i13, int i14, int i15) {
@@ -99,7 +99,7 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
 
     @Override
     public final int getBufferType() {
-        return c0.a(this);
+        return b0.a(this);
     }
 
     @Override

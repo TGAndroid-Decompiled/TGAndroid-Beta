@@ -5,20 +5,20 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 public final class n40 implements TextWatcher {
-    public final n60 f38424a;
+    public final n60 f38139a;
 
     public n40(n60 n60Var) {
-        this.f38424a = n60Var;
+        this.f38139a = n60Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String str;
         int i10;
-        n60 n60Var = this.f38424a;
+        n60 n60Var = this.f38139a;
         n60Var.A3.a(TextUtils.isEmpty(editable), true);
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
-        int i11 = n60Var.f38454d0;
+        int i11 = n60Var.f38169d0;
         if (codePointCount + 25 > i11) {
             str = "" + (i11 - codePointCount);
         } else {

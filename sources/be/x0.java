@@ -1,20 +1,20 @@
 package be;
 public abstract class x0 extends a0 {
-    public static final int f2723f = 0;
-    public long f2724c;
+    public static final int f2727f = 0;
+    public long f2728c;
     public boolean d;
     public jd.e e;
 
     public final void f(boolean z10) {
         long j10;
-        long j11 = this.f2724c;
+        long j11 = this.f2728c;
         if (z10) {
             j10 = 4294967296L;
         } else {
             j10 = 1;
         }
         long j12 = j11 - j10;
-        this.f2724c = j12;
+        this.f2728c = j12;
         if (j12 <= 0 && this.d) {
             shutdown();
         }
@@ -24,13 +24,13 @@ public abstract class x0 extends a0 {
 
     public final void h(boolean z10) {
         long j10;
-        long j11 = this.f2724c;
+        long j11 = this.f2728c;
         if (z10) {
             j10 = 4294967296L;
         } else {
             j10 = 1;
         }
-        this.f2724c = j10 + j11;
+        this.f2728c = j10 + j11;
         if (!z10) {
             this.d = true;
         }
@@ -58,7 +58,7 @@ public abstract class x0 extends a0 {
     }
 
     public void k(long j10, u0 u0Var) {
-        g0.f2675s.o(j10, u0Var);
+        g0.f2679s.o(j10, u0Var);
     }
 
     public abstract void shutdown();

@@ -7,22 +7,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.e3;
 public final class n implements DialogInterface.OnShowListener {
-    public final int f11580a;
-    public final KeyEvent.Callback f11581b;
-    public final Object f11582c;
+    public final int f11584a;
+    public final KeyEvent.Callback f11585b;
+    public final Object f11586c;
 
     public n(KeyEvent.Callback callback, Object obj, int i10) {
-        this.f11580a = i10;
-        this.f11581b = callback;
-        this.f11582c = obj;
+        this.f11584a = i10;
+        this.f11585b = callback;
+        this.f11586c = obj;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f11580a) {
+        switch (this.f11584a) {
             case 0:
-                View view = (View) this.f11581b;
-                s sVar = (s) this.f11582c;
+                View view = (View) this.f11585b;
+                s sVar = (s) this.f11586c;
                 if (view != null) {
                     view.clearFocus();
                 }
@@ -30,7 +30,7 @@ public final class n implements DialogInterface.OnShowListener {
                 AndroidUtilities.showKeyboard(sVar);
                 return;
             default:
-                VoIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$94((e3) this.f11581b, (Integer) this.f11582c, dialogInterface);
+                VoIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$94((e3) this.f11585b, (Integer) this.f11586c, dialogInterface);
                 return;
         }
     }

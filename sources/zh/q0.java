@@ -6,27 +6,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.es;
 public final class q0 extends ph.c implements ne.d {
-    public static final int f50999s = 0;
-    public final ne.e f51000f;
+    public static final int f51000s = 0;
+    public final ne.e f51001f;
     public final ji.p1 h;
-    public final ph.b[] f51001n;
-    public int f51002r;
+    public final ph.b[] f51002n;
+    public int f51003r;
 
     public q0(Context context, org.telegram.ui.ActionBar.c6 c6Var, ji.p1 p1Var) {
         super(context);
-        this.f51000f = new ne.e(0, this, es.h, 1600L);
+        this.f51001f = new ne.e(0, this, es.h, 1600L);
         this.h = p1Var;
         int i10 = org.telegram.ui.ActionBar.g6.Wk;
         int m12 = org.telegram.ui.ActionBar.g6.m1(0.09411765f, org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
         org.telegram.ui.ActionBar.g6.m1(0.1254902f, org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
         this.e.setColor(m12);
-        this.f51001n = new ph.b[]{ph.b.b(context, c6Var, ph.a.G, R.string.GiftPreviewModels), ph.b.b(context, c6Var, ph.a.v, R.string.GiftPreviewBackdrops), ph.b.b(context, c6Var, ph.a.J, R.string.GiftPreviewSymbols)};
+        this.f51002n = new ph.b[]{ph.b.b(context, c6Var, ph.a.G, R.string.GiftPreviewModels), ph.b.b(context, c6Var, ph.a.v, R.string.GiftPreviewBackdrops), ph.b.b(context, c6Var, ph.a.J, R.string.GiftPreviewSymbols)};
         int i11 = 0;
         while (true) {
-            ph.b[] bVarArr = this.f51001n;
+            ph.b[] bVarArr = this.f51002n;
             if (i11 < bVarArr.length) {
-                this.f43226a.addView(bVarArr[i11], w7.a6.l(1.0f, 0, -1));
-                this.f51001n[i11].setOnClickListener(new di.m4(this, i11, 28));
+                this.f42927a.addView(bVarArr[i11], w7.z5.l(1.0f, 0, -1));
+                this.f51002n[i11].setOnClickListener(new di.m4(this, i11, 28));
                 i11++;
             } else {
                 bVarArr[0].e(true, false);
@@ -36,23 +36,23 @@ public final class q0 extends ph.c implements ne.d {
     }
 
     public final void a(int i10) {
-        int i11 = this.f51002r;
+        int i11 = this.f51003r;
         if (i11 != i10) {
-            ph.b[] bVarArr = this.f51001n;
+            ph.b[] bVarArr = this.f51002n;
             bVarArr[i11].e(false, true);
             bVarArr[i10].e(true, true);
-            this.f51002r = i10;
-            this.f51000f.a(i10);
+            this.f51003r = i10;
+            this.f51001f.a(i10);
             this.h.run(Integer.valueOf(i10));
         }
     }
 
     public final void b() {
-        float f7 = this.f51000f.e;
+        float f7 = this.f51001f.e;
         int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(8.0f);
-        Rect rect = this.f43228c;
+        Rect rect = this.f42929c;
         rect.set(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), f7 / 3.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), (f7 + 1.0f) / 3.0f), measuredHeight);
-        int dp = AndroidUtilities.dp(this.f43227b * 7.0f);
+        int dp = AndroidUtilities.dp(this.f42928b * 7.0f);
         Rect rect2 = this.d;
         rect2.set(rect);
         int i10 = -dp;
@@ -73,6 +73,6 @@ public final class q0 extends ph.c implements ne.d {
     }
 
     @Override
-    public final void C(float f7, int i10) {
+    public final void A(float f7, int i10) {
     }
 }

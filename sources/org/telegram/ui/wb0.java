@@ -1,29 +1,12 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.EditText;
-public final class wb0 extends EditText {
-    public final int f41235a;
-
-    public wb0(Context context, int i10) {
-        super(context);
-        this.f41235a = i10;
-    }
-
+import android.graphics.Canvas;
+public final class wb0 extends org.telegram.ui.Cells.w8 {
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f41235a) {
-            case 0:
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
-        }
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(0, 0, getWidth(), getHeight());
+        super.onDraw(canvas);
+        canvas.restore();
     }
 }

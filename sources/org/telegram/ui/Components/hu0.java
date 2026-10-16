@@ -11,14 +11,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class hu0 extends lm0 {
-    public final Context f25749c;
+    public final Context f25403c;
     public TLRPC.ChatFull d;
     public ArrayList e;
-    public final xv0 f25750f;
+    public final xv0 f25404f;
 
     public hu0(xv0 xv0Var, Context context) {
-        this.f25750f = xv0Var;
-        this.f25749c = context;
+        this.f25404f = xv0Var;
+        this.f25403c = context;
     }
 
     @Override
@@ -60,8 +60,8 @@ public final class hu0 extends lm0 {
         boolean z15;
         boolean z16;
         boolean z17;
-        xv0 xv0Var = this.f25750f;
-        org.telegram.ui.ActionBar.m2 m2Var = xv0Var.f31388v1;
+        xv0 xv0Var = this.f25404f;
+        org.telegram.ui.ActionBar.m2 m2Var = xv0Var.f31069v1;
         View view = b1Var.f44838a;
         if (view instanceof org.telegram.ui.Cells.xa) {
             org.telegram.ui.Cells.xa xaVar = (org.telegram.ui.Cells.xa) view;
@@ -134,7 +134,7 @@ public final class hu0 extends lm0 {
                     }
                 }
                 TLRPC.User user = m2Var.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(m2Var.getMessagesController().getChat(Long.valueOf(-xv0Var.f31363j1)))) {
+                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(m2Var.getMessagesController().getChat(Long.valueOf(-xv0Var.f31044j1)))) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -150,13 +150,13 @@ public final class hu0 extends lm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        xv0 xv0Var = this.f25750f;
+        xv0 xv0Var = this.f25404f;
         if (i10 == 20) {
-            ku0 M = xv0.M(7, xv0Var.f31363j1, this.f25749c, xv0Var.F1);
+            ku0 M = xv0.M(7, xv0Var.f31044j1, this.f25403c, xv0Var.F1);
             M.setLayoutParams(new s4.o0(-1, -1));
             return new s4.b1(M);
         }
-        org.telegram.ui.Cells.xa xaVar = new org.telegram.ui.Cells.xa(9, 0, this.f25749c, xv0Var.F1, true, false);
+        org.telegram.ui.Cells.xa xaVar = new org.telegram.ui.Cells.xa(9, 0, this.f25403c, xv0Var.F1, true, false);
         xaVar.setLayoutParams(new s4.o0(-1, -2));
         return new s4.b1(xaVar);
     }

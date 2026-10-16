@@ -4,10 +4,10 @@ import android.view.ViewGroup;
 import di.ab;
 import org.telegram.ui.Components.lm0;
 public final class p1 extends lm0 {
-    public j1 f10704c;
+    public j1 f10708c;
     public Integer d;
     public ab e;
-    public boolean f10705f;
+    public boolean f10709f;
     public int h;
 
     @Override
@@ -15,12 +15,12 @@ public final class p1 extends lm0 {
         if (b1Var.b() == 0) {
             return false;
         }
-        return this.f10704c.D(b1Var);
+        return this.f10708c.D(b1Var);
     }
 
     @Override
     public final int h() {
-        j1 j1Var = this.f10704c;
+        j1 j1Var = this.f10708c;
         int K = j1Var.K();
         j1Var.M0 = K;
         return K + 1;
@@ -31,13 +31,13 @@ public final class p1 extends lm0 {
         if (i10 == 0) {
             return -983904;
         }
-        return this.f10704c.j(i10 - 1);
+        return this.f10708c.j(i10 - 1);
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         if (i10 > 0) {
-            this.f10704c.v(b1Var, i10 - 1);
+            this.f10708c.v(b1Var, i10 - 1);
         }
     }
 
@@ -48,6 +48,6 @@ public final class p1 extends lm0 {
             this.e = abVar;
             return new s4.b1(abVar);
         }
-        return this.f10704c.x(viewGroup, i10);
+        return this.f10708c.x(viewGroup, i10);
     }
 }

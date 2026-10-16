@@ -10,40 +10,40 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
-public final class d extends k61 {
-    public static final int f41327a = 0;
+public final class d extends l61 {
+    public static final int f41016a = 0;
 
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
         int i10;
         e eVar = (e) view;
-        if (l61Var.G == null) {
-            eVar.setAsShowMore((k) l61Var.H);
+        if (m61Var.G == null) {
+            eVar.setAsShowMore((k) m61Var.H);
             return;
         }
-        int i11 = l61Var.f26967z;
-        String charSequence = l61Var.f26954l.toString();
-        View.OnClickListener onClickListener = l61Var.D;
-        k kVar = (k) l61Var.H;
-        ImageView imageView = eVar.f41333a;
+        int i11 = m61Var.f26959z;
+        String charSequence = m61Var.f26946l.toString();
+        View.OnClickListener onClickListener = m61Var.D;
+        k kVar = (k) m61Var.H;
+        ImageView imageView = eVar.f41025a;
         imageView.setVisibility(0);
         int i12 = kVar.F;
         int i13 = kVar.H;
-        TextView textView = eVar.f41334b;
+        TextView textView = eVar.f41026b;
         textView.setTextColor(i13);
         int m12 = g6.m1(0.6f, i13);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(m12, mode));
-        ImageView imageView2 = eVar.f41335c;
+        ImageView imageView2 = eVar.f41027c;
         imageView2.setColorFilter(new PorterDuffColorFilter(g6.m1(0.6f, i13), mode));
         imageView2.setBackground(g6.a0(0, g6.m1(0.15f, i13), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
         if (i11 == 0) {

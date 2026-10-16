@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.Executor;
-import org.telegram.ui.Components.voip.m2;
+import org.telegram.ui.Components.voip.r2;
 public final class s {
     public static volatile j e;
     public final u5.a f14601a;
@@ -20,7 +20,7 @@ public final class s {
         this.f14602b = aVar2;
         this.f14603c = bVar;
         this.d = bVar2;
-        ((Executor) sVar.f6206b).execute(new m2(sVar, 22));
+        ((Executor) sVar.f6209b).execute(new r2(sVar, 21));
     }
 
     public static s a() {
@@ -38,7 +38,7 @@ public final class s {
                     if (e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f13761a = context;
+                        obj.f13764a = context;
                         e = obj.b();
                     }
                 } catch (Throwable th2) {
@@ -58,10 +58,10 @@ public final class s {
         }
         androidx.biometric.e a2 = i.a();
         kVar.getClass();
-        a2.f1196b = "cct";
+        a2.f1200b = "cct";
         j5.a aVar = (j5.a) kVar;
-        String str = aVar.f12838a;
-        String str2 = aVar.f12839b;
+        String str = aVar.f12842a;
+        String str2 = aVar.f12843b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {
@@ -70,7 +70,7 @@ public final class s {
             }
             bytes = k3.k("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
         }
-        a2.f1197c = bytes;
-        return new q(singleton, a2.g(), this);
+        a2.f1201c = bytes;
+        return new q(singleton, a2.e(), this);
     }
 }

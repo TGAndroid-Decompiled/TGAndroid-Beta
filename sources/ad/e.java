@@ -19,36 +19,36 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import javax.net.ssl.SSLException;
 public final class e {
-    public final ya.c f504a;
-    public final OutputStream f505b;
-    public final BufferedInputStream f506c;
+    public final ya.c f508a;
+    public final OutputStream f509b;
+    public final BufferedInputStream f510c;
     public int d;
     public int e;
-    public String f507f;
-    public int f508g;
+    public String f511f;
+    public int f512g;
     public HashMap h;
-    public HashMap f509i;
-    public c f510j;
-    public final String f511k;
-    public String f512l;
-    public final l f513m;
+    public HashMap f513i;
+    public c f514j;
+    public final String f515k;
+    public String f516l;
+    public final l f517m;
 
     public e(l lVar, ya.c cVar, InputStream inputStream, OutputStream outputStream, InetAddress inetAddress) {
         String str;
-        this.f513m = lVar;
-        this.f504a = cVar;
-        this.f506c = new BufferedInputStream(inputStream, 8192);
-        this.f505b = outputStream;
+        this.f517m = lVar;
+        this.f508a = cVar;
+        this.f510c = new BufferedInputStream(inputStream, 8192);
+        this.f509b = outputStream;
         if (!inetAddress.isLoopbackAddress() && !inetAddress.isAnyLocalAddress()) {
             str = inetAddress.getHostAddress().toString();
         } else {
             str = "127.0.0.1";
         }
-        this.f511k = str;
+        this.f515k = str;
         if (!inetAddress.isLoopbackAddress() && !inetAddress.isAnyLocalAddress()) {
             inetAddress.getHostName().getClass();
         }
-        this.f509i = new HashMap();
+        this.f513i = new HashMap();
     }
 
     public static void b(String str, Map map) {
@@ -115,9 +115,9 @@ public final class e {
                         b10 = l.b(nextToken);
                     }
                     if (stringTokenizer.hasMoreTokens()) {
-                        this.f512l = stringTokenizer.nextToken();
+                        this.f516l = stringTokenizer.nextToken();
                     } else {
-                        this.f512l = "HTTP/1.1";
+                        this.f516l = "HTTP/1.1";
                         l.d.log(Level.FINE, "no protocol version specified, strange. Assuming HTTP/1.1.");
                     }
                     String readLine2 = bufferedReader.readLine();
@@ -142,10 +142,10 @@ public final class e {
     public final void c() {
         boolean z10;
         h hVar = h.INTERNAL_ERROR;
-        l lVar = this.f513m;
-        ya.c cVar = this.f504a;
-        BufferedInputStream bufferedInputStream = this.f506c;
-        OutputStream outputStream = this.f505b;
+        l lVar = this.f517m;
+        ya.c cVar = this.f508a;
+        BufferedInputStream bufferedInputStream = this.f510c;
+        OutputStream outputStream = this.f509b;
         try {
             try {
                 try {
@@ -178,35 +178,35 @@ public final class e {
                                 bufferedInputStream.skip(this.d);
                             }
                             this.h = new HashMap();
-                            HashMap hashMap = this.f509i;
+                            HashMap hashMap = this.f513i;
                             if (hashMap == null) {
-                                this.f509i = new HashMap();
+                                this.f513i = new HashMap();
                             } else {
                                 hashMap.clear();
                             }
                             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(bArr, 0, this.e)));
                             HashMap hashMap2 = new HashMap();
-                            a(bufferedReader, hashMap2, this.h, this.f509i);
-                            String str = this.f511k;
+                            a(bufferedReader, hashMap2, this.h, this.f513i);
+                            String str = this.f515k;
                             if (str != null) {
-                                this.f509i.put("remote-addr", str);
-                                this.f509i.put("http-client-ip", str);
+                                this.f513i.put("remote-addr", str);
+                                this.f513i.put("http-client-ip", str);
                             }
                             int c10 = a1.g.c((String) hashMap2.get("method"));
-                            this.f508g = c10;
+                            this.f512g = c10;
                             if (c10 != 0) {
-                                this.f507f = (String) hashMap2.get("uri");
-                                this.f510j = new c(this.f509i);
-                                String str2 = (String) this.f509i.get("connection");
-                                if ("HTTP/1.1".equals(this.f512l) && (str2 == null || !str2.matches("(?i).*close.*"))) {
+                                this.f511f = (String) hashMap2.get("uri");
+                                this.f514j = new c(this.f513i);
+                                String str2 = (String) this.f513i.get("connection");
+                                if ("HTTP/1.1".equals(this.f516l) && (str2 == null || !str2.matches("(?i).*close.*"))) {
                                     z10 = true;
                                 } else {
                                     z10 = false;
                                 }
                                 i e = lVar.e(this);
-                                String str3 = (String) this.f509i.get("accept-encoding");
-                                this.f510j.h();
-                                e.i(this.f508g);
+                                String str3 = (String) this.f513i.get("accept-encoding");
+                                this.f514j.h();
+                                e.i(this.f512g);
                                 if (l.g(e) && str3 != null && str3.contains("gzip")) {
                                     z11 = true;
                                 }
@@ -215,7 +215,7 @@ public final class e {
                                 e.d(outputStream);
                                 if (z10 && !e.b()) {
                                     l.d(e);
-                                    cVar.w0();
+                                    cVar.q0();
                                     return;
                                 }
                                 throw new SocketException("NanoHttpd Shutdown");
@@ -232,18 +232,18 @@ public final class e {
                         l.c(e10.a(), "text/plain", e10.getMessage()).d(outputStream);
                         l.d(outputStream);
                         l.d(null);
-                        cVar.w0();
+                        cVar.q0();
                     }
                 } catch (SSLException e11) {
                     l.c(hVar, "text/plain", "SSL PROTOCOL FAILURE: " + e11.getMessage()).d(outputStream);
                     l.d(outputStream);
                     l.d(null);
-                    cVar.w0();
+                    cVar.q0();
                 } catch (IOException e12) {
                     l.c(hVar, "text/plain", "SERVER INTERNAL ERROR: IOException: " + e12.getMessage()).d(outputStream);
                     l.d(outputStream);
                     l.d(null);
-                    cVar.w0();
+                    cVar.q0();
                 }
             } catch (SocketException e13) {
                 throw e13;
@@ -252,7 +252,7 @@ public final class e {
             }
         } catch (Throwable th2) {
             l.d(null);
-            cVar.w0();
+            cVar.q0();
             throw th2;
         }
     }

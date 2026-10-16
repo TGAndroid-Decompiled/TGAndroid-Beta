@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class ss extends org.telegram.ui.ActionBar.j {
-    public final ws f40206a;
+    public final ws f39939a;
 
     public ss(ws wsVar) {
-        this.f40206a = wsVar;
+        this.f39939a = wsVar;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class ss extends org.telegram.ui.ActionBar.j {
         boolean z10;
         int i11;
         int i12;
-        ws wsVar = this.f40206a;
+        ws wsVar = this.f39939a;
         if (i10 == -1) {
             wsVar.finishFragment();
-        } else if (i10 == 1 && wsVar.f41641b.getText().length() != 0) {
+        } else if (i10 == 1 && wsVar.f41347b.getText().length() != 0) {
             TLRPC.User user = wsVar.getMessagesController().getUser(Long.valueOf(wsVar.H));
             TLRPC.UserFull userFull = wsVar.getMessagesController().getUserFull(wsVar.H);
-            user.first_name = wsVar.f41641b.getText().toString();
-            user.last_name = wsVar.f41642c.getText().toString();
+            user.first_name = wsVar.f41347b.getText().toString();
+            user.last_name = wsVar.f41348c.getText().toString();
             user.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = wsVar.d.getTextWithEntities();
             wsVar.getMessagesController().putUser(user, false);
@@ -49,7 +49,7 @@ public final class ss extends org.telegram.ui.ActionBar.j {
                 }
                 i12 = ((org.telegram.ui.ActionBar.m2) wsVar).currentAccount;
                 MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
-                wsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f19364id), userFull);
+                wsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f19064id), userFull);
             }
             wsVar.finishFragment();
             vs vsVar = wsVar.O;

@@ -39,9 +39,9 @@ public final class b60 extends s4.k {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.G = ofFloat;
             ofFloat.addUpdateListener(new e3(this, 17));
-            this.G.addListener(new org.telegram.ui.Components.u61(this, 26));
+            this.G.addListener(new org.telegram.ui.Components.v61(this, 26));
             this.G.setDuration(350L);
-            this.G.setInterpolator(org.telegram.ui.Components.es.f24771f);
+            this.G.setInterpolator(org.telegram.ui.Components.es.f24465f);
             this.G.start();
             n60 n60Var = this.L;
             n60Var.Q.invalidate();

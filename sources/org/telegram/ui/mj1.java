@@ -1,51 +1,43 @@
 package org.telegram.ui;
 
-import android.util.LongSparseArray;
-import android.widget.TextView;
+import android.widget.EditText;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class mj1 extends org.telegram.ui.ActionBar.j {
-    public final WallpapersListActivity f38279a;
+public final class mj1 extends org.telegram.ui.ActionBar.e5 {
+    public final WallpapersListActivity f38023f;
 
     public mj1(WallpapersListActivity wallpapersListActivity) {
-        this.f38279a = wallpapersListActivity;
+        this.f38023f = wallpapersListActivity;
     }
 
     @Override
-    public final void b(int i10) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        WallpapersListActivity wallpapersListActivity = this.f38279a;
-        LongSparseArray longSparseArray = wallpapersListActivity.f33987i0;
-        if (i10 == -1) {
-            kVar = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).actionBar;
-            if (kVar.t()) {
-                longSparseArray.clear();
-                kVar2 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).actionBar;
-                kVar2.s();
-                wallpapersListActivity.D0();
-                return;
-            }
-            wallpapersListActivity.finishFragment();
-        } else if (i10 == 4) {
-            if (wallpapersListActivity.getParentActivity() != null) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wallpapersListActivity.getParentActivity());
-                alertDialog$Builder.f19548a.R = LocaleController.formatPluralString("DeleteBackground", longSparseArray.size(), new Object[0]);
-                alertDialog$Builder.f19548a.T = LocaleController.formatString("DeleteChatBackgroundsAlert", R.string.DeleteChatBackgroundsAlert, new Object[0]);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new kj1(this));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
-                wallpapersListActivity.showDialog(a2Var);
-                TextView textView = (TextView) a2Var.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20139q7, false));
-                }
-            }
-        } else if (i10 == 3) {
-            yy yyVar = new yy(org.telegram.messenger.yh.d(3, "onlySelect", "dialogsType", true));
-            yyVar.C2 = new kj1(this);
-            wallpapersListActivity.presentFragment(yyVar);
-        }
+    public final void k() {
+        WallpapersListActivity wallpapersListActivity = this.f38023f;
+        rj1 rj1Var = wallpapersListActivity.J;
+        rj1Var.f39536n = null;
+        rj1Var.E(null, true);
+        wallpapersListActivity.L.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
+    }
+
+    @Override
+    public final void m() {
+        WallpapersListActivity wallpapersListActivity = this.f38023f;
+        wallpapersListActivity.H.setAdapter(wallpapersListActivity.I);
+        wallpapersListActivity.H.invalidate();
+        wallpapersListActivity.J.E(null, true);
+        wallpapersListActivity.L.setSearchFieldCaption(null);
+        k();
+    }
+
+    @Override
+    public final void n() {
+        WallpapersListActivity wallpapersListActivity = this.f38023f;
+        wallpapersListActivity.H.setAdapter(wallpapersListActivity.J);
+        wallpapersListActivity.H.invalidate();
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        this.f38023f.J.E(editText.getText().toString(), false);
     }
 }

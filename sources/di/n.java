@@ -1,21 +1,21 @@
 package di;
 public final class n implements Runnable {
-    public final int f7438a;
-    public final ac f7439b;
+    public final int f7441a;
+    public final ac f7442b;
 
     public n(ac acVar, int i10) {
-        this.f7438a = i10;
-        this.f7439b = acVar;
+        this.f7441a = i10;
+        this.f7442b = acVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f7438a) {
+        switch (this.f7441a) {
             case 0:
-                this.f7439b.n();
+                this.f7442b.n();
                 return;
             case 1:
-                ac acVar = this.f7439b;
+                ac acVar = this.f7442b;
                 acVar.K0 = false;
                 acVar.L0 = Integer.MIN_VALUE;
                 acVar.invalidate();
@@ -23,7 +23,7 @@ public final class n implements Runnable {
                 acVar.T0.setVisibility(0);
                 return;
             default:
-                kc kcVar = this.f7439b.S1;
+                kc kcVar = this.f7442b.S1;
                 yb ybVar = kcVar.X0;
                 if (ybVar != null) {
                     ybVar.O = false;

@@ -6,26 +6,26 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class f9 extends View {
-    public d9 f24970a;
-    public final g6 f24971b;
-    public boolean f24972c;
+    public d9 f24652a;
+    public final g6 f24653b;
+    public boolean f24654c;
     public boolean d;
     public final b30 e;
-    public Drawable f24973f;
+    public Drawable f24655f;
     public Drawable h;
-    public boolean f24974n;
-    public Paint f24975r;
-    public Paint f24976s;
+    public boolean f24656n;
+    public Paint f24657r;
+    public Paint f24658s;
     public boolean v;
-    public final h9 f24977w;
+    public final h9 f24659w;
 
     public f9(h9 h9Var, Context context) {
         super(context);
-        this.f24977w = h9Var;
+        this.f24659w = h9Var;
         g6 g6Var = new g6(400L, AndroidUtilities.overshootInterpolator);
-        this.f24971b = g6Var;
+        this.f24653b = g6Var;
         this.e = new b30();
-        g6Var.f25188a = this;
+        g6Var.f24883a = this;
     }
 
     @Override
@@ -35,6 +35,6 @@ public final class f9 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f24977w.P, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f24659w.P, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 }

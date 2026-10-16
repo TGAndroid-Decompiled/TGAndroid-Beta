@@ -18,20 +18,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 public class m1 extends PopupWindow {
-    public static Method f20515k;
-    public static final Field f20516l;
-    public static final DecelerateInterpolator f20517m = new DecelerateInterpolator();
-    public static final f1 f20518n;
-    public AnimatorSet f20519a;
-    public boolean f20520b;
-    public int f20521c;
+    public static Method f20215k;
+    public static final Field f20216l;
+    public static final DecelerateInterpolator f20217m = new DecelerateInterpolator();
+    public static final f1 f20218n;
+    public AnimatorSet f20219a;
+    public boolean f20220b;
+    public int f20221c;
     public boolean d;
     public boolean e;
-    public long f20522f;
-    public boolean f20523g;
+    public long f20222f;
+    public boolean f20223g;
     public ViewTreeObserver.OnScrollChangedListener h;
-    public ViewTreeObserver f20524i;
-    public AnimationNotificationsLocker f20525j;
+    public ViewTreeObserver f20224i;
+    public AnimationNotificationsLocker f20225j;
 
     static {
         Field field = null;
@@ -40,28 +40,28 @@ public class m1 extends PopupWindow {
             field.setAccessible(true);
         } catch (NoSuchFieldException unused) {
         }
-        f20516l = field;
-        f20518n = new f1(0);
+        f20216l = field;
+        f20218n = new f1(0);
     }
 
     public m1(View view, int i10, int i11) {
         super(view, i10, i11);
-        this.f20520b = true;
-        this.f20521c = 150;
-        this.f20522f = -1L;
-        this.f20525j = new AnimationNotificationsLocker();
+        this.f20220b = true;
+        this.f20221c = 150;
+        this.f20222f = -1L;
+        this.f20225j = new AnimationNotificationsLocker();
         e();
     }
 
     public static void i(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        actionBarPopupWindow$ActionBarPopupWindowLayout.f19542n = true;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.f19242n = true;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY(0.0f);
         float f7 = 1.0f;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(1.0f);
         actionBarPopupWindow$ActionBarPopupWindowLayout.setPivotX(actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth());
         actionBarPopupWindow$ActionBarPopupWindowLayout.setPivotY(0.0f);
         int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
-        HashMap hashMap = actionBarPopupWindow$ActionBarPopupWindowLayout.f19547y;
+        HashMap hashMap = actionBarPopupWindow$ActionBarPopupWindowLayout.f19247y;
         hashMap.clear();
         int i10 = 0;
         for (int i11 = 0; i11 < itemsCount; i11++) {
@@ -75,9 +75,9 @@ public class m1 extends PopupWindow {
             }
         }
         if (actionBarPopupWindow$ActionBarPopupWindowLayout.v) {
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f19544s = itemsCount - 1;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f19244s = itemsCount - 1;
         } else {
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f19544s = 0;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f19244s = 0;
         }
         if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().c(true);
@@ -86,8 +86,8 @@ public class m1 extends PopupWindow {
         AnimatorSet animatorSet = new AnimatorSet();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new v0(actionBarPopupWindow$ActionBarPopupWindowLayout, 2));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.f19538a = false;
-        actionBarPopupWindow$ActionBarPopupWindowLayout.f19539b = true;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.f19238a = false;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.f19239b = true;
         animatorSet.playTogether(ObjectAnimator.ofFloat(actionBarPopupWindow$ActionBarPopupWindowLayout, "backScaleY", 0.0f, f7), ObjectAnimator.ofInt(actionBarPopupWindow$ActionBarPopupWindowLayout, "backAlpha", 0, 255), ofFloat);
         animatorSet.setDuration((i10 * 16) + 150);
         animatorSet.addListener(new h(actionBarPopupWindow$ActionBarPopupWindowLayout, 1));
@@ -109,7 +109,7 @@ public class m1 extends PopupWindow {
     public void d(boolean z10) {
         float f7;
         ArrayList arrayList;
-        long j10 = this.f20522f;
+        long j10 = this.f20222f;
         setFocusable(false);
         View rootView = getContentView().getRootView();
         WindowManager windowManager = (WindowManager) getContentView().getContext().getSystemService("window");
@@ -125,18 +125,18 @@ public class m1 extends PopupWindow {
             } catch (Exception unused) {
             }
         }
-        AnimatorSet animatorSet = this.f20519a;
+        AnimatorSet animatorSet = this.f20219a;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = null;
         if (animatorSet != null) {
             if (!z10 || !this.d) {
                 animatorSet.cancel();
-                this.f20519a = null;
+                this.f20219a = null;
             } else {
                 return;
             }
         }
         this.d = false;
-        if (this.f20520b && z10) {
+        if (this.f20220b && z10) {
             this.d = true;
             ViewGroup viewGroup = (ViewGroup) getContentView();
             for (int i11 = 0; i11 < viewGroup.getChildCount(); i11++) {
@@ -144,23 +144,23 @@ public class m1 extends PopupWindow {
                     actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup.getChildAt(i11);
                 }
             }
-            if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (arrayList = actionBarPopupWindow$ActionBarPopupWindowLayout.f19546x) != null && !arrayList.isEmpty()) {
-                int size = actionBarPopupWindow$ActionBarPopupWindowLayout.f19546x.size();
+            if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (arrayList = actionBarPopupWindow$ActionBarPopupWindowLayout.f19246x) != null && !arrayList.isEmpty()) {
+                int size = actionBarPopupWindow$ActionBarPopupWindowLayout.f19246x.size();
                 for (int i12 = 0; i12 < size; i12++) {
-                    AnimatorSet animatorSet2 = (AnimatorSet) actionBarPopupWindow$ActionBarPopupWindowLayout.f19546x.get(i12);
+                    AnimatorSet animatorSet2 = (AnimatorSet) actionBarPopupWindow$ActionBarPopupWindowLayout.f19246x.get(i12);
                     animatorSet2.removeAllListeners();
                     animatorSet2.cancel();
                 }
-                actionBarPopupWindow$ActionBarPopupWindowLayout.f19546x.clear();
+                actionBarPopupWindow$ActionBarPopupWindowLayout.f19246x.clear();
             }
             AnimatorSet animatorSet3 = new AnimatorSet();
-            this.f20519a = animatorSet3;
+            this.f20219a = animatorSet3;
             if (j10 > 0) {
                 animatorSet3.playTogether(ValueAnimator.ofFloat(0.0f, 1.0f));
-                this.f20519a.setDuration(j10);
-            } else if (this.f20523g) {
+                this.f20219a.setDuration(j10);
+            } else if (this.f20223g) {
                 animatorSet3.playTogether(ObjectAnimator.ofFloat(viewGroup, View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(viewGroup, View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(viewGroup, View.ALPHA, 0.0f));
-                this.f20519a.setDuration(this.f20521c);
+                this.f20219a.setDuration(this.f20221c);
             } else {
                 Property property = View.TRANSLATION_Y;
                 if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && actionBarPopupWindow$ActionBarPopupWindowLayout.v) {
@@ -169,13 +169,13 @@ public class m1 extends PopupWindow {
                     f7 = -5.0f;
                 }
                 animatorSet3.playTogether(ObjectAnimator.ofFloat(viewGroup, property, AndroidUtilities.dp(f7)), ObjectAnimator.ofFloat(viewGroup, View.ALPHA, 0.0f));
-                this.f20519a.setDuration(this.f20521c);
+                this.f20219a.setDuration(this.f20221c);
             }
-            this.f20519a.addListener(new g1(this, 1));
+            this.f20219a.addListener(new g1(this, 1));
             if (this.e) {
-                this.f20525j.lock();
+                this.f20225j.lock();
             }
-            this.f20519a.start();
+            this.f20219a.start();
             return;
         }
         try {
@@ -198,11 +198,11 @@ public class m1 extends PopupWindow {
                 setTouchInterceptor(new di.p1(1, this, actionBarPopupWindow$ActionBarPopupWindowLayout));
             }
         }
-        Field field = f20516l;
+        Field field = f20216l;
         if (field != null) {
             try {
                 this.h = (ViewTreeObserver.OnScrollChangedListener) field.get(this);
-                field.set(this, f20518n);
+                field.set(this, f20218n);
             } catch (Exception unused) {
                 this.h = null;
             }
@@ -217,12 +217,12 @@ public class m1 extends PopupWindow {
             } else {
                 viewTreeObserver = null;
             }
-            ViewTreeObserver viewTreeObserver2 = this.f20524i;
+            ViewTreeObserver viewTreeObserver2 = this.f20224i;
             if (viewTreeObserver != viewTreeObserver2) {
                 if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f20524i.removeOnScrollChangedListener(this.h);
+                    this.f20224i.removeOnScrollChangedListener(this.h);
                 }
-                this.f20524i = viewTreeObserver;
+                this.f20224i = viewTreeObserver;
                 if (viewTreeObserver != null) {
                     viewTreeObserver.addOnScrollChangedListener(this.h);
                 }
@@ -232,12 +232,12 @@ public class m1 extends PopupWindow {
 
     public final void g() {
         try {
-            if (f20515k == null) {
+            if (f20215k == null) {
                 Method declaredMethod = PopupWindow.class.getDeclaredMethod("setLayoutInScreenEnabled", Boolean.TYPE);
-                f20515k = declaredMethod;
+                f20215k = declaredMethod;
                 declaredMethod.setAccessible(true);
             }
-            f20515k.invoke(this, Boolean.TRUE);
+            f20215k.invoke(this, Boolean.TRUE);
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -245,23 +245,23 @@ public class m1 extends PopupWindow {
 
     public final void h() {
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout;
-        if (this.f20520b && this.f20519a == null) {
+        if (this.f20220b && this.f20219a == null) {
             ViewGroup viewGroup = (ViewGroup) getContentView();
             if (viewGroup instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
                 actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.f19542n = true;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.f19242n = true;
             } else {
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = null;
                 for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
                     if (viewGroup.getChildAt(i10) instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout2 = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup.getChildAt(i10);
-                        actionBarPopupWindow$ActionBarPopupWindowLayout2.f19542n = true;
+                        actionBarPopupWindow$ActionBarPopupWindowLayout2.f19242n = true;
                     }
                 }
                 actionBarPopupWindow$ActionBarPopupWindowLayout = actionBarPopupWindow$ActionBarPopupWindowLayout2;
             }
             actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY(0.0f);
-            HashMap hashMap = actionBarPopupWindow$ActionBarPopupWindowLayout.f19547y;
+            HashMap hashMap = actionBarPopupWindow$ActionBarPopupWindowLayout.f19247y;
             float f7 = 1.0f;
             actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(1.0f);
             actionBarPopupWindow$ActionBarPopupWindowLayout.setPivotX(actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth());
@@ -278,30 +278,30 @@ public class m1 extends PopupWindow {
                 }
             }
             if (actionBarPopupWindow$ActionBarPopupWindowLayout.v) {
-                actionBarPopupWindow$ActionBarPopupWindowLayout.f19544s = itemsCount - 1;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.f19244s = itemsCount - 1;
             } else {
-                actionBarPopupWindow$ActionBarPopupWindowLayout.f19544s = 0;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.f19244s = 0;
             }
             if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
                 actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().c(true);
                 f7 = actionBarPopupWindow$ActionBarPopupWindowLayout.h;
             }
             AnimatorSet animatorSet = new AnimatorSet();
-            this.f20519a = animatorSet;
+            this.f20219a = animatorSet;
             animatorSet.playTogether(ObjectAnimator.ofFloat(actionBarPopupWindow$ActionBarPopupWindowLayout, "backScaleY", 0.0f, f7), ObjectAnimator.ofInt(actionBarPopupWindow$ActionBarPopupWindowLayout, "backAlpha", 0, 255));
-            this.f20519a.setDuration((i11 * 16) + 150);
-            this.f20519a.addListener(new g1(this, 0));
-            this.f20519a.start();
+            this.f20219a.setDuration((i11 * 16) + 150);
+            this.f20219a.addListener(new g1(this, 0));
+            this.f20219a.start();
         }
     }
 
     public final void j() {
         ViewTreeObserver viewTreeObserver;
-        if (this.h != null && (viewTreeObserver = this.f20524i) != null) {
+        if (this.h != null && (viewTreeObserver = this.f20224i) != null) {
             if (viewTreeObserver.isAlive()) {
-                this.f20524i.removeOnScrollChangedListener(this.h);
+                this.f20224i.removeOnScrollChangedListener(this.h);
             }
-            this.f20524i = null;
+            this.f20224i = null;
         }
     }
 

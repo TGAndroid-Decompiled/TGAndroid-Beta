@@ -15,17 +15,17 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.br;
 import org.telegram.ui.Components.db;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.lm0;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
 import org.telegram.ui.Components.z9;
-import w7.a6;
+import w7.z5;
 public final class c extends db {
     public final v0 X;
-    public z61 Y;
+    public a71 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
         super(context, (c6) null, false);
@@ -53,10 +53,10 @@ public final class c extends db {
         dVar2.setOnClickListener(new u1(12, this, runnable));
         v0 v0Var = new v0(context, 2);
         TextView textView = (TextView) v0Var.d;
-        TextView textView2 = (TextView) v0Var.f3848c;
+        TextView textView2 = (TextView) v0Var.f3852c;
         this.X = v0Var;
         v0Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((z9) v0Var.f3847b).e(chat, new k9(chat));
+        ((z9) v0Var.f3851b).e(chat, new k9(chat));
         textView2.setText(DialogObject.getName(chat));
         int i13 = g6.G6;
         textView2.setTextColor(getThemedColor(i13));
@@ -71,21 +71,21 @@ public final class c extends db {
         spannableStringBuilder.append((CharSequence) LocaleController.getString(i11));
         textView.setTextColor(getThemedColor(i13));
         textView.setText(spannableStringBuilder);
-        this.containerView.addView(dVar2, a6.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
-        this.containerView.addView(dVar, a6.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar2, z5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar, z5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
         this.Y.N(false);
     }
 
     @Override
-    public final CharSequence A() {
+    public final CharSequence B() {
         return null;
     }
 
     @Override
     public final lm0 x(mm0 mm0Var) {
-        z61 z61Var = new z61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = z61Var;
-        z61Var.f31780r = false;
-        return z61Var;
+        a71 a71Var = new a71(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = a71Var;
+        a71Var.f23145r = false;
+        return a71Var;
     }
 }

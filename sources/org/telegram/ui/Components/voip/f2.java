@@ -10,29 +10,28 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.yh;
 import org.telegram.ui.Components.ix0;
-import w7.a6;
+import w7.z5;
 public final class f2 extends LinearLayout {
-    public HashMap f30175a;
-    public ArrayList f30176b;
-    public ArrayList f30177c;
+    public HashMap f29844a;
+    public ArrayList f29845b;
+    public ArrayList f29846c;
     public TransitionSet d;
     public boolean e;
-    public boolean f30178f;
+    public boolean f29847f;
     public Runnable h;
-    public o1 f30179n;
-    public TextPaint f30180r;
+    public o1 f29848n;
+    public TextPaint f29849r;
 
     public final void a(int i10, String str, String str2) {
-        HashMap hashMap = this.f30175a;
+        HashMap hashMap = this.f29844a;
         if (hashMap.get(str2) != null) {
             return;
         }
-        e2 e2Var = new e2(getContext(), this.f30179n, i10);
-        e2Var.f30162a = str2;
+        e2 e2Var = new e2(getContext(), this.f29848n, i10);
+        e2Var.f29831a = str2;
         int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
-        TextView textView = e2Var.f30164c;
+        TextView textView = e2Var.f29833c;
         StaticLayout c10 = ix0.c(str, textView.getPaint(), dp, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, dp, 10, true);
         if (c10 != null) {
             dp = 0;
@@ -42,35 +41,35 @@ public final class f2 extends LinearLayout {
         }
         textView.setMaxWidth(dp);
         textView.setText(str);
-        e2Var.f30163b.setImageResource(i10);
+        e2Var.f29832b.setImageResource(i10);
         hashMap.put(str2, e2Var);
         if (this.e) {
-            this.f30176b.add(e2Var);
+            this.f29845b.add(e2Var);
             return;
         }
-        this.f30178f = true;
-        addView(e2Var, a6.t(-2, -2, 1, 4, 0, 0, 4));
+        this.f29847f = true;
+        addView(e2Var, z5.t(-2, -2, 1, 4, 0, 0, 4));
     }
 
     public final CharSequence b(String str) {
         if (str == null) {
             return "";
         }
-        return TextUtils.ellipsize(str, this.f30180r, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
+        return TextUtils.ellipsize(str, this.f29849r, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
     }
 
     public final void c(String str) {
-        e2 e2Var = (e2) this.f30175a.remove(str);
-        this.f30179n.f30385m.remove(e2Var);
+        e2 e2Var = (e2) this.f29844a.remove(str);
+        this.f29848n.f30057m.remove(e2Var);
         if (e2Var != null) {
             if (this.e) {
-                if (!this.f30176b.remove(e2Var)) {
-                    this.f30177c.add(e2Var);
+                if (!this.f29845b.remove(e2Var)) {
+                    this.f29846c.add(e2Var);
                     return;
                 }
                 return;
             }
-            this.f30178f = true;
+            this.f29847f = true;
             removeView(e2Var);
         }
     }
@@ -83,7 +82,7 @@ public final class f2 extends LinearLayout {
         } else {
             i10 = 0;
         }
-        return yh.y(32.0f, childCount, i10);
+        return org.telegram.messenger.g0.D(32.0f, childCount, i10);
     }
 
     public void setOnViewsUpdated(Runnable runnable) {

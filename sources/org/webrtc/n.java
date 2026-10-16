@@ -1,25 +1,22 @@
 package org.webrtc;
+public final class n implements Runnable {
+    public final int f42504a;
+    public final RenderSynchronizer f42505b;
 
-import org.webrtc.PeerConnection;
-public abstract class n {
-    public static void b(PeerConnection.Observer observer, PeerConnection.PeerConnectionState peerConnectionState) {
+    public n(RenderSynchronizer renderSynchronizer, int i10) {
+        this.f42504a = i10;
+        this.f42505b = renderSynchronizer;
     }
 
-    public static void c(PeerConnection.Observer observer, IceCandidateErrorEvent iceCandidateErrorEvent) {
-    }
-
-    public static void d(PeerConnection.Observer observer, RtpReceiver rtpReceiver) {
-    }
-
-    public static void e(PeerConnection.Observer observer, CandidatePairChangeEvent candidatePairChangeEvent) {
-    }
-
-    public static void f(PeerConnection.Observer observer, PeerConnection.IceConnectionState iceConnectionState) {
-    }
-
-    public static void g(PeerConnection.Observer observer, RtpTransceiver rtpTransceiver) {
-    }
-
-    public static void a(PeerConnection.Observer observer, RtpReceiver rtpReceiver, MediaStream[] mediaStreamArr) {
+    @Override
+    public final void run() {
+        switch (this.f42504a) {
+            case 0:
+                RenderSynchronizer.b(this.f42505b);
+                return;
+            default:
+                RenderSynchronizer.c(this.f42505b);
+                return;
+        }
     }
 }

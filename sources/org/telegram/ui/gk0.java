@@ -1,79 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.KeyEvent;
-import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
-public final class gk0 extends AnimatedPhoneNumberEditText {
-    public final int G;
-    public final Object H;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MrzRecognizer;
+public final class gk0 implements y9 {
+    public final hk0 f36272a;
 
-    public gk0(Object obj, Context context, int i10) {
-        super(context);
-        this.G = i10;
-        this.H = obj;
+    public gk0(hk0 hk0Var) {
+        this.f36272a = hk0Var;
     }
 
     @Override
-    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
-        float f7;
-        float f10;
-        float f11;
-        switch (this.G) {
-            case 0:
-                super.onFocusChanged(z10, i10, rect);
-                ik0 ik0Var = (ik0) this.H;
-                org.telegram.ui.Components.yd0 yd0Var = ik0Var.f37160s;
-                if (!z10 && !ik0Var.Q.isFocused()) {
-                    f7 = 0.0f;
-                } else {
-                    f7 = 1.0f;
-                }
-                yd0Var.b(f7, f7, true);
-                return;
-            case 1:
-                super.onFocusChanged(z10, i10, rect);
-                ik0 ik0Var2 = (ik0) this.H;
-                org.telegram.ui.Components.yd0 yd0Var2 = ik0Var2.f37160s;
-                if (!z10 && !ik0Var2.O.isFocused()) {
-                    f10 = 0.0f;
-                } else {
-                    f10 = 1.0f;
-                }
-                yd0Var2.b(f10, f10, true);
-                return;
-            default:
-                super.onFocusChanged(z10, i10, rect);
-                ah0 ah0Var = (ah0) this.H;
-                org.telegram.ui.Components.yd0 yd0Var3 = ah0Var.f34218f;
-                if (!z10 && !ah0Var.f34216b.isFocused()) {
-                    f11 = 0.0f;
-                } else {
-                    f11 = 1.0f;
-                }
-                yd0Var3.b(f11, f11, true);
-                if (z10) {
-                    ah0Var.V.f34547c.setEditText(this);
-                    return;
-                }
-                return;
-        }
+    public final String I0() {
+        return null;
     }
 
     @Override
-    public boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        switch (this.G) {
-            case 1:
-                ik0 ik0Var = (ik0) this.H;
-                if (i10 == 67 && ik0Var.Q.length() == 0) {
-                    ik0Var.O.requestFocus();
-                    gk0 gk0Var = ik0Var.O;
-                    gk0Var.setSelection(gk0Var.length());
-                    ik0Var.O.dispatchKeyEvent(keyEvent);
-                }
-                return super.onKeyDown(i10, keyEvent);
-            default:
-                return super.onKeyDown(i10, keyEvent);
+    public final void K(String str) {
+        int i10;
+        String b10 = pf.d.b(str);
+        if (!TextUtils.isEmpty(b10)) {
+            i10 = ((org.telegram.ui.ActionBar.e3) this.f36272a).currentAccount;
+            MessagesController.getInstance(i10).getUserNameResolver().resolve(b10, new bi.f(18));
+            return;
         }
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ve(27));
+    }
+
+    @Override
+    public final boolean d1(String str, o9 o9Var) {
+        return false;
+    }
+
+    @Override
+    public final void V0(MrzRecognizer.Result result) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

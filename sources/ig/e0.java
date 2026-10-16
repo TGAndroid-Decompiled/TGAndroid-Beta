@@ -5,11 +5,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.b00;
 import org.telegram.ui.Components.fk;
-import org.telegram.ui.Components.ml;
+import org.telegram.ui.Components.ll;
 import org.telegram.ui.Components.mm0;
 import org.telegram.ui.Components.ni;
 import org.telegram.ui.Components.oj;
-import org.telegram.ui.Components.ul;
+import org.telegram.ui.Components.tl;
 import org.telegram.ui.Components.vn;
 public final class e0 extends b00 {
     public final int U;
@@ -57,9 +57,9 @@ public final class e0 extends b00 {
                 w0(fkVar);
                 return;
             case 3:
-                ml mlVar = new ml(this, recyclerView.getContext());
-                mlVar.f44979a = i10;
-                w0(mlVar);
+                ll llVar = new ll(this, recyclerView.getContext());
+                llVar.f44979a = i10;
+                w0(llVar);
                 return;
             default:
                 vn vnVar = new vn(this, recyclerView.getContext());
@@ -69,9 +69,9 @@ public final class e0 extends b00 {
         }
     }
 
-    public e0(ul ulVar, bi.o0 o0Var) {
+    public e0(tl tlVar, bi.o0 o0Var) {
         super(0, 0, o0Var);
         this.U = 3;
-        this.V = ulVar;
+        this.V = tlVar;
     }
 }

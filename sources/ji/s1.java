@@ -10,19 +10,19 @@ import org.telegram.ui.Components.hh;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.vi;
 public final class s1 implements ti {
-    public final vi f13508a;
-    public final d2 f13509b;
+    public final vi f13511a;
+    public final d2 f13512b;
 
     public s1(d2 d2Var, vi viVar) {
-        this.f13509b = d2Var;
-        this.f13508a = viVar;
+        this.f13512b = d2Var;
+        this.f13511a = viVar;
     }
 
     @Override
-    public final void g0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        vi viVar = this.f13508a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f30013j0;
-        d2 d2Var = this.f13509b;
+    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+        vi viVar = this.f13511a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f29684j0;
+        d2 d2Var = this.f13512b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -51,22 +51,30 @@ public final class s1 implements ti {
     }
 
     @Override
-    public final boolean p0() {
+    public final boolean r0() {
         return false;
     }
 
     @Override
     public final void v(hh hhVar) {
-        NotificationCenter.getInstance(this.f13509b.getCurrentAccount()).doOnIdle(hhVar);
+        NotificationCenter.getInstance(this.f13512b.getCurrentAccount()).doOnIdle(hhVar);
     }
 
     @Override
-    public final boolean x() {
+    public final boolean w() {
         return false;
     }
 
     @Override
-    public final void H() {
+    public final void J(Object obj) {
+    }
+
+    @Override
+    public final void U(TLRPC.User user) {
+    }
+
+    @Override
+    public final void F() {
     }
 
     @Override
@@ -74,14 +82,6 @@ public final class s1 implements ti {
     }
 
     @Override
-    public final void U(Object obj) {
-    }
-
-    @Override
-    public final void W(TLRPC.User user) {
-    }
-
-    @Override
-    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final void s0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
     }
 }

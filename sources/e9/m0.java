@@ -4,27 +4,27 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import v7.u6;
 public final class m0 extends n0 {
-    public final transient int f8589c;
+    public final transient int f8592c;
     public final transient int d;
     public final n0 e;
 
     public m0(n0 n0Var, int i10, int i11) {
         this.e = n0Var;
-        this.f8589c = i10;
+        this.f8592c = i10;
         this.d = i11;
     }
 
     @Override
     public final n0 subList(int i10, int i11) {
         u6.n(i10, i11, this.d);
-        int i12 = this.f8589c;
+        int i12 = this.f8592c;
         return this.e.subList(i10 + i12, i11 + i12);
     }
 
     @Override
     public final Object get(int i10) {
         u6.j(i10, this.d);
-        return this.e.get(i10 + this.f8589c);
+        return this.e.get(i10 + this.f8592c);
     }
 
     @Override
@@ -44,12 +44,12 @@ public final class m0 extends n0 {
 
     @Override
     public final int o() {
-        return this.e.p() + this.f8589c + this.d;
+        return this.e.p() + this.f8592c + this.d;
     }
 
     @Override
     public final int p() {
-        return this.e.p() + this.f8589c;
+        return this.e.p() + this.f8592c;
     }
 
     @Override

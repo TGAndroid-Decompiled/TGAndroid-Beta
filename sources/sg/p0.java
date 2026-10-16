@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.jg0;
+import org.telegram.ui.ig0;
 import zh.e2;
 import zh.p7;
 import zh.r3;
@@ -24,7 +24,7 @@ public final class p0 extends FrameLayout {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         switch (this.f45297a) {
             case 5:
-                if (((p7) this.f45298b).f50997f0) {
+                if (((p7) this.f45298b).f50998f0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -87,9 +87,9 @@ public final class p0 extends FrameLayout {
             case 2:
                 super.onMeasure(i10, i11);
                 m1 m1Var = ((l1) this.f45298b).f45249c;
-                jg0 jg0Var = m1Var.f45268r0;
-                if (jg0Var != null) {
-                    top = jg0Var.getTop();
+                ig0 ig0Var = m1Var.f45268r0;
+                if (ig0Var != null) {
+                    top = ig0Var.getTop();
                     measuredHeight = m1Var.f45268r0.getMeasuredHeight();
                 } else {
                     View view = m1Var.B0;
@@ -121,9 +121,9 @@ public final class p0 extends FrameLayout {
             case 4:
                 super.setTranslationY(f7);
                 r3 r3Var = (r3) this.f45298b;
-                e2 e2Var = r3Var.f51076e0;
+                e2 e2Var = r3Var.f51077e0;
                 if (e2Var != null && e2Var.getVisibility() == 0) {
-                    r3Var.f51076e0.invalidate();
+                    r3Var.f51077e0.invalidate();
                     return;
                 }
                 return;

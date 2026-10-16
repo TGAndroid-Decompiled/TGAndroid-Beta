@@ -24,14 +24,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.cd0;
 import org.telegram.ui.Components.y9;
 public final class b6 implements NotificationCenter.NotificationCenterDelegate {
-    public static b6 f19647c;
-    public int f19648a;
-    public HashMap f19649b;
+    public static b6 f19347c;
+    public int f19348a;
+    public HashMap f19349b;
 
     public static void a(boolean z10) {
         String str;
         ArrayList arrayList;
-        if (f19647c != null && !z10) {
+        if (f19347c != null && !z10) {
             return;
         }
         ArrayList arrayList2 = null;
@@ -54,11 +54,11 @@ public final class b6 implements NotificationCenter.NotificationCenterDelegate {
                 str = "Blue";
             }
             f6 f6Var = (f6) g6.H.get(str);
-            if (f6Var != null && (arrayList = f6Var.f19794b0) != null && !arrayList.isEmpty()) {
-                int size = f6Var.f19794b0.size();
+            if (f6Var != null && (arrayList = f6Var.f19494b0) != null && !arrayList.isEmpty()) {
+                int size = f6Var.f19494b0.size();
                 for (int i11 = 0; i11 < size; i11++) {
-                    e6 e6Var = (e6) f6Var.f19794b0.get(i11);
-                    if (e6Var.f19745a != g6.f20077n && !TextUtils.isEmpty(e6Var.f19756o)) {
+                    e6 e6Var = (e6) f6Var.f19494b0.get(i11);
+                    if (e6Var.f19445a != g6.f19777n && !TextUtils.isEmpty(e6Var.f19456o)) {
                         if (arrayList2 == null) {
                             arrayList2 = new ArrayList();
                         }
@@ -68,11 +68,11 @@ public final class b6 implements NotificationCenter.NotificationCenterDelegate {
             }
         }
         ?? obj = new Object();
-        obj.f19648a = UserConfig.selectedAccount;
+        obj.f19348a = UserConfig.selectedAccount;
         if (arrayList2 != null) {
-            Utilities.globalQueue.postRunnable(new org.telegram.messenger.voip.j(12, obj, arrayList2));
+            Utilities.globalQueue.postRunnable(new org.telegram.messenger.voip.p0(7, obj, arrayList2));
         }
-        f19647c = obj;
+        f19347c = obj;
     }
 
     public static Bitmap b(Bitmap bitmap, boolean z10, File file, e6 e6Var) {
@@ -88,12 +88,12 @@ public final class b6 implements NotificationCenter.NotificationCenterDelegate {
             if (d == null) {
                 return null;
             }
-            f6 f6Var = e6Var.f19746b;
+            f6 f6Var = e6Var.f19446b;
             SparseIntArray R0 = g6.R0(null, f6Var.d, null);
             g6.G(R0, f6Var);
-            int i13 = e6Var.f19747c;
-            int i14 = (int) e6Var.f19751j;
-            long j10 = e6Var.f19752k;
+            int i13 = e6Var.f19447c;
+            int i14 = (int) e6Var.f19451j;
+            long j10 = e6Var.f19452k;
             int i15 = (int) j10;
             if (i15 == 0 && j10 == 0) {
                 if (i14 != 0) {
@@ -106,12 +106,12 @@ public final class b6 implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 i13 = 0;
             }
-            long j11 = e6Var.f19753l;
+            long j11 = e6Var.f19453l;
             int i17 = (int) j11;
             if (i17 == 0 && j11 == 0 && (i12 = R0.get(g6.Pd)) != 0) {
                 i17 = g6.B(f6Var, i13, i12);
             }
-            long j13 = e6Var.f19754m;
+            long j13 = e6Var.f19454m;
             int i18 = (int) j13;
             if (i18 == 0 && j13 == 0 && (i11 = R0.get(g6.Qd)) != 0) {
                 i18 = g6.B(f6Var, i13, i11);
@@ -122,7 +122,7 @@ public final class b6 implements NotificationCenter.NotificationCenterDelegate {
             if (i17 != 0) {
                 patternColor = cd0.g(i14, i15, i17, i18);
             } else if (i15 != 0) {
-                Drawable y9Var = new y9(y9.d(e6Var.f19755n), new int[]{i14, i15});
+                Drawable y9Var = new y9(y9.d(e6Var.f19455n), new int[]{i14, i15});
                 patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(i14, i15));
                 drawable = y9Var;
             } else {
@@ -151,7 +151,7 @@ public final class b6 implements NotificationCenter.NotificationCenterDelegate {
                     drawable.draw(canvas);
                     Paint paint = new Paint(2);
                     paint.setColorFilter(new PorterDuffColorFilter(patternColor, PorterDuff.Mode.SRC_IN));
-                    paint.setAlpha((int) (Math.abs(e6Var.f19757p) * 255.0f));
+                    paint.setAlpha((int) (Math.abs(e6Var.f19457p) * 255.0f));
                     canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
                     createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(d));
                     return bitmap2;
@@ -173,15 +173,15 @@ public final class b6 implements NotificationCenter.NotificationCenterDelegate {
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        HashMap hashMap = this.f19649b;
+        HashMap hashMap = this.f19349b;
         if (hashMap != null) {
             if (i10 == NotificationCenter.fileLoaded) {
                 a6 a6Var = (a6) hashMap.remove((String) objArr[0]);
                 if (a6Var != null) {
-                    Utilities.globalQueue.postRunnable(new org.telegram.messenger.voip.j(13, this, a6Var));
+                    Utilities.globalQueue.postRunnable(new org.telegram.messenger.voip.p0(8, this, a6Var));
                 }
             } else if (i10 == NotificationCenter.fileLoadFailed && hashMap.remove((String) objArr[0]) != null) {
-                AndroidUtilities.runOnUIThread(new di.x0((Object) this, (Object) null, false, 12));
+                AndroidUtilities.runOnUIThread(new di.x0((Object) this, (Object) null, false, 10));
             }
         }
     }

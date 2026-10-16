@@ -23,12 +23,7 @@ public final class j implements h {
     }
 
     @Override
-    public final long a() {
-        return this.f46560f;
-    }
-
-    @Override
-    public final long b(long j10) {
+    public final long a(long j10) {
         long j11;
         double d;
         long j12 = j10 - this.f46557a;
@@ -55,6 +50,11 @@ public final class j implements h {
             return Math.round(d * (j16 - j14)) + j14;
         }
         return 0L;
+    }
+
+    @Override
+    public final long b() {
+        return this.f46560f;
     }
 
     @Override

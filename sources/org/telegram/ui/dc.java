@@ -3,42 +3,42 @@ package org.telegram.ui;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 public final class dc implements Runnable {
-    public final int f35227a;
-    public final ic f35228b;
+    public final int f34954a;
+    public final hc f34955b;
 
-    public dc(ic icVar, int i10) {
-        this.f35227a = i10;
-        this.f35228b = icVar;
+    public dc(hc hcVar, int i10) {
+        this.f34954a = i10;
+        this.f34955b = hcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f35227a) {
+        switch (this.f34954a) {
             case 0:
                 CountDownLatch countDownLatch = new CountDownLatch(2);
-                ic icVar = this.f35228b;
-                icVar.a(countDownLatch, null);
-                icVar.b(countDownLatch, null);
+                hc hcVar = this.f34955b;
+                hcVar.a(countDownLatch, null);
+                hcVar.b(countDownLatch, null);
                 try {
                     countDownLatch.await();
                 } catch (InterruptedException unused) {
                 }
-                AndroidUtilities.runOnUIThread(new dc(icVar, 3));
+                AndroidUtilities.runOnUIThread(new dc(hcVar, 3));
                 return;
             case 1:
-                ic icVar2 = this.f35228b;
-                icVar2.H = false;
-                icVar2.d(true);
+                hc hcVar2 = this.f34955b;
+                hcVar2.H = false;
+                hcVar2.d(true);
                 return;
             case 2:
-                ic icVar3 = this.f35228b;
-                icVar3.H = false;
-                icVar3.d(true);
+                hc hcVar3 = this.f34955b;
+                hcVar3.H = false;
+                hcVar3.d(true);
                 return;
             default:
-                ic icVar4 = this.f35228b;
-                icVar4.H = false;
-                icVar4.d(true);
+                hc hcVar4 = this.f34955b;
+                hcVar4.H = false;
+                hcVar4.d(true);
                 return;
         }
     }

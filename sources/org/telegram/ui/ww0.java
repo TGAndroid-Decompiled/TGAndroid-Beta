@@ -1,226 +1,45 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class ww0 implements org.telegram.ui.Components.pg {
-    public final PopupNotificationActivity f41686a;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class ww0 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f41372a;
+    public final PopupNotificationActivity f41373b;
 
-    public ww0(PopupNotificationActivity popupNotificationActivity) {
-        this.f41686a = popupNotificationActivity;
+    public ww0(PopupNotificationActivity popupNotificationActivity, int i10) {
+        this.f41372a = i10;
+        this.f41373b = popupNotificationActivity;
     }
 
     @Override
-    public final boolean B0() {
-        return true;
-    }
-
-    @Override
-    public final void J(CharSequence charSequence, boolean z10, int i10, int i11, long j10) {
-        PopupNotificationActivity popupNotificationActivity = this.f41686a;
-        if (popupNotificationActivity.Q == null) {
-            return;
+    public final boolean onPreDraw() {
+        switch (this.f41372a) {
+            case 0:
+                PopupNotificationActivity popupNotificationActivity = this.f41373b;
+                FrameLayout frameLayout = popupNotificationActivity.f32140f;
+                if (frameLayout != null) {
+                    frameLayout.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                int A = org.telegram.messenger.sk.A(48.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
+                FrameLayout frameLayout2 = popupNotificationActivity.f32140f;
+                frameLayout2.setPadding(frameLayout2.getPaddingLeft(), A, popupNotificationActivity.f32140f.getPaddingRight(), A);
+                return true;
+            default:
+                PopupNotificationActivity popupNotificationActivity2 = this.f41373b;
+                popupNotificationActivity2.f32141n.getViewTreeObserver().removeOnPreDrawListener(this);
+                if (!popupNotificationActivity2.c() && !popupNotificationActivity2.X) {
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) popupNotificationActivity2.f32141n.getLayoutParams();
+                    marginLayoutParams.topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+                    marginLayoutParams.bottomMargin = AndroidUtilities.dp(48.0f);
+                    marginLayoutParams.width = -1;
+                    marginLayoutParams.height = -1;
+                    popupNotificationActivity2.f32141n.setLayoutParams(marginLayoutParams);
+                    popupNotificationActivity2.a(0);
+                    return true;
+                }
+                return true;
         }
-        int i12 = popupNotificationActivity.S;
-        if (i12 >= 0 && i12 < popupNotificationActivity.f32435a0.size()) {
-            popupNotificationActivity.f32435a0.remove(popupNotificationActivity.S);
-        }
-        MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
-        popupNotificationActivity.Q = null;
-        popupNotificationActivity.f();
-    }
-
-    @Override
-    public final TLRPC.TL_channels_sendAsPeers K() {
-        return null;
-    }
-
-    @Override
-    public final int Y0() {
-        return 0;
-    }
-
-    @Override
-    public final TL_stories.StoryItem a1() {
-        return null;
-    }
-
-    @Override
-    public final boolean b1(long j10) {
-        return false;
-    }
-
-    @Override
-    public final boolean e1() {
-        return false;
-    }
-
-    @Override
-    public final boolean j1() {
-        return false;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final un p0() {
-        return null;
-    }
-
-    @Override
-    public final int q() {
-        return 0;
-    }
-
-    @Override
-    public final boolean r1() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.Peer x() {
-        return null;
-    }
-
-    @Override
-    public final void y1() {
-        PopupNotificationActivity popupNotificationActivity = this.f41686a;
-        MessageObject messageObject = popupNotificationActivity.Q;
-        if (messageObject != null) {
-            MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);
-        }
-    }
-
-    @Override
-    public final void C(boolean z10) {
-    }
-
-    @Override
-    public final void F0() {
-    }
-
-    @Override
-    public final void G() {
-    }
-
-    @Override
-    public final void H0() {
-    }
-
-    @Override
-    public final void Q0() {
-    }
-
-    @Override
-    public final void T1() {
-    }
-
-    @Override
-    public final void V1(int i10) {
-    }
-
-    @Override
-    public final void X() {
-    }
-
-    @Override
-    public final void X0(int i10) {
-    }
-
-    @Override
-    public final void Y1() {
-    }
-
-    @Override
-    public final void Z1(boolean z10) {
-    }
-
-    @Override
-    public final void a0(boolean z10) {
-    }
-
-    @Override
-    public final void e2() {
-    }
-
-    @Override
-    public final void h() {
-    }
-
-    @Override
-    public final void i1() {
-    }
-
-    @Override
-    public final void k() {
-    }
-
-    @Override
-    public final void l1() {
-    }
-
-    @Override
-    public final void m0() {
-    }
-
-    @Override
-    public final void m1() {
-    }
-
-    @Override
-    public final void m2() {
-    }
-
-    @Override
-    public final void n1() {
-    }
-
-    @Override
-    public final void q1(CharSequence charSequence) {
-    }
-
-    @Override
-    public final void q2() {
-    }
-
-    @Override
-    public final void t0() {
-    }
-
-    @Override
-    public final void u1() {
-    }
-
-    @Override
-    public final void y() {
-    }
-
-    @Override
-    public final void z(float f7) {
-    }
-
-    @Override
-    public final void D0(int i10, int i11) {
-    }
-
-    @Override
-    public final void U(float f7, int i10) {
-    }
-
-    @Override
-    public final void g1(CharSequence charSequence, boolean z10, boolean z11) {
-    }
-
-    @Override
-    public final void o1(View view, CharSequence charSequence, boolean z10) {
-    }
-
-    @Override
-    public final void a2(int i10, int i11, int i12, long j10, long j11, boolean z10) {
     }
 }

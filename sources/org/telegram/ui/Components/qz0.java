@@ -1,142 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
+import android.content.Context;
+import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class qz0 extends FrameLayout {
-    public int E;
-    public int F;
-    public lr0 G;
-    public Paint f28692a;
-    public Paint f28693b;
-    public Paint f28694c;
-    public Paint d;
-    public RectF e;
-    public pz0 f28695f;
-    public String[] h;
-    public int[] f28696n;
-    public yj0[] f28697r;
-    public int f28698s;
-    public bk0[] v;
-    public float f28699w;
-    public float f28700x;
-    public int f28701y;
+public final class qz0 extends ud0 {
+    public final rz0 f28382w0;
 
-    public final yj0 a(int i10) {
-        int i11;
-        yj0[] yj0VarArr = this.f28697r;
-        if (yj0VarArr[i10] == null) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        if (i10 != 4) {
-                            if (i10 != 5) {
-                                i11 = R.raw.swipe_pin;
-                            } else {
-                                i11 = R.raw.swipe_disabled;
-                            }
-                        } else {
-                            i11 = R.raw.swipe_delete;
-                        }
-                    } else {
-                        i11 = R.raw.swipe_mute;
-                    }
-                } else {
-                    i11 = R.raw.chats_archive;
-                }
-            } else {
-                i11 = R.raw.swipe_read;
-            }
-            yj0VarArr[i10] = new yj0(i11, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-            c(i10);
-        }
-        return yj0VarArr[i10];
-    }
-
-    public final void b() {
-        int value;
-        bk0[] bk0VarArr = this.v;
-        if (this.G == null && this.F != (value = this.f28695f.getValue())) {
-            this.F = value;
-            int i10 = (this.f28698s + 1) % 2;
-            yj0 a2 = a(value);
-            if (a2 != null) {
-                if (bk0VarArr[i10].getVisibility() != 0) {
-                    a2.N(0, false, false);
-                }
-                bk0VarArr[i10].setAnimation(a2);
-                bk0VarArr[i10].d();
-            } else {
-                bk0VarArr[i10].a();
-            }
-            AndroidUtilities.updateViewVisibilityAnimated(bk0VarArr[this.f28698s], false, 0.5f, true);
-            AndroidUtilities.updateViewVisibilityAnimated(bk0VarArr[i10], true, 0.5f, true);
-            this.f28698s = i10;
-            lr0 lr0Var = new lr0(this, 13);
-            this.G = lr0Var;
-            AndroidUtilities.runOnUIThread(lr0Var, 150L);
-        }
-    }
-
-    public final void c(int i10) {
-        yj0[] yj0VarArr = this.f28697r;
-        if (yj0VarArr[i10] != null) {
-            int d = i0.a.d(0.9f, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19901d6, false), org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19885c9, false));
-            int x02 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19920e9, false);
-            if (i10 == 2) {
-                yj0VarArr[i10].Q(d, "Arrow");
-                yj0VarArr[i10].Q(x02, "Box2");
-                yj0VarArr[i10].Q(x02, "Box1");
-                return;
-            }
-            yj0VarArr[i10].setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
-        }
+    public qz0(rz0 rz0Var, Context context) {
+        super(context, 13, null);
+        this.f28382w0 = rz0Var;
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qz0.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        pz0 pz0Var = this.f28695f;
-        super.onInitializeAccessibilityEvent(accessibilityEvent);
-        if (accessibilityEvent.getEventType() == 1) {
-            int value = pz0Var.getValue() + 1;
-            setContentDescription(this.h[(value > pz0Var.getMaxValue() || value < 0) ? 0 : 0]);
-            pz0Var.a(true);
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setContentDescription(this.h[this.f28695f.getValue()]);
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, null));
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
-    }
-
-    @Override
-    public void setBackgroundColor(int i10) {
-        pz0 pz0Var = this.f28695f;
-        super.setBackgroundColor(i10);
-        for (int i11 = 0; i11 < this.f28697r.length; i11++) {
-            c(i11);
-        }
-        pz0Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20007j5, false));
-        pz0Var.invalidate();
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float dp = AndroidUtilities.dp(31.0f);
+        rz0 rz0Var = this.f28382w0;
+        rz0Var.d.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19674h7, false));
+        canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, rz0Var.d);
+        float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
+        canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, rz0Var.d);
     }
 }

@@ -12,8 +12,8 @@ public final class f extends rh.e {
 
     public f(TLRPC.MessageMedia messageMedia) {
         this.f45470b = messageMedia;
-        this.f44665a.setRoundRadius(AndroidUtilities.dp(7.0f));
-        ImageReceiver imageReceiver = this.f44665a;
+        this.f44424a.setRoundRadius(AndroidUtilities.dp(7.0f));
+        ImageReceiver imageReceiver = this.f44424a;
         TLRPC.GeoPoint geoPoint = messageMedia.geo;
         if (geoPoint == null) {
             imageReceiver.clearImage();
@@ -24,7 +24,7 @@ public final class f extends rh.e {
 
     @Override
     public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f44665a;
+        ImageReceiver imageReceiver = this.f44424a;
         imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
         imageReceiver.draw(canvas);
     }

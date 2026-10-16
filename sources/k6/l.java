@@ -5,9 +5,9 @@ import android.os.RemoteException;
 import android.util.Log;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
-import n6.y;
-public abstract class l extends b8.b implements y {
-    public final int f14180b;
+import n6.x;
+public abstract class l extends b8.b implements x {
+    public final int f14182b;
 
     public l(byte[] bArr) {
         super("com.google.android.gms.common.internal.ICertData", 7);
@@ -18,7 +18,7 @@ public abstract class l extends b8.b implements y {
             z10 = false;
         }
         n6.l.b(z10);
-        this.f14180b = Arrays.hashCode(bArr);
+        this.f14182b = Arrays.hashCode(bArr);
     }
 
     public static byte[] K0(String str) {
@@ -36,7 +36,7 @@ public abstract class l extends b8.b implements y {
                 return false;
             }
             parcel2.writeNoException();
-            parcel2.writeInt(this.f14180b);
+            parcel2.writeInt(this.f14182b);
             return true;
         }
         x6.b bVar = new x6.b(L0());
@@ -48,11 +48,11 @@ public abstract class l extends b8.b implements y {
     public abstract byte[] L0();
 
     public final boolean equals(Object obj) {
-        if (obj != null && (obj instanceof y)) {
+        if (obj != null && (obj instanceof x)) {
             try {
-                y yVar = (y) obj;
-                if (((l) yVar).f14180b == this.f14180b) {
-                    return Arrays.equals(L0(), (byte[]) x6.b.L0(new x6.b(((l) yVar).L0())));
+                x xVar = (x) obj;
+                if (((l) xVar).f14182b == this.f14182b) {
+                    return Arrays.equals(L0(), (byte[]) x6.b.L0(new x6.b(((l) xVar).L0())));
                 }
             } catch (RemoteException e) {
                 Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e);
@@ -62,6 +62,6 @@ public abstract class l extends b8.b implements y {
     }
 
     public final int hashCode() {
-        return this.f14180b;
+        return this.f14182b;
     }
 }

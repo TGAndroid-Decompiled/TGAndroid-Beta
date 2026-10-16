@@ -12,39 +12,39 @@ import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public final class ck0 {
     public static DecelerateInterpolator A;
-    public final View f24096i;
-    public boolean f24098k;
-    public boolean f24099l;
-    public Drawable f24100m;
-    public Drawable f24101n;
-    public final Paint f24103p;
-    public boolean f24108u;
-    public long f24091a = 0;
-    public float f24092b = 0.0f;
-    public float f24093c = 0.0f;
+    public final View f23753i;
+    public boolean f23755k;
+    public boolean f23756l;
+    public Drawable f23757m;
+    public Drawable f23758n;
+    public final Paint f23760p;
+    public boolean f23765u;
+    public long f23748a = 0;
+    public float f23749b = 0.0f;
+    public float f23750c = 0.0f;
     public float d = 0.0f;
     public long e = 0;
-    public float f24094f = 0.0f;
-    public final RectF f24095g = new RectF();
+    public float f23751f = 0.0f;
+    public final RectF f23752g = new RectF();
     public final RectF h = new RectF();
-    public float f24097j = 1.0f;
-    public int f24102o = -1;
-    public int f24104q = AndroidUtilities.dp(4.0f);
-    public final boolean f24105r = true;
-    public final float f24106s = 1.0f;
-    public Paint f24107t = null;
+    public float f23754j = 1.0f;
+    public int f23759o = -1;
+    public int f23761q = AndroidUtilities.dp(4.0f);
+    public final boolean f23762r = true;
+    public final float f23763s = 1.0f;
+    public Paint f23764t = null;
     public float v = 3000.0f;
-    public final Path f24109w = new Path();
-    public final Matrix f24110x = new Matrix();
-    public final PathMeasure f24111y = new PathMeasure();
-    public final Path f24112z = new Path();
+    public final Path f23766w = new Path();
+    public final Matrix f23767x = new Matrix();
+    public final PathMeasure f23768y = new PathMeasure();
+    public final Path f23769z = new Path();
 
     public ck0(View view) {
         if (A == null) {
             A = new DecelerateInterpolator();
         }
         Paint paint = new Paint(1);
-        this.f24103p = paint;
+        this.f23760p = paint;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         Paint.Cap cap = Paint.Cap.ROUND;
@@ -55,61 +55,61 @@ public final class ck0 {
         paint2.setStrokeCap(cap);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         new Paint(1);
-        this.f24096i = view;
+        this.f23753i = view;
     }
 
     public final void a(Canvas canvas) {
         Paint paint;
-        Drawable drawable = this.f24101n;
-        RectF rectF = this.f24095g;
-        float f7 = this.f24106s;
+        Drawable drawable = this.f23758n;
+        RectF rectF = this.f23752g;
+        float f7 = this.f23763s;
         if (drawable != null) {
-            if (this.f24105r) {
-                drawable.setAlpha((int) (this.f24097j * 255.0f * f7));
+            if (this.f23762r) {
+                drawable.setAlpha((int) (this.f23754j * 255.0f * f7));
             } else {
                 drawable.setAlpha((int) (f7 * 255.0f));
             }
-            this.f24101n.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            this.f24101n.draw(canvas);
+            this.f23758n.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            this.f23758n.draw(canvas);
         }
-        Drawable drawable2 = this.f24100m;
+        Drawable drawable2 = this.f23757m;
         if (drawable2 != null) {
-            if (this.f24101n != null) {
-                drawable2.setAlpha((int) org.telegram.messenger.q.B(1.0f, this.f24097j, 255.0f, f7));
+            if (this.f23758n != null) {
+                drawable2.setAlpha((int) org.telegram.messenger.g0.z(1.0f, this.f23754j, 255.0f, f7));
             } else {
                 drawable2.setAlpha((int) (f7 * 255.0f));
             }
-            this.f24100m.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            this.f24100m.draw(canvas);
+            this.f23757m.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            this.f23757m.draw(canvas);
         }
-        if (!this.f24098k && !this.f24099l) {
+        if (!this.f23755k && !this.f23756l) {
             g(false);
             return;
         }
-        Paint paint2 = this.f24107t;
+        Paint paint2 = this.f23764t;
         if (paint2 != null) {
             paint = paint2;
         } else {
-            int i10 = this.f24102o;
-            Paint paint3 = this.f24103p;
+            int i10 = this.f23759o;
+            Paint paint3 = this.f23760p;
             paint3.setColor(i10);
-            if (this.f24099l) {
-                paint3.setAlpha((int) (this.f24097j * 255.0f * f7));
+            if (this.f23756l) {
+                paint3.setAlpha((int) (this.f23754j * 255.0f * f7));
             } else {
                 paint3.setAlpha((int) (f7 * 255.0f));
             }
             paint = paint3;
         }
         float f10 = rectF.left;
-        float f11 = this.f24104q;
+        float f11 = this.f23761q;
         RectF rectF2 = this.h;
         rectF2.set(f10 + f11, rectF.top + f11, rectF.right - f11, rectF.bottom - f11);
-        b(this.f24092b - 90.0f, Math.max(4.0f, this.f24094f * 360.0f), canvas, paint, rectF2);
+        b(this.f23749b - 90.0f, Math.max(4.0f, this.f23751f * 360.0f), canvas, paint, rectF2);
         g(true);
     }
 
     public final void b(float f7, float f10, Canvas canvas, Paint paint, RectF rectF) {
-        if (this.f24108u) {
+        if (this.f23765u) {
             float height = rectF.height() * 0.32f;
             if (Math.abs(f10) == 360.0f) {
                 canvas.drawRoundRect(rectF, height, height, paint);
@@ -118,17 +118,17 @@ public final class ck0 {
             float f11 = ((((int) f7) / 90) * 90) + 90;
             float f12 = (-199.0f) + f11;
             float f13 = ((f7 + f10) - f12) / 360.0f;
-            Path path = this.f24109w;
+            Path path = this.f23766w;
             path.rewind();
             path.addRoundRect(rectF, height, height, Path.Direction.CW);
-            Matrix matrix = this.f24110x;
+            Matrix matrix = this.f23767x;
             matrix.reset();
             matrix.postRotate(f11, rectF.centerX(), rectF.centerY());
             path.transform(matrix);
-            PathMeasure pathMeasure = this.f24111y;
+            PathMeasure pathMeasure = this.f23768y;
             pathMeasure.setPath(path, false);
             float length = pathMeasure.getLength();
-            Path path2 = this.f24112z;
+            Path path2 = this.f23769z;
             path2.reset();
             pathMeasure.getSegment(((f7 - f12) / 360.0f) * length, length * f13, path2, true);
             path2.rLineTo(0.0f, 0.0f);
@@ -144,95 +144,95 @@ public final class ck0 {
 
     public final void c() {
         int dp = AndroidUtilities.dp(2.0f);
-        RectF rectF = this.f24095g;
+        RectF rectF = this.f23752g;
         int i10 = ((int) rectF.left) - dp;
         int i11 = ((int) rectF.top) - dp;
         int i12 = dp * 2;
-        this.f24096i.invalidate(i10, i11, ((int) rectF.right) + i12, ((int) rectF.bottom) + i12);
+        this.f23753i.invalidate(i10, i11, ((int) rectF.right) + i12, ((int) rectF.bottom) + i12);
     }
 
     public final void d(Drawable drawable, boolean z10, boolean z11) {
         Drawable drawable2;
-        this.f24091a = System.currentTimeMillis();
-        if (z11 && (drawable2 = this.f24100m) != drawable) {
-            this.f24101n = drawable2;
-            this.f24099l = this.f24098k;
-            this.f24097j = 1.0f;
+        this.f23748a = System.currentTimeMillis();
+        if (z11 && (drawable2 = this.f23757m) != drawable) {
+            this.f23758n = drawable2;
+            this.f23756l = this.f23755k;
+            this.f23754j = 1.0f;
             e(1.0f, z11);
         } else {
-            this.f24101n = null;
-            this.f24099l = false;
+            this.f23758n = null;
+            this.f23756l = false;
         }
-        this.f24098k = z10;
-        this.f24100m = drawable;
+        this.f23755k = z10;
+        this.f23757m = drawable;
         if (!z11) {
-            this.f24096i.invalidate();
+            this.f23753i.invalidate();
         } else {
             c();
         }
     }
 
     public final void e(float f7, boolean z10) {
-        if (f7 != 1.0f && this.f24097j != 0.0f && this.f24101n != null) {
-            this.f24097j = 0.0f;
-            this.f24101n = null;
+        if (f7 != 1.0f && this.f23754j != 0.0f && this.f23758n != null) {
+            this.f23754j = 0.0f;
+            this.f23758n = null;
         }
         if (!z10) {
-            this.f24094f = f7;
+            this.f23751f = f7;
             this.d = f7;
         } else {
-            if (this.f24094f > f7) {
-                this.f24094f = f7;
+            if (this.f23751f > f7) {
+                this.f23751f = f7;
             }
-            this.d = this.f24094f;
+            this.d = this.f23751f;
         }
-        this.f24093c = f7;
+        this.f23750c = f7;
         this.e = 0L;
         c();
     }
 
     public final void f(int i10, int i11, int i12, int i13) {
-        this.f24095g.set(i10, i11, i12, i13);
+        this.f23752g.set(i10, i11, i12, i13);
     }
 
     public final void g(boolean z10) {
         long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f24091a;
-        this.f24091a = currentTimeMillis;
+        long j10 = currentTimeMillis - this.f23748a;
+        this.f23748a = currentTimeMillis;
         if (z10) {
-            if (this.f24094f != 1.0f) {
-                this.f24092b = (((float) (360 * j10)) / this.v) + this.f24092b;
-                float f7 = this.f24093c;
+            if (this.f23751f != 1.0f) {
+                this.f23749b = (((float) (360 * j10)) / this.v) + this.f23749b;
+                float f7 = this.f23750c;
                 float f10 = this.d;
                 float f11 = f7 - f10;
                 if (f11 > 0.0f) {
                     long j11 = this.e + j10;
                     this.e = j11;
                     if (j11 >= 300) {
-                        this.f24094f = f7;
+                        this.f23751f = f7;
                         this.d = f7;
                         this.e = 0L;
                     } else {
-                        this.f24094f = (A.getInterpolation(((float) j11) / 300.0f) * f11) + f10;
+                        this.f23751f = (A.getInterpolation(((float) j11) / 300.0f) * f11) + f10;
                     }
                 }
                 c();
             }
-            if (this.f24094f >= 1.0f && this.f24101n != null) {
-                float f12 = this.f24097j - (((float) j10) / 200.0f);
-                this.f24097j = f12;
+            if (this.f23751f >= 1.0f && this.f23758n != null) {
+                float f12 = this.f23754j - (((float) j10) / 200.0f);
+                this.f23754j = f12;
                 if (f12 <= 0.0f) {
-                    this.f24097j = 0.0f;
-                    this.f24101n = null;
+                    this.f23754j = 0.0f;
+                    this.f23758n = null;
                 }
                 c();
             }
-        } else if (this.f24101n != null) {
-            float f13 = this.f24097j - (((float) j10) / 200.0f);
-            this.f24097j = f13;
+        } else if (this.f23758n != null) {
+            float f13 = this.f23754j - (((float) j10) / 200.0f);
+            this.f23754j = f13;
             if (f13 <= 0.0f) {
-                this.f24097j = 0.0f;
-                this.f24101n = null;
+                this.f23754j = 0.0f;
+                this.f23758n = null;
             }
             c();
         }

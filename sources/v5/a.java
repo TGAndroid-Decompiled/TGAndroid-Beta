@@ -10,9 +10,9 @@ public abstract class a {
     static {
         HashMap hashMap = new HashMap();
         f46566b = hashMap;
-        hashMap.put(d.f11319a, 0);
-        hashMap.put(d.f11320b, 1);
-        hashMap.put(d.f11321c, 2);
+        hashMap.put(d.f11323a, 0);
+        hashMap.put(d.f11324b, 1);
+        hashMap.put(d.f11325c, 2);
         for (d dVar : hashMap.keySet()) {
             f46565a.append(((Integer) f46566b.get(dVar)).intValue(), dVar);
         }
@@ -31,6 +31,6 @@ public abstract class a {
         if (dVar != null) {
             return dVar;
         }
-        throw new IllegalArgumentException(i2.d.i(i10, "Unknown Priority for value "));
+        throw new IllegalArgumentException(i2.d.j(i10, "Unknown Priority for value "));
     }
 }

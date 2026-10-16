@@ -29,33 +29,33 @@ public class w90 extends LinearLayout {
     public final float[] I;
     public String J;
     public String K;
-    public final TextView f30826a;
-    public String f30827b;
-    public final org.telegram.ui.ActionBar.m2 f30828c;
+    public final TextView f30502a;
+    public String f30503b;
+    public final org.telegram.ui.ActionBar.m2 f30504c;
     public final ImageView d;
     public final TextView e;
-    public final TextView f30829f;
+    public final TextView f30505f;
     public final TextView h;
-    public final FrameLayout f30830n;
-    public v90 f30831r;
-    public org.telegram.ui.ActionBar.m1 f30832s;
+    public final FrameLayout f30506n;
+    public v90 f30507r;
+    public org.telegram.ui.ActionBar.m1 f30508s;
     public final bi.i7 v;
-    public int f30833w;
-    public boolean f30834x;
-    public boolean f30835y;
+    public int f30509w;
+    public boolean f30510x;
+    public boolean f30511y;
 
     public w90(Context context, final org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.e3 e3Var, boolean z10, boolean z11) {
         super(context);
         this.G = true;
         this.I = new float[2];
-        this.f30828c = m2Var;
-        this.f30834x = z10;
+        this.f30504c = m2Var;
+        this.f30510x = z10;
         this.H = z11;
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f30830n = frameLayout;
+        this.f30506n = frameLayout;
         TextView textView = new TextView(context);
-        this.f30826a = textView;
+        this.f30502a = textView;
         textView.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(13.0f));
         textView.setTextSize(1, 16.0f);
         textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
@@ -66,13 +66,13 @@ public class w90 extends LinearLayout {
         imageView.setImageDrawable(context.getDrawable(R.drawable.ic_ab_other));
         imageView.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        frameLayout.addView(imageView, w7.a6.e(40, 48, 21));
-        addView(frameLayout, w7.a6.t(-1, -2, 0, 4, 0, 4, 0));
+        frameLayout.addView(imageView, w7.z5.e(40, 48, 21));
+        addView(frameLayout, w7.z5.t(-1, -2, 0, 4, 0, 4, 0));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         TextView textView2 = new TextView(context);
         this.e = textView2;
-        w7.c6.b(textView2, 0.025f, 1.2f);
+        w7.b6.b(textView2, 0.025f, 1.2f);
         textView2.setGravity(17);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "..").setSpan(new br(0, context.getDrawable(R.drawable.msg_copy_filled)), 0, 1, 0);
@@ -84,9 +84,9 @@ public class w90 extends LinearLayout {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setSingleLine(true);
-        TextView i10 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView2, w7.a6.p(0, 42, 1.0f, 0, 4, 0, 4, 0), context);
-        this.f30829f = i10;
-        w7.c6.b(i10, 0.025f, 1.2f);
+        TextView i10 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView2, w7.z5.p(0, 42, 1.0f, 0, 4, 0, 4, 0), context);
+        this.f30505f = i10;
+        w7.b6.b(i10, 0.025f, 1.2f);
         i10.setGravity(17);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
         spannableStringBuilder2.append((CharSequence) "..").setSpan(new br(0, context.getDrawable(R.drawable.msg_share_filled)), 0, 1, 0);
@@ -98,9 +98,9 @@ public class w90 extends LinearLayout {
         i10.setTextSize(1, 14.0f);
         i10.setTypeface(AndroidUtilities.bold());
         i10.setSingleLine(true);
-        TextView i11 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, i10, w7.a6.m(1.0f, 0, 42, 4, 4, 0), context);
+        TextView i11 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, i10, w7.z5.m(1.0f, 0, 42, 4, 4, 0), context);
         this.h = i11;
-        w7.c6.b(i11, 0.025f, 1.2f);
+        w7.b6.b(i11, 0.025f, 1.2f);
         i11.setGravity(17);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
         spannableStringBuilder3.append((CharSequence) "..").setSpan(new br(0, context.getDrawable(R.drawable.msg_delete_filled)), 0, 1, 0);
@@ -112,35 +112,35 @@ public class w90 extends LinearLayout {
         i11.setTextSize(1, 14.0f);
         i11.setTypeface(AndroidUtilities.bold());
         i11.setSingleLine(true);
-        linearLayout.addView(i11, w7.a6.m(1.0f, 0, 42, 4, 4, 0));
+        linearLayout.addView(i11, w7.z5.m(1.0f, 0, 42, 4, 4, 0));
         linearLayout.setClickable(true);
         i11.setVisibility(8);
-        addView(linearLayout, w7.a6.k(0.0f, 12.0f, 0.0f, 0.0f, -1, -2));
+        addView(linearLayout, w7.z5.k(0.0f, 12.0f, 0.0f, 0.0f, -1, -2));
         bi.i7 i7Var = new bi.i7(this, context);
         this.v = i7Var;
-        ((u90) i7Var.f3175c).setAvatarsTextSize(AndroidUtilities.dp(18.0f));
-        addView(i7Var, w7.a6.k(0.0f, 12.0f, 0.0f, 0.0f, -1, 44));
+        ((u90) i7Var.f3179c).setAvatarsTextSize(AndroidUtilities.dp(18.0f));
+        addView(i7Var, w7.z5.k(0.0f, 12.0f, 0.0f, 0.0f, -1, 44));
         textView2.setOnClickListener(new bi.x(this, e3Var, m2Var));
         if (z10) {
             i7Var.setOnClickListener(new p90(this, 0));
         }
         i10.setOnClickListener(new View.OnClickListener(this) {
-            public final w90 f28559b;
+            public final w90 f28248b;
 
             {
-                this.f28559b = this;
+                this.f28248b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        w90 w90Var = this.f28559b;
+                        w90 w90Var = this.f28248b;
                         org.telegram.ui.ActionBar.m2 m2Var2 = m2Var;
                         try {
-                            if (w90Var.f30827b != null) {
+                            if (w90Var.f30503b != null) {
                                 Context context2 = w90Var.getContext();
-                                String str = w90Var.f30827b;
+                                String str = w90Var.f30503b;
                                 m2Var2.showDialog(new r90(w90Var, context2, str, str, m2Var2.getResourceProvider()));
                                 return;
                             }
@@ -152,32 +152,32 @@ public class w90 extends LinearLayout {
                     default:
                         org.telegram.ui.ActionBar.m2 m2Var3 = m2Var;
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m2Var3.getParentActivity());
-                        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.DeleteLink);
-                        alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.DeleteLinkHelp);
-                        alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new o90(this.f28559b, 0));
+                        alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.DeleteLink);
+                        alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.DeleteLinkHelp);
+                        alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new o90(this.f28248b, 0));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        m2Var3.showDialog(alertDialog$Builder.f19548a);
+                        m2Var3.showDialog(alertDialog$Builder.f19248a);
                         return;
                 }
             }
         });
         i11.setOnClickListener(new View.OnClickListener(this) {
-            public final w90 f28559b;
+            public final w90 f28248b;
 
             {
-                this.f28559b = this;
+                this.f28248b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        w90 w90Var = this.f28559b;
+                        w90 w90Var = this.f28248b;
                         org.telegram.ui.ActionBar.m2 m2Var2 = m2Var;
                         try {
-                            if (w90Var.f30827b != null) {
+                            if (w90Var.f30503b != null) {
                                 Context context2 = w90Var.getContext();
-                                String str = w90Var.f30827b;
+                                String str = w90Var.f30503b;
                                 m2Var2.showDialog(new r90(w90Var, context2, str, str, m2Var2.getResourceProvider()));
                                 return;
                             }
@@ -189,11 +189,11 @@ public class w90 extends LinearLayout {
                     default:
                         org.telegram.ui.ActionBar.m2 m2Var3 = m2Var;
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m2Var3.getParentActivity());
-                        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.DeleteLink);
-                        alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.DeleteLinkHelp);
-                        alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new o90(this.f28559b, 0));
+                        alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.DeleteLink);
+                        alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.DeleteLinkHelp);
+                        alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new o90(this.f28248b, 0));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        m2Var3.showDialog(alertDialog$Builder.f19548a);
+                        m2Var3.showDialog(alertDialog$Builder.f19248a);
                         return;
                 }
             }
@@ -242,7 +242,7 @@ public class w90 extends LinearLayout {
             d(0, null, false);
         } else if (!TextUtils.equals(this.K, tL_chatInviteExported.link)) {
             d(tL_chatInviteExported.usage, tL_chatInviteExported.importers, false);
-            if (tL_chatInviteExported.usage > 0 && tL_chatInviteExported.importers == null && !this.f30835y) {
+            if (tL_chatInviteExported.usage > 0 && tL_chatInviteExported.importers == null && !this.f30511y) {
                 TLRPC.TL_messages_getChatInviteImporters tL_messages_getChatInviteImporters = new TLRPC.TL_messages_getChatInviteImporters();
                 String str = tL_chatInviteExported.link;
                 if (str != null) {
@@ -252,14 +252,14 @@ public class w90 extends LinearLayout {
                 tL_messages_getChatInviteImporters.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(-j10);
                 tL_messages_getChatInviteImporters.offset_user = new TLRPC.TL_inputUserEmpty();
                 tL_messages_getChatInviteImporters.limit = Math.min(tL_chatInviteExported.usage, 3);
-                this.f30835y = true;
+                this.f30511y = true;
                 ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_getChatInviteImporters, new org.telegram.ui.to(11, this, tL_chatInviteExported));
             }
         }
     }
 
     public final void d(int i10, ArrayList arrayList, boolean z10) {
-        this.f30833w = i10;
+        this.f30509w = i10;
         bi.i7 i7Var = this.v;
         if (i10 == 0) {
             i7Var.setVisibility(8);
@@ -267,7 +267,7 @@ public class w90 extends LinearLayout {
         } else {
             i7Var.setVisibility(0);
             setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(10.0f));
-            ((TextView) i7Var.f3174b).setText(LocaleController.formatPluralString("PeopleJoined", i10, new Object[0]));
+            ((TextView) i7Var.f3178b).setText(LocaleController.formatPluralString("PeopleJoined", i10, new Object[0]));
             i7Var.requestLayout();
         }
         if (arrayList != null) {
@@ -275,19 +275,19 @@ public class w90 extends LinearLayout {
                 MessagesController.getInstance(UserConfig.selectedAccount).putUser((TLRPC.User) arrayList.get(i11), false);
             }
             int min = Math.min(3, Math.min(i10, arrayList.size()));
-            ((u90) i7Var.f3175c).setCount(min);
+            ((u90) i7Var.f3179c).setCount(min);
             for (int i12 = 0; i12 < min; i12++) {
-                ((u90) i7Var.f3175c).b(i12, (TLObject) arrayList.get(i12), UserConfig.selectedAccount);
+                ((u90) i7Var.f3179c).b(i12, (TLObject) arrayList.get(i12), UserConfig.selectedAccount);
             }
         } else {
-            ((u90) i7Var.f3175c).setCount(0);
+            ((u90) i7Var.f3179c).setCount(0);
         }
-        ((u90) i7Var.f3175c).a(z10);
+        ((u90) i7Var.f3179c).a(z10);
     }
 
     public void e(int i10, SpannableStringBuilder spannableStringBuilder) {
-        sc Q = zc.a0(this.f30828c).Q(i10, 36, spannableStringBuilder);
-        Q.f29110r = false;
+        sc Q = zc.a0(this.f30504c).Q(i10, 36, spannableStringBuilder);
+        Q.f28813r = false;
         Q.k(true);
     }
 
@@ -297,7 +297,7 @@ public class w90 extends LinearLayout {
         TextView textView = this.e;
         textView.setTextColor(x02);
         int x03 = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
-        TextView textView2 = this.f30829f;
+        TextView textView2 = this.f30505f;
         textView2.setTextColor(x03);
         int x04 = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
         TextView textView3 = this.h;
@@ -313,18 +313,18 @@ public class w90 extends LinearLayout {
         int x08 = org.telegram.ui.ActionBar.g6.x0(null, i12, false);
         textView2.setBackground(org.telegram.ui.ActionBar.g6.j0(dp2, dp2, dp2, dp2, x07, x08, x08));
         int dp3 = AndroidUtilities.dp(21.0f);
-        int x09 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20032ka, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19901d6, false), 120);
+        int x09 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19732ka, false);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false), 120);
         textView3.setBackground(org.telegram.ui.ActionBar.g6.j0(dp3, dp3, dp3, dp3, x09, k10, k10));
         int dp4 = AndroidUtilities.dp(21.0f);
         int x010 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.e7, false);
-        int k11 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19990i6, false), 76);
-        this.f30830n.setBackground(org.telegram.ui.ActionBar.g6.j0(dp4, dp4, dp4, dp4, x010, k11, k11));
-        this.f30826a.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
-        this.d.setColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20157r5, false));
+        int k11 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19690i6, false), 76);
+        this.f30506n.setBackground(org.telegram.ui.ActionBar.g6.j0(dp4, dp4, dp4, dp4, x010, k11, k11));
+        this.f30502a.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
+        this.d.setColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19857r5, false));
         bi.i7 i7Var = this.v;
-        int i13 = org.telegram.ui.ActionBar.g6.f20084n6;
-        ((TextView) i7Var.f3174b).setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i13, false));
+        int i13 = org.telegram.ui.ActionBar.g6.f19784n6;
+        ((TextView) i7Var.f3178b).setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i13, false));
         int dp5 = AndroidUtilities.dp(6.0f);
         int k12 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, i13, false), 76);
         i7Var.setBackground(org.telegram.ui.ActionBar.g6.j0(dp5, dp5, dp5, dp5, 0, k12, k12));
@@ -339,12 +339,12 @@ public class w90 extends LinearLayout {
     }
 
     public void setDelegate(v90 v90Var) {
-        this.f30831r = v90Var;
+        this.f30507r = v90Var;
     }
 
     public void setLink(String str) {
-        this.f30827b = str;
-        TextView textView = this.f30826a;
+        this.f30503b = str;
+        TextView textView = this.f30502a;
         if (str == null) {
             textView.setText(LocaleController.getString(R.string.Loading));
         } else if (str.startsWith("https://")) {
@@ -355,7 +355,7 @@ public class w90 extends LinearLayout {
     }
 
     public void setPermanent(boolean z10) {
-        this.f30834x = z10;
+        this.f30510x = z10;
     }
 
     public void setQrText(String str) {
@@ -365,7 +365,7 @@ public class w90 extends LinearLayout {
     public void setRevoke(boolean z10) {
         TextView textView = this.h;
         TextView textView2 = this.e;
-        TextView textView3 = this.f30829f;
+        TextView textView3 = this.f30505f;
         ImageView imageView = this.d;
         if (z10) {
             imageView.setVisibility(8);

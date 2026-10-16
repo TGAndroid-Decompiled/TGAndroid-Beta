@@ -24,27 +24,6 @@ public final class o implements f1 {
     }
 
     @Override
-    public final long b() {
-        int i10 = 0;
-        long j10 = Long.MAX_VALUE;
-        while (true) {
-            x1 x1Var = this.f46001a;
-            if (i10 >= x1Var.d) {
-                break;
-            }
-            long b10 = ((n) x1Var.get(i10)).f45989a.b();
-            if (b10 != Long.MIN_VALUE) {
-                j10 = Math.min(j10, b10);
-            }
-            i10++;
-        }
-        if (j10 == Long.MAX_VALUE) {
-            return Long.MIN_VALUE;
-        }
-        return j10;
-    }
-
-    @Override
     public final boolean c() {
         int i10 = 0;
         while (true) {
@@ -60,13 +39,34 @@ public final class o implements f1 {
     }
 
     @Override
-    public final boolean p(i2.v0 v0Var) {
+    public final long d() {
+        int i10 = 0;
+        long j10 = Long.MAX_VALUE;
+        while (true) {
+            x1 x1Var = this.f46001a;
+            if (i10 >= x1Var.d) {
+                break;
+            }
+            long d = ((n) x1Var.get(i10)).f45989a.d();
+            if (d != Long.MIN_VALUE) {
+                j10 = Math.min(j10, d);
+            }
+            i10++;
+        }
+        if (j10 == Long.MAX_VALUE) {
+            return Long.MIN_VALUE;
+        }
+        return j10;
+    }
+
+    @Override
+    public final boolean m(i2.v0 v0Var) {
         boolean z10;
         boolean z11;
         boolean z12 = false;
         do {
-            long b10 = b();
-            if (b10 == Long.MIN_VALUE) {
+            long d = d();
+            if (d == Long.MIN_VALUE) {
                 return z12;
             }
             int i10 = 0;
@@ -74,14 +74,14 @@ public final class o implements f1 {
             while (true) {
                 x1 x1Var = this.f46001a;
                 if (i10 < x1Var.d) {
-                    long b11 = ((n) x1Var.get(i10)).f45989a.b();
-                    if (b11 != Long.MIN_VALUE && b11 <= v0Var.f11206a) {
+                    long d10 = ((n) x1Var.get(i10)).f45989a.d();
+                    if (d10 != Long.MIN_VALUE && d10 <= v0Var.f11210a) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    if (b11 == b10 || z11) {
-                        z10 |= ((n) x1Var.get(i10)).f45989a.p(v0Var);
+                    if (d10 == d || z11) {
+                        z10 |= ((n) x1Var.get(i10)).f45989a.m(v0Var);
                     }
                     i10++;
                 } else {
@@ -93,7 +93,7 @@ public final class o implements f1 {
     }
 
     @Override
-    public final long s() {
+    public final long p() {
         int i10 = 0;
         long j10 = Long.MAX_VALUE;
         long j11 = Long.MAX_VALUE;
@@ -103,13 +103,13 @@ public final class o implements f1 {
                 break;
             }
             n nVar = (n) x1Var.get(i10);
-            long s10 = nVar.f45989a.s();
+            long p5 = nVar.f45989a.p();
             e9.n0 n0Var = nVar.f45990b;
-            if ((n0Var.contains(1) || n0Var.contains(2) || n0Var.contains(4)) && s10 != Long.MIN_VALUE) {
-                j10 = Math.min(j10, s10);
+            if ((n0Var.contains(1) || n0Var.contains(2) || n0Var.contains(4)) && p5 != Long.MIN_VALUE) {
+                j10 = Math.min(j10, p5);
             }
-            if (s10 != Long.MIN_VALUE) {
-                j11 = Math.min(j11, s10);
+            if (p5 != Long.MIN_VALUE) {
+                j11 = Math.min(j11, p5);
             }
             i10++;
         }
@@ -128,12 +128,12 @@ public final class o implements f1 {
     }
 
     @Override
-    public final void u(long j10) {
+    public final void s(long j10) {
         int i10 = 0;
         while (true) {
             x1 x1Var = this.f46001a;
             if (i10 < x1Var.d) {
-                ((n) x1Var.get(i10)).u(j10);
+                ((n) x1Var.get(i10)).s(j10);
                 i10++;
             } else {
                 return;

@@ -8,12 +8,12 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class on implements org.telegram.ui.vt {
-    public final int f27997a;
-    public final io f27998b;
+    public final int f27688a;
+    public final io f27689b;
 
     public on(io ioVar, int i10) {
-        this.f27998b = ioVar;
-        this.f27997a = i10;
+        this.f27689b = ioVar;
+        this.f27688a = i10;
     }
 
     @Override
@@ -122,47 +122,47 @@ public final class on implements org.telegram.ui.vt {
     }
 
     @Override
-    public final m80 u(ah.v vVar) {
-        m80 F = m80.F(vVar, null, new View(this.f27998b.getContext()));
-        F.f27298s = 0;
-        F.f27299t = false;
+    public final l80 u(ah.v vVar) {
+        l80 F = l80.F(vVar, null, new View(this.f27689b.getContext()));
+        F.f26668s = 0;
+        F.f26669t = false;
         int i10 = R.drawable.msg_replace;
         String string = LocaleController.getString(R.string.ReplaceAttachedPollMedia);
-        final int i11 = this.f27997a;
+        final int i11 = this.f27688a;
         F.c(i10, string, new Runnable(this) {
-            public final on f27689b;
+            public final on f27377b;
 
             {
-                this.f27689b = this;
+                this.f27377b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        this.f27689b.f27998b.e0(i11);
+                        this.f27377b.f27689b.e0(i11);
                         return;
                     default:
-                        this.f27689b.f27998b.h0(i11, null);
+                        this.f27377b.f27689b.h0(i11, null);
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable(this) {
-            public final on f27689b;
+            public final on f27377b;
 
             {
-                this.f27689b = this;
+                this.f27377b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        this.f27689b.f27998b.e0(i11);
+                        this.f27377b.f27689b.e0(i11);
                         return;
                     default:
-                        this.f27689b.f27998b.h0(i11, null);
+                        this.f27377b.f27689b.h0(i11, null);
                         return;
                 }
             }

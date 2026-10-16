@@ -15,7 +15,7 @@ public final class yx extends vz {
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 0) {
-            this.d.f31023f0 = false;
+            this.d.f30716f0 = false;
         }
         super.a(recyclerView, i10);
     }
@@ -27,15 +27,15 @@ public final class yx extends vz {
         vy vyVar = wzVar.S;
         vx vxVar = wzVar.Q;
         wzVar.U(vxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = wzVar.f31037j2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = wzVar.f30730j2) != null) {
             fVar.f(i10, i11);
         }
         super.b(recyclerView, i10, i11);
         if (vyVar != null && wzVar.P.getAdapter() == vyVar) {
-            vy vyVar2 = vyVar.f30677x.f29818a;
+            vy vyVar2 = vyVar.f30346x.f29486a;
             if (!vyVar2.F.V.F && !vyVar2.E) {
                 if (vxVar.N0() + 20 > vyVar.h()) {
-                    uy uyVar = vyVar.f30677x;
+                    uy uyVar = vyVar.f30346x;
                     Objects.requireNonNull(uyVar);
                     AndroidUtilities.runOnUIThread(new dx(uyVar, 1));
                 }

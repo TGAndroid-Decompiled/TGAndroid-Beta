@@ -1,116 +1,72 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.app.Activity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-public final class xc extends View {
-    public final Paint f41824a;
-    public final Paint f41825b;
-    public final Paint f41826c;
-    public final Paint d;
-    public final Path e;
-    public final Path f41827f;
-    public boolean h;
-    public boolean f41828n;
-    public final org.telegram.ui.Components.ad f41829r;
-    public boolean f41830s;
-    public final org.telegram.ui.Components.g6 v;
-    public final yc f41831w;
+import org.telegram.messenger.Utilities;
+public final class xc extends FrameLayout {
+    public final org.telegram.ui.ActionBar.c6 f41538a;
+    public final kc1 f41539b;
+    public final s4.b0 f41540c;
+    public final int d;
+    public int e;
 
-    public xc(yc ycVar, Context context) {
-        super(context);
-        this.f41831w = ycVar;
-        Paint paint = new Paint(1);
-        this.f41824a = paint;
-        this.f41825b = new Paint(1);
-        this.f41826c = new Paint(1);
-        this.d = new Paint(1);
-        this.e = new Path();
-        this.f41827f = new Path();
-        this.f41829r = new org.telegram.ui.Components.ad(this);
-        this.v = new org.telegram.ui.Components.g6(this, 0L, 320L, org.telegram.ui.Components.es.h);
-        paint.setStyle(Paint.Style.STROKE);
+    public xc(int i10, Activity activity, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(activity);
+        this.d = i10;
+        this.f41538a = c6Var;
+        kc1 kc1Var = new kc1(activity, 3, c6Var);
+        this.f41539b = kc1Var;
+        kc1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
+        kc1Var.setClipToPadding(false);
+        kc1Var.setAdapter(new vc(this, activity, c6Var, i10));
+        s4.b0 b0Var = new s4.b0();
+        this.f41540c = b0Var;
+        b0Var.j1(0);
+        kc1Var.setLayoutManager(b0Var);
+        addView(kc1Var, w7.z5.d(-1.0f, -1));
     }
 
-    public final void a(MessagesController.PeerColor peerColor) {
-        boolean q6;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f41831w.f42130a;
-        if (c6Var != null) {
-            q6 = c6Var.a();
-        } else {
-            q6 = org.telegram.ui.ActionBar.g6.I.q();
+    public final void a(int i10, boolean z10) {
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.d).peerColors;
+        int i11 = 0;
+        if (peerColors != null) {
+            int i12 = 0;
+            while (true) {
+                if (i12 >= peerColors.colors.size()) {
+                    break;
+                } else if (peerColors.colors.get(i12).f16402id == i10) {
+                    i11 = i12;
+                    break;
+                } else {
+                    i12++;
+                }
+            }
         }
-        Paint paint = this.f41826c;
-        Paint paint2 = this.f41825b;
-        if (q6 && peerColor.hasColor2() && !peerColor.hasColor3()) {
-            paint2.setColor(peerColor.getColor(1, c6Var));
-            paint.setColor(peerColor.getColor(0, c6Var));
-        } else {
-            paint2.setColor(peerColor.getColor(0, c6Var));
-            paint.setColor(peerColor.getColor(1, c6Var));
+        if (i11 != this.e) {
+            this.e = i11;
+            if (!z10) {
+                this.f41540c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
+            }
+            AndroidUtilities.forEachViews((RecyclerView) this.f41539b, (Utilities.Callback<View>) new bi.y2(3, this, z10));
         }
-        this.d.setColor(peerColor.getColor(2, c6Var));
-        this.h = peerColor.hasColor2();
-        this.f41828n = peerColor.hasColor3();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        float a2 = this.f41829r.a(0.05f);
-        canvas.scale(a2, a2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        canvas.save();
-        canvas.clipPath(this.e);
-        canvas.drawPaint(this.f41825b);
-        if (this.h) {
-            canvas.drawPath(this.f41827f, this.f41826c);
-        }
-        canvas.restore();
-        if (this.f41828n) {
-            canvas.save();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((getMeasuredWidth() - AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredHeight() - AndroidUtilities.dp(12.4f)) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredWidth()) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredHeight()) / 2.0f);
-            canvas.rotate(45.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.d);
-            canvas.restore();
-        }
-        float e = this.v.e(this.f41830s);
-        if (e > 0.0f) {
-            float dpf2 = AndroidUtilities.dpf2(2.0f);
-            Paint paint = this.f41824a;
-            paint.setStrokeWidth(dpf2);
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.lerp((paint.getStrokeWidth() * 0.5f) + AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f) - (paint.getStrokeWidth() * 2.0f), e), paint);
-        }
-        canvas.restore();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-        Path path = this.e;
-        path.rewind();
-        path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(20.0f), Path.Direction.CW);
-        Path path2 = this.f41827f;
-        path2.rewind();
-        path2.moveTo(getMeasuredWidth(), 0.0f);
-        path2.lineTo(getMeasuredWidth(), getMeasuredHeight());
-        path2.lineTo(0.0f, getMeasuredHeight());
-        path2.close();
-    }
-
-    @Override
-    public final void setBackgroundColor(int i10) {
-        this.f41824a.setColor(i10);
-    }
-
-    @Override
-    public final void setPressed(boolean z10) {
-        super.setPressed(z10);
-        this.f41829r.c(z10);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (getParent() != null) {
+            ViewParent parent = getParent();
+            boolean z10 = true;
+            if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                z10 = false;
+            }
+            parent.requestDisallowInterceptTouchEvent(z10);
+        }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

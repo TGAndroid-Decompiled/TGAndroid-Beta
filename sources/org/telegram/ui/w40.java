@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class w40 extends wv0 {
+public final class w40 extends vv0 {
     public final n60 T;
 
     public w40(n60 n60Var, ViewGroup viewGroup, ViewGroup viewGroup2) {
@@ -17,7 +17,7 @@ public final class w40 extends wv0 {
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
         n60 n60Var = this.T;
-        g40 g40Var = n60Var.f38444b;
+        g40 g40Var = n60Var.f38159b;
         h40 h40Var = n60Var.C2;
         if (f7 > 0.0f) {
             float x10 = h40Var.getX();
@@ -37,7 +37,7 @@ public final class w40 extends wv0 {
 
     @Override
     public final void e() {
-        g40 g40Var = this.T.f38444b;
+        g40 g40Var = this.T.f38159b;
         super.e();
         for (int i10 = 0; i10 < g40Var.getChildCount(); i10++) {
             g40Var.getChildAt(i10).invalidate();

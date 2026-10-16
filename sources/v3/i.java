@@ -21,13 +21,13 @@ public final class i implements h {
     }
 
     @Override
-    public final long a() {
-        return this.e;
+    public final long a(long j10) {
+        return this.f46553a[m0.f(this.f46554b, j10, true)];
     }
 
     @Override
-    public final long b(long j10) {
-        return this.f46553a[m0.f(this.f46554b, j10, true)];
+    public final long b() {
+        return this.e;
     }
 
     @Override

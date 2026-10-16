@@ -1,10 +1,10 @@
 package x7;
 public final class g8 {
-    public final h8 f48008a;
-    public final s f48009b;
+    public final h8 f48007a;
+    public final s f48008b;
 
-    public g8(n6.o oVar) {
-        this.f48008a = (h8) oVar.f16131b;
-        this.f48009b = (s) oVar.f16132c;
+    public g8(n3.b bVar) {
+        this.f48007a = (h8) bVar.f15703b;
+        this.f48008b = (s) bVar.f15704c;
     }
 }

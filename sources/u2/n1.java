@@ -30,15 +30,15 @@ public final class n1 extends a {
         b2.i0 i0Var = new b2.i0();
         b2.l0 l0Var = b2.l0.d;
         Uri uri = Uri.EMPTY;
-        String uri2 = o0Var.f2244a.toString();
+        String uri2 = o0Var.f2248a.toString();
         uri2.getClass();
         e9.n0 u10 = e9.n0.u(e9.n0.y(o0Var));
-        if (g0Var.f2141b != null && g0Var.f2140a == null) {
+        if (g0Var.f2145b != null && g0Var.f2144a == null) {
             z10 = false;
         }
         u6.p(z10);
         if (uri != null) {
-            if (g0Var.f2140a != null) {
+            if (g0Var.f2144a != null) {
                 h0Var = new b2.h0(g0Var);
             } else {
                 h0Var = null;
@@ -50,17 +50,17 @@ public final class n1 extends a {
         b2.p0 p0Var = new b2.p0(uri2, new b2.e0(d0Var), k0Var, new b2.j0(i0Var), b2.s0.L, l0Var);
         this.f45999o = p0Var;
         b2.w wVar = new b2.w();
-        String str = o0Var.f2245b;
-        wVar.f2466r = b2.w0.n(str == null ? "text/x-unknown" : str);
-        wVar.d = o0Var.f2246c;
+        String str = o0Var.f2249b;
+        wVar.f2470r = b2.w0.n(str == null ? "text/x-unknown" : str);
+        wVar.d = o0Var.f2250c;
         wVar.e = o0Var.d;
-        wVar.f2455f = o0Var.e;
-        wVar.f2453b = o0Var.f2247f;
-        String str2 = o0Var.f2248g;
-        wVar.f2452a = str2 != null ? str2 : null;
+        wVar.f2459f = o0Var.e;
+        wVar.f2457b = o0Var.f2251f;
+        String str2 = o0Var.f2252g;
+        wVar.f2456a = str2 != null ? str2 : null;
         this.f45994j = new b2.x(wVar);
         Map map = Collections.EMPTY_MAP;
-        Uri uri3 = o0Var.f2244a;
+        Uri uri3 = o0Var.f2248a;
         u6.l(uri3, "The uri must be set.");
         this.h = new g2.m(uri3, 1, null, map, 0L, -1L, null, 1);
         this.f45998n = new j1(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, 0L, 0L, true, false, false, null, p0Var, null);

@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.k91;
-import org.telegram.ui.Components.sn0;
-public final class c2 extends k91 {
+import org.telegram.ui.Components.l91;
+import org.telegram.ui.Components.zr0;
+public final class c2 extends l91 {
     public final r3 T;
 
     public c2(r3 r3Var, Context context) {
@@ -45,15 +45,15 @@ public final class c2 extends k91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                l2Var = r3Var.f51072c0;
-                if (l2Var != null && view2 == l2Var.Y && (e2Var3 = l2Var.f51076e0) != null) {
+                l2Var = r3Var.f51073c0;
+                if (l2Var != null && view2 == l2Var.Y && (e2Var3 = l2Var.f51077e0) != null) {
                     e2Var3.invalidate();
                 }
-                if (view2 == r3Var.Y && (e2Var2 = r3Var.f51076e0) != null) {
+                if (view2 == r3Var.Y && (e2Var2 = r3Var.f51077e0) != null) {
                     e2Var2.invalidate();
                 }
-                l2Var2 = r3Var.f51074d0;
-                if (l2Var2 == null && view2 == l2Var2.Y && (e2Var = l2Var2.f51076e0) != null) {
+                l2Var2 = r3Var.f51075d0;
+                if (l2Var2 == null && view2 == l2Var2.Y && (e2Var = l2Var2.f51077e0) != null) {
                     e2Var.invalidate();
                     return;
                 }
@@ -61,14 +61,14 @@ public final class c2 extends k91 {
             }
         }
         view2 = null;
-        l2Var = r3Var.f51072c0;
+        l2Var = r3Var.f51073c0;
         if (l2Var != null) {
             e2Var3.invalidate();
         }
         if (view2 == r3Var.Y) {
             e2Var2.invalidate();
         }
-        l2Var2 = r3Var.f51074d0;
+        l2Var2 = r3Var.f51075d0;
         if (l2Var2 == null) {
         }
     }
@@ -76,14 +76,14 @@ public final class c2 extends k91 {
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f26640b;
+        int i10 = this.f26692b;
         r3 r3Var = this.T;
         boolean z10 = false;
         if (i10 != r3Var.M1(false)) {
-            if (this.f26640b > r3Var.M1(false)) {
+            if (this.f26692b > r3Var.M1(false)) {
                 z10 = true;
             }
-            AndroidUtilities.runOnUIThread(new sn0(19, this, z10));
+            AndroidUtilities.runOnUIThread(new zr0(20, this, z10));
         }
     }
 

@@ -7,38 +7,38 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class qn0 implements Runnable {
-    public final int f28653a = 1;
-    public final yn0 f28654b;
-    public final String f28655c;
+    public final int f28336a = 1;
+    public final xn0 f28337b;
+    public final String f28338c;
     public final ArrayList d;
     public final ArrayList e;
 
-    public qn0(yn0 yn0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f28654b = yn0Var;
-        this.f28655c = str;
+    public qn0(xn0 xn0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
+        this.f28337b = xn0Var;
+        this.f28338c = str;
         this.d = arrayList;
         this.e = arrayList2;
     }
 
     @Override
     public final void run() {
-        switch (this.f28653a) {
+        switch (this.f28336a) {
             case 0:
-                yn0 yn0Var = this.f28654b;
-                int i10 = yn0Var.d;
+                xn0 xn0Var = this.f28337b;
+                int i10 = xn0Var.d;
                 ArrayList arrayList = new ArrayList();
                 ArrayList arrayList2 = new ArrayList();
                 int i11 = 0;
                 while (true) {
                     ArrayList arrayList3 = this.d;
                     int size = arrayList3.size();
-                    String str = this.f28655c;
+                    String str = this.f28338c;
                     if (i11 < size) {
                         String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
                         if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
                             MessageObject messageObject = new MessageObject(i10, ((MessageObject) arrayList3.get(i11)).messageOwner, false, false);
                             messageObject.mediaExists = ((MessageObject) arrayList3.get(i11)).mediaExists;
-                            messageObject.setQuery(yn0Var.K);
+                            messageObject.setQuery(xn0Var.K);
                             arrayList.add(messageObject);
                         }
                         i11++;
@@ -51,12 +51,12 @@ public final class qn0 implements Runnable {
                                 if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
                                     MessageObject messageObject2 = new MessageObject(i10, ((MessageObject) arrayList4.get(i12)).messageOwner, false, false);
                                     messageObject2.mediaExists = ((MessageObject) arrayList4.get(i12)).mediaExists;
-                                    messageObject2.setQuery(yn0Var.K);
+                                    messageObject2.setQuery(xn0Var.K);
                                     arrayList2.add(messageObject2);
                                 }
                                 i12++;
                             } else {
-                                AndroidUtilities.runOnUIThread(new qn0(yn0Var, str, arrayList, arrayList2));
+                                AndroidUtilities.runOnUIThread(new qn0(xn0Var, str, arrayList, arrayList2));
                                 return;
                             }
                         }
@@ -64,14 +64,14 @@ public final class qn0 implements Runnable {
                 }
                 break;
             default:
-                yn0 yn0Var2 = this.f28654b;
-                wx0 wx0Var = yn0Var2.f31653a;
-                if (this.f28655c.equals(yn0Var2.L)) {
-                    if (yn0Var2.f31658r == 0) {
-                        yn0Var2.N.b(0);
+                xn0 xn0Var2 = this.f28337b;
+                wx0 wx0Var = xn0Var2.f30965a;
+                if (this.f28338c.equals(xn0Var2.L)) {
+                    if (xn0Var2.f30970r == 0) {
+                        xn0Var2.N.b(0);
                     }
-                    yn0Var2.e(this.d, this.e, true);
-                    if (yn0Var2.f31658r == 0) {
+                    xn0Var2.e(this.d, this.e, true);
+                    if (xn0Var2.f30970r == 0) {
                         wx0Var.e(false, true);
                         da0 da0Var = wx0Var.e;
                         wx0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
@@ -85,10 +85,10 @@ public final class qn0 implements Runnable {
         }
     }
 
-    public qn0(yn0 yn0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
-        this.f28654b = yn0Var;
+    public qn0(xn0 xn0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
+        this.f28337b = xn0Var;
         this.d = arrayList;
-        this.f28655c = str;
+        this.f28338c = str;
         this.e = arrayList2;
     }
 }

@@ -1,11 +1,12 @@
 package m;
 
 import android.text.StaticLayout;
+import android.text.TextDirectionHeuristic;
+import android.text.TextDirectionHeuristics;
 import android.widget.TextView;
-public abstract class f1 {
-    public abstract void a(StaticLayout.Builder builder, TextView textView);
-
-    public boolean b(TextView textView) {
-        return ((Boolean) g1.e(textView, "getHorizontallyScrolling", Boolean.FALSE)).booleanValue();
+public class f1 extends h1 {
+    @Override
+    public void a(StaticLayout.Builder builder, TextView textView) {
+        builder.setTextDirection((TextDirectionHeuristic) i1.e(textView, "getTextDirectionHeuristic", TextDirectionHeuristics.FIRSTSTRONG_LTR));
     }
 }

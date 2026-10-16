@@ -1,7 +1,7 @@
 package bi;
 
-import org.telegram.ui.qj0;
-public final class g5 extends qj0 {
+import org.telegram.ui.pj0;
+public final class g5 extends pj0 {
     @Override
     public final org.telegram.ui.ActionBar.c6 getResourceProvider() {
         return new b();

@@ -101,10 +101,10 @@ public final class b {
                     gVar.a(aVar);
                     int i12 = aVar.f44811b;
                     int i13 = aVar.d;
-                    RecyclerView recyclerView = gVar.f11748a;
+                    RecyclerView recyclerView = gVar.f11752a;
                     recyclerView.e0(i12, i13, true);
-                    recyclerView.f2018x0 = true;
-                    recyclerView.f2013u0.f44996c += i13;
+                    recyclerView.f2022x0 = true;
+                    recyclerView.f2017u0.f44996c += i13;
                 }
             } else {
                 gVar.a(aVar);
@@ -142,7 +142,7 @@ public final class b {
                     a j10 = j(i16, o10, aVar.f44812c, i14);
                     f(j10, i12);
                     j10.f44812c = null;
-                    c0Var.u(j10);
+                    c0Var.q(j10);
                     if (aVar.f44810a == 4) {
                         i12 += i14;
                     }
@@ -152,12 +152,12 @@ public final class b {
             }
             Object obj = aVar.f44812c;
             aVar.f44812c = null;
-            c0Var.u(aVar);
+            c0Var.q(aVar);
             if (i14 > 0) {
                 a j11 = j(aVar.f44810a, o10, obj, i14);
                 f(j11, i12);
                 j11.f44812c = null;
-                c0Var.u(j11);
+                c0Var.q(j11);
                 return;
             }
             return;
@@ -177,10 +177,10 @@ public final class b {
             throw new IllegalArgumentException("only remove and update ops can be dispatched in first pass");
         }
         int i12 = aVar.d;
-        RecyclerView recyclerView = gVar.f11748a;
+        RecyclerView recyclerView = gVar.f11752a;
         recyclerView.e0(i10, i12, true);
-        recyclerView.f2018x0 = true;
-        recyclerView.f2013u0.f44996c += i12;
+        recyclerView.f2022x0 = true;
+        recyclerView.f2017u0.f44996c += i12;
     }
 
     public int g(int i10, int i11) {
@@ -259,7 +259,7 @@ public final class b {
     }
 
     public a j(int i10, int i11, Object obj, int i12) {
-        a aVar = (a) ((c5.c0) this.f44823c).b();
+        a aVar = (a) ((c5.c0) this.f44823c).a();
         if (aVar == null) {
             ?? obj2 = new Object();
             obj2.f44810a = i10;
@@ -293,9 +293,9 @@ public final class b {
             }
             int i11 = aVar.f44811b;
             int i12 = aVar.d;
-            RecyclerView recyclerView = gVar.f11748a;
+            RecyclerView recyclerView = gVar.f11752a;
             recyclerView.e0(i11, i12, false);
-            recyclerView.f2018x0 = true;
+            recyclerView.f2022x0 = true;
             return;
         }
         gVar.c(aVar.f44811b, aVar.d);
@@ -310,7 +310,7 @@ public final class b {
         for (int i10 = 0; i10 < size; i10++) {
             a aVar = (a) arrayList.get(i10);
             aVar.f44812c = null;
-            ((c5.c0) this.f44823c).u(aVar);
+            ((c5.c0) this.f44823c).q(aVar);
         }
         arrayList.clear();
     }
@@ -384,12 +384,12 @@ public final class b {
                 if (i18 == aVar2.f44811b || i18 < 0) {
                     arrayList.remove(size2);
                     aVar2.f44812c = null;
-                    c0Var.u(aVar2);
+                    c0Var.q(aVar2);
                 }
             } else if (aVar2.d <= 0) {
                 arrayList.remove(size2);
                 aVar2.f44812c = null;
-                c0Var.u(aVar2);
+                c0Var.q(aVar2);
             }
         }
         return i10;
@@ -413,6 +413,6 @@ public final class b {
         this.f44822b = 0;
         this.f44824f = BuildVars.DEBUG_VERSION ? new ArrayList() : null;
         this.f44825g = gVar;
-        this.h = new l2.f(this, 17);
+        this.h = new m.l(this);
     }
 }

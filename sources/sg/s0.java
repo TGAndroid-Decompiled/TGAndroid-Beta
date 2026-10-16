@@ -21,13 +21,13 @@ public final class s0 extends s4.r0 {
                 y0 y0Var = this.f45358b;
                 viewGroup = ((e3) y0Var).containerView;
                 viewGroup.invalidate();
-                y0Var.A();
+                y0Var.B();
                 return;
             default:
                 y0 y0Var2 = this.f45358b;
                 viewGroup2 = ((e3) y0Var2).containerView;
                 viewGroup2.invalidate();
-                y0Var2.A();
+                y0Var2.B();
                 return;
         }
     }

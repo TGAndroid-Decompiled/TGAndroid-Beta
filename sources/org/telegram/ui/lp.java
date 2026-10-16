@@ -6,10 +6,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class lp extends org.telegram.ui.Components.lm0 {
-    public final mp f38062c;
+    public final mp f37801c;
 
     public lp(mp mpVar) {
-        this.f38062c = mpVar;
+        this.f37801c = mpVar;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class lp extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final int h() {
-        return this.f38062c.Y2.N.size() + 2;
+        return this.f37801c.Y2.N.size() + 2;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class lp extends org.telegram.ui.Components.lm0 {
         if (i10 == 0) {
             return 0;
         }
-        if (i10 <= this.f38062c.Y2.N.size()) {
+        if (i10 <= this.f37801c.Y2.N.size()) {
             return 1;
         }
         return 2;
@@ -38,7 +38,7 @@ public final class lp extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        mp mpVar = this.f38062c;
+        mp mpVar = this.f37801c;
         np npVar = mpVar.Y2;
         int i11 = b1Var.f44841f;
         View view = b1Var.f44838a;
@@ -48,7 +48,7 @@ public final class lp extends org.telegram.ui.Components.lm0 {
                 if (i11 == 2) {
                     org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
                     e9Var.setText(LocaleController.getString(R.string.UsernamesChannelHelp));
-                    e9Var.setBackground(org.telegram.ui.ActionBar.g6.W0(mpVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.g6.f19863b7));
+                    e9Var.setBackground(org.telegram.ui.ActionBar.g6.W0(mpVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.g6.f19563b7));
                     return;
                 }
                 return;
@@ -69,14 +69,14 @@ public final class lp extends org.telegram.ui.Components.lm0 {
             return;
         }
         org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19901d6, mpVar.f27439n2));
+        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19601d6, mpVar.f27148n2));
         m4Var.setText(LocaleController.getString(R.string.UsernamesChannelHeader));
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        mp mpVar = this.f38062c;
-        org.telegram.ui.ActionBar.c6 c6Var = mpVar.f27439n2;
+        mp mpVar = this.f37801c;
+        org.telegram.ui.ActionBar.c6 c6Var = mpVar.f27148n2;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

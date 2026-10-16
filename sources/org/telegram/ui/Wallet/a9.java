@@ -7,30 +7,30 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
-public final class a9 extends k61 {
-    public static final int f32938a = 0;
+public final class a9 extends l61 {
+    public static final int f32679a = 0;
 
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
         b9 b9Var = (b9) view;
-        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) l61Var.G;
+        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) m61Var.G;
         b9Var.getClass();
         TL_wallet.tonConnectManifest tonconnectmanifest = tonconnectsession.manifest;
         if (tonconnectmanifest != null) {
             TLRPC.WebDocument webDocument = tonconnectmanifest.icon;
             if (webDocument != null) {
-                b9Var.f32993b.n(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), "28_28", null, tonconnectsession.manifest);
+                b9Var.f32711b.n(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), "28_28", null, tonconnectsession.manifest);
             }
-            b9Var.f32994c.setText(tonconnectsession.manifest.name);
+            b9Var.f32712c.setText(tonconnectsession.manifest.name);
             b9Var.d.setText(AndroidUtilities.getHostAuthority(tonconnectsession.manifest.url));
         }
     }

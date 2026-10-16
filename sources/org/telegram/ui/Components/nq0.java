@@ -3,111 +3,85 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class nq0 extends FrameLayout {
-    public final int f27697a;
-    public final jr0 f27698b;
+public final class nq0 extends vu {
+    public boolean V;
+    public int W;
+    public int f27385a0;
+    public ValueAnimator f27386b0;
+    public final ir0 f27387c0;
 
-    public nq0(jr0 jr0Var, Context context, int i10) {
-        super(context);
-        this.f27697a = i10;
-        this.f27698b = jr0Var;
+    public nq0(ir0 ir0Var, Context context, tq0 tq0Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, tq0Var, null, 1, true, c6Var);
+        this.f27387c0 = ir0Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f27697a) {
-            case 0:
-                jr0 jr0Var = this.f27698b;
-                jr0Var.X0.setBounds(0, (int) jr0Var.f26482u0, getMeasuredWidth(), getMeasuredHeight());
-                jr0Var.X0.draw(canvas);
-                canvas.save();
-                canvas.clipRect(0.0f, jr0Var.f26482u0, getMeasuredWidth(), getMeasuredHeight());
-                super.dispatchDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public final void c(float f7) {
+        this.f27387c0.Z0();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.V) {
+            nu editText = this.f27387c0.d.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f27385a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new f80(editText, 19));
+            ValueAnimator valueAnimator = this.f27386b0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.f27386b0 = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(es.f24465f);
+            ofFloat.start();
+            this.V = false;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        wz emojiView = getEmojiView();
+        ir0 ir0Var = this.f27387c0;
+        if (emojiView != null) {
+            emojiView.f30769w0 = false;
+            emojiView.f30771w2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(ir0Var.G0.d);
+        }
+        FrameLayout frameLayout = ir0Var.f25744c0;
+        if (frameLayout != null) {
+            frameLayout.bringToFront();
+        }
+        mq0 mq0Var = ir0Var.f25743c;
+        if (mq0Var != null) {
+            mq0Var.bringToFront();
+        }
+        mq0 mq0Var2 = ir0Var.f25747f;
+        if (mq0Var2 != null) {
+            mq0Var2.bringToFront();
         }
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f27697a) {
-            case 0:
-                jr0 jr0Var = this.f27698b;
-                nq0 nq0Var = jr0Var.f26460c;
-                float f7 = jr0Var.f26483v0;
-                if (f7 != 0.0f && f7 != nq0Var.getTop() + jr0Var.f26483v0) {
-                    ValueAnimator valueAnimator = jr0Var.f26485w0;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                    }
-                    float top = jr0Var.f26483v0 - (nq0Var.getTop() + jr0Var.f26482u0);
-                    jr0Var.f26482u0 = top;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                    jr0Var.f26485w0 = ofFloat;
-                    ofFloat.addUpdateListener(new g80(this, 18));
-                    jr0Var.f26485w0.setInterpolator(es.f24771f);
-                    jr0Var.f26485w0.setDuration(200L);
-                    jr0Var.f26485w0.start();
-                    jr0Var.f26483v0 = 0.0f;
-                }
-                jr0Var.S[1].setTranslationY((-(nq0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + jr0Var.f26482u0 + jr0Var.f26481t0 + ((1.0f - getAlpha()) * (nq0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+    public final void q(int i10, int i11) {
+        ir0 ir0Var = this.f27387c0;
+        mq0 mq0Var = ir0Var.f25743c;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
+            this.V = true;
+            this.W = getEditText().getMeasuredHeight();
+            this.f27385a0 = getEditText().getScrollY();
+            invalidate();
+        } else {
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.V = false;
         }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f27697a) {
-            case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f27698b.U.m(), new Object[0]));
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public void setAlpha(float f7) {
-        switch (this.f27697a) {
-            case 0:
-                super.setAlpha(f7);
-                invalidate();
-                return;
-            default:
-                super.setAlpha(f7);
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.f27697a) {
-            case 0:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    this.f27698b.S[1].setTranslationY(0.0f);
-                    return;
-                }
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
-        }
+        ir0Var.f25766v0 = mq0Var.getTop() + ir0Var.f25765u0;
+        mq0Var.invalidate();
     }
 }

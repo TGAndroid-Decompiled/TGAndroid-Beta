@@ -1,39 +1,75 @@
 package m;
 
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.os.Handler;
-import bi.n7;
-public final class d3 implements j9.t {
-    public boolean f15093a;
-    public boolean f15094b;
-    public Object f15095c = new Path();
-    public Object d = new Rect();
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.View;
+import v7.q7;
+public abstract class d3 {
+    public static final ThreadLocal f14817a = new ThreadLocal();
+    public static final int[] f14818b = {-16842910};
+    public static final int[] f14819c = {16842908};
+    public static final int[] d = {16842919};
+    public static final int[] e = {16842912};
+    public static final int[] f14820f = new int[0];
+    public static final int[] f14821g = new int[1];
 
-    public boolean a(Rect rect, boolean z10, boolean z11) {
-        boolean z12;
-        Rect rect2 = (Rect) this.d;
-        if (!rect2.isEmpty() && rect2.top == rect.top && rect2.bottom == rect.bottom && rect2.right == rect.right && rect2.left == rect.left && this.f15093a == z11 && this.f15094b == z10 && z11 && z10) {
-            z12 = false;
-        } else {
-            z12 = true;
+    public static void a(View view, Context context) {
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(f.a.f8811j);
+        try {
+            if (!obtainStyledAttributes.hasValue(117)) {
+                Log.e("ThemeUtils", "View " + view.getClass() + " is an AppCompat widget that can only be used with a Theme.AppCompat theme (or descendant).");
+            }
+        } finally {
+            obtainStyledAttributes.recycle();
         }
-        this.f15093a = z11;
-        this.f15094b = z10;
-        rect2.set(rect);
-        return z12;
     }
 
-    @Override
-    public void onSuccess(Object obj) {
-        m4.x xVar = (m4.x) obj;
-        m4.f0 f0Var = ((m4.q0) this.d).f15573g;
-        Handler handler = f0Var.f15432l;
-        m4.w wVar = (m4.w) this.f15095c;
-        e2.m0.W(handler, new ji.v2(f0Var, wVar, new n7(this, xVar, this.f15093a, this.f15094b, wVar, 2)));
+    public static int b(Context context, int i10) {
+        ColorStateList d10 = d(context, i10);
+        if (d10 != null && d10.isStateful()) {
+            return d10.getColorForState(f14818b, d10.getDefaultColor());
+        }
+        ThreadLocal threadLocal = f14817a;
+        TypedValue typedValue = (TypedValue) threadLocal.get();
+        if (typedValue == null) {
+            typedValue = new TypedValue();
+            threadLocal.set(typedValue);
+        }
+        context.getTheme().resolveAttribute(16842803, typedValue, true);
+        float f7 = typedValue.getFloat();
+        int c10 = c(context, i10);
+        return i0.a.k(c10, Math.round(Color.alpha(c10) * f7));
     }
 
-    @Override
-    public void i(Throwable th2) {
+    public static int c(Context context, int i10) {
+        int[] iArr = f14821g;
+        iArr[0] = i10;
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
+        try {
+            return obtainStyledAttributes.getColor(0, 0);
+        } finally {
+            obtainStyledAttributes.recycle();
+        }
+    }
+
+    public static ColorStateList d(Context context, int i10) {
+        ColorStateList colorStateList;
+        int resourceId;
+        int[] iArr = f14821g;
+        iArr[0] = i10;
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
+        try {
+            if (!obtainStyledAttributes.hasValue(0) || (resourceId = obtainStyledAttributes.getResourceId(0, 0)) == 0 || (colorStateList = q7.a(context, resourceId)) == null) {
+                colorStateList = obtainStyledAttributes.getColorStateList(0);
+            }
+            return colorStateList;
+        } finally {
+            obtainStyledAttributes.recycle();
+        }
     }
 }

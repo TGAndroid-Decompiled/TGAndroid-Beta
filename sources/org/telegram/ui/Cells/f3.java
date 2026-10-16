@@ -4,35 +4,35 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.ui.Components.nu;
 public final class f3 implements TextWatcher {
-    public final int f21167a;
-    public final nu f21168b;
-    public final boolean f21169c;
+    public final int f20863a;
+    public final nu f20864b;
+    public final boolean f20865c;
     public final g3 d;
 
     public f3(g3 g3Var, int i10, nu nuVar, boolean z10) {
         this.d = g3Var;
-        this.f21167a = i10;
-        this.f21168b = nuVar;
-        this.f21169c = z10;
+        this.f20863a = i10;
+        this.f20864b = nuVar;
+        this.f20865c = z10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         g3 g3Var = this.d;
-        boolean z10 = g3Var.f21197a;
-        int i10 = this.f21167a;
+        boolean z10 = g3Var.f20904a;
+        int i10 = this.f20863a;
         if (!z10) {
             if (i10 > 0 && editable != null && editable.length() > i10) {
-                g3Var.f21197a = true;
+                g3Var.f20904a = true;
                 CharSequence subSequence = editable.subSequence(0, i10);
-                nu nuVar = this.f21168b;
+                nu nuVar = this.f20864b;
                 nuVar.setText(subSequence);
                 nuVar.setSelection(nuVar.length());
-                g3Var.f21197a = false;
+                g3Var.f20904a = false;
             }
             g3Var.b();
         }
-        if (this.f21169c) {
+        if (this.f20865c) {
             while (true) {
                 int indexOf = editable.toString().indexOf("\n");
                 if (indexOf < 0) {

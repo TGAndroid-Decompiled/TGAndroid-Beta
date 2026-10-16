@@ -1,96 +1,94 @@
 package p4;
 
 import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.List;
-public final class q0 extends p implements o0 {
-    public final String f43085f;
-    public String f43086g;
-    public String h;
-    public boolean f43087i;
-    public int f43089k;
-    public n0 f43090l;
-    public final s0 f43092n;
-    public int f43088j = -1;
-    public int f43091m = -1;
+import org.telegram.ui.Cells.c1;
+public final class q0 extends q implements n0 {
+    public final String f42790a;
+    public final String f42791b;
+    public boolean f42792c;
+    public int d = -1;
+    public int e;
+    public m0 f42793f;
+    public int f42794g;
+    public final r0 h;
 
-    public q0(s0 s0Var, String str) {
-        this.f43092n = s0Var;
-        this.f43085f = str;
+    public q0(r0 r0Var, String str, String str2) {
+        this.h = r0Var;
+        this.f42790a = str;
+        this.f42791b = str2;
     }
 
     @Override
-    public final void a(n0 n0Var) {
-        p0 p0Var = new p0(this);
-        this.f43090l = n0Var;
-        int i10 = n0Var.e;
-        n0Var.e = i10 + 1;
-        int i11 = n0Var.d;
-        n0Var.d = i11 + 1;
+    public final void a(m0 m0Var) {
+        this.f42793f = m0Var;
+        int i10 = m0Var.e;
+        m0Var.e = i10 + 1;
         Bundle bundle = new Bundle();
-        bundle.putString("memberRouteId", this.f43085f);
-        n0Var.b(11, i11, i10, null, bundle);
-        n0Var.h.put(i11, p0Var);
-        this.f43091m = i10;
-        if (this.f43087i) {
-            n0Var.a(i10);
-            int i12 = this.f43088j;
+        bundle.putString("routeId", this.f42790a);
+        bundle.putString("routeGroupId", this.f42791b);
+        int i11 = m0Var.d;
+        m0Var.d = i11 + 1;
+        m0Var.b(3, i11, i10, null, bundle);
+        this.f42794g = i10;
+        if (this.f42792c) {
+            m0Var.a(i10);
+            int i12 = this.d;
             if (i12 >= 0) {
-                n0Var.c(this.f43091m, i12);
-                this.f43088j = -1;
+                m0Var.c(this.f42794g, i12);
+                this.d = -1;
             }
-            int i13 = this.f43089k;
+            int i13 = this.e;
             if (i13 != 0) {
-                n0Var.d(this.f43091m, i13);
-                this.f43089k = 0;
+                m0Var.d(this.f42794g, i13);
+                this.e = 0;
             }
         }
     }
 
     @Override
     public final int b() {
-        return this.f43091m;
+        return this.f42794g;
     }
 
     @Override
     public final void c() {
-        n0 n0Var = this.f43090l;
-        if (n0Var != null) {
-            int i10 = this.f43091m;
-            int i11 = n0Var.d;
-            n0Var.d = i11 + 1;
-            n0Var.b(4, i11, i10, null, null);
-            this.f43090l = null;
-            this.f43091m = 0;
+        m0 m0Var = this.f42793f;
+        if (m0Var != null) {
+            int i10 = this.f42794g;
+            int i11 = m0Var.d;
+            m0Var.d = i11 + 1;
+            m0Var.b(4, i11, i10, null, null);
+            this.f42793f = null;
+            this.f42794g = 0;
         }
     }
 
     @Override
     public final void d() {
-        s0 s0Var = this.f43092n;
-        s0Var.v.remove(this);
+        r0 r0Var = this.h;
+        r0Var.v.remove(this);
         c();
-        s0Var.r();
+        r0Var.r();
     }
 
     @Override
     public final void e() {
-        this.f43087i = true;
-        n0 n0Var = this.f43090l;
-        if (n0Var != null) {
-            n0Var.a(this.f43091m);
+        this.f42792c = true;
+        m0 m0Var = this.f42793f;
+        if (m0Var != null) {
+            m0Var.a(this.f42794g);
         }
     }
 
     @Override
     public final void f(int i10) {
-        n0 n0Var = this.f43090l;
-        if (n0Var != null) {
-            n0Var.c(this.f43091m, i10);
+        m0 m0Var = this.f42793f;
+        if (m0Var != null) {
+            m0Var.c(this.f42794g, i10);
             return;
         }
-        this.f43088j = i10;
-        this.f43089k = 0;
+        this.d = i10;
+        this.e = 0;
     }
 
     @Override
@@ -100,73 +98,24 @@ public final class q0 extends p implements o0 {
 
     @Override
     public final void h(int i10) {
-        this.f43087i = false;
-        n0 n0Var = this.f43090l;
-        if (n0Var != null) {
-            int i11 = this.f43091m;
-            Bundle g10 = org.telegram.ui.Cells.d0.g(i10, "unselectReason");
-            int i12 = n0Var.d;
-            n0Var.d = i12 + 1;
-            n0Var.b(6, i12, i11, null, g10);
+        this.f42792c = false;
+        m0 m0Var = this.f42793f;
+        if (m0Var != null) {
+            int i11 = this.f42794g;
+            Bundle f7 = c1.f(i10, "unselectReason");
+            int i12 = m0Var.d;
+            m0Var.d = i12 + 1;
+            m0Var.b(6, i12, i11, null, f7);
         }
     }
 
     @Override
     public final void i(int i10) {
-        n0 n0Var = this.f43090l;
-        if (n0Var != null) {
-            n0Var.d(this.f43091m, i10);
+        m0 m0Var = this.f42793f;
+        if (m0Var != null) {
+            m0Var.d(this.f42794g, i10);
         } else {
-            this.f43089k += i10;
-        }
-    }
-
-    @Override
-    public final String j() {
-        return this.f43086g;
-    }
-
-    @Override
-    public final String k() {
-        return this.h;
-    }
-
-    @Override
-    public final void m(String str) {
-        n0 n0Var = this.f43090l;
-        if (n0Var != null) {
-            int i10 = this.f43091m;
-            Bundle bundle = new Bundle();
-            bundle.putString("memberRouteId", str);
-            int i11 = n0Var.d;
-            n0Var.d = i11 + 1;
-            n0Var.b(12, i11, i10, null, bundle);
-        }
-    }
-
-    @Override
-    public final void n(String str) {
-        n0 n0Var = this.f43090l;
-        if (n0Var != null) {
-            int i10 = this.f43091m;
-            Bundle bundle = new Bundle();
-            bundle.putString("memberRouteId", str);
-            int i11 = n0Var.d;
-            n0Var.d = i11 + 1;
-            n0Var.b(13, i11, i10, null, bundle);
-        }
-    }
-
-    @Override
-    public final void o(List list) {
-        n0 n0Var = this.f43090l;
-        if (n0Var != null) {
-            int i10 = this.f43091m;
-            Bundle bundle = new Bundle();
-            bundle.putStringArrayList("memberRouteIds", new ArrayList<>(list));
-            int i11 = n0Var.d;
-            n0Var.d = i11 + 1;
-            n0Var.b(14, i11, i10, null, bundle);
+            this.e += i10;
         }
     }
 }

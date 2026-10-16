@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public abstract class p6 {
     public static byte[] a(JSONObject jSONObject) {
-        LinkedHashMap linkedHashMap = d1.f.f6275a;
+        LinkedHashMap linkedHashMap = d1.f.f6278a;
         String optString = jSONObject.optString("challenge", "");
         kotlin.jvm.internal.i.b(optString);
         if (optString.length() != 0) {

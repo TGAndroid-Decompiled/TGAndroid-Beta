@@ -11,23 +11,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
 public final class rl0 {
-    public final mm0 f28865a;
+    public final mm0 f28566a;
     public boolean d;
     public final boolean e;
-    public final SparseArray f28866b = new SparseArray();
-    public final HashSet f28867c = new HashSet();
-    public final boolean f28868f = true;
-    public final ArrayList f28869g = new ArrayList();
+    public final SparseArray f28567b = new SparseArray();
+    public final HashSet f28568c = new HashSet();
+    public final boolean f28569f = true;
+    public final ArrayList f28570g = new ArrayList();
     public final ArrayList h = new ArrayList();
 
     public rl0(mm0 mm0Var, boolean z10) {
-        this.f28865a = mm0Var;
+        this.f28566a = mm0Var;
         this.e = z10;
         mm0Var.setItemsEnterAnimator(this);
     }
 
     public final void a() {
-        ArrayList arrayList = this.f28869g;
+        ArrayList arrayList = this.f28570g;
         int i10 = 0;
         if (!arrayList.isEmpty()) {
             ArrayList arrayList2 = new ArrayList(arrayList);
@@ -40,13 +40,13 @@ public final class rl0 {
         while (true) {
             ArrayList arrayList3 = this.h;
             int size = arrayList3.size();
-            mm0 mm0Var = this.f28865a;
+            mm0 mm0Var = this.f28566a;
             if (i10 < size) {
                 mm0Var.getViewTreeObserver().removeOnPreDrawListener((ViewTreeObserver.OnPreDrawListener) arrayList3.get(i10));
                 i10++;
             } else {
                 arrayList3.clear();
-                this.f28866b.clear();
+                this.f28567b.clear();
                 mm0Var.invalidate();
                 this.d = true;
                 return;
@@ -56,7 +56,7 @@ public final class rl0 {
 
     public final void b(int i10) {
         Animator ofFloat;
-        mm0 mm0Var = this.f28865a;
+        mm0 mm0Var = this.f28566a;
         int childCount = mm0Var.getChildCount();
         f10 f10Var = null;
         for (int i11 = 0; i11 < childCount; i11++) {
@@ -68,10 +68,10 @@ public final class rl0 {
         s4.n0 layoutManager = mm0Var.getLayoutManager();
         if (f10Var != null && layoutManager != null) {
             mm0Var.removeView(f10Var);
-            this.f28867c.add(f10Var);
+            this.f28568c.add(f10Var);
             mm0Var.addView(f10Var);
             layoutManager.M(f10Var);
-            if (this.f28868f) {
+            if (this.f28569f) {
                 ofFloat = ObjectAnimator.ofFloat(f10Var, View.ALPHA, f10Var.getAlpha(), 0.0f);
             } else {
                 ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);

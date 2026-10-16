@@ -18,37 +18,37 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.StatsController;
 public final class av extends org.telegram.ui.Components.mm0 {
-    public static final int f34345n3 = 0;
+    public static final int f34089n3 = 0;
     public boolean V2;
     public int W2;
     public final s4.b0 X2;
     public final yu Y2;
     public final ArrayList Z2;
-    public final ArrayList f34346a3;
-    public final float[] f34347b3;
-    public final int[] f34348c3;
-    public final ArrayList f34349d3;
-    public zu[] f34350e3;
-    public zu[] f34351f3;
-    public final boolean[] f34352g3;
-    public long f34353h3;
-    public long f34354i3;
-    public long f34355j3;
-    public boolean f34356k3;
-    public xu f34357l3;
-    public final ev f34358m3;
+    public final ArrayList f34090a3;
+    public final float[] f34091b3;
+    public final int[] f34092c3;
+    public final ArrayList f34093d3;
+    public zu[] f34094e3;
+    public zu[] f34095f3;
+    public final boolean[] f34096g3;
+    public long f34097h3;
+    public long f34098i3;
+    public long f34099j3;
+    public boolean f34100k3;
+    public xu f34101l3;
+    public final ev f34102m3;
 
     public av(ev evVar, Activity activity) {
         super(activity, null);
-        this.f34358m3 = evVar;
+        this.f34102m3 = evVar;
         this.V2 = false;
         this.W2 = 0;
         this.Z2 = new ArrayList();
-        this.f34346a3 = new ArrayList();
-        this.f34347b3 = new float[7];
-        this.f34348c3 = new int[7];
-        this.f34349d3 = new ArrayList();
-        this.f34352g3 = new boolean[7];
+        this.f34090a3 = new ArrayList();
+        this.f34091b3 = new float[7];
+        this.f34092c3 = new int[7];
+        this.f34093d3 = new ArrayList();
+        this.f34096g3 = new boolean[7];
         s4.b0 b0Var = new s4.b0();
         this.X2 = b0Var;
         setLayoutManager(b0Var);
@@ -78,30 +78,30 @@ public final class av extends org.telegram.ui.Components.mm0 {
         int i16;
         int i17;
         int i18;
-        this.f34353h3 = x1(6) + z1(6);
-        this.f34354i3 = x1(6);
-        this.f34355j3 = z1(6);
-        if (this.f34350e3 == null) {
-            this.f34350e3 = new zu[7];
+        this.f34097h3 = x1(6) + z1(6);
+        this.f34098i3 = x1(6);
+        this.f34099j3 = z1(6);
+        if (this.f34094e3 == null) {
+            this.f34094e3 = new zu[7];
         }
-        if (this.f34351f3 == null) {
-            this.f34351f3 = new zu[7];
+        if (this.f34095f3 == null) {
+            this.f34095f3 = new zu[7];
         }
         int i19 = 0;
         while (true) {
-            int[] iArr = ev.f35677n;
+            int[] iArr = ev.f35382n;
             int length = iArr.length;
-            float[] fArr = this.f34347b3;
+            float[] fArr = this.f34091b3;
             if (i19 < length) {
                 int i20 = iArr[i19];
                 long x12 = x1(i20) + z1(i20);
-                zu[] zuVarArr = this.f34351f3;
-                zu[] zuVarArr2 = this.f34350e3;
+                zu[] zuVarArr = this.f34095f3;
+                zu[] zuVarArr2 = this.f34094e3;
                 long x13 = x1(iArr[i19]);
                 long z12 = z1(iArr[i19]);
                 int i21 = iArr[i19];
                 int i22 = this.W2;
-                ev evVar = this.f34358m3;
+                ev evVar = this.f34102m3;
                 if (i22 == 1 || i22 == 2 || i22 == 3) {
                     i10 = ((org.telegram.ui.ActionBar.m2) evVar).currentAccount;
                     i11 = 1;
@@ -132,20 +132,20 @@ public final class av extends org.telegram.ui.Components.mm0 {
                 }
                 ?? obj = new Object();
                 obj.d = i19;
-                obj.f24684c = x12;
-                obj.f24683b = z10;
+                obj.f24373c = x12;
+                obj.f24372b = z10;
                 obj.e = x13;
-                obj.f42713g = recivedItemsCount;
-                obj.f42712f = z12;
+                obj.f42423g = recivedItemsCount;
+                obj.f42422f = z12;
                 obj.h = sentItemsCount;
                 zuVarArr2[i19] = obj;
                 zuVarArr[i19] = obj;
-                fArr[i19] = ((float) x12) / ((float) this.f34353h3);
+                fArr[i19] = ((float) x12) / ((float) this.f34097h3);
                 i19++;
             } else {
-                Arrays.sort(this.f34350e3, new org.telegram.ui.ActionBar.l5(24));
-                AndroidUtilities.roundPercents(fArr, this.f34348c3);
-                Arrays.fill(this.f34352g3, true);
+                Arrays.sort(this.f34094e3, new org.telegram.ui.ActionBar.l5(24));
+                AndroidUtilities.roundPercents(fArr, this.f34092c3);
+                Arrays.fill(this.f34096g3, true);
                 return;
             }
         }
@@ -167,14 +167,14 @@ public final class av extends org.telegram.ui.Components.mm0 {
         ArrayList arrayList3;
         ArrayList arrayList4 = this.Z2;
         arrayList4.clear();
-        ArrayList arrayList5 = this.f34346a3;
+        ArrayList arrayList5 = this.f34090a3;
         arrayList4.addAll(arrayList5);
         arrayList5.clear();
         boolean z13 = false;
         arrayList5.add(new pg.a(0, false));
         long j10 = 0;
         int i14 = 1;
-        if (this.f34353h3 > 0) {
+        if (this.f34097h3 > 0) {
             formatString = LocaleController.formatString(R.string.YourNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(y1()));
         } else {
             formatString = LocaleController.formatString(R.string.NoNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(y1()));
@@ -183,15 +183,15 @@ public final class av extends org.telegram.ui.Components.mm0 {
         ArrayList arrayList6 = new ArrayList();
         int i15 = 0;
         while (true) {
-            zu[] zuVarArr = this.f34350e3;
+            zu[] zuVarArr = this.f34094e3;
             if (i15 >= zuVarArr.length) {
                 break;
             }
             zu zuVar = zuVarArr[i15];
             long j11 = j10;
-            long j12 = zuVar.f24684c;
+            long j12 = zuVar.f24373c;
             int i16 = zuVar.d;
-            if (!this.f34356k3 && !this.f34349d3.contains(Integer.valueOf(i16))) {
+            if (!this.f34100k3 && !this.f34093d3.contains(Integer.valueOf(i16))) {
                 i12 = 0;
             } else {
                 i12 = i14;
@@ -201,7 +201,7 @@ public final class av extends org.telegram.ui.Components.mm0 {
                 i13 = i14;
                 arrayList3 = arrayList6;
             } else {
-                int i18 = this.f34348c3[i16];
+                int i18 = this.f34092c3[i16];
                 if (i18 <= 0) {
                     Object[] objArr = new Object[i14];
                     objArr[0] = Integer.valueOf(i14);
@@ -213,14 +213,14 @@ public final class av extends org.telegram.ui.Components.mm0 {
                     format = String.format("%d%%", objArr2);
                 }
                 SpannableString spannableString = new SpannableString(format);
-                spannableString.setSpan(new org.telegram.ui.Components.i61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                spannableString.setSpan(new org.telegram.ui.Components.j61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                 spannableString.setSpan(new RelativeSizeSpan(0.8f), 0, spannableString.length(), 33);
                 ?? metricAffectingSpan = new MetricAffectingSpan();
                 i13 = i14;
                 ArrayList arrayList7 = arrayList6;
-                metricAffectingSpan.f40797a = 0.1d;
+                metricAffectingSpan.f40477a = 0.1d;
                 spannableString.setSpan(metricAffectingSpan, 0, spannableString.length(), 33);
-                int i19 = ev.f35676f[i16];
+                int i19 = ev.f35381f[i16];
                 int[] iArr = ev.d[i16];
                 int i20 = iArr[0];
                 int i21 = iArr[i13];
@@ -249,7 +249,7 @@ public final class av extends org.telegram.ui.Components.mm0 {
             SpannableString spannableString2 = new SpannableString("^");
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_upload).mutate();
             int i23 = org.telegram.ui.ActionBar.g6.G6;
-            org.telegram.ui.ActionBar.c6 c6Var = this.f27439n2;
+            org.telegram.ui.ActionBar.c6 c6Var = this.f27148n2;
             int w02 = org.telegram.ui.ActionBar.g6.w0(i23, c6Var);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             mutate.setColorFilter(new PorterDuffColorFilter(w02, mode));
@@ -263,16 +263,16 @@ public final class av extends org.telegram.ui.Components.mm0 {
             int i24 = 0;
             while (i24 < arrayList8.size()) {
                 int i25 = ((vu) arrayList8.get(i24)).h;
-                if (i25 >= 0 && !this.f34352g3[i25]) {
-                    zu zuVar2 = this.f34350e3[i25];
-                    int[] iArr2 = ev.f35677n;
+                if (i25 >= 0 && !this.f34096g3[i25]) {
+                    zu zuVar2 = this.f34094e3[i25];
+                    int[] iArr2 = ev.f35382n;
                     int i26 = zuVar2.d;
-                    int i27 = zuVar2.f42713g;
+                    int i27 = zuVar2.f42423g;
                     int i28 = zuVar2.h;
                     long j14 = zuVar2.e;
                     z12 = z13;
                     ArrayList arrayList9 = arrayList8;
-                    long j15 = zuVar2.f42712f;
+                    long j15 = zuVar2.f42422f;
                     int i29 = iArr2[i26];
                     if (i29 == 0) {
                         if (j15 <= j13 && i28 <= 0) {
@@ -342,17 +342,17 @@ public final class av extends org.telegram.ui.Components.mm0 {
             z11 = z13;
             arrayList = arrayList8;
             arrayList5.addAll(arrayList);
-            if (!this.f34356k3) {
+            if (!this.f34100k3) {
                 arrayList5.add(new vu(3, LocaleController.getString(R.string.DataUsageSectionsInfo) + "\n"));
             }
         } else {
             z11 = false;
             arrayList = arrayList8;
         }
-        if (!this.f34356k3) {
+        if (!this.f34100k3) {
             arrayList5.add(new vu(4, LocaleController.getString(R.string.TotalNetworkUsage)));
-            arrayList5.add(new vu(-1, R.drawable.msg_filled_data_sent, -11565578, -13276952, LocaleController.getString(R.string.BytesSent), AndroidUtilities.formatFileSize(this.f34355j3)));
-            arrayList5.add(new vu(-1, R.drawable.msg_filled_data_received, -11154873, -14175180, LocaleController.getString(R.string.BytesReceived), AndroidUtilities.formatFileSize(this.f34354i3)));
+            arrayList5.add(new vu(-1, R.drawable.msg_filled_data_sent, -11565578, -13276952, LocaleController.getString(R.string.BytesSent), AndroidUtilities.formatFileSize(this.f34099j3)));
+            arrayList5.add(new vu(-1, R.drawable.msg_filled_data_received, -11154873, -14175180, LocaleController.getString(R.string.BytesReceived), AndroidUtilities.formatFileSize(this.f34098i3)));
         }
         if (!arrayList.isEmpty()) {
             i10 = 3;
@@ -404,7 +404,7 @@ public final class av extends org.telegram.ui.Components.mm0 {
         int i13;
         int i14;
         int i15 = this.W2;
-        ev evVar = this.f34358m3;
+        ev evVar = this.f34102m3;
         if (i15 == 1 || i15 == 2 || i15 == 3) {
             i11 = ((org.telegram.ui.ActionBar.m2) evVar).currentAccount;
             return StatsController.getInstance(i11).getReceivedBytesCount(this.W2 - 1, i10);
@@ -422,7 +422,7 @@ public final class av extends org.telegram.ui.Components.mm0 {
         int i12;
         int i13;
         int i14 = this.W2;
-        ev evVar = this.f34358m3;
+        ev evVar = this.f34102m3;
         if (i14 == 1 || i14 == 2 || i14 == 3) {
             i10 = ((org.telegram.ui.ActionBar.m2) evVar).currentAccount;
             return StatsController.getInstance(i10).getResetStatsDate(this.W2 - 1);
@@ -449,7 +449,7 @@ public final class av extends org.telegram.ui.Components.mm0 {
         int i13;
         int i14;
         int i15 = this.W2;
-        ev evVar = this.f34358m3;
+        ev evVar = this.f34102m3;
         if (i15 == 1 || i15 == 2 || i15 == 3) {
             i11 = ((org.telegram.ui.ActionBar.m2) evVar).currentAccount;
             return StatsController.getInstance(i11).getSentBytesCount(this.W2 - 1, i10);

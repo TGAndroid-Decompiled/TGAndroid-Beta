@@ -17,26 +17,26 @@ import ji.h5;
 import ji.m5;
 import v7.v6;
 public final class j0 implements p {
-    public final Context f13914a;
-    public final t0 f13915b;
-    public final m0 f13916c;
+    public final Context f13917a;
+    public final t0 f13918b;
+    public final m0 f13919c;
     public final h5 d;
     public final float e;
-    public e2.r f13917f;
-    public e2.g0 f13918g;
+    public e2.r f13920f;
+    public e2.g0 f13921g;
     public b h;
-    public e f13919i;
-    public Looper f13920j;
-    public Context f13921k;
+    public e f13922i;
+    public Looper f13923j;
+    public Context f13924k;
 
     public j0(i0 i0Var) {
         h5 h5Var;
-        Context context = i0Var.f13906a;
-        this.f13914a = context;
-        m0 m0Var = i0Var.f13907b;
+        Context context = i0Var.f13909a;
+        this.f13917a = context;
+        m0 m0Var = i0Var.f13910b;
         m0Var.getClass();
-        this.f13916c = m0Var;
-        this.f13915b = i0Var.f13908c;
+        this.f13919c = m0Var;
+        this.f13918b = i0Var.f13911c;
         this.h = i0Var.d;
         if (context == null) {
             h5Var = null;
@@ -45,7 +45,7 @@ public final class j0 implements p {
         }
         this.d = h5Var;
         this.e = i0Var.e;
-        this.f13918g = e2.g0.f8349a;
+        this.f13921g = e2.g0.f8352a;
     }
 
     public final h0 a(o oVar) {
@@ -54,25 +54,25 @@ public final class j0 implements p {
         Context context2;
         try {
             int i10 = oVar.h;
-            int i11 = oVar.f13968i;
-            if (i11 != -1 && (context2 = this.f13914a) != null && Build.VERSION.SDK_INT >= 34) {
-                Context context3 = this.f13921k;
+            int i11 = oVar.f13971i;
+            if (i11 != -1 && (context2 = this.f13917a) != null && Build.VERSION.SDK_INT >= 34) {
+                Context context3 = this.f13924k;
                 if (context3 == null || context3.getDeviceId() != i11) {
-                    this.f13921k = context2.createDeviceContext(i11);
+                    this.f13924k = context2.createDeviceContext(i11);
                 }
-                context = this.f13921k;
+                context = this.f13924k;
                 i10 = 0;
             } else {
                 context = null;
             }
-            AudioFormat build = new AudioFormat.Builder().setSampleRate(oVar.f13964b).setChannelMask(oVar.f13965c).setEncoding(oVar.f13963a).build();
-            b2.f fVar = oVar.f13967g;
+            AudioFormat build = new AudioFormat.Builder().setSampleRate(oVar.f13967b).setChannelMask(oVar.f13968c).setEncoding(oVar.f13966a).build();
+            b2.f fVar = oVar.f13970g;
             if (oVar.d) {
                 b10 = new AudioAttributes.Builder().setContentType(3).setFlags(16).setUsage(1).build();
             } else {
                 b10 = fVar.b();
             }
-            AudioTrack.Builder sessionId = new AudioTrack.Builder().setAudioAttributes(b10).setAudioFormat(build).setTransferMode(1).setBufferSizeInBytes(oVar.f13966f).setSessionId(i10);
+            AudioTrack.Builder sessionId = new AudioTrack.Builder().setAudioAttributes(b10).setAudioFormat(build).setTransferMode(1).setBufferSizeInBytes(oVar.f13969f).setSessionId(i10);
             int i12 = Build.VERSION.SDK_INT;
             if (i12 >= 29) {
                 sessionId.setOffloadedPlayback(oVar.e);
@@ -82,7 +82,7 @@ public final class j0 implements p {
             }
             AudioTrack build2 = sessionId.build();
             if (build2.getState() == 1) {
-                return new h0(build2, oVar, this.d, this.e, this.f13918g);
+                return new h0(build2, oVar, this.d, this.e, this.f13921g);
             }
             try {
                 build2.release();
@@ -100,20 +100,20 @@ public final class j0 implements p {
 
     public final l b(j jVar) {
         e(jVar);
-        b2.x xVar = jVar.f13909a;
-        b2.f fVar = jVar.f13910b;
-        g b10 = this.f13916c.b(fVar, xVar);
+        b2.x xVar = jVar.f13912a;
+        b2.f fVar = jVar.f13913b;
+        g b10 = this.f13919c.b(fVar, xVar);
         k kVar = new k();
-        String str = xVar.f2519s;
+        String str = xVar.f2523s;
         int i10 = xVar.M;
         int i11 = 0;
         if (!Objects.equals(str, "audio/raw") ? this.h.c(fVar, xVar) != null : i10 == 2) {
             i11 = 2;
         }
-        kVar.f13922a = i11;
-        kVar.f13923b = b10.f13880a;
-        kVar.f13924c = b10.f13881b;
-        kVar.d = b10.f13882c;
+        kVar.f13925a = i11;
+        kVar.f13926b = b10.f13883a;
+        kVar.f13927c = b10.f13884b;
+        kVar.d = b10.f13885c;
         return kVar.a();
     }
 
@@ -123,26 +123,26 @@ public final class j0 implements p {
 
     public final void d() {
         z2.d dVar;
-        e2.r rVar = this.f13917f;
+        e2.r rVar = this.f13920f;
         if (rVar != null) {
             rVar.d();
         }
-        e eVar = this.f13919i;
+        e eVar = this.f13922i;
         if (eVar != null) {
-            Context context = eVar.f13869a;
-            if (eVar.f13876k) {
+            Context context = eVar.f13872a;
+            if (eVar.f13879k) {
                 eVar.h = null;
                 c2.i.e(context).unregisterAudioDeviceCallback(eVar.d);
-                if (Build.VERSION.SDK_INT >= 32 && (dVar = eVar.f13873g) != null) {
+                if (Build.VERSION.SDK_INT >= 32 && (dVar = eVar.f13876g) != null) {
                     dVar.e();
-                    eVar.f13873g = null;
+                    eVar.f13876g = null;
                 }
                 context.unregisterReceiver(eVar.e);
-                d dVar2 = eVar.f13872f;
+                d dVar2 = eVar.f13875f;
                 if (dVar2 != null) {
-                    dVar2.f13863a.unregisterContentObserver(dVar2);
+                    dVar2.f13866a.unregisterContentObserver(dVar2);
                 }
-                eVar.f13876k = false;
+                eVar.f13879k = false;
             }
         }
     }
@@ -150,48 +150,48 @@ public final class j0 implements p {
     public final void e(j jVar) {
         Context context;
         b b10;
-        AudioDeviceInfo audioDeviceInfo = jVar.f13911c;
-        b2.f fVar = jVar.f13910b;
+        AudioDeviceInfo audioDeviceInfo = jVar.f13914c;
+        b2.f fVar = jVar.f13913b;
         f();
-        e eVar = this.f13919i;
-        if (eVar == null && (context = this.f13914a) != null) {
+        e eVar = this.f13922i;
+        if (eVar == null && (context = this.f13917a) != null) {
             e eVar2 = new e(context, new m5(this, 1), fVar, audioDeviceInfo);
-            this.f13919i = eVar2;
-            if (eVar2.f13876k) {
+            this.f13922i = eVar2;
+            if (eVar2.f13879k) {
                 b10 = eVar2.h;
                 b10.getClass();
             } else {
-                eVar2.f13876k = true;
-                d dVar = eVar2.f13872f;
+                eVar2.f13879k = true;
+                d dVar = eVar2.f13875f;
                 if (dVar != null) {
-                    dVar.f13863a.registerContentObserver(dVar.f13864b, false, dVar);
+                    dVar.f13866a.registerContentObserver(dVar.f13867b, false, dVar);
                 }
-                Context context2 = eVar2.f13869a;
+                Context context2 = eVar2.f13872a;
                 AudioManager e = c2.i.e(context2);
                 c cVar = eVar2.d;
-                Handler handler = eVar2.f13871c;
+                Handler handler = eVar2.f13874c;
                 e.registerAudioDeviceCallback(cVar, handler);
-                if (Build.VERSION.SDK_INT >= 32 && eVar2.f13873g == null) {
-                    eVar2.f13873g = new z2.d(context2, new ig.t0(eVar2, 12), Boolean.valueOf(e2.m0.P(context2)));
+                if (Build.VERSION.SDK_INT >= 32 && eVar2.f13876g == null) {
+                    eVar2.f13876g = new z2.d(context2, new ig.t0(eVar2, 12), Boolean.valueOf(e2.m0.P(context2)));
                 }
-                b10 = b.b(context2, context2.registerReceiver(eVar2.e, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG"), null, handler), eVar2.f13875j, eVar2.f13874i, eVar2.a());
+                b10 = b.b(context2, context2.registerReceiver(eVar2.e, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG"), null, handler), eVar2.f13878j, eVar2.f13877i, eVar2.a());
                 eVar2.h = b10;
             }
             this.h = b10;
         } else if (eVar != null) {
-            if (audioDeviceInfo != null && !audioDeviceInfo.equals(eVar.f13874i)) {
-                eVar.f13874i = audioDeviceInfo;
-                Context context3 = eVar.f13869a;
-                b2.f fVar2 = eVar.f13875j;
+            if (audioDeviceInfo != null && !audioDeviceInfo.equals(eVar.f13877i)) {
+                eVar.f13877i = audioDeviceInfo;
+                Context context3 = eVar.f13872a;
+                b2.f fVar2 = eVar.f13878j;
                 List a2 = eVar.a();
                 x1 x1Var = b.e;
                 eVar.b(b.b(context3, context3.registerReceiver(null, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG")), fVar2, audioDeviceInfo, a2));
             }
-            e eVar3 = this.f13919i;
-            if (!Objects.equals(fVar, eVar3.f13875j)) {
-                eVar3.f13875j = fVar;
-                Context context4 = eVar3.f13869a;
-                AudioDeviceInfo audioDeviceInfo2 = eVar3.f13874i;
+            e eVar3 = this.f13922i;
+            if (!Objects.equals(fVar, eVar3.f13878j)) {
+                eVar3.f13878j = fVar;
+                Context context4 = eVar3.f13872a;
+                AudioDeviceInfo audioDeviceInfo2 = eVar3.f13877i;
                 List a10 = eVar3.a();
                 x1 x1Var2 = b.e;
                 eVar3.b(b.b(context4, context4.registerReceiver(null, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG")), fVar, audioDeviceInfo2, a10));
@@ -203,11 +203,11 @@ public final class j0 implements p {
     public final void f() {
         boolean z10;
         String name;
-        if (this.f13914a == null) {
+        if (this.f13917a == null) {
             return;
         }
         Looper myLooper = Looper.myLooper();
-        Looper looper = this.f13920j;
+        Looper looper = this.f13923j;
         if (looper != null && looper != myLooper) {
             z10 = false;
         } else {
@@ -223,7 +223,7 @@ public final class j0 implements p {
             str = myLooper.getThread().getName();
         }
         if (z10) {
-            this.f13920j = myLooper;
+            this.f13923j = myLooper;
             return;
         }
         throw new IllegalStateException(v6.a("AudioTrackAudioOutputProvider accessed on multiple threads: %s and %s", name, str));

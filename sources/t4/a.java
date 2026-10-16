@@ -3,12 +3,12 @@ package t4;
 import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import m.p;
+import m.r;
 public final class a implements d {
     public final LinkedHashSet f45508a = new LinkedHashSet();
 
-    public a(p pVar) {
-        pVar.f("androidx.savedstate.Restarter", this);
+    public a(r rVar) {
+        rVar.f("androidx.savedstate.Restarter", this);
     }
 
     @Override

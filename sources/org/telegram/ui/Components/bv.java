@@ -7,26 +7,26 @@ import android.view.MotionEvent;
 import android.webkit.WebView;
 import org.telegram.messenger.AndroidUtilities;
 public final class bv extends WebView {
-    public final int f23858a;
-    public final Context f23859b;
-    public final KeyEvent.Callback f23860c;
+    public final int f23553a;
+    public final Context f23554b;
+    public final KeyEvent.Callback f23555c;
 
     public bv(KeyEvent.Callback callback, Context context, Context context2, int i10) {
         super(context);
-        this.f23858a = i10;
-        this.f23860c = callback;
-        this.f23859b = context2;
+        this.f23553a = i10;
+        this.f23555c = callback;
+        this.f23554b = context2;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f23858a) {
+        switch (this.f23553a) {
             case 1:
-                org.telegram.ui.pu0 pu0Var = (org.telegram.ui.pu0) this.f23860c;
+                org.telegram.ui.ou0 ou0Var = (org.telegram.ui.ou0) this.f23555c;
                 super.draw(canvas);
-                if (fh0.f25035p0.f25044f == this && pu0Var.h.getVisibility() == 0) {
+                if (fh0.f24733p0.f24742f == this && ou0Var.h.getVisibility() == 0) {
                     canvas.drawColor(-16777216);
-                    pu0Var.j(canvas, getWidth(), getHeight());
+                    ou0Var.j(canvas, getWidth(), getHeight());
                     return;
                 }
                 return;
@@ -38,13 +38,13 @@ public final class bv extends WebView {
 
     @Override
     public final void onAttachedToWindow() {
-        switch (this.f23858a) {
+        switch (this.f23553a) {
             case 0:
-                AndroidUtilities.checkAndroidTheme(this.f23859b, true);
+                AndroidUtilities.checkAndroidTheme(this.f23554b, true);
                 super.onAttachedToWindow();
                 return;
             default:
-                AndroidUtilities.checkAndroidTheme(this.f23859b, true);
+                AndroidUtilities.checkAndroidTheme(this.f23554b, true);
                 super.onAttachedToWindow();
                 return;
         }
@@ -52,13 +52,13 @@ public final class bv extends WebView {
 
     @Override
     public final void onDetachedFromWindow() {
-        switch (this.f23858a) {
+        switch (this.f23553a) {
             case 0:
-                AndroidUtilities.checkAndroidTheme(this.f23859b, false);
+                AndroidUtilities.checkAndroidTheme(this.f23554b, false);
                 super.onDetachedFromWindow();
                 return;
             default:
-                AndroidUtilities.checkAndroidTheme(this.f23859b, false);
+                AndroidUtilities.checkAndroidTheme(this.f23554b, false);
                 super.onDetachedFromWindow();
                 return;
         }
@@ -66,9 +66,9 @@ public final class bv extends WebView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f23858a) {
+        switch (this.f23553a) {
             case 0:
-                hv hvVar = (hv) this.f23860c;
+                hv hvVar = (hv) this.f23555c;
                 boolean onTouchEvent = super.onTouchEvent(motionEvent);
                 if (onTouchEvent) {
                     if (motionEvent.getAction() == 1) {

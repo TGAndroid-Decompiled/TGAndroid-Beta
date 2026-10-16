@@ -3,11 +3,11 @@ package b2;
 import android.os.Parcel;
 import android.os.Parcelable;
 public final class r implements Parcelable.Creator {
-    public final int f2294a;
+    public final int f2298a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f2294a) {
+        switch (this.f2298a) {
             case 0:
                 return new t(parcel);
             case 1:
@@ -19,7 +19,7 @@ public final class r implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f2294a) {
+        switch (this.f2298a) {
             case 0:
                 return new t[i10];
             case 1:

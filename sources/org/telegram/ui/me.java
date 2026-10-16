@@ -12,48 +12,48 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class me extends LinearLayout {
-    public final int f38227a;
-    public final org.telegram.ui.Components.k91 f38228b;
-    public final le f38229c;
+    public final int f37972a;
+    public final org.telegram.ui.Components.l91 f37973b;
+    public final le f37974c;
     public final long d;
     public final ud e;
-    public String f38230f;
+    public String f37975f;
     public final ArrayList h;
-    public final ArrayList f38231n;
-    public String f38232r;
-    public final boolean[] f38233s;
+    public final ArrayList f37976n;
+    public String f37977r;
+    public final boolean[] f37978s;
     public final qe v;
 
     public me(qe qeVar, Context context, int i10, long j10, int i11, ud udVar, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
         this.v = qeVar;
-        this.f38230f = "";
+        this.f37975f = "";
         this.h = new ArrayList();
-        this.f38231n = new ArrayList();
-        this.f38232r = "";
-        this.f38233s = new boolean[]{false, false};
-        this.f38227a = i10;
+        this.f37976n = new ArrayList();
+        this.f37977r = "";
+        this.f37978s = new boolean[]{false, false};
+        this.f37972a = i10;
         this.d = j10;
         this.e = udVar;
         setOrientation(1);
-        org.telegram.ui.Components.k91 k91Var = new org.telegram.ui.Components.k91(context, null);
-        this.f38228b = k91Var;
+        org.telegram.ui.Components.l91 l91Var = new org.telegram.ui.Components.l91(context, null);
+        this.f37973b = l91Var;
         le leVar = new le(this, context, i10, j10, i11, c6Var);
-        this.f38229c = leVar;
-        k91Var.setAdapter(leVar);
-        View n10 = k91Var.n(3, true);
+        this.f37974c = leVar;
+        l91Var.setAdapter(leVar);
+        View n10 = l91Var.n(3, true);
         View view = new View(context);
-        view.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19902d7, c6Var));
-        addView(n10, w7.a6.n(-1, 48));
-        addView(view, new LinearLayout.LayoutParams(w7.a6.z(-1.0f), w7.a6.z(1.0f / AndroidUtilities.density)));
-        addView(k91Var, w7.a6.n(-1, -1));
-        setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19972h5, c6Var));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19602d7, c6Var));
+        addView(n10, w7.z5.n(-1, 48));
+        addView(view, new LinearLayout.LayoutParams(w7.z5.z(-1.0f), w7.z5.z(1.0f / AndroidUtilities.density)));
+        addView(l91Var, w7.z5.n(-1, -1));
+        setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19672h5, c6Var));
         c(1);
         c(0);
     }
 
     public final boolean a() {
-        if (this.h.isEmpty() && this.f38231n.isEmpty()) {
+        if (this.h.isEmpty() && this.f37976n.isEmpty()) {
             return false;
         }
         return true;
@@ -64,7 +64,7 @@ public final class me extends LinearLayout {
         if (i10 == 1) {
             isEmpty = this.h.isEmpty();
         } else if (i10 == 0) {
-            isEmpty = this.f38231n.isEmpty();
+            isEmpty = this.f37976n.isEmpty();
         } else {
             return false;
         }
@@ -72,37 +72,37 @@ public final class me extends LinearLayout {
     }
 
     public final void c(final int i10) {
-        boolean[] zArr = this.f38233s;
+        boolean[] zArr = this.f37978s;
         if (!zArr[i10]) {
             final boolean a2 = a();
             final boolean b10 = b(i10);
             int i11 = 20;
             long j10 = this.d;
             qe qeVar = this.v;
-            int i12 = this.f38227a;
+            int i12 = this.f37972a;
             if (i10 == 1) {
-                if (this.f38230f != null && qeVar.f39400f1) {
+                if (this.f37975f != null && qeVar.f39122f1) {
                     zArr[i10] = true;
                     TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
                     tL_payments_getStarsTransactions.ton = true;
                     tL_payments_getStarsTransactions.peer = MessagesController.getInstance(i12).getInputPeer(j10);
-                    tL_payments_getStarsTransactions.offset = this.f38230f;
+                    tL_payments_getStarsTransactions.offset = this.f37975f;
                     if (this.h.isEmpty()) {
                         i11 = 5;
                     }
                     tL_payments_getStarsTransactions.limit = i11;
                     ConnectionsManager.getInstance(i12).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate(this) {
-                        public final me f37101b;
+                        public final me f36790b;
 
                         {
-                            this.f37101b = this;
+                            this.f36790b = this;
                         }
 
                         @Override
                         public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                             switch (r5) {
                                 case 0:
-                                    final me meVar = this.f37101b;
+                                    final me meVar = this.f36790b;
                                     final int i13 = i10;
                                     final boolean z10 = a2;
                                     final boolean z11 = b10;
@@ -114,7 +114,7 @@ public final class me extends LinearLayout {
                                             switch (r7) {
                                                 case 0:
                                                     me meVar2 = meVar;
-                                                    int i14 = meVar2.f38227a;
+                                                    int i14 = meVar2.f37972a;
                                                     TLObject tLObject2 = tLObject;
                                                     boolean z12 = tLObject2 instanceof TL_stars.StarsStatus;
                                                     int i15 = i13;
@@ -122,9 +122,9 @@ public final class me extends LinearLayout {
                                                         TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                         MessagesController.getInstance(i14).putUsers(starsStatus.users, false);
                                                         MessagesController.getInstance(i14).putChats(starsStatus.chats, false);
-                                                        meVar2.f38231n.addAll(starsStatus.history);
-                                                        meVar2.f38232r = starsStatus.next_offset;
-                                                        meVar2.f38233s[i15] = false;
+                                                        meVar2.f37976n.addAll(starsStatus.history);
+                                                        meVar2.f37977r = starsStatus.next_offset;
+                                                        meVar2.f37978s[i15] = false;
                                                         meVar2.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error2 = tL_error;
@@ -142,7 +142,7 @@ public final class me extends LinearLayout {
                                                     return;
                                                 default:
                                                     me meVar3 = meVar;
-                                                    int i16 = meVar3.f38227a;
+                                                    int i16 = meVar3.f37972a;
                                                     TLObject tLObject3 = tLObject;
                                                     boolean z13 = tLObject3 instanceof TL_stars.StarsStatus;
                                                     int i17 = i13;
@@ -151,8 +151,8 @@ public final class me extends LinearLayout {
                                                         MessagesController.getInstance(i16).putUsers(starsStatus2.users, false);
                                                         MessagesController.getInstance(i16).putChats(starsStatus2.chats, false);
                                                         meVar3.h.addAll(starsStatus2.history);
-                                                        meVar3.f38230f = starsStatus2.next_offset;
-                                                        meVar3.f38233s[i17] = false;
+                                                        meVar3.f37975f = starsStatus2.next_offset;
+                                                        meVar3.f37978s[i17] = false;
                                                         meVar3.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error3 = tL_error;
@@ -173,7 +173,7 @@ public final class me extends LinearLayout {
                                     });
                                     return;
                                 default:
-                                    final me meVar2 = this.f37101b;
+                                    final me meVar2 = this.f36790b;
                                     final int i14 = i10;
                                     final boolean z12 = a2;
                                     final boolean z13 = b10;
@@ -185,7 +185,7 @@ public final class me extends LinearLayout {
                                             switch (r7) {
                                                 case 0:
                                                     me meVar22 = meVar2;
-                                                    int i142 = meVar22.f38227a;
+                                                    int i142 = meVar22.f37972a;
                                                     TLObject tLObject2 = tLObject;
                                                     boolean z122 = tLObject2 instanceof TL_stars.StarsStatus;
                                                     int i15 = i14;
@@ -193,9 +193,9 @@ public final class me extends LinearLayout {
                                                         TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                         MessagesController.getInstance(i142).putUsers(starsStatus.users, false);
                                                         MessagesController.getInstance(i142).putChats(starsStatus.chats, false);
-                                                        meVar22.f38231n.addAll(starsStatus.history);
-                                                        meVar22.f38232r = starsStatus.next_offset;
-                                                        meVar22.f38233s[i15] = false;
+                                                        meVar22.f37976n.addAll(starsStatus.history);
+                                                        meVar22.f37977r = starsStatus.next_offset;
+                                                        meVar22.f37978s[i15] = false;
                                                         meVar22.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error2 = tL_error;
@@ -213,7 +213,7 @@ public final class me extends LinearLayout {
                                                     return;
                                                 default:
                                                     me meVar3 = meVar2;
-                                                    int i16 = meVar3.f38227a;
+                                                    int i16 = meVar3.f37972a;
                                                     TLObject tLObject3 = tLObject;
                                                     boolean z132 = tLObject3 instanceof TL_stars.StarsStatus;
                                                     int i17 = i14;
@@ -222,8 +222,8 @@ public final class me extends LinearLayout {
                                                         MessagesController.getInstance(i16).putUsers(starsStatus2.users, false);
                                                         MessagesController.getInstance(i16).putChats(starsStatus2.chats, false);
                                                         meVar3.h.addAll(starsStatus2.history);
-                                                        meVar3.f38230f = starsStatus2.next_offset;
-                                                        meVar3.f38233s[i17] = false;
+                                                        meVar3.f37975f = starsStatus2.next_offset;
+                                                        meVar3.f37978s[i17] = false;
                                                         meVar3.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error3 = tL_error;
@@ -247,28 +247,28 @@ public final class me extends LinearLayout {
                         }
                     });
                 }
-            } else if (i10 == 0 && this.f38232r != null && qeVar.f39401g1) {
+            } else if (i10 == 0 && this.f37977r != null && qeVar.f39123g1) {
                 zArr[i10] = true;
                 TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions2 = new TL_stars.TL_payments_getStarsTransactions();
                 tL_payments_getStarsTransactions2.ton = false;
                 tL_payments_getStarsTransactions2.peer = MessagesController.getInstance(i12).getInputPeer(j10);
-                tL_payments_getStarsTransactions2.offset = this.f38232r;
-                if (this.f38231n.isEmpty()) {
+                tL_payments_getStarsTransactions2.offset = this.f37977r;
+                if (this.f37976n.isEmpty()) {
                     i11 = 5;
                 }
                 tL_payments_getStarsTransactions2.limit = i11;
                 ConnectionsManager.getInstance(i12).sendRequest(tL_payments_getStarsTransactions2, new RequestDelegate(this) {
-                    public final me f37101b;
+                    public final me f36790b;
 
                     {
-                        this.f37101b = this;
+                        this.f36790b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r5) {
                             case 0:
-                                final me meVar = this.f37101b;
+                                final me meVar = this.f36790b;
                                 final int i13 = i10;
                                 final boolean z10 = a2;
                                 final boolean z11 = b10;
@@ -280,7 +280,7 @@ public final class me extends LinearLayout {
                                         switch (r7) {
                                             case 0:
                                                 me meVar22 = meVar;
-                                                int i142 = meVar22.f38227a;
+                                                int i142 = meVar22.f37972a;
                                                 TLObject tLObject2 = tLObject;
                                                 boolean z122 = tLObject2 instanceof TL_stars.StarsStatus;
                                                 int i15 = i13;
@@ -288,9 +288,9 @@ public final class me extends LinearLayout {
                                                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                     MessagesController.getInstance(i142).putUsers(starsStatus.users, false);
                                                     MessagesController.getInstance(i142).putChats(starsStatus.chats, false);
-                                                    meVar22.f38231n.addAll(starsStatus.history);
-                                                    meVar22.f38232r = starsStatus.next_offset;
-                                                    meVar22.f38233s[i15] = false;
+                                                    meVar22.f37976n.addAll(starsStatus.history);
+                                                    meVar22.f37977r = starsStatus.next_offset;
+                                                    meVar22.f37978s[i15] = false;
                                                     meVar22.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error2 = tL_error;
@@ -308,7 +308,7 @@ public final class me extends LinearLayout {
                                                 return;
                                             default:
                                                 me meVar3 = meVar;
-                                                int i16 = meVar3.f38227a;
+                                                int i16 = meVar3.f37972a;
                                                 TLObject tLObject3 = tLObject;
                                                 boolean z132 = tLObject3 instanceof TL_stars.StarsStatus;
                                                 int i17 = i13;
@@ -317,8 +317,8 @@ public final class me extends LinearLayout {
                                                     MessagesController.getInstance(i16).putUsers(starsStatus2.users, false);
                                                     MessagesController.getInstance(i16).putChats(starsStatus2.chats, false);
                                                     meVar3.h.addAll(starsStatus2.history);
-                                                    meVar3.f38230f = starsStatus2.next_offset;
-                                                    meVar3.f38233s[i17] = false;
+                                                    meVar3.f37975f = starsStatus2.next_offset;
+                                                    meVar3.f37978s[i17] = false;
                                                     meVar3.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error3 = tL_error;
@@ -339,7 +339,7 @@ public final class me extends LinearLayout {
                                 });
                                 return;
                             default:
-                                final me meVar2 = this.f37101b;
+                                final me meVar2 = this.f36790b;
                                 final int i14 = i10;
                                 final boolean z12 = a2;
                                 final boolean z13 = b10;
@@ -351,7 +351,7 @@ public final class me extends LinearLayout {
                                         switch (r7) {
                                             case 0:
                                                 me meVar22 = meVar2;
-                                                int i142 = meVar22.f38227a;
+                                                int i142 = meVar22.f37972a;
                                                 TLObject tLObject2 = tLObject;
                                                 boolean z122 = tLObject2 instanceof TL_stars.StarsStatus;
                                                 int i15 = i14;
@@ -359,9 +359,9 @@ public final class me extends LinearLayout {
                                                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                     MessagesController.getInstance(i142).putUsers(starsStatus.users, false);
                                                     MessagesController.getInstance(i142).putChats(starsStatus.chats, false);
-                                                    meVar22.f38231n.addAll(starsStatus.history);
-                                                    meVar22.f38232r = starsStatus.next_offset;
-                                                    meVar22.f38233s[i15] = false;
+                                                    meVar22.f37976n.addAll(starsStatus.history);
+                                                    meVar22.f37977r = starsStatus.next_offset;
+                                                    meVar22.f37978s[i15] = false;
                                                     meVar22.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error2 = tL_error;
@@ -379,7 +379,7 @@ public final class me extends LinearLayout {
                                                 return;
                                             default:
                                                 me meVar3 = meVar2;
-                                                int i16 = meVar3.f38227a;
+                                                int i16 = meVar3.f37972a;
                                                 TLObject tLObject3 = tLObject;
                                                 boolean z132 = tLObject3 instanceof TL_stars.StarsStatus;
                                                 int i17 = i14;
@@ -388,8 +388,8 @@ public final class me extends LinearLayout {
                                                     MessagesController.getInstance(i16).putUsers(starsStatus2.users, false);
                                                     MessagesController.getInstance(i16).putChats(starsStatus2.chats, false);
                                                     meVar3.h.addAll(starsStatus2.history);
-                                                    meVar3.f38230f = starsStatus2.next_offset;
-                                                    meVar3.f38233s[i17] = false;
+                                                    meVar3.f37975f = starsStatus2.next_offset;
+                                                    meVar3.f37978s[i17] = false;
                                                     meVar3.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error3 = tL_error;
@@ -419,16 +419,16 @@ public final class me extends LinearLayout {
     public final void d() {
         int i10 = 0;
         while (true) {
-            org.telegram.ui.Components.k91 k91Var = this.f38228b;
-            if (i10 < k91Var.getViewPages().length) {
-                View view = k91Var.getViewPages()[i10];
+            org.telegram.ui.Components.l91 l91Var = this.f37973b;
+            if (i10 < l91Var.getViewPages().length) {
+                View view = l91Var.getViewPages()[i10];
                 if (view instanceof ke) {
                     ke keVar = (ke) view;
-                    org.telegram.ui.Components.h71 h71Var = keVar.f37629a;
-                    h71Var.W2.N(true);
-                    if (h71Var.canScrollVertically(1)) {
-                        for (int i11 = 0; i11 < h71Var.getChildCount(); i11++) {
-                            if (!(h71Var.getChildAt(i11) instanceof org.telegram.ui.Components.f10)) {
+                    org.telegram.ui.Components.i71 i71Var = keVar.f37355a;
+                    i71Var.W2.N(true);
+                    if (i71Var.canScrollVertically(1)) {
+                        for (int i11 = 0; i11 < i71Var.getChildCount(); i11++) {
+                            if (!(i71Var.getChildAt(i11) instanceof org.telegram.ui.Components.f10)) {
                             }
                         }
                     }
@@ -443,17 +443,17 @@ public final class me extends LinearLayout {
     }
 
     public final void e() {
-        this.f38229c.i();
-        org.telegram.ui.Components.k91 k91Var = this.f38228b;
-        k91Var.o(false);
-        View[] viewArr = k91Var.e;
-        int[] iArr = k91Var.f26642f;
-        if (iArr[0] != k91Var.L.h(k91Var.f26640b)) {
-            k91Var.I(0);
+        this.f37974c.i();
+        org.telegram.ui.Components.l91 l91Var = this.f37973b;
+        l91Var.o(false);
+        View[] viewArr = l91Var.e;
+        int[] iArr = l91Var.f26694f;
+        if (iArr[0] != l91Var.L.h(l91Var.f26692b)) {
+            l91Var.I(0);
             View view = viewArr[1];
             if (view != null) {
-                k91Var.h.put(iArr[1], view);
-                k91Var.removeView(viewArr[1]);
+                l91Var.h.put(iArr[1], view);
+                l91Var.removeView(viewArr[1]);
                 viewArr[1] = null;
             }
             viewArr[0].setTranslationX(0.0f);
@@ -461,10 +461,10 @@ public final class me extends LinearLayout {
     }
 
     public org.telegram.ui.Components.mm0 getCurrentListView() {
-        View currentView = this.f38228b.getCurrentView();
+        View currentView = this.f37973b.getCurrentView();
         if (!(currentView instanceof ke)) {
             return null;
         }
-        return ((ke) currentView).f37629a;
+        return ((ke) currentView).f37355a;
     }
 }

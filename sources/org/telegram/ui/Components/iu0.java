@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
 public final class iu0 extends lm0 {
-    public final Context f26095c;
+    public final Context f25788c;
     public final ArrayList d = new ArrayList();
     public boolean e;
-    public boolean f26096f;
+    public boolean f25789f;
     public boolean h;
-    public final xv0 f26097n;
+    public final xv0 f25790n;
 
     public iu0(xv0 xv0Var, Context context) {
-        this.f26097n = xv0Var;
-        this.f26095c = context;
+        this.f25790n = xv0Var;
+        this.f25788c = context;
     }
 
     public static void E(iu0 iu0Var, long j10) {
-        xv0 xv0Var = iu0Var.f26097n;
+        xv0 xv0Var = iu0Var.f25790n;
         if (!iu0Var.e) {
             TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
-            long j11 = xv0Var.f31363j1;
-            org.telegram.ui.ActionBar.m2 m2Var = xv0Var.f31388v1;
+            long j11 = xv0Var.f31044j1;
+            org.telegram.ui.ActionBar.m2 m2Var = xv0Var.f31069v1;
             if (DialogObject.isEncryptedDialog(j11)) {
-                j11 = org.telegram.messenger.q.m(m2Var.getMessagesController(), j11).user_id;
+                j11 = org.telegram.messenger.g0.l(m2Var.getMessagesController(), j11).user_id;
             }
             TLRPC.InputUser inputUser = m2Var.getMessagesController().getInputUser(j11);
             tL_messages_getCommonChats.user_id = inputUser;
@@ -94,18 +94,18 @@ public final class iu0 extends lm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.i6 i6Var;
-        xv0 xv0Var = this.f26097n;
+        xv0 xv0Var = this.f25790n;
         org.telegram.ui.ActionBar.c6 c6Var = xv0Var.F1;
-        Context context = this.f26095c;
+        Context context = this.f25788c;
         if (i10 != 14) {
             if (i10 != 15) {
                 f10 f10Var = new f10(context, c6Var);
                 f10Var.setIsSingleCell(true);
-                f10Var.f24856w = false;
+                f10Var.f24549w = false;
                 f10Var.setViewType(1);
                 i6Var = f10Var;
             } else {
-                ku0 M = xv0.M(6, xv0Var.f31363j1, context, c6Var);
+                ku0 M = xv0.M(6, xv0Var.f31044j1, context, c6Var);
                 M.setLayoutParams(new s4.o0(-1, -1));
                 return new s4.b1(M);
             }

@@ -10,34 +10,34 @@ import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.p60;
 import org.telegram.ui.Components.pc0;
 import org.telegram.ui.Components.vi;
-import org.telegram.ui.Components.voip.r2;
+import org.telegram.ui.Components.voip.q2;
 import org.telegram.ui.Components.voip.s1;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.Wallet.b5;
-import w7.j6;
+import org.telegram.ui.Wallet.c5;
+import w7.i6;
 public final class b extends ViewOutlineProvider {
-    public final int f6538a;
-    public final Object f6539b;
+    public final int f6541a;
+    public final Object f6542b;
 
     public b(Object obj, int i10) {
-        this.f6538a = i10;
-        this.f6539b = obj;
+        this.f6541a = i10;
+        this.f6542b = obj;
     }
 
     @Override
     public final void getOutline(View view, Outline outline) {
         float f7;
-        int i10 = this.f6538a;
+        int i10 = this.f6541a;
         float f10 = 0.0f;
-        Object obj = this.f6539b;
+        Object obj = this.f6542b;
         switch (i10) {
             case 0:
-                c cVar = ((d) obj).f6558j;
-                d.h(outline, cVar.f6549m, cVar.f6541b);
+                c cVar = ((d) obj).f6561j;
+                d.h(outline, cVar.f6552m, cVar.f6544b);
                 return;
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                vi viVar = chatAttachAlertPhotoLayout.f27671b;
+                vi viVar = chatAttachAlertPhotoLayout.f27360b;
                 float f11 = viVar.J0[1];
                 i iVar = viVar.E2;
                 if (iVar != null) {
@@ -46,23 +46,23 @@ public final class b extends ViewOutlineProvider {
                     f7 = 0.0f;
                 }
                 int min = (int) Math.min((viVar.getContainerView().getTranslationY() + ((f11 - f7) + chatAttachAlertPhotoLayout.W0)) - chatAttachAlertPhotoLayout.P.getTranslationY(), view.getMeasuredHeight());
-                if (chatAttachAlertPhotoLayout.f23025b0) {
+                if (chatAttachAlertPhotoLayout.f22725b0) {
                     min = view.getMeasuredHeight();
-                } else if (chatAttachAlertPhotoLayout.f23029d0) {
-                    min = AndroidUtilities.lerp(min, view.getMeasuredHeight(), chatAttachAlertPhotoLayout.f23031e0);
+                } else if (chatAttachAlertPhotoLayout.f22729d0) {
+                    min = AndroidUtilities.lerp(min, view.getMeasuredHeight(), chatAttachAlertPhotoLayout.f22731e0);
                 }
-                boolean z10 = chatAttachAlertPhotoLayout.f23029d0;
+                boolean z10 = chatAttachAlertPhotoLayout.f22729d0;
                 if (z10) {
                     RectF rectF = AndroidUtilities.rectTmp;
-                    float f12 = chatAttachAlertPhotoLayout.f23049n1;
-                    boolean z11 = ChatAttachAlertPhotoLayout.f23018q1;
-                    float f13 = 1.0f - chatAttachAlertPhotoLayout.f23031e0;
-                    rectF.set((0.0f * f13) + f12, (f13 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f23044k1, chatAttachAlertPhotoLayout.f23046m1, chatAttachAlertPhotoLayout.l1);
+                    float f12 = chatAttachAlertPhotoLayout.f22749n1;
+                    boolean z11 = ChatAttachAlertPhotoLayout.f22718q1;
+                    float f13 = 1.0f - chatAttachAlertPhotoLayout.f22731e0;
+                    rectF.set((0.0f * f13) + f12, (f13 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f22744k1, chatAttachAlertPhotoLayout.f22746m1, chatAttachAlertPhotoLayout.l1);
                     outline.setRect((int) rectF.left, (int) rectF.top, (int) rectF.right, Math.min(min, (int) rectF.bottom));
                     return;
-                } else if (!z10 && !chatAttachAlertPhotoLayout.f23025b0) {
+                } else if (!z10 && !chatAttachAlertPhotoLayout.f22725b0) {
                     int dp = AndroidUtilities.dp(16.0f);
-                    boolean z12 = ChatAttachAlertPhotoLayout.f23018q1;
+                    boolean z12 = ChatAttachAlertPhotoLayout.f22718q1;
                     outline.setRoundRect((int) 0.0f, (int) chatAttachAlertPhotoLayout.W, view.getMeasuredWidth() + dp, Math.min(min, view.getMeasuredHeight()) + dp, dp);
                     return;
                 } else {
@@ -100,21 +100,21 @@ public final class b extends ViewOutlineProvider {
                     return;
                 }
             case 5:
-                r2 r2Var = (r2) obj;
-                if (r2Var.f30422b < 1.0f) {
-                    outline.setRect((int) r2Var.O, (int) r2Var.N, (int) (view.getMeasuredWidth() - r2Var.O), (int) (view.getMeasuredHeight() - r2Var.N));
+                q2 q2Var = (q2) obj;
+                if (q2Var.f30083b < 1.0f) {
+                    outline.setRect((int) q2Var.O, (int) q2Var.N, (int) (view.getMeasuredWidth() - q2Var.O), (int) (view.getMeasuredHeight() - q2Var.N));
                     return;
                 } else {
-                    outline.setRoundRect((int) r2Var.O, (int) r2Var.N, (int) (view.getMeasuredWidth() - r2Var.O), (int) (view.getMeasuredHeight() - r2Var.N), r2Var.f30422b);
+                    outline.setRoundRect((int) q2Var.O, (int) q2Var.N, (int) (view.getMeasuredWidth() - q2Var.O), (int) (view.getMeasuredHeight() - q2Var.N), q2Var.f30083b);
                     return;
                 }
             case 6:
                 outline.setRoundRect(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + PremiumPreviewFragment.e0((PremiumPreviewFragment) obj).getBottom(), view.getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(16.0f));
                 return;
             default:
-                b5 b5Var = (b5) obj;
-                j6.a(b5Var.f32963c, view.getWidth(), view.getHeight());
-                outline.setConvexPath(b5Var.f32963c);
+                c5 c5Var = (c5) obj;
+                i6.a(c5Var.f32739c, view.getWidth(), view.getHeight());
+                outline.setConvexPath(c5Var.f32739c);
                 return;
         }
     }

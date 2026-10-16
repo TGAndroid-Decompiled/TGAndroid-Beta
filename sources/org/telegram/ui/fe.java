@@ -17,15 +17,15 @@ public final class fe extends org.telegram.ui.Components.yd0 {
         switch (this.L) {
             case 0:
                 qe qeVar = (qe) this.M;
-                org.telegram.ui.Components.h71 h71Var = qeVar.f39395a1;
+                org.telegram.ui.Components.i71 i71Var = qeVar.f39117a1;
                 gi.o oVar = qeVar.Y0;
                 if (oVar != null && !oVar.isFocusable()) {
                     oVar.setFocusable(true);
                     oVar.setFocusableInTouchMode(true);
-                    int y12 = h71Var.y1(3);
-                    if (y12 >= 0 && y12 < h71Var.W2.f31783x.size()) {
-                        h71Var.B0();
-                        h71Var.x0(y12);
+                    int y12 = i71Var.y1(3);
+                    if (y12 >= 0 && y12 < i71Var.W2.f23148x.size()) {
+                        i71Var.B0();
+                        i71Var.x0(y12);
                     }
                     oVar.requestFocus();
                 }
@@ -37,7 +37,7 @@ public final class fe extends org.telegram.ui.Components.yd0 {
                     gVar.Q.setFocusable(true);
                     gVar.Q.setFocusableInTouchMode(true);
                     int y13 = gVar.e.y1(1);
-                    if (y13 >= 0 && y13 < gVar.e.W2.f31783x.size()) {
+                    if (y13 >= 0 && y13 < gVar.e.W2.f23148x.size()) {
                         gVar.e.B0();
                         gVar.e.x0(y13);
                     }

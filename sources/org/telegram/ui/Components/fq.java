@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class fq {
-    public float f25102g;
-    public float f25105k;
-    public final Path f25098a = new Path();
-    public final float[] f25099b = new float[4];
-    public final float[] f25100c = new float[4];
+    public float f24798g;
+    public float f24801k;
+    public final Path f24794a = new Path();
+    public final float[] f24795b = new float[4];
+    public final float[] f24796c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f25103i = new Random();
-    public final int f25101f = 6;
+    public final Random f24799i = new Random();
+    public final int f24797f = 6;
     public final float e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f25104j = new float[6];
+    public final float[] f24800j = new float[6];
 
     public fq() {
-        for (int i10 = 0; i10 < this.f25101f; i10++) {
-            this.f25104j[i10] = (this.f25103i.nextInt() % 100) / 100.0f;
+        for (int i10 = 0; i10 < this.f24797f; i10++) {
+            this.f24800j[i10] = (this.f24799i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class fq {
         int i10;
         float f12;
         fq fqVar = this;
-        float f13 = fqVar.f25102g;
+        float f13 = fqVar.f24798g;
         float f14 = (f13 - 0.0f) - 0.0f;
         float f15 = f13 + 0.0f + 0.0f;
         float max = Math.max(f14, f15);
         float f16 = fqVar.e;
         float f17 = max * f16 * fqVar.h;
-        Path path = fqVar.f25098a;
+        Path path = fqVar.f24794a;
         path.reset();
         int i11 = 0;
         while (true) {
-            int i12 = fqVar.f25101f;
+            int i12 = fqVar.f24797f;
             if (i11 < i12) {
                 Matrix matrix = fqVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class fq {
                 } else {
                     f11 = f15;
                 }
-                float f19 = fqVar.f25105k;
-                float[] fArr = fqVar.f25104j;
+                float f19 = fqVar.f24801k;
+                float[] fArr = fqVar.f24800j;
                 float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = fqVar.f25099b;
+                float[] fArr2 = fqVar.f24795b;
                 fArr2[0] = f7;
                 float f21 = f10 - f20;
                 fArr2[1] = f21;
@@ -72,8 +72,8 @@ public final class fq {
                 } else {
                     f12 = f22;
                 }
-                float f23 = fqVar.f25105k;
-                float[] fArr3 = fqVar.f25100c;
+                float f23 = fqVar.f24801k;
+                float[] fArr3 = fqVar.f24796c;
                 fArr3[0] = f7;
                 float f24 = f10 - ((fArr[i10] * f23) + f12);
                 fArr3[1] = f24;

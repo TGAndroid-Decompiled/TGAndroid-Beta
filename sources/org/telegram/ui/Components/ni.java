@@ -6,21 +6,21 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class ni extends FrameLayout {
-    public final org.telegram.ui.ActionBar.c6 f27670a;
-    public final vi f27671b;
-    public mm0 f27672c;
+    public final org.telegram.ui.ActionBar.c6 f27359a;
+    public final vi f27360b;
+    public mm0 f27361c;
     public mm0 d;
     public int e;
-    public boolean f27673f;
+    public boolean f27362f;
     public boolean h;
 
     public ni(Context context, org.telegram.ui.ActionBar.c6 c6Var, vi viVar) {
         super(context);
-        this.f27670a = c6Var;
-        this.f27671b = viVar;
+        this.f27359a = c6Var;
+        this.f27360b = viVar;
     }
 
-    public abstract void B(int i10, int i11);
+    public abstract void C(int i10, int i11);
 
     public boolean F(int i10) {
         return false;
@@ -47,7 +47,7 @@ public abstract class ni extends FrameLayout {
     }
 
     public boolean e() {
-        return this instanceof dl;
+        return this instanceof cl;
     }
 
     public boolean f() {
@@ -55,7 +55,7 @@ public abstract class ni extends FrameLayout {
     }
 
     public boolean g() {
-        return this instanceof dl;
+        return this instanceof cl;
     }
 
     public int getButtonsHideOffset() {
@@ -128,7 +128,7 @@ public abstract class ni extends FrameLayout {
         return true;
     }
 
-    public void A() {
+    public void B() {
     }
 
     public void D() {

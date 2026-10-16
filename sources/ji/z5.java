@@ -11,33 +11,33 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.m80;
+import org.telegram.ui.Components.l80;
 public final class z5 implements View.OnClickListener {
-    public final int f13716a;
-    public final i6 f13717b;
+    public final int f13719a;
+    public final i6 f13720b;
 
     public z5(i6 i6Var, int i10) {
-        this.f13716a = i10;
-        this.f13717b = i6Var;
+        this.f13719a = i10;
+        this.f13720b = i6Var;
     }
 
     @Override
     public final void onClick(View view) {
         Set set;
-        switch (this.f13716a) {
+        switch (this.f13719a) {
             case 0:
-                i6 i6Var = this.f13717b;
-                a aVar = i6Var.f13342x;
+                i6 i6Var = this.f13720b;
+                a aVar = i6Var.f13345x;
                 if (aVar != null && aVar.e) {
-                    boolean z10 = !aVar.f13105f;
-                    aVar.f13105f = z10;
-                    ((CheckBoxBase) i6Var.e.f6638b).f(-1, z10, true);
-                    f6 f6Var = i6Var.f13343y;
+                    boolean z10 = !aVar.f13109f;
+                    aVar.f13109f = z10;
+                    ((CheckBoxBase) i6Var.e.f6641b).f(-1, z10, true);
+                    f6 f6Var = i6Var.f13346y;
                     if (f6Var != null) {
-                        a aVar2 = i6Var.f13342x;
-                        boolean z11 = aVar2.f13105f;
-                        x3 x3Var = ((f3) f6Var).f13268a;
-                        aVar2.f13105f = z11;
+                        a aVar2 = i6Var.f13345x;
+                        boolean z11 = aVar2.f13109f;
+                        x3 x3Var = ((f3) f6Var).f13271a;
+                        aVar2.f13109f = z11;
                         h2 h2Var = x3Var.H3;
                         if (h2Var != null) {
                             h2Var.d();
@@ -50,33 +50,33 @@ public final class z5 implements View.OnClickListener {
                 }
                 return;
             default:
-                i6 i6Var2 = this.f13717b;
-                f6 f6Var2 = i6Var2.f13343y;
+                i6 i6Var2 = this.f13720b;
+                f6 f6Var2 = i6Var2.f13346y;
                 if (f6Var2 != null) {
-                    a aVar3 = i6Var2.f13342x;
-                    x3 x3Var2 = ((f3) f6Var2).f13268a;
-                    if (aVar3 != null && (aVar3.f13103b instanceof TL_iv.pageBlockPreformatted) && (set = mi.k.f15868a.f15887x) != null) {
+                    a aVar3 = i6Var2.f13345x;
+                    x3 x3Var2 = ((f3) f6Var2).f13271a;
+                    if (aVar3 != null && (aVar3.f13107b instanceof TL_iv.pageBlockPreformatted) && (set = li.k.f14761a.f14780x) != null) {
                         ArrayList arrayList = new ArrayList(set);
                         Collections.sort(arrayList);
-                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f13103b;
-                        m80 Y = x3Var2.f13627f3.Y(view);
-                        Y.W(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19901d6, x3Var2.f13625e3)));
-                        Y.Z = true;
-                        Y.X = AndroidUtilities.dp(350.0f);
-                        Y.i(new o2(x3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));
+                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f13107b;
+                        l80 R = x3Var2.f13630f3.R(view);
+                        R.W(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19601d6, x3Var2.f13628e3)));
+                        R.Z = true;
+                        R.X = AndroidUtilities.dp(350.0f);
+                        R.i(new o2(x3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));
                         if (!TextUtils.isEmpty(pageblockpreformatted.language)) {
-                            Y.i(null, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), true);
+                            R.i(null, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), true);
                         }
-                        Y.k();
+                        R.k();
                         int size = arrayList.size();
                         int i10 = 0;
                         while (i10 < size) {
                             Object obj = arrayList.get(i10);
                             i10++;
                             String str = (String) obj;
-                            Y.i(new hg.t(x3Var2, aVar3, str, 18), MessageObject.TextLayoutBlock.capitalizeLanguage(str), TextUtils.equals(str, pageblockpreformatted.language));
+                            R.i(new hg.t(x3Var2, aVar3, str, 18), MessageObject.TextLayoutBlock.capitalizeLanguage(str), TextUtils.equals(str, pageblockpreformatted.language));
                         }
-                        Y.Z();
+                        R.Z();
                         return;
                     }
                     return;

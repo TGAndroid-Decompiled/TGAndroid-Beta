@@ -3,11 +3,11 @@ package bi;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.sc;
 public final class fb implements org.telegram.ui.Components.qb {
-    public final float[] f3043a = new float[2];
-    public final gb f3044b;
+    public final float[] f3047a = new float[2];
+    public final gb f3048b;
 
     public fb(gb gbVar) {
-        this.f3044b = gbVar;
+        this.f3048b = gbVar;
     }
 
     @Override
@@ -22,15 +22,15 @@ public final class fb implements org.telegram.ui.Components.qb {
 
     @Override
     public final int f(int i10) {
-        gb gbVar = this.f3044b;
+        gb gbVar = this.f3048b;
         sb sbVar = gbVar.I0;
         q5 t10 = sbVar.t();
         if (t10 == null) {
             return 0;
         }
-        o4 o4Var = t10.f3511c1;
-        gb gbVar2 = sbVar.f3700s;
-        float[] fArr = this.f3043a;
+        o4 o4Var = t10.f3515c1;
+        gb gbVar2 = sbVar.f3704s;
+        float[] fArr = this.f3047a;
         AndroidUtilities.getViewPositionInParent(o4Var, gbVar2, fArr);
         return (int) (gbVar.getMeasuredHeight() - (fArr[1] + o4Var.getMeasuredHeight()));
     }

@@ -1,86 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import java.io.Serializable;
-import java.util.HashMap;
-import org.telegram.messenger.NotificationCenter;
-public final class hy0 implements TextWatcher {
-    public final int f25777a = 0;
-    public final EditTextBoldCursor f25778b;
-    public final Serializable f25779c;
-    public final Object d;
-    public final NotificationCenter.NotificationCenterDelegate e;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class hy0 extends ir0 {
+    public final uy0 f25431b1;
 
-    public hy0(ty0 ty0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
-        this.e = ty0Var;
-        this.f25779c = iArr;
-        this.d = textView;
-        this.f25778b = editTextBoldCursor;
+    public hy0(uy0 uy0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, null, str, false, str2, false, c6Var);
+        this.f25431b1 = uy0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        switch (this.f25777a) {
-            case 0:
-                return;
-            default:
-                org.telegram.ui.un0 un0Var = (org.telegram.ui.un0) this.e;
-                String str = (String) this.f25779c;
-                if (((HashMap) this.d) == un0Var.f40763t1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                EditTextBoldCursor editTextBoldCursor = this.f25778b;
-                org.telegram.ui.un0.I0(un0Var, editTextBoldCursor, str, editable, z10);
-                int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-                EditTextBoldCursor editTextBoldCursor2 = un0Var.Y[intValue];
-                if (intValue == 6) {
-                    un0Var.X0(true);
-                    return;
-                }
-                return;
+    public final void S0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.gm(this, hVar, i10, 22), 100L);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f25777a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f25777a) {
-            case 0:
-                if (((int[]) this.f25779c)[0] == 2) {
-                    ((ty0) this.e).n0((TextView) this.d, this.f25778b.getText().toString(), false);
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final void dismissInternal() {
+        super.dismissInternal();
+        org.telegram.ui.ActionBar.m2 m2Var = this.f25431b1.L;
+        if (m2Var instanceof org.telegram.ui.fo) {
+            AndroidUtilities.requestAdjustResize(m2Var.getParentActivity(), m2Var.getClassGuid());
+            if (((org.telegram.ui.fo) m2Var).Y.getVisibility() == 0) {
+                m2Var.getFragmentView().requestLayout();
+            }
         }
-    }
-
-    public hy0(org.telegram.ui.un0 un0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
-        this.e = un0Var;
-        this.f25778b = editTextBoldCursor;
-        this.f25779c = str;
-        this.d = hashMap;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

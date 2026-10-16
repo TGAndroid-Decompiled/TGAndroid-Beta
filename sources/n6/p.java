@@ -1,24 +1,25 @@
 package n6;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.List;
-public final class p extends o6.a {
-    public static final Parcelable.Creator<p> CREATOR = new m8.h(11);
-    public final int f16133a;
-    public List f16134b;
+import java.util.Arrays;
+public final class p implements com.google.android.gms.common.api.b {
+    public static final p f15844b = new p(null);
+    public final String f15845a;
 
-    public p(int i10, List list) {
-        this.f16133a = i10;
-        this.f16134b = list;
+    public p(String str) {
+        this.f15845a = str;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.g0.q(parcel, 20293);
-        w7.g0.s(parcel, 1, 4);
-        parcel.writeInt(this.f16133a);
-        w7.g0.p(parcel, 2, this.f16134b);
-        w7.g0.r(parcel, q6);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof p)) {
+            return false;
+        }
+        return l.l(this.f15845a, ((p) obj).f15845a);
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f15845a});
     }
 }

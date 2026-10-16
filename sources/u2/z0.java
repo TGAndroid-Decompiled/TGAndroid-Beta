@@ -14,13 +14,13 @@ public final class z0 implements x3.g {
     }
 
     @Override
-    public void W(long j10) {
-        long[] jArr = (long[]) ((qf.b) this.d).f43355b;
+    public void g0(long j10) {
+        long[] jArr = (long[]) ((qf.b) this.d).f43097b;
         this.f46111b = jArr[e2.m0.f(jArr, j10, true)];
     }
 
     @Override
-    public long k(c3.p pVar) {
+    public long l(c3.p pVar) {
         long j10 = this.f46111b;
         if (j10 < 0) {
             return -1L;
@@ -31,7 +31,7 @@ public final class z0 implements x3.g {
     }
 
     @Override
-    public c3.b0 v() {
+    public c3.b0 y() {
         boolean z10;
         if (this.f46110a != -1) {
             z10 = true;

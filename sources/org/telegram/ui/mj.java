@@ -9,10 +9,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class mj implements org.telegram.ui.Components.bm0 {
-    public final fo f38277a;
+    public final fo f38022a;
 
     public mj(fo foVar) {
-        this.f38277a = foVar;
+        this.f38022a = foVar;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class mj implements org.telegram.ui.Components.bm0 {
         MessageObject messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        fo foVar = this.f38277a;
+        fo foVar = this.f38022a;
         if (!foVar.E9() && ((tL_availableReaction = foVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = foVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
             if (foVar.T5 >= 0) {
                 z10 = true;
@@ -39,8 +39,8 @@ public final class mj implements org.telegram.ui.Components.bm0 {
             if (z10) {
                 if (view instanceof org.telegram.ui.Cells.u1) {
                     messageObject = ((org.telegram.ui.Cells.u1) view).getPrimaryMessageObject();
-                } else if (view instanceof org.telegram.ui.Cells.x0) {
-                    messageObject = ((org.telegram.ui.Cells.x0) view).getMessageObject();
+                } else if (view instanceof org.telegram.ui.Cells.w0) {
+                    messageObject = ((org.telegram.ui.Cells.w0) view).getMessageObject();
                 }
                 if (messageObject != null && !messageObject.isDateObject && !messageObject.isSending() && messageObject.canSetReaction() && !messageObject.isEditing()) {
                     kVar = ((org.telegram.ui.ActionBar.m2) foVar).actionBar;
@@ -62,12 +62,12 @@ public final class mj implements org.telegram.ui.Components.bm0 {
         MessageObject messageObject2;
         int i11;
         org.telegram.ui.ActionBar.c6 c6Var;
-        fo foVar = this.f38277a;
+        fo foVar = this.f38022a;
         z10 = ((org.telegram.ui.ActionBar.m2) foVar).inPreviewMode;
         if (!z10) {
             foVar.D4 = true;
-            boolean z11 = view instanceof org.telegram.ui.Cells.x0;
-            if (z11 && (messageObject2 = ((org.telegram.ui.Cells.x0) view).getMessageObject()) != null) {
+            boolean z11 = view instanceof org.telegram.ui.Cells.w0;
+            if (z11 && (messageObject2 = ((org.telegram.ui.Cells.w0) view).getMessageObject()) != null) {
                 TLRPC.MessageAction messageAction = messageObject2.messageOwner.action;
                 if (messageAction instanceof TLRPC.TL_messageActionWalletTonConnectRequest) {
                     TLRPC.TL_messageActionWalletTonConnectRequest tL_messageActionWalletTonConnectRequest = (TLRPC.TL_messageActionWalletTonConnectRequest) messageAction;
@@ -77,7 +77,7 @@ public final class mj implements org.telegram.ui.Components.bm0 {
                         long j10 = tL_messageActionWalletTonConnectRequest.session_id;
                         int id2 = messageObject2.getId();
                         c6Var = ((org.telegram.ui.ActionBar.m2) foVar).resourceProvider;
-                        org.telegram.ui.Wallet.d2.o(parentActivity, i11, j10, id2, c6Var, null);
+                        org.telegram.ui.Wallet.e2.o(parentActivity, i11, j10, id2, c6Var, null);
                         return;
                     }
                     return;
@@ -85,11 +85,11 @@ public final class mj implements org.telegram.ui.Components.bm0 {
             }
             boolean z12 = false;
             if (z11) {
-                org.telegram.ui.Cells.x0 x0Var = (org.telegram.ui.Cells.x0) view;
-                if (x0Var.getMessageObject().isDateObject) {
+                org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
+                if (w0Var.getMessageObject().isDateObject) {
                     if (!foVar.Pa) {
                         Bundle bundle = new Bundle();
-                        int i12 = x0Var.getMessageObject().messageOwner.date;
+                        int i12 = w0Var.getMessageObject().messageOwner.date;
                         bundle.putLong("dialog_id", foVar.T5);
                         bundle.putLong("topic_id", foVar.d());
                         bundle.putInt("type", 0);
@@ -102,16 +102,16 @@ public final class mj implements org.telegram.ui.Components.bm0 {
                 }
             }
             if (z11) {
-                org.telegram.ui.Cells.x0 x0Var2 = (org.telegram.ui.Cells.x0) view;
-                if (x0Var2.getMessageObject() != null && (x0Var2.getMessageObject().messageOwner.action instanceof TLRPC.TL_messageActionBoostApply)) {
+                org.telegram.ui.Cells.w0 w0Var2 = (org.telegram.ui.Cells.w0) view;
+                if (w0Var2.getMessageObject() != null && (w0Var2.getMessageObject().messageOwner.action instanceof TLRPC.TL_messageActionBoostApply)) {
                     foVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(foVar.T5));
                     return;
                 }
             }
             if (z11) {
-                org.telegram.ui.Cells.x0 x0Var3 = (org.telegram.ui.Cells.x0) view;
-                if (x0Var3.getMessageObject() != null && (x0Var3.getMessageObject().messageOwner.action instanceof TLRPC.TL_messageActionSetSameChatWallPaper)) {
-                    AndroidUtilities.runOnUIThread(new ah.g(this, x0Var3.getMessageObject().getReplyMsgId(), 22), 16L);
+                org.telegram.ui.Cells.w0 w0Var3 = (org.telegram.ui.Cells.w0) view;
+                if (w0Var3.getMessageObject() != null && (w0Var3.getMessageObject().messageOwner.action instanceof TLRPC.TL_messageActionSetSameChatWallPaper)) {
+                    AndroidUtilities.runOnUIThread(new ah.g(this, w0Var3.getMessageObject().getReplyMsgId(), 22), 16L);
                     return;
                 }
             }
@@ -133,7 +133,7 @@ public final class mj implements org.telegram.ui.Components.bm0 {
             }
             if (view instanceof org.telegram.ui.Cells.u1) {
                 org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) view;
-                if (foVar.f35907c9.z(u1Var2.getMessageObject())) {
+                if (foVar.f35608c9.z(u1Var2.getMessageObject())) {
                     return;
                 }
                 z12 = !u1Var2.i3(f7);
@@ -147,12 +147,12 @@ public final class mj implements org.telegram.ui.Components.bm0 {
         MessageObject messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        fo foVar = this.f38277a;
+        fo foVar = this.f38022a;
         if (foVar.getParentActivity() != null && !foVar.x() && !foVar.c() && !foVar.isInPreviewMode() && !foVar.E9()) {
             if (view instanceof org.telegram.ui.Cells.u1) {
                 messageObject = ((org.telegram.ui.Cells.u1) view).getPrimaryMessageObject();
-            } else if (view instanceof org.telegram.ui.Cells.x0) {
-                messageObject = ((org.telegram.ui.Cells.x0) view).getMessageObject();
+            } else if (view instanceof org.telegram.ui.Cells.w0) {
+                messageObject = ((org.telegram.ui.Cells.w0) view).getMessageObject();
                 if (messageObject.isDateObject) {
                     return;
                 }

@@ -5,7 +5,7 @@ import df.g;
 import df.p;
 import df.s;
 public final class a implements gf.a {
-    public final char f2730a;
+    public final char f2734a;
 
     public a(int i10) {
         this('*');
@@ -20,32 +20,32 @@ public final class a implements gf.a {
 
     @Override
     public final char a() {
-        return this.f2730a;
+        return this.f2734a;
     }
 
     @Override
     public final void b(s sVar, s sVar2, int i10) {
         g gVar;
-        String.valueOf(this.f2730a);
+        String.valueOf(this.f2734a);
         if (i10 == 1) {
             gVar = new g(0);
         } else {
             gVar = new g(3);
         }
-        for (p pVar = (p) sVar.f6530f; pVar != null && pVar != sVar2; pVar = (p) pVar.f6530f) {
+        for (p pVar = (p) sVar.f6533f; pVar != null && pVar != sVar2; pVar = (p) pVar.f6533f) {
             gVar.b(pVar);
         }
         gVar.g();
-        p pVar2 = (p) sVar.f6530f;
-        gVar.f6530f = pVar2;
+        p pVar2 = (p) sVar.f6533f;
+        gVar.f6533f = pVar2;
         if (pVar2 != null) {
             pVar2.e = gVar;
         }
         gVar.e = sVar;
-        sVar.f6530f = gVar;
-        p pVar3 = (p) sVar.f6528b;
-        gVar.f6528b = pVar3;
-        if (((p) gVar.f6530f) == null) {
+        sVar.f6533f = gVar;
+        p pVar3 = (p) sVar.f6531b;
+        gVar.f6531b = pVar3;
+        if (((p) gVar.f6533f) == null) {
             pVar3.d = gVar;
         }
     }
@@ -57,13 +57,13 @@ public final class a implements gf.a {
 
     @Override
     public final int d(f fVar, f fVar2) {
-        if (fVar.d || fVar2.f560c) {
+        if (fVar.d || fVar2.f564c) {
             int i10 = fVar2.h;
             if (i10 % 3 != 0 && (fVar.h + i10) % 3 == 0) {
                 return 0;
             }
         }
-        if (fVar.f562g >= 2 && fVar2.f562g >= 2) {
+        if (fVar.f566g >= 2 && fVar2.f566g >= 2) {
             return 2;
         }
         return 1;
@@ -71,10 +71,10 @@ public final class a implements gf.a {
 
     @Override
     public final char e() {
-        return this.f2730a;
+        return this.f2734a;
     }
 
     public a(char c10) {
-        this.f2730a = c10;
+        this.f2734a = c10;
     }
 }

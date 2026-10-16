@@ -17,7 +17,7 @@ public final class ri extends o20 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.w1(this.f27815r, true);
+        this.J.w1(this.f27510r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

@@ -29,7 +29,7 @@ public final class v00 extends s4.v {
     public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
         if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
             w00 w00Var = this.e;
-            if (!w00Var.f30711n || (b1Var.b() == 0 && ((s00) w00Var.h.get(0)).e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
+            if (!w00Var.f30377n || (b1Var.b() == 0 && ((s00) w00Var.h.get(0)).e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
                 return s4.v.l(0, 0);
             }
         }
@@ -38,7 +38,7 @@ public final class v00 extends s4.v {
 
     @Override
     public final boolean k() {
-        return this.e.f30711n;
+        return this.e.f30377n;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class v00 extends s4.v {
         int b11 = b1Var2.b();
         w00 w00Var = r00Var.d;
         ArrayList arrayList = w00Var.h;
-        SparseIntArray sparseIntArray = w00Var.f30709k0;
+        SparseIntArray sparseIntArray = w00Var.f30375k0;
         int size = arrayList.size();
         if (b10 >= 0 && b11 >= 0 && b10 < size && b11 < size) {
             ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
@@ -65,18 +65,18 @@ public final class v00 extends s4.v {
             dialogFilters.set(b11, dialogFilter);
             s00 s00Var = (s00) arrayList.get(b10);
             s00 s00Var2 = (s00) arrayList.get(b11);
-            int i12 = s00Var.f28978a;
-            s00Var.f28978a = s00Var2.f28978a;
-            s00Var2.f28978a = i12;
+            int i12 = s00Var.f28686a;
+            s00Var.f28686a = s00Var2.f28686a;
+            s00Var2.f28686a = i12;
             int i13 = sparseIntArray.get(b10);
             sparseIntArray.put(b10, sparseIntArray.get(b11));
             sparseIntArray.put(b11, i13);
             q00 q00Var = w00Var.J;
-            int i14 = s00Var2.f28978a;
-            int i15 = s00Var.f28978a;
+            int i14 = s00Var2.f28686a;
+            int i15 = s00Var.f28686a;
             org.telegram.ui.xw xwVar = (org.telegram.ui.xw) q00Var;
             while (true) {
-                org.telegram.ui.xy[] xyVarArr = xwVar.f41972b.f42325e0;
+                org.telegram.ui.xy[] xyVarArr = xwVar.f41671b.f42004e0;
                 if (i10 >= xyVarArr.length) {
                     break;
                 }
@@ -92,24 +92,24 @@ public final class v00 extends s4.v {
             int i17 = w00Var.K;
             if (i17 == b10) {
                 w00Var.K = b11;
-                w00Var.L = s00Var.f28978a;
+                w00Var.L = s00Var.f28686a;
             } else if (i17 == b11) {
                 w00Var.K = b10;
-                w00Var.L = s00Var2.f28978a;
+                w00Var.L = s00Var2.f28686a;
             }
-            int i18 = w00Var.f30715q0;
+            int i18 = w00Var.f30381q0;
             if (i18 == b10) {
-                w00Var.f30715q0 = b11;
-                w00Var.f30717r0 = s00Var.f28978a;
+                w00Var.f30381q0 = b11;
+                w00Var.f30383r0 = s00Var.f28686a;
             } else if (i18 == b11) {
-                w00Var.f30715q0 = b10;
-                w00Var.f30717r0 = s00Var2.f28978a;
+                w00Var.f30381q0 = b10;
+                w00Var.f30383r0 = s00Var2.f28686a;
             }
             arrayList.set(b10, s00Var2);
             arrayList.set(b11, s00Var);
             w00Var.j();
-            w00Var.f30727y = true;
-            w00Var.F.setItemAnimator(w00Var.f30719s0);
+            w00Var.f30393y = true;
+            w00Var.F.setItemAnimator(w00Var.f30385s0);
             r00Var.p(b10, b11);
         }
         return true;
@@ -122,7 +122,7 @@ public final class v00 extends s4.v {
             w00 w00Var = this.e;
             w00Var.F.I0(false);
             b1Var.f44838a.setPressed(true);
-            b1Var.f44838a.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(w00Var.f30698b0, w00Var.f30695a));
+            b1Var.f44838a.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(w00Var.f30364b0, w00Var.f30361a));
         } else {
             kq kqVar = this.d;
             AndroidUtilities.cancelRunOnUIThread(kqVar);

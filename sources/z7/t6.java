@@ -1,6 +1,6 @@
 package z7;
 public final class t6 implements ja.d {
-    public static final t6 f49787a = new Object();
+    public static final t6 f49789a = new Object();
 
     static {
         t8.b.s(t8.b.n(w.class, new s(1)));

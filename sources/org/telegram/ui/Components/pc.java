@@ -7,9 +7,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class pc extends pb {
-    public final bk0 f28278a;
-    public final da0 f28279b;
-    public final da0 f28280c;
+    public final bk0 f27959a;
+    public final da0 f27960b;
+    public final da0 f27961c;
     public final LinearLayout d;
     public final int e;
 
@@ -19,24 +19,24 @@ public final class pc extends pb {
         this.e = getThemedColor(i10);
         setBackground(getThemedColor(org.telegram.ui.ActionBar.g6.Fi));
         ?? imageView = new ImageView(context);
-        this.f28278a = imageView;
+        this.f27959a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, w7.a6.h(56.0f, 48.0f, 8388627));
+        addView((View) imageView, w7.z5.h(56.0f, 48.0f, 8388627));
         int themedColor = getThemedColor(i10);
         int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.g6.Gi);
         LinearLayout linearLayout = new LinearLayout(context);
         this.d = linearLayout;
         linearLayout.setOrientation(1);
-        addView(linearLayout, w7.a6.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+        addView(linearLayout, w7.z5.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
         da0 da0Var = new da0(context, null);
-        this.f28279b = da0Var;
+        this.f27960b = da0Var;
         da0Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         da0Var.setTextColor(themedColor);
         da0Var.setTextSize(1, 14.0f);
         da0Var.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(da0Var);
         da0 da0Var2 = new da0(context, null);
-        this.f28280c = da0Var2;
+        this.f27961c = da0Var2;
         da0Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         da0Var2.setTextColor(themedColor);
         da0Var2.setLinkTextColor(themedColor2);
@@ -46,7 +46,7 @@ public final class pc extends pb {
     }
 
     public final void c(int i10, int i11, int i12, String... strArr) {
-        bk0 bk0Var = this.f28278a;
+        bk0 bk0Var = this.f27959a;
         bk0Var.f(i10, i11, i12, null);
         for (String str : strArr) {
             bk0Var.h(this.e, str);
@@ -55,12 +55,12 @@ public final class pc extends pb {
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f28279b.getText()) + ".\n" + ((Object) this.f28280c.getText());
+        return ((Object) this.f27960b.getText()) + ".\n" + ((Object) this.f27961c.getText());
     }
 
     @Override
     public final void onShow() {
         super.onShow();
-        this.f28278a.d();
+        this.f27959a.d();
     }
 }

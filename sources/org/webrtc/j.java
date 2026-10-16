@@ -1,23 +1,23 @@
 package org.webrtc;
-public final class j implements Runnable {
-    public final int f42797a;
-    public final int f42798b;
-    public final Object f42799c;
 
-    public j(Object obj, int i10, int i11) {
-        this.f42797a = i11;
-        this.f42799c = obj;
-        this.f42798b = i10;
+import java.nio.ByteBuffer;
+public final class j implements Runnable {
+    public final int f42500a;
+    public final ByteBuffer f42501b;
+
+    public j(int i10, ByteBuffer byteBuffer) {
+        this.f42500a = i10;
+        this.f42501b = byteBuffer;
     }
 
     @Override
     public final void run() {
-        switch (this.f42797a) {
+        switch (this.f42500a) {
             case 0:
-                HardwareVideoEncoder.a((HardwareVideoEncoder) this.f42799c, this.f42798b);
+                JavaI420Buffer.a(this.f42501b);
                 return;
             default:
-                SurfaceTextureHelper.b((SurfaceTextureHelper) this.f42799c, this.f42798b);
+                YuvConverter.a(this.f42501b);
                 return;
         }
     }

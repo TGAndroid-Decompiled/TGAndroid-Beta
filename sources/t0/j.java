@@ -3,7 +3,7 @@ package t0;
 import android.content.ClipDescription;
 import android.net.Uri;
 import android.os.Build;
-import li.k;
+import m.h3;
 public final class j {
     public final i f45502a;
 
@@ -11,7 +11,7 @@ public final class j {
         if (Build.VERSION.SDK_INT >= 25) {
             this.f45502a = new h(uri, clipDescription, uri2);
         } else {
-            this.f45502a = new k(uri, clipDescription, uri2, 29);
+            this.f45502a = new h3(uri, clipDescription, uri2, 29);
         }
     }
 

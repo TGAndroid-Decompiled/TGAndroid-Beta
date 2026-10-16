@@ -4,30 +4,30 @@ import android.os.SystemClock;
 import b2.p1;
 import j$.util.Objects;
 public final class b0 {
-    public final int f8317a;
-    public Object f8318b;
-    public int f8319c;
+    public final int f8320a;
+    public Object f8321b;
+    public int f8322c;
     public int d;
     public long e;
-    public boolean f8320f;
-    public long f8321g;
+    public boolean f8323f;
+    public long f8324g;
     public final e0 h;
 
     public b0(e0 e0Var, int i10) {
         this.h = e0Var;
-        this.f8317a = i10;
+        this.f8320a = i10;
     }
 
     public final void a() {
         Object l4;
         e0 e0Var = this.h;
-        i0 i0Var = e0Var.f8337f;
-        i2.h0 h0Var = e0Var.f8334a;
+        i0 i0Var = e0Var.f8340f;
+        i2.h0 h0Var = e0Var.f8337a;
         if (!h0Var.j0()) {
-            if (this.f8320f) {
+            if (this.f8323f) {
                 i0Var.e(2);
             }
-            this.f8320f = false;
+            this.f8323f = false;
             return;
         }
         p1 y02 = h0Var.y0();
@@ -44,22 +44,22 @@ public final class b0 {
         }
         e0Var.d.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        boolean z10 = this.f8320f;
-        int i10 = this.f8317a;
-        if (z10 && Objects.equals(l4, this.f8318b) && m0 == this.f8319c && N == this.d && M0 == this.e) {
-            if (elapsedRealtime - this.f8321g >= i10) {
-                e0Var.f8336c.f10925a.A1(new i2.m(2, new f0(2, i10), 1003));
+        boolean z10 = this.f8323f;
+        int i10 = this.f8320a;
+        if (z10 && Objects.equals(l4, this.f8321b) && m0 == this.f8322c && N == this.d && M0 == this.e) {
+            if (elapsedRealtime - this.f8324g >= i10) {
+                e0Var.f8339c.f10929a.A1(new i2.m(2, new f0(2, i10), 1003));
                 return;
             }
             return;
         }
-        this.f8320f = true;
-        this.f8321g = elapsedRealtime;
-        this.f8318b = l4;
-        this.f8319c = m0;
+        this.f8323f = true;
+        this.f8324g = elapsedRealtime;
+        this.f8321b = l4;
+        this.f8322c = m0;
         this.d = N;
         this.e = M0;
         i0Var.e(2);
-        i0Var.f8357a.sendEmptyMessageDelayed(2, i10);
+        i0Var.f8360a.sendEmptyMessageDelayed(2, i10);
     }
 }

@@ -7,56 +7,56 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 public final class s6 implements ToIntFunction {
-    public final int f3634a;
+    public final int f3638a;
 
     public s6(int i10) {
-        this.f3634a = i10;
+        this.f3638a = i10;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f3634a) {
+        switch (this.f3638a) {
             case 0:
                 return -((TL_stories.StoryView) obj).date;
             case 1:
                 return ((TL_stories.StoryItem) obj).date;
             case 2:
-                return -((TL_stories.StoryItem) i2.d.g(1, ((TL_stories.PeerStories) obj).stories)).date;
+                return -((TL_stories.StoryItem) i2.d.h(1, ((TL_stories.PeerStories) obj).stories)).date;
             case 3:
                 return ((Integer) ((Object[]) obj)[1]).intValue();
             case 4:
-                return ((MessageObject) obj).getId();
+                return ((String) ((Map.Entry) obj).getKey()).hashCode();
             case 5:
-                return -((TLRPC.TL_forumTopic) obj).top_message;
+                return ((MessageObject) obj).getId();
             case 6:
-                return ((TLRPC.Message) obj).f19237id;
+                return -((TLRPC.TL_forumTopic) obj).top_message;
             case 7:
-                return ((TLRPC.Message) obj).f19237id;
+                return ((TLRPC.Message) obj).f18937id;
             case 8:
-                return ((org.telegram.ui.Components.h6) obj).d;
+                return ((TLRPC.Message) obj).f18937id;
             case 9:
-                return ((org.telegram.ui.Components.h6) obj).e;
+                return ((org.telegram.ui.Components.h6) obj).d;
             case 10:
-                cd.c cVar = (cd.c) obj;
-                return cVar.d - cVar.f4731b;
+                return ((org.telegram.ui.Components.h6) obj).e;
             case 11:
+                cd.c cVar = (cd.c) obj;
+                return cVar.d - cVar.f4734b;
+            case 12:
                 TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) obj;
                 int i10 = messagePeerReaction.date;
                 if (i10 > 0 && messagePeerReaction.reaction == null) {
                     return -i10;
                 }
                 return Integer.MIN_VALUE;
-            case 12:
+            case 13:
                 TLRPC.MessagePeerReaction messagePeerReaction2 = (TLRPC.MessagePeerReaction) obj;
                 int i11 = messagePeerReaction2.date;
                 if (i11 > 0 && messagePeerReaction2.reaction == null) {
                     return -i11;
                 }
                 return Integer.MIN_VALUE;
-            case 13:
-                return ((String) ((Map.Entry) obj).getKey()).hashCode();
             case 14:
-                return ((zf.e) obj).f50149a;
+                return ((zf.e) obj).f50150a;
             case 15:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 16:

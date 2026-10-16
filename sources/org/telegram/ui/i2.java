@@ -11,22 +11,22 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 public final class i2 extends FrameLayout implements org.telegram.ui.Cells.n9, g3 {
-    public final z70 f37010a;
-    public final i4 f37011b;
-    public d3 f37012c;
+    public final z70 f36698a;
+    public final i4 f36699b;
+    public d3 f36700c;
     public final ji.b4 d;
     public final h2 e;
-    public TL_iv.pageBlockPreformatted f37013f;
+    public TL_iv.pageBlockPreformatted f36701f;
     public CharSequence h;
 
     public i2(Context context, final z70 z70Var, i4 i4Var) {
         super(context);
-        this.f37010a = z70Var;
-        this.f37011b = i4Var;
+        this.f36698a = z70Var;
+        this.f36699b = i4Var;
         ji.b4 b4Var = new ji.b4(context, z70Var);
         this.d = b4Var;
         b4Var.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        addView(b4Var, w7.a6.d(-2.0f, -1));
+        addView(b4Var, w7.z5.d(-2.0f, -1));
         h2 h2Var = new h2(this, context, z70Var, i4Var);
         this.e = h2Var;
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-2, -1);
@@ -52,7 +52,7 @@ public final class i2 extends FrameLayout implements org.telegram.ui.Cells.n9, g
 
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        d3 d3Var = this.f37012c;
+        d3 d3Var = this.f36700c;
         if (d3Var != null) {
             arrayList.add(d3Var);
         }
@@ -60,36 +60,36 @@ public final class i2 extends FrameLayout implements org.telegram.ui.Cells.n9, g
 
     @Override
     public int getBoundLeft() {
-        if (this.f37012c == null) {
+        if (this.f36700c == null) {
             return -1;
         }
-        int a2 = this.f37012c.a() + AndroidUtilities.dp(16.0f);
-        this.f37010a.getClass();
+        int a2 = this.f36700c.a() + AndroidUtilities.dp(16.0f);
+        this.f36698a.getClass();
         return a2 - AndroidUtilities.dp(18);
     }
 
     @Override
     public int getBoundRight() {
-        if (this.f37012c == null) {
+        if (this.f36700c == null) {
             return -1;
         }
-        int b10 = this.f37012c.b() + AndroidUtilities.dp(16.0f);
-        this.f37010a.getClass();
+        int b10 = this.f36700c.b() + AndroidUtilities.dp(16.0f);
+        this.f36698a.getClass();
         return AndroidUtilities.dp(18) + b10;
     }
 
     @Override
     public int getLastLineBoundRight() {
-        if (this.f37012c == null) {
+        if (this.f36700c == null) {
             return -1;
         }
-        int c10 = this.f37012c.c() + AndroidUtilities.dp(16.0f);
-        this.f37010a.getClass();
+        int c10 = this.f36700c.c() + AndroidUtilities.dp(16.0f);
+        this.f36698a.getClass();
         return AndroidUtilities.dp(18) + c10;
     }
 
     public int getMinWidth() {
-        return org.telegram.messenger.yh.a(this);
+        return org.telegram.messenger.sk.a(this);
     }
 
     @Override
@@ -101,7 +101,7 @@ public final class i2 extends FrameLayout implements org.telegram.ui.Cells.n9, g
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        d3 d3Var = this.f37012c;
+        d3 d3Var = this.f36700c;
         if (d3Var != null) {
             d3Var.attach(this);
         }
@@ -110,7 +110,7 @@ public final class i2 extends FrameLayout implements org.telegram.ui.Cells.n9, g
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        d3 d3Var = this.f37012c;
+        d3 d3Var = this.f36700c;
         if (d3Var != null) {
             d3Var.detach(this);
         }
@@ -118,10 +118,10 @@ public final class i2 extends FrameLayout implements org.telegram.ui.Cells.n9, g
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f37013f == null) {
+        if (this.f36701f == null) {
             return;
         }
-        canvas.drawRect(0.0f, AndroidUtilities.dp(8.0f), getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(8.0f), k4.f37526p1);
+        canvas.drawRect(0.0f, AndroidUtilities.dp(8.0f), getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(8.0f), k4.f37247p1);
     }
 
     @Override
@@ -131,11 +131,11 @@ public final class i2 extends FrameLayout implements org.telegram.ui.Cells.n9, g
         accessibilityNodeInfo.setEnabled(true);
         accessibilityNodeInfo.setClickable(false);
         accessibilityNodeInfo.setLongClickable(false);
-        d3 d3Var = this.f37012c;
+        d3 d3Var = this.f36700c;
         if (d3Var == null) {
             return;
         }
-        accessibilityNodeInfo.setText(k4.i(R.string.AccDescrIVCode, k4.j(this.f37010a, this.f37011b, d3Var)));
+        accessibilityNodeInfo.setText(k4.i(R.string.AccDescrIVCode, k4.j(this.f36698a, this.f36699b, d3Var)));
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class i2 extends FrameLayout implements org.telegram.ui.Cells.n9, g
 
     public void setBlock(TL_iv.pageBlockPreformatted pageblockpreformatted) {
         this.h = null;
-        this.f37013f = pageblockpreformatted;
+        this.f36701f = pageblockpreformatted;
         this.d.setScrollX(0);
         this.e.requestLayout();
     }

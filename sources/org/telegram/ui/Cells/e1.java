@@ -9,29 +9,29 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class e1 implements Runnable {
-    public final int f21094a;
-    public final u1 f21095b;
+    public final int f20807a;
+    public final u1 f20808b;
 
     public e1(int i10, u1 u1Var) {
-        this.f21094a = i10;
-        this.f21095b = u1Var;
+        this.f20807a = i10;
+        this.f20808b = u1Var;
     }
 
     @Override
     public final void run() {
         boolean e32;
-        switch (this.f21094a) {
+        switch (this.f20807a) {
             case 0:
-                l1 l1Var = this.f21095b.Jc;
+                l1 l1Var = this.f20808b.Jc;
                 if (l1Var != null) {
                     l1Var.s();
                     return;
                 }
                 return;
             default:
-                u1 u1Var = this.f21095b;
-                e1 e1Var = u1Var.f22347od;
-                MessageObject messageObject = u1Var.f22488y7;
+                u1 u1Var = this.f20808b;
+                e1 e1Var = u1Var.f22056od;
+                MessageObject messageObject = u1Var.f22197y7;
                 if (messageObject != null && (e32 = u1Var.e3(messageObject)) != u1Var.W3) {
                     u1Var.W3 = e32;
                     if (!e32) {
@@ -40,8 +40,8 @@ public final class e1 implements Runnable {
                         int dp = u1Var.J8 - AndroidUtilities.dp(91.0f);
                         u1Var.T3 = new StaticLayout(TextUtils.ellipsize(LocaleController.getString(R.string.AttachLiveLocation), org.telegram.ui.ActionBar.g6.H2, dp, TextUtils.TruncateAt.END), org.telegram.ui.ActionBar.g6.H2, dp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                     } else {
-                        MessageObject messageObject2 = u1Var.f22488y7;
-                        u1Var.f22488y7 = null;
+                        MessageObject messageObject2 = u1Var.f22197y7;
+                        u1Var.f22197y7 = null;
                         u1Var.X3(messageObject2, u1Var.K, u1Var.F, u1Var.E, u1Var.G, false);
                     }
                 }
@@ -50,7 +50,7 @@ public final class e1 implements Runnable {
                     u1Var.Wc = false;
                     return;
                 }
-                RectF rectF = u1Var.f22171c5;
+                RectF rectF = u1Var.f21880c5;
                 u1Var.invalidate(((int) rectF.left) - 5, ((int) rectF.top) - 5, ((int) rectF.right) + 5, ((int) rectF.bottom) + 5);
                 if (u1Var.Wc) {
                     AndroidUtilities.runOnUIThread(e1Var, 1000L);

@@ -9,25 +9,25 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class c9 extends View {
-    public final n5 f2907a;
-    public boolean f2908b;
-    public final org.telegram.ui.Components.g6 f2909c;
+    public final n5 f2911a;
+    public boolean f2912b;
+    public final org.telegram.ui.Components.g6 f2913c;
     public final ImageReceiver d;
     public final ImageReceiver e;
-    public org.telegram.ui.Components.s5 f2910f;
+    public org.telegram.ui.Components.s5 f2914f;
     public boolean h;
-    public boolean f2911n;
-    public boolean f2912r;
-    public boolean f2913s;
+    public boolean f2915n;
+    public boolean f2916r;
+    public boolean f2917s;
 
     public c9(Context context, n5 n5Var) {
         super(context);
-        this.f2909c = new org.telegram.ui.Components.g6(this);
+        this.f2913c = new org.telegram.ui.Components.g6(this);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         this.e = new ImageReceiver(this);
         this.h = true;
-        this.f2907a = n5Var;
+        this.f2911a = n5Var;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.ignoreNotifications = true;
     }
@@ -37,8 +37,8 @@ public final class c9 extends View {
         super.onAttachedToWindow();
         this.d.onAttachedToWindow();
         this.e.onAttachedToWindow();
-        this.f2913s = true;
-        org.telegram.ui.Components.s5 s5Var = this.f2910f;
+        this.f2917s = true;
+        org.telegram.ui.Components.s5 s5Var = this.f2914f;
         if (s5Var != null) {
             s5Var.a(this);
         }
@@ -49,8 +49,8 @@ public final class c9 extends View {
         super.onDetachedFromWindow();
         this.d.onDetachedFromWindow();
         this.e.onDetachedFromWindow();
-        this.f2913s = false;
-        org.telegram.ui.Components.s5 s5Var = this.f2910f;
+        this.f2917s = false;
+        org.telegram.ui.Components.s5 s5Var = this.f2914f;
         if (s5Var != null) {
             s5Var.o(this);
         }
@@ -73,33 +73,33 @@ public final class c9 extends View {
         boolean z10;
         String str;
         String str2;
-        if (i1Var != null && ((str2 = i1Var.f779f) == null || !str2.equals("❤"))) {
+        if (i1Var != null && ((str2 = i1Var.f783f) == null || !str2.equals("❤"))) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f2911n = z10;
-        if (i1Var != null && (str = i1Var.f779f) != null && str.equals("❤")) {
-            this.f2908b = true;
+        this.f2915n = z10;
+        if (i1Var != null && (str = i1Var.f783f) != null && str.equals("❤")) {
+            this.f2912b = true;
         } else {
-            this.f2908b = false;
+            this.f2912b = false;
         }
-        org.telegram.ui.Components.s5 s5Var = this.f2910f;
+        org.telegram.ui.Components.s5 s5Var = this.f2914f;
         if (s5Var != null) {
             s5Var.o(this);
         }
-        this.f2910f = null;
+        this.f2914f = null;
         if (i1Var != null) {
-            if (i1Var.f780g != 0) {
-                org.telegram.ui.Components.s5 s5Var2 = new org.telegram.ui.Components.s5(3, UserConfig.selectedAccount, i1Var.f780g);
-                this.f2910f = s5Var2;
-                if (this.f2913s) {
+            if (i1Var.f784g != 0) {
+                org.telegram.ui.Components.s5 s5Var2 = new org.telegram.ui.Components.s5(3, UserConfig.selectedAccount, i1Var.f784g);
+                this.f2914f = s5Var2;
+                if (this.f2917s) {
                     s5Var2.a(this);
                 }
             } else {
-                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(i1Var.f779f);
+                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(i1Var.f783f);
                 if (tL_availableReaction != null) {
-                    this.d.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.g6.f19843a7, 1.0f), "webp", tL_availableReaction, 1);
+                    this.d.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.g6.f19543a7, 1.0f), "webp", tL_availableReaction, 1);
                 }
             }
         }

@@ -18,7 +18,7 @@ public final class ex extends pg.d {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.X2.f31044m2.h++;
+        this.X2.f30737m2.h++;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class ex extends pg.d {
         int i12;
         bh.f fVar;
         wz wzVar = this.X2;
-        rz rzVar = wzVar.f31087z0;
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = wzVar.f31037j2) != null) {
+        rz rzVar = wzVar.f30780z0;
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = wzVar.f30730j2) != null) {
             fVar.f(i10, i11);
         }
         if (wzVar.C0 != null) {
@@ -40,8 +40,8 @@ public final class ex extends pg.d {
             ixVar.setUnderlineHeight(i12);
         }
         if (rzVar != null && getAdapter() == rzVar && rzVar.d == 0) {
-            rz rzVar2 = rzVar.O.f28458w;
-            if (!rzVar2.Q.G0.F && !rzVar2.f28971y) {
+            rz rzVar2 = rzVar.O.f28140w;
+            if (!rzVar2.Q.G0.F && !rzVar2.f28671y) {
                 if (wzVar.E0.N0() + 50 > rzVar.h()) {
                     pz pzVar = rzVar.O;
                     Objects.requireNonNull(pzVar);
@@ -54,11 +54,11 @@ public final class ex extends pg.d {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         wz wzVar = this.X2;
-        if (!wzVar.f31022f) {
+        if (!wzVar.f30715f) {
             org.telegram.ui.xt q6 = org.telegram.ui.xt.q();
             ex exVar = wzVar.D0;
             wzVar.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, exVar, wzVar.f31028g2, this.f27439n2);
+            boolean r10 = q6.r(motionEvent, exVar, wzVar.f30721g2, this.f27148n2);
             if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                 return false;
             }
@@ -70,7 +70,7 @@ public final class ex extends pg.d {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         wz wzVar = this.X2;
-        if (wzVar.I0 && wzVar.f31084y0.h() > 0) {
+        if (wzVar.I0 && wzVar.f30777y0.h() > 0) {
             this.W2 = true;
             wzVar.E0.h1(0, 0);
             wzVar.I0 = false;

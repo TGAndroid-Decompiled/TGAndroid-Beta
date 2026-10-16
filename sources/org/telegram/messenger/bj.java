@@ -1,112 +1,165 @@
 package org.telegram.messenger;
 
-import java.io.Serializable;
+import android.text.TextUtils;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.concurrent.ExecutorService;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.LaunchActivity;
 public final class bj implements Runnable {
-    public final int f16891a = 0;
-    public final int f16892b;
-    public final boolean f16893c;
-    public final boolean d;
+    public final int f16590a = 2;
+    public final boolean f16591b;
+    public final boolean f16592c;
+    public final int d;
     public final Object e;
-    public final Serializable f16894f;
+    public final Object f16593f;
     public final Object h;
-    public final Object f16895n;
-    public final TLObject f16896r;
+    public final Object f16594n;
 
-    public bj(SendMessagesHelper sendMessagesHelper, ArrayList arrayList, boolean z10, boolean z11, TLRPC.Message message, ArrayList arrayList2, ArrayList arrayList3, int i10) {
-        this.e = sendMessagesHelper;
-        this.f16894f = arrayList;
-        this.f16893c = z10;
-        this.d = z11;
-        this.f16896r = message;
-        this.h = arrayList2;
-        this.f16895n = arrayList3;
-        this.f16892b = i10;
+    public bj(int i10, di.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z10, boolean z11, org.telegram.ui.ActionBar.e3[] e3VarArr) {
+        this.e = dVar;
+        this.f16593f = e3VarArr;
+        this.d = i10;
+        this.f16591b = z10;
+        this.h = starsSubscription;
+        this.f16592c = z11;
+        this.f16594n = tLObject;
     }
 
     @Override
     public final void run() {
-        int i10;
-        TLRPC.TL_username tL_username;
-        switch (this.f16891a) {
+        File file;
+        File file2;
+        String formatString;
+        switch (this.f16590a) {
             case 0:
-                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$99((ArrayList) this.f16894f, this.f16893c, this.d, (TLRPC.Message) this.f16896r, (ArrayList) this.h, (ArrayList) this.f16895n, this.f16892b);
+                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$98(this.f16591b, (TLRPC.Message) this.f16593f, (ArrayList) this.h, this.f16592c, (ArrayList) this.f16594n, this.d);
+                return;
+            case 1:
+                ri.r0 r0Var = (ri.r0) this.e;
+                ri.v vVar = (ri.v) this.f16593f;
+                boolean z10 = this.f16591b;
+                File file3 = (File) this.h;
+                boolean z11 = this.f16592c;
+                int i10 = this.d;
+                ri.n0 n0Var = (ri.n0) this.f16594n;
+                r0Var.getClass();
+                long nanoTime = System.nanoTime();
+                try {
+                    vVar.g();
+                    ri.n nVar = r0Var.f44684m;
+                    nVar.b("preview output finalized: size=" + vVar.f44751a.length() + ", replace=" + z10 + ", elapsedMs=" + ri.r0.f(nanoTime));
+                    r0Var.g();
+                    if (z10) {
+                        r0Var.s(file3, r0Var.G, r0Var.H, z11, i10);
+                        file = file3;
+                    } else {
+                        file = file3;
+                        try {
+                            try {
+                                File file4 = vVar.f44751a;
+                                long j10 = r0Var.K;
+                                if (j10 <= 0) {
+                                    j10 = r0Var.E;
+                                }
+                                ExecutorService executorService = r0Var.f44682k;
+                                try {
+                                    ri.e0 e0Var = new ri.e0(r0Var, n0Var, file4, j10, true);
+                                    r0Var = r0Var;
+                                    executorService.execute(e0Var);
+                                } catch (Exception e) {
+                                    e = e;
+                                    r0Var = r0Var;
+                                    r0Var.f44680i.post(new ri.c0(r0Var, e, 0));
+                                    if (file != null) {
+                                        w7.m7.c(file);
+                                    }
+                                    if (z10) {
+                                        file2 = vVar.f44751a;
+                                        w7.m7.c(file2);
+                                        return;
+                                    }
+                                    return;
+                                }
+                            } catch (Throwable th2) {
+                                th = th2;
+                                if (file != null) {
+                                    w7.m7.c(file);
+                                }
+                                if (z10) {
+                                    w7.m7.c(vVar.f44751a);
+                                }
+                                throw th;
+                            }
+                        } catch (Exception e7) {
+                            e = e7;
+                        }
+                    }
+                    r0Var.R = null;
+                    if (file != null) {
+                        w7.m7.c(file);
+                    }
+                } catch (Exception e10) {
+                    e = e10;
+                    file = file3;
+                } catch (Throwable th3) {
+                    th = th3;
+                    file = file3;
+                }
+                if (z10) {
+                    file2 = vVar.f44751a;
+                    w7.m7.c(file2);
+                    return;
+                }
                 return;
             default:
-                org.telegram.ui.ka kaVar = (org.telegram.ui.ka) this.e;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f16895n;
-                TLRPC.TL_username tL_username2 = (TLRPC.TL_username) this.f16896r;
-                org.telegram.ui.va vaVar = kaVar.f37613a;
-                ArrayList arrayList = vaVar.f40942w;
-                ArrayList arrayList2 = vaVar.v;
-                arrayList.remove((String) this.f16894f);
-                boolean z10 = ((TLObject) this.h) instanceof TLRPC.TL_boolTrue;
-                int i11 = this.f16892b;
-                boolean z11 = this.f16893c;
-                if (z10) {
-                    vaVar.i0(i11, z11, false);
-                } else {
-                    boolean z12 = this.d;
-                    if (tL_error != null && "USERNAMES_ACTIVE_TOO_MUCH".equals(tL_error.text)) {
-                        tL_username2.active = z11;
-                        vaVar.i0(i11, z11, false);
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vaVar.getParentActivity(), 0, vaVar.getResourceProvider());
-                        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.UsernameActivateErrorTitle);
-                        alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.UsernameActivateErrorMessage);
-                        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new com.google.firebase.messaging.i(kaVar, tL_username2, z12, 3));
-                        alertDialog$Builder.o();
-                    } else {
-                        vaVar.j0(tL_username2, z12, true);
-                    }
+                int i11 = this.d;
+                boolean z12 = this.f16591b;
+                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) this.h;
+                boolean z13 = this.f16592c;
+                TLObject tLObject = (TLObject) this.f16594n;
+                ((di.d) this.e).setLoading(false);
+                org.telegram.ui.ActionBar.e3 e3Var = ((org.telegram.ui.ActionBar.e3[]) this.f16593f)[0];
+                if (e3Var != null) {
+                    e3Var.dismiss();
                 }
-                i10 = ((org.telegram.ui.ActionBar.m2) vaVar).currentAccount;
-                TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(vaVar.g0()));
-                vaVar.getMessagesController().updateUsernameActiveness(user, tL_username2.username, tL_username2.active);
-                if (vaVar.f40943x != 0 && arrayList2 != null) {
-                    int size = arrayList2.size();
-                    int i12 = 0;
-                    while (i12 < size) {
-                        Object obj = arrayList2.get(i12);
-                        i12++;
-                        if (((TLRPC.TL_username) obj).active) {
-                            return;
-                        }
+                zh.n5.y(i11, false).S();
+                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+                if (U != null) {
+                    if (z12 && !TextUtils.isEmpty(starsSubscription.title)) {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBizToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
+                    } else if (z13 && !TextUtils.isEmpty(starsSubscription.title)) {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBotToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
+                    } else {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledToastText, LocaleController.formatDateChat(starsSubscription.until_date));
                     }
-                    int size2 = arrayList2.size();
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 < size2) {
-                            Object obj2 = arrayList2.get(i13);
-                            i13++;
-                            tL_username = (TLRPC.TL_username) obj2;
-                            if (tL_username.editable) {
-                            }
-                        } else {
-                            tL_username = null;
-                        }
-                    }
-                    if (tL_username != null) {
-                        vaVar.j0(tL_username, true, false);
-                        vaVar.getMessagesController().updateUsernameActiveness(user, tL_username.username, tL_username.active);
-                        return;
-                    }
+                    org.telegram.ui.Components.zc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionCancelledToast), AndroidUtilities.replaceTags(formatString), null).k(false);
                     return;
                 }
                 return;
         }
     }
 
-    public bj(org.telegram.ui.ka kaVar, String str, TLObject tLObject, int i10, boolean z10, TLRPC.TL_error tL_error, TLRPC.TL_username tL_username, boolean z11) {
-        this.e = kaVar;
-        this.f16894f = str;
-        this.h = tLObject;
-        this.f16892b = i10;
-        this.f16893c = z10;
-        this.f16895n = tL_error;
-        this.f16896r = tL_username;
-        this.d = z11;
+    public bj(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, ArrayList arrayList, boolean z11, ArrayList arrayList2, int i10) {
+        this.e = sendMessagesHelper;
+        this.f16591b = z10;
+        this.f16593f = message;
+        this.h = arrayList;
+        this.f16592c = z11;
+        this.f16594n = arrayList2;
+        this.d = i10;
+    }
+
+    public bj(ri.r0 r0Var, ri.v vVar, boolean z10, File file, boolean z11, int i10, ri.n0 n0Var) {
+        this.e = r0Var;
+        this.f16593f = vVar;
+        this.f16591b = z10;
+        this.h = file;
+        this.f16592c = z11;
+        this.d = i10;
+        this.f16594n = n0Var;
     }
 }

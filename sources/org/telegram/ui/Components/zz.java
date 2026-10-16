@@ -22,21 +22,21 @@ public class zz extends s4.s {
         if (iw0Var == null) {
             return null;
         }
-        if (iw0Var.f26116a == 0.0f) {
-            iw0Var.f26116a = 100.0f;
+        if (iw0Var.f25809a == 0.0f) {
+            iw0Var.f25809a = 100.0f;
         }
-        if (iw0Var.f26117b == 0.0f) {
-            iw0Var.f26117b = 100.0f;
+        if (iw0Var.f25810b == 0.0f) {
+            iw0Var.f25810b = 100.0f;
         }
-        float f7 = iw0Var.f26116a;
-        float f10 = iw0Var.f26117b;
+        float f7 = iw0Var.f25809a;
+        float f10 = iw0Var.f25810b;
         float f11 = f7 / f10;
         if (f11 <= 4.0f && f11 >= 0.2f) {
             return iw0Var;
         }
         float max = Math.max(f7, f10);
-        iw0Var.f26116a = max;
-        iw0Var.f26117b = max;
+        iw0Var.f25809a = max;
+        iw0Var.f25810b = max;
         return iw0Var;
     }
 
@@ -89,13 +89,13 @@ public class zz extends s4.s {
                     min = i12;
                 } else {
                     i10 = dp;
-                    min = Math.min(i12, (int) Math.floor((((iw0Var.f26116a / iw0Var.f26117b) * dp) / f10) * i12));
+                    min = Math.min(i12, (int) Math.floor((((iw0Var.f25809a / iw0Var.f25810b) * dp) / f10) * i12));
                     if (i16 >= min && (min <= 33 || i16 >= min - 15)) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    if (iw0Var.f26118c) {
+                    if (iw0Var.f25811c) {
                         sparseIntArray.put(i14, i16);
                         this.V++;
                         f7 = f10;

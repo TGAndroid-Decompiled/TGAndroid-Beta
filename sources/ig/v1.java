@@ -11,23 +11,23 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.aq;
 import org.telegram.ui.Components.k9;
-import w7.a6;
+import w7.z5;
 public final class v1 extends FrameLayout {
-    public final k9 f11664a;
-    public final ImageReceiver f11665b;
-    public final TextView f11666c;
+    public final k9 f11668a;
+    public final ImageReceiver f11669b;
+    public final TextView f11670c;
     public final TextView d;
     public final aq e;
-    public final Path f11667f;
+    public final Path f11671f;
     public final Paint h;
-    public final c6 f11668n;
-    public final int[] f11669r;
-    public boolean f11670s;
+    public final c6 f11672n;
+    public final int[] f11673r;
+    public boolean f11674s;
 
     public v1(Context context, c6 c6Var) {
         super(context);
@@ -35,15 +35,15 @@ public final class v1 extends FrameLayout {
         float f10;
         float f11;
         float f12;
-        this.f11664a = new k9((c6) null);
-        this.f11665b = new ImageReceiver(this);
-        this.f11667f = new Path();
+        this.f11668a = new k9((c6) null);
+        this.f11669b = new ImageReceiver(this);
+        this.f11671f = new Path();
         this.h = new Paint(1);
-        this.f11669r = new int[1];
-        this.f11668n = c6Var;
+        this.f11673r = new int[1];
+        this.f11672n = c6Var;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f11666c = textView;
+        this.f11670c = textView;
         textView.setSingleLine();
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -61,12 +61,12 @@ public final class v1 extends FrameLayout {
         } else {
             f10 = 40.0f;
         }
-        addView(textView, a6.a(-2.0f, f7, 10.33f, f10, 0.0f, -1, 7));
+        addView(textView, z5.a(-2.0f, f7, 10.33f, f10, 0.0f, -1, 7));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setLines(2);
         textView2.setEllipsize(truncateAt);
-        yh.n(g6.f20305z6, c6Var, textView2, 1, 15.0f);
+        sk.o(g6.f20005z6, c6Var, textView2, 1, 15.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             f11 = 40.0f;
@@ -78,13 +78,13 @@ public final class v1 extends FrameLayout {
         } else {
             f12 = 40.0f;
         }
-        addView(textView2, a6.a(-2.0f, f11, 32.0f, f12, 0.0f, -1, 7));
+        addView(textView2, z5.a(-2.0f, f11, 32.0f, f12, 0.0f, -1, 7));
         aq aqVar = new aq(getContext(), 21, c6Var);
         this.e = aqVar;
-        aqVar.b(-1, g6.f19901d6, g6.f20029k7);
+        aqVar.b(-1, g6.f19601d6, g6.f19729k7);
         aqVar.setDrawUnchecked(false);
         aqVar.setDrawBackgroundAsArc(3);
-        addView(aqVar, a6.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        addView(aqVar, z5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
     }
 
     @Override
@@ -97,15 +97,15 @@ public final class v1 extends FrameLayout {
             dp = AndroidUtilities.dp(9.0f);
         }
         float f10 = dp;
-        ImageReceiver imageReceiver = this.f11665b;
+        ImageReceiver imageReceiver = this.f11669b;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(11.33f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        canvas.drawPath(this.f11667f, this.h);
-        if (this.f11670s) {
-            Paint U0 = g6.U0("paintDivider", this.f11668n);
+        canvas.drawPath(this.f11671f, this.h);
+        if (this.f11674s) {
+            Paint U0 = g6.U0("paintDivider", this.f11672n);
             if (U0 == null) {
-                U0 = g6.f20022k0;
+                U0 = g6.f19722k0;
             }
             Paint paint = U0;
             float f11 = 78.0f;
@@ -128,15 +128,15 @@ public final class v1 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         float measuredWidth;
         int i12;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f11670s ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f11674s ? 1 : 0), 1073741824));
         Paint.Style style = Paint.Style.STROKE;
         Paint paint = this.h;
         paint.setStyle(style);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(g6.m1(0.85f, g6.w0(g6.f20305z6, this.f11668n)));
-        Path path = this.f11667f;
+        paint.setColor(g6.m1(0.85f, g6.w0(g6.f20005z6, this.f11672n)));
+        Path path = this.f11671f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;
         if (LocaleController.isRTL) {

@@ -16,15 +16,15 @@ import org.telegram.ui.Components.sc;
 import org.telegram.ui.Components.zc;
 import zh.f5;
 public final class c implements Runnable {
-    public final int f46286a = 0;
-    public final boolean f46287b;
-    public final Object f46288c;
+    public final int f46285a = 0;
+    public final boolean f46286b;
+    public final Object f46287c;
     public final Object d;
     public final Object e;
 
     public c(zc zcVar, boolean z10, TLRPC.Chat chat, c6 c6Var) {
-        this.f46288c = zcVar;
-        this.f46287b = z10;
+        this.f46287c = zcVar;
+        this.f46286b = z10;
         this.d = chat;
         this.e = c6Var;
     }
@@ -37,11 +37,11 @@ public final class c implements Runnable {
         int i11;
         Boolean bool;
         boolean z10;
-        int i12 = this.f46286a;
-        boolean z11 = this.f46287b;
+        int i12 = this.f46285a;
+        boolean z11 = this.f46286b;
         Object obj = this.e;
         Object obj2 = this.d;
-        Object obj3 = this.f46288c;
+        Object obj3 = this.f46287c;
         switch (i12) {
             case 0:
                 zc zcVar = (zc) obj3;
@@ -69,17 +69,17 @@ public final class c implements Runnable {
                     string2 = LocaleController.getString(i10);
                 }
                 sc M = zcVar.M(string, AndroidUtilities.replaceSingleTag(string2, g6.Gi, 0, new d(chat), c6Var), i13);
-                M.f29102j = 5000;
+                M.f28805j = 5000;
                 M.j();
                 return;
             default:
                 f5 f5Var = (f5) obj3;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList = f5Var.f50509l;
-                int i14 = f5Var.f50501a;
-                if (((int[]) obj2)[0] == f5Var.f50510m) {
-                    f5Var.f50506i = false;
-                    f5Var.f50510m = -1;
+                ArrayList arrayList = f5Var.f50510l;
+                int i14 = f5Var.f50502a;
+                if (((int[]) obj2)[0] == f5Var.f50511m) {
+                    f5Var.f50507i = false;
+                    f5Var.f50511m = -1;
                     if (tLObject instanceof TL_stars.TL_payments_savedStarGifts) {
                         TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject;
                         MessagesController.getInstance(i14).putUsers(tL_payments_savedStarGifts.users, false);
@@ -88,24 +88,24 @@ public final class c implements Runnable {
                             arrayList.clear();
                         }
                         arrayList.addAll(tL_payments_savedStarGifts.gifts);
-                        f5Var.f50508k = tL_payments_savedStarGifts.next_offset;
-                        f5Var.f50511n = tL_payments_savedStarGifts.count;
+                        f5Var.f50509k = tL_payments_savedStarGifts.next_offset;
+                        f5Var.f50512n = tL_payments_savedStarGifts.count;
                         if ((tL_payments_savedStarGifts.flags & 2) != 0) {
                             bool = Boolean.valueOf(tL_payments_savedStarGifts.chat_notifications_enabled);
                         } else {
                             bool = null;
                         }
                         f5Var.h = bool;
-                        if (arrayList.size() <= f5Var.f50511n && f5Var.f50508k != null) {
+                        if (arrayList.size() <= f5Var.f50512n && f5Var.f50509k != null) {
                             z10 = false;
                         } else {
                             z10 = true;
                         }
-                        f5Var.f50507j = z10;
+                        f5Var.f50508j = z10;
                     } else {
-                        f5Var.f50507j = true;
+                        f5Var.f50508j = true;
                     }
-                    NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(f5Var.f50502b), f5Var);
+                    NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(f5Var.f50503b), f5Var);
                     return;
                 }
                 return;
@@ -113,9 +113,9 @@ public final class c implements Runnable {
     }
 
     public c(f5 f5Var, int[] iArr, TLObject tLObject, boolean z10) {
-        this.f46288c = f5Var;
+        this.f46287c = f5Var;
         this.d = iArr;
         this.e = tLObject;
-        this.f46287b = z10;
+        this.f46286b = z10;
     }
 }

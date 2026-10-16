@@ -8,38 +8,38 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 public final class j2 implements Utilities.Callback {
-    public final int f17539a;
-    public final Object f17540b;
-    public final Object f17541c;
+    public final int f17234a;
+    public final Object f17235b;
+    public final Object f17236c;
     public final Object d;
 
     public j2(Object obj, Object obj2, Object obj3, int i10) {
-        this.f17539a = i10;
-        this.f17540b = obj;
-        this.f17541c = obj2;
+        this.f17234a = i10;
+        this.f17235b = obj;
+        this.f17236c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f17539a) {
+        switch (this.f17234a) {
             case 0:
-                ((FactCheckController) this.f17540b).lambda$getFactCheck$0((FactCheckController.Key) this.f17541c, (MessageObject) this.d, (TLRPC.TL_factCheck) obj);
+                ((FactCheckController) this.f17235b).lambda$getFactCheck$0((FactCheckController.Key) this.f17236c, (MessageObject) this.d, (TLRPC.TL_factCheck) obj);
                 return;
             case 1:
-                ChannelBoostsController.lambda$userCanBoostChannel$2((ChannelBoostsController.CanApplyBoost) this.f17540b, (TL_stories.TL_premium_boostsStatus) this.f17541c, (Utilities.Callback) this.d, (TL_stories.TL_premium_myBoosts) obj);
+                ChannelBoostsController.lambda$userCanBoostChannel$2((ChannelBoostsController.CanApplyBoost) this.f17235b, (TL_stories.TL_premium_boostsStatus) this.f17236c, (Utilities.Callback) this.d, (TL_stories.TL_premium_myBoosts) obj);
                 return;
             case 2:
-                ((FileRefController) this.f17540b).lambda$requestReferenceFromServer$1((String) this.f17541c, (String) this.d, (bi.e8) obj);
+                ((FileRefController) this.f17235b).lambda$requestReferenceFromServer$1((String) this.f17236c, (String) this.d, (bi.e8) obj);
                 return;
             case 3:
-                MediaDataController.lambda$fillWithAnimatedEmoji$227((boolean[]) this.f17540b, (ArrayList[]) this.f17541c, (Runnable) this.d, (ArrayList) obj);
+                MediaDataController.lambda$fillWithAnimatedEmoji$227((boolean[]) this.f17235b, (ArrayList[]) this.f17236c, (Runnable) this.d, (ArrayList) obj);
                 return;
             case 4:
-                MediaDataController.lambda$setPlaceholderImage$31((String) this.f17540b, (org.telegram.ui.Components.z9) this.f17541c, (String) this.d, (TLRPC.TL_messages_stickerSet) obj);
+                MediaDataController.lambda$setPlaceholderImage$31((String) this.f17235b, (org.telegram.ui.Components.z9) this.f17236c, (String) this.d, (TLRPC.TL_messages_stickerSet) obj);
                 return;
             default:
-                MessagesController.lambda$openApp$502((boolean[]) this.f17540b, (TL_bots.BotInfo[]) this.f17541c, (Runnable) this.d, (TLRPC.UserFull) obj);
+                MessagesController.lambda$openApp$502((boolean[]) this.f17235b, (TL_bots.BotInfo[]) this.f17236c, (Runnable) this.d, (TLRPC.UserFull) obj);
                 return;
         }
     }

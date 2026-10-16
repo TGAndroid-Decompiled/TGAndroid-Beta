@@ -42,7 +42,7 @@ public final class i extends t1 {
         long j12;
         b2.o1 o1Var = this.f45934s;
         p1Var.n(0, o1Var);
-        long j13 = o1Var.f2270p;
+        long j13 = o1Var.f2274p;
         g gVar = this.f45935t;
         long j14 = this.f45928m;
         long j15 = Long.MIN_VALUE;
@@ -57,7 +57,7 @@ public final class i extends t1 {
             boolean z10 = this.f45931p;
             j10 = this.f45927l;
             if (z10) {
-                long j16 = o1Var.f2266l;
+                long j16 = o1Var.f2270l;
                 j10 += j16;
                 j11 = j16 + j14;
             } else {

@@ -9,18 +9,18 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class s60 extends org.telegram.ui.Components.lm0 {
-    public ChatObject.Call f39974c;
+    public ChatObject.Call f39698c;
     public final int d;
-    public ArrayList f39975f;
+    public ArrayList f39699f;
     public e40 h;
-    public final n60 f39976n;
+    public final n60 f39700n;
     public final ArrayList e = new ArrayList();
-    public boolean f39977r = false;
+    public boolean f39701r = false;
 
     public s60(ChatObject.Call call, int i10, n60 n60Var) {
-        this.f39974c = call;
+        this.f39698c = call;
         this.d = i10;
-        this.f39976n = n60Var;
+        this.f39700n = n60Var;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class s60 extends org.telegram.ui.Components.lm0 {
 
     public final void E(org.telegram.ui.Components.voip.l lVar, boolean z10) {
         if (z10 && lVar.getRenderer() == null) {
-            lVar.setRenderer(org.telegram.ui.Components.voip.t.c(this.f39975f, this.h, null, null, lVar, lVar.getParticipant(), this.f39974c, this.f39976n));
+            lVar.setRenderer(org.telegram.ui.Components.voip.t.c(this.f39699f, this.h, null, null, lVar, lVar.getParticipant(), this.f39698c, this.f39700n));
         } else if (!z10 && lVar.getRenderer() != null) {
             lVar.getRenderer().setTabletGridView(null);
             lVar.setRenderer(null);
@@ -38,7 +38,7 @@ public final class s60 extends org.telegram.ui.Components.lm0 {
     }
 
     public final int F() {
-        org.telegram.ui.Components.mm0 mm0Var = this.f39976n.f38496n2;
+        org.telegram.ui.Components.mm0 mm0Var = this.f39700n.f38211n2;
         int size = this.e.size();
         if (size <= 1) {
             return mm0Var.getMeasuredHeight();
@@ -50,12 +50,12 @@ public final class s60 extends org.telegram.ui.Components.lm0 {
     }
 
     public final void G(ArrayList arrayList, e40 e40Var) {
-        this.f39975f = arrayList;
+        this.f39699f = arrayList;
         this.h = e40Var;
     }
 
     public final void H(org.telegram.ui.Components.mm0 mm0Var, boolean z10, boolean z11) {
-        this.f39977r = z10;
+        this.f39701r = z10;
         if (z11) {
             for (int i10 = 0; i10 < mm0Var.getChildCount(); i10++) {
                 View childAt = mm0Var.getChildAt(i10);
@@ -70,7 +70,7 @@ public final class s60 extends org.telegram.ui.Components.lm0 {
     }
 
     public final void I(org.telegram.ui.Components.mm0 mm0Var, boolean z10) {
-        if (this.f39974c == null) {
+        if (this.f39698c == null) {
             return;
         }
         ArrayList arrayList = this.e;
@@ -78,13 +78,13 @@ public final class s60 extends org.telegram.ui.Components.lm0 {
             ArrayList arrayList2 = new ArrayList();
             arrayList2.addAll(arrayList);
             arrayList.clear();
-            arrayList.addAll(this.f39974c.visibleVideoParticipants);
+            arrayList.addAll(this.f39698c.visibleVideoParticipants);
             s4.o.c(new r60(this, arrayList2), true).c(this);
             AndroidUtilities.updateVisibleRows(mm0Var);
             return;
         }
         arrayList.clear();
-        arrayList.addAll(this.f39974c.visibleVideoParticipants);
+        arrayList.addAll(this.f39698c.visibleVideoParticipants);
         l();
     }
 
@@ -105,13 +105,13 @@ public final class s60 extends org.telegram.ui.Components.lm0 {
         if (size > 1 && size != 2 && (size != 3 || i10 == 0 || i10 == 1)) {
             i11 = 3;
         }
-        lVar.f30275a = i11;
-        lVar.f30276b = this;
+        lVar.f29944a = i11;
+        lVar.f29945b = this;
         if (lVar.getMeasuredHeight() != F()) {
             lVar.requestLayout();
         }
         AccountInstance.getInstance(this.d);
-        MessageObject.getPeerId(this.f39974c.selfPeer);
+        MessageObject.getPeerId(this.f39698c.selfPeer);
         lVar.d = videoParticipant;
         if (participant != null && !participant.equals(videoParticipant) && lVar.e && lVar.getRenderer() != null) {
             E(lVar, false);

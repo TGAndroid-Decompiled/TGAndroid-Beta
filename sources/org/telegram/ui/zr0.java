@@ -1,59 +1,17 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class zr0 implements Runnable {
-    public final int f42705a;
-    public final PhotoViewer f42706b;
-    public final Bitmap f42707c;
+import android.view.View;
+public final class zr0 implements View.OnClickListener {
+    public final int f42414a;
+    public final PhotoViewer f42415b;
 
-    public zr0(PhotoViewer photoViewer, Bitmap bitmap, int i10) {
-        this.f42705a = i10;
-        this.f42706b = photoViewer;
-        this.f42707c = bitmap;
+    public zr0(PhotoViewer photoViewer, int i10) {
+        this.f42414a = i10;
+        this.f42415b = photoViewer;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f42705a;
-        Bitmap bitmap = this.f42707c;
-        PhotoViewer photoViewer = this.f42706b;
-        switch (i10) {
-            case 0:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                photoViewer.n0(bitmap);
-                AndroidUtilities.runOnUIThread(new zr0(photoViewer, bitmap, 6));
-                return;
-            case 1:
-                Drawable[] drawableArr2 = PhotoViewer.U8;
-                photoViewer.n0(bitmap);
-                AndroidUtilities.runOnUIThread(new zr0(photoViewer, bitmap, 5));
-                return;
-            case 2:
-                Drawable[] drawableArr3 = PhotoViewer.U8;
-                photoViewer.n0(bitmap);
-                AndroidUtilities.runOnUIThread(new zr0(photoViewer, bitmap, 4));
-                return;
-            case 3:
-                Drawable[] drawableArr4 = PhotoViewer.U8;
-                photoViewer.n0(bitmap);
-                return;
-            case 4:
-                photoViewer.C4.setImageBitmap(bitmap);
-                photoViewer.f32363t5.setUndoCutState(true);
-                photoViewer.a3(true, true);
-                return;
-            case 5:
-                photoViewer.C4.setImageBitmap(bitmap);
-                photoViewer.f32363t5.setUndoCutState(true);
-                photoViewer.a3(true, true);
-                return;
-            default:
-                photoViewer.C4.setImageBitmap(bitmap);
-                photoViewer.f32363t5.setUndoCutState(true);
-                photoViewer.a3(true, true);
-                return;
-        }
+    public final void onClick(android.view.View r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zr0.onClick(android.view.View):void");
     }
 }

@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.Set;
 public class o0 extends q implements f1, Serializable {
     public final transient c2 e;
-    public final transient int f8595f;
+    public final transient int f8598f;
 
     public o0(c2 c2Var, int i10) {
         this.e = c2Var;
-        this.f8595f = i10;
+        this.f8598f = i10;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class o0 extends q implements f1, Serializable {
     public final Collection get(Object obj) {
         n0 n0Var = (n0) this.e.get(obj);
         if (n0Var == null) {
-            l0 l0Var = n0.f8592b;
+            l0 l0Var = n0.f8595b;
             return x1.e;
         }
         return n0Var;
@@ -70,10 +70,10 @@ public class o0 extends q implements f1, Serializable {
     @Override
     public final Set keySet() {
         c2 c2Var = this.e;
-        y0 y0Var = c2Var.f8605b;
+        y0 y0Var = c2Var.f8608b;
         if (y0Var == null) {
             a2 c10 = c2Var.c();
-            c2Var.f8605b = c10;
+            c2Var.f8608b = c10;
             return c10;
         }
         return y0Var;
@@ -86,6 +86,6 @@ public class o0 extends q implements f1, Serializable {
 
     @Override
     public final int size() {
-        return this.f8595f;
+        return this.f8598f;
     }
 }

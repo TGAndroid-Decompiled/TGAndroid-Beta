@@ -6,7 +6,7 @@ import j$.util.Objects;
 public final class y0 extends a {
     public final g2.g h;
     public final rg.b0 f46096i;
-    public final n2.n f46097j;
+    public final n2.m f46097j;
     public final oa.d f46098k;
     public final int f46099l;
     public final b2.x f46100m;
@@ -18,11 +18,11 @@ public final class y0 extends a {
     public g2.c0 f46106s;
     public b2.p0 f46107t;
 
-    public y0(b2.p0 p0Var, g2.g gVar, rg.b0 b0Var, n2.n nVar, oa.d dVar, int i10, b2.x xVar) {
+    public y0(b2.p0 p0Var, g2.g gVar, rg.b0 b0Var, n2.m mVar, oa.d dVar, int i10, b2.x xVar) {
         this.f46107t = p0Var;
         this.h = gVar;
         this.f46096i = b0Var;
-        this.f46097j = nVar;
+        this.f46097j = mVar;
         this.f46098k = dVar;
         this.f46099l = i10;
         this.f46100m = xVar;
@@ -30,10 +30,10 @@ public final class y0 extends a {
 
     @Override
     public final boolean a(b2.p0 p0Var) {
-        b2.k0 k0Var = i().f2278b;
+        b2.k0 k0Var = i().f2282b;
         k0Var.getClass();
-        b2.k0 k0Var2 = p0Var.f2278b;
-        if (k0Var2 != null && k0Var2.f2188a.equals(k0Var.f2188a) && k0Var2.h == k0Var.h && Objects.equals(k0Var2.f2191f, k0Var.f2191f)) {
+        b2.k0 k0Var2 = p0Var.f2282b;
+        if (k0Var2 != null && k0Var2.f2192a.equals(k0Var.f2192a) && k0Var2.h == k0Var.h && Objects.equals(k0Var2.f2195f, k0Var.f2195f)) {
             return true;
         }
         return false;
@@ -46,11 +46,11 @@ public final class y0 extends a {
         if (c0Var != null) {
             createDataSource.addTransferListener(c0Var);
         }
-        b2.k0 k0Var = i().f2278b;
+        b2.k0 k0Var = i().f2282b;
         k0Var.getClass();
-        Uri uri = k0Var.f2188a;
+        Uri uri = k0Var.f2192a;
         this.f45863g.getClass();
-        return new w0(uri, createDataSource, new c((c3.r) this.f46096i.f44209b), this.f46097j, new n2.k(this.d.f15965c, 0, g0Var), this.f46098k, b(g0Var), this, eVar, k0Var.f2191f, this.f46099l, this.f46100m, e2.m0.S(k0Var.h), null);
+        return new w0(uri, createDataSource, new c((c3.r) this.f46096i.f43968b), this.f46097j, new n2.j(this.d.f15676c, 0, g0Var), this.f46098k, b(g0Var), this, eVar, k0Var.f2195f, this.f46099l, this.f46100m, e2.m0.S(k0Var.h), null);
     }
 
     @Override
@@ -65,9 +65,9 @@ public final class y0 extends a {
         myLooper.getClass();
         j2.k kVar = this.f45863g;
         kVar.getClass();
-        n2.n nVar = this.f46097j;
-        nVar.D(myLooper, kVar);
-        nVar.b();
+        n2.m mVar = this.f46097j;
+        mVar.F(myLooper, kVar);
+        mVar.b();
         u();
     }
 
@@ -109,7 +109,7 @@ public final class y0 extends a {
         boolean z11 = this.f46104q;
         b2.p0 i10 = i();
         if (z11) {
-            j0Var = i10.f2279c;
+            j0Var = i10.f2283c;
         } else {
             j0Var = null;
         }

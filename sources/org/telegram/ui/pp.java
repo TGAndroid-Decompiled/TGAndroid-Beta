@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.content.DialogInterface;
 import org.telegram.tgnet.ConnectionsManager;
 public final class pp implements Runnable {
-    public final int f39269a;
-    public final aq f39270b;
-    public final org.telegram.ui.ActionBar.a2[] f39271c;
+    public final int f38982a;
+    public final aq f38983b;
+    public final org.telegram.ui.ActionBar.a2[] f38984c;
     public final int d;
 
     public pp(aq aqVar, org.telegram.ui.ActionBar.a2[] a2VarArr, int i10, int i11) {
-        this.f39269a = i11;
-        this.f39270b = aqVar;
-        this.f39271c = a2VarArr;
+        this.f38982a = i11;
+        this.f38983b = aqVar;
+        this.f38984c = a2VarArr;
         this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f39269a) {
+        switch (this.f38982a) {
             case 0:
-                org.telegram.ui.ActionBar.a2[] a2VarArr = this.f39271c;
+                org.telegram.ui.ActionBar.a2[] a2VarArr = this.f38984c;
                 org.telegram.ui.ActionBar.a2 a2Var = a2VarArr[0];
                 if (a2Var != null) {
-                    final aq aqVar = this.f39270b;
+                    final aq aqVar = this.f38983b;
                     final int i10 = this.d;
                     a2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
@@ -42,10 +42,10 @@ public final class pp implements Runnable {
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.a2[] a2VarArr2 = this.f39271c;
+                org.telegram.ui.ActionBar.a2[] a2VarArr2 = this.f38984c;
                 org.telegram.ui.ActionBar.a2 a2Var2 = a2VarArr2[0];
                 if (a2Var2 != null) {
-                    final aq aqVar2 = this.f39270b;
+                    final aq aqVar2 = this.f38983b;
                     final int i11 = this.d;
                     a2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override

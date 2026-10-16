@@ -17,13 +17,13 @@ import android.util.TypedValue;
 import androidx.fragment.app.j0;
 import androidx.fragment.app.u;
 import com.google.android.gms.common.api.GoogleApiActivity;
+import n6.q;
 import n6.r;
-import n6.s;
 public final class d extends e {
-    public static final Object f14167c = new Object();
+    public static final Object f14170c = new Object();
     public static final d d = new Object();
 
-    public static AlertDialog f(Activity activity, int i10, s sVar, DialogInterface.OnCancelListener onCancelListener) {
+    public static AlertDialog f(Activity activity, int i10, r rVar, DialogInterface.OnCancelListener onCancelListener) {
         AlertDialog.Builder builder = null;
         if (i10 == 0) {
             return null;
@@ -36,17 +36,17 @@ public final class d extends e {
         if (builder == null) {
             builder = new AlertDialog.Builder(activity);
         }
-        builder.setMessage(r.c(activity, i10));
+        builder.setMessage(q.c(activity, i10));
         builder.setOnCancelListener(onCancelListener);
-        String b10 = r.b(activity, i10);
+        String b10 = q.b(activity, i10);
         if (b10 != null) {
-            builder.setPositiveButton(b10, sVar);
+            builder.setPositiveButton(b10, rVar);
         }
-        String d10 = r.d(activity, i10);
+        String d10 = q.d(activity, i10);
         if (d10 != null) {
             builder.setTitle(d10);
         }
-        Log.w("GoogleApiAvailability", i2.d.i(i10, "Creating dialog for Google Play services availability issue. ConnectionResult="), new IllegalArgumentException());
+        Log.w("GoogleApiAvailability", i2.d.j(i10, "Creating dialog for Google Play services availability issue. ConnectionResult="), new IllegalArgumentException());
         return builder.create();
     }
 
@@ -60,11 +60,11 @@ public final class d extends e {
                 alertDialog.setOnDismissListener(null);
                 iVar.A0 = alertDialog;
                 iVar.B0 = onCancelListener;
-                iVar.f1632x0 = false;
-                iVar.f1633y0 = true;
+                iVar.f1636x0 = false;
+                iVar.f1637y0 = true;
                 s10.getClass();
                 androidx.fragment.app.a aVar = new androidx.fragment.app.a(s10);
-                aVar.f1534o = true;
+                aVar.f1538o = true;
                 aVar.f(0, iVar, str);
                 aVar.e(false, true);
                 return;
@@ -76,18 +76,18 @@ public final class d extends e {
         n6.l.i(alertDialog, "Cannot display null dialog");
         alertDialog.setOnCancelListener(null);
         alertDialog.setOnDismissListener(null);
-        dialogFragment.f14161a = alertDialog;
-        dialogFragment.f14162b = onCancelListener;
+        dialogFragment.f14164a = alertDialog;
+        dialogFragment.f14165b = onCancelListener;
         dialogFragment.show(fragmentManager, str);
     }
 
     @Override
     public final int c(Context context) {
-        return d(context, e.f14168a);
+        return d(context, e.f14171a);
     }
 
     public final void e(GoogleApiActivity googleApiActivity, int i10, GoogleApiActivity googleApiActivity2) {
-        AlertDialog f7 = f(googleApiActivity, i10, new s(super.b(googleApiActivity, "d", i10), googleApiActivity, 0), googleApiActivity2);
+        AlertDialog f7 = f(googleApiActivity, i10, new r(super.b(googleApiActivity, "d", i10), googleApiActivity, 0), googleApiActivity2);
         if (f7 == null) {
             return;
         }
@@ -98,7 +98,7 @@ public final class d extends e {
         String d10;
         String e;
         int i11;
-        Log.w("GoogleApiAvailability", i2.d.j(i10, "GMS core API Availability. ConnectionResult=", ", tag=null"), new IllegalArgumentException());
+        Log.w("GoogleApiAvailability", i2.d.k(i10, "GMS core API Availability. ConnectionResult=", ", tag=null"), new IllegalArgumentException());
         if (i10 == 18) {
             new j(this, context).sendEmptyMessageDelayed(1, 120000L);
         } else if (pendingIntent == null) {
@@ -107,28 +107,28 @@ public final class d extends e {
             }
         } else {
             if (i10 == 6) {
-                d10 = r.f(context, "common_google_play_services_resolution_required_title");
+                d10 = q.f(context, "common_google_play_services_resolution_required_title");
             } else {
-                d10 = r.d(context, i10);
+                d10 = q.d(context, i10);
             }
             if (d10 == null) {
                 d10 = context.getResources().getString(2131689565);
             }
             if (i10 != 6 && i10 != 19) {
-                e = r.c(context, i10);
+                e = q.c(context, i10);
             } else {
-                e = r.e(context, "common_google_play_services_resolution_required_text", r.a(context));
+                e = q.e(context, "common_google_play_services_resolution_required_text", q.a(context));
             }
             Resources resources = context.getResources();
             Object systemService = context.getSystemService("notification");
             n6.l.h(systemService);
             NotificationManager notificationManager = (NotificationManager) systemService;
             e0.r rVar = new e0.r(context, null);
-            rVar.f8279t = true;
+            rVar.f8282t = true;
             rVar.h(16, true);
             rVar.e = e0.r.d(d10);
             e0.m mVar = new e0.m(false);
-            mVar.f8249f = e0.r.d(e);
+            mVar.f8252f = e0.r.d(e);
             rVar.n(mVar);
             PackageManager packageManager = context.getPackageManager();
             if (u6.b.f46210b == null) {
@@ -136,22 +136,22 @@ public final class d extends e {
             }
             if (u6.b.f46210b.booleanValue()) {
                 rVar.E.icon = context.getApplicationInfo().icon;
-                rVar.f8269j = 2;
+                rVar.f8272j = 2;
                 if (u6.b.f(context)) {
                     rVar.a(2131230973, resources.getString(2131689573), pendingIntent);
                 } else {
-                    rVar.f8267g = pendingIntent;
+                    rVar.f8270g = pendingIntent;
                 }
             } else {
                 rVar.E.icon = 17301642;
                 rVar.p(resources.getString(2131689565));
                 rVar.E.when = System.currentTimeMillis();
-                rVar.f8267g = pendingIntent;
+                rVar.f8270g = pendingIntent;
                 rVar.f(e);
             }
             if (u6.b.d()) {
                 n6.l.k(u6.b.d());
-                synchronized (f14167c) {
+                synchronized (f14170c) {
                 }
                 NotificationChannel notificationChannel = notificationManager.getNotificationChannel("com.google.android.gms.availability");
                 String string = context.getResources().getString(2131689564);
@@ -161,13 +161,13 @@ public final class d extends e {
                     notificationChannel.setName(string);
                     notificationManager.createNotificationChannel(notificationChannel);
                 }
-                rVar.f8283y = "com.google.android.gms.availability";
+                rVar.f8286y = "com.google.android.gms.availability";
             }
             Notification b10 = rVar.b();
             if (i10 != 1 && i10 != 2 && i10 != 3) {
                 i11 = 39789;
             } else {
-                g.f14171a.set(false);
+                g.f14174a.set(false);
                 i11 = 10436;
             }
             notificationManager.notify(i11, b10);
@@ -175,7 +175,7 @@ public final class d extends e {
     }
 
     public final void i(Activity activity, com.google.android.gms.common.api.internal.m mVar, int i10, DialogInterface.OnCancelListener onCancelListener) {
-        AlertDialog f7 = f(activity, i10, new s(super.b(activity, "d", i10), mVar, 1), onCancelListener);
+        AlertDialog f7 = f(activity, i10, new r(super.b(activity, "d", i10), mVar, 1), onCancelListener);
         if (f7 == null) {
             return;
         }

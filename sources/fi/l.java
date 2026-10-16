@@ -24,15 +24,15 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.ja;
 import org.telegram.ui.Cells.y7;
+import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.da0;
 import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.n01;
-import org.telegram.ui.Components.z61;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.o01;
 import org.telegram.ui.Components.zc;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.v20;
-import w7.a6;
+import w7.z5;
 public final class l extends v20 implements NotificationCenter.NotificationCenterDelegate {
     public final long P;
     public FrameLayout Q;
@@ -43,11 +43,11 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
     public boolean W;
     public TL_payments.starRefProgram X;
     public TL_payments.starRefProgram Y;
-    public boolean f9390b0;
-    public g f9391c0;
+    public boolean f9393b0;
+    public g f9394c0;
     public final e V = new e(this, 0);
     public String[] Z = null;
-    public final List f9389a0 = Arrays.asList(1, 3, 6, 12, 24, 36, 0);
+    public final List f9392a0 = Arrays.asList(1, 3, 6, 12, 24, 36, 0);
 
     public l(long j10) {
         this.P = j10;
@@ -83,7 +83,7 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
     }
 
     public static void B0(l lVar, int i10) {
-        g gVar = lVar.f9391c0;
+        g gVar = lVar.f9394c0;
         if (gVar != null) {
             int i11 = gVar.G(i10).d;
             if (i11 == 4) {
@@ -94,28 +94,28 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
                 textView.setTextSize(1, 16.0f);
                 int i12 = g6.G6;
                 textView.setTextColor(g6.w0(i12, lVar.resourceProvider));
-                org.telegram.messenger.q.o(R.string.AffiliateProgramStopText, textView);
-                linearLayout.addView(textView, a6.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
+                org.telegram.messenger.g0.n(R.string.AffiliateProgramStopText, textView);
+                linearLayout.addView(textView, z5.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
                 bi.f4 f4Var = new bi.f4(lVar.getParentActivity(), 1);
                 f4Var.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
                 f4Var.setTextSize(1, 16.0f);
                 f4Var.setTextColor(g6.w0(i12, lVar.resourceProvider));
                 f4Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText1)));
-                linearLayout.addView(f4Var, a6.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
+                linearLayout.addView(f4Var, z5.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
                 bi.f4 f4Var2 = new bi.f4(lVar.getParentActivity(), 1);
                 f4Var2.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
                 f4Var2.setTextSize(1, 16.0f);
                 f4Var2.setTextColor(g6.w0(i12, lVar.resourceProvider));
                 f4Var2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText2)));
-                linearLayout.addView(f4Var2, a6.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
+                linearLayout.addView(f4Var2, z5.k(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
                 bi.f4 f4Var3 = new bi.f4(lVar.getParentActivity(), 1);
                 f4Var3.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
                 f4Var3.setTextSize(1, 16.0f);
                 f4Var3.setTextColor(g6.w0(i12, lVar.resourceProvider));
                 f4Var3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText3)));
-                linearLayout.addView(f4Var3, a6.k(0.0f, 0.0f, 0.0f, 10.0f, -1, -2));
+                linearLayout.addView(f4Var3, z5.k(0.0f, 0.0f, 0.0f, 10.0f, -1, -2));
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lVar.getParentActivity(), 0, lVar.resourceProvider);
-                alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.AffiliateProgramAlert);
+                alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.AffiliateProgramAlert);
                 alertDialog$Builder.n(linearLayout);
                 alertDialog$Builder.k(LocaleController.getString(R.string.AffiliateProgramStopButton), new f1.a(lVar, 2));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
@@ -144,9 +144,9 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
             return;
         }
         FrameLayout frameLayout = new FrameLayout(context);
-        n01 n01Var = new n01(context, lVar.resourceProvider);
+        o01 o01Var = new o01(context, lVar.resourceProvider);
         e eVar = new e(lVar, 1);
-        n01Var.c(LocaleController.getString(R.string.AffiliateProgramCommission), H0(lVar.Y.commission_permille), null, null);
+        o01Var.c(LocaleController.getString(R.string.AffiliateProgramCommission), H0(lVar.Y.commission_permille), null, null);
         String string = LocaleController.getString(R.string.AffiliateProgramDuration);
         int i12 = lVar.Y.duration_months;
         if (i12 <= 0) {
@@ -156,16 +156,16 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
         } else {
             formatPluralString = LocaleController.formatPluralString("Months", i12, new Object[0]);
         }
-        n01Var.c(string, formatPluralString, null, null);
-        frameLayout.addView(n01Var, a6.a(-2.0f, 24.0f, 0.0f, 24.0f, 0.0f, -1, 119));
+        o01Var.c(string, formatPluralString, null, null);
+        frameLayout.addView(o01Var, z5.a(-2.0f, 24.0f, 0.0f, 24.0f, 0.0f, -1, 119));
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, lVar.resourceProvider);
-        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.AffiliateProgramAlert);
+        alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.AffiliateProgramAlert);
         if (lVar.W) {
             i10 = R.string.AffiliateProgramStartAlertText;
         } else {
             i10 = R.string.AffiliateProgramUpdateAlertText;
         }
-        alertDialog$Builder.f19548a.T = LocaleController.getString(i10);
+        alertDialog$Builder.f19248a.T = LocaleController.getString(i10);
         alertDialog$Builder.n(frameLayout);
         if (lVar.W) {
             i11 = R.string.AffiliateProgramStartAlertButton;
@@ -173,7 +173,7 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
             i11 = R.string.AffiliateProgramUpdateAlertButton;
         }
         alertDialog$Builder.k(LocaleController.getString(i11), new f1.a(eVar, 1));
-        org.telegram.messenger.q.q(R.string.Cancel, alertDialog$Builder, null);
+        i2.d.r(R.string.Cancel, alertDialog$Builder, null);
     }
 
     public static void z0(l lVar, org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -233,45 +233,45 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
         }
     }
 
-    public final void F0(ArrayList arrayList, z61 z61Var) {
+    public final void F0(ArrayList arrayList, a71 a71Var) {
         int i10;
         if (getParentActivity() == null) {
             return;
         }
-        l61 l61Var = new l61(-2);
-        l61Var.f26948c = (ab) super.r0(getParentActivity());
-        arrayList.add(l61Var);
+        m61 m61Var = new m61(-2);
+        m61Var.f26940c = (ab) super.r0(getParentActivity());
+        arrayList.add(m61Var);
         arrayList.add(j.a(R.drawable.menu_feature_premium, LocaleController.getString(R.string.BotAffiliateProgramFeature1Title), LocaleController.getString(R.string.BotAffiliateProgramFeature1)));
         arrayList.add(j.a(R.drawable.msg_channel, LocaleController.getString(R.string.BotAffiliateProgramFeature2Title), LocaleController.getString(R.string.BotAffiliateProgramFeature2)));
         arrayList.add(j.a(R.drawable.menu_feature_links2, LocaleController.getString(R.string.BotAffiliateProgramFeature3Title), LocaleController.getString(R.string.BotAffiliateProgramFeature3)));
-        arrayList.add(l61.A(1, null));
-        arrayList.add(l61.t(LocaleController.getString(R.string.AffiliateProgramCommission)));
+        arrayList.add(m61.A(1, null));
+        arrayList.add(m61.t(LocaleController.getString(R.string.AffiliateProgramCommission)));
         int i11 = getMessagesController().starrefMinCommissionPermille;
         int i12 = this.Y.commission_permille;
         int i13 = getMessagesController().starrefMaxCommissionPermille;
         c cVar = new c(0);
         a aVar = new a(this, 1);
-        l61 l61Var2 = new l61(15);
-        l61Var2.f26967z = i12;
-        l61Var2.C = aVar;
+        m61 m61Var2 = new m61(15);
+        m61Var2.f26959z = i12;
+        m61Var2.C = aVar;
         y7 y7Var = new y7();
-        y7Var.f22785a = i11;
-        y7Var.f22786b = i13;
+        y7Var.f22483a = i11;
+        y7Var.f22484b = i13;
         y7Var.e = new ja(cVar, 7);
-        l61Var2.G = y7Var;
-        l61Var2.B = -1L;
+        m61Var2.G = y7Var;
+        m61Var2.B = -1L;
         TL_payments.starRefProgram starrefprogram = this.X;
         if (starrefprogram == null) {
             i10 = -1;
         } else {
             i10 = starrefprogram.commission_permille;
         }
-        l61Var2.B = i10;
-        arrayList.add(l61Var2);
-        i2.d.y(R.string.AffiliateProgramCommissionInfo, arrayList);
-        i2.d.o(R.string.AffiliateProgramDuration, arrayList);
+        m61Var2.B = i10;
+        arrayList.add(m61Var2);
+        i2.d.B(R.string.AffiliateProgramCommissionInfo, arrayList);
+        i2.d.p(R.string.AffiliateProgramDuration, arrayList);
         String[] strArr = this.Z;
-        List list = this.f9389a0;
+        List list = this.f9392a0;
         if (strArr == null) {
             this.Z = new String[list.size()];
             for (int i14 = 0; i14 < list.size(); i14++) {
@@ -288,15 +288,15 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
         String[] strArr2 = this.Z;
         int indexOf = list.indexOf(Integer.valueOf(this.Y.duration_months));
         a aVar2 = new a(this, 2);
-        l61 l61Var3 = new l61(14);
-        l61Var3.f26958p = strArr2;
-        l61Var3.f26967z = indexOf;
-        l61Var3.C = aVar2;
-        l61Var3.B = -1L;
+        m61 m61Var3 = new m61(14);
+        m61Var3.f26950p = strArr2;
+        m61Var3.f26959z = indexOf;
+        m61Var3.C = aVar2;
+        m61Var3.B = -1L;
         TL_payments.starRefProgram starrefprogram2 = this.X;
         if (starrefprogram2 != null) {
             if (starrefprogram2.duration_months <= 0) {
-                l61Var3.B = list.size() - 1;
+                m61Var3.B = list.size() - 1;
             } else {
                 int size = list.size() - 1;
                 while (true) {
@@ -304,25 +304,25 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
                         break;
                     }
                     if (((Integer) list.get(size)).intValue() > 0 && ((Integer) list.get(size)).intValue() <= this.X.duration_months) {
-                        l61Var3.B = size;
+                        m61Var3.B = size;
                         break;
                     }
                     size--;
                 }
             }
         }
-        arrayList.add(l61Var3);
-        i2.d.y(R.string.AffiliateProgramDurationInfo, arrayList);
+        arrayList.add(m61Var3);
+        i2.d.B(R.string.AffiliateProgramDurationInfo, arrayList);
         arrayList.add(h.a(2, getThemedColor(g6.uj), R.drawable.filled_earn_stars, LocaleController.getString(R.string.AffiliateProgramExistingProgramsTitle), LocaleController.getString(R.string.AffiliateProgramExistingProgramsText)));
-        arrayList.add(l61.A(3, null));
+        arrayList.add(m61.A(3, null));
         if (!this.W && this.Y.end_date == 0) {
-            l61 e = l61.e(4, LocaleController.getString(R.string.AffiliateProgramStop));
-            e.f26960r = true;
+            m61 e = m61.e(4, LocaleController.getString(R.string.AffiliateProgramStop));
+            e.f26952r = true;
             arrayList.add(e);
-            arrayList.add(l61.A(5, null));
+            arrayList.add(m61.A(5, null));
         }
-        arrayList.add(l61.A(6, null));
-        arrayList.add(l61.A(7, null));
+        arrayList.add(m61.A(6, null));
+        arrayList.add(m61.A(7, null));
     }
 
     public final TL_payments.starRefProgram G0() {
@@ -353,7 +353,7 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
         }
         da0Var.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(i11), new e(this, 2)));
         J0();
-        g gVar = this.f9391c0;
+        g gVar = this.f9394c0;
         if (gVar != null) {
             gVar.N(z10);
         }
@@ -376,7 +376,7 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
     public final View createView(Context context) {
         this.G = false;
         this.E = AndroidUtilities.dp(238.0f);
-        new ab(this, context, 2).setBackgroundColor(g6.x0(null, g6.f19989i5, false));
+        new ab(this, context, 2).setBackgroundColor(g6.x0(null, g6.f19689i5, false));
         super.createView(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.Q = frameLayout;
@@ -388,56 +388,56 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
         gVar.A = g6.gk;
         gVar.b();
         this.R.setStarParticlesView(this.e);
-        this.Q.addView(this.R, a6.a(190.0f, 0.0f, 32.0f, 0.0f, 24.0f, 190, 17));
+        this.Q.addView(this.R, z5.a(190.0f, 0.0f, 32.0f, 0.0f, 24.0f, 190, 17));
         m0(LocaleController.getString(R.string.BotAffiliateProgramTitle), LocaleController.getString(R.string.BotAffiliateProgramText), this.Q, null);
         LinearLayout linearLayout = new LinearLayout(context);
         this.S = linearLayout;
         linearLayout.setOrientation(1);
-        this.S.setBackgroundColor(getThemedColor(g6.f19901d6));
+        this.S.setBackgroundColor(getThemedColor(g6.f19601d6));
         View view = new View(context);
-        view.setBackgroundColor(getThemedColor(g6.f19902d7));
-        this.S.addView(view, new LinearLayout.LayoutParams(a6.z(-1.0f), a6.z(1.0f / AndroidUtilities.density)));
+        view.setBackgroundColor(getThemedColor(g6.f19602d7));
+        this.S.addView(view, new LinearLayout.LayoutParams(z5.z(-1.0f), z5.z(1.0f / AndroidUtilities.density)));
         ci.p pVar = new ci.p(1, context, this.resourceProvider, true);
         pVar.setRoundRadius(24);
         this.T = pVar;
         pVar.g(LocaleController.getString(R.string.AffiliateProgramStart), false, true);
         this.T.setOnClickListener(new bi.u1(7, this, context));
-        this.S.addView(this.T, a6.k(10.0f, 10.0f, 10.0f, 7.0f, -1, 48));
+        this.S.addView(this.T, z5.k(10.0f, 10.0f, 10.0f, 7.0f, -1, 48));
         da0 da0Var = new da0(context, this.resourceProvider);
         this.U = da0Var;
-        da0Var.setTextColor(getThemedColor(g6.f20305z6));
-        this.U.setLinkTextColor(getThemedColor(g6.f19960gc));
+        da0Var.setTextColor(getThemedColor(g6.f20005z6));
+        this.U.setLinkTextColor(getThemedColor(g6.f19660gc));
         this.U.setTextSize(1, 12.0f);
         this.U.setGravity(17);
-        this.S.addView(this.U, a6.k(32.0f, 1.0f, 32.0f, 8.0f, -1, -2));
+        this.S.addView(this.U, z5.k(32.0f, 1.0f, 32.0f, 8.0f, -1, -2));
         I0(false);
-        ((FrameLayout) this.fragmentView).addView(this.S, a6.e(-1, -2, 87));
-        this.f40861c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f));
-        this.f40861c.setOnItemClickListener(new bi.d(this, 8));
+        ((FrameLayout) this.fragmentView).addView(this.S, z5.e(-1, -2, 87));
+        this.f40548c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f));
+        this.f40548c.setOnItemClickListener(new bi.d(this, 8));
         s4.k kVar = new s4.k();
         kVar.f44872m = false;
         kVar.C = false;
         kVar.o(es.h);
         kVar.n(350L);
-        this.f40861c.setItemAnimator(kVar);
+        this.f40548c.setItemAnimator(kVar);
         return this.fragmentView;
     }
 
     @Override
     public final int getNavigationBarColor() {
-        return getThemedColor(g6.f19901d6);
+        return getThemedColor(g6.f19601d6);
     }
 
     @Override
     public final s4.g0 n0() {
-        g gVar = new g(this, this.f40861c, getParentActivity(), this.currentAccount, this.classGuid, new ci.u(this, 12), getResourceProvider());
-        this.f9391c0 = gVar;
+        g gVar = new g(this, this.f40548c, getParentActivity(), this.currentAccount, this.classGuid, new ci.u(this, 12), getResourceProvider());
+        this.f9394c0 = gVar;
         return gVar;
     }
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f9390b0 = true;
+        this.f9393b0 = true;
         this.W = true;
         this.Y = G0();
         this.X = null;
@@ -470,15 +470,15 @@ public final class l extends v20 implements NotificationCenter.NotificationCente
 
     @Override
     public final void onFragmentDestroy() {
-        this.f9390b0 = false;
+        this.f9393b0 = false;
         AndroidUtilities.cancelRunOnUIThread(this.V);
         super.onFragmentDestroy();
     }
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f40861c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f) + i13);
-        this.f40861c.setClipToPadding(false);
+        this.f40548c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f) + i13);
+        this.f40548c.setClipToPadding(false);
         this.S.setPadding(0, 0, 0, i13);
     }
 

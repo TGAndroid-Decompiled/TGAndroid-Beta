@@ -17,11 +17,11 @@ public final class z0 extends mm0 {
     public final ArrayList X2;
     public final ArrayList Y2;
     public final ArrayList Z2;
-    public final a6 f44633a3;
+    public final a6 f44392a3;
 
     public z0(a6 a6Var, Context context, com.google.firebase.messaging.m mVar) {
         super(context, mVar);
-        this.f44633a3 = a6Var;
+        this.f44392a3 = a6Var;
         this.V2 = new ArrayList();
         this.W2 = new ArrayList();
         this.X2 = new ArrayList();
@@ -68,7 +68,7 @@ public final class z0 extends mm0 {
                     if (currentMessagesGroup2 == null || currentMessagesGroup2 != groupedMessages) {
                         MessageObject.GroupedMessagePosition currentPosition = u1Var.getCurrentPosition();
                         qb0 backgroundDrawable = u1Var.getBackgroundDrawable();
-                        if ((backgroundDrawable.f28569f || u1Var.g3()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
+                        if ((backgroundDrawable.f28259f || u1Var.g3()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
                             int y3 = (int) u1Var.getY();
                             canvas.save();
                             if (currentPosition == null) {
@@ -85,10 +85,10 @@ public final class z0 extends mm0 {
                                             qb0 backgroundDrawable2 = u1Var2.getBackgroundDrawable();
                                             int min = Math.min(y3, (int) u1Var2.getY());
                                             int max = Math.max(measuredHeight, u1Var2.getMeasuredHeight() + ((int) u1Var2.getY()));
-                                            long j11 = backgroundDrawable2.f28574l;
+                                            long j11 = backgroundDrawable2.f28264l;
                                             if (j11 > j10) {
                                                 float x10 = u1Var2.getX() + backgroundDrawable2.h;
-                                                f16 = u1Var2.getY() + backgroundDrawable2.f28571i;
+                                                f16 = u1Var2.getY() + backgroundDrawable2.f28261i;
                                                 f7 = x10;
                                                 j10 = j11;
                                             }
@@ -97,28 +97,28 @@ public final class z0 extends mm0 {
                                         }
                                     }
                                 }
-                                backgroundDrawable.f28572j = f7;
-                                backgroundDrawable.f28573k = f16 - y3;
+                                backgroundDrawable.f28262j = f7;
+                                backgroundDrawable.f28263k = f16 - y3;
                                 i13 = measuredHeight - y3;
                             }
                             int i16 = i13 + y3;
                             canvas.clipRect(0, y3, getMeasuredWidth(), i16);
-                            backgroundDrawable.f28567b = null;
-                            backgroundDrawable.f28566a.setColor(g6.w0(g6.Hc, this.f27439n2));
+                            backgroundDrawable.f28257b = null;
+                            backgroundDrawable.f28256a.setColor(g6.w0(g6.Hc, this.f27148n2));
                             backgroundDrawable.setBounds(0, y3, getMeasuredWidth(), i16);
                             backgroundDrawable.draw(canvas);
                             canvas.restore();
                         }
                         groupedMessages = currentMessagesGroup2;
                     }
-                } else if (childAt instanceof org.telegram.ui.Cells.x0) {
-                    org.telegram.ui.Cells.x0 x0Var = (org.telegram.ui.Cells.x0) childAt;
-                    if (x0Var.K()) {
+                } else if (childAt instanceof org.telegram.ui.Cells.w0) {
+                    org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) childAt;
+                    if (w0Var.K()) {
                         canvas.save();
-                        canvas.translate(x0Var.getX(), x0Var.getY() + x0Var.getPaddingTop());
-                        canvas.scale(x0Var.getScaleX(), x0Var.getScaleY(), x0Var.getMeasuredWidth() / 2.0f, x0Var.getMeasuredHeight() / 2.0f);
-                        x0Var.A(canvas, true);
-                        x0Var.D(canvas, true);
+                        canvas.translate(w0Var.getX(), w0Var.getY() + w0Var.getPaddingTop());
+                        canvas.scale(w0Var.getScaleX(), w0Var.getScaleY(), w0Var.getMeasuredWidth() / 2.0f, w0Var.getMeasuredHeight() / 2.0f);
+                        w0Var.B(canvas, true);
+                        w0Var.D(canvas, true);
                         canvas.restore();
                     }
                 }
@@ -325,7 +325,7 @@ public final class z0 extends mm0 {
                     }
                     canvas.clipRect(f24 + AndroidUtilities.dp(8.0f), f25 + AndroidUtilities.dp(8.0f), f26 - AndroidUtilities.dp(8.0f), f27 - AndroidUtilities.dp(8.0f));
                 }
-                if (u1Var7.getTransitionParams().f22053v0) {
+                if (u1Var7.getTransitionParams().f21748v0) {
                     canvas.translate(E23, y11);
                     u1Var7.setInvalidatesParent(true);
                     u1Var7.I1(f13, canvas, z11);
@@ -368,7 +368,7 @@ public final class z0 extends mm0 {
                         }
                         canvas.clipRect(f28 + AndroidUtilities.dp(f11), f29 + AndroidUtilities.dp(f11), f30 - AndroidUtilities.dp(f11), f31 - AndroidUtilities.dp(f11));
                     }
-                    if (u1Var8.getTransitionParams().f22053v0) {
+                    if (u1Var8.getTransitionParams().f21748v0) {
                         canvas.translate(E25, y12);
                         u1Var8.setInvalidatesParent(true);
                         u1Var8.d2(canvas, f12, null);

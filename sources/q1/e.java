@@ -7,46 +7,46 @@ import android.view.KeyEvent;
 import android.view.View;
 import t7.u;
 public final class e implements KeyListener {
-    public final KeyListener f43244a;
-    public final u f43245b;
+    public final KeyListener f42988a;
+    public final u f42989b;
 
     public e(KeyListener keyListener) {
         u uVar = new u(19);
-        this.f43244a = keyListener;
-        this.f43245b = uVar;
+        this.f42988a = keyListener;
+        this.f42989b = uVar;
     }
 
     @Override
     public final void clearMetaKeyState(View view, Editable editable, int i10) {
-        this.f43244a.clearMetaKeyState(view, editable, i10);
+        this.f42988a.clearMetaKeyState(view, editable, i10);
     }
 
     @Override
     public final int getInputType() {
-        return this.f43244a.getInputType();
+        return this.f42988a.getInputType();
     }
 
     @Override
     public final boolean onKeyDown(View view, Editable editable, int i10, KeyEvent keyEvent) {
-        boolean A;
         boolean z10;
-        this.f43245b.getClass();
+        boolean z11;
+        this.f42989b.getClass();
         if (i10 != 67) {
             if (i10 != 112) {
-                A = false;
+                z10 = false;
             } else {
-                A = qf.b.A(editable, keyEvent, true);
+                z10 = qf.b.z(editable, keyEvent, true);
             }
         } else {
-            A = qf.b.A(editable, keyEvent, false);
+            z10 = qf.b.z(editable, keyEvent, false);
         }
-        if (A) {
+        if (z10) {
             MetaKeyKeyListener.adjustMetaAfterKeypress(editable);
-            z10 = true;
+            z11 = true;
         } else {
-            z10 = false;
+            z11 = false;
         }
-        if (z10 || this.f43244a.onKeyDown(view, editable, i10, keyEvent)) {
+        if (z11 || this.f42988a.onKeyDown(view, editable, i10, keyEvent)) {
             return true;
         }
         return false;
@@ -54,11 +54,11 @@ public final class e implements KeyListener {
 
     @Override
     public final boolean onKeyOther(View view, Editable editable, KeyEvent keyEvent) {
-        return this.f43244a.onKeyOther(view, editable, keyEvent);
+        return this.f42988a.onKeyOther(view, editable, keyEvent);
     }
 
     @Override
     public final boolean onKeyUp(View view, Editable editable, int i10, KeyEvent keyEvent) {
-        return this.f43244a.onKeyUp(view, editable, i10, keyEvent);
+        return this.f42988a.onKeyUp(view, editable, i10, keyEvent);
     }
 }

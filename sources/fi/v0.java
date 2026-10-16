@@ -27,24 +27,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.cf0;
+import org.telegram.ui.Components.df0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.hz0;
+import org.telegram.ui.rr0;
 public final class v0 {
-    public static final HashMap f9599g = new HashMap();
-    public final Context f9600a;
-    public final int f9601b;
-    public final long f9602c;
+    public static final HashMap f9602g = new HashMap();
+    public final Context f9603a;
+    public final int f9604b;
+    public final long f9605c;
     public boolean d;
     public boolean e;
-    public final HashSet f9603f;
+    public final HashSet f9606f;
 
     public v0(Context context, int i10, long j10) {
         HashSet hashSet = new HashSet();
-        this.f9603f = hashSet;
-        this.f9600a = context;
-        this.f9601b = i10;
-        this.f9602c = j10;
+        this.f9606f = hashSet;
+        this.f9603a = context;
+        this.f9604b = i10;
+        this.f9605c = j10;
         SharedPreferences sharedPreferences = context.getSharedPreferences("botlocation_" + i10, 0);
         this.d = sharedPreferences.getBoolean(j10 + "_requested", false);
         boolean z10 = sharedPreferences.getBoolean(j10 + "_granted", false);
@@ -68,12 +68,12 @@ public final class v0 {
         for (int i10 = 0; i10 < 4; i10++) {
             context.getSharedPreferences("botlocation_" + i10, 0).edit().clear().apply();
         }
-        f9599g.clear();
+        f9602g.clear();
     }
 
     public static v0 e(Context context, int i10, long j10) {
         Pair pair = new Pair(Integer.valueOf(i10), Long.valueOf(j10));
-        HashMap hashMap = f9599g;
+        HashMap hashMap = f9602g;
         v0 v0Var = (v0) hashMap.get(pair);
         if (v0Var == null) {
             v0 v0Var2 = new v0(context, i10, j10);
@@ -154,7 +154,7 @@ public final class v0 {
     public final Activity f() {
         Activity activity = LaunchActivity.G1;
         if (activity == null) {
-            activity = AndroidUtilities.findActivity(this.f9600a);
+            activity = AndroidUtilities.findActivity(this.f9603a);
         }
         if (activity == null) {
             return AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
@@ -182,43 +182,43 @@ public final class v0 {
             qVar.run(Boolean.FALSE, Boolean.TRUE);
         } else {
             final boolean[] zArr = new boolean[1];
-            int i10 = this.f9601b;
-            TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f9602c));
+            int i10 = this.f9604b;
+            TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f9605c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f10, 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
             a2Var.T = replaceTags;
-            u0 u0Var = new u0(this.f9600a, UserConfig.getInstance(i10).getCurrentUser(), user);
+            u0 u0Var = new u0(this.f9603a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int x02 = g6.x0(null, g6.L5, false);
-            a2Var.f19561b0 = u0Var;
-            a2Var.f19564c0 = x02;
+            a2Var.f19261b0 = u0Var;
+            a2Var.f19264c0 = x02;
             if (!a() && (f7 = f()) != null && (!f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || !f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionSettings), new androidx.car.app.utils.a(f10, zArr, qVar, 7));
             } else {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionAllow), new org.telegram.ui.ActionBar.z1(this) {
-                    public final v0 f9511b;
+                    public final v0 f9514b;
 
                     {
-                        this.f9511b = this;
+                        this.f9514b = this;
                     }
 
                     @Override
                     public final void g(org.telegram.ui.ActionBar.a2 a2Var2, int i11) {
                         switch (r4) {
                             case 0:
-                                v0 v0Var = this.f9511b;
+                                v0 v0Var = this.f9514b;
                                 v0Var.getClass();
                                 zArr[0] = true;
                                 boolean a2 = v0Var.a();
                                 org.telegram.ui.web.q qVar2 = qVar;
                                 if (!a2) {
-                                    cf0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new bi.v2(9, v0Var, qVar2));
+                                    df0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new bi.v2(9, v0Var, qVar2));
                                     return;
                                 }
                                 v0Var.d = true;
                                 v0Var.e = true;
                                 v0Var.k();
-                                Iterator it = v0Var.f9603f.iterator();
+                                Iterator it = v0Var.f9606f.iterator();
                                 while (it.hasNext()) {
                                     ((Runnable) it.next()).run();
                                 }
@@ -226,7 +226,7 @@ public final class v0 {
                                 qVar2.run(bool2, bool2);
                                 return;
                             default:
-                                v0 v0Var2 = this.f9511b;
+                                v0 v0Var2 = this.f9514b;
                                 v0Var2.getClass();
                                 boolean[] zArr2 = zArr;
                                 if (!zArr2[0]) {
@@ -234,7 +234,7 @@ public final class v0 {
                                     v0Var2.d = true;
                                     v0Var2.e = false;
                                     v0Var2.k();
-                                    Iterator it2 = v0Var2.f9603f.iterator();
+                                    Iterator it2 = v0Var2.f9606f.iterator();
                                     while (it2.hasNext()) {
                                         ((Runnable) it2.next()).run();
                                     }
@@ -247,29 +247,29 @@ public final class v0 {
                 });
             }
             alertDialog$Builder.h(LocaleController.getString(R.string.BotLocationPermissionDecline), new org.telegram.ui.ActionBar.z1(this) {
-                public final v0 f9511b;
+                public final v0 f9514b;
 
                 {
-                    this.f9511b = this;
+                    this.f9514b = this;
                 }
 
                 @Override
                 public final void g(org.telegram.ui.ActionBar.a2 a2Var2, int i11) {
                     switch (r4) {
                         case 0:
-                            v0 v0Var = this.f9511b;
+                            v0 v0Var = this.f9514b;
                             v0Var.getClass();
                             zArr[0] = true;
                             boolean a2 = v0Var.a();
                             org.telegram.ui.web.q qVar2 = qVar;
                             if (!a2) {
-                                cf0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new bi.v2(9, v0Var, qVar2));
+                                df0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new bi.v2(9, v0Var, qVar2));
                                 return;
                             }
                             v0Var.d = true;
                             v0Var.e = true;
                             v0Var.k();
-                            Iterator it = v0Var.f9603f.iterator();
+                            Iterator it = v0Var.f9606f.iterator();
                             while (it.hasNext()) {
                                 ((Runnable) it.next()).run();
                             }
@@ -277,7 +277,7 @@ public final class v0 {
                             qVar2.run(bool2, bool2);
                             return;
                         default:
-                            v0 v0Var2 = this.f9511b;
+                            v0 v0Var2 = this.f9514b;
                             v0Var2.getClass();
                             boolean[] zArr2 = zArr;
                             if (!zArr2[0]) {
@@ -285,7 +285,7 @@ public final class v0 {
                                 v0Var2.d = true;
                                 v0Var2.e = false;
                                 v0Var2.k();
-                                Iterator it2 = v0Var2.f9603f.iterator();
+                                Iterator it2 = v0Var2.f9606f.iterator();
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
@@ -322,7 +322,7 @@ public final class v0 {
                     try {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
                         alertDialog$Builder.m(R.raw.permission_request_location, 72, g6.x0(null, g6.L5, false), null);
-                        alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
+                        alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Enable), new gd(context, 1));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                         alertDialog$Builder.o();
@@ -357,67 +357,67 @@ public final class v0 {
     }
 
     public final void k() {
-        SharedPreferences.Editor edit = this.f9600a.getSharedPreferences("botlocation_" + this.f9601b, 0).edit();
+        SharedPreferences.Editor edit = this.f9603a.getSharedPreferences("botlocation_" + this.f9604b, 0).edit();
         StringBuilder sb2 = new StringBuilder();
-        long j10 = this.f9602c;
+        long j10 = this.f9605c;
         edit.putBoolean(a1.g.r(sb2, j10, "_granted"), this.e);
         edit.putBoolean(j10 + "_requested", this.d);
         edit.apply();
     }
 
-    public final void l(boolean z10, final hz0 hz0Var) {
+    public final void l(boolean z10, final rr0 rr0Var) {
         this.d = true;
         if (z10 && !a()) {
             Activity f7 = f();
             if (f7 == null) {
                 return;
             }
-            int i10 = this.f9601b;
-            TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f9602c));
+            int i10 = this.f9604b;
+            TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f9605c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f(), 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
             a2Var.T = replaceTags;
-            u0 u0Var = new u0(this.f9600a, UserConfig.getInstance(i10).getCurrentUser(), user);
+            u0 u0Var = new u0(this.f9603a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int x02 = g6.x0(null, g6.L5, false);
-            a2Var.f19561b0 = u0Var;
-            a2Var.f19564c0 = x02;
+            a2Var.f19261b0 = u0Var;
+            a2Var.f19264c0 = x02;
             Activity f10 = f();
             if (f10 == null || (f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionAllow), new org.telegram.ui.ActionBar.z1(this) {
-                    public final v0 f9485b;
+                    public final v0 f9488b;
 
                     {
-                        this.f9485b = this;
+                        this.f9488b = this;
                     }
 
                     @Override
                     public final void g(org.telegram.ui.ActionBar.a2 a2Var2, int i11) {
                         switch (r3) {
                             case 0:
-                                v0 v0Var = this.f9485b;
+                                v0 v0Var = this.f9488b;
                                 if (!v0Var.a()) {
-                                    cf0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new bi.v2(10, v0Var, hz0Var));
+                                    df0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new bi.v2(10, v0Var, rr0Var));
                                     return;
                                 }
                                 v0Var.d = true;
                                 v0Var.e = true;
                                 v0Var.k();
-                                Iterator it = v0Var.f9603f.iterator();
+                                Iterator it = v0Var.f9606f.iterator();
                                 while (it.hasNext()) {
                                     ((Runnable) it.next()).run();
                                 }
                                 return;
                             default:
-                                v0 v0Var2 = this.f9485b;
+                                v0 v0Var2 = this.f9488b;
                                 v0Var2.d = true;
                                 v0Var2.e = false;
                                 v0Var2.k();
-                                Iterator it2 = v0Var2.f9603f.iterator();
+                                Iterator it2 = v0Var2.f9606f.iterator();
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
-                                Runnable runnable = hz0Var;
+                                Runnable runnable = rr0Var;
                                 if (runnable != null) {
                                     runnable.run();
                                     return;
@@ -430,39 +430,39 @@ public final class v0 {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionSettings), new p0(f7, 0));
             }
             alertDialog$Builder.h(LocaleController.getString(R.string.BotLocationPermissionDecline), new org.telegram.ui.ActionBar.z1(this) {
-                public final v0 f9485b;
+                public final v0 f9488b;
 
                 {
-                    this.f9485b = this;
+                    this.f9488b = this;
                 }
 
                 @Override
                 public final void g(org.telegram.ui.ActionBar.a2 a2Var2, int i11) {
                     switch (r3) {
                         case 0:
-                            v0 v0Var = this.f9485b;
+                            v0 v0Var = this.f9488b;
                             if (!v0Var.a()) {
-                                cf0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new bi.v2(10, v0Var, hz0Var));
+                                df0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new bi.v2(10, v0Var, rr0Var));
                                 return;
                             }
                             v0Var.d = true;
                             v0Var.e = true;
                             v0Var.k();
-                            Iterator it = v0Var.f9603f.iterator();
+                            Iterator it = v0Var.f9606f.iterator();
                             while (it.hasNext()) {
                                 ((Runnable) it.next()).run();
                             }
                             return;
                         default:
-                            v0 v0Var2 = this.f9485b;
+                            v0 v0Var2 = this.f9488b;
                             v0Var2.d = true;
                             v0Var2.e = false;
                             v0Var2.k();
-                            Iterator it2 = v0Var2.f9603f.iterator();
+                            Iterator it2 = v0Var2.f9606f.iterator();
                             while (it2.hasNext()) {
                                 ((Runnable) it2.next()).run();
                             }
-                            Runnable runnable = hz0Var;
+                            Runnable runnable = rr0Var;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -474,12 +474,12 @@ public final class v0 {
             alertDialog$Builder.o();
         } else {
             this.e = z10;
-            Iterator it = this.f9603f.iterator();
+            Iterator it = this.f9606f.iterator();
             while (it.hasNext()) {
                 ((Runnable) it.next()).run();
             }
-            if (hz0Var != null) {
-                hz0Var.run();
+            if (rr0Var != null) {
+                rr0Var.run();
             }
         }
         k();

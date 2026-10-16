@@ -1,17 +1,19 @@
 package org.webrtc;
 
-import android.graphics.Matrix;
-import org.webrtc.VideoFrame;
+import org.webrtc.VideoProcessor;
 public abstract class d0 {
-    public static VideoFrame.TextureBuffer a(VideoFrame.TextureBuffer textureBuffer, Matrix matrix, int i10, int i11) {
-        throw new UnsupportedOperationException("Not implemented");
+    public static void a(VideoProcessor videoProcessor, VideoFrame videoFrame, VideoProcessor.FrameAdaptationParameters frameAdaptationParameters) {
+        VideoFrame b10 = b(videoFrame, frameAdaptationParameters);
+        if (b10 != null) {
+            videoProcessor.onFrameCaptured(b10);
+            b10.release();
+        }
     }
 
-    public static int b(VideoFrame.TextureBuffer textureBuffer) {
-        return textureBuffer.getHeight();
-    }
-
-    public static int c(VideoFrame.TextureBuffer textureBuffer) {
-        return textureBuffer.getWidth();
+    public static VideoFrame b(VideoFrame videoFrame, VideoProcessor.FrameAdaptationParameters frameAdaptationParameters) {
+        if (frameAdaptationParameters.drop) {
+            return null;
+        }
+        return new VideoFrame(videoFrame.getBuffer().cropAndScale(frameAdaptationParameters.cropX, frameAdaptationParameters.cropY, frameAdaptationParameters.cropWidth, frameAdaptationParameters.cropHeight, frameAdaptationParameters.scaleWidth, frameAdaptationParameters.scaleHeight), videoFrame.getRotation(), frameAdaptationParameters.timestampNs);
     }
 }

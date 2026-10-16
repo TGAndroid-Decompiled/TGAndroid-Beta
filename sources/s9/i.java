@@ -3,12 +3,11 @@ package s9;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import ji.d4;
 public final class i extends c0.h implements ScheduledFuture {
     public final ScheduledFuture f45066n;
 
     public i(h hVar) {
-        this.f45066n = hVar.a(new d4(this, 25));
+        this.f45066n = hVar.a(new m.h(this, 18));
     }
 
     @Override
@@ -20,8 +19,8 @@ public final class i extends c0.h implements ScheduledFuture {
     public final void d() {
         boolean z10;
         ScheduledFuture scheduledFuture = this.f45066n;
-        Object obj = this.f4095a;
-        if ((obj instanceof c0.a) && ((c0.a) obj).f4081a) {
+        Object obj = this.f4099a;
+        if ((obj instanceof c0.a) && ((c0.a) obj).f4085a) {
             z10 = true;
         } else {
             z10 = false;

@@ -17,7 +17,7 @@ public final class j41 extends mm0 {
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
             x41 x41Var = this.V2;
-            if (y3 < x41Var.B(true) - getTop()) {
+            if (y3 < x41Var.C(true) - getTop()) {
                 x41Var.dismiss();
                 return true;
             }

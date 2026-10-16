@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class oj extends s4.c0 {
-    public final ig.e0 f27967r;
+    public final ig.e0 f27656r;
 
     public oj(ig.e0 e0Var, Context context) {
         super(context);
-        this.f27967r = e0Var;
+        this.f27656r = e0Var;
     }
 
     @Override
     public final int k(int i10, View view) {
-        return org.telegram.messenger.q.C(8.0f, ((zj) this.f27967r.V).f31885s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
+        return org.telegram.messenger.g0.A(8.0f, ((zj) this.f27656r.V).f31579s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
     }
 
     @Override

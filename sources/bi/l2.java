@@ -15,28 +15,28 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.es;
 import org.telegram.ui.Components.yj0;
 public final class l2 extends View {
-    public final int f3263a;
-    public final RectF f3264b;
-    public final org.telegram.ui.Components.r6 f3265c;
+    public final int f3267a;
+    public final RectF f3268b;
+    public final org.telegram.ui.Components.r6 f3269c;
     public final h2 d;
     public final ArrayList e;
-    public final int[] f3266f;
+    public final int[] f3270f;
     public final ArrayList h;
-    public float f3267n;
-    public ValueAnimator f3268r;
-    public boolean f3269s;
+    public float f3271n;
+    public ValueAnimator f3272r;
+    public boolean f3273s;
 
     public l2(Context context, int i10) {
         super(context);
-        this.f3264b = new RectF();
-        es esVar = es.f24771f;
+        this.f3268b = new RectF();
+        es esVar = es.f24465f;
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(false, false, false);
-        this.f3265c = r6Var;
+        this.f3269c = r6Var;
         this.e = new ArrayList();
-        this.f3266f = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
+        this.f3270f = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
         this.h = new ArrayList();
-        this.f3269s = true;
-        this.f3263a = i10;
+        this.f3273s = true;
+        this.f3267a = i10;
         r6Var.setCallback(this);
         r6Var.r(false, true);
         r6Var.w(AndroidUtilities.dp(40.0f));
@@ -44,35 +44,35 @@ public final class l2 extends View {
         r6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
         r6Var.M = AndroidUtilities.displaySize.x;
         r6Var.u(-1);
-        r6Var.f28748b = 17;
+        r6Var.f28435b = 17;
         this.d = new h2(this, 0);
     }
 
     public final void a(float f7, h2 h2Var) {
-        ValueAnimator valueAnimator = this.f3268r;
+        ValueAnimator valueAnimator = this.f3272r;
         if (valueAnimator != null) {
-            this.f3268r = null;
+            this.f3272r = null;
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f3267n, f7);
-        this.f3268r = ofFloat;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f3271n, f7);
+        this.f3272r = ofFloat;
         ofFloat.addUpdateListener(new ah.c0(this, 8));
-        this.f3268r.addListener(new i2(this, f7, h2Var, 0));
-        this.f3268r.setInterpolator(es.h);
-        this.f3268r.setDuration(320L);
-        this.f3268r.start();
+        this.f3272r.addListener(new i2(this, f7, h2Var, 0));
+        this.f3272r.setInterpolator(es.h);
+        this.f3272r.setDuration(320L);
+        this.f3272r.start();
     }
 
     public final void b() {
-        this.f3269s = true;
+        this.f3273s = true;
         AndroidUtilities.cancelRunOnUIThread(this.d);
-        this.f3265c.t("", true, true);
+        this.f3269c.t("", true, true);
         invalidate();
         a(0.0f, new h2(this, 1));
     }
 
     public final void c(m2 m2Var) {
-        this.f3264b.set(m2Var.getX() - getX(), m2Var.getY() - getY(), (m2Var.getX() - getX()) + m2Var.getWidth(), (m2Var.getY() - getY()) + m2Var.getHeight());
+        this.f3268b.set(m2Var.getX() - getX(), m2Var.getY() - getY(), (m2Var.getX() - getX()) + m2Var.getWidth(), (m2Var.getY() - getY()) + m2Var.getHeight());
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class l2 extends View {
         l2 l2Var = this;
         Canvas canvas2 = canvas;
         float f11 = 1.0f;
-        float lerp = AndroidUtilities.lerp(1.0f, 1.8f, l2Var.f3267n);
+        float lerp = AndroidUtilities.lerp(1.0f, 1.8f, l2Var.f3271n);
         float f12 = 90.0f;
         int dp = (int) (AndroidUtilities.dp(90.0f) * lerp);
         boolean z10 = false;
@@ -94,18 +94,18 @@ public final class l2 extends View {
             int size = arrayList.size();
             f7 = 255.0f;
             f10 = 2.0f;
-            rectF = l2Var.f3264b;
+            rectF = l2Var.f3268b;
             if (i11 >= size) {
                 break;
             }
             yj0 yj0Var = (yj0) arrayList.get(i11);
-            if (yj0Var.f31602a0 >= yj0Var.e[0]) {
+            if (yj0Var.f31285a0 >= yj0Var.e[0]) {
                 arrayList.remove(i11);
                 i11--;
             } else {
                 float f13 = dp / 2.0f;
                 yj0Var.setBounds((int) (((AndroidUtilities.dp(15.0f) * lerp) + rectF.left) - f13), (int) (rectF.centerY() - f13), (int) t8.b.c(AndroidUtilities.dp(15.0f), lerp, rectF.left, f13), (int) (rectF.centerY() + f13));
-                yj0Var.setAlpha((int) (l2Var.f3267n * 255.0f));
+                yj0Var.setAlpha((int) (l2Var.f3271n * 255.0f));
                 yj0Var.draw(canvas2);
             }
             i11++;
@@ -117,13 +117,13 @@ public final class l2 extends View {
             ArrayList arrayList2 = l2Var.h;
             if (i12 < arrayList2.size()) {
                 k2 k2Var = (k2) arrayList2.get(i12);
-                float f14 = k2Var.f3228c;
-                float f15 = k2Var.f3227b;
-                ImageReceiver imageReceiver = k2Var.f3229f;
-                float d = k2Var.f3231i.d(f11, z10);
-                float e = k2Var.f3232j.e(k2Var.h);
+                float f14 = k2Var.f3232c;
+                float f15 = k2Var.f3231b;
+                ImageReceiver imageReceiver = k2Var.f3233f;
+                float d = k2Var.f3235i.d(f11, z10);
+                float e = k2Var.f3236j.e(k2Var.h);
                 float f16 = f12;
-                float dp2 = AndroidUtilities.dp(23.0f) + k2Var.f3230g.f25473c;
+                float dp2 = AndroidUtilities.dp(23.0f) + k2Var.f3234g.f25455c;
                 float dp3 = AndroidUtilities.dp(18.0f);
                 float f17 = f7;
                 float f18 = f10;
@@ -155,7 +155,7 @@ public final class l2 extends View {
                 canvas2.drawRoundRect(0.0f, 0.0f, dp2, dp3, f22, f22, paint);
                 imageReceiver.draw(canvas2);
                 Canvas canvas3 = canvas2;
-                k2Var.f3230g.c(AndroidUtilities.dp(18.0f), f22, lerp2, -1, canvas3);
+                k2Var.f3234g.c(AndroidUtilities.dp(18.0f), f22, lerp2, -1, canvas3);
                 canvas2 = canvas3;
                 canvas2.restore();
                 if (yj0Var2 != null) {
@@ -174,7 +174,7 @@ public final class l2 extends View {
                 if (d < 1.0f && e < 1.0f) {
                     i10 = i14;
                 } else {
-                    ((k2) arrayList2.get(i14)).f3229f.onDetachedFromWindow();
+                    ((k2) arrayList2.get(i14)).f3233f.onDetachedFromWindow();
                     arrayList2.remove(i14);
                     i10 = i14 - 1;
                 }
@@ -194,7 +194,7 @@ public final class l2 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f3265c && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f3269c && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class g6 implements Runnable {
-    public final int f17293a;
-    public final MediaController f17294b;
-    public final boolean f17295c;
+    public final int f16989a;
+    public final MediaController f16990b;
+    public final boolean f16991c;
 
     public g6(MediaController mediaController, boolean z10, int i10) {
-        this.f17293a = i10;
-        this.f17294b = mediaController;
-        this.f17295c = z10;
+        this.f16989a = i10;
+        this.f16990b = mediaController;
+        this.f16991c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17293a) {
+        switch (this.f16989a) {
             case 0:
-                this.f17294b.lambda$toggleRecordingPause$29(this.f17295c);
+                this.f16990b.lambda$toggleRecordingPause$29(this.f16991c);
                 return;
             default:
-                this.f17294b.lambda$toggleRecordingPause$33(this.f17295c);
+                this.f16990b.lambda$toggleRecordingPause$33(this.f16991c);
                 return;
         }
     }

@@ -1,13 +1,13 @@
 package bi;
 public final class u8 implements Runnable {
-    public final int f3792a;
-    public final Object f3793b;
-    public final Object f3794c;
+    public final int f3796a;
+    public final Object f3797b;
+    public final Object f3798c;
 
     public u8(int i10, Object obj, Object obj2) {
-        this.f3792a = i10;
-        this.f3793b = obj;
-        this.f3794c = obj2;
+        this.f3796a = i10;
+        this.f3797b = obj;
+        this.f3798c = obj2;
     }
 
     @Override

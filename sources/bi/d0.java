@@ -4,8 +4,8 @@ import android.view.TextureView;
 public abstract class d0 extends TextureView {
     @Override
     public void invalidate() {
-        if (b0.f2849c) {
-            b0.f2848b.add(this);
+        if (b0.f2853c) {
+            b0.f2852b.add(this);
         } else {
             super.invalidate();
         }
@@ -13,8 +13,8 @@ public abstract class d0 extends TextureView {
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (b0.f2849c) {
-            b0.f2848b.add(this);
+        if (b0.f2853c) {
+            b0.f2852b.add(this);
         } else {
             super.invalidate(i10, i11, i12, i13);
         }

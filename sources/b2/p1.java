@@ -3,15 +3,15 @@ package b2;
 import android.util.Pair;
 import v7.u6;
 public abstract class p1 {
-    public static final l1 f2281a = new Object();
-    public static final String f2282b;
-    public static final String f2283c;
+    public static final l1 f2285a = new Object();
+    public static final String f2286b;
+    public static final String f2287c;
     public static final String d;
 
     static {
-        String str = e2.m0.f8372a;
-        f2282b = Integer.toString(0, 36);
-        f2283c = Integer.toString(1, 36);
+        String str = e2.m0.f8375a;
+        f2286b = Integer.toString(0, 36);
+        f2287c = Integer.toString(1, 36);
         d = Integer.toString(2, 36);
     }
 
@@ -32,13 +32,13 @@ public abstract class p1 {
     }
 
     public final int d(int i10, m1 m1Var, o1 o1Var, int i11, boolean z10) {
-        int i12 = f(i10, m1Var, false).f2213c;
-        if (m(i12, o1Var, 0L).f2269o == i10) {
+        int i12 = f(i10, m1Var, false).f2217c;
+        if (m(i12, o1Var, 0L).f2273o == i10) {
             int e = e(i12, i11, z10);
             if (e == -1) {
                 return -1;
             }
-            return m(e, o1Var, 0L).f2268n;
+            return m(e, o1Var, 0L).f2272n;
         }
         return i10 + 1;
     }
@@ -145,14 +145,14 @@ public abstract class p1 {
         u6.j(i10, o());
         m(i10, o1Var, j11);
         if (j10 == -9223372036854775807L) {
-            j10 = o1Var.f2266l;
+            j10 = o1Var.f2270l;
             if (j10 == -9223372036854775807L) {
                 return null;
             }
         }
-        int i11 = o1Var.f2268n;
+        int i11 = o1Var.f2272n;
         f(i11, m1Var, false);
-        while (i11 < o1Var.f2269o && m1Var.e != j10) {
+        while (i11 < o1Var.f2273o && m1Var.e != j10) {
             int i12 = i11 + 1;
             if (f(i12, m1Var, false).e > j10) {
                 break;
@@ -166,7 +166,7 @@ public abstract class p1 {
             j12 = Math.min(j12, j13 - 1);
         }
         long max = Math.max(0L, j12);
-        Object obj = m1Var.f2212b;
+        Object obj = m1Var.f2216b;
         obj.getClass();
         return Pair.create(obj, Long.valueOf(max));
     }

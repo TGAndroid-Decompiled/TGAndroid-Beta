@@ -1,15 +1,8 @@
 package r0;
 
-import android.os.Build;
-import androidx.core.widget.NestedScrollView;
-public final class t {
-    public final s f43754a;
-
-    public t(NestedScrollView nestedScrollView) {
-        if (Build.VERSION.SDK_INT >= 35) {
-            this.f43754a = new r(nestedScrollView);
-        } else {
-            this.f43754a = new pb.a(20);
-        }
-    }
+import j$.util.DesugarCollections;
+import java.util.Map;
+import java.util.WeakHashMap;
+public abstract class t {
+    public static final Map f43511a = DesugarCollections.synchronizedMap(new WeakHashMap());
 }

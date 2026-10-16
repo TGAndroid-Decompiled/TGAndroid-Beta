@@ -6,15 +6,15 @@ import b2.x;
 import e2.m0;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.ui.es0;
+import org.telegram.ui.ds0;
 import v7.u6;
 public abstract class c implements p {
-    public final q1 f47740a;
-    public final int f47741b;
-    public final int[] f47742c;
+    public final q1 f47739a;
+    public final int f47740b;
+    public final int[] f47741c;
     public final x[] d;
     public final long[] e;
-    public int f47743f;
+    public int f47742f;
 
     public c(q1 q1Var, int[] iArr) {
         boolean z10;
@@ -26,19 +26,19 @@ public abstract class c implements p {
         }
         u6.p(z10);
         q1Var.getClass();
-        this.f47740a = q1Var;
+        this.f47739a = q1Var;
         int length = iArr.length;
-        this.f47741b = length;
+        this.f47740b = length;
         this.d = new x[length];
         for (int i11 = 0; i11 < iArr.length; i11++) {
             this.d[i11] = q1Var.d[iArr[i11]];
         }
-        Arrays.sort(this.d, new es0(14));
-        this.f47742c = new int[this.f47741b];
+        Arrays.sort(this.d, new ds0(14));
+        this.f47741c = new int[this.f47740b];
         while (true) {
-            int i12 = this.f47741b;
+            int i12 = this.f47740b;
             if (i10 < i12) {
-                this.f47742c[i10] = q1Var.a(this.d[i10]);
+                this.f47741c[i10] = q1Var.a(this.d[i10]);
                 i10++;
             } else {
                 this.e = new long[i12];
@@ -57,7 +57,7 @@ public abstract class c implements p {
 
     @Override
     public final q1 b() {
-        return this.f47740a;
+        return this.f47739a;
     }
 
     @Override
@@ -71,7 +71,7 @@ public abstract class c implements p {
         }
         if (obj != null && getClass() == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f47740a.equals(cVar.f47740a) && Arrays.equals(this.f47742c, cVar.f47742c)) {
+            if (this.f47739a.equals(cVar.f47739a) && Arrays.equals(this.f47741c, cVar.f47741c)) {
                 return true;
             }
         }
@@ -85,14 +85,14 @@ public abstract class c implements p {
 
     @Override
     public final int h(int i10) {
-        return this.f47742c[i10];
+        return this.f47741c[i10];
     }
 
     public final int hashCode() {
-        if (this.f47743f == 0) {
-            this.f47743f = Arrays.hashCode(this.f47742c) + (System.identityHashCode(this.f47740a) * 31);
+        if (this.f47742f == 0) {
+            this.f47742f = Arrays.hashCode(this.f47741c) + (System.identityHashCode(this.f47739a) * 31);
         }
-        return this.f47743f;
+        return this.f47742f;
     }
 
     @Override
@@ -102,12 +102,12 @@ public abstract class c implements p {
 
     @Override
     public final int l() {
-        return this.f47742c[c()];
+        return this.f47741c[c()];
     }
 
     @Override
     public final int length() {
-        return this.f47742c.length;
+        return this.f47741c.length;
     }
 
     @Override
@@ -119,7 +119,7 @@ public abstract class c implements p {
     public final boolean o(int i10, long j10) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         boolean a2 = a(i10, elapsedRealtime);
-        for (int i11 = 0; i11 < this.f47741b && !a2; i11++) {
+        for (int i11 = 0; i11 < this.f47740b && !a2; i11++) {
             if (i11 != i10 && !a(i11, elapsedRealtime)) {
                 a2 = true;
             } else {
@@ -136,7 +136,7 @@ public abstract class c implements p {
 
     @Override
     public final int s(x xVar) {
-        for (int i10 = 0; i10 < this.f47741b; i10++) {
+        for (int i10 = 0; i10 < this.f47740b; i10++) {
             if (this.d[i10] == xVar) {
                 return i10;
             }
@@ -146,8 +146,8 @@ public abstract class c implements p {
 
     @Override
     public final int u(int i10) {
-        for (int i11 = 0; i11 < this.f47741b; i11++) {
-            if (this.f47742c[i11] == i10) {
+        for (int i11 = 0; i11 < this.f47740b; i11++) {
+            if (this.f47741c[i11] == i10) {
                 return i11;
             }
         }

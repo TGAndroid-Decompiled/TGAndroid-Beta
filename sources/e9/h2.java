@@ -9,33 +9,33 @@ import java.util.RandomAccess;
 import java.util.Set;
 import v7.u6;
 public class h2 extends AbstractCollection implements Set {
-    public final Set f8572a;
-    public final d9.m f8573b;
+    public final Set f8575a;
+    public final d9.m f8576b;
 
     public h2(Set set, d9.m mVar) {
-        this.f8572a = set;
-        this.f8573b = mVar;
+        this.f8575a = set;
+        this.f8576b = mVar;
     }
 
     @Override
     public final boolean add(Object obj) {
-        u6.g(this.f8573b.apply(obj));
-        return this.f8572a.add(obj);
+        u6.g(this.f8576b.apply(obj));
+        return this.f8575a.add(obj);
     }
 
     @Override
     public final boolean addAll(Collection collection) {
         for (Object obj : collection) {
-            u6.g(this.f8573b.apply(obj));
+            u6.g(this.f8576b.apply(obj));
         }
-        return this.f8572a.addAll(collection);
+        return this.f8575a.addAll(collection);
     }
 
     @Override
     public final void clear() {
-        Set set = this.f8572a;
+        Set set = this.f8575a;
         boolean z10 = set instanceof RandomAccess;
-        d9.m mVar = this.f8573b;
+        d9.m mVar = this.f8576b;
         if (z10 && (set instanceof List)) {
             List list = (List) set;
             mVar.getClass();
@@ -72,7 +72,7 @@ public class h2 extends AbstractCollection implements Set {
     @Override
     public final boolean contains(Object obj) {
         boolean z10;
-        Set set = this.f8572a;
+        Set set = this.f8575a;
         set.getClass();
         try {
             z10 = set.contains(obj);
@@ -82,7 +82,7 @@ public class h2 extends AbstractCollection implements Set {
         if (!z10) {
             return false;
         }
-        return this.f8573b.apply(obj);
+        return this.f8576b.apply(obj);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class h2 extends AbstractCollection implements Set {
 
     @Override
     public final boolean isEmpty() {
-        Iterator it = this.f8572a.iterator();
-        d9.m mVar = this.f8573b;
+        Iterator it = this.f8575a.iterator();
+        d9.m mVar = this.f8576b;
         u6.l(mVar, "predicate");
         boolean z10 = false;
         int i10 = 0;
@@ -131,16 +131,16 @@ public class h2 extends AbstractCollection implements Set {
 
     @Override
     public final Iterator iterator() {
-        Iterator it = this.f8572a.iterator();
+        Iterator it = this.f8575a.iterator();
         it.getClass();
-        d9.m mVar = this.f8573b;
+        d9.m mVar = this.f8576b;
         mVar.getClass();
         return new a1(it, mVar);
     }
 
     @Override
     public final boolean remove(Object obj) {
-        if (contains(obj) && this.f8572a.remove(obj)) {
+        if (contains(obj) && this.f8575a.remove(obj)) {
             return true;
         }
         return false;
@@ -148,11 +148,11 @@ public class h2 extends AbstractCollection implements Set {
 
     @Override
     public final boolean removeAll(Collection collection) {
-        Iterator it = this.f8572a.iterator();
+        Iterator it = this.f8575a.iterator();
         boolean z10 = false;
         while (it.hasNext()) {
             Object next = it.next();
-            if (this.f8573b.apply(next) && collection.contains(next)) {
+            if (this.f8576b.apply(next) && collection.contains(next)) {
                 it.remove();
                 z10 = true;
             }
@@ -162,11 +162,11 @@ public class h2 extends AbstractCollection implements Set {
 
     @Override
     public final boolean retainAll(Collection collection) {
-        Iterator it = this.f8572a.iterator();
+        Iterator it = this.f8575a.iterator();
         boolean z10 = false;
         while (it.hasNext()) {
             Object next = it.next();
-            if (this.f8573b.apply(next) && !collection.contains(next)) {
+            if (this.f8576b.apply(next) && !collection.contains(next)) {
                 it.remove();
                 z10 = true;
             }
@@ -177,8 +177,8 @@ public class h2 extends AbstractCollection implements Set {
     @Override
     public final int size() {
         int i10 = 0;
-        for (Object obj : this.f8572a) {
-            if (this.f8573b.apply(obj)) {
+        for (Object obj : this.f8575a) {
+            if (this.f8576b.apply(obj)) {
                 i10++;
             }
         }

@@ -18,8 +18,8 @@ public final class h1 extends yg.i {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
         m1 m1Var = this.K;
-        m1Var.f46355q0 = dp;
-        m1Var.f46354p0.G();
+        m1Var.f46354q0 = dp;
+        m1Var.f46353p0.G();
         if (this.J != m1Var.isKeyboardVisible()) {
             boolean isKeyboardVisible = m1Var.isKeyboardVisible();
             this.J = isKeyboardVisible;
@@ -27,7 +27,7 @@ public final class h1 extends yg.i {
                 mm0 mm0Var = m1Var.d;
                 ki.o oVar = new ki.o(m1Var.getContext(), 2, 0.6f);
                 oVar.f44979a = 1;
-                oVar.f14352p = AndroidUtilities.dp(36.0f);
+                oVar.f14354p = AndroidUtilities.dp(36.0f);
                 mm0Var.getLayoutManager().w0(oVar);
             }
         }

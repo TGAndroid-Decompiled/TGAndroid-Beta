@@ -6,44 +6,44 @@ import android.view.ViewGroup;
 import java.lang.reflect.Method;
 import org.telegram.messenger.FileLog;
 public final class h51 extends AnimatorListenerAdapter {
-    public final int f36614a;
-    public final org.telegram.ui.Components.gn0 f36615b;
+    public final int f36404a;
+    public final org.telegram.ui.Components.gn0 f36405b;
 
     public h51(org.telegram.ui.Components.gn0 gn0Var, int i10) {
-        this.f36614a = i10;
-        this.f36615b = gn0Var;
+        this.f36404a = i10;
+        this.f36405b = gn0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f36614a) {
+        switch (this.f36404a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36615b.f25369b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36405b.f25057b;
                 secretMediaViewer.Z.getNextView().setText((CharSequence) null);
-                iu0 iu0Var = secretMediaViewer.f32728a0;
-                iu0Var.f41083l0 = false;
-                if (iu0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) iu0Var.f41085o0.getLayoutParams()).topMargin = iu0Var.m0;
-                    iu0Var.m0 = -1;
-                    iu0Var.requestLayout();
+                hu0 hu0Var = secretMediaViewer.f32430a0;
+                hu0Var.f40489l0 = false;
+                if (hu0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) hu0Var.f40491o0.getLayoutParams()).topMargin = hu0Var.m0;
+                    hu0Var.m0 = -1;
+                    hu0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((SecretMediaViewer) this.f36615b.f25369b).Z.setTranslationY(0.0f);
+                ((SecretMediaViewer) this.f36405b.f25057b).Z.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f36614a) {
+        switch (this.f36404a) {
             case 0:
-                iu0 iu0Var = ((SecretMediaViewer) this.f36615b.f25369b).f32728a0;
-                Method method = iu0Var.f41077f0;
+                hu0 hu0Var = ((SecretMediaViewer) this.f36405b.f25057b).f32430a0;
+                Method method = hu0Var.f40483f0;
                 if (method != null) {
                     try {
-                        method.invoke(iu0Var, null);
+                        method.invoke(hu0Var, null);
                         return;
                     } catch (Exception e) {
                         FileLog.e(e);

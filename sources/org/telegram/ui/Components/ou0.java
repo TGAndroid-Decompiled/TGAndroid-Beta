@@ -16,22 +16,22 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ou0 extends lm0 {
-    public final Context f28059c;
+    public final Context f27743c;
     public final hg.a2 e;
-    public nu0 f28060f;
-    public final TLRPC.Chat f28061n;
-    public final xv0 f28063s;
+    public nu0 f27744f;
+    public final TLRPC.Chat f27745n;
+    public final xv0 f27747s;
     public ArrayList d = new ArrayList();
     public int h = 0;
-    public int f28062r = 0;
+    public int f27746r = 0;
 
     public ou0(xv0 xv0Var, Context context) {
-        this.f28063s = xv0Var;
-        this.f28059c = context;
+        this.f27747s = xv0Var;
+        this.f27743c = context;
         hg.a2 a2Var = new hg.a2(true);
         this.e = a2Var;
-        a2Var.f10484a = new mu0(this);
-        this.f28061n = xv0Var.D1.g();
+        a2Var.f10488a = new mu0(this);
+        this.f27745n = xv0Var.D1.g();
     }
 
     @Override
@@ -49,24 +49,24 @@ public final class ou0 extends lm0 {
 
     public final TLObject E(int i10) {
         hg.a2 a2Var = this.e;
-        int size = a2Var.f10488g.size();
+        int size = a2Var.f10492g.size();
         if (i10 >= 0 && i10 < size) {
-            return (TLObject) a2Var.f10488g.get(i10);
+            return (TLObject) a2Var.f10492g.get(i10);
         }
         return null;
     }
 
     public final void F(String str, boolean z10) {
         long j10;
-        if (this.f28060f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f28060f);
-            this.f28060f = null;
+        if (this.f27744f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f27744f);
+            this.f27744f = null;
         }
         this.d.clear();
         this.e.f(null, null);
         hg.a2 a2Var = this.e;
-        if (ChatObject.isChannel(this.f28061n)) {
-            j10 = this.f28061n.f19216id;
+        if (ChatObject.isChannel(this.f27745n)) {
+            j10 = this.f27745n.f18916id;
         } else {
             j10 = 0;
         }
@@ -74,19 +74,19 @@ public final class ou0 extends lm0 {
         l();
         int i10 = 0;
         while (true) {
-            qu0[] qu0VarArr = this.f28063s.f31364k0;
+            qu0[] qu0VarArr = this.f27747s.f31045k0;
             if (i10 >= qu0VarArr.length) {
                 break;
             }
             if (qu0VarArr[i10].F == 7 && !TextUtils.isEmpty(str)) {
-                this.f28063s.f31364k0[i10].f28682w.e(true, z10);
+                this.f27747s.f31045k0[i10].f28368w.e(true, z10);
             }
             i10++;
         }
         if (!TextUtils.isEmpty(str)) {
             DispatchQueue dispatchQueue = Utilities.searchQueue;
             nu0 nu0Var = new nu0(this, str, 0);
-            this.f28060f = nu0Var;
+            this.f27744f = nu0Var;
             dispatchQueue.postRunnable(nu0Var, 300L);
         }
     }
@@ -103,14 +103,14 @@ public final class ou0 extends lm0 {
 
     @Override
     public final void l() {
-        int size = this.e.f10488g.size();
+        int size = this.e.f10492g.size();
         this.h = size;
         if (size > 0) {
-            xv0 xv0Var = this.f28063s;
+            xv0 xv0Var = this.f27747s;
             if (xv0Var.V0) {
-                qu0 qu0Var = xv0Var.f31364k0[0];
+                qu0 qu0Var = xv0Var.f31045k0[0];
                 if (qu0Var.F == 7 && qu0Var.h.getAdapter() != this) {
-                    xv0Var.m1(false);
+                    xv0Var.n1(false);
                 }
             }
         }
@@ -121,8 +121,8 @@ public final class ou0 extends lm0 {
     public final void v(s4.b1 b1Var, int i10) {
         TLRPC.User user;
         SpannableStringBuilder spannableStringBuilder;
-        xv0 xv0Var = this.f28063s;
-        org.telegram.ui.ActionBar.m2 m2Var = xv0Var.f31388v1;
+        xv0 xv0Var = this.f27747s;
+        org.telegram.ui.ActionBar.m2 m2Var = xv0Var.f31069v1;
         TLObject E = E(i10);
         if (E instanceof TLRPC.ChannelParticipant) {
             user = m2Var.getMessagesController().getUser(Long.valueOf(MessageObject.getPeerId(((TLRPC.ChannelParticipant) E).peer)));
@@ -133,8 +133,8 @@ public final class ou0 extends lm0 {
         }
         UserObject.getPublicUsername(user);
         hg.a2 a2Var = this.e;
-        a2Var.f10488g.size();
-        String str = a2Var.f10494n;
+        a2Var.f10492g.size();
+        String str = a2Var.f10498n;
         if (str != null) {
             String userName = UserObject.getUserName(user);
             spannableStringBuilder = new SpannableStringBuilder(userName);
@@ -155,9 +155,9 @@ public final class ou0 extends lm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        xv0 xv0Var = this.f28063s;
-        org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(9, 5, this.f28059c, xv0Var.F1, true);
-        b5Var.setBackgroundColor(xv0Var.h0(org.telegram.ui.ActionBar.g6.f19901d6));
+        xv0 xv0Var = this.f27747s;
+        org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(9, 5, this.f27743c, xv0Var.F1, true);
+        b5Var.setBackgroundColor(xv0Var.h0(org.telegram.ui.ActionBar.g6.f19601d6));
         b5Var.setDelegate(new mu0(this));
         return new s4.b1(b5Var);
     }

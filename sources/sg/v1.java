@@ -122,18 +122,18 @@ public final class v1 {
             if (w1Var.J) {
                 float width = rectF.width();
                 float f22 = w1Var.f45405j;
-                float y3 = k3.y(width, f22, org.telegram.ui.Cells.d0.e(Utilities.fastRandom, 1000) / 1000.0f, f22);
-                float e = org.telegram.ui.Cells.d0.e(Utilities.fastRandom, 360);
+                float y3 = k3.y(width, f22, org.telegram.ui.Cells.c1.d(Utilities.fastRandom, 1000) / 1000.0f, f22);
+                float d = org.telegram.ui.Cells.c1.d(Utilities.fastRandom, 360);
                 if (w1Var.f45402f[this.f45388l] && !this.f45393q) {
                     y3 = Math.min(y3, AndroidUtilities.dp(10.0f));
                     f11 = AndroidUtilities.dp(30.0f) + 0.0f;
                 } else {
                     f11 = 0.0f;
                 }
-                double d = y3;
-                double d10 = e;
-                this.d = rectF.centerX() + 0.0f + ((float) (Math.sin(Math.toRadians(d10)) * d));
-                this.e = rectF.centerY() + f11 + w1Var.f45406k + ((float) (Math.cos(Math.toRadians(d10)) * d));
+                double d10 = y3;
+                double d11 = d;
+                this.d = rectF.centerX() + 0.0f + ((float) (Math.sin(Math.toRadians(d11)) * d10));
+                this.e = rectF.centerY() + f11 + w1Var.f45406k + ((float) (Math.cos(Math.toRadians(d11)) * d10));
             } else {
                 this.d = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
                 this.e = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;

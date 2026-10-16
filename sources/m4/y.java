@@ -1,48 +1,33 @@
 package m4;
+public final class y implements Runnable {
+    public final int f15417a;
+    public final e0 f15418b;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Looper;
-import java.util.HashMap;
-import v7.u6;
-public class y {
-    public static final Object f15679b = new Object();
-    public static final HashMap f15680c = new HashMap();
-    public final f0 f15681a;
-
-    public y(Context context, String str, b2.g1 g1Var, e9.n0 n0Var, e9.n0 n0Var2, e9.n0 n0Var3, pb.a aVar, Bundle bundle, Bundle bundle2, e2.d dVar, boolean z10, boolean z11) {
-        synchronized (f15679b) {
-            HashMap hashMap = f15680c;
-            if (!hashMap.containsKey(str)) {
-                hashMap.put(str, this);
-            } else {
-                throw new IllegalStateException("Session ID must be unique. ID=" + str);
-            }
-        }
-        this.f15681a = new f0(this, context, str, g1Var, n0Var, n0Var2, n0Var3, aVar, bundle, bundle2, dVar, z10, z11);
+    public y(e0 e0Var, int i10) {
+        this.f15417a = i10;
+        this.f15418b = e0Var;
     }
 
-    public final void a(b2.g1 g1Var) {
-        boolean z10;
-        g1Var.getClass();
-        u6.g(g1Var.P());
-        Looper A0 = g1Var.A0();
-        f0 f0Var = this.f15681a;
-        boolean z11 = false;
-        if (A0 == f0Var.f15440t.f15553a.A0()) {
-            z10 = true;
-        } else {
-            z10 = false;
+    @Override
+    public final void run() {
+        switch (this.f15417a) {
+            case 0:
+                e0 e0Var = this.f15418b;
+                c0 c0Var = e0Var.f15171u;
+                if (c0Var != null) {
+                    e0Var.f15170t.C(c0Var);
+                    return;
+                }
+                return;
+            case 1:
+                this.f15418b.getClass();
+                return;
+            case 2:
+                e0.a(this.f15418b);
+                return;
+            default:
+                this.f15418b.t();
+                return;
         }
-        u6.g(z10);
-        if (g1Var.A0() == Looper.myLooper()) {
-            z11 = true;
-        }
-        u6.p(z11);
-        n1 n1Var = f0Var.f15440t;
-        if (g1Var == n1Var.f15553a) {
-            return;
-        }
-        f0Var.u(n1Var, new n1(g1Var));
     }
 }

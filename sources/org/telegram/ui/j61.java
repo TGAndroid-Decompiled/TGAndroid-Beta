@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class j61 extends View {
-    public final int f37267a;
-    public final Integer f37268b;
+    public final int f36937a;
+    public final Integer f36938b;
 
     public j61(Context context, Integer num, int i10) {
         super(context);
-        this.f37267a = i10;
-        this.f37268b = num;
+        this.f36937a = i10;
+        this.f36938b = num;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        switch (this.f37267a) {
+        switch (this.f36937a) {
             case 0:
                 super.onMeasure(i10, i11);
-                Integer num = this.f37268b;
+                Integer num = this.f36938b;
                 if (num != null) {
                     setPivotX(num.intValue());
                     return;
@@ -25,7 +25,7 @@ public final class j61 extends View {
                 return;
             default:
                 super.onMeasure(i10, i11);
-                Integer num2 = this.f37268b;
+                Integer num2 = this.f36938b;
                 if (num2 != null) {
                     setPivotX(num2.intValue());
                     return;

@@ -4,16 +4,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.ak;
 public final class a {
-    public RecyclerView f11712a;
-    public int f11713b;
-    public long f11714c;
+    public RecyclerView f11716a;
+    public int f11717b;
+    public long f11718c;
     public int d;
     public boolean e;
 
     public final boolean a(MessageObject messageObject) {
         if (messageObject != null) {
-            if (messageObject.getId() != this.f11713b) {
-                if (this.f11714c != 0 && messageObject.getGroupId() == this.f11714c) {
+            if (messageObject.getId() != this.f11717b) {
+                if (this.f11718c != 0 && messageObject.getGroupId() == this.f11718c) {
                     return true;
                 }
                 return false;
@@ -28,11 +28,11 @@ public final class a {
     }
 
     public final boolean c(int i10, long j10) {
-        if (this.f11713b == i10 && this.f11714c == j10) {
+        if (this.f11717b == i10 && this.f11718c == j10) {
             return false;
         }
-        this.f11713b = i10;
-        this.f11714c = j10;
+        this.f11717b = i10;
+        this.f11718c = j10;
         if (i10 == 0) {
             this.e = false;
             return true;
@@ -45,6 +45,6 @@ public final class a {
     }
 
     public final void e(ak akVar) {
-        this.f11712a = akVar;
+        this.f11716a = akVar;
     }
 }

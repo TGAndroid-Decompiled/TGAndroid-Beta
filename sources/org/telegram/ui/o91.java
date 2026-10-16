@@ -59,7 +59,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class o91 extends org.telegram.ui.ActionBar.m2 implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.Components.h50, jh0, ne.d {
+public final class o91 extends org.telegram.ui.ActionBar.m2 implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.Components.h50, ih0, ne.d {
     public org.telegram.ui.Components.k9 E;
     public org.telegram.ui.Components.z9 F;
     public FrameLayout G;
@@ -82,36 +82,36 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
     public final gh.d X;
     public bh.l Y;
     public final ArrayList Z;
-    public final ne.b f38893a;
-    public final RectF f38894a0;
-    public z8 f38895b;
-    public final RectF f38896b0;
-    public org.telegram.ui.Components.h71 f38897c;
+    public final ne.b f38575a;
+    public final RectF f38576a0;
+    public z8 f38577b;
+    public final RectF f38578b0;
+    public org.telegram.ui.Components.i71 f38579c;
     public di.p6 d;
     public org.telegram.ui.ActionBar.u0 e;
-    public org.telegram.ui.ActionBar.u0 f38898f;
+    public org.telegram.ui.ActionBar.u0 f38580f;
     public g91 h;
-    public org.telegram.ui.Components.i50 f38899n;
-    public AnimatorSet f38900r;
-    public org.telegram.ui.Cells.z3 f38901s;
+    public org.telegram.ui.Components.i50 f38581n;
+    public AnimatorSet f38582r;
+    public org.telegram.ui.Cells.z3 f38583s;
     public TLRPC.FileLocation v;
-    public TLRPC.FileLocation f38902w;
-    public FrameLayout f38903x;
-    public FrameLayout f38904y;
+    public TLRPC.FileLocation f38584w;
+    public FrameLayout f38585x;
+    public FrameLayout f38586y;
 
     public o91() {
         this(null);
     }
 
-    public static boolean U(o91 o91Var, org.telegram.ui.Components.l61 l61Var, View view) {
+    public static boolean U(o91 o91Var, org.telegram.ui.Components.m61 m61Var, View view) {
         String str;
-        Object obj = l61Var.G;
+        Object obj = m61Var.G;
         if (obj instanceof TLRPC.TL_attachMenuBot) {
             fi.k3.j(o91Var.currentAccount, ((TLRPC.TL_attachMenuBot) obj).bot_id, new c91(o91Var, 0));
             return true;
         }
-        if (l61Var.G(org.telegram.ui.Cells.w6.class)) {
-            Object obj2 = l61Var.G;
+        if (m61Var.G(org.telegram.ui.Cells.v6.class)) {
+            Object obj2 = m61Var.G;
             if (obj2 instanceof o11) {
                 str = ((o11) obj2).h;
             } else if (obj2 instanceof MessagesController.FaqSearchResult) {
@@ -120,9 +120,9 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                 str = null;
             }
             if (!TextUtils.isEmpty(str)) {
-                org.telegram.ui.Components.m80 H = org.telegram.ui.Components.m80.H(o91Var, view);
-                H.c(R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new hz0(19, o91Var, str), false);
-                H.W(o91Var.f38897c.V0(view, false));
+                org.telegram.ui.Components.l80 H = org.telegram.ui.Components.l80.H(o91Var, view);
+                H.c(R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new i11(14, o91Var, str), false);
+                H.W(o91Var.f38579c.V0(view, false));
                 H.Z();
                 return true;
             }
@@ -139,7 +139,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         if (user == null) {
             return;
         }
-        org.telegram.ui.Components.i50 i50Var = o91Var.f38899n;
+        org.telegram.ui.Components.i50 i50Var = o91Var.f38581n;
         TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
         if (userProfilePhoto != null && userProfilePhoto.photo_big != null && !(userProfilePhoto instanceof TLRPC.TL_userProfilePhotoEmpty)) {
             z10 = true;
@@ -161,7 +161,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(o91Var.currentAccount).getInputUser(tL_attachMenuBot.bot_id);
         tL_messages_toggleBotInAttachMenu.enabled = true;
         tL_messages_toggleBotInAttachMenu.write_allowed = true;
-        ConnectionsManager.getInstance(o91Var.currentAccount).sendRequest(tL_messages_toggleBotInAttachMenu, new fc0(23, o91Var, tL_attachMenuBot), 66);
+        ConnectionsManager.getInstance(o91Var.currentAccount).sendRequest(tL_messages_toggleBotInAttachMenu, new ec0(23, o91Var, tL_attachMenuBot), 66);
     }
 
     public static void Z(org.telegram.ui.o91 r49) {
@@ -184,35 +184,35 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         org.telegram.ui.ActionBar.p0 p0Var = o91Var.e.F;
         int i12 = 0;
         if (p0Var != null && p0Var.getTag() != null) {
-            arrayList.add(org.telegram.ui.Components.l61.C(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()));
+            arrayList.add(org.telegram.ui.Components.m61.C(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()));
             g91 g91Var = o91Var.h;
             ArrayList arrayList2 = g91Var.d;
             ArrayList arrayList3 = g91Var.v;
-            if (g91Var.f39101w) {
-                ArrayList arrayList4 = g91Var.f39099r;
+            if (g91Var.f38795w) {
+                ArrayList arrayList4 = g91Var.f38793r;
                 int size = arrayList4.size();
                 int i13 = 0;
                 int i14 = 0;
                 while (i14 < size) {
                     Object obj = arrayList4.get(i14);
                     i14++;
-                    int i15 = org.telegram.ui.Cells.w6.f22619a;
-                    org.telegram.ui.Components.l61 J = org.telegram.ui.Components.l61.J(org.telegram.ui.Cells.w6.class);
-                    J.f26954l = (CharSequence) g91Var.f39098n.get(i13);
+                    int i15 = org.telegram.ui.Cells.v6.f22275a;
+                    org.telegram.ui.Components.m61 J = org.telegram.ui.Components.m61.J(org.telegram.ui.Cells.v6.class);
+                    J.f26946l = (CharSequence) g91Var.f38792n.get(i13);
                     J.G = (o11) obj;
                     arrayList.add(J);
                     i13++;
                 }
-                if (!g91Var.f39100s.isEmpty()) {
-                    arrayList.add(org.telegram.ui.Components.l61.q(LocaleController.getString(R.string.SettingsFaqSearchTitle)));
-                    ArrayList arrayList5 = g91Var.f39100s;
+                if (!g91Var.f38794s.isEmpty()) {
+                    arrayList.add(org.telegram.ui.Components.m61.q(LocaleController.getString(R.string.SettingsFaqSearchTitle)));
+                    ArrayList arrayList5 = g91Var.f38794s;
                     int size2 = arrayList5.size();
                     while (i12 < size2) {
                         Object obj2 = arrayList5.get(i12);
                         i12++;
-                        int i16 = org.telegram.ui.Cells.w6.f22619a;
-                        org.telegram.ui.Components.l61 J2 = org.telegram.ui.Components.l61.J(org.telegram.ui.Cells.w6.class);
-                        J2.f26954l = (CharSequence) g91Var.f39098n.get(i13);
+                        int i16 = org.telegram.ui.Cells.v6.f22275a;
+                        org.telegram.ui.Components.m61 J2 = org.telegram.ui.Components.m61.J(org.telegram.ui.Cells.v6.class);
+                        J2.f26946l = (CharSequence) g91Var.f38792n.get(i13);
                         J2.G = (MessagesController.FaqSearchResult) obj2;
                         arrayList.add(J2);
                         i13++;
@@ -222,7 +222,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                 return;
             }
             if (!arrayList3.isEmpty()) {
-                arrayList.add(org.telegram.ui.Components.l61.q(LocaleController.getString(R.string.SettingsRecent)));
+                arrayList.add(org.telegram.ui.Components.m61.q(LocaleController.getString(R.string.SettingsRecent)));
                 int size3 = arrayList3.size();
                 int i17 = 0;
                 while (i17 < size3) {
@@ -230,34 +230,34 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                     i17++;
                     if (obj3 instanceof o11) {
                         o11 o11Var = (o11) obj3;
-                        String str3 = o11Var.f38835a;
-                        int i18 = org.telegram.ui.Cells.w6.f22619a;
-                        org.telegram.ui.Components.l61 J3 = org.telegram.ui.Components.l61.J(org.telegram.ui.Cells.w6.class);
-                        J3.f26954l = str3;
+                        String str3 = o11Var.f38517a;
+                        int i18 = org.telegram.ui.Cells.v6.f22275a;
+                        org.telegram.ui.Components.m61 J3 = org.telegram.ui.Components.m61.J(org.telegram.ui.Cells.v6.class);
+                        J3.f26946l = str3;
                         J3.G = o11Var;
                         arrayList.add(J3);
                     } else if (obj3 instanceof MessagesController.FaqSearchResult) {
                         MessagesController.FaqSearchResult faqSearchResult = (MessagesController.FaqSearchResult) obj3;
                         String str4 = faqSearchResult.title;
-                        int i19 = org.telegram.ui.Cells.w6.f22619a;
-                        org.telegram.ui.Components.l61 J4 = org.telegram.ui.Components.l61.J(org.telegram.ui.Cells.w6.class);
-                        J4.f26954l = str4;
+                        int i19 = org.telegram.ui.Cells.v6.f22275a;
+                        org.telegram.ui.Components.m61 J4 = org.telegram.ui.Components.m61.J(org.telegram.ui.Cells.v6.class);
+                        J4.f26946l = str4;
                         J4.G = faqSearchResult;
                         arrayList.add(J4);
                     }
                 }
             }
             if (!arrayList2.isEmpty()) {
-                arrayList.add(org.telegram.ui.Components.l61.q(LocaleController.getString(R.string.SettingsFaqSearchTitle)));
+                arrayList.add(org.telegram.ui.Components.m61.q(LocaleController.getString(R.string.SettingsFaqSearchTitle)));
                 int size4 = arrayList2.size();
                 while (i12 < size4) {
                     Object obj4 = arrayList2.get(i12);
                     i12++;
                     MessagesController.FaqSearchResult faqSearchResult2 = (MessagesController.FaqSearchResult) obj4;
                     String str5 = faqSearchResult2.title;
-                    int i20 = org.telegram.ui.Cells.w6.f22619a;
-                    org.telegram.ui.Components.l61 J5 = org.telegram.ui.Components.l61.J(org.telegram.ui.Cells.w6.class);
-                    J5.f26954l = str5;
+                    int i20 = org.telegram.ui.Cells.v6.f22275a;
+                    org.telegram.ui.Components.m61 J5 = org.telegram.ui.Components.m61.J(org.telegram.ui.Cells.v6.class);
+                    J5.f26946l = str5;
                     J5.G = faqSearchResult2;
                     arrayList.add(J5);
                 }
@@ -265,40 +265,40 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
             }
             return;
         }
-        FrameLayout frameLayout = o91Var.f38903x;
-        org.telegram.ui.Components.l61 l61Var = new org.telegram.ui.Components.l61(-4);
-        l61Var.f26948c = frameLayout;
-        l61Var.f26967z = 188;
-        arrayList.add(l61Var);
+        FrameLayout frameLayout = o91Var.f38585x;
+        org.telegram.ui.Components.m61 m61Var = new org.telegram.ui.Components.m61(-4);
+        m61Var.f26940c = frameLayout;
+        m61Var.f26959z = 188;
+        arrayList.add(m61Var);
         o91Var.R.clear();
         for (int i21 = 0; i21 < 4; i21++) {
             if (UserConfig.getInstance(i21).isClientActivated() && o91Var.currentAccount != i21) {
                 o91Var.R.add(Integer.valueOf(i21));
             }
         }
-        Collections.sort(o91Var.R, new es0(3));
+        Collections.sort(o91Var.R, new ds0(3));
         Set<String> set = o91Var.getMessagesController().pendingSuggestions;
         if (set.contains("PREMIUM_GRACE")) {
             arrayList.add(m91.a(LocaleController.getString(R.string.GraceSuggestionTitle), LocaleController.getString(R.string.GraceSuggestionMessage), null, null, LocaleController.getString(R.string.GraceSuggestionButton), new d91(o91Var, 0)));
-            arrayList.add(org.telegram.ui.Components.l61.B(null));
+            arrayList.add(org.telegram.ui.Components.m61.B(null));
         } else if (set.contains("VALIDATE_PHONE_NUMBER") && o91Var.getUserConfig().getCurrentUser() != null) {
-            arrayList.add(m91.a(LocaleController.formatString(R.string.CheckPhoneNumber, org.telegram.messenger.yh.g(new StringBuilder("+"), o91Var.getUserConfig().getCurrentUser().phone, jf.b.c())), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CheckPhoneNumberInfo), new c91(o91Var, 1)), LocaleController.getString(R.string.CheckPhoneNumberNo), new d91(o91Var, 1), zh.r3.i2(LocaleController.getString(R.string.CheckPhoneNumberYes2)), new d91(o91Var, 2)));
-            arrayList.add(org.telegram.ui.Components.l61.B(null));
+            arrayList.add(m91.a(LocaleController.formatString(R.string.CheckPhoneNumber, org.telegram.messenger.sk.g(new StringBuilder("+"), o91Var.getUserConfig().getCurrentUser().phone, jf.b.c())), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CheckPhoneNumberInfo), new c91(o91Var, 1)), LocaleController.getString(R.string.CheckPhoneNumberNo), new d91(o91Var, 1), zh.r3.i2(LocaleController.getString(R.string.CheckPhoneNumberYes2)), new d91(o91Var, 2)));
+            arrayList.add(org.telegram.ui.Components.m61.B(null));
         } else if (set.contains("VALIDATE_PASSWORD")) {
             arrayList.add(m91.a(LocaleController.getString(R.string.YourPasswordHeader), LocaleController.getString(R.string.YourPasswordRemember), LocaleController.getString(R.string.YourPasswordRememberNo), new d91(o91Var, 3), LocaleController.getString(R.string.YourPasswordRememberYes), new d91(o91Var, 4)));
-            arrayList.add(org.telegram.ui.Components.l61.B(null));
+            arrayList.add(org.telegram.ui.Components.m61.B(null));
         }
         if (o91Var.R.size() > 0) {
-            i2.d.o(R.string.SettingsAccounts, arrayList);
+            i2.d.p(R.string.SettingsAccounts, arrayList);
             for (int i22 = 0; i22 < o91Var.R.size(); i22++) {
                 int intValue = ((Integer) o91Var.R.get(i22)).intValue();
-                int i23 = i91.f37074a;
-                org.telegram.ui.Components.l61 J6 = org.telegram.ui.Components.l61.J(i91.class);
+                int i23 = i91.f36762a;
+                org.telegram.ui.Components.m61 J6 = org.telegram.ui.Components.m61.J(i91.class);
                 J6.d = i22;
-                J6.f26967z = intValue;
+                J6.f26959z = intValue;
                 arrayList.add(J6);
             }
-            arrayList.add(org.telegram.ui.Components.l61.B(null));
+            arrayList.add(org.telegram.ui.Components.m61.B(null));
         }
         if (o91Var.getConnectionsManager().getCurrentTime() - 1791538462 < 2419200) {
             z10 = true;
@@ -306,7 +306,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
             z10 = false;
         }
         if (z10 && o91Var.getMessagesController().config.walletAvailable.get()) {
-            org.telegram.ui.Wallet.j0 v = org.telegram.ui.Wallet.j0.v(o91Var.currentAccount);
+            org.telegram.ui.Wallet.k0 v = org.telegram.ui.Wallet.k0.v(o91Var.currentAccount);
             if (org.telegram.ui.ActionBar.g6.I.q()) {
                 i11 = R.drawable.settings_wallet_dark;
             } else {
@@ -320,12 +320,12 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
             }
             CharSequence charSequence = string;
             if (v.t() > 0) {
-                str2 = org.telegram.ui.Wallet.j0.n(v.t(), false);
+                str2 = org.telegram.ui.Wallet.k0.n(v.t(), false);
             } else {
                 str2 = null;
             }
             arrayList.add(k91.a(25, 0, 0, i24, charSequence, null, str2));
-            arrayList.add(org.telegram.ui.Components.l61.B(null));
+            arrayList.add(org.telegram.ui.Components.m61.B(null));
         }
         arrayList.add(k91.a(1, -14899731, -15431455, R.drawable.settings_account, LocaleController.getString(R.string.SettingsAccount), LocaleController.getString(R.string.SettingsAccountInfo), null));
         arrayList.add(k91.a(2, -1007845, -1996271, R.drawable.settings_chat, LocaleController.getString(R.string.SettingsChat), LocaleController.getString(R.string.SettingsChatInfo), null));
@@ -336,9 +336,9 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         arrayList.add(k91.a(8, -13451058, -14836538, R.drawable.settings_devices, LocaleController.getString(R.string.SettingsDevices), LocaleController.getString(R.string.SettingsDevicesInfo), null));
         arrayList.add(k91.a(9, -881871, -1940716, R.drawable.settings_power, LocaleController.getString(R.string.SettingsPowerSaving), LocaleController.getString(R.string.SettingsPowerSavingInfo), null));
         arrayList.add(k91.a(10, -3903756, -6335009, R.drawable.settings_language, LocaleController.getString(R.string.SettingsLanguage), LocaleController.getCurrentLanguageName(), null));
-        arrayList.add(org.telegram.ui.Components.l61.B(null));
+        arrayList.add(org.telegram.ui.Components.m61.B(null));
         if (!z10 && o91Var.getMessagesController().config.walletAvailable.get()) {
-            org.telegram.ui.Wallet.j0 v10 = org.telegram.ui.Wallet.j0.v(o91Var.currentAccount);
+            org.telegram.ui.Wallet.k0 v10 = org.telegram.ui.Wallet.k0.v(o91Var.currentAccount);
             if (org.telegram.ui.ActionBar.g6.I.q()) {
                 i10 = R.drawable.settings_wallet_dark;
             } else {
@@ -352,12 +352,12 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
             }
             CharSequence charSequence2 = string2;
             if (v10.t() > 0) {
-                str = org.telegram.ui.Wallet.j0.n(v10.t(), false);
+                str = org.telegram.ui.Wallet.k0.n(v10.t(), false);
             } else {
                 str = null;
             }
             arrayList.add(k91.a(25, 0, 0, i26, charSequence2, null, str));
-            arrayList.add(org.telegram.ui.Components.l61.B(null));
+            arrayList.add(org.telegram.ui.Components.m61.B(null));
         }
         if (!o91Var.getMessagesController().premiumFeaturesBlocked()) {
             arrayList.add(k91.a(11, -4826625, -10388225, R.drawable.settings_premium, LocaleController.getString(R.string.TelegramPremium), null, null));
@@ -392,10 +392,10 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         if (!o91Var.getMessagesController().premiumPurchaseBlocked()) {
             arrayList.add(k91.a(16, -816335, -1940716, R.drawable.settings_gift, LocaleController.getString(R.string.SendAGift), null, null));
         }
-        if (((org.telegram.ui.Components.l61) i2.d.g(1, arrayList)).f43203a != 7) {
-            arrayList.add(org.telegram.ui.Components.l61.B(null));
+        if (((org.telegram.ui.Components.m61) i2.d.h(1, arrayList)).f42904a != 7) {
+            arrayList.add(org.telegram.ui.Components.m61.B(null));
         }
-        i2.d.o(R.string.SettingsHelp, arrayList);
+        i2.d.p(R.string.SettingsHelp, arrayList);
         arrayList.add(k91.a(17, -1007845, -1996271, R.drawable.settings_ask, LocaleController.getString(R.string.AskAQuestion), null, null));
         arrayList.add(k91.a(18, -14965523, -15431455, R.drawable.settings_faq, LocaleController.getString(R.string.TelegramFAQ), null, null));
         arrayList.add(k91.a(23, -3903756, -6335009, R.drawable.settings_features, LocaleController.getString(R.string.TelegramFeatures), null, null));
@@ -403,19 +403,19 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         si.a aVar = si.e.f45484a;
         aVar.a();
         if (aVar.d) {
-            arrayList.add(org.telegram.ui.Components.l61.B(null));
-            arrayList.add(org.telegram.ui.Components.l61.t("Experimental"));
+            arrayList.add(org.telegram.ui.Components.m61.B(null));
+            arrayList.add(org.telegram.ui.Components.m61.t("Experimental"));
             arrayList.add(k91.a(24, -765355, -2148011, 0, LocaleController.getString(R.string.RoundVideoSettings), null, null));
             arrayList.add(k91.a(26, -11154873, -14175180, 0, LocaleController.getString(R.string.AudioRecorderSettings), null, null));
         }
         if (BuildVars.LOGS_ENABLED || BuildVars.DEBUG_PRIVATE_VERSION) {
-            arrayList.add(org.telegram.ui.Components.l61.B(null));
-            i2.d.o(R.string.SettingsDebug, arrayList);
+            arrayList.add(org.telegram.ui.Components.m61.B(null));
+            i2.d.p(R.string.SettingsDebug, arrayList);
             arrayList.add(k91.a(20, -11154873, -14175180, 0, LocaleController.getString(R.string.DebugSendLogs), null, null));
             arrayList.add(k91.a(21, -11154873, -14175180, 0, LocaleController.getString(R.string.DebugSendLastLogs), null, null));
             arrayList.add(k91.a(22, -765355, -2148011, 0, LocaleController.getString(R.string.DebugClearLogs), null, null));
         }
-        arrayList.add(org.telegram.ui.Components.l61.l(o91Var.L));
+        arrayList.add(org.telegram.ui.Components.m61.l(o91Var.L));
     }
 
     public static void c0(o91 o91Var, TLRPC.TL_error tL_error, TLObject tLObject, String str) {
@@ -443,7 +443,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
             }
             TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
             user.photo = tL_userProfilePhoto;
-            tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f19240id;
+            tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f18940id;
             if (closestPhotoSizeWithSize != null) {
                 tL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
             }
@@ -463,10 +463,10 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
             }
             if (closestVideoSizeWithSize != null && str != null) {
                 new File(str).renameTo(FileLoader.getInstance(o91Var.currentAccount).getPathToAttach(closestVideoSizeWithSize, "mp4", true));
-            } else if (closestPhotoSizeWithSize2 != null && o91Var.f38902w != null) {
-                FileLoader.getInstance(o91Var.currentAccount).getPathToAttach(o91Var.f38902w, true).renameTo(FileLoader.getInstance(o91Var.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
+            } else if (closestPhotoSizeWithSize2 != null && o91Var.f38584w != null) {
+                FileLoader.getInstance(o91Var.currentAccount).getPathToAttach(o91Var.f38584w, true).renameTo(FileLoader.getInstance(o91Var.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
             }
-            o91Var.getMessagesController().getDialogPhotos(user.f19363id).addPhotoAtStart(tL_photos_photo.photo);
+            o91Var.getMessagesController().getDialogPhotos(user.f19063id).addPhotoAtStart(tL_photos_photo.photo);
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(user);
             o91Var.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
@@ -478,7 +478,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
             o91Var.m0(user);
         }
         o91Var.v = null;
-        o91Var.f38902w = null;
+        o91Var.f38584w = null;
         o91Var.n0(false, true);
         o91Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_ALL));
         o91Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
@@ -510,9 +510,9 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         } else if (i10 == 4) {
             BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
             ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
-            o91Var.f38897c.W2.N(true);
+            o91Var.f38579c.W2.N(true);
             if (BuildVars.LOGS_ENABLED) {
-                org.telegram.messenger.q.s(new StringBuilder("app start time = "), ApplicationLoader.startTime);
+                i2.d.x(new StringBuilder("app start time = "), ApplicationLoader.startTime);
                 try {
                     FileLog.d("buildVersion = " + ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode);
                 } catch (Exception e) {
@@ -524,8 +524,8 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         } else if (i10 == 6) {
             o91Var.getMessagesStorage().clearSentMedia();
             SharedConfig.setNoSoundHintShowed(false);
-            org.telegram.messenger.q.e(org.telegram.messenger.q.e(org.telegram.messenger.q.e(org.telegram.messenger.q.e(org.telegram.messenger.q.e(org.telegram.messenger.q.e(org.telegram.messenger.q.e(org.telegram.messenger.q.e(org.telegram.messenger.q.e(org.telegram.messenger.q.e(MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l"), "searchpostsnew", "speedhint", "gifhint", "reminderhint"), "soundHint", "themehint", "bganimationhint", "filterhint"), "n_0", "storyprvhint", "storyhint", "storyhint2"), "storydualhint", "storysvddualhint", "stories_camera", "dualcam"), "dualmatrix", "dual_available", "archivehint", "askNotificationsAfter"), "askNotificationsDuration", "viewoncehint", "voicepausehint", "taptostorysoundhint"), "nothanos", "voiceoncehint", "savedhint", "savedsearchhint"), "savedsearchtaghint", "newppsms", "monetizationadshint", "seekSpeedHintShowed"), "unsupport_video/av01", "statusgiftpage", "multistorieshint", "trimvoicehint"), "taptostoryhighlighthint", "proxycheckstatusip", "callmiconstart", "showchattagsinfo").remove("language_showed2").remove("aihintshown").remove("savedmsgschatshint").apply();
-            w7.z5.a();
+            org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l"), "searchpostsnew", "speedhint", "gifhint", "reminderhint"), "soundHint", "themehint", "bganimationhint", "filterhint"), "n_0", "storyprvhint", "storyhint", "storyhint2"), "storydualhint", "storysvddualhint", "stories_camera", "dualcam"), "dualmatrix", "dual_available", "archivehint", "askNotificationsAfter"), "askNotificationsDuration", "viewoncehint", "voicepausehint", "taptostorysoundhint"), "nothanos", "voiceoncehint", "savedhint", "savedsearchhint"), "savedsearchtaghint", "newppsms", "monetizationadshint", "seekSpeedHintShowed"), "unsupport_video/av01", "statusgiftpage", "multistorieshint", "trimvoicehint"), "taptostoryhighlighthint", "proxycheckstatusip", "callmiconstart", "showchattagsinfo").remove("language_showed2").remove("aihintshown").remove("savedmsgschatshint").apply();
+            w7.y5.a();
             SharedPrefsHelper.cleanupAccount(o91Var.currentAccount);
             MessagesController.getEmojiSettings(o91Var.currentAccount).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
             MessagesController.getGlobalNotificationsSettings().edit().remove("disable_sharing_learn").remove("askedAboutFSILockscreen").apply();
@@ -549,7 +549,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
             qg.s0.e(o91Var.currentAccount).a();
             SharedPreferences mainSettings = o91Var.getMessagesController().getMainSettings();
             SharedPreferences.Editor edit = mainSettings.edit();
-            org.telegram.messenger.q.e(edit, "peerColors", "profilePeerColors", "boostingappearance", "bizbothint").remove("movecaptionhint");
+            org.telegram.messenger.g0.d(edit, "peerColors", "profilePeerColors", "boostingappearance", "bizbothint").remove("movecaptionhint");
             for (String str7 : mainSettings.getAll().keySet()) {
                 if (str7.contains("show_gift_for_") || str7.contains("bdayhint_") || str7.contains("bdayanim_") || str7.startsWith("ask_paid_message_") || str7.startsWith("topicssidetabs")) {
                     edit.remove(str7);
@@ -614,7 +614,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                     }
                     System.exit(0);
                 } else if (i10 == 18) {
-                    w7.e0.a((LaunchActivity) o91Var.getParentActivity(), !SharedConfig.isFloatingDebugActive, true);
+                    w7.d0.a((LaunchActivity) o91Var.getParentActivity(), !SharedConfig.isFloatingDebugActive, true);
                 } else if (i10 == 19) {
                     o91Var.getMessagesController().loadAppConfig();
                     TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
@@ -771,7 +771,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                     o91Var.showDialog(new h91(o91Var, o91Var.getParentActivity(), sb3.toString()));
                 } else if (i10 == 21) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o91Var.getParentActivity(), 0, o91Var.resourceProvider);
-                    alertDialog$Builder.f19548a.R = "Force performance class";
+                    alertDialog$Builder.f19248a.R = "Force performance class";
                     int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                     int measureDevicePerformanceClass = SharedConfig.measureDevicePerformanceClass();
                     if (devicePerformanceClass == 2) {
@@ -806,7 +806,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                     } else {
                         str6 = " (measured)";
                     }
-                    alertDialog$Builder.f(new CharSequence[]{replaceTags, replaceTags2, AndroidUtilities.replaceTags(str5.concat(str6))}, new pz0(measureDevicePerformanceClass, 1));
+                    alertDialog$Builder.f(new CharSequence[]{replaceTags, replaceTags2, AndroidUtilities.replaceTags(str5.concat(str6))}, new oz0(measureDevicePerformanceClass, 1));
                     alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
                     alertDialog$Builder.o();
                 } else if (i10 == 22) {
@@ -889,7 +889,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                         aVar.f45476b = true;
                         si.d.f45483a.edit().putBoolean("experimental_settings_allowed", z12).apply();
                     }
-                    o91Var.f38897c.W2.N(true);
+                    o91Var.f38579c.W2.N(true);
                 }
             } catch (Exception unused) {
             }
@@ -900,7 +900,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         if (inputFile == null && inputFile2 == null && videoSize == null) {
             TLRPC.FileLocation fileLocation = photoSize.location;
             o91Var.v = fileLocation;
-            o91Var.f38902w = photoSize2.location;
+            o91Var.f38584w = photoSize2.location;
             o91Var.F.h(ImageLocation.getForLocal(fileLocation), "90_90", o91Var.E, null);
             o91Var.n0(true, false);
         } else if (o91Var.v == null) {
@@ -921,42 +921,42 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                 tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
                 tL_photos_uploadProfilePhoto.flags |= 16;
             }
-            o91Var.U = o91Var.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new fc0(22, o91Var, str));
+            o91Var.U = o91Var.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new ec0(22, o91Var, str));
         }
         o91Var.actionBar.n().requestLayout();
     }
 
-    public static void f0(o91 o91Var, org.telegram.ui.Components.l61 l61Var) {
-        Object obj = l61Var.G;
+    public static void f0(o91 o91Var, org.telegram.ui.Components.m61 m61Var) {
+        Object obj = m61Var.G;
         if (obj instanceof TLRPC.TL_attachMenuBot) {
             TLRPC.TL_attachMenuBot tL_attachMenuBot = (TLRPC.TL_attachMenuBot) obj;
             if (!tL_attachMenuBot.inactive && !tL_attachMenuBot.side_menu_disclaimer_needed) {
                 LaunchActivity.C0(LaunchActivity.G1, o91Var.currentAccount, tL_attachMenuBot, null, true);
             } else {
-                vj1.a(o91Var.getParentActivity(), new mt(17, o91Var, tL_attachMenuBot), null);
+                uj1.a(o91Var.getParentActivity(), new mt(17, o91Var, tL_attachMenuBot), null);
             }
-        } else if (l61Var.G(i91.class)) {
-            int i10 = l61Var.f26967z;
+        } else if (m61Var.G(i91.class)) {
+            int i10 = m61Var.f26959z;
             LaunchActivity launchActivity = LaunchActivity.G1;
             if (launchActivity != null) {
                 launchActivity.K0(i10);
             }
-        } else if (l61Var.G(org.telegram.ui.Cells.w6.class)) {
-            Object obj2 = l61Var.G;
+        } else if (m61Var.G(org.telegram.ui.Cells.v6.class)) {
+            Object obj2 = m61Var.G;
             if (obj2 instanceof o11) {
                 o11 o11Var = (o11) obj2;
                 org.telegram.ui.ActionBar.b5 parentLayout = o91Var.getParentLayout();
-                o11Var.f38836b.run();
-                AndroidUtilities.scrollToFragmentRow(parentLayout, o11Var.f38837c);
+                o11Var.f38518b.run();
+                AndroidUtilities.scrollToFragmentRow(parentLayout, o11Var.f38519c);
             } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                 NotificationCenter.getInstance(o91Var.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.openArticle, o91Var.h.E, ((MessagesController.FaqSearchResult) obj2).url);
             }
-            Object obj3 = l61Var.G;
+            Object obj3 = m61Var.G;
             if (obj3 != null) {
                 o91Var.h.E(obj3);
             }
         } else {
-            switch (l61Var.d) {
+            switch (m61Var.d) {
                 case 1:
                     o91Var.l0(new UserInfoActivity());
                     return;
@@ -983,7 +983,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                     o91Var.l0(new SessionsActivity(0));
                     return;
                 case 9:
-                    o91Var.l0(new rc0());
+                    o91Var.l0(new qc0());
                     return;
                 case 10:
                     o91Var.l0(new LanguageSelectActivity());
@@ -1007,10 +1007,10 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                     o91Var.showDialog(org.telegram.ui.Components.g5.T(o91Var, o91Var.resourceProvider));
                     return;
                 case 18:
-                    pf.d.s(o91Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
+                    pf.d.r(o91Var.getParentActivity(), LocaleController.getString(R.string.TelegramFaqUrl));
                     return;
                 case 19:
-                    pf.d.s(o91Var.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
+                    pf.d.r(o91Var.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
                     return;
                 case 20:
                     ProfileActivity.H4(o91Var.getParentActivity(), false);
@@ -1026,14 +1026,14 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                         b.b(o91Var.currentAccount);
                         return;
                     } else {
-                        pf.d.s(o91Var.getParentActivity(), LocaleController.getString(R.string.TelegramFeaturesUrl));
+                        pf.d.r(o91Var.getParentActivity(), LocaleController.getString(R.string.TelegramFeaturesUrl));
                         return;
                     }
                 case 24:
                     o91Var.presentFragment(new org.telegram.ui.ActionBar.m2(null));
                     return;
                 case 25:
-                    o91Var.l0(new org.telegram.ui.Wallet.z4());
+                    o91Var.l0(new org.telegram.ui.Wallet.a5());
                     return;
                 case 26:
                     o91Var.presentFragment(new org.telegram.ui.ActionBar.m2(null));
@@ -1133,7 +1133,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
 
     @Override
     public final void E(float f7) {
-        org.telegram.ui.Cells.z3 z3Var = this.f38901s;
+        org.telegram.ui.Cells.z3 z3Var = this.f38583s;
         if (z3Var == null) {
             return;
         }
@@ -1142,7 +1142,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
 
     @Override
     public final void K(boolean z10, boolean z11) {
-        org.telegram.ui.Cells.z3 z3Var = this.f38901s;
+        org.telegram.ui.Cells.z3 z3Var = this.f38583s;
         if (z3Var == null) {
             return;
         }
@@ -1156,7 +1156,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
 
     @Override
     public final View createView(Context context) {
-        this.f38895b = new z8(this, context, 7);
+        this.f38577b = new z8(this, context, 7);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.L();
@@ -1173,55 +1173,55 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         this.e = c10;
         c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
         org.telegram.ui.ActionBar.u0 a2 = n10.a(1, R.drawable.ic_ab_other);
-        this.f38898f = a2;
+        this.f38580f = a2;
         a2.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
-        this.f38898f.e(2, R.drawable.msg_leave, LocaleController.getString(R.string.LogOut));
+        this.f38580f.e(2, R.drawable.msg_leave, LocaleController.getString(R.string.LogOut));
         g91 g91Var = new g91(this, this, context);
         this.h = g91Var;
         g91Var.G();
-        org.telegram.ui.Components.h71 h71Var = new org.telegram.ui.Components.h71(this, new f5(this, 26), new f91(this), new f91(this));
-        this.f38897c = h71Var;
-        h71Var.W2.f31780r = false;
-        h71Var.p1();
-        this.f38897c.setPadding(0, AndroidUtilities.dp(12.0f) + AndroidUtilities.statusBarHeight, 0, AndroidUtilities.navigationBarHeight + this.T);
-        this.f38897c.setClipToPadding(false);
-        this.f38897c.j(new k3(this, 28));
-        org.telegram.ui.Components.h71 h71Var2 = this.f38897c;
-        z8 z8Var = this.f38895b;
-        Objects.requireNonNull(h71Var2);
-        this.Y = new bh.l(h71Var2, z8Var, new y8(h71Var2, 0));
-        this.f38897c.C0(new c91(this, 2));
-        this.f38895b.addView(this.f38897c, w7.a6.e(-1, -1, 119));
+        org.telegram.ui.Components.i71 i71Var = new org.telegram.ui.Components.i71(this, new f5(this, 26), new f91(this), new f91(this));
+        this.f38579c = i71Var;
+        i71Var.W2.f23145r = false;
+        i71Var.p1();
+        this.f38579c.setPadding(0, AndroidUtilities.dp(12.0f) + AndroidUtilities.statusBarHeight, 0, AndroidUtilities.navigationBarHeight + this.T);
+        this.f38579c.setClipToPadding(false);
+        this.f38579c.j(new k3(this, 28));
+        org.telegram.ui.Components.i71 i71Var2 = this.f38579c;
+        z8 z8Var = this.f38577b;
+        Objects.requireNonNull(i71Var2);
+        this.Y = new bh.l(i71Var2, z8Var, new y8(i71Var2, 0));
+        this.f38579c.C0(new c91(this, 2));
+        this.f38577b.addView(this.f38579c, w7.z5.e(-1, -1, 119));
         di.p6 p6Var = new di.p6(this, context);
         this.d = p6Var;
-        this.f38895b.addView(p6Var, w7.a6.e(-1, 200, 48));
-        this.f38895b.addView(this.actionBar, w7.a6.e(-1, -2, 55));
+        this.f38577b.addView(p6Var, w7.z5.e(-1, 200, 48));
+        this.f38577b.addView(this.actionBar, w7.z5.e(-1, -2, 55));
         org.telegram.ui.Components.i50 i50Var = new org.telegram.ui.Components.i50(0, true, true);
-        this.f38899n = i50Var;
+        this.f38581n = i50Var;
         i50Var.H = true;
-        i50Var.f25829a = this;
-        i50Var.f25830b = this;
-        this.f38903x = new FrameLayout(context);
+        i50Var.f25498a = this;
+        i50Var.f25499b = this;
+        this.f38585x = new FrameLayout(context);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f38904y = frameLayout;
-        this.f38903x.addView(frameLayout, w7.a6.a(120.0f, 0.0f, 11.0f, 0.0f, 0.0f, 120, 49));
-        this.f38904y.setOnClickListener(new d91(this, 5));
-        w7.c6.a(this.f38904y);
+        this.f38586y = frameLayout;
+        this.f38585x.addView(frameLayout, w7.z5.a(120.0f, 0.0f, 11.0f, 0.0f, 0.0f, 120, 49));
+        this.f38586y.setOnClickListener(new d91(this, 5));
+        w7.b6.a(this.f38586y);
         this.E = new org.telegram.ui.Components.k9((org.telegram.ui.ActionBar.c6) null);
         org.telegram.ui.Components.z9 z9Var = new org.telegram.ui.Components.z9(context);
         this.F = z9Var;
         z9Var.setRoundRadius(AndroidUtilities.dp(90.0f));
-        this.f38904y.addView(this.F, w7.a6.a(90.0f, 0.0f, 15.0f, 0.0f, 0.0f, 90, 49));
+        this.f38586y.addView(this.F, w7.z5.a(90.0f, 0.0f, 15.0f, 0.0f, 0.0f, 90, 49));
         org.telegram.ui.Cells.z3 z3Var = new org.telegram.ui.Cells.z3(this, context);
-        this.f38901s = z3Var;
+        this.f38583s = z3Var;
         z3Var.setSize(AndroidUtilities.dp(26.0f));
-        this.f38901s.setProgressColor(-1);
-        this.f38901s.setNoProgress(false);
-        this.f38904y.addView(this.f38901s, w7.a6.a(90.0f, 0.0f, 15.0f, 0.0f, 0.0f, 90, 49));
+        this.f38583s.setProgressColor(-1);
+        this.f38583s.setNoProgress(false);
+        this.f38586y.addView(this.f38583s, w7.z5.a(90.0f, 0.0f, 15.0f, 0.0f, 0.0f, 90, 49));
         n0(false, false);
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.G = frameLayout2;
-        frameLayout2.setBackground(org.telegram.ui.ActionBar.g6.K(AndroidUtilities.dp(32.0f), getThemedColor(org.telegram.ui.ActionBar.g6.f19843a7)));
+        frameLayout2.setBackground(org.telegram.ui.ActionBar.g6.K(AndroidUtilities.dp(32.0f), getThemedColor(org.telegram.ui.ActionBar.g6.f19543a7)));
         this.G.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.H = frameLayout3;
@@ -1230,10 +1230,10 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         this.I = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         this.I.setImageResource(R.drawable.filled_premium_camera);
-        this.H.addView(this.I, w7.a6.e(22, 22, 17));
-        this.G.addView(this.H, w7.a6.d(30.0f, 30));
-        this.f38904y.addView(this.G, w7.a6.a(34.0f, 32.0f, 75.0f, 0.0f, 0.0f, 34, 49));
-        w7.c6.a(this.G);
+        this.H.addView(this.I, w7.z5.e(22, 22, 17));
+        this.G.addView(this.H, w7.z5.d(30.0f, 30));
+        this.f38586y.addView(this.G, w7.z5.a(34.0f, 32.0f, 75.0f, 0.0f, 0.0f, 34, 49));
+        w7.b6.a(this.G);
         TextView textView = new TextView(context);
         this.J = textView;
         textView.setTextSize(1, 22.0f);
@@ -1243,48 +1243,48 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         TextView textView2 = this.J;
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView2.setEllipsize(truncateAt);
-        TextView h = org.telegram.ui.Cells.d0.h(this.f38903x, this.J, w7.a6.a(-2.0f, 16.0f, 126.33299f, 16.0f, 0.0f, -1, 49), context);
-        this.K = h;
-        h.setTextSize(1, 13.0f);
+        TextView g10 = org.telegram.ui.Cells.c1.g(this.f38585x, this.J, w7.z5.a(-2.0f, 16.0f, 126.33299f, 16.0f, 0.0f, -1, 49), context);
+        this.K = g10;
+        g10.setTextSize(1, 13.0f);
         this.K.setGravity(17);
         this.K.setSingleLine();
         this.K.setEllipsize(truncateAt);
-        TextView h10 = org.telegram.ui.Cells.d0.h(this.f38903x, this.K, w7.a6.a(-2.0f, 0.0f, 156.0f, 0.0f, 0.0f, -1, 49), context);
-        this.L = h10;
-        h10.setTextSize(1, 14.0f);
+        TextView g11 = org.telegram.ui.Cells.c1.g(this.f38585x, this.K, w7.z5.a(-2.0f, 0.0f, 156.0f, 0.0f, 0.0f, -1, 49), context);
+        this.L = g11;
+        g11.setTextSize(1, 14.0f);
         this.L.setTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.B6));
         this.L.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(10.0f));
         this.L.setGravity(17);
-        this.L.setBackground(org.telegram.ui.ActionBar.g6.g0(getThemedColor(org.telegram.ui.ActionBar.g6.f19990i6), 2, -1));
+        this.L.setBackground(org.telegram.ui.ActionBar.g6.g0(getThemedColor(org.telegram.ui.ActionBar.g6.f19690i6), 2, -1));
         this.L.setOnClickListener(new d91(this, 6));
         this.N = new View(context);
         o0(true, false);
-        this.f38897c.W2.N(false);
+        this.f38579c.W2.N(false);
         m0(getUserConfig().getCurrentUser());
         p0();
         j0();
-        z8 z8Var2 = this.f38895b;
+        z8 z8Var2 = this.f38577b;
         f91 f91Var = new f91(this);
-        WeakHashMap weakHashMap = r0.j0.f43732a;
-        r0.b0.i(z8Var2, f91Var);
-        z8 z8Var3 = this.f38895b;
+        WeakHashMap weakHashMap = r0.i0.f43485a;
+        r0.a0.i(z8Var2, f91Var);
+        z8 z8Var3 = this.f38577b;
         this.fragmentView = z8Var3;
         return z8Var3;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        org.telegram.ui.Components.h71 h71Var;
+        org.telegram.ui.Components.i71 i71Var;
         if (i10 == NotificationCenter.starBalanceUpdated) {
             m0(getUserConfig().getCurrentUser());
-            org.telegram.ui.Components.h71 h71Var2 = this.f38897c;
-            if (h71Var2 != null) {
-                h71Var2.W2.N(true);
+            org.telegram.ui.Components.i71 i71Var2 = this.f38579c;
+            if (i71Var2 != null) {
+                i71Var2.W2.N(true);
             }
         } else if (i10 == NotificationCenter.updateInterfaces) {
             m0(getUserConfig().getCurrentUser());
-        } else if (i10 == NotificationCenter.newSuggestionsAvailable && (h71Var = this.f38897c) != null) {
-            h71Var.W2.N(true);
+        } else if (i10 == NotificationCenter.newSuggestionsAvailable && (i71Var = this.f38579c) != null) {
+            i71Var.W2.N(true);
         }
     }
 
@@ -1299,7 +1299,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
     }
 
     @Override
-    public final kv0 getCloseIntoObject() {
+    public final jv0 getCloseIntoObject() {
         return null;
     }
 
@@ -1315,8 +1315,8 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         if (Build.VERSION.SDK_INT >= 31 && (fVar = this.V) != null) {
             int dp = AndroidUtilities.dp(48.0f);
             int measuredHeight = (this.fragmentView.getMeasuredHeight() - this.S) - AndroidUtilities.dp(8.0f);
-            this.f38894a0.set(0.0f, -dp, this.fragmentView.getMeasuredWidth(), this.actionBar.getMeasuredHeight() + dp);
-            RectF rectF = this.f38896b0;
+            this.f38576a0.set(0.0f, -dp, this.fragmentView.getMeasuredWidth(), this.actionBar.getMeasuredHeight() + dp);
+            RectF rectF = this.f38578b0;
             rectF.set(0.0f, measuredHeight - AndroidUtilities.dp(56.0f), this.fragmentView.getMeasuredWidth(), measuredHeight);
             if (LiteMode.isEnabled(262144)) {
                 f7 = 0.0f;
@@ -1341,13 +1341,13 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
 
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return !this.f38893a.f16293f;
+        return !this.f38575a.f16004f;
     }
 
     public final void j0() {
         float f7;
-        org.telegram.ui.ActionBar.u0 u0Var = this.f38898f;
-        ne.b bVar = this.f38893a;
+        org.telegram.ui.ActionBar.u0 u0Var = this.f38580f;
+        ne.b bVar = this.f38575a;
         org.telegram.ui.Components.l20.d(u0Var, 1.0f - bVar.e);
         ImageView backButton = this.actionBar.getBackButton();
         if (this.M) {
@@ -1361,7 +1361,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
     public final void l0(org.telegram.ui.ActionBar.m2 m2Var) {
         LaunchActivity launchActivity;
         ActionBarLayout actionBarLayout;
-        if (AndroidUtilities.isTablet() && (launchActivity = LaunchActivity.G1) != null && (actionBarLayout = launchActivity.f32137s0) != null) {
+        if (AndroidUtilities.isTablet() && (launchActivity = LaunchActivity.G1) != null && (actionBarLayout = launchActivity.f31839s0) != null) {
             if (!actionBarLayout.getFragmentStack().isEmpty()) {
                 while (actionBarLayout.getFragmentStack().size() - 1 > 0) {
                     actionBarLayout.a0((org.telegram.ui.ActionBar.m2) actionBarLayout.getFragmentStack().get(0), false);
@@ -1369,8 +1369,8 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
                 actionBarLayout.l(false, false);
             }
             org.telegram.ui.ActionBar.z4 z4Var = new org.telegram.ui.ActionBar.z4(m2Var);
-            z4Var.f20844c = true;
-            z4Var.f20846g = true;
+            z4Var.f20544c = true;
+            z4Var.f20546g = true;
             actionBarLayout.R(z4Var);
             return;
         }
@@ -1422,32 +1422,32 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
     }
 
     public final void n0(boolean z10, boolean z11) {
-        if (this.f38901s == null) {
+        if (this.f38583s == null) {
             return;
         }
-        AnimatorSet animatorSet = this.f38900r;
+        AnimatorSet animatorSet = this.f38582r;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f38900r = null;
+            this.f38582r = null;
         }
         if (z11) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f38900r = animatorSet2;
+            this.f38582r = animatorSet2;
             if (z10) {
-                this.f38901s.setVisibility(0);
-                this.f38900r.playTogether(ObjectAnimator.ofFloat(this.f38901s, View.ALPHA, 1.0f));
+                this.f38583s.setVisibility(0);
+                this.f38582r.playTogether(ObjectAnimator.ofFloat(this.f38583s, View.ALPHA, 1.0f));
             } else {
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this.f38901s, View.ALPHA, 0.0f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this.f38583s, View.ALPHA, 0.0f));
             }
-            this.f38900r.setDuration(180L);
-            this.f38900r.addListener(new i50(10, this, z10));
-            this.f38900r.start();
+            this.f38582r.setDuration(180L);
+            this.f38582r.addListener(new i50(10, this, z10));
+            this.f38582r.start();
         } else if (z10) {
-            this.f38901s.setAlpha(1.0f);
-            this.f38901s.setVisibility(0);
+            this.f38583s.setAlpha(1.0f);
+            this.f38583s.setVisibility(0);
         } else {
-            this.f38901s.setAlpha(0.0f);
-            this.f38901s.setVisibility(4);
+            this.f38583s.setAlpha(0.0f);
+            this.f38583s.setVisibility(4);
         }
     }
 
@@ -1458,7 +1458,7 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
     @Override
     public final boolean onBackPressed(boolean z10) {
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        if (kVar.f20442n0) {
+        if (kVar.f20142n0) {
             if (z10) {
                 kVar.h(true);
                 return false;
@@ -1505,19 +1505,19 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
         int i10 = org.telegram.ui.ActionBar.g6.G6;
         kVar.setTitleColor(getThemedColor(i10));
         this.actionBar.D(getThemedColor(i10), false);
-        this.f38895b.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.g6.f19843a7));
+        this.f38577b.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.g6.f19543a7));
         this.J.setTextColor(getThemedColor(i10));
-        this.K.setTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.f20288y6));
+        this.K.setTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.f19988y6));
         this.e.N();
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.g6.f19901d6);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.g6.f19601d6);
         this.N.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.g6.m1(0.0f, themedColor), themedColor}));
         this.d.invalidate();
-        this.f38897c.invalidate();
+        this.f38579c.invalidate();
     }
 
     @Override
     public final void t() {
-        this.f38897c.x0(0);
+        this.f38579c.x0(0);
     }
 
     @Override
@@ -1532,16 +1532,16 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
 
     public o91(Bundle bundle) {
         super(bundle);
-        this.f38893a = new ne.b(0, this, org.telegram.ui.Components.es.h, 350L, false);
+        this.f38575a = new ne.b(0, this, org.telegram.ui.Components.es.h, 350L, false);
         this.O = 0;
         this.R = new ArrayList();
         this.U = -1;
         ArrayList arrayList = new ArrayList();
         this.Z = arrayList;
         RectF rectF = new RectF();
-        this.f38894a0 = rectF;
+        this.f38576a0 = rectF;
         RectF rectF2 = new RectF();
-        this.f38896b0 = rectF2;
+        this.f38578b0 = rectF2;
         arrayList.add(rectF);
         arrayList.add(rectF2);
         if (Build.VERSION.SDK_INT >= 31) {
@@ -1560,6 +1560,6 @@ public final class o91 extends org.telegram.ui.ActionBar.m2 implements Notificat
     }
 
     @Override
-    public final void C(float f7, int i10) {
+    public final void A(float f7, int i10) {
     }
 }

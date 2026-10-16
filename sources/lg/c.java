@@ -16,7 +16,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
-import w7.a6;
+import w7.z5;
 public class c extends FrameLayout {
     public final TextView f14689a;
     public final TextView f14690b;
@@ -41,25 +41,25 @@ public class c extends FrameLayout {
         TextView textView = new TextView(context);
         this.f14689a = textView;
         k3.m(15.0f, 1, textView);
-        addView(textView, a6.a(-2.0f, 16.0f, 0.0f, measureText, 0.0f, -2, 8388627));
+        addView(textView, z5.a(-2.0f, 16.0f, 0.0f, measureText, 0.0f, -2, 8388627));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 15.0f);
         textView2.setTypeface(Typeface.DEFAULT_BOLD);
         textView2.setGravity(8388627);
-        addView(textView2, a6.a(-2.0f, 8.0f, 0.0f, 8.0f, 0.0f, -2, 8388627));
+        addView(textView2, z5.a(-2.0f, 8.0f, 0.0f, 8.0f, 0.0f, -2, 8388627));
         TextView textView3 = new TextView(context);
         this.f14690b = textView3;
         textView3.setTextSize(1, 13.0f);
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setGravity(8388629);
-        addView(textView3, a6.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 8388629));
+        addView(textView3, z5.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 8388629));
         TextView textView4 = new TextView(context);
         this.f14691c = textView4;
         textView4.setTextSize(1, 13.0f);
         textView4.setTypeface(AndroidUtilities.bold());
         textView4.setGravity(8388629);
-        addView(textView4, a6.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 8388629));
+        addView(textView4, z5.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 8388629));
         textView4.setVisibility(8);
         textView2.setVisibility(8);
         textView2.setText(LocaleController.getString(R.string.ZoomOut));
@@ -74,7 +74,7 @@ public class c extends FrameLayout {
     }
 
     public final void a() {
-        int i10 = g6.f20007j5;
+        int i10 = g6.f19707j5;
         c6 c6Var = this.f14694r;
         this.f14689a.setTextColor(g6.w0(i10, c6Var));
         this.f14690b.setTextColor(g6.w0(i10, c6Var));
@@ -111,11 +111,11 @@ public class c extends FrameLayout {
         if (!z10) {
             this.f14691c.setVisibility(8);
             this.f14690b.setVisibility(8);
-            textView.setLayoutParams(a6.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 8388627));
+            textView.setLayoutParams(z5.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 8388627));
             textView.requestLayout();
             return;
         }
-        textView.setLayoutParams(a6.a(-2.0f, 16.0f, 0.0f, this.f14693n, 0.0f, -2, 8388627));
+        textView.setLayoutParams(z5.a(-2.0f, 16.0f, 0.0f, this.f14693n, 0.0f, -2, 8388627));
     }
 
     public final void d(long j10, boolean z10) {

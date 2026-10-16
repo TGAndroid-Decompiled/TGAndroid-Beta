@@ -1,6 +1,6 @@
 package pd;
 public abstract class a {
-    public static final Integer f43194a;
+    public static final Integer f42895a;
 
     static {
         Integer num;
@@ -15,12 +15,12 @@ public abstract class a {
             if (num != null && num.intValue() > 0) {
                 num2 = num;
             }
-            f43194a = num2;
+            f42895a = num2;
         }
         num = null;
         if (num != null) {
             num2 = num;
         }
-        f43194a = num2;
+        f42895a = num2;
     }
 }

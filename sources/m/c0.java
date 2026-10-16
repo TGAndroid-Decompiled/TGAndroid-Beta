@@ -1,44 +1,27 @@
 package m;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
-import android.widget.SeekBar;
-public class c0 extends SeekBar {
-    public final d0 f15073a;
+import android.view.View;
+import android.widget.RatingBar;
+public final class c0 extends RatingBar {
+    public final a0 f14805a;
 
-    public c0(Context context, AttributeSet attributeSet, int i10) {
-        super(context, attributeSet, i10);
-        b3.a(this, getContext());
-        d0 d0Var = new d0(this);
-        this.f15073a = d0Var;
-        d0Var.b(attributeSet, i10);
+    public c0(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet, 2130968908);
+        d3.a(this, getContext());
+        a0 a0Var = new a0(this);
+        this.f14805a = a0Var;
+        a0Var.b(attributeSet, 2130968908);
     }
 
     @Override
-    public void drawableStateChanged() {
-        super.drawableStateChanged();
-        d0 d0Var = this.f15073a;
-        c0 c0Var = d0Var.e;
-        Drawable drawable = d0Var.f15079f;
-        if (drawable != null && drawable.isStateful() && drawable.setState(c0Var.getDrawableState())) {
-            c0Var.invalidateDrawable(drawable);
+    public final synchronized void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        Bitmap bitmap = (Bitmap) this.f14805a.f14789c;
+        if (bitmap != null) {
+            setMeasuredDimension(View.resolveSizeAndState(bitmap.getWidth() * getNumStars(), i10, 0), getMeasuredHeight());
         }
-    }
-
-    @Override
-    public final void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        Drawable drawable = this.f15073a.f15079f;
-        if (drawable != null) {
-            drawable.jumpToCurrentState();
-        }
-    }
-
-    @Override
-    public final synchronized void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        this.f15073a.g(canvas);
     }
 }

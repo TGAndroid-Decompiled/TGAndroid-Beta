@@ -1,42 +1,25 @@
 package org.telegram.ui.Components;
-public final class g71 extends s4.k {
-    public final h71 F;
+public final class g71 extends g.o {
+    public final f71 f24898c;
+    public final i71 d;
 
-    public g71(h71 h71Var) {
-        this.F = h71Var;
+    public g71(i71 i71Var, f71 f71Var) {
+        this.d = i71Var;
+        this.f24898c = f71Var;
     }
 
     @Override
-    public final void M() {
-        h71 h71Var = this.F;
-        if (h71Var.b1()) {
-            h71Var.invalidate();
+    public final int i(int i10) {
+        int i11;
+        a71 a71Var = this.d.W2;
+        f71 f71Var = this.f24898c;
+        if (a71Var == null) {
+            return f71Var.J;
         }
-        h71Var.D1();
-    }
-
-    @Override
-    public final void O() {
-        h71 h71Var = this.F;
-        if (h71Var.b1()) {
-            h71Var.invalidate();
+        m61 G = a71Var.G(i10);
+        if (G != null && (i11 = G.f26955u) != -1) {
+            return i11;
         }
-        h71Var.D1();
-    }
-
-    @Override
-    public final void P(s4.b1 b1Var) {
-        h71 h71Var = this.F;
-        h71Var.invalidate();
-        h71Var.D1();
-    }
-
-    @Override
-    public final void Q() {
-        h71 h71Var = this.F;
-        if (h71Var.b1()) {
-            h71Var.invalidate();
-        }
-        h71Var.D1();
+        return f71Var.J;
     }
 }

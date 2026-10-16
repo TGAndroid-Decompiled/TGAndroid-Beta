@@ -9,12 +9,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 public final class xg implements Runnable {
-    public final int f41855a;
-    public final fo f41856b;
+    public final int f41561a;
+    public final fo f41562b;
 
     public xg(fo foVar, int i10) {
-        this.f41855a = i10;
-        this.f41856b = foVar;
+        this.f41561a = i10;
+        this.f41562b = foVar;
     }
 
     @Override
@@ -22,33 +22,33 @@ public final class xg implements Runnable {
         boolean z10;
         boolean z11;
         di.d4 d4Var;
-        int i10 = this.f41855a;
+        int i10 = this.f41561a;
         boolean z12 = true;
-        fo foVar = this.f41856b;
+        fo foVar = this.f41562b;
         switch (i10) {
             case 0:
                 sk skVar = foVar.Y;
                 if (skVar != null && foVar.Cc != null) {
                     if (skVar.r0()) {
                         foVar.Y.k0(false);
-                        AndroidUtilities.showKeyboard(foVar.Cc.f44652a);
-                        foVar.Cc.f44653b.f44649a.a(false, true);
+                        AndroidUtilities.showKeyboard(foVar.Cc.f44411a);
+                        foVar.Cc.f44412b.f44408a.a(false, true);
                         return;
                     }
-                    foVar.Y.T0(false, false, false);
-                    foVar.Y.q1();
-                    foVar.Cc.f44653b.f44649a.a(true, true);
+                    foVar.Y.S0(false, false, false);
+                    foVar.Y.p1();
+                    foVar.Cc.f44412b.f44408a.a(true, true);
                     return;
                 }
                 return;
             case 1:
-                ArrayList arrayList = foVar.f36127u6;
+                ArrayList arrayList = foVar.f35828u6;
                 foVar.Hb = System.currentTimeMillis();
-                if (foVar.f36160x0 != null && foVar.A0 != null) {
+                if (foVar.f35861x0 != null && foVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < foVar.f36160x0.getChildCount(); i13++) {
-                        View childAt = foVar.f36160x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < foVar.f35861x0.getChildCount(); i13++) {
+                        View childAt = foVar.f35861x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.u1) {
                             org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
                             if (u1Var.getCurrentMessagesGroup() != null) {
@@ -68,7 +68,7 @@ public final class xg implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) foVar.f36166x6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) foVar.f35867x6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
@@ -145,14 +145,14 @@ public final class xg implements Runnable {
                 foVar.Q6();
                 return;
             case 15:
-                foVar.f35870a = (foVar.f35870a + 1) % 3;
+                foVar.f35571a = (foVar.f35571a + 1) % 3;
                 return;
             case 16:
-                foVar.f35883b = !foVar.f35883b;
+                foVar.f35584b = !foVar.f35584b;
                 return;
             case 17:
                 foVar.D7(true);
-                org.telegram.messenger.q.r(R.string.TranscriptionReportSent, org.telegram.ui.Components.zc.a0(foVar), R.raw.chats_infotip, 36);
+                org.telegram.messenger.g0.q(R.string.TranscriptionReportSent, org.telegram.ui.Components.zc.a0(foVar), R.raw.chats_infotip, 36);
                 return;
             case 18:
                 foVar.A0.M.clear();
@@ -168,13 +168,13 @@ public final class xg implements Runnable {
                 foVar.w7();
                 return;
             case 20:
-                foVar.f36183ya = false;
+                foVar.f35884ya = false;
                 foVar.yc();
                 return;
             case 21:
-                foVar.f35982ic = 0;
-                foVar.f35995jc = false;
-                foVar.f36160x0.f1();
+                foVar.f35683ic = 0;
+                foVar.f35696jc = false;
+                foVar.f35861x0.f1();
                 return;
             case 22:
                 foVar.v9(5);
@@ -184,7 +184,7 @@ public final class xg implements Runnable {
                 return;
             case 24:
                 vk vkVar = foVar.R2;
-                if ((vkVar == null || vkVar.getVisibility() != 0) && (d4Var = foVar.f36148w1) != null) {
+                if ((vkVar == null || vkVar.getVisibility() != 0) && (d4Var = foVar.f35849w1) != null) {
                     d4Var.u();
                     return;
                 }
@@ -199,12 +199,12 @@ public final class xg implements Runnable {
                 foVar.d7(false);
                 return;
             case 28:
-                FrameLayout.LayoutParams e = w7.a6.e(-1, -2, 87);
+                FrameLayout.LayoutParams e = w7.z5.e(-1, -2, 87);
                 e.bottomMargin = foVar.Y.getMeasuredHeight();
-                foVar.X0.addView(foVar.f36175y1, e);
-                foVar.f36175y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                foVar.f36175y1.m(0.0f, foVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                foVar.f36175y1.u();
+                foVar.X0.addView(foVar.f35876y1, e);
+                foVar.f35876y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                foVar.f35876y1.m(0.0f, foVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                foVar.f35876y1.u();
                 return;
             default:
                 int i17 = fo.Hc;

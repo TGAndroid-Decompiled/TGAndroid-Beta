@@ -10,20 +10,21 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.br;
+import w7.b6;
 public final class k3 extends TextView {
-    public final br f48943a;
+    public final br f48942a;
 
     public k3(Context context, c6 c6Var) {
         super(context);
-        int w02 = g6.w0(g6.f20290y8, c6Var);
+        int w02 = g6.w0(g6.f19990y8, c6Var);
         setTextColor(w02);
         setBackground(g6.a0(g6.m1(0.08f, w02), g6.m1(0.15f, w02), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f)));
         setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
         setGravity(17);
         setTypeface(AndroidUtilities.bold());
-        w7.c6.a(this);
+        b6.a(this);
         br brVar = new br(R.drawable.arrows_select, 0);
-        this.f48943a = brVar;
+        this.f48942a = brVar;
         brVar.spaceScaleX = 0.8f;
         brVar.translate(0.0f, AndroidUtilities.dp(1.0f));
     }
@@ -60,7 +61,7 @@ public final class k3 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f48943a, append.length() - 1, length, 33);
+        append.setSpan(this.f48942a, append.length() - 1, length, 33);
         setText(append);
     }
 }

@@ -7,20 +7,20 @@ import android.view.ViewGroup;
 import j$.util.Objects;
 import org.telegram.ui.Components.mm0;
 public final class v7 implements ch.a {
-    public final int f8006a;
-    public final Object f8007b;
+    public final int f8009a;
+    public final Object f8010b;
 
     public v7(Object obj, int i10) {
-        this.f8006a = i10;
-        this.f8007b = obj;
+        this.f8009a = i10;
+        this.f8010b = obj;
     }
 
     @Override
     public final void e(bh.a aVar, RectF rectF) {
-        switch (this.f8006a) {
+        switch (this.f8009a) {
             case 0:
             default:
-                aVar.f2740a = true;
+                aVar.f2744a = true;
                 return;
         }
     }
@@ -28,19 +28,19 @@ public final class v7 implements ch.a {
     @Override
     public final void f(Canvas canvas, RectF rectF) {
         View[] viewPages;
-        switch (this.f8006a) {
+        switch (this.f8009a) {
             case 0:
-                c8 c8Var = (c8) this.f8007b;
+                c8 c8Var = (c8) this.f8010b;
                 mm0 mm0Var = c8Var.d;
                 hh.d.b(mm0Var, canvas, rectF, mm0Var, c8Var.getContainerView(), 255);
                 return;
             default:
-                yh.q2 q2Var = (yh.q2) this.f8007b;
+                yh.q2 q2Var = (yh.q2) this.f8010b;
                 for (View view : q2Var.h.getViewPages()) {
                     if (view instanceof yh.m2) {
                         yh.m2 m2Var = (yh.m2) view;
                         if (m2Var.h == null) {
-                            yh.h2 h2Var = m2Var.f48997f;
+                            yh.h2 h2Var = m2Var.f48996f;
                             ViewGroup viewGroup = q2Var.S;
                             Objects.requireNonNull(h2Var);
                             m2Var.h = new bh.l(h2Var, viewGroup, new org.telegram.ui.y8(h2Var, 0));

@@ -5,15 +5,15 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 public final class m extends i {
-    public final Serializable f8693a;
+    public final Serializable f8696a;
 
     public m(Boolean bool) {
         Objects.requireNonNull(bool);
-        this.f8693a = bool;
+        this.f8696a = bool;
     }
 
     public static boolean r(m mVar) {
-        Serializable serializable = mVar.f8693a;
+        Serializable serializable = mVar.f8696a;
         if (serializable instanceof Number) {
             Number number = (Number) serializable;
             if ((number instanceof BigInteger) || (number instanceof Long) || (number instanceof Integer) || (number instanceof Short) || (number instanceof Byte)) {
@@ -30,8 +30,8 @@ public final class m extends i {
         if (this != obj) {
             if (obj != null && m.class == obj.getClass()) {
                 m mVar = (m) obj;
-                Serializable serializable = mVar.f8693a;
-                Serializable serializable2 = this.f8693a;
+                Serializable serializable = mVar.f8696a;
+                Serializable serializable2 = this.f8696a;
                 if (serializable2 == null) {
                     if (serializable == null) {
                         return true;
@@ -82,7 +82,7 @@ public final class m extends i {
 
     public final int hashCode() {
         long doubleToLongBits;
-        Serializable serializable = this.f8693a;
+        Serializable serializable = this.f8696a;
         if (serializable == null) {
             return 31;
         }
@@ -98,7 +98,7 @@ public final class m extends i {
 
     @Override
     public final String m() {
-        Serializable serializable = this.f8693a;
+        Serializable serializable = this.f8696a;
         if (serializable instanceof String) {
             return (String) serializable;
         }
@@ -112,7 +112,7 @@ public final class m extends i {
     }
 
     public final BigInteger n() {
-        Serializable serializable = this.f8693a;
+        Serializable serializable = this.f8696a;
         if (serializable instanceof BigInteger) {
             return (BigInteger) serializable;
         }
@@ -125,7 +125,7 @@ public final class m extends i {
     }
 
     public final boolean o() {
-        Serializable serializable = this.f8693a;
+        Serializable serializable = this.f8696a;
         if (serializable instanceof Boolean) {
             return ((Boolean) serializable).booleanValue();
         }
@@ -133,30 +133,30 @@ public final class m extends i {
     }
 
     public final double p() {
-        if (this.f8693a instanceof Number) {
+        if (this.f8696a instanceof Number) {
             return q().doubleValue();
         }
         return Double.parseDouble(m());
     }
 
     public final Number q() {
-        Serializable serializable = this.f8693a;
+        Serializable serializable = this.f8696a;
         if (serializable instanceof Number) {
             return (Number) serializable;
         }
         if (serializable instanceof String) {
-            return new gb.i((String) serializable);
+            return new gb.j((String) serializable);
         }
         throw new UnsupportedOperationException("Primitive is neither a number nor a string");
     }
 
     public m(Number number) {
         Objects.requireNonNull(number);
-        this.f8693a = number;
+        this.f8696a = number;
     }
 
     public m(String str) {
         Objects.requireNonNull(str);
-        this.f8693a = str;
+        this.f8696a = str;
     }
 }

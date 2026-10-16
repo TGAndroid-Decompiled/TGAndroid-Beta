@@ -2,25 +2,25 @@ package h0;
 
 import com.google.android.gms.internal.play_billing.k3;
 public final class k {
-    public static final k f10300k;
-    public final float f10301a;
-    public final float f10302b;
-    public final float f10303c;
+    public static final k f10304k;
+    public final float f10305a;
+    public final float f10306b;
+    public final float f10307c;
     public final float d;
     public final float e;
-    public final float f10304f;
-    public final float[] f10305g;
+    public final float f10308f;
+    public final float[] f10309g;
     public final float h;
-    public final float f10306i;
-    public final float f10307j;
+    public final float f10310i;
+    public final float f10311j;
 
     static {
         float f7;
         float[] fArr;
         float j10 = (float) ((b.j() * 63.66197723675813d) / 100.0d);
-        float[] fArr2 = b.f10282c;
+        float[] fArr2 = b.f10286c;
         float f10 = fArr2[0];
-        float[][] fArr3 = b.f10280a;
+        float[][] fArr3 = b.f10284a;
         float[] fArr4 = fArr3[0];
         float f11 = fArr2[1];
         float f12 = fArr4[1] * f11;
@@ -58,19 +58,19 @@ public final class k {
         float f23 = (f22 * 400.0f) / (f22 + 27.13f);
         float f24 = fArr7[2];
         float[] fArr8 = {f21, f23, (400.0f * f24) / (f24 + 27.13f)};
-        f10300k = new k(j11, k3.A(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * B) + 1.0f) - B, (((100.0f / f15) * B) + 1.0f) - B, (((100.0f / f16) * B) + 1.0f) - B}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
+        f10304k = new k(j11, k3.A(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f17, 1.0f, new float[]{(((100.0f / f14) * B) + 1.0f) - B, (((100.0f / f15) * B) + 1.0f) - B, (((100.0f / f16) * B) + 1.0f) - B}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
     }
 
     public k(float f7, float f10, float f11, float f12, float f13, float f14, float[] fArr, float f15, float f16, float f17) {
-        this.f10304f = f7;
-        this.f10301a = f10;
-        this.f10302b = f11;
-        this.f10303c = f12;
+        this.f10308f = f7;
+        this.f10305a = f10;
+        this.f10306b = f11;
+        this.f10307c = f12;
         this.d = f13;
         this.e = f14;
-        this.f10305g = fArr;
+        this.f10309g = fArr;
         this.h = f15;
-        this.f10306i = f16;
-        this.f10307j = f17;
+        this.f10310i = f16;
+        this.f10311j = f17;
     }
 }

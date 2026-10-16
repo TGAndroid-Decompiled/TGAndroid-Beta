@@ -4,12 +4,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 public final class v {
-    public static final v f10456c = new v(Collections.EMPTY_MAP, Collections.EMPTY_LIST);
-    public final Map f10457a;
-    public final List f10458b;
+    public static final v f10460c = new v(Collections.EMPTY_MAP, Collections.EMPTY_LIST);
+    public final Map f10461a;
+    public final List f10462b;
 
     public v(Map map, List list) {
-        this.f10457a = map;
-        this.f10458b = list;
+        this.f10461a = map;
+        this.f10462b = list;
     }
 }

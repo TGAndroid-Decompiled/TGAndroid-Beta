@@ -14,20 +14,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class m10 extends View {
-    public TextPaint f27158a;
-    public Paint f27159b;
-    public Path f27160c;
+    public TextPaint f26874a;
+    public Paint f26875b;
+    public Path f26876c;
     public float[] d;
-    public h11 e;
-    public h11 f27161f;
-    public h11 h;
-    public LinearGradient f27162n;
-    public LinearGradient f27163r;
-    public Paint f27164s;
+    public i11 e;
+    public i11 f26877f;
+    public i11 h;
+    public LinearGradient f26878n;
+    public LinearGradient f26879r;
+    public Paint f26880s;
     public Paint v;
-    public Matrix f27165w;
-    public Matrix f27166x;
-    public r6 f27167y;
+    public Matrix f26881w;
+    public Matrix f26882x;
+    public r6 f26883y;
 
     public static CharSequence a(CharSequence charSequence) {
         if ("ALL_CHATS".equals(charSequence.toString())) {
@@ -42,26 +42,26 @@ public final class m10 extends View {
         float f10;
         float f11;
         float f12;
-        h11 h11Var;
+        i11 i11Var;
         float f13;
         float f14;
-        Paint paint = this.f27159b;
-        Matrix matrix = this.f27166x;
-        Matrix matrix2 = this.f27165w;
-        Path path = this.f27160c;
-        h11 h11Var2 = this.e;
-        r6 r6Var = this.f27167y;
-        h11 h11Var3 = this.h;
+        Paint paint = this.f26875b;
+        Matrix matrix = this.f26882x;
+        Matrix matrix2 = this.f26881w;
+        Path path = this.f26876c;
+        i11 i11Var2 = this.e;
+        r6 r6Var = this.f26883y;
+        i11 i11Var3 = this.h;
         super.onDraw(canvas);
         canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
         float measuredWidth = getMeasuredWidth() / 2.0f;
         float measuredHeight = getMeasuredHeight() / 2.0f;
-        h11 h11Var4 = this.f27161f;
-        if (h11Var4 != null) {
+        i11 i11Var4 = this.f26877f;
+        if (i11Var4 != null) {
             canvas.save();
-            float f15 = h11Var4.f25473c;
+            float f15 = i11Var4.f25455c;
             f7 = 15.32f;
-            CharSequence charSequence = r6Var.f28753i;
+            CharSequence charSequence = r6Var.f28440i;
             if (charSequence != null && charSequence.length() != 0) {
                 f14 = r6Var.c() + AndroidUtilities.dp(15.32f);
             } else {
@@ -69,8 +69,8 @@ public final class m10 extends View {
             }
             float f16 = f15 + f14;
             f10 = measuredWidth - (f16 / 2.0f);
-            canvas.translate(f10, measuredHeight - (h11Var4.j() / 2.0f));
-            h11Var4.d(canvas);
+            canvas.translate(f10, measuredHeight - (i11Var4.j() / 2.0f));
+            i11Var4.d(canvas);
             canvas.restore();
             f11 = f16;
         } else {
@@ -78,17 +78,17 @@ public final class m10 extends View {
             f10 = measuredWidth;
             f11 = 0.0f;
         }
-        CharSequence charSequence2 = r6Var.f28753i;
+        CharSequence charSequence2 = r6Var.f28440i;
         if (charSequence2 == null || charSequence2.length() == 0) {
             f12 = measuredHeight;
-            h11Var = h11Var4;
+            i11Var = i11Var4;
             f13 = 2.0f;
         } else {
             Rect rect = AndroidUtilities.rectTmp2;
             f13 = 2.0f;
             f12 = measuredHeight;
-            h11Var = h11Var4;
-            rect.set((int) (h11Var4.f25473c + f10 + AndroidUtilities.dp(4.66f)), (int) (measuredHeight - AndroidUtilities.dp(9.0f)), (int) (r6Var.c() + h11Var4.f25473c + f10 + AndroidUtilities.dp(f7)), (int) (f12 + AndroidUtilities.dp(9.0f)));
+            i11Var = i11Var4;
+            rect.set((int) (i11Var4.f25455c + f10 + AndroidUtilities.dp(4.66f)), (int) (measuredHeight - AndroidUtilities.dp(9.0f)), (int) (r6Var.c() + i11Var4.f25455c + f10 + AndroidUtilities.dp(f7)), (int) (f12 + AndroidUtilities.dp(9.0f)));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint);
@@ -97,22 +97,22 @@ public final class m10 extends View {
             r6Var.draw(canvas);
         }
         float dp = AndroidUtilities.dp(30.0f);
-        float f17 = (f10 - dp) - h11Var2.f25473c;
+        float f17 = (f10 - dp) - i11Var2.f25455c;
         canvas.save();
-        canvas.translate(f17, (f12 - (h11Var2.j() / f13)) + AndroidUtilities.dp(1.0f));
-        h11Var2.d(canvas);
+        canvas.translate(f17, (f12 - (i11Var2.j() / f13)) + AndroidUtilities.dp(1.0f));
+        i11Var2.d(canvas);
         canvas.restore();
         float f18 = f10 + f11;
-        if (h11Var3 != null) {
+        if (i11Var3 != null) {
             canvas.save();
-            canvas.translate(f18 + dp, (f12 - (h11Var3.j() / f13)) + AndroidUtilities.dp(1.0f));
-            h11Var3.d(canvas);
+            canvas.translate(f18 + dp, (f12 - (i11Var3.j() / f13)) + AndroidUtilities.dp(1.0f));
+            i11Var3.d(canvas);
             canvas.restore();
-            f18 += dp + h11Var3.f25473c;
+            f18 += dp + i11Var3.f25455c;
         }
         float f19 = f18;
-        float dp2 = AndroidUtilities.dp(12.0f) + (h11Var.j() / f13) + f12;
-        canvas.drawRect(0.0f, dp2, getMeasuredWidth(), 1.0f + dp2, this.f27158a);
+        float dp2 = AndroidUtilities.dp(12.0f) + (i11Var.j() / f13) + f12;
+        canvas.drawRect(0.0f, dp2, getMeasuredWidth(), 1.0f + dp2, this.f26874a);
         path.rewind();
         RectF rectF2 = AndroidUtilities.rectTmp;
         float f20 = f11 / f13;
@@ -124,12 +124,12 @@ public final class m10 extends View {
         float max = Math.max(AndroidUtilities.dp(8.0f), f17);
         matrix2.reset();
         matrix2.postTranslate(Math.min(f10, max + AndroidUtilities.dp(8.0f)), 0.0f);
-        this.f27162n.setLocalMatrix(matrix2);
+        this.f26878n.setLocalMatrix(matrix2);
         float min = Math.min(getMeasuredWidth() - AndroidUtilities.dp(8.0f), f19);
         matrix.reset();
         matrix.postTranslate(Math.max(f21, min - AndroidUtilities.dp(88.0f)), 0.0f);
-        this.f27163r.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f27164s);
+        this.f26879r.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f26880s);
         canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.v);
         canvas.restore();
         canvas.restore();
@@ -137,7 +137,7 @@ public final class m10 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f27167y && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f26883y && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

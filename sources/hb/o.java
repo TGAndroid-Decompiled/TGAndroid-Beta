@@ -7,34 +7,34 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 public final class o extends eb.u {
-    public final int f10439a;
-    public final Object f10440b;
-    public final Object f10441c;
+    public final int f10443a;
+    public final Object f10444b;
+    public final Object f10445c;
     public final Object d;
 
     public o(eb.g gVar, eb.u uVar, Type type) {
-        this.f10439a = 1;
-        this.f10440b = gVar;
-        this.f10441c = uVar;
+        this.f10443a = 1;
+        this.f10444b = gVar;
+        this.f10445c = uVar;
         this.d = type;
     }
 
     @Override
     public final Object read(mb.a aVar) {
-        switch (this.f10439a) {
+        switch (this.f10443a) {
             case 0:
                 int x10 = aVar.x();
                 if (x10 == 9) {
                     aVar.t();
                     return null;
                 }
-                Map map = (Map) ((gb.o) this.d).f2();
+                Map map = (Map) ((gb.p) this.d).i2();
                 if (x10 == 1) {
                     aVar.a();
                     while (aVar.k()) {
                         aVar.a();
-                        Object read = ((eb.u) ((o) this.f10440b).f10441c).read(aVar);
-                        if (map.put(read, ((eb.u) ((o) this.f10441c).f10441c).read(aVar)) == null) {
+                        Object read = ((eb.u) ((o) this.f10444b).f10445c).read(aVar);
+                        if (map.put(read, ((eb.u) ((o) this.f10445c).f10445c).read(aVar)) == null) {
                             aVar.e();
                         } else {
                             throw new RuntimeException("duplicate key: " + read);
@@ -44,7 +44,7 @@ public final class o extends eb.u {
                 } else {
                     aVar.b();
                     while (aVar.k()) {
-                        rb.b.f44088b.getClass();
+                        rb.b.f43847b.getClass();
                         if (aVar instanceof l) {
                             l lVar = (l) aVar;
                             lVar.F(5);
@@ -66,8 +66,8 @@ public final class o extends eb.u {
                                 throw aVar.E("a name");
                             }
                         }
-                        Object read2 = ((eb.u) ((o) this.f10440b).f10441c).read(aVar);
-                        if (map.put(read2, ((eb.u) ((o) this.f10441c).f10441c).read(aVar)) != null) {
+                        Object read2 = ((eb.u) ((o) this.f10444b).f10445c).read(aVar);
+                        if (map.put(read2, ((eb.u) ((o) this.f10445c).f10445c).read(aVar)) != null) {
                             throw new RuntimeException("duplicate key: " + read2);
                         }
                     }
@@ -75,16 +75,16 @@ public final class o extends eb.u {
                 }
                 return map;
             case 1:
-                return ((eb.u) this.f10441c).read(aVar);
+                return ((eb.u) this.f10445c).read(aVar);
             default:
                 if (aVar.x() == 9) {
                     aVar.t();
                     return null;
                 }
                 String v = aVar.v();
-                Enum r02 = (Enum) ((HashMap) this.f10440b).get(v);
+                Enum r02 = (Enum) ((HashMap) this.f10444b).get(v);
                 if (r02 == null) {
-                    return (Enum) ((HashMap) this.f10441c).get(v);
+                    return (Enum) ((HashMap) this.f10445c).get(v);
                 }
                 return r02;
         }
@@ -95,18 +95,18 @@ public final class o extends eb.u {
         throw new UnsupportedOperationException("Method not decompiled: hb.o.write(mb.b, java.lang.Object):void");
     }
 
-    public o(d dVar, eb.g gVar, Type type, eb.u uVar, Type type2, eb.u uVar2, gb.o oVar) {
-        this.f10439a = 0;
-        this.f10440b = new o(gVar, uVar, type);
-        this.f10441c = new o(gVar, uVar2, type2);
-        this.d = oVar;
+    public o(d dVar, eb.g gVar, Type type, eb.u uVar, Type type2, eb.u uVar2, gb.p pVar) {
+        this.f10443a = 0;
+        this.f10444b = new o(gVar, uVar, type);
+        this.f10445c = new o(gVar, uVar2, type2);
+        this.d = pVar;
     }
 
     public o(Class cls) {
         Field[] fieldArr;
-        this.f10439a = 2;
-        this.f10440b = new HashMap();
-        this.f10441c = new HashMap();
+        this.f10443a = 2;
+        this.f10444b = new HashMap();
+        this.f10445c = new HashMap();
         this.d = new HashMap();
         try {
             for (Field field : (Field[]) AccessController.doPrivileged(new g1(cls))) {
@@ -117,11 +117,11 @@ public final class o extends eb.u {
                 if (bVar != null) {
                     name = bVar.value();
                     for (String str2 : bVar.alternate()) {
-                        ((HashMap) this.f10440b).put(str2, r42);
+                        ((HashMap) this.f10444b).put(str2, r42);
                     }
                 }
-                ((HashMap) this.f10440b).put(name, r42);
-                ((HashMap) this.f10441c).put(str, r42);
+                ((HashMap) this.f10444b).put(name, r42);
+                ((HashMap) this.f10445c).put(str, r42);
                 ((HashMap) this.d).put(r42, name);
             }
         } catch (IllegalAccessException e) {

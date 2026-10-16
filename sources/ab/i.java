@@ -7,14 +7,14 @@ public enum i implements la.f {
     COLLECTION_DISABLED_REMOTE(4),
     COLLECTION_SAMPLED(5);
     
-    public final int f410a;
+    public final int f414a;
 
     i(int i10) {
-        this.f410a = i10;
+        this.f414a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f410a;
+        return this.f414a;
     }
 }

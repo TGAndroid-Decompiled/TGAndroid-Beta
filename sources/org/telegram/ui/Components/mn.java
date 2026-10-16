@@ -1,29 +1,29 @@
 package org.telegram.ui.Components;
-public final class mn extends org.telegram.ui.av0 {
-    public boolean f27464a;
-    public final int f27465b;
-    public final io f27466c;
+public final class mn extends org.telegram.ui.zu0 {
+    public boolean f27173a;
+    public final int f27174b;
+    public final io f27175c;
 
     public mn(io ioVar, int i10) {
-        this.f27466c = ioVar;
-        this.f27465b = i10;
+        this.f27175c = ioVar;
+        this.f27174b = i10;
     }
 
     @Override
     public final void D() {
-        if (this.f27464a) {
-            this.f27466c.e0(this.f27465b);
+        if (this.f27173a) {
+            this.f27175c.e0(this.f27174b);
         }
     }
 
     @Override
-    public final void I() {
-        this.f27466c.h0(this.f27465b, null);
+    public final void J() {
+        this.f27175c.h0(this.f27174b, null);
     }
 
     @Override
-    public final void V() {
-        this.f27464a = true;
+    public final void W() {
+        this.f27173a = true;
     }
 
     @Override

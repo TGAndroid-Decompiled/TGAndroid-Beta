@@ -1,28 +1,30 @@
 package org.telegram.ui.web;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.ui.Wallet.z6;
 public final class i1 extends AsyncTask {
-    public final HashMap f41386a = new HashMap();
-    public final Utilities.Callback f41387b;
-    public Exception f41388c;
+    public final HashMap f41074a = new HashMap();
+    public final z6 f41075b;
+    public Exception f41076c;
 
-    public i1(Utilities.Callback callback) {
-        this.f41387b = callback;
+    public i1(z6 z6Var) {
+        this.f41075b = z6Var;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
-        BufferedReader bufferedReader;
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f41386a.entrySet()) {
+            for (Map.Entry entry : this.f41074a.entrySet()) {
                 if (entry.getKey() != null && entry.getValue() != null) {
                     httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                 }
@@ -31,35 +33,28 @@ public final class i1 extends AsyncTask {
             httpURLConnection.setDoInput(true);
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode >= 200 && responseCode < 300) {
-                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            } else {
-                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
-            }
-            StringBuilder sb2 = new StringBuilder();
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine != null) {
-                    sb2.append(readLine);
-                } else {
-                    bufferedReader.close();
-                    return sb2.toString();
+                if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
+                    return SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
                 }
+                return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
             }
+            httpURLConnection.disconnect();
+            return null;
         } catch (Exception e) {
-            this.f41388c = e;
+            this.f41076c = e;
             return null;
         }
     }
 
     @Override
     public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        Utilities.Callback callback = this.f41387b;
-        if (callback != null) {
-            if (this.f41388c == null) {
-                callback.run(str);
+        Bitmap bitmap = (Bitmap) obj;
+        z6 z6Var = this.f41075b;
+        if (z6Var != null) {
+            if (this.f41076c == null) {
+                z6Var.run(bitmap);
             } else {
-                callback.run(null);
+                z6Var.run(null);
             }
         }
     }

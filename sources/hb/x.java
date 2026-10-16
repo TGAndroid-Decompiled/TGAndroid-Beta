@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import v7.r8;
 public final class x implements eb.v {
-    public final qf.b f10461a;
-    public final gb.g f10462b;
-    public final j f10463c;
+    public final qf.b f10465a;
+    public final gb.h f10466b;
+    public final j f10467c;
     public final ArrayList d;
 
-    public x(qf.b bVar, gb.g gVar, j jVar, ArrayList arrayList) {
-        this.f10461a = bVar;
-        this.f10462b = gVar;
-        this.f10463c = jVar;
+    public x(qf.b bVar, gb.h hVar, j jVar, ArrayList arrayList) {
+        this.f10465a = bVar;
+        this.f10466b = hVar;
+        this.f10467c = jVar;
         this.d = arrayList;
     }
 
@@ -29,16 +29,16 @@ public final class x implements eb.v {
     public final boolean c(Field field, boolean z10) {
         List<eb.a> list;
         boolean z11;
-        gb.g gVar = this.f10462b;
-        gVar.getClass();
-        if ((136 & field.getModifiers()) != 0 || field.isSynthetic() || gVar.b(field.getType(), z10)) {
+        gb.h hVar = this.f10466b;
+        hVar.getClass();
+        if ((136 & field.getModifiers()) != 0 || field.isSynthetic() || hVar.b(field.getType(), z10)) {
             z11 = true;
             break;
         }
         if (z10) {
-            list = gVar.f10050a;
+            list = hVar.f10054a;
         } else {
-            list = gVar.f10051b;
+            list = hVar.f10055b;
         }
         if (!list.isEmpty()) {
             eb.b bVar = new eb.b(field);
@@ -59,14 +59,14 @@ public final class x implements eb.v {
         if (!Object.class.isAssignableFrom(cls)) {
             return null;
         }
-        r8 r8Var = jb.c.f12954a;
+        r8 r8Var = jb.c.f12958a;
         if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
             return new eb.d(2);
         }
         gb.d.f(this.d);
-        if (jb.c.f12954a.d(cls)) {
+        if (jb.c.f12958a.d(cls)) {
             return new w(cls, b(gVar, aVar, cls, true));
         }
-        return new u(this.f10461a.S(aVar), b(gVar, aVar, cls, false));
+        return new u(this.f10465a.W(aVar), b(gVar, aVar, cls, false));
     }
 }

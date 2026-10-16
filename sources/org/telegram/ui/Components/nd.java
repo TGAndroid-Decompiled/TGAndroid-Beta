@@ -5,12 +5,12 @@ import android.graphics.drawable.Drawable;
 import androidx.mediarouter.app.MediaRouteButton;
 import java.lang.reflect.Field;
 public abstract class nd extends MediaRouteButton {
-    public boolean f27656a;
+    public boolean f27342a;
 
     public final void a() {
         boolean b10 = b();
-        if (this.f27656a != b10) {
-            this.f27656a = b10;
+        if (this.f27342a != b10) {
+            this.f27342a = b10;
             c(b10);
         }
     }

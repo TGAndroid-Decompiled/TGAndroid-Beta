@@ -3,5 +3,5 @@ package hg;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class d0 extends LinearLayout {
-    public TextView f10523a;
+    public TextView f10527a;
 }

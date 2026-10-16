@@ -23,7 +23,7 @@ public final class r implements p0 {
     public r(w wVar, Context context) {
         this.f189g = wVar;
         e2.m0.N(context);
-        e9.l0 l0Var = e9.n0.f8592b;
+        e9.l0 l0Var = e9.n0.f8595b;
         this.f185a = x1.e;
         this.d = -9223372036854775807L;
         this.f188f = w.f192q;
@@ -63,7 +63,7 @@ public final class r implements p0 {
         if (oVar == null || !oVar.d()) {
             oVar = b2.o.h;
         }
-        int i10 = oVar.f2235c;
+        int i10 = oVar.f2239c;
         if (i10 == 7) {
             try {
                 int i11 = Build.VERSION.SDK_INT;
@@ -133,7 +133,7 @@ public final class r implements p0 {
 
     @Override
     public final void g(a6.i iVar) {
-        this.f188f = j9.r.f12940a;
+        this.f188f = j9.r.f12944a;
     }
 
     @Override
@@ -159,7 +159,7 @@ public final class r implements p0 {
     public final void k() {
         w wVar = this.f189g;
         wVar.getClass();
-        int i10 = e2.y.f8414c.f8415a;
+        int i10 = e2.y.f8417c.f8418a;
         wVar.f201l = null;
     }
 
@@ -223,7 +223,7 @@ public final class r implements p0 {
                 r2.l lVar = jVar.f125a;
                 int i11 = jVar.f126b;
                 Trace.beginSection("dropVideoBuffer");
-                lVar.f(i11);
+                lVar.e(i11);
                 Trace.endSection();
                 nVar.R0(0, 1);
                 return true;
@@ -281,7 +281,7 @@ public final class r implements p0 {
         }
         e2.i0 i0Var = wVar.f200k;
         if (i0Var != null) {
-            i0Var.f8357a.removeCallbacksAndMessages(null);
+            i0Var.f8360a.removeCallbacksAndMessages(null);
         }
         wVar.f201l = null;
         wVar.f203n = 2;
@@ -295,7 +295,7 @@ public final class r implements p0 {
             return;
         }
         wVar.f201l = Pair.create(surface, yVar);
-        int i10 = yVar.f8415a;
+        int i10 = yVar.f8418a;
     }
 
     @Override

@@ -10,14 +10,14 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class d5 implements Runnable {
-    public final int f6821a;
-    public final o6 f6822b;
-    public final rg.j f6823c;
+    public final int f6824a;
+    public final o6 f6825b;
+    public final rg.j f6826c;
 
     public d5(o6 o6Var, rg.j jVar, int i10) {
-        this.f6821a = i10;
-        this.f6822b = o6Var;
-        this.f6823c = jVar;
+        this.f6824a = i10;
+        this.f6825b = o6Var;
+        this.f6826c = jVar;
     }
 
     @Override
@@ -25,18 +25,18 @@ public final class d5 implements Runnable {
         int i10;
         int i11;
         int i12;
-        switch (this.f6821a) {
+        switch (this.f6824a) {
             case 0:
-                this.f6822b.B0(this.f6823c);
+                this.f6825b.B0(this.f6826c);
                 return;
             default:
-                final o6 o6Var = this.f6822b;
+                final o6 o6Var = this.f6825b;
                 i6 i6Var = o6Var.R0;
                 r5 r5Var = o6Var.O1;
                 c6 c6Var = o6Var.G1;
                 LinearLayout linearLayout = new LinearLayout(o6Var.getContext());
                 linearLayout.setOrientation(0);
-                final rg.j jVar = this.f6823c;
+                final rg.j jVar = this.f6826c;
                 boolean z10 = jVar instanceof rg.g1;
                 if (!z10) {
                     TextView textView = new TextView(o6Var.getContext());
@@ -60,7 +60,7 @@ public final class d5 implements Runnable {
                                     boolean z11 = jVar2 instanceof rg.d2;
                                     o6 o6Var2 = o6Var;
                                     if (z11) {
-                                        ac acVar = ((mb) o6Var2).A2.f7243c1;
+                                        ac acVar = ((mb) o6Var2).A2.f7246c1;
                                         if (acVar != null) {
                                             acVar.B();
                                         }
@@ -127,7 +127,7 @@ public final class d5 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f44230r0 = !d2Var.f44230r0;
+                                        d2Var.f43989r0 = !d2Var.f43989r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -165,7 +165,7 @@ public final class d5 implements Runnable {
                                             rg.x2 x2Var2 = new rg.x2(o6Var9.getContext(), (rg.x2) jVar6, P0);
                                             x2Var2.setDelegate(o6Var9);
                                             x2Var2.setMaxWidth(o6Var9.R1 - AndroidUtilities.dp(32.0f));
-                                            i6Var2.addView(x2Var2, w7.a6.d(-2.0f, -2));
+                                            i6Var2.addView(x2Var2, w7.z5.d(-2.0f, -2));
                                             o6Var9.f0();
                                             x2Var = x2Var2;
                                         }
@@ -182,7 +182,7 @@ public final class d5 implements Runnable {
                             }
                         }
                     });
-                    linearLayout.addView(textView, w7.a6.n(-2, 44));
+                    linearLayout.addView(textView, w7.z5.n(-2, 44));
                 }
                 if (jVar instanceof rg.x2) {
                     TextView textView2 = new TextView(o6Var.getContext());
@@ -194,7 +194,7 @@ public final class d5 implements Runnable {
                     textView2.setTypeface(AndroidUtilities.bold());
                     textView2.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
                     textView2.setTextSize(1, 14.0f);
-                    if ((r5Var.c() && !r5Var.d) || o6Var.f7549t2 > 0) {
+                    if ((r5Var.c() && !r5Var.d) || o6Var.f7552t2 > 0) {
                         textView2.setTag(3);
                         textView2.setText(LocaleController.getString(R.string.Paste));
                         textView2.setOnClickListener(new View.OnClickListener() {
@@ -207,7 +207,7 @@ public final class d5 implements Runnable {
                                         boolean z11 = jVar2 instanceof rg.d2;
                                         o6 o6Var2 = o6Var;
                                         if (z11) {
-                                            ac acVar = ((mb) o6Var2).A2.f7243c1;
+                                            ac acVar = ((mb) o6Var2).A2.f7246c1;
                                             if (acVar != null) {
                                                 acVar.B();
                                             }
@@ -274,7 +274,7 @@ public final class d5 implements Runnable {
                                             ((rg.c2) jVar5).r(true);
                                         } else if (jVar5 instanceof rg.d2) {
                                             rg.d2 d2Var = (rg.d2) jVar5;
-                                            d2Var.f44230r0 = !d2Var.f44230r0;
+                                            d2Var.f43989r0 = !d2Var.f43989r0;
                                             d2Var.invalidate();
                                         } else {
                                             ((rg.z1) jVar5).r(true);
@@ -312,7 +312,7 @@ public final class d5 implements Runnable {
                                                 rg.x2 x2Var2 = new rg.x2(o6Var9.getContext(), (rg.x2) jVar6, P0);
                                                 x2Var2.setDelegate(o6Var9);
                                                 x2Var2.setMaxWidth(o6Var9.R1 - AndroidUtilities.dp(32.0f));
-                                                i6Var2.addView(x2Var2, w7.a6.d(-2.0f, -2));
+                                                i6Var2.addView(x2Var2, w7.z5.d(-2.0f, -2));
                                                 o6Var9.f0();
                                                 x2Var = x2Var2;
                                             }
@@ -342,7 +342,7 @@ public final class d5 implements Runnable {
                                         boolean z11 = jVar2 instanceof rg.d2;
                                         o6 o6Var2 = o6Var;
                                         if (z11) {
-                                            ac acVar = ((mb) o6Var2).A2.f7243c1;
+                                            ac acVar = ((mb) o6Var2).A2.f7246c1;
                                             if (acVar != null) {
                                                 acVar.B();
                                             }
@@ -409,7 +409,7 @@ public final class d5 implements Runnable {
                                             ((rg.c2) jVar5).r(true);
                                         } else if (jVar5 instanceof rg.d2) {
                                             rg.d2 d2Var = (rg.d2) jVar5;
-                                            d2Var.f44230r0 = !d2Var.f44230r0;
+                                            d2Var.f43989r0 = !d2Var.f43989r0;
                                             d2Var.invalidate();
                                         } else {
                                             ((rg.z1) jVar5).r(true);
@@ -447,7 +447,7 @@ public final class d5 implements Runnable {
                                                 rg.x2 x2Var2 = new rg.x2(o6Var9.getContext(), (rg.x2) jVar6, P0);
                                                 x2Var2.setDelegate(o6Var9);
                                                 x2Var2.setMaxWidth(o6Var9.R1 - AndroidUtilities.dp(32.0f));
-                                                i6Var2.addView(x2Var2, w7.a6.d(-2.0f, -2));
+                                                i6Var2.addView(x2Var2, w7.z5.d(-2.0f, -2));
                                                 o6Var9.f0();
                                                 x2Var = x2Var2;
                                             }
@@ -465,7 +465,7 @@ public final class d5 implements Runnable {
                             }
                         });
                     }
-                    linearLayout.addView(textView2, w7.a6.n(-2, 44));
+                    linearLayout.addView(textView2, w7.z5.n(-2, 44));
                 } else if (jVar instanceof rg.v0) {
                     TextView g02 = o6Var.g0(1, LocaleController.getString(R.string.PaintEdit));
                     g02.setOnClickListener(new View.OnClickListener() {
@@ -478,7 +478,7 @@ public final class d5 implements Runnable {
                                     boolean z11 = jVar2 instanceof rg.d2;
                                     o6 o6Var2 = o6Var;
                                     if (z11) {
-                                        ac acVar = ((mb) o6Var2).A2.f7243c1;
+                                        ac acVar = ((mb) o6Var2).A2.f7246c1;
                                         if (acVar != null) {
                                             acVar.B();
                                         }
@@ -545,7 +545,7 @@ public final class d5 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f44230r0 = !d2Var.f44230r0;
+                                        d2Var.f43989r0 = !d2Var.f43989r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -583,7 +583,7 @@ public final class d5 implements Runnable {
                                             rg.x2 x2Var2 = new rg.x2(o6Var9.getContext(), (rg.x2) jVar6, P0);
                                             x2Var2.setDelegate(o6Var9);
                                             x2Var2.setMaxWidth(o6Var9.R1 - AndroidUtilities.dp(32.0f));
-                                            i6Var2.addView(x2Var2, w7.a6.d(-2.0f, -2));
+                                            i6Var2.addView(x2Var2, w7.z5.d(-2.0f, -2));
                                             o6Var9.f0();
                                             x2Var = x2Var2;
                                         }
@@ -600,7 +600,7 @@ public final class d5 implements Runnable {
                             }
                         }
                     });
-                    linearLayout.addView(g02, w7.a6.n(-2, 44));
+                    linearLayout.addView(g02, w7.z5.n(-2, 44));
                 } else if (jVar instanceof rg.s0) {
                     TextView g03 = o6Var.g0(1, LocaleController.getString(R.string.PaintEdit));
                     g03.setOnClickListener(new View.OnClickListener() {
@@ -613,7 +613,7 @@ public final class d5 implements Runnable {
                                     boolean z11 = jVar2 instanceof rg.d2;
                                     o6 o6Var2 = o6Var;
                                     if (z11) {
-                                        ac acVar = ((mb) o6Var2).A2.f7243c1;
+                                        ac acVar = ((mb) o6Var2).A2.f7246c1;
                                         if (acVar != null) {
                                             acVar.B();
                                         }
@@ -680,7 +680,7 @@ public final class d5 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f44230r0 = !d2Var.f44230r0;
+                                        d2Var.f43989r0 = !d2Var.f43989r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -718,7 +718,7 @@ public final class d5 implements Runnable {
                                             rg.x2 x2Var2 = new rg.x2(o6Var9.getContext(), (rg.x2) jVar6, P0);
                                             x2Var2.setDelegate(o6Var9);
                                             x2Var2.setMaxWidth(o6Var9.R1 - AndroidUtilities.dp(32.0f));
-                                            i6Var2.addView(x2Var2, w7.a6.d(-2.0f, -2));
+                                            i6Var2.addView(x2Var2, w7.z5.d(-2.0f, -2));
                                             o6Var9.f0();
                                             x2Var = x2Var2;
                                         }
@@ -735,7 +735,7 @@ public final class d5 implements Runnable {
                             }
                         }
                     });
-                    linearLayout.addView(g03, w7.a6.n(-2, 44));
+                    linearLayout.addView(g03, w7.z5.n(-2, 44));
                 }
                 if ((jVar instanceof rg.q2) || (jVar instanceof rg.d2) || (jVar instanceof rg.z1) || (jVar instanceof rg.c2)) {
                     TextView g04 = o6Var.g0(4, LocaleController.getString(R.string.Flip));
@@ -749,7 +749,7 @@ public final class d5 implements Runnable {
                                     boolean z11 = jVar2 instanceof rg.d2;
                                     o6 o6Var2 = o6Var;
                                     if (z11) {
-                                        ac acVar = ((mb) o6Var2).A2.f7243c1;
+                                        ac acVar = ((mb) o6Var2).A2.f7246c1;
                                         if (acVar != null) {
                                             acVar.B();
                                         }
@@ -816,7 +816,7 @@ public final class d5 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f44230r0 = !d2Var.f44230r0;
+                                        d2Var.f43989r0 = !d2Var.f43989r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -854,7 +854,7 @@ public final class d5 implements Runnable {
                                             rg.x2 x2Var2 = new rg.x2(o6Var9.getContext(), (rg.x2) jVar6, P0);
                                             x2Var2.setDelegate(o6Var9);
                                             x2Var2.setMaxWidth(o6Var9.R1 - AndroidUtilities.dp(32.0f));
-                                            i6Var2.addView(x2Var2, w7.a6.d(-2.0f, -2));
+                                            i6Var2.addView(x2Var2, w7.z5.d(-2.0f, -2));
                                             o6Var9.f0();
                                             x2Var = x2Var2;
                                         }
@@ -871,7 +871,7 @@ public final class d5 implements Runnable {
                             }
                         }
                     });
-                    linearLayout.addView(g04, w7.a6.n(-2, 44));
+                    linearLayout.addView(g04, w7.z5.n(-2, 44));
                 }
                 boolean z11 = jVar instanceof rg.z1;
                 if (i6Var.indexOfChild(jVar) != i6Var.getChildCount() - 1 && !(jVar instanceof rg.c2)) {
@@ -896,7 +896,7 @@ public final class d5 implements Runnable {
                                     boolean z112 = jVar2 instanceof rg.d2;
                                     o6 o6Var2 = o6Var;
                                     if (z112) {
-                                        ac acVar = ((mb) o6Var2).A2.f7243c1;
+                                        ac acVar = ((mb) o6Var2).A2.f7246c1;
                                         if (acVar != null) {
                                             acVar.B();
                                         }
@@ -963,7 +963,7 @@ public final class d5 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f44230r0 = !d2Var.f44230r0;
+                                        d2Var.f43989r0 = !d2Var.f43989r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -1001,7 +1001,7 @@ public final class d5 implements Runnable {
                                             rg.x2 x2Var2 = new rg.x2(o6Var9.getContext(), (rg.x2) jVar6, P0);
                                             x2Var2.setDelegate(o6Var9);
                                             x2Var2.setMaxWidth(o6Var9.R1 - AndroidUtilities.dp(32.0f));
-                                            i6Var2.addView(x2Var2, w7.a6.d(-2.0f, -2));
+                                            i6Var2.addView(x2Var2, w7.z5.d(-2.0f, -2));
                                             o6Var9.f0();
                                             x2Var = x2Var2;
                                         }
@@ -1018,7 +1018,7 @@ public final class d5 implements Runnable {
                             }
                         }
                     });
-                    linearLayout.addView(textView3, w7.a6.n(-2, 44));
+                    linearLayout.addView(textView3, w7.z5.n(-2, 44));
                 } else if (!z11 && !z10 && !(jVar instanceof rg.d2) && !(jVar instanceof rg.v0) && !(jVar instanceof rg.y2) && !(jVar instanceof rg.s0) && !(jVar instanceof rg.c2)) {
                     TextView textView4 = new TextView(o6Var.getContext());
                     textView4.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.E8, c6Var));
@@ -1041,7 +1041,7 @@ public final class d5 implements Runnable {
                                     boolean z112 = jVar2 instanceof rg.d2;
                                     o6 o6Var2 = o6Var;
                                     if (z112) {
-                                        ac acVar = ((mb) o6Var2).A2.f7243c1;
+                                        ac acVar = ((mb) o6Var2).A2.f7246c1;
                                         if (acVar != null) {
                                             acVar.B();
                                         }
@@ -1108,7 +1108,7 @@ public final class d5 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f44230r0 = !d2Var.f44230r0;
+                                        d2Var.f43989r0 = !d2Var.f43989r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -1146,7 +1146,7 @@ public final class d5 implements Runnable {
                                             rg.x2 x2Var2 = new rg.x2(o6Var9.getContext(), (rg.x2) jVar6, P0);
                                             x2Var2.setDelegate(o6Var9);
                                             x2Var2.setMaxWidth(o6Var9.R1 - AndroidUtilities.dp(32.0f));
-                                            i6Var2.addView(x2Var2, w7.a6.d(-2.0f, -2));
+                                            i6Var2.addView(x2Var2, w7.z5.d(-2.0f, -2));
                                             o6Var9.f0();
                                             x2Var = x2Var2;
                                         }
@@ -1163,11 +1163,11 @@ public final class d5 implements Runnable {
                             }
                         }
                     });
-                    linearLayout.addView(textView4, w7.a6.n(-2, 44));
+                    linearLayout.addView(textView4, w7.z5.n(-2, 44));
                 }
                 for (int i13 = 0; i13 < linearLayout.getChildCount(); i13++) {
                     View childAt = linearLayout.getChildAt(i13);
-                    int w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19990i6, c6Var);
+                    int w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19690i6, c6Var);
                     int i14 = 8;
                     if (i13 == 0) {
                         i10 = 8;

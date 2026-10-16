@@ -1,4 +1,6 @@
 package w2;
+
+import v0.k;
 public interface d {
-    public static final u9.d C = new u9.d(2);
+    public static final k C = new k(2);
 }

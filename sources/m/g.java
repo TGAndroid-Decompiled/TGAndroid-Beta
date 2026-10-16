@@ -2,17 +2,17 @@ package m;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-public final class g extends v implements i {
-    public final h d;
+public final class g extends x implements j {
+    public final i d;
 
-    public g(h hVar, Context context) {
+    public g(i iVar, Context context) {
         super(context, null, 2130968607);
-        this.d = hVar;
+        this.d = iVar;
         setClickable(true);
         setFocusable(true);
         setVisibility(0);
         setEnabled(true);
-        w7.r.a(this, getContentDescription());
+        w7.q.a(this, getContentDescription());
         setOnTouchListener(new l.b(this, this));
     }
 

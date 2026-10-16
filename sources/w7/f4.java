@@ -1,6 +1,6 @@
 package w7;
 public final class f4 implements ja.d {
-    public static final f4 f47259a = new Object();
+    public static final f4 f47258a = new Object();
 
     static {
         t8.b.s(t8.b.l(d.class, t8.b.p(5, t8.b.l(d.class, t8.b.p(4, t8.b.l(d.class, t8.b.p(3, t8.b.l(d.class, t8.b.p(2, t8.b.l(d.class, new a(1)))))))))));

@@ -1,31 +1,56 @@
 package org.telegram.ui.web;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-public final class e1 extends org.telegram.ui.ActionBar.j {
-    public final g1 f41339a;
+import org.telegram.ui.b31;
+public abstract class e1 {
+    public static boolean f41031a;
+    public static boolean f41032b;
+    public static ArrayList f41033c;
+    public static LongSparseArray d;
+    public static ArrayList e;
 
-    public e1(g1 g1Var) {
-        this.f41339a = g1Var;
+    public static ArrayList a(Utilities.Callback callback) {
+        boolean z10;
+        if (callback != null && !f41032b) {
+            if (e == null) {
+                e = new ArrayList();
+            }
+            e.add(callback);
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        b();
+        if (z10) {
+            return null;
+        }
+        return f41033c;
     }
 
-    @Override
-    public final void b(int i10) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        if (i10 == -1) {
-            g1 g1Var = this.f41339a;
-            kVar = ((org.telegram.ui.ActionBar.m2) g1Var).actionBar;
-            if (kVar.t()) {
-                kVar2 = ((org.telegram.ui.ActionBar.m2) g1Var).actionBar;
-                kVar2.s();
-                g1Var.f41360s.clear();
-                AndroidUtilities.forEachViews((RecyclerView) g1Var.f23964a, (Utilities.Callback<View>) new bi.f(23));
-                return;
+    public static void b() {
+        if (!f41031a && !f41032b) {
+            f41031a = true;
+            f41033c = new ArrayList();
+            d = new LongSparseArray();
+            Utilities.globalQueue.postRunnable(new b31(10));
+        }
+    }
+
+    public static void c(d1 d1Var) {
+        if (d1Var != null && d1Var.d != null) {
+            b();
+            d1 d1Var2 = (d1) d.get(d1Var.f41019a);
+            if (d1Var2 != null) {
+                d1Var2.d = d1Var.d;
+            } else {
+                f41033c.add(d1Var);
+                d.put(d1Var.f41019a, d1Var);
             }
-            g1Var.finishFragment();
+            AndroidUtilities.cancelRunOnUIThread(new b31(9));
+            AndroidUtilities.runOnUIThread(new b31(9), 1000L);
         }
     }
 }

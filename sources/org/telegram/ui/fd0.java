@@ -1,17 +1,15 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class fd0 extends org.telegram.ui.ActionBar.m1 {
-    public final nd0 f35802o;
-
-    public fd0(nd0 nd0Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f35802o = nd0Var;
-    }
-
-    @Override
-    public final void dismiss() {
-        d(true);
-        this.f35802o.I0 = null;
-    }
+import org.telegram.messenger.IMapsProvider;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class fd0 {
+    public long f35508a;
+    public TLRPC.Message f35509b;
+    public TLRPC.User f35510c;
+    public TLRPC.Chat d;
+    public IMapsProvider.IMarker e;
+    public IMapsProvider.IMarker f35511f;
+    public boolean f35512g;
+    public ImageReceiver h;
 }

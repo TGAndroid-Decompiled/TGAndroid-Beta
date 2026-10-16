@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class s8 implements DialogInterface.OnCancelListener {
-    public final int f39991a;
-    public final n9 f39992b;
-    public final int f39993c;
+    public final int f39715a;
+    public final n9 f39716b;
+    public final int f39717c;
 
     public s8(n9 n9Var, int i10, int i11) {
-        this.f39991a = i11;
-        this.f39992b = n9Var;
-        this.f39993c = i10;
+        this.f39715a = i11;
+        this.f39716b = n9Var;
+        this.f39717c = i10;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f39991a) {
+        switch (this.f39715a) {
             case 0:
-                this.f39992b.getConnectionsManager().cancelRequest(this.f39993c, true);
+                this.f39716b.getConnectionsManager().cancelRequest(this.f39717c, true);
                 return;
             default:
-                this.f39992b.getConnectionsManager().cancelRequest(this.f39993c, true);
+                this.f39716b.getConnectionsManager().cancelRequest(this.f39717c, true);
                 return;
         }
     }

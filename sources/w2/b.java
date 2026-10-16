@@ -44,7 +44,7 @@ public final class b extends l implements f {
         j jVar2 = (j) hVar;
         k kVar = (k) jVar;
         try {
-            ByteBuffer byteBuffer = jVar2.f10326c;
+            ByteBuffer byteBuffer = jVar2.f10330c;
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();
@@ -52,15 +52,15 @@ public final class b extends l implements f {
             if (z10) {
                 nVar.reset();
             }
-            z3.e w9 = nVar.w(0, limit, array);
+            z3.e x10 = nVar.x(0, limit, array);
             long j10 = jVar2.e;
-            long j11 = jVar2.f49268r;
+            long j11 = jVar2.f49267r;
             kVar.timeUs = j10;
-            kVar.f49269a = w9;
+            kVar.f49268a = x10;
             if (j11 != Long.MAX_VALUE) {
                 j10 = j11;
             }
-            kVar.f49270b = j10;
+            kVar.f49269b = j10;
             kVar.shouldBeSkipped = false;
             return null;
         } catch (g e) {

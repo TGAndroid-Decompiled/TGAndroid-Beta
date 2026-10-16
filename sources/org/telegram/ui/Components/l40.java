@@ -6,11 +6,11 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.SparseArray;
 public final class l40 extends xv0 {
-    public final o40 f26931f2;
+    public final o40 f26611f2;
 
     public l40(o40 o40Var, Context context, pv0 pv0Var, o40 o40Var2, k40 k40Var, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context, 0L, pv0Var, 0, null, null, null, 8, 0, o40Var2, k40Var, 0, c6Var, null);
-        this.f26931f2 = o40Var;
+        this.f26611f2 = o40Var;
     }
 
     @Override
@@ -20,37 +20,37 @@ public final class l40 extends xv0 {
 
     @Override
     public final String getStoriesHashtag() {
-        return this.f26931f2.f27830b;
+        return this.f26611f2.f27529b;
     }
 
     @Override
     public final String getStoriesHashtagUsername() {
-        return this.f26931f2.f27831c;
+        return this.f26611f2.f27530c;
     }
 
     @Override
-    public final boolean t0() {
+    public final boolean u0() {
         return true;
     }
 
     @Override
-    public final void D0(SparseArray sparseArray) {
+    public final void E0(SparseArray sparseArray) {
     }
 
     @Override
-    public final void K0(boolean z10) {
+    public final void L0(boolean z10) {
     }
 
     @Override
-    public final void M0(float f7) {
+    public final void N0(float f7) {
     }
 
     @Override
-    public final void N0(boolean z10) {
+    public final void O0(boolean z10) {
     }
 
     @Override
-    public final void b1(boolean z10) {
+    public final void c1(boolean z10) {
     }
 
     @Override

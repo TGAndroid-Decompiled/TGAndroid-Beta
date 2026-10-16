@@ -19,7 +19,7 @@ public final class fx extends s4.s {
             wzVar.Y();
         }
         if (wzVar.T0 == null) {
-            hg.f1 f1Var = new hg.f1(wzVar, wzVar.f31014c1, wzVar.f31067t1.a(), wzVar.f31067t1.f(), 1);
+            hg.f1 f1Var = new hg.f1(wzVar, wzVar.f30707c1, wzVar.f30760t1.a(), wzVar.f30760t1.f(), 1);
             wzVar.T0 = f1Var;
             f1Var.a();
         }

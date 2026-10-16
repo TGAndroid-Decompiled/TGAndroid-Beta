@@ -6,17 +6,17 @@ import android.graphics.RectF;
 import android.os.SystemClock;
 import android.view.View;
 public abstract class xb extends org.telegram.ui.Components.ow0 {
-    public final ac f41818w0;
+    public final ac f41530w0;
 
     public xb(ac acVar, Context context) {
         super(context, null);
-        this.f41818w0 = acVar;
+        this.f41530w0 = acVar;
     }
 
     public final void Z(Canvas canvas, RectF rectF) {
         boolean z10;
         long uptimeMillis = SystemClock.uptimeMillis();
-        ac acVar = this.f41818w0;
+        ac acVar = this.f41530w0;
         if (acVar.v.Z0()) {
             canvas.save();
             canvas.clipRect(rectF);
@@ -56,11 +56,11 @@ public abstract class xb extends org.telegram.ui.Components.ow0 {
                         u1Var.X1(canvas);
                         canvas.restore();
                     }
-                } else if (childAt instanceof org.telegram.ui.Cells.x0) {
+                } else if (childAt instanceof org.telegram.ui.Cells.w0) {
                     acVar.v.drawChild(canvas, childAt, uptimeMillis);
                     canvas.save();
                     canvas.translate(childAt.getX(), childAt.getY());
-                    ((org.telegram.ui.Cells.x0) childAt).B(canvas);
+                    ((org.telegram.ui.Cells.w0) childAt).C(canvas);
                     canvas.restore();
                 } else {
                     acVar.v.drawChild(canvas, childAt, uptimeMillis);

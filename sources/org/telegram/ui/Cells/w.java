@@ -17,37 +17,37 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.yi0;
 public final class w extends FrameLayout implements Checkable {
-    public final boolean f22591a;
-    public final TextView f22592b;
-    public final TextView f22593c;
+    public final boolean f22288a;
+    public final TextView f22289b;
+    public final TextView f22290c;
     public final org.telegram.ui.Components.z9 d;
     public final yi0 e;
-    public final yi0 f22594f;
+    public final yi0 f22291f;
     public boolean h;
-    public Button f22595n;
-    public AnimatorSet f22596r;
-    public TLRPC.StickerSetCovered f22597s;
+    public Button f22292n;
+    public AnimatorSet f22293r;
+    public TLRPC.StickerSetCovered f22294s;
     public v v;
-    public boolean f22598w;
+    public boolean f22295w;
 
     public w(Context context, boolean z10) {
         super(context);
-        this.f22591a = z10;
+        this.f22288a = z10;
         if (z10) {
             yi0 yi0Var = new yi0(context);
-            this.f22594f = yi0Var;
-            this.f22595n = yi0Var;
+            this.f22291f = yi0Var;
+            this.f22292n = yi0Var;
             yi0Var.setText(LocaleController.getString(R.string.Add));
             yi0Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Sh, false));
             yi0Var.setProgressColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Nh, false));
             int x02 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Oh, false);
             org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Qh, false);
             yi0Var.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{14.0f}, x02));
-            addView(yi0Var, w7.a6.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
+            addView(yi0Var, w7.z5.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
             int dp = AndroidUtilities.dp(60.0f);
             yi0 yi0Var2 = new yi0(context);
             this.e = yi0Var2;
@@ -60,59 +60,59 @@ public final class w extends FrameLayout implements Checkable {
             yi0Var2.setText(LocaleController.getString(R.string.StickersRemove));
             yi0Var2.setBackground(org.telegram.ui.ActionBar.g6.H0(AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.g6.x0(null, i10, false)));
             yi0Var2.setTypeface(AndroidUtilities.bold());
-            w7.g6.a(yi0Var2, 8.0f, 0.0f, 8.0f, 0.0f);
+            w7.f6.a(yi0Var2, 8.0f, 0.0f, 8.0f, 0.0f);
             yi0Var2.setOutlineProvider(null);
-            addView(yi0Var2, w7.a6.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
+            addView(yi0Var2, w7.z5.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
             a aVar = new a(this, 2);
             yi0Var.setOnClickListener(aVar);
             yi0Var2.setOnClickListener(aVar);
             c(false);
         } else {
-            this.f22594f = null;
+            this.f22291f = null;
             this.e = null;
         }
         TextView textView = new TextView(context);
-        this.f22592b = textView;
-        yh.t(textView, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false), 1, 16.0f, 1);
+        this.f22289b = textView;
+        sk.u(textView, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false), 1, 16.0f, 1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(w7.a6.y());
-        addView(textView, w7.a6.i(-2.0f, -2.0f, 8388611, 71.0f, 10.0f, 21.0f, 0.0f));
+        textView.setGravity(w7.z5.y());
+        addView(textView, w7.z5.i(-2.0f, -2.0f, 8388611, 71.0f, 10.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f22593c = textView2;
-        yh.t(textView2, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20305z6, false), 1, 13.0f, 1);
+        this.f22290c = textView2;
+        sk.u(textView2, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20005z6, false), 1, 13.0f, 1);
         textView2.setMaxLines(1);
         textView2.setSingleLine(true);
-        textView2.setGravity(w7.a6.y());
-        addView(textView2, w7.a6.i(-2.0f, -2.0f, 8388611, 71.0f, 35.0f, 21.0f, 0.0f));
+        textView2.setGravity(w7.z5.y());
+        addView(textView2, w7.z5.i(-2.0f, -2.0f, 8388611, 71.0f, 35.0f, 21.0f, 0.0f));
         org.telegram.ui.Components.z9 z9Var = new org.telegram.ui.Components.z9(context);
         this.d = z9Var;
         z9Var.setAspectFit(true);
         z9Var.setLayerNum(1);
-        addView(z9Var, w7.a6.i(48.0f, 48.0f, 8388659, 12.0f, 8.0f, 0.0f, 0.0f));
+        addView(z9Var, w7.z5.i(48.0f, 48.0f, 8388659, 12.0f, 8.0f, 0.0f, 0.0f));
     }
 
     public final void a(boolean z10, boolean z11, boolean z12) {
         v vVar;
         int i10;
-        if (this.f22591a && this.f22598w != z10) {
-            this.f22598w = z10;
+        if (this.f22288a && this.f22295w != z10) {
+            this.f22295w = z10;
             c(z11);
             if (z12 && (vVar = this.v) != null) {
-                m4.z0 z0Var = (m4.z0) vVar;
-                org.telegram.ui.p pVar = ((org.telegram.ui.o) z0Var.f15690b).d;
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) z0Var.f15691c;
-                a0.h hVar = pVar.f39067a;
+                m4.y0 y0Var = (m4.y0) vVar;
+                org.telegram.ui.p pVar = ((org.telegram.ui.o) y0Var.f15420b).d;
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) y0Var.f15421c;
+                a0.h hVar = pVar.f38772a;
                 int i11 = 1;
                 if (z10) {
                     a(false, false, false);
-                    if (hVar.h(stickerSetCovered.set.f19243id) < 0) {
-                        yi0 yi0Var = this.f22594f;
+                    if (hVar.h(stickerSetCovered.set.f18943id) < 0) {
+                        yi0 yi0Var = this.f22291f;
                         if (yi0Var != null) {
                             yi0Var.a(true, true);
                         }
-                        hVar.k(stickerSetCovered, stickerSetCovered.set.f19243id);
+                        hVar.k(stickerSetCovered, stickerSetCovered.set.f18943id);
                     } else {
                         return;
                     }
@@ -136,12 +136,12 @@ public final class w extends FrameLayout implements Checkable {
         float f7;
         int i10;
         yi0 yi0Var;
-        if (this.f22591a) {
-            AnimatorSet animatorSet = this.f22596r;
+        if (this.f22288a) {
+            AnimatorSet animatorSet = this.f22293r;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            boolean z11 = this.f22598w;
+            boolean z11 = this.f22295w;
             float f10 = 0.0f;
             if (z11) {
                 f7 = 1.0f;
@@ -152,7 +152,7 @@ public final class w extends FrameLayout implements Checkable {
                 f10 = 1.0f;
             }
             int i11 = 4;
-            yi0 yi0Var2 = this.f22594f;
+            yi0 yi0Var2 = this.f22291f;
             yi0 yi0Var3 = this.e;
             if (z10) {
                 if (z11) {
@@ -160,13 +160,13 @@ public final class w extends FrameLayout implements Checkable {
                 } else {
                     yi0Var = yi0Var2;
                 }
-                this.f22595n = yi0Var;
+                this.f22292n = yi0Var;
                 yi0Var2.setVisibility(0);
                 yi0Var3.setVisibility(0);
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f22596r = animatorSet2;
+                this.f22293r = animatorSet2;
                 animatorSet2.setDuration(250L);
-                AnimatorSet animatorSet3 = this.f22596r;
+                AnimatorSet animatorSet3 = this.f22293r;
                 Property property = View.ALPHA;
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(yi0Var3, property, f7);
                 Property property2 = View.SCALE_X;
@@ -174,9 +174,9 @@ public final class w extends FrameLayout implements Checkable {
                 float[] fArr = {f7};
                 Property property3 = View.SCALE_Y;
                 animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(yi0Var3, property3, fArr), ObjectAnimator.ofFloat(yi0Var2, property, f10), ObjectAnimator.ofFloat(yi0Var2, property2, f10), ObjectAnimator.ofFloat(yi0Var2, property3, f10));
-                this.f22596r.addListener(new org.telegram.ui.u0(this, 8));
-                this.f22596r.setInterpolator(new OvershootInterpolator(1.02f));
-                this.f22596r.start();
+                this.f22293r.addListener(new org.telegram.ui.u0(this, 8));
+                this.f22293r.setInterpolator(new OvershootInterpolator(1.02f));
+                this.f22293r.start();
                 return;
             }
             if (z11) {
@@ -188,7 +188,7 @@ public final class w extends FrameLayout implements Checkable {
             yi0Var3.setAlpha(f7);
             yi0Var3.setScaleX(f7);
             yi0Var3.setScaleY(f7);
-            if (!this.f22598w) {
+            if (!this.f22295w) {
                 i11 = 0;
             }
             yi0Var2.setVisibility(i11);
@@ -199,18 +199,18 @@ public final class w extends FrameLayout implements Checkable {
     }
 
     public TLRPC.StickerSetCovered getStickersSet() {
-        return this.f22597s;
+        return this.f22294s;
     }
 
     @Override
     public final boolean isChecked() {
-        return this.f22598w;
+        return this.f22295w;
     }
 
     @Override
     public final void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
-        if (this.f22591a && view == this.f22592b) {
-            i11 += Math.max(this.f22594f.getMeasuredWidth(), this.e.getMeasuredWidth());
+        if (this.f22288a && view == this.f22289b) {
+            i11 += Math.max(this.f22291f.getMeasuredWidth(), this.e.getMeasuredWidth());
         }
         super.measureChildWithMargins(view, i10, i11, i12, i13);
     }
@@ -218,7 +218,7 @@ public final class w extends FrameLayout implements Checkable {
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.h) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.g6.f20022k0);
+            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.g6.f19722k0);
         }
     }
 
@@ -238,8 +238,8 @@ public final class w extends FrameLayout implements Checkable {
 
     @Override
     public final void toggle() {
-        if (this.f22591a) {
-            setChecked(!this.f22598w);
+        if (this.f22288a) {
+            setChecked(!this.f22295w);
         }
     }
 }

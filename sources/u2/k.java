@@ -6,16 +6,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.telegram.messenger.pk;
 import org.telegram.ui.Components.nz;
 import org.telegram.ui.ia;
-public final class k implements k0, n2.l {
+public final class k implements k0, n2.k {
     public final Object f45956a;
     public a5.a f45957b;
-    public n2.k f45958c;
+    public n2.j f45958c;
     public final m d;
 
     public k(m mVar, Object obj) {
         this.d = mVar;
         this.f45957b = mVar.b(null);
-        this.f45958c = new n2.k(mVar.d.f15965c, 0, null);
+        this.f45958c = new n2.j(mVar.d.f15676c, 0, null);
         this.f45956a = obj;
     }
 
@@ -45,7 +45,7 @@ public final class k implements k0, n2.l {
         if (l(i10, g0Var)) {
             a5.a aVar = this.f45957b;
             c0 m10 = m(c0Var, g0Var);
-            g0 g0Var2 = (g0) aVar.f280c;
+            g0 g0Var2 = (g0) aVar.f282c;
             g0Var2.getClass();
             aVar.l(new nz(aVar, g0Var2, m10, 11));
         }
@@ -57,7 +57,7 @@ public final class k implements k0, n2.l {
             a5.a aVar = this.f45957b;
             c0 m10 = m(c0Var, g0Var);
             aVar.getClass();
-            aVar.l(new org.telegram.ui.web.c0(10, aVar, m10));
+            aVar.l(new org.telegram.ui.web.o0(10, aVar, m10));
         }
     }
 
@@ -129,12 +129,12 @@ public final class k implements k0, n2.l {
         }
         int w9 = mVar.w(i10, obj);
         a5.a aVar = this.f45957b;
-        if (aVar.f279b != w9 || !Objects.equals((g0) aVar.f280c, g0Var2)) {
+        if (aVar.f281b != w9 || !Objects.equals((g0) aVar.f282c, g0Var2)) {
             this.f45957b = new a5.a((CopyOnWriteArrayList) mVar.f45861c.d, w9, g0Var2, 21);
         }
-        n2.k kVar = this.f45958c;
-        if (kVar.f15963a != w9 || !Objects.equals(kVar.f15964b, g0Var2)) {
-            this.f45958c = new n2.k(mVar.d.f15965c, w9, g0Var2);
+        n2.j jVar = this.f45958c;
+        if (jVar.f15674a != w9 || !Objects.equals(jVar.f15675b, g0Var2)) {
+            this.f45958c = new n2.j(mVar.d.f15676c, w9, g0Var2);
             return true;
         }
         return true;

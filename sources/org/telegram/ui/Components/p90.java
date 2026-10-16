@@ -7,33 +7,33 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class p90 implements View.OnClickListener {
-    public final int f28254a;
-    public final w90 f28255b;
+    public final int f27935a;
+    public final w90 f27936b;
 
     public p90(w90 w90Var, int i10) {
-        this.f28254a = i10;
-        this.f28255b = w90Var;
+        this.f27935a = i10;
+        this.f27936b = w90Var;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         int i10;
-        switch (this.f28254a) {
+        switch (this.f27935a) {
             case 0:
-                this.f28255b.f30831r.h();
+                this.f27936b.f30507r.i();
                 return;
             case 1:
-                w90 w90Var = this.f28255b;
-                org.telegram.ui.ActionBar.m1 m1Var = w90Var.f30832s;
+                w90 w90Var = this.f27936b;
+                org.telegram.ui.ActionBar.m1 m1Var = w90Var.f30508s;
                 if (m1Var != null) {
                     m1Var.d(true);
                 }
-                w90Var.f30831r.c();
+                w90Var.f30507r.c();
                 return;
             case 2:
-                w90 w90Var2 = this.f28255b;
-                String str = w90Var2.f30827b;
+                w90 w90Var2 = this.f27936b;
+                String str = w90Var2.f30503b;
                 if (str != null && str.endsWith("?direct")) {
                     z10 = true;
                 } else {
@@ -41,7 +41,7 @@ public final class p90 implements View.OnClickListener {
                 }
                 Context context = w90Var2.getContext();
                 String string = LocaleController.getString(R.string.InviteByQRCode);
-                String str2 = w90Var2.f30827b;
+                String str2 = w90Var2.f30503b;
                 String str3 = w90Var2.J;
                 if (str3 == null) {
                     if (w90Var2.H) {
@@ -59,28 +59,28 @@ public final class p90 implements View.OnClickListener {
                 w90Var2.E = t90Var;
                 t90Var.n(R.raw.qr_code_logo);
                 w90Var2.E.show();
-                org.telegram.ui.ActionBar.m1 m1Var2 = w90Var2.f30832s;
+                org.telegram.ui.ActionBar.m1 m1Var2 = w90Var2.f30508s;
                 if (m1Var2 != null) {
                     m1Var2.d(true);
                     return;
                 }
                 return;
             default:
-                w90 w90Var3 = this.f28255b;
-                org.telegram.ui.ActionBar.m1 m1Var3 = w90Var3.f30832s;
+                w90 w90Var3 = this.f27936b;
+                org.telegram.ui.ActionBar.m1 m1Var3 = w90Var3.f30508s;
                 if (m1Var3 != null) {
                     m1Var3.d(true);
                 }
-                org.telegram.ui.ActionBar.m2 m2Var = w90Var3.f30828c;
+                org.telegram.ui.ActionBar.m2 m2Var = w90Var3.f30504c;
                 if (m2Var.getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m2Var.getParentActivity());
-                    alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.RevokeLink);
-                    alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.RevokeAlert);
+                    alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.RevokeLink);
+                    alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.RevokeAlert);
                     alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new o90(w90Var3, 1));
                     alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                    TextView textView = (TextView) alertDialog$Builder.f19548a.d(-1);
+                    TextView textView = (TextView) alertDialog$Builder.f19248a.d(-1);
                     if (textView != null) {
-                        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20139q7, false));
+                        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19839q7, false));
                     }
                     alertDialog$Builder.o();
                     return;

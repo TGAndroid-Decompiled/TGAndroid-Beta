@@ -15,12 +15,11 @@ import java.util.regex.Pattern;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import w7.g0;
 public final class l extends o6.a {
     public static final androidx.biometric.e e;
-    public final List f4499a;
-    public final Bundle f4500b;
-    public int f4501c;
+    public final List f4502a;
+    public final Bundle f4503b;
+    public int f4504c;
     public static final String[] d = {"none", "String", "int", "double", "ISO-8601 date String", "Time in milliseconds as long"};
     public static final Parcelable.Creator<l> CREATOR = new v(11);
 
@@ -58,9 +57,9 @@ public final class l extends o6.a {
     }
 
     public l(ArrayList arrayList, Bundle bundle, int i10) {
-        this.f4499a = arrayList;
-        this.f4500b = bundle;
-        this.f4501c = i10;
+        this.f4502a = arrayList;
+        this.f4503b = bundle;
+        this.f4504c = i10;
     }
 
     public static void c(int i10, String str) {
@@ -104,7 +103,7 @@ public final class l extends o6.a {
 
     public final void b(String str, String str2) {
         c(1, str);
-        this.f4500b.putString(str, str2);
+        this.f4503b.putString(str, str2);
     }
 
     public final JSONObject d() {
@@ -112,10 +111,10 @@ public final class l extends o6.a {
         int i10;
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("metadataType", this.f4501c);
+            jSONObject.put("metadataType", this.f4504c);
         } catch (JSONException unused) {
         }
-        JSONArray b10 = h6.a.b(this.f4499a);
+        JSONArray b10 = h6.a.b(this.f4502a);
         if (b10.length() != 0) {
             try {
                 jSONObject.put("images", b10);
@@ -123,7 +122,7 @@ public final class l extends o6.a {
             }
         }
         ArrayList arrayList = new ArrayList();
-        int i11 = this.f4501c;
+        int i11 = this.f4504c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -152,7 +151,7 @@ public final class l extends o6.a {
             int size = arrayList.size();
             int i12 = 0;
             while (true) {
-                bundle = this.f4500b;
+                bundle = this.f4503b;
                 if (i12 >= size) {
                     break;
                 }
@@ -161,7 +160,7 @@ public final class l extends o6.a {
                 String str = (String) obj;
                 if (str != null && bundle.containsKey(str)) {
                     androidx.biometric.e eVar = e;
-                    String str2 = (String) ((HashMap) eVar.f1196b).get(str);
+                    String str2 = (String) ((HashMap) eVar.f1200b).get(str);
                     if (str2 != null) {
                         Integer num = (Integer) ((HashMap) eVar.d).get(str);
                         if (num != null) {
@@ -175,7 +174,7 @@ public final class l extends o6.a {
                                     if (i10 != 4) {
                                         if (i10 == 5) {
                                             long j10 = bundle.getLong(str);
-                                            Pattern pattern = g6.a.f9932a;
+                                            Pattern pattern = g6.a.f9935a;
                                             jSONObject.put(str2, j10 / 1000.0d);
                                         }
                                     }
@@ -210,14 +209,14 @@ public final class l extends o6.a {
     public final void e(JSONObject jSONObject) {
         HashSet hashSet;
         int i10;
-        Bundle bundle = this.f4500b;
+        Bundle bundle = this.f4503b;
         bundle.clear();
-        List list = this.f4499a;
+        List list = this.f4502a;
         list.clear();
         int i11 = 0;
-        this.f4501c = 0;
+        this.f4504c = 0;
         try {
-            this.f4501c = jSONObject.getInt("metadataType");
+            this.f4504c = jSONObject.getInt("metadataType");
         } catch (JSONException unused) {
         }
         JSONArray optJSONArray = jSONObject.optJSONArray("images");
@@ -225,7 +224,7 @@ public final class l extends o6.a {
             h6.a.c(list, optJSONArray);
         }
         ArrayList arrayList = new ArrayList();
-        int i12 = this.f4501c;
+        int i12 = this.f4504c;
         if (i12 != 0) {
             if (i12 != 1) {
                 if (i12 != 2) {
@@ -257,7 +256,7 @@ public final class l extends o6.a {
                 String next = keys.next();
                 if (next != null && !"metadataType".equals(next)) {
                     androidx.biometric.e eVar = e;
-                    String str = (String) ((HashMap) eVar.f1197c).get(next);
+                    String str = (String) ((HashMap) eVar.f1201c).get(next);
                     if (str != null) {
                         if (hashSet2.contains(str)) {
                             try {
@@ -275,7 +274,7 @@ public final class l extends o6.a {
                                                 if (i10 != 4) {
                                                     if (i10 == 5) {
                                                         long optLong = jSONObject.optLong(next);
-                                                        Pattern pattern = g6.a.f9932a;
+                                                        Pattern pattern = g6.a.f9935a;
                                                         hashSet = hashSet2;
                                                         try {
                                                             bundle.putLong(str, optLong * 1000);
@@ -338,7 +337,7 @@ public final class l extends o6.a {
         if (this != obj) {
             if (obj instanceof l) {
                 l lVar = (l) obj;
-                if (f(this.f4500b, lVar.f4500b) && this.f4499a.equals(lVar.f4499a)) {
+                if (f(this.f4503b, lVar.f4503b) && this.f4502a.equals(lVar.f4502a)) {
                     return true;
                 }
                 return false;
@@ -351,7 +350,7 @@ public final class l extends o6.a {
     public final int hashCode() {
         int i10;
         int i11 = 17;
-        Bundle bundle = this.f4500b;
+        Bundle bundle = this.f4503b;
         if (bundle != null) {
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
@@ -364,18 +363,18 @@ public final class l extends o6.a {
                 i11 = i12 + i10;
             }
         }
-        return this.f4499a.hashCode() + (i11 * 31);
+        return this.f4502a.hashCode() + (i11 * 31);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.p(parcel, 2, this.f4499a);
-        g0.b(parcel, 3, this.f4500b);
-        int i11 = this.f4501c;
-        g0.s(parcel, 4, 4);
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.p(parcel, 2, this.f4502a);
+        w7.f0.b(parcel, 3, this.f4503b);
+        int i11 = this.f4504c;
+        w7.f0.s(parcel, 4, 4);
         parcel.writeInt(i11);
-        g0.r(parcel, q6);
+        w7.f0.r(parcel, q6);
     }
 
     public l(int i10) {

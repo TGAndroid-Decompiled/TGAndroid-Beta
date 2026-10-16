@@ -10,7 +10,7 @@ import android.util.Log;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.NoSuchElementException;
 import java.util.concurrent.Executor;
-import n6.i0;
+import n6.h0;
 import n6.l;
 import w6.b;
 public final class a {
@@ -35,7 +35,7 @@ public final class a {
     }
 
     public final void b(Context context, ServiceConnection serviceConnection) {
-        if (!(serviceConnection instanceof i0)) {
+        if (!(serviceConnection instanceof h0)) {
             ConcurrentHashMap concurrentHashMap = this.f45512a;
             if (concurrentHashMap.containsKey(serviceConnection)) {
                 try {
@@ -62,14 +62,14 @@ public final class a {
             String packageName = component.getPackageName();
             "com.google.android.gms".equals(packageName);
             try {
-                if ((b.a(context).f13761a.getPackageManager().getApplicationInfo(packageName, 0).flags & 2097152) != 0) {
+                if ((b.a(context).f13764a.getPackageManager().getApplicationInfo(packageName, 0).flags & 2097152) != 0) {
                     Log.w("ConnectionTracker", "Attempted to bind to a service in a STOPPED package.");
                     return false;
                 }
             } catch (PackageManager.NameNotFoundException unused) {
             }
         }
-        if (!(serviceConnection instanceof i0)) {
+        if (!(serviceConnection instanceof h0)) {
             ConcurrentHashMap concurrentHashMap = this.f45512a;
             ServiceConnection serviceConnection2 = (ServiceConnection) concurrentHashMap.putIfAbsent(serviceConnection, serviceConnection);
             if (serviceConnection2 != null && serviceConnection != serviceConnection2) {

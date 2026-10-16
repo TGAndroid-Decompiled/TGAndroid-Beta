@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.SharedConfig;
 public final class su extends org.telegram.ui.Components.lm0 {
-    public final Context f40212c;
+    public final Context f39945c;
     public final DataSettingsActivity d;
 
     public su(DataSettingsActivity dataSettingsActivity, Context context) {
         this.d = dataSettingsActivity;
-        this.f40212c = context;
+        this.f39945c = context;
     }
 
     @Override
@@ -24,13 +24,13 @@ public final class su extends org.telegram.ui.Components.lm0 {
         int i16;
         int b10 = b1Var.b();
         DataSettingsActivity dataSettingsActivity = this.d;
-        if (b10 != dataSettingsActivity.e && b10 != dataSettingsActivity.f32071f && b10 != dataSettingsActivity.h && b10 != dataSettingsActivity.f32074s) {
+        if (b10 != dataSettingsActivity.e && b10 != dataSettingsActivity.f31773f && b10 != dataSettingsActivity.h && b10 != dataSettingsActivity.f31776s) {
             i10 = dataSettingsActivity.useLessDataForCallsRow;
             if (b10 != i10 && b10 != dataSettingsActivity.v) {
                 i11 = dataSettingsActivity.proxyRow;
                 if (b10 != i11) {
                     i12 = dataSettingsActivity.clearDraftsRow;
-                    if (b10 != i12 && b10 != dataSettingsActivity.E && b10 != dataSettingsActivity.f32077y && b10 != dataSettingsActivity.F && b10 != dataSettingsActivity.G && b10 != dataSettingsActivity.N && b10 != dataSettingsActivity.K && b10 != dataSettingsActivity.J && b10 != dataSettingsActivity.f32072n) {
+                    if (b10 != i12 && b10 != dataSettingsActivity.E && b10 != dataSettingsActivity.f31779y && b10 != dataSettingsActivity.F && b10 != dataSettingsActivity.G && b10 != dataSettingsActivity.N && b10 != dataSettingsActivity.K && b10 != dataSettingsActivity.J && b10 != dataSettingsActivity.f31774n) {
                         i13 = dataSettingsActivity.saveToGalleryGroupsRow;
                         if (b10 != i13) {
                             i14 = dataSettingsActivity.saveToGalleryPeerRow;
@@ -62,20 +62,20 @@ public final class su extends org.telegram.ui.Components.lm0 {
         int i12;
         int i13;
         DataSettingsActivity dataSettingsActivity = this.d;
-        if (i10 != dataSettingsActivity.f32073r && i10 != dataSettingsActivity.f32075w && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.R && i10 != dataSettingsActivity.T) {
-            if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f32076x && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.S) {
-                if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.f32077y && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
+        if (i10 != dataSettingsActivity.f31775r && i10 != dataSettingsActivity.f31777w && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.R && i10 != dataSettingsActivity.T) {
+            if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f31778x && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.S) {
+                if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.f31779y && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
                     if (i10 == dataSettingsActivity.H) {
                         return 4;
                     }
-                    if (i10 != dataSettingsActivity.e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f32071f) {
+                    if (i10 != dataSettingsActivity.e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f31773f) {
                         i11 = dataSettingsActivity.saveToGalleryGroupsRow;
                         if (i10 != i11) {
                             i12 = dataSettingsActivity.saveToGalleryPeerRow;
                             if (i10 != i12) {
                                 i13 = dataSettingsActivity.saveToGalleryChannelsRow;
                                 if (i10 != i13) {
-                                    if (i10 != dataSettingsActivity.f32074s && i10 != dataSettingsActivity.v && i10 != dataSettingsActivity.f32072n) {
+                                    if (i10 != dataSettingsActivity.f31776s && i10 != dataSettingsActivity.v && i10 != dataSettingsActivity.f31774n) {
                                         return 1;
                                     }
                                     return 6;
@@ -102,34 +102,34 @@ public final class su extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View b7Var;
-        Context context = this.f40212c;
+        View a7Var;
+        Context context = this.f39945c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 3) {
                         if (i10 != 4) {
                             if (i10 != 5) {
-                                b7Var = new org.telegram.ui.Cells.r8(context);
+                                a7Var = new org.telegram.ui.Cells.r8(context);
                             } else {
-                                b7Var = new org.telegram.ui.Cells.j5(context);
+                                a7Var = new org.telegram.ui.Cells.j5(context);
                             }
                         } else {
-                            b7Var = new org.telegram.ui.Cells.e9(context);
+                            a7Var = new org.telegram.ui.Cells.e9(context);
                         }
                     } else {
-                        b7Var = new org.telegram.ui.Cells.w8(context);
+                        a7Var = new org.telegram.ui.Cells.w8(context);
                     }
                 } else {
-                    b7Var = new org.telegram.ui.Cells.m4(context, 22);
+                    a7Var = new org.telegram.ui.Cells.m4(context, 22);
                 }
             } else {
-                b7Var = new org.telegram.ui.Cells.ca(context);
+                a7Var = new org.telegram.ui.Cells.ca(context);
             }
         } else {
-            b7Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.d0) null);
+            a7Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.c1) null);
         }
-        return com.google.android.gms.internal.play_billing.k3.l(b7Var, b7Var, -1, -2);
+        return com.google.android.gms.internal.play_billing.k3.l(a7Var, a7Var, -1, -2);
     }
 
     @Override
@@ -140,7 +140,7 @@ public final class su extends org.telegram.ui.Components.lm0 {
             DataSettingsActivity dataSettingsActivity = this.d;
             if (b10 == dataSettingsActivity.E) {
                 w8Var.setChecked(SharedConfig.saveStreamMedia);
-            } else if (b10 == dataSettingsActivity.f32077y) {
+            } else if (b10 == dataSettingsActivity.f31779y) {
                 w8Var.setChecked(SharedConfig.streamMedia);
             } else if (b10 == dataSettingsActivity.F) {
                 w8Var.setChecked(SharedConfig.streamAllVideo);

@@ -14,7 +14,7 @@ public final class u90 extends n9 {
     @Override
     public final void onMeasure(int i10, int i11) {
         int v;
-        int min = Math.min(3, ((w90) this.e.d).f30833w);
+        int min = Math.min(3, ((w90) this.e.d).f30509w);
         if (min == 0) {
             v = 0;
         } else {

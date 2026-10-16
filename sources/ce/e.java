@@ -16,13 +16,13 @@ import java.util.concurrent.CancellationException;
 import kd.h;
 import kotlin.jvm.internal.i;
 public final class e extends a0 implements k0 {
-    public final Handler f4743c;
+    public final Handler f4746c;
     public final boolean d;
     public final e e;
 
     public e(Handler handler, boolean z10) {
         e eVar;
-        this.f4743c = handler;
+        this.f4746c = handler;
         this.d = z10;
         if (z10) {
             eVar = this;
@@ -38,7 +38,7 @@ public final class e extends a0 implements k0 {
         if (j10 > 4611686018427387903L) {
             j10 = 4611686018427387903L;
         }
-        if (this.f4743c.postDelayed(uVar, j10)) {
+        if (this.f4746c.postDelayed(uVar, j10)) {
             mVar.u(new d(0, this, uVar));
         } else {
             f(mVar.e, uVar);
@@ -50,28 +50,28 @@ public final class e extends a0 implements k0 {
         if (j10 > 4611686018427387903L) {
             j10 = 4611686018427387903L;
         }
-        if (this.f4743c.postDelayed(f2Var, j10)) {
+        if (this.f4746c.postDelayed(f2Var, j10)) {
             return new p0() {
                 @Override
                 public final void dispose() {
-                    e.this.f4743c.removeCallbacks(f2Var);
+                    e.this.f4746c.removeCallbacks(f2Var);
                 }
             };
         }
         f(hVar, f2Var);
-        return x1.f2725a;
+        return x1.f2729a;
     }
 
     @Override
     public final void c(h hVar, Runnable runnable) {
-        if (!this.f4743c.post(runnable)) {
+        if (!this.f4746c.post(runnable)) {
             f(hVar, runnable);
         }
     }
 
     @Override
     public final boolean d() {
-        if (this.d && i.a(Looper.myLooper(), this.f4743c.getLooper())) {
+        if (this.d && i.a(Looper.myLooper(), this.f4746c.getLooper())) {
             return false;
         }
         return true;
@@ -80,7 +80,7 @@ public final class e extends a0 implements k0 {
     public final boolean equals(Object obj) {
         if (obj instanceof e) {
             e eVar = (e) obj;
-            if (eVar.f4743c == this.f4743c && eVar.d == this.d) {
+            if (eVar.f4746c == this.f4746c && eVar.d == this.d) {
                 return true;
             }
             return false;
@@ -90,12 +90,12 @@ public final class e extends a0 implements k0 {
 
     public final void f(h hVar, Runnable runnable) {
         f0.e(hVar, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        n0.f2690b.c(hVar, runnable);
+        n0.f2694b.c(hVar, runnable);
     }
 
     public final int hashCode() {
         int i10;
-        int identityHashCode = System.identityHashCode(this.f4743c);
+        int identityHashCode = System.identityHashCode(this.f4746c);
         if (this.d) {
             i10 = 1231;
         } else {
@@ -108,8 +108,8 @@ public final class e extends a0 implements k0 {
     public final String toString() {
         e eVar;
         String str;
-        ie.e eVar2 = n0.f2689a;
-        e eVar3 = o.f10130a;
+        ie.e eVar2 = n0.f2693a;
+        e eVar3 = o.f10134a;
         if (this == eVar3) {
             str = "Dispatchers.Main";
         } else {
@@ -125,7 +125,7 @@ public final class e extends a0 implements k0 {
             }
         }
         if (str == null) {
-            String handler = this.f4743c.toString();
+            String handler = this.f4746c.toString();
             if (this.d) {
                 return t8.b.u(handler, ".immediate");
             }

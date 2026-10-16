@@ -13,16 +13,16 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.WebFile;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.ha0;
-import w7.a6;
+import w7.z5;
 public final class k1 extends LinearLayout {
-    public final c6 f11560a;
-    public final ha0 f11561b;
-    public final ImageReceiver f11562c;
+    public final c6 f11564a;
+    public final ha0 f11565b;
+    public final ImageReceiver f11566c;
     public final TextView d;
     public boolean e;
 
@@ -34,16 +34,16 @@ public final class k1 extends LinearLayout {
         int i13;
         int i14;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f11562c = imageReceiver;
-        this.f11560a = c6Var;
+        this.f11566c = imageReceiver;
+        this.f11564a = c6Var;
         setOrientation(1);
         ha0 ha0Var = new ha0();
-        this.f11561b = ha0Var;
+        this.f11565b = ha0Var;
         int i15 = g6.G6;
         int w02 = g6.w0(i15, c6Var);
         ha0Var.g(g6.m1(0.05f, w02), g6.m1(0.15f, w02), g6.m1(0.1f, w02), g6.m1(0.3f, w02));
         ha0Var.k(4.0f);
-        ha0Var.f25624x.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        ha0Var.f25266x.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -66,11 +66,11 @@ public final class k1 extends LinearLayout {
         } else {
             i12 = 70;
         }
-        addView(textView, a6.t(-1, -2, 55, i11, 10, i12, 4));
+        addView(textView, z5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(g6.w0(g6.f20305z6, c6Var));
-        yh.j(13.0f, R.string.BusinessProfileLocation, 1, textView2);
+        textView2.setTextColor(g6.w0(g6.f20005z6, c6Var));
+        sk.j(13.0f, R.string.BusinessProfileLocation, 1, textView2);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i13 = 70;
@@ -82,7 +82,7 @@ public final class k1 extends LinearLayout {
         } else {
             i14 = 70;
         }
-        addView(textView2, a6.t(-1, -2, 55, i13, 0, i14, 8));
+        addView(textView2, z5.t(-1, -2, 55, i13, 0, i14, 8));
         setWillNotDraw(false);
     }
 
@@ -90,9 +90,9 @@ public final class k1 extends LinearLayout {
         if (tL_businessLocation != null) {
             this.d.setText(tL_businessLocation.address);
             if (tL_businessLocation.geo_point != null) {
-                this.f11562c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f11561b, 0L, (String) null, (Object) null, 0);
+                this.f11566c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f11565b, 0L, (String) null, (Object) null, 0);
             } else {
-                this.f11562c.setImageBitmap((Drawable) null);
+                this.f11566c.setImageBitmap((Drawable) null);
             }
         }
         this.e = z10;
@@ -110,14 +110,14 @@ public final class k1 extends LinearLayout {
             width = getWidth() - AndroidUtilities.dp(60.0f);
         }
         float f10 = width;
-        ImageReceiver imageReceiver = this.f11562c;
+        ImageReceiver imageReceiver = this.f11566c;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
         if (this.e) {
-            Paint U0 = g6.U0("paintDivider", this.f11560a);
+            Paint U0 = g6.U0("paintDivider", this.f11564a);
             if (U0 == null) {
-                U0 = g6.f20022k0;
+                U0 = g6.f19722k0;
             }
             Paint paint = U0;
             float f11 = 21.33f;
@@ -143,7 +143,7 @@ public final class k1 extends LinearLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f11561b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f11565b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

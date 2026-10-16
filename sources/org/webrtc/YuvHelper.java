@@ -25,9 +25,9 @@ public class YuvHelper {
             I420Copy(byteBuffer, i10, byteBuffer2, i11, byteBuffer3, i12, slice, i15, slice2, i17, byteBuffer4.slice(), i17, i13, i14);
             return;
         }
-        StringBuilder k10 = i2.d.k(i24, "Expected destination buffer capacity to be at least ", " was ");
-        k10.append(byteBuffer4.capacity());
-        throw new IllegalArgumentException(k10.toString());
+        StringBuilder l4 = i2.d.l(i24, "Expected destination buffer capacity to be at least ", " was ");
+        l4.append(byteBuffer4.capacity());
+        throw new IllegalArgumentException(l4.toString());
     }
 
     public static void I420Rotate(ByteBuffer byteBuffer, int i10, ByteBuffer byteBuffer2, int i11, ByteBuffer byteBuffer3, int i12, ByteBuffer byteBuffer4, int i13, int i14, int i15) {
@@ -51,9 +51,9 @@ public class YuvHelper {
             nativeI420Rotate(byteBuffer, i10, byteBuffer2, i11, byteBuffer3, i12, slice, i17, slice2, i19, byteBuffer4.slice(), i19, i13, i14, i15);
             return;
         }
-        StringBuilder k10 = i2.d.k(i22, "Expected destination buffer capacity to be at least ", " was ");
-        k10.append(byteBuffer4.capacity());
-        throw new IllegalArgumentException(k10.toString());
+        StringBuilder l4 = i2.d.l(i22, "Expected destination buffer capacity to be at least ", " was ");
+        l4.append(byteBuffer4.capacity());
+        throw new IllegalArgumentException(l4.toString());
     }
 
     public static void I420ToNV12(ByteBuffer byteBuffer, int i10, ByteBuffer byteBuffer2, int i11, ByteBuffer byteBuffer3, int i12, ByteBuffer byteBuffer4, int i13, int i14, int i15, int i16) {
@@ -70,9 +70,9 @@ public class YuvHelper {
             I420ToNV12(byteBuffer, i10, byteBuffer2, i11, byteBuffer3, i12, slice, i15, byteBuffer4.slice(), i17 * 2, i13, i14);
             return;
         }
-        StringBuilder k10 = i2.d.k(i20, "Expected destination buffer capacity to be at least ", " was ");
-        k10.append(byteBuffer4.capacity());
-        throw new IllegalArgumentException(k10.toString());
+        StringBuilder l4 = i2.d.l(i20, "Expected destination buffer capacity to be at least ", " was ");
+        l4.append(byteBuffer4.capacity());
+        throw new IllegalArgumentException(l4.toString());
     }
 
     private static <T> T checkNotNull(T t10, String str) {

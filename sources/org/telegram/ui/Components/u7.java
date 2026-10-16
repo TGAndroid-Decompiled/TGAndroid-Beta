@@ -7,19 +7,19 @@ public final class u7 extends bk0 {
     public long F;
     public final float G;
     public final m8 H;
-    public float f29592r;
-    public float f29593s;
+    public float f29263r;
+    public float f29264s;
     public int v;
-    public long f29594w;
-    public long f29595x;
-    public final t7 f29596y;
+    public long f29265w;
+    public long f29266x;
+    public final t7 f29267y;
 
     public u7(m8 m8Var, Context context, float f7) {
         super(context);
         this.H = m8Var;
         this.G = f7;
         this.v = 0;
-        this.f29596y = new t7(this, 0);
+        this.f29267y = new t7(this, 0);
         this.E = new t7(this, 1);
     }
 

@@ -16,27 +16,27 @@ import org.telegram.ui.ActionBar.g6;
 import t7.u;
 import u2.f0;
 public final class f {
-    public boolean f13009a;
-    public int f13010b;
-    public Object f13011c;
+    public boolean f13013a;
+    public int f13014b;
+    public Object f13015c;
     public Object d;
     public final Object e;
-    public Object f13012f;
-    public Object f13013g;
+    public Object f13016f;
+    public Object f13017g;
 
     public f(c3.m mVar, u uVar) {
-        this.f13011c = mVar;
-        this.f13013g = uVar;
+        this.f13015c = mVar;
+        this.f13017g = uVar;
         this.d = new HashMap();
         this.e = new HashMap();
-        this.f13009a = true;
-        this.f13010b = 3;
+        this.f13013a = true;
+        this.f13014b = 3;
     }
 
     public static void a(f fVar) {
-        c3.m mVar = (c3.m) fVar.f13011c;
+        c3.m mVar = (c3.m) fVar.f13015c;
         synchronized (mVar) {
-            mVar.f4276f = 1;
+            mVar.f4280f = 1;
         }
     }
 
@@ -51,7 +51,7 @@ public final class f {
         HashMap hashMap2 = (HashMap) this.d;
         d9.u uVar2 = (d9.u) hashMap2.get(Integer.valueOf(i10));
         if (uVar2 == null) {
-            final qf.b bVar = (qf.b) this.f13012f;
+            final qf.b bVar = (qf.b) this.f13016f;
             bVar.getClass();
             if (i10 != 0) {
                 if (i10 != 1) {
@@ -69,12 +69,12 @@ public final class f {
                                             case 2:
                                                 return q.e((Class) this, bVar);
                                             default:
-                                                return new x0(bVar, (c3.m) ((jg.f) this).f13011c);
+                                                return new x0(bVar, (c3.m) ((jg.f) this).f13015c);
                                         }
                                     }
                                 };
                             } else {
-                                throw new IllegalArgumentException(i2.d.i(i10, "Unrecognized contentType: "));
+                                throw new IllegalArgumentException(i2.d.j(i10, "Unrecognized contentType: "));
                             }
                         } else {
                             nVar = new i2.n(Class.forName("androidx.media3.exoplayer.rtsp.RtspMediaSource$Factory").asSubclass(f0.class), 3);
@@ -93,7 +93,7 @@ public final class f {
                                     case 2:
                                         return q.e((Class) asSubclass, bVar);
                                     default:
-                                        return new x0(bVar, (c3.m) ((jg.f) asSubclass).f13011c);
+                                        return new x0(bVar, (c3.m) ((jg.f) asSubclass).f13015c);
                                 }
                             }
                         };
@@ -111,7 +111,7 @@ public final class f {
                                 case 2:
                                     return q.e((Class) asSubclass2, bVar);
                                 default:
-                                    return new x0(bVar, (c3.m) ((jg.f) asSubclass2).f13011c);
+                                    return new x0(bVar, (c3.m) ((jg.f) asSubclass2).f13015c);
                             }
                         }
                     };
@@ -130,7 +130,7 @@ public final class f {
                             case 2:
                                 return q.e((Class) asSubclass3, bVar);
                             default:
-                                return new x0(bVar, (c3.m) ((jg.f) asSubclass3).f13011c);
+                                return new x0(bVar, (c3.m) ((jg.f) asSubclass3).f13015c);
                         }
                     }
                 };
@@ -138,9 +138,9 @@ public final class f {
             hashMap2.put(Integer.valueOf(i10), uVar2);
         }
         f0 f0Var2 = (f0) uVar2.get();
-        f0Var2.d((u) this.f13013g);
-        f0Var2.b(this.f13009a);
-        f0Var2.c(this.f13010b);
+        f0Var2.d((u) this.f13017g);
+        f0Var2.b(this.f13013a);
+        f0Var2.c(this.f13014b);
         hashMap.put(Integer.valueOf(i10), f0Var2);
         return f0Var2;
     }
@@ -148,26 +148,26 @@ public final class f {
     public Bitmap c(int i10, int i11) {
         RectF rectF = (RectF) this.e;
         int i12 = (i10 + i11) << 10;
-        if (i12 != this.f13010b || this.f13009a) {
-            this.f13009a = false;
-            this.f13010b = i12;
-            this.f13011c = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
-            this.d = new Canvas((Bitmap) this.f13011c);
+        if (i12 != this.f13014b || this.f13013a) {
+            this.f13013a = false;
+            this.f13014b = i12;
+            this.f13015c = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
+            this.d = new Canvas((Bitmap) this.f13015c);
             rectF.set(0.0f, 0.0f, i11, i10);
-            ((Canvas) this.d).drawColor(g6.w0(g6.f19901d6, (c6) this.f13013g));
-            ((Canvas) this.d).drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), (Paint) this.f13012f);
+            ((Canvas) this.d).drawColor(g6.w0(g6.f19601d6, (c6) this.f13017g));
+            ((Canvas) this.d).drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), (Paint) this.f13016f);
         }
-        return (Bitmap) this.f13011c;
+        return (Bitmap) this.f13015c;
     }
 
     public f(c6 c6Var) {
         this.e = new RectF();
         Paint paint = new Paint(1);
-        this.f13012f = paint;
-        this.f13010b = 0;
-        this.f13009a = true;
+        this.f13016f = paint;
+        this.f13014b = 0;
+        this.f13013a = true;
         paint.setColor(0);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.f13013g = c6Var;
+        this.f13017g = c6Var;
     }
 }

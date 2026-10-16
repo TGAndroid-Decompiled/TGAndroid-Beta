@@ -12,19 +12,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ve implements RequestDelegate {
-    public final int f40970a;
-    public final fo f40971b;
+    public final int f40681a;
+    public final fo f40682b;
 
     public ve(fo foVar, int i10) {
-        this.f40970a = i10;
-        this.f40971b = foVar;
+        this.f40681a = i10;
+        this.f40682b = foVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40970a) {
+        switch (this.f40681a) {
             case 0:
-                final fo foVar = this.f40971b;
+                final fo foVar = this.f40682b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,16 +39,16 @@ public final class ve implements RequestDelegate {
                             case 2:
                                 fo foVar2 = foVar;
                                 TLObject tLObject2 = tLObject;
-                                foVar2.f36051o5 = 0;
+                                foVar2.f35752o5 = 0;
                                 if (tLObject2 == null && foVar2.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar2.getParentActivity(), 0, foVar2.f35932ea);
-                                    alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar2.getParentActivity(), 0, foVar2.f35633ea);
+                                    alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    foVar2.showDialog(alertDialog$Builder.f19548a);
+                                    foVar2.showDialog(alertDialog$Builder.f19248a);
                                     sk skVar = foVar2.Y;
                                     if (skVar != null) {
-                                        skVar.a1(null, null, false);
+                                        skVar.Z0(null, null, false);
                                         foVar2.j9(true);
                                         return;
                                     }
@@ -84,7 +84,7 @@ public final class ve implements RequestDelegate {
                 });
                 return;
             case 1:
-                final fo foVar2 = this.f40971b;
+                final fo foVar2 = this.f40682b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -99,16 +99,16 @@ public final class ve implements RequestDelegate {
                             case 2:
                                 fo foVar22 = foVar2;
                                 TLObject tLObject2 = tLObject;
-                                foVar22.f36051o5 = 0;
+                                foVar22.f35752o5 = 0;
                                 if (tLObject2 == null && foVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar22.getParentActivity(), 0, foVar22.f35932ea);
-                                    alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar22.getParentActivity(), 0, foVar22.f35633ea);
+                                    alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    foVar22.showDialog(alertDialog$Builder.f19548a);
+                                    foVar22.showDialog(alertDialog$Builder.f19248a);
                                     sk skVar = foVar22.Y;
                                     if (skVar != null) {
-                                        skVar.a1(null, null, false);
+                                        skVar.Z0(null, null, false);
                                         foVar22.j9(true);
                                         return;
                                     }
@@ -144,7 +144,7 @@ public final class ve implements RequestDelegate {
                 });
                 return;
             case 2:
-                final fo foVar3 = this.f40971b;
+                final fo foVar3 = this.f40682b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -159,16 +159,16 @@ public final class ve implements RequestDelegate {
                             case 2:
                                 fo foVar22 = foVar3;
                                 TLObject tLObject2 = tLObject;
-                                foVar22.f36051o5 = 0;
+                                foVar22.f35752o5 = 0;
                                 if (tLObject2 == null && foVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar22.getParentActivity(), 0, foVar22.f35932ea);
-                                    alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar22.getParentActivity(), 0, foVar22.f35633ea);
+                                    alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    foVar22.showDialog(alertDialog$Builder.f19548a);
+                                    foVar22.showDialog(alertDialog$Builder.f19248a);
                                     sk skVar = foVar22.Y;
                                     if (skVar != null) {
-                                        skVar.a1(null, null, false);
+                                        skVar.Z0(null, null, false);
                                         foVar22.j9(true);
                                         return;
                                     }
@@ -204,7 +204,7 @@ public final class ve implements RequestDelegate {
                 });
                 return;
             case 3:
-                final fo foVar4 = this.f40971b;
+                final fo foVar4 = this.f40682b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -219,16 +219,16 @@ public final class ve implements RequestDelegate {
                             case 2:
                                 fo foVar22 = foVar4;
                                 TLObject tLObject2 = tLObject;
-                                foVar22.f36051o5 = 0;
+                                foVar22.f35752o5 = 0;
                                 if (tLObject2 == null && foVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar22.getParentActivity(), 0, foVar22.f35932ea);
-                                    alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar22.getParentActivity(), 0, foVar22.f35633ea);
+                                    alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    foVar22.showDialog(alertDialog$Builder.f19548a);
+                                    foVar22.showDialog(alertDialog$Builder.f19248a);
                                     sk skVar = foVar22.Y;
                                     if (skVar != null) {
-                                        skVar.a1(null, null, false);
+                                        skVar.Z0(null, null, false);
                                         foVar22.j9(true);
                                         return;
                                     }
@@ -264,7 +264,7 @@ public final class ve implements RequestDelegate {
                 });
                 return;
             case 4:
-                fo foVar5 = this.f40971b;
+                fo foVar5 = this.f40682b;
                 if (tL_error != null) {
                     foVar5.getClass();
                     return;
@@ -273,7 +273,7 @@ public final class ve implements RequestDelegate {
                     return;
                 }
             default:
-                fo.e1(this.f40971b, tLObject);
+                fo.e1(this.f40682b, tLObject);
                 return;
         }
     }

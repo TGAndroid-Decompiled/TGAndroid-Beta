@@ -1,32 +1,64 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
+import android.app.Activity;
 import org.telegram.messenger.Utilities;
-public final class bf0 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f23750a;
-    public final Utilities.Callback f23751b;
-    public final NotificationCenter.NotificationCenterDelegate[] f23752c;
+public final class bf0 implements Utilities.Callback {
+    public final int f23444a;
+    public final String[] f23445b;
+    public final Activity f23446c;
+    public final Utilities.Callback d;
 
-    public bf0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
-        this.f23750a = i10;
-        this.f23751b = callback;
-        this.f23752c = notificationCenterDelegateArr;
+    public bf0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
+        this.f23444a = i10;
+        this.f23445b = strArr;
+        this.f23446c = activity;
+        this.d = callback;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.activityPermissionsGranted;
-        if (i10 == i12) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            String[] strArr = (String[]) objArr[1];
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == this.f23750a) {
-                Utilities.Callback callback = this.f23751b;
-                if (callback != null) {
-                    callback.run(iArr);
+    public final void run(Object obj) {
+        int[] iArr = (int[]) obj;
+        switch (this.f23444a) {
+            case 0:
+                String[] strArr = this.f23445b;
+                int length = strArr.length;
+                boolean z10 = false;
+                int i10 = 0;
+                while (true) {
+                    if (i10 < length) {
+                        if (this.f23446c.checkSelfPermission(strArr[i10]) == 0) {
+                            z10 = true;
+                        } else {
+                            i10++;
+                        }
+                    }
                 }
-                NotificationCenter.getGlobalInstance().removeObserver(this.f23752c[0], i12);
-            }
+                Utilities.Callback callback = this.d;
+                if (callback != null) {
+                    callback.run(Boolean.valueOf(z10));
+                    return;
+                }
+                return;
+            default:
+                String[] strArr2 = this.f23445b;
+                int length2 = strArr2.length;
+                boolean z11 = false;
+                int i11 = 0;
+                while (true) {
+                    if (i11 < length2) {
+                        if (this.f23446c.checkSelfPermission(strArr2[i11]) == 0) {
+                            i11++;
+                        }
+                    } else {
+                        z11 = true;
+                    }
+                }
+                Utilities.Callback callback2 = this.d;
+                if (callback2 != null) {
+                    callback2.run(Boolean.valueOf(z11));
+                    return;
+                }
+                return;
         }
     }
 }

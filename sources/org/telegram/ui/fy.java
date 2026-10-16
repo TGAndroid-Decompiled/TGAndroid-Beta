@@ -10,18 +10,18 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-public final class fy extends av0 {
-    public final boolean[] f36253a;
-    public final yy f36254b;
+public final class fy extends zu0 {
+    public final boolean[] f36019a;
+    public final yy f36020b;
 
     public fy(yy yyVar, boolean[] zArr) {
-        this.f36254b = yyVar;
-        this.f36253a = zArr;
+        this.f36020b = yyVar;
+        this.f36019a = zArr;
     }
 
     @Override
     public final CharSequence C(int i10) {
-        yy yyVar = this.f36254b;
+        yy yyVar = this.f36020b;
         if (i10 >= 0 && i10 < yyVar.D2.size() && ((MediaController.PhotoEntry) yyVar.D2.get(i10)).isVideo) {
             return null;
         }
@@ -31,21 +31,21 @@ public final class fy extends av0 {
     @Override
     public final void D() {
         int i10;
-        yy yyVar = this.f36254b;
-        org.telegram.ui.Components.or0 or0Var = yyVar.G2;
-        if (or0Var != null) {
+        yy yyVar = this.f36020b;
+        org.telegram.ui.Components.nr0 nr0Var = yyVar.G2;
+        if (nr0Var != null) {
             i10 = ((org.telegram.ui.ActionBar.m2) yyVar).currentAccount;
-            or0Var.i(i10, yyVar.D2);
+            nr0Var.i(i10, yyVar.D2);
         }
     }
 
     @Override
-    public final kv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final jv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         org.telegram.ui.Components.z9 z9Var;
-        yy yyVar = this.f36254b;
-        org.telegram.ui.Components.or0 or0Var = yyVar.G2;
-        if (or0Var != null) {
-            z9Var = or0Var.f(i10);
+        yy yyVar = this.f36020b;
+        org.telegram.ui.Components.nr0 nr0Var = yyVar.G2;
+        if (nr0Var != null) {
+            z9Var = nr0Var.f(i10);
         } else {
             z9Var = null;
         }
@@ -54,21 +54,35 @@ public final class fy extends av0 {
         }
         int[] iArr = new int[2];
         z9Var.getLocationInWindow(iArr);
-        kv0 kv0Var = new kv0();
-        kv0Var.f37752b = iArr[0];
-        kv0Var.f37753c = iArr[1];
-        kv0Var.d = yyVar.G2;
+        jv0 jv0Var = new jv0();
+        jv0Var.f37146b = iArr[0];
+        jv0Var.f37147c = iArr[1];
+        jv0Var.d = yyVar.G2;
         ImageReceiver imageReceiver = z9Var.getImageReceiver();
-        kv0Var.f37751a = imageReceiver;
-        kv0Var.e = imageReceiver.getBitmapSafe();
-        kv0Var.f37758k = z9Var.getScaleX();
-        kv0Var.h = new int[]{AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f)};
-        return kv0Var;
+        jv0Var.f37145a = imageReceiver;
+        jv0Var.e = imageReceiver.getBitmapSafe();
+        jv0Var.f37152k = z9Var.getScaleX();
+        jv0Var.h = new int[]{AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f)};
+        return jv0Var;
+    }
+
+    @Override
+    public final int H() {
+        ArrayList arrayList = this.f36020b.D2;
+        if (arrayList != null) {
+            return arrayList.size();
+        }
+        return 0;
+    }
+
+    @Override
+    public final boolean I() {
+        return this.f36020b.l3();
     }
 
     @Override
     public final long a() {
-        yy yyVar = this.f36254b;
+        yy yyVar = this.f36020b;
         if (yyVar.I2.isEmpty()) {
             return 0L;
         }
@@ -81,9 +95,9 @@ public final class fy extends av0 {
     }
 
     @Override
-    public final CharSequence b0(int i10) {
+    public final CharSequence c0(int i10) {
         int i11;
-        yy yyVar = this.f36254b;
+        yy yyVar = this.f36020b;
         ArrayList arrayList = yyVar.D2;
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = yyVar.D2.size();
@@ -122,7 +136,7 @@ public final class fy extends av0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        yy yyVar = this.f36254b;
+        yy yyVar = this.f36020b;
         ix ixVar = yyVar.B1;
         if (ixVar != null) {
             ixVar.setFieldText(charSequence);
@@ -147,9 +161,9 @@ public final class fy extends av0 {
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
         org.telegram.ui.Components.z9 z9Var;
-        org.telegram.ui.Components.or0 or0Var = this.f36254b.G2;
-        if (or0Var != null) {
-            z9Var = or0Var.f(i10);
+        org.telegram.ui.Components.nr0 nr0Var = this.f36020b.G2;
+        if (nr0Var != null) {
+            z9Var = nr0Var.f(i10);
         } else {
             z9Var = null;
         }
@@ -163,7 +177,7 @@ public final class fy extends av0 {
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
         int i13;
         ArrayList arrayList;
-        yy yyVar = this.f36254b;
+        yy yyVar = this.f36020b;
         ArrayList arrayList2 = yyVar.I2;
         if (yyVar.B1 != null && (arrayList = yyVar.D2) != null && !arrayList.isEmpty()) {
             ix ixVar = yyVar.B1;
@@ -173,14 +187,15 @@ public final class fy extends av0 {
             }
             ixVar.setFieldText(charSequence);
         }
-        org.telegram.ui.Components.or0 or0Var = yyVar.G2;
-        if (or0Var != null) {
+        org.telegram.ui.Components.nr0 nr0Var = yyVar.G2;
+        if (nr0Var != null) {
             i13 = ((org.telegram.ui.ActionBar.m2) yyVar).currentAccount;
-            or0Var.i(i13, yyVar.D2);
+            nr0Var.i(i13, yyVar.D2);
         }
-        if ((!z10 || i11 != 0) && yyVar.C2 != null && !arrayList2.isEmpty()) {
+        if ((!z10 || i11 != 0 || z11) && yyVar.C2 != null && !arrayList2.isEmpty()) {
             yyVar.J2 = z10;
             yyVar.K2 = i11;
+            yyVar.M2 = z11;
             ArrayList arrayList3 = new ArrayList();
             for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                 arrayList3.add(MessagesStorage.TopicKey.of(((Long) arrayList2.get(i14)).longValue(), 0L));
@@ -201,7 +216,7 @@ public final class fy extends av0 {
         if (t12.R1() && (f12 = t12.f1()) != null) {
             charSequence = f12.getText();
         }
-        yy yyVar = this.f36254b;
+        yy yyVar = this.f36020b;
         if (charSequence != null && (ixVar = yyVar.B1) != null) {
             ixVar.setFieldText(charSequence);
         }
@@ -219,7 +234,7 @@ public final class fy extends av0 {
 
     @Override
     public final boolean x(int i10) {
-        return this.f36253a[i10];
+        return this.f36019a[i10];
     }
 
     @Override

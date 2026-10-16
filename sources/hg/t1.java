@@ -15,7 +15,6 @@ import org.telegram.ui.Cells.v3;
 import org.telegram.ui.Components.f10;
 import org.telegram.ui.Components.lm0;
 import org.telegram.ui.Components.xn;
-import org.telegram.ui.dt;
 public abstract class t1 extends lm0 {
     public int E;
     public int F;
@@ -23,18 +22,18 @@ public abstract class t1 extends lm0 {
     public ArrayList H;
     public String I;
     public int J;
-    public Context f10747c;
+    public Context f10751c;
     public ArrayList d;
     public ArrayList e;
-    public a2 f10748f;
+    public a2 f10752f;
     public a0.h h;
-    public Timer f10749n;
-    public boolean f10750r;
-    public boolean f10751s;
+    public Timer f10753n;
+    public boolean f10754r;
+    public boolean f10755s;
     public boolean v;
-    public boolean f10752w;
-    public long f10753x;
-    public boolean f10754y;
+    public boolean f10756w;
+    public long f10757x;
+    public boolean f10758y;
 
     @Override
     public final boolean D(s4.b1 b1Var) {
@@ -48,9 +47,9 @@ public abstract class t1 extends lm0 {
     public final Object E(int i10) {
         int size = this.d.size();
         int size2 = this.H.size();
-        a2 a2Var = this.f10748f;
+        a2 a2Var = this.f10752f;
         int size3 = a2Var.e.size();
-        int size4 = a2Var.f10490j.size();
+        int size4 = a2Var.f10494j.size();
         if (i10 >= 0 && i10 < size) {
             return this.d.get(i10);
         }
@@ -65,7 +64,7 @@ public abstract class t1 extends lm0 {
             i11 -= size2 + 1;
         }
         if (i11 >= 0 && i11 < size4) {
-            return a2Var.f10490j.get(i11);
+            return a2Var.f10494j.get(i11);
         }
         int i12 = i11 - size4;
         if (i12 <= 0 || i12 > size3) {
@@ -78,7 +77,7 @@ public abstract class t1 extends lm0 {
 
     public final void G(String str) {
         try {
-            Timer timer = this.f10749n;
+            Timer timer = this.f10753n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -88,20 +87,20 @@ public abstract class t1 extends lm0 {
         this.d.clear();
         this.H.clear();
         this.e.clear();
-        if (this.f10750r) {
-            this.f10748f.g(null, true, false, this.f10751s, this.v, this.f10753x, this.f10752w, 0, 0);
+        if (this.f10754r) {
+            this.f10752f.g(null, true, false, this.f10755s, this.v, this.f10757x, this.f10756w, 0, 0);
         }
         l();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f10749n = timer2;
-            timer2.schedule(new r1((dt) this, str, 0), 200L, 300L);
+            this.f10753n = timer2;
+            timer2.schedule(new r1(this, str, 0), 200L, 300L);
         }
     }
 
     @Override
     public final int h() {
-        a2 a2Var = this.f10748f;
+        a2 a2Var = this.f10752f;
         this.J = -1;
         int size = this.d.size();
         if (!this.H.isEmpty()) {
@@ -112,7 +111,7 @@ public abstract class t1 extends lm0 {
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = a2Var.f10490j.size();
+        int size3 = a2Var.f10494j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -145,7 +144,7 @@ public abstract class t1 extends lm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         v3 v3Var;
-        Context context = this.f10747c;
+        Context context = this.f10751c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -156,7 +155,7 @@ public abstract class t1 extends lm0 {
                             f10 f10Var = new f10(context, null);
                             f10Var.setIsSingleCell(true);
                             f10Var.setViewType(29);
-                            f10Var.setBackgroundColor(g6.x0(null, g6.f19901d6, false));
+                            f10Var.setBackgroundColor(g6.x0(null, g6.f19601d6, false));
                             v3Var = f10Var;
                         }
                     } else {

@@ -1,7 +1,7 @@
 package l5;
 
 import android.os.Process;
-import w7.l6;
+import w7.k6;
 public final class o implements Runnable {
     public final int f14591a;
     public final Runnable f14592b;
@@ -19,7 +19,7 @@ public final class o implements Runnable {
                     this.f14592b.run();
                     return;
                 } catch (Exception e) {
-                    l6.b("Executor", "Background execution failure.", e);
+                    k6.b("Executor", "Background execution failure.", e);
                     return;
                 }
             case 1:

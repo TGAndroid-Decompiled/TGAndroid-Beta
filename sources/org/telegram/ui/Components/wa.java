@@ -16,7 +16,7 @@ public abstract class wa extends db {
     }
 
     @Override
-    public final CharSequence A() {
+    public final CharSequence B() {
         return null;
     }
 

@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import ne.e;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.Components.voip.u2;
 public abstract class b extends ViewGroup {
     public int f14738a;
@@ -52,12 +52,12 @@ public abstract class b extends ViewGroup {
                 i12 = 1;
             }
             if (!z12) {
-                int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (yh.C(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
+                int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (sk.B(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
                 min = AndroidUtilities.dp(76.0f);
                 i10 = (measuredWidth2 - (i12 * min2)) / 2;
                 measuredWidth2 = min2;
             } else {
-                min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (yh.C(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
+                min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (sk.B(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
                 i10 = (measuredHeight - (i12 * min)) / 2;
             }
             int i13 = 0;
@@ -76,12 +76,12 @@ public abstract class b extends ViewGroup {
                         measuredWidth = ((measuredWidth2 - u2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
                         i11 = (min * i13) + i10;
                     }
-                    if (!z11 && ((z10 || eVar3.f16301g) && bVar.f16293f)) {
+                    if (!z11 && ((z10 || eVar3.f16012g) && bVar.f16004f)) {
                         eVar3.a(measuredWidth);
                     } else {
                         eVar3.c(measuredWidth);
                     }
-                    if (!z11 && ((z10 || eVar2.f16301g) && bVar.f16293f)) {
+                    if (!z11 && ((z10 || eVar2.f16012g) && bVar.f16004f)) {
                         eVar2.a(i11);
                     } else {
                         eVar2.c(i11);
@@ -89,7 +89,7 @@ public abstract class b extends ViewGroup {
                     i13++;
                 }
                 boolean z15 = aVar2.h;
-                if (!z11 && (z10 || ((eVar = bVar.h) != null && eVar.f16301g))) {
+                if (!z11 && (z10 || ((eVar = bVar.h) != null && eVar.f16012g))) {
                     z13 = true;
                 } else {
                     z13 = false;

@@ -31,7 +31,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.LaunchActivity;
 public class re0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public static final int[] f28810e0 = {R.id.passcode_btn_0, R.id.passcode_btn_1, R.id.passcode_btn_2, R.id.passcode_btn_3, R.id.passcode_btn_4, R.id.passcode_btn_5, R.id.passcode_btn_6, R.id.passcode_btn_7, R.id.passcode_btn_8, R.id.passcode_btn_9, R.id.passcode_btn_backspace, R.id.passcode_btn_fingerprint};
+    public static final int[] f28500e0 = {R.id.passcode_btn_0, R.id.passcode_btn_1, R.id.passcode_btn_2, R.id.passcode_btn_3, R.id.passcode_btn_4, R.id.passcode_btn_5, R.id.passcode_btn_6, R.id.passcode_btn_7, R.id.passcode_btn_8, R.id.passcode_btn_9, R.id.passcode_btn_backspace, R.id.passcode_btn_fingerprint};
     public final ImageView E;
     public final View F;
     public int G;
@@ -49,26 +49,26 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
     public final ArrayList S;
     public float T;
     public int U;
-    public final org.telegram.ui.Cells.t6 V;
+    public final org.telegram.ui.Cells.l7 V;
     public int W;
-    public Drawable f28811a;
-    public di.h4 f28812a0;
-    public final FrameLayout f28813b;
-    public boolean f28814b0;
-    public final TextView f28815c;
-    public ValueAnimator f28816c0;
+    public Drawable f28501a;
+    public di.h4 f28502a0;
+    public final FrameLayout f28503b;
+    public boolean f28504b0;
+    public final TextView f28505c;
+    public ValueAnimator f28506c0;
     public final FrameLayout d;
-    public final int[] f28817d0;
+    public final int[] f28507d0;
     public final bi.i5 e;
-    public final ArrayList f28818f;
+    public final ArrayList f28508f;
     public final FrameLayout h;
-    public final pe0 f28819n;
-    public final EditTextBoldCursor f28820r;
-    public final di.i9 f28821s;
+    public final pe0 f28509n;
+    public final EditTextBoldCursor f28510r;
+    public final di.i9 f28511s;
     public final ah.v v;
-    public final TextView f28822w;
-    public final TextView f28823x;
-    public final ImageView f28824y;
+    public final TextView f28512w;
+    public final TextView f28513x;
+    public final ImageView f28514y;
 
     public re0(Context context) {
         super(context);
@@ -80,42 +80,42 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         this.R = new LinkedList();
         this.S = new ArrayList();
         this.U = -12;
-        this.V = new org.telegram.ui.Cells.t6(this, 17);
-        this.f28814b0 = true;
-        this.f28817d0 = new int[2];
+        this.V = new org.telegram.ui.Cells.l7(this, 16);
+        this.f28504b0 = true;
+        this.f28507d0 = new int[2];
         setWillNotDraw(false);
         setVisibility(8);
         ah.v vVar = new ah.v(this, context);
         this.v = vVar;
         vVar.setWillNotDraw(false);
-        addView(vVar, w7.a6.d(-1.0f, -1));
+        addView(vVar, w7.z5.d(-1.0f, -1));
         ?? imageView = new ImageView(context);
         this.I = imageView;
         imageView.f(R.raw.passcode_lock, 58, 58, null);
         imageView.setAutoRepeat(false);
-        addView((View) imageView, w7.a6.e(58, 58, 51));
+        addView((View) imageView, w7.z5.e(58, 58, 51));
         FrameLayout frameLayout = new FrameLayout(context);
         this.h = frameLayout;
-        vVar.addView(frameLayout, w7.a6.d(-1.0f, -1));
+        vVar.addView(frameLayout, w7.z5.d(-1.0f, -1));
         TextView textView = new TextView(context);
-        this.f28822w = textView;
+        this.f28512w = textView;
         textView.setTextColor(-1);
         textView.setTextSize(1, 18.33f);
         textView.setGravity(1);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setAlpha(0.0f);
-        TextView h = org.telegram.ui.Cells.d0.h(frameLayout, textView, w7.a6.a(-2.0f, 0.0f, 0.0f, 0.0f, 128.0f, -2, 81), context);
-        this.f28823x = h;
-        h.setTextColor(-1);
-        h.setTextSize(1, 15.0f);
-        h.setGravity(1);
-        h.setVisibility(4);
-        vVar.addView(h, w7.a6.e(-2, -2, 17));
+        TextView g10 = org.telegram.ui.Cells.c1.g(frameLayout, textView, w7.z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 128.0f, -2, 81), context);
+        this.f28513x = g10;
+        g10.setTextColor(-1);
+        g10.setTextSize(1, 15.0f);
+        g10.setGravity(1);
+        g10.setVisibility(4);
+        vVar.addView(g10, w7.z5.e(-2, -2, 17));
         di.i9 i9Var = new di.i9(this, context);
-        this.f28821s = i9Var;
-        frameLayout.addView(i9Var, w7.a6.a(-2.0f, 70.0f, 0.0f, 70.0f, 46.0f, -1, 81));
+        this.f28511s = i9Var;
+        frameLayout.addView(i9Var, w7.z5.a(-2.0f, 70.0f, 0.0f, 70.0f, 46.0f, -1, 81));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f28820r = editTextBoldCursor;
+        this.f28510r = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 36.0f);
         editTextBoldCursor.setTextColor(-1);
         editTextBoldCursor.setMaxLines(1);
@@ -127,23 +127,23 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setCursorColor(-1);
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(32.0f));
-        frameLayout.addView(editTextBoldCursor, w7.a6.a(-2.0f, 70.0f, 0.0f, 70.0f, 0.0f, -1, 81));
+        frameLayout.addView(editTextBoldCursor, w7.z5.a(-2.0f, 70.0f, 0.0f, 70.0f, 0.0f, -1, 81));
         editTextBoldCursor.setOnEditorActionListener(new e1(this, 4));
         editTextBoldCursor.addTextChangedListener(new di.h2(this, 10));
         editTextBoldCursor.setCustomSelectionActionModeCallback(new ji.c1(1));
         ImageView imageView2 = new ImageView(context);
-        this.f28824y = imageView2;
+        this.f28514y = imageView2;
         imageView2.setImageResource(R.drawable.passcode_check);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView2.setScaleType(scaleType);
         imageView2.setBackgroundResource(R.drawable.bar_selector_lock);
-        frameLayout.addView(imageView2, w7.a6.a(60.0f, 0.0f, 0.0f, 10.0f, 4.0f, 60, 85));
+        frameLayout.addView(imageView2, w7.z5.a(60.0f, 0.0f, 0.0f, 10.0f, 4.0f, 60, 85));
         imageView2.setContentDescription(LocaleController.getString(R.string.Done));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final re0 f25940b;
+            public final re0 f25635b;
 
             {
-                this.f25940b = this;
+                this.f25635b = this;
             }
 
             @Override
@@ -160,7 +160,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                 boolean z12;
                 boolean z13;
                 int i15 = r2;
-                re0 re0Var = this.f25940b;
+                re0 re0Var = this.f25635b;
                 switch (i15) {
                     case 0:
                         re0Var.m(false);
@@ -171,8 +171,8 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                     default:
                         LinkedList linkedList4 = re0Var.R;
                         LinkedList linkedList5 = re0Var.Q;
-                        di.i9 i9Var2 = re0Var.f28821s;
-                        if (re0Var.f28814b0 && !re0Var.L) {
+                        di.i9 i9Var2 = re0Var.f28511s;
+                        if (re0Var.f28504b0 && !re0Var.L) {
                             int intValue = ((Integer) view.getTag()).intValue();
                             switch (intValue) {
                                 case 0:
@@ -264,13 +264,13 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                     z11 = z10;
                                     break;
                                 case 11:
-                                    ArrayList arrayList = (ArrayList) i9Var2.f7082c;
+                                    ArrayList arrayList = (ArrayList) i9Var2.f7085c;
                                     Property property = View.TRANSLATION_Y;
                                     Property property2 = View.ALPHA;
                                     Property property3 = View.SCALE_Y;
                                     Property property4 = View.SCALE_X;
                                     z10 = false;
-                                    ArrayList arrayList2 = (ArrayList) i9Var2.f7081b;
+                                    ArrayList arrayList2 = (ArrayList) i9Var2.f7084b;
                                     Property property5 = View.TRANSLATION_X;
                                     int i16 = 1;
                                     StringBuilder sb2 = (StringBuilder) i9Var2.d;
@@ -354,10 +354,10 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                             arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList2.get(i18), property5, i9Var2.c(i18)));
                                             arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList.get(i18), property5, i9Var2.c(i18)));
                                         }
-                                        kf kfVar = (kf) i9Var2.f7083f;
+                                        kf kfVar = (kf) i9Var2.f7086f;
                                         if (kfVar != null) {
                                             AndroidUtilities.cancelRunOnUIThread(kfVar);
-                                            i9Var2.f7083f = null;
+                                            i9Var2.f7086f = null;
                                         }
                                         AnimatorSet animatorSet = (AnimatorSet) i9Var2.e;
                                         if (animatorSet != null) {
@@ -386,7 +386,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                             }
                             int i19 = i11;
                             if (i19 != 11) {
-                                Drawable drawable = re0Var.f28811a;
+                                Drawable drawable = re0Var.f28501a;
                                 if (drawable instanceof cd0) {
                                     cd0 cd0Var = (cd0) drawable;
                                     cd0Var.D = null;
@@ -410,7 +410,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                             re0Var.b(cd0Var);
                                             return;
                                         }
-                                        di.x0 x0Var = new di.x0(re0Var, z12, cd0Var, 22);
+                                        di.x0 x0Var = new di.x0(re0Var, z12, cd0Var, 20);
                                         LinkedList linkedList6 = linkedList2;
                                         linkedList6.offer(x0Var);
                                         LinkedList linkedList7 = linkedList;
@@ -457,13 +457,13 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         imageView3.setImageResource(R.drawable.fingerprint);
         imageView3.setScaleType(scaleType);
         imageView3.setBackgroundResource(R.drawable.bar_selector_lock);
-        frameLayout.addView(imageView3, w7.a6.a(60.0f, 10.0f, 0.0f, 0.0f, 4.0f, 60, 83));
+        frameLayout.addView(imageView3, w7.z5.a(60.0f, 10.0f, 0.0f, 0.0f, 4.0f, 60, 83));
         imageView3.setContentDescription(LocaleController.getString(R.string.AccDescrFingerprint));
         imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final re0 f25940b;
+            public final re0 f25635b;
 
             {
-                this.f25940b = this;
+                this.f25635b = this;
             }
 
             @Override
@@ -480,7 +480,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                 boolean z12;
                 boolean z13;
                 int i15 = r2;
-                re0 re0Var = this.f25940b;
+                re0 re0Var = this.f25635b;
                 switch (i15) {
                     case 0:
                         re0Var.m(false);
@@ -491,8 +491,8 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                     default:
                         LinkedList linkedList4 = re0Var.R;
                         LinkedList linkedList5 = re0Var.Q;
-                        di.i9 i9Var2 = re0Var.f28821s;
-                        if (re0Var.f28814b0 && !re0Var.L) {
+                        di.i9 i9Var2 = re0Var.f28511s;
+                        if (re0Var.f28504b0 && !re0Var.L) {
                             int intValue = ((Integer) view.getTag()).intValue();
                             switch (intValue) {
                                 case 0:
@@ -584,13 +584,13 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                     z11 = z10;
                                     break;
                                 case 11:
-                                    ArrayList arrayList = (ArrayList) i9Var2.f7082c;
+                                    ArrayList arrayList = (ArrayList) i9Var2.f7085c;
                                     Property property = View.TRANSLATION_Y;
                                     Property property2 = View.ALPHA;
                                     Property property3 = View.SCALE_Y;
                                     Property property4 = View.SCALE_X;
                                     z10 = false;
-                                    ArrayList arrayList2 = (ArrayList) i9Var2.f7081b;
+                                    ArrayList arrayList2 = (ArrayList) i9Var2.f7084b;
                                     Property property5 = View.TRANSLATION_X;
                                     int i16 = 1;
                                     StringBuilder sb2 = (StringBuilder) i9Var2.d;
@@ -674,10 +674,10 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                             arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList2.get(i18), property5, i9Var2.c(i18)));
                                             arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList.get(i18), property5, i9Var2.c(i18)));
                                         }
-                                        kf kfVar = (kf) i9Var2.f7083f;
+                                        kf kfVar = (kf) i9Var2.f7086f;
                                         if (kfVar != null) {
                                             AndroidUtilities.cancelRunOnUIThread(kfVar);
-                                            i9Var2.f7083f = null;
+                                            i9Var2.f7086f = null;
                                         }
                                         AnimatorSet animatorSet = (AnimatorSet) i9Var2.e;
                                         if (animatorSet != null) {
@@ -706,7 +706,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                             }
                             int i19 = i11;
                             if (i19 != 11) {
-                                Drawable drawable = re0Var.f28811a;
+                                Drawable drawable = re0Var.f28501a;
                                 if (drawable instanceof cd0) {
                                     cd0 cd0Var = (cd0) drawable;
                                     cd0Var.D = null;
@@ -730,7 +730,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                             re0Var.b(cd0Var);
                                             return;
                                         }
-                                        di.x0 x0Var = new di.x0(re0Var, z12, cd0Var, 22);
+                                        di.x0 x0Var = new di.x0(re0Var, z12, cd0Var, 20);
                                         LinkedList linkedList6 = linkedList2;
                                         linkedList6.offer(x0Var);
                                         LinkedList linkedList7 = linkedList;
@@ -775,36 +775,36 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         View view = new View(context);
         this.F = view;
         view.setBackgroundColor(822083583);
-        frameLayout.addView(view, w7.a6.b(-1.0f, 1.0f / AndroidUtilities.density, 87));
+        frameLayout.addView(view, w7.z5.b(-1.0f, 1.0f / AndroidUtilities.density, 87));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.d = frameLayout2;
-        vVar.addView(frameLayout2, w7.a6.e(-1, -1, 51));
+        vVar.addView(frameLayout2, w7.z5.e(-1, -1, 51));
         bi.i5 i5Var = new bi.i5(context, 17);
         this.e = i5Var;
-        frameLayout2.addView(i5Var, w7.a6.e(-2, -2, 17));
+        frameLayout2.addView(i5Var, w7.z5.e(-2, -2, 17));
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f28813b = frameLayout3;
-        i5Var.addView(frameLayout3, w7.a6.e(-2, -2, 49));
-        TextView g10 = org.telegram.messenger.q.g(context, 1, 15.0f);
-        g10.setTypeface(AndroidUtilities.bold());
-        g10.setTextColor(-1);
-        g10.setText(string);
-        TextView h10 = org.telegram.ui.Cells.d0.h(frameLayout3, g10, w7.a6.a(-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, -2, 49), context);
-        this.f28815c = h10;
-        h10.setTextSize(1, 14.0f);
-        h10.setTextColor(-1);
-        h10.setText((CharSequence) null);
-        frameLayout3.addView(h10, w7.a6.a(-2.0f, 0.0f, 23.0f, 0.0f, 0.0f, -2, 49));
-        this.f28818f = new ArrayList(10);
+        this.f28503b = frameLayout3;
+        i5Var.addView(frameLayout3, w7.z5.e(-2, -2, 49));
+        TextView f7 = org.telegram.messenger.g0.f(context, 1, 15.0f);
+        f7.setTypeface(AndroidUtilities.bold());
+        f7.setTextColor(-1);
+        f7.setText(string);
+        TextView g11 = org.telegram.ui.Cells.c1.g(frameLayout3, f7, w7.z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, -2, 49), context);
+        this.f28505c = g11;
+        g11.setTextSize(1, 14.0f);
+        g11.setTextColor(-1);
+        g11.setText((CharSequence) null);
+        frameLayout3.addView(g11, w7.z5.a(-2.0f, 0.0f, 23.0f, 0.0f, 0.0f, -2, 49));
+        this.f28508f = new ArrayList(10);
         int i11 = 0;
         while (true) {
             if (i11 >= 12) {
                 break;
             }
             pe0 pe0Var = new pe0(context);
-            w7.c6.b(pe0Var, 0.15f, 1.5f);
+            w7.b6.b(pe0Var, 0.15f, 1.5f);
             pe0Var.setTag(Integer.valueOf(i11));
-            int[] iArr = f28810e0;
+            int[] iArr = f28500e0;
             if (i11 == 11) {
                 int dp = AndroidUtilities.dp(30.0f);
                 pe0Var.setBackground(org.telegram.ui.ActionBar.g6.j0(dp, dp, dp, dp, 0, 654311423, 654311423));
@@ -815,7 +815,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                 pe0Var.setNextFocusForwardId(i12);
                 pe0Var.setAccessibilityTraversalBefore(i12);
             } else if (i11 == 10) {
-                this.f28819n = pe0Var;
+                this.f28509n = pe0Var;
                 int dp2 = AndroidUtilities.dp(30.0f);
                 pe0Var.setBackground(org.telegram.ui.ActionBar.g6.j0(dp2, dp2, dp2, dp2, 0, 654311423, 654311423));
                 pe0Var.setContentDescription(LocaleController.getString(R.string.AccDescrFingerprint));
@@ -850,10 +850,10 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             }
             pe0Var.setId(iArr[i11]);
             pe0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final re0 f25940b;
+                public final re0 f25635b;
 
                 {
-                    this.f25940b = this;
+                    this.f25635b = this;
                 }
 
                 @Override
@@ -870,7 +870,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                     boolean z12;
                     boolean z13;
                     int i152 = r2;
-                    re0 re0Var = this.f25940b;
+                    re0 re0Var = this.f25635b;
                     switch (i152) {
                         case 0:
                             re0Var.m(false);
@@ -881,8 +881,8 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                         default:
                             LinkedList linkedList4 = re0Var.R;
                             LinkedList linkedList5 = re0Var.Q;
-                            di.i9 i9Var2 = re0Var.f28821s;
-                            if (re0Var.f28814b0 && !re0Var.L) {
+                            di.i9 i9Var2 = re0Var.f28511s;
+                            if (re0Var.f28504b0 && !re0Var.L) {
                                 int intValue = ((Integer) view2.getTag()).intValue();
                                 switch (intValue) {
                                     case 0:
@@ -974,13 +974,13 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                         z11 = z10;
                                         break;
                                     case 11:
-                                        ArrayList arrayList = (ArrayList) i9Var2.f7082c;
+                                        ArrayList arrayList = (ArrayList) i9Var2.f7085c;
                                         Property property = View.TRANSLATION_Y;
                                         Property property2 = View.ALPHA;
                                         Property property3 = View.SCALE_Y;
                                         Property property4 = View.SCALE_X;
                                         z10 = false;
-                                        ArrayList arrayList2 = (ArrayList) i9Var2.f7081b;
+                                        ArrayList arrayList2 = (ArrayList) i9Var2.f7084b;
                                         Property property5 = View.TRANSLATION_X;
                                         int i162 = 1;
                                         StringBuilder sb2 = (StringBuilder) i9Var2.d;
@@ -1064,10 +1064,10 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                                 arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList2.get(i18), property5, i9Var2.c(i18)));
                                                 arrayList3.add(ObjectAnimator.ofFloat((TextView) arrayList.get(i18), property5, i9Var2.c(i18)));
                                             }
-                                            kf kfVar = (kf) i9Var2.f7083f;
+                                            kf kfVar = (kf) i9Var2.f7086f;
                                             if (kfVar != null) {
                                                 AndroidUtilities.cancelRunOnUIThread(kfVar);
-                                                i9Var2.f7083f = null;
+                                                i9Var2.f7086f = null;
                                             }
                                             AnimatorSet animatorSet = (AnimatorSet) i9Var2.e;
                                             if (animatorSet != null) {
@@ -1096,12 +1096,12 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                 }
                                 int i19 = i112;
                                 if (i19 != 11) {
-                                    Drawable drawable = re0Var.f28811a;
+                                    Drawable drawable = re0Var.f28501a;
                                     if (drawable instanceof cd0) {
                                         cd0 cd0Var = (cd0) drawable;
                                         cd0Var.D = null;
                                         cd0Var.z();
-                                        float f7 = cd0Var.h;
+                                        float f72 = cd0Var.h;
                                         if (i19 == 10) {
                                             if (z11) {
                                                 cd0Var.y();
@@ -1116,11 +1116,11 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                                             z13 = true;
                                         }
                                         if (z13) {
-                                            if (f7 >= 1.0f) {
+                                            if (f72 >= 1.0f) {
                                                 re0Var.b(cd0Var);
                                                 return;
                                             }
-                                            di.x0 x0Var = new di.x0(re0Var, z12, cd0Var, 22);
+                                            di.x0 x0Var = new di.x0(re0Var, z12, cd0Var, 20);
                                             LinkedList linkedList6 = linkedList2;
                                             linkedList6.offer(x0Var);
                                             LinkedList linkedList7 = linkedList;
@@ -1162,11 +1162,11 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                     }
                 }
             });
-            this.f28818f.add(pe0Var);
+            this.f28508f.add(pe0Var);
             i11++;
         }
         for (i10 = 11; i10 >= 0; i10--) {
-            this.e.addView((FrameLayout) this.f28818f.get(i10), w7.a6.e(60, 60, 51));
+            this.e.addView((FrameLayout) this.f28508f.get(i10), w7.z5.e(60, 60, 51));
         }
         d();
     }
@@ -1175,8 +1175,8 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         boolean z10;
         float f7;
         float f10;
-        FrameLayout frameLayout = re0Var.f28813b;
-        di.i9 i9Var = re0Var.f28821s;
+        FrameLayout frameLayout = re0Var.f28503b;
+        di.i9 i9Var = re0Var.f28511s;
         if (i9Var != null && ((StringBuilder) i9Var.d).length() <= 0) {
             z10 = false;
         } else {
@@ -1201,20 +1201,20 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             if (z10) {
                 f11 = 0.8f;
             }
-            org.telegram.messenger.yh.s(scaleX.scaleY(f11), es.h, 320L);
+            org.telegram.messenger.sk.t(scaleX.scaleY(f11), es.h, 320L);
         }
     }
 
     public final void b(cd0 cd0Var) {
         o1.k kVar = this.P;
-        if (kVar != null && kVar.f16461f) {
+        if (kVar != null && kVar.f16154f) {
             kVar.c();
         }
         o1.j jVar = new o1.j(0.0f);
         cd0Var.D = new xv(jVar, 9);
         cd0Var.z();
         o1.k kVar2 = new o1.k(jVar);
-        kVar2.f16468u = org.telegram.ui.Cells.d0.k(100.0f, 300.0f, 1.0f);
+        kVar2.f16161u = org.telegram.ui.Cells.c1.j(100.0f, 300.0f, 1.0f);
         this.P = kVar2;
         kVar2.a(new fi.m4(4, this, cd0Var));
         this.P.b(new n7(cd0Var, 5));
@@ -1224,26 +1224,26 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
     public final void c() {
         Activity findActivity;
         te0 te0Var;
-        if (!this.L && (findActivity = AndroidUtilities.findActivity(getContext())) != null && this.f28819n.getVisibility() == 0 && !ApplicationLoader.mainInterfacePaused) {
+        if (!this.L && (findActivity = AndroidUtilities.findActivity(getContext())) != null && this.f28509n.getVisibility() == 0 && !ApplicationLoader.mainInterfacePaused) {
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
                 ArrayList arrayList = launchActivity.B0;
                 if (arrayList.isEmpty() && (te0Var = launchActivity.A0) != null) {
-                    if (this != te0Var.f29363b) {
+                    if (this != te0Var.f29050b) {
                         return;
                     }
-                } else if (i2.d.g(1, arrayList) != this) {
+                } else if (i2.d.h(1, arrayList) != this) {
                     return;
                 }
             }
             try {
-                if (new androidx.biometric.e(new androidx.biometric.t(getContext(), 0)).h(15) == 0 && FingerprintController.isKeyReady() && !FingerprintController.checkDeviceFingerprintsChanged()) {
-                    k6.h hVar = new k6.h(LaunchActivity.G1, f0.c.d(getContext()), new je0(this));
-                    j6.l lVar = new j6.l(1);
-                    lVar.f12873b = LocaleController.getString(R.string.UnlockToUse);
-                    lVar.d = LocaleController.getString(R.string.UsePIN);
-                    lVar.f12872a = 15;
-                    hVar.k(lVar.a(), null);
+                if (new androidx.biometric.e(new androidx.biometric.t(getContext(), 0)).f(15) == 0 && FingerprintController.isKeyReady() && !FingerprintController.checkDeviceFingerprintsChanged()) {
+                    a4.l lVar = new a4.l(LaunchActivity.G1, f0.c.d(getContext()), new je0(this));
+                    j6.l lVar2 = new j6.l(1);
+                    lVar2.f12877b = LocaleController.getString(R.string.UnlockToUse);
+                    lVar2.d = LocaleController.getString(R.string.UsePIN);
+                    lVar2.f12876a = 15;
+                    lVar.L(lVar2.a(), null);
                     n(false);
                 }
             } catch (Exception e) {
@@ -1261,7 +1261,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         } else {
             i10 = 8;
         }
-        pe0 pe0Var = this.f28819n;
+        pe0 pe0Var = this.f28509n;
         pe0Var.setVisibility(i10);
         if (SharedConfig.passcodeType == 1) {
             this.E.setVisibility(pe0Var.getVisibility());
@@ -1273,7 +1273,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         } else {
             i11 = R.string.EnterPIN;
         }
-        this.f28815c.setText(LocaleController.getString(i11));
+        this.f28505c.setText(LocaleController.getString(i11));
     }
 
     @Override
@@ -1301,10 +1301,10 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         SharedConfig.saveConfig();
         long j11 = SharedConfig.passcodeRetryInMs;
         int i10 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
-        EditTextBoldCursor editTextBoldCursor = this.f28820r;
+        EditTextBoldCursor editTextBoldCursor = this.f28510r;
         FrameLayout frameLayout = this.h;
-        org.telegram.ui.Cells.t6 t6Var = this.V;
-        TextView textView = this.f28823x;
+        org.telegram.ui.Cells.l7 l7Var = this.V;
+        TextView textView = this.f28513x;
         if (i10 > 0) {
             int max = Math.max(1, (int) Math.ceil(j11 / 1000.0d));
             if (max != this.W) {
@@ -1317,11 +1317,11 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                 n(false);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor);
             }
-            AndroidUtilities.cancelRunOnUIThread(t6Var);
-            AndroidUtilities.runOnUIThread(t6Var, 100L);
+            AndroidUtilities.cancelRunOnUIThread(l7Var);
+            AndroidUtilities.runOnUIThread(l7Var, 100L);
             return;
         }
-        AndroidUtilities.cancelRunOnUIThread(t6Var);
+        AndroidUtilities.cancelRunOnUIThread(l7Var);
         if (textView.getVisibility() == 0) {
             textView.setVisibility(4);
             frameLayout.setVisibility(0);
@@ -1337,9 +1337,9 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
     }
 
     public final boolean h() {
-        di.h4 h4Var = this.f28812a0;
+        di.h4 h4Var = this.f28502a0;
         if (h4Var != null && h4Var.c()) {
-            AndroidUtilities.hideKeyboard(this.f28820r);
+            AndroidUtilities.hideKeyboard(this.f28510r);
             return false;
         }
         return true;
@@ -1352,9 +1352,9 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
     public final void k() {
         if (!this.L) {
             e();
-            if (this.f28823x.getVisibility() != 0) {
+            if (this.f28513x.getVisibility() != 0) {
                 if (SharedConfig.passcodeType == 1) {
-                    EditTextBoldCursor editTextBoldCursor = this.f28820r;
+                    EditTextBoldCursor editTextBoldCursor = this.f28510r;
                     if (editTextBoldCursor != null) {
                         editTextBoldCursor.requestFocus();
                         AndroidUtilities.showKeyboard(editTextBoldCursor);
@@ -1366,7 +1366,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         }
     }
 
-    public final void l(boolean z10, int i10, int i11, org.telegram.ui.o00 o00Var) {
+    public final void l(boolean z10, int i10, int i11, org.telegram.ui.d20 d20Var) {
         View currentFocus;
         boolean z11;
         int i12;
@@ -1378,8 +1378,8 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         e();
         Activity findActivity = AndroidUtilities.findActivity(getContext());
         int i14 = SharedConfig.passcodeType;
-        TextView textView = this.f28823x;
-        EditTextBoldCursor editTextBoldCursor = this.f28820r;
+        TextView textView = this.f28513x;
+        EditTextBoldCursor editTextBoldCursor = this.f28510r;
         if (i14 == 1) {
             if (!z10 && textView.getVisibility() != 0 && editTextBoldCursor != null) {
                 editTextBoldCursor.requestFocus();
@@ -1394,24 +1394,24 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         }
         setTranslationY(0.0f);
         y9 y9Var = null;
-        this.f28811a = null;
+        this.f28501a = null;
         boolean z12 = org.telegram.ui.ActionBar.g6.s0() instanceof cd0;
         ah.v vVar = this.v;
         if (z12) {
             z11 = !org.telegram.ui.ActionBar.g6.I.q();
-            this.f28811a = org.telegram.ui.ActionBar.g6.s0();
+            this.f28501a = org.telegram.ui.ActionBar.g6.s0();
             vVar.setBackgroundColor(-1090519040);
         } else {
             if (org.telegram.ui.ActionBar.g6.W && !"CJz3BZ6YGEYBAAAABboWp6SAv04".equals(org.telegram.ui.ActionBar.g6.I0()) && !"qeZWES8rGVIEAAAARfWlK1lnfiI".equals(org.telegram.ui.ActionBar.g6.I0())) {
-                org.telegram.ui.ActionBar.z5 z5Var = org.telegram.ui.ActionBar.g6.I.f19803i0;
+                org.telegram.ui.ActionBar.z5 z5Var = org.telegram.ui.ActionBar.g6.I.f19503i0;
                 if (z5Var != null && (i12 = z5Var.d) != 0 && (i13 = z5Var.e) != 0) {
                     y9Var = new y9(y9.d(z5Var.h), new int[]{i12, i13});
                 }
-                this.f28811a = y9Var;
+                this.f28501a = y9Var;
                 if (y9Var == null) {
-                    this.f28811a = org.telegram.ui.ActionBar.g6.s0();
+                    this.f28501a = org.telegram.ui.ActionBar.g6.s0();
                 }
-                if (this.f28811a instanceof y9) {
+                if (this.f28501a instanceof y9) {
                     vVar.setBackgroundColor(570425344);
                 } else {
                     vVar.setBackgroundColor(-1090519040);
@@ -1419,9 +1419,9 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             } else {
                 if (!"d".equals(org.telegram.ui.ActionBar.g6.I0())) {
                     String I0 = org.telegram.ui.ActionBar.g6.I0();
-                    if (!org.telegram.ui.ActionBar.g6.f20002j0 && !"CJz3BZ6YGEYBAAAABboWp6SAv04".equals(I0) && !"qeZWES8rGVIEAAAARfWlK1lnfiI".equals(I0)) {
+                    if (!org.telegram.ui.ActionBar.g6.f19702j0 && !"CJz3BZ6YGEYBAAAABboWp6SAv04".equals(I0) && !"qeZWES8rGVIEAAAARfWlK1lnfiI".equals(I0)) {
                         Drawable s02 = org.telegram.ui.ActionBar.g6.s0();
-                        this.f28811a = s02;
+                        this.f28501a = s02;
                         if (s02 instanceof y9) {
                             vVar.setBackgroundColor(570425344);
                         } else if (s02 != null) {
@@ -1435,10 +1435,10 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             }
             z11 = false;
         }
-        Drawable drawable = this.f28811a;
+        Drawable drawable = this.f28501a;
         if (drawable instanceof cd0) {
             cd0 cd0Var = (cd0) drawable;
-            int[] iArr = cd0Var.f24035a;
+            int[] iArr = cd0Var.f23689a;
             if (z11) {
                 int[] iArr2 = new int[iArr.length];
                 for (int i15 = 0; i15 < iArr.length; i15++) {
@@ -1446,20 +1446,20 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                 }
                 iArr = iArr2;
             }
-            this.f28811a = new cd0(false, iArr[0], iArr[1], iArr[2], iArr[3]);
-            if (cd0Var.f24056u != null && cd0Var.f24052q < 0) {
+            this.f28501a = new cd0(false, iArr[0], iArr[1], iArr[2], iArr[3]);
+            if (cd0Var.f23710u != null && cd0Var.f23706q < 0) {
                 vVar.setBackgroundColor(2130706432);
             } else {
                 vVar.setBackgroundColor(570425344);
             }
-            ((cd0) this.f28811a).r(vVar);
+            ((cd0) this.f28501a).r(vVar);
         }
-        this.f28822w.setText(LocaleController.getString(R.string.AppLocked));
+        this.f28512w.setText(LocaleController.getString(R.string.AppLocked));
         int i16 = SharedConfig.passcodeType;
         ImageView imageView = this.E;
-        ImageView imageView2 = this.f28824y;
+        ImageView imageView2 = this.f28514y;
         bi.i5 i5Var = this.e;
-        di.i9 i9Var = this.f28821s;
+        di.i9 i9Var = this.f28511s;
         if (i16 == 0) {
             if (textView.getVisibility() != 0) {
                 i5Var.setVisibility(0);
@@ -1477,7 +1477,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             editTextBoldCursor.setVisibility(0);
             i9Var.setVisibility(8);
             imageView2.setVisibility(0);
-            imageView.setVisibility(this.f28819n.getVisibility());
+            imageView.setVisibility(this.f28509n.getVisibility());
         }
         setVisibility(0);
         editTextBoldCursor.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -1485,7 +1485,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         di.i9.a(i9Var, false);
         if (z10) {
             setAlpha(0.0f);
-            getViewTreeObserver().addOnGlobalLayoutListener(new me0(this, i10, i11, o00Var));
+            getViewTreeObserver().addOnGlobalLayoutListener(new me0(this, i10, i11, d20Var));
             requestLayout();
         } else {
             setAlpha(1.0f);
@@ -1496,8 +1496,8 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             bk0Var.setScaleY(1.0f);
             bk0Var.i();
             bk0Var.getAnimatedDrawable().N(38, false, false);
-            if (o00Var != null) {
-                o00Var.run();
+            if (d20Var != null) {
+                d20Var.run();
             }
         }
         setOnTouchListener(new ci.d(19));
@@ -1506,11 +1506,11 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
     public final void m(boolean z10) {
         String str;
         if (!this.L && getVisibility() == 0) {
-            EditTextBoldCursor editTextBoldCursor = this.f28820r;
+            EditTextBoldCursor editTextBoldCursor = this.f28510r;
             if (!z10) {
                 if (SharedConfig.passcodeRetryInMs <= 0) {
                     int i10 = SharedConfig.passcodeType;
-                    di.i9 i9Var = this.f28821s;
+                    di.i9 i9Var = this.f28511s;
                     if (i10 == 0) {
                         str = ((StringBuilder) i9Var.d).toString();
                     } else if (i10 != 1) {
@@ -1519,7 +1519,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                         str = editTextBoldCursor.getText().toString();
                     }
                     int length = str.length();
-                    FrameLayout frameLayout = this.f28813b;
+                    FrameLayout frameLayout = this.f28503b;
                     if (length == 0) {
                         BotWebViewVibrationEffect.NOTIFICATION_ERROR.vibrate();
                         int i11 = -this.U;
@@ -1537,7 +1537,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                         int i12 = -this.U;
                         this.U = i12;
                         AndroidUtilities.shakeViewSpring(frameLayout, i12);
-                        Drawable drawable = this.f28811a;
+                        Drawable drawable = this.f28501a;
                         if (drawable instanceof cd0) {
                             cd0 cd0Var = (cd0) drawable;
                             o1.k kVar = this.P;
@@ -1594,11 +1594,11 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
 
     public final void n(boolean z10) {
         float f7;
-        ValueAnimator valueAnimator = this.f28816c0;
+        ValueAnimator valueAnimator = this.f28506c0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        this.f28814b0 = z10;
+        this.f28504b0 = z10;
         float alpha = this.e.getAlpha();
         if (z10) {
             f7 = 1.0f;
@@ -1606,12 +1606,12 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             f7 = 0.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f7);
-        this.f28816c0 = ofFloat;
+        this.f28506c0 = ofFloat;
         ofFloat.addUpdateListener(new he0(this, 1));
-        this.f28816c0.addListener(new org.telegram.ui.vo(17, this, z10));
-        this.f28816c0.setInterpolator(es.h);
-        this.f28816c0.setDuration(320L);
-        this.f28816c0.start();
+        this.f28506c0.addListener(new org.telegram.ui.vo(17, this, z10));
+        this.f28506c0.setInterpolator(es.h);
+        this.f28506c0.setDuration(320L);
+        this.f28506c0.start();
     }
 
     @Override
@@ -1619,8 +1619,8 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
         super.onAttachedToWindow();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didGenerateFingerprintKeyPair);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.passcodeDismissed);
-        if (this.f28812a0 == null && (getParent() instanceof View)) {
-            this.f28812a0 = new di.h4((View) getParent(), false, new a3(this, 9));
+        if (this.f28502a0 == null && (getParent() instanceof View)) {
+            this.f28502a0 = new di.h4((View) getParent(), false, new a3(this, 9));
         }
     }
 
@@ -1667,8 +1667,8 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             frameLayout.setLayoutParams(layoutParams);
         }
         super.onLayout(z10, i10, i11, i12, i13);
-        TextView textView = this.f28822w;
-        int[] iArr = this.f28817d0;
+        TextView textView = this.f28512w;
+        int[] iArr = this.f28507d0;
         textView.getLocationInWindow(iArr);
         boolean isTablet = AndroidUtilities.isTablet();
         bk0 bk0Var = this.I;
@@ -1735,13 +1735,13 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             }
             layoutParams.width = i15;
             layoutParams.height = AndroidUtilities.dp(180.0f);
-            int B = org.telegram.messenger.yh.B(140.0f, i18, 2);
+            int A = org.telegram.messenger.sk.A(140.0f, i18, 2);
             if (SharedConfig.passcodeType == 0) {
                 i16 = AndroidUtilities.dp(40.0f);
             } else {
                 i16 = 0;
             }
-            layoutParams.topMargin = B + i16;
+            layoutParams.topMargin = A + i16;
             frameLayout2.setLayoutParams(layoutParams);
             FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
             layoutParams2.height = i18;
@@ -1761,13 +1761,13 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
             int i20 = AndroidUtilities.statusBarHeight;
             if (AndroidUtilities.isTablet()) {
                 if (size > AndroidUtilities.dp(498.0f)) {
-                    i12 = org.telegram.messenger.yh.B(498.0f, size, 2);
+                    i12 = org.telegram.messenger.sk.A(498.0f, size, 2);
                     size = AndroidUtilities.dp(498.0f);
                 } else {
                     i12 = 0;
                 }
                 if (i18 > AndroidUtilities.dp(528.0f)) {
-                    i20 = org.telegram.messenger.yh.B(528.0f, i18, 2);
+                    i20 = org.telegram.messenger.sk.A(528.0f, i18, 2);
                     i18 = AndroidUtilities.dp(528.0f);
                 }
             } else {
@@ -1826,7 +1826,7 @@ public class re0 extends FrameLayout implements NotificationCenter.NotificationC
                     i25 = i24 - 1;
                 }
             }
-            FrameLayout frameLayout3 = (FrameLayout) this.f28818f.get(i24);
+            FrameLayout frameLayout3 = (FrameLayout) this.f28508f.get(i24);
             FrameLayout.LayoutParams layoutParams7 = (FrameLayout.LayoutParams) frameLayout3.getLayoutParams();
             layoutParams7.topMargin = ((dp3 + dp2) * (i25 / 3)) + dp4;
             layoutParams7.leftMargin = (dp3 + dp) * (i25 % 3);

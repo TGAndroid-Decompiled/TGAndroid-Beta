@@ -3,19 +3,19 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class z extends AnimatorListenerAdapter {
-    public final t f30609a;
-    public final l0 f30610b;
+    public final t f30278a;
+    public final l0 f30279b;
 
     public z(l0 l0Var, t tVar) {
-        this.f30610b = l0Var;
-        this.f30609a = tVar;
+        this.f30279b = l0Var;
+        this.f30278a = tVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        l0 l0Var = this.f30610b;
+        l0 l0Var = this.f30279b;
         l0Var.N0 = null;
-        this.f30609a.E = false;
+        this.f30278a.E = false;
         t tVar = l0Var.E;
         if (tVar != null) {
             if (tVar.getParent() != null) {

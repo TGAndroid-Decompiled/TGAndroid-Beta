@@ -10,15 +10,15 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class zp extends org.telegram.ui.Components.lm0 {
-    public final Context f42690c;
+    public final Context f42398c;
     public ArrayList d = new ArrayList();
     public ArrayList e = new ArrayList();
-    public yp f42691f;
+    public yp f42399f;
     public final aq h;
 
     public zp(aq aqVar, Context context) {
         this.h = aqVar;
-        this.f42690c = context;
+        this.f42398c = context;
     }
 
     public static void E(zp zpVar, ArrayList arrayList, ArrayList arrayList2) {
@@ -28,7 +28,7 @@ public final class zp extends org.telegram.ui.Components.lm0 {
         }
         zpVar.d = arrayList;
         zpVar.e = arrayList2;
-        if (aqVar.f34293b.getAdapter() == aqVar.e) {
+        if (aqVar.f34049b.getAdapter() == aqVar.e) {
             aqVar.d.c();
         }
         super.l();
@@ -51,9 +51,9 @@ public final class zp extends org.telegram.ui.Components.lm0 {
     }
 
     public final void F(String str) {
-        if (this.f42691f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f42691f);
-            this.f42691f = null;
+        if (this.f42399f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f42399f);
+            this.f42399f = null;
         }
         if (TextUtils.isEmpty(str)) {
             this.d.clear();
@@ -63,7 +63,7 @@ public final class zp extends org.telegram.ui.Components.lm0 {
         }
         DispatchQueue dispatchQueue = Utilities.searchQueue;
         yp ypVar = new yp(this, str, 0);
-        this.f42691f = ypVar;
+        this.f42399f = ypVar;
         dispatchQueue.postRunnable(ypVar, 300L);
     }
 
@@ -96,8 +96,8 @@ public final class zp extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(6, 2, this.f42690c, null, false);
-        b5Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19901d6, false));
+        org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(6, 2, this.f42398c, null, false);
+        b5Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false));
         return new s4.b1(b5Var);
     }
 }

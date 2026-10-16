@@ -12,15 +12,15 @@ import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class n41 extends Thread {
-    public final String f27580a;
-    public final String f27581b;
-    public final String f27582c;
+    public final String f27275a;
+    public final String f27276b;
+    public final String f27277c;
     public final Utilities.Callback2 d;
 
     public n41(String str, String str2, String str3, Utilities.Callback2 callback2) {
-        this.f27580a = str;
-        this.f27581b = str2;
-        this.f27582c = str3;
+        this.f27275a = str;
+        this.f27276b = str2;
+        this.f27277c = str3;
         this.d = callback2;
     }
 
@@ -30,17 +30,17 @@ public final class n41 extends Thread {
         Integer num;
         String str;
         Utilities.Callback2 callback2 = this.d;
-        String str2 = this.f27582c;
+        String str2 = this.f27277c;
         boolean z10 = false;
         String str3 = null;
         try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f27580a) + "&tl=" + Uri.encode(this.f27581b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f27275a) + "&tl=" + Uri.encode(this.f27276b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
             try {
                 httpURLConnection.setRequestMethod("GET");
                 httpURLConnection.setRequestProperty("User-Agent", x41.R[(int) Math.round(Math.random() * 5)]);
                 httpURLConnection.setRequestProperty("Content-Type", "application/json");
                 StringBuilder sb2 = new StringBuilder();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), d9.j.f6435a));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), d9.j.f6438a));
                 while (true) {
                     int read = bufferedReader.read();
                     if (read == -1) {
@@ -97,11 +97,11 @@ public final class n41 extends Thread {
                             z10 = true;
                         }
                     } catch (Exception unused2) {
-                        AndroidUtilities.runOnUIThread(new lr0(callback2, 22));
+                        AndroidUtilities.runOnUIThread(new kr0(callback2, 22));
                         return;
                     }
                 }
-                AndroidUtilities.runOnUIThread(new sn0(6, callback2, z10));
+                AndroidUtilities.runOnUIThread(new zr0(5, callback2, z10));
             }
         } catch (Exception e10) {
             e = e10;

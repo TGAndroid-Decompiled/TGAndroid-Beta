@@ -10,18 +10,18 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class nb extends Dialog {
-    public final mb f27650a;
-    public final WindowManager.LayoutParams f27651b;
+    public final mb f27336a;
+    public final WindowManager.LayoutParams f27337b;
 
     public nb(Context context, di.z8 z8Var) {
         super(context);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         mb mbVar = new mb(this, context);
-        this.f27650a = mbVar;
+        this.f27336a = mbVar;
         setContentView(mbVar, new ViewGroup.LayoutParams(-1, -1));
         s sVar = new s(this, 15);
-        WeakHashMap weakHashMap = r0.j0.f43732a;
-        r0.b0.i(mbVar, sVar);
+        WeakHashMap weakHashMap = r0.i0.f43485a;
+        r0.a0.i(mbVar, sVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {
             mbVar.setSystemUiVisibility(1792);
@@ -34,7 +34,7 @@ public final class nb extends Dialog {
             window.setWindowAnimations(R.style.DialogNoAnimation);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f27651b = attributes;
+            this.f27337b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -46,7 +46,7 @@ public final class nb extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19843a7, false)) <= 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19543a7, false)) <= 0.721f) {
                 z10 = false;
             }
             AndroidUtilities.setLightNavigationBar(this, z10);
@@ -55,7 +55,7 @@ public final class nb extends Dialog {
     }
 
     public static mb a(Context context) {
-        return new nb(context, null).f27650a;
+        return new nb(context, null).f27336a;
     }
 
     @Override

@@ -1,37 +1,58 @@
 package gb;
-public abstract class h {
-    public static final int f10052a;
 
-    static {
-        int i10;
-        String property = System.getProperty("java.version");
+import eb.v;
+import java.lang.reflect.Modifier;
+import java.util.Collections;
+import java.util.List;
+import v7.r8;
+public final class h implements v, Cloneable {
+    public static final h f10053c = new h();
+    public List f10054a;
+    public final List f10055b;
+
+    public h() {
+        List list = Collections.EMPTY_LIST;
+        this.f10054a = list;
+        this.f10055b = list;
+    }
+
+    public final h clone() {
         try {
-            String[] split = property.split("[._]", 3);
-            i10 = Integer.parseInt(split[0]);
-            if (i10 == 1 && split.length > 1) {
-                i10 = Integer.parseInt(split[1]);
-            }
-        } catch (NumberFormatException unused) {
-            i10 = -1;
+            return (h) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
         }
-        if (i10 == -1) {
-            try {
-                StringBuilder sb2 = new StringBuilder();
-                for (int i11 = 0; i11 < property.length(); i11++) {
-                    char charAt = property.charAt(i11);
-                    if (!Character.isDigit(charAt)) {
-                        break;
-                    }
-                    sb2.append(charAt);
-                }
-                i10 = Integer.parseInt(sb2.toString());
-            } catch (NumberFormatException unused2) {
-                i10 = -1;
+    }
+
+    public final boolean b(Class cls, boolean z10) {
+        List<eb.a> list;
+        if (!z10 && !Enum.class.isAssignableFrom(cls)) {
+            r8 r8Var = jb.c.f12958a;
+            if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
+                return true;
             }
         }
-        if (i10 == -1) {
-            i10 = 6;
+        if (z10) {
+            list = this.f10054a;
+        } else {
+            list = this.f10055b;
         }
-        f10052a = i10;
+        for (eb.a aVar : list) {
+            if (aVar.shouldSkipClass(cls)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final eb.u create(eb.g gVar, lb.a aVar) {
+        Class cls = aVar.f14653a;
+        boolean b10 = b(cls, true);
+        boolean b11 = b(cls, false);
+        if (!b10 && !b11) {
+            return null;
+        }
+        return new g(this, b11, b10, gVar, aVar);
     }
 }

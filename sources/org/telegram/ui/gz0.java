@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class gz0 implements View.OnClickListener {
-    public final int f36549a;
-    public final Runnable f36550b;
+    public final int f36335a;
+    public final Runnable f36336b;
 
     public gz0(int i10, Runnable runnable) {
-        this.f36549a = i10;
-        this.f36550b = runnable;
+        this.f36335a = i10;
+        this.f36336b = runnable;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f36549a) {
+        switch (this.f36335a) {
             case 0:
-                this.f36550b.run();
+                this.f36336b.run();
                 return;
             default:
-                Runnable runnable = this.f36550b;
+                Runnable runnable = this.f36336b;
                 if (runnable != null) {
                     runnable.run();
                     return;

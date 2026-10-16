@@ -2,13 +2,13 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
 public final class h10 implements Utilities.Callback {
-    public final int f25468a = 1;
-    public final org.telegram.ui.ActionBar.b5 f25469b;
-    public final org.telegram.ui.vc f25470c;
+    public final int f25149a = 1;
+    public final org.telegram.ui.ActionBar.b5 f25150b;
+    public final org.telegram.ui.uc f25151c;
 
-    public h10(org.telegram.ui.ActionBar.b5 b5Var, org.telegram.ui.vc vcVar) {
-        this.f25469b = b5Var;
-        this.f25470c = vcVar;
+    public h10(org.telegram.ui.ActionBar.b5 b5Var, org.telegram.ui.uc ucVar) {
+        this.f25150b = b5Var;
+        this.f25151c = ucVar;
     }
 
     @Override
@@ -16,8 +16,8 @@ public final class h10 implements Utilities.Callback {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h10.run(java.lang.Object):void");
     }
 
-    public h10(org.telegram.ui.vc vcVar, org.telegram.ui.ActionBar.b5 b5Var) {
-        this.f25470c = vcVar;
-        this.f25469b = b5Var;
+    public h10(org.telegram.ui.uc ucVar, org.telegram.ui.ActionBar.b5 b5Var) {
+        this.f25151c = ucVar;
+        this.f25150b = b5Var;
     }
 }

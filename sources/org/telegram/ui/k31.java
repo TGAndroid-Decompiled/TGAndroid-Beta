@@ -32,20 +32,20 @@ public final class k31 implements NotificationCenter.NotificationCenterDelegate 
     public boolean Q;
     public boolean R;
     public final l31 S;
-    public final org.telegram.ui.Components.xp f37504b;
-    public final h31 f37505c;
+    public final org.telegram.ui.Components.xp f37225b;
+    public final h31 f37226c;
     public final l31 d;
     public final Window e;
-    public final Drawable f37506f;
+    public final Drawable f37227f;
     public final ah.v h;
-    public final TextView f37507n;
-    public final org.telegram.ui.Components.f10 f37508r;
-    public final TextView f37509s;
+    public final TextView f37228n;
+    public final org.telegram.ui.Components.f10 f37229r;
+    public final TextView f37230s;
     public final LinearLayout v;
-    public final TextView f37510w;
-    public final ImageView f37511x;
-    public final org.telegram.ui.Components.mm0 f37512y;
-    public final Paint f37503a = new Paint(1);
+    public final TextView f37231w;
+    public final ImageView f37232x;
+    public final org.telegram.ui.Components.mm0 f37233y;
+    public final Paint f37224a = new Paint(1);
     public int L = -1;
 
     public k31(l31 l31Var, l31 l31Var2, Window window) {
@@ -56,24 +56,24 @@ public final class k31 implements NotificationCenter.NotificationCenterDelegate 
         this.d = l31Var2;
         this.e = window;
         Activity parentActivity = l31Var2.getParentActivity();
-        this.f37505c = new s4.c0(parentActivity);
+        this.f37226c = new s4.c0(parentActivity);
         Drawable mutate = parentActivity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.f37506f = mutate;
-        int themedColor = l31Var2.getThemedColor(org.telegram.ui.ActionBar.g6.f19972h5);
+        this.f37227f = mutate;
+        int themedColor = l31Var2.getThemedColor(org.telegram.ui.ActionBar.g6.f19672h5);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
         ah.v vVar = new ah.v(this, parentActivity, l31Var2);
         this.h = vVar;
         TextView textView = new TextView(parentActivity);
-        this.f37507n = textView;
+        this.f37228n = textView;
         textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         textView.setLines(1);
         textView.setSingleLine(true);
-        textView.setTextColor(l31Var2.getThemedColor(org.telegram.ui.ActionBar.g6.f20007j5));
+        textView.setTextColor(l31Var2.getThemedColor(org.telegram.ui.ActionBar.g6.f19707j5));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
-        vVar.addView(textView, w7.a6.a(-2.0f, 0.0f, 0.0f, 62.0f, 0.0f, -1, 8388659));
+        vVar.addView(textView, w7.z5.a(-2.0f, 0.0f, 0.0f, 62.0f, 0.0f, -1, 8388659));
         int i12 = org.telegram.ui.ActionBar.g6.Oh;
         int themedColor2 = l31Var2.getThemedColor(i12);
         int dp = AndroidUtilities.dp(28.0f);
@@ -90,17 +90,17 @@ public final class k31 implements NotificationCenter.NotificationCenterDelegate 
         i31Var.setOnClickListener(new t60(this, 26));
         i31Var.setAlpha(0.0f);
         i31Var.setVisibility(4);
-        vVar.addView(i31Var, w7.a6.a(44.0f, 0.0f, -2.0f, 7.0f, 0.0f, 44, 8388661));
-        org.telegram.ui.Components.f10 f10Var = new org.telegram.ui.Components.f10(parentActivity, l31Var2.f37826a);
-        this.f37508r = f10Var;
+        vVar.addView(i31Var, w7.z5.a(44.0f, 0.0f, -2.0f, 7.0f, 0.0f, 44, 8388661));
+        org.telegram.ui.Components.f10 f10Var = new org.telegram.ui.Components.f10(parentActivity, l31Var2.f37592a);
+        this.f37229r = f10Var;
         f10Var.setVisibility(0);
-        vVar.addView(f10Var, w7.a6.a(104.0f, 0.0f, 44.0f, 0.0f, 0.0f, -1, 8388611));
+        vVar.addView(f10Var, w7.z5.a(104.0f, 0.0f, 44.0f, 0.0f, 0.0f, -1, 8388611));
         this.R = true;
         org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(parentActivity, null);
-        this.f37512y = mm0Var;
+        this.f37233y = mm0Var;
         i10 = ((org.telegram.ui.ActionBar.m2) l31Var).currentAccount;
-        org.telegram.ui.Components.xp xpVar = new org.telegram.ui.Components.xp(i10, 2, l31Var.f37826a);
-        this.f37504b = xpVar;
+        org.telegram.ui.Components.xp xpVar = new org.telegram.ui.Components.xp(i10, 2, l31Var.f37592a);
+        this.f37225b = xpVar;
         mm0Var.setAdapter(xpVar);
         mm0Var.setClipChildren(false);
         mm0Var.setClipToPadding(false);
@@ -116,7 +116,7 @@ public final class k31 implements NotificationCenter.NotificationCenterDelegate 
         this.G = sVar;
         mm0Var.setLayoutManager(sVar);
         mm0Var.setOnItemClickListener(new i21(this, 1));
-        mm0Var.setOnScrollListener(new org.telegram.ui.Components.p51(this));
+        mm0Var.setOnScrollListener(new org.telegram.ui.Components.q51(this));
         vVar.addView(mm0Var);
         View view = new View(parentActivity);
         this.H = view;
@@ -129,7 +129,7 @@ public final class k31 implements NotificationCenter.NotificationCenterDelegate 
         view2.setBackground(parentActivity.getDrawable(R.drawable.shadowdown));
         vVar.addView(view2);
         TextView textView2 = new TextView(parentActivity);
-        this.f37509s = textView2;
+        this.f37230s = textView2;
         textView2.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{24.0f}, l31Var2.getThemedColor(i12)));
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView2.setEllipsize(truncateAt);
@@ -149,13 +149,13 @@ public final class k31 implements NotificationCenter.NotificationCenterDelegate 
             linearLayout.setOrientation(0);
             linearLayout.setGravity(17);
             ImageView imageView = new ImageView(parentActivity);
-            this.f37511x = imageView;
-            imageView.setLayoutParams(w7.a6.t(24, 24, 17, 0, 0, 10, 0));
+            this.f37232x = imageView;
+            imageView.setLayoutParams(w7.z5.t(24, 24, 17, 0, 0, 10, 0));
             imageView.setImageResource(R.drawable.profile_qr_scan_24);
             imageView.setColorFilter(new PorterDuffColorFilter(l31Var2.getThemedColor(i12), mode));
             linearLayout.addView(imageView);
             TextView textView3 = new TextView(parentActivity);
-            this.f37510w = textView3;
+            this.f37231w = textView3;
             textView3.setEllipsize(truncateAt);
             textView3.setGravity(17);
             textView3.setLines(1);
@@ -169,8 +169,8 @@ public final class k31 implements NotificationCenter.NotificationCenterDelegate 
             return;
         }
         this.v = null;
-        this.f37511x = null;
-        this.f37510w = null;
+        this.f37232x = null;
+        this.f37231w = null;
     }
 
     public final void a(boolean z10, boolean z11) {
@@ -202,7 +202,7 @@ public final class k31 implements NotificationCenter.NotificationCenterDelegate 
 
     public final void b(int i10) {
         this.L = i10;
-        org.telegram.ui.Components.xp xpVar = this.f37504b;
+        org.telegram.ui.Components.xp xpVar = this.f37225b;
         xpVar.E(i10);
         if (i10 > 0 && i10 < xpVar.d.size() / 2) {
             i10--;
@@ -213,7 +213,7 @@ public final class k31 implements NotificationCenter.NotificationCenterDelegate 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.emojiLoaded) {
-            this.f37504b.l();
+            this.f37225b.l();
         }
     }
 }

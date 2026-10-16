@@ -5,12 +5,12 @@ import b2.r0;
 import b2.t0;
 import b2.x;
 public final class a implements t0 {
-    public final int f15374a;
-    public final String f15375b;
+    public final int f15112a;
+    public final String f15113b;
 
     public a(int i10, String str) {
-        this.f15374a = i10;
-        this.f15375b = str;
+        this.f15112a = i10;
+        this.f15113b = str;
     }
 
     @Override
@@ -25,9 +25,9 @@ public final class a implements t0 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Ait(controlCode=");
-        sb2.append(this.f15374a);
+        sb2.append(this.f15112a);
         sb2.append(",url=");
-        return g.s(sb2, this.f15375b, ")");
+        return g.s(sb2, this.f15113b, ")");
     }
 
     @Override

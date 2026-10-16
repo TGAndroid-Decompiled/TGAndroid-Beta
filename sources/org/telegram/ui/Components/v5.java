@@ -3,23 +3,23 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class v5 extends AnimatorListenerAdapter {
-    public final int f29892a;
-    public final b6 f29893b;
+    public final int f29567a;
+    public final b6 f29568b;
 
     public v5(b6 b6Var, int i10) {
-        this.f29892a = i10;
-        this.f29893b = b6Var;
+        this.f29567a = i10;
+        this.f29568b = b6Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f29892a) {
+        switch (this.f29567a) {
             case 0:
-                b6.access$002(this.f29893b, null);
+                b6.access$002(this.f29568b, null);
                 b6.access$102(false);
                 return;
             case 1:
-                b6 b6Var = this.f29893b;
+                b6 b6Var = this.f29568b;
                 b6.access$002(b6Var, null);
                 if (b6.access$200(b6Var) != null) {
                     b6.access$200(b6Var).run();
@@ -28,7 +28,7 @@ public final class v5 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                b6.access$302(this.f29893b, null);
+                b6.access$302(this.f29568b, null);
                 return;
         }
     }

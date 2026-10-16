@@ -14,7 +14,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.b6;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.tj0;
 public abstract class m {
     public static SpannableStringBuilder a(String str) {
@@ -62,14 +62,14 @@ public abstract class m {
                     arrayList.add(tL_messageEntityStrike);
                 } else if (obj instanceof l) {
                     l lVar = (l) obj;
-                    int i10 = lVar.f50197a;
+                    int i10 = lVar.f50198a;
                     if (i10 == 0) {
                         TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = new TLRPC.TL_messageEntitySpoiler();
                         tL_messageEntitySpoiler.offset = spanStart;
                         tL_messageEntitySpoiler.length = spanEnd - spanStart;
                         arrayList.add(tL_messageEntitySpoiler);
                     } else if (i10 == 1) {
-                        if (!TextUtils.isEmpty(lVar.f50198b)) {
+                        if (!TextUtils.isEmpty(lVar.f50199b)) {
                             arrayList2.add(lVar);
                         } else {
                             TLRPC.TL_messageEntityPre tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
@@ -101,7 +101,7 @@ public abstract class m {
                     if (charSequence.equals(url)) {
                         spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
-                        spannableStringBuilder.setSpan(new r61(url, null), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new s61(url, null), spanStart2, spanEnd2, 33);
                     }
                 }
             }
@@ -110,13 +110,13 @@ public abstract class m {
                 l lVar2 = (l) arrayList2.get(i11);
                 int spanStart3 = fromHtml.getSpanStart(lVar2);
                 int spanEnd3 = fromHtml.getSpanEnd(lVar2);
-                spannableStringBuilder.setSpan(new mi.h(true, lVar2.f50198b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
+                spannableStringBuilder.setSpan(new li.h(true, lVar2.f50199b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
             }
             for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                 l lVar3 = (l) arrayList3.get(i12);
                 int spanStart4 = fromHtml.getSpanStart(lVar3);
                 int spanEnd4 = fromHtml.getSpanEnd(lVar3);
-                if (lVar3.f50197a == 3) {
+                if (lVar3.f50198a == 3) {
                     z10 = true;
                 } else {
                     z10 = false;

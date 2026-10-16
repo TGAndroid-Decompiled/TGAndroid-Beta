@@ -69,17 +69,17 @@ public abstract class m extends a {
         ((CopyOnWriteArrayList) aVar2.d).add(obj);
         Handler handler2 = this.f45970i;
         handler2.getClass();
-        n2.k kVar2 = aVar.d;
-        kVar2.getClass();
-        CopyOnWriteArrayList copyOnWriteArrayList = kVar2.f15965c;
+        n2.j jVar = aVar.d;
+        jVar.getClass();
+        CopyOnWriteArrayList copyOnWriteArrayList = jVar.f15676c;
         ?? obj2 = new Object();
-        obj2.f15961a = handler2;
-        obj2.f15962b = kVar;
+        obj2.f15672a = handler2;
+        obj2.f15673b = kVar;
         copyOnWriteArrayList.add(obj2);
         g2.c0 c0Var = this.f45971j;
-        j2.k kVar3 = this.f45863g;
-        kVar3.getClass();
-        aVar.l(r12, c0Var, kVar3);
+        j2.k kVar2 = this.f45863g;
+        kVar2.getClass();
+        aVar.l(r12, c0Var, kVar2);
         if (this.f45860b.isEmpty()) {
             aVar.d(r12);
         }

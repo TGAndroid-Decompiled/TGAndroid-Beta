@@ -5,7 +5,7 @@ public final class tx extends org.telegram.ui.fo {
         org.telegram.ui.sk skVar;
         super.onTransitionAnimationEnd(z10, z11);
         if (z10 && (skVar = this.Y) != null) {
-            skVar.q1();
+            skVar.p1();
             this.Y.postDelayed(new kq(this, 13), 100L);
         }
     }

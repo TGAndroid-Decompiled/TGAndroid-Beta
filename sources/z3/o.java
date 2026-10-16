@@ -9,19 +9,19 @@ import e2.m0;
 import java.io.EOFException;
 import v7.u6;
 public final class o implements i0 {
-    public final i0 f49274a;
-    public final l f49275b;
-    public n f49278g;
+    public final i0 f49273a;
+    public final l f49274b;
+    public n f49277g;
     public x h;
-    public boolean f49279i;
+    public boolean f49278i;
     public int d = 0;
     public int e = 0;
-    public byte[] f49277f = m0.f8373b;
-    public final e2.x f49276c = new e2.x();
+    public byte[] f49276f = m0.f8376b;
+    public final e2.x f49275c = new e2.x();
 
     public o(i0 i0Var, l lVar) {
-        this.f49274a = i0Var;
-        this.f49275b = lVar;
+        this.f49273a = i0Var;
+        this.f49274b = lVar;
     }
 
     @Override
@@ -33,8 +33,8 @@ public final class o implements i0 {
     public final void b(x xVar) {
         boolean z10;
         n nVar;
-        xVar.f2519s.getClass();
-        String str = xVar.f2519s;
+        xVar.f2523s.getClass();
+        String str = xVar.f2523s;
         if (w0.h(str) == 3) {
             z10 = true;
         } else {
@@ -42,28 +42,28 @@ public final class o implements i0 {
         }
         u6.g(z10);
         boolean equals = xVar.equals(this.h);
-        l lVar = this.f49275b;
+        l lVar = this.f49274b;
         if (!equals) {
             this.h = xVar;
-            if (lVar.b0(xVar)) {
-                nVar = lVar.p(xVar);
+            if (lVar.a0(xVar)) {
+                nVar = lVar.y(xVar);
             } else {
                 nVar = null;
             }
-            this.f49278g = nVar;
+            this.f49277g = nVar;
         }
-        n nVar2 = this.f49278g;
-        i0 i0Var = this.f49274a;
+        n nVar2 = this.f49277g;
+        i0 i0Var = this.f49273a;
         if (nVar2 == null) {
             i0Var.b(xVar);
             return;
         }
         w a2 = xVar.a();
-        a2.f2466r = w0.n("application/x-media3-cues");
-        a2.f2458j = str;
-        a2.f2470w = Long.MAX_VALUE;
-        a2.P = lVar.J(xVar);
-        i2.d.s(a2, i0Var);
+        a2.f2470r = w0.n("application/x-media3-cues");
+        a2.f2462j = str;
+        a2.f2474w = Long.MAX_VALUE;
+        a2.P = lVar.H(xVar);
+        i2.d.u(a2, i0Var);
     }
 
     @Override
@@ -78,11 +78,11 @@ public final class o implements i0 {
 
     @Override
     public final int f(p pVar, int i10, boolean z10) {
-        if (this.f49278g == null) {
-            return this.f49274a.f(pVar, i10, z10);
+        if (this.f49277g == null) {
+            return this.f49273a.f(pVar, i10, z10);
         }
         h(i10);
-        int read = pVar.read(this.f49277f, this.e, i10);
+        int read = pVar.read(this.f49276f, this.e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
@@ -95,25 +95,25 @@ public final class o implements i0 {
 
     @Override
     public final void g(e2.x xVar, int i10, int i11) {
-        if (this.f49278g == null) {
-            this.f49274a.g(xVar, i10, i11);
+        if (this.f49277g == null) {
+            this.f49273a.g(xVar, i10, i11);
             return;
         }
         h(i10);
-        xVar.k(this.e, i10, this.f49277f);
+        xVar.k(this.e, i10, this.f49276f);
         this.e += i10;
     }
 
     public final void h(int i10) {
         byte[] bArr;
-        int length = this.f49277f.length;
+        int length = this.f49276f.length;
         int i11 = this.e;
         if (length - i11 >= i10) {
             return;
         }
         int i12 = i11 - this.d;
         int max = Math.max(i12 * 2, i10 + i12);
-        byte[] bArr2 = this.f49277f;
+        byte[] bArr2 = this.f49276f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -122,7 +122,7 @@ public final class o implements i0 {
         System.arraycopy(bArr2, this.d, bArr, 0, i12);
         this.d = 0;
         this.e = i12;
-        this.f49277f = bArr;
+        this.f49276f = bArr;
     }
 
     @Override

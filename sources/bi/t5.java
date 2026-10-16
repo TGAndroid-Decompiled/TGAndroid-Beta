@@ -15,20 +15,20 @@ import org.telegram.ui.Components.b30;
 import org.telegram.ui.Components.es;
 import org.telegram.ui.Stories.ProfileStoriesView;
 public final class t5 {
-    public final int f3737a;
-    public final ImageReceiver f3738b;
-    public int f3739c;
+    public final int f3741a;
+    public final ImageReceiver f3742b;
+    public int f3743c;
     public boolean d;
     public float e;
-    public final org.telegram.ui.Components.g6 f3740f;
-    public final org.telegram.ui.Components.g6 f3741g;
+    public final org.telegram.ui.Components.g6 f3744f;
+    public final org.telegram.ui.Components.g6 f3745g;
     public final org.telegram.ui.Components.g6 h;
-    public float f3742i;
-    public float f3743j;
-    public float f3744k;
-    public final boolean f3745l;
-    public final RectF f3746m;
-    public final RectF f3747n;
+    public float f3746i;
+    public float f3747j;
+    public float f3748k;
+    public final boolean f3749l;
+    public final RectF f3750m;
+    public final RectF f3751n;
 
     public t5(ProfileStoriesView profileStoriesView, TL_stories.StoryItem storyItem) {
         TLRPC.Photo photo;
@@ -36,24 +36,24 @@ public final class t5 {
         TLRPC.Document document;
         org.telegram.ui.Components.k9 k9Var = new org.telegram.ui.Components.k9((org.telegram.ui.ActionBar.c6) null);
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f3738b = imageReceiver;
-        this.f3739c = 0;
+        this.f3742b = imageReceiver;
+        this.f3743c = 0;
         this.d = false;
         this.e = 1.0f;
         es esVar = es.h;
-        this.f3740f = new org.telegram.ui.Components.g6(profileStoriesView, 420L, esVar);
-        this.f3741g = new org.telegram.ui.Components.g6(profileStoriesView, 420L, esVar);
+        this.f3744f = new org.telegram.ui.Components.g6(profileStoriesView, 420L, esVar);
+        this.f3745g = new org.telegram.ui.Components.g6(profileStoriesView, 420L, esVar);
         this.h = new org.telegram.ui.Components.g6(profileStoriesView, 420L, esVar);
-        this.f3746m = new RectF();
-        this.f3747n = new RectF();
-        this.f3737a = storyItem.f19451id;
+        this.f3750m = new RectF();
+        this.f3751n = new RectF();
+        this.f3741a = storyItem.f19151id;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(200.0f));
         imageReceiver.setParentView(profileStoriesView);
-        this.f3745l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
-        if (profileStoriesView.f32835x) {
+        this.f3749l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
+        if (profileStoriesView.f32537x) {
             imageReceiver.onAttachedToWindow();
         }
-        b30[] b30VarArr = s9.f3640a;
+        b30[] b30VarArr = s9.f3644a;
         TLRPC.MessageMedia messageMedia = storyItem.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
             TLObject userOrChat = MessagesController.getInstance(imageReceiver.getCurrentAccount()).getUserOrChat(storyItem.dialogId);

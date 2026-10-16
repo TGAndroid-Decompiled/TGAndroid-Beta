@@ -5,16 +5,16 @@ import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.messaging.r;
 public final class k {
-    public final int f12869a;
-    public final TaskCompletionSource f12870b = new TaskCompletionSource();
-    public final int f12871c;
+    public final int f12873a;
+    public final TaskCompletionSource f12874b = new TaskCompletionSource();
+    public final int f12875c;
     public final Bundle d;
     public final int e;
 
     public k(int i10, int i11, Bundle bundle, int i12) {
         this.e = i12;
-        this.f12869a = i10;
-        this.f12871c = i11;
+        this.f12873a = i10;
+        this.f12875c = i11;
         this.d = bundle;
     }
 
@@ -33,7 +33,7 @@ public final class k {
             String obj = rVar.toString();
             Log.d("MessengerIpcClient", "Failing " + kVar + " with " + obj);
         }
-        this.f12870b.setException(rVar);
+        this.f12874b.setException(rVar);
     }
 
     public final void c(Bundle bundle) {
@@ -42,10 +42,10 @@ public final class k {
             String valueOf = String.valueOf(bundle);
             Log.d("MessengerIpcClient", "Finishing " + kVar + " with " + valueOf);
         }
-        this.f12870b.setResult(bundle);
+        this.f12874b.setResult(bundle);
     }
 
     public final String toString() {
-        return "Request { what=" + this.f12871c + " id=" + this.f12869a + " oneWay=" + a() + "}";
+        return "Request { what=" + this.f12875c + " id=" + this.f12873a + " oneWay=" + a() + "}";
     }
 }

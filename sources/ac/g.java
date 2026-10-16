@@ -2,18 +2,18 @@ package ac;
 
 import com.google.android.gms.internal.cast.z5;
 public final class g implements r9.d {
-    public static final g f489b = new g(0);
-    public static final g f490c = new g(1);
+    public static final g f493b = new g(0);
+    public static final g f494c = new g(1);
     public static final g d = new g(2);
-    public final int f491a;
+    public final int f495a;
 
     public g(int i10) {
-        this.f491a = i10;
+        this.f495a = i10;
     }
 
     @Override
-    public final Object j2(z5 z5Var) {
-        switch (this.f491a) {
+    public final Object n2(z5 z5Var) {
+        switch (this.f495a) {
             case 0:
                 return new e((rb.g) z5Var.a(rb.g.class));
             case 1:

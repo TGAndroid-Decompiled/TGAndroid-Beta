@@ -17,14 +17,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public abstract class ra0 {
-    public static final Pattern f28799a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f28800b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f28801c = Pattern.compile("^(\\d+)[.)]\\s");
+    public static final Pattern f28489a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f28490b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f28491c = Pattern.compile("^(\\d+)[.)]\\s");
 
     public static TL_iv.RichText a(df.p pVar, TL_iv.PageBlock pageBlock) {
         oa0 oa0Var = new oa0(pageBlock);
         pVar.a(oa0Var);
-        return g(h(oa0.x(oa0Var.f27925c)));
+        return g(h(oa0.x(oa0Var.f27623c)));
     }
 
     public static List b(TL_iv.RichText richText) {
@@ -73,10 +73,10 @@ public abstract class ra0 {
         textmath.tried = true;
         ji.s a2 = ji.s.a(trim, AndroidUtilities.dp(20.0f), true);
         if (a2 != null) {
-            textmath.f19439w = a2.f13505b;
-            textmath.h = a2.f13506c;
+            textmath.f19139w = a2.f13508b;
+            textmath.h = a2.f13509c;
             textmath.depth = a2.d;
-            textmath.bitmap = a2.f13504a;
+            textmath.bitmap = a2.f13507a;
         }
         return textmath;
     }
@@ -98,7 +98,7 @@ public abstract class ra0 {
         while (it.hasNext()) {
             cd.a aVar = (cd.a) it.next();
             arrayList.add(aVar);
-            ArrayList arrayList2 = aVar.f4729f;
+            ArrayList arrayList2 = aVar.f4732f;
             if (arrayList2 == null) {
                 unmodifiableList = Collections.EMPTY_LIST;
             } else {
@@ -189,7 +189,7 @@ public abstract class ra0 {
         } else if (richText instanceof qa0) {
             qa0 qa0Var = (qa0) richText;
             TL_iv.textStrike g10 = g(qa0Var.text);
-            int i11 = qa0Var.f28565a;
+            int i11 = qa0Var.f28255a;
             if ((i11 & 4) != 0) {
                 TL_iv.textFixed textfixed = new TL_iv.textFixed();
                 textfixed.text = g10;

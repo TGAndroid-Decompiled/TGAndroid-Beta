@@ -7,26 +7,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 public final class x5 extends FrameLayout {
-    public final h1 f13658a;
-    public TL_iv.pageTableCell f13659b;
+    public final h1 f13661a;
+    public TL_iv.pageTableCell f13662b;
 
     public x5(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
         h1 h1Var = new h1(context, c6Var);
-        this.f13658a = h1Var;
+        this.f13661a = h1Var;
         h1Var.setTextSize(1, Math.max(8, SharedConfig.fontSize - 2));
         h1Var.setAllowNewlines(true);
         setCompact(false);
-        addView(h1Var, w7.a6.e(-1, -2, 51));
+        addView(h1Var, w7.z5.e(-1, -2, 51));
     }
 
     public final void a() {
         int i10;
         int i11;
         int i12;
-        h1 h1Var = this.f13658a;
+        h1 h1Var = this.f13661a;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) h1Var.getLayoutParams();
-        TL_iv.pageTableCell pagetablecell = this.f13659b;
+        TL_iv.pageTableCell pagetablecell = this.f13662b;
         if (pagetablecell.align_right) {
             i10 = 5;
         } else if (pagetablecell.align_center) {
@@ -43,7 +43,7 @@ public final class x5 extends FrameLayout {
         }
         layoutParams.gravity = i11;
         h1Var.setLayoutParams(layoutParams);
-        TL_iv.pageTableCell pagetablecell2 = this.f13659b;
+        TL_iv.pageTableCell pagetablecell2 = this.f13662b;
         if (pagetablecell2.align_right) {
             i12 = 53;
         } else if (pagetablecell2.align_center) {
@@ -62,7 +62,7 @@ public final class x5 extends FrameLayout {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        h1 h1Var = this.f13658a;
+        h1 h1Var = this.f13661a;
         if (h1Var.getVisibility() == 0 && motionEvent.getActionMasked() != 3) {
             float x10 = motionEvent.getX();
             float y3 = motionEvent.getY();
@@ -88,7 +88,7 @@ public final class x5 extends FrameLayout {
     }
 
     public void setCompact(boolean z10) {
-        h1 h1Var = this.f13658a;
+        h1 h1Var = this.f13661a;
         if (z10) {
             h1Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
             h1Var.setMinHeight(AndroidUtilities.dp(18.0f));
@@ -99,6 +99,6 @@ public final class x5 extends FrameLayout {
     }
 
     public void setLocked(boolean z10) {
-        this.f13658a.setLocked(z10);
+        this.f13661a.setLocked(z10);
     }
 }

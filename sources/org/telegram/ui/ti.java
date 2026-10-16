@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class ti implements org.telegram.ui.Components.dm0 {
-    public final fo f40392a;
+    public final fo f40120a;
 
     public ti(fo foVar) {
-        this.f40392a = foVar;
+        this.f40120a = foVar;
     }
 
     @Override

@@ -16,7 +16,7 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.z;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.cr;
-import w7.a6;
+import w7.z5;
 public class e extends FrameLayout {
     public boolean E;
     public boolean F;
@@ -71,11 +71,11 @@ public class e extends FrameLayout {
         radialProgressView.setSize(AndroidUtilities.dp(12.0f));
         radialProgressView.setStrokeWidth(AndroidUtilities.dp(0.5f));
         radialProgressView.setVisibility(8);
-        addView(linearLayout, a6.a(-2.0f, 0.0f, 22.0f, 0.0f, 0.0f, -2, 0));
-        addView(textView, a6.a(-2.0f, 4.0f, 0.0f, 4.0f, 0.0f, -2, 8388611));
-        addView(textView2, a6.a(-2.0f, 4.0f, 0.0f, 4.0f, 0.0f, -2, 8388613));
-        addView(imageView, a6.a(18.0f, 0.0f, 2.0f, 0.0f, 0.0f, 18, 8388661));
-        addView(radialProgressView, a6.a(18.0f, 0.0f, 2.0f, 0.0f, 0.0f, 18, 8388661));
+        addView(linearLayout, z5.a(-2.0f, 0.0f, 22.0f, 0.0f, 0.0f, -2, 0));
+        addView(textView, z5.a(-2.0f, 4.0f, 0.0f, 4.0f, 0.0f, -2, 8388611));
+        addView(textView2, z5.a(-2.0f, 4.0f, 0.0f, 4.0f, 0.0f, -2, 8388613));
+        addView(imageView, z5.a(18.0f, 0.0f, 2.0f, 0.0f, 0.0f, 18, 8388661));
+        addView(radialProgressView, z5.a(18.0f, 0.0f, 2.0f, 0.0f, 0.0f, 18, 8388661));
         b();
     }
 
@@ -87,7 +87,7 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i10 = g6.f20007j5;
+        int i10 = g6.f19707j5;
         c6 c6Var = this.J;
         this.d.setTextColor(g6.w0(i10, c6Var));
         this.e.setTextColor(g6.w0(i10, c6Var));
@@ -96,9 +96,9 @@ public class e extends FrameLayout {
         this.h.setProgressColor(g6.w0(i11, c6Var));
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
-        this.I = g6.j0(dp, dp, dp, dp, g6.w0(g6.f19972h5, c6Var), g6.w0(g6.f19990i6, c6Var), -16777216);
+        this.I = g6.j0(dp, dp, dp, dp, g6.w0(g6.f19672h5, c6Var), g6.w0(g6.f19690i6, c6Var), -16777216);
         cr crVar = new cr(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        crVar.f24198w = true;
+        crVar.f23883w = true;
         setBackground(crVar);
     }
 

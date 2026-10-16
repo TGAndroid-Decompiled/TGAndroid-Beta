@@ -7,23 +7,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class dz implements org.telegram.ui.Components.dm0 {
-    public final Rect f35405a = new Rect();
-    public final hz f35406b;
+    public final Rect f35154a = new Rect();
+    public final hz f35155b;
 
     public dz(hz hzVar) {
-        this.f35406b = hzVar;
+        this.f35155b = hzVar;
     }
 
     @Override
     public final boolean mo17d(float f7, float f10, int i10, View view) {
-        hz hzVar = this.f35406b;
+        hz hzVar = this.f35155b;
         if (hzVar.getParentActivity() != null && (view instanceof org.telegram.ui.Cells.g4)) {
-            Rect rect = this.f35405a;
+            Rect rect = this.f35154a;
             ((ImageView) view.getTag(R.id.object_tag)).getHitRect(rect);
             if (!rect.contains((int) f7, (int) f10)) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hzVar.getParentActivity());
                 alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new cz(this, i10, 0));
-                hzVar.showDialog(alertDialog$Builder.f19548a);
+                hzVar.showDialog(alertDialog$Builder.f19248a);
                 return true;
             }
         }

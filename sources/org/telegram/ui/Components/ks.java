@@ -6,19 +6,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public abstract class ks {
-    public final org.telegram.ui.ActionBar.m1 f26796a;
-    public boolean f26797b;
+    public final org.telegram.ui.ActionBar.m1 f26477a;
+    public boolean f26478b;
 
     public ks(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z10 ? 1 : 0, context, c6Var);
         actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new uk(this, 1));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new tk(this, 1));
         actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new s(this, 27));
         actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
         b(actionBarPopupWindow$ActionBarPopupWindowLayout);
         org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f26796a = m1Var;
-        m1Var.f20520b = false;
+        this.f26477a = m1Var;
+        m1Var.f20220b = false;
         m1Var.setAnimationStyle(R.style.PopupContextAnimation2);
         m1Var.setOutsideTouchable(true);
         m1Var.setClippingEnabled(true);
@@ -33,15 +33,15 @@ public abstract class ks {
             public final void onDismiss() {
                 ks ksVar = ks.this;
                 ksVar.c();
-                ksVar.f26797b = false;
+                ksVar.f26478b = false;
             }
         });
     }
 
     public final void a() {
-        org.telegram.ui.ActionBar.m1 m1Var = this.f26796a;
+        org.telegram.ui.ActionBar.m1 m1Var = this.f26477a;
         if (m1Var != null) {
-            m1Var.d(true);
+            m1Var.dismiss();
         }
     }
 

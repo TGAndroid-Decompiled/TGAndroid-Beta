@@ -23,7 +23,7 @@ public final class kk extends org.telegram.ui.Components.ob0 {
     @Override
     public final boolean a() {
         fo foVar = this.W;
-        if (foVar.R.getVisibility() == 0 && !foVar.f36036n3) {
+        if (foVar.R.getVisibility() == 0 && !foVar.f35737n3) {
             return false;
         }
         return true;
@@ -69,11 +69,11 @@ public final class kk extends org.telegram.ui.Components.ob0 {
         sk skVar = foVar.Y;
         if (skVar != null) {
             hg.j1 adapter = getAdapter();
-            TLRPC.User user = adapter.f10638w0;
+            TLRPC.User user = adapter.f10642w0;
             if (user != null) {
                 str = user.bot_inline_placeholder;
             } else {
-                String str2 = adapter.f10629q0;
+                String str2 = adapter.f10633q0;
                 if (str2 != null && str2.equals("gif")) {
                     str = LocaleController.getString(R.string.SearchGifsTitle);
                 } else {
@@ -85,7 +85,7 @@ public final class kk extends org.telegram.ui.Components.ob0 {
             if (yeVar != null) {
                 if (z10) {
                     yeVar.e = true;
-                    yeVar.f29175b = System.currentTimeMillis();
+                    yeVar.f28878b = System.currentTimeMillis();
                     yeVar.invalidateSelf();
                     return;
                 }
@@ -97,14 +97,14 @@ public final class kk extends org.telegram.ui.Components.ob0 {
     @Override
     public final void m() {
         fo foVar = this.W;
-        if (foVar.Z4 && ((getAdapter().R == null || foVar.f35875a5 || foVar.f35889b5) && foVar.h != null && getAdapter().R != null)) {
+        if (foVar.Z4 && ((getAdapter().R == null || foVar.f35576a5 || foVar.f35590b5) && foVar.h != null && getAdapter().R != null)) {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!globalMainSettings.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar.getParentActivity(), 0, foVar.f35932ea);
-                alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar.getParentActivity(), 0, foVar.f35633ea);
+                alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                foVar.showDialog(alertDialog$Builder.f19548a);
+                foVar.showDialog(alertDialog$Builder.f19248a);
                 globalMainSettings.edit().putBoolean("secretbot", true).commit();
             }
         }
@@ -116,13 +116,13 @@ public final class kk extends org.telegram.ui.Components.ob0 {
         boolean z11;
         if (this.V != z10) {
             fo foVar = this.W;
-            org.telegram.ui.Components.kz0 kz0Var = foVar.f35912d1;
+            org.telegram.ui.Components.lz0 lz0Var = foVar.f35613d1;
             if (!foVar.isInPreviewMode() && z10) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            AndroidUtilities.updateViewShow(kz0Var, z11, false, true);
+            AndroidUtilities.updateViewShow(lz0Var, z11, false, true);
             this.V = z10;
         }
     }

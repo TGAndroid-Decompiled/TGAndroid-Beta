@@ -22,28 +22,28 @@ public final class l {
     public long f45245j;
     public float f45246k;
     public float f45247l;
-    public final org.telegram.ui.Cells.v0 f45248m;
+    public final org.telegram.ui.Cells.u0 f45248m;
 
-    public l(org.telegram.ui.Cells.v0 v0Var) {
-        this.f45248m = v0Var;
+    public l(org.telegram.ui.Cells.u0 u0Var) {
+        this.f45248m = u0Var;
     }
 
     public final void a(int i10, boolean z10) {
         float f7;
         ArrayList arrayList;
-        org.telegram.ui.Cells.v0 v0Var = this.f45248m;
-        ArrayList arrayList2 = v0Var.f22552c;
-        HashMap hashMap = (HashMap) v0Var.f22553f;
-        RectF rectF = (RectF) v0Var.f22554g;
+        org.telegram.ui.Cells.u0 u0Var = this.f45248m;
+        ArrayList arrayList2 = u0Var.f21842c;
+        HashMap hashMap = (HashMap) u0Var.f21843f;
+        RectF rectF = (RectF) u0Var.f21844g;
         this.f45245j = Math.abs(Utilities.fastRandom.nextLong() % 2250) + 2250;
         this.f45246k = (Math.abs(Utilities.fastRandom.nextFloat()) * 0.45f) + 0.6f;
-        String str = m.f45250a[org.telegram.ui.Cells.d0.e(Utilities.fastRandom, 49)];
+        String str = m.f45250a[org.telegram.ui.Cells.c1.d(Utilities.fastRandom, 49)];
         if (str.length() > 7) {
             this.f45246k *= 0.6f;
         } else if (str.length() > 5) {
             this.f45246k *= 0.75f;
         }
-        StaticLayout staticLayout = new StaticLayout(str, v0Var.f22550a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(str, u0Var.f21840a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.e = staticLayout;
         int i11 = 0;
         if (staticLayout.getLineCount() <= 0) {
@@ -87,7 +87,7 @@ public final class l {
                     arrayList = arrayList2;
                 } else {
                     arrayList = arrayList2;
-                    float min = Math.min(Math.abs(((((this.f45246k / v0Var.f22551b) * lVar.h) * 1.1f) + lVar.f45240b) - abs3), Math.abs(lVar.f45240b - abs3));
+                    float min = Math.min(Math.abs(((((this.f45246k / u0Var.f21841b) * lVar.h) * 1.1f) + lVar.f45240b) - abs3), Math.abs(lVar.f45240b - abs3));
                     float f16 = lVar.f45241c - abs4;
                     float f17 = (f16 * f16) + (min * min);
                     if (f17 < f15) {

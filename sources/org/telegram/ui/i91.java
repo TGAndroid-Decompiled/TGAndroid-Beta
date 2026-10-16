@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class i91 extends org.telegram.ui.Components.k61 {
-    public static final int f37074a = 0;
+public final class i91 extends org.telegram.ui.Components.l61 {
+    public static final int f36762a = 0;
 
     static {
-        org.telegram.ui.Components.k61.setup(new org.telegram.ui.Components.k61());
+        org.telegram.ui.Components.l61.setup(new org.telegram.ui.Components.l61());
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.l61 l61Var, boolean z10, org.telegram.ui.Components.z61 z61Var, org.telegram.ui.Components.h71 h71Var) {
-        ((j91) view).set(l61Var.f26967z);
+    public final void bindView(View view, org.telegram.ui.Components.m61 m61Var, boolean z10, org.telegram.ui.Components.a71 a71Var, org.telegram.ui.Components.i71 i71Var) {
+        ((j91) view).set(m61Var.f26959z);
     }
 
     @Override
-    public final boolean contentsEquals(org.telegram.ui.Components.l61 l61Var, org.telegram.ui.Components.l61 l61Var2) {
-        if (l61Var.f26967z == l61Var2.f26967z) {
+    public final boolean contentsEquals(org.telegram.ui.Components.m61 m61Var, org.telegram.ui.Components.m61 m61Var2) {
+        if (m61Var.f26959z == m61Var2.f26959z) {
             return true;
         }
         return false;
@@ -28,8 +28,8 @@ public final class i91 extends org.telegram.ui.Components.k61 {
     }
 
     @Override
-    public final boolean equals(org.telegram.ui.Components.l61 l61Var, org.telegram.ui.Components.l61 l61Var2) {
-        if (l61Var.d == l61Var2.d) {
+    public final boolean equals(org.telegram.ui.Components.m61 m61Var, org.telegram.ui.Components.m61 m61Var2) {
+        if (m61Var.d == m61Var2.d) {
             return true;
         }
         return false;

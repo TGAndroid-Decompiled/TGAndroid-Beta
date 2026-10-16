@@ -6,11 +6,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.UndoView;
 public final class w81 extends UndoView {
-    public final SessionsActivity f41182f0;
+    public final SessionsActivity f40889f0;
 
     public w81(SessionsActivity sessionsActivity, Context context) {
         super(context);
-        this.f41182f0 = sessionsActivity;
+        this.f40889f0 = sessionsActivity;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class w81 extends UndoView {
             TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
             TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
             resetauthorization.hash = tL_authorization.hash;
-            i11 = ((org.telegram.ui.ActionBar.m2) this.f41182f0).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new fc0(19, this, tL_authorization));
+            i11 = ((org.telegram.ui.ActionBar.m2) this.f40889f0).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new ec0(19, this, tL_authorization));
         }
         super.e(i10, z10);
     }

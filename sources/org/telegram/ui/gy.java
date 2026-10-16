@@ -3,18 +3,19 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesStorage;
 public final class gy implements org.telegram.ui.Components.f5 {
-    public final yy f36540a;
+    public final yy f36326a;
 
     public gy(yy yyVar) {
-        this.f36540a = yyVar;
+        this.f36326a = yyVar;
     }
 
     @Override
     public final void J(int i10, int i11, boolean z10) {
-        yy yyVar = this.f36540a;
+        yy yyVar = this.f36326a;
         ArrayList arrayList = yyVar.I2;
         yyVar.K2 = i10;
         yyVar.L2 = i11;
+        yyVar.M2 = false;
         if (yyVar.C2 != null && !arrayList.isEmpty()) {
             ArrayList arrayList2 = new ArrayList();
             for (int i12 = 0; i12 < arrayList.size(); i12++) {

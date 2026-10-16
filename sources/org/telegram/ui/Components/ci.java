@@ -8,13 +8,13 @@ import android.view.KeyEvent;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 public final class ci implements TextWatcher {
-    public final int f24074a;
-    public boolean f24075b;
-    public boolean f24076c;
+    public final int f23731a;
+    public boolean f23732b;
+    public boolean f23733c;
     public final KeyEvent.Callback d;
 
     public ci(KeyEvent.Callback callback, int i10) {
-        this.f24074a = i10;
+        this.f23731a = i10;
         this.d = callback;
     }
 
@@ -24,26 +24,26 @@ public final class ci implements TextWatcher {
         boolean z11;
         int i10;
         boolean z12;
-        switch (this.f24074a) {
+        switch (this.f23731a) {
             case 0:
                 vi viVar = (vi) this.d;
                 s6 s6Var = viVar.v;
                 ai aiVar = viVar.H0;
-                s6 s6Var2 = viVar.f30040s;
-                if (this.f24076c != TextUtils.isEmpty(editable)) {
+                s6 s6Var2 = viVar.f29711s;
+                if (this.f23733c != TextUtils.isEmpty(editable)) {
                     ni niVar = viVar.B0;
                     if (niVar != null) {
                         niVar.E(niVar.getSelectedItemsCount());
                     }
-                    this.f24076c = !this.f24076c;
+                    this.f23733c = !this.f23733c;
                 }
                 boolean z13 = false;
-                if (this.f24075b) {
+                if (this.f23732b) {
                     for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                         editable.removeSpan(imageSpan);
                     }
                     Emoji.replaceEmoji(editable, aiVar.getEditText().getPaint().getFontMetricsInt(), false);
-                    this.f24075b = false;
+                    this.f23732b = false;
                 }
                 int codePointCount = Character.codePointCount(editable, 0, editable.length());
                 viVar.L = codePointCount;
@@ -76,10 +76,10 @@ public final class ci implements TextWatcher {
                     s6Var2.animate().setListener(null).cancel();
                     s6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
                     if (i10 < 0) {
-                        s6Var2.setTextColor(viVar.getThemedColor(org.telegram.ui.ActionBar.g6.f20122p7));
+                        s6Var2.setTextColor(viVar.getThemedColor(org.telegram.ui.ActionBar.g6.f19822p7));
                         z11 = false;
                     } else {
-                        s6Var2.setTextColor(viVar.getThemedColor(org.telegram.ui.ActionBar.g6.f20288y6));
+                        s6Var2.setTextColor(viVar.getThemedColor(org.telegram.ui.ActionBar.g6.f19988y6));
                         z11 = true;
                     }
                     s6Var.c(LocaleController.formatNumber(j10, ','), false, true);
@@ -93,7 +93,7 @@ public final class ci implements TextWatcher {
                     viVar.X0 = z11;
                     viVar.L0.invalidate();
                 }
-                if (!viVar.f29991c0) {
+                if (!viVar.f29662c0) {
                     if (aiVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(aiVar.getText().toString().trim())) {
                         z13 = true;
                     }
@@ -102,35 +102,35 @@ public final class ci implements TextWatcher {
                 viVar.f1(true);
                 return;
             default:
-                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) this.d;
-                if (this.f24075b) {
-                    this.f24075b = false;
-                    this.f24076c = true;
+                org.telegram.ui.Wallet.i8 i8Var = (org.telegram.ui.Wallet.i8) this.d;
+                if (this.f23732b) {
+                    this.f23732b = false;
+                    this.f23733c = true;
                     try {
                         editable.append('.');
-                        this.f24076c = false;
-                        h8Var.f33251b.setSelection(editable.length());
+                        this.f23733c = false;
+                        i8Var.f33034b.setSelection(editable.length());
                         return;
                     } catch (Throwable th2) {
-                        this.f24076c = false;
+                        this.f23733c = false;
                         throw th2;
                     }
                 }
-                h8Var.f(editable);
+                i8Var.f(editable);
                 return;
         }
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f24074a) {
+        switch (this.f23731a) {
             case 0:
                 return;
             default:
-                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) this.d;
-                org.telegram.ui.Wallet.d8 d8Var = h8Var.f33251b;
-                if (charSequence.length() > 0 && i11 == charSequence.length() && i12 == 0 && d8Var.getLayout() != null) {
-                    h8Var.M = d8Var.getLayout().getLineLeft(0) - d8Var.getScrollX();
+                org.telegram.ui.Wallet.i8 i8Var = (org.telegram.ui.Wallet.i8) this.d;
+                org.telegram.ui.Wallet.e8 e8Var = i8Var.f33034b;
+                if (charSequence.length() > 0 && i11 == charSequence.length() && i12 == 0 && e8Var.getLayout() != null) {
+                    i8Var.M = e8Var.getLayout().getLineLeft(0) - e8Var.getScrollX();
                     return;
                 }
                 return;
@@ -141,11 +141,11 @@ public final class ci implements TextWatcher {
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         boolean z10;
         float f7;
-        switch (this.f24074a) {
+        switch (this.f23731a) {
             case 0:
                 vi viVar = (vi) this.d;
                 if (i12 - i11 >= 1) {
-                    this.f24075b = true;
+                    this.f23732b = true;
                 }
                 if (viVar.E2 == null) {
                     vi.S(viVar);
@@ -164,31 +164,31 @@ public final class ci implements TextWatcher {
                 } else {
                     z10 = false;
                 }
-                this.f24075b = z10;
-                org.telegram.ui.Wallet.h8 h8Var = (org.telegram.ui.Wallet.h8) this.d;
-                if (!h8Var.Q && !this.f24076c) {
+                this.f23732b = z10;
+                org.telegram.ui.Wallet.i8 i8Var = (org.telegram.ui.Wallet.i8) this.d;
+                if (!i8Var.Q && !this.f23733c) {
                     if (i11 != 0 || i12 != 0) {
-                        org.telegram.ui.Wallet.b6 b6Var = h8Var.f33252c;
+                        org.telegram.ui.Wallet.c6 c6Var = i8Var.f33035c;
                         if (i12 > 0 && i12 >= i11) {
                             z11 = true;
                         }
-                        if (b6Var.f32985x && b6Var.f32982r && b6Var.f32986y == -1) {
-                            bk0 bk0Var = b6Var.h;
+                        if (c6Var.f32761x && c6Var.f32758r && c6Var.f32762y == -1) {
+                            bk0 bk0Var = c6Var.h;
                             if (bk0Var != null) {
                                 if (!bk0Var.b()) {
-                                    b6Var.h.setProgress(0.0f);
-                                    b6Var.h.d();
+                                    c6Var.h.setProgress(0.0f);
+                                    c6Var.h.d();
                                     return;
                                 }
                                 return;
                             }
-                            float f10 = b6Var.f32971d0;
+                            float f10 = c6Var.f32747d0;
                             if (z11) {
                                 f7 = -160.0f;
                             } else {
                                 f7 = 160.0f;
                             }
-                            b6Var.f32971d0 = Math.max(-360.0f, Math.min(360.0f, f10 + f7));
+                            c6Var.f32747d0 = Math.max(-360.0f, Math.min(360.0f, f10 + f7));
                             return;
                         }
                         return;

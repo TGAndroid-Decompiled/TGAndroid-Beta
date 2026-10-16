@@ -3,83 +3,221 @@ package m;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.os.Build;
-import android.util.Log;
-public final class q {
-    public static final PorterDuff.Mode f15213b = PorterDuff.Mode.SRC_IN;
-    public static q f15214c;
-    public m2 f15215a;
+import android.view.ActionMode;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.CheckedTextView;
+import v7.q7;
+import w7.w7;
+public final class q extends CheckedTextView implements u0.k {
+    public final r f14936a;
+    public final e2.c f14937b;
+    public final y0 f14938c;
+    public v d;
 
-    public static synchronized q a() {
-        q qVar;
-        synchronized (q.class) {
-            try {
-                if (f15214c == null) {
-                    c();
-                }
-                qVar = f15214c;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        return qVar;
+    public q(android.content.Context r8, android.util.AttributeSet r9) {
+        throw new UnsupportedOperationException("Method not decompiled: m.q.<init>(android.content.Context, android.util.AttributeSet):void");
     }
 
-    public static synchronized void c() {
-        synchronized (q.class) {
-            if (f15214c == null) {
-                ?? obj = new Object();
-                f15214c = obj;
-                obj.f15215a = m2.d();
-                f15214c.f15215a.l(new com.google.firebase.messaging.m(3));
-            }
+    private v getEmojiTextViewHelper() {
+        if (this.d == null) {
+            this.d = new v(this);
+        }
+        return this.d;
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        y0 y0Var = this.f14938c;
+        if (y0Var != null) {
+            y0Var.b();
+        }
+        e2.c cVar = this.f14937b;
+        if (cVar != null) {
+            cVar.b();
+        }
+        r rVar = this.f14936a;
+        if (rVar != null) {
+            rVar.b();
         }
     }
 
-    public static void d(Drawable drawable, d3 d3Var, int[] iArr) {
-        ColorStateList colorStateList;
-        PorterDuff.Mode mode;
-        PorterDuff.Mode mode2 = m2.h;
-        int[] state = drawable.getState();
-        int[] iArr2 = l1.f15149a;
-        if (drawable.mutate() == drawable) {
-            if ((drawable instanceof LayerDrawable) && drawable.isStateful()) {
-                drawable.setState(new int[0]);
-                drawable.setState(state);
-            }
-            boolean z10 = d3Var.f15094b;
-            if (!z10 && !d3Var.f15093a) {
-                drawable.clearColorFilter();
-            } else {
-                PorterDuffColorFilter porterDuffColorFilter = null;
-                if (z10) {
-                    colorStateList = (ColorStateList) d3Var.f15095c;
-                } else {
-                    colorStateList = null;
-                }
-                if (d3Var.f15093a) {
-                    mode = (PorterDuff.Mode) d3Var.d;
-                } else {
-                    mode = m2.h;
-                }
-                if (colorStateList != null && mode != null) {
-                    porterDuffColorFilter = m2.h(colorStateList.getColorForState(iArr, 0), mode);
-                }
-                drawable.setColorFilter(porterDuffColorFilter);
-            }
-            if (Build.VERSION.SDK_INT <= 23) {
-                drawable.invalidateSelf();
+    @Override
+    public ActionMode.Callback getCustomSelectionActionModeCallback() {
+        return w7.d(super.getCustomSelectionActionModeCallback());
+    }
+
+    public ColorStateList getSupportBackgroundTintList() {
+        e2.c cVar = this.f14937b;
+        if (cVar != null) {
+            return cVar.d();
+        }
+        return null;
+    }
+
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
+        e2.c cVar = this.f14937b;
+        if (cVar != null) {
+            return cVar.e();
+        }
+        return null;
+    }
+
+    public ColorStateList getSupportCheckMarkTintList() {
+        r rVar = this.f14936a;
+        if (rVar != null) {
+            return (ColorStateList) rVar.f14944a;
+        }
+        return null;
+    }
+
+    public PorterDuff.Mode getSupportCheckMarkTintMode() {
+        r rVar = this.f14936a;
+        if (rVar != null) {
+            return (PorterDuff.Mode) rVar.f14945b;
+        }
+        return null;
+    }
+
+    public ColorStateList getSupportCompoundDrawablesTintList() {
+        return this.f14938c.d();
+    }
+
+    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
+        return this.f14938c.e();
+    }
+
+    @Override
+    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        w7.p.a(editorInfo, onCreateInputConnection, this);
+        return onCreateInputConnection;
+    }
+
+    @Override
+    public void setAllCaps(boolean z10) {
+        super.setAllCaps(z10);
+        getEmojiTextViewHelper().b(z10);
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        super.setBackgroundDrawable(drawable);
+        e2.c cVar = this.f14937b;
+        if (cVar != null) {
+            cVar.g();
+        }
+    }
+
+    @Override
+    public void setBackgroundResource(int i10) {
+        super.setBackgroundResource(i10);
+        e2.c cVar = this.f14937b;
+        if (cVar != null) {
+            cVar.h(i10);
+        }
+    }
+
+    @Override
+    public void setCheckMarkDrawable(Drawable drawable) {
+        super.setCheckMarkDrawable(drawable);
+        r rVar = this.f14936a;
+        if (rVar != null) {
+            if (rVar.e) {
+                rVar.e = false;
                 return;
             }
-            return;
+            rVar.e = true;
+            rVar.b();
         }
-        Log.d("ResourceManagerInternal", "Mutated drawable is not the same instance as the input.");
     }
 
-    public final synchronized Drawable b(Context context, int i10) {
-        return this.f15215a.g(context, i10);
+    @Override
+    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        y0 y0Var = this.f14938c;
+        if (y0Var != null) {
+            y0Var.b();
+        }
+    }
+
+    @Override
+    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        y0 y0Var = this.f14938c;
+        if (y0Var != null) {
+            y0Var.b();
+        }
+    }
+
+    @Override
+    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
+        super.setCustomSelectionActionModeCallback(w7.e(callback, this));
+    }
+
+    public void setEmojiCompatEnabled(boolean z10) {
+        getEmojiTextViewHelper().c(z10);
+    }
+
+    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
+        e2.c cVar = this.f14937b;
+        if (cVar != null) {
+            cVar.l(colorStateList);
+        }
+    }
+
+    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
+        e2.c cVar = this.f14937b;
+        if (cVar != null) {
+            cVar.m(mode);
+        }
+    }
+
+    public void setSupportCheckMarkTintList(ColorStateList colorStateList) {
+        r rVar = this.f14936a;
+        if (rVar != null) {
+            rVar.f14944a = colorStateList;
+            rVar.f14946c = true;
+            rVar.b();
+        }
+    }
+
+    public void setSupportCheckMarkTintMode(PorterDuff.Mode mode) {
+        r rVar = this.f14936a;
+        if (rVar != null) {
+            rVar.f14945b = mode;
+            rVar.d = true;
+            rVar.b();
+        }
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
+        y0 y0Var = this.f14938c;
+        y0Var.l(colorStateList);
+        y0Var.b();
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
+        y0 y0Var = this.f14938c;
+        y0Var.m(mode);
+        y0Var.b();
+    }
+
+    @Override
+    public final void setTextAppearance(Context context, int i10) {
+        super.setTextAppearance(context, i10);
+        y0 y0Var = this.f14938c;
+        if (y0Var != null) {
+            y0Var.g(context, i10);
+        }
+    }
+
+    @Override
+    public void setCheckMarkDrawable(int i10) {
+        setCheckMarkDrawable(q7.b(getContext(), i10));
     }
 }

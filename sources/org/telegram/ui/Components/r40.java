@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
-public abstract class r40 extends z61 {
+public abstract class r40 extends a71 {
     public final int N;
     public final ArrayList O;
     public boolean P;
@@ -19,16 +19,16 @@ public abstract class r40 extends z61 {
     public String X;
     public String Y;
     public int Z;
-    public org.telegram.ui.gm f28735a0;
-    public final boolean[] f28736b0;
+    public org.telegram.ui.gm f28423a0;
+    public final boolean[] f28424b0;
 
     public r40(mm0 mm0Var, Context context, int i10) {
         super(mm0Var, context, i10, 0, false, null, null);
         this.O = new ArrayList();
         this.T = 0;
         this.U = -1;
-        this.f28736b0 = new boolean[1];
-        this.f31781s = new d(this, 16);
+        this.f28424b0 = new boolean[1];
+        this.f23146s = new d(this, 16);
         this.N = i10;
     }
 
@@ -61,7 +61,7 @@ public abstract class r40 extends z61 {
     public final void V() {
         bi.g8 g8Var = this.Q;
         if (g8Var != null && g8Var.I != 0) {
-            ConnectionsManager.getInstance(g8Var.f3426c).cancelRequest(g8Var.I, true);
+            ConnectionsManager.getInstance(g8Var.f3430c).cancelRequest(g8Var.I, true);
             g8Var.I = 0;
         }
         this.P = false;
@@ -69,7 +69,7 @@ public abstract class r40 extends z61 {
             ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
             this.U = -1;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f28735a0);
+        AndroidUtilities.cancelRunOnUIThread(this.f28423a0);
         this.T++;
         this.S = false;
     }
@@ -88,7 +88,7 @@ public abstract class r40 extends z61 {
 
     public final void Y(String str) {
         this.X = str;
-        String X = X(str, this.f28736b0);
+        String X = X(str, this.f28424b0);
         if (!TextUtils.equals(this.Y, X)) {
             this.O.clear();
             this.V = false;
@@ -105,7 +105,7 @@ public abstract class r40 extends z61 {
         this.S = true;
         N(true);
         org.telegram.ui.gm gmVar = new org.telegram.ui.gm(this, i10, X, 7);
-        this.f28735a0 = gmVar;
+        this.f28423a0 = gmVar;
         AndroidUtilities.runOnUIThread(gmVar, 300L);
     }
 }

@@ -12,6 +12,6 @@ public enum c1 extends a2 {
         } else {
             kVar.h(new String(c10, 0, c10.length));
         }
-        kVar.f9124c = a2.f9080c;
+        kVar.f9127c = a2.f9083c;
     }
 }

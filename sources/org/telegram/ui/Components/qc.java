@@ -9,9 +9,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class qc extends ob {
-    public Runnable f28576a;
-    public Runnable f28577b;
-    public sc f28578c;
+    public Runnable f28266a;
+    public Runnable f28267b;
+    public sc f28268c;
     public final TextView d;
     public boolean e;
 
@@ -20,7 +20,7 @@ public final class qc extends ob {
         int x02;
         int i10 = org.telegram.ui.ActionBar.g6.Gi;
         if (c6Var != null) {
-            x02 = c6Var.F0(i10);
+            x02 = c6Var.E0(i10);
         } else {
             x02 = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
         }
@@ -31,11 +31,11 @@ public final class qc extends ob {
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(x02);
-            org.telegram.messenger.yh.l(R.string.UndoNoCaps, textView, 16);
+            org.telegram.messenger.sk.m(R.string.UndoNoCaps, textView, 16);
             float f7 = z11 ? 34.0f : 12.0f;
             boolean z12 = LocaleController.isRTL;
-            w7.g6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
-            addView(textView, w7.a6.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
+            w7.f6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
+            addView(textView, w7.z5.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
         }
         if (z11) {
             ImageView imageView = new ImageView(getContext());
@@ -44,21 +44,21 @@ public final class qc extends ob {
             if (!z10) {
                 imageView.setBackground(org.telegram.ui.ActionBar.g6.g0((x02 & 16777215) | 419430400, 1, -1));
             }
-            w7.g6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
-            addView(imageView, w7.a6.h(56.0f, 48.0f, 16));
+            w7.f6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
+            addView(imageView, w7.z5.h(56.0f, 48.0f, 16));
         }
         setOnClickListener(new f0(this, 5));
     }
 
     @Override
     public final void a(sc scVar) {
-        this.f28578c = scVar;
+        this.f28268c = scVar;
     }
 
     @Override
     public final void b() {
-        this.f28578c = null;
-        Runnable runnable = this.f28577b;
+        this.f28268c = null;
+        Runnable runnable = this.f28267b;
         if (runnable != null && !this.e) {
             runnable.run();
         }
@@ -72,13 +72,13 @@ public final class qc extends ob {
     }
 
     public final void f() {
-        if (this.f28578c != null) {
+        if (this.f28268c != null) {
             this.e = true;
-            Runnable runnable = this.f28576a;
+            Runnable runnable = this.f28266a;
             if (runnable != null) {
                 runnable.run();
             }
-            sc scVar = this.f28578c;
+            sc scVar = this.f28268c;
             if (scVar != null) {
                 scVar.b();
             }

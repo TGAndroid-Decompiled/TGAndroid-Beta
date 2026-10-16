@@ -15,7 +15,7 @@ public class wj0 extends yj0 {
     public volatile boolean X0;
     public boolean Y0;
     public final int Z0;
-    public int f30907a1;
+    public int f30595a1;
 
     public wj0(String str, int i10, int i11) {
         super(i10, i11);
@@ -46,12 +46,12 @@ public class wj0 extends yj0 {
         } else if (i10 == 2) {
             rLottieNative = this.U0;
             if (this.X0) {
-                this.f31602a0 = this.f30907a1 - 1;
+                this.f31285a0 = this.f30595a1 - 1;
             }
         } else {
             rLottieNative = this.m0;
         }
-        if (rLottieNative.c(this.f31602a0, bitmap, z10) < 0) {
+        if (rLottieNative.c(this.f31285a0, bitmap, z10) < 0) {
             return 2;
         }
         return 1;
@@ -59,25 +59,25 @@ public class wj0 extends yj0 {
 
     @Override
     public void C(boolean z10) {
-        this.f31615k0 = false;
-        this.f31616l0 = true;
+        this.f31298k0 = false;
+        this.f31299l0 = true;
         n();
         l();
         if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f31632x0) {
+            if (this.P == null && !this.f31315x0) {
                 D(z10);
                 zf.f fVar = this.B0;
                 if (fVar != null) {
-                    RandomAccessFile randomAccessFile = fVar.f50171s;
+                    RandomAccessFile randomAccessFile = fVar.f50172s;
                     if (randomAccessFile != null) {
                         try {
                             randomAccessFile.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        fVar.f50171s = null;
+                        fVar.f50172s = null;
                     }
-                    fVar.f50170r = true;
+                    fVar.f50171r = true;
                     this.B0 = null;
                 }
                 E();
@@ -98,11 +98,11 @@ public class wj0 extends yj0 {
         if (rLottieNative == null && rLottieNative2 == null) {
             return;
         }
-        f60 f60Var = new f60(15, rLottieNative, rLottieNative2);
+        g90 g90Var = new g90(10, rLottieNative, rLottieNative2);
         if (z10) {
-            DispatchQueuePoolBackground.execute(f60Var);
+            DispatchQueuePoolBackground.execute(g90Var);
         } else {
-            Utilities.globalQueue.postRunnable(f60Var);
+            Utilities.globalQueue.postRunnable(g90Var);
         }
     }
 
@@ -110,28 +110,28 @@ public class wj0 extends yj0 {
     public void i() {
         int i10 = this.J;
         if (i10 == 1) {
-            int i11 = this.f31602a0 + 1;
+            int i11 = this.f31285a0 + 1;
             int i12 = this.Z0;
             if (i12 == -1) {
                 i12 = this.e[0];
             }
             if (i11 < i12) {
-                this.f31602a0 = i11;
+                this.f31285a0 = i11;
                 return;
             }
-            this.f31602a0 = 0;
+            this.f31285a0 = 0;
             this.N = false;
             if (this.U0 != null) {
                 this.J = 2;
             }
-            if (this.f31633y) {
-                this.f31631x = null;
-                this.f31633y = false;
+            if (this.f31316y) {
+                this.f31314x = null;
+                this.f31316y = false;
             }
         } else if (i10 == 2) {
-            int i13 = this.f31602a0 + 1;
-            if (i13 < this.f30907a1) {
-                this.f31602a0 = i13;
+            int i13 = this.f31285a0 + 1;
+            if (i13 < this.f30595a1) {
+                this.f31285a0 = i13;
                 return;
             }
             this.N = true;
@@ -141,7 +141,7 @@ public class wj0 extends yj0 {
 
     @Override
     public int j() {
-        if (this.f31616l0) {
+        if (this.f31299l0) {
             return 3;
         }
         if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
@@ -166,7 +166,7 @@ public class wj0 extends yj0 {
         if (!v()) {
             stop();
         }
-        if (this.f31615k0) {
+        if (this.f31298k0) {
             I();
         }
     }

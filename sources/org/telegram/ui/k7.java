@@ -2,13 +2,13 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 public abstract class k7 extends j7 {
-    public final ArrayList f37595f;
+    public final ArrayList f37316f;
     public final w7 h;
 
     public k7(w7 w7Var, int i10) {
         super(i10);
         this.h = w7Var;
-        this.f37595f = new ArrayList();
+        this.f37316f = new ArrayList();
     }
 
     @Override
@@ -19,12 +19,12 @@ public abstract class k7 extends j7 {
     @Override
     public void F() {
         ArrayList arrayList;
-        ArrayList arrayList2 = this.f37595f;
+        ArrayList arrayList2 = this.f37316f;
         arrayList2.clear();
         ArrayList arrayList3 = this.e;
         arrayList2.addAll(arrayList3);
         arrayList3.clear();
-        ai.c cVar = this.h.f41173f;
+        ai.c cVar = this.h.f40880f;
         if (cVar != null) {
             int i10 = this.d;
             if (i10 == 1) {
@@ -32,9 +32,9 @@ public abstract class k7 extends j7 {
             } else if (i10 == 2) {
                 arrayList = cVar.e;
             } else if (i10 == 3) {
-                arrayList = cVar.f923f;
+                arrayList = cVar.f927f;
             } else if (i10 == 5) {
-                arrayList = cVar.f924g;
+                arrayList = cVar.f928g;
             } else if (i10 == 4) {
                 arrayList = cVar.h;
             } else {

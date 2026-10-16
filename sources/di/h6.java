@@ -1,18 +1,18 @@
 package di;
 public final class h6 implements rg.c {
-    public final mb f7003a;
+    public final mb f7006a;
 
     public h6(mb mbVar) {
-        this.f7003a = mbVar;
+        this.f7006a = mbVar;
     }
 
     @Override
     public final void a() {
-        mb mbVar = this.f7003a;
+        mb mbVar = this.f7006a;
         mbVar.C0(null, true);
         if (mbVar.M0) {
             kc kcVar = mbVar.A2;
-            kcVar.f7243c1.f7382f.d();
+            kcVar.f7246c1.f7385f.d();
             kcVar.k0(-1, false, true);
             mbVar.M0 = false;
         }
@@ -21,6 +21,6 @@ public final class h6 implements rg.c {
 
     @Override
     public final rg.j b() {
-        return this.f7003a.J0;
+        return this.f7006a.J0;
     }
 }

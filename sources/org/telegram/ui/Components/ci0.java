@@ -12,18 +12,18 @@ public final class ci0 {
     public static final ci0[] L;
     public static final ci0 d;
     public static final ci0 e;
-    public static final ci0 f24077f;
+    public static final ci0 f23734f;
     public static final ci0 h;
-    public static final ci0 f24078n;
-    public static final ci0 f24079r;
-    public static final ci0 f24080s;
+    public static final ci0 f23735n;
+    public static final ci0 f23736r;
+    public static final ci0 f23737s;
     public static final ci0 v;
-    public static final ci0 f24081w;
-    public static final ci0 f24082x;
-    public static final ci0 f24083y;
-    public final int f24084a;
-    public final int f24085b;
-    public final int f24086c;
+    public static final ci0 f23738w;
+    public static final ci0 f23739x;
+    public static final ci0 f23740y;
+    public final int f23741a;
+    public final int f23742b;
+    public final int f23743c;
 
     static {
         int i10 = R.string.ProfileActionsMessage;
@@ -34,25 +34,25 @@ public final class ci0 {
         ci0 ci0Var2 = new ci0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
         e = ci0Var2;
         ci0 ci0Var3 = new ci0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
-        f24077f = ci0Var3;
+        f23734f = ci0Var3;
         ci0 ci0Var4 = new ci0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
         h = ci0Var4;
         ci0 ci0Var5 = new ci0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
-        f24078n = ci0Var5;
+        f23735n = ci0Var5;
         ci0 ci0Var6 = new ci0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
-        f24079r = ci0Var6;
+        f23736r = ci0Var6;
         ci0 ci0Var7 = new ci0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
-        f24080s = ci0Var7;
+        f23737s = ci0Var7;
         ci0 ci0Var8 = new ci0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
         v = ci0Var8;
         ci0 ci0Var9 = new ci0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
-        f24081w = ci0Var9;
+        f23738w = ci0Var9;
         ci0 ci0Var10 = new ci0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
-        f24082x = ci0Var10;
+        f23739x = ci0Var10;
         int i13 = R.string.ProfileActionsLeave;
         int i14 = R.drawable.leave;
         ci0 ci0Var11 = new ci0("LEAVE", 10, i13, i14, i14);
-        f24083y = ci0Var11;
+        f23740y = ci0Var11;
         int i15 = R.string.ProfileActionsVoiceChat;
         int i16 = R.drawable.live_stream;
         ci0 ci0Var12 = new ci0("VOICE_CHAT", 11, i15, i16, i16);
@@ -77,9 +77,9 @@ public final class ci0 {
     }
 
     public ci0(String str, int i10, int i11, int i12, int i13) {
-        this.f24084a = i11;
-        this.f24085b = i12;
-        this.f24086c = i13;
+        this.f23741a = i11;
+        this.f23742b = i12;
+        this.f23743c = i13;
     }
 
     public static ci0 valueOf(String str) {

@@ -1,24 +1,49 @@
 package n6;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class g0 extends o6.a {
-    public static final Parcelable.Creator<g0> CREATOR = new m8.h(17);
-    public Bundle f16094a;
-    public k6.c[] f16095b;
-    public int f16096c;
-    public e d;
+import android.net.Uri;
+import java.util.Arrays;
+public final class g0 {
+    public static final Uri d = new Uri.Builder().scheme("content").authority("com.google.android.gms.chimera").build();
+    public final String f15809a;
+    public final String f15810b;
+    public final boolean f15811c;
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.g0.q(parcel, 20293);
-        w7.g0.b(parcel, 1, this.f16094a);
-        w7.g0.o(parcel, 2, this.f16095b, i10);
-        int i11 = this.f16096c;
-        w7.g0.s(parcel, 3, 4);
-        parcel.writeInt(i11);
-        w7.g0.k(parcel, 4, this.d, i10);
-        w7.g0.r(parcel, q6);
+    public g0(String str, String str2, boolean z10) {
+        l.f(str);
+        this.f15809a = str;
+        l.f(str2);
+        this.f15810b = str2;
+        this.f15811c = z10;
+    }
+
+    public final android.content.Intent a(android.content.Context r6) {
+        throw new UnsupportedOperationException("Method not decompiled: n6.g0.a(android.content.Context):android.content.Intent");
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof g0)) {
+            return false;
+        }
+        g0 g0Var = (g0) obj;
+        if (l.l(this.f15809a, g0Var.f15809a) && l.l(this.f15810b, g0Var.f15810b) && l.l(null, null) && this.f15811c == g0Var.f15811c) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f15809a, this.f15810b, null, 4225, Boolean.valueOf(this.f15811c)});
+    }
+
+    public final String toString() {
+        String str = this.f15809a;
+        if (str != null) {
+            return str;
+        }
+        l.h(null);
+        throw null;
     }
 }

@@ -11,31 +11,31 @@ import java.util.List;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaDataController;
 public final class f {
-    public final boolean f2772a;
-    public final boolean f2773b;
-    public final boolean f2774c;
+    public final boolean f2776a;
+    public final boolean f2777b;
+    public final boolean f2778c;
     public final int d;
     public final RenderNode[] e;
-    public long f2775f;
-    public final RectF f2776g = new RectF();
+    public long f2779f;
+    public final RectF f2780g = new RectF();
     public final a h = new Object();
-    public final ArrayList f2777i = new ArrayList();
-    public int f2778j;
-    public int f2779k;
-    public Rect f2780l;
+    public final ArrayList f2781i = new ArrayList();
+    public int f2782j;
+    public int f2783k;
+    public Rect f2784l;
 
     public f(boolean z10) {
         int i10;
         boolean isEnabled = LiteMode.isEnabled(262144);
-        this.f2772a = isEnabled;
-        this.f2774c = true;
+        this.f2776a = isEnabled;
+        this.f2778c = true;
         if (!isEnabled && !z10) {
             i10 = 8;
         } else {
             i10 = 1;
         }
         this.d = i10;
-        this.f2773b = z10;
+        this.f2777b = z10;
         this.e = new RenderNode[isEnabled ? 2 : 1];
         int i11 = 0;
         while (true) {
@@ -66,8 +66,8 @@ public final class f {
 
     public final void b(Canvas canvas, int i10) {
         if (canvas.isHardwareAccelerated()) {
-            boolean z10 = this.f2772a;
-            if (!z10 && this.f2774c) {
+            boolean z10 = this.f2776a;
+            if (!z10 && this.f2778c) {
                 canvas.drawRenderNode(this.e[0]);
                 return;
             } else if (i10 == -2) {
@@ -92,14 +92,14 @@ public final class f {
 
     public final RenderNode d(int i10, int i11) {
         d dVar;
-        e eVar = (e) this.f2777i.get(i11);
-        if (this.f2772a && (dVar = eVar.f2771c) != null) {
+        e eVar = (e) this.f2781i.get(i11);
+        if (this.f2776a && (dVar = eVar.f2775c) != null) {
             if (i10 == 0) {
-                return dVar.f2764c[0];
+                return dVar.f2768c[0];
             }
-            return eVar.f2770b.f2764c[0];
+            return eVar.f2774b.f2768c[0];
         }
-        RenderNode[] renderNodeArr = eVar.f2770b.f2764c;
+        RenderNode[] renderNodeArr = eVar.f2774b.f2768c;
         return renderNodeArr[Math.min(i10, renderNodeArr.length - 1)];
     }
 
@@ -108,54 +108,54 @@ public final class f {
         int i12 = 0;
         int i13 = 0;
         while (true) {
-            int i14 = this.f2778j;
-            ArrayList arrayList = this.f2777i;
+            int i14 = this.f2782j;
+            ArrayList arrayList = this.f2781i;
             if (i12 < i14) {
                 e eVar = (e) arrayList.get(i12);
                 Rect rect = eVar.d;
-                RectF rectF = this.f2776g;
+                RectF rectF = this.f2780g;
                 rectF.set(rect);
                 a aVar2 = this.h;
-                aVar2.f2741b = 0L;
-                aVar2.f2740a = false;
+                aVar2.f2745b = 0L;
+                aVar2.f2744a = false;
                 aVar.e(aVar2, rectF);
-                boolean z10 = aVar2.f2740a;
+                boolean z10 = aVar2.f2744a;
                 if (z10) {
                     j10 = -1;
                 } else {
-                    j10 = aVar2.f2741b;
+                    j10 = aVar2.f2745b;
                 }
-                if (z10 || eVar.e != j10 || !eVar.f2769a.hasDisplayList()) {
+                if (z10 || eVar.e != j10 || !eVar.f2773a.hasDisplayList()) {
                     eVar.e = j10;
-                    if (this.f2780l == null) {
+                    if (this.f2784l == null) {
                         e eVar2 = (e) arrayList.get(i12);
                         Rect rect2 = eVar2.d;
-                        this.f2780l = rect2;
-                        this.f2779k = i12;
+                        this.f2784l = rect2;
+                        this.f2783k = i12;
                         int width = rect2.width();
                         int i15 = this.d;
                         int i16 = width / i15;
                         int height = rect2.height() / i15;
-                        eVar2.f2769a.setPosition(0, 0, i16, height);
-                        RecordingCanvas beginRecording = eVar2.f2769a.beginRecording(i16, height);
+                        eVar2.f2773a.setPosition(0, 0, i16, height);
+                        RecordingCanvas beginRecording = eVar2.f2773a.beginRecording(i16, height);
                         float f7 = 1.0f / i15;
                         beginRecording.scale(f7, f7);
                         beginRecording.save();
                         beginRecording.translate(-rect.left, -rect.top);
                         aVar.f(beginRecording, rectF);
                         beginRecording.restore();
-                        if (this.f2780l != null) {
-                            e eVar3 = (e) arrayList.get(this.f2779k);
-                            eVar3.f2769a.endRecording();
-                            d dVar = eVar3.f2770b;
-                            d dVar2 = eVar3.f2771c;
+                        if (this.f2784l != null) {
+                            e eVar3 = (e) arrayList.get(this.f2783k);
+                            eVar3.f2773a.endRecording();
+                            d dVar = eVar3.f2774b;
+                            d dVar2 = eVar3.f2775c;
                             if (dVar2 != null) {
-                                dVar2.a(eVar3.f2769a);
-                                dVar.a(dVar2.f2764c[0]);
+                                dVar2.a(eVar3.f2773a);
+                                dVar.a(dVar2.f2768c[0]);
                             } else {
-                                dVar.a(eVar3.f2769a);
+                                dVar.a(eVar3.f2773a);
                             }
-                            this.f2780l = null;
+                            this.f2784l = null;
                             i13++;
                         } else {
                             throw new IllegalStateException();
@@ -177,7 +177,7 @@ public final class f {
                         }
                         RenderNode renderNode = renderNodeArr[i17];
                         calcHash = MediaDataController.calcHash(calcHash, renderNode.getUniqueId());
-                        for (int i18 = 0; i18 < this.f2778j; i18++) {
+                        for (int i18 = 0; i18 < this.f2782j; i18++) {
                             RenderNode d = d(i17, i18);
                             Rect rect3 = ((e) arrayList.get(i18)).d;
                             calcHash = MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(calcHash, rect3.left), rect3.top), rect3.right), rect3.bottom), d.getUniqueId());
@@ -187,8 +187,8 @@ public final class f {
                         }
                         i17++;
                     }
-                    if (calcHash != this.f2775f || z11) {
-                        this.f2775f = calcHash;
+                    if (calcHash != this.f2779f || z11) {
+                        this.f2779f = calcHash;
                         int i19 = 0;
                         while (true) {
                             RenderNode[] renderNodeArr2 = this.e;
@@ -198,7 +198,7 @@ public final class f {
                             RenderNode renderNode2 = renderNodeArr2[i19];
                             renderNode2.setPosition(0, 0, i10, i11);
                             RecordingCanvas beginRecording2 = renderNode2.beginRecording(i10, i11);
-                            for (int i20 = 0; i20 < this.f2778j; i20++) {
+                            for (int i20 = 0; i20 < this.f2782j; i20++) {
                                 beginRecording2.save();
                                 Rect rect4 = ((e) arrayList.get(i20)).d;
                                 beginRecording2.translate(rect4.left, rect4.top);
@@ -216,10 +216,10 @@ public final class f {
     }
 
     public final void f(float f7, float f10) {
-        for (int i10 = 0; i10 < this.f2778j; i10++) {
-            e eVar = (e) this.f2777i.get(i10);
-            eVar.f2770b.b(f7, f10);
-            d dVar = eVar.f2771c;
+        for (int i10 = 0; i10 < this.f2782j; i10++) {
+            e eVar = (e) this.f2781i.get(i10);
+            eVar.f2774b.b(f7, f10);
+            d dVar = eVar.f2775c;
             if (dVar != null) {
                 dVar.b(f7, f10);
             }
@@ -228,16 +228,16 @@ public final class f {
 
     public final void g(int i10, List list) {
         ArrayList arrayList;
-        this.f2778j = i10;
+        this.f2782j = i10;
         while (true) {
-            int i11 = this.f2778j;
-            arrayList = this.f2777i;
+            int i11 = this.f2782j;
+            arrayList = this.f2781i;
             if (i11 <= arrayList.size()) {
                 break;
             }
             arrayList.add(new e(this));
         }
-        for (int i12 = 0; i12 < this.f2778j; i12++) {
+        for (int i12 = 0; i12 < this.f2782j; i12++) {
             e.a((e) arrayList.get(i12), (RectF) list.get(i12));
         }
     }

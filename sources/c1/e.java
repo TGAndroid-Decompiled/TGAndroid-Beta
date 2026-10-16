@@ -1,6 +1,7 @@
 package c1;
 
 import a1.h;
+import a4.l;
 import ah.h0;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -16,29 +17,29 @@ import java.util.concurrent.Executor;
 import org.json.JSONException;
 import org.json.JSONObject;
 import v0.i;
-import v0.n;
-import v0.p;
+import v0.o;
+import v0.q;
 import v7.p6;
 import w7.h8;
 public final class e extends b1.d {
     public final Context e;
-    public i f4112f;
-    public Executor f4113g;
+    public i f4116f;
+    public Executor f4117g;
     public CancellationSignal h;
-    public final d f4114i;
+    public final d f4118i;
 
     public e(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
         this.e = context;
-        this.f4114i = new d(this, new Handler(Looper.getMainLooper()), 0);
+        this.f4118i = new d(this, new Handler(Looper.getMainLooper()), 0);
     }
 
-    public final v0.o d(x5.g r14) {
-        throw new UnsupportedOperationException("Method not decompiled: c1.e.d(x5.g):v0.o");
+    public final v0.p d(x5.g r14) {
+        throw new UnsupportedOperationException("Method not decompiled: c1.e.d(x5.g):v0.p");
     }
 
     public final i e() {
-        i iVar = this.f4112f;
+        i iVar = this.f4116f;
         if (iVar != null) {
             return iVar;
         }
@@ -47,7 +48,7 @@ public final class e extends b1.d {
     }
 
     public final Executor f() {
-        Executor executor = this.f4113g;
+        Executor executor = this.f4117g;
         if (executor != null) {
             return executor;
         }
@@ -55,14 +56,14 @@ public final class e extends b1.d {
         throw null;
     }
 
-    public final void g(n request, CancellationSignal cancellationSignal, Executor executor, i callback) {
+    public final void g(o request, CancellationSignal cancellationSignal, Executor executor, i callback) {
         boolean z10;
         kotlin.jvm.internal.i.e(request, "request");
         kotlin.jvm.internal.i.e(callback, "callback");
         kotlin.jvm.internal.i.e(executor, "executor");
         this.h = cancellationSignal;
-        this.f4112f = callback;
-        this.f4113g = executor;
+        this.f4116f = callback;
+        this.f4117g = executor;
         CredentialProviderPlayServicesImpl.Companion.getClass();
         if (h.a(cancellationSignal)) {
             return;
@@ -78,14 +79,14 @@ public final class e extends b1.d {
         long j10 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         x5.b bVar2 = bVar;
         boolean z11 = false;
-        for (p pVar : request.f46470a) {
-            if ((pVar instanceof p) && !z11) {
+        for (q qVar : request.f46470a) {
+            if ((qVar instanceof q) && !z11) {
                 if (j10 >= 231815000) {
-                    LinkedHashMap linkedHashMap = f.f6275a;
-                    bVar2 = new x5.b(pVar.d, true);
+                    LinkedHashMap linkedHashMap = f.f6278a;
+                    bVar2 = new x5.b(qVar.d, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = f.f6275a;
-                    JSONObject jSONObject = new JSONObject(pVar.d);
+                    LinkedHashMap linkedHashMap2 = f.f6278a;
+                    JSONObject jSONObject = new JSONObject(qVar.d);
                     String optString = jSONObject.optString("rpId", "");
                     kotlin.jvm.internal.i.b(optString);
                     if (optString.length() != 0) {
@@ -104,12 +105,12 @@ public final class e extends b1.d {
         }
         i7.b a2 = h8.a(context);
         new x5.a(false, null, null, true, null, null, false);
-        x5.e eVar = new x5.e(dVar, aVar, a2.f11340k, false, 0, cVar, bVar2, z10);
+        x5.e eVar = new x5.e(dVar, aVar, a2.f11344k, false, 0, cVar, bVar2, z10);
         v b10 = w.b();
         b10.d = new k6.c[]{new k6.c("auth_api_credentials_begin_sign_in", 8L)};
-        b10.f5046c = new k6.h(a2, eVar);
-        b10.f5045b = false;
-        b10.f5044a = 1553;
+        b10.f5049c = new l(a2, eVar);
+        b10.f5048b = false;
+        b10.f5047a = 1553;
         a2.e(0, b10.a()).addOnSuccessListener(new a1.c(new b1.f(1, cancellationSignal, this), 12)).addOnFailureListener(new h0(5, this, cancellationSignal));
     }
 }

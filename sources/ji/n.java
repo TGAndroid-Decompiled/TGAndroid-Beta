@@ -10,19 +10,19 @@ import org.telegram.ui.Components.hh;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.vi;
 public final class n implements ti {
-    public final vi f13417a;
-    public final r f13418b;
+    public final vi f13420a;
+    public final r f13421b;
 
     public n(r rVar, vi viVar) {
-        this.f13418b = rVar;
-        this.f13417a = viVar;
+        this.f13421b = rVar;
+        this.f13420a = viVar;
     }
 
     @Override
-    public final void g0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        vi viVar = this.f13417a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f30013j0;
-        x3 x3Var = this.f13418b.f13483r;
+    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+        vi viVar = this.f13420a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f29684j0;
+        x3 x3Var = this.f13421b.f13486r;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -50,22 +50,30 @@ public final class n implements ti {
     }
 
     @Override
-    public final boolean p0() {
+    public final boolean r0() {
         return false;
     }
 
     @Override
     public final void v(hh hhVar) {
-        NotificationCenter.getInstance(this.f13418b.f13482n).doOnIdle(hhVar);
+        NotificationCenter.getInstance(this.f13421b.f13485n).doOnIdle(hhVar);
     }
 
     @Override
-    public final boolean x() {
+    public final boolean w() {
         return false;
     }
 
     @Override
-    public final void H() {
+    public final void J(Object obj) {
+    }
+
+    @Override
+    public final void U(TLRPC.User user) {
+    }
+
+    @Override
+    public final void F() {
     }
 
     @Override
@@ -73,14 +81,6 @@ public final class n implements ti {
     }
 
     @Override
-    public final void U(Object obj) {
-    }
-
-    @Override
-    public final void W(TLRPC.User user) {
-    }
-
-    @Override
-    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final void s0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
     }
 }

@@ -10,20 +10,20 @@ import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.y;
+import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.db;
 import org.telegram.ui.Components.lm0;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
 import org.telegram.ui.hb1;
 import org.telegram.ui.ta1;
-import org.telegram.ui.vc;
+import org.telegram.ui.uc;
 public final class g extends db {
-    public z61 X;
+    public a71 X;
     public final ta1 Y;
 
     public g(Activity activity, c6 c6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, c6Var);
-        setBackgroundColor(g6.w0(g6.f19843a7, c6Var));
+        setBackgroundColor(g6.w0(g6.f19543a7, c6Var));
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
@@ -40,23 +40,23 @@ public final class g extends db {
         this.X.N(false);
     }
 
-    public static int Q(int i10, long j10, int i11, vc vcVar) {
+    public static int Q(int i10, long j10, int i11, uc ucVar) {
         TL_stats.TL_statsGetPollStats tL_statsGetPollStats = new TL_stats.TL_statsGetPollStats();
         tL_statsGetPollStats.peer = MessagesController.getInstance(i10).getInputPeer(j10);
         tL_statsGetPollStats.msg_id = i11;
-        return ConnectionsManager.getInstance(i10).sendRequestTyped(tL_statsGetPollStats, new Object(), new ii.a(vcVar, 10));
+        return ConnectionsManager.getInstance(i10).sendRequestTyped(tL_statsGetPollStats, new Object(), new ii.a(ucVar, 10));
     }
 
     @Override
-    public final CharSequence A() {
+    public final CharSequence B() {
         return LocaleController.getString(R.string.PollV2StatsPollStats);
     }
 
     @Override
     public final lm0 x(mm0 mm0Var) {
-        z61 z61Var = new z61(mm0Var, getContext(), this.currentAccount, 0, true, new ii.a(this, 9), this.resourcesProvider);
-        this.X = z61Var;
-        z61Var.f31780r = false;
-        return z61Var;
+        a71 a71Var = new a71(mm0Var, getContext(), this.currentAccount, 0, true, new ii.a(this, 9), this.resourcesProvider);
+        this.X = a71Var;
+        a71Var.f23145r = false;
+        return a71Var;
     }
 }

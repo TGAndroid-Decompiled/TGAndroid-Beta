@@ -11,43 +11,43 @@ import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.z9;
-import w7.a6;
+import w7.z5;
 public final class i0 extends FrameLayout {
-    public static final int f46320f = 0;
-    public final z9 f46321a;
-    public final h0 f46322b;
-    public final Paint f46323c;
+    public static final int f46319f = 0;
+    public final z9 f46320a;
+    public final h0 f46321b;
+    public final Paint f46322c;
     public boolean d;
     public final k9 e;
 
     public i0(Context context, float f7) {
         super(context);
         Paint paint = new Paint(1);
-        this.f46323c = paint;
+        this.f46322c = paint;
         this.d = true;
         this.e = new k9((c6) null);
         z9 z9Var = new z9(getContext());
-        this.f46321a = z9Var;
+        this.f46320a = z9Var;
         z9Var.setRoundRadius(AndroidUtilities.dp(f7));
         ?? view = new View(context);
         TextPaint textPaint = new TextPaint(1);
-        view.f46318a = textPaint;
+        view.f46317a = textPaint;
         textPaint.setTextAlign(Paint.Align.CENTER);
-        int i10 = g6.f19843a7;
+        int i10 = g6.f19543a7;
         textPaint.setColor(g6.x0(null, i10, false));
         textPaint.setTextSize(AndroidUtilities.dp(11.5f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        this.f46322b = view;
+        this.f46321b = view;
         view.setAlpha(0.0f);
-        addView(z9Var, a6.a(-1.0f, 5.0f, 5.0f, 5.0f, 5.0f, -1, 0));
-        addView((View) view, a6.a(26.0f, 0.0f, 0.0f, 1.0f, 3.0f, 26, 85));
+        addView(z9Var, z5.a(-1.0f, 5.0f, 5.0f, 5.0f, 5.0f, -1, 0));
+        addView((View) view, z5.a(26.0f, 0.0f, 0.0f, 1.0f, 3.0f, 26, 85));
         paint.setColor(g6.x0(null, i10, false));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         if (this.d) {
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f46323c);
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f46322c);
         }
         super.dispatchDraw(canvas);
     }

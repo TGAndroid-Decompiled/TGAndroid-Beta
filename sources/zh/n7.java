@@ -5,35 +5,35 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.c91;
-import org.telegram.ui.Components.l61;
-public final class n7 extends c91 {
-    public final Context f50888a;
-    public final int f50889b;
-    public final boolean f50890c;
+import org.telegram.ui.Components.d91;
+import org.telegram.ui.Components.m61;
+public final class n7 extends d91 {
+    public final Context f50889a;
+    public final int f50890b;
+    public final boolean f50891c;
     public final int d;
     public final org.telegram.ui.ActionBar.c6 e;
-    public final long f50891f;
-    public final ArrayList f50892g = new ArrayList();
+    public final long f50892f;
+    public final ArrayList f50893g = new ArrayList();
 
     public n7(Context context, int i10, boolean z10, long j10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f50888a = context;
-        this.f50889b = i10;
-        this.f50890c = z10;
+        this.f50889a = context;
+        this.f50890b = i10;
+        this.f50891c = z10;
         this.d = i11;
         this.e = c6Var;
-        this.f50891f = j10;
+        this.f50892f = j10;
         i();
     }
 
     @Override
     public final View d(int i10) {
-        return new m7(this.f50888a, this.f50890c, this.f50891f, i10, this.f50889b, this.d, this.e);
+        return new m7(this.f50889a, this.f50891c, this.f50892f, i10, this.f50890b, this.d, this.e);
     }
 
     @Override
     public final int e() {
-        return this.f50892g.size();
+        return this.f50893g.size();
     }
 
     @Override
@@ -54,9 +54,9 @@ public final class n7 extends c91 {
     @Override
     public final int h(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f50892g;
+            ArrayList arrayList = this.f50893g;
             if (i10 < arrayList.size()) {
-                return ((l61) arrayList.get(i10)).f26967z;
+                return ((m61) arrayList.get(i10)).f26959z;
             }
             return 0;
         }
@@ -64,30 +64,30 @@ public final class n7 extends c91 {
     }
 
     public final void i() {
-        ArrayList arrayList = this.f50892g;
+        ArrayList arrayList = this.f50893g;
         arrayList.clear();
-        long j10 = this.f50891f;
+        long j10 = this.f50892f;
         int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        int i11 = this.f50889b;
+        int i11 = this.f50890b;
         if (i10 == 0) {
-            n5 y3 = n5.y(i11, this.f50890c);
-            arrayList.add(l61.C(0));
+            n5 y3 = n5.y(i11, this.f50891c);
+            arrayList.add(m61.C(0));
             if (y3.O(1)) {
-                arrayList.add(l61.C(1));
+                arrayList.add(m61.C(1));
             }
             if (y3.O(2)) {
-                arrayList.add(l61.C(2));
+                arrayList.add(m61.C(2));
                 return;
             }
             return;
         }
         p g10 = p.g(i11);
-        arrayList.add(l61.C(0));
-        if (!g10.k(j10).f50893a[1].isEmpty()) {
-            arrayList.add(l61.C(1));
+        arrayList.add(m61.C(0));
+        if (!g10.k(j10).f50894a[1].isEmpty()) {
+            arrayList.add(m61.C(1));
         }
-        if (!g10.k(j10).f50893a[2].isEmpty()) {
-            arrayList.add(l61.C(2));
+        if (!g10.k(j10).f50894a[2].isEmpty()) {
+            arrayList.add(m61.C(2));
         }
     }
 

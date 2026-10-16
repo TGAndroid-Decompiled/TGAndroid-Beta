@@ -29,7 +29,7 @@ public abstract class q8 {
 
     public static j9.w b(Object obj) {
         if (obj == null) {
-            return j9.w.f12945b;
+            return j9.w.f12949b;
         }
         return new j9.w(obj);
     }
@@ -37,9 +37,9 @@ public abstract class q8 {
     public static j9.p c(j9.y yVar, d9.k kVar) {
         ?? obj = new Object();
         yVar.getClass();
-        obj.f12938n = yVar;
-        obj.f12939r = kVar;
-        yVar.a(obj, j9.r.f12940a);
+        obj.f12942n = yVar;
+        obj.f12943r = kVar;
+        yVar.a(obj, j9.r.f12944a);
         return obj;
     }
 }

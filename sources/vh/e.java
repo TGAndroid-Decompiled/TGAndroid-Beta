@@ -1,7 +1,7 @@
 package vh;
 
 import android.view.animation.Interpolator;
-import w7.s;
+import w7.r;
 public final class e implements Interpolator {
     public final boolean f47017a;
     public final float f47018b;
@@ -22,8 +22,8 @@ public final class e implements Interpolator {
         float f11 = this.f47019c;
         Interpolator interpolator = this.d;
         if (z10) {
-            return 1.0f - interpolator.getInterpolation(1.0f - s.a((f7 - f10) / (f11 - f10), 0.0f, 1.0f));
+            return 1.0f - interpolator.getInterpolation(1.0f - r.a((f7 - f10) / (f11 - f10), 0.0f, 1.0f));
         }
-        return interpolator.getInterpolation(s.a((f7 - f10) / (f11 - f10), 0.0f, 1.0f));
+        return interpolator.getInterpolation(r.a((f7 - f10) / (f11 - f10), 0.0f, 1.0f));
     }
 }

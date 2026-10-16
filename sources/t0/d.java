@@ -19,7 +19,7 @@ public final class d extends InputConnectionWrapper {
         if (inputContentInfo != null && Build.VERSION.SDK_INT >= 25) {
             jVar = new j(new h(inputContentInfo));
         }
-        if (this.f45499a.j(jVar, i10, bundle)) {
+        if (this.f45499a.f(jVar, i10, bundle)) {
             return true;
         }
         return super.commitContent(inputContentInfo, i10, bundle);

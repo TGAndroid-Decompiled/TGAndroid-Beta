@@ -7,21 +7,21 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class bb implements RequestDelegate {
-    public final int f34499a;
-    public final ac f34500b;
+    public final int f34283a;
+    public final ac f34284b;
 
     public bb(ac acVar, int i10) {
-        this.f34499a = i10;
-        this.f34500b = acVar;
+        this.f34283a = i10;
+        this.f34284b = acVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f34499a) {
+        switch (this.f34283a) {
             case 0:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final ac acVar = this.f34500b;
+                    final ac acVar = this.f34284b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -39,7 +39,7 @@ public final class bb implements RequestDelegate {
                 }
                 return;
             case 1:
-                ac acVar2 = this.f34500b;
+                ac acVar2 = this.f34284b;
                 acVar2.getClass();
                 if (tLObject instanceof Vector) {
                     ArrayList<T> arrayList = ((Vector) tLObject).objects;
@@ -54,12 +54,12 @@ public final class bb implements RequestDelegate {
                 }
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.j(29, this.f34500b, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.p0(24, this.f34284b, tLObject));
                 return;
             case 3:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final ac acVar3 = this.f34500b;
+                    final ac acVar3 = this.f34284b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -77,7 +77,7 @@ public final class bb implements RequestDelegate {
                 }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new t1(this.f34500b, tL_error, tLObject, 9));
+                AndroidUtilities.runOnUIThread(new t1(this.f34284b, tL_error, tLObject, 9));
                 return;
         }
     }

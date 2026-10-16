@@ -5,24 +5,24 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 public final class kt extends AnimatorListenerAdapter {
-    public final int f26798a = 1;
-    public final s4.b1 f26799b;
-    public final View f26800c;
+    public final int f26479a = 1;
+    public final s4.b1 f26480b;
+    public final View f26481c;
     public final ViewPropertyAnimator d;
     public final ot e;
 
     public kt(ot otVar, s4.b1 b1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
         this.e = otVar;
-        this.f26799b = b1Var;
+        this.f26480b = b1Var;
         this.d = viewPropertyAnimator;
-        this.f26800c = view;
+        this.f26481c = view;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f26798a) {
+        switch (this.f26479a) {
             case 1:
-                this.f26800c.setAlpha(1.0f);
+                this.f26481c.setAlpha(1.0f);
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -32,20 +32,20 @@ public final class kt extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f26798a) {
+        switch (this.f26479a) {
             case 0:
                 this.d.setListener(null);
-                this.f26800c.setAlpha(1.0f);
+                this.f26481c.setAlpha(1.0f);
                 ot otVar = this.e;
-                s4.b1 b1Var = this.f26799b;
+                s4.b1 b1Var = this.f26480b;
                 otVar.d(b1Var);
-                otVar.f28053x.remove(b1Var);
+                otVar.f27737x.remove(b1Var);
                 otVar.A();
                 return;
             default:
                 this.d.setListener(null);
                 ot otVar2 = this.e;
-                s4.b1 b1Var2 = this.f26799b;
+                s4.b1 b1Var2 = this.f26480b;
                 otVar2.u(b1Var2);
                 otVar2.v.remove(b1Var2);
                 otVar2.A();
@@ -60,7 +60,7 @@ public final class kt extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f26798a) {
+        switch (this.f26479a) {
             case 0:
                 this.e.y();
                 return;
@@ -72,8 +72,8 @@ public final class kt extends AnimatorListenerAdapter {
 
     public kt(ot otVar, s4.b1 b1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
         this.e = otVar;
-        this.f26799b = b1Var;
-        this.f26800c = view;
+        this.f26480b = b1Var;
+        this.f26481c = view;
         this.d = viewPropertyAnimator;
     }
 }

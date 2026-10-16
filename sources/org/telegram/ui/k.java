@@ -31,7 +31,7 @@ public final class k extends pg.b {
         if (i10 >= 0) {
             l lVar = this.d;
             if (i10 < lVar.h.size()) {
-                return ((j) lVar.h.get(i10)).f43203a;
+                return ((j) lVar.h.get(i10)).f42904a;
             }
             return 0;
         }
@@ -48,7 +48,7 @@ public final class k extends pg.b {
             j jVar = (j) arrayList.get(i10);
             int i11 = i10 + 1;
             int i12 = 0;
-            if (i11 < arrayList.size() && ((j) arrayList.get(i11)).f43203a == jVar.f43203a) {
+            if (i11 < arrayList.size() && ((j) arrayList.get(i11)).f42904a == jVar.f42904a) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -56,16 +56,16 @@ public final class k extends pg.b {
             int i13 = b1Var.f44841f;
             View view = b1Var.f44838a;
             if (i13 == 0) {
-                ((org.telegram.ui.Cells.m4) view).setText(jVar.f37221c);
+                ((org.telegram.ui.Cells.m4) view).setText(jVar.f36896c);
             } else if (i13 == 2) {
                 org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                if (TextUtils.isEmpty(jVar.f37221c)) {
+                if (TextUtils.isEmpty(jVar.f36896c)) {
                     e9Var.setFixedSize(12);
                     e9Var.setText(null);
                     return;
                 }
                 e9Var.setFixedSize(0);
-                e9Var.setText(jVar.f37221c);
+                e9Var.setText(jVar.f36896c);
             } else if (i13 == 1) {
                 org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
                 int i14 = jVar.d;
@@ -85,7 +85,7 @@ public final class k extends pg.b {
                 } else {
                     return;
                 }
-                w8Var.f(jVar.f37221c, z11, z10);
+                w8Var.f(jVar.f36896c, z11, z10);
             }
         }
     }

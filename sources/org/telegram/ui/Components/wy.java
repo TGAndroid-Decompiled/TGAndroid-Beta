@@ -35,7 +35,7 @@ public interface wy {
 
     void n();
 
-    void o(h61 h61Var);
+    void o(i61 i61Var);
 
     float p();
 

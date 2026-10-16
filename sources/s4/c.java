@@ -16,7 +16,7 @@ public final class c implements d0 {
     }
 
     @Override
-    public final void P0(int i10, int i11) {
+    public final void O0(int i10, int i11) {
         int i12;
         if (this.f44856b == 2 && (i12 = this.f44857c) >= i10 && i12 <= i10 + i11) {
             this.d += i11;
@@ -41,7 +41,7 @@ public final class c implements d0 {
                     d0Var.m1(this.f44857c, this.d);
                 }
             } else {
-                d0Var.P0(this.f44857c, this.d);
+                d0Var.O0(this.f44857c, this.d);
             }
         } else {
             d0Var.j0(this.f44857c, this.d);

@@ -1,43 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class e31 implements MessagesController.IsInChatCheckedCallback, org.telegram.ui.ActionBar.z1 {
-    public final long f24583a;
-    public final Object f24584b;
-    public final Object f24585c;
-    public final Object d;
-    public final TLObject e;
-    public final Object f24586f;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class e31 implements ne.d, Utilities.Callback5, Utilities.Callback5Return {
+    public final y31 f24281a;
 
-    public e31(y31 y31Var, org.telegram.ui.ActionBar.e1 e1Var, m80 m80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
-        this.f24584b = y31Var;
-        this.f24585c = e1Var;
-        this.d = m80Var;
-        this.f24583a = j10;
-        this.e = user;
-        this.f24586f = chat;
+    @Override
+    public void p(int i10, float f7, float f10, ne.e eVar) {
+        this.f24281a.g();
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        zh.r3.M0((zh.r3) this.f24584b, (TL_stars.TL_starGiftUnique) this.f24585c, (TLRPC.PaymentForm) this.d, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) this.e, this.f24583a, (CharSequence) this.f24586f, a2Var);
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(y31.c(this.f24281a, (m61) obj, (View) obj2));
     }
 
     @Override
-    public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new i31((y31) this.f24584b, z10, (org.telegram.ui.ActionBar.e1) this.f24585c, (m80) this.d, this.f24583a, (TLRPC.User) this.e, (TLRPC.Chat) this.f24586f));
+    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        y31.a(this.f24281a, (m61) obj);
     }
 
-    public e31(zh.r3 r3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.PaymentForm paymentForm, TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails tL_inputInvoiceStarGiftDropOriginalDetails, long j10, CharSequence charSequence) {
-        this.f24584b = r3Var;
-        this.f24585c = tL_starGiftUnique;
-        this.d = paymentForm;
-        this.e = tL_inputInvoiceStarGiftDropOriginalDetails;
-        this.f24583a = j10;
-        this.f24586f = charSequence;
+    @Override
+    public void A(float f7, int i10) {
     }
 }

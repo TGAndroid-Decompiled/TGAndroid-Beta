@@ -3,5 +3,5 @@ package m1;
 import androidx.datastore.preferences.protobuf.m0;
 import androidx.datastore.preferences.protobuf.z1;
 public abstract class e {
-    public static final m0 f15312a = new m0(z1.f1470c, z1.e, k.q());
+    public static final m0 f15047a = new m0(z1.f1474c, z1.e, k.q());
 }

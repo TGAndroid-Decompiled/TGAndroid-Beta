@@ -14,10 +14,10 @@ import org.telegram.ui.Components.gw0;
 import org.telegram.ui.Components.hw0;
 import v7.u6;
 public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, org.telegram.ui.ActionBar.z1, hh.b {
-    public final int f9206a;
+    public final int f9209a;
 
     public c2(int i10) {
-        this.f9206a = i10;
+        this.f9209a = i10;
     }
 
     public static ShortcutManager d(Object obj) {
@@ -34,7 +34,7 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
 
     @Override
     public Object a(Bitmap bitmap) {
-        switch (this.f9206a) {
+        switch (this.f9209a) {
             case 24:
                 if (bitmap != null && !bitmap.isRecycled()) {
                     Bitmap stackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
@@ -64,10 +64,10 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
         e9.u1 u1Var;
         int i11 = 0;
         boolean z10 = true;
-        switch (this.f9206a) {
+        switch (this.f9209a) {
             case 12:
                 String str = (String) obj;
-                d9.a aVar = h9.a.f10390g;
+                d9.a aVar = h9.a.f10394g;
                 aVar.getClass();
                 int length = str.length() - 1;
                 while (true) {
@@ -107,10 +107,10 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
                     i10 = 11;
                 }
                 ?? obj2 = new Object();
-                obj2.f8628b = false;
+                obj2.f8631b = false;
                 ?? obj3 = new Object();
                 obj3.d(i10);
-                obj2.f8627a = obj3;
+                obj2.f8630a = obj3;
                 if (z11) {
                     e9.r1 r1Var = (e9.r1) collection;
                     if (r1Var instanceof e9.d2) {
@@ -119,27 +119,27 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
                         u1Var = null;
                     }
                     if (u1Var != null) {
-                        obj3.a(Math.max(obj3.f8631c, u1Var.f8631c));
-                        if (u1Var.f8631c == 0) {
+                        obj3.a(Math.max(obj3.f8634c, u1Var.f8634c));
+                        if (u1Var.f8634c == 0) {
                             i11 = -1;
                         }
                         while (i11 >= 0) {
-                            u6.j(i11, u1Var.f8631c);
-                            Object obj4 = u1Var.f8629a[i11];
-                            u6.j(i11, u1Var.f8631c);
-                            obj2.c(u1Var.f8630b[i11], obj4);
+                            u6.j(i11, u1Var.f8634c);
+                            Object obj4 = u1Var.f8632a[i11];
+                            u6.j(i11, u1Var.f8634c);
+                            obj2.c(u1Var.f8633b[i11], obj4);
                             i11++;
-                            if (i11 >= u1Var.f8631c) {
+                            if (i11 >= u1Var.f8634c) {
                                 i11 = -1;
                             }
                         }
                     } else {
                         e9.w0 w0Var = (e9.w0) r1Var;
                         e9.y0 t10 = w0Var.t();
-                        e9.u1 u1Var2 = obj2.f8627a;
-                        u1Var2.a(Math.max(u1Var2.f8631c, t10.size()));
+                        e9.u1 u1Var2 = obj2.f8630a;
+                        u1Var2.a(Math.max(u1Var2.f8634c, t10.size()));
                         for (e9.t1 t1Var : w0Var.t()) {
-                            obj2.c(t1Var.a(), t1Var.f8622a);
+                            obj2.c(t1Var.a(), t1Var.f8625a);
                         }
                     }
                 } else {
@@ -147,12 +147,12 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
                         obj2.a(obj5);
                     }
                 }
-                Objects.requireNonNull(obj2.f8627a);
-                if (obj2.f8627a.f8631c == 0) {
-                    return e9.d2.f8548n;
+                Objects.requireNonNull(obj2.f8630a);
+                if (obj2.f8630a.f8634c == 0) {
+                    return e9.d2.f8551n;
                 }
-                obj2.f8628b = true;
-                return new e9.d2(obj2.f8627a);
+                obj2.f8631b = true;
+                return new e9.d2(obj2.f8630a);
             default:
                 return new j2.f((e2.g0) obj);
         }
@@ -160,10 +160,10 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f9206a) {
+        switch (this.f9209a) {
             case 1:
                 k3 k3Var = (k3) obj;
-                k3Var.f9353b = f7;
+                k3Var.f9356b = f7;
                 k3Var.e.invalidate();
                 k3Var.W.setAlpha(f7);
                 k3Var.F();
@@ -181,7 +181,7 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
 
     @Override
     public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f9206a) {
+        switch (this.f9209a) {
             case 22:
                 a2Var.dismiss();
                 return;
@@ -193,20 +193,20 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
 
     @Override
     public float get(Object obj) {
-        switch (this.f9206a) {
+        switch (this.f9209a) {
             case 0:
-                return ((k3) obj).f9353b;
+                return ((k3) obj).f9356b;
             case 1:
             default:
                 return ((p4) obj).getSwipeOffsetY();
             case 2:
-                return ((k4) obj).f9388c;
+                return ((k4) obj).f9391c;
         }
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f9206a) {
+        switch (this.f9209a) {
             case 20:
                 ((b2.e1) obj).onPlayerError(new i2.m(2, new RuntimeException("Player release timed out."), 1003));
                 return;
@@ -226,7 +226,7 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
     }
 
     @Override
-    public Object j2(z5 z5Var) {
+    public Object n2(z5 z5Var) {
         i5.f lambda$getComponents$0;
         lambda$getComponents$0 = TransportRegistrar.lambda$getComponents$0(z5Var);
         return lambda$getComponents$0;
@@ -235,15 +235,15 @@ public final class c2 implements fw0, gw0, GenericProvider, d9.k, r9.d, e2.o, or
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        hw0 hw0Var = p4.f9470b0;
+        hw0 hw0Var = p4.f9473b0;
         return Boolean.FALSE;
     }
 
     public c2(j2.a aVar, Object obj, int i10) {
-        this.f9206a = i10;
+        this.f9209a = i10;
     }
 
     public c2(j2.a aVar, boolean z10, int i10) {
-        this.f9206a = 29;
+        this.f9209a = 29;
     }
 }

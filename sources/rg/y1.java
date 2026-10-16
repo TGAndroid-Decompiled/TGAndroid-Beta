@@ -8,7 +8,7 @@ import android.graphics.RectF;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import ji.d4;
+import ji.h5;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.g6;
 public final class y1 extends View {
@@ -19,36 +19,36 @@ public final class y1 extends View {
     public Runnable I;
     public boolean J;
     public x1 K;
-    public final Paint f44617a;
-    public final Paint f44618b;
-    public final Path f44619c;
-    public final d4 d;
+    public final Paint f44376a;
+    public final Paint f44377b;
+    public final Path f44378c;
+    public final h5 d;
     public final RectF e;
-    public boolean f44620f;
+    public boolean f44379f;
     public boolean h;
-    public float f44621n;
-    public float f44622r;
-    public long f44623s;
+    public float f44380n;
+    public float f44381r;
+    public long f44382s;
     public boolean v;
-    public final g6 f44624w;
-    public final g6 f44625x;
-    public final g6 f44626y;
+    public final g6 f44383w;
+    public final g6 f44384x;
+    public final g6 f44385y;
 
     public y1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f44617a = paint;
+        this.f44376a = paint;
         Paint paint2 = new Paint(1);
-        this.f44618b = paint2;
-        this.f44619c = new Path();
+        this.f44377b = paint2;
+        this.f44378c = new Path();
         this.e = new RectF();
         this.v = true;
-        this.f44624w = new g6(this);
-        this.f44625x = new g6(this);
-        this.f44626y = new g6(this);
+        this.f44383w = new g6(this);
+        this.f44384x = new g6(this);
+        this.f44385y = new g6(this);
         this.H = new qg.q1(1.0f, 0.016773745f, -1);
         this.J = true;
-        this.d = new d4(context, new w1(this));
+        this.d = new h5(context, new w1(this));
         paint2.setColor(-1);
         paint2.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, AndroidUtilities.dp(2.0f), 1342177280);
         paint.setColor(1090519039);
@@ -59,9 +59,9 @@ public final class y1 extends View {
         if (z10) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((f7 - f11) - AndroidUtilities.dp(6.0f), (f10 - f11) - AndroidUtilities.dp(6.0f), f7 + f11 + AndroidUtilities.dp(6.0f), f10 + f11 + AndroidUtilities.dp(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f44622r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f44381r * 255.0f), 31);
         }
-        canvas.drawCircle(f7, f10, f11, this.f44618b);
+        canvas.drawCircle(f7, f10, f11, this.f44377b);
         if (z10) {
             canvas.restore();
         }
@@ -87,17 +87,17 @@ public final class y1 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.f13233b).onTouchEvent(motionEvent);
+        boolean onTouchEvent = ((GestureDetector) this.d.f13315b).onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f44620f = false;
+        this.f44379f = false;
         invalidate();
         return onTouchEvent;
     }
 
     public void setBrushWeight(float f7) {
-        this.H.f43545c = f7;
+        this.H.f43287c = f7;
         invalidate();
     }
 

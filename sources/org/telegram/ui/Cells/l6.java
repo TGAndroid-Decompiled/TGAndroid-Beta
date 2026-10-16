@@ -7,12 +7,12 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.Components.RadioButton;
 public final class l6 extends FrameLayout {
-    public final TextView f21485a;
-    public final TextView f21486b;
-    public final RadioButton f21487c;
+    public final TextView f21182a;
+    public final TextView f21183b;
+    public final RadioButton f21184c;
     public int d;
 
     public l6(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
@@ -27,7 +27,7 @@ public final class l6 extends FrameLayout {
         int i17;
         this.d = 50;
         RadioButton radioButton = new RadioButton(context);
-        this.f21487c = radioButton;
+        this.f21184c = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
         radioButton.b(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.D5, c6Var), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.E5, c6Var));
         boolean z10 = LocaleController.isRTL;
@@ -42,10 +42,10 @@ public final class l6 extends FrameLayout {
         } else {
             i11 = 18;
         }
-        addView(radioButton, w7.a6.a(22.0f, i11, 14.0f, z10 ? 18 : 0, 0.0f, 22, i18));
+        addView(radioButton, w7.z5.a(22.0f, i11, 14.0f, z10 ? 18 : 0, 0.0f, 22, i18));
         TextView textView = new TextView(context);
-        this.f21485a = textView;
-        yh.n(org.telegram.ui.ActionBar.g6.f20007j5, c6Var, textView, 1, 16.0f);
+        this.f21182a = textView;
+        sk.o(org.telegram.ui.ActionBar.g6.f19707j5, c6Var, textView, 1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -73,10 +73,10 @@ public final class l6 extends FrameLayout {
         } else {
             i15 = 21;
         }
-        addView(textView, w7.a6.a(-2.0f, f7, 13.0f, i15, 0.0f, -2, i19));
+        addView(textView, w7.z5.a(-2.0f, f7, 13.0f, i15, 0.0f, -2, i19));
         TextView textView2 = new TextView(context);
-        this.f21486b = textView2;
-        yh.n(org.telegram.ui.ActionBar.g6.f20288y6, c6Var, textView2, 1, 14.0f);
+        this.f21183b = textView2;
+        sk.o(org.telegram.ui.ActionBar.g6.f19988y6, c6Var, textView2, 1, 14.0f);
         if (LocaleController.isRTL) {
             i16 = 5;
         } else {
@@ -91,17 +91,17 @@ public final class l6 extends FrameLayout {
         } else {
             i17 = 51;
         }
-        addView(textView2, w7.a6.a(-2.0f, i17, 37.0f, z12 ? 51 : 21, 0.0f, -2, i20));
+        addView(textView2, w7.z5.a(-2.0f, i17, 37.0f, z12 ? 51 : 21, 0.0f, -2, i20));
     }
 
     public final void a(int i10, int i11) {
-        this.f21487c.b(i10, i11);
+        this.f21184c.b(i10, i11);
     }
 
     public final void b(CharSequence charSequence, boolean z10) {
-        this.f21485a.setText(charSequence);
-        this.f21486b.setVisibility(8);
-        this.f21487c.a(z10, false);
+        this.f21182a.setText(charSequence);
+        this.f21183b.setVisibility(8);
+        this.f21184c.a(z10, false);
     }
 
     @Override
@@ -109,13 +109,13 @@ public final class l6 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f21487c.f23282f);
+        accessibilityNodeInfo.setChecked(this.f21184c.f22982f);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        TextView textView = this.f21486b;
+        TextView textView = this.f21183b;
         if (textView.getVisibility() == 0) {
             textView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(72.0f), 1073741824), i11);
         }

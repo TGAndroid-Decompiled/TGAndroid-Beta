@@ -20,45 +20,45 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.x5;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.z9;
-import w7.a6;
+import w7.z5;
 import zf.q;
 public final class c extends FrameLayout implements x5 {
-    public final c6 f10823a;
-    public final z9 f10824b;
-    public final TextView f10825c;
+    public final c6 f10827a;
+    public final z9 f10828b;
+    public final TextView f10829c;
     public final TextView d;
     public final ImageView e;
 
     public c(Context context, c6 c6Var) {
         super(context);
-        this.f10823a = c6Var;
+        this.f10827a = c6Var;
         z9 z9Var = new z9(context);
-        this.f10824b = z9Var;
+        this.f10828b = z9Var;
         z9Var.setRoundRadius(AndroidUtilities.dp(9.0f));
-        addView(z9Var, a6.a(32.0f, 20.0f, 0.0f, 0.0f, 0.0f, 32, 19));
+        addView(z9Var, z5.a(32.0f, 20.0f, 0.0f, 0.0f, 0.0f, 32, 19));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
         TextView textView = new TextView(context);
-        this.f10825c = textView;
+        this.f10829c = textView;
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 16.0f);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        linearLayout.addView(textView, a6.n(-1, -2));
+        linearLayout.addView(textView, z5.n(-1, -2));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 13.0f);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, a6.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
-        addView(linearLayout, a6.a(-2.0f, 67.0f, 0.0f, 48.0f, 1.0f, -1, 19));
+        linearLayout.addView(textView2, z5.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
+        addView(linearLayout, z5.a(-2.0f, 67.0f, 0.0f, 48.0f, 1.0f, -1, 19));
         ImageView imageView = new ImageView(context);
         this.e = imageView;
         imageView.setImageResource(R.drawable.msg_inputarrow);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, a6.a(24.0f, 0.0f, 0.0f, 11.0f, 0.0f, 24, 21));
+        addView(imageView, z5.a(24.0f, 0.0f, 0.0f, 11.0f, 0.0f, 24, 21));
         d();
     }
 
@@ -67,7 +67,7 @@ public final class c extends FrameLayout implements x5 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f19216id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f18916id);
         setTitle(DialogObject.getShortName(chat));
         if (chatFull != null) {
             i11 = chatFull.linked_peers.size();
@@ -75,22 +75,22 @@ public final class c extends FrameLayout implements x5 {
             i11 = 0;
         }
         setSubtitle(LocaleController.formatPluralString("CommunityWithChats", i11, new Object[0]));
-        this.f10824b.e(chat, new k9(chat));
+        this.f10828b.e(chat, new k9(chat));
     }
 
     @Override
     public final void d() {
-        int i10 = g6.f20305z6;
-        c6 c6Var = this.f10823a;
+        int i10 = g6.f20005z6;
+        c6 c6Var = this.f10827a;
         this.e.setColorFilter(g6.w0(i10, c6Var));
-        this.f10825c.setTextColor(g6.w0(g6.G6, c6Var));
+        this.f10829c.setTextColor(g6.w0(g6.G6, c6Var));
         this.d.setTextColor(g6.w0(i10, c6Var));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Drawable drawable = g6.S0;
-        z9 z9Var = this.f10824b;
+        z9 z9Var = this.f10828b;
         q.a(canvas, drawable, (z9Var.getWidth() / 2.0f) + z9Var.getLeft(), (z9Var.getHeight() / 2.0f) + z9Var.getTop(), z9Var.getHeight());
         super.dispatchDraw(canvas);
     }
@@ -109,6 +109,6 @@ public final class c extends FrameLayout implements x5 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f10825c.setText(charSequence);
+        this.f10829c.setText(charSequence);
     }
 }

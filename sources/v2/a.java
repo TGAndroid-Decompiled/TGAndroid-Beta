@@ -1,11 +1,10 @@
 package v2;
 
 import b2.x;
-import n6.o;
 public abstract class a extends l {
     public final long v;
     public final long f46479w;
-    public o f46480x;
+    public n3.b f46480x;
     public int[] f46481y;
 
     public a(g2.h hVar, g2.m mVar, x xVar, int i10, Object obj, long j10, long j11, long j12, long j13, long j14) {

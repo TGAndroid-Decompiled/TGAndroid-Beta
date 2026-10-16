@@ -11,15 +11,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.xmlpull.v1.XmlPullParser;
 public abstract class a {
-    public static ExecutorService f8306a;
-    public static final Object f8307b = new Object();
+    public static ExecutorService f8309a;
+    public static final Object f8310b = new Object();
 
     public static String a(String str, Throwable th2) {
         String replace;
         if (th2 == null) {
             replace = null;
         } else {
-            synchronized (f8307b) {
+            synchronized (f8310b) {
                 Throwable th3 = th2;
                 while (true) {
                     if (th3 != null) {
@@ -48,19 +48,19 @@ public abstract class a {
     }
 
     public static void b(String str, String str2) {
-        synchronized (f8307b) {
+        synchronized (f8310b) {
             Log.d(str, a(str2, null));
         }
     }
 
     public static void c(String str, String str2) {
-        synchronized (f8307b) {
+        synchronized (f8310b) {
             Log.e(str, a(str2, null));
         }
     }
 
     public static void d(String str, String str2, Throwable th2) {
-        synchronized (f8307b) {
+        synchronized (f8310b) {
             Log.e(str, a(str2, th2));
         }
     }
@@ -69,11 +69,11 @@ public abstract class a {
         ExecutorService executorService;
         synchronized (a.class) {
             try {
-                if (f8306a == null) {
-                    String str = m0.f8372a;
-                    f8306a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
+                if (f8309a == null) {
+                    String str = m0.f8375a;
+                    f8309a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
                 }
-                executorService = f8306a;
+                executorService = f8309a;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -92,7 +92,7 @@ public abstract class a {
     }
 
     public static void g(String str, String str2) {
-        synchronized (f8307b) {
+        synchronized (f8310b) {
             Log.i(str, a(str2, null));
         }
     }
@@ -119,18 +119,18 @@ public abstract class a {
 
     public static void k(MediaFormat mediaFormat, List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
-            mediaFormat.setByteBuffer(i2.d.i(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
+            mediaFormat.setByteBuffer(i2.d.j(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
         }
     }
 
     public static void l(String str, String str2) {
-        synchronized (f8307b) {
+        synchronized (f8310b) {
             Log.w(str, a(str2, null));
         }
     }
 
     public static void m(String str, String str2, Throwable th2) {
-        synchronized (f8307b) {
+        synchronized (f8310b) {
             Log.w(str, a(str2, th2));
         }
     }

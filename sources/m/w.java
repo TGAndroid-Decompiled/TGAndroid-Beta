@@ -2,73 +2,48 @@ package m;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.text.method.KeyListener;
-import android.text.method.NumberKeyListener;
+import android.graphics.drawable.RippleDrawable;
+import android.net.Uri;
 import android.util.AttributeSet;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.MultiAutoCompleteTextView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import v7.q7;
-public final class w extends MultiAutoCompleteTextView implements u0.k {
-    public static final int[] d = {16843126};
-    public final e2.c f15259a;
-    public final w0 f15260b;
-    public final y f15261c;
+public class w extends ImageButton {
+    public final e2.c f14998a;
+    public final a5.a f14999b;
+    public boolean f15000c;
 
-    public w(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, 2130968624);
-        c3.a(context);
-        b3.a(this, getContext());
-        li.k P = li.k.P(getContext(), attributeSet, d, 2130968624);
-        if (((TypedArray) P.f14821c).hasValue(0)) {
-            setDropDownBackgroundDrawable(P.F(0));
-        }
-        P.Q();
+    public w(Context context, AttributeSet attributeSet, int i10) {
+        super(context, attributeSet, i10);
+        e3.a(context);
+        this.f15000c = false;
+        d3.a(this, getContext());
         e2.c cVar = new e2.c(this);
-        this.f15259a = cVar;
-        cVar.f(attributeSet, 2130968624);
-        w0 w0Var = new w0(this);
-        this.f15260b = w0Var;
-        w0Var.f(attributeSet, 2130968624);
-        w0Var.b();
-        y yVar = new y(this);
-        this.f15261c = yVar;
-        yVar.b(attributeSet, 2130968624);
-        KeyListener keyListener = getKeyListener();
-        if (!(keyListener instanceof NumberKeyListener)) {
-            boolean isFocusable = isFocusable();
-            boolean isClickable = isClickable();
-            boolean isLongClickable = isLongClickable();
-            int inputType = getInputType();
-            KeyListener a2 = yVar.a(keyListener);
-            if (a2 != keyListener) {
-                super.setKeyListener(a2);
-                setRawInputType(inputType);
-                setFocusable(isFocusable);
-                setClickable(isClickable);
-                setLongClickable(isLongClickable);
-            }
-        }
+        this.f14998a = cVar;
+        cVar.f(attributeSet, i10);
+        a5.a aVar = new a5.a(this);
+        this.f14999b = aVar;
+        aVar.u(attributeSet, i10);
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f15259a;
+        e2.c cVar = this.f14998a;
         if (cVar != null) {
             cVar.b();
         }
-        w0 w0Var = this.f15260b;
-        if (w0Var != null) {
-            w0Var.b();
+        a5.a aVar = this.f14999b;
+        if (aVar != null) {
+            aVar.d();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f15259a;
+        e2.c cVar = this.f14998a;
         if (cVar != null) {
             return cVar.d();
         }
@@ -76,32 +51,43 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f15259a;
+        e2.c cVar = this.f14998a;
         if (cVar != null) {
             return cVar.e();
         }
         return null;
     }
 
-    public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f15260b.d();
+    public ColorStateList getSupportImageTintList() {
+        f3 f3Var;
+        a5.a aVar = this.f14999b;
+        if (aVar == null || (f3Var = (f3) aVar.d) == null) {
+            return null;
+        }
+        return (ColorStateList) f3Var.f14845c;
     }
 
-    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f15260b.e();
+    public PorterDuff.Mode getSupportImageTintMode() {
+        f3 f3Var;
+        a5.a aVar = this.f14999b;
+        if (aVar == null || (f3Var = (f3) aVar.d) == null) {
+            return null;
+        }
+        return (PorterDuff.Mode) f3Var.d;
     }
 
     @Override
-    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        w7.q.a(editorInfo, onCreateInputConnection, this);
-        return this.f15261c.c(onCreateInputConnection, editorInfo);
+    public final boolean hasOverlappingRendering() {
+        if (!(((ImageView) this.f14999b.f282c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f15259a;
+        e2.c cVar = this.f14998a;
         if (cVar != null) {
             cVar.g();
         }
@@ -110,78 +96,107 @@ public final class w extends MultiAutoCompleteTextView implements u0.k {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f15259a;
+        e2.c cVar = this.f14998a;
         if (cVar != null) {
             cVar.h(i10);
         }
     }
 
     @Override
-    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f15260b;
-        if (w0Var != null) {
-            w0Var.b();
+    public void setImageBitmap(Bitmap bitmap) {
+        super.setImageBitmap(bitmap);
+        a5.a aVar = this.f14999b;
+        if (aVar != null) {
+            aVar.d();
         }
     }
 
     @Override
-    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f15260b;
-        if (w0Var != null) {
-            w0Var.b();
+    public void setImageDrawable(Drawable drawable) {
+        a5.a aVar = this.f14999b;
+        if (aVar != null && drawable != null && !this.f15000c) {
+            aVar.f281b = drawable.getLevel();
+        }
+        super.setImageDrawable(drawable);
+        if (aVar != null) {
+            aVar.d();
+            if (!this.f15000c) {
+                ImageView imageView = (ImageView) aVar.f282c;
+                if (imageView.getDrawable() != null) {
+                    imageView.getDrawable().setLevel(aVar.f281b);
+                }
+            }
         }
     }
 
     @Override
-    public void setDropDownBackgroundResource(int i10) {
-        setDropDownBackgroundDrawable(q7.b(getContext(), i10));
-    }
-
-    public void setEmojiCompatEnabled(boolean z10) {
-        this.f15261c.d(z10);
+    public void setImageLevel(int i10) {
+        super.setImageLevel(i10);
+        this.f15000c = true;
     }
 
     @Override
-    public void setKeyListener(KeyListener keyListener) {
-        super.setKeyListener(this.f15261c.a(keyListener));
+    public void setImageResource(int i10) {
+        a5.a aVar = this.f14999b;
+        ImageView imageView = (ImageView) aVar.f282c;
+        if (i10 != 0) {
+            Drawable b10 = q7.b(imageView.getContext(), i10);
+            if (b10 != null) {
+                n1.a(b10);
+            }
+            imageView.setImageDrawable(b10);
+        } else {
+            imageView.setImageDrawable(null);
+        }
+        aVar.d();
+    }
+
+    @Override
+    public void setImageURI(Uri uri) {
+        super.setImageURI(uri);
+        a5.a aVar = this.f14999b;
+        if (aVar != null) {
+            aVar.d();
+        }
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f15259a;
+        e2.c cVar = this.f14998a;
         if (cVar != null) {
             cVar.l(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f15259a;
+        e2.c cVar = this.f14998a;
         if (cVar != null) {
             cVar.m(mode);
         }
     }
 
-    @Override
-    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f15260b;
-        w0Var.l(colorStateList);
-        w0Var.b();
+    public void setSupportImageTintList(ColorStateList colorStateList) {
+        a5.a aVar = this.f14999b;
+        if (aVar != null) {
+            if (((f3) aVar.d) == null) {
+                aVar.d = new Object();
+            }
+            f3 f3Var = (f3) aVar.d;
+            f3Var.f14845c = colorStateList;
+            f3Var.f14844b = true;
+            aVar.d();
+        }
     }
 
-    @Override
-    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f15260b;
-        w0Var.m(mode);
-        w0Var.b();
-    }
-
-    @Override
-    public final void setTextAppearance(Context context, int i10) {
-        super.setTextAppearance(context, i10);
-        w0 w0Var = this.f15260b;
-        if (w0Var != null) {
-            w0Var.g(context, i10);
+    public void setSupportImageTintMode(PorterDuff.Mode mode) {
+        a5.a aVar = this.f14999b;
+        if (aVar != null) {
+            if (((f3) aVar.d) == null) {
+                aVar.d = new Object();
+            }
+            f3 f3Var = (f3) aVar.d;
+            f3Var.d = mode;
+            f3Var.f14843a = true;
+            aVar.d();
         }
     }
 }

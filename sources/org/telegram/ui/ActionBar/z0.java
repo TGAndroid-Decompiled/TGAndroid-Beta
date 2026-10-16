@@ -16,7 +16,7 @@ public final class z0 extends g10 {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(gd.a(this.e.getSpeed()));
         sb2.append("x  ");
-        return org.telegram.messenger.q.h(R.string.AccDescrSpeedSlider, sb2);
+        return org.telegram.messenger.g0.g(R.string.AccDescrSpeedSlider, sb2);
     }
 
     @Override

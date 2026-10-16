@@ -15,12 +15,12 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.aq;
 import org.telegram.ui.Components.bq;
 import org.telegram.ui.rx0;
-import w7.a6;
+import w7.z5;
 public class r1 extends ViewGroup {
     public r1 E;
     public int F;
@@ -53,15 +53,15 @@ public class r1 extends ViewGroup {
         int i12;
         this.f45340f = 12;
         this.h = 8;
-        this.f45343s = g6.f19901d6;
-        this.v = g6.f19843a7;
+        this.f45343s = g6.f19601d6;
+        this.v = g6.f19543a7;
         this.f45346y = new Paint();
         this.H = new Matrix();
         aq aqVar = new aq(context, 24, null);
         this.f45337a = aqVar;
         aqVar.setDrawBackgroundAsArc(10);
-        int i13 = g6.f19955g7;
-        aqVar.b(i13, i13, g6.f20029k7);
+        int i13 = g6.f19655g7;
+        aqVar.b(i13, i13, g6.f19729k7);
         addView(aqVar);
         TextView textView = new TextView(context);
         this.f45338b = textView;
@@ -74,7 +74,7 @@ public class r1 extends ViewGroup {
         } else {
             i10 = 3;
         }
-        addView(textView, a6.a(-2.0f, 0.0f, 8.0f, 0.0f, 0.0f, -2, i10 | 48));
+        addView(textView, z5.a(-2.0f, 0.0f, 8.0f, 0.0f, 0.0f, -2, i10 | 48));
         TextView textView2 = new TextView(context);
         this.f45342r = textView2;
         textView2.setTextSize(1, 14.0f);
@@ -86,11 +86,11 @@ public class r1 extends ViewGroup {
         } else {
             i11 = 3;
         }
-        addView(textView2, a6.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, i11 | 80));
+        addView(textView2, z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, i11 | 80));
         TextView textView3 = new TextView(context);
         this.d = textView3;
         textView3.setTextSize(1, 14.0f);
-        int i14 = g6.f20288y6;
+        int i14 = g6.f19988y6;
         textView3.setTextColor(g6.x0(null, i14, false));
         textView3.getPaint().setStrikeThruText(true);
         textView3.setSingleLine();
@@ -99,19 +99,19 @@ public class r1 extends ViewGroup {
         } else {
             i12 = 3;
         }
-        addView(textView3, a6.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, i12 | 80));
+        addView(textView3, z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, i12 | 80));
         TextView textView4 = new TextView(context);
         this.e = textView4;
         textView4.setTextSize(1, 14.0f);
         textView4.setTextColor(g6.x0(null, i14, false));
         textView4.setSingleLine();
-        addView(textView4, a6.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, (LocaleController.isRTL ? 5 : 3) | 80));
+        addView(textView4, z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, (LocaleController.isRTL ? 5 : 3) | 80));
         TextView textView5 = new TextView(context);
         this.f45339c = textView5;
         textView5.setTextSize(1, 15.0f);
         textView5.setTextColor(g6.x0(null, i14, false));
         textView5.setSingleLine();
-        addView(textView5, a6.e(-2, -2, 8388613));
+        addView(textView5, z5.e(-2, -2, 8388613));
         setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f));
         setClipToPadding(false);
         setWillNotDraw(false);
@@ -226,9 +226,9 @@ public class r1 extends ViewGroup {
             boolean z10 = LocaleController.isRTL;
             TextView textView = this.f45338b;
             if (z10) {
-                canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, g6.f20022k0);
+                canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, g6.f19722k0);
             } else {
-                canvas.drawLine(textView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, g6.f20022k0);
+                canvas.drawLine(textView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, g6.f19722k0);
             }
         }
     }
@@ -320,10 +320,10 @@ public class r1 extends ViewGroup {
         if (textView3.getVisibility() == 0) {
             i12 = textView3.getMeasuredWidth();
         }
-        int z10 = yh.z(6.0f, measuredWidth - i12, Integer.MIN_VALUE);
+        int c10 = sk.c(6.0f, measuredWidth - i12, Integer.MIN_VALUE);
         int makeMeasureSpec6 = View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE);
         TextView textView4 = this.e;
-        textView4.measure(z10, makeMeasureSpec6);
+        textView4.measure(c10, makeMeasureSpec6);
         if (textView4.getVisibility() != 0) {
             dp -= AndroidUtilities.dp(8.0f);
         }

@@ -2,12 +2,12 @@ package c5;
 
 import java.util.concurrent.Callable;
 public final class y implements Callable {
-    public final int f4424a;
-    public final Object f4425b;
+    public final int f4427a;
+    public final Object f4428b;
 
     public y(Object obj, int i10) {
-        this.f4424a = i10;
-        this.f4425b = obj;
+        this.f4427a = i10;
+        this.f4428b = obj;
     }
 
     @Override

@@ -2,17 +2,17 @@ package d9;
 
 import java.util.Arrays;
 public class c extends i {
-    public final int f6428a = 1;
-    public final Object f6429b;
+    public final int f6431a = 1;
+    public final Object f6432b;
 
     public c(i iVar) {
         iVar.getClass();
-        this.f6429b = iVar;
+        this.f6432b = iVar;
     }
 
     @Override
     public final boolean apply(Object obj) {
-        switch (this.f6428a) {
+        switch (this.f6431a) {
             case 0:
                 return c(((Character) obj).charValue());
             default:
@@ -22,44 +22,44 @@ public class c extends i {
 
     @Override
     public final boolean c(char c10) {
-        switch (this.f6428a) {
+        switch (this.f6431a) {
             case 0:
-                if (Arrays.binarySearch((char[]) this.f6429b, c10) >= 0) {
+                if (Arrays.binarySearch((char[]) this.f6432b, c10) >= 0) {
                     return true;
                 }
                 return false;
             default:
-                return !((i) this.f6429b).c(c10);
+                return !((i) this.f6432b).c(c10);
         }
     }
 
     @Override
     public i d() {
-        switch (this.f6428a) {
+        switch (this.f6431a) {
             case 1:
-                return (i) this.f6429b;
+                return (i) this.f6432b;
             default:
                 return super.d();
         }
     }
 
     public final String toString() {
-        switch (this.f6428a) {
+        switch (this.f6431a) {
             case 0:
                 StringBuilder sb2 = new StringBuilder("CharMatcher.anyOf(\"");
-                for (char c10 : (char[]) this.f6429b) {
+                for (char c10 : (char[]) this.f6432b) {
                     sb2.append(i.a(c10));
                 }
                 sb2.append("\")");
                 return sb2.toString();
             default:
-                return ((i) this.f6429b) + ".negate()";
+                return ((i) this.f6432b) + ".negate()";
         }
     }
 
     public c(String str) {
         char[] charArray = str.toString().toCharArray();
-        this.f6429b = charArray;
+        this.f6432b = charArray;
         Arrays.sort(charArray);
     }
 }

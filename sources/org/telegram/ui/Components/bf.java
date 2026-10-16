@@ -4,28 +4,28 @@ import android.content.Context;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class bf extends ImageView {
-    public float f23748a;
-    public final ChatActivityEnterView f23749b;
+    public float f23442a;
+    public final ChatActivityEnterView f23443b;
 
     public bf(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.f23749b = chatActivityEnterView;
+        this.f23443b = chatActivityEnterView;
     }
 
     @Override
     public final float getTranslationX() {
-        return this.f23748a;
+        return this.f23442a;
     }
 
     @Override
     public final void setTranslationX(float f7) {
         float f10;
         float alpha;
-        this.f23748a = f7;
+        this.f23442a = f7;
         float f11 = -44.0f;
-        float dp = AndroidUtilities.dp(-44.0f) + this.f23748a;
-        ChatActivityEnterView chatActivityEnterView = this.f23749b;
-        float f12 = dp + chatActivityEnterView.f22988y + chatActivityEnterView.f22982x;
+        float dp = AndroidUtilities.dp(-44.0f) + this.f23442a;
+        ChatActivityEnterView chatActivityEnterView = this.f23443b;
+        float f12 = dp + chatActivityEnterView.f22688y + chatActivityEnterView.f22682x;
         df dfVar = chatActivityEnterView.K1;
         float f13 = 0.0f;
         if (dfVar != null && dfVar.getVisibility() == 0) {
@@ -41,12 +41,12 @@ public final class bf extends ImageView {
             alpha = dfVar2.getAlpha();
         }
         float f14 = (dp2 * alpha) + f12;
-        df dfVar3 = chatActivityEnterView.f22984x1;
+        df dfVar3 = chatActivityEnterView.f22684x1;
         if (dfVar3 == null || dfVar3.getVisibility() != 0) {
             f11 = 0.0f;
         }
         float dp3 = AndroidUtilities.dp(f11);
-        df dfVar4 = chatActivityEnterView.f22984x1;
+        df dfVar4 = chatActivityEnterView.f22684x1;
         if (dfVar4 != null) {
             f13 = dfVar4.getAlpha();
         }

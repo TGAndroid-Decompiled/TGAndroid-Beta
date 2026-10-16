@@ -11,8 +11,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.es;
-import org.telegram.ui.ob0;
-import w7.a6;
+import org.telegram.ui.nb0;
+import w7.z5;
 public final class n0 extends FrameLayout implements l0 {
     public final c6 f45284a;
     public final ArrayList f45285b;
@@ -23,12 +23,12 @@ public final class n0 extends FrameLayout implements l0 {
 
     public n0(Context context, c6 c6Var) {
         super(context);
-        ob0[] values;
+        nb0[] values;
         this.f45285b = new ArrayList();
         this.f45284a = c6Var;
-        for (ob0 ob0Var : ob0.values()) {
-            if (ob0Var.e) {
-                this.f45285b.add(ob0Var);
+        for (nb0 nb0Var : nb0.values()) {
+            if (nb0Var.e) {
+                this.f45285b.add(nb0Var);
             }
             if (this.f45285b.size() == 3) {
                 break;
@@ -46,7 +46,7 @@ public final class n0 extends FrameLayout implements l0 {
     }
 
     public final m0 a(Context context, int i10) {
-        ob0 ob0Var = (ob0) this.f45285b.get(i10);
+        nb0 nb0Var = (nb0) this.f45285b.get(i10);
         ?? qVar = new org.telegram.ui.Cells.q(context);
         w1 w1Var = new w1(20);
         qVar.e = w1Var;
@@ -65,9 +65,9 @@ public final class n0 extends FrameLayout implements l0 {
         w1Var.P = g6.Zj;
         w1Var.c();
         paint.setColor(-1);
-        qVar.setLayoutParams(a6.a(-2.0f, 0.0f, 52.0f, 0.0f, 0.0f, -2, 17));
-        qVar.setForeground(ob0Var.f38918c);
-        qVar.setBackgroundResource(ob0Var.f38917b);
+        qVar.setLayoutParams(z5.a(-2.0f, 0.0f, 52.0f, 0.0f, 0.0f, -2, 17));
+        qVar.setForeground(nb0Var.f38355c);
+        qVar.setBackgroundResource(nb0Var.f38354b);
         qVar.setPadding(AndroidUtilities.dp(8.0f));
         qVar.setBackgroundOuterPadding(AndroidUtilities.dp(32.0f));
         addView(qVar);
@@ -104,7 +104,7 @@ public final class n0 extends FrameLayout implements l0 {
             return;
         }
         float abs = Math.abs(f7 / getMeasuredWidth());
-        float interpolation = es.f24773i.getInterpolation(abs);
+        float interpolation = es.f24467i.getInterpolation(abs);
         int right = getRight();
         m0 m0Var = this.e;
         m0Var.setTranslationX(((m0Var.getWidth() * 1.5f) + (right - m0Var.getRight()) + AndroidUtilities.dp(32.0f)) * interpolation);
@@ -120,7 +120,7 @@ public final class n0 extends FrameLayout implements l0 {
         float clamp2 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.8f, abs), 1.0f, 0.0f);
         m0Var2.setScaleX(clamp2);
         m0Var2.setScaleY(clamp2);
-        float interpolation2 = es.f24772g.getInterpolation(abs);
+        float interpolation2 = es.f24466g.getInterpolation(abs);
         int left = getLeft();
         m0 m0Var3 = this.d;
         m0Var3.setTranslationX((((left - m0Var3.getLeft()) - (m0Var3.getWidth() * 2.5f)) + AndroidUtilities.dp(32.0f)) * interpolation2);

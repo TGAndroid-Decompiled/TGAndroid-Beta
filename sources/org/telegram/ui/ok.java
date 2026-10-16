@@ -6,41 +6,41 @@ import android.view.View;
 import java.util.WeakHashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class ok extends org.telegram.ui.Components.c91 {
-    public final Context f38990a;
-    public final fo f38991b;
+public final class ok extends org.telegram.ui.Components.d91 {
+    public final Context f38697a;
+    public final fo f38698b;
 
     public ok(fo foVar, Context context) {
-        this.f38991b = foVar;
-        this.f38990a = context;
+        this.f38698b = foVar;
+        this.f38697a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         if (view instanceof ho) {
-            ((ho) view).f36887a.Nc(this.f38991b.f36124u3);
+            ((ho) view).f36617a.Nc(this.f38698b.f35825u3);
         }
-        WeakHashMap weakHashMap = r0.j0.f43732a;
-        r0.z.c(view);
+        WeakHashMap weakHashMap = r0.i0.f43485a;
+        r0.y.c(view);
     }
 
     @Override
     public final View d(int i10) {
-        Context context = this.f38990a;
-        fo foVar = this.f38991b;
+        Context context = this.f38697a;
+        fo foVar = this.f38698b;
         if (i10 == 0) {
             return new sn(foVar, context);
         }
         Bundle bundle = new Bundle();
         bundle.putInt("chatMode", 7);
         bundle.putInt("searchType", i10);
-        bundle.putString("searchHashtag", foVar.f36124u3);
+        bundle.putString("searchHashtag", foVar.f35825u3);
         nk nkVar = new nk(context, foVar.getParentLayout(), bundle, 0);
         nkVar.h = false;
-        go goVar = nkVar.f36887a;
-        goVar.L.f10156a = foVar.L;
-        goVar.f35908ca = foVar.f35932ea;
-        goVar.f35921da = foVar;
+        go goVar = nkVar.f36617a;
+        goVar.L.f10160a = foVar.L;
+        goVar.f35609ca = foVar.f35633ea;
+        goVar.f35622da = foVar;
         goVar.V8 = new g(this, 13);
         return nkVar;
     }

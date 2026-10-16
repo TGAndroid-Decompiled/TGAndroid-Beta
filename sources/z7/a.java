@@ -1,19 +1,19 @@
 package z7;
 public final class a extends e9.v {
-    public final int f49334f;
+    public final int f49333f;
     public final d h;
 
     public a(d dVar, int i10) {
         super(dVar);
-        this.f49334f = i10;
+        this.f49333f = i10;
         this.h = dVar;
     }
 
     @Override
     public final Object b(int i10) {
-        switch (this.f49334f) {
+        switch (this.f49333f) {
             case 0:
-                Object[] objArr = this.h.f49377c;
+                Object[] objArr = this.h.f49378c;
                 objArr.getClass();
                 return objArr[i10];
             case 1:

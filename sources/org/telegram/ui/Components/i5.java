@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class i5 extends FrameLayout {
-    public boolean f25826a;
-    public int f25827b;
-    public s6 f25828c;
+    public boolean f25495a;
+    public int f25496b;
+    public s6 f25497c;
     public s6 d;
 
     public s6 getSubtitleTextView() {
@@ -14,22 +14,22 @@ public final class i5 extends FrameLayout {
     }
 
     public s6 getTitle() {
-        return this.f25828c;
+        return this.f25497c;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         s6 s6Var = this.d;
-        s6 s6Var2 = this.f25828c;
-        int B = org.telegram.messenger.yh.B(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
-        if (this.f25826a) {
+        s6 s6Var2 = this.f25497c;
+        int A = org.telegram.messenger.sk.A(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
+        if (this.f25495a) {
             i14 = AndroidUtilities.statusBarHeight;
         } else {
             i14 = 0;
         }
-        int i15 = B + i14;
-        int i16 = this.f25827b;
+        int i15 = A + i14;
+        int i16 = this.f25496b;
         if (s6Var.getVisibility() != 8) {
             s6Var2.layout(i16, (AndroidUtilities.dp(1.0f) + i15) - s6Var2.getPaddingTop(), s6Var2.getMeasuredWidth() + i16, s6Var2.getPaddingBottom() + ((AndroidUtilities.dp(1.3f) + (s6Var2.getTextHeight() + i15)) - s6Var2.getPaddingTop()));
         } else {
@@ -41,7 +41,7 @@ public final class i5 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        s6 s6Var = this.f25828c;
+        s6 s6Var = this.f25497c;
         int paddingRight = s6Var.getPaddingRight() + size;
         int dp = paddingRight - AndroidUtilities.dp(16.0f);
         s6Var.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(s6Var.getPaddingRight() + AndroidUtilities.dp(32.0f), Integer.MIN_VALUE));

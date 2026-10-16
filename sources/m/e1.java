@@ -1,15 +1,23 @@
 package m;
 
+import android.text.Layout;
 import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.util.Log;
 import android.widget.TextView;
-public final class e1 extends d1 {
-    @Override
-    public void a(StaticLayout.Builder builder, TextView textView) {
-        builder.setTextDirection(textView.getTextDirectionHeuristic());
-    }
-
-    @Override
-    public boolean b(TextView textView) {
-        return textView.isHorizontallyScrollable();
+public abstract class e1 {
+    public static StaticLayout a(CharSequence charSequence, Layout.Alignment alignment, int i10, int i11, TextView textView, TextPaint textPaint, h1 h1Var) {
+        StaticLayout.Builder obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10);
+        StaticLayout.Builder hyphenationFrequency = obtain.setAlignment(alignment).setLineSpacing(textView.getLineSpacingExtra(), textView.getLineSpacingMultiplier()).setIncludePad(textView.getIncludeFontPadding()).setBreakStrategy(textView.getBreakStrategy()).setHyphenationFrequency(textView.getHyphenationFrequency());
+        if (i11 == -1) {
+            i11 = Integer.MAX_VALUE;
+        }
+        hyphenationFrequency.setMaxLines(i11);
+        try {
+            h1Var.a(obtain, textView);
+        } catch (ClassCastException unused) {
+            Log.w("ACTVAutoSizeHelper", "Failed to obtain TextDirectionHeuristic, auto size may be incorrect");
+        }
+        return obtain.build();
     }
 }

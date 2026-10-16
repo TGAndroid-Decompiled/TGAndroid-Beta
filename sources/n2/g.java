@@ -2,9 +2,9 @@ package n2;
 
 import java.util.UUID;
 public interface g {
-    void a(k kVar);
+    void a(j jVar);
 
-    void b(k kVar);
+    void b(j jVar);
 
     UUID c();
 

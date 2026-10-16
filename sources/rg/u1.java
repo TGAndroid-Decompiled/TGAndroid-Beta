@@ -20,9 +20,9 @@ public final class u1 extends lm0 {
         qg.j0 j0Var = (qg.j0) qg.j0.c().get(i10);
         p1Var.getClass();
         p1Var.setTypeface(j0Var.d());
-        String str = j0Var.f43462c;
+        String str = j0Var.f43204c;
         if (str == null) {
-            str = LocaleController.getString(j0Var.f43461b);
+            str = LocaleController.getString(j0Var.f43203b);
         }
         p1Var.setText(str);
     }

@@ -1,27 +1,36 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class a90 implements Runnable {
-    public final int f23491a;
-    public final g90 f23492b;
-    public final TLRPC.TL_chatInviteJoinResultWebView f23493c;
-    public final long d;
+import android.content.DialogInterface;
+public final class a90 implements DialogInterface.OnDismissListener {
+    public final int f23170a;
+    public final Object f23171b;
+    public final boolean f23172c;
 
-    public a90(g90 g90Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j10, int i10) {
-        this.f23491a = i10;
-        this.f23492b = g90Var;
-        this.f23493c = tL_chatInviteJoinResultWebView;
-        this.d = j10;
+    public a90(int i10, Object obj, boolean z10) {
+        this.f23170a = i10;
+        this.f23171b = obj;
+        this.f23172c = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f23491a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f23170a) {
             case 0:
-                g90.r(this.f23492b, this.f23493c, this.d);
+                f90 f90Var = (f90) this.f23171b;
+                f90.y(f90Var.getContext(), f90Var.f24662c, f90Var.f24664n, this.f23172c);
+                return;
+            case 1:
+                f90 f90Var2 = (f90) this.f23171b;
+                f90.y(f90Var2.getContext(), f90Var2.f24662c, f90Var2.f24664n, this.f23172c);
                 return;
             default:
-                g90.q(this.f23492b, this.f23493c, this.d);
+                di.kc kcVar = (di.kc) this.f23171b;
+                kcVar.f7321z2 = false;
+                kcVar.X0.x(7, true);
+                if (this.f23172c) {
+                    kcVar.p(true);
+                    return;
+                }
                 return;
         }
     }

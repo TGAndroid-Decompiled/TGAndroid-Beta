@@ -7,23 +7,23 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class d50 implements ti {
-    public final i50 f24294a;
+    public final i50 f23984a;
 
     public d50(i50 i50Var) {
-        this.f24294a = i50Var;
+        this.f23984a = i50Var;
     }
 
     @Override
-    public final void H() {
-        AndroidUtilities.hideKeyboard(this.f24294a.f25829a.getFragmentView().findFocus());
+    public final void F() {
+        AndroidUtilities.hideKeyboard(this.f23984a.f25498a.getFragmentView().findFocus());
     }
 
     @Override
-    public final void g0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
         vi viVar;
-        i50 i50Var = this.f24294a;
-        org.telegram.ui.ActionBar.m2 m2Var = i50Var.f25829a;
-        if (m2Var != null && m2Var.getParentActivity() != null && (viVar = i50Var.f25831c) != null) {
+        i50 i50Var = this.f23984a;
+        org.telegram.ui.ActionBar.m2 m2Var = i50Var.f25498a;
+        if (m2Var != null && m2Var.getParentActivity() != null && (viVar = i50Var.f25500c) != null) {
             if (i10 != 8 && i10 != 7) {
                 viVar.dismissWithButtonClick(i10);
                 if (i10 == 0) {
@@ -32,8 +32,8 @@ public final class d50 implements ti {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = viVar.f30013j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = i50Var.f25831c.f30013j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = viVar.f29684j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = i50Var.f25500c.f29684j0.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z14 = false;
             for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
@@ -96,13 +96,13 @@ public final class d50 implements ti {
             }
             i50.a(i50Var, z14, arrayList);
             if (i10 != 8) {
-                i50Var.f25831c.dismiss(true);
+                i50Var.f25500c.dismiss(true);
             }
         }
     }
 
     @Override
-    public final boolean p0() {
+    public final boolean r0() {
         return false;
     }
 
@@ -112,24 +112,24 @@ public final class d50 implements ti {
     }
 
     @Override
-    public final boolean x() {
+    public final boolean w() {
         return false;
     }
 
     @Override
     public final void z() {
-        this.f24294a.q();
+        this.f23984a.q();
     }
 
     @Override
-    public final void U(Object obj) {
+    public final void J(Object obj) {
     }
 
     @Override
-    public final void W(TLRPC.User user) {
+    public final void U(TLRPC.User user) {
     }
 
     @Override
-    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final void s0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
     }
 }

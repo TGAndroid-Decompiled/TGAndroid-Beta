@@ -3,25 +3,25 @@ package j2;
 import b2.p1;
 import u2.g0;
 public final class g {
-    public final String f12531a;
-    public int f12532b;
-    public long f12533c;
+    public final String f12535a;
+    public int f12536b;
+    public long f12537c;
     public final g0 d;
     public boolean e;
-    public boolean f12534f;
-    public final h f12535g;
+    public boolean f12538f;
+    public final h f12539g;
 
     public g(h hVar, String str, int i10, g0 g0Var) {
         long j10;
-        this.f12535g = hVar;
-        this.f12531a = str;
-        this.f12532b = i10;
+        this.f12539g = hVar;
+        this.f12535a = str;
+        this.f12536b = i10;
         if (g0Var == null) {
             j10 = -1;
         } else {
             j10 = g0Var.d;
         }
-        this.f12533c = j10;
+        this.f12537c = j10;
         if (g0Var != null && g0Var.b()) {
             this.d = g0Var;
         }
@@ -29,14 +29,14 @@ public final class g {
 
     public final boolean a(a aVar) {
         g0 g0Var = aVar.d;
-        p1 p1Var = aVar.f12514b;
+        p1 p1Var = aVar.f12518b;
         if (g0Var == null) {
-            if (this.f12532b != aVar.f12515c) {
+            if (this.f12536b != aVar.f12519c) {
                 return true;
             }
             return false;
         }
-        long j10 = this.f12533c;
+        long j10 = this.f12537c;
         if (j10 != -1) {
             if (g0Var.d <= j10) {
                 g0 g0Var2 = this.d;

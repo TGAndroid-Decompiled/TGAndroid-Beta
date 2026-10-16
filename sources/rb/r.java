@@ -1,23 +1,23 @@
 package rb;
 public final class r implements com.google.android.gms.common.api.n {
-    public final int f44121a;
-    public final k6.c[] f44122b;
+    public final int f43880a;
+    public final k6.c[] f43881b;
 
     public r(k6.c[] cVarArr, int i10) {
-        this.f44121a = i10;
-        this.f44122b = cVarArr;
+        this.f43880a = i10;
+        this.f43881b = cVarArr;
     }
 
     @Override
     public final k6.c[] c() {
-        int i10 = this.f44121a;
-        k6.c[] cVarArr = this.f44122b;
+        int i10 = this.f43880a;
+        k6.c[] cVarArr = this.f43881b;
         switch (i10) {
             case 0:
-                k6.c[] cVarArr2 = j.f44103a;
+                k6.c[] cVarArr2 = j.f43862a;
                 return cVarArr;
             default:
-                k6.c[] cVarArr3 = j.f44103a;
+                k6.c[] cVarArr3 = j.f43862a;
                 return cVarArr;
         }
     }

@@ -15,12 +15,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class y00 extends lm0 {
-    public final Context f31442c;
+    public final Context f31103c;
     public final z00 d;
 
     public y00(z00 z00Var, Activity activity) {
         this.d = z00Var;
-        this.f31442c = activity;
+        this.f31103c = activity;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class y00 extends lm0 {
 
     @Override
     public final int h() {
-        int size = this.d.f31717s.size();
+        int size = this.d.f31414s.size();
         if (size < 10) {
             return size + 1;
         }
@@ -48,11 +48,11 @@ public final class y00 extends lm0 {
         org.telegram.ui.ActionBar.x2 x2Var = (org.telegram.ui.ActionBar.x2) b1Var.f44838a;
         z00 z00Var = this.d;
         ArrayList arrayList = z00Var.v;
-        ArrayList arrayList2 = z00Var.f31717s;
+        ArrayList arrayList2 = z00Var.f31414s;
         if (i10 < arrayList2.size()) {
             x2Var.getImageView().setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.J5, false), PorterDuff.Mode.MULTIPLY));
             MessagesController.DialogFilter dialogFilter = (MessagesController.DialogFilter) arrayList2.get(i10);
-            x2Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20007j5, false));
+            x2Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19707j5, false));
             int i12 = dialogFilter.flags;
             if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i12) == (MessagesController.DIALOG_FILTER_FLAG_CONTACTS | MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS)) {
                 i11 = R.drawable.msg_openprofile;
@@ -76,7 +76,7 @@ public final class y00 extends lm0 {
                 }
             }
             x2Var.a(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(dialogFilter.name, x2Var.getTextView().getPaint().getFontMetricsInt(), false), dialogFilter.entities, x2Var.getTextView().getPaint().getFontMetricsInt()), 0, new p10(z00Var.getContext(), i11, dialogFilter.color), false);
-            x2Var.getTextView().setEmojiColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Oh, z00.B(z00Var)));
+            x2Var.getTextView().setEmojiColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Oh, z00.C(z00Var)));
             boolean z10 = true;
             for (int i14 = 0; i14 < arrayList.size(); i14++) {
                 if (!dialogFilter.includesDialog(AccountInstance.getInstance(z00.E(z00Var)), ((Long) arrayList.get(i14)).longValue())) {
@@ -87,13 +87,13 @@ public final class y00 extends lm0 {
             return;
         }
         x2Var.getImageView().setColorFilter((ColorFilter) null);
-        Context context = this.f31442c;
+        Context context = this.f31103c;
         Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
         int x02 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.N6, false);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         drawable.setColorFilter(new PorterDuffColorFilter(x02, mode));
-        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20029k7, false), mode));
+        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19729k7, false), mode));
         cr crVar = new cr(drawable, drawable2);
         x2Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.q6, false));
         x2Var.a(LocaleController.getString(R.string.CreateNewFilter), 0, crVar, false);
@@ -101,7 +101,7 @@ public final class y00 extends lm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.x2 x2Var = new org.telegram.ui.ActionBar.x2(this.f31442c, 0, null);
+        org.telegram.ui.ActionBar.x2 x2Var = new org.telegram.ui.ActionBar.x2(this.f31103c, 0, null);
         x2Var.setBackground(null);
         x2Var.setLayoutParams(new s4.o0(-1, -2));
         return new s4.b1(x2Var);

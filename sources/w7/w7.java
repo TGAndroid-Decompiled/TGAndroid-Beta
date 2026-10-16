@@ -9,27 +9,27 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.ActionMode;
 import android.widget.TextView;
 public abstract class w7 {
-    public static p0.c a(m.z0 z0Var) {
+    public static p0.c a(m.b1 b1Var) {
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 28) {
-            return new p0.c(b5.d.p(z0Var));
+            return new p0.c(b5.d.p(b1Var));
         }
-        TextPaint textPaint = new TextPaint(z0Var.getPaint());
+        TextPaint textPaint = new TextPaint(b1Var.getPaint());
         TextDirectionHeuristic textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR;
-        int breakStrategy = z0Var.getBreakStrategy();
-        int hyphenationFrequency = z0Var.getHyphenationFrequency();
-        if (z0Var.getTransformationMethod() instanceof PasswordTransformationMethod) {
+        int breakStrategy = b1Var.getBreakStrategy();
+        int hyphenationFrequency = b1Var.getHyphenationFrequency();
+        if (b1Var.getTransformationMethod() instanceof PasswordTransformationMethod) {
             textDirectionHeuristic = TextDirectionHeuristics.LTR;
         } else {
             boolean z10 = true;
-            if (i10 >= 28 && (z0Var.getInputType() & 15) == 3) {
-                byte directionality = Character.getDirectionality(b5.d.h(androidx.emoji2.text.w.e(z0Var.getTextLocale()))[0].codePointAt(0));
+            if (i10 >= 28 && (b1Var.getInputType() & 15) == 3) {
+                byte directionality = Character.getDirectionality(b5.d.h(androidx.emoji2.text.w.e(b1Var.getTextLocale()))[0].codePointAt(0));
                 textDirectionHeuristic = (directionality == 1 || directionality == 2) ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR;
             } else {
-                if (z0Var.getLayoutDirection() != 1) {
+                if (b1Var.getLayoutDirection() != 1) {
                     z10 = false;
                 }
-                switch (z0Var.getTextDirection()) {
+                switch (b1Var.getTextDirection()) {
                     case 2:
                         textDirectionHeuristic = TextDirectionHeuristics.ANYRTL_LTR;
                         break;

@@ -1,129 +1,57 @@
 package org.telegram.ui.Wallet;
+public final class n5 {
+    public boolean f33243a;
+    public float f33244b;
+    public float f33245c;
+    public float d;
+    public float e;
+    public float f33246f;
+    public float f33247g;
+    public long h;
+    public long f33248i;
+    public long f33249j;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Rect;
-import android.view.View;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class n5 extends FrameLayout {
-    public final Matrix f33514a;
-    public final float[] f33515b;
-    public final FrameLayout f33516c;
-    public final bi.y1 d;
-    public boolean e;
-    public boolean f33517f;
-
-    public n5(Context context) {
-        super(context);
-        this.f33514a = new Matrix();
-        this.f33515b = new float[8];
-        this.e = true;
-        this.f33517f = true;
-        setClipChildren(false);
-        setClipToPadding(false);
-        bi.y1 y1Var = new bi.y1(context, 1);
-        this.d = y1Var;
-        y1Var.setLayerType(2, null);
-        addView(y1Var, new FrameLayout.LayoutParams(-1, -1));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f33516c = frameLayout;
-        frameLayout.setPivotX(0.0f);
-        frameLayout.setPivotY(0.0f);
-        y1Var.addView(frameLayout, new FrameLayout.LayoutParams(AndroidUtilities.dp(336.0f), AndroidUtilities.dp(205.0f)));
-    }
-
-    public final void a(j5 j5Var) {
-        Bitmap bitmap;
-        if (this.e && getWidth() != 0 && getHeight() != 0) {
-            this.e = false;
-            int width = getWidth();
-            int height = getHeight();
-            synchronized (j5Var) {
-                try {
-                    bitmap = j5Var.S;
-                    j5Var.S = null;
-                    if (bitmap != null) {
-                        if (bitmap.getWidth() == width) {
-                            if (bitmap.getHeight() != height) {
-                            }
-                        }
-                        bitmap.recycle();
-                        bitmap = null;
-                    }
-                    if (bitmap == null) {
-                        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-                    }
-                } finally {
-                }
+    public final void a(float f7, float f10, long j10) {
+        if (!Float.isNaN(f7) && !Float.isInfinite(f7) && !Float.isNaN(f10) && !Float.isInfinite(f10)) {
+            this.f33244b = f7;
+            this.f33245c = f10;
+            this.f33248i = j10;
+            if (!this.f33243a) {
+                this.f33243a = true;
+                this.d = f7;
+                this.e = f10;
+                this.f33246f = f7;
+                this.f33247g = f10;
+                this.h = j10;
+                return;
             }
-            bitmap.eraseColor(0);
-            Canvas canvas = new Canvas(bitmap);
-            this.d.draw(canvas);
-            canvas.setBitmap(null);
-            j5Var.f(bitmap);
+            float f11 = f7 - this.f33246f;
+            float f12 = f10 - this.f33247g;
+            if ((f12 * f12) + (f11 * f11) > 1.265625f) {
+                this.f33246f = f7;
+                this.f33247g = f10;
+                this.h = j10;
+            }
         }
     }
 
-    public final void b(float[] fArr) {
-        int width = getWidth();
-        int height = getHeight();
-        if (width != 0 && height != 0) {
-            float[] fArr2 = this.f33515b;
-            fArr2[0] = 0.0f;
-            fArr2[1] = 0.0f;
-            float f7 = width;
-            fArr2[2] = f7;
-            fArr2[3] = 0.0f;
-            fArr2[4] = f7;
-            float f10 = height;
-            fArr2[5] = f10;
-            fArr2[6] = 0.0f;
-            fArr2[7] = f10;
-            this.f33514a.setPolyToPoly(fArr2, 0, fArr, 0, 4);
-            invalidate();
+    public final void b(long j10) {
+        if (this.f33243a) {
+            long j11 = this.f33249j;
+            if (j11 == 0) {
+                this.f33249j = j10;
+                return;
+            }
+            float min = Math.min(0.1f, Math.max(0.0f, ((float) (j10 - j11)) * 1.0E-9f));
+            this.f33249j = j10;
+            if (this.f33248i - this.h < 1000000000) {
+                return;
+            }
+            float exp = 1.0f - ((float) Math.exp((-min) / 1.0f));
+            float f7 = this.d;
+            this.d = com.google.android.gms.internal.play_billing.k3.y(this.f33244b, f7, exp, f7);
+            float f10 = this.e;
+            this.e = com.google.android.gms.internal.play_billing.k3.y(this.f33245c, f10, exp, f10);
         }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (!this.f33517f) {
-            return;
-        }
-        int save = canvas.save();
-        canvas.concat(this.f33514a);
-        super.dispatchDraw(canvas);
-        canvas.restoreToCount(save);
-    }
-
-    @Override
-    public final ViewParent invalidateChildInParent(int[] iArr, Rect rect) {
-        this.e = true;
-        return super.invalidateChildInParent(iArr, rect);
-    }
-
-    @Override
-    public final void onDescendantInvalidated(View view, View view2) {
-        this.e = true;
-        super.onDescendantInvalidated(view, view2);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.e = true;
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        this.e = true;
-        float dp = i10 / AndroidUtilities.dp(336.0f);
-        FrameLayout frameLayout = this.f33516c;
-        frameLayout.setScaleX(dp);
-        frameLayout.setScaleY(i11 / AndroidUtilities.dp(205.0f));
     }
 }

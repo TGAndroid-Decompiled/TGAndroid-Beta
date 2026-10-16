@@ -30,14 +30,14 @@ public final class j1 extends b2.p1 {
         b2.i0 i0Var = new b2.i0();
         b2.l0 l0Var = b2.l0.d;
         Uri uri = Uri.EMPTY;
-        if (g0Var.f2141b != null && g0Var.f2140a == null) {
+        if (g0Var.f2145b != null && g0Var.f2144a == null) {
             z10 = false;
         } else {
             z10 = true;
         }
         u6.p(z10);
         if (uri != null) {
-            if (g0Var.f2140a != null) {
+            if (g0Var.f2144a != null) {
                 h0Var = new b2.h0(g0Var);
             } else {
                 h0Var = null;
@@ -84,7 +84,7 @@ public final class j1 extends b2.p1 {
         }
         Object obj2 = obj;
         m1Var.getClass();
-        b2.c cVar = b2.c.f2086c;
+        b2.c cVar = b2.c.f2090c;
         m1Var.h(null, obj2, 0, this.f45947g, -this.f45948i, cVar, false);
         return m1Var;
     }

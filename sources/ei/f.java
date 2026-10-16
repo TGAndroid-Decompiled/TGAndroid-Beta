@@ -37,14 +37,14 @@ public final class f extends u20 {
         switch (this.K0) {
             case 0:
                 i iVar = (i) this.M0;
-                if (viewGroup == iVar.f40861c && iVar.R.isAttachedToWindow()) {
+                if (viewGroup == iVar.f40548c && iVar.R.isAttachedToWindow()) {
                     kVar = ((m2) iVar).actionBar;
-                    boolean z10 = kVar.f20442n0;
+                    boolean z10 = kVar.f20142n0;
                     int top = (((View) iVar.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - k.getCurrentActionBarHeight();
                     int bottom = ((View) iVar.R.getParent()).getBottom();
                     boolean z11 = false;
                     if (i11 < 0) {
-                        if (iVar.f40861c.getHeight() - bottom >= 0) {
+                        if (iVar.f40548c.getHeight() - bottom >= 0) {
                             mm0 currentListView = iVar.R.getCurrentListView();
                             int L0 = ((b0) currentListView.getLayoutManager()).L0();
                             int i15 = -1;
@@ -89,9 +89,9 @@ public final class f extends u20 {
                         return;
                     } else if (i11 > 0) {
                         mm0 currentListView3 = iVar.R.getCurrentListView();
-                        if (iVar.f40861c.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
+                        if (iVar.f40548c.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
                             iArr[1] = i11;
-                            iVar.f40861c.B0();
+                            iVar.f40548c.B0();
                             return;
                         }
                         return;
@@ -102,14 +102,14 @@ public final class f extends u20 {
                 return;
             default:
                 p7 p7Var = (p7) this.M0;
-                if (viewGroup == p7Var.f40861c && p7Var.R.isAttachedToWindow()) {
+                if (viewGroup == p7Var.f40548c && p7Var.R.isAttachedToWindow()) {
                     kVar2 = ((m2) p7Var).actionBar;
-                    boolean z12 = kVar2.f20442n0;
+                    boolean z12 = kVar2.f20142n0;
                     int top2 = (((View) p7Var.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - k.getCurrentActionBarHeight();
                     int bottom2 = ((View) p7Var.R.getParent()).getBottom();
                     boolean z13 = false;
                     if (i11 < 0) {
-                        if ((p7Var.f40861c.getHeight() - p7Var.f40861c.getPaddingBottom()) - bottom2 >= 0) {
+                        if ((p7Var.f40548c.getHeight() - p7Var.f40548c.getPaddingBottom()) - bottom2 >= 0) {
                             mm0 currentListView4 = p7Var.R.getCurrentListView();
                             int L02 = ((b0) currentListView4.getLayoutManager()).L0();
                             int i16 = -1;
@@ -154,9 +154,9 @@ public final class f extends u20 {
                         return;
                     } else if (i11 > 0) {
                         mm0 currentListView6 = p7Var.R.getCurrentListView();
-                        if ((p7Var.f40861c.getHeight() - p7Var.f40861c.getPaddingBottom()) - bottom2 >= 0 && currentListView6 != null && !currentListView6.canScrollVertically(1)) {
+                        if ((p7Var.f40548c.getHeight() - p7Var.f40548c.getPaddingBottom()) - bottom2 >= 0 && currentListView6 != null && !currentListView6.canScrollVertically(1)) {
                             iArr[1] = i11;
-                            p7Var.f40861c.B0();
+                            p7Var.f40548c.B0();
                             return;
                         }
                         return;
@@ -179,9 +179,9 @@ public final class f extends u20 {
             case 0:
                 i iVar = (i) this.M0;
                 try {
-                    if (viewGroup == iVar.f40861c && iVar.R.isAttachedToWindow()) {
+                    if (viewGroup == iVar.f40548c && iVar.R.isAttachedToWindow()) {
                         mm0 currentListView = iVar.R.getCurrentListView();
-                        if (iVar.f40861c.getHeight() - ((View) iVar.R.getParent()).getBottom() >= 0) {
+                        if (iVar.f40548c.getHeight() - ((View) iVar.R.getParent()).getBottom() >= 0) {
                             iArr[1] = i13;
                             currentListView.scrollBy(0, i13);
                             return;
@@ -197,9 +197,9 @@ public final class f extends u20 {
             default:
                 p7 p7Var = (p7) this.M0;
                 try {
-                    if (viewGroup == p7Var.f40861c && p7Var.R.isAttachedToWindow()) {
+                    if (viewGroup == p7Var.f40548c && p7Var.R.isAttachedToWindow()) {
                         mm0 currentListView2 = p7Var.R.getCurrentListView();
-                        if ((p7Var.f40861c.getHeight() - p7Var.f40861c.getPaddingBottom()) - ((View) p7Var.R.getParent()).getBottom() >= 0) {
+                        if ((p7Var.f40548c.getHeight() - p7Var.f40548c.getPaddingBottom()) - ((View) p7Var.R.getParent()).getBottom() >= 0) {
                             iArr[1] = i13;
                             currentListView2.scrollBy(0, i13);
                             return;
@@ -219,10 +219,10 @@ public final class f extends u20 {
     public final void n(int i10, View view) {
         switch (this.K0) {
             case 0:
-                this.L0.f2444a = 0;
+                this.L0.f2448a = 0;
                 return;
             default:
-                this.L0.f2444a = 0;
+                this.L0.f2448a = 0;
                 return;
         }
     }
@@ -252,10 +252,10 @@ public final class f extends u20 {
     public final void s(View view, View view2, int i10, int i11) {
         switch (this.K0) {
             case 0:
-                this.L0.f2444a = i10;
+                this.L0.f2448a = i10;
                 return;
             default:
-                this.L0.f2444a = i10;
+                this.L0.f2448a = i10;
                 return;
         }
     }

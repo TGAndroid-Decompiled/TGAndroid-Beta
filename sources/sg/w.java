@@ -29,7 +29,7 @@ public final class w implements Runnable {
             case 0:
                 if (LaunchActivity.R() != null) {
                     ?? obj = new Object();
-                    obj.f20469a = true;
+                    obj.f20169a = true;
                     j0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }

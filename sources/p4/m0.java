@@ -1,35 +1,77 @@
 package p4;
 
+import android.os.Bundle;
+import android.os.DeadObjectException;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
+import android.util.Log;
 import android.util.SparseArray;
-public final class m0 implements Runnable {
-    public final int f43068a;
-    public final n0 f43069b;
+import org.telegram.ui.Cells.c1;
+public final class m0 implements IBinder.DeathRecipient {
+    public final Messenger f42767a;
+    public final g.c f42768b;
+    public final Messenger f42769c;
+    public int f42770f;
+    public int f42771g;
+    public final r0 f42772i;
+    public int d = 1;
+    public int e = 1;
+    public final SparseArray h = new SparseArray();
 
-    public m0(n0 n0Var, int i10) {
-        this.f43068a = i10;
-        this.f43069b = n0Var;
+    public m0(r0 r0Var, Messenger messenger) {
+        this.f42772i = r0Var;
+        this.f42767a = messenger;
+        g.c cVar = new g.c(this);
+        this.f42768b = cVar;
+        this.f42769c = new Messenger(cVar);
+    }
+
+    public final void a(int i10) {
+        int i11 = this.d;
+        this.d = i11 + 1;
+        b(5, i11, i10, null, null);
+    }
+
+    public final boolean b(int i10, int i11, int i12, Bundle bundle, Bundle bundle2) {
+        Message obtain = Message.obtain();
+        obtain.what = i10;
+        obtain.arg1 = i11;
+        obtain.arg2 = i12;
+        obtain.obj = bundle;
+        obtain.setData(bundle2);
+        obtain.replyTo = this.f42769c;
+        try {
+            this.f42767a.send(obtain);
+            return true;
+        } catch (DeadObjectException unused) {
+            return false;
+        } catch (RemoteException e) {
+            if (i10 != 2) {
+                Log.e("MediaRouteProviderProxy", "Could not send message to service.", e);
+                return false;
+            }
+            return false;
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f43068a) {
-            case 0:
-                SparseArray sparseArray = this.f43069b.h;
-                int size = sparseArray.size();
-                for (int i10 = 0; i10 < size; i10++) {
-                    ((p0) sparseArray.valueAt(i10)).getClass();
-                    p0.a(null, null);
-                }
-                sparseArray.clear();
-                return;
-            default:
-                n0 n0Var = this.f43069b;
-                s0 s0Var = n0Var.f43077i;
-                if (s0Var.f43106y == n0Var) {
-                    s0Var.p();
-                    return;
-                }
-                return;
-        }
+    public final void binderDied() {
+        this.f42772i.f42799s.post(new l0(this, 1));
+    }
+
+    public final void c(int i10, int i11) {
+        Bundle f7 = c1.f(i11, "volume");
+        int i12 = this.d;
+        this.d = i12 + 1;
+        b(7, i12, i10, null, f7);
+    }
+
+    public final void d(int i10, int i11) {
+        Bundle f7 = c1.f(i11, "volume");
+        int i12 = this.d;
+        this.d = i12 + 1;
+        b(8, i12, i10, null, f7);
     }
 }

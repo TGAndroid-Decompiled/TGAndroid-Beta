@@ -138,7 +138,7 @@ public class YuvConverter {
             byteBuffer.limit(i19 + i20);
             ByteBuffer slice3 = byteBuffer.slice();
             textureBuffer2.release();
-            return JavaI420Buffer.wrap(width, height, slice, i10, slice2, i10, slice3, i10, new k(1, byteBuffer));
+            return JavaI420Buffer.wrap(width, height, slice, i10, slice2, i10, slice3, i10, new j(1, byteBuffer));
         }
         try {
             GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
@@ -161,7 +161,7 @@ public class YuvConverter {
             byteBuffer.limit(i192 + i202);
             ByteBuffer slice32 = byteBuffer.slice();
             textureBuffer2.release();
-            return JavaI420Buffer.wrap(width, height, slice4, i10, slice22, i10, slice32, i10, new k(1, byteBuffer));
+            return JavaI420Buffer.wrap(width, height, slice4, i10, slice22, i10, slice32, i10, new j(1, byteBuffer));
         }
         int i1722 = i10 * height;
         int i1822 = i10 / 2;
@@ -177,7 +177,7 @@ public class YuvConverter {
         byteBuffer.limit(i1922 + i2022);
         ByteBuffer slice322 = byteBuffer.slice();
         textureBuffer2.release();
-        return JavaI420Buffer.wrap(width, height, slice42, i10, slice222, i10, slice322, i10, new k(1, byteBuffer));
+        return JavaI420Buffer.wrap(width, height, slice42, i10, slice222, i10, slice322, i10, new j(1, byteBuffer));
     }
 
     public void release() {

@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class od extends org.telegram.ui.Components.ow0 {
-    public final int f38927w0;
-    public boolean f38928x0;
-    public final org.telegram.ui.ActionBar.m2 f38929y0;
+    public final int f38617w0;
+    public boolean f38618x0;
+    public final org.telegram.ui.ActionBar.m2 f38619y0;
 
     public od(int i10, Context context, org.telegram.ui.ActionBar.m2 m2Var) {
         super(context, null);
-        this.f38927w0 = i10;
-        this.f38929y0 = m2Var;
+        this.f38617w0 = i10;
+        this.f38619y0 = m2Var;
     }
 
     @Override
@@ -30,24 +30,24 @@ public final class od extends org.telegram.ui.Components.ow0 {
         int i12;
         org.telegram.ui.ActionBar.k kVar4;
         float f12;
-        switch (this.f38927w0) {
+        switch (this.f38617w0) {
             case 0:
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
                 setMeasuredDimension(size, size2);
                 int paddingTop = size2 - getPaddingTop();
-                sd sdVar = (sd) this.f38929y0;
+                sd sdVar = (sd) this.f38619y0;
                 measureChildWithMargins(sd.a0(sdVar), i10, 0, i11, 0);
                 if (R() > AndroidUtilities.dp(20.0f)) {
-                    this.f38928x0 = true;
-                    sdVar.f40067c.j();
-                    this.f38928x0 = false;
+                    this.f38618x0 = true;
+                    sdVar.f39764c.j();
+                    this.f38618x0 = false;
                 }
                 int childCount = getChildCount();
                 for (int i13 = 0; i13 < childCount; i13++) {
                     View childAt = getChildAt(i13);
                     if (childAt != null && childAt.getVisibility() != 8 && childAt != sd.b0(sdVar)) {
-                        org.telegram.ui.Components.vu vuVar = sdVar.f40067c;
+                        org.telegram.ui.Components.vu vuVar = sdVar.f39764c;
                         if (vuVar != null && vuVar.l(childAt)) {
                             if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
                                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
@@ -73,17 +73,17 @@ public final class od extends org.telegram.ui.Components.ow0 {
                 int size4 = View.MeasureSpec.getSize(i11);
                 setMeasuredDimension(size3, size4);
                 int paddingTop2 = size4 - getPaddingTop();
-                zo zoVar = (zo) this.f38929y0;
-                measureChildWithMargins(zo.b0(zoVar), i10, 0, i11, 0);
+                zo zoVar = (zo) this.f38619y0;
+                measureChildWithMargins(((org.telegram.ui.ActionBar.m2) zoVar).actionBar, i10, 0, i11, 0);
                 if (R() > AndroidUtilities.dp(20.0f)) {
-                    this.f38928x0 = true;
+                    this.f38618x0 = true;
                     zoVar.v.j();
-                    this.f38928x0 = false;
+                    this.f38618x0 = false;
                 }
                 int childCount2 = getChildCount();
                 for (int i14 = 0; i14 < childCount2; i14++) {
                     View childAt2 = getChildAt(i14);
-                    if (childAt2 != null && childAt2.getVisibility() != 8 && childAt2 != zo.c0(zoVar)) {
+                    if (childAt2 != null && childAt2.getVisibility() != 8 && childAt2 != ((org.telegram.ui.ActionBar.m2) zoVar).actionBar) {
                         org.telegram.ui.Components.vu vuVar2 = zoVar.v;
                         if (vuVar2 != null && vuVar2.l(childAt2)) {
                             if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
@@ -110,15 +110,15 @@ public final class od extends org.telegram.ui.Components.ow0 {
                 int size6 = View.MeasureSpec.getSize(i11);
                 setMeasuredDimension(size5, size6);
                 int paddingTop3 = size6 - getPaddingTop();
-                p70 p70Var = (p70) this.f38929y0;
+                p70 p70Var = (p70) this.f38619y0;
                 kVar = ((org.telegram.ui.ActionBar.m2) p70Var).actionBar;
                 measureChildWithMargins(kVar, i10, 0, i11, 0);
                 if (R() > AndroidUtilities.dp(20.0f)) {
-                    org.telegram.ui.Components.vu vuVar3 = p70Var.f39132c;
+                    org.telegram.ui.Components.vu vuVar3 = p70Var.f38826c;
                     if (!vuVar3.e) {
-                        this.f38928x0 = true;
+                        this.f38618x0 = true;
                         vuVar3.j();
-                        this.f38928x0 = false;
+                        this.f38618x0 = false;
                     }
                 }
                 int childCount3 = getChildCount();
@@ -127,7 +127,7 @@ public final class od extends org.telegram.ui.Components.ow0 {
                     if (childAt3 != null && childAt3.getVisibility() != 8) {
                         kVar2 = ((org.telegram.ui.ActionBar.m2) p70Var).actionBar;
                         if (childAt3 != kVar2) {
-                            org.telegram.ui.Components.vu vuVar4 = p70Var.f39132c;
+                            org.telegram.ui.Components.vu vuVar4 = p70Var.f38826c;
                             if (vuVar4 != null && vuVar4.l(childAt3)) {
                                 if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
                                     childAt3.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt3.getLayoutParams().height, 1073741824));
@@ -154,21 +154,21 @@ public final class od extends org.telegram.ui.Components.ow0 {
                 int size8 = View.MeasureSpec.getSize(i11);
                 setMeasuredDimension(size7, size8);
                 int paddingTop4 = size8 - getPaddingTop();
-                gw0 gw0Var = (gw0) this.f38929y0;
-                kVar3 = ((org.telegram.ui.ActionBar.m2) gw0Var).actionBar;
+                fw0 fw0Var = (fw0) this.f38619y0;
+                kVar3 = ((org.telegram.ui.ActionBar.m2) fw0Var).actionBar;
                 measureChildWithMargins(kVar3, i10, 0, i11, 0);
                 int R = R();
-                if (R > AndroidUtilities.dp(20.0f) && !gw0Var.P && !gw0Var.B0) {
-                    this.f38928x0 = true;
-                    gw0Var.l0();
-                    this.f38928x0 = false;
+                if (R > AndroidUtilities.dp(20.0f) && !fw0Var.P && !fw0Var.B0) {
+                    this.f38618x0 = true;
+                    fw0Var.l0();
+                    this.f38618x0 = false;
                 }
                 if (R <= AndroidUtilities.dp(20.0f) && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
-                    i12 = gw0Var.V;
+                    i12 = fw0Var.V;
                 } else {
                     i12 = 0;
                 }
-                if (R > AndroidUtilities.dp(20.0f) && gw0Var.B0) {
+                if (R > AndroidUtilities.dp(20.0f) && fw0Var.B0) {
                     i12 = AndroidUtilities.dp(120.0f);
                 }
                 int i16 = i12;
@@ -176,9 +176,9 @@ public final class od extends org.telegram.ui.Components.ow0 {
                 for (int i17 = 0; i17 < childCount4; i17++) {
                     View childAt4 = getChildAt(i17);
                     if (childAt4 != null && childAt4.getVisibility() != 8) {
-                        kVar4 = ((org.telegram.ui.ActionBar.m2) gw0Var).actionBar;
+                        kVar4 = ((org.telegram.ui.ActionBar.m2) fw0Var).actionBar;
                         if (childAt4 != kVar4) {
-                            org.telegram.ui.Components.wz wzVar = gw0Var.R;
+                            org.telegram.ui.Components.wz wzVar = fw0Var.R;
                             if (wzVar != null && wzVar == childAt4) {
                                 if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
                                     childAt4.measure(View.MeasureSpec.makeMeasureSpec(size7, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt4.getLayoutParams().height, 1073741824));
@@ -193,7 +193,7 @@ public final class od extends org.telegram.ui.Components.ow0 {
                                 } else {
                                     childAt4.measure(View.MeasureSpec.makeMeasureSpec(size7, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (paddingTop4 - AndroidUtilities.statusBarHeight), 1073741824));
                                 }
-                            } else if (gw0Var.f36507c == childAt4) {
+                            } else if (fw0Var.f35983c == childAt4) {
                                 childAt4.measure(i10, View.MeasureSpec.makeMeasureSpec(paddingTop4 - i16, 1073741824));
                             } else {
                                 measureChildWithMargins(childAt4, i10, 0, i11, 0);
@@ -207,27 +207,27 @@ public final class od extends org.telegram.ui.Components.ow0 {
 
     @Override
     public final void requestLayout() {
-        switch (this.f38927w0) {
+        switch (this.f38617w0) {
             case 0:
-                if (!this.f38928x0) {
+                if (!this.f38618x0) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 1:
-                if (!this.f38928x0) {
+                if (!this.f38618x0) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 2:
-                if (!this.f38928x0) {
+                if (!this.f38618x0) {
                     super.requestLayout();
                     return;
                 }
                 return;
             default:
-                if (!this.f38928x0) {
+                if (!this.f38618x0) {
                     super.requestLayout();
                     return;
                 }

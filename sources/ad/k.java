@@ -10,51 +10,51 @@ import ki.n;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.m2;
 public final class k implements Runnable {
-    public final int f530a;
-    public boolean f531b;
-    public Object f532c;
+    public final int f534a;
+    public boolean f535b;
+    public Object f536c;
     public final Object d;
 
     public k(Object obj, Object obj2, boolean z10, int i10) {
-        this.f530a = i10;
+        this.f534a = i10;
         this.d = obj;
-        this.f532c = obj2;
-        this.f531b = z10;
+        this.f536c = obj2;
+        this.f535b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f530a) {
+        switch (this.f534a) {
             case 0:
                 try {
-                    ((l) this.d).f533a.bind(new InetSocketAddress(61578));
-                    this.f531b = true;
+                    ((l) this.d).f537a.bind(new InetSocketAddress(61578));
+                    this.f535b = true;
                     do {
                         try {
-                            Socket accept = ((l) this.d).f533a.accept();
+                            Socket accept = ((l) this.d).f537a.accept();
                             accept.setSoTimeout(5000);
                             InputStream inputStream = accept.getInputStream();
                             l lVar = (l) this.d;
-                            lVar.f535c.C(new a(lVar, inputStream, accept));
+                            lVar.f539c.C(new a(lVar, inputStream, accept));
                         } catch (IOException e) {
                             l.d.log(Level.FINE, "Communication with the client broken", (Throwable) e);
                         }
-                    } while (!((l) this.d).f533a.isClosed());
+                    } while (!((l) this.d).f537a.isClosed());
                     return;
                 } catch (IOException e7) {
-                    this.f532c = e7;
+                    this.f536c = e7;
                     return;
                 }
             case 1:
                 n nVar = (n) this.d;
-                ArrayList arrayList = (ArrayList) this.f532c;
+                ArrayList arrayList = (ArrayList) this.f536c;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
                     s4.j jVar = (s4.j) obj;
-                    nVar.T(jVar.f44898a, jVar, this.f531b);
+                    nVar.T(jVar.f44898a, jVar, this.f535b);
                 }
                 arrayList.clear();
                 nVar.f44907u.remove(arrayList);
@@ -63,8 +63,8 @@ public final class k implements Runnable {
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
                 if (actionBarLayout.e == this) {
                     actionBarLayout.e = null;
-                    ((m2) this.f532c).onTransitionAnimationStart(true, false);
-                    actionBarLayout.d0(true, true, this.f531b);
+                    ((m2) this.f536c).onTransitionAnimationStart(true, false);
+                    actionBarLayout.d0(true, true, this.f535b);
                     return;
                 }
                 return;
@@ -72,8 +72,8 @@ public final class k implements Runnable {
     }
 
     public k(l lVar) {
-        this.f530a = 0;
+        this.f534a = 0;
         this.d = lVar;
-        this.f531b = false;
+        this.f535b = false;
     }
 }

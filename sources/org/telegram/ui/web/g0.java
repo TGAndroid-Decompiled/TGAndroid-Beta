@@ -5,22 +5,22 @@ import bi.n9;
 import org.json.JSONObject;
 import org.telegram.ui.yy;
 public final class g0 extends yy {
-    public final boolean[] A4;
-    public final n9 B4;
-    public final b1 C4;
+    public final boolean[] B4;
+    public final n9 C4;
+    public final c1 D4;
 
-    public g0(b1 b1Var, Bundle bundle, boolean[] zArr, n9 n9Var) {
+    public g0(c1 c1Var, Bundle bundle, boolean[] zArr, n9 n9Var) {
         super(bundle);
-        this.C4 = b1Var;
-        this.A4 = zArr;
-        this.B4 = n9Var;
+        this.D4 = c1Var;
+        this.B4 = zArr;
+        this.C4 = n9Var;
     }
 
     @Override
     public final void onFragmentDestroy() {
         JSONObject jSONObject;
         super.onFragmentDestroy();
-        boolean[] zArr = this.A4;
+        boolean[] zArr = this.B4;
         if (!zArr[0]) {
             zArr[0] = true;
             try {
@@ -28,7 +28,7 @@ public final class g0 extends yy {
             } catch (Exception unused) {
                 jSONObject = null;
             }
-            this.C4.x(this.B4, "requested_chat_failed", jSONObject);
+            this.D4.x(this.C4, "requested_chat_failed", jSONObject);
         }
     }
 }

@@ -3,42 +3,42 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class w31 extends k61 {
-    public static final int f30787a = 0;
+public final class w31 extends l61 {
+    public static final int f30462a = 0;
 
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
         boolean z11;
         x31 x31Var = (x31) view;
         boolean z12 = false;
-        if (l61Var.f26960r) {
+        if (m61Var.f26952r) {
             x31Var.e();
         } else {
-            Object obj = l61Var.G;
+            Object obj = m61Var.G;
             if (obj == null) {
-                if (l61Var.B == -2) {
-                    x31Var.b(l61Var.f26959q, l61Var.e);
+                if (m61Var.B == -2) {
+                    x31Var.b(m61Var.f26951q, m61Var.e);
                 } else {
-                    if ((l61Var.f26966y & 1) != 0) {
+                    if ((m61Var.f26958y & 1) != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    x31Var.c(z11, l61Var.f26959q, l61Var.e);
+                    x31Var.c(z11, m61Var.f26951q, m61Var.e);
                 }
             } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!l61Var.I) {
-                    x31Var.f((TLRPC.TL_forumTopic) obj, l61Var.e);
+                if (!m61Var.I) {
+                    x31Var.f((TLRPC.TL_forumTopic) obj, m61Var.e);
                 } else {
-                    x31Var.a(l61Var.f26965x, (TLRPC.TL_forumTopic) obj, l61Var.e);
+                    x31Var.a(m61Var.f26957x, (TLRPC.TL_forumTopic) obj, m61Var.e);
                 }
             }
         }
-        if (h71Var != null && h71Var.f25532a3 && x31Var.f31157y) {
+        if (i71Var != null && i71Var.f25575a3 && x31Var.f30861y) {
             z12 = true;
         }
         x31Var.setReorder(z12);

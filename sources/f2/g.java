@@ -5,14 +5,14 @@ import b2.t0;
 import b2.x;
 import v7.c8;
 public final class g implements t0 {
-    public final long f8844a;
-    public final long f8845b;
-    public final long f8846c;
+    public final long f8847a;
+    public final long f8848b;
+    public final long f8849c;
 
     public g(long j10, long j11, long j12) {
-        this.f8844a = j10;
-        this.f8845b = j11;
-        this.f8846c = j12;
+        this.f8847a = j10;
+        this.f8848b = j11;
+        this.f8849c = j12;
     }
 
     @Override
@@ -33,19 +33,19 @@ public final class g implements t0 {
             return false;
         }
         g gVar = (g) obj;
-        if (this.f8844a == gVar.f8844a && this.f8845b == gVar.f8845b && this.f8846c == gVar.f8846c) {
+        if (this.f8847a == gVar.f8847a && this.f8848b == gVar.f8848b && this.f8849c == gVar.f8849c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        int b10 = c8.b(this.f8845b);
-        return c8.b(this.f8846c) + ((b10 + ((c8.b(this.f8844a) + 527) * 31)) * 31);
+        int b10 = c8.b(this.f8848b);
+        return c8.b(this.f8849c) + ((b10 + ((c8.b(this.f8847a) + 527) * 31)) * 31);
     }
 
     public final String toString() {
-        return "Mp4Timestamp: creation time=" + this.f8844a + ", modification time=" + this.f8845b + ", timescale=" + this.f8846c;
+        return "Mp4Timestamp: creation time=" + this.f8847a + ", modification time=" + this.f8848b + ", timescale=" + this.f8849c;
     }
 
     @Override

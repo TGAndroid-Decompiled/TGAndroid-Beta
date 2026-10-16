@@ -4,11 +4,11 @@ import android.view.View;
 public interface h1 {
     int D();
 
-    View D0(int i10);
+    View J0(int i10);
 
-    int L0(View view);
+    int M0(View view);
 
-    int b0();
+    int U();
 
-    int q(View view);
+    int l(View view);
 }

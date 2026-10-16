@@ -11,18 +11,18 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 public final class e implements m {
     public static final ArrayDeque h = new ArrayDeque();
-    public static final Object f43818n = new Object();
-    public final MediaCodec f43819a;
-    public final HandlerThread f43820b;
-    public o0 f43821c;
+    public static final Object f43577n = new Object();
+    public final MediaCodec f43578a;
+    public final HandlerThread f43579b;
+    public o0 f43580c;
     public final AtomicReference d;
     public final e2.i e;
-    public boolean f43822f;
+    public boolean f43581f;
 
     public e(MediaCodec mediaCodec, HandlerThread handlerThread) {
         e2.i iVar = new e2.i();
-        this.f43819a = mediaCodec;
-        this.f43820b = handlerThread;
+        this.f43578a = mediaCodec;
+        this.f43579b = handlerThread;
         this.e = iVar;
         this.d = new AtomicReference();
     }
@@ -50,27 +50,27 @@ public final class e implements m {
 
     @Override
     public final void b(long j10, int i10, int i11, int i12) {
-        r0();
+        s0();
         d a2 = a();
-        a2.f43815a = i10;
-        a2.f43816b = i11;
+        a2.f43574a = i10;
+        a2.f43575b = i11;
         a2.d = j10;
         a2.e = i12;
-        o0 o0Var = this.f43821c;
-        String str = m0.f8372a;
+        o0 o0Var = this.f43580c;
+        String str = m0.f8375a;
         o0Var.obtainMessage(1, a2).sendToTarget();
     }
 
     @Override
-    public final void e(int i10, h2.d dVar, long j10, int i11) {
-        r0();
+    public final void d(int i10, h2.d dVar, long j10, int i11) {
+        s0();
         d a2 = a();
-        a2.f43815a = i10;
-        a2.f43816b = 0;
+        a2.f43574a = i10;
+        a2.f43575b = 0;
         a2.d = j10;
         a2.e = i11;
-        MediaCodec.CryptoInfo cryptoInfo = a2.f43817c;
-        cryptoInfo.numSubSamples = dVar.f10320f;
+        MediaCodec.CryptoInfo cryptoInfo = a2.f43576c;
+        cryptoInfo.numSubSamples = dVar.f10324f;
         int[] iArr = dVar.d;
         int[] iArr2 = cryptoInfo.numBytesOfClearData;
         if (iArr != null) {
@@ -91,7 +91,7 @@ public final class e implements m {
             }
         }
         cryptoInfo.numBytesOfEncryptedData = iArr4;
-        byte[] bArr = dVar.f10318b;
+        byte[] bArr = dVar.f10322b;
         byte[] bArr2 = cryptoInfo.key;
         if (bArr != null) {
             if (bArr2 != null && bArr2.length >= bArr.length) {
@@ -102,7 +102,7 @@ public final class e implements m {
         }
         bArr2.getClass();
         cryptoInfo.key = bArr2;
-        byte[] bArr3 = dVar.f10317a;
+        byte[] bArr3 = dVar.f10321a;
         byte[] bArr4 = cryptoInfo.iv;
         if (bArr3 != null) {
             if (bArr4 != null && bArr4.length >= bArr3.length) {
@@ -113,27 +113,27 @@ public final class e implements m {
         }
         bArr4.getClass();
         cryptoInfo.iv = bArr4;
-        cryptoInfo.mode = dVar.f10319c;
+        cryptoInfo.mode = dVar.f10323c;
         if (Build.VERSION.SDK_INT >= 24) {
-            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f10321g, dVar.h));
+            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f10325g, dVar.h));
         }
-        o0 o0Var = this.f43821c;
-        String str = m0.f8372a;
+        o0 o0Var = this.f43580c;
+        String str = m0.f8375a;
         o0Var.obtainMessage(2, a2).sendToTarget();
     }
 
     @Override
     public final void flush() {
-        if (this.f43822f) {
+        if (this.f43581f) {
             try {
-                o0 o0Var = this.f43821c;
+                o0 o0Var = this.f43580c;
                 o0Var.getClass();
                 o0Var.removeCallbacksAndMessages(null);
                 e2.i iVar = this.e;
                 synchronized (iVar) {
-                    iVar.f8355b = false;
+                    iVar.f8358b = false;
                 }
-                o0 o0Var2 = this.f43821c;
+                o0 o0Var2 = this.f43580c;
                 o0Var2.getClass();
                 o0Var2.obtainMessage(3).sendToTarget();
                 iVar.a();
@@ -145,7 +145,7 @@ public final class e implements m {
     }
 
     @Override
-    public final void r0() {
+    public final void s0() {
         RuntimeException runtimeException = (RuntimeException) this.d.getAndSet(null);
         if (runtimeException == null) {
             return;
@@ -155,28 +155,28 @@ public final class e implements m {
 
     @Override
     public final void setParameters(Bundle bundle) {
-        r0();
-        o0 o0Var = this.f43821c;
-        String str = m0.f8372a;
+        s0();
+        o0 o0Var = this.f43580c;
+        String str = m0.f8375a;
         o0Var.obtainMessage(4, bundle).sendToTarget();
     }
 
     @Override
     public final void shutdown() {
-        if (this.f43822f) {
+        if (this.f43581f) {
             flush();
-            this.f43820b.quit();
+            this.f43579b.quit();
         }
-        this.f43822f = false;
+        this.f43581f = false;
     }
 
     @Override
     public final void start() {
-        if (!this.f43822f) {
-            HandlerThread handlerThread = this.f43820b;
+        if (!this.f43581f) {
+            HandlerThread handlerThread = this.f43579b;
             handlerThread.start();
-            this.f43821c = new o0(this, handlerThread.getLooper(), 12);
-            this.f43822f = true;
+            this.f43580c = new o0(this, handlerThread.getLooper(), 12);
+            this.f43581f = true;
         }
     }
 }

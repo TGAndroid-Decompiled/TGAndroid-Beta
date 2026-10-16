@@ -69,7 +69,7 @@ public final class e extends GestureDetector.SimpleOnGestureListener {
                 return true;
             default:
                 xh.j jVar = (xh.j) view;
-                if (!jVar.e.f48467c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (jVar.e.f48468f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= jVar.e.f48468f.getRight() || jVar.e.f48468f.getTop() >= motionEvent.getY() || motionEvent.getY() >= jVar.e.f48468f.getBottom())) {
+                if (!jVar.e.f48466c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (jVar.e.f48467f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= jVar.e.f48467f.getRight() || jVar.e.f48467f.getTop() >= motionEvent.getY() || motionEvent.getY() >= jVar.e.f48467f.getBottom())) {
                     jVar.e.e(false);
                 }
                 return super.onSingleTapUp(motionEvent);

@@ -8,16 +8,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class c {
-    public static final c f10927b = new c(new HashMap());
-    public final Map f10928a;
+    public static final c f10931b = new c(new HashMap());
+    public final Map f10932a;
 
     public c(HashMap hashMap) {
-        this.f10928a = DesugarCollections.unmodifiableMap(hashMap);
+        this.f10932a = DesugarCollections.unmodifiableMap(hashMap);
     }
 
-    public static k6.h a(MediaFormat mediaFormat, Set set) {
-        k6.h hVar = new k6.h(27);
-        HashMap hashMap = (HashMap) hVar.f14176b;
+    public static a4.l a(MediaFormat mediaFormat, Set set) {
+        a4.l lVar = new a4.l(25);
+        HashMap hashMap = (HashMap) lVar.f279b;
         Iterator it = set.iterator();
         while (it.hasNext()) {
             String str = (String) it.next();
@@ -52,7 +52,7 @@ public final class c {
                 }
             }
         }
-        return hVar;
+        return lVar;
     }
 
     public final boolean equals(Object obj) {
@@ -62,10 +62,10 @@ public final class c {
         if (!(obj instanceof c)) {
             return false;
         }
-        return this.f10928a.equals(((c) obj).f10928a);
+        return this.f10932a.equals(((c) obj).f10932a);
     }
 
     public final int hashCode() {
-        return this.f10928a.hashCode();
+        return this.f10932a.hashCode();
     }
 }

@@ -8,12 +8,12 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class o31 extends org.telegram.ui.Components.lm0 {
-    public final Context f38857c;
+    public final Context f38539c;
     public final s31 d;
 
     public o31(s31 s31Var, Context context) {
         this.d = s31Var;
-        this.f38857c = context;
+        this.f38539c = context;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class o31 extends org.telegram.ui.Components.lm0 {
         int i10;
         s31 s31Var = this.d;
         int i11 = s31Var.h;
-        if (s31Var.f39969f < 0) {
+        if (s31Var.f39693f < 0) {
             i10 = s31Var.getMediaDataController().getReactionsList().size();
         } else {
             i10 = 0;
@@ -47,7 +47,7 @@ public final class o31 extends org.telegram.ui.Components.lm0 {
         if (i10 == s31Var.d) {
             return 2;
         }
-        if (i10 == s31Var.f39969f) {
+        if (i10 == s31Var.f39693f) {
             return 3;
         }
         if (i10 != h() - 1) {
@@ -77,12 +77,12 @@ public final class o31 extends org.telegram.ui.Components.lm0 {
         org.telegram.ui.ActionBar.b5 b5Var;
         r31 r31Var;
         s31 s31Var = this.d;
-        Context context = this.f38857c;
+        Context context = this.f38539c;
         if (i10 == 0) {
             b5Var = ((org.telegram.ui.ActionBar.m2) s31Var).parentLayout;
             org.telegram.ui.Cells.ga gaVar = new org.telegram.ui.Cells.ga(context, b5Var, 2);
             gaVar.setImportantForAccessibility(4);
-            gaVar.f21247r = s31Var;
+            gaVar.f20948r = s31Var;
             r31Var = gaVar;
         } else if (i10 != 2) {
             if (i10 != 3) {

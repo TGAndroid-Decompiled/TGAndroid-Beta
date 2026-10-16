@@ -30,32 +30,32 @@ public class m9 {
     public float P;
     public u8 Q;
     public View R;
-    public int f3326c;
+    public int f3330c;
     public TL_stories.StoryItem d;
-    public boolean f3332l;
-    public boolean f3333m;
-    public int f3334n;
-    public boolean f3335o;
-    public boolean f3336p;
-    public int f3337q;
-    public boolean f3338r;
-    public long f3339s;
-    public float f3340t;
+    public boolean f3336l;
+    public boolean f3337m;
+    public int f3338n;
+    public boolean f3339o;
+    public boolean f3340p;
+    public int f3341q;
+    public boolean f3342r;
+    public long f3343s;
+    public float f3344t;
     public boolean v;
-    public boolean f3342w;
-    public long f3343x;
-    public int f3344y;
-    public int f3345z;
-    public boolean f3324a = true;
-    public boolean f3325b = true;
+    public boolean f3346w;
+    public long f3347x;
+    public int f3348y;
+    public int f3349z;
+    public boolean f3328a = true;
+    public boolean f3329b = true;
     public float e = 1.0f;
-    public float f3327f = 0.0f;
-    public float f3328g = 0.0f;
+    public float f3331f = 0.0f;
+    public float f3332g = 0.0f;
     public float h = 0.0f;
-    public float f3329i = 0.0f;
-    public float f3330j = 0.0f;
-    public boolean f3331k = true;
-    public float f3341u = 1.0f;
+    public float f3333i = 0.0f;
+    public float f3334j = 0.0f;
+    public boolean f3335k = true;
+    public float f3345u = 1.0f;
     public float B = 1.0f;
     public boolean C = false;
     public final RectF F = new RectF();
@@ -79,28 +79,28 @@ public class m9 {
         if (motionEvent.getAction() == 0) {
             if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
                 TLRPC.Chat chat = null;
-                if (this.f3343x > 0) {
-                    user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(this.f3343x));
+                if (this.f3347x > 0) {
+                    user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(this.f3347x));
                 } else {
-                    chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-this.f3343x));
+                    chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-this.f3347x));
                     user = null;
                 }
                 if (c(chat, user)) {
                     z10 = true;
-                } else if (this.f3338r) {
+                } else if (this.f3342r) {
                     z10 = !storiesController.h.isEmpty();
                 } else {
-                    if (this.f3343x <= 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().I(this.f3343x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().I(this.f3343x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
+                    if (this.f3347x <= 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().I(this.f3347x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().I(this.f3347x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
                         z11 = true;
                     }
                     z10 = z11;
                 }
-                if (this.f3343x != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && z10) {
+                if (this.f3347x != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && z10) {
                     ad adVar = this.H;
                     if (adVar == null) {
                         this.H = new ad(view, 1.5f, 5.0f);
                     } else {
-                        adVar.f23517a = view;
+                        adVar.f23196a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -124,7 +124,7 @@ public class m9 {
             if (Math.abs(this.O - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.P - motionEvent.getY()) > AndroidUtilities.touchSlop) {
                 ad adVar2 = this.H;
                 if (adVar2 != null) {
-                    adVar2.f23517a = view;
+                    adVar2.f23196a = view;
                     adVar2.c(false);
                 }
                 u8 u8Var3 = this.Q;
@@ -137,28 +137,28 @@ public class m9 {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             ad adVar3 = this.H;
             if (adVar3 != null) {
-                adVar3.f23517a = view;
+                adVar3.f23196a = view;
                 adVar3.c(false);
             }
-            if (this.N && motionEvent.getAction() == 1 && !d(this.f3343x)) {
+            if (this.N && motionEvent.getAction() == 1 && !d(this.f3347x)) {
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                 x8 storiesController2 = messagesController.getStoriesController();
-                if (this.f3338r) {
+                if (this.f3342r) {
                     f(0L);
-                } else if (this.f3343x != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
-                    if (storiesController2.I(this.f3343x)) {
-                        f(this.f3343x);
+                } else if (this.f3347x != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
+                    if (storiesController2.I(this.f3347x)) {
+                        f(this.f3347x);
                     } else {
-                        long j10 = this.f3343x;
+                        long j10 = this.f3347x;
                         if (j10 > 0) {
                             TLRPC.User user2 = messagesController.getUser(Long.valueOf(j10));
                             if (user2 != null && !user2.stories_unavailable && (tL_recentStory2 = user2.stories_max_id) != null && tL_recentStory2.max_id > 0) {
-                                new r9().a(this.f3343x, view, this);
+                                new r9().a(this.f3347x, view, this);
                             }
                         } else {
                             TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-j10));
                             if (chat2 != null && !chat2.stories_unavailable && (tL_recentStory = chat2.stories_max_id) != null && tL_recentStory.max_id > 0) {
-                                new r9().a(this.f3343x, view, this);
+                                new r9().a(this.f3347x, view, this);
                             }
                         }
                     }

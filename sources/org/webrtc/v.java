@@ -1,6 +1,6 @@
 package org.webrtc;
 public abstract class v {
-    public static long a(VideoDecoder videoDecoder, long j10) {
-        return 0L;
+    public static VideoCodecInfo[] a(VideoDecoderFactory videoDecoderFactory) {
+        return new VideoCodecInfo[0];
     }
 }

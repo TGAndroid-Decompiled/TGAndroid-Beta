@@ -13,32 +13,32 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class dr implements Utilities.Callback {
-    public final int f35374a = 1;
-    public final int f35375b;
-    public final long f35376c;
+    public final int f35128a = 1;
+    public final int f35129b;
+    public final long f35130c;
     public final Object d;
     public final Object e;
-    public final Object f35377f;
-    public final Object f35378g;
+    public final Object f35131f;
+    public final Object f35132g;
     public final Serializable h;
 
     public dr(int i10, long j10, Activity activity, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f35375b = i10;
+        this.f35129b = i10;
         this.d = arrayList;
-        this.f35376c = j10;
+        this.f35130c = j10;
         this.e = activity;
-        this.f35377f = c6Var;
-        this.f35378g = callback;
+        this.f35131f = c6Var;
+        this.f35132g = callback;
         this.h = hashMap;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f35374a;
+        int i10 = this.f35128a;
         boolean z10 = false;
         Serializable serializable = this.h;
-        Object obj2 = this.f35378g;
-        Object obj3 = this.f35377f;
+        Object obj2 = this.f35132g;
+        Object obj3 = this.f35131f;
         Object obj4 = this.e;
         Object obj5 = this.d;
         switch (i10) {
@@ -55,9 +55,9 @@ public final class dr implements Utilities.Callback {
                 }
                 long j10 = yrVar.N;
                 TLRPC.TL_chatBannedRights tL_chatBannedRights2 = yrVar.E;
-                long j11 = this.f35376c;
+                long j11 = this.f35130c;
                 gr grVar = new gr(yrVar, j11, j10, tL_chatAdminRights, tL_chatBannedRights2, tL_chatBannedRights, str, intValue, zArr, j11);
-                grVar.X0 = new hr(yrVar, intValue, j11, this.f35375b, z10, zArr);
+                grVar.X0 = new hr(yrVar, intValue, j11, this.f35129b, z10, zArr);
                 yrVar.presentFragment(grVar);
                 return;
             case 1:
@@ -67,7 +67,7 @@ public final class dr implements Utilities.Callback {
                 Utilities.Callback callback = (Utilities.Callback) obj2;
                 HashMap hashMap = (HashMap) serializable;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                int i11 = this.f35375b;
+                int i11 = this.f35129b;
                 if (booleanValue) {
                     SharedPreferences.Editor edit = MessagesController.getInstance(i11).getMainSettings().edit();
                     int size = arrayList.size();
@@ -81,12 +81,12 @@ public final class dr implements Utilities.Callback {
                         if (sendPaidMessagesStars <= 0 && longValue > 0) {
                             sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(MessagesController.getInstance(i11).isUserContactBlocked(longValue));
                         }
-                        edit.putLong(org.telegram.ui.Cells.d0.i(longValue, "ask_paid_message_", "_price"), sendPaidMessagesStars);
+                        edit.putLong(org.telegram.ui.Cells.c1.h(longValue, "ask_paid_message_", "_price"), sendPaidMessagesStars);
                         zh.n5.y(i11, false).O.put(l4, Long.valueOf(System.currentTimeMillis()));
                     }
                     edit.apply();
                 }
-                org.telegram.ui.Components.m1 m1Var = new org.telegram.ui.Components.m1(i11, this.f35376c, activity, arrayList, hashMap, callback, c6Var);
+                org.telegram.ui.Components.m1 m1Var = new org.telegram.ui.Components.m1(i11, this.f35130c, activity, arrayList, hashMap, callback, c6Var);
                 if (!zh.n5.y(i11, false).e) {
                     zh.n5 y3 = zh.n5.y(i11, false);
                     y3.e = false;
@@ -100,32 +100,32 @@ public final class dr implements Utilities.Callback {
                 Boolean bool = (Boolean) obj;
                 Pattern pattern = LaunchActivity.B1;
                 TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
-                int i13 = this.f35375b;
-                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i13).getInputUser(this.f35376c);
+                int i13 = this.f35129b;
+                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i13).getInputUser(this.f35130c);
                 tL_messages_toggleBotInAttachMenu.enabled = true;
                 tL_messages_toggleBotInAttachMenu.write_allowed = true;
-                ConnectionsManager.getInstance(i13).sendRequest(tL_messages_toggleBotInAttachMenu, new org.telegram.messenger.ni((LaunchActivity) obj5, i13, (yy) obj4, (org.telegram.ui.ActionBar.m2) obj3, (TLRPC.User) obj2, (String) serializable), 66);
+                ConnectionsManager.getInstance(i13).sendRequest(tL_messages_toggleBotInAttachMenu, new org.telegram.messenger.mi((LaunchActivity) obj5, i13, (yy) obj4, (org.telegram.ui.ActionBar.m2) obj3, (TLRPC.User) obj2, (String) serializable), 66);
                 return;
         }
     }
 
     public dr(yr yrVar, long j10, int i10, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
         this.d = yrVar;
-        this.f35376c = j10;
-        this.f35375b = i10;
+        this.f35130c = j10;
+        this.f35129b = i10;
         this.e = tLObject;
-        this.f35377f = tL_chatAdminRights;
-        this.f35378g = tL_chatBannedRights;
+        this.f35131f = tL_chatAdminRights;
+        this.f35132g = tL_chatBannedRights;
         this.h = str;
     }
 
     public dr(LaunchActivity launchActivity, int i10, long j10, yy yyVar, org.telegram.ui.ActionBar.m2 m2Var, TLRPC.User user, String str) {
         this.d = launchActivity;
-        this.f35375b = i10;
-        this.f35376c = j10;
+        this.f35129b = i10;
+        this.f35130c = j10;
         this.e = yyVar;
-        this.f35377f = m2Var;
-        this.f35378g = user;
+        this.f35131f = m2Var;
+        this.f35132g = user;
         this.h = str;
     }
 }

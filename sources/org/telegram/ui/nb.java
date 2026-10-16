@@ -14,19 +14,19 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class nb extends org.telegram.ui.ActionBar.j {
-    public final int f38634a;
-    public final Object f38635b;
+    public final int f38350a;
+    public final Object f38351b;
 
     public nb(Object obj, int i10) {
-        this.f38634a = i10;
-        this.f38635b = obj;
+        this.f38350a = i10;
+        this.f38351b = obj;
     }
 
     @Override
     public final void b(int i10) {
         Runnable runnable;
-        int i11 = this.f38634a;
-        Object obj = this.f38635b;
+        int i11 = this.f38350a;
+        Object obj = this.f38351b;
         switch (i11) {
             case 0:
                 if (i10 == -1) {
@@ -35,47 +35,47 @@ public final class nb extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 1:
-                hd hdVar = (hd) obj;
+                gd gdVar = (gd) obj;
                 if (i10 == -1) {
-                    if (hdVar.f36726b >= hdVar.S0() && hdVar.Q0()) {
-                        hdVar.V0();
+                    if (gdVar.f36139b >= gdVar.S0() && gdVar.Q0()) {
+                        gdVar.V0();
                         return;
                     } else {
-                        hdVar.finishFragment();
+                        gdVar.finishFragment();
                         return;
                     }
                 } else if (i10 == 1) {
-                    FrameLayout frameLayout = (FrameLayout) hdVar.getParentActivity().getWindow().getDecorView();
+                    FrameLayout frameLayout = (FrameLayout) gdVar.getParentActivity().getWindow().getDecorView();
                     Bitmap createBitmap = Bitmap.createBitmap(frameLayout.getWidth(), frameLayout.getHeight(), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
-                    hdVar.L.setAlpha(0.0f);
+                    gdVar.L.setAlpha(0.0f);
                     frameLayout.draw(canvas);
-                    hdVar.L.setAlpha(1.0f);
+                    gdVar.L.setAlpha(1.0f);
                     Paint paint = new Paint(1);
                     paint.setColor(-16777216);
                     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                     Paint paint2 = new Paint(1);
                     paint2.setFilterBitmap(true);
                     int[] iArr = new int[2];
-                    hdVar.L.getLocationInWindow(iArr);
+                    gdVar.L.getLocationInWindow(iArr);
                     float f7 = iArr[0];
                     float f10 = iArr[1];
                     float max = Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight;
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                    rc rcVar = new rc(hdVar, hdVar.getParentActivity(), canvas, (hdVar.L.getMeasuredWidth() / 2.0f) + f7, (hdVar.L.getMeasuredHeight() / 2.0f) + f10, max, paint, createBitmap, paint2, f7, f10, 0);
-                    hdVar.m0 = rcVar;
-                    rcVar.setOnTouchListener(new ci.d(2));
-                    hdVar.f36741n0 = 0.0f;
+                    qc qcVar = new qc(gdVar, gdVar.getParentActivity(), canvas, (gdVar.L.getMeasuredWidth() / 2.0f) + f7, (gdVar.L.getMeasuredHeight() / 2.0f) + f10, max, paint, createBitmap, paint2, f7, f10, 0);
+                    gdVar.m0 = qcVar;
+                    qcVar.setOnTouchListener(new ci.d(2));
+                    gdVar.f36154n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    hdVar.f36742o0 = ofFloat;
-                    ofFloat.addUpdateListener(new di.tb(hdVar, 1));
-                    hdVar.f36742o0.addListener(new u0(hdVar, 20));
-                    hdVar.f36742o0.setDuration(400L);
-                    hdVar.f36742o0.setInterpolator(org.telegram.ui.Components.xt.e);
-                    hdVar.f36742o0.start();
-                    frameLayout.addView(hdVar.m0, new ViewGroup.LayoutParams(-1, -1));
-                    AndroidUtilities.runOnUIThread(new mc(hdVar, 0));
+                    gdVar.f36155o0 = ofFloat;
+                    ofFloat.addUpdateListener(new di.tb(gdVar, 1));
+                    gdVar.f36155o0.addListener(new u0(gdVar, 20));
+                    gdVar.f36155o0.setDuration(400L);
+                    gdVar.f36155o0.setInterpolator(org.telegram.ui.Components.xt.e);
+                    gdVar.f36155o0.start();
+                    frameLayout.addView(gdVar.m0, new ViewGroup.LayoutParams(-1, -1));
+                    AndroidUtilities.runOnUIThread(new lc(gdVar, 0));
                     return;
                 } else {
                     return;
@@ -100,8 +100,8 @@ public final class nb extends org.telegram.ui.ActionBar.j {
                     npVar.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    org.telegram.ui.Components.ds dsVar = npVar.f38773r;
-                    if (dsVar == null || dsVar.f24480c <= 0.0f) {
+                    org.telegram.ui.Components.ds dsVar = npVar.f38453r;
+                    if (dsVar == null || dsVar.f24174c <= 0.0f) {
                         npVar.Y();
                         return;
                     }
@@ -182,7 +182,7 @@ public final class nb extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 12:
-                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.jg0) obj).f26358r) != null) {
+                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.kg0) obj).f26390r) != null) {
                     AndroidUtilities.runOnUIThread(runnable);
                     return;
                 }
@@ -194,11 +194,11 @@ public final class nb extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 14:
-                ((org.telegram.ui.Components.jr0) obj).onBackPressed();
+                ((org.telegram.ui.Components.ir0) obj).onBackPressed();
                 return;
             case 15:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.c71) obj).finishFragment();
+                    ((org.telegram.ui.Components.d71) obj).finishFragment();
                     return;
                 }
                 return;
@@ -210,7 +210,7 @@ public final class nb extends org.telegram.ui.ActionBar.j {
                 return;
             case 17:
                 if (i10 == -1) {
-                    ((wi1) obj).a(false, false);
+                    ((vi1) obj).a(false, false);
                     return;
                 }
                 return;
@@ -263,12 +263,12 @@ public final class nb extends org.telegram.ui.ActionBar.j {
                         h00Var.c0();
                         return;
                     } else if (Math.abs(h00Var.T - 0.5f) < 0.1f) {
-                        for (int i12 = 0; i12 < h00Var.f36566a.getChildCount(); i12++) {
-                            View childAt = h00Var.f36566a.getChildAt(i12);
-                            h00Var.f36566a.getClass();
+                        for (int i12 = 0; i12 < h00Var.f36352a.getChildCount(); i12++) {
+                            View childAt = h00Var.f36352a.getChildAt(i12);
+                            h00Var.f36352a.getClass();
                             if (RecyclerView.R(childAt) == h00Var.L && (childAt instanceof org.telegram.ui.Components.l10)) {
-                                int i13 = -h00Var.f36572s;
-                                h00Var.f36572s = i13;
+                                int i13 = -h00Var.f36358s;
+                                h00Var.f36358s = i13;
                                 AndroidUtilities.shakeViewSpring(childAt, i13);
                                 return;
                             }
@@ -281,15 +281,15 @@ public final class nb extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 25:
-                l10 l10Var = (l10) obj;
+                k10 k10Var = (k10) obj;
                 if (i10 == -1) {
-                    if (l10Var.h0(true)) {
-                        l10Var.finishFragment();
+                    if (k10Var.h0(true)) {
+                        k10Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    l10Var.q0();
+                    k10Var.q0();
                     return;
                 } else {
                     return;

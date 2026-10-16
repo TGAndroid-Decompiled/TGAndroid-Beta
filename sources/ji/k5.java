@@ -5,31 +5,31 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
-public final class k5 extends k61 {
-    public static final int f13374a = 0;
+public final class k5 extends l61 {
+    public static final int f13377a = 0;
 
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
         TL_iv.RichText richText;
         l5 l5Var = (l5) view;
-        a aVar = (a) l61Var.G;
-        j5 j5Var = (j5) l61Var.H;
-        h1 h1Var = l5Var.f13391r;
-        l5Var.f13119a = aVar;
-        l5Var.f13392s = j5Var;
+        a aVar = (a) m61Var.G;
+        j5 j5Var = (j5) m61Var.H;
+        h1 h1Var = l5Var.f13394r;
+        l5Var.f13123a = aVar;
+        l5Var.f13395s = j5Var;
         l5Var.g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         l5Var.c(aVar);
         if (j5Var != null) {
-            richText = (TL_iv.RichText) ((c3) j5Var).f13172a.f13637k3.get(Long.valueOf(aVar.f13118t));
+            richText = (TL_iv.RichText) ((c3) j5Var).f13176a.f13640k3.get(Long.valueOf(aVar.f13122t));
         } else {
             richText = null;
         }

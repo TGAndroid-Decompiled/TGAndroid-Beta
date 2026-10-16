@@ -3536,6 +3536,7 @@ to Story";
 "StarsNeededTextSearch" = "Buy **Stars** to search posts.";
 "JoinByPeekChannelTitle" = "Join Channel";
 "ClearHistoryOptionAlso" = "Also clear history for %1$s";
+"BotTypeNonBinary" = "Non-binary";
 "BusinessBotPermissionsWarning" = "Warning";
 "SuggestStickersNone" = "None";
 "AreYouSureLogoutGrams" = "Are you sure you want to log out?
@@ -4213,6 +4214,7 @@ You can cancel this process at any time.";
 "CreateLinkHeader" = "CREATE";
 "NotificationActionPinnedStickerUser" = "%1$s pinned a sticker";
 "StartMessaging" = "Start Messaging";
+"BotTypeGame" = "Game";
 "EventLogEmpty2" = "**No actions here yet**
 
 The group's members and admins have not taken any service actions in the last **48** hours.";
@@ -6329,6 +6331,7 @@ this round.";
 "SelfStarsWithdrawInfo_one" = "You can withdraw from %d Stars using Fragment. **Learn more >**";
 "WalletTonConnectRequestAppDeclined" = "%s's transaction request declined";
 "VoipGroupStartRecordingRtmpVideoText" = "Do you want to start recording this chat and save the result into a video file?";
+"BotTypeApp" = "App";
 "VoipGroupMute" = "Mute";
 "StoryPrivacyEveryoneExclude_other" = "Everyone (-%d)";
 "BoostingYouHaveUnclaimedPrize" = "You have an unclaimed prize from a giveaway by **%s**.";
@@ -9587,6 +9590,7 @@ Ask your **Premium** subscribers to boost your channel with this link:";
 "DoubleTapPreviewRational" = "Double tap this message for a quck reaction.";
 "ChannelCreator" = "Owner";
 "StoryAlbumNotFound" = "This album is no longer available";
+"BotTypeAgent" = "Agent";
 "LimitReachedCommunities" = "You are a member of **%1$d**  groups and channels. Please leave some before joining a new one — or upgrade to **Telegram Premium** to double the limit to **%2$d** groups and channels.";
 "StarsNeededTextBuySubscription" = "Buy **Stars** and subscribe to **%s** and other channels.";
 "AutoDownloadPhotosTitle" = "Auto-download photos";
@@ -9678,6 +9682,7 @@ Minimum length is 5 characters.";
 **%1$s** will be able to access your camera and microphone when this website is open.
 
 Enable camera access in Settings > Permissions > Camera.";
+"BotTypeAI" = "AI";
 "Gift2Availability4Value_other" = "%1$d of %2$s left";
 "GiftOfferOfferedTextTONRejected" = "**%1$s** rejected your offer. **%2$s TON** for **%3$s**.";
 "SharedMediaTab2" = "Media";
@@ -9809,7 +9814,7 @@ Enable camera access in Settings > Permissions > Camera.";
 "BrowserSettingsNeverOpenInInfo2" = "These sites will always be opened in external browser.";
 "BusinessBotNoAddedText" = "You haven’t added a bot to manage your account. Leave anyway?";
 "ShareSendItems_one" = "Send %1$d media";
-"AudioRecorderGeneralInfo" = "The server configuration can disable the new recorder. RNNoise removes background noise before Opus encoding and may affect music or very quiet speech.";
+"AudioRecorderGeneralInfo" = "RNNoise removes background noise may affect music or very quiet speech.";
 "StorySoundNotMuted" = "Sound is now not muted.";
 "TwoStepVerification" = "Two-Step Verification";
 "BusinessLinksFooterTwoLinks" = "You can also use a simple link for a chat with you — %1$s or %2$s.";

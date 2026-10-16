@@ -21,8 +21,8 @@ public abstract class e1 extends l0 {
     public boolean a(b1 b1Var, b2.v0 v0Var, b2.v0 v0Var2) {
         int i10;
         int i11;
-        if (v0Var != null && ((i10 = v0Var.f2444a) != (i11 = v0Var2.f2444a) || v0Var.f2445b != v0Var2.f2445b || this.f44873n)) {
-            return r(b1Var, v0Var, i10, v0Var.f2445b, i11, v0Var2.f2445b);
+        if (v0Var != null && ((i10 = v0Var.f2448a) != (i11 = v0Var2.f2448a) || v0Var.f2449b != v0Var2.f2449b || this.f44873n)) {
+            return r(b1Var, v0Var, i10, v0Var.f2449b, i11, v0Var2.f2449b);
         }
         p(b1Var);
         return true;

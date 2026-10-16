@@ -5,22 +5,22 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class m3 extends AnimatorListenerAdapter {
-    public final int f3304a;
-    public final View f3305b;
+    public final int f3308a;
+    public final View f3309b;
 
     public m3(int i10, View view) {
-        this.f3304a = i10;
-        this.f3305b = view;
+        this.f3308a = i10;
+        this.f3309b = view;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f3304a) {
+        switch (this.f3308a) {
             case 0:
-                AndroidUtilities.removeFromParent(this.f3305b);
+                AndroidUtilities.removeFromParent(this.f3309b);
                 return;
             default:
-                AndroidUtilities.removeFromParent(this.f3305b);
+                AndroidUtilities.removeFromParent(this.f3309b);
                 return;
         }
     }

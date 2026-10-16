@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.LaunchActivity;
 public final class h2 extends e3 {
-    public final k2 f20320b;
-    public final b5[] f20321c;
+    public final k2 f20020b;
+    public final b5[] f20021c;
     public final m2 d;
     public final e3[] e;
 
     public h2(Activity activity, c6 c6Var, k2 k2Var, b5[] b5VarArr, m2 m2Var, e3[] e3VarArr) {
         super(1, (Context) activity, c6Var, true);
         boolean z10;
-        this.f20320b = k2Var;
-        this.f20321c = b5VarArr;
+        this.f20020b = k2Var;
+        this.f20021c = b5VarArr;
         this.d = m2Var;
         this.e = e3VarArr;
         if (k2Var != null && k2Var.e) {
@@ -49,8 +49,8 @@ public final class h2 extends e3 {
     public final boolean canSwipeToBack(MotionEvent motionEvent) {
         b5[] b5VarArr;
         b5 b5Var;
-        k2 k2Var = this.f20320b;
-        if (k2Var == null || !k2Var.f20469a || (b5Var = (b5VarArr = this.f20321c)[0]) == null || b5Var.getFragmentStack().size() > 1 || (b5VarArr[0].getFragmentStack().size() == 1 && !((m2) b5VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
+        k2 k2Var = this.f20020b;
+        if (k2Var == null || !k2Var.f20169a || (b5Var = (b5VarArr = this.f20021c)[0]) == null || b5Var.getFragmentStack().size() > 1 || (b5VarArr[0].getFragmentStack().size() == 1 && !((m2) b5VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
             return false;
         }
         return true;
@@ -60,19 +60,19 @@ public final class h2 extends e3 {
     public final void dismiss() {
         k2 k2Var;
         Runnable runnable;
-        if (!isDismissed() && (k2Var = this.f20320b) != null && (runnable = k2Var.d) != null) {
+        if (!isDismissed() && (k2Var = this.f20020b) != null && (runnable = k2Var.d) != null) {
             runnable.run();
         }
         super.dismiss();
         ArrayList arrayList = LaunchActivity.G1.P;
-        b5[] b5VarArr = this.f20321c;
+        b5[] b5VarArr = this.f20021c;
         arrayList.remove(b5VarArr[0]);
         b5VarArr[0] = null;
     }
 
     @Override
     public final void onBackPressed() {
-        b5[] b5VarArr = this.f20321c;
+        b5[] b5VarArr = this.f20021c;
         b5 b5Var = b5VarArr[0];
         if (b5Var != null && b5Var.getFragmentStack().size() > 1) {
             ((ActionBarLayout) b5VarArr[0]).G();
@@ -84,15 +84,15 @@ public final class h2 extends e3 {
     @Override
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        b5 b5Var = this.f20321c[0];
+        b5 b5Var = this.f20021c[0];
         e3[] e3VarArr = this.e;
         b5Var.setWindow(e3VarArr[0].getWindow());
         m2 m2Var = this.d;
-        k2 k2Var = this.f20320b;
+        k2 k2Var = this.f20020b;
         if (k2Var != null && k2Var.e) {
             AndroidUtilities.setLightNavigationBar((Dialog) e3VarArr[0], true);
         } else {
-            fixNavigationBar(g6.w0(g6.f19989i5, m2Var.getResourceProvider()));
+            fixNavigationBar(g6.w0(g6.f19689i5, m2Var.getResourceProvider()));
         }
         AndroidUtilities.setLightStatusBar(this, m2Var.isLightStatusBar());
         m2Var.onBottomSheetCreated();
@@ -100,7 +100,7 @@ public final class h2 extends e3 {
 
     @Override
     public final void onInsetsChanged() {
-        b5 b5Var = this.f20321c[0];
+        b5 b5Var = this.f20021c[0];
         if (b5Var != null) {
             for (m2 m2Var : b5Var.getFragmentStack()) {
                 if (m2Var.getFragmentView() != null) {
@@ -114,8 +114,8 @@ public final class h2 extends e3 {
     public final void onOpenAnimationEnd() {
         Runnable runnable;
         this.d.onTransitionAnimationEnd(true, false);
-        k2 k2Var = this.f20320b;
-        if (k2Var != null && (runnable = k2Var.f20471c) != null) {
+        k2 k2Var = this.f20020b;
+        if (k2Var != null && (runnable = k2Var.f20171c) != null) {
             runnable.run();
         }
     }

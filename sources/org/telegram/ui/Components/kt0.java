@@ -29,7 +29,7 @@ public final class kt0 extends ko0 {
         du0 du0Var;
         boolean z11;
         xv0 xv0Var = this.I;
-        org.telegram.ui.ActionBar.u0 u0Var = xv0Var.f31369n0;
+        org.telegram.ui.ActionBar.u0 u0Var = xv0Var.f31050n0;
         if (u0Var == null) {
             return false;
         }
@@ -41,8 +41,8 @@ public final class kt0 extends ko0 {
             z10 = true;
         }
         xv0Var.U0 = z10;
-        xv0Var.m1(false);
-        int i10 = xv0Var.f31364k0[0].F;
+        xv0Var.n1(false);
+        int i10 = xv0Var.f31045k0[0].F;
         if (i10 == 11) {
             iv0 iv0Var = xv0Var.S;
             if (iv0Var != null) {
@@ -52,18 +52,18 @@ public final class kt0 extends ko0 {
             return true;
         }
         if (i10 == 12 && (du0Var = xv0Var.T) != null) {
-            org.telegram.ui.go goVar = du0Var.f36887a;
-            org.telegram.ui.dl dlVar = goVar.f36047o1;
+            org.telegram.ui.go goVar = du0Var.f36617a;
+            org.telegram.ui.dl dlVar = goVar.f35748o1;
             if (dlVar != null) {
                 dlVar.e(i1Var, true);
             }
-            if (TextUtils.isEmpty(goVar.f36111t3) && goVar.f36071q3 == null) {
+            if (TextUtils.isEmpty(goVar.f35812t3) && goVar.f35772q3 == null) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            goVar.f36098s3 = z11;
-            goVar.f36046o0 = z11;
+            goVar.f35799s3 = z11;
+            goVar.f35747o0 = z11;
             goVar.lc(false);
             goVar.Mc();
         }
@@ -86,23 +86,23 @@ public final class kt0 extends ko0 {
         g(z11);
         org.telegram.ui.ActionBar.u0 u0Var = xv0Var.m0;
         if (u0Var != null) {
-            if (a() && xv0Var.f31388v1.getUserConfig().isPremium()) {
+            if (a() && xv0Var.f31069v1.getUserConfig().isPremium()) {
                 i11 = R.drawable.navbar_search_tag;
             } else {
                 i11 = R.drawable.outline_header_search;
             }
-            bk0 bk0Var = u0Var.f20701x;
-            if (bk0Var != null && u0Var.f20702y != i11) {
+            bk0 bk0Var = u0Var.f20401x;
+            if (bk0Var != null && u0Var.f20402y != i11) {
                 if (z10) {
-                    u0Var.f20702y = i11;
+                    u0Var.f20402y = i11;
                     AndroidUtilities.updateImageViewImageAnimated(bk0Var, i11);
                 } else {
-                    u0Var.f20702y = i11;
+                    u0Var.f20402y = i11;
                     bk0Var.setImageResource(i11);
                 }
             }
         }
-        org.telegram.ui.ActionBar.u0 u0Var2 = xv0Var.f31369n0;
+        org.telegram.ui.ActionBar.u0 u0Var2 = xv0Var.f31050n0;
         if (u0Var2 != null) {
             if (kt0Var != null && kt0Var.a() && xv0Var.getSelectedTab() == 11) {
                 i10 = R.string.SavedTagSearchHint;

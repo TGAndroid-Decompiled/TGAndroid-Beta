@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+import ri.h0;
 public final class p {
     public final Context f45782a;
     public final Handler f45783b;
@@ -101,7 +102,7 @@ public final class p {
 
     public final void c() {
         if (this.f45786g.compareAndSet(false, true)) {
-            this.f45783b.post(new rh.j(this, 10));
+            this.f45783b.post(new h0(this, 10));
         }
     }
 }

@@ -13,16 +13,16 @@ import android.view.Display;
 import android.view.ViewConfiguration;
 import bi.u8;
 public abstract class i {
-    public static AudioManager f4138a;
+    public static AudioManager f4142a;
 
     public static void a(AudioManager audioManager, h hVar) {
         if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = hVar.f4137f;
+            Object obj = hVar.f4141f;
             obj.getClass();
             audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
             return;
         }
-        audioManager.abandonAudioFocus(hVar.f4135b);
+        audioManager.abandonAudioFocus(hVar.f4139b);
     }
 
     public static Notification.Builder b(Context context, String str) {
@@ -58,9 +58,9 @@ public abstract class i {
             synchronized (i.class) {
                 Context applicationContext = context.getApplicationContext();
                 if (applicationContext != null) {
-                    f4138a = null;
+                    f4142a = null;
                 }
-                AudioManager audioManager = f4138a;
+                AudioManager audioManager = f4142a;
                 if (audioManager != null) {
                     return audioManager;
                 }
@@ -69,12 +69,12 @@ public abstract class i {
                     e2.i iVar = new e2.i();
                     e2.a.e().execute(new u8(18, applicationContext, iVar));
                     iVar.b();
-                    AudioManager audioManager2 = f4138a;
+                    AudioManager audioManager2 = f4142a;
                     audioManager2.getClass();
                     return audioManager2;
                 }
                 AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
-                f4138a = audioManager3;
+                f4142a = audioManager3;
                 audioManager3.getClass();
                 return audioManager3;
             }

@@ -1,7 +1,7 @@
 package md;
 
-import m.w2;
+import m.y2;
 public abstract class f {
-    public static final w2 f15757a = new w2(null, null, null);
-    public static w2 f15758b;
+    public static final y2 f15492a = new y2(null, null, null);
+    public static y2 f15493b;
 }

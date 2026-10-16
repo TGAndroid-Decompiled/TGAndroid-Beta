@@ -1,276 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ie1;
-import org.telegram.ui.qe1;
-import org.telegram.ui.se1;
-public final class sn0 implements Runnable {
-    public final int f29166a;
-    public final boolean f29167b;
-    public final Object f29168c;
+import org.telegram.messenger.MessageObject;
+public final class sn0 extends s4.o {
+    public final int f28865b;
+    public final int f28866c;
+    public final int d;
+    public final int e;
+    public final int f28867f;
+    public final ArrayList f28868g;
+    public final int h;
+    public final int f28869i;
+    public final ArrayList f28870j;
+    public final xn0 f28871k;
 
-    public sn0(int i10, Object obj, boolean z10) {
-        this.f29166a = i10;
-        this.f29168c = obj;
-        this.f29167b = z10;
+    public sn0(xn0 xn0Var, int i10, int i11, int i12, int i13, int i14, ArrayList arrayList, int i15, int i16, ArrayList arrayList2) {
+        this.f28871k = xn0Var;
+        this.f28865b = i10;
+        this.f28866c = i11;
+        this.d = i12;
+        this.e = i13;
+        this.f28867f = i14;
+        this.f28868g = arrayList;
+        this.h = i15;
+        this.f28869i = i16;
+        this.f28870j = arrayList2;
     }
 
     @Override
-    public final void run() {
-        String str;
-        int i10;
-        CheckBoxBase checkBoxBase;
-        CheckBoxBase[] checkBoxBaseArr;
-        CheckBoxBase checkBoxBase2;
-        TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
-        boolean z10;
-        int i11;
-        int i12 = this.f29166a;
-        xh.e eVar = null;
-        int i13 = 8;
-        int i14 = 0;
-        boolean z11 = this.f29167b;
-        Object obj = this.f29168c;
-        switch (i12) {
-            case 0:
-                org.telegram.ui.ActionBar.m2 m2Var = ((yn0) obj).G;
-                if (z11) {
-                    str = "upload_speed";
-                } else {
-                    str = "download_speed";
-                }
-                m2Var.presentFragment(new PremiumPreviewFragment(0, str));
-                return;
-            case 1:
-                xv0 xv0Var = (xv0) obj;
-                if (!z11) {
-                    xv0Var.m0.setVisibility(8);
-                    return;
-                } else {
-                    xv0Var.getClass();
-                    return;
-                }
-            case 2:
-                ns0 ns0Var = (ns0) obj;
-                if (!z11) {
-                    ns0Var.U.f31375q0.setVisibility(0);
-                    return;
-                } else {
-                    ns0Var.getClass();
-                    return;
-                }
-            case 3:
-                ss0 ss0Var = (ss0) obj;
-                if (!z11) {
-                    ss0Var.H.f31375q0.setVisibility(0);
-                    return;
-                } else {
-                    ss0Var.getClass();
-                    return;
-                }
-            case 4:
-                ow0 ow0Var = (ow0) obj;
-                ArrayList arrayList = ow0Var.f28101r;
-                nw0 nw0Var = ow0Var.f28096n;
-                if (nw0Var != null) {
-                    nw0Var.H(ow0Var.f28088f, z11);
-                }
-                while (i14 < arrayList.size()) {
-                    ((nw0) arrayList.get(i14)).H(ow0Var.f28088f, z11);
-                    i14++;
-                }
-                return;
-            case 5:
-                pw0 pw0Var = (pw0) obj;
-                ArrayList arrayList2 = pw0Var.f28101r;
-                nw0 nw0Var2 = pw0Var.f28096n;
-                if (nw0Var2 != null) {
-                    nw0Var2.H(pw0Var.f28438y0, z11);
-                }
-                while (i14 < arrayList2.size()) {
-                    ((nw0) arrayList2.get(i14)).H(pw0Var.f28438y0, z11);
-                    i14++;
-                }
-                return;
-            case 6:
-                ((Utilities.Callback2) obj).run(null, Boolean.valueOf(z11));
-                return;
-            case 7:
-                ((z61) obj).P(z11);
-                return;
-            case 8:
-                org.telegram.ui.h00 h00Var = (org.telegram.ui.h00) obj;
-                h00Var.Z(h00Var.P, z11);
-                return;
-            case 9:
-                org.telegram.ui.bh0 bh0Var = (org.telegram.ui.bh0) obj;
-                if (!z11) {
-                    bh0Var.W.setVisibility(8);
-                    return;
-                }
-                return;
-            case 10:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (!z11) {
-                    photoViewer.V0.setVisibility(8);
-                    return;
-                }
-                Drawable[] drawableArr = PhotoViewer.U8;
-                photoViewer.getClass();
-                return;
-            case 11:
-                ((ProfileActivity) obj).e5(z11, true);
-                return;
-            case 12:
-                Activity parentActivity = ((org.telegram.ui.f11) obj).e.getParentActivity();
-                if (z11) {
-                    i10 = R.string.ProfileBotOpenAppInfoOwnerLink;
-                } else {
-                    i10 = R.string.ProfileBotOpenAppInfoLink;
-                }
-                pf.d.s(parentActivity, LocaleController.getString(i10));
-                return;
-            case 13:
-                org.telegram.ui.k31 k31Var = (org.telegram.ui.k31) obj;
-                org.telegram.ui.l31 l31Var = k31Var.S;
-                xp xpVar = k31Var.f37504b;
-                if (xpVar != null && xpVar.d != null) {
-                    k31Var.a(z11, true);
-                    if (k31Var.K != null) {
-                        k31Var.Q = true;
-                        l31Var.K = z11;
-                        l31Var.c0(l31Var.O, l31Var.J, false);
-                    }
-                    if (xpVar.d != null) {
-                        while (i14 < xpVar.d.size()) {
-                            ((yp) xpVar.d.get(i14)).f31670c = z11 ? 1 : 0;
-                            ((yp) xpVar.d.get(i14)).e = l31Var.a0(((yp) xpVar.d.get(i14)).f31668a, z11);
-                            i14++;
-                        }
-                        l31Var.f37831r = null;
-                        xpVar.l();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 14:
-                se1 se1Var = (se1) obj;
-                AndroidUtilities.runOnUIThread(new ie1(se1Var, 1));
-                org.telegram.ui.Cells.u1 u1Var = se1Var.K;
-                if (u1Var != null) {
-                    u1Var.setVisibility(0);
-                    if (!z11) {
-                        org.telegram.ui.Cells.u1 u1Var2 = se1Var.K;
-                        int O2 = u1Var2.O2(se1Var.O);
-                        qe1 qe1Var = se1Var.I;
-                        CheckBoxBase[] checkBoxBaseArr2 = u1Var2.R8;
-                        if (checkBoxBaseArr2 != null && O2 >= 0 && O2 < checkBoxBaseArr2.length && (checkBoxBase = checkBoxBaseArr2[O2]) != null && qe1Var != null && (checkBoxBaseArr = qe1Var.R8) != null && O2 >= 0 && O2 < checkBoxBaseArr.length && (checkBoxBase2 = checkBoxBaseArr[O2]) != null) {
-                            ObjectAnimator objectAnimator = checkBoxBase.f23091p;
-                            if (objectAnimator != null) {
-                                objectAnimator.cancel();
-                                checkBoxBase.f23091p = null;
-                            }
-                            checkBoxBase.setProgress(checkBoxBase2.getProgress());
-                            checkBoxBase.f(-1, checkBoxBase2.f23092q, true);
-                        }
-                    }
-                    org.telegram.ui.Cells.u1 u1Var3 = se1Var.K;
-                    u1Var3.K7 = -1;
-                    u1Var3.invalidate();
-                }
-                org.telegram.ui.bn bnVar = se1Var.f40113c0;
-                if (bnVar != null) {
-                    AndroidUtilities.runOnUIThread(bnVar);
-                    se1Var.f40113c0 = null;
-                    return;
-                }
-                return;
-            case 15:
-                View view = (View) obj;
-                if (z11) {
-                    i13 = 0;
-                }
-                view.setVisibility(i13);
-                return;
-            case 16:
-                xh.l lVar = (xh.l) obj;
-                ArrayList arrayList3 = lVar.f48477c;
-                boolean isEmpty = TextUtils.isEmpty(lVar.f48491t);
-                String str2 = lVar.f48491t;
-                lVar.f48493w = true;
-                lVar.A = false;
-                if (isEmpty && !arrayList3.isEmpty()) {
-                    tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) i2.d.g(1, arrayList3);
-                } else {
-                    tL_chatInviteImporter = null;
-                }
-                if (tL_chatInviteImporter == null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (isEmpty && z10 && z11) {
-                    eVar = new xh.e(lVar, 1);
-                }
-                if (isEmpty) {
-                    AndroidUtilities.runOnUIThread(eVar, 300L);
-                }
-                lVar.v = lVar.f48480i.getImporters(lVar.f48481j, str2, tL_chatInviteImporter, lVar.d, new xh.f(lVar, isEmpty, eVar, str2, z10));
-                return;
-            case 17:
-                zh.r0 r0Var = (zh.r0) obj;
-                if (!z11) {
-                    r0Var.f51048q0.setVisibility(8);
-                    return;
-                } else {
-                    r0Var.getClass();
-                    return;
-                }
-            case 18:
-                zh.r3 r3Var = (zh.r3) obj;
-                r3Var.getClass();
-                if (z11) {
-                    i11 = R.string.Gift2ActionWearDone;
-                } else {
-                    i11 = R.string.Gift2ActionWearOffDone;
-                }
-                r3Var.q2(r3Var.f51075d1, AndroidUtilities.replaceTags(LocaleController.formatString(i11, r3Var.D1())), true);
-                return;
-            default:
-                zh.r3 r3Var2 = ((zh.c2) obj).T;
-                TL_stars.SavedStarGift I1 = r3Var2.I1(z11);
-                if (I1 != null) {
-                    r3Var2.f51073c1 = true;
-                    r3Var2.l2(I1, r3Var2.E0);
-                } else {
-                    TL_stars.TL_starGiftUnique J1 = r3Var2.J1(z11);
-                    if (J1 != null) {
-                        r3Var2.f51073c1 = true;
-                        r3Var2.j2(J1.slug, J1, r3Var2.E0);
-                    }
-                }
-                r3Var2.S0 = -1;
-                sc scVar = sc.f29095w;
-                if (scVar != null) {
-                    scVar.c(0L, false);
-                    return;
-                }
-                return;
+    public final boolean a(int i10, int i11) {
+        return b(i10, i11);
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        MessageObject messageObject;
+        xn0 xn0Var = this.f28871k;
+        if (i10 >= 0 && i11 >= 0) {
+            if (i10 == this.f28866c && i11 == xn0Var.f30971s) {
+                return true;
+            }
+            if (i10 == this.d && i11 == xn0Var.f30973x) {
+                return true;
+            }
         }
+        MessageObject messageObject2 = null;
+        int i12 = this.e;
+        if (i10 >= i12 && i10 < this.f28867f) {
+            messageObject = (MessageObject) this.f28868g.get(i10 - i12);
+        } else {
+            int i13 = this.h;
+            if (i10 >= i13 && i10 < this.f28869i) {
+                messageObject = (MessageObject) this.f28870j.get(i10 - i13);
+            } else {
+                messageObject = null;
+            }
+        }
+        int i14 = xn0Var.v;
+        if (i11 >= i14 && i11 < xn0Var.f30972w) {
+            messageObject2 = (MessageObject) xn0Var.e.get(i11 - i14);
+        } else {
+            int i15 = xn0Var.f30974y;
+            if (i11 >= i15 && i11 < xn0Var.E) {
+                messageObject2 = (MessageObject) xn0Var.f30968f.get(i11 - i15);
+            }
+        }
+        if (messageObject2 != null && messageObject != null && messageObject2.getDocument() != null && messageObject.getDocument() != null && messageObject2.getDocument().f18922id == messageObject.getDocument().f18922id) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f28871k.f30970r;
+    }
+
+    @Override
+    public final int e() {
+        return this.f28865b;
     }
 }

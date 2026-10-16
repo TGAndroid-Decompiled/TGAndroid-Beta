@@ -1,59 +1,23 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class xl0 implements TextWatcher {
-    public final int f41894a;
-    public final PasscodeActivity f41895b;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class xl0 extends FrameLayout {
+    public final org.telegram.ui.Components.bk0 f41595a;
 
-    public xl0(PasscodeActivity passcodeActivity, int i10) {
-        this.f41894a = i10;
-        this.f41895b = passcodeActivity;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10 = this.f41894a;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f41894a) {
-            case 0:
-                PasscodeActivity passcodeActivity = this.f41895b;
-                sl0 sl0Var = passcodeActivity.S;
-                if (passcodeActivity.R) {
-                    passcodeActivity.f32177n.removeCallbacks(sl0Var);
-                    sl0Var.run();
-                    return;
-                }
-                return;
-            default:
-                PasscodeActivity passcodeActivity2 = this.f41895b;
-                sl0 sl0Var2 = passcodeActivity2.S;
-                if (passcodeActivity2.R) {
-                    passcodeActivity2.f32177n.removeCallbacks(sl0Var2);
-                    sl0Var2.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f41894a;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public xl0(Context context) {
+        super(context);
+        ?? imageView = new ImageView(context);
+        this.f41595a = imageView;
+        imageView.setOnClickListener(new t60(this, 13));
+        int dp = AndroidUtilities.dp(120.0f);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(dp, dp);
+        layoutParams.gravity = 1;
+        addView((View) imageView, layoutParams);
+        setPadding(0, AndroidUtilities.dp(32.0f), 0, 0);
+        setLayoutParams(new s4.o0(-1, -2));
     }
 }

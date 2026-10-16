@@ -23,7 +23,7 @@ import com.google.android.gms.common.api.internal.BasePendingResult;
 import com.google.android.gms.internal.clearcut.f2;
 import e0.n0;
 import java.util.concurrent.atomic.AtomicInteger;
-import m.z0;
+import m.b1;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
@@ -32,9 +32,9 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.aa;
 public abstract class d {
-    public static int f2583a;
-    public static AtomicInteger f2584b;
-    public static boolean f2585c;
+    public static int f2587a;
+    public static AtomicInteger f2588b;
+    public static boolean f2589c;
     public static int d;
     public static f2 e;
 
@@ -44,10 +44,10 @@ public abstract class d {
         if (e7 == null) {
             return;
         }
-        if (f2584b == null) {
-            f2584b = new AtomicInteger(0);
+        if (f2588b == null) {
+            f2588b = new AtomicInteger(0);
         }
-        f2584b.incrementAndGet();
+        f2588b.incrementAndGet();
         double d10 = f7;
         n6.l.e("Must be called from the main thread.");
         if (!e7.w()) {
@@ -65,7 +65,7 @@ public abstract class d {
     }
 
     public static void C() {
-        int i10 = f2583a;
+        int i10 = f2587a;
         if (i10 == 0) {
             PhotoViewer.t1().i3();
         } else if (i10 == 1) {
@@ -90,13 +90,13 @@ public abstract class d {
     }
 
     public static Person E(n0 n0Var) {
-        Person.Builder name = new Person.Builder().setName(n0Var.f8252a);
-        IconCompat iconCompat = n0Var.f8253b;
+        Person.Builder name = new Person.Builder().setName(n0Var.f8255a);
+        IconCompat iconCompat = n0Var.f8256b;
         Icon icon = null;
         if (iconCompat != null) {
             icon = iconCompat.m(null);
         }
-        return name.setIcon(icon).setUri(n0Var.f8254c).setKey(n0Var.d).setBot(n0Var.e).setImportant(n0Var.f8255f).build();
+        return name.setIcon(icon).setUri(n0Var.f8257c).setKey(n0Var.d).setBot(n0Var.e).setImportant(n0Var.f8258f).build();
     }
 
     public static void a(Notification.Builder builder, Person person) {
@@ -105,14 +105,14 @@ public abstract class d {
 
     public static void b(int i10) {
         d6.a c10;
-        f2583a = i10;
-        if (!f2585c) {
+        f2587a = i10;
+        if (!f2589c) {
             try {
                 if (f() == null || (c10 = d6.a.c(f())) == null) {
                     return;
                 }
                 c10.b().a(new com.google.android.gms.internal.cast.a(i10));
-                f2585c = true;
+                f2589c = true;
             } catch (Exception e7) {
                 FileLog.e(e7);
             }
@@ -165,7 +165,7 @@ public abstract class d {
                 d6.a c11 = d6.a.c(f());
                 if (c11 != null && (c10 = c11.b().c()) != null && c10.b()) {
                     n6.l.e("Must be called from the main thread.");
-                    return c10.f6398j;
+                    return c10.f6401j;
                 }
             } catch (Exception e7) {
                 FileLog.e(e7);
@@ -232,8 +232,8 @@ public abstract class d {
         return viewConfiguration.getScaledHoverSlop();
     }
 
-    public static PrecomputedText.Params p(z0 z0Var) {
-        return z0Var.getTextMetricsParams();
+    public static PrecomputedText.Params p(b1 b1Var) {
+        return b1Var.getTextMetricsParams();
     }
 
     public static int q(Object obj) {
@@ -279,10 +279,10 @@ public abstract class d {
         if (e7 == null) {
             return;
         }
-        if (f2584b == null) {
-            f2584b = new AtomicInteger(0);
+        if (f2588b == null) {
+            f2588b = new AtomicInteger(0);
         }
-        f2584b.incrementAndGet();
+        f2588b.incrementAndGet();
         e7.q(new c6.p(j10)).b(new aa(3));
     }
 
@@ -295,10 +295,10 @@ public abstract class d {
         BasePendingResult basePendingResult2;
         e6.h e7 = e();
         if (e7 != null && z10 != e7.m()) {
-            if (f2584b == null) {
-                f2584b = new AtomicInteger(0);
+            if (f2588b == null) {
+                f2588b = new AtomicInteger(0);
             }
-            f2584b.incrementAndGet();
+            f2588b.incrementAndGet();
             if (z10) {
                 n6.l.e("Must be called from the main thread.");
                 if (!e7.w()) {
@@ -333,10 +333,10 @@ public abstract class d {
         if (e7 == null) {
             return;
         }
-        if (f2584b == null) {
-            f2584b = new AtomicInteger(0);
+        if (f2588b == null) {
+            f2588b = new AtomicInteger(0);
         }
-        f2584b.incrementAndGet();
+        f2588b.incrementAndGet();
         double d10 = f7;
         n6.l.e("Must be called from the main thread.");
         if (!e7.w()) {

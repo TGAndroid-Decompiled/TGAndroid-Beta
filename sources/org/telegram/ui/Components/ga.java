@@ -7,9 +7,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 public final class ga implements Runnable {
-    public boolean f25241a;
-    public int f25242b;
-    public int f25243c;
+    public boolean f24933a;
+    public int f24934b;
+    public int f24935c;
     public final ha d;
 
     public ga(ha haVar) {
@@ -21,47 +21,47 @@ public final class ga implements Runnable {
         int i10;
         Bitmap bitmap;
         ha haVar = this.d;
-        Paint paint = haVar.f25602w;
-        if (haVar.f25587f == null) {
-            haVar.f25587f = new Bitmap[2];
-            haVar.f25589i = new Canvas[2];
+        Paint paint = haVar.f25244w;
+        if (haVar.f25229f == null) {
+            haVar.f25229f = new Bitmap[2];
+            haVar.f25231i = new Canvas[2];
         }
-        int i11 = (int) (this.f25242b / 15.0f);
+        int i11 = (int) (this.f24934b / 15.0f);
         for (int i12 = 0; i12 < 2; i12++) {
             if (i12 == 0) {
-                i10 = haVar.f25599s;
+                i10 = haVar.f25241s;
             } else {
-                i10 = this.f25243c;
+                i10 = this.f24935c;
             }
             int i13 = (int) (i10 / 15.0f);
-            Bitmap bitmap2 = haVar.f25587f[i12];
-            if (bitmap2 != null && ((bitmap2.getHeight() != i13 || haVar.f25587f[i12].getWidth() != i11) && (bitmap = haVar.f25587f[i12]) != null)) {
+            Bitmap bitmap2 = haVar.f25229f[i12];
+            if (bitmap2 != null && ((bitmap2.getHeight() != i13 || haVar.f25229f[i12].getWidth() != i11) && (bitmap = haVar.f25229f[i12]) != null)) {
                 bitmap.recycle();
-                haVar.f25587f[i12] = null;
+                haVar.f25229f[i12] = null;
             }
             System.currentTimeMillis();
-            Bitmap[] bitmapArr = haVar.f25587f;
+            Bitmap[] bitmapArr = haVar.f25229f;
             if (bitmapArr[i12] == null) {
                 try {
                     bitmapArr[i12] = Bitmap.createBitmap(i11, i13, Bitmap.Config.ARGB_8888);
-                    haVar.f25589i[i12] = new Canvas(haVar.f25587f[i12]);
-                    haVar.f25589i[i12].scale(i11 / haVar.e[i12].getWidth(), i13 / haVar.e[i12].getHeight());
+                    haVar.f25231i[i12] = new Canvas(haVar.f25229f[i12]);
+                    haVar.f25231i[i12].scale(i11 / haVar.e[i12].getWidth(), i13 / haVar.e[i12].getHeight());
                 } catch (Throwable th2) {
                     FileLog.e(th2);
                 }
             }
             if (i12 == 1) {
-                haVar.f25587f[i12].eraseColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19901d6, haVar.f25604y));
+                haVar.f25229f[i12].eraseColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19601d6, haVar.f25246y));
             } else {
-                haVar.f25587f[i12].eraseColor(0);
+                haVar.f25229f[i12].eraseColor(0);
             }
             paint.setAlpha(255);
             Utilities.stackBlurBitmap(haVar.e[i12], 15);
-            Canvas canvas = haVar.f25589i[i12];
+            Canvas canvas = haVar.f25231i[i12];
             if (canvas != null) {
                 canvas.drawBitmap(haVar.e[i12], 0.0f, 0.0f, paint);
             }
-            if (this.f25241a) {
+            if (this.f24933a) {
                 return;
             }
         }

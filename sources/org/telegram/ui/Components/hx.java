@@ -13,7 +13,7 @@ public final class hx extends iz {
     public final void setTranslationY(float f7) {
         if (f7 != getTranslationY()) {
             super.setTranslationY(f7);
-            this.H.f31080x0.invalidate();
+            this.H.f30773x0.invalidate();
         }
     }
 }

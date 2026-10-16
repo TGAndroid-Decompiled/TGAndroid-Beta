@@ -14,34 +14,34 @@ import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.cr;
 import org.telegram.ui.Components.z9;
-import w7.a6;
+import w7.z5;
 public final class o0 extends FrameLayout {
-    public static final int f10690f = 0;
-    public final c6 f10691a;
-    public final z9 f10692b;
-    public final TextView f10693c;
+    public static final int f10694f = 0;
+    public final c6 f10695a;
+    public final z9 f10696b;
+    public final TextView f10697c;
     public cr d;
     public p0 e;
 
     public o0(Context context, c6 c6Var) {
         super(context);
-        this.f10691a = c6Var;
+        this.f10695a = c6Var;
         z9 z9Var = new z9(context);
-        this.f10692b = z9Var;
-        addView(z9Var, a6.d(30.0f, 30));
+        this.f10696b = z9Var;
+        addView(z9Var, z5.d(30.0f, 30));
         TextView textView = new TextView(context);
-        this.f10693c = textView;
+        this.f10697c = textView;
         textView.setTextSize(1, 14.0f);
-        addView(textView, a6.a(-2.0f, 36.0f, 0.0f, 14.0f, 0.0f, -2, 16));
+        addView(textView, z5.a(-2.0f, 36.0f, 0.0f, 14.0f, 0.0f, -2, 16));
         a();
     }
 
     public final void a() {
         int dp = AndroidUtilities.dp(28.0f);
-        int i10 = g6.f19894ci;
-        c6 c6Var = this.f10691a;
+        int i10 = g6.f19594ci;
+        c6 c6Var = this.f10695a;
         setBackground(g6.c0(dp, g6.w0(i10, c6Var)));
-        this.f10693c.setTextColor(g6.w0(g6.G6, c6Var));
+        this.f10697c.setTextColor(g6.w0(g6.G6, c6Var));
         cr crVar = this.d;
         if (crVar != null) {
             if (this.e.d == 7) {
@@ -57,26 +57,26 @@ public final class o0 extends FrameLayout {
     public void setData(p0 p0Var) {
         float f7;
         this.e = p0Var;
-        z9 z9Var = this.f10692b;
+        z9 z9Var = this.f10696b;
         z9Var.getImageReceiver().clearImage();
         int i10 = p0Var.d;
-        String str = p0Var.f10701c;
-        TextView textView = this.f10693c;
-        c6 c6Var = this.f10691a;
+        String str = p0Var.f10705c;
+        TextView textView = this.f10697c;
+        c6 c6Var = this.f10695a;
         if (i10 == 7) {
             cr M = g6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
             this.d = M;
             int dp = AndroidUtilities.dp(16.0f);
             int dp2 = AndroidUtilities.dp(16.0f);
             M.e = dp;
-            M.f24194f = dp2;
+            M.f23879f = dp2;
             g6.w1(this.d, g6.w0(g6.Oh, c6Var), false);
             g6.w1(this.d, g6.w0(g6.Sh, c6Var), true);
             z9Var.setImageDrawable(this.d);
             textView.setText(str);
             return;
         }
-        cr M2 = g6.M(AndroidUtilities.dp(32.0f), p0Var.f10699a);
+        cr M2 = g6.M(AndroidUtilities.dp(32.0f), p0Var.f10703a);
         this.d = M2;
         int i11 = g6.Oh;
         g6.w1(M2, g6.w0(i11, c6Var), false);
@@ -84,15 +84,15 @@ public final class o0 extends FrameLayout {
         int i12 = g6.Sh;
         g6.w1(crVar, g6.w0(i12, c6Var), true);
         if (p0Var.d == 4) {
-            TLObject tLObject = p0Var.f10702f;
+            TLObject tLObject = p0Var.f10706f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f19363id == user.f19363id) {
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f19063id == user.f19063id) {
                     cr M3 = g6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp3 = AndroidUtilities.dp(16.0f);
                     int dp4 = AndroidUtilities.dp(16.0f);
                     M3.e = dp3;
-                    M3.f24194f = dp4;
+                    M3.f23879f = dp4;
                     g6.w1(M3, g6.w0(i11, c6Var), false);
                     g6.w1(M3, g6.w0(i12, c6Var), true);
                     z9Var.setImageDrawable(M3);

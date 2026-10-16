@@ -17,7 +17,7 @@ public final class o extends i1 {
             kd.c cVar = mVar.d;
             kotlin.jvm.internal.i.c(cVar, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<*>");
             ge.h hVar = (ge.h) cVar;
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ge.h.f10115n;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ge.h.f10119n;
             loop0: while (true) {
                 Object obj = atomicReferenceFieldUpdater.get(hVar);
                 a6.i iVar = ge.a.d;

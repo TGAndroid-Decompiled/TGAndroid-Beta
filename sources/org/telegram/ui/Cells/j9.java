@@ -7,19 +7,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.ui.Components.mm0;
 public final class j9 implements Runnable {
-    public final ba f21419a;
+    public final ba f21123a;
 
     public j9(ba baVar) {
-        this.f21419a = baVar;
+        this.f21123a = baVar;
     }
 
     @Override
     public final void run() {
         int i10;
-        ba baVar = this.f21419a;
+        ba baVar = this.f21123a;
         g gVar = baVar.m0;
         Rect rect = baVar.B;
-        r9 r9Var = baVar.f20960a0;
+        r9 r9Var = baVar.f20656a0;
         w9 w9Var = baVar.X;
         if (w9Var != null && baVar.C != null) {
             w9 w9Var2 = baVar.W;
@@ -29,8 +29,8 @@ public final class j9 implements Runnable {
             if (mm0Var != null) {
                 mm0Var.I0(false);
             }
-            int i12 = baVar.f20988s;
-            int i13 = baVar.f20989t;
+            int i12 = baVar.f20684s;
+            int i13 = baVar.f20685t;
             if (!rect.isEmpty()) {
                 int i14 = rect.right;
                 if (i12 > i14) {
@@ -50,28 +50,28 @@ public final class j9 implements Runnable {
                 }
             }
             int i18 = i12;
-            int k10 = baVar.k(i18, i13, baVar.f20963c, baVar.d, w9Var, true);
+            int k10 = baVar.k(i18, i13, baVar.f20659c, baVar.d, w9Var, true);
             if (k10 >= s10.length()) {
                 baVar.i(k10, r9Var, true);
-                Layout layout = r9Var.f21770b;
+                Layout layout = r9Var.f21467b;
                 if (layout == null) {
                     baVar.v = -1;
-                    baVar.f20990u = -1;
+                    baVar.f20686u = -1;
                     return;
                 }
                 int lineCount = layout.getLineCount() - 1;
-                float f7 = i18 - baVar.f20963c;
-                if (f7 < r9Var.f21770b.getLineRight(lineCount) + AndroidUtilities.dp(4.0f) && f7 > r9Var.f21770b.getLineLeft(lineCount)) {
+                float f7 = i18 - baVar.f20659c;
+                if (f7 < r9Var.f21467b.getLineRight(lineCount) + AndroidUtilities.dp(4.0f) && f7 > r9Var.f21467b.getLineLeft(lineCount)) {
                     k10 = s10.length() - 1;
                 }
             }
             if (k10 >= 0 && k10 < s10.length() && s10.charAt(k10) != '\n') {
-                int i19 = baVar.f20963c;
+                int i19 = baVar.f20659c;
                 int i20 = baVar.d;
                 baVar.f(false);
                 baVar.C.setVisibility(0);
                 baVar.L(w9Var, w9Var2);
-                baVar.f20990u = k10;
+                baVar.f20686u = k10;
                 baVar.v = k10;
                 if (s10 instanceof Spanned) {
                     Spanned spanned = (Spanned) s10;
@@ -85,7 +85,7 @@ public final class j9 implements Runnable {
                             int spanStart = spanned.getSpanStart(emojiSpan);
                             int spanEnd = spanned.getSpanEnd(emojiSpan);
                             if (k10 >= spanStart && k10 <= spanEnd) {
-                                baVar.f20990u = spanStart;
+                                baVar.f20686u = spanStart;
                                 baVar.v = spanEnd;
                                 break;
                             }
@@ -104,7 +104,7 @@ public final class j9 implements Runnable {
                                 int spanStart2 = spanned.getSpanStart(b6Var);
                                 int spanEnd2 = spanned.getSpanEnd(b6Var);
                                 if (k10 >= spanStart2 && k10 <= spanEnd2) {
-                                    baVar.f20990u = spanStart2;
+                                    baVar.f20686u = spanStart2;
                                     baVar.v = spanEnd2;
                                     break;
                                 }
@@ -115,20 +115,20 @@ public final class j9 implements Runnable {
                 } else {
                     i10 = 1;
                 }
-                if (baVar.f20990u == baVar.v) {
+                if (baVar.f20686u == baVar.v) {
                     while (true) {
-                        int i23 = baVar.f20990u;
+                        int i23 = baVar.f20686u;
                         if (i23 <= 0 || !ba.y(s10.charAt(i23 - 1))) {
                             break;
                         }
-                        baVar.f20990u--;
+                        baVar.f20686u--;
                     }
                     while (baVar.v < s10.length() && ba.y(s10.charAt(baVar.v))) {
                         baVar.v++;
                     }
                 }
-                baVar.f20959a = i19;
-                baVar.f20961b = i20;
+                baVar.f20655a = i19;
+                baVar.f20657b = i20;
                 baVar.W = w9Var;
                 try {
                     baVar.C.performHapticFeedback(0, i10);
@@ -141,18 +141,18 @@ public final class j9 implements Runnable {
                 if (w9Var2 != null) {
                     w9Var2.invalidate();
                 }
-                w7.w5 w5Var = baVar.D;
-                if (w5Var != null) {
-                    w5Var.a(true);
+                w7.j0 j0Var = baVar.D;
+                if (j0Var != null) {
+                    j0Var.a(true);
                 }
-                baVar.f20972i = true;
+                baVar.f20668i = true;
                 baVar.R = true;
-                baVar.f20976k = true;
-                baVar.f20969g = 0.0f;
-                baVar.f20967f = 0.0f;
+                baVar.f20672k = true;
+                baVar.f20665g = 0.0f;
+                baVar.f20663f = 0.0f;
                 baVar.F();
             }
-            baVar.f20994z = false;
+            baVar.f20690z = false;
             baVar.e = false;
         }
     }

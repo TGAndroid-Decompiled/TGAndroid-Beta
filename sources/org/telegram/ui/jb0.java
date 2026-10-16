@@ -1,13 +1,22 @@
 package org.telegram.ui;
-public final class jb0 extends org.telegram.ui.Components.d10 {
-    @Override
-    public final void b() {
-        setVisibility(8);
+
+import android.view.View;
+public final class jb0 implements View.OnAttachStateChangeListener {
+    public final LaunchActivity f37008a;
+
+    public jb0(LaunchActivity launchActivity) {
+        this.f37008a = launchActivity;
     }
 
     @Override
-    public final void c(boolean z10) {
-        setVisibility(0);
-        super.c(z10);
+    public final void onViewAttachedToWindow(View view) {
+        LaunchActivity launchActivity = this.f37008a;
+        launchActivity.getWindowManager().addCrossWindowBlurEnabledListener(launchActivity.f31812d1);
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        LaunchActivity launchActivity = this.f37008a;
+        launchActivity.getWindowManager().removeCrossWindowBlurEnabledListener(launchActivity.f31812d1);
     }
 }

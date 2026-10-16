@@ -17,45 +17,45 @@ public final class l2 extends FrameLayout {
     public ValueAnimator G;
     public k2 H;
     public final zf.c I;
-    public final View[] f50782a;
-    public final Matrix f50783b;
-    public final float[] f50784c;
+    public final View[] f50783a;
+    public final Matrix f50784b;
+    public final float[] f50785c;
     public float d;
     public float e;
-    public boolean f50785f;
+    public boolean f50786f;
     public final float[][] h;
-    public final float[] f50786n;
-    public final float[] f50787r;
-    public final Integer[] f50788s;
+    public final float[] f50787n;
+    public final float[] f50788r;
+    public final Integer[] f50789s;
     public final HashSet v;
-    public final HashMap f50789w;
-    public final HashMap f50790x;
-    public final float[] f50791y;
+    public final HashMap f50790w;
+    public final HashMap f50791x;
+    public final float[] f50792y;
 
     public l2(Context context, View[] viewArr) {
         super(context);
-        this.f50783b = new Matrix();
+        this.f50784b = new Matrix();
         float[] fArr = new float[16];
-        this.f50784c = fArr;
+        this.f50785c = fArr;
         this.d = 0.0f;
         this.e = 0.0f;
-        this.f50785f = true;
+        this.f50786f = true;
         this.h = new float[][]{new float[]{-1.0f, 0.0f, 0.0f, 0.0f}, new float[]{1.0f, 0.0f, 0.0f, 0.0f}, new float[]{0.0f, 1.0f, 0.0f, 0.0f}, new float[]{0.0f, -1.0f, 0.0f, 0.0f}, new float[]{0.0f, 0.0f, -1.0f, 0.0f}, new float[]{0.0f, 0.0f, 1.0f, 0.0f}};
-        this.f50786n = new float[4];
-        this.f50787r = new float[6];
-        this.f50788s = new Integer[]{0, 1, 2, 3, 4, 5};
+        this.f50787n = new float[4];
+        this.f50788r = new float[6];
+        this.f50789s = new Integer[]{0, 1, 2, 3, 4, 5};
         this.v = new HashSet();
-        this.f50789w = new HashMap();
-        this.f50790x = new HashMap();
-        this.f50791y = new float[6];
+        this.f50790w = new HashMap();
+        this.f50791x = new HashMap();
+        this.f50792y = new float[6];
         this.F = -1;
         this.I = new zf.c(this, 10);
         setClipToOutline(false);
         setClipToPadding(false);
         android.opengl.Matrix.setIdentityM(fArr, 0);
-        this.f50782a = viewArr;
+        this.f50783a = viewArr;
         for (View view : viewArr) {
-            addView(view, w7.a6.e(108, 108, 17));
+            addView(view, w7.z5.e(108, 108, 17));
         }
     }
 
@@ -124,11 +124,11 @@ public final class l2 extends FrameLayout {
         if (Math.abs(this.d) > 1.0E-4f || Math.abs(this.e) > 1.0E-4f) {
             float[] fArr = new float[16];
             b(1.0f, 0.0f, this.d, fArr);
-            float[] fArr2 = this.f50784c;
+            float[] fArr2 = this.f50785c;
             d(fArr, fArr2, fArr2);
             b(0.0f, 1.0f, this.e, fArr);
             d(fArr, fArr2, fArr2);
-            if (this.f50785f) {
+            if (this.f50786f) {
                 this.d *= 0.96f;
                 this.e *= 0.96f;
             }
@@ -156,8 +156,8 @@ public final class l2 extends FrameLayout {
             } else {
                 z10 = false;
             }
-            rectF = (RectF) this.f50790x.get(Integer.valueOf(indexOfChild));
-            Integer num = (Integer) this.f50789w.get(Integer.valueOf(indexOfChild));
+            rectF = (RectF) this.f50791x.get(Integer.valueOf(indexOfChild));
+            Integer num = (Integer) this.f50790w.get(Integer.valueOf(indexOfChild));
             if (num != null) {
                 indexOfChild = num.intValue();
             }
@@ -172,7 +172,7 @@ public final class l2 extends FrameLayout {
                 q2Var.d.setAlpha(f15);
                 q2Var.e.setAlpha(f15);
                 if (!z10 || this.E >= 1.0f) {
-                    this.f50782a[indexOfChild].setVisibility(8);
+                    this.f50783a[indexOfChild].setVisibility(8);
                 }
             }
             z11 = true;
@@ -182,8 +182,8 @@ public final class l2 extends FrameLayout {
             z11 = false;
         }
         float[][] fArr = this.h;
-        android.opengl.Matrix.multiplyMV(this.f50786n, 0, this.f50784c, 0, fArr[indexOfChild], 0);
-        float f16 = this.f50786n[2];
+        android.opengl.Matrix.multiplyMV(this.f50787n, 0, this.f50785c, 0, fArr[indexOfChild], 0);
+        float f16 = this.f50787n[2];
         if (f16 < 0.001f) {
             return false;
         }
@@ -270,7 +270,7 @@ public final class l2 extends FrameLayout {
         }
         fArr3[i10] = 0.0f;
         fArr4[i10] = 0.0f;
-        float f17 = this.f50791y[indexOfChild];
+        float f17 = this.f50792y[indexOfChild];
         if (f17 != 0.0f) {
             double radians = (float) Math.toRadians(f17);
             float cos = (float) Math.cos(radians);
@@ -294,11 +294,11 @@ public final class l2 extends FrameLayout {
         float[] fArr5 = new float[i11];
         float[] fArr6 = new float[i11];
         float[] fArr7 = new float[i11];
-        android.opengl.Matrix.multiplyMV(fArr5, 0, this.f50784c, 0, fArr2, 0);
+        android.opengl.Matrix.multiplyMV(fArr5, 0, this.f50785c, 0, fArr2, 0);
         float[] fArr8 = fArr5;
-        android.opengl.Matrix.multiplyMV(fArr6, 0, this.f50784c, 0, fArr3, 0);
+        android.opengl.Matrix.multiplyMV(fArr6, 0, this.f50785c, 0, fArr3, 0);
         float[] fArr9 = fArr6;
-        android.opengl.Matrix.multiplyMV(fArr7, 0, this.f50784c, 0, fArr4, 0);
+        android.opengl.Matrix.multiplyMV(fArr7, 0, this.f50785c, 0, fArr4, 0);
         float f24 = 64.0f * dp2;
         int i12 = 2;
         int i13 = 1;
@@ -368,7 +368,7 @@ public final class l2 extends FrameLayout {
             fArr17[7] = f33;
             AndroidUtilities.lerp(fArr17, fArr14, this.E, fArr14);
         }
-        Matrix matrix = this.f50783b;
+        Matrix matrix = this.f50784b;
         matrix.reset();
         matrix.setPolyToPoly(fArr16, 0, fArr14, 0, 4);
         canvas.save();
@@ -384,15 +384,15 @@ public final class l2 extends FrameLayout {
         }
         AndroidUtilities.removeFromParent(frameLayout);
         int childCount = getChildCount();
-        addView(frameLayout, w7.a6.e(64, 64, 17));
+        addView(frameLayout, w7.z5.e(64, 64, 17));
         this.v.add(Integer.valueOf(i10));
-        this.f50789w.put(Integer.valueOf(childCount), Integer.valueOf(i10));
+        this.f50790w.put(Integer.valueOf(childCount), Integer.valueOf(i10));
     }
 
     @Override
     public final int getChildDrawingOrder(int i10, int i11) {
         if (i11 < 6) {
-            Integer[] numArr = this.f50788s;
+            Integer[] numArr = this.f50789s;
             if (i11 < numArr.length) {
                 return numArr[i11].intValue();
             }

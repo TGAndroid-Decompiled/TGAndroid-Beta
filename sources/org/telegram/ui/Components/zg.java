@@ -1,26 +1,26 @@
 package org.telegram.ui.Components;
 public final class zg {
-    public static final zg f31861a;
-    public static final zg f31862b;
-    public static final zg f31863c;
+    public static final zg f31554a;
+    public static final zg f31555b;
+    public static final zg f31556c;
     public static final zg d;
     public static final zg e;
-    public static final zg f31864f;
+    public static final zg f31557f;
     public static final zg[] h;
 
     static {
         ?? r02 = new Enum("VOICE", 0);
-        f31861a = r02;
+        f31554a = r02;
         ?? r12 = new Enum("VIDEO", 1);
-        f31862b = r12;
+        f31555b = r12;
         ?? r32 = new Enum("STICKER", 2);
-        f31863c = r32;
+        f31556c = r32;
         ?? r52 = new Enum("KEYBOARD", 3);
         d = r52;
         ?? r72 = new Enum("SMILE", 4);
         e = r72;
         ?? r92 = new Enum("GIF", 5);
-        f31864f = r92;
+        f31557f = r92;
         h = new zg[]{r02, r12, r32, r52, r72, r92};
     }
 

@@ -8,10 +8,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class kg implements Runnable {
-    public final ChatActivityEnterView f26702a;
+    public final ChatActivityEnterView f26384a;
 
     public kg(ChatActivityEnterView chatActivityEnterView) {
-        this.f26702a = chatActivityEnterView;
+        this.f26384a = chatActivityEnterView;
     }
 
     @Override
@@ -21,23 +21,23 @@ public final class kg implements Runnable {
         boolean z10;
         boolean z11;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f26702a;
+        ChatActivityEnterView chatActivityEnterView = this.f26384a;
         cf cfVar = chatActivityEnterView.H3;
         Activity activity = chatActivityEnterView.O2;
         pg pgVar = chatActivityEnterView.Z2;
         if (pgVar != null && activity != null) {
-            pgVar.G();
+            pgVar.H();
             chatActivityEnterView.J3 = true;
             chatActivityEnterView.I3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22914k1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22614k1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f22914k1.setTranslationY(0.0f);
+                chatActivityEnterView.f22614k1.setTranslationY(0.0f);
             }
             SendMessageChatArguments sendMessageChatArguments = null;
-            chatActivityEnterView.f22867c3 = null;
-            chatActivityEnterView.f22860b3 = null;
-            if (chatActivityEnterView.f22865c1) {
+            chatActivityEnterView.f22567c3 = null;
+            chatActivityEnterView.f22560b3 = null;
+            if (chatActivityEnterView.f22565c1) {
                 if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                     z10 = true;
                 } else {
@@ -56,7 +56,7 @@ public final class kg implements Runnable {
                     }
                     if (!chatActivityEnterView.F2) {
                         chatActivityEnterView.F2 = true;
-                        chatActivityEnterView.J1(0, true);
+                        chatActivityEnterView.I1(0, true);
                         ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.N1;
                         if (recordCircle != null) {
                             recordCircle.H = 0.5f;
@@ -64,12 +64,12 @@ public final class kg implements Runnable {
                         }
                         yg ygVar = chatActivityEnterView.Y0;
                         if (ygVar != null) {
-                            ygVar.f31564a = false;
+                            ygVar.f31248a = false;
                             ygVar.d = 0L;
                             ygVar.e = 0L;
                             ygVar.h = 0L;
-                            ygVar.f31568n = 0L;
-                            ygVar.f31565b = false;
+                            ygVar.f31252n = 0L;
+                            ygVar.f31249b = false;
                             return;
                         }
                         return;
@@ -94,11 +94,11 @@ public final class kg implements Runnable {
             } else if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 3);
             } else {
-                chatActivityEnterView.Z2.X0(1);
+                chatActivityEnterView.Z2.Y0(1);
                 chatActivityEnterView.D2 = -1.0f;
                 pg pgVar2 = chatActivityEnterView.Z2;
                 if (pgVar2 != null) {
-                    storyItem = pgVar2.a1();
+                    storyItem = pgVar2.b1();
                 } else {
                     storyItem = null;
                 }
@@ -114,7 +114,7 @@ public final class kg implements Runnable {
                 }
                 mediaController.startRecording(i11, j10, messageObject, threadMessage, storyItem, i12, true, sendMessageChatArguments, chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
                 chatActivityEnterView.F2 = true;
-                chatActivityEnterView.J1(0, true);
+                chatActivityEnterView.I1(0, true);
                 yg ygVar2 = chatActivityEnterView.Y0;
                 if (ygVar2 != null) {
                     ygVar2.a(0L);

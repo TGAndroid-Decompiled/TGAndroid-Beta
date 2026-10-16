@@ -3,13 +3,13 @@ package i2;
 import android.content.Context;
 import bi.p5;
 public class k {
-    public final Context f11060a;
-    public final k0.b f11061b;
-    public int f11062c = 0;
+    public final Context f11064a;
+    public final k6.h f11065b;
+    public int f11066c = 0;
 
     public k(Context context) {
-        this.f11060a = context;
-        this.f11061b = new k0.b(context, false);
+        this.f11064a = context;
+        this.f11065b = new k6.h(context, 1);
     }
 
     public k2.s0 a(Context context) {

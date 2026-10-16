@@ -15,45 +15,45 @@ import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.gl0;
 public final class s0 extends FrameLayout {
-    public final Drawable f853a;
-    public final Rect f854b;
-    public final Paint f855c;
+    public final Drawable f857a;
+    public final Rect f858b;
+    public final Paint f859c;
     public final int[] d;
     public final HashMap e;
-    public float f856f;
+    public float f860f;
     public float h;
-    public float f857n;
-    public float f858r;
-    public float f859s;
+    public float f861n;
+    public float f862r;
+    public float f863s;
     public final Path v;
-    public final t0 f860w;
+    public final t0 f864w;
 
     public s0(t0 t0Var, Context context) {
         super(context);
-        this.f860w = t0Var;
+        this.f864w = t0Var;
         Rect rect = new Rect();
-        this.f854b = rect;
+        this.f858b = rect;
         Paint paint = new Paint(1);
-        this.f855c = paint;
+        this.f859c = paint;
         this.d = new int[4];
         this.e = new HashMap();
-        this.f856f = 0.0f;
+        this.f860f = 0.0f;
         this.h = 0.0f;
-        this.f857n = 1.0f;
-        this.f858r = 0.0f;
-        this.f859s = 0.0f;
+        this.f861n = 1.0f;
+        this.f862r = 0.0f;
+        this.f863s = 0.0f;
         this.v = new Path();
         Drawable mutate = context.getDrawable(R.drawable.reactions_bubble_shadow).mutate();
-        this.f853a = mutate;
+        this.f857a = mutate;
         int dp = AndroidUtilities.dp(7.0f);
         rect.bottom = dp;
         rect.right = dp;
         rect.top = dp;
         rect.left = dp;
         int i10 = g6.Td;
-        c6 c6Var = t0Var.f879s;
+        c6 c6Var = t0Var.f883s;
         mutate.setColorFilter(new PorterDuffColorFilter(g6.w0(i10, c6Var), PorterDuff.Mode.MULTIPLY));
-        if (t0Var.f884y == 2) {
+        if (t0Var.f888y == 2) {
             paint.setColor(i0.a.d(0.13f, -16777216, -1));
         } else {
             paint.setColor(g6.w0(g6.G8, c6Var));
@@ -68,12 +68,12 @@ public final class s0 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        t0 t0Var = this.f860w;
-        gl0 gl0Var = t0Var.f874n;
-        if (t0Var.f884y != 1 && (gl0Var == null || gl0Var.getDelegate() == null || !gl0Var.getDelegate().D())) {
+        t0 t0Var = this.f864w;
+        gl0 gl0Var = t0Var.f878n;
+        if (t0Var.f888y != 1 && (gl0Var == null || gl0Var.getDelegate() == null || !gl0Var.getDelegate().z())) {
             return;
         }
-        t0Var.f873m.f39633f0.invalidate();
+        t0Var.f877m.f39326f0.invalidate();
     }
 
     @Override

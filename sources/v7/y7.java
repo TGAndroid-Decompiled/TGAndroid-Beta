@@ -72,7 +72,7 @@ public abstract class y7 {
         o0.h hVar = null;
         int i13 = Integer.MAX_VALUE;
         for (o0.h hVar2 : hVarArr) {
-            int abs = Math.abs(hVar2.f16437c - i11) * 2;
+            int abs = Math.abs(hVar2.f16130c - i11) * 2;
             if (hVar2.d == z10) {
                 i12 = 0;
             } else {

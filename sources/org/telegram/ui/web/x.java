@@ -1,40 +1,57 @@
 package org.telegram.ui.web;
-public final class x implements Runnable {
-    public final int f41549a;
-    public final b1 f41550b;
-    public final String f41551c;
 
-    public x(b1 b1Var, String str, int i10) {
-        this.f41549a = i10;
-        this.f41550b = b1Var;
-        this.f41551c = str;
+import bi.n9;
+import org.json.JSONObject;
+import org.telegram.messenger.FileLog;
+public final class x implements Runnable {
+    public final int f41245a;
+    public final String[] f41246b;
+    public final int f41247c;
+    public final z0 d;
+    public final n9 e;
+
+    public x(String[] strArr, int i10, z0 z0Var, n9 n9Var, int i11) {
+        this.f41245a = i11;
+        this.f41246b = strArr;
+        this.f41247c = i10;
+        this.d = z0Var;
+        this.e = n9Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f41549a) {
+        switch (this.f41245a) {
             case 0:
-                y0 y0Var = this.f41550b.f41282a;
-                if (y0Var != null) {
-                    y0Var.d(this.f41551c);
-                    return;
+                int i10 = this.f41247c;
+                z0 z0Var = this.d;
+                n9 n9Var = this.e;
+                String[] strArr = this.f41246b;
+                if (strArr[0] != null) {
+                    try {
+                        JSONObject jSONObject = new JSONObject();
+                        jSONObject.put("status", strArr[0]);
+                        c1.w(i10, z0Var, n9Var, "phone_requested", jSONObject);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
                 }
                 return;
             default:
-                b1 b1Var = this.f41550b;
-                b1Var.N = false;
-                b1Var.P = 0L;
-                b1Var.T = false;
-                String str = this.f41551c;
-                b1Var.f41284b = str;
-                b1Var.c();
-                y0 y0Var2 = b1Var.f41282a;
-                if (y0Var2 != null) {
-                    y0Var2.onResume();
-                    b1Var.f41282a.loadUrl(str);
+                String[] strArr2 = this.f41246b;
+                int i11 = this.f41247c;
+                z0 z0Var2 = this.d;
+                n9 n9Var2 = this.e;
+                try {
+                    JSONObject jSONObject2 = new JSONObject();
+                    jSONObject2.put("status", strArr2[0]);
+                    c1.w(i11, z0Var2, n9Var2, "write_access_requested", jSONObject2);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     return;
                 }
-                return;
         }
     }
 }

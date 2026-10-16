@@ -1,6 +1,6 @@
 package bi;
 public interface ob {
-    boolean H0(long j10, int i10, int i11, int i12, pb pbVar);
+    boolean G0(long j10, int i10, int i11, int i12, pb pbVar);
 
     void b(boolean z10);
 

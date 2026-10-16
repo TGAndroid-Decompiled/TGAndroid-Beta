@@ -18,9 +18,9 @@ public final class c70 extends mm0 {
         c70 c70Var = p70Var.V;
         if (this.V2 != View.MeasureSpec.getSize(i11)) {
             this.V2 = View.MeasureSpec.getSize(i11);
-            p70Var.f28205a0 = true;
+            p70Var.f27898a0 = true;
             c70Var.setPadding(0, 0, 0, 0);
-            p70Var.f28205a0 = false;
+            p70Var.f27898a0 = false;
             measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
             int measuredHeight = getMeasuredHeight();
             int i12 = this.V2;
@@ -28,9 +28,9 @@ public final class c70 extends mm0 {
             if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
                 i13 = this.V2 - measuredHeight;
             }
-            p70Var.f28205a0 = true;
+            p70Var.f27898a0 = true;
             c70Var.setPadding(0, i13, 0, 0);
-            p70Var.f28205a0 = false;
+            p70Var.f27898a0 = false;
             measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
         }
         super.onMeasure(i10, i11);
@@ -38,7 +38,7 @@ public final class c70 extends mm0 {
 
     @Override
     public final void requestLayout() {
-        if (this.W2.f28205a0) {
+        if (this.W2.f27898a0) {
             return;
         }
         super.requestLayout();

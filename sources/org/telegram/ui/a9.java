@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class a9 extends s4.r0 {
-    public boolean f34087a;
-    public final n9 f34088b;
+    public boolean f33790a;
+    public final n9 f33791b;
 
     public a9(n9 n9Var) {
-        this.f34088b = n9Var;
+        this.f33791b = n9Var;
     }
 
     @Override
@@ -19,19 +19,19 @@ public final class a9 extends s4.r0 {
         int i12;
         bh.f fVar;
         boolean z10;
-        n9 n9Var = this.f34088b;
+        n9 n9Var = this.f33791b;
         ArrayList arrayList = n9Var.G;
-        int L0 = n9Var.f38578c.L0();
+        int L0 = n9Var.f38293c.L0();
         boolean z11 = false;
         if (L0 == -1) {
             abs = 0;
         } else {
-            abs = Math.abs(n9Var.f38578c.N0() - L0) + 1;
+            abs = Math.abs(n9Var.f38293c.N0() - L0) + 1;
         }
         if (abs > 0) {
-            int size = n9Var.d.W2.f31783x.size();
+            int size = n9Var.d.W2.f23148x.size();
             if (!n9Var.J && !n9Var.H && !arrayList.isEmpty() && abs + L0 >= size - 5) {
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.j(23, this, (j9) i2.d.g(1, arrayList)));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.p0(18, this, (j9) i2.d.h(1, arrayList)));
             }
         }
         View childAt = recyclerView.getChildAt(0);
@@ -40,8 +40,8 @@ public final class a9 extends s4.r0 {
         } else {
             i12 = 0;
         }
-        if (i11 != 0 && this.f34087a) {
-            org.telegram.ui.Components.l20 l20Var = n9Var.f38582f;
+        if (i11 != 0 && this.f33790a) {
+            org.telegram.ui.Components.l20 l20Var = n9Var.f38297f;
             if (i11 < 0) {
                 z10 = true;
             } else {
@@ -49,8 +49,8 @@ public final class a9 extends s4.r0 {
             }
             l20Var.e(z10, true);
         }
-        this.f34087a = true;
-        di.p6 p6Var = n9Var.f38585r;
+        this.f33790a = true;
+        di.p6 p6Var = n9Var.f38300r;
         if (L0 != 0 || i12 < n9Var.d.getPaddingTop()) {
             z11 = true;
         }

@@ -42,19 +42,19 @@ public final class za extends ua {
         yaVar.c(getScaleX());
         y0Var.e(d);
         kzVar.getClass();
-        String str = d.f779f;
-        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.s5.f(kzVar.f37781b, d.f780g)) : str;
+        String str = d.f783f;
+        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.s5.f(kzVar.f37550b, d.f784g)) : str;
         if (str != null && (arrayList = (ArrayList) kzVar.e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
                 kzVar.l((TLRPC.Document) arrayList.get(i10));
             }
         }
-        if (this.I.f779f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f779f)) != null) {
+        if (this.I.f783f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f783f)) != null) {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.r6 r6Var = this.N;
-        r6Var.f28748b = 17;
+        r6Var.f28435b = 17;
         r6Var.x(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.w(AndroidUtilities.dp(18.0f));
         this.N.M = AndroidUtilities.displaySize.x;
@@ -89,7 +89,7 @@ public final class za extends ua {
         float d = this.M.d(f7, false);
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set((int) centerX, (int) AndroidUtilities.lerp(centerY, f10, d), (int) centerX2, (int) AndroidUtilities.lerp(centerY2, f11, d));
-        if (yaVar.f4033a == 1) {
+        if (yaVar.f4037a == 1) {
             i10 = -1;
         } else {
             i10 = -16777216;
@@ -149,7 +149,7 @@ public final class za extends ua {
     }
 
     public org.telegram.ui.Components.s5 getAnimatedEmojiDrawable() {
-        return this.K.f904b;
+        return this.K.f908b;
     }
 
     @Override

@@ -7,18 +7,18 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 public final class y10 implements View.OnLongClickListener {
-    public final int f31448a;
-    public final Object f31449b;
+    public final int f31109a;
+    public final Object f31110b;
 
     public y10(Object obj, int i10) {
-        this.f31448a = i10;
-        this.f31449b = obj;
+        this.f31109a = i10;
+        this.f31110b = obj;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        int i10 = this.f31448a;
-        Object obj = this.f31449b;
+        int i10 = this.f31109a;
+        Object obj = this.f31110b;
         switch (i10) {
             case 0:
                 final FragmentContextView fragmentContextView = (FragmentContextView) obj;
@@ -27,15 +27,15 @@ public final class y10 implements View.OnLongClickListener {
                 fragmentContextView.I.d(playbackSpeed, false);
                 org.telegram.ui.ActionBar.a1 a1Var = fragmentContextView.I;
                 int i11 = org.telegram.ui.ActionBar.g6.G8;
-                a1Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(i11, fragmentContextView.f23173q0));
+                a1Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(i11, fragmentContextView.f22873q0));
                 org.telegram.ui.ActionBar.a1 a1Var2 = fragmentContextView.I;
                 a1Var2.N = fragmentContextView.h instanceof org.telegram.ui.fo;
                 a1Var2.F.setShader(null);
                 a1Var2.h = null;
-                Bitmap bitmap = a1Var2.f19631f;
+                Bitmap bitmap = a1Var2.f19331f;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    a1Var2.f19631f = null;
+                    a1Var2.f19331f = null;
                 }
                 fragmentContextView.G.B(org.telegram.ui.ActionBar.g6.x0(null, i11, false));
                 fragmentContextView.G.N();
@@ -57,15 +57,15 @@ public final class y10 implements View.OnLongClickListener {
                 return true;
             case 1:
                 re0 re0Var = (re0) obj;
-                re0Var.f28820r.setText("");
-                di.i9.a(re0Var.f28821s, true);
-                Drawable drawable = re0Var.f28811a;
+                re0Var.f28510r.setText("");
+                di.i9.a(re0Var.f28511s, true);
+                Drawable drawable = re0Var.f28501a;
                 if (drawable instanceof cd0) {
                     ((cd0) drawable).y();
                 }
                 return true;
             default:
-                return jr0.o((jr0) obj);
+                return ir0.o((ir0) obj);
         }
     }
 }

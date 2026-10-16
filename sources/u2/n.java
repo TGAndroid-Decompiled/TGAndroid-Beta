@@ -11,27 +11,27 @@ public final class n implements f1 {
     }
 
     @Override
-    public final long b() {
-        return this.f45989a.b();
-    }
-
-    @Override
     public final boolean c() {
         return this.f45989a.c();
     }
 
     @Override
-    public final boolean p(i2.v0 v0Var) {
-        return this.f45989a.p(v0Var);
+    public final long d() {
+        return this.f45989a.d();
     }
 
     @Override
-    public final long s() {
-        return this.f45989a.s();
+    public final boolean m(i2.v0 v0Var) {
+        return this.f45989a.m(v0Var);
     }
 
     @Override
-    public final void u(long j10) {
-        this.f45989a.u(j10);
+    public final long p() {
+        return this.f45989a.p();
+    }
+
+    @Override
+    public final void s(long j10) {
+        this.f45989a.s(j10);
     }
 }

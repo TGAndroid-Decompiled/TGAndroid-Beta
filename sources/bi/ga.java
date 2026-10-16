@@ -29,36 +29,36 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
     public boolean H;
     public ValueAnimator I;
     public final ha J;
-    public final PorterDuffColorFilter f3088a;
-    public boolean f3089b;
-    public final TextPaint f3090c;
+    public final PorterDuffColorFilter f3092a;
+    public boolean f3093b;
+    public final TextPaint f3094c;
     public final TextPaint d;
     public final Paint e;
-    public final Paint f3091f;
+    public final Paint f3095f;
     public float h;
-    public float f3092n;
-    public final fa[] f3093r;
-    public int f3094s;
+    public float f3096n;
+    public final fa[] f3097r;
+    public int f3098s;
     public StaticLayout v;
-    public float f3095w;
-    public boolean f3096x;
-    public final boolean f3097y;
+    public float f3099w;
+    public boolean f3100x;
+    public final boolean f3101y;
 
     public ga(ha haVar, Context context) {
         super(context);
         this.J = haVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f3090c = textPaint;
+        this.f3094c = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.d = textPaint2;
         Paint paint = new Paint();
         this.e = paint;
         Paint paint2 = new Paint(1);
-        this.f3091f = paint2;
-        this.f3093r = r7;
-        this.f3094s = 0;
+        this.f3095f = paint2;
+        this.f3097r = r7;
+        this.f3098s = 0;
         new Path();
-        this.f3097y = true;
+        this.f3101y = true;
         this.H = false;
         fa[] faVarArr = {new fa(this), null};
         textPaint.setColor(-1);
@@ -72,7 +72,7 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(16.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f3088a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f3092a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
     public static StaticLayout a(ga gaVar, TextPaint textPaint, CharSequence charSequence, int i10) {
@@ -82,7 +82,7 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
             if (LocaleController.isRTL) {
                 alignment = ix0.a();
             } else {
-                Layout.Alignment[] alignmentArr = ix0.f26119a;
+                Layout.Alignment[] alignmentArr = ix0.f25812a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -98,16 +98,16 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
         if (charSequence == null) {
             charSequence = "";
         }
-        fa[] faVarArr = this.f3093r;
-        if (MediaDataController.stringsEqual(faVarArr[0].f3035n, charSequence)) {
+        fa[] faVarArr = this.f3097r;
+        if (MediaDataController.stringsEqual(faVarArr[0].f3039n, charSequence)) {
             fa faVar = faVarArr[0];
-            if (faVar.f3036o == caVar && faVar.f3037p == caVar2) {
-                faVar.f3038q = z10;
+            if (faVar.f3040o == caVar && faVar.f3041p == caVar2) {
+                faVar.f3042q = z10;
                 invalidate();
                 return;
             }
         }
-        this.f3096x = false;
+        this.f3100x = false;
         ValueAnimator valueAnimator = this.I;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -119,15 +119,15 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
             }
             fa faVar2 = faVarArr[1];
             fa faVar3 = faVarArr[0];
-            faVar2.g(faVar3.f3035n, faVar3.f3036o, faVar3.f3037p);
+            faVar2.g(faVar3.f3039n, faVar3.f3040o, faVar3.f3041p);
             fa faVar4 = faVarArr[1];
             fa faVar5 = faVarArr[0];
-            faVar4.f3038q = faVar5.f3038q;
-            faVar4.f3039r.d(faVar5.f3039r.f25190c, true);
+            faVar4.f3042q = faVar5.f3042q;
+            faVar4.f3043r.d(faVar5.f3043r.f24885c, true);
             faVarArr[0].g(charSequence, caVar, caVar2);
             fa faVar6 = faVarArr[0];
-            faVar6.f3038q = z10;
-            faVar6.f3039r.d(0.0f, true);
+            faVar6.f3042q = z10;
+            faVar6.f3043r.d(0.0f, true);
             this.G = 1.0f;
             ValueAnimator valueAnimator2 = this.I;
             if (valueAnimator2 != null) {
@@ -139,12 +139,12 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
             ofFloat.addUpdateListener(new ah.c0(this, 14));
             this.I.addListener(new ah.b(this, 13));
             this.I.setDuration(180L);
-            this.I.setInterpolator(es.f24772g);
+            this.I.setInterpolator(es.f24466g);
             this.I.start();
             return;
         }
         faVarArr[0].g(charSequence, caVar, caVar2);
-        faVarArr[0].f3038q = z10;
+        faVarArr[0].f3042q = z10;
         invalidate();
         this.G = 0.0f;
     }
@@ -156,38 +156,38 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
 
     public float getAnimatedHeight() {
         int i10 = this.F * 2;
-        fa[] faVarArr = this.f3093r;
+        fa[] faVarArr = this.f3097r;
         int i11 = 0;
-        int i12 = faVarArr[0].f3033l;
+        int i12 = faVarArr[0].f3037l;
         fa faVar = faVarArr[1];
         if (faVar != null) {
-            i11 = faVar.f3033l;
+            i11 = faVar.f3037l;
         }
         return AndroidUtilities.lerp(i12, i11, this.G) + i10;
     }
 
     public Paint getPaint() {
-        return this.f3090c;
+        return this.f3094c;
     }
 
     @Override
     public Layout getStaticTextLayout() {
-        return this.f3093r[0].e;
+        return this.f3097r[0].e;
     }
 
     @Override
     public CharSequence getText() {
-        return this.f3093r[0].f3035n;
+        return this.f3097r[0].f3039n;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i10 = 0;
-        fa faVar = this.f3093r[0];
+        fa faVar = this.f3097r[0];
         ga gaVar = faVar.v;
         org.telegram.ui.Components.b6.release(gaVar, faVar.d);
-        org.telegram.ui.Components.b6.release(gaVar, faVar.f3028f);
+        org.telegram.ui.Components.b6.release(gaVar, faVar.f3032f);
         if (faVar.h == null) {
             return;
         }
@@ -196,7 +196,7 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
             if (i10 < daVarArr.length) {
                 da daVar = daVarArr[i10];
                 if (daVar != null) {
-                    org.telegram.ui.Components.b6.release(gaVar, daVar.f2958a);
+                    org.telegram.ui.Components.b6.release(gaVar, daVar.f2962a);
                 }
                 i10++;
             } else {
@@ -215,7 +215,7 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
             canvas2 = canvas;
             canvas2.save();
         }
-        fa[] faVarArr = this.f3093r;
+        fa[] faVarArr = this.f3097r;
         faVarArr[0].b(canvas2, 1.0f - this.G);
         fa faVar = faVarArr[1];
         if (faVar != null) {
@@ -223,19 +223,19 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
         }
         if (this.v != null) {
             float scrollY = this.h + this.J.getScrollY();
-            int clamp = (int) ((1.0f - Utilities.clamp(this.f3095w / 0.5f, 1.0f, 0.0f)) * 255.0f);
-            Paint paint = this.f3091f;
+            int clamp = (int) ((1.0f - Utilities.clamp(this.f3099w / 0.5f, 1.0f, 0.0f)) * 255.0f);
+            Paint paint = this.f3095f;
             paint.setAlpha(clamp);
             Paint paint2 = this.e;
             paint2.setAlpha(clamp);
             this.d.setAlpha(clamp);
             canvas2.save();
-            canvas2.translate(this.f3092n - AndroidUtilities.dp(32.0f), scrollY);
+            canvas2.translate(this.f3096n - AndroidUtilities.dp(32.0f), scrollY);
             canvas2.drawRect(0.0f, 0.0f, AndroidUtilities.dp(32.0f), this.v.getHeight() + this.F, paint);
             canvas2.restore();
-            canvas2.drawRect(this.f3092n - AndroidUtilities.dp(16.0f), scrollY, getMeasuredWidth(), this.v.getHeight() + scrollY + this.F, paint2);
+            canvas2.drawRect(this.f3096n - AndroidUtilities.dp(16.0f), scrollY, getMeasuredWidth(), this.v.getHeight() + scrollY + this.F, paint2);
             canvas2.save();
-            canvas2.translate(this.f3092n, scrollY);
+            canvas2.translate(this.f3096n, scrollY);
             this.v.draw(canvas2);
             canvas2.restore();
         }
@@ -247,11 +247,11 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
         int i12 = (i11 + i10) << 16;
         this.E = AndroidUtilities.dp(16.0f);
         this.F = AndroidUtilities.dp(8.0f);
-        int i13 = this.f3094s;
-        fa[] faVarArr = this.f3093r;
+        int i13 = this.f3098s;
+        fa[] faVarArr = this.f3097r;
         int i14 = 0;
         if (i13 != i12) {
-            this.f3094s = i12;
+            this.f3098s = i12;
             int max = Math.max(0, View.MeasureSpec.getSize(i10) - (this.E * 2));
             faVarArr[0].e(max);
             fa faVar = faVarArr[1];
@@ -260,10 +260,10 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
             }
         }
         int i15 = this.F * 2;
-        int i16 = faVarArr[0].f3033l;
+        int i16 = faVarArr[0].f3037l;
         fa faVar2 = faVarArr[1];
         if (faVar2 != null) {
-            i14 = faVar2.f3033l;
+            i14 = faVar2.f3037l;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.lerp(i16, i14, this.G) + i15, 1073741824));
     }
@@ -302,9 +302,9 @@ public final class ga extends View implements org.telegram.ui.Cells.x9 {
         ca caVar2;
         ca caVar3;
         ca caVar4;
-        fa[] faVarArr = this.f3093r;
+        fa[] faVarArr = this.f3097r;
         fa faVar2 = faVarArr[0];
-        if ((faVar2 != null && (faVar2.f3040s == drawable || (((caVar3 = faVar2.f3036o) != null && caVar3.f2921j == drawable) || ((caVar4 = faVar2.f3037p) != null && caVar4.f2921j == drawable)))) || ((faVar = faVarArr[1]) != null && (faVar.f3040s == drawable || (((caVar = faVar.f3036o) != null && caVar.f2921j == drawable) || ((caVar2 = faVar.f3037p) != null && caVar2.f2921j == drawable))))) {
+        if ((faVar2 != null && (faVar2.f3044s == drawable || (((caVar3 = faVar2.f3040o) != null && caVar3.f2925j == drawable) || ((caVar4 = faVar2.f3041p) != null && caVar4.f2925j == drawable)))) || ((faVar = faVarArr[1]) != null && (faVar.f3044s == drawable || (((caVar = faVar.f3040o) != null && caVar.f2925j == drawable) || ((caVar2 = faVar.f3041p) != null && caVar2.f2925j == drawable))))) {
             return true;
         }
         return super.verifyDrawable(drawable);

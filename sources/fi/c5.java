@@ -47,10 +47,10 @@ public abstract class c5 {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, null);
         b5 b5Var = new b5(currentUser);
         int x02 = g6.x0(null, g6.L5, false);
-        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
-        a2Var.f19561b0 = b5Var;
-        a2Var.f19564c0 = x02;
-        alertDialog$Builder.f19548a.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
+        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
+        a2Var.f19261b0 = b5Var;
+        a2Var.f19264c0 = x02;
+        alertDialog$Builder.f19248a.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
         alertDialog$Builder.k(LocaleController.getString(R.string.BotEmojiStatusPermissionAllow), new org.telegram.ui.ActionBar.z1() {
             @Override
             public final void g(org.telegram.ui.ActionBar.a2 a2Var2, int i11) {
@@ -70,7 +70,7 @@ public abstract class c5 {
                 }
                 zArr3[0] = true;
                 TLRPC.User user2 = user;
-                c5.e(context, i12, user2.f19363id);
+                c5.e(context, i12, user2.f19063id);
                 TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
                 toggleuseremojistatuspermission.bot = MessagesController.getInstance(i12).getInputUser(user2);
                 toggleuseremojistatuspermission.enabled = true;
@@ -78,7 +78,7 @@ public abstract class c5 {
             }
         });
         alertDialog$Builder.h(LocaleController.getString(R.string.BotEmojiStatusPermissionDecline), null);
-        org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f19548a;
+        org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f19248a;
         a2Var2.show();
         a2Var2.setOnDismissListener(new w4(zArr2, zArr, context, i10, user, qVar));
     }
@@ -96,7 +96,7 @@ public abstract class c5 {
         if (activity == null) {
             return false;
         }
-        return org.telegram.messenger.q.x("requested_", j10, activity.getSharedPreferences("botemojistatus_" + i10, 0), false);
+        return org.telegram.messenger.g0.v("requested_", j10, activity.getSharedPreferences("botemojistatus_" + i10, 0), false);
     }
 
     public static void e(Context context, int i10, long j10) {
@@ -166,13 +166,13 @@ public abstract class c5 {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(findActivity, 0, null);
         b5 b5Var = new b5(currentUser, document);
         int x02 = g6.x0(null, g6.L5, false);
-        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
-        a2Var.f19561b0 = b5Var;
-        a2Var.f19564c0 = x02;
+        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
+        a2Var.f19261b0 = b5Var;
+        a2Var.f19264c0 = x02;
         a2Var.T = replaceTags;
         alertDialog$Builder.k(LocaleController.getString(R.string.BotEmojiStatusConfirm), new u4(i10, zArr2, document, i11, zArr, callback));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f19548a;
+        org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f19248a;
         a2Var2.show();
         a2Var2.setOnDismissListener(new s0(zArr2, zArr, callback));
     }

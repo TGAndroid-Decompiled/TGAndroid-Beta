@@ -35,13 +35,13 @@ public final class c implements h {
     }
 
     @Override
-    public final long a() {
-        return -1L;
+    public final long a(long j10) {
+        return m0.S(((Long) i(j10, this.f46526a, this.f46527b).second).longValue());
     }
 
     @Override
-    public final long b(long j10) {
-        return m0.S(((Long) i(j10, this.f46526a, this.f46527b).second).longValue());
+    public final long b() {
+        return -1L;
     }
 
     @Override

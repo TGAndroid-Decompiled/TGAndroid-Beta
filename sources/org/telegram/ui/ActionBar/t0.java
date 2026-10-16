@@ -19,50 +19,50 @@ import org.telegram.ui.Components.cr;
 import org.telegram.ui.Components.es;
 import org.telegram.ui.Components.z9;
 public class t0 extends FrameLayout implements ne.d {
-    public final ne.b f20633a;
-    public cr f20634b;
-    public final z9 f20635c;
+    public final ne.b f20333a;
+    public cr f20334b;
+    public final z9 f20335c;
     public final ImageView d;
     public final TextView e;
-    public hg.p0 f20636f;
+    public hg.p0 f20336f;
     public final p h;
-    public final c6 f20637n;
-    public boolean f20638r;
-    public boolean f20639s;
+    public final c6 f20337n;
+    public boolean f20338r;
+    public boolean f20339s;
     public int v;
-    public int f20640w;
+    public int f20340w;
 
     public t0(Context context, c6 c6Var) {
         super(context);
-        this.f20633a = new ne.b(0, this, es.h, 380L, false);
+        this.f20333a = new ne.b(0, this, es.h, 380L, false);
         this.h = new p(this, 2);
-        this.f20637n = c6Var;
+        this.f20337n = c6Var;
         z9 z9Var = new z9(context);
-        this.f20635c = z9Var;
-        addView(z9Var, w7.a6.d(32.0f, 32));
+        this.f20335c = z9Var;
+        addView(z9Var, w7.z5.d(32.0f, 32));
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setImageResource(R.drawable.ic_close_white);
-        addView(imageView, w7.a6.a(24.0f, 8.0f, 0.0f, 0.0f, 0.0f, 24, 16));
+        addView(imageView, w7.z5.a(24.0f, 8.0f, 0.0f, 0.0f, 0.0f, 24, 16));
         TextView textView = new TextView(context);
         this.e = textView;
         textView.setSingleLine();
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setTextSize(1, 14.0f);
-        addView(textView, w7.a6.a(-2.0f, 38.0f, 0.0f, 12.0f, 0.0f, -2, 16));
-        this.f20640w = AndroidUtilities.dp(28.0f);
+        addView(textView, w7.z5.a(-2.0f, 38.0f, 0.0f, 12.0f, 0.0f, -2, 16));
+        this.f20340w = AndroidUtilities.dp(28.0f);
         a();
     }
 
     public final void a() {
         int w02;
-        float f7 = this.f20633a.e;
-        boolean z10 = this.f20638r;
-        c6 c6Var = this.f20637n;
+        float f7 = this.f20333a.e;
+        boolean z10 = this.f20338r;
+        c6 c6Var = this.f20337n;
         if (z10) {
             w02 = g6.m1(0.075f, g6.w0(g6.G6, c6Var));
         } else {
-            w02 = g6.w0(g6.f19894ci, c6Var);
+            w02 = g6.w0(g6.f19594ci, c6Var);
         }
         int i10 = g6.Oh;
         int w03 = g6.w0(i10, c6Var);
@@ -77,13 +77,13 @@ public class t0 extends FrameLayout implements ne.d {
         float f10 = 0.82f * f7;
         imageView.setScaleX(f10);
         imageView.setScaleY(f10);
-        cr crVar = this.f20634b;
+        cr crVar = this.f20334b;
         if (crVar != null) {
             g6.w1(crVar, g6.w0(i10, c6Var), false);
-            g6.w1(this.f20634b, g6.w0(i11, c6Var), true);
+            g6.w1(this.f20334b, g6.w0(i11, c6Var), true);
         }
-        this.f20635c.setAlpha(1.0f - f7);
-        hg.p0 p0Var = this.f20636f;
+        this.f20335c.setAlpha(1.0f - f7);
+        hg.p0 p0Var = this.f20336f;
         if (p0Var != null && p0Var.d == 7) {
             setData(p0Var);
         }
@@ -94,18 +94,18 @@ public class t0 extends FrameLayout implements ne.d {
     public final void dispatchDraw(Canvas canvas) {
         float width = getWidth();
         float height = getHeight();
-        int i10 = this.f20640w;
+        int i10 = this.f20340w;
         canvas.drawRoundRect(0.0f, 0.0f, width, height, i10, i10, g6.m0(this.v));
         super.dispatchDraw(canvas);
     }
 
     public hg.p0 getFilter() {
-        return this.f20636f;
+        return this.f20336f;
     }
 
     @Override
     public void onMeasure(int i10, int i11) {
-        if (this.f20639s) {
+        if (this.f20339s) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(135.0f), Integer.MIN_VALUE), i11);
         } else {
             super.onMeasure(i10, i11);
@@ -121,64 +121,64 @@ public class t0 extends FrameLayout implements ne.d {
     }
 
     public void setData(hg.p0 p0Var) {
-        this.f20636f = p0Var;
-        this.f20639s = false;
-        String str = p0Var.f10701c;
+        this.f20336f = p0Var;
+        this.f20339s = false;
+        String str = p0Var.f10705c;
         if (str == null) {
-            str = LocaleController.getString(p0Var.f10700b);
+            str = LocaleController.getString(p0Var.f10704b);
         }
         this.e.setText(str);
-        cr M = g6.M(AndroidUtilities.dp(32.0f), p0Var.f10699a);
-        this.f20634b = M;
+        cr M = g6.M(AndroidUtilities.dp(32.0f), p0Var.f10703a);
+        this.f20334b = M;
         int i10 = g6.Oh;
-        c6 c6Var = this.f20637n;
+        c6 c6Var = this.f20337n;
         g6.w1(M, g6.w0(i10, c6Var), false);
-        cr crVar = this.f20634b;
+        cr crVar = this.f20334b;
         int i11 = g6.Sh;
         g6.w1(crVar, g6.w0(i11, c6Var), true);
         int i12 = p0Var.d;
         float f7 = 16.0f;
-        z9 z9Var = this.f20635c;
+        z9 z9Var = this.f20335c;
         if (i12 == 4) {
-            TLObject tLObject = p0Var.f10702f;
+            TLObject tLObject = p0Var.f10706f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f19363id == user.f19363id) {
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f19063id == user.f19063id) {
                     cr M2 = g6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp = AndroidUtilities.dp(16.0f);
                     int dp2 = AndroidUtilities.dp(16.0f);
                     M2.e = dp;
-                    M2.f24194f = dp2;
+                    M2.f23879f = dp2;
                     g6.w1(M2, g6.w0(i10, c6Var), false);
                     g6.w1(M2, g6.w0(i11, c6Var), true);
                     z9Var.setImageDrawable(M2);
                     return;
                 }
                 z9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
-                z9Var.getImageReceiver().setForUserOrChat(user, this.f20634b);
+                z9Var.getImageReceiver().setForUserOrChat(user, this.f20334b);
             } else if (tLObject instanceof TLRPC.Chat) {
                 TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                this.f20639s = ChatObject.isCommunity(chat);
+                this.f20339s = ChatObject.isCommunity(chat);
                 ImageReceiver imageReceiver = z9Var.getImageReceiver();
-                if (this.f20639s) {
+                if (this.f20339s) {
                     f7 = 10.0f;
                 }
                 int dp3 = AndroidUtilities.dp(f7);
-                this.f20640w = dp3;
+                this.f20340w = dp3;
                 imageReceiver.setRoundRadius(dp3);
-                z9Var.getImageReceiver().setForUserOrChat(chat, this.f20634b);
+                z9Var.getImageReceiver().setForUserOrChat(chat, this.f20334b);
             }
         } else if (i12 == 7) {
             cr M3 = g6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
             int dp4 = AndroidUtilities.dp(16.0f);
             int dp5 = AndroidUtilities.dp(16.0f);
             M3.e = dp4;
-            M3.f24194f = dp5;
+            M3.f23879f = dp5;
             g6.w1(M3, g6.w0(i10, c6Var), false);
             g6.w1(M3, g6.w0(i11, c6Var), true);
             z9Var.setImageDrawable(M3);
         } else {
-            z9Var.setImageDrawable(this.f20634b);
+            z9Var.setImageDrawable(this.f20334b);
         }
     }
 
@@ -193,8 +193,8 @@ public class t0 extends FrameLayout implements ne.d {
     }
 
     public void setSelectedForDelete(boolean z10) {
-        ne.b bVar = this.f20633a;
-        if (bVar.f16293f != z10) {
+        ne.b bVar = this.f20333a;
+        if (bVar.f16004f != z10) {
             p pVar = this.h;
             AndroidUtilities.cancelRunOnUIThread(pVar);
             bVar.a(z10, true);
@@ -205,6 +205,6 @@ public class t0 extends FrameLayout implements ne.d {
     }
 
     @Override
-    public final void C(float f7, int i10) {
+    public final void A(float f7, int i10) {
     }
 }

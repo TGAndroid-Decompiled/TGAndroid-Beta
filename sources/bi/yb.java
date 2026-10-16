@@ -10,14 +10,14 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.es;
 public final class yb extends ReplacementSpan {
-    public View f4040a;
+    public View f4044a;
     public float d;
     public boolean e;
-    public long f4043f;
-    public boolean f4044n;
-    public boolean f4045r;
-    public int f4041b = 1;
-    public int f4042c = 2;
+    public long f4047f;
+    public boolean f4048n;
+    public boolean f4049r;
+    public int f4045b = 1;
+    public int f4046c = 2;
     public final es h = new es(0.0f, 0.5f, 0.5f, 1.0f);
 
     public static CharSequence a(TextView textView, String str) {
@@ -39,8 +39,8 @@ public final class yb extends ReplacementSpan {
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             yb ybVar = new yb();
-            ybVar.f4040a = textView;
-            ybVar.f4044n = false;
+            ybVar.f4044a = textView;
+            ybVar.f4048n = false;
             spannableStringBuilder.setSpan(ybVar, i12, i12 + i11, 33);
             i12 += i11 - 1;
             i12++;
@@ -51,9 +51,9 @@ public final class yb extends ReplacementSpan {
         return spannableStringBuilder;
     }
 
-    public final void b(org.telegram.ui.Cells.x0 x0Var) {
-        this.f4040a = x0Var;
-        this.f4044n = false;
+    public final void b(org.telegram.ui.Cells.w0 w0Var) {
+        this.f4044a = w0Var;
+        this.f4048n = false;
     }
 
     @Override
@@ -61,17 +61,17 @@ public final class yb extends ReplacementSpan {
         float f10;
         float f11;
         float f12;
-        float y3;
+        float x10;
         TextPaint textPaint = (TextPaint) paint;
         float measureText = paint.measureText("…") / 3.0f;
-        if (this.f4045r) {
+        if (this.f4049r) {
             f10 = textPaint.getFontMetrics().ascent;
         } else {
             f10 = textPaint.getFontMetrics().top;
         }
         float f13 = -f10;
         float f14 = textPaint.getFontMetrics().bottom - textPaint.getFontMetrics().top;
-        if (this.f4044n) {
+        if (this.f4048n) {
             f11 = 0.05f;
         } else {
             f11 = 0.0365f;
@@ -79,7 +79,7 @@ public final class yb extends ReplacementSpan {
         float f15 = f14 * f11;
         float f16 = f13 - f15;
         if (this.e) {
-            if (System.currentTimeMillis() - this.f4043f > 1000) {
+            if (System.currentTimeMillis() - this.f4047f > 1000) {
                 this.e = false;
             }
         } else {
@@ -87,38 +87,38 @@ public final class yb extends ReplacementSpan {
             this.d = f17;
             if (f17 > 1.0f) {
                 this.d = 0.0f;
-                int i15 = this.f4041b - 1;
-                this.f4041b = i15;
-                this.f4042c--;
+                int i15 = this.f4045b - 1;
+                this.f4045b = i15;
+                this.f4046c--;
                 if (i15 < 0) {
-                    this.f4041b = 1;
-                    this.f4042c = 2;
+                    this.f4045b = 1;
+                    this.f4046c = 2;
                     this.e = true;
-                    this.f4043f = System.currentTimeMillis();
+                    this.f4047f = System.currentTimeMillis();
                 }
             }
         }
         for (int i16 = 0; i16 < 3; i16++) {
             float f18 = measureText / 2.0f;
             float f19 = (i16 * measureText) + f7 + f18;
-            if (i16 == this.f4041b) {
+            if (i16 == this.f4045b) {
                 f19 = AndroidUtilities.lerp(f19, t8.b.c(measureText, i16 + 1, f7, f18), this.d);
                 float f20 = this.d;
                 if (f20 < 0.5f) {
-                    y3 = f20 / 0.5f;
+                    x10 = f20 / 0.5f;
                 } else {
-                    y3 = org.telegram.messenger.q.y(f20, 0.5f, 0.5f, 1.0f);
+                    x10 = org.telegram.messenger.g0.x(f20, 0.5f, 0.5f, 1.0f);
                 }
-                f12 = AndroidUtilities.lerp(f16, f16 - f18, this.h.getInterpolation(y3));
+                f12 = AndroidUtilities.lerp(f16, f16 - f18, this.h.getInterpolation(x10));
             } else {
-                if (i16 == this.f4042c) {
+                if (i16 == this.f4046c) {
                     f19 = AndroidUtilities.lerp(f19, t8.b.c(measureText, i16 - 1, f7, f18), this.d);
                 }
                 f12 = f16;
             }
             canvas.drawCircle(f19, f12, f15, paint);
         }
-        View view = this.f4040a;
+        View view = this.f4044a;
         if (view != null) {
             view.invalidate();
         }

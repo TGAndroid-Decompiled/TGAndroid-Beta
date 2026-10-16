@@ -1,11 +1,11 @@
 package r9;
 public final class r {
-    public final Class f44061a;
-    public final Class f44062b;
+    public final Class f43820a;
+    public final Class f43821b;
 
     public r(Class cls, Class cls2) {
-        this.f44061a = cls;
-        this.f44062b = cls2;
+        this.f43820a = cls;
+        this.f43821b = cls2;
     }
 
     public static r a(Class cls) {
@@ -20,19 +20,19 @@ public final class r {
             return false;
         }
         r rVar = (r) obj;
-        if (!this.f44062b.equals(rVar.f44062b)) {
+        if (!this.f43821b.equals(rVar.f43821b)) {
             return false;
         }
-        return this.f44061a.equals(rVar.f44061a);
+        return this.f43820a.equals(rVar.f43820a);
     }
 
     public final int hashCode() {
-        return this.f44061a.hashCode() + (this.f44062b.hashCode() * 31);
+        return this.f43820a.hashCode() + (this.f43821b.hashCode() * 31);
     }
 
     public final String toString() {
-        Class cls = this.f44062b;
-        Class cls2 = this.f44061a;
+        Class cls = this.f43821b;
+        Class cls2 = this.f43820a;
         if (cls2 == q.class) {
             return cls.getName();
         }

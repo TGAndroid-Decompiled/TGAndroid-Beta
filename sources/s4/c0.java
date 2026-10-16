@@ -26,7 +26,7 @@ public class c0 extends x0 {
     @Override
     public final void d(int i10, int i11, w0 w0Var) {
         PointF pointF;
-        if (this.f44980b.f2017x.r() == 0) {
+        if (this.f44980b.f2021x.r() == 0) {
             h();
         } else if (f44858q && (pointF = this.f44861k) != null && (pointF.x * i10 < 0.0f || pointF.y * i11 < 0.0f)) {
             throw new IllegalStateException("Scroll happened in the opposite direction of the target. Some calculations are wrong");

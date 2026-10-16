@@ -15,28 +15,28 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.Components.es;
 public final class a extends FrameLayout {
-    public final ImageView f2810a;
-    public final org.telegram.ui.Components.r6 f2811b;
-    public final Paint f2812c;
+    public final ImageView f2814a;
+    public final org.telegram.ui.Components.r6 f2815b;
+    public final Paint f2816c;
     public final Paint d;
     public boolean e;
-    public int f2813f;
+    public int f2817f;
     public float h;
-    public ValueAnimator f2814n;
+    public ValueAnimator f2818n;
 
     public a(Context context, eh.b bVar) {
         super(context);
         Paint paint = new Paint(1);
-        this.f2812c = paint;
+        this.f2816c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.h = 1.0f;
-        w7.c6.a(this);
+        w7.b6.a(this);
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(false, true, true);
-        this.f2811b = r6Var;
+        this.f2815b = r6Var;
         r6Var.u(-9866632);
         r6Var.w(AndroidUtilities.dp(9.0f));
         r6Var.setCallback(this);
@@ -47,21 +47,21 @@ public final class a extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         bh.j jVar = new bh.j();
         jVar.a(bVar);
-        jVar.f2802g.setColor(-14670806);
+        jVar.f2806g.setColor(-14670806);
         jVar.invalidateSelf();
-        jVar.f2801f = AndroidUtilities.dp(1.0f);
+        jVar.f2805f = AndroidUtilities.dp(1.0f);
         frameLayout.setBackground(jVar);
-        addView(frameLayout, w7.a6.e(40, 40, 17));
+        addView(frameLayout, w7.z5.e(40, 40, 17));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.menu_comments);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView, w7.a6.e(20, 20, 17));
+        frameLayout.addView(imageView, w7.z5.e(20, 20, 17));
         ImageView imageView2 = new ImageView(context);
-        this.f2810a = imageView2;
+        this.f2814a = imageView2;
         imageView2.setImageResource(R.drawable.menu_comments_arrow);
         imageView2.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView2, w7.a6.e(20, 20, 17));
+        frameLayout.addView(imageView2, w7.z5.e(20, 20, 17));
         imageView2.setPivotX(AndroidUtilities.dp(10.27f));
         imageView2.setPivotY(AndroidUtilities.dp(9.58f));
     }
@@ -72,13 +72,13 @@ public final class a extends FrameLayout {
         }
         this.e = z10;
         float f7 = 180.0f;
-        ImageView imageView = this.f2810a;
+        ImageView imageView = this.f2814a;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
             if (z10) {
                 f7 = 0.0f;
             }
-            yh.s(animate.rotation(f7), es.h, 420L);
+            sk.t(animate.rotation(f7), es.h, 420L);
             return;
         }
         if (z10) {
@@ -92,7 +92,7 @@ public final class a extends FrameLayout {
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         super.dispatchDraw(canvas);
         float f7 = this.h;
-        org.telegram.ui.Components.r6 r6Var = this.f2811b;
+        org.telegram.ui.Components.r6 r6Var = this.f2815b;
         float i10 = r6Var.i() * f7;
         float max = Math.max(AndroidUtilities.dp(12.0f), r6Var.c() + AndroidUtilities.dp(6.0f));
         canvas.save();
@@ -102,7 +102,7 @@ public final class a extends FrameLayout {
         rectF.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.d);
         rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
-        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f2812c);
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f2816c);
         canvas.translate(((max - r6Var.c()) / 2.0f) + rectF.left, AndroidUtilities.dp(7.0f));
         r6Var.draw(canvas);
         canvas.restore();
@@ -116,28 +116,28 @@ public final class a extends FrameLayout {
         } else {
             formatNumber = LocaleController.formatNumber(i10, ',');
         }
-        this.f2811b.t(formatNumber, true, true);
-        if (this.f2813f != i10) {
-            ValueAnimator valueAnimator = this.f2814n;
+        this.f2815b.t(formatNumber, true, true);
+        if (this.f2817f != i10) {
+            ValueAnimator valueAnimator = this.f2818n;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f2814n = null;
+                this.f2818n = null;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f2814n = ofFloat;
+            this.f2818n = ofFloat;
             ofFloat.addUpdateListener(new ah.c0(this, 1));
-            this.f2814n.addListener(new ah.b(this, 3));
-            org.telegram.ui.Cells.d0.l(2.5f, this.f2814n);
-            this.f2814n.setDuration(200L);
-            this.f2814n.start();
-            this.f2813f = i10;
+            this.f2818n.addListener(new ah.b(this, 3));
+            sk.l(2.5f, this.f2818n);
+            this.f2818n.setDuration(200L);
+            this.f2818n.start();
+            this.f2817f = i10;
         }
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f2811b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f2815b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -5,12 +5,12 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class u0 extends o6.a {
     public static final Parcelable.Creator<u0> CREATOR = new r0(13);
-    public final n7.s0 f4638a;
-    public final n7.s0 f4639b;
+    public final n7.t0 f4641a;
+    public final n7.t0 f4642b;
 
-    public u0(n7.s0 s0Var, n7.s0 s0Var2) {
-        this.f4638a = s0Var;
-        this.f4639b = s0Var2;
+    public u0(n7.t0 t0Var, n7.t0 t0Var2) {
+        this.f4641a = t0Var;
+        this.f4642b = t0Var2;
     }
 
     public final boolean equals(Object obj) {
@@ -18,33 +18,33 @@ public final class u0 extends o6.a {
             return false;
         }
         u0 u0Var = (u0) obj;
-        if (!n6.l.l(this.f4638a, u0Var.f4638a) || !n6.l.l(this.f4639b, u0Var.f4639b)) {
+        if (!n6.l.l(this.f4641a, u0Var.f4641a) || !n6.l.l(this.f4642b, u0Var.f4642b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4638a, this.f4639b});
+        return Arrays.hashCode(new Object[]{this.f4641a, this.f4642b});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] t10;
-        int q6 = w7.g0.q(parcel, 20293);
+        int q6 = w7.f0.q(parcel, 20293);
         byte[] bArr = null;
-        n7.s0 s0Var = this.f4638a;
-        if (s0Var == null) {
+        n7.t0 t0Var = this.f4641a;
+        if (t0Var == null) {
             t10 = null;
         } else {
-            t10 = s0Var.t();
+            t10 = t0Var.t();
         }
-        w7.g0.c(parcel, 1, t10);
-        n7.s0 s0Var2 = this.f4639b;
-        if (s0Var2 != null) {
-            bArr = s0Var2.t();
+        w7.f0.c(parcel, 1, t10);
+        n7.t0 t0Var2 = this.f4642b;
+        if (t0Var2 != null) {
+            bArr = t0Var2.t();
         }
-        w7.g0.c(parcel, 2, bArr);
-        w7.g0.r(parcel, q6);
+        w7.f0.c(parcel, 2, bArr);
+        w7.f0.r(parcel, q6);
     }
 }

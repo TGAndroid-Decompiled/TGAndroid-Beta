@@ -4,11 +4,11 @@ public interface bp {
 
     void m();
 
-    void n();
+    void o();
 
     void p();
 
-    void s();
+    void t();
 
     void y(int i10);
 }

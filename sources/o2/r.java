@@ -2,20 +2,20 @@ package o2;
 
 import android.text.TextUtils;
 public final class r {
-    public final int f16571a;
-    public final int f16572b;
-    public final String f16573c;
+    public final int f16264a;
+    public final int f16265b;
+    public final String f16266c;
     public final String d;
     public final String e;
-    public final String f16574f;
+    public final String f16267f;
 
     public r(int i10, String str, int i11, String str2, String str3, String str4) {
-        this.f16571a = i10;
-        this.f16572b = i11;
-        this.f16573c = str;
+        this.f16264a = i10;
+        this.f16265b = i11;
+        this.f16266c = str;
         this.d = str2;
         this.e = str3;
-        this.f16574f = str4;
+        this.f16267f = str4;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class r {
         }
         if (obj != null && r.class == obj.getClass()) {
             r rVar = (r) obj;
-            if (this.f16571a == rVar.f16571a && this.f16572b == rVar.f16572b && TextUtils.equals(this.f16573c, rVar.f16573c) && TextUtils.equals(this.d, rVar.d) && TextUtils.equals(this.e, rVar.e) && TextUtils.equals(this.f16574f, rVar.f16574f)) {
+            if (this.f16264a == rVar.f16264a && this.f16265b == rVar.f16265b && TextUtils.equals(this.f16266c, rVar.f16266c) && TextUtils.equals(this.d, rVar.d) && TextUtils.equals(this.e, rVar.e) && TextUtils.equals(this.f16267f, rVar.f16267f)) {
                 return true;
             }
         }
@@ -35,9 +35,9 @@ public final class r {
         int i10;
         int i11;
         int i12;
-        int i13 = ((this.f16571a * 31) + this.f16572b) * 31;
+        int i13 = ((this.f16264a * 31) + this.f16265b) * 31;
         int i14 = 0;
-        String str = this.f16573c;
+        String str = this.f16266c;
         if (str != null) {
             i10 = str.hashCode();
         } else {
@@ -58,7 +58,7 @@ public final class r {
             i12 = 0;
         }
         int i17 = (i16 + i12) * 31;
-        String str4 = this.f16574f;
+        String str4 = this.f16267f;
         if (str4 != null) {
             i14 = str4.hashCode();
         }

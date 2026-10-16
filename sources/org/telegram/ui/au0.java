@@ -2,121 +2,56 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
 public final class au0 extends AnimatorListenerAdapter {
-    public final int f34342a;
-    public final boolean f34343b;
-    public final PhotoViewer f34344c;
+    public final int f34087a;
+    public final bu0 f34088b;
 
-    public au0(PhotoViewer photoViewer, boolean z10, int i10) {
-        this.f34342a = i10;
-        this.f34344c = photoViewer;
-        this.f34343b = z10;
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f34342a) {
-            case 1:
-                PhotoViewer photoViewer = this.f34344c;
-                if (animator.equals(photoViewer.f32385w)) {
-                    photoViewer.f32385w = null;
-                    return;
-                }
-                return;
-            case 2:
-                PhotoViewer photoViewer2 = this.f34344c;
-                if (animator.equals(photoViewer2.L)) {
-                    photoViewer2.L = null;
-                    return;
-                }
-                return;
-            case 3:
-                this.f34344c.U7 = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
+    public au0(bu0 bu0Var, int i10) {
+        this.f34088b = bu0Var;
+        this.f34087a = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
+        if (this.f34088b.f34389b.f31989k8) {
+            PhotoViewer photoViewer = this.f34088b.f34389b;
+            if (photoViewer.f32042r1) {
+                photoViewer.B3();
+            }
+        }
+        if (this.f34087a == 3) {
+            PhotoViewer photoViewer2 = this.f34088b.f34389b;
+            photoViewer2.G2(photoViewer2.P4, false, true, true);
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
         int i10;
-        int i11 = this.f34342a;
-        boolean z10 = this.f34343b;
-        PhotoViewer photoViewer = this.f34344c;
-        switch (i11) {
-            case 0:
-                if (!z10) {
-                    photoViewer.f32264i3.setVisibility(8);
-                    return;
-                }
-                return;
-            case 1:
-                if (animator.equals(photoViewer.f32385w)) {
-                    if (!z10) {
-                        photoViewer.X0.setVisibility(4);
-                    }
-                    photoViewer.f32385w = null;
-                    return;
-                }
-                return;
-            case 2:
-                if (animator.equals(photoViewer.L)) {
-                    if (!z10) {
-                        photoViewer.F.setVisibility(4);
-                        if (photoViewer.f32261i0.getTag() != null) {
-                            photoViewer.f32261i0.setVisibility(4);
-                        }
-                        if (photoViewer.Q1.getTag() != null) {
-                            photoViewer.Q1.setVisibility(4);
-                        }
-                    }
-                    photoViewer.L = null;
-                    return;
-                }
-                return;
-            default:
-                if (animator.equals(photoViewer.U7)) {
-                    photoViewer.U7 = new AnimatorSet();
-                    if (z10) {
-                        photoViewer.O7.setVisibility(0);
-                        photoViewer.P7.setVisibility(0);
-                        AnimatorSet animatorSet = photoViewer.U7;
-                        mv0 mv0Var = photoViewer.O7;
-                        Property property = View.TRANSLATION_Y;
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(mv0Var, property, 0.0f), ObjectAnimator.ofFloat(photoViewer.P7, property, 0.0f));
-                    } else {
-                        if (photoViewer.S4) {
-                            photoViewer.f32270j0.setVisibility(8);
-                            photoViewer.f32270j0.setAlpha(0.0f);
-                            View view = photoViewer.f32270j0;
-                            if (photoViewer.f32210c2 == 11) {
-                                i10 = -16777216;
-                            } else {
-                                i10 = 2130706432;
-                            }
-                            view.setBackgroundColor(i10);
-                        }
-                        photoViewer.O7.setVisibility(4);
-                        photoViewer.P7.setVisibility(4);
-                        AnimatorSet animatorSet2 = photoViewer.U7;
-                        x5 x5Var = photoViewer.P0;
-                        Property property2 = View.TRANSLATION_Y;
-                        animatorSet2.playTogether(ObjectAnimator.ofFloat(x5Var, property2, 0.0f), ObjectAnimator.ofFloat(photoViewer.P0, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(photoViewer.S0, property2, 0.0f));
-                    }
-                    photoViewer.U7.addListener(new lj0(this, 12));
-                    photoViewer.U7.setDuration(200L);
-                    photoViewer.U7.setInterpolator(AndroidUtilities.decelerateInterpolator);
-                    photoViewer.U7.start();
-                    return;
-                }
-                return;
+        PhotoViewer photoViewer = this.f34088b.f34389b;
+        photoViewer.P0.setVisibility(0);
+        if (photoViewer.E3()) {
+            photoViewer.f32006n0.setVisibility(0);
+        } else {
+            photoViewer.S0.setVisibility(0);
+        }
+        photoViewer.F.setVisibility(0);
+        if (photoViewer.f31965i2) {
+            xu0 xu0Var = photoViewer.Q1;
+            if (xu0Var.getTag() != null) {
+                i10 = 0;
+            } else {
+                i10 = 4;
+            }
+            xu0Var.setVisibility(i10);
+        }
+        if (!photoViewer.f31921d2 && !photoViewer.f31930e2) {
+            int i11 = photoViewer.f31912c2;
+            if ((i11 == 0 || i11 == 4 || ((i11 == 2 || i11 == 5) && photoViewer.f31952g7.size() > 1)) && !photoViewer.f31941f4) {
+                photoViewer.N0.setVisibility(0);
+                photoViewer.O0.setVisibility(0);
+                photoViewer.s3();
+            }
         }
     }
 }

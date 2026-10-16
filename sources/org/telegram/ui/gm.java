@@ -9,24 +9,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public final class gm implements Runnable {
-    public final int f36437a;
-    public final int f36438b;
-    public final Object f36439c;
+    public final int f36277a;
+    public final int f36278b;
+    public final Object f36279c;
     public final Object d;
 
     public gm(int i10, Object obj, Object obj2, int i11) {
-        this.f36437a = i11;
-        this.f36438b = i10;
-        this.f36439c = obj;
+        this.f36277a = i11;
+        this.f36278b = i10;
+        this.f36279c = obj;
         this.d = obj2;
     }
 
     private final void a() {
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.m21((org.telegram.ui.Components.v21) this.f36439c, (org.telegram.ui.Components.yp) this.d, this.f36438b, SvgHelper.getBitmap(R.raw.default_pattern, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(140.0f), -16777216, AndroidUtilities.density), 1));
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.n21((org.telegram.ui.Components.w21) this.f36279c, (org.telegram.ui.Components.yp) this.d, this.f36278b, SvgHelper.getBitmap(R.raw.default_pattern, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(140.0f), -16777216, AndroidUtilities.density), 1));
     }
 
     private final void b() {
-        MessageObject messageObject = (MessageObject) this.f36439c;
+        MessageObject messageObject = (MessageObject) this.f36279c;
         org.telegram.ui.Cells.l1 l1Var = (org.telegram.ui.Cells.l1) this.d;
         HashMap hashMap = org.telegram.ui.Components.f41.P;
         if (hashMap != null) {
@@ -35,7 +35,7 @@ public final class gm implements Runnable {
         if (l1Var != null) {
             l1Var.d0(3);
         }
-        int i10 = this.f36438b;
+        int i10 = this.f36278b;
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
         NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
     }
@@ -43,44 +43,44 @@ public final class gm implements Runnable {
     private final void c() {
         int i10;
         TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        yy yyVar = ((dy) this.f36439c).f35402f0;
+        yy yyVar = ((dy) this.f36279c).f35151f0;
         ArrayList arrayList = yyVar.R1;
-        if (arrayList != null && (i10 = this.f36438b) >= 0 && i10 < arrayList.size()) {
+        if (arrayList != null && (i10 = this.f36278b) >= 0 && i10 < arrayList.size()) {
             yyVar.R1.add(i10, dialog);
-            yyVar.f42325e0[0].q(true);
+            yyVar.f42004e0[0].q(true);
         }
     }
 
     private final void d() {
-        wy wyVar = (wy) this.f36439c;
+        wy wyVar = (wy) this.f36279c;
         TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        xy xyVar = wyVar.f41693g;
+        xy xyVar = wyVar.f41380g;
         yy yyVar = wyVar.h;
         yyVar.S1 = true;
-        yyVar.getMessagesController().addDialogToFolder(dialog.f19220id, 0, this.f36438b, 0L);
+        yyVar.getMessagesController().addDialogToFolder(dialog.f18920id, 0, this.f36278b, 0L);
         yyVar.S1 = false;
         ArrayList<TLRPC.Dialog> dialogs = yyVar.getMessagesController().getDialogs(0);
         int indexOf = dialogs.indexOf(dialog);
         if (indexOf >= 0) {
             ArrayList<TLRPC.Dialog> dialogs2 = yyVar.getMessagesController().getDialogs(1);
             if (!dialogs2.isEmpty() || indexOf != 1) {
-                yyVar.x4(true, true);
-                xyVar.f41988x.D();
+                yyVar.y4(true, true);
+                xyVar.f41687x.D();
                 xyVar.q(true);
-                yyVar.l3();
+                yyVar.m3();
             }
             if (dialogs2.isEmpty()) {
                 dialogs.remove(0);
                 if (indexOf == 1) {
-                    yyVar.x4(true, true);
+                    yyVar.y4(true, true);
                     xyVar.q(true);
-                    yyVar.l3();
+                    yyVar.m3();
                     return;
                 }
                 if (!yyVar.R1.isEmpty()) {
                     yyVar.R1.remove(0);
                 }
-                xyVar.f41988x.D();
+                xyVar.f41687x.D();
                 xyVar.q(true);
                 return;
             }
@@ -95,16 +95,16 @@ public final class gm implements Runnable {
     }
 
     public gm(Object obj, int i10, Object obj2, int i11) {
-        this.f36437a = i11;
-        this.f36439c = obj;
-        this.f36438b = i10;
+        this.f36277a = i11;
+        this.f36279c = obj;
+        this.f36278b = i10;
         this.d = obj2;
     }
 
     public gm(Object obj, Object obj2, int i10, int i11) {
-        this.f36437a = i11;
-        this.f36439c = obj;
+        this.f36277a = i11;
+        this.f36279c = obj;
         this.d = obj2;
-        this.f36438b = i10;
+        this.f36278b = i10;
     }
 }

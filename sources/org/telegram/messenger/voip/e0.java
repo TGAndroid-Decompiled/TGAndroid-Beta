@@ -1,28 +1,25 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class e0 implements RequestDelegate {
-    public final int f18790a;
-    public final VoIPService f18791b;
-    public final MessagesStorage f18792c;
+public final class e0 implements Runnable {
+    public final int f18487a;
+    public final VoIPService f18488b;
+    public final TLRPC.GroupCallParticipant f18489c;
 
-    public e0(VoIPService voIPService, MessagesStorage messagesStorage, int i10) {
-        this.f18790a = i10;
-        this.f18791b = voIPService;
-        this.f18792c = messagesStorage;
+    public e0(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant, int i10) {
+        this.f18487a = i10;
+        this.f18488b = voIPService;
+        this.f18489c = groupCallParticipant;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18790a) {
+    public final void run() {
+        switch (this.f18487a) {
             case 0:
-                this.f18791b.lambda$acceptIncomingCall$103(this.f18792c, tLObject, tL_error);
+                this.f18488b.lambda$startConferenceGroupCall$37(this.f18489c);
                 return;
             default:
-                this.f18791b.lambda$startOutgoingCall$11(this.f18792c, tLObject, tL_error);
+                this.f18488b.lambda$startGroupCall$26(this.f18489c);
                 return;
         }
     }

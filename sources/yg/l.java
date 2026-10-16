@@ -27,7 +27,7 @@ import org.telegram.ui.Components.jx0;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.q5;
 import org.telegram.ui.Components.z9;
-import w7.a6;
+import w7.z5;
 public final class l extends wg.c {
     public boolean E;
     public final ImageView F;
@@ -36,11 +36,11 @@ public final class l extends wg.c {
     public TLRPC.Chat I;
     public TL_stories.TL_myBoost J;
     public final jx0 K;
-    public final boolean[] f48780s;
+    public final boolean[] f48779s;
     public final aq v;
-    public final ImageView f48781w;
-    public boolean f48782x;
-    public final ImageView f48783y;
+    public final ImageView f48780w;
+    public boolean f48781x;
+    public final ImageView f48782y;
 
     public l(Context context, boolean z10, boolean z11, c6 c6Var, boolean z12) {
         super(context, c6Var);
@@ -51,15 +51,15 @@ public final class l extends wg.c {
         float f10;
         int i13;
         float f11;
-        this.f48780s = new boolean[1];
+        this.f48779s = new boolean[1];
         this.G = true;
         this.K = new jx0(this);
         this.d.setTypeface(AndroidUtilities.bold());
-        this.f47568f.setVisibility(8);
+        this.f47567f.setVisibility(8);
         if (z11) {
             aq aqVar = new aq(context, 21, c6Var);
             this.v = aqVar;
-            aqVar.b(g6.B5, g6.f19972h5, g6.f20029k7);
+            aqVar.b(g6.B5, g6.f19672h5, g6.f19729k7);
             aqVar.setDrawUnchecked(false);
             aqVar.setDrawBackgroundAsArc(3);
             boolean z13 = LocaleController.isRTL;
@@ -74,15 +74,15 @@ public final class l extends wg.c {
             } else {
                 f11 = 40.0f;
             }
-            addView(aqVar, a6.a(24.0f, f11, 33.0f, z13 ? 39.0f : 0.0f, 0.0f, 24, i14));
+            addView(aqVar, z5.a(24.0f, f11, 33.0f, z13 ? 39.0f : 0.0f, 0.0f, 24, i14));
             d();
         } else if (z10) {
             aq aqVar2 = new aq(context, 21, c6Var);
             this.v = aqVar2;
             if (z12) {
-                aqVar2.b(g6.f19991i7, g6.f20009j7, g6.C5);
+                aqVar2.b(g6.f19691i7, g6.f19709j7, g6.C5);
             } else {
-                aqVar2.b(g6.B5, g6.f20009j7, g6.C5);
+                aqVar2.b(g6.B5, g6.f19709j7, g6.C5);
             }
             aqVar2.setDrawUnchecked(true);
             aqVar2.setDrawBackgroundAsArc(10);
@@ -93,13 +93,13 @@ public final class l extends wg.c {
             } else {
                 i10 = 3;
             }
-            aqVar2.setLayoutParams(a6.a(24.0f, 13.0f, 0.0f, 14.0f, 0.0f, 24, i10 | 16));
+            aqVar2.setLayoutParams(z5.a(24.0f, 13.0f, 0.0f, 14.0f, 0.0f, 24, i10 | 16));
             d();
         } else {
             this.v = null;
         }
         ImageView imageView = new ImageView(context);
-        this.f48781w = imageView;
+        this.f48780w = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.ic_ab_other);
@@ -111,9 +111,9 @@ public final class l extends wg.c {
         } else {
             i11 = 5;
         }
-        addView(imageView, a6.a(32.0f, 12.0f, 0.0f, 12.0f, 0.0f, 32, i11 | 16));
+        addView(imageView, z5.a(32.0f, 12.0f, 0.0f, 12.0f, 0.0f, 32, i11 | 16));
         ImageView imageView2 = new ImageView(context);
-        this.f48783y = imageView2;
+        this.f48782y = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.menu_phone);
         int i15 = g6.Oh;
@@ -135,14 +135,14 @@ public final class l extends wg.c {
         } else {
             f10 = 52.0f;
         }
-        addView(imageView2, a6.a(32.0f, f7, 0.0f, f10, 0.0f, 32, i16));
+        addView(imageView2, z5.a(32.0f, f7, 0.0f, f10, 0.0f, 32, i16));
         imageView2.setVisibility(8);
         ImageView imageView3 = new ImageView(context);
         this.F = imageView3;
         imageView3.setScaleType(scaleType);
         imageView3.setImageResource(R.drawable.menu_videocall);
         imageView3.setColorFilter(new PorterDuffColorFilter(g6.w0(i15, c6Var), mode));
-        addView(imageView3, a6.a(32.0f, 12.0f, 0.0f, 12.0f, 0.0f, 32, (LocaleController.isRTL ? 3 : 5) | 16));
+        addView(imageView3, z5.a(32.0f, 12.0f, 0.0f, 12.0f, 0.0f, 32, (LocaleController.isRTL ? 3 : 5) | 16));
         imageView3.setVisibility(8);
     }
 
@@ -191,35 +191,35 @@ public final class l extends wg.c {
         float f11 = 0.0f;
         int i11 = 0;
         ImageView imageView = this.F;
-        ImageView imageView2 = this.f48783y;
+        ImageView imageView2 = this.f48782y;
         if (z11) {
             imageView2.setVisibility(0);
             ViewPropertyAnimator animate = imageView2.animate();
-            if (z10 && this.f48782x) {
+            if (z10 && this.f48781x) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
             ViewPropertyAnimator alpha = animate.alpha(f10);
             Runnable runnable2 = null;
-            if (z10 && this.f48782x) {
+            if (z10 && this.f48781x) {
                 runnable = null;
             } else {
                 runnable = new Runnable(this) {
-                    public final l f48778b;
+                    public final l f48777b;
 
                     {
-                        this.f48778b = this;
+                        this.f48777b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                this.f48778b.f48783y.setVisibility(8);
+                                this.f48777b.f48782y.setVisibility(8);
                                 return;
                             default:
-                                this.f48778b.F.setVisibility(8);
+                                this.f48777b.F.setVisibility(8);
                                 return;
                         }
                     }
@@ -234,20 +234,20 @@ public final class l extends wg.c {
             ViewPropertyAnimator alpha2 = animate2.alpha(f11);
             if (!z10 || !this.E) {
                 runnable2 = new Runnable(this) {
-                    public final l f48778b;
+                    public final l f48777b;
 
                     {
-                        this.f48778b = this;
+                        this.f48777b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                this.f48778b.f48783y.setVisibility(8);
+                                this.f48777b.f48782y.setVisibility(8);
                                 return;
                             default:
-                                this.f48778b.F.setVisibility(8);
+                                this.f48777b.F.setVisibility(8);
                                 return;
                         }
                     }
@@ -257,13 +257,13 @@ public final class l extends wg.c {
             return;
         }
         imageView2.animate().cancel();
-        if (z10 && this.f48782x) {
+        if (z10 && this.f48781x) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         imageView2.setAlpha(f7);
-        if (z10 && this.f48782x) {
+        if (z10 && this.f48781x) {
             i10 = 0;
         } else {
             i10 = 8;
@@ -298,10 +298,10 @@ public final class l extends wg.c {
         String string;
         float f10;
         String str;
-        this.f48781w.setVisibility(8);
+        this.f48780w.setVisibility(8);
         this.I = chat;
         this.H = null;
-        k9 k9Var = this.f47566b;
+        k9 k9Var = this.f47565b;
         k9Var.q(chat);
         if (ChatObject.isForum(chat)) {
             f7 = 12.0f;
@@ -309,7 +309,7 @@ public final class l extends wg.c {
             f7 = 20.0f;
         }
         int dp = AndroidUtilities.dp(f7);
-        z9 z9Var = this.f47567c;
+        z9 z9Var = this.f47566c;
         z9Var.setRoundRadius(dp);
         z9Var.e(chat, k9Var);
         String str2 = chat.title;
@@ -336,7 +336,7 @@ public final class l extends wg.c {
             string = LocaleController.getString(i11);
         }
         setSubtitle(string);
-        this.e.setTextColor(g6.w0(g6.f20157r5, this.f47565a));
+        this.e.setTextColor(g6.w0(g6.f19857r5, this.f47564a));
         if (i10 > 200) {
             f10 = 0.3f;
         } else {
@@ -364,30 +364,30 @@ public final class l extends wg.c {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.K.f26511a.a();
+        this.K.f26148a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.K.f26511a.b();
+        this.K.f26148a.b();
     }
 
     public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
-        this.f48781w.setVisibility(8);
+        this.f48780w.setVisibility(8);
         this.J = tL_myBoost;
         TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_myBoost.peer)));
         this.I = chat;
-        k9 k9Var = this.f47566b;
+        k9 k9Var = this.f47565b;
         k9Var.q(chat);
         int dp = AndroidUtilities.dp(20.0f);
-        z9 z9Var = this.f47567c;
+        z9 z9Var = this.f47566c;
         z9Var.setRoundRadius(dp);
         z9Var.e(this.I, k9Var);
         String str = this.I.title;
         l5 l5Var = this.d;
         l5Var.k(str);
-        int w02 = g6.w0(g6.f20157r5, this.f47565a);
+        int w02 = g6.w0(g6.f19857r5, this.f47564a);
         h5 h5Var = this.e;
         h5Var.setTextColor(w02);
         setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_myBoost.expires * 1000))));
@@ -405,7 +405,7 @@ public final class l extends wg.c {
     }
 
     public void setOptions(View.OnClickListener onClickListener) {
-        ImageView imageView = this.f48781w;
+        ImageView imageView = this.f48780w;
         if (onClickListener != null) {
             imageView.setVisibility(0);
             imageView.setOnClickListener(onClickListener);
@@ -417,19 +417,19 @@ public final class l extends wg.c {
     public void setUser(TLRPC.User user) {
         int i10;
         q5 a2;
-        this.f48781w.setVisibility(8);
+        this.f48780w.setVisibility(8);
         this.H = user;
         this.I = null;
-        k9 k9Var = this.f47566b;
+        k9 k9Var = this.f47565b;
         k9Var.r(user);
         int dp = AndroidUtilities.dp(20.0f);
-        z9 z9Var = this.f47567c;
+        z9 z9Var = this.f47566c;
         z9Var.setRoundRadius(dp);
         z9Var.e(user, k9Var);
         String userName = UserObject.getUserName(user);
         l5 l5Var = this.d;
         l5Var.k(userName);
-        boolean[] zArr = this.f48780s;
+        boolean[] zArr = this.f48779s;
         zArr[0] = false;
         if (UserObject.isBot(user)) {
             int i11 = user.bot_active_users;
@@ -442,16 +442,16 @@ public final class l extends wg.c {
             setSubtitle(LocaleController.formatUserStatus(UserConfig.selectedAccount, user, zArr));
         }
         if (zArr[0]) {
-            i10 = g6.f20083n5;
+            i10 = g6.f19783n5;
         } else {
-            i10 = g6.f20157r5;
+            i10 = g6.f19857r5;
         }
-        this.e.setTextColor(g6.w0(i10, this.f47565a));
+        this.e.setTextColor(g6.w0(i10, this.f47564a));
         aq aqVar = this.v;
         if (aqVar != null) {
             aqVar.setAlpha(1.0f);
         }
-        int x02 = g6.x0(null, g6.f20308z9, false);
+        int x02 = g6.x0(null, g6.f20008z9, false);
         boolean s10 = k3.s(user);
         jx0 jx0Var = this.K;
         if (s10) {

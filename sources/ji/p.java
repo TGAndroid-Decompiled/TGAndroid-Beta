@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.i61;
 import org.telegram.ui.Components.wy;
 public final class p implements wy {
-    public final r f13457a;
+    public final r f13460a;
 
     public p(r rVar) {
-        this.f13457a = rVar;
+        this.f13460a = rVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class p implements wy {
     public final void i(int i10) {
         h1 focusedEditTextOrNull;
         boolean z10 = false;
-        r rVar = this.f13457a;
-        if (i10 != 0 && (focusedEditTextOrNull = rVar.f13483r.getFocusedEditTextOrNull()) != null) {
+        r rVar = this.f13460a;
+        if (i10 != 0 && (focusedEditTextOrNull = rVar.f13486r.getFocusedEditTextOrNull()) != null) {
             rVar.F = focusedEditTextOrNull;
             rVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        rVar.f13487y = z10;
+        rVar.f13490y = z10;
         rVar.V();
     }
 
@@ -69,7 +69,7 @@ public final class p implements wy {
 
     @Override
     public final boolean k() {
-        h1 P = r.P(this.f13457a);
+        h1 P = r.P(this.f13460a);
         if (P == null || P.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class p implements wy {
 
     @Override
     public final void l(String str) {
-        r rVar = this.f13457a;
+        r rVar = this.f13460a;
         h1 P = r.P(rVar);
         if (P != null) {
             int Q = r.Q(rVar, P);
@@ -104,7 +104,7 @@ public final class p implements wy {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.b6 b6Var;
-        r rVar = this.f13457a;
+        r rVar = this.f13460a;
         h1 P = r.P(rVar);
         if (P != null) {
             int Q = r.Q(rVar, P);
@@ -133,23 +133,7 @@ public final class p implements wy {
 
     @Override
     public final boolean z() {
-        return this.f13457a.f13487y;
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
+        return this.f13460a.f13490y;
     }
 
     @Override
@@ -157,7 +141,7 @@ public final class p implements wy {
     }
 
     @Override
-    public final void o(h61 h61Var) {
+    public final void o(i61 i61Var) {
     }
 
     @Override
@@ -174,6 +158,22 @@ public final class p implements wy {
 
     @Override
     public final void y(long j10) {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
     }
 
     @Override

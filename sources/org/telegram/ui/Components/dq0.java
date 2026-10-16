@@ -2,31 +2,31 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class dq0 implements Runnable {
-    public final int f24473a;
-    public final jr0 f24474b;
+    public final int f24166a;
+    public final ir0 f24167b;
 
-    public dq0(jr0 jr0Var, int i10) {
-        this.f24473a = i10;
-        this.f24474b = jr0Var;
+    public dq0(ir0 ir0Var, int i10) {
+        this.f24166a = i10;
+        this.f24167b = ir0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f24473a) {
+        switch (this.f24166a) {
             case 0:
-                jr0 jr0Var = this.f24474b;
-                jr0Var.A0 = true;
-                o20 o20Var = jr0Var.f26489y0;
-                o20Var.f27815r.setText("");
-                AndroidUtilities.showKeyboard(o20Var.f27815r);
+                ir0 ir0Var = this.f24167b;
+                ir0Var.A0 = true;
+                o20 o20Var = ir0Var.f25772y0;
+                o20Var.f27510r.setText("");
+                AndroidUtilities.showKeyboard(o20Var.f27510r);
                 return;
             default:
                 ve veVar = new ve(10);
-                jr0 jr0Var2 = this.f24474b;
-                if (jr0Var2.isKeyboardVisible()) {
-                    o20 o20Var2 = jr0Var2.f26489y0;
+                ir0 ir0Var2 = this.f24167b;
+                if (ir0Var2.isKeyboardVisible()) {
+                    o20 o20Var2 = ir0Var2.f25772y0;
                     if (o20Var2 != null) {
-                        AndroidUtilities.hideKeyboard(o20Var2.f27815r);
+                        AndroidUtilities.hideKeyboard(o20Var2.f27510r);
                     }
                     AndroidUtilities.runOnUIThread(veVar, 300L);
                     return;

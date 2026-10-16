@@ -16,7 +16,7 @@ public final class e implements q {
     public final SparseArray d = new SparseArray();
     public final d e = d.f46490a;
     public boolean f46494f;
-    public n6.o h;
+    public n3.b h;
     public long f46495n;
     public b0 f46496r;
     public x[] f46497s;
@@ -44,19 +44,8 @@ public final class e implements q {
         this.f46496r = b0Var;
     }
 
-    public final c3.j a() {
-        b0 b0Var = this.f46496r;
-        if (b0Var instanceof c3.j) {
-            return (c3.j) b0Var;
-        }
-        if (b0Var instanceof u3.d) {
-            return ((u3.d) b0Var).f46123a;
-        }
-        return null;
-    }
-
     @Override
-    public final i0 a0(int i10, int i11) {
+    public final i0 W(int i10, int i11) {
         boolean z10;
         x xVar;
         SparseArray sparseArray = this.d;
@@ -74,17 +63,17 @@ public final class e implements q {
                 xVar = null;
             }
             cVar = new c(i10, i11, xVar, this.e);
-            n6.o oVar = this.h;
+            n3.b bVar = this.h;
             long j10 = this.f46495n;
-            if (oVar == null) {
+            if (bVar == null) {
                 cVar.f46488f = cVar.f46487c;
             } else {
                 cVar.f46489g = j10;
-                i0 g02 = oVar.g0(i11);
-                cVar.f46488f = g02;
+                i0 j02 = bVar.j0(i11);
+                cVar.f46488f = j02;
                 x xVar2 = cVar.e;
                 if (xVar2 != null) {
-                    g02.b(xVar2);
+                    j02.b(xVar2);
                 }
             }
             sparseArray.put(i10, cVar);
@@ -92,15 +81,26 @@ public final class e implements q {
         return cVar;
     }
 
-    public final void b(n6.o oVar, long j10, long j11) {
-        this.h = oVar;
+    public final c3.j a() {
+        b0 b0Var = this.f46496r;
+        if (b0Var instanceof c3.j) {
+            return (c3.j) b0Var;
+        }
+        if (b0Var instanceof u3.d) {
+            return ((u3.d) b0Var).f46123a;
+        }
+        return null;
+    }
+
+    public final void b(n3.b bVar, long j10, long j11) {
+        this.h = bVar;
         this.f46495n = j11;
         boolean z10 = this.f46494f;
-        o oVar2 = this.f46491a;
+        o oVar = this.f46491a;
         if (!z10) {
-            oVar2.c(this);
+            oVar.c(this);
             if (j10 != -9223372036854775807L) {
-                oVar2.d(0L, j10);
+                oVar.d(0L, j10);
             }
             this.f46494f = true;
             return;
@@ -108,21 +108,21 @@ public final class e implements q {
         if (j10 == -9223372036854775807L) {
             j10 = 0;
         }
-        oVar2.d(0L, j10);
+        oVar.d(0L, j10);
         int i10 = 0;
         while (true) {
             SparseArray sparseArray = this.d;
             if (i10 < sparseArray.size()) {
                 c cVar = (c) sparseArray.valueAt(i10);
-                if (oVar == null) {
+                if (bVar == null) {
                     cVar.f46488f = cVar.f46487c;
                 } else {
                     cVar.f46489g = j11;
-                    i0 g02 = oVar.g0(cVar.f46485a);
-                    cVar.f46488f = g02;
+                    i0 j02 = bVar.j0(cVar.f46485a);
+                    cVar.f46488f = j02;
                     x xVar = cVar.e;
                     if (xVar != null) {
-                        g02.b(xVar);
+                        j02.b(xVar);
                     }
                 }
                 i10++;

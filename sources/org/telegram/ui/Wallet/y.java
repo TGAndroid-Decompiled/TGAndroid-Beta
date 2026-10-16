@@ -1,55 +1,30 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.wc0;
-public final class y implements Runnable, NotificationCenter.NotificationCenterDelegate {
-    public boolean f33859a;
-    public final NotificationCenter f33860b;
-    public final wc0 f33861c;
-    public final j0 d;
+import org.telegram.messenger.Utilities;
+public final class y implements Runnable {
+    public volatile boolean f33594a;
+    public Runnable f33595b;
+    public final String f33596c;
+    public final long d;
+    public final String e;
+    public final byte[] f33597f;
+    public final Utilities.Callback2 h;
+    public final k0 f33598n;
 
-    public y(NotificationCenter notificationCenter, wc0 wc0Var, j0 j0Var) {
-        this.f33860b = notificationCenter;
-        this.f33861c = wc0Var;
-        this.d = j0Var;
-    }
-
-    public final void a() {
-        if (!this.f33859a) {
-            j0 j0Var = this.d;
-            if (j0Var.e != null) {
-                ArrayList arrayList = j0Var.C;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    if (((f0) obj).d) {
-                        return;
-                    }
-                }
-                run();
-            }
-        }
+    public y(k0 k0Var, String str, long j10, String str2, byte[] bArr, Utilities.Callback2 callback2) {
+        this.f33598n = k0Var;
+        this.f33596c = str;
+        this.d = j10;
+        this.e = str2;
+        this.f33597f = bArr;
+        this.h = callback2;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.walletUpdate) {
-            a();
-        }
-    }
-
-    @Override
-    public final void run() {
-        if (this.f33859a) {
+    public final synchronized void run() {
+        if (this.f33594a) {
             return;
         }
-        this.f33859a = true;
-        AndroidUtilities.cancelRunOnUIThread(this);
-        this.f33860b.removeObserver(this, NotificationCenter.walletUpdate);
-        this.f33861c.run();
+        this.f33595b = this.f33598n.f33093b.emulateSend(this.f33596c, this.d, this.e, this.f33597f, new bi.f0(23, this, this.h));
     }
 }

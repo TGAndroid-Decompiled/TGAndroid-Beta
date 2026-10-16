@@ -10,13 +10,13 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class tj extends im0 {
-    public final int f29398r = UserConfig.selectedAccount;
-    public final Context f29399s;
+    public final int f29076r = UserConfig.selectedAccount;
+    public final Context f29077s;
     public final zj v;
 
     public tj(zj zjVar, Context context) {
         this.v = zjVar;
-        this.f29399s = context;
+        this.f29077s = context;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class tj extends im0 {
             return 1;
         }
         int i11 = i10 - 1;
-        int i12 = this.f29398r;
+        int i12 = this.f29076r;
         HashMap<String, ArrayList<Object>> hashMap = ContactsController.getInstance(i12).phoneBookSectionsDict;
         ArrayList<String> arrayList = ContactsController.getInstance(i12).phoneBookSectionsArray;
         if (i11 < arrayList.size()) {
@@ -51,7 +51,7 @@ public final class tj extends im0 {
             return null;
         }
         int i12 = i10 - 1;
-        int i13 = this.f29398r;
+        int i13 = this.f29076r;
         HashMap<String, ArrayList<Object>> hashMap = ContactsController.getInstance(i13).phoneBookSectionsDict;
         ArrayList<String> arrayList = ContactsController.getInstance(i13).phoneBookSectionsArray;
         if (i12 < arrayList.size()) {
@@ -76,7 +76,7 @@ public final class tj extends im0 {
 
     @Override
     public final int R() {
-        return ContactsController.getInstance(this.f29398r).phoneBookSectionsArray.size() + 2;
+        return ContactsController.getInstance(this.f29076r).phoneBookSectionsArray.size() + 2;
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class tj extends im0 {
     @Override
     public final boolean V(int i10, int i11, s4.b1 b1Var) {
         if (i10 != 0 && i10 != R() - 1) {
-            int i12 = this.f29398r;
+            int i12 = this.f29076r;
             if (i11 < ContactsController.getInstance(i12).phoneBookSectionsDict.get(ContactsController.getInstance(i12).phoneBookSectionsArray.get(i10 - 1)).size()) {
                 return true;
             }
@@ -120,7 +120,7 @@ public final class tj extends im0 {
             if (user != null) {
                 yjVar.a(user, null, new sj(0, user), z10);
             }
-            boolean containsKey = this.v.f31886w.containsKey(pj.a(O));
+            boolean containsKey = this.v.f31580w.containsKey(pj.a(O));
             aq aqVar = yjVar.d;
             if (aqVar.getVisibility() != 0) {
                 aqVar.setVisibility(0);
@@ -138,7 +138,7 @@ public final class tj extends im0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View yjVar;
-        Context context = this.f29399s;
+        Context context = this.f29077s;
         if (i10 != 0) {
             if (i10 != 1) {
                 yjVar = new View(context);
@@ -149,7 +149,7 @@ public final class tj extends im0 {
                 yjVar.setTag(-33024);
             }
         } else {
-            yjVar = new yj(context, this.v.f27670a);
+            yjVar = new yj(context, this.v.f27359a);
         }
         return new s4.b1(yjVar);
     }

@@ -2,9 +2,9 @@ package zh;
 
 import android.app.Activity;
 import android.view.ViewGroup;
+import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
-public final class s6 extends z61 {
+public final class s6 extends a71 {
     public final p7 N;
 
     public s6(p7 p7Var, mm0 mm0Var, Activity activity, int i10, int i11, ii.a aVar, org.telegram.ui.ActionBar.c6 c6Var) {

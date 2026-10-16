@@ -2,44 +2,44 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class p8 implements View.OnClickListener {
-    public final int f39140a;
-    public final boolean[] f39141b;
+    public final int f38834a;
+    public final boolean[] f38835b;
 
     public p8(int i10, boolean[] zArr) {
-        this.f39140a = i10;
-        this.f39141b = zArr;
+        this.f38834a = i10;
+        this.f38835b = zArr;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f39140a) {
+        switch (this.f38834a) {
             case 0:
-                boolean[] zArr = this.f39141b;
+                boolean[] zArr = this.f38835b;
                 boolean z10 = !zArr[0];
                 zArr[0] = z10;
                 ((org.telegram.ui.Cells.a2) view).c(z10, true);
                 return;
             case 1:
-                boolean[] zArr2 = this.f39141b;
+                boolean[] zArr2 = this.f38835b;
                 boolean z11 = !zArr2[1];
                 zArr2[1] = z11;
                 ((org.telegram.ui.Cells.a2) view).c(z11, true);
                 return;
             case 2:
-                boolean[] zArr3 = this.f39141b;
+                boolean[] zArr3 = this.f38835b;
                 boolean z12 = !zArr3[0];
                 zArr3[0] = z12;
                 ((org.telegram.ui.Cells.a2) view).c(z12, true);
                 return;
             case 3:
-                boolean[] zArr4 = this.f39141b;
+                boolean[] zArr4 = this.f38835b;
                 boolean z13 = !zArr4[0];
                 zArr4[0] = z13;
                 ((org.telegram.ui.Cells.a2) view).c(z13, true);
                 return;
             case 4:
                 if (view.isEnabled()) {
-                    boolean[] zArr5 = this.f39141b;
+                    boolean[] zArr5 = this.f38835b;
                     boolean z14 = !zArr5[0];
                     zArr5[0] = z14;
                     ((org.telegram.ui.Cells.a2) view).c(z14, true);
@@ -47,14 +47,14 @@ public final class p8 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                boolean[] zArr6 = this.f39141b;
+                boolean[] zArr6 = this.f38835b;
                 boolean z15 = !zArr6[0];
                 zArr6[0] = z15;
                 ((org.telegram.ui.Cells.a2) view).c(z15, true);
                 return;
             default:
                 if (view.isEnabled()) {
-                    boolean[] zArr7 = this.f39141b;
+                    boolean[] zArr7 = this.f38835b;
                     boolean z16 = !zArr7[0];
                     zArr7[0] = z16;
                     ((org.telegram.ui.Cells.a2) view).c(z16, true);

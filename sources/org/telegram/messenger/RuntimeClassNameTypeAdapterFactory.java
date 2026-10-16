@@ -70,11 +70,11 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements eb.v {
                         gb.d.l(jsonTree, bVar);
                         return;
                     }
-                    gb.n nVar = jsonTree.h().f8692a;
-                    if (!nVar.containsKey(RuntimeClassNameTypeAdapterFactory.this.typeFieldName)) {
+                    gb.o oVar = jsonTree.h().f8695a;
+                    if (!oVar.containsKey(RuntimeClassNameTypeAdapterFactory.this.typeFieldName)) {
                         eb.l lVar = new eb.l();
                         lVar.n(RuntimeClassNameTypeAdapterFactory.this.typeFieldName, new eb.m(simpleName));
-                        Iterator it = ((gb.l) nVar.entrySet()).iterator();
+                        Iterator it = ((gb.m) oVar.entrySet()).iterator();
                         while (it.hasNext()) {
                             Map.Entry entry = (Map.Entry) it.next();
                             lVar.n((String) entry.getKey(), (eb.i) entry.getValue());

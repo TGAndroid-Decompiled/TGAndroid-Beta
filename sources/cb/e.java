@@ -1,15 +1,15 @@
 package cb;
 public final class e {
-    public final Boolean f4689a;
-    public final Double f4690b;
-    public final Integer f4691c;
+    public final Boolean f4692a;
+    public final Double f4693b;
+    public final Integer f4694c;
     public final Integer d;
     public final Long e;
 
     public e(Boolean bool, Double d, Integer num, Integer num2, Long l4) {
-        this.f4689a = bool;
-        this.f4690b = d;
-        this.f4691c = num;
+        this.f4692a = bool;
+        this.f4693b = d;
+        this.f4694c = num;
         this.d = num2;
         this.e = l4;
     }
@@ -22,7 +22,7 @@ public final class e {
             return false;
         }
         e eVar = (e) obj;
-        if (kotlin.jvm.internal.i.a(this.f4689a, eVar.f4689a) && kotlin.jvm.internal.i.a(this.f4690b, eVar.f4690b) && kotlin.jvm.internal.i.a(this.f4691c, eVar.f4691c) && kotlin.jvm.internal.i.a(this.d, eVar.d) && kotlin.jvm.internal.i.a(this.e, eVar.e)) {
+        if (kotlin.jvm.internal.i.a(this.f4692a, eVar.f4692a) && kotlin.jvm.internal.i.a(this.f4693b, eVar.f4693b) && kotlin.jvm.internal.i.a(this.f4694c, eVar.f4694c) && kotlin.jvm.internal.i.a(this.d, eVar.d) && kotlin.jvm.internal.i.a(this.e, eVar.e)) {
             return true;
         }
         return false;
@@ -34,21 +34,21 @@ public final class e {
         int hashCode3;
         int hashCode4;
         int i10 = 0;
-        Boolean bool = this.f4689a;
+        Boolean bool = this.f4692a;
         if (bool == null) {
             hashCode = 0;
         } else {
             hashCode = bool.hashCode();
         }
         int i11 = hashCode * 31;
-        Double d = this.f4690b;
+        Double d = this.f4693b;
         if (d == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = d.hashCode();
         }
         int i12 = (i11 + hashCode2) * 31;
-        Integer num = this.f4691c;
+        Integer num = this.f4694c;
         if (num == null) {
             hashCode3 = 0;
         } else {
@@ -70,6 +70,6 @@ public final class e {
     }
 
     public final String toString() {
-        return "SessionConfigs(sessionEnabled=" + this.f4689a + ", sessionSamplingRate=" + this.f4690b + ", sessionRestartTimeout=" + this.f4691c + ", cacheDuration=" + this.d + ", cacheUpdatedTime=" + this.e + ')';
+        return "SessionConfigs(sessionEnabled=" + this.f4692a + ", sessionSamplingRate=" + this.f4693b + ", sessionRestartTimeout=" + this.f4694c + ", cacheDuration=" + this.d + ", cacheUpdatedTime=" + this.e + ')';
     }
 }

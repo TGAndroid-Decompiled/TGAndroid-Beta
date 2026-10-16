@@ -21,7 +21,7 @@ import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.mm0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ic1;
-import w7.a6;
+import w7.z5;
 public final class j0 extends sg.m1 {
     public final ArrayList Q0;
 
@@ -37,40 +37,40 @@ public final class j0 extends sg.m1 {
         wg.a aVar = new wg.a(getContext(), this.resourcesProvider);
         aVar.setOnClickListener(new o4(this, 13));
         aVar.setCloseStyle(true);
-        this.containerView.addView(aVar, a6.a(64.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
+        this.containerView.addView(aVar, z5.a(64.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
         mm0 mm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
         mm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
         Context context = getContext();
-        int i12 = i0.f46320f;
+        int i12 = i0.f46319f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setClipChildren(false);
         if (arrayList2.size() == 1) {
-            frameLayout.addView(frameLayout2, a6.a(94.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
+            frameLayout.addView(frameLayout2, z5.a(94.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
             i0 i0Var = new i0(context, 47.0f);
             i0Var.d = false;
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
             k9 k9Var = i0Var.e;
             k9Var.r(user);
-            i0Var.f46321a.e(user, k9Var);
-            frameLayout2.addView(i0Var, 0, a6.e(94, 94, 17));
+            i0Var.f46320a.e(user, k9Var);
+            frameLayout2.addView(i0Var, 0, z5.e(94, 94, 17));
         } else {
-            frameLayout.addView(frameLayout2, a6.a(83.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
+            frameLayout.addView(frameLayout2, z5.a(83.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
             int i13 = 0;
             for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList2.get(i14);
                 i0 i0Var2 = new i0(context, 41.5f);
                 k9 k9Var2 = i0Var2.e;
                 k9Var2.r(user2);
-                i0Var2.f46321a.e(user2, k9Var2);
-                frameLayout2.addView(i0Var2, 0, a6.e(83, 83, 17));
+                i0Var2.f46320a.e(user2, k9Var2);
+                frameLayout2.addView(i0Var2, 0, z5.e(83, 83, 17));
                 i0Var2.setTranslationX(AndroidUtilities.dp(29.0f) * (-i14));
                 if (i14 == 0 && arrayList2.size() > 3) {
-                    h0 h0Var = i0Var2.f46322b;
+                    h0 h0Var = i0Var2.f46321b;
                     h0Var.setAlpha(1.0f);
-                    h0Var.f46319b = arrayList2.size() - 3;
+                    h0Var.f46318b = arrayList2.size() - 3;
                 }
                 i13++;
                 if (i14 == 2) {
@@ -99,7 +99,7 @@ public final class j0 extends sg.m1 {
         if (i10 == 0) {
             view.setOutlineProvider(new a2(21));
             view.setClipToOutline(true);
-            view.setBackgroundColor(g6.w0(g6.f19843a7, this.resourcesProvider));
+            view.setBackgroundColor(g6.w0(g6.f19543a7, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -AndroidUtilities.dp(6.0f);
         }
     }
@@ -128,7 +128,7 @@ public final class j0 extends sg.m1 {
         } else {
             f10 = 14.0f;
         }
-        ic1Var.addView(view, a6.k(0.0f, f11, 0.0f, f10, -1, i11));
+        ic1Var.addView(view, z5.k(0.0f, f11, 0.0f, f10, -1, i11));
     }
 
     @Override

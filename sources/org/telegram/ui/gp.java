@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.messenger.ChatObject;
 public final class gp implements org.telegram.ui.Components.v90 {
-    public final Context f36443a;
-    public final np f36444b;
+    public final Context f36284a;
+    public final np f36285b;
 
     public gp(np npVar, Context context) {
-        this.f36444b = npVar;
-        this.f36443a = context;
+        this.f36285b = npVar;
+        this.f36284a = context;
     }
 
     @Override
     public final void d() {
-        this.f36444b.X(true);
+        this.f36285b.X(true);
     }
 
     @Override
-    public final void h() {
-        np npVar = this.f36444b;
-        org.telegram.ui.Components.p70 p70Var = new org.telegram.ui.Components.p70(this.f36443a, npVar.f38767l0, npVar.Y, npVar.f38770o0, npVar, npVar.Z, true, ChatObject.isChannel(npVar.X));
-        np npVar2 = this.f36444b;
-        npVar2.f38771p0 = p70Var;
-        npVar2.f38771p0.show();
+    public final void i() {
+        np npVar = this.f36285b;
+        org.telegram.ui.Components.p70 p70Var = new org.telegram.ui.Components.p70(this.f36284a, npVar.f38447l0, npVar.Y, npVar.f38450o0, npVar, npVar.Z, true, ChatObject.isChannel(npVar.X));
+        np npVar2 = this.f36285b;
+        npVar2.f38451p0 = p70Var;
+        npVar2.f38451p0.show();
     }
 
     @Override
@@ -30,6 +30,6 @@ public final class gp implements org.telegram.ui.Components.v90 {
     }
 
     @Override
-    public final void i() {
+    public final void j() {
     }
 }

@@ -10,6 +10,6 @@ public final class gx0 extends i71 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f32469s0 = null;
+        this.e.f32171s0 = null;
     }
 }

@@ -12,13 +12,13 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.i61;
 import org.telegram.ui.Components.wy;
 public final class d6 implements wy {
-    public final o6 f6824a;
+    public final o6 f6827a;
 
     public d6(o6 o6Var) {
-        this.f6824a = o6Var;
+        this.f6827a = o6Var;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class d6 implements wy {
 
     @Override
     public final boolean k() {
-        rg.b editText = ((rg.x2) this.f6824a.J0).getEditText();
+        rg.b editText = ((rg.x2) this.f6827a.J0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -71,7 +71,7 @@ public final class d6 implements wy {
         rg.x2 x2Var;
         rg.b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        rg.j jVar = this.f6824a.J0;
+        rg.j jVar = this.f6827a.J0;
         if ((jVar instanceof rg.x2) && (editText = (x2Var = (rg.x2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -97,12 +97,12 @@ public final class d6 implements wy {
 
     @Override
     public final void n() {
-        o6 o6Var = this.f6824a;
+        o6 o6Var = this.f6827a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o6Var.getContext(), 0, o6Var.G1);
-        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new a1.c(this, 26));
-        org.telegram.messenger.q.q(R.string.Cancel, alertDialog$Builder, null);
+        i2.d.r(R.string.Cancel, alertDialog$Builder, null);
     }
 
     @Override
@@ -113,7 +113,7 @@ public final class d6 implements wy {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.b6 b6Var;
-        rg.b editText = ((rg.x2) this.f6824a.J0).getEditText();
+        rg.b editText = ((rg.x2) this.f6827a.J0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -122,7 +122,7 @@ public final class d6 implements wy {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    b6Var = new org.telegram.ui.Components.b6(document.f19222id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    b6Var = new org.telegram.ui.Components.b6(document.f18922id, 1.0f, editText.getPaint().getFontMetricsInt());
                     b6Var.document = document;
                 } else {
                     b6Var = new org.telegram.ui.Components.b6(j10, 1.0f, editText.getPaint().getFontMetricsInt());
@@ -145,18 +145,6 @@ public final class d6 implements wy {
     }
 
     @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
     public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
     }
 
@@ -165,7 +153,7 @@ public final class d6 implements wy {
     }
 
     @Override
-    public final void o(h61 h61Var) {
+    public final void o(i61 i61Var) {
     }
 
     @Override
@@ -182,6 +170,18 @@ public final class d6 implements wy {
 
     @Override
     public final void y(long j10) {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
     }
 
     @Override

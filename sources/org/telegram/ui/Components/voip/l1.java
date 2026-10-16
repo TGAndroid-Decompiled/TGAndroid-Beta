@@ -13,30 +13,30 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.bk0;
 import org.telegram.ui.ki1;
-import w7.a6;
+import w7.z5;
 public final class l1 extends FrameLayout {
-    public final bk0 f30314a;
-    public final bk0 f30315b;
-    public final org.telegram.ui.Cells.z f30316c;
-    public org.telegram.ui.Components.t2 d;
+    public final bk0 f29983a;
+    public final bk0 f29984b;
+    public final org.telegram.ui.Cells.z f29985c;
+    public org.telegram.ui.Components.u2 d;
     public k1 e;
-    public int f30317f;
+    public int f29986f;
 
     public l1(Context context) {
         super(context);
-        this.f30317f = 0;
+        this.f29986f = 0;
         setWillNotDraw(false);
         ?? imageView = new ImageView(context);
-        this.f30314a = imageView;
+        this.f29983a = imageView;
         ?? imageView2 = new ImageView(context);
-        this.f30315b = imageView2;
+        this.f29984b = imageView2;
         imageView.f(R.raw.star_stroke, 37, 37, null);
         imageView2.f(R.raw.star_fill, 37, 37, null);
         imageView2.setAlpha(0.0f);
-        addView((View) imageView, a6.d(37.0f, 37));
-        addView((View) imageView2, a6.d(37.0f, 37));
+        addView((View) imageView, z5.d(37.0f, 37));
+        addView((View) imageView2, z5.d(37.0f, 37));
         org.telegram.ui.Cells.z i02 = g6.i0(AndroidUtilities.dp(37.0f), 0, i0.a.k(-1, 76));
-        this.f30316c = i02;
+        this.f29985c = i02;
         i02.setCallback(this);
         setClickable(true);
     }
@@ -50,12 +50,12 @@ public final class l1 extends FrameLayout {
         if (action != 0) {
             if (action != 1) {
                 if (action == 3 && (k1Var = this.e) != null) {
-                    l1[] l1VarArr = ((m1) ((m5) k1Var).f13411b).f30329c;
+                    l1[] l1VarArr = ((m1) ((m5) k1Var).f13414b).f29998c;
                     int length = l1VarArr.length;
                     while (i11 < length) {
                         l1 l1Var = l1VarArr[i11];
-                        bk0 bk0Var = l1Var.f30314a;
-                        bk0 bk0Var2 = l1Var.f30315b;
+                        bk0 bk0Var = l1Var.f29983a;
+                        bk0 bk0Var2 = l1Var.f29984b;
                         bk0Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                         bk0Var2.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                         i11++;
@@ -64,11 +64,11 @@ public final class l1 extends FrameLayout {
             } else {
                 k1 k1Var2 = this.e;
                 if (k1Var2 != null) {
-                    l1[] l1VarArr2 = ((m1) ((m5) k1Var2).f13411b).f30329c;
-                    for (int i12 = 0; i12 <= this.f30317f; i12++) {
+                    l1[] l1VarArr2 = ((m1) ((m5) k1Var2).f13414b).f29998c;
+                    for (int i12 = 0; i12 <= this.f29986f; i12++) {
                         l1 l1Var2 = l1VarArr2[i12];
-                        bk0 bk0Var3 = l1Var2.f30314a;
-                        bk0 bk0Var4 = l1Var2.f30315b;
+                        bk0 bk0Var3 = l1Var2.f29983a;
+                        bk0 bk0Var4 = l1Var2.f29984b;
                         bk0Var3.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                         bk0Var4.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     }
@@ -78,12 +78,12 @@ public final class l1 extends FrameLayout {
                     getLocationOnScreen(iArr);
                     int i13 = iArr[0];
                     int i14 = iArr[1];
-                    org.telegram.ui.Components.t2 t2Var = this.d;
+                    org.telegram.ui.Components.u2 u2Var = this.d;
                     float width = (getWidth() / 2.0f) + i13;
                     float height = (getHeight() / 2.0f) + i14;
-                    int i15 = this.f30317f + 1;
-                    m1 m1Var = (m1) t2Var.f29253b;
-                    Context context = (Context) t2Var.f29254c;
+                    int i15 = this.f29986f + 1;
+                    m1 m1Var = (m1) u2Var.f29244b;
+                    Context context = (Context) u2Var.f29245c;
                     if (i15 >= 4) {
                         ?? imageView = new ImageView(context);
                         int dp = AndroidUtilities.dp(133.0f);
@@ -92,7 +92,7 @@ public final class l1 extends FrameLayout {
                         m1Var.getLocationOnScreen(iArr2);
                         int i16 = iArr2[0];
                         int i17 = iArr2[1];
-                        m1Var.addView((View) imageView, a6.d(133.0f, 133));
+                        m1Var.addView((View) imageView, z5.d(133.0f, 133));
                         float f7 = width - i16;
                         float f10 = dp / 2.0f;
                         imageView.setTranslationX(f7 - f10);
@@ -102,30 +102,30 @@ public final class l1 extends FrameLayout {
                     }
                     ki1 ki1Var = m1Var.d;
                     if (ki1Var != null) {
-                        ki1Var.f37669b.L = i15;
+                        ki1Var.f37441b.L = i15;
                     }
                 }
             }
         } else {
             k1 k1Var3 = this.e;
             if (k1Var3 != null) {
-                l1[] l1VarArr3 = ((m1) ((m5) k1Var3).f13411b).f30329c;
+                l1[] l1VarArr3 = ((m1) ((m5) k1Var3).f13414b).f29998c;
                 while (true) {
-                    i10 = this.f30317f;
+                    i10 = this.f29986f;
                     if (i11 > i10) {
                         break;
                     }
                     l1 l1Var3 = l1VarArr3[i11];
-                    bk0 bk0Var5 = l1Var3.f30314a;
-                    bk0 bk0Var6 = l1Var3.f30315b;
+                    bk0 bk0Var5 = l1Var3.f29983a;
+                    bk0 bk0Var6 = l1Var3.f29984b;
                     bk0Var5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
                     bk0Var6.animate().alpha(1.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
                     i11++;
                 }
                 for (int i18 = i10 + 1; i18 < l1VarArr3.length; i18++) {
                     l1 l1Var4 = l1VarArr3[i18];
-                    bk0 bk0Var7 = l1Var4.f30314a;
-                    bk0 bk0Var8 = l1Var4.f30315b;
+                    bk0 bk0Var7 = l1Var4.f29983a;
+                    bk0 bk0Var8 = l1Var4.f29984b;
                     bk0Var7.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     bk0Var8.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                 }
@@ -137,7 +137,7 @@ public final class l1 extends FrameLayout {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        org.telegram.ui.Cells.z zVar = this.f30316c;
+        org.telegram.ui.Cells.z zVar = this.f29985c;
         if (zVar != null) {
             zVar.setState(getDrawableState());
         }
@@ -146,7 +146,7 @@ public final class l1 extends FrameLayout {
     @Override
     public final void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        org.telegram.ui.Cells.z zVar = this.f30316c;
+        org.telegram.ui.Cells.z zVar = this.f29985c;
         if (zVar != null) {
             zVar.jumpToCurrentState();
         }
@@ -157,7 +157,7 @@ public final class l1 extends FrameLayout {
         super.onDraw(canvas);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Cells.z zVar = this.f30316c;
+        org.telegram.ui.Cells.z zVar = this.f29985c;
         zVar.setBounds(0, 0, width, height);
         zVar.draw(canvas);
     }
@@ -168,7 +168,7 @@ public final class l1 extends FrameLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f30316c != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f29985c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -1,19 +1,57 @@
 package w7;
 
-import android.os.Parcel;
-import android.os.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public abstract class x {
-    public static void a(m4.m mVar) {
-        if (mVar != null) {
-            try {
-                m4.l lVar = (m4.l) mVar;
-                Parcel obtain = Parcel.obtain();
-                obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
-                obtain.writeInt(0);
-                lVar.f15505a.transact(3006, obtain, null, 1);
-                obtain.recycle();
-            } catch (RemoteException unused) {
+    public static String a(Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String i10;
+        int i11 = 0;
+        int i12 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i12 >= length) {
+                break;
             }
+            Object obj = objArr[i12];
+            if (obj == null) {
+                i10 = "null";
+            } else {
+                try {
+                    i10 = obj.toString();
+                } catch (Exception e) {
+                    String D = a1.g.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e);
+                    i10 = org.telegram.ui.Cells.c1.i("<", D, " threw ", e.getClass().getName(), ">");
+                }
+            }
+            objArr[i12] = i10;
+            i12++;
         }
+        StringBuilder sb2 = new StringBuilder((length * 16) + 29);
+        int i13 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i11 >= length2 || (indexOf = "expected a non-null reference".indexOf("%s", i13)) == -1) {
+                break;
+            }
+            sb2.append((CharSequence) "expected a non-null reference", i13, indexOf);
+            sb2.append(objArr[i11]);
+            i11++;
+            i13 = indexOf + 2;
+        }
+        sb2.append((CharSequence) "expected a non-null reference", i13, 29);
+        if (i11 < length2) {
+            sb2.append(" [");
+            sb2.append(objArr[i11]);
+            for (int i14 = i11 + 1; i14 < objArr.length; i14++) {
+                sb2.append(", ");
+                sb2.append(objArr[i14]);
+            }
+            sb2.append(']');
+        }
+        return sb2.toString();
     }
 }

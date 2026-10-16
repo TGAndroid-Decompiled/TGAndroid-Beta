@@ -28,7 +28,7 @@ public final class m extends f10 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int w02 = g6.w0(g6.f19901d6, this.V.W.f4798c);
+        int w02 = g6.w0(g6.f19601d6, this.V.W.f4801c);
         Paint paint = this.U;
         paint.setColor(w02);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);

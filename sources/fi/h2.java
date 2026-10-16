@@ -1,24 +1,24 @@
 package fi;
 
-import di.x6;
+import di.y6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class h2 implements Utilities.Callback {
-    public final int f9307a;
-    public final k3 f9308b;
+    public final int f9310a;
+    public final k3 f9311b;
 
     public h2(k3 k3Var, int i10) {
-        this.f9307a = i10;
-        this.f9308b = k3Var;
+        this.f9310a = i10;
+        this.f9311b = k3Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f9307a) {
+        switch (this.f9310a) {
             case 0:
                 Boolean bool = (Boolean) obj;
-                b3 b3Var = this.f9308b.f9381x;
+                b3 b3Var = this.f9311b.f9384x;
                 if (b3Var != null) {
                     if (bool.booleanValue()) {
                         b3Var.P = System.currentTimeMillis();
@@ -31,7 +31,7 @@ public final class h2 implements Utilities.Callback {
                 }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new x6(26, this.f9308b, (TLRPC.UserFull) obj));
+                AndroidUtilities.runOnUIThread(new y6(26, this.f9311b, (TLRPC.UserFull) obj));
                 return;
         }
     }

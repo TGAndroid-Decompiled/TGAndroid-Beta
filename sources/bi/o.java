@@ -8,10 +8,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.wl0;
 public final class o extends s4.m0 {
-    public final int f3399a;
+    public final int f3403a;
 
     public o(int i10) {
-        this.f3399a = i10;
+        this.f3403a = i10;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class o extends s4.m0 {
         int dp;
         int dp2;
         int dp3;
-        switch (this.f3399a) {
+        switch (this.f3403a) {
             case 0:
                 recyclerView.getClass();
                 int S = RecyclerView.S(view);
@@ -149,7 +149,7 @@ public final class o extends s4.m0 {
         View view;
         float dp;
         int i10;
-        switch (this.f3399a) {
+        switch (this.f3403a) {
             case 10:
                 int width = recyclerView.getWidth();
                 int childCount = recyclerView.getChildCount();
@@ -175,7 +175,7 @@ public final class o extends s4.m0 {
                         } else {
                             i10 = 0;
                         }
-                        canvas.drawLine(f7, f10, width - i10, f10, org.telegram.ui.ActionBar.g6.f20022k0);
+                        canvas.drawLine(f7, f10, width - i10, f10, org.telegram.ui.ActionBar.g6.f19722k0);
                     }
                 }
                 return;

@@ -2,7 +2,7 @@ package df;
 
 import v7.x6;
 public final class j extends a {
-    public String f6521g;
+    public String f6524g;
 
     @Override
     public final void a(x6 x6Var) {

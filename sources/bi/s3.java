@@ -23,10 +23,10 @@ public final class s3 extends ob0 {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         rectF.offset(0.0f, 0.0f);
-        canvas.drawRoundRect(rectF, f7, f7, (Paint) mVar.f6191a);
-        canvas.drawRoundRect(rectF, f7, f7, q5Var.f3546n2);
+        canvas.drawRoundRect(rectF, f7, f7, (Paint) mVar.f6194a);
+        canvas.drawRoundRect(rectF, f7, f7, q5Var.f3550n2);
         if (rectF.top < getMeasuredHeight() - 1) {
-            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, q5Var.B0.G("paintDivider"));
+            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, q5Var.B0.F("paintDivider"));
         }
     }
 }

@@ -4,95 +4,95 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public interface pg {
-    boolean B0();
+    void A(float f7);
 
-    void C(boolean z10);
+    boolean C0();
 
-    void D0(int i10, int i11);
+    void D(boolean z10);
 
-    void F0();
+    void E0(int i10, int i11);
 
-    void G();
+    void G0();
 
-    void H0();
+    void H();
+
+    void I0();
 
     void J(CharSequence charSequence, boolean z10, int i10, int i11, long j10);
 
     TLRPC.TL_channels_sendAsPeers K();
 
-    void Q0();
-
-    void T1();
+    void R0();
 
     void U(float f7, int i10);
 
-    void V1(int i10);
+    void W1();
 
     void X();
 
-    void X0(int i10);
+    void Y0(int i10);
 
-    int Y0();
+    void Y1(int i10);
 
-    void Y1();
-
-    void Z1(boolean z10);
+    int Z0();
 
     void a0(boolean z10);
 
-    TL_stories.StoryItem a1();
+    TL_stories.StoryItem b1();
 
-    void a2(int i10, int i11, int i12, long j10, long j11, boolean z10);
+    void b2();
 
-    boolean b1(long j10);
+    boolean c1(long j10);
 
-    boolean e1();
+    void c2(boolean z10);
 
-    void e2();
+    void d2(int i10, int i11, int i12, long j10, long j11, boolean z10);
 
-    void g1(CharSequence charSequence, boolean z10, boolean z11);
+    boolean f1();
 
     void h();
 
-    void i1();
+    void h1(CharSequence charSequence, boolean z10, boolean z11);
 
-    boolean j1();
+    void h2();
+
+    void j1();
 
     void k();
 
-    boolean l();
-
-    void l1();
+    boolean k1();
 
     void m0();
 
     void m1();
 
-    void m2();
-
     void n1();
 
-    void o1(View view, CharSequence charSequence, boolean z10);
+    void o1();
+
+    boolean p();
 
     org.telegram.ui.un p0();
 
-    int q();
-
-    void q1(CharSequence charSequence);
+    void p1(View view, CharSequence charSequence, boolean z10);
 
     void q2();
 
-    boolean r1();
+    void r1(CharSequence charSequence);
+
+    boolean s1();
 
     void t0();
 
-    void u1();
+    void u2();
 
-    TLRPC.Peer x();
+    int v();
 
-    void y();
+    void v1();
 
-    void y1();
+    TLRPC.Peer y();
 
-    void z(float f7);
+    void z();
+
+    void z1();
 }

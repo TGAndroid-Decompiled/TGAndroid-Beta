@@ -8,39 +8,39 @@ import n6.l;
 import x8.e;
 import y8.k;
 public class b implements Iterator {
-    public final int f8724a;
-    public int f8725b;
-    public final Object f8726c;
+    public final int f8727a;
+    public int f8728b;
+    public final Object f8729c;
 
     public b(e eVar) {
-        this.f8724a = 3;
-        this.f8726c = eVar;
-        this.f8725b = -1;
+        this.f8727a = 3;
+        this.f8729c = eVar;
+        this.f8728b = -1;
     }
 
     @Override
     public final boolean hasNext() {
-        switch (this.f8724a) {
+        switch (this.f8727a) {
             case 0:
-                if (this.f8725b < ((c) this.f8726c).f8727a) {
+                if (this.f8728b < ((c) this.f8729c).f8730a) {
                     return true;
                 }
                 return false;
             case 1:
-                if (this.f8725b < ((jd.c) this.f8726c).h()) {
+                if (this.f8728b < ((jd.c) this.f8729c).h()) {
                     return true;
                 }
                 return false;
             case 2:
-                if (this.f8725b < ((Object[]) this.f8726c).length) {
+                if (this.f8728b < ((Object[]) this.f8729c).length) {
                     return true;
                 }
                 return false;
             default:
-                e eVar = (e) this.f8726c;
-                int i10 = this.f8725b;
+                e eVar = (e) this.f8729c;
+                int i10 = this.f8728b;
                 eVar.n();
-                if (i10 < eVar.f48260c.size() - 1) {
+                if (i10 < eVar.f48259c.size() - 1) {
                     return true;
                 }
                 return false;
@@ -51,23 +51,23 @@ public class b implements Iterator {
     public final Object next() {
         int intValue;
         int intValue2;
-        switch (this.f8724a) {
+        switch (this.f8727a) {
             case 0:
-                c cVar = (c) this.f8726c;
-                String[] strArr = cVar.f8729c;
-                int i10 = this.f8725b;
+                c cVar = (c) this.f8729c;
+                String[] strArr = cVar.f8732c;
+                int i10 = this.f8728b;
                 String str = strArr[i10];
-                String str2 = cVar.f8728b[i10];
+                String str2 = cVar.f8731b[i10];
                 if (str == null) {
                     str = "";
                 }
                 ?? obj = new Object();
                 if (str2 != null) {
-                    obj.f8721a = str2.trim();
+                    obj.f8724a = str2.trim();
                     if (str2.length() != 0) {
-                        obj.f8722b = str;
-                        obj.f8723c = cVar;
-                        this.f8725b++;
+                        obj.f8725b = str;
+                        obj.f8726c = cVar;
+                        this.f8728b++;
                         return obj;
                     }
                     throw new IllegalArgumentException("String must not be empty");
@@ -75,38 +75,38 @@ public class b implements Iterator {
                 throw new IllegalArgumentException("Object must not be null");
             case 1:
                 if (hasNext()) {
-                    int i11 = this.f8725b;
-                    this.f8725b = i11 + 1;
-                    return ((jd.c) this.f8726c).get(i11);
+                    int i11 = this.f8728b;
+                    this.f8728b = i11 + 1;
+                    return ((jd.c) this.f8729c).get(i11);
                 }
                 throw new NoSuchElementException();
             case 2:
                 try {
-                    int i12 = this.f8725b;
-                    this.f8725b = i12 + 1;
-                    return ((Object[]) this.f8726c)[i12];
+                    int i12 = this.f8728b;
+                    this.f8728b = i12 + 1;
+                    return ((Object[]) this.f8729c)[i12];
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    this.f8725b--;
+                    this.f8728b--;
                     throw new NoSuchElementException(e.getMessage());
                 }
             default:
                 if (hasNext()) {
-                    e eVar = (e) this.f8726c;
-                    int i13 = this.f8725b;
+                    e eVar = (e) this.f8729c;
+                    int i13 = this.f8728b;
                     int i14 = i13 + 1;
-                    this.f8725b = i14;
-                    DataHolder dataHolder = eVar.f48258a;
+                    this.f8728b = i14;
+                    DataHolder dataHolder = eVar.f48257a;
                     eVar.n();
                     int m10 = eVar.m(i14);
                     int i15 = 0;
-                    if (i14 >= 0 && i14 != eVar.f48260c.size()) {
-                        if (i14 == eVar.f48260c.size() - 1) {
+                    if (i14 >= 0 && i14 != eVar.f48259c.size()) {
+                        if (i14 == eVar.f48259c.size() - 1) {
                             l.h(dataHolder);
-                            intValue = dataHolder.f5088n;
-                            intValue2 = ((Integer) eVar.f48260c.get(i14)).intValue();
+                            intValue = dataHolder.f5091n;
+                            intValue2 = ((Integer) eVar.f48259c.get(i14)).intValue();
                         } else {
-                            intValue = ((Integer) eVar.f48260c.get(i13 + 2)).intValue();
-                            intValue2 = ((Integer) eVar.f48260c.get(i14)).intValue();
+                            intValue = ((Integer) eVar.f48259c.get(i13 + 2)).intValue();
+                            intValue2 = ((Integer) eVar.f48259c.get(i14)).intValue();
                         }
                         i15 = intValue - intValue2;
                         if (i15 == 1) {
@@ -118,31 +118,31 @@ public class b implements Iterator {
                     }
                     return new k(dataHolder, m10, i15, 0);
                 }
-                throw new NoSuchElementException(i2.d.i(this.f8725b, "Cannot advance the iterator beyond "));
+                throw new NoSuchElementException(i2.d.j(this.f8728b, "Cannot advance the iterator beyond "));
         }
     }
 
     @Override
     public final void remove() {
-        switch (this.f8724a) {
+        switch (this.f8727a) {
             case 0:
-                c cVar = (c) this.f8726c;
-                int i10 = this.f8725b;
+                c cVar = (c) this.f8729c;
+                int i10 = this.f8728b;
                 int i11 = i10 - 1;
-                this.f8725b = i11;
-                int i12 = cVar.f8727a;
+                this.f8728b = i11;
+                int i12 = cVar.f8730a;
                 if (i11 < i12) {
                     int i13 = (i12 - i11) - 1;
                     if (i13 > 0) {
-                        String[] strArr = cVar.f8728b;
+                        String[] strArr = cVar.f8731b;
                         System.arraycopy(strArr, i10, strArr, i11, i13);
-                        String[] strArr2 = cVar.f8729c;
+                        String[] strArr2 = cVar.f8732c;
                         System.arraycopy(strArr2, i10, strArr2, i11, i13);
                     }
-                    int i14 = cVar.f8727a - 1;
-                    cVar.f8727a = i14;
-                    cVar.f8728b[i14] = null;
-                    cVar.f8729c[i14] = null;
+                    int i14 = cVar.f8730a - 1;
+                    cVar.f8730a = i14;
+                    cVar.f8731b[i14] = null;
+                    cVar.f8732c[i14] = null;
                     return;
                 }
                 throw new IllegalArgumentException("Must be false");
@@ -156,19 +156,19 @@ public class b implements Iterator {
     }
 
     public b(Object[] array) {
-        this.f8724a = 2;
+        this.f8727a = 2;
         i.e(array, "array");
-        this.f8726c = array;
+        this.f8729c = array;
     }
 
     public b(jd.c cVar) {
-        this.f8724a = 1;
-        this.f8726c = cVar;
+        this.f8727a = 1;
+        this.f8729c = cVar;
     }
 
     public b(c cVar) {
-        this.f8724a = 0;
-        this.f8726c = cVar;
-        this.f8725b = 0;
+        this.f8727a = 0;
+        this.f8729c = cVar;
+        this.f8728b = 0;
     }
 }

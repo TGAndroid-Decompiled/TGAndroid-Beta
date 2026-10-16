@@ -18,6 +18,7 @@ import j$.util.Objects;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import m.l;
 import t7.u;
 import u2.d1;
 import u2.g0;
@@ -51,16 +52,16 @@ public final class e extends i2.b implements Handler.Callback {
     public e(b0 b0Var, Looper looper) {
         super(3);
         Handler handler;
-        u9.d dVar = d.C;
+        v0.k kVar = d.C;
         this.U = b0Var;
         if (looper == null) {
             handler = null;
         } else {
-            String str = m0.f8372a;
+            String str = m0.f8375a;
             handler = new Handler(looper, this);
         }
         this.T = handler;
-        this.L = dVar;
+        this.L = kVar;
         this.I = new rb.b(28);
         this.J = new h(1, 0);
         this.V = new qf.b(24);
@@ -71,12 +72,12 @@ public final class e extends i2.b implements Handler.Callback {
     @Override
     public final int C(x xVar) {
         int i10;
-        boolean equals = Objects.equals(xVar.f2519s, "application/x-media3-cues");
-        String str = xVar.f2519s;
+        boolean equals = Objects.equals(xVar.f2523s, "application/x-media3-cues");
+        String str = xVar.f2523s;
         if (!equals) {
-            u9.d dVar = (u9.d) this.L;
-            dVar.getClass();
-            if (!((u) dVar.f46237a).b0(xVar) && !Objects.equals(str, "application/cea-608") && !Objects.equals(str, "application/x-mp4-cea-608") && !Objects.equals(str, "application/cea-708")) {
+            v0.k kVar = (v0.k) this.L;
+            kVar.getClass();
+            if (!((u) kVar.f46466a).a0(xVar) && !Objects.equals(str, "application/cea-608") && !Objects.equals(str, "application/x-mp4-cea-608") && !Objects.equals(str, "application/cea-708")) {
                 if (w0.l(str)) {
                     return i2.d.c(1, 0, 0, 0);
                 }
@@ -93,12 +94,12 @@ public final class e extends i2.b implements Handler.Callback {
 
     public final void F() {
         boolean z10;
-        if (!Objects.equals(this.Y.f2519s, "application/cea-608") && !Objects.equals(this.Y.f2519s, "application/x-mp4-cea-608") && !Objects.equals(this.Y.f2519s, "application/cea-708")) {
+        if (!Objects.equals(this.Y.f2523s, "application/cea-608") && !Objects.equals(this.Y.f2523s, "application/x-mp4-cea-608") && !Objects.equals(this.Y.f2523s, "application/cea-708")) {
             z10 = false;
         } else {
             z10 = true;
         }
-        String str = this.Y.f2519s;
+        String str = this.Y.f2523s;
         if (z10) {
             return;
         }
@@ -110,10 +111,10 @@ public final class e extends i2.b implements Handler.Callback {
             return Long.MAX_VALUE;
         }
         this.Q.getClass();
-        if (this.S >= this.Q.j()) {
+        if (this.S >= this.Q.u()) {
             return Long.MAX_VALUE;
         }
-        return this.Q.d(this.S);
+        return this.Q.h(this.S);
     }
 
     public final long H(long j10) {
@@ -132,12 +133,12 @@ public final class e extends i2.b implements Handler.Callback {
     }
 
     public final void J(d2.c cVar) {
-        x1 x1Var = cVar.f6314a;
+        x1 x1Var = cVar.f6317a;
         b0 b0Var = this.U;
-        b0Var.f10925a.f11001m.e(27, new y(0, x1Var));
-        h0 h0Var = b0Var.f10925a;
-        h0Var.f10987e0 = cVar;
-        h0Var.f11001m.e(27, new f1.a(cVar, 7));
+        b0Var.f10929a.f11005m.e(27, new y(0, x1Var));
+        h0 h0Var = b0Var.f10929a;
+        h0Var.f10991e0 = cVar;
+        h0Var.f11005m.e(27, new f1.a(cVar, 7));
     }
 
     public final void K() {
@@ -178,14 +179,14 @@ public final class e extends i2.b implements Handler.Callback {
     public final boolean m() {
         x xVar = this.Y;
         if (xVar != null) {
-            if (Objects.equals(xVar.f2519s, "application/x-media3-cues")) {
+            if (Objects.equals(xVar.f2523s, "application/x-media3-cues")) {
                 a aVar = this.K;
                 aVar.getClass();
-                if (aVar.a(this.Z) == Long.MIN_VALUE) {
+                if (aVar.b(this.Z) == Long.MIN_VALUE) {
                     try {
-                        d1 d1Var = this.f10920r;
+                        d1 d1Var = this.f10924r;
                         d1Var.getClass();
-                        d1Var.d();
+                        d1Var.b();
                         return true;
                     } catch (IOException unused) {
                         return false;
@@ -195,10 +196,10 @@ public final class e extends i2.b implements Handler.Callback {
                 if (this.W) {
                     k kVar = this.Q;
                     long j10 = this.Z;
-                    if (kVar == null || kVar.j() <= 0 || kVar.d(kVar.j() - 1) <= j10) {
+                    if (kVar == null || kVar.u() <= 0 || kVar.h(kVar.u() - 1) <= j10) {
                         k kVar2 = this.R;
                         long j11 = this.Z;
-                        if ((kVar2 == null || kVar2.j() <= 0 || kVar2.d(kVar2.j() - 1) <= j11) && this.P != null) {
+                        if ((kVar2 == null || kVar2.u() <= 0 || kVar2.h(kVar2.u() - 1) <= j11) && this.P != null) {
                             return false;
                         }
                     }
@@ -250,7 +251,7 @@ public final class e extends i2.b implements Handler.Callback {
         this.X = false;
         this.f47076a0 = -9223372036854775807L;
         x xVar = this.Y;
-        if (xVar != null && !Objects.equals(xVar.f2519s, "application/x-media3-cues")) {
+        if (xVar != null && !Objects.equals(xVar.f2523s, "application/x-media3-cues")) {
             if (this.N != 0) {
                 K();
                 f fVar = this.O;
@@ -265,16 +266,16 @@ public final class e extends i2.b implements Handler.Callback {
             f fVar2 = this.O;
             fVar2.getClass();
             fVar2.flush();
-            fVar2.a(this.f10922w);
+            fVar2.a(this.f10926w);
         }
     }
 
     @Override
     public final void u(x[] xVarArr, long j10, long j11, g0 g0Var) {
-        c cVar;
+        a lVar;
         x xVar = xVarArr[0];
         this.Y = xVar;
-        if (!Objects.equals(xVar.f2519s, "application/x-media3-cues")) {
+        if (!Objects.equals(xVar.f2523s, "application/x-media3-cues")) {
             F();
             if (this.O != null) {
                 this.N = 1;
@@ -285,20 +286,18 @@ public final class e extends i2.b implements Handler.Callback {
             }
         }
         if (this.Y.Q == 1) {
-            cVar = new c();
+            lVar = new c();
         } else {
-            ?? obj = new Object();
-            obj.f43093a = new ArrayList();
-            cVar = obj;
+            lVar = new l(23);
         }
-        this.K = cVar;
+        this.K = lVar;
     }
 
     @Override
     public final void x(long j10, long j11) {
         boolean z10;
         long j12;
-        if (this.f10924y) {
+        if (this.f10928y) {
             long j13 = this.f47076a0;
             if (j13 != -9223372036854775807L && j10 >= j13) {
                 K();
@@ -308,7 +307,7 @@ public final class e extends i2.b implements Handler.Callback {
         if (!this.X) {
             x xVar = this.Y;
             xVar.getClass();
-            boolean equals = Objects.equals(xVar.f2519s, "application/x-media3-cues");
+            boolean equals = Objects.equals(xVar.f2523s, "application/x-media3-cues");
             Handler handler = this.T;
             qf.b bVar = this.V;
             boolean z11 = false;
@@ -320,8 +319,8 @@ public final class e extends i2.b implements Handler.Callback {
                         if (hVar.isEndOfStream()) {
                             this.W = true;
                         } else {
-                            hVar.e();
-                            ByteBuffer byteBuffer = hVar.f10326c;
+                            hVar.d();
+                            ByteBuffer byteBuffer = hVar.f10330c;
                             byteBuffer.getClass();
                             long j14 = hVar.e;
                             byte[] array = byteBuffer.array();
@@ -337,28 +336,28 @@ public final class e extends i2.b implements Handler.Callback {
                             parcelableArrayList.getClass();
                             z3.b bVar2 = new z3.b(j14, readBundle.getLong("d"), e2.e.b(new z3.a(0), parcelableArrayList));
                             hVar.clear();
-                            z11 = this.K.c(bVar2, j10);
+                            z11 = this.K.j(bVar2, j10);
                         }
                     }
                 }
-                long a2 = this.K.a(this.Z);
-                int i10 = (a2 > Long.MIN_VALUE ? 1 : (a2 == Long.MIN_VALUE ? 0 : -1));
+                long b10 = this.K.b(this.Z);
+                int i10 = (b10 > Long.MIN_VALUE ? 1 : (b10 == Long.MIN_VALUE ? 0 : -1));
                 if (i10 == 0 && this.W && !z11) {
                     this.X = true;
                 }
-                if (i10 != 0 && a2 <= j10) {
+                if (i10 != 0 && b10 <= j10) {
                     z11 = true;
                 }
                 if (z11) {
-                    n0 b10 = this.K.b(j10);
-                    long d = this.K.d(j10);
-                    d2.c cVar = new d2.c(H(d), b10);
+                    n0 d = this.K.d(j10);
+                    long p5 = this.K.p(j10);
+                    d2.c cVar = new d2.c(H(p5), d);
                     if (handler != null) {
                         handler.obtainMessage(1, cVar).sendToTarget();
                     } else {
                         J(cVar);
                     }
-                    this.K.e(d);
+                    this.K.q(p5);
                 }
                 this.Z = j10;
                 return;
@@ -391,7 +390,7 @@ public final class e extends i2.b implements Handler.Callback {
                     return;
                 }
             }
-            if (this.f10919n == 2) {
+            if (this.f10923n == 2) {
                 if (this.Q != null) {
                     long G = G();
                     z10 = false;
@@ -434,17 +433,17 @@ public final class e extends i2.b implements Handler.Callback {
                 if (z10) {
                     this.Q.getClass();
                     int c10 = this.Q.c(j10);
-                    if (c10 != 0 && this.Q.j() != 0) {
+                    if (c10 != 0 && this.Q.u() != 0) {
                         if (c10 == -1) {
                             k kVar3 = this.Q;
-                            j12 = kVar3.d(kVar3.j() - 1);
+                            j12 = kVar3.h(kVar3.u() - 1);
                         } else {
-                            j12 = this.Q.d(c10 - 1);
+                            j12 = this.Q.h(c10 - 1);
                         }
                     } else {
                         j12 = this.Q.timeUs;
                     }
-                    d2.c cVar3 = new d2.c(H(j12), this.Q.f(j10));
+                    d2.c cVar3 = new d2.c(H(j12), this.Q.o(j10));
                     if (handler != null) {
                         handler.obtainMessage(1, cVar3).sendToTarget();
                     } else {
@@ -480,10 +479,10 @@ public final class e extends i2.b implements Handler.Callback {
                                     this.W = true;
                                     this.M = false;
                                 } else {
-                                    x xVar2 = (x) bVar.f43356c;
+                                    x xVar2 = (x) bVar.f43098c;
                                     if (xVar2 != null) {
-                                        jVar.f49268r = xVar2.f2523x;
-                                        jVar.e();
+                                        jVar.f49267r = xVar2.f2527x;
+                                        jVar.d();
                                         this.M &= !jVar.isKeyFrame();
                                     } else {
                                         return;

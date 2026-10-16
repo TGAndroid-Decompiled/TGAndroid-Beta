@@ -9,23 +9,23 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-public final class gg implements org.telegram.ui.iv0 {
-    public boolean f25263a;
-    public final Object f25264b;
-    public final Object f25265c;
+public final class gg implements org.telegram.ui.hv0 {
+    public boolean f24957a;
+    public final Object f24958b;
+    public final Object f24959c;
     public final MediaController.PhotoEntry d;
     public final ig e;
 
     public gg(ig igVar, Object obj, Object obj2, MediaController.PhotoEntry photoEntry) {
         this.e = igVar;
-        this.f25264b = obj;
-        this.f25265c = obj2;
+        this.f24958b = obj;
+        this.f24959c = obj2;
         this.d = photoEntry;
     }
 
     @Override
     public final boolean A() {
-        return this.f25263a;
+        return this.f24957a;
     }
 
     @Override
@@ -34,13 +34,13 @@ public final class gg implements org.telegram.ui.iv0 {
     }
 
     @Override
-    public final org.telegram.ui.kv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final org.telegram.ui.jv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         return null;
     }
 
     @Override
     public final void F(boolean z10) {
-        this.f25263a = z10;
+        this.f24957a = z10;
     }
 
     @Override
@@ -49,8 +49,8 @@ public final class gg implements org.telegram.ui.iv0 {
     }
 
     @Override
-    public final boolean J() {
-        return false;
+    public final boolean I() {
+        return true;
     }
 
     @Override
@@ -59,13 +59,13 @@ public final class gg implements org.telegram.ui.iv0 {
     }
 
     @Override
-    public final boolean M() {
-        return true;
+    public final boolean L() {
+        return false;
     }
 
     @Override
     public final boolean N() {
-        return false;
+        return true;
     }
 
     @Override
@@ -79,32 +79,37 @@ public final class gg implements org.telegram.ui.iv0 {
     }
 
     @Override
-    public final int Q(Object obj) {
-        return 0;
-    }
-
-    @Override
-    public final int R(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final boolean S() {
+    public final boolean Q() {
         return false;
     }
 
     @Override
+    public final int R(Object obj) {
+        return 0;
+    }
+
+    @Override
+    public final int S(int i10) {
+        return 0;
+    }
+
+    @Override
     public final boolean T() {
+        return false;
+    }
+
+    @Override
+    public final boolean U() {
         return true;
     }
 
     @Override
-    public final MessageObject U() {
+    public final MessageObject V() {
         return null;
     }
 
     @Override
-    public final boolean Y() {
+    public final boolean Z() {
         return false;
     }
 
@@ -114,18 +119,13 @@ public final class gg implements org.telegram.ui.iv0 {
     }
 
     @Override
-    public final String a0() {
-        return "";
-    }
-
-    @Override
     public final boolean b() {
         return false;
     }
 
     @Override
-    public final CharSequence b0(int i10) {
-        return null;
+    public final String b0() {
+        return "";
     }
 
     @Override
@@ -134,11 +134,16 @@ public final class gg implements org.telegram.ui.iv0 {
     }
 
     @Override
+    public final CharSequence c0(int i10) {
+        return null;
+    }
+
+    @Override
     public final void d() {
         di.g gVar;
         md f12 = PhotoViewer.t1().f1();
-        if (f12 != null && (gVar = f12.f7382f) != null) {
-            qu quVar = gVar.f30649a;
+        if (f12 != null && (gVar = f12.f7385f) != null) {
+            qu quVar = gVar.f30318a;
             quVar.requestFocus();
             AndroidUtilities.showKeyboard(quVar);
         }
@@ -171,7 +176,7 @@ public final class gg implements org.telegram.ui.iv0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.e.B(null, this.f25264b, null, this.f25265c, z10, i11, i12, this.d, this.f25263a);
+        this.e.B(null, this.f24958b, null, this.f24959c, z10, i11, i12, this.d, this.f24957a);
     }
 
     @Override
@@ -237,19 +242,15 @@ public final class gg implements org.telegram.ui.iv0 {
     }
 
     @Override
-    public final void I() {
+    public final void J() {
     }
 
     @Override
-    public final void L(VideoEditedInfo videoEditedInfo) {
+    public final void M(VideoEditedInfo videoEditedInfo) {
     }
 
     @Override
-    public final void V() {
-    }
-
-    @Override
-    public final void W(int i10) {
+    public final void W() {
     }
 
     @Override
@@ -257,7 +258,11 @@ public final class gg implements org.telegram.ui.iv0 {
     }
 
     @Override
-    public final void Z(int i10) {
+    public final void Y(int i10) {
+    }
+
+    @Override
+    public final void a0(int i10) {
     }
 
     @Override

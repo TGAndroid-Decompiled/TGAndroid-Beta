@@ -1,535 +1,228 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.TextureView;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import di.a6;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
+import ji.m5;
+import ji.w4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.yh;
-import org.telegram.ui.Components.cd0;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.u61;
-import org.webrtc.RendererCommon;
-import w7.a6;
-public class r2 extends FrameLayout {
-    public boolean E;
-    public long F;
-    public final ArrayList G;
-    public int H;
-    public int I;
-    public float J;
-    public float K;
-    public float L;
-    public float M;
-    public float N;
-    public float O;
-    public float P;
-    public float Q;
-    public float R;
-    public float S;
-    public float T;
-    public float U;
-    public float V;
-    public float W;
-    public final boolean f30420a;
-    public int f30421a0;
-    public float f30422b;
-    public ValueAnimator f30423b0;
-    public boolean f30424c;
-    public boolean f30425c0;
-    public final q2 d;
-    public float f30426d0;
-    public final TextureView e;
-    public boolean f30427e0;
-    public final ImageView f30428f;
-    public boolean f30429f0;
-    public final View h;
-    public View f30430n;
-    public final FrameLayout f30431r;
-    public final ImageView f30432s;
-    public final TextView v;
-    public Bitmap f30433w;
-    public final Bitmap f30434x;
-    public float f30435y;
+import org.telegram.ui.Cells.c6;
+import org.telegram.ui.Components.nu;
+import org.telegram.ui.Components.pl0;
+import org.telegram.ui.Components.ze0;
+import org.telegram.ui.uo;
+import org.telegram.ui.web.HttpGetFileTask;
+public final class r2 implements Runnable {
+    public final int f30103a;
+    public final Object f30104b;
 
-    public r2(Context context, boolean z10, boolean z11) {
-        this(context, z10, z11, true, false);
-    }
-
-    public void a() {
-        if (!this.E && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            this.H = getMeasuredHeight();
-            this.I = getMeasuredWidth();
-            if (this.f30429f0 && getParent() != null) {
-                View view = (View) getParent();
-                this.J = view.getY();
-                this.K = view.getX();
-            } else {
-                this.J = getY();
-                this.K = getX();
-            }
-            this.P = this.T;
-            this.Q = this.U;
-            this.R = this.V;
-            q2 q2Var = this.d;
-            this.S = q2Var.getMeasuredWidth();
-            q2Var.getMeasuredHeight();
-            this.E = true;
-            requestLayout();
-        }
-    }
-
-    public void b() {
-        invalidate();
-        q2 q2Var = this.d;
-        if (q2Var.getAlpha() != 1.0f) {
-            q2Var.animate().setDuration(300L).alpha(1.0f);
-        }
-        TextureView textureView = this.e;
-        if (textureView != null && textureView.getAlpha() != 1.0f) {
-            textureView.animate().setDuration(300L).alpha(1.0f);
-        }
-    }
-
-    public final void c() {
-        Bitmap bitmap = this.d.getBitmap(150, 150);
-        if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
-            Utilities.blurBitmap(bitmap, 3);
-            try {
-                FileOutputStream fileOutputStream = new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "voip_icthumb.jpg"));
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-                fileOutputStream.close();
-            } catch (Throwable unused) {
-            }
-        }
-    }
-
-    public final void d(float f7, boolean z10) {
-        float f10;
-        if (!this.f30424c) {
-            return;
-        }
-        float scaleX = ((View) getParent()).getScaleX();
-        this.v.setAlpha(1.0f - f7);
-        if (!z10) {
-            f10 = yh.b(0.4f, scaleX, f7, 1.0f / scaleX);
-        } else {
-            f10 = 1.0f - (0.4f * f7);
-        }
-        ImageView imageView = this.f30432s;
-        imageView.setScaleX(f10);
-        imageView.setScaleY(f10);
-        imageView.setTranslationY(AndroidUtilities.dp(60.0f) * f7);
+    public r2(Object obj, int i10) {
+        this.f30103a = i10;
+        this.f30104b = obj;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        boolean z10 = AndroidUtilities.makingGlobalBlurBitmap;
-        q2 q2Var = this.d;
-        if (z10) {
-            TextureView textureView = this.e;
-            if (textureView != null) {
-                canvas.save();
-                canvas.translate(textureView.getX(), textureView.getY());
-                Bitmap bitmap = textureView.getBitmap();
-                if (bitmap != null) {
-                    canvas.scale(textureView.getWidth() / bitmap.getWidth(), textureView.getHeight() / bitmap.getHeight());
-                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
+    public final void run() {
+        long j10;
+        switch (this.f30103a) {
+            case 0:
+                s2 s2Var = (s2) this.f30104b;
+                if (s2Var.getVisibility() == 0) {
+                    s2Var.a();
+                    return;
                 }
-                canvas.restore();
-            }
-            if (q2Var != null) {
-                canvas.save();
-                canvas.translate(q2Var.getX(), q2Var.getY());
-                Bitmap bitmap2 = q2Var.getBitmap();
-                if (bitmap2 != null) {
-                    canvas.scale(q2Var.getWidth() / bitmap2.getWidth(), q2Var.getHeight() / bitmap2.getHeight());
-                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, (Paint) null);
+                return;
+            case 1:
+                w2 w2Var = (w2) this.f30104b;
+                w2Var.e = Bitmap.createBitmap(w2Var.getMeasuredWidth(), w2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                new Canvas(w2Var.e).drawText(w2Var.d, w2Var.getMeasuredWidth() / 2, (int) ((w2Var.getMeasuredHeight() / 2) - ((w2Var.f30247a.ascent() + w2Var.f30247a.descent()) / 2.0f)), w2Var.f30247a);
+                w2Var.postInvalidate();
+                return;
+            case 2:
+                ((org.telegram.ui.web.k) this.f30104b).f41099w.W2.N(true);
+                return;
+            case 3:
+                org.telegram.ui.web.i iVar = ((org.telegram.ui.web.n) this.f30104b).h.e;
+                if (iVar != null) {
+                    iVar.d();
+                    return;
                 }
-                canvas.restore();
-            }
-        }
-        ImageView imageView = this.f30428f;
-        if (imageView.getVisibility() == 0 && q2Var.isFirstFrameRendered()) {
-            float f7 = this.f30435y - 0.10666667f;
-            this.f30435y = f7;
-            if (f7 <= 0.0f) {
-                this.f30435y = 0.0f;
-                imageView.setVisibility(8);
                 return;
-            }
-            invalidate();
-            imageView.setAlpha(this.f30435y);
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        if (AndroidUtilities.makingGlobalBlurBitmap && (view == this.d || view == this.e)) {
-            return false;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    public void e() {
-        TextureView textureView = this.e;
-        if (textureView != null) {
-            ViewGroup.LayoutParams layoutParams = textureView.getLayoutParams();
-            q2 q2Var = this.d;
-            layoutParams.width = q2Var.getMeasuredWidth();
-            textureView.getLayoutParams().height = q2Var.getMeasuredHeight();
-        }
-    }
-
-    public View getPlaceholderView() {
-        if (this.f30430n == null) {
-            View view = new View(getContext());
-            this.f30430n = view;
-            addView(view, a6.g());
-        }
-        return this.f30430n;
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        float top;
-        final float left;
-        super.onLayout(z10, i10, i11, i12, i13);
-        TextureView textureView = this.e;
-        if (textureView != null) {
-            this.U = Math.max(getMeasuredHeight() / textureView.getMeasuredHeight(), getMeasuredWidth() / textureView.getMeasuredWidth());
-        }
-        boolean z11 = this.f30420a;
-        q2 q2Var = this.d;
-        if (!z11) {
-            q2Var.updateRotation();
-        }
-        if (this.f30421a0 == 3) {
-            if (textureView != null) {
-                textureView.setScaleX(this.U);
-                textureView.setScaleY(this.U);
+            case 4:
+                ((nu) this.f30104b).requestFocus();
                 return;
-            }
-            return;
-        }
-        if (q2Var.getMeasuredHeight() != 0 && q2Var.getMeasuredWidth() != 0 && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            int i14 = this.f30421a0;
-            if (i14 == 0) {
-                this.T = Math.max(getMeasuredHeight() / q2Var.getMeasuredHeight(), getMeasuredWidth() / q2Var.getMeasuredWidth());
-            } else if (i14 == 2) {
-                if (Math.abs((getMeasuredHeight() / getMeasuredWidth()) - 1.0f) < 0.02f) {
-                    this.T = Math.max(getMeasuredHeight() / q2Var.getMeasuredHeight(), getMeasuredWidth() / q2Var.getMeasuredWidth());
-                } else if (getMeasuredWidth() > getMeasuredHeight() && q2Var.getMeasuredHeight() > q2Var.getMeasuredWidth()) {
-                    this.T = Math.max(getMeasuredHeight() / q2Var.getMeasuredHeight(), (getMeasuredWidth() / 2.0f) / q2Var.getMeasuredWidth());
+            case 5:
+                pf.d.r(((org.telegram.ui.web.v0) this.f30104b).f41200b.e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                return;
+            case 6:
+                org.telegram.ui.web.g1 g1Var = (org.telegram.ui.web.g1) this.f30104b;
+                Utilities.searchQueue.postRunnable(new ze0(g1Var, new ArrayList(g1Var.h.e), g1Var.h.f41061n, 25));
+                return;
+            case 7:
+                HttpGetFileTask.a((HttpGetFileTask) this.f30104b);
+                return;
+            case 8:
+                ((org.telegram.ui.Cells.o1) this.f30104b).invalidateSelf();
+                return;
+            case 9:
+                org.telegram.ui.web.z1 z1Var = (org.telegram.ui.web.z1) this.f30104b;
+                File databasePath = ApplicationLoader.applicationContext.getDatabasePath("webview.db");
+                long j11 = 0;
+                if (databasePath != null && databasePath.exists()) {
+                    j10 = databasePath.length();
                 } else {
-                    this.T = Math.min(getMeasuredHeight() / q2Var.getMeasuredHeight(), getMeasuredWidth() / q2Var.getMeasuredWidth());
+                    j10 = 0;
                 }
-            } else if (i14 == 1) {
-                this.T = Math.min(getMeasuredHeight() / q2Var.getMeasuredHeight(), getMeasuredWidth() / q2Var.getMeasuredWidth());
-                if (this.f30425c0 && !this.f30429f0 && this.f30423b0 == null && !this.E) {
-                    this.O = (getMeasuredWidth() - q2Var.getMeasuredWidth()) / 2.0f;
-                    this.N = (getMeasuredHeight() - q2Var.getMeasuredHeight()) / 2.0f;
-                    invalidateOutline();
+                File databasePath2 = ApplicationLoader.applicationContext.getDatabasePath("webviewCache.db");
+                if (databasePath2 != null && databasePath2.exists()) {
+                    j10 += databasePath2.length();
                 }
-            }
-        } else {
-            this.T = 1.0f;
-            if (this.f30423b0 == null && !this.E) {
-                this.O = 0.0f;
-                this.N = 0.0f;
-            }
-        }
-        if (this.f30433w != null) {
-            this.V = Math.max(getMeasuredWidth() / this.f30433w.getWidth(), getMeasuredHeight() / this.f30433w.getHeight());
-        }
-        if (this.E) {
-            this.P /= q2Var.getMeasuredWidth() / this.S;
-            this.Q /= q2Var.getMeasuredWidth() / this.S;
-            this.E = false;
-            if (this.f30429f0 && getParent() != null) {
-                View view = (View) getParent();
-                top = this.J - view.getTop();
-                left = this.K - view.getLeft();
-            } else {
-                top = this.J - getTop();
-                left = this.K - getLeft();
-            }
-            this.L = 0.0f;
-            this.M = 0.0f;
-            if (this.H != getMeasuredHeight()) {
-                float measuredHeight = (getMeasuredHeight() - this.H) / 2.0f;
-                this.L = measuredHeight;
-                top -= measuredHeight;
-            }
-            final float f7 = top;
-            if (this.I != getMeasuredWidth()) {
-                float measuredWidth = (getMeasuredWidth() - this.I) / 2.0f;
-                this.M = measuredWidth;
-                left -= measuredWidth;
-            }
-            setTranslationY(f7);
-            setTranslationX(left);
-            ValueAnimator valueAnimator = this.f30423b0;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.f30423b0.cancel();
-            }
-            q2Var.setScaleX(this.P);
-            q2Var.setScaleY(this.P);
-            if (textureView != null) {
-                textureView.setScaleX(this.Q);
-                textureView.setScaleY(this.Q);
-            }
-            this.N = this.L;
-            this.O = this.M;
-            invalidateOutline();
-            invalidate();
-            final float f10 = this.P;
-            final float f11 = this.Q;
-            final float f12 = this.R;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            this.f30423b0 = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                    float f13 = 1.0f - floatValue;
-                    r2 r2Var = r2.this;
-                    r2Var.f30426d0 = f13;
-                    r2Var.N = r2Var.L * floatValue;
-                    r2Var.O = r2Var.M * floatValue;
-                    r2Var.invalidateOutline();
-                    r2Var.invalidate();
-                    float f14 = (r2Var.T * f13) + (f10 * floatValue);
-                    q2 q2Var2 = r2Var.d;
-                    q2Var2.setScaleX(f14);
-                    q2Var2.setScaleY(f14);
-                    float f15 = (r2Var.U * f13) + (f11 * floatValue);
-                    TextureView textureView2 = r2Var.e;
-                    if (textureView2 != null) {
-                        textureView2.setScaleX(f15);
-                        textureView2.setScaleY(f15);
+                File file = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
+                if (file.exists()) {
+                    j10 += org.telegram.ui.web.z1.Z(file, Boolean.FALSE);
+                }
+                File file2 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "cache/WebView");
+                if (file2.exists()) {
+                    j10 += org.telegram.ui.web.z1.Z(file2, null);
+                }
+                File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
+                if (file3.exists()) {
+                    j11 = org.telegram.ui.web.z1.Z(file3, Boolean.TRUE);
+                }
+                AndroidUtilities.runOnUIThread(new uo(z1Var, j10, j11, 1));
+                return;
+            case 10:
+                ((boolean[]) this.f30104b)[0] = true;
+                return;
+            case 11:
+                ((p4.e) this.f30104b).k();
+                return;
+            case 12:
+                ((p4.g) this.f30104b).f42737n = -1;
+                return;
+            case 13:
+                ((pl0) this.f30104b).b();
+                return;
+            case 14:
+                pi.c cVar = (pi.c) this.f30104b;
+                AndroidUtilities.runOnUIThread(new pi.b(cVar.f42939a, cVar.f42940b, 1), 500L);
+                return;
+            case 15:
+                w4 w4Var = ((qg.p0) this.f30104b).f43248b.f43263a;
+                if (w4Var != null) {
+                    w4Var.Y0();
+                    return;
+                }
+                return;
+            case 16:
+                qg.q0 q0Var = ((qg.p0) this.f30104b).f43248b;
+                if (q0Var.d == null) {
+                    q0Var.L = null;
+                    return;
+                }
+                int currentColor = q0Var.f43266f.getCurrentColor();
+                q0Var.l(q0Var.f43264b, false, false);
+                a5.a d = q0Var.d(q0Var.f43264b, currentColor, new RectF(q0Var.h));
+                q0Var.b();
+                qg.f1 f1Var = q0Var.d;
+                RectF rectF = new RectF();
+                q0Var.h = rectF;
+                f1Var.a(rectF);
+                q0Var.p(q0Var.e(f1Var, currentColor, new RectF(q0Var.h)), false);
+                q0Var.p(d, false);
+                q0Var.e(f1Var, currentColor, null);
+                q0Var.d = null;
+                q0Var.J = 0.0f;
+                q0Var.L = null;
+                return;
+            case 17:
+                ((qg.a1) ((p4.s0) this.f30104b).f42804b).f43131y.f43139a.a();
+                return;
+            case 18:
+                qg.s1 s1Var = ((qg.t1) this.f30104b).f43327a;
+                if (s1Var != null) {
+                    s1Var.e();
+                    return;
+                }
+                return;
+            case 19:
+                qh.c cVar2 = (qh.c) this.f30104b;
+                qh.b bVar = cVar2.f43374c;
+                if (bVar == qh.b.f43370b) {
+                    cVar2.a(qh.b.f43369a, true);
+                    return;
+                } else if (bVar == qh.b.f43371c) {
+                    cVar2.a(qh.b.d, true);
+                    return;
+                } else {
+                    return;
+                }
+            case 20:
+                r2.f fVar = (r2.f) this.f30104b;
+                synchronized (fVar.f43582a) {
+                    try {
+                        if (!fVar.f43591m) {
+                            long j12 = fVar.f43590l - 1;
+                            fVar.f43590l = j12;
+                            int i10 = (j12 > 0L ? 1 : (j12 == 0L ? 0 : -1));
+                            if (i10 <= 0) {
+                                if (i10 < 0) {
+                                    fVar.c(new IllegalStateException());
+                                    return;
+                                } else {
+                                    fVar.a();
+                                    return;
+                                }
+                            }
+                            return;
+                        }
+                        return;
+                    } finally {
                     }
-                    r2Var.setTranslationX(left * floatValue);
-                    r2Var.setTranslationY(f7 * floatValue);
-                    r2Var.W = (r2Var.V * f13) + (f12 * floatValue);
                 }
-            });
-            long j10 = this.F;
-            if (j10 != 0) {
-                this.f30423b0.setDuration(j10);
-            } else {
-                this.f30423b0.setDuration(350L);
-            }
-            this.f30423b0.setInterpolator(es.f24771f);
-            this.f30423b0.addListener(new u61(this, 12));
-            this.f30423b0.start();
-            ArrayList arrayList = this.G;
-            if (!arrayList.isEmpty()) {
-                for (int i15 = 0; i15 < arrayList.size(); i15++) {
-                    ((Animator) arrayList.get(i15)).start();
+            case 21:
+                com.google.firebase.messaging.s sVar = (com.google.firebase.messaging.s) this.f30104b;
+                ((s5.g) ((t5.c) sVar.e)).f(new m5(sVar, 26));
+                return;
+            case 22:
+                a6 a6Var = (a6) this.f30104b;
+                a6Var.f44024x0 = true;
+                a6Var.s();
+                return;
+            case 23:
+                ((View) this.f30104b).performClick();
+                return;
+            case 24:
+                MediaDataController.getInstance(UserConfig.selectedAccount).addRecentSticker(2, null, ((rg.n2) this.f30104b).f44142f.document, (int) (System.currentTimeMillis() / 1000), false);
+                return;
+            case 25:
+                AndroidUtilities.showKeyboard(((rg.x2) this.f30104b).f44354q0);
+                return;
+            case 26:
+                AndroidUtilities.showKeyboard(((rh.c) this.f30104b).f44411a);
+                return;
+            case 27:
+                rh.c cVar3 = (rh.c) ((c6) this.f30104b).d;
+                org.telegram.ui.Cells.u1 u1Var = cVar3.f44415n;
+                if (u1Var != null && u1Var.getDelegate() != null) {
+                    cVar3.f44415n.getDelegate().y1(cVar3.f44415n, false);
+                    return;
                 }
-            }
-            arrayList.clear();
-            this.F = 0L;
-        } else if (this.f30423b0 == null) {
-            q2Var.setScaleX(this.T);
-            q2Var.setScaleY(this.T);
-            if (textureView != null) {
-                textureView.setScaleX(this.U);
-                textureView.setScaleY(this.U);
-            }
-            this.W = this.V;
+                return;
+            case 28:
+                ((rh.q) this.f30104b).f44464c.W2.N(true);
+                return;
+            default:
+                ((rh.p) this.f30104b).a();
+                return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10 = this.f30420a;
-        q2 q2Var = this.d;
-        if (!z10) {
-            this.f30427e0 = true;
-            q2Var.setScreenRotation(((WindowManager) getContext().getSystemService("window")).getDefaultDisplay().getRotation());
-            this.f30427e0 = false;
-        }
-        super.onMeasure(i10, i11);
-        e();
-        super.onMeasure(i10, i11);
-        q2Var.updateRotation();
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.f30427e0) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    public void setAnimateNextDuration(long j10) {
-        this.F = j10;
-    }
-
-    public void setAnimateWithParent(boolean z10) {
-        this.f30429f0 = z10;
-    }
-
-    public void setIsScreencast(boolean z10) {
-        int i10;
-        this.f30424c = z10;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 8;
-        }
-        this.f30431r.setVisibility(i10);
-        boolean z11 = this.f30424c;
-        TextureView textureView = this.e;
-        q2 q2Var = this.d;
-        if (z11) {
-            q2Var.setVisibility(8);
-            if (textureView != null) {
-                textureView.setVisibility(8);
-            }
-            this.f30428f.setVisibility(8);
-            return;
-        }
-        q2Var.setVisibility(0);
-        if (textureView != null) {
-            textureView.setVisibility(0);
-        }
-    }
-
-    public void setRoundCorners(float f7) {
-        if (this.f30422b != f7) {
-            this.f30422b = f7;
-            invalidateOutline();
-        }
-    }
-
-    public void setStub(r2 r2Var) {
-        if (this.f30424c) {
-            return;
-        }
-        Bitmap bitmap = r2Var.d.getBitmap();
-        ImageView imageView = this.f30428f;
-        if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
-            imageView.setImageBitmap(bitmap);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        } else {
-            imageView.setImageDrawable(r2Var.f30428f.getDrawable());
-        }
-        this.f30435y = 1.0f;
-        imageView.setVisibility(0);
-        imageView.setAlpha(1.0f);
-    }
-
-    public void setThumb(Bitmap bitmap) {
-        this.f30433w = bitmap;
-    }
-
-    public r2(Context context, boolean z10, boolean z11, boolean z12, boolean z13) {
-        super(context);
-        this.f30435y = 1.0f;
-        this.G = new ArrayList();
-        this.P = 1.0f;
-        this.Q = 1.0f;
-        this.R = 1.0f;
-        this.f30420a = z11;
-        ImageView imageView = new ImageView(context);
-        this.f30428f = imageView;
-        q2 q2Var = new q2(this, context);
-        this.d = q2Var;
-        q2Var.setFpsReduction(30.0f);
-        q2Var.setOpaque(false);
-        q2Var.setEnableHardwareScaler(true);
-        q2Var.setIsCamera(!z11);
-        if (!z10 && z11) {
-            View view = new View(context);
-            this.h = view;
-            view.setBackgroundColor(-14999773);
-            addView(view, a6.d(-1.0f, -1));
-            if (z13) {
-                TextureView textureView = new TextureView(context);
-                this.e = textureView;
-                addView(textureView, a6.e(-1, -2, 17));
-            }
-            q2Var.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
-            addView(q2Var, a6.e(-1, -2, 17));
-        } else if (!z10) {
-            if (z13) {
-                TextureView textureView2 = new TextureView(context);
-                this.e = textureView2;
-                addView(textureView2, a6.e(-1, -2, 17));
-            }
-            addView(q2Var, a6.e(-1, -2, 17));
-        } else {
-            if (z13) {
-                TextureView textureView3 = new TextureView(context);
-                this.e = textureView3;
-                addView(textureView3, a6.e(-1, -2, 17));
-            }
-            addView(q2Var);
-        }
-        addView(imageView);
-        TextureView textureView4 = this.e;
-        if (textureView4 != null) {
-            textureView4.setOpaque(false);
-        }
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f30431r = frameLayout;
-        frameLayout.setBackground(new cd0(true, -14602694, -13935795, -14395293, -14203560));
-        addView(frameLayout, a6.d(-1.0f, -1));
-        frameLayout.setVisibility(8);
-        ImageView imageView2 = new ImageView(getContext());
-        this.f30432s = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setImageResource(R.drawable.screencast_big);
-        frameLayout.addView(imageView2, a6.a(82.0f, 0.0f, 0.0f, 0.0f, 60.0f, 82, 17));
-        TextView textView = new TextView(getContext());
-        this.v = textView;
-        textView.setText(LocaleController.getString(R.string.VoipVideoScreenSharing));
-        textView.setGravity(17);
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        org.telegram.messenger.q.n(15.0f, -1, 1, textView);
-        frameLayout.addView(textView, a6.a(-2.0f, 21.0f, 28.0f, 21.0f, 0.0f, -1, 17));
-        if (z12) {
-            setOutlineProvider(new dh.b(this, 5));
-            setClipToOutline(true);
-        }
-        if (z10 && this.f30434x == null) {
-            try {
-                Bitmap decodeFile = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "voip_icthumb.jpg").getAbsolutePath());
-                this.f30434x = decodeFile;
-                if (decodeFile == null) {
-                    this.f30434x = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "icthumb.jpg").getAbsolutePath());
-                }
-                imageView.setImageBitmap(this.f30434x);
-                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            } catch (Throwable unused) {
-            }
-        }
-        if (z11) {
-            return;
-        }
-        this.d.setScreenRotation(((WindowManager) getContext().getSystemService("window")).getDefaultDisplay().getRotation());
     }
 }

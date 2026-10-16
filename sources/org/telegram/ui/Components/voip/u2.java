@@ -16,9 +16,9 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.v61;
 import org.telegram.ui.vo;
-import w7.a6;
+import w7.z5;
 public class u2 extends FrameLayout {
     public String E;
     public int F;
@@ -39,26 +39,26 @@ public class u2 extends FrameLayout {
     public ValueAnimator U;
     public ValueAnimator V;
     public float W;
-    public final Paint f30532a;
-    public boolean f30533b;
-    public boolean f30534c;
+    public final Paint f30201a;
+    public boolean f30202b;
+    public boolean f30203c;
     public boolean d;
     public final Drawable[] e;
-    public final FrameLayout f30535f;
+    public final FrameLayout f30204f;
     public final TextView[] h;
-    public int f30536n;
-    public int f30537r;
-    public float f30538s;
+    public int f30205n;
+    public int f30206r;
+    public float f30207s;
     public ValueAnimator v;
-    public int f30539w;
-    public int f30540x;
-    public int f30541y;
+    public int f30208w;
+    public int f30209x;
+    public int f30210y;
 
     public u2(Context context, float f7) {
         super(context);
-        this.f30532a = new Paint(1);
-        this.f30533b = true;
-        this.f30534c = true;
+        this.f30201a = new Paint(1);
+        this.f30202b = true;
+        this.f30203c = true;
         this.e = new Drawable[2];
         this.h = new TextView[2];
         this.I = new Paint(1);
@@ -67,7 +67,7 @@ public class u2 extends FrameLayout {
         this.T = f7;
         setWillNotDraw(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f30535f = frameLayout;
+        this.f30204f = frameLayout;
         addView(frameLayout);
         for (int i10 = 0; i10 < 2; i10++) {
             TextView textView = new TextView(context);
@@ -75,7 +75,7 @@ public class u2 extends FrameLayout {
             textView.setTextSize(1, 11.0f);
             textView.setTextColor(-1);
             textView.setImportantForAccessibility(2);
-            this.f30535f.addView(textView, a6.a(-2.0f, 0.0f, f7 + 6.0f, 0.0f, 0.0f, -1, 0));
+            this.f30204f.addView(textView, z5.a(-2.0f, 0.0f, f7 + 6.0f, 0.0f, 0.0f, -1, 0));
             this.h[i10] = textView;
         }
         this.h[1].setVisibility(8);
@@ -89,7 +89,7 @@ public class u2 extends FrameLayout {
     public final void a(int i10, int i11) {
         this.R = i10;
         this.S = i11;
-        this.f30536n = i0.a.d(this.Q, i10, i11);
+        this.f30205n = i0.a.d(this.Q, i10, i11);
         invalidate();
     }
 
@@ -111,7 +111,7 @@ public class u2 extends FrameLayout {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
                     this.U = ofFloat;
                     ofFloat.addUpdateListener(new t2(this, 0));
-                    this.U.addListener(new u61(this, 13));
+                    this.U.addListener(new v61(this, 13));
                     this.U.setDuration(150L);
                     this.U.start();
                     return;
@@ -134,7 +134,7 @@ public class u2 extends FrameLayout {
             setVisibility(0);
             z12 = false;
         }
-        if (this.f30539w == i10 && this.f30540x == i11 && ((this.O || this.f30541y == i12) && (str2 = this.E) != null && str2.equals(str) && z11 == this.L)) {
+        if (this.f30208w == i10 && this.f30209x == i11 && ((this.O || this.f30210y == i12) && (str2 = this.E) != null && str2.equals(str) && z11 == this.L)) {
             return;
         }
         if (this.N == null || z10) {
@@ -154,24 +154,24 @@ public class u2 extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (this.f30541y != i12) {
+        if (this.f30210y != i12) {
             z13 = true;
         } else {
             z13 = false;
         }
         this.d = z13;
-        if (this.f30539w == i10) {
+        if (this.f30208w == i10) {
             z14 = true;
         } else {
             z14 = false;
         }
         this.G = z14;
         if (z14) {
-            this.H = this.f30540x;
+            this.H = this.f30209x;
         }
-        this.f30539w = i10;
-        this.f30540x = i11;
-        this.f30541y = i12;
+        this.f30208w = i10;
+        this.f30209x = i11;
+        this.f30210y = i12;
         this.E = str;
         this.L = z11;
         Drawable[] drawableArr = this.e;
@@ -184,7 +184,7 @@ public class u2 extends FrameLayout {
             }
             this.I.setColor(i11);
             if (!this.O) {
-                this.f30536n = i12;
+                this.f30205n = i12;
             }
             textViewArr[0].setText(str);
             if (this.L) {
@@ -194,7 +194,7 @@ public class u2 extends FrameLayout {
             }
             this.K = f10;
             this.G = false;
-            this.f30538s = 0.0f;
+            this.f30207s = 0.0f;
             invalidate();
             return;
         }
@@ -204,7 +204,7 @@ public class u2 extends FrameLayout {
             mutate2.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
         }
         if (!this.O) {
-            this.f30537r = i12;
+            this.f30206r = i12;
         }
         boolean equals = textViewArr[0].getText().toString().equals(str);
         boolean z15 = !equals;
@@ -227,7 +227,7 @@ public class u2 extends FrameLayout {
 
     public final void d(boolean z10, boolean z11) {
         float f7 = 0.0f;
-        FrameLayout frameLayout = this.f30535f;
+        FrameLayout frameLayout = this.f30204f;
         if (z11) {
             if (z10) {
                 f7 = 1.0f;
@@ -294,11 +294,11 @@ public class u2 extends FrameLayout {
     }
 
     public void setDrawBackground(boolean z10) {
-        this.f30533b = z10;
+        this.f30202b = z10;
     }
 
     public void setDrawRipple(boolean z10) {
-        this.f30534c = z10;
+        this.f30203c = z10;
     }
 
     public void setPressedBtn(boolean z10) {

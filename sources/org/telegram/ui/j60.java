@@ -8,11 +8,11 @@ import android.os.SystemClock;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class j60 extends Drawable {
-    public long f37265b;
+    public long f36935b;
     public int d;
     public final View e;
-    public final Paint f37264a = new Paint(1);
-    public float f37266c = 1.0f;
+    public final Paint f36934a = new Paint(1);
+    public float f36936c = 1.0f;
 
     public j60(View view) {
         this.e = view;
@@ -30,29 +30,29 @@ public final class j60 extends Drawable {
         } else {
             dp = AndroidUtilities.dp(2.0f) + centerY;
         }
-        Paint paint = this.f37264a;
+        Paint paint = this.f36934a;
         paint.setColor(-1147527);
-        paint.setAlpha((int) (this.f37266c * 255.0f));
+        paint.setAlpha((int) (this.f36936c * 255.0f));
         canvas.drawCircle(centerX, dp, AndroidUtilities.dp(4.0f), paint);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = elapsedRealtime - this.f37265b;
+        long j10 = elapsedRealtime - this.f36935b;
         if (j10 > 17) {
             j10 = 17;
         }
-        this.f37265b = elapsedRealtime;
+        this.f36935b = elapsedRealtime;
         int i10 = this.d;
         if (i10 == 0) {
-            float f7 = (((float) j10) / 2000.0f) + this.f37266c;
-            this.f37266c = f7;
+            float f7 = (((float) j10) / 2000.0f) + this.f36936c;
+            this.f36936c = f7;
             if (f7 >= 1.0f) {
-                this.f37266c = 1.0f;
+                this.f36936c = 1.0f;
                 this.d = 1;
             }
         } else if (i10 == 1) {
-            float f10 = this.f37266c - (((float) j10) / 2000.0f);
-            this.f37266c = f10;
+            float f10 = this.f36936c - (((float) j10) / 2000.0f);
+            this.f36936c = f10;
             if (f10 < 0.5f) {
-                this.f37266c = 0.5f;
+                this.f36936c = 0.5f;
                 this.d = 0;
             }
         }

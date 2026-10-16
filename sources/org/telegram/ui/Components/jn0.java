@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class jn0 {
-    public static final jn0 f26413a;
-    public static final jn0 f26414b;
-    public static final jn0[] f26415c;
+    public static final jn0 f26082a;
+    public static final jn0 f26083b;
+    public static final jn0[] f26084c;
 
     static {
         ?? r02 = new Enum("LINE", 0);
-        f26413a = r02;
+        f26082a = r02;
         ?? r12 = new Enum("TAB", 1);
-        f26414b = r12;
-        f26415c = new jn0[]{r02, r12};
+        f26083b = r12;
+        f26084c = new jn0[]{r02, r12};
     }
 
     public static jn0 valueOf(String str) {
@@ -17,6 +17,6 @@ public final class jn0 {
     }
 
     public static jn0[] values() {
-        return (jn0[]) f26415c.clone();
+        return (jn0[]) f26084c.clone();
     }
 }

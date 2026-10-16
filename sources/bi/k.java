@@ -10,7 +10,7 @@ public final class k extends cr {
     public final Drawable E;
     public final Drawable F;
     public final px G;
-    public int f3221y;
+    public int f3225y;
 
     public k(px pxVar, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super(drawable, drawable2);
@@ -24,15 +24,15 @@ public final class k extends cr {
         int i10;
         int i11;
         px pxVar = this.G;
-        int i12 = pxVar.f3813b;
+        int i12 = pxVar.f3817b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.g6.f20180s8;
+            i10 = org.telegram.ui.ActionBar.g6.f19880s8;
         } else {
             i10 = org.telegram.ui.ActionBar.g6.M8;
         }
         int f7 = pxVar.f(i10);
-        if (this.f3221y != f7) {
-            this.f3221y = f7;
+        if (this.f3225y != f7) {
+            this.f3225y = f7;
             if (i12 == 0) {
                 i11 = org.telegram.ui.ActionBar.g6.A8;
             } else {

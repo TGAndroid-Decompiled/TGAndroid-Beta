@@ -2,26 +2,26 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class zg implements Runnable {
-    public final int f42614a;
-    public final fo f42615b;
-    public final org.telegram.ui.ActionBar.a2[] f42616c;
+    public final int f42306a;
+    public final fo f42307b;
+    public final org.telegram.ui.ActionBar.a2[] f42308c;
     public final int d;
 
     public zg(fo foVar, org.telegram.ui.ActionBar.a2[] a2VarArr, int i10, int i11) {
-        this.f42614a = i11;
-        this.f42615b = foVar;
-        this.f42616c = a2VarArr;
+        this.f42306a = i11;
+        this.f42307b = foVar;
+        this.f42308c = a2VarArr;
         this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f42614a) {
+        switch (this.f42306a) {
             case 0:
-                org.telegram.ui.ActionBar.a2[] a2VarArr = this.f42616c;
+                org.telegram.ui.ActionBar.a2[] a2VarArr = this.f42308c;
                 org.telegram.ui.ActionBar.a2 a2Var = a2VarArr[0];
                 if (a2Var != null) {
-                    final fo foVar = this.f42615b;
+                    final fo foVar = this.f42307b;
                     final int i10 = this.d;
                     a2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
@@ -44,10 +44,10 @@ public final class zg implements Runnable {
                 }
                 return;
             case 1:
-                org.telegram.ui.ActionBar.a2[] a2VarArr2 = this.f42616c;
+                org.telegram.ui.ActionBar.a2[] a2VarArr2 = this.f42308c;
                 org.telegram.ui.ActionBar.a2 a2Var2 = a2VarArr2[0];
                 if (a2Var2 != null) {
-                    final fo foVar2 = this.f42615b;
+                    final fo foVar2 = this.f42307b;
                     final int i11 = this.d;
                     a2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
@@ -70,10 +70,10 @@ public final class zg implements Runnable {
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.a2[] a2VarArr3 = this.f42616c;
+                org.telegram.ui.ActionBar.a2[] a2VarArr3 = this.f42308c;
                 org.telegram.ui.ActionBar.a2 a2Var3 = a2VarArr3[0];
                 if (a2Var3 != null) {
-                    final fo foVar3 = this.f42615b;
+                    final fo foVar3 = this.f42307b;
                     final int i12 = this.d;
                     a2Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override

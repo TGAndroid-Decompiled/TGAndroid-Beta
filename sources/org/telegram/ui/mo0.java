@@ -1,92 +1,60 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class mo0 extends WebViewClient {
-    public final Context f38300a;
-    public final cp0 f38301b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class mo0 implements yo0 {
+    public final Runnable f38045a;
+    public final ap0 f38046b;
 
-    public mo0(cp0 cp0Var, Context context) {
-        this.f38301b = cp0Var;
-        this.f38300a = context;
+    public mo0(ap0 ap0Var, Runnable runnable) {
+        this.f38046b = ap0Var;
+        this.f38045a = runnable;
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        cp0 cp0Var = this.f38301b;
-        cp0Var.f35035z0 = false;
-        cp0Var.H0(true, false);
-        cp0Var.K0();
-    }
-
-    @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        cp0 cp0Var = this.f38301b;
-        try {
-            if (!AndroidUtilities.isSafeToShow(cp0Var.getParentActivity())) {
-                return true;
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        String str3;
+        ap0 ap0Var = this.f38046b;
+        ap0Var.f34046y0 = tL_paymentSavedCredentialsCard;
+        ap0Var.f34042w0 = str;
+        ap0Var.U0 = z10;
+        ap0Var.f34044x0 = str2;
+        ap0Var.J0 = tL_inputPaymentCredentialsGooglePay;
+        org.telegram.ui.Cells.d9[] d9VarArr = ap0Var.Y;
+        org.telegram.ui.Cells.d9 d9Var = d9VarArr[0];
+        if (d9Var != null) {
+            d9Var.setVisibility(0);
+            org.telegram.ui.Cells.d9 d9Var2 = d9VarArr[0];
+            String str4 = ap0Var.f34044x0;
+            if (str4 != null && str4.length() > 1) {
+                str3 = ap0Var.f34044x0.substring(0, 1).toUpperCase() + ap0Var.f34044x0.substring(1);
+            } else {
+                str3 = ap0Var.f34044x0;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cp0Var.getParentActivity(), 0, cp0Var.Y0);
-            alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f19548a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new yk0(this, 8));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
+            d9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
+            org.telegram.ui.Cells.d9 d9Var3 = d9VarArr[1];
+            if (d9Var3 != null) {
+                d9Var3.setVisibility(0);
+            }
         }
+        Runnable runnable = this.f38045a;
+        if (runnable != null) {
+            runnable.run();
+        }
+        return false;
     }
 
     @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        Uri parse;
-        boolean equals;
-        cp0 cp0Var;
-        boolean z10;
-        try {
-            parse = Uri.parse(str);
-            equals = "t.me".equals(parse.getHost());
-            cp0Var = this.f38301b;
-        } catch (Exception unused) {
-        }
-        if (equals) {
-            cp0Var.t0();
-            return true;
-        }
-        if (!cp0.f34994h1.contains(parse.getScheme())) {
-            if (!cp0.f34993g1.contains(parse.getScheme())) {
-                try {
-                    if (cp0Var.getParentActivity() != null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        cp0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                        return true;
-                    }
-                } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f38300a);
-                    alertDialog$Builder.f19548a.R = cp0Var.f35020p0;
-                    alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder.o();
-                }
-            }
-            return false;
-        }
-        return true;
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

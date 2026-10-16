@@ -8,40 +8,40 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 public final class c {
-    public final String f8919a;
-    public final String f8920b;
-    public final boolean f8921c;
+    public final String f8922a;
+    public final String f8923b;
+    public final boolean f8924c;
     public final long d;
     public final long e;
-    public final g f8922f;
-    public final String[] f8923g;
+    public final g f8925f;
+    public final String[] f8926g;
     public final String h;
-    public final String f8924i;
-    public final c f8925j;
-    public final HashMap f8926k;
-    public final HashMap f8927l;
-    public ArrayList f8928m;
+    public final String f8927i;
+    public final c f8928j;
+    public final HashMap f8929k;
+    public final HashMap f8930l;
+    public ArrayList f8931m;
 
     public c(String str, String str2, long j10, long j11, g gVar, String[] strArr, String str3, String str4, c cVar) {
         boolean z10;
-        this.f8919a = str;
-        this.f8920b = str2;
-        this.f8924i = str4;
-        this.f8922f = gVar;
-        this.f8923g = strArr;
+        this.f8922a = str;
+        this.f8923b = str2;
+        this.f8927i = str4;
+        this.f8925f = gVar;
+        this.f8926g = strArr;
         if (str2 != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f8921c = z10;
+        this.f8924c = z10;
         this.d = j10;
         this.e = j11;
         str3.getClass();
         this.h = str3;
-        this.f8925j = cVar;
-        this.f8926k = new HashMap();
-        this.f8927l = new HashMap();
+        this.f8928j = cVar;
+        this.f8929k = new HashMap();
+        this.f8930l = new HashMap();
     }
 
     public static c a(String str) {
@@ -51,17 +51,17 @@ public final class c {
     public static SpannableStringBuilder e(String str, TreeMap treeMap) {
         if (!treeMap.containsKey(str)) {
             d2.a aVar = new d2.a();
-            aVar.f6276a = new SpannableStringBuilder();
-            aVar.f6277b = null;
+            aVar.f6279a = new SpannableStringBuilder();
+            aVar.f6280b = null;
             treeMap.put(str, aVar);
         }
-        CharSequence charSequence = ((d2.a) treeMap.get(str)).f6276a;
+        CharSequence charSequence = ((d2.a) treeMap.get(str)).f6279a;
         charSequence.getClass();
         return (SpannableStringBuilder) charSequence;
     }
 
     public final c b(int i10) {
-        ArrayList arrayList = this.f8928m;
+        ArrayList arrayList = this.f8931m;
         if (arrayList != null) {
             return (c) arrayList.get(i10);
         }
@@ -69,7 +69,7 @@ public final class c {
     }
 
     public final int c() {
-        ArrayList arrayList = this.f8928m;
+        ArrayList arrayList = this.f8931m;
         if (arrayList == null) {
             return 0;
         }
@@ -78,10 +78,10 @@ public final class c {
 
     public final void d(TreeSet treeSet, boolean z10) {
         boolean z11;
-        String str = this.f8919a;
+        String str = this.f8922a;
         boolean equals = "p".equals(str);
         boolean equals2 = "div".equals(str);
-        if (z10 || equals || (equals2 && this.f8924i != null)) {
+        if (z10 || equals || (equals2 && this.f8927i != null)) {
             long j10 = this.d;
             if (j10 != -9223372036854775807L) {
                 treeSet.add(Long.valueOf(j10));
@@ -91,9 +91,9 @@ public final class c {
                 treeSet.add(Long.valueOf(j11));
             }
         }
-        if (this.f8928m != null) {
-            for (int i10 = 0; i10 < this.f8928m.size(); i10++) {
-                c cVar = (c) this.f8928m.get(i10);
+        if (this.f8931m != null) {
+            for (int i10 = 0; i10 < this.f8931m.size(); i10++) {
+                c cVar = (c) this.f8931m.get(i10);
                 if (!z10 && !equals) {
                     z11 = false;
                 } else {
@@ -129,7 +129,7 @@ public final class c {
         if (!"".equals(str3)) {
             str = str3;
         }
-        if (f(j10) && "div".equals(this.f8919a) && (str2 = this.f8924i) != null) {
+        if (f(j10) && "div".equals(this.f8922a) && (str2 = this.f8927i) != null) {
             arrayList.add(new Pair(str, str2));
             return;
         }
@@ -147,11 +147,11 @@ public final class c {
         boolean z11;
         TreeMap treeMap2;
         long j11;
-        HashMap hashMap = this.f8926k;
+        HashMap hashMap = this.f8929k;
         hashMap.clear();
-        HashMap hashMap2 = this.f8927l;
+        HashMap hashMap2 = this.f8930l;
         hashMap2.clear();
-        String str3 = this.f8919a;
+        String str3 = this.f8922a;
         if (!"metadata".equals(str3)) {
             String str4 = this.h;
             if ("".equals(str4)) {
@@ -159,16 +159,16 @@ public final class c {
             } else {
                 str2 = str4;
             }
-            if (this.f8921c && z10) {
+            if (this.f8924c && z10) {
                 SpannableStringBuilder e = e(str2, treeMap);
-                String str5 = this.f8920b;
+                String str5 = this.f8923b;
                 str5.getClass();
                 e.append((CharSequence) str5);
             } else if ("br".equals(str3) && z10) {
                 e(str2, treeMap).append('\n');
             } else if (f(j10)) {
                 for (Map.Entry entry : treeMap.entrySet()) {
-                    CharSequence charSequence = ((d2.a) entry.getValue()).f6276a;
+                    CharSequence charSequence = ((d2.a) entry.getValue()).f6279a;
                     charSequence.getClass();
                     hashMap.put((String) entry.getKey(), Integer.valueOf(charSequence.length()));
                 }
@@ -197,7 +197,7 @@ public final class c {
                     }
                 }
                 for (Map.Entry entry2 : treeMap.entrySet()) {
-                    CharSequence charSequence2 = ((d2.a) entry2.getValue()).f6276a;
+                    CharSequence charSequence2 = ((d2.a) entry2.getValue()).f6279a;
                     charSequence2.getClass();
                     hashMap2.put((String) entry2.getKey(), Integer.valueOf(charSequence2.length()));
                 }

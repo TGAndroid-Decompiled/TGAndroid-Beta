@@ -3,23 +3,23 @@ package yh;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 public final class x2 implements zh.f2, Utilities.Callback5, Utilities.Callback5Return {
-    public final g4 f49197a;
+    public final g4 f49196a;
 
     @Override
     public void b(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, boolean z10) {
-        g4.U(this.f49197a, tL_starGiftUnique, j10, z10);
+        g4.U(this.f49196a, tL_starGiftUnique, j10, z10);
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        l61 l61Var = (l61) obj;
+        m61 m61Var = (m61) obj;
         View view = (View) obj2;
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        this.f49197a.getClass();
+        this.f49196a.getClass();
         return Boolean.FALSE;
     }
 
@@ -29,6 +29,6 @@ public final class x2 implements zh.f2, Utilities.Callback5, Utilities.Callback5
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        g4.Y(this.f49197a, (l61) obj);
+        g4.Y(this.f49196a, (m61) obj);
     }
 }

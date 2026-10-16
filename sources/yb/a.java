@@ -3,16 +3,16 @@ package yb;
 import java.util.Arrays;
 import n6.l;
 public final class a {
-    public final String f48733a;
-    public final float f48734b;
-    public final int f48735c;
+    public final String f48732a;
+    public final float f48733b;
+    public final int f48734c;
     public final String d;
 
     public a(float f7, int i10, String str, String str2) {
-        int i11 = y7.b.f48580a;
-        this.f48733a = str == null ? "" : str;
-        this.f48734b = f7;
-        this.f48735c = i10;
+        int i11 = y7.b.f48579a;
+        this.f48732a = str == null ? "" : str;
+        this.f48733b = f7;
+        this.f48734c = i10;
         this.d = str2;
     }
 
@@ -24,14 +24,14 @@ public final class a {
             return false;
         }
         a aVar = (a) obj;
-        if (l.l(this.f48733a, aVar.f48733a) && Float.compare(this.f48734b, aVar.f48734b) == 0 && this.f48735c == aVar.f48735c && l.l(this.d, aVar.d)) {
+        if (l.l(this.f48732a, aVar.f48732a) && Float.compare(this.f48733b, aVar.f48733b) == 0 && this.f48734c == aVar.f48734c && l.l(this.d, aVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f48733a, Float.valueOf(this.f48734b), Integer.valueOf(this.f48735c), this.d});
+        return Arrays.hashCode(new Object[]{this.f48732a, Float.valueOf(this.f48733b), Integer.valueOf(this.f48734c), this.d});
     }
 
     public final String toString() {
@@ -39,15 +39,15 @@ public final class a {
         u2.c cVar2 = new u2.c(13, false);
         ((u2.c) cVar.d).d = cVar2;
         cVar.d = cVar2;
-        cVar2.f45876c = this.f48733a;
+        cVar2.f45876c = this.f48732a;
         cVar2.f45875b = "text";
-        String valueOf = String.valueOf(this.f48734b);
+        String valueOf = String.valueOf(this.f48733b);
         u2.c cVar3 = new u2.c(13, false);
         ((u2.c) cVar.d).d = cVar3;
         cVar.d = cVar3;
         cVar3.f45876c = valueOf;
         cVar3.f45875b = "confidence";
-        String valueOf2 = String.valueOf(this.f48735c);
+        String valueOf2 = String.valueOf(this.f48734c);
         u2.c cVar4 = new u2.c(13, false);
         ((u2.c) cVar.d).d = cVar4;
         cVar4.f45876c = valueOf2;

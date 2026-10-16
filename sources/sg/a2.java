@@ -38,7 +38,7 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
     public float M;
     public final w1 N;
     public final u1 O;
-    public org.telegram.ui.Cells.v0 P;
+    public org.telegram.ui.Cells.u0 P;
     public final s4.b Q;
     public final TLRPC.Document R;
     public int S;
@@ -51,7 +51,7 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
     public float f45131f;
     public final String h;
     public final ImageReceiver f45132n;
-    public rh.j f45133r;
+    public ri.h0 f45133r;
     public final int f45134s;
     public final int v;
     public boolean f45135w;
@@ -68,13 +68,13 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
             File file2 = this.e;
             if (file2 != null && file2.exists()) {
                 if ((NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & 512) != 0) {
-                    rh.j jVar = this.f45133r;
-                    if (jVar != null) {
-                        AndroidUtilities.cancelRunOnUIThread(jVar);
+                    ri.h0 h0Var = this.f45133r;
+                    if (h0Var != null) {
+                        AndroidUtilities.cancelRunOnUIThread(h0Var);
                     }
-                    rh.j jVar2 = new rh.j(this, 7);
-                    this.f45133r = jVar2;
-                    AndroidUtilities.runOnUIThread(jVar2, 300L);
+                    ri.h0 h0Var2 = new ri.h0(this, 7);
+                    this.f45133r = h0Var2;
+                    AndroidUtilities.runOnUIThread(h0Var2, 300L);
                     return;
                 }
                 try {
@@ -114,7 +114,7 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
                     StringBuilder sb2 = new StringBuilder("?account=");
                     sb2.append(i10);
                     sb2.append("&id=");
-                    sb2.append(this.R.f19222id);
+                    sb2.append(this.R.f18922id);
                     sb2.append("&hash=");
                     sb2.append(this.R.access_hash);
                     sb2.append("&dc=");
@@ -204,9 +204,9 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
         this.f45136x = false;
         c();
         NotificationCenter.getInstance(this.f45134s).removeObserver(this, NotificationCenter.fileLoaded);
-        org.telegram.ui.Cells.v0 v0Var = this.P;
-        if (v0Var != null) {
-            HashMap hashMap = (HashMap) v0Var.f22553f;
+        org.telegram.ui.Cells.u0 u0Var = this.P;
+        if (u0Var != null) {
+            HashMap hashMap = (HashMap) u0Var.f21843f;
             for (Bitmap bitmap : hashMap.values()) {
                 bitmap.recycle();
             }
@@ -272,12 +272,12 @@ public final class a2 extends FrameLayout implements l0, NotificationCenter.Noti
                     ((t1) arrayList.get(i15)).a(currentTimeMillis, true);
                 }
             }
-            org.telegram.ui.Cells.v0 v0Var = this.P;
-            if (v0Var != null) {
-                ((RectF) v0Var.f22554g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            org.telegram.ui.Cells.u0 u0Var = this.P;
+            if (u0Var != null) {
+                ((RectF) u0Var.f21844g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 ((RectF) this.P.h).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((RectF) this.P.f22554g).inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
-                ArrayList arrayList2 = this.P.f22552c;
+                ((RectF) this.P.f21844g).inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
+                ArrayList arrayList2 = this.P.f21842c;
                 System.currentTimeMillis();
                 for (int i16 = 0; i16 < arrayList2.size(); i16++) {
                     ((l) arrayList2.get(i16)).a(i16, true);

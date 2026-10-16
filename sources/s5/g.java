@@ -76,12 +76,12 @@ public final class g implements d, t5.c, c {
         i iVar = this.f45024a;
         Objects.requireNonNull(iVar);
         u5.a aVar = this.f45026c;
-        long d = aVar.d();
+        long b10 = aVar.b();
         while (true) {
             try {
                 return iVar.getWritableDatabase();
             } catch (SQLiteDatabaseLockedException e) {
-                if (aVar.d() < this.d.f45017c + d) {
+                if (aVar.b() < this.d.f45017c + b10) {
                     SystemClock.sleep(50L);
                 } else {
                     throw new RuntimeException("Timed out while trying to open db.", e);
@@ -124,19 +124,19 @@ public final class g implements d, t5.c, c {
     public final Object f(t5.b bVar) {
         SQLiteDatabase a2 = a();
         u5.a aVar = this.f45026c;
-        long d = aVar.d();
+        long b10 = aVar.b();
         while (true) {
             try {
                 a2.beginTransaction();
                 try {
-                    Object h = bVar.h();
+                    Object f7 = bVar.f();
                     a2.setTransactionSuccessful();
-                    return h;
+                    return f7;
                 } finally {
                     a2.endTransaction();
                 }
             } catch (SQLiteDatabaseLockedException e) {
-                if (aVar.d() < this.d.f45017c + d) {
+                if (aVar.b() < this.d.f45017c + b10) {
                     SystemClock.sleep(50L);
                 } else {
                     throw new RuntimeException("Timed out while trying to acquire the lock.", e);

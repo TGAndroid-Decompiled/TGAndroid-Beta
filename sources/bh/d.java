@@ -7,36 +7,36 @@ import android.graphics.Shader;
 import android.support.v4.media.session.x;
 import org.telegram.messenger.MediaDataController;
 public final class d {
-    public final RenderNode f2762a = x.c();
-    public final RenderNode[] f2763b;
-    public final RenderNode[] f2764c;
+    public final RenderNode f2766a = x.c();
+    public final RenderNode[] f2767b;
+    public final RenderNode[] f2768c;
     public final boolean d;
     public int e;
-    public int f2765f;
-    public float f2766g;
+    public int f2769f;
+    public float f2770g;
     public float h;
-    public long f2767i;
-    public final f f2768j;
+    public long f2771i;
+    public final f f2772j;
 
     public d(f fVar, String str, int i10, boolean z10) {
-        this.f2768j = fVar;
+        this.f2772j = fVar;
         int i11 = i10 + 1;
-        this.f2763b = new RenderNode[i11];
+        this.f2767b = new RenderNode[i11];
         for (int i12 = 0; i12 < i11; i12++) {
-            RenderNode[] renderNodeArr = this.f2763b;
+            RenderNode[] renderNodeArr = this.f2767b;
             x.j();
             renderNodeArr[i12] = x.d(str + "_down_" + i10);
         }
         if (i10 <= 0 && !z10) {
-            this.f2764c = this.f2763b;
+            this.f2768c = this.f2767b;
         } else {
-            this.f2764c = new RenderNode[i11];
+            this.f2768c = new RenderNode[i11];
             for (int i13 = 0; i13 < i11; i13++) {
-                this.f2764c[i13] = x.c();
+                this.f2768c[i13] = x.c();
             }
         }
-        this.d = this.f2764c == this.f2763b;
-        this.f2765f = 1;
+        this.d = this.f2768c == this.f2767b;
+        this.f2769f = 1;
         this.e = 1;
     }
 
@@ -48,10 +48,10 @@ public final class d {
         int width = renderNode.getWidth();
         int height = renderNode.getHeight();
         float f7 = width;
-        f fVar = this.f2768j;
+        f fVar = this.f2772j;
         int round = Math.round((fVar.d * f7) / this.e);
         float f10 = height;
-        int round2 = Math.round((fVar.d * f10) / this.f2765f);
+        int round2 = Math.round((fVar.d * f10) / this.f2769f);
         float f11 = round;
         float f12 = f11 / f7;
         float f13 = round2;
@@ -60,61 +60,61 @@ public final class d {
         float f15 = (f7 * i11) / f11;
         float f16 = (f10 * i11) / f13;
         long calcHash = MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(0L, renderNode.getUniqueId()), round), round2), width), height);
-        if (this.f2762a.hasDisplayList() && this.f2763b[0].hasDisplayList()) {
+        if (this.f2766a.hasDisplayList() && this.f2767b[0].hasDisplayList()) {
             z10 = false;
         } else {
             z10 = true;
         }
         int i12 = 0;
         while (true) {
-            int length = this.f2763b.length;
+            int length = this.f2767b.length;
             z11 = this.d;
             if (i12 >= length) {
                 break;
             }
             z10 |= !renderNodeArr[i12].hasDisplayList();
             if (!z11) {
-                z10 |= !this.f2764c[i12].hasDisplayList();
+                z10 |= !this.f2768c[i12].hasDisplayList();
             }
             i12++;
         }
-        if (this.f2767i != calcHash || z10) {
-            this.f2767i = calcHash;
+        if (this.f2771i != calcHash || z10) {
+            this.f2771i = calcHash;
             int i13 = 0;
-            this.f2762a.setPosition(0, 0, width, height);
-            this.f2762a.beginRecording(width, height).drawRenderNode(renderNode);
-            this.f2762a.endRecording();
-            this.f2763b[0].setPosition(0, 0, round, round2);
-            RecordingCanvas beginRecording = this.f2763b[0].beginRecording(round, round2);
+            this.f2766a.setPosition(0, 0, width, height);
+            this.f2766a.beginRecording(width, height).drawRenderNode(renderNode);
+            this.f2766a.endRecording();
+            this.f2767b[0].setPosition(0, 0, round, round2);
+            RecordingCanvas beginRecording = this.f2767b[0].beginRecording(round, round2);
             beginRecording.scale(f12, f14);
-            beginRecording.drawRenderNode(this.f2762a);
-            this.f2763b[0].endRecording();
+            beginRecording.drawRenderNode(this.f2766a);
+            this.f2767b[0].endRecording();
             int i14 = 0;
             while (true) {
-                RenderNode[] renderNodeArr2 = this.f2763b;
+                RenderNode[] renderNodeArr2 = this.f2767b;
                 if (i14 < renderNodeArr2.length) {
                     renderNodeArr2[i14].setPosition(i13, i13, round, round2);
-                    RecordingCanvas beginRecording2 = this.f2763b[i14].beginRecording(round, round2);
+                    RecordingCanvas beginRecording2 = this.f2767b[i14].beginRecording(round, round2);
                     if (i14 > 0) {
-                        beginRecording2.drawRenderNode(this.f2763b[i13]);
+                        beginRecording2.drawRenderNode(this.f2767b[i13]);
                     } else {
                         beginRecording2.scale(f12, f14);
-                        beginRecording2.drawRenderNode(this.f2762a);
+                        beginRecording2.drawRenderNode(this.f2766a);
                     }
-                    this.f2763b[i14].endRecording();
+                    this.f2767b[i14].endRecording();
                     if (z11) {
-                        this.f2763b[i14].setScaleX(f15);
-                        this.f2763b[i14].setScaleY(f16);
-                        this.f2763b[i14].setPivotX(0.0f);
-                        this.f2763b[i14].setPivotY(0.0f);
+                        this.f2767b[i14].setScaleX(f15);
+                        this.f2767b[i14].setScaleY(f16);
+                        this.f2767b[i14].setPivotX(0.0f);
+                        this.f2767b[i14].setPivotY(0.0f);
                         i10 = 0;
                     } else {
                         i10 = 0;
-                        this.f2764c[i14].setPosition(0, 0, width, height);
-                        RecordingCanvas beginRecording3 = this.f2764c[i14].beginRecording(width, height);
+                        this.f2768c[i14].setPosition(0, 0, width, height);
+                        RecordingCanvas beginRecording3 = this.f2768c[i14].beginRecording(width, height);
                         beginRecording3.scale(f15, f16);
-                        beginRecording3.drawRenderNode(this.f2763b[i14]);
-                        this.f2764c[i14].endRecording();
+                        beginRecording3.drawRenderNode(this.f2767b[i14]);
+                        this.f2768c[i14].endRecording();
                     }
                     i14++;
                     i13 = i10;
@@ -131,35 +131,35 @@ public final class d {
         int i10 = this.e;
         float f12 = 0.0f;
         if (i10 >= 2) {
-            f11 = (this.f2766g + f7) % i10;
+            f11 = (this.f2770g + f7) % i10;
         } else {
             f11 = 0.0f;
         }
-        this.f2766g = f11;
-        int i11 = this.f2765f;
+        this.f2770g = f11;
+        int i11 = this.f2769f;
         if (i11 >= 2) {
             f12 = (this.h + f10) % i11;
         }
         this.h = f12;
-        if (this.f2768j.f2773b) {
-            this.f2762a.setTranslationX(f11);
-            this.f2762a.setTranslationY(this.h);
-            for (RenderNode renderNode : this.f2764c) {
-                renderNode.setTranslationX(-this.f2766g);
+        if (this.f2772j.f2777b) {
+            this.f2766a.setTranslationX(f11);
+            this.f2766a.setTranslationY(this.h);
+            for (RenderNode renderNode : this.f2768c) {
+                renderNode.setTranslationX(-this.f2770g);
                 renderNode.setTranslationY(-this.h);
             }
         }
     }
 
     public final void c(float f7) {
-        this.f2763b[0].setRenderEffect(RenderEffect.createBlurEffect(f.a(f7, this.e), f.a(f7, this.f2765f), Shader.TileMode.CLAMP));
+        this.f2767b[0].setRenderEffect(RenderEffect.createBlurEffect(f.a(f7, this.e), f.a(f7, this.f2769f), Shader.TileMode.CLAMP));
     }
 
     public final void d(float f7, RenderEffect renderEffect) {
-        this.f2763b[0].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f.a(f7, this.e), f.a(f7, this.f2765f), Shader.TileMode.CLAMP), renderEffect));
+        this.f2767b[0].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f.a(f7, this.e), f.a(f7, this.f2769f), Shader.TileMode.CLAMP), renderEffect));
     }
 
     public final void e(RenderEffect renderEffect) {
-        this.f2763b[1].setRenderEffect(renderEffect);
+        this.f2767b[1].setRenderEffect(renderEffect);
     }
 }

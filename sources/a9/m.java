@@ -4,23 +4,23 @@ import com.google.android.gms.internal.play_billing.s1;
 import j$.util.Objects;
 public final class m extends k {
     public static final m d = new m(new Object[0]);
-    public final transient Object[] f345c;
+    public final transient Object[] f349c;
 
     public m(Object[] objArr) {
-        this.f345c = objArr;
+        this.f349c = objArr;
     }
 
     @Override
     public final Object get(int i10) {
         s1.a(i10, 0);
-        Object obj = this.f345c[i10];
+        Object obj = this.f349c[i10];
         Objects.requireNonNull(obj);
         return obj;
     }
 
     @Override
     public final int h(Object[] objArr) {
-        System.arraycopy(this.f345c, 0, objArr, 0, 0);
+        System.arraycopy(this.f349c, 0, objArr, 0, 0);
         return 0;
     }
 
@@ -36,7 +36,7 @@ public final class m extends k {
 
     @Override
     public final Object[] o() {
-        return this.f345c;
+        return this.f349c;
     }
 
     @Override

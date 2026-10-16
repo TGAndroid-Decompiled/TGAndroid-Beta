@@ -34,11 +34,6 @@ public final class t0 implements y2.i {
     }
 
     @Override
-    public final void J() {
-        this.h = true;
-    }
-
-    @Override
     public final void a() {
         g2.h hVar;
         c3.o oVar;
@@ -47,18 +42,18 @@ public final class t0 implements y2.i {
         String str = null;
         while (i11 == 0 && !this.h) {
             try {
-                long j10 = this.f46046f.f4279a;
+                long j10 = this.f46046f.f4283a;
                 g2.m b10 = b(j10, str);
                 this.f46049s = b10;
                 long open = this.f46044b.open(b10);
                 if (this.h) {
                     if (i11 != 1 && this.f46045c.b() != -1) {
-                        this.f46046f.f4279a = this.f46045c.b();
+                        this.f46046f.f4283a = this.f46045c.b();
                     }
                     k7.a(this.f46044b);
                     return;
                 }
-                List list = (List) this.f46044b.f9854a.getResponseHeaders().get("ETag");
+                List list = (List) this.f46044b.f9857a.getResponseHeaders().get("ETag");
                 if (list != null && !list.isEmpty()) {
                     str = (String) list.get(0);
                 } else {
@@ -70,18 +65,18 @@ public final class t0 implements y2.i {
                     w0Var.H.post(new p0(w0Var, 0));
                 }
                 long j11 = open;
-                this.f46051x.J = p3.b.d(this.f46044b.f9854a.getResponseHeaders());
+                this.f46051x.J = p3.b.d(this.f46044b.f9857a.getResponseHeaders());
                 g2.b0 b0Var = this.f46044b;
                 p3.b bVar = this.f46051x.J;
-                if (bVar != null && (i10 = bVar.f42993f) != -1) {
+                if (bVar != null && (i10 = bVar.f42693f) != -1) {
                     hVar = new t(b0Var, i10, this);
-                    c3.i0 z10 = this.f46051x.z(new v0(0, true));
-                    this.v = z10;
-                    z10.b(w0.f46067j0);
+                    c3.i0 x10 = this.f46051x.x(new v0(0, true));
+                    this.v = x10;
+                    x10.b(w0.f46067j0);
                 } else {
                     hVar = b0Var;
                 }
-                this.f46045c.c(hVar, this.f46043a, this.f46044b.f9854a.getResponseHeaders(), j10, j11, this.d);
+                this.f46045c.c(hVar, this.f46043a, this.f46044b.f9857a.getResponseHeaders(), j10, j11, this.d);
                 if (this.f46051x.J != null && (oVar = (c3.o) this.f46045c.f45876c) != null) {
                     c3.o b11 = oVar.b();
                     if (b11 instanceof v3.d) {
@@ -100,8 +95,8 @@ public final class t0 implements y2.i {
                     try {
                         e2.i iVar = this.e;
                         synchronized (iVar) {
-                            while (!iVar.f8355b) {
-                                iVar.f8354a.getClass();
+                            while (!iVar.f8358b) {
+                                iVar.f8357a.getClass();
                                 iVar.wait();
                             }
                         }
@@ -126,17 +121,22 @@ public final class t0 implements y2.i {
                 if (i11 == 1) {
                     i11 = 0;
                 } else if (this.f46045c.b() != -1) {
-                    this.f46046f.f4279a = this.f46045c.b();
+                    this.f46046f.f4283a = this.f46045c.b();
                 }
                 k7.a(this.f46044b);
             } catch (Throwable th2) {
                 if (i11 != 1 && this.f46045c.b() != -1) {
-                    this.f46046f.f4279a = this.f46045c.b();
+                    this.f46046f.f4283a = this.f46045c.b();
                 }
                 k7.a(this.f46044b);
                 throw th2;
             }
         }
+    }
+
+    @Override
+    public final void a0() {
+        this.h = true;
     }
 
     public final g2.m b(long j10, String str) {

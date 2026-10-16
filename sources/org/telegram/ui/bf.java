@@ -6,14 +6,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class bf implements Runnable {
-    public final int f34526a;
-    public final fo f34527b;
-    public final MessageObject f34528c;
+    public final int f34308a;
+    public final fo f34309b;
+    public final MessageObject f34310c;
 
     public bf(fo foVar, MessageObject messageObject, int i10) {
-        this.f34526a = i10;
-        this.f34527b = foVar;
-        this.f34528c = messageObject;
+        this.f34308a = i10;
+        this.f34309b = foVar;
+        this.f34310c = messageObject;
     }
 
     @Override
@@ -24,23 +24,23 @@ public final class bf implements Runnable {
         int i11;
         int i12;
         int i13;
-        switch (this.f34526a) {
+        switch (this.f34308a) {
             case 0:
-                MessageObject messageObject = this.f34528c;
+                MessageObject messageObject = this.f34310c;
                 TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
                 if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
                     LaunchActivity launchActivity = LaunchActivity.G1;
                     if (launchActivity == null || launchActivity.P() == null || LaunchActivity.G1.P().l(messageObject) == null) {
-                        this.f34527b.createArticleViewer(false).N(messageObject, null, null, null);
+                        this.f34309b.createArticleViewer(false).N(messageObject, null, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                fo foVar = this.f34527b;
+                fo foVar = this.f34309b;
                 foVar.getClass();
-                MessageObject messageObject2 = this.f34528c;
+                MessageObject messageObject2 = this.f34310c;
                 TLRPC.Message message = messageObject2.messageOwner;
                 int i14 = message.ttl;
                 if (i14 != Integer.MAX_VALUE) {
@@ -63,11 +63,11 @@ public final class bf implements Runnable {
                     return;
                 }
             case 2:
-                fo foVar2 = this.f34527b;
+                fo foVar2 = this.f34309b;
                 foVar2.getClass();
-                MessageObject messageObject3 = this.f34528c;
+                MessageObject messageObject3 = this.f34310c;
                 int replyMsgId = messageObject3.getReplyMsgId();
-                int i15 = messageObject3.messageOwner.f19237id;
+                int i15 = messageObject3.messageOwner.f18937id;
                 if (messageObject3.getDialogId() == foVar2.L6) {
                     i11 = 1;
                 } else {
@@ -76,11 +76,11 @@ public final class bf implements Runnable {
                 foVar2.bb(replyMsgId, i15, true, i11, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
                 return;
             case 3:
-                fo foVar3 = this.f34527b;
+                fo foVar3 = this.f34309b;
                 foVar3.getClass();
-                MessageObject messageObject4 = this.f34528c;
+                MessageObject messageObject4 = this.f34310c;
                 int replyMsgId2 = messageObject4.getReplyMsgId();
-                int i16 = messageObject4.messageOwner.f19237id;
+                int i16 = messageObject4.messageOwner.f18937id;
                 if (messageObject4.getDialogId() == foVar3.L6) {
                     i12 = 1;
                 } else {
@@ -89,11 +89,11 @@ public final class bf implements Runnable {
                 foVar3.bb(replyMsgId2, i16, true, i12, false, 0, null, null, null);
                 return;
             case 4:
-                fo foVar4 = this.f34527b;
+                fo foVar4 = this.f34309b;
                 foVar4.getClass();
-                MessageObject messageObject5 = this.f34528c;
+                MessageObject messageObject5 = this.f34310c;
                 int replyMsgId3 = messageObject5.getReplyMsgId();
-                int i17 = messageObject5.messageOwner.f19237id;
+                int i17 = messageObject5.messageOwner.f18937id;
                 if (messageObject5.getDialogId() == foVar4.L6) {
                     i13 = 1;
                 } else {
@@ -102,18 +102,18 @@ public final class bf implements Runnable {
                 foVar4.j(replyMsgId3, i17, true, i13, false, 0);
                 return;
             case 5:
-                int id2 = this.f34528c.getId();
-                fo foVar5 = this.f34527b;
+                int id2 = this.f34310c.getId();
+                fo foVar5 = this.f34309b;
                 foVar5.bb(id2, 0, true, 0, true, 0, null, null, new wf(foVar5, 23));
-                if (foVar5.f35966h6.isEmpty()) {
+                if (foVar5.f35667h6.isEmpty()) {
                     foVar5.Pb(false);
                     return;
                 }
                 return;
             case 6:
-                fo foVar6 = this.f34527b;
+                fo foVar6 = this.f34309b;
                 foVar6.getClass();
-                MessageObject messageObject6 = this.f34528c;
+                MessageObject messageObject6 = this.f34310c;
                 if (messageObject6.isVideo()) {
                     foVar6.ma(null, messageObject6);
                     return;
@@ -122,14 +122,14 @@ public final class bf implements Runnable {
                     return;
                 }
             case 7:
-                fo foVar7 = this.f34527b;
-                foVar7.getMessagesController().pinMessage(foVar7.e, foVar7.f35935f, this.f34528c.getId(), true, false, false);
+                fo foVar7 = this.f34309b;
+                foVar7.getMessagesController().pinMessage(foVar7.e, foVar7.f35636f, this.f34310c.getId(), true, false, false);
                 foVar7.A3 = null;
                 return;
             default:
-                fo foVar8 = this.f34527b;
+                fo foVar8 = this.f34309b;
                 org.telegram.ui.Components.zc.a0(foVar8).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessageObject messageObject7 = this.f34528c;
+                MessageObject messageObject7 = this.f34310c;
                 foVar8.Ja(messageObject7);
                 foVar8.La(messageObject7);
                 return;

@@ -10,6 +10,7 @@ import java.util.Iterator;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import w7.r;
 public class LiteMode {
     private static int BATTERY_HIGH = 10;
     private static int BATTERY_LOW = 10;
@@ -272,7 +273,7 @@ public class LiteMode {
     }
 
     public static void setPowerSaverLevel(int i10) {
-        powerSaverLevel = w7.s.b(i10, 0, 100);
+        powerSaverLevel = r.b(i10, 0, 100);
         savePreference();
         getValue(false);
     }

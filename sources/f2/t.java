@@ -2,25 +2,25 @@ package f2;
 
 import v7.u6;
 public final class t {
-    public int f8906a;
-    public int f8907b;
-    public int f8908c;
+    public int f8909a;
+    public int f8910b;
+    public int f8911c;
     public int d = 0;
     public byte[] e;
 
     public t(byte[] bArr, int i10, int i11) {
         this.e = bArr;
-        this.f8907b = i10;
-        this.f8908c = i10;
-        this.f8906a = i11;
+        this.f8910b = i10;
+        this.f8911c = i10;
+        this.f8909a = i11;
         a();
     }
 
     public void a() {
         boolean z10;
         int i10;
-        int i11 = this.f8908c;
-        if (i11 >= 0 && (i11 < (i10 = this.f8906a) || (i11 == i10 && this.d == 0))) {
+        int i11 = this.f8911c;
+        if (i11 >= 0 && (i11 < (i10 = this.f8909a) || (i11 == i10 && this.d == 0))) {
             z10 = true;
         } else {
             z10 = false;
@@ -29,7 +29,7 @@ public final class t {
     }
 
     public boolean b(int i10) {
-        int i11 = this.f8908c;
+        int i11 = this.f8911c;
         int i12 = i10 / 8;
         int i13 = i11 + i12;
         int i14 = (this.d + i10) - (i12 * 8);
@@ -39,14 +39,14 @@ public final class t {
         }
         while (true) {
             i11++;
-            if (i11 > i13 || i13 > this.f8906a) {
+            if (i11 > i13 || i13 > this.f8909a) {
                 break;
             } else if (h(i11)) {
                 i13++;
                 i11 += 2;
             }
         }
-        int i15 = this.f8906a;
+        int i15 = this.f8909a;
         if (i13 < i15) {
             return true;
         }
@@ -58,18 +58,18 @@ public final class t {
 
     public boolean c() {
         boolean z10;
-        int i10 = this.f8908c;
+        int i10 = this.f8911c;
         int i11 = this.d;
         int i12 = 0;
-        while (this.f8908c < this.f8906a && !d()) {
+        while (this.f8911c < this.f8909a && !d()) {
             i12++;
         }
-        if (this.f8908c == this.f8906a) {
+        if (this.f8911c == this.f8909a) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f8908c = i10;
+        this.f8911c = i10;
         this.d = i11;
         if (z10 || !b((i12 * 2) + 1)) {
             return false;
@@ -79,7 +79,7 @@ public final class t {
 
     public boolean d() {
         boolean z10;
-        if ((this.e[this.f8908c] & (128 >> this.d)) != 0) {
+        if ((this.e[this.f8911c] & (128 >> this.d)) != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -102,22 +102,22 @@ public final class t {
             int i14 = i11 - 8;
             this.d = i14;
             byte[] bArr = this.e;
-            int i15 = this.f8908c;
+            int i15 = this.f8911c;
             i13 |= (bArr[i15] & 255) << i14;
             if (!h(i15 + 1)) {
                 i12 = 1;
             }
-            this.f8908c = i15 + i12;
+            this.f8911c = i15 + i12;
         }
         byte[] bArr2 = this.e;
-        int i16 = this.f8908c;
+        int i16 = this.f8911c;
         int i17 = ((-1) >>> (32 - i10)) & (i13 | ((bArr2[i16] & 255) >> (8 - i11)));
         if (i11 == 8) {
             this.d = 0;
             if (!h(i16 + 1)) {
                 i12 = 1;
             }
-            this.f8908c = i16 + i12;
+            this.f8911c = i16 + i12;
         }
         a();
         return i17;
@@ -149,7 +149,7 @@ public final class t {
 
     public boolean h(int i10) {
         int i11 = i10 - 2;
-        if (this.f8907b <= i11 && i10 < this.f8906a) {
+        if (this.f8910b <= i11 && i10 < this.f8909a) {
             byte[] bArr = this.e;
             if (bArr[i10] == 3 && bArr[i11] == 0 && bArr[i10 - 1] == 0) {
                 return true;
@@ -165,31 +165,31 @@ public final class t {
         this.d = i11;
         if (i11 == 8) {
             this.d = 0;
-            int i12 = this.f8908c;
+            int i12 = this.f8911c;
             if (h(i12 + 1)) {
                 i10 = 2;
             }
-            this.f8908c = i12 + i10;
+            this.f8911c = i12 + i10;
         }
         a();
     }
 
     public void j(int i10) {
-        int i11 = this.f8908c;
+        int i11 = this.f8911c;
         int i12 = i10 / 8;
         int i13 = i11 + i12;
-        this.f8908c = i13;
+        this.f8911c = i13;
         int i14 = (i10 - (i12 * 8)) + this.d;
         this.d = i14;
         if (i14 > 7) {
-            this.f8908c = i13 + 1;
+            this.f8911c = i13 + 1;
             this.d = i14 - 8;
         }
         while (true) {
             i11++;
-            if (i11 <= this.f8908c) {
+            if (i11 <= this.f8911c) {
                 if (h(i11)) {
-                    this.f8908c++;
+                    this.f8911c++;
                     i11 += 2;
                 }
             } else {

@@ -1,63 +1,39 @@
 package p4;
+public abstract class s {
+    public abstract void e(v vVar);
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-public final class s {
-    public static final s f43099c = new s(new Bundle(), null);
-    public final Bundle f43100a;
-    public List f43101b;
-
-    public s(Bundle bundle, ArrayList arrayList) {
-        this.f43100a = bundle;
-        this.f43101b = arrayList;
+    public void h(x xVar, v vVar, int i10) {
+        g(vVar);
     }
 
-    public static s b(Bundle bundle) {
-        if (bundle == null) {
-            return null;
-        }
-        return new s(bundle, null);
+    public void j(x xVar, v vVar, int i10) {
+        i();
     }
 
-    public final void a() {
-        if (this.f43101b == null) {
-            ArrayList<String> stringArrayList = this.f43100a.getStringArrayList("controlCategories");
-            this.f43101b = stringArrayList;
-            if (stringArrayList == null || stringArrayList.isEmpty()) {
-                this.f43101b = Collections.EMPTY_LIST;
-            }
-        }
+    public void a() {
     }
 
-    public final ArrayList c() {
-        a();
-        return new ArrayList(this.f43101b);
+    public void b() {
     }
 
-    public final boolean d() {
-        a();
-        return this.f43101b.isEmpty();
+    public void c() {
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof s) {
-            s sVar = (s) obj;
-            a();
-            sVar.a();
-            return this.f43101b.equals(sVar.f43101b);
-        }
-        return false;
+    public void i() {
     }
 
-    public final int hashCode() {
-        a();
-        return this.f43101b.hashCode();
+    public void d(v vVar) {
     }
 
-    public final String toString() {
-        return "MediaRouteSelector{ controlCategories=" + Arrays.toString(c().toArray()) + " }";
+    public void f(v vVar) {
+    }
+
+    public void g(v vVar) {
+    }
+
+    public void k(v vVar) {
+    }
+
+    public void l(z zVar) {
     }
 }

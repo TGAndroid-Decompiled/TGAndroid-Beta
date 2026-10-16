@@ -14,12 +14,12 @@ public final class n extends fe.b implements k, b {
     @Override
     public final Object a(Object obj, md.c cVar) {
         d(obj);
-        return id.i.f11386a;
+        return id.i.f11390a;
     }
 
     public final Object c() {
         Object obj = e.get(this);
-        if (obj == fe.e.f9143a) {
+        if (obj == fe.e.f9146a) {
             return null;
         }
         return obj;
@@ -30,7 +30,7 @@ public final class n extends fe.b implements k, b {
         p[] pVarArr;
         a6.i iVar;
         if (obj == null) {
-            obj = fe.e.f9143a;
+            obj = fe.e.f9146a;
         }
         synchronized (this) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = e;
@@ -42,16 +42,16 @@ public final class n extends fe.b implements k, b {
             if ((i11 & 1) == 0) {
                 int i12 = i11 + 1;
                 this.d = i12;
-                p[] pVarArr2 = this.f9137a;
+                p[] pVarArr2 = this.f9140a;
                 while (true) {
                     if (pVarArr2 != null) {
                         for (p pVar : pVarArr2) {
                             if (pVar != null) {
-                                AtomicReference atomicReference = pVar.f8762a;
+                                AtomicReference atomicReference = pVar.f8765a;
                                 while (true) {
                                     Object obj2 = atomicReference.get();
-                                    if (obj2 != null && obj2 != (iVar = o.f8761b)) {
-                                        a6.i iVar2 = o.f8760a;
+                                    if (obj2 != null && obj2 != (iVar = o.f8764b)) {
+                                        a6.i iVar2 = o.f8763a;
                                         if (obj2 == iVar2) {
                                             while (!atomicReference.compareAndSet(obj2, iVar)) {
                                                 if (atomicReference.get() != obj2) {
@@ -64,7 +64,7 @@ public final class n extends fe.b implements k, b {
                                                     break;
                                                 }
                                             }
-                                            ((be.m) obj2).resumeWith(id.i.f11386a);
+                                            ((be.m) obj2).resumeWith(id.i.f11390a);
                                             break;
                                         }
                                     }
@@ -78,7 +78,7 @@ public final class n extends fe.b implements k, b {
                             this.d = i12 + 1;
                             return;
                         }
-                        pVarArr = this.f9137a;
+                        pVarArr = this.f9140a;
                     }
                     pVarArr2 = pVarArr;
                     i12 = i10;

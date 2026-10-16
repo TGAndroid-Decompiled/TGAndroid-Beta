@@ -92,7 +92,7 @@ public final class a implements t0 {
             case 0:
                 Integer g10 = b8.g(str2);
                 if (g10 != null) {
-                    r0Var.f2307p = g10;
+                    r0Var.f2311p = g10;
                     return;
                 }
                 return;
@@ -106,21 +106,21 @@ public final class a implements t0 {
             case 2:
                 Integer g12 = b8.g(str2);
                 if (g12 != null) {
-                    r0Var.f2306o = g12;
+                    r0Var.f2310o = g12;
                     return;
                 }
                 return;
             case 3:
-                r0Var.f2297c = str2;
+                r0Var.f2301c = str2;
                 return;
             case 4:
                 r0Var.E = str2;
                 return;
             case 5:
-                r0Var.f2295a = str2;
+                r0Var.f2299a = str2;
                 return;
             case 6:
-                r0Var.f2299g = str2;
+                r0Var.f2303g = str2;
                 return;
             case 7:
                 Integer g13 = b8.g(str2);
@@ -133,7 +133,7 @@ public final class a implements t0 {
                 r0Var.d = str2;
                 return;
             case '\t':
-                r0Var.f2296b = str2;
+                r0Var.f2300b = str2;
                 return;
             default:
                 return;

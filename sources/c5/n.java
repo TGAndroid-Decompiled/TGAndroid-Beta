@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class n {
-    public final ArrayList f4399a;
+    public final ArrayList f4402a;
 
     public n() {
-        this.f4399a = new ArrayList();
+        this.f4402a = new ArrayList();
         new ArrayList();
         new ArrayList();
     }
@@ -22,6 +22,6 @@ public final class n {
                 }
             }
         }
-        this.f4399a = arrayList;
+        this.f4402a = arrayList;
     }
 }

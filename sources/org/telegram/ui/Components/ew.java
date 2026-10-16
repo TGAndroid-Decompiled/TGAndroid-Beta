@@ -50,19 +50,19 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
     public boolean S;
     public PorterDuffColorFilter T;
     public int U;
-    public LongSparseArray f24802b;
-    public final org.telegram.ui.ActionBar.m2 f24803c;
+    public LongSparseArray f24496b;
+    public final org.telegram.ui.ActionBar.m2 f24497c;
     public final xn d;
     public final ov e;
-    public final uv f24804f;
+    public final uv f24498f;
     public final di.v h;
-    public sv f24805n;
-    public final View f24806r;
-    public final FrameLayout f24807s;
+    public sv f24499n;
+    public final View f24500r;
+    public final FrameLayout f24501s;
     public final TextView v;
-    public final TextView f24808w;
-    public final sg.q0 f24809x;
-    public final s4.s f24810y;
+    public final TextView f24502w;
+    public final sg.q0 f24503x;
+    public final s4.s f24504y;
 
     public ew(org.telegram.ui.ActionBar.m2 r21, android.content.Context r22, org.telegram.ui.ActionBar.c6 r23, java.util.ArrayList r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ew.<init>(org.telegram.ui.ActionBar.m2, android.content.Context, org.telegram.ui.ActionBar.c6, java.util.ArrayList):void");
@@ -73,10 +73,10 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
         String str;
         Context context;
-        org.telegram.ui.ActionBar.m2 m2Var = ewVar.f24803c;
+        org.telegram.ui.ActionBar.m2 m2Var = ewVar.f24497c;
         ov ovVar = ewVar.e;
-        if (ovVar != null && (arrayList = ovVar.f23863b) != null && !arrayList.isEmpty()) {
-            TLRPC.StickerSet stickerSet = ((TLRPC.TL_messages_stickerSet) ovVar.f23863b.get(0)).set;
+        if (ovVar != null && (arrayList = ovVar.f23558b) != null && !arrayList.isEmpty()) {
+            TLRPC.StickerSet stickerSet = ((TLRPC.TL_messages_stickerSet) ovVar.f23558b.get(0)).set;
             if (stickerSet != null && stickerSet.emojis) {
                 str = "https://" + MessagesController.getInstance(ewVar.currentAccount).linkPrefix + "/addemoji/" + tL_messages_stickerSet.set.short_name;
             } else {
@@ -138,7 +138,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
             }
             final TLRPC.StickerSet stickerSet2 = stickerSet;
             if (stickerSet2 != null) {
-                if (MediaDataController.getInstance(i10).cancelRemovingStickerSet(stickerSet2.f19243id)) {
+                if (MediaDataController.getInstance(i10).cancelRemovingStickerSet(stickerSet2.f18943id)) {
                     if (m0Var != null) {
                         m0Var.run(Boolean.TRUE);
                         return;
@@ -148,7 +148,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                 TLRPC.TL_messages_installStickerSet tL_messages_installStickerSet = new TLRPC.TL_messages_installStickerSet();
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_messages_installStickerSet.stickerset = tL_inputStickerSetID;
-                tL_inputStickerSetID.f19236id = stickerSet2.f19243id;
+                tL_inputStickerSetID.f18936id = stickerSet2.f18943id;
                 tL_inputStickerSetID.access_hash = stickerSet2.access_hash;
                 ConnectionsManager.getInstance(i10).sendRequest(tL_messages_installStickerSet, new RequestDelegate() {
                     @Override
@@ -230,13 +230,13 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
             if (SystemClock.elapsedRealtime() - ewVar.Q >= 250) {
                 int i12 = 0;
                 while (true) {
-                    ArrayList[] arrayListArr = ovVar.f23864c;
+                    ArrayList[] arrayListArr = ovVar.f23559c;
                     if (i11 >= arrayListArr.length) {
                         break;
                     }
                     int size = arrayListArr[i11].size();
-                    if (ovVar.f23864c.length > 1) {
-                        size = Math.min(ewVar.f24810y.J * 2, size);
+                    if (ovVar.f23559c.length > 1) {
+                        size = Math.min(ewVar.f24504y.J * 2, size);
                     }
                     i12 += size + 2;
                     if (i10 < i12) {
@@ -244,15 +244,15 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                     }
                     i11++;
                 }
-                ArrayList arrayList2 = ovVar.f23863b;
+                ArrayList arrayList2 = ovVar.f23558b;
                 if (arrayList2 != null && i11 < arrayList2.size()) {
-                    tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) ovVar.f23863b.get(i11);
+                    tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) ovVar.f23558b.get(i11);
                 }
                 if (tL_messages_stickerSet != null && tL_messages_stickerSet.set != null) {
                     ArrayList arrayList3 = new ArrayList();
                     TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                     TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
-                    tL_inputStickerSetID.f19236id = stickerSet.f19243id;
+                    tL_inputStickerSetID.f18936id = stickerSet.f18943id;
                     tL_inputStickerSetID.access_hash = stickerSet.access_hash;
                     arrayList3.add(tL_inputStickerSetID);
                     new pv(ewVar, m2Var, ewVar.getContext(), c6Var, arrayList3).show();
@@ -267,7 +267,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
             m1Var.d(true);
             ewVar.G = null;
         } else if ((m2Var instanceof org.telegram.ui.fo) && ((org.telegram.ui.fo) m2Var).Y.getVisibility() == 0 && (view instanceof vv)) {
-            b6 b6Var = ((vv) view).f30664c;
+            b6 b6Var = ((vv) view).f30333c;
             try {
                 TLRPC.Document document = b6Var.document;
                 if (document == null) {
@@ -295,7 +295,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
             SpannableString spannableString = new SpannableString(MessageObject.findAnimatedEmojiEmoticon(s5.f(ewVar.currentAccount, b6Var.getDocumentId())));
             spannableString.setSpan(b6Var, 0, spannableString.length(), 33);
             if (AndroidUtilities.addToClipboard(spannableString)) {
-                org.telegram.messenger.yh.o(R.string.EmojiCopied, new zc((FrameLayout) ewVar.containerView, ewVar.resourcesProvider));
+                org.telegram.messenger.sk.p(R.string.EmojiCopied, new zc((FrameLayout) ewVar.containerView, ewVar.resourcesProvider));
             }
         }
     }
@@ -305,7 +305,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
         ewVar.J = floatValue;
         ewVar.h.setAlpha(floatValue);
         ewVar.v.setAlpha(ewVar.J);
-        ewVar.f24808w.setAlpha(ewVar.J);
+        ewVar.f24502w.setAlpha(ewVar.J);
         ewVar.containerView.invalidate();
     }
 
@@ -334,7 +334,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
     }
 
     public final void a0() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f24803c;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f24497c;
         if (m2Var != null) {
             new sg.y0(m2Var, 11, false).show();
         } else if (getContext() instanceof LaunchActivity) {
@@ -348,14 +348,14 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
         int i10;
         int i11;
         TLRPC.StickerSet stickerSet;
-        if (this.f24807s == null) {
+        if (this.f24501s == null) {
             return;
         }
         ov ovVar = this.e;
-        if (ovVar.f23863b == null) {
+        if (ovVar.f23558b == null) {
             arrayList = new ArrayList();
         } else {
-            arrayList = new ArrayList(ovVar.f23863b);
+            arrayList = new ArrayList(ovVar.f23558b);
         }
         int i12 = 0;
         while (i12 < arrayList.size()) {
@@ -371,7 +371,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList.get(i13);
             if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
-                if (!mediaDataController.isStickerPackInstalled(stickerSet.f19243id)) {
+                if (!mediaDataController.isStickerPackInstalled(stickerSet.f18943id)) {
                     arrayList3.add(tL_messages_stickerSet);
                 } else {
                     arrayList2.add(tL_messages_stickerSet);
@@ -379,7 +379,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
             }
         }
         final ArrayList arrayList4 = new ArrayList(arrayList3);
-        if (ovVar.f23862a != null && arrayList.size() == ovVar.f23862a.size()) {
+        if (ovVar.f23557a != null && arrayList.size() == ovVar.f23557a.size()) {
             z10 = true;
         } else {
             z10 = false;
@@ -397,8 +397,8 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
         if (!z10) {
             vVar.setAlpha(0.0f);
         } else if (this.O >= 0) {
-            int L0 = this.f24810y.L0();
-            int E = this.f24805n.E(this.O);
+            int L0 = this.f24504y.L0();
+            int E = this.f24499n.E(this.O);
             if (Math.abs(L0 - E) > 54) {
                 if (L0 < E) {
                     i11 = 0;
@@ -406,15 +406,15 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                     i11 = 1;
                 }
                 pl0 pl0Var = this.E;
-                pl0Var.f28360b = i11;
-                pl0Var.c(E, (AndroidUtilities.displaySize.y / 2) - AndroidUtilities.dp(170.0f), false, false);
+                pl0Var.f28051b = i11;
+                pl0Var.d(E, (AndroidUtilities.displaySize.y / 2) - AndroidUtilities.dp(170.0f), false, false);
             } else {
                 vVar.x0(E);
             }
-            this.K = this.f24805n.E(this.O);
-            sv svVar = this.f24805n;
+            this.K = this.f24499n.E(this.O);
+            sv svVar = this.f24499n;
             int i14 = this.O;
-            ew ewVar = svVar.f29215c;
+            ew ewVar = svVar.f28915c;
             boolean z11 = ewVar.I;
             ov ovVar2 = ewVar.e;
             if (z11) {
@@ -424,13 +424,13 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
             }
             int i15 = 0;
             while (true) {
-                ArrayList[] arrayListArr = ovVar2.f23864c;
+                ArrayList[] arrayListArr = ovVar2.f23559c;
                 if (i15 >= arrayListArr.length) {
                     break;
                 }
                 int size = arrayListArr[i15].size();
-                if (ovVar2.f23864c.length > 1) {
-                    size = Math.min(ewVar.f24810y.J * 2, size);
+                if (ovVar2.f23559c.length > 1) {
+                    size = Math.min(ewVar.f24504y.J * 2, size);
                 }
                 if (i15 == i14) {
                     i10 = i10 + size + 1;
@@ -446,8 +446,8 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
             this.O = -1;
         }
         boolean z12 = this.S;
-        sg.q0 q0Var = this.f24809x;
-        TextView textView = this.f24808w;
+        sg.q0 q0Var = this.f24503x;
+        TextView textView = this.f24502w;
         TextView textView2 = this.v;
         if (z12 && !this.H) {
             q0Var.setVisibility(4);
@@ -475,7 +475,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                                     int size3 = arrayList5.size();
                                     ew ewVar2 = this;
                                     if (i16 < size3) {
-                                        org.telegram.ui.ActionBar.m2 m2Var = ewVar2.f24803c;
+                                        org.telegram.ui.ActionBar.m2 m2Var = ewVar2.f24497c;
                                         TLObject tLObject = (TLObject) arrayList5.get(i16);
                                         if (size2 == 1) {
                                             z13 = true;
@@ -501,7 +501,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                             default:
                                 ew ewVar3 = this;
                                 ewVar3.dismiss();
-                                org.telegram.ui.ActionBar.m2 m2Var2 = ewVar3.f24803c;
+                                org.telegram.ui.ActionBar.m2 m2Var2 = ewVar3.f24497c;
                                 ArrayList<TLRPC.TL_messages_stickerSet> arrayList6 = arrayList4;
                                 if (m2Var2 != null) {
                                     MediaDataController.getInstance(m2Var2.getCurrentAccount()).removeMultipleStickerSets(m2Var2.getContext(), m2Var2, arrayList6);
@@ -550,7 +550,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                                     int size3 = arrayList5.size();
                                     ew ewVar2 = this;
                                     if (i16 < size3) {
-                                        org.telegram.ui.ActionBar.m2 m2Var = ewVar2.f24803c;
+                                        org.telegram.ui.ActionBar.m2 m2Var = ewVar2.f24497c;
                                         TLObject tLObject = (TLObject) arrayList5.get(i16);
                                         if (size2 == 1) {
                                             z13 = true;
@@ -576,7 +576,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                             default:
                                 ew ewVar3 = this;
                                 ewVar3.dismiss();
-                                org.telegram.ui.ActionBar.m2 m2Var2 = ewVar3.f24803c;
+                                org.telegram.ui.ActionBar.m2 m2Var2 = ewVar3.f24497c;
                                 ArrayList<TLRPC.TL_messages_stickerSet> arrayList6 = arrayList2;
                                 if (m2Var2 != null) {
                                     MediaDataController.getInstance(m2Var2.getCurrentAccount()).removeMultipleStickerSets(m2Var2.getContext(), m2Var2, arrayList6);
@@ -628,14 +628,14 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
         } else {
             z11 = false;
         }
-        if (this.f24808w.getVisibility() == 0) {
+        if (this.f24502w.getVisibility() == 0) {
             i10 = AndroidUtilities.dp(19.0f);
         }
         float f13 = i10;
         boolean z12 = this.H;
         di.v vVar = this.h;
-        View view = this.f24806r;
-        FrameLayout frameLayout = this.f24807s;
+        View view = this.f24500r;
+        FrameLayout frameLayout = this.f24501s;
         float f14 = 1.0f;
         float f15 = 0.0f;
         if (z11) {
@@ -716,8 +716,8 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                 di.v vVar = this.h;
                 if (i12 < vVar.getChildCount()) {
                     View childAt = vVar.getChildAt(i12);
-                    if ((childAt instanceof zv) && (tL_messages_stickerSet = (zvVar = (zv) childAt).f31992r) != null && tL_messages_stickerSet.set != null) {
-                        zvVar.a(MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(zvVar.f31992r.set.f19243id), true);
+                    if ((childAt instanceof zv) && (tL_messages_stickerSet = (zvVar = (zv) childAt).f31694r) != null && tL_messages_stickerSet.set != null) {
+                        zvVar.a(MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(zvVar.f31694r.set.f18943id), true);
                     }
                     i12++;
                 } else {
@@ -730,9 +730,9 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
 
     @Override
     public void dismiss() {
-        uv uvVar = this.f24804f;
-        if (uvVar != null && uvVar.f29779w) {
-            uvVar.f29779w = false;
+        uv uvVar = this.f24498f;
+        if (uvVar != null && uvVar.f29447w) {
+            uvVar.f29447w = false;
             uvVar.invalidate();
         }
         super.dismiss();
@@ -788,35 +788,35 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
         TLRPC.StickerSet stickerSet;
         super.show();
         sv svVar = new sv(this);
-        this.f24805n = svVar;
+        this.f24499n = svVar;
         this.h.setAdapter(svVar);
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 4);
         ov ovVar = this.e;
         if (!ovVar.e) {
             ovVar.e = true;
-            ew ewVar = ovVar.f23865f;
+            ew ewVar = ovVar.f23560f;
             int i10 = ovVar.d;
-            ovVar.f23863b = new ArrayList(ovVar.f23862a.size());
-            ovVar.f23864c = new ArrayList[ovVar.f23862a.size()];
+            ovVar.f23558b = new ArrayList(ovVar.f23557a.size());
+            ovVar.f23559c = new ArrayList[ovVar.f23557a.size()];
             NotificationCenter.getInstance(i10).addObserver(ovVar, NotificationCenter.groupStickersDidLoad);
             boolean[] zArr = new boolean[1];
             int i11 = 0;
             while (true) {
-                if (i11 < ovVar.f23864c.length) {
+                if (i11 < ovVar.f23559c.length) {
                     org.telegram.ui.sk skVar = null;
-                    TLRPC.TL_messages_stickerSet stickerSet2 = MediaDataController.getInstance(i10).getStickerSet((TLRPC.InputStickerSet) ovVar.f23862a.get(i11), null, false, new org.telegram.ui.vc(21, ovVar, zArr));
-                    if (ovVar.f23864c.length == 1 && stickerSet2 != null && (stickerSet = stickerSet2.set) != null && !stickerSet.emojis) {
+                    TLRPC.TL_messages_stickerSet stickerSet2 = MediaDataController.getInstance(i10).getStickerSet((TLRPC.InputStickerSet) ovVar.f23557a.get(i11), null, false, new org.telegram.ui.uc(21, ovVar, zArr));
+                    if (ovVar.f23559c.length == 1 && stickerSet2 != null && (stickerSet = stickerSet2.set) != null && !stickerSet.emojis) {
                         AndroidUtilities.runOnUIThread(new aw(ovVar, 0));
                         Context context = ewVar.getContext();
-                        org.telegram.ui.ActionBar.m2 m2Var = ewVar.f24803c;
-                        TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) ovVar.f23862a.get(i11);
-                        org.telegram.ui.ActionBar.m2 m2Var2 = ewVar.f24803c;
+                        org.telegram.ui.ActionBar.m2 m2Var = ewVar.f24497c;
+                        TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) ovVar.f23557a.get(i11);
+                        org.telegram.ui.ActionBar.m2 m2Var2 = ewVar.f24497c;
                         if (m2Var2 instanceof org.telegram.ui.fo) {
                             skVar = ((org.telegram.ui.fo) m2Var2).Y;
                         }
-                        new ty0(context, m2Var, inputStickerSet, null, skVar, ewVar.resourcesProvider).show();
+                        new uy0(context, m2Var, inputStickerSet, null, skVar, ewVar.resourcesProvider).show();
                     } else {
-                        ovVar.f23863b.add(stickerSet2);
+                        ovVar.f23558b.add(stickerSet2);
                         ovVar.a(i11, stickerSet2);
                         i11++;
                     }
@@ -831,7 +831,7 @@ public class ew extends org.telegram.ui.ActionBar.e3 implements NotificationCent
             }
         }
         b0();
-        org.telegram.ui.ActionBar.m2 m2Var3 = this.f24803c;
+        org.telegram.ui.ActionBar.m2 m2Var3 = this.f24497c;
         if (m2Var3 == null) {
             currentAccount = UserConfig.selectedAccount;
         } else {

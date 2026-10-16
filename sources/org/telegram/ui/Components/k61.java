@@ -1,83 +1,155 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.util.LongSparseArray;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-public abstract class k61 {
-    private ArrayList<View> cache;
-    public final int viewType;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.view.animation.DecelerateInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+public final class k61 extends kx0 {
+    public final int f26221a = UserConfig.selectedAccount;
+    public boolean f26222b = false;
+    public final float[] f26223c = new float[3];
+    public final float[] d = {0.0f, 150.0f, 300.0f};
+    public final float[] e = {0.0f, 0.0f, 0.0f};
+    public long f26224f = 0;
+    public boolean f26225g = false;
+    public final DecelerateInterpolator h = new DecelerateInterpolator();
+    public boolean f26226i;
+    public final Paint f26227j;
 
-    public k61() {
-        int i10 = l61.J;
-        l61.J = i10 + 1;
-        this.viewType = i10;
-    }
-
-    public static void setup(k61 k61Var) {
-        if (l61.L == null) {
-            l61.L = new HashMap();
-        }
-        if (l61.K == null) {
-            l61.K = new LongSparseArray();
-        }
-        Class<?> cls = k61Var.getClass();
-        if (!l61.L.containsKey(cls)) {
-            l61.L.put(cls, k61Var);
-            l61.K.put(k61Var.viewType, k61Var);
+    public k61(boolean z10) {
+        if (z10) {
+            this.f26227j = new Paint(1);
         }
     }
 
-    public boolean contentsEquals(l61 l61Var, l61 l61Var2) {
-        return l61Var.H(l61Var2);
-    }
-
-    public abstract View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var);
-
-    public boolean equals(l61 l61Var, l61 l61Var2) {
-        return l61Var.I(l61Var2);
-    }
-
-    public View getCached() {
-        ArrayList<View> arrayList = this.cache;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            return this.cache.remove(0);
-        }
-        return null;
-    }
-
-    public boolean isClickable() {
-        return !(this instanceof fj);
-    }
-
-    public boolean isShadow() {
-        return false;
-    }
-
-    public void precache(org.telegram.ui.ActionBar.m2 m2Var, int i10) {
-        precache(m2Var.getContext(), m2Var.getCurrentAccount(), m2Var.getClassGuid(), m2Var.getResourceProvider(), i10);
-    }
-
-    public void precache(Context context, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var, int i12) {
-        if (context == null) {
-            return;
-        }
-        if (this.cache == null) {
-            this.cache = new ArrayList<>();
-        }
-        int i13 = 0;
-        while (i13 < this.cache.size() - i12) {
-            Context context2 = context;
-            this.cache.add(createView(context2, null, i10, i11, c6Var));
-            i13++;
-            context = context2;
+    @Override
+    public final void b(int i10) {
+        Paint paint = this.f26227j;
+        if (paint != null) {
+            paint.setColor(i10);
         }
     }
 
-    public void attachedView(mm0 mm0Var, View view, l61 l61Var) {
+    @Override
+    public final void c(boolean z10) {
+        this.f26222b = z10;
     }
 
-    public void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+    @Override
+    public final void d() {
+        this.f26224f = System.currentTimeMillis();
+        this.f26225g = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int dp;
+        int i10;
+        int i11 = getBounds().left;
+        if (this.f26222b) {
+            dp = AndroidUtilities.dp(8.5f);
+            i10 = getBounds().top;
+        } else {
+            dp = AndroidUtilities.dp(9.3f);
+            i10 = getBounds().top;
+        }
+        int i12 = dp + i10;
+        Paint paint = this.f26227j;
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.g6.f19578c2;
+            paint.setAlpha(255);
+        }
+        float f7 = i12;
+        float[] fArr = this.f26223c;
+        canvas.drawCircle(AndroidUtilities.dp(3.0f) + i11, f7, fArr[0] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(9.0f) + i11, f7, fArr[1] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(15.0f) + i11, f7, fArr[2] * AndroidUtilities.density, paint);
+        f();
+    }
+
+    @Override
+    public final void e() {
+        for (int i10 = 0; i10 < 3; i10++) {
+            this.e[i10] = 0.0f;
+            this.f26223c[i10] = 1.33f;
+        }
+        float[] fArr = this.d;
+        fArr[0] = 0.0f;
+        fArr[1] = 150.0f;
+        fArr[2] = 300.0f;
+        this.f26225g = false;
+    }
+
+    public final void f() {
+        if (this.f26225g) {
+            if (NotificationCenter.getInstance(this.f26221a).isAnimationInProgress() && !this.f26226i) {
+                AndroidUtilities.runOnUIThread(new kr0(this, 27), 100L);
+                return;
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            long j10 = currentTimeMillis - this.f26224f;
+            this.f26224f = currentTimeMillis;
+            if (j10 > 50) {
+                j10 = 50;
+            }
+            for (int i10 = 0; i10 < 3; i10++) {
+                float[] fArr = this.e;
+                float f7 = fArr[i10] + ((float) j10);
+                fArr[i10] = f7;
+                float[] fArr2 = this.d;
+                float f10 = f7 - fArr2[i10];
+                int i11 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+                float[] fArr3 = this.f26223c;
+                if (i11 > 0) {
+                    int i12 = (f10 > 320.0f ? 1 : (f10 == 320.0f ? 0 : -1));
+                    DecelerateInterpolator decelerateInterpolator = this.h;
+                    if (i12 <= 0) {
+                        fArr3[i10] = decelerateInterpolator.getInterpolation(f10 / 320.0f) + 1.33f;
+                    } else if (f10 <= 640.0f) {
+                        fArr3[i10] = (1.0f - decelerateInterpolator.getInterpolation((f10 - 320.0f) / 320.0f)) + 1.33f;
+                    } else if (f10 >= 800.0f) {
+                        fArr[i10] = 0.0f;
+                        fArr2[i10] = 0.0f;
+                        fArr3[i10] = 1.33f;
+                    } else {
+                        fArr3[i10] = 1.33f;
+                    }
+                } else {
+                    fArr3[i10] = 1.33f;
+                }
+            }
+            a();
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Paint paint = this.f26227j;
+        if (paint != null) {
+            paint.setColorFilter(colorFilter);
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

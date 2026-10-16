@@ -1,21 +1,24 @@
 package rh;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.h71;
-public final class l extends h71 {
-    public final int f44692d3;
+import androidx.recyclerview.widget.RecyclerView;
+import s4.r0;
+public final class l extends r0 {
+    public final p f44450a;
+    public final q f44451b;
 
-    public l(m2 m2Var, k kVar, int i10) {
-        super(m2Var, kVar, null, null);
-        this.f44692d3 = i10;
+    public l(q qVar, p pVar) {
+        this.f44451b = qVar;
+        this.f44450a = pVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int min = Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i10));
-        View.MeasureSpec.getSize(i11);
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(w7.s.b(this.f44692d3, 1, 5) * 48), 1073741824));
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        p pVar = this.f44450a;
+        if (!pVar.h && !pVar.f44460i) {
+            q qVar = this.f44451b;
+            if ((qVar.f44464c.W2.f23148x.size() - 1) - qVar.f44464c.V2.M0() < 5) {
+                pVar.a();
+            }
+        }
     }
 }

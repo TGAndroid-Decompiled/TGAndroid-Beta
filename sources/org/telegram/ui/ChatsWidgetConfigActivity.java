@@ -17,20 +17,20 @@ public class ChatsWidgetConfigActivity extends ExternalActionActivity {
             this.E = extras.getInt("appWidgetId", 0);
         }
         if (this.E != 0) {
-            org.telegram.messenger.yh.d(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            org.telegram.messenger.sk.d(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
             hz hzVar = new hz(0, this.E);
-            hzVar.f36993y = new b1(this, 25);
+            hzVar.f36679y = new b1(this, 25);
             if (AndroidUtilities.isTablet()) {
                 if (this.d.getFragmentStack().isEmpty()) {
                     this.d.c(-1, hzVar);
                 }
-            } else if (this.f32082c.getFragmentStack().isEmpty()) {
-                this.f32082c.c(-1, hzVar);
+            } else if (this.f31784c.getFragmentStack().isEmpty()) {
+                this.f31784c.c(-1, hzVar);
             }
             if (!AndroidUtilities.isTablet()) {
                 this.e.setVisibility(8);
             }
-            this.f32082c.c0();
+            this.f31784c.c0();
             if (AndroidUtilities.isTablet()) {
                 this.d.c0();
             }

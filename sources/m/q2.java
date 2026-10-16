@@ -1,28 +1,33 @@
 package m;
+public final class q2 {
+    public int f14939a;
+    public int f14940b;
+    public int f14941c;
+    public int d;
+    public int e;
+    public int f14942f;
+    public boolean f14943g;
+    public boolean h;
 
-import androidx.appcompat.widget.SearchView;
-public final class q2 implements Runnable {
-    public final int f15217a;
-    public final SearchView f15218b;
-
-    public q2(SearchView searchView, int i10) {
-        this.f15217a = i10;
-        this.f15218b = searchView;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f15217a) {
-            case 0:
-                this.f15218b.r();
+    public final void a(int i10, int i11) {
+        this.f14941c = i10;
+        this.d = i11;
+        this.h = true;
+        if (this.f14943g) {
+            if (i11 != Integer.MIN_VALUE) {
+                this.f14939a = i11;
+            }
+            if (i10 != Integer.MIN_VALUE) {
+                this.f14940b = i10;
                 return;
-            default:
-                h1.b bVar = this.f15218b.f1152h0;
-                if (bVar instanceof a3) {
-                    bVar.b(null);
-                    return;
-                }
-                return;
+            }
+            return;
+        }
+        if (i10 != Integer.MIN_VALUE) {
+            this.f14939a = i10;
+        }
+        if (i11 != Integer.MIN_VALUE) {
+            this.f14940b = i11;
         }
     }
 }

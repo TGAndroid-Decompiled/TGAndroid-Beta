@@ -3,17 +3,17 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesStorage;
 public final class cx implements o70 {
-    public final yy f35083a;
+    public final yy f34803a;
 
     public cx(yy yyVar) {
-        this.f35083a = yyVar;
+        this.f34803a = yyVar;
     }
 
     @Override
     public final void a(p70 p70Var, long j10) {
         ArrayList arrayList = new ArrayList();
         arrayList.add(MessagesStorage.TopicKey.of(-j10, 0L));
-        yy yyVar = this.f35083a;
+        yy yyVar = this.f34803a;
         sy syVar = yyVar.C2;
         if (yyVar.B2) {
             yyVar.removeSelfFromStack();

@@ -1,17 +1,17 @@
 package r9;
 public final class i {
-    public final r f44045a;
-    public final boolean f44046b;
+    public final r f43804a;
+    public final boolean f43805b;
 
     public i(r rVar, boolean z10) {
-        this.f44045a = rVar;
-        this.f44046b = z10;
+        this.f43804a = rVar;
+        this.f43805b = z10;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof i) {
             i iVar = (i) obj;
-            if (iVar.f44045a.equals(this.f44045a) && iVar.f44046b == this.f44046b) {
+            if (iVar.f43804a.equals(this.f43804a) && iVar.f43805b == this.f43805b) {
                 return true;
             }
         }
@@ -19,6 +19,6 @@ public final class i {
     }
 
     public final int hashCode() {
-        return ((this.f44045a.hashCode() ^ 1000003) * 1000003) ^ Boolean.valueOf(this.f44046b).hashCode();
+        return ((this.f43804a.hashCode() ^ 1000003) * 1000003) ^ Boolean.valueOf(this.f43805b).hashCode();
     }
 }

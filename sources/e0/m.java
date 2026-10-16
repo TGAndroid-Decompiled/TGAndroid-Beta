@@ -4,7 +4,7 @@ import android.app.Notification;
 import java.util.ArrayList;
 public final class m extends z {
     public final int e;
-    public Object f8249f;
+    public Object f8252f;
 
     public m(boolean z10) {
         this.e = 0;
@@ -14,18 +14,18 @@ public final class m extends z {
     public final void b(g0 g0Var) {
         switch (this.e) {
             case 0:
-                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) g0Var.f8219c).setBigContentTitle(this.f8293b).bigText((CharSequence) this.f8249f);
+                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) g0Var.f8222c).setBigContentTitle(this.f8296b).bigText((CharSequence) this.f8252f);
                 if (this.d) {
-                    bigText.setSummaryText(this.f8294c);
+                    bigText.setSummaryText(this.f8297c);
                     return;
                 }
                 return;
             default:
-                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) g0Var.f8219c).setBigContentTitle(this.f8293b);
+                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) g0Var.f8222c).setBigContentTitle(this.f8296b);
                 if (this.d) {
-                    bigContentTitle.setSummaryText(this.f8294c);
+                    bigContentTitle.setSummaryText(this.f8297c);
                 }
-                ArrayList arrayList = (ArrayList) this.f8249f;
+                ArrayList arrayList = (ArrayList) this.f8252f;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -49,20 +49,20 @@ public final class m extends z {
 
     public void d(String str) {
         if (str != null) {
-            ((ArrayList) this.f8249f).add(r.d(str));
+            ((ArrayList) this.f8252f).add(r.d(str));
         }
     }
 
     public void e(String str) {
-        this.f8249f = r.d(str);
+        this.f8252f = r.d(str);
     }
 
     public void f(String str) {
-        this.f8293b = r.d(str);
+        this.f8296b = r.d(str);
     }
 
     public void g(String str) {
-        this.f8294c = r.d(str);
+        this.f8297c = r.d(str);
         this.d = true;
     }
 
@@ -70,7 +70,7 @@ public final class m extends z {
         this.e = i10;
         switch (i10) {
             case 1:
-                this.f8249f = new ArrayList();
+                this.f8252f = new ArrayList();
                 return;
             default:
                 return;

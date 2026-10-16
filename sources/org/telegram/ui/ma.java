@@ -8,10 +8,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ma extends org.telegram.ui.Components.lm0 {
-    public final va f38196c;
+    public final va f37942c;
 
     public ma(va vaVar) {
-        this.f38196c = vaVar;
+        this.f37942c = vaVar;
     }
 
     @Override
@@ -25,8 +25,8 @@ public final class ma extends org.telegram.ui.Components.lm0 {
     @Override
     public final int h() {
         int i10;
-        va vaVar = this.f38196c;
-        org.telegram.ui.Components.mm0 mm0Var = vaVar.f40936b;
+        va vaVar = this.f37942c;
+        org.telegram.ui.Components.mm0 mm0Var = vaVar.f40623b;
         ArrayList arrayList = vaVar.v;
         if (mm0Var != null) {
             ArrayList arrayList2 = mm0Var.I2;
@@ -36,7 +36,7 @@ public final class ma extends org.telegram.ui.Components.lm0 {
                 mm0Var.I2 = new ArrayList();
             }
             if (arrayList.size() > 0) {
-                vaVar.f40936b.I2.add(Long.valueOf(AndroidUtilities.pack(3, arrayList.size() + 3)));
+                vaVar.f40623b.I2.add(Long.valueOf(AndroidUtilities.pack(3, arrayList.size() + 3)));
             }
         }
         if (vaVar.v.size() > 0) {
@@ -72,8 +72,8 @@ public final class ma extends org.telegram.ui.Components.lm0 {
         int i11;
         int i12;
         boolean z10;
-        va vaVar = this.f38196c;
-        long j10 = vaVar.f40943x;
+        va vaVar = this.f37942c;
+        long j10 = vaVar.f40630x;
         int i13 = b1Var.f44841f;
         View view = b1Var.f44838a;
         if (i13 != 0) {
@@ -94,14 +94,14 @@ public final class ma extends org.telegram.ui.Components.lm0 {
                     } else {
                         z10 = false;
                     }
-                    saVar.a(tL_username, z10, false, vaVar.f40943x);
+                    saVar.a(tL_username, z10, false, vaVar.f40630x);
                     return;
                 }
-                vaVar.f40939n = true;
+                vaVar.f40626n = true;
                 pa paVar = (pa) view;
-                vaVar.f40944y = paVar;
-                paVar.f39166a.setText(vaVar.f40940r);
-                vaVar.f40939n = false;
+                vaVar.f40631y = paVar;
+                paVar.f38860a.setText(vaVar.f40627r);
+                vaVar.f40626n = false;
                 return;
             }
             org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
@@ -128,7 +128,7 @@ public final class ma extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        va vaVar = this.f38196c;
+        va vaVar = this.f37942c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

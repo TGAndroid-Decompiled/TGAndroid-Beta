@@ -2,7 +2,7 @@ package v7;
 
 import w7.pa;
 import x7.ia;
-import z7.zf;
+import z7.ag;
 public final class a9 implements qa.b {
     public final int f46579a;
     public final l5.q f46580b;
@@ -28,9 +28,9 @@ public final class a9 implements qa.b {
             case 5:
                 return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("proto"), ia.d);
             case 6:
-                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("json"), zf.e);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("json"), ag.e);
             default:
-                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("proto"), zf.d);
+                return this.f46580b.a("FIREBASE_ML_SDK", new i5.c("proto"), ag.d);
         }
     }
 }

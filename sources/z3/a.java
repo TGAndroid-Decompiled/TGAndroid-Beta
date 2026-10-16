@@ -9,10 +9,10 @@ import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.oh1;
 import zh.r3;
 public final class a implements d9.k, Vector.TLDeserializer, z1 {
-    public final int f49251a;
+    public final int f49250a;
 
     public a(int i10) {
-        this.f49251a = i10;
+        this.f49250a = i10;
     }
 
     @Override
@@ -27,17 +27,17 @@ public final class a implements d9.k, Vector.TLDeserializer, z1 {
 
     @Override
     public void g(a2 a2Var, int i10) {
-        switch (this.f49251a) {
+        switch (this.f49250a) {
             case 3:
                 r3.e2(new oh1(6, null));
                 return;
             default:
-                int i11 = r3.f51067r1;
+                int i11 = r3.f51068r1;
                 return;
         }
     }
 
     public a(r3 r3Var) {
-        this.f49251a = 3;
+        this.f49250a = 3;
     }
 }

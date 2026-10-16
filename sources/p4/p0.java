@@ -1,22 +1,173 @@
 package p4;
 
 import android.os.Bundle;
-import android.util.Log;
-public final class p0 {
-    public final q0 f43084a;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.ui.Cells.c1;
+public final class p0 extends p implements n0 {
+    public final String f42782f;
+    public String f42783g;
+    public String h;
+    public boolean f42784i;
+    public int f42786k;
+    public m0 f42787l;
+    public final r0 f42789n;
+    public int f42785j = -1;
+    public int f42788m = -1;
 
-    public p0(q0 q0Var) {
-        this.f43084a = q0Var;
+    public p0(r0 r0Var, String str) {
+        this.f42789n = r0Var;
+        this.f42782f = str;
     }
 
-    public static void a(String str, Bundle bundle) {
-        Log.d("MediaRouteProviderProxy", "Error: " + str + ", data: " + bundle);
+    @Override
+    public final void a(m0 m0Var) {
+        o0 o0Var = new o0(this);
+        this.f42787l = m0Var;
+        int i10 = m0Var.e;
+        m0Var.e = i10 + 1;
+        int i11 = m0Var.d;
+        m0Var.d = i11 + 1;
+        Bundle bundle = new Bundle();
+        bundle.putString("memberRouteId", this.f42782f);
+        m0Var.b(11, i11, i10, null, bundle);
+        m0Var.h.put(i11, o0Var);
+        this.f42788m = i10;
+        if (this.f42784i) {
+            m0Var.a(i10);
+            int i12 = this.f42785j;
+            if (i12 >= 0) {
+                m0Var.c(this.f42788m, i12);
+                this.f42785j = -1;
+            }
+            int i13 = this.f42786k;
+            if (i13 != 0) {
+                m0Var.d(this.f42788m, i13);
+                this.f42786k = 0;
+            }
+        }
     }
 
-    public final void b(Bundle bundle) {
-        String string = bundle.getString("groupableTitle");
-        q0 q0Var = this.f43084a;
-        q0Var.f43086g = string;
-        q0Var.h = bundle.getString("transferableTitle");
+    @Override
+    public final int b() {
+        return this.f42788m;
+    }
+
+    @Override
+    public final void c() {
+        m0 m0Var = this.f42787l;
+        if (m0Var != null) {
+            int i10 = this.f42788m;
+            int i11 = m0Var.d;
+            m0Var.d = i11 + 1;
+            m0Var.b(4, i11, i10, null, null);
+            this.f42787l = null;
+            this.f42788m = 0;
+        }
+    }
+
+    @Override
+    public final void d() {
+        r0 r0Var = this.f42789n;
+        r0Var.v.remove(this);
+        c();
+        r0Var.r();
+    }
+
+    @Override
+    public final void e() {
+        this.f42784i = true;
+        m0 m0Var = this.f42787l;
+        if (m0Var != null) {
+            m0Var.a(this.f42788m);
+        }
+    }
+
+    @Override
+    public final void f(int i10) {
+        m0 m0Var = this.f42787l;
+        if (m0Var != null) {
+            m0Var.c(this.f42788m, i10);
+            return;
+        }
+        this.f42785j = i10;
+        this.f42786k = 0;
+    }
+
+    @Override
+    public final void g() {
+        h(0);
+    }
+
+    @Override
+    public final void h(int i10) {
+        this.f42784i = false;
+        m0 m0Var = this.f42787l;
+        if (m0Var != null) {
+            int i11 = this.f42788m;
+            Bundle f7 = c1.f(i10, "unselectReason");
+            int i12 = m0Var.d;
+            m0Var.d = i12 + 1;
+            m0Var.b(6, i12, i11, null, f7);
+        }
+    }
+
+    @Override
+    public final void i(int i10) {
+        m0 m0Var = this.f42787l;
+        if (m0Var != null) {
+            m0Var.d(this.f42788m, i10);
+        } else {
+            this.f42786k += i10;
+        }
+    }
+
+    @Override
+    public final String j() {
+        return this.f42783g;
+    }
+
+    @Override
+    public final String k() {
+        return this.h;
+    }
+
+    @Override
+    public final void m(String str) {
+        m0 m0Var = this.f42787l;
+        if (m0Var != null) {
+            int i10 = this.f42788m;
+            Bundle bundle = new Bundle();
+            bundle.putString("memberRouteId", str);
+            int i11 = m0Var.d;
+            m0Var.d = i11 + 1;
+            m0Var.b(12, i11, i10, null, bundle);
+        }
+    }
+
+    @Override
+    public final void n(String str) {
+        m0 m0Var = this.f42787l;
+        if (m0Var != null) {
+            int i10 = this.f42788m;
+            Bundle bundle = new Bundle();
+            bundle.putString("memberRouteId", str);
+            int i11 = m0Var.d;
+            m0Var.d = i11 + 1;
+            m0Var.b(13, i11, i10, null, bundle);
+        }
+    }
+
+    @Override
+    public final void o(List list) {
+        m0 m0Var = this.f42787l;
+        if (m0Var != null) {
+            int i10 = this.f42788m;
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("memberRouteIds", new ArrayList<>(list));
+            int i11 = m0Var.d;
+            m0Var.d = i11 + 1;
+            m0Var.b(14, i11, i10, null, bundle);
+        }
     }
 }

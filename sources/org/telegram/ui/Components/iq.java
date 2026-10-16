@@ -3,7 +3,7 @@ public abstract class iq extends z4.a {
     public abstract int j();
 
     public final int k(int i10) {
-        int size = ((oi0) this).f27964c.size();
+        int size = ((oi0) this).f27653c.size();
         int j10 = j();
         if (i10 < j10) {
             return ((size - (j10 * 2)) - ((j10 - i10) - 1)) - 1;

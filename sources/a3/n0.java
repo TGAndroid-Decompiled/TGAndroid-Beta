@@ -6,7 +6,7 @@ public interface n0 {
 
     void b();
 
-    void e();
+    void k();
 
     void onFirstFrameRendered();
 

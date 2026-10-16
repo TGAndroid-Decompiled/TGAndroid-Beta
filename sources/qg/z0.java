@@ -1,37 +1,36 @@
 package qg;
 
 import android.os.Looper;
-import org.telegram.ui.Wallet.m5;
 public final class z0 implements Runnable {
-    public final int f43625a;
-    public final a1 f43626b;
+    public final int f43367a;
+    public final a1 f43368b;
 
     public z0(a1 a1Var, int i10) {
-        this.f43625a = i10;
-        this.f43626b = a1Var;
+        this.f43367a = i10;
+        this.f43368b = a1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f43625a) {
+        switch (this.f43367a) {
             case 0:
-                a1 a1Var = this.f43626b;
-                m5 m5Var = a1Var.f43387w;
-                z0 z0Var = a1Var.f43386s;
+                a1 a1Var = this.f43368b;
+                p4.s0 s0Var = a1Var.f43129w;
+                z0 z0Var = a1Var.f43128s;
                 if (z0Var != null) {
                     a1Var.cancelRunnable(z0Var);
-                    a1Var.f43386s = null;
+                    a1Var.f43128s = null;
                 }
-                a1Var.cancelRunnable(m5Var);
-                a1Var.postRunnable(m5Var);
+                a1Var.cancelRunnable(s0Var);
+                a1Var.postRunnable(s0Var);
                 return;
             case 1:
-                a1 a1Var2 = this.f43626b;
-                a1Var2.f43386s = null;
-                a1Var2.f43387w.run();
+                a1 a1Var2 = this.f43368b;
+                a1Var2.f43128s = null;
+                a1Var2.f43129w.run();
                 return;
             default:
-                this.f43626b.finish();
+                this.f43368b.finish();
                 Looper myLooper = Looper.myLooper();
                 if (myLooper != null) {
                     myLooper.quit();

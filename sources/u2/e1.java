@@ -1,4 +1,4 @@
 package u2;
 public interface e1 {
-    void G(f1 f1Var);
+    void F(f1 f1Var);
 }

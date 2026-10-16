@@ -32,14 +32,14 @@ public final class dl0 extends z9 {
         switch (this.G) {
             case 0:
                 el0 el0Var = this.H;
-                dl0 dl0Var = el0Var.f24731b;
+                dl0 dl0Var = el0Var.f24417b;
                 super.dispatchDraw(canvas);
-                if (this.f31813a.getLottieAnimation() != null && !el0Var.E) {
-                    this.f31813a.getLottieAnimation().start();
+                if (this.f31507a.getLottieAnimation() != null && !el0Var.E) {
+                    this.f31507a.getLottieAnimation().start();
                 }
-                if (el0Var.f24736s && !el0Var.v && this.f31813a.getLottieAnimation() != null && this.f31813a.getLottieAnimation().A() && dl0Var.f31813a.getLottieAnimation() != null && dl0Var.f31813a.getLottieAnimation().u()) {
+                if (el0Var.f24422s && !el0Var.v && this.f31507a.getLottieAnimation() != null && this.f31507a.getLottieAnimation().A() && dl0Var.f31507a.getLottieAnimation() != null && dl0Var.f31507a.getLottieAnimation().u()) {
                     el0Var.v = true;
-                    dl0Var.f31813a.getLottieAnimation().N(0, false, true);
+                    dl0Var.f31507a.getLottieAnimation().N(0, false, true);
                     dl0Var.setVisibility(0);
                     Runnable runnable = el0Var.P.P0;
                     if (runnable != null) {
@@ -83,9 +83,9 @@ public final class dl0 extends z9 {
             case 2:
                 s5 s5Var = this.e;
                 if (s5Var != null) {
-                    imageReceiver = s5Var.f29031k;
+                    imageReceiver = s5Var.f28739k;
                 } else {
-                    imageReceiver = this.f31813a;
+                    imageReceiver = this.f31507a;
                 }
                 if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
                     imageReceiver.getLottieAnimation().start();

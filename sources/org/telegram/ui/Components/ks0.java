@@ -29,7 +29,7 @@ public final class ks0 extends s4.v {
             uv0Var = null;
         }
         if (k() && uv0Var != null && uv0Var.M(b1Var.b())) {
-            qu0 qu0Var = this.e.f31364k0[0];
+            qu0 qu0Var = this.e.f31045k0[0];
             if (qu0Var != null) {
                 ws0Var = qu0Var.h;
             }
@@ -47,7 +47,7 @@ public final class ks0 extends s4.v {
         xv0 xv0Var = this.e;
         if (!xv0Var.C1) {
             ss0 ss0Var = xv0Var.W;
-            if (ss0Var == null || !ss0Var.f36588w) {
+            if (ss0Var == null || !ss0Var.f36378w) {
                 return false;
             }
             return true;
@@ -71,14 +71,14 @@ public final class ks0 extends s4.v {
         }
         int b10 = b1Var.b();
         int b11 = b1Var2.b();
-        ArrayList arrayList2 = uv0Var.f29787y;
-        if (!uv0Var.h && (o8Var = uv0Var.f29784s) != null && b10 >= 0 && b10 < o8Var.f3429i.size() && b11 >= 0 && b11 < uv0Var.f29784s.f3429i.size()) {
-            if (!(uv0Var.f29784s instanceof bi.f8) && uv0Var.f29782n <= 0) {
-                arrayList = new ArrayList(uv0Var.f29784s.f3428g);
+        ArrayList arrayList2 = uv0Var.f29455y;
+        if (!uv0Var.h && (o8Var = uv0Var.f29452s) != null && b10 >= 0 && b10 < o8Var.f3433i.size() && b11 >= 0 && b11 < uv0Var.f29452s.f3433i.size()) {
+            if (!(uv0Var.f29452s instanceof bi.f8) && uv0Var.f29450n <= 0) {
+                arrayList = new ArrayList(uv0Var.f29452s.f3432g);
             } else {
                 arrayList = new ArrayList();
-                for (int i10 = 0; i10 < uv0Var.f29784s.f3429i.size(); i10++) {
-                    arrayList.add(Integer.valueOf(((MessageObject) uv0Var.f29784s.f3429i.get(i10)).getId()));
+                for (int i10 = 0; i10 < uv0Var.f29452s.f3433i.size(); i10++) {
+                    arrayList.add(Integer.valueOf(((MessageObject) uv0Var.f29452s.f3433i.get(i10)).getId()));
                 }
             }
             if (!uv0Var.E) {
@@ -86,11 +86,11 @@ public final class ks0 extends s4.v {
                 arrayList2.addAll(arrayList);
                 uv0Var.E = true;
             }
-            MessageObject messageObject = (MessageObject) uv0Var.f29784s.f3429i.get(b10);
-            MessageObject messageObject2 = (MessageObject) uv0Var.f29784s.f3429i.get(b11);
+            MessageObject messageObject = (MessageObject) uv0Var.f29452s.f3433i.get(b10);
+            MessageObject messageObject2 = (MessageObject) uv0Var.f29452s.f3433i.get(b11);
             arrayList.remove(Integer.valueOf(messageObject.getId()));
             arrayList.add(Utilities.clamp(b11, arrayList.size(), 0), Integer.valueOf(messageObject.getId()));
-            uv0Var.f29784s.C(arrayList, false);
+            uv0Var.f29452s.C(arrayList, false);
             uv0Var.p(b10, b11);
         }
         return true;
@@ -109,14 +109,14 @@ public final class ks0 extends s4.v {
             pu0 pu0Var2 = this.d;
             if (pu0Var2 != null && (pu0Var2.getAdapter() instanceof uv0)) {
                 uv0 uv0Var = (uv0) this.d.getAdapter();
-                ArrayList arrayList2 = uv0Var.f29787y;
-                if (!uv0Var.h && (o8Var = uv0Var.f29784s) != null && uv0Var.E) {
-                    if (!(o8Var instanceof bi.f8) && uv0Var.f29782n <= 0) {
-                        arrayList = o8Var.f3428g;
+                ArrayList arrayList2 = uv0Var.f29455y;
+                if (!uv0Var.h && (o8Var = uv0Var.f29452s) != null && uv0Var.E) {
+                    if (!(o8Var instanceof bi.f8) && uv0Var.f29450n <= 0) {
+                        arrayList = o8Var.f3432g;
                     } else {
                         arrayList = new ArrayList();
-                        for (int i11 = 0; i11 < uv0Var.f29784s.f3429i.size(); i11++) {
-                            arrayList.add(Integer.valueOf(((MessageObject) uv0Var.f29784s.f3429i.get(i11)).getId()));
+                        for (int i11 = 0; i11 < uv0Var.f29452s.f3433i.size(); i11++) {
+                            arrayList.add(Integer.valueOf(((MessageObject) uv0Var.f29452s.f3433i.get(i11)).getId()));
                         }
                     }
                     if (arrayList2.size() != arrayList.size()) {
@@ -138,7 +138,7 @@ public final class ks0 extends s4.v {
                         }
                     }
                     if (z10) {
-                        uv0Var.f29784s.C(arrayList, true);
+                        uv0Var.f29452s.C(arrayList, true);
                     }
                     uv0Var.E = false;
                 }

@@ -9,17 +9,17 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.mm0;
 public final class f0 extends im0 {
-    public final ArrayList f11499r;
-    public final int f11500s;
+    public final ArrayList f11503r;
+    public final int f11504s;
     public final Context v;
-    public final i0 f11501w;
+    public final i0 f11505w;
 
     public f0(i0 i0Var, Context context) {
-        this.f11501w = i0Var;
+        this.f11505w = i0Var;
         ArrayList arrayList = new ArrayList();
-        this.f11499r = arrayList;
+        this.f11503r = arrayList;
         int i10 = UserConfig.selectedAccount;
-        this.f11500s = i10;
+        this.f11504s = i10;
         this.v = context;
         arrayList.addAll(b2.f(i10).e());
     }
@@ -38,7 +38,7 @@ public final class f0 extends im0 {
     @Override
     public final int M(int i10) {
         if (i10 != 0 && i10 != 2) {
-            return this.f11499r.size();
+            return this.f11503r.size();
         }
         return 1;
     }
@@ -46,7 +46,7 @@ public final class f0 extends im0 {
     @Override
     public final Object O(int i10, int i11) {
         if (i10 != 0 && i11 >= 0) {
-            ArrayList arrayList = this.f11499r;
+            ArrayList arrayList = this.f11503r;
             if (i11 < arrayList.size()) {
                 return arrayList.get(i11);
             }
@@ -77,7 +77,7 @@ public final class f0 extends im0 {
 
     @Override
     public final boolean V(int i10, int i11, s4.b1 b1Var) {
-        if (i10 != 0 && i10 != 2 && i11 < this.f11499r.size()) {
+        if (i10 != 0 && i10 != 2 && i11 < this.f11503r.size()) {
             return true;
         }
         return false;
@@ -95,18 +95,18 @@ public final class f0 extends im0 {
             if (O instanceof a2) {
                 a2 a2Var = (a2) O;
                 x1Var.a(a2Var, null, z10);
-                x1Var.d.a(this.f11501w.f11526w.contains(Integer.valueOf(a2Var.f11434a)), false);
+                x1Var.d.a(this.f11505w.f11530w.contains(Integer.valueOf(a2Var.f11438a)), false);
             }
         }
     }
 
     @Override
     public final void l() {
-        ArrayList arrayList = this.f11499r;
+        ArrayList arrayList = this.f11503r;
         arrayList.clear();
-        arrayList.addAll(b2.f(this.f11500s).e());
+        arrayList.addAll(b2.f(this.f11504s).e());
         X(false);
-        this.f11501w.O();
+        this.f11505w.O();
     }
 
     @Override
@@ -123,7 +123,7 @@ public final class f0 extends im0 {
                 x1Var.setTag(-33024);
             }
         } else {
-            x1Var = new x1(context, this.f11501w.f27670a, false);
+            x1Var = new x1(context, this.f11505w.f27359a, false);
         }
         return new s4.b1(x1Var);
     }

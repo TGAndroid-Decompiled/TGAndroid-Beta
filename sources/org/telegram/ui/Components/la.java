@@ -11,33 +11,33 @@ import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLContext;
 import org.telegram.messenger.AndroidUtilities;
 public final class la {
-    public int f27001a;
-    public final View f27002b;
-    public final ArrayList f27003c;
+    public int f26701a;
+    public final View f26702b;
+    public final ArrayList f26703c;
     public final ArrayList d;
     public final ArrayList e;
-    public final Object f27004f;
-    public EGLContext f27005g;
+    public final Object f26704f;
+    public EGLContext f26705g;
     public final Object h;
-    public int f27006i;
-    public di.wb f27007j;
-    public Object f27008k;
-    public Object f27009l;
-    public ra f27010m;
-    public final qa f27011n;
-    public Bitmap f27012o;
-    public int f27013p;
+    public int f26706i;
+    public di.wb f26707j;
+    public Object f26708k;
+    public Object f26709l;
+    public ra f26710m;
+    public final qa f26711n;
+    public Bitmap f26712o;
+    public int f26713p;
 
     public la(View view) {
         ArrayList arrayList = new ArrayList();
-        this.f27003c = arrayList;
+        this.f26703c = arrayList;
         this.d = new ArrayList();
         this.e = new ArrayList();
-        this.f27004f = new Object();
+        this.f26704f = new Object();
         this.h = new Object();
-        this.f27011n = new qa(0, new qg(this, 14));
-        this.f27013p = 0;
-        this.f27002b = view;
+        this.f26711n = new qa(0, new qg(this, 14));
+        this.f26713p = 0;
+        this.f26702b = view;
         if (view.isAttachedToWindow()) {
             arrayList.clear();
             for (View view2 = view; view2 != null; view2 = (View) view2.getParent()) {
@@ -51,10 +51,10 @@ public final class la {
     }
 
     public final void a(EGLContext eGLContext) {
-        synchronized (this.f27004f) {
+        synchronized (this.f26704f) {
             try {
-                if (this.f27005g == null) {
-                    this.f27005g = eGLContext;
+                if (this.f26705g == null) {
+                    this.f26705g = eGLContext;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -64,28 +64,28 @@ public final class la {
 
     public final Bitmap b() {
         Bitmap bitmap;
-        ra raVar = this.f27010m;
+        ra raVar = this.f26710m;
         if (raVar == null) {
-            return this.f27012o;
+            return this.f26712o;
         }
-        synchronized (raVar.f28791n) {
+        synchronized (raVar.f28481n) {
             try {
-                if (!raVar.f28794q) {
+                if (!raVar.f28484q) {
                     bitmap = null;
                 } else {
-                    bitmap = raVar.f28793p;
+                    bitmap = raVar.f28483p;
                 }
             } finally {
             }
         }
         if (bitmap == null) {
-            return this.f27012o;
+            return this.f26712o;
         }
         return bitmap;
     }
 
     public final boolean c() {
-        if (this.f27009l != null) {
+        if (this.f26709l != null) {
             return true;
         }
         return false;
@@ -99,7 +99,7 @@ public final class la {
         while (i11 < size) {
             Object obj = arrayList.get(i11);
             i11++;
-            ((pa) obj).f28258b.invalidate();
+            ((pa) obj).f27939b.invalidate();
         }
         ArrayList arrayList2 = this.e;
         int size2 = arrayList2.size();
@@ -111,26 +111,26 @@ public final class la {
     }
 
     public final void e() {
-        ra raVar = this.f27010m;
+        ra raVar = this.f26710m;
         if (raVar != null) {
-            synchronized (raVar.f28791n) {
-                raVar.f28794q = false;
+            synchronized (raVar.f28481n) {
+                raVar.f28484q = false;
             }
         }
     }
 
     public final void f(Bitmap bitmap, boolean z10) {
         StringBuilder sb2 = new StringBuilder("");
-        int i10 = this.f27013p;
-        this.f27013p = i10 + 1;
+        int i10 = this.f26713p;
+        this.f26713p = i10 + 1;
         sb2.append(i10);
-        this.f27012o = this.f27011n.b(bitmap, sb2.toString(), 0, 0, z10);
+        this.f26712o = this.f26711n.b(bitmap, sb2.toString(), 0, 0, z10);
     }
 
     public final void g(di.wb wbVar, Object obj) {
-        this.f27007j = wbVar;
-        this.f27008k = obj;
-        this.f27006i = -14737633;
+        this.f26707j = wbVar;
+        this.f26708k = obj;
+        this.f26706i = -14737633;
         if (obj != null && Build.VERSION.SDK_INT >= 31) {
             RenderNode renderNode = (RenderNode) obj;
             RenderNode renderNode2 = new RenderNode("blurRenderNode");
@@ -140,9 +140,9 @@ public final class la {
             beginRecording.drawColor(-14737633);
             beginRecording.drawRenderNode(renderNode);
             renderNode2.endRecording();
-            this.f27009l = renderNode2;
+            this.f26709l = renderNode2;
             return;
         }
-        this.f27009l = null;
+        this.f26709l = null;
     }
 }

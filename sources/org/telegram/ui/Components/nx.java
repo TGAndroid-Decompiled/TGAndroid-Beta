@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessagesController;
 public final class nx implements z4.e {
-    public final boolean f27734a;
-    public final wz f27735b;
+    public final boolean f27433a;
+    public final wz f27434b;
 
     public nx(wz wzVar, boolean z10) {
-        this.f27735b = wzVar;
-        this.f27734a = z10;
+        this.f27434b = wzVar;
+        this.f27433a = z10;
     }
 
     @Override
@@ -18,18 +18,18 @@ public final class nx implements z4.e {
         int i12;
         int i13;
         int i14;
-        wz wzVar = this.f27735b;
+        wz wzVar = this.f27434b;
         iz izVar3 = wzVar.G0;
-        iz izVar4 = wzVar.f31049o0;
+        iz izVar4 = wzVar.f30742o0;
         iz izVar5 = wzVar.V;
         jx jxVar = wzVar.C0;
         ex exVar = wzVar.D0;
-        dy dyVar = wzVar.f31052p0;
-        yw ywVar = wzVar.f31029h0;
+        dy dyVar = wzVar.f30745p0;
+        yw ywVar = wzVar.f30722h0;
         iy iyVar = wzVar.P;
         int i15 = 2;
         boolean z10 = true;
-        if (wzVar.f31080x0 == null || wzVar.f31026g0 == null) {
+        if (wzVar.f30773x0 == null || wzVar.f30719g0 == null) {
             f10 = 0.0f;
         } else {
             int i16 = 8;
@@ -86,7 +86,7 @@ public final class nx implements z4.e {
         wzVar.getMeasuredWidth();
         wzVar.getPaddingLeft();
         wzVar.getPaddingRight();
-        wy wyVar = wzVar.f31067t1;
+        wy wyVar = wzVar.f30760t1;
         if (wyVar != null) {
             if (i10 == 1) {
                 if (i11 == 0) {
@@ -136,7 +136,7 @@ public final class nx implements z4.e {
     public final void b(int i10) {
         boolean z10;
         int i11;
-        wz wzVar = this.f27735b;
+        wz wzVar = this.f27434b;
         kx kxVar = wzVar.h;
         boolean z11 = false;
         if (kxVar != null) {
@@ -159,18 +159,18 @@ public final class nx implements z4.e {
             z10 = false;
         }
         wzVar.L(z10, true);
-        if (i10 == 2 && (this.f27734a || wzVar.f31072v0)) {
+        if (i10 == 2 && (this.f27433a || wzVar.f30765v0)) {
             z11 = true;
         }
         wzVar.Q(z11, true);
-        if (wzVar.f31067t1.z()) {
+        if (wzVar.f30760t1.z()) {
             if (i10 == 0) {
                 vw vwVar = wzVar.V;
                 if (vwVar != null) {
                     vwVar.d.requestFocus();
                 }
             } else if (i10 == 1) {
-                bx bxVar = wzVar.f31049o0;
+                bx bxVar = wzVar.f30742o0;
                 if (bxVar != null) {
                     bxVar.d.requestFocus();
                 }

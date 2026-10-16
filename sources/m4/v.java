@@ -1,20 +1,47 @@
 package m4;
-public interface v {
-    void a(int i10, p pVar);
 
-    void b(int i10);
+import android.os.Bundle;
+import j$.util.Objects;
+public final class v {
+    public final n4.t f15400a;
+    public final int f15401b;
+    public final int f15402c;
+    public final u d;
+    public final Bundle e;
 
-    void c(int i10, b2.c1 c1Var);
+    public v(n4.t tVar, int i10, int i11, boolean z10, u uVar, Bundle bundle) {
+        this.f15400a = tVar;
+        this.f15401b = i10;
+        this.f15402c = i11;
+        this.d = uVar;
+        this.e = bundle;
+    }
 
-    void d(int i10, int i11, int i12);
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof v)) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        v vVar = (v) obj;
+        u uVar = vVar.d;
+        u uVar2 = this.d;
+        if (uVar2 == null && uVar == null) {
+            return this.f15400a.equals(vVar.f15400a);
+        }
+        return Objects.equals(uVar2, uVar);
+    }
 
-    void e(int i10, p1 p1Var);
+    public final int hashCode() {
+        return Objects.hash(this.d, this.f15400a);
+    }
 
-    void f(int i10, s1 s1Var, boolean z10, boolean z11, int i11);
-
-    void g();
-
-    void h(int i10, l1 l1Var, b2.c1 c1Var, boolean z10, boolean z11);
-
-    void j(int i10, t1 t1Var);
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("ControllerInfo {pkg=");
+        n4.t tVar = this.f15400a;
+        sb2.append(tVar.f15747a.f15748a);
+        sb2.append(", uid=");
+        return a1.g.n(tVar.f15747a.f15750c, "}", sb2);
+    }
 }

@@ -9,7 +9,7 @@ import android.os.Process;
 import android.util.Log;
 import java.util.Calendar;
 public final class n extends o {
-    public final int f9775c = 0;
+    public final int f9778c = 0;
     public final r d;
     public final Object e;
 
@@ -21,7 +21,7 @@ public final class n extends o {
 
     @Override
     public final IntentFilter d() {
-        switch (this.f9775c) {
+        switch (this.f9778c) {
             case 0:
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
@@ -41,7 +41,7 @@ public final class n extends o {
         boolean z10;
         long j10;
         Location location2;
-        switch (this.f9775c) {
+        switch (this.f9778c) {
             case 0:
                 if (((PowerManager) this.e).isPowerSaveMode()) {
                     return 2;
@@ -50,11 +50,11 @@ public final class n extends o {
             default:
                 androidx.biometric.e eVar = (androidx.biometric.e) this.e;
                 bh.a aVar = (bh.a) eVar.d;
-                LocationManager locationManager = (LocationManager) eVar.f1197c;
-                if (aVar.f2741b > System.currentTimeMillis()) {
-                    z10 = aVar.f2740a;
+                LocationManager locationManager = (LocationManager) eVar.f1201c;
+                if (aVar.f2745b > System.currentTimeMillis()) {
+                    z10 = aVar.f2744a;
                 } else {
-                    Context context = (Context) eVar.f1196b;
+                    Context context = (Context) eVar.f1200b;
                     Location location3 = null;
                     if (f0.c.a(context, "android.permission.ACCESS_COARSE_LOCATION", Process.myPid(), Process.myUid(), context.getPackageName()) == 0) {
                         try {
@@ -91,13 +91,13 @@ public final class n extends o {
                         x xVar = x.d;
                         xVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
                         xVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
-                        if (xVar.f9828c == 1) {
+                        if (xVar.f9831c == 1) {
                             z10 = true;
                         }
-                        long j11 = xVar.f9827b;
-                        long j12 = xVar.f9826a;
+                        long j11 = xVar.f9830b;
+                        long j12 = xVar.f9829a;
                         xVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
-                        long j13 = xVar.f9827b;
+                        long j13 = xVar.f9830b;
                         if (j11 != -1 && j12 != -1) {
                             if (currentTimeMillis > j12) {
                                 j11 = j13;
@@ -108,8 +108,8 @@ public final class n extends o {
                         } else {
                             j10 = currentTimeMillis + 43200000;
                         }
-                        aVar.f2740a = z10;
-                        aVar.f2741b = j10;
+                        aVar.f2744a = z10;
+                        aVar.f2745b = j10;
                     } else {
                         Log.i("TwilightManager", "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
                         int i10 = Calendar.getInstance().get(11);
@@ -127,7 +127,7 @@ public final class n extends o {
 
     @Override
     public final void k() {
-        switch (this.f9775c) {
+        switch (this.f9778c) {
             case 0:
                 this.d.d(true);
                 return;

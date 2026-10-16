@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class tu implements wy {
-    public final vu f29489a;
+    public final vu f29192a;
 
     public tu(vu vuVar) {
-        this.f29489a = vuVar;
+        this.f29192a = vuVar;
     }
 
     @Override
@@ -51,16 +51,16 @@ public final class tu implements wy {
     @Override
     public final void i(int i10) {
         boolean z10;
-        vu vuVar = this.f29489a;
+        vu vuVar = this.f29192a;
         if (vuVar.b()) {
             if (i10 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            vuVar.f30657x = z10;
+            vuVar.f30326x = z10;
             vuVar.y();
-            ow0 ow0Var = vuVar.f30652f;
+            ow0 ow0Var = vuVar.f30321f;
             if (ow0Var != null) {
                 ow0Var.S();
             }
@@ -74,7 +74,7 @@ public final class tu implements wy {
 
     @Override
     public final boolean k() {
-        qu quVar = this.f29489a.f30649a;
+        qu quVar = this.f29192a.f30318a;
         if (quVar.length() == 0) {
             return false;
         }
@@ -84,7 +84,7 @@ public final class tu implements wy {
 
     @Override
     public final void l(String str) {
-        qu quVar = this.f29489a.f30649a;
+        qu quVar = this.f29192a.f30318a;
         int selectionEnd = quVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -101,15 +101,15 @@ public final class tu implements wy {
 
     @Override
     public final void n() {
-        vu vuVar = this.f29489a;
+        vu vuVar = this.f29192a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vuVar.getContext(), 0, vuVar.M);
-        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 29));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         org.telegram.ui.ActionBar.m2 m2Var = vuVar.h;
         if (m2Var != null) {
-            m2Var.showDialog(alertDialog$Builder.f19548a);
+            m2Var.showDialog(alertDialog$Builder.f19248a);
         } else {
             alertDialog$Builder.o();
         }
@@ -122,7 +122,7 @@ public final class tu implements wy {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f29489a.h;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f29192a.h;
         if (m2Var == null) {
             new sg.y0((org.telegram.ui.ActionBar.m2) new bi.o3(this, 4), 11, false).show();
         } else {
@@ -133,8 +133,8 @@ public final class tu implements wy {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         b6 b6Var;
-        vu vuVar = this.f29489a;
-        qu quVar = vuVar.f30649a;
+        vu vuVar = this.f29192a;
+        qu quVar = vuVar.f30318a;
         int selectionEnd = quVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -146,7 +146,7 @@ public final class tu implements wy {
             } else {
                 b6Var = new b6(j10, quVar.getPaint().getFontMetricsInt());
             }
-            b6Var.cacheType = vuVar.d.f31012c;
+            b6Var.cacheType = vuVar.d.f30705c;
             spannableString.setSpan(b6Var, 0, spannableString.length(), 33);
             quVar.setText(quVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -160,7 +160,7 @@ public final class tu implements wy {
 
     @Override
     public final boolean z() {
-        return this.f29489a.f30657x;
+        return this.f29192a.f30326x;
     }
 
     @Override
@@ -168,7 +168,7 @@ public final class tu implements wy {
     }
 
     @Override
-    public final void o(h61 h61Var) {
+    public final void o(i61 i61Var) {
     }
 
     @Override

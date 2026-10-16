@@ -1,17 +1,17 @@
 package af;
 public final class q extends ff.a {
-    public final df.o f619a = new df.p();
-    public final int f620b;
-    public boolean f621c;
+    public final df.o f623a = new df.p();
+    public final int f624b;
+    public boolean f625c;
 
     public q(int i10) {
-        this.f620b = i10;
+        this.f624b = i10;
     }
 
     @Override
     public final boolean b(df.a aVar) {
-        if (this.f621c) {
-            df.a aVar2 = (df.a) ((df.p) this.f619a.f6528b);
+        if (this.f625c) {
+            df.a aVar2 = (df.a) ((df.p) this.f623a.f6531b);
             return true;
         }
         return true;
@@ -19,7 +19,7 @@ public final class q extends ff.a {
 
     @Override
     public final df.a e() {
-        return this.f619a;
+        return this.f623a;
     }
 
     @Override
@@ -31,17 +31,17 @@ public final class q extends ff.a {
     public final a h(h hVar) {
         boolean z10 = false;
         if (hVar.h) {
-            if (((df.p) this.f619a.f6529c) != null) {
+            if (((df.p) this.f623a.f6532c) != null) {
                 df.a e = hVar.h().e();
-                this.f621c = ((e instanceof df.r) || (e instanceof df.o)) ? true : true;
+                this.f625c = ((e instanceof df.r) || (e instanceof df.o)) ? true : true;
                 return a.a(hVar.e);
             }
             return null;
         }
-        int i10 = hVar.f571g;
-        int i11 = this.f620b;
+        int i10 = hVar.f575g;
+        int i11 = this.f624b;
         if (i10 >= i11) {
-            return new a(-1, hVar.f569c + i11, false);
+            return new a(-1, hVar.f573c + i11, false);
         }
         return null;
     }

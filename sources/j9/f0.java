@@ -4,15 +4,15 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.LockSupport;
 public final class f0 extends AtomicReference implements Runnable {
-    public static final androidx.emoji2.text.n f12923c = new androidx.emoji2.text.n(2);
+    public static final androidx.emoji2.text.n f12927c = new androidx.emoji2.text.n(2);
     public static final androidx.emoji2.text.n d = new androidx.emoji2.text.n(2);
-    public final Callable f12924a;
-    public final g0 f12925b;
+    public final Callable f12928a;
+    public final g0 f12929b;
 
     public f0(g0 g0Var, Callable callable) {
-        this.f12925b = g0Var;
+        this.f12929b = g0Var;
         callable.getClass();
-        this.f12924a = callable;
+        this.f12928a = callable;
     }
 
     public final void a(Thread thread) {
@@ -54,12 +54,12 @@ public final class f0 extends AtomicReference implements Runnable {
         Thread currentThread = Thread.currentThread();
         Object obj = null;
         if (compareAndSet(null, currentThread)) {
-            g0 g0Var = this.f12925b;
+            g0 g0Var = this.f12929b;
             boolean isDone = g0Var.isDone();
-            androidx.emoji2.text.n nVar = f12923c;
+            androidx.emoji2.text.n nVar = f12927c;
             if (!isDone) {
                 try {
-                    obj = this.f12924a.call();
+                    obj = this.f12928a.call();
                 } catch (Throwable th2) {
                     try {
                         if (th2 instanceof InterruptedException) {
@@ -90,7 +90,7 @@ public final class f0 extends AtomicReference implements Runnable {
     public final String toString() {
         String str;
         Runnable runnable = (Runnable) get();
-        if (runnable == f12923c) {
+        if (runnable == f12927c) {
             str = "running=[DONE]";
         } else if (runnable instanceof x) {
             str = "running=[INTERRUPTED]";
@@ -100,7 +100,7 @@ public final class f0 extends AtomicReference implements Runnable {
             str = "running=[NOT STARTED YET]";
         }
         StringBuilder i10 = t8.b.i(str, ", ");
-        i10.append(this.f12924a.toString());
+        i10.append(this.f12928a.toString());
         return i10.toString();
     }
 }

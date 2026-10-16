@@ -46,7 +46,7 @@ public final class k2 extends bi.m9 {
     @Override
     public final void e() {
         s2 s2Var = this.S;
-        o2 o2Var = s2Var.f21817d0;
+        o2 o2Var = s2Var.f21514d0;
         if (o2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class k2 extends bi.m9 {
     @Override
     public final void f(long j10) {
         s2 s2Var = this.S;
-        o2 o2Var = s2Var.f21817d0;
+        o2 o2Var = s2Var.f21514d0;
         if (o2Var == null) {
             return;
         }

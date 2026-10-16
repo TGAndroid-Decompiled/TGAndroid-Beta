@@ -1,82 +1,89 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.webkit.CookieManager;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.RadialProgressView;
-public final class pu0 extends org.telegram.ui.Components.qg0 {
-    public final Rect M;
-    public final PhotoViewer N;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.camera.Size;
+import org.telegram.ui.Components.AnimatedFileNative;
+public final class pu0 implements Runnable {
+    public final String f39015a;
+    public final long f39016b;
+    public final int f39017c;
+    public final PhotoViewer d;
 
-    public pu0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.e1 e1Var) {
-        super(context);
-        this.N = photoViewer;
-        this.f28591a = UserConfig.selectedAccount;
-        this.v = new ArrayList();
-        this.L = new org.telegram.ui.Components.yc0(this, 11);
-        this.f28592b = photoViewer2;
-        this.f28596r = e1Var;
-        org.telegram.ui.Components.bv bvVar = new org.telegram.ui.Components.bv(this, context, context, 1);
-        this.f28594f = bvVar;
-        bvVar.getSettings().setJavaScriptEnabled(true);
-        bvVar.getSettings().setDomStorageEnabled(true);
-        bvVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        bvVar.getSettings().setMixedContentMode(0);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(bvVar, true);
-        bvVar.setWebViewClient(new org.telegram.ui.Components.mg0(this, 0));
-        addView(bvVar, w7.a6.e(-1, -1, 51));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f28593c = linearLayout;
-        linearLayout.setOrientation(1);
-        linearLayout.setGravity(17);
-        linearLayout.setVisibility(8);
-        addView(linearLayout, w7.a6.e(-2, -2, 17));
-        TextView textView = new TextView(context);
-        this.d = textView;
-        textView.setTextSize(1, 16.0f);
-        com.google.android.gms.internal.play_billing.k3.o(org.telegram.ui.ActionBar.g6.f20288y6, null, false, textView, 17);
-        linearLayout.addView(textView, w7.a6.q(-2, -2, 1));
-        TextView textView2 = new TextView(context);
-        this.e = textView2;
-        textView2.setTextSize(1, 16.0f);
-        int i10 = org.telegram.ui.ActionBar.g6.f20084n6;
-        textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
-        textView2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
-        int i11 = org.telegram.ui.ActionBar.w5.f20788a;
-        textView2.setBackground(org.telegram.ui.ActionBar.w5.d(new float[]{12.0f}, 0, org.telegram.ui.ActionBar.w5.b(org.telegram.ui.ActionBar.g6.x0(null, i10, false))));
-        textView2.setVisibility(8);
-        linearLayout.addView(textView2, w7.a6.t(-2, -2, 1, 0, 8, 0, 0));
-        di.ab abVar = new di.ab(this, context, 20);
-        this.h = abVar;
-        abVar.setBackgroundColor(-16777216);
-        abVar.setVisibility(4);
-        addView(abVar, w7.a6.d(-1.0f, -1));
-        RadialProgressView radialProgressView = new RadialProgressView(context, null);
-        this.f28595n = radialProgressView;
-        radialProgressView.setVisibility(4);
-        addView(radialProgressView, w7.a6.e(-2, -2, 17));
-        this.M = new Rect();
+    public pu0(PhotoViewer photoViewer, String str, long j10, int i10) {
+        this.d = photoViewer;
+        this.f39015a = str;
+        this.f39016b = j10;
+        this.f39017c = i10;
     }
 
-    public final void j(Canvas canvas, int i10, int i11) {
-        Bitmap bitmap = this.N.C4.getBitmap();
-        if (bitmap != null) {
-            float min = Math.min(i10 / bitmap.getWidth(), i11 / bitmap.getHeight());
-            int width = (int) (bitmap.getWidth() * min);
-            int height = (int) (bitmap.getHeight() * min);
-            int i12 = (i11 - height) / 2;
-            int i13 = (i10 - width) / 2;
-            Rect rect = this.M;
-            rect.set(i13, i12, width + i13, height + i12);
-            canvas.drawBitmap(bitmap, (Rect) null, rect, (Paint) null);
+    @Override
+    public final void run() {
+        boolean z10;
+        boolean z11;
+        if (this.d.f32106x8 == this) {
+            int videoBitrate = MediaController.getVideoBitrate(this.f39015a);
+            int[] iArr = new int[11];
+            AnimatedFileNative.d(this.f39015a, iArr, this.f39016b);
+            if (iArr[10] != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            PhotoViewer photoViewer = this.d;
+            if (iArr[0] != 0 && (!z10 || iArr[9] != 0)) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            photoViewer.f31989k8 = z11;
+            PhotoViewer photoViewer2 = this.d;
+            if (videoBitrate == -1) {
+                videoBitrate = iArr[3];
+            }
+            photoViewer2.f31953g8 = videoBitrate;
+            photoViewer2.f31962h8 = videoBitrate;
+            if (this.d.f31989k8) {
+                PhotoViewer photoViewer3 = this.d;
+                int i10 = iArr[1];
+                photoViewer3.f31918c8 = i10;
+                photoViewer3.f31935e8 = i10;
+                PhotoViewer photoViewer4 = this.d;
+                int i11 = iArr[2];
+                photoViewer4.f31927d8 = i11;
+                photoViewer4.f31944f8 = i11;
+                PhotoViewer photoViewer5 = this.d;
+                int max = Math.max(photoViewer5.f31918c8, this.d.f31927d8);
+                if (max > 1280) {
+                    photoViewer5.Z7 = 4;
+                } else if (max > 854) {
+                    photoViewer5.Z7 = 3;
+                } else if (max > 640) {
+                    photoViewer5.Z7 = 2;
+                } else {
+                    photoViewer5.Z7 = 1;
+                }
+                PhotoViewer photoViewer6 = this.d;
+                int i12 = this.f39017c;
+                if (i12 == -1) {
+                    i12 = photoViewer6.v2();
+                }
+                photoViewer6.Y7 = i12;
+                PhotoViewer photoViewer7 = this.d;
+                if (photoViewer7.f31953g8 != 0 && photoViewer7.f31912c2 != 1) {
+                    Size p02 = photoViewer7.p0();
+                    if (p02.getWidth() == photoViewer7.f31918c8 && p02.getHeight() == photoViewer7.f31927d8) {
+                        MediaController.extractRealEncoderBitrate(p02.getWidth(), p02.getHeight(), photoViewer7.f31962h8, false);
+                    } else {
+                        MediaController.extractRealEncoderBitrate(p02.getWidth(), p02.getHeight(), MediaController.makeVideoBitrate(photoViewer7.f31927d8, photoViewer7.f31918c8, photoViewer7.f31962h8, p02.getHeight(), p02.getWidth()), false);
+                    }
+                }
+                this.d.f31996l8 = MediaController.isH264Video(this.f39015a);
+            }
+            if (this.d.f32106x8 != this) {
+                return;
+            }
+            AndroidUtilities.runOnUIThread(new tf0(this, this, iArr, 20));
         }
     }
 }

@@ -1,104 +1,91 @@
 package q2;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.ServiceInfo;
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;
-import kotlin.jvm.internal.i;
-import v0.j;
-import v0.l;
-import v0.n;
-import v0.p;
-public final class b {
-    public final Context f43257a;
+import android.graphics.Point;
+import b2.x;
+import b2.x0;
+import e0.f0;
+import e2.m0;
+import h2.h;
+import h2.j;
+import h2.l;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import v7.u6;
+public final class b extends l {
+    public final Context f43001o;
+    public final int f43002p;
 
-    public b(Context context, int i10) {
-        switch (i10) {
-            case 1:
-                i.e(context, "context");
-                this.f43257a = context;
-                return;
-            default:
-                context.getClass();
-                this.f43257a = context;
-                return;
-        }
+    public b(Context context) {
+        super(new h[1], new a[1]);
+        this.f43001o = context;
+        this.f43002p = -1;
     }
 
-    public static j a(b bVar, Object obj) {
-        if (obj.equals("androidx.credentials.TYPE_CLEAR_RESTORE_CREDENTIAL")) {
-            return bVar.c();
-        }
-        if (obj instanceof n) {
-            for (p pVar : ((n) obj).f46470a) {
-            }
-        }
-        Context ctx = bVar.f43257a;
-        i.e(ctx, "ctx");
-        if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
-            int i10 = Build.VERSION.SDK_INT;
-            l lVar = null;
-            if (i10 >= 34) {
-                l lVar2 = new l(ctx);
-                if (lVar2.isAvailableOnDevice()) {
-                    lVar = lVar2;
-                }
-                if (lVar == null) {
-                    return bVar.c();
-                }
-                return lVar;
-            } else if (i10 > 33) {
-                return null;
-            } else {
-                return bVar.c();
-            }
-        }
-        return bVar.c();
+    @Override
+    public final h f() {
+        return new h(1, 0);
     }
 
-    public static int b(b2.x r5) {
-        throw new UnsupportedOperationException("Method not decompiled: q2.b.b(b2.x):int");
+    @Override
+    public final j g() {
+        return new a(this);
     }
 
-    public j c() {
-        String string;
-        Context context = this.f43257a;
-        PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
-        ArrayList arrayList = new ArrayList();
-        ServiceInfo[] serviceInfoArr = packageInfo.services;
-        if (serviceInfoArr != null) {
-            for (ServiceInfo serviceInfo : serviceInfoArr) {
-                Bundle bundle = serviceInfo.metaData;
-                if (bundle != null && (string = bundle.getString("androidx.credentials.CREDENTIAL_PROVIDER_KEY")) != null) {
-                    arrayList.add(string);
-                }
-            }
+    @Override
+    public final String getName() {
+        return "BitmapFactoryImageDecoder";
+    }
+
+    @Override
+    public final h2.f h(Throwable th2) {
+        return new Exception("Unexpected decode error", th2);
+    }
+
+    @Override
+    public final h2.f i(h hVar, j jVar, boolean z10) {
+        boolean z11;
+        a aVar = (a) jVar;
+        ByteBuffer byteBuffer = hVar.f10330c;
+        byteBuffer.getClass();
+        u6.p(byteBuffer.hasArray());
+        if (byteBuffer.arrayOffset() == 0) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
-        List<String> m10 = jd.g.m(arrayList);
-        if (m10.isEmpty()) {
-            return null;
-        }
-        j jVar = null;
-        for (String str : m10) {
-            try {
-                Object newInstance = Class.forName(str).getConstructor(Context.class).newInstance(context);
-                i.c(newInstance, "null cannot be cast to non-null type androidx.credentials.CredentialProvider");
-                j jVar2 = (j) newInstance;
-                if (!jVar2.isAvailableOnDevice()) {
-                    continue;
-                } else if (jVar != null) {
-                    Log.i("CredProviderFactory", "Only one active OEM CredentialProvider allowed");
-                    return null;
+        u6.g(z11);
+        try {
+            int i10 = this.f43002p;
+            if (i10 == -1) {
+                Context context = this.f43001o;
+                if (context != null) {
+                    Point y3 = m0.y(context);
+                    int i11 = y3.x;
+                    int i12 = y3.y;
+                    x xVar = hVar.f10328a;
+                    if (xVar != null) {
+                        int i13 = xVar.R;
+                        if (i13 != -1) {
+                            i11 *= i13;
+                        }
+                        int i14 = xVar.S;
+                        if (i14 != -1) {
+                            i12 *= i14;
+                        }
+                    }
+                    i10 = (Math.max(i11, i12) * 2) - 1;
                 } else {
-                    jVar = jVar2;
+                    i10 = 4096;
                 }
-            } catch (Throwable unused) {
             }
+            aVar.f42999a = f0.a(byteBuffer.remaining(), i10, byteBuffer.array());
+            aVar.timeUs = hVar.e;
+            return null;
+        } catch (x0 e) {
+            return new Exception("Could not decode image data with BitmapFactory.", e);
+        } catch (IOException e7) {
+            return new Exception(e7);
         }
-        return jVar;
     }
 }

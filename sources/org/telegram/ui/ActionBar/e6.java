@@ -8,32 +8,32 @@ import java.util.Locale;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.tgnet.TLRPC;
 public final class e6 {
-    public int f19745a;
-    public f6 f19746b;
-    public int f19747c;
+    public int f19445a;
+    public f6 f19446b;
+    public int f19447c;
     public int d;
     public int e;
-    public int f19748f;
-    public int f19749g;
+    public int f19448f;
+    public int f19449g;
     public int h;
-    public boolean f19750i;
-    public long f19751j;
-    public long f19752k;
-    public long f19753l;
-    public long f19754m;
-    public float f19757p;
-    public boolean f19758q;
-    public TLRPC.TL_theme f19759r;
-    public TLRPC.TL_wallPaper f19760s;
-    public int f19761t;
-    public String f19762u;
+    public boolean f19450i;
+    public long f19451j;
+    public long f19452k;
+    public long f19453l;
+    public long f19454m;
+    public float f19457p;
+    public boolean f19458q;
+    public TLRPC.TL_theme f19459r;
+    public TLRPC.TL_wallPaper f19460s;
+    public int f19461t;
+    public String f19462u;
     public String v;
-    public TLRPC.InputFile f19763w;
-    public TLRPC.InputFile f19764x;
-    public z5 f19765y;
-    public boolean f19766z;
-    public int f19755n = 45;
-    public String f19756o = "";
+    public TLRPC.InputFile f19463w;
+    public TLRPC.InputFile f19464x;
+    public z5 f19465y;
+    public boolean f19466z;
+    public int f19455n = 45;
+    public String f19456o = "";
     public final float[] A = new float[3];
 
     public static int a(SparseIntArray sparseIntArray, int... iArr) {
@@ -60,7 +60,7 @@ public final class e6 {
     }
 
     public static void g(SparseIntArray sparseIntArray) {
-        for (int i10 = g6.f20309za; i10 < g6.Ga; i10++) {
+        for (int i10 = g6.f20009za; i10 < g6.Ga; i10++) {
             sparseIntArray.delete(i10);
             sparseIntArray.put(i10, g6.ql[i10]);
         }
@@ -68,7 +68,7 @@ public final class e6 {
             sparseIntArray.delete(i11);
             sparseIntArray.put(i11, g6.ql[i11]);
         }
-        for (int i12 = g6.Ub; i12 < g6.f19888cc; i12++) {
+        for (int i12 = g6.Ub; i12 < g6.f19588cc; i12++) {
             sparseIntArray.delete(i12);
             sparseIntArray.put(i12, g6.ql[i12]);
         }
@@ -93,24 +93,24 @@ public final class e6 {
     }
 
     public final File d() {
-        if (this.f19745a < 100) {
-            if (TextUtils.isEmpty(this.f19756o)) {
+        if (this.f19445a < 100) {
+            if (TextUtils.isEmpty(this.f19456o)) {
                 return null;
             }
             File filesDirFixed = ApplicationLoader.getFilesDirFixed();
             Locale locale = Locale.US;
-            String m10 = this.f19746b.m();
-            int i10 = this.f19745a;
-            String str = this.f19756o;
+            String m10 = this.f19446b.m();
+            int i10 = this.f19445a;
+            String str = this.f19456o;
             return new File(filesDirFixed, m10 + "_" + i10 + "_" + str + "_v5.jpg");
-        } else if (TextUtils.isEmpty(this.f19756o)) {
+        } else if (TextUtils.isEmpty(this.f19456o)) {
             return null;
         } else {
             File filesDirFixed2 = ApplicationLoader.getFilesDirFixed();
             Locale locale2 = Locale.US;
-            String m11 = this.f19746b.m();
-            int i11 = this.f19745a;
-            String str2 = this.f19756o;
+            String m11 = this.f19446b.m();
+            int i11 = this.f19445a;
+            String str2 = this.f19456o;
             return new File(filesDirFixed2, m11 + "_" + i11 + "_" + str2 + "_v8_debug.jpg");
         }
     }
@@ -138,15 +138,15 @@ public final class e6 {
         if (fArr[1] > 0.0f) {
             float f10 = fArr[2];
             if (f10 < 1.0f && f10 > 0.0f) {
-                fArr[0] = w7.s.a(fArr[0] + 0.22f, 0.0f, 1.0f);
-                fArr[1] = w7.s.a(fArr[1] - 0.35f, 0.0f, 1.0f);
-                fArr[2] = w7.s.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+                fArr[0] = w7.r.a(fArr[0] + 0.22f, 0.0f, 1.0f);
+                fArr[1] = w7.r.a(fArr[1] - 0.35f, 0.0f, 1.0f);
+                fArr[2] = w7.r.a(fArr[2] - 0.65f, 0.0f, 1.0f);
                 return Color.HSVToColor(90, fArr);
             }
         }
         fArr[0] = f7;
         fArr[1] = 0.2f;
-        fArr[2] = w7.s.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+        fArr[2] = w7.r.a(fArr[2] - 0.65f, 0.0f, 1.0f);
         return Color.HSVToColor(90, fArr);
     }
 

@@ -8,20 +8,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 public final class d implements eb.v {
-    public final int f10407a;
-    public final qf.b f10408b;
+    public final int f10411a;
+    public final qf.b f10412b;
 
     public d(qf.b bVar, int i10) {
-        this.f10407a = i10;
-        this.f10408b = bVar;
+        this.f10411a = i10;
+        this.f10412b = bVar;
     }
 
     @Override
     public final eb.u create(eb.g gVar, lb.a aVar) {
         Type[] actualTypeArguments;
         eb.u uVar;
-        int i10 = this.f10407a;
-        qf.b bVar = this.f10408b;
+        int i10 = this.f10411a;
+        qf.b bVar = this.f10412b;
         Type type = Object.class;
         switch (i10) {
             case 0:
@@ -38,7 +38,7 @@ public final class d implements eb.v {
                 if (j10 instanceof ParameterizedType) {
                     type = ((ParameterizedType) j10).getActualTypeArguments()[0];
                 }
-                return new c(gVar, type, gVar.b(new lb.a(type)), bVar.S(aVar));
+                return new c(gVar, type, gVar.b(new lb.a(type)), bVar.W(aVar));
             default:
                 Type type3 = aVar.f14654b;
                 Class cls2 = aVar.f14653a;
@@ -59,12 +59,12 @@ public final class d implements eb.v {
                 if (type4 != Boolean.TYPE && type4 != Boolean.class) {
                     uVar = gVar.b(new lb.a(type4));
                 } else {
-                    uVar = h1.f10416c;
+                    uVar = h1.f10420c;
                 }
                 eb.u b10 = gVar.b(new lb.a(actualTypeArguments[1]));
-                gb.o S = bVar.S(aVar);
+                gb.p W = bVar.W(aVar);
                 Type[] typeArr = actualTypeArguments;
-                return new o(this, gVar, typeArr[0], uVar, typeArr[1], b10, S);
+                return new o(this, gVar, typeArr[0], uVar, typeArr[1], b10, W);
         }
     }
 }

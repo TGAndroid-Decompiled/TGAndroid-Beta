@@ -7,29 +7,29 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class la0 implements RequestDelegate {
-    public final int f37905a;
-    public final LaunchActivity f37906b;
+    public final int f37671a;
+    public final LaunchActivity f37672b;
 
     public la0(LaunchActivity launchActivity, int i10) {
-        this.f37905a = i10;
-        this.f37906b = launchActivity;
+        this.f37671a = i10;
+        this.f37672b = launchActivity;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f37905a;
-        LaunchActivity launchActivity = this.f37906b;
+        int i10 = this.f37671a;
+        LaunchActivity launchActivity = this.f37672b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new o00(22, launchActivity, (TL_account.Password) tLObject));
+                    AndroidUtilities.runOnUIThread(new d20(17, launchActivity, (TL_account.Password) tLObject));
                     return;
                 }
                 return;
             default:
                 Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new o00(18, launchActivity, tLObject));
+                AndroidUtilities.runOnUIThread(new d20(13, launchActivity, tLObject));
                 return;
         }
     }

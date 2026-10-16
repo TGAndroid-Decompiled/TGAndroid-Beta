@@ -4,29 +4,29 @@ import android.content.Context;
 import android.util.Log;
 import com.google.android.gms.internal.vision.t2;
 public final class d {
-    public int f550a;
-    public boolean f551b;
-    public int f552c;
+    public int f554a;
+    public boolean f555b;
+    public int f556c;
     public final Object d;
 
     public d(Context context) {
-        this.f550a = 0;
-        this.f551b = true;
-        this.f552c = 0;
+        this.f554a = 0;
+        this.f555b = true;
+        this.f556c = 0;
         this.d = context;
     }
 
     public t8.c a() {
         boolean z10;
         ?? obj = new Object();
-        int i10 = this.f552c;
+        int i10 = this.f556c;
         obj.f46227a = i10;
-        int i11 = this.f550a;
+        int i11 = this.f554a;
         obj.f46228b = i11;
         boolean z11 = false;
         obj.f46229c = 0;
         obj.d = false;
-        obj.e = this.f551b;
+        obj.e = this.f555b;
         obj.f46230f = -1.0f;
         if (i10 != 2 && i11 == 2) {
             Log.e("FaceDetector", "Contour is not supported for non-SELFIE mode.");
@@ -52,7 +52,7 @@ public final class d {
             sb2.append(i10);
             throw new IllegalArgumentException(sb2.toString());
         }
-        this.f550a = i10;
+        this.f554a = i10;
     }
 
     public void c(int i10) {
@@ -62,13 +62,13 @@ public final class d {
             sb2.append(i10);
             throw new IllegalArgumentException(sb2.toString());
         }
-        this.f552c = i10;
+        this.f556c = i10;
     }
 
     public d(ff.a... aVarArr) {
-        this.f550a = -1;
-        this.f552c = -1;
-        this.f551b = false;
+        this.f554a = -1;
+        this.f556c = -1;
+        this.f555b = false;
         this.d = aVarArr;
     }
 }

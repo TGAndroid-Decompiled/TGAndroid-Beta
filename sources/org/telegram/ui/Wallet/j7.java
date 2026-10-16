@@ -1,61 +1,71 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.yh;
-public final class j7 extends LinearLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.c6 f33367a;
-    public final TextView f33368b;
-    public final TextView f33369c;
-    public final ImageView d;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.ia0;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.mm0;
+public final class j7 extends l61 {
+    public static final int f33065a = 0;
 
-    public j7(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        setOrientation(0);
-        this.f33367a = c6Var;
-        setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(13.0f), 0);
-        LinearLayout e = yh.e(context, 1);
-        e.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
-        addView(e, w7.a6.p(0, -2, 1.0f, 19, 0, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.f33368b = textView;
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
-        TextView i10 = com.google.android.gms.internal.play_billing.k3.i(e, textView, w7.a6.t(-1, -2, 55, 0, 0, 0, 2), context);
-        this.f33369c = i10;
-        i10.setTextSize(1, 14.0f);
-        e.addView(i10, w7.a6.t(-1, -2, 55, 0, 0, 0, 0));
-        ImageView imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.attach_arrow_right);
-        addView(imageView, w7.a6.t(21, 21, 21, 9, 0, 0, 0));
-        d();
+    static {
+        l61.setup(new l61());
     }
 
     @Override
-    public final void d() {
-        int i10 = org.telegram.ui.ActionBar.g6.G6;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f33367a;
-        this.f33368b.setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
-        int i11 = org.telegram.ui.ActionBar.g6.f20305z6;
-        this.f33369c.setTextColor(org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
-        this.d.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(i11, c6Var), PorterDuff.Mode.SRC_IN));
-    }
-
-    public int[] getColorKeys() {
-        return null;
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
+        float f7;
+        float f10;
+        k7 k7Var = (k7) view;
+        String charSequence = m61Var.f26946l.toString();
+        long j10 = m61Var.B;
+        int i10 = m61Var.f26959z;
+        boolean z11 = m61Var.f26951q;
+        TextView textView = k7Var.f33135c;
+        TextView textView2 = k7Var.f33134b;
+        textView2.setText(a7.X(charSequence));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (j10 < 0) {
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Loading));
+            spannableStringBuilder.setSpan(new ia0(AndroidUtilities.dp(35.0f), textView), 0, spannableStringBuilder.length(), 33);
+        } else {
+            spannableStringBuilder.append((CharSequence) k0.q(j10, false));
+        }
+        if (i10 > 0) {
+            spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatSpannable(R.string.WalletPreviousWalletLastUsed, spannableStringBuilder, LocaleController.formatShortDateTime(i10)));
+        }
+        textView.setText(spannableStringBuilder);
+        float f11 = 1.0f;
+        if (z11) {
+            f7 = 0.5f;
+        } else {
+            f7 = 1.0f;
+        }
+        textView2.setAlpha(f7);
+        if (z11) {
+            f10 = 0.5f;
+        } else {
+            f10 = 1.0f;
+        }
+        textView.setAlpha(f10);
+        ImageView imageView = k7Var.d;
+        if (z11) {
+            f11 = 0.5f;
+        }
+        imageView.setAlpha(f11);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        return new k7(context, c6Var);
     }
 }

@@ -12,13 +12,13 @@ public class u0 extends eb.u {
                 if (c10 != 7) {
                     if (c10 == 8) {
                         aVar.t();
-                        return eb.k.f8691a;
+                        return eb.k.f8694a;
                     }
-                    throw new IllegalStateException("Unexpected token: ".concat(i2.d.D(i10)));
+                    throw new IllegalStateException("Unexpected token: ".concat(i2.d.E(i10)));
                 }
                 return new eb.m(Boolean.valueOf(aVar.n()));
             }
-            return new eb.m(new gb.i(aVar.v()));
+            return new eb.m(new gb.j(aVar.v()));
         }
         return new eb.m(aVar.v());
     }
@@ -29,7 +29,7 @@ public class u0 extends eb.u {
             if (z10) {
                 if (z10) {
                     eb.m mVar = (eb.m) iVar;
-                    Serializable serializable = mVar.f8693a;
+                    Serializable serializable = mVar.f8696a;
                     if (serializable instanceof Number) {
                         bVar.q(mVar.q());
                         return;
@@ -47,7 +47,7 @@ public class u0 extends eb.u {
             if (z11) {
                 bVar.b();
                 if (z11) {
-                    ArrayList arrayList = ((eb.h) iVar).f8690a;
+                    ArrayList arrayList = ((eb.h) iVar).f8693a;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
@@ -61,9 +61,9 @@ public class u0 extends eb.u {
                 throw new IllegalStateException("Not a JSON Array: " + iVar);
             } else if (iVar instanceof eb.l) {
                 bVar.c();
-                Iterator it = ((gb.l) iVar.h().f8692a.entrySet()).iterator();
-                while (((gb.k) it).hasNext()) {
-                    gb.m b10 = ((gb.k) it).b();
+                Iterator it = ((gb.m) iVar.h().f8695a.entrySet()).iterator();
+                while (((gb.l) it).hasNext()) {
+                    gb.n b10 = ((gb.l) it).b();
                     bVar.g((String) b10.getKey());
                     b((eb.i) b10.getValue(), bVar);
                 }
@@ -90,7 +90,7 @@ public class u0 extends eb.u {
                 lVar.C();
                 return iVar;
             }
-            throw new IllegalStateException("Unexpected " + i2.d.D(x10) + " when reading a JsonElement.");
+            throw new IllegalStateException("Unexpected " + i2.d.E(x10) + " when reading a JsonElement.");
         }
         int x11 = aVar.x();
         int c10 = m1.j.c(x11);
@@ -138,7 +138,7 @@ public class u0 extends eb.u {
                     hVar2 = a(aVar, x12);
                 }
                 if (hVar instanceof eb.h) {
-                    ((eb.h) hVar).f8690a.add(hVar2);
+                    ((eb.h) hVar).f8693a.add(hVar2);
                 } else {
                     ((eb.l) hVar).n(str, hVar2);
                 }

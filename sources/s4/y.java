@@ -11,11 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.internal.play_billing.k3;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
-import ji.d4;
+import ji.h5;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Wallet.m5;
 public class y extends m0 {
     public int E;
     public int G;
@@ -23,7 +22,7 @@ public class y extends m0 {
     public VelocityTracker J;
     public ArrayList K;
     public ArrayList L;
-    public d4 N;
+    public h5 N;
     public w O;
     public Rect Q;
     public long R;
@@ -42,7 +41,7 @@ public class y extends m0 {
     public int f44991w = -1;
     public int f44993y = 0;
     public final ArrayList F = new ArrayList();
-    public final m5 I = new m5(this, 5);
+    public final p4.s0 I = new p4.s0(this, 5);
     public View M = null;
     public final hm0 P = new hm0(this);
 
@@ -199,7 +198,7 @@ public class y extends m0 {
                 }
                 recyclerView3.P.add(this);
                 this.O = new w(this);
-                this.N = new d4(this.H.getContext(), this.O);
+                this.N = new h5(this.H.getContext(), this.O);
             }
         }
     }
@@ -256,7 +255,7 @@ public class y extends m0 {
                 if (b1Var != null) {
                     RecyclerView recyclerView = this.H;
                     int e = vVar.e(recyclerView, b1Var);
-                    WeakHashMap weakHashMap = r0.j0.f43732a;
+                    WeakHashMap weakHashMap = r0.i0.f43485a;
                     int b10 = (vVar.b(e, recyclerView.getLayoutDirection()) & 65280) >> 8;
                     if (b10 != 0) {
                         float x10 = motionEvent.getX(i11);
@@ -525,7 +524,7 @@ public class y extends m0 {
         RecyclerView recyclerView = this.H;
         v vVar = this.f44992x;
         int e = vVar.e(recyclerView, b1Var);
-        WeakHashMap weakHashMap = r0.j0.f43732a;
+        WeakHashMap weakHashMap = r0.i0.f43485a;
         if ((vVar.b(e, recyclerView.getLayoutDirection()) & 16711680) != 0) {
             if (b1Var.f44838a.getParent() != this.H) {
                 Log.e("ItemTouchHelper", "Start drag has been called with a view holder which is not a child of the RecyclerView which is controlled by this ItemTouchHelper.");

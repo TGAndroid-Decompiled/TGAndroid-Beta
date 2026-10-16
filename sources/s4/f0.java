@@ -30,7 +30,7 @@ public final class f0 implements Runnable {
                 return;
             default:
                 RecyclerView recyclerView2 = this.f44878b;
-                l0 l0Var = recyclerView2.f1992c0;
+                l0 l0Var = recyclerView2.f1996c0;
                 if (l0Var != null) {
                     l0Var.m();
                 }

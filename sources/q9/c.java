@@ -25,9 +25,9 @@ public final class c extends w implements f {
             return;
         }
         TaskCompletionSource taskCompletionSource = this.d;
-        String str = status.f4886b;
+        String str = status.f4889b;
         str = (str == null || str.isEmpty()) ? "User Action indexing error, please try again." : "User Action indexing error, please try again.";
-        switch (status.f4885a) {
+        switch (status.f4888a) {
             case 17510:
                 rVar = new r(str);
                 break;
@@ -55,12 +55,12 @@ public final class c extends w implements f {
         b7.b bVar = new b7.b(this);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
-        int i10 = p7.c.f43147a;
+        int i10 = p7.c.f42848a;
         obtain.writeStrongBinder(bVar);
         obtain.writeTypedArray(this.e, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            aVar.f43146a.transact(7, obtain, obtain2, 0);
+            aVar.f42847a.transact(7, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();

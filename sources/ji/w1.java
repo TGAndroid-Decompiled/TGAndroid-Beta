@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 public final class w1 extends HorizontalScrollView {
-    public final int f13583a;
+    public final int f13586a;
 
     public w1(Context context, int i10) {
         super(context);
-        this.f13583a = i10;
+        this.f13586a = i10;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        switch (this.f13583a) {
+        switch (this.f13586a) {
             case 0:
                 int mode = View.MeasureSpec.getMode(i10);
                 int size = View.MeasureSpec.getSize(i10);

@@ -19,7 +19,7 @@ public final class f extends w {
     private static final f DEFAULT_INSTANCE;
     private static volatile w0 PARSER = null;
     public static final int PREFERENCES_FIELD_NUMBER = 1;
-    private n0 preferences_ = n0.f1415b;
+    private n0 preferences_ = n0.f1419b;
 
     static {
         f fVar = new f();
@@ -29,7 +29,7 @@ public final class f extends w {
 
     public static n0 i(f fVar) {
         n0 n0Var = fVar.preferences_;
-        if (!n0Var.f1416a) {
+        if (!n0Var.f1420a) {
             fVar.preferences_ = n0Var.b();
         }
         return fVar.preferences_;
@@ -46,18 +46,18 @@ public final class f extends w {
         m a2 = m.a();
         w wVar = (w) fVar2.d(4);
         try {
-            y0 y0Var = y0.f1463c;
+            y0 y0Var = y0.f1467c;
             y0Var.getClass();
             b1 a10 = y0Var.a(wVar.getClass());
-            e2.f fVar3 = hVar.f1383b;
+            e2.f fVar3 = hVar.f1387b;
             if (fVar3 != null) {
                 fVar = fVar3;
             } else {
                 ?? obj = new Object();
                 obj.d = 0;
-                Charset charset = z.f1466a;
-                obj.f8343c = hVar;
-                hVar.f1383b = obj;
+                Charset charset = z.f1470a;
+                obj.f8346c = hVar;
+                hVar.f1387b = obj;
                 fVar = obj;
             }
             a10.f(wVar, fVar, a2);
@@ -88,7 +88,7 @@ public final class f extends w {
             case 1:
                 return null;
             case 2:
-                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f15312a});
+                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f15047a});
             case 3:
                 return new f();
             case 4:

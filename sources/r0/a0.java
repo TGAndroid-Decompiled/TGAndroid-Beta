@@ -1,37 +1,73 @@
 package r0;
 
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.os.Build;
 import android.view.View;
 import android.view.WindowInsets;
-import java.util.WeakHashMap;
-public final class a0 implements View.OnApplyWindowInsetsListener {
-    public l1 f43693a = null;
-    public final View f43694b;
-    public final o f43695c;
-
-    public a0(View view, o oVar) {
-        this.f43694b = view;
-        this.f43695c = oVar;
+public abstract class a0 {
+    public static void a(WindowInsets windowInsets, View view) {
+        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener) view.getTag(2131296698);
+        if (onApplyWindowInsetsListener != null) {
+            onApplyWindowInsetsListener.onApplyWindowInsets(view, windowInsets);
+        }
     }
 
-    @Override
-    public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        l1 h = l1.h(view, windowInsets);
-        int i10 = Build.VERSION.SDK_INT;
-        o oVar = this.f43695c;
-        if (i10 < 30) {
-            b0.a(windowInsets, this.f43694b);
-            if (h.equals(this.f43693a)) {
-                return oVar.Q0(view, h).g();
-            }
+    public static l1 b(View view, l1 l1Var, Rect rect) {
+        WindowInsets g10 = l1Var.g();
+        if (g10 != null) {
+            return l1.h(view, view.computeSystemWindowInsets(g10, rect));
         }
-        this.f43693a = h;
-        l1 Q0 = oVar.Q0(view, h);
-        if (i10 >= 30) {
-            return Q0.g();
+        rect.setEmpty();
+        return l1Var;
+    }
+
+    public static ColorStateList c(View view) {
+        return view.getBackgroundTintList();
+    }
+
+    public static PorterDuff.Mode d(View view) {
+        return view.getBackgroundTintMode();
+    }
+
+    public static float e(View view) {
+        return view.getElevation();
+    }
+
+    public static void f(View view, ColorStateList colorStateList) {
+        view.setBackgroundTintList(colorStateList);
+    }
+
+    public static void g(View view, PorterDuff.Mode mode) {
+        view.setBackgroundTintMode(mode);
+    }
+
+    public static void h(View view, float f7) {
+        view.setElevation(f7);
+    }
+
+    public static void i(View view, n nVar) {
+        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener;
+        if (nVar != null) {
+            onApplyWindowInsetsListener = new z(view, nVar);
+        } else {
+            onApplyWindowInsetsListener = null;
         }
-        WeakHashMap weakHashMap = j0.f43732a;
-        z.c(view);
-        return Q0.g();
+        if (Build.VERSION.SDK_INT < 30) {
+            view.setTag(2131296687, onApplyWindowInsetsListener);
+        }
+        if (view.getTag(2131296686) != null) {
+            return;
+        }
+        if (onApplyWindowInsetsListener != null) {
+            view.setOnApplyWindowInsetsListener(onApplyWindowInsetsListener);
+        } else {
+            view.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener) view.getTag(2131296698));
+        }
+    }
+
+    public static void j(View view) {
+        view.stopNestedScroll();
     }
 }

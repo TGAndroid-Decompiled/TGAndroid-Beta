@@ -7,32 +7,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.x5;
 public final class f extends View implements x5 {
-    public bh.c f14276a;
-    public bh.c f14277b;
-    public int f14278c;
+    public bh.c f14278a;
+    public bh.c f14279b;
+    public int f14280c;
     public int d;
     public gh.c e;
-    public int f14279f;
+    public int f14281f;
 
     public f(Context context) {
         super(context);
     }
 
     public final void a() {
-        this.f14276a.setBounds(0, 0, getMeasuredWidth(), this.f14278c);
-        this.f14277b.setBounds(0, getMeasuredHeight() - this.d, getMeasuredWidth(), getMeasuredHeight());
+        this.f14278a.setBounds(0, 0, getMeasuredWidth(), this.f14280c);
+        this.f14279b.setBounds(0, getMeasuredHeight() - this.d, getMeasuredWidth(), getMeasuredHeight());
     }
 
     public final void b(bh.b bVar, eh.e eVar) {
         dh.d c10 = bVar.c(this, null, false);
         c10.o(eVar);
         bh.c cVar = new bh.c(c10);
-        this.f14276a = cVar;
+        this.f14278a = cVar;
         cVar.b(-AndroidUtilities.dp(30.0f), true);
         dh.d c11 = bVar.c(this, null, false);
         c11.o(eVar);
         bh.c cVar2 = new bh.c(c11);
-        this.f14277b = cVar2;
+        this.f14279b = cVar2;
         cVar2.b(AndroidUtilities.dp(30.0f), true);
     }
 
@@ -40,7 +40,7 @@ public final class f extends View implements x5 {
     public final void d() {
         int i10;
         gh.c cVar = this.e;
-        if (cVar != null && (i10 = this.f14279f) != -1) {
+        if (cVar != null && (i10 = this.f14281f) != -1) {
             cVar.a(g6.x0(null, i10, false));
             invalidate();
         }
@@ -53,8 +53,8 @@ public final class f extends View implements x5 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.f14276a.draw(canvas);
-        this.f14277b.draw(canvas);
+        this.f14278a.draw(canvas);
+        this.f14279b.draw(canvas);
     }
 
     @Override
@@ -64,17 +64,17 @@ public final class f extends View implements x5 {
     }
 
     public void setFadeHeightBottom(int i10) {
-        this.f14277b.b(i10, true);
+        this.f14279b.b(i10, true);
     }
 
     public void setFadeHeightTop(int i10) {
-        this.f14276a.b(-i10, true);
+        this.f14278a.b(-i10, true);
     }
 
     public void setFadeTopAlpha(int i10) {
-        bh.c cVar = this.f14276a;
-        if (cVar.f2761q != i10) {
-            cVar.f2761q = i10;
+        bh.c cVar = this.f14278a;
+        if (cVar.f2765q != i10) {
+            cVar.f2765q = i10;
             invalidate();
         }
     }
@@ -88,16 +88,16 @@ public final class f extends View implements x5 {
     }
 
     public void setFadeZoneTop(int i10) {
-        if (this.f14278c != i10) {
-            this.f14278c = i10;
+        if (this.f14280c != i10) {
+            this.f14280c = i10;
             a();
             invalidate();
         }
     }
 
     public void setIgnoreFastWay(boolean z10) {
-        this.f14276a.f2760p = z10;
-        this.f14277b.f2760p = z10;
+        this.f14278a.f2764p = z10;
+        this.f14279b.f2764p = z10;
     }
 
     public void setup(bh.b bVar) {
@@ -105,7 +105,7 @@ public final class f extends View implements x5 {
     }
 
     public void setupColorKey(int i10) {
-        this.f14279f = i10;
+        this.f14281f = i10;
         if (this.e == null) {
             gh.c cVar = new gh.c();
             this.e = cVar;

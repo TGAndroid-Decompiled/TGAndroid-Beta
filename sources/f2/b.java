@@ -4,10 +4,10 @@ import b2.r0;
 import b2.t0;
 import b2.x;
 public final class b implements t0 {
-    public final int f8837a;
+    public final int f8840a;
 
     public b(int i10) {
-        this.f8837a = i10;
+        this.f8840a = i10;
     }
 
     @Override
@@ -24,18 +24,18 @@ public final class b implements t0 {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof b) && this.f8837a == ((b) obj).f8837a) {
+        if ((obj instanceof b) && this.f8840a == ((b) obj).f8840a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f8837a;
+        return this.f8840a;
     }
 
     public final String toString() {
-        return "Mp4AlternateGroup: " + this.f8837a;
+        return "Mp4AlternateGroup: " + this.f8840a;
     }
 
     @Override

@@ -1,56 +1,21 @@
 package r0;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-public final class q implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
-    public final View f43746a;
-    public ViewTreeObserver f43747b;
-    public final Runnable f43748c;
+import android.view.ScrollFeedbackProvider;
+import androidx.core.widget.NestedScrollView;
+public final class q implements r {
+    public final ScrollFeedbackProvider f43506a;
 
-    public q(View view, Runnable runnable) {
-        this.f43746a = view;
-        this.f43747b = view.getViewTreeObserver();
-        this.f43748c = runnable;
-    }
-
-    public static void a(View view, Runnable runnable) {
-        if (view != null) {
-            q qVar = new q(view, runnable);
-            view.getViewTreeObserver().addOnPreDrawListener(qVar);
-            view.addOnAttachStateChangeListener(qVar);
-            return;
-        }
-        throw new NullPointerException("view == null");
+    public q(NestedScrollView nestedScrollView) {
+        this.f43506a = ScrollFeedbackProvider.createProvider(nestedScrollView);
     }
 
     @Override
-    public final boolean onPreDraw() {
-        boolean isAlive = this.f43747b.isAlive();
-        View view = this.f43746a;
-        if (isAlive) {
-            this.f43747b.removeOnPreDrawListener(this);
-        } else {
-            view.getViewTreeObserver().removeOnPreDrawListener(this);
-        }
-        view.removeOnAttachStateChangeListener(this);
-        this.f43748c.run();
-        return true;
+    public final void onScrollLimit(int i10, int i11, int i12, boolean z10) {
+        this.f43506a.onScrollLimit(i10, i11, i12, z10);
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f43747b = view.getViewTreeObserver();
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        boolean isAlive = this.f43747b.isAlive();
-        View view2 = this.f43746a;
-        if (isAlive) {
-            this.f43747b.removeOnPreDrawListener(this);
-        } else {
-            view2.getViewTreeObserver().removeOnPreDrawListener(this);
-        }
-        view2.removeOnAttachStateChangeListener(this);
+    public final void onScrollProgress(int i10, int i11, int i12, int i13) {
+        this.f43506a.onScrollProgress(i10, i11, i12, i13);
     }
 }

@@ -5,19 +5,19 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import org.telegram.messenger.camera.CameraView;
 public final class m7 extends CameraView {
-    public final Path f7426a;
-    public final n7 f7427b;
+    public final Path f7429a;
+    public final n7 f7430b;
 
     public m7(n7 n7Var, Context context) {
         super(context, true, false);
-        this.f7427b = n7Var;
-        this.f7426a = new Path();
+        this.f7430b = n7Var;
+        this.f7429a = new Path();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        Path path = this.f7426a;
+        Path path = this.f7429a;
         path.rewind();
         path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth() / 2.0f, getHeight() / 2.0f), Path.Direction.CW);
         canvas.clipPath(path);
@@ -27,7 +27,7 @@ public final class m7 extends CameraView {
 
     @Override
     public final void receivedAmplitude(double d) {
-        ((p) this.f7427b).F.setAmplitude(d);
+        ((p) this.f7430b).F.setAmplitude(d);
     }
 
     @Override

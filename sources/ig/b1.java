@@ -9,28 +9,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.dl;
+import org.telegram.ui.Components.cl;
 import org.telegram.ui.Components.es;
 import org.telegram.ui.Components.j5;
 import org.telegram.ui.Components.r6;
-import org.telegram.ui.Wallet.i8;
+import org.telegram.ui.Wallet.j8;
 public final class b1 extends EditTextBoldCursor {
-    public final int f11443b = 0;
-    public int f11444c;
+    public final int f11447b = 0;
+    public int f11448c;
     public final j5 d;
     public final r6 e;
-    public final NotificationCenter.NotificationCenterDelegate f11445f;
+    public final NotificationCenter.NotificationCenterDelegate f11449f;
 
     public b1(e1 e1Var, Activity activity) {
         super(activity);
-        this.f11445f = e1Var;
+        this.f11449f = e1Var;
         this.d = new j5(this);
         r6 r6Var = new r6(false, true, true);
         this.e = r6Var;
         r6Var.n(0.2f, 160L, es.h);
         r6Var.w(AndroidUtilities.dp(15.33f));
         r6Var.setCallback(this);
-        r6Var.f28748b = 5;
+        r6Var.f28435b = 5;
     }
 
     @Override
@@ -38,15 +38,15 @@ public final class b1 extends EditTextBoldCursor {
         int i10;
         int i11;
         int i12;
-        switch (this.f11443b) {
+        switch (this.f11447b) {
             case 0:
                 super.dispatchDraw(canvas);
-                if (this.f11444c < 0) {
-                    i10 = g6.f20122p7;
+                if (this.f11448c < 0) {
+                    i10 = g6.f19822p7;
                 } else {
                     i10 = g6.P5;
                 }
-                int a2 = this.d.a(g6.w0(i10, ((e1) this.f11445f).getResourceProvider()), false);
+                int a2 = this.d.a(g6.w0(i10, ((e1) this.f11449f).getResourceProvider()), false);
                 r6 r6Var = this.e;
                 r6Var.u(a2);
                 r6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
@@ -54,12 +54,12 @@ public final class b1 extends EditTextBoldCursor {
                 return;
             case 1:
                 super.dispatchDraw(canvas);
-                if (this.f11444c <= 0) {
-                    i11 = g6.f20122p7;
+                if (this.f11448c <= 0) {
+                    i11 = g6.f19822p7;
                 } else {
                     i11 = g6.P5;
                 }
-                int a10 = this.d.a(g6.w0(i11, ((dl) this.f11445f).f27670a), false);
+                int a10 = this.d.a(g6.w0(i11, ((cl) this.f11449f).f27359a), false);
                 r6 r6Var2 = this.e;
                 r6Var2.u(a10);
                 int scrollX = getScrollX();
@@ -70,12 +70,12 @@ public final class b1 extends EditTextBoldCursor {
                 return;
             default:
                 super.dispatchDraw(canvas);
-                if (this.f11444c <= 0) {
-                    i12 = g6.f20122p7;
+                if (this.f11448c <= 0) {
+                    i12 = g6.f19822p7;
                 } else {
                     i12 = g6.P5;
                 }
-                int a11 = this.d.a(g6.w0(i12, ((i8) this.f11445f).getResourceProvider()), false);
+                int a11 = this.d.a(g6.w0(i12, ((j8) this.f11449f).getResourceProvider()), false);
                 r6 r6Var3 = this.e;
                 r6Var3.u(a11);
                 int scrollX2 = getScrollX();
@@ -91,16 +91,16 @@ public final class b1 extends EditTextBoldCursor {
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         String str;
         String str2;
-        switch (this.f11443b) {
+        switch (this.f11447b) {
             case 0:
                 super.onTextChanged(charSequence, i10, i11, i12);
                 r6 r6Var = this.e;
                 if (r6Var != null) {
-                    this.f11444c = 96 - charSequence.length();
+                    this.f11448c = 96 - charSequence.length();
                     r6Var.a();
                     String str3 = "";
-                    if (this.f11444c <= 12) {
-                        str3 = "" + this.f11444c;
+                    if (this.f11448c <= 12) {
+                        str3 = "" + this.f11448c;
                     }
                     r6Var.t(str3, true, true);
                     return;
@@ -110,9 +110,9 @@ public final class b1 extends EditTextBoldCursor {
                 super.onTextChanged(charSequence, i10, i11, i12);
                 r6 r6Var2 = this.e;
                 if (r6Var2 != null) {
-                    this.f11444c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
+                    this.f11448c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
                     r6Var2.a();
-                    int i13 = this.f11444c;
+                    int i13 = this.f11448c;
                     if (i13 <= 100) {
                         str = Integer.toString(i13);
                     } else {
@@ -127,9 +127,9 @@ public final class b1 extends EditTextBoldCursor {
                 super.onTextChanged(charSequence, i10, i11, i12);
                 r6 r6Var3 = this.e;
                 if (r6Var3 != null) {
-                    this.f11444c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
+                    this.f11448c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
                     r6Var3.a();
-                    int i14 = this.f11444c;
+                    int i14 = this.f11448c;
                     if (i14 <= 100) {
                         str2 = Integer.toString(i14);
                     } else {
@@ -145,7 +145,7 @@ public final class b1 extends EditTextBoldCursor {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        switch (this.f11443b) {
+        switch (this.f11447b) {
             case 0:
                 if (drawable != this.e && !super.verifyDrawable(drawable)) {
                     return false;
@@ -164,29 +164,29 @@ public final class b1 extends EditTextBoldCursor {
         }
     }
 
-    public b1(dl dlVar, Context context) {
+    public b1(cl clVar, Context context) {
         super(context);
-        this.f11445f = dlVar;
-        this.f11444c = 960;
+        this.f11449f = clVar;
+        this.f11448c = 960;
         this.d = new j5(this);
         r6 r6Var = new r6(false, true, true);
         this.e = r6Var;
         r6Var.n(0.2f, 160L, es.h);
         r6Var.w(AndroidUtilities.dp(15.33f));
-        r6Var.f28748b = 5;
+        r6Var.f28435b = 5;
         r6Var.setCallback(this);
     }
 
-    public b1(i8 i8Var, Activity activity) {
+    public b1(j8 j8Var, Activity activity) {
         super(activity);
-        this.f11445f = i8Var;
-        this.f11444c = 960;
+        this.f11449f = j8Var;
+        this.f11448c = 960;
         this.d = new j5(this);
         r6 r6Var = new r6(false, true, true);
         this.e = r6Var;
         r6Var.n(0.2f, 160L, es.h);
         r6Var.w(AndroidUtilities.dp(15.33f));
-        r6Var.f28748b = 5;
+        r6Var.f28435b = 5;
         r6Var.setCallback(this);
     }
 }

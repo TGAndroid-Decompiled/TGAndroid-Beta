@@ -4,7 +4,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.m80;
+import org.telegram.ui.Components.l80;
 import org.telegram.ui.mt;
 import org.telegram.ui.vt;
 public final class r1 implements vt {
@@ -114,29 +114,13 @@ public final class r1 implements vt {
     }
 
     @Override
-    public final m80 u(ah.v vVar) {
+    public final l80 u(ah.v vVar) {
         return null;
     }
 
     @Override
     public final boolean y() {
         return true;
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void r() {
-    }
-
-    @Override
-    public final void t() {
     }
 
     @Override
@@ -177,6 +161,22 @@ public final class r1 implements vt {
 
     @Override
     public final void z(String str) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void r() {
+    }
+
+    @Override
+    public final void t() {
     }
 
     @Override

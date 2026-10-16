@@ -5,28 +5,28 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class di implements Runnable {
-    public final int f35264a = 1;
-    public final fo f35265b;
-    public final int f35266c;
+    public final int f35027a = 1;
+    public final fo f35028b;
+    public final int f35029c;
     public final MessageObject d;
 
     public di(fo foVar, int i10, MessageObject messageObject) {
-        this.f35265b = foVar;
-        this.f35266c = i10;
+        this.f35028b = foVar;
+        this.f35029c = i10;
         this.d = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f35264a) {
+        switch (this.f35027a) {
             case 0:
-                this.f35265b.f36037n4 = null;
-                this.d.messageOwner.replies.read_max_id = this.f35266c;
+                this.f35028b.f35738n4 = null;
+                this.d.messageOwner.replies.read_max_id = this.f35029c;
                 return;
             default:
-                fo foVar = this.f35265b;
+                fo foVar = this.f35028b;
                 org.telegram.ui.Components.zc.a0(foVar).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessagesController.getInstance(this.f35266c).disableAds(false);
+                MessagesController.getInstance(this.f35029c).disableAds(false);
                 MessageObject messageObject = this.d;
                 foVar.Ja(messageObject);
                 foVar.La(messageObject);
@@ -35,8 +35,8 @@ public final class di implements Runnable {
     }
 
     public di(fo foVar, MessageObject messageObject, int i10) {
-        this.f35265b = foVar;
+        this.f35028b = foVar;
         this.d = messageObject;
-        this.f35266c = i10;
+        this.f35029c = i10;
     }
 }

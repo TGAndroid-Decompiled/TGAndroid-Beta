@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 import org.webrtc.VideoFrame;
 public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     private final int height;
-    private final int f42780id;
+    private final int f42483id;
     private final RefCountDelegate refCountDelegate;
     private final RefCountMonitor refCountMonitor;
     private final Handler toI420Handler;
@@ -64,7 +64,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
 
     @Override
     public final int getBufferType() {
-        return b0.a(this);
+        return a0.a(this);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
 
     @Override
     public int getTextureId() {
-        return this.f42780id;
+        return this.f42483id;
     }
 
     public Handler getToI420Handler() {
@@ -149,11 +149,11 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         this.width = i12;
         this.height = i13;
         this.type = type;
-        this.f42780id = i14;
+        this.f42483id = i14;
         this.transformMatrix = matrix;
         this.toI420Handler = handler;
         this.yuvConverter = yuvConverter;
-        this.refCountDelegate = new RefCountDelegate(new t(0, this, refCountMonitor));
+        this.refCountDelegate = new RefCountDelegate(new s(0, this, refCountMonitor));
         this.refCountMonitor = refCountMonitor;
     }
 
@@ -161,7 +161,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         Matrix matrix2 = new Matrix(this.transformMatrix);
         matrix2.preConcat(matrix);
         retain();
-        return new TextureBufferImpl(i10, i11, i12, i13, this.type, this.f42780id, matrix2, this.toI420Handler, this.yuvConverter, new RefCountMonitor() {
+        return new TextureBufferImpl(i10, i11, i12, i13, this.type, this.f42483id, matrix2, this.toI420Handler, this.yuvConverter, new RefCountMonitor() {
             {
                 TextureBufferImpl.this = this;
             }

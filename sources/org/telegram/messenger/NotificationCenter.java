@@ -396,10 +396,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f16711id;
+        private int f16403id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f16711id = i10;
+            this.f16403id = i10;
             this.args = objArr;
         }
     }
@@ -477,9 +477,9 @@ public class NotificationCenter {
                 } else {
                     kVar.getClass();
                 }
-                StringBuilder k10 = i2.d.k(i11, "Index ", " must be in 0..");
-                k10.append(kVar.f24b - 1);
-                throw new IndexOutOfBoundsException(k10.toString());
+                StringBuilder l4 = i2.d.l(i11, "Index ", " must be in 0..");
+                l4.append(kVar.f24b - 1);
+                throw new IndexOutOfBoundsException(l4.toString());
             }
             this.ids.f24b = 0;
             this.notificationCenter = null;
@@ -915,7 +915,7 @@ public class NotificationCenter {
             arrayList2.add(notificationCenterDelegate);
             if (BuildVars.DEBUG_VERSION && !alreadyLogged && arrayList2.size() > 1000) {
                 alreadyLogged = true;
-                FileLog.e((Throwable) new RuntimeException(i2.d.i(i10, "Total observers more than 1000, need check for memory leak. ")), true);
+                FileLog.e((Throwable) new RuntimeException(i2.d.j(i10, "Total observers more than 1000, need check for memory leak. ")), true);
             }
         }
     }
@@ -963,18 +963,18 @@ public class NotificationCenter {
             if (intValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + keyAt + " REMOVED (was " + intValue + ")");
             } else if (intValue != intValue2) {
-                StringBuilder l4 = i2.d.l("key=", keyAt, " CHANGED: ", intValue, " -> ");
-                l4.append(intValue2);
-                Log.i("ObserverDiff", l4.toString());
+                StringBuilder m10 = i2.d.m("key=", keyAt, " CHANGED: ", intValue, " -> ");
+                m10.append(intValue2);
+                Log.i("ObserverDiff", m10.toString());
             }
         }
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder k10 = i2.d.k(keyAt2, "key=", " ADDED (size=");
-                k10.append(sparseArray2.valueAt(i11));
-                k10.append(")");
-                Log.i("ObserverDiff", k10.toString());
+                StringBuilder l4 = i2.d.l(keyAt2, "key=", " ADDED (size=");
+                l4.append(sparseArray2.valueAt(i11));
+                l4.append(")");
+                Log.i("ObserverDiff", l4.toString());
             }
         }
     }
@@ -1395,7 +1395,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f16711id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f16403id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

@@ -13,19 +13,19 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.db;
 import org.telegram.ui.Components.lm0;
 import org.telegram.ui.Components.mm0;
 import org.telegram.ui.Components.p7;
-import org.telegram.ui.Components.z61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import w7.a6;
+import w7.z5;
 public final class d extends db {
-    public static final int f48808a0 = 0;
+    public static final int f48807a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public z61 Z;
+    public a71 Z;
 
     public d(Context context, c6 c6Var, GiftAuctionController.Auction auction, List list) {
         super(context, null, false, false, 2, c6Var);
@@ -34,7 +34,7 @@ public final class d extends db {
         this.v = 0.2f;
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.e.setTitle(A());
+        this.e.setTitle(B());
         fixNavigationBar();
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new p7(3));
@@ -42,7 +42,7 @@ public final class d extends db {
         di.d dVar = new di.d(context, c6Var, true);
         dVar.setOnClickListener(new ji.o4(this, 16));
         dVar.g(LocaleController.getString(R.string.OK), false, true);
-        FrameLayout.LayoutParams a2 = a6.a(48.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 80);
+        FrameLayout.LayoutParams a2 = z5.a(48.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 80);
         int i10 = a2.leftMargin;
         int i11 = this.backgroundPaddingLeft;
         a2.leftMargin = i10 + i11;
@@ -71,7 +71,7 @@ public final class d extends db {
     }
 
     @Override
-    public final CharSequence A() {
+    public final CharSequence B() {
         List list = this.X;
         if (list == null) {
             return null;
@@ -81,9 +81,9 @@ public final class d extends db {
 
     @Override
     public final lm0 x(mm0 mm0Var) {
-        z61 z61Var = new z61(this.d, getContext(), this.currentAccount, 0, true, new ii.a(this, 11), this.resourcesProvider);
-        this.Z = z61Var;
-        z61Var.f31780r = false;
-        return z61Var;
+        a71 a71Var = new a71(this.d, getContext(), this.currentAccount, 0, true, new ii.a(this, 11), this.resourcesProvider);
+        this.Z = a71Var;
+        a71Var.f23145r = false;
+        return a71Var;
     }
 }

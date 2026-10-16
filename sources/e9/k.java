@@ -22,7 +22,7 @@ public class k extends f implements SortedSet {
     }
 
     public SortedMap h() {
-        return (SortedMap) this.f8559b;
+        return (SortedMap) this.f8562b;
     }
 
     public SortedSet headSet(Object obj) {

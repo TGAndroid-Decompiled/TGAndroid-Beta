@@ -51,8 +51,8 @@ public final class ap extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         int i12;
         switch (this.T) {
             case 2:
-                m80 m80Var = (m80) this.U;
-                if (this == m80Var.A && (i12 = m80Var.X) > 0) {
+                l80 l80Var = (l80) this.U;
+                if (this == l80Var.A && (i12 = l80Var.X) > 0) {
                     i11 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11));
                 }
                 super.onMeasure(i10, i11);
@@ -63,9 +63,9 @@ public final class ap extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         }
     }
 
-    public ap(m80 m80Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
+    public ap(l80 l80Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
         super(i10, i11, context, c6Var);
         this.T = 2;
-        this.U = m80Var;
+        this.U = l80Var;
     }
 }

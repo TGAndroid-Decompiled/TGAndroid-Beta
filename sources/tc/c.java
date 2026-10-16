@@ -5,15 +5,15 @@ import e2.j0;
 import java.nio.ByteBuffer;
 public abstract class c {
     public static void a(c0 c0Var, c0 c0Var2) {
-        boolean n10;
+        boolean i10;
         int[] iArr = {0};
         do {
-            n10 = c0Var.n(iArr[0]);
+            i10 = c0Var.i(iArr[0]);
             iArr[0] = iArr[0] + 1;
-            int s10 = c0Var.s(2, iArr);
-            if (s10 != 0) {
-                if (s10 != 1) {
-                    if (s10 == 2) {
+            int n10 = c0Var.n(2, iArr);
+            if (n10 != 0) {
+                if (n10 != 1) {
+                    if (n10 == 2) {
                         j0[] j0VarArr = new j0[2];
                         d.e(c0Var, iArr, j0VarArr);
                         b(c0Var, iArr, c0Var2, j0VarArr[0], j0VarArr[1]);
@@ -24,25 +24,25 @@ public abstract class c {
                     b(c0Var, iArr, c0Var2, g.f45579f, f.f45578f);
                 }
             } else {
-                int i10 = ((iArr[0] + 7) & (-8)) / 8;
-                int l4 = ((c0Var.l(i10 + 1) & 255) * 256) + (c0Var.l(i10) & 255);
-                int i11 = i10 + 4;
+                int i11 = ((iArr[0] + 7) & (-8)) / 8;
+                int g10 = ((c0Var.g(i11 + 1) & 255) * 256) + (c0Var.g(i11) & 255);
+                int i12 = i11 + 4;
                 c0Var2.getClass();
-                byte[] array = ((ByteBuffer) c0Var.f4353c).array();
-                int capacity = ((ByteBuffer) c0Var2.f4353c).capacity();
-                int i12 = c0Var2.f4352b + l4;
-                if (capacity < i12) {
-                    c0Var2.j(i12 + 1024);
+                byte[] array = ((ByteBuffer) c0Var.f4356c).array();
+                int capacity = ((ByteBuffer) c0Var2.f4356c).capacity();
+                int i13 = c0Var2.f4355b + g10;
+                if (capacity < i13) {
+                    c0Var2.f(i13 + 1024);
                 }
-                ((ByteBuffer) c0Var2.f4353c).put(array, i11, l4);
-                c0Var2.f4352b += l4;
-                iArr[0] = (i11 + l4) * 8;
+                ((ByteBuffer) c0Var2.f4356c).put(array, i12, g10);
+                c0Var2.f4355b += g10;
+                iArr[0] = (i12 + g10) * 8;
             }
-            if (c0Var.f4352b <= iArr[0] / 8) {
-                n10 = true;
+            if (c0Var.f4355b <= iArr[0] / 8) {
+                i10 = true;
                 continue;
             }
-        } while (!n10);
+        } while (!i10);
     }
 
     public static void b(c0 c0Var, int[] iArr, c0 c0Var2, j0 j0Var, j0 j0Var2) {
@@ -52,11 +52,11 @@ public abstract class c {
                 return;
             }
             if (k10 >= 0 && k10 <= 255) {
-                c0Var2.p(k10);
+                c0Var2.k(k10);
             } else {
                 int f7 = d.f(c0Var, iArr, k10);
                 int d = d.d(c0Var, iArr, j0Var2);
-                int i10 = c0Var2.f4352b;
+                int i10 = c0Var2.f4355b;
                 byte[] bArr = new byte[f7];
                 int i11 = i10 - d;
                 int i12 = 0;
@@ -65,11 +65,11 @@ public abstract class c {
                     if (i10 <= i13) {
                         i13 = i11;
                     }
-                    bArr[i12] = c0Var2.l(i13);
+                    bArr[i12] = c0Var2.g(i13);
                     i12++;
                     i13++;
                 }
-                c0Var2.r(bArr);
+                c0Var2.m(bArr);
             }
         }
     }

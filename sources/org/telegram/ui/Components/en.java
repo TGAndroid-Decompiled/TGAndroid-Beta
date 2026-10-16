@@ -33,26 +33,26 @@ public final class en extends ni {
     public int R;
     public boolean S;
     public boolean T;
-    public org.telegram.ui.ActionBar.c6 f24745n;
-    public bi.o0 f24746r;
-    public s4.b0 f24747s;
+    public org.telegram.ui.ActionBar.c6 f24432n;
+    public bi.o0 f24433r;
+    public s4.b0 f24434s;
     public dn v;
-    public UndoView f24748w;
-    public TextView f24749x;
-    public float f24750y;
+    public UndoView f24435w;
+    public TextView f24436x;
+    public float f24437y;
 
     @Override
-    public final void B(int r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.en.B(int, int):void");
+    public final void C(int r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.en.C(int, int):void");
     }
 
     @Override
     public final void E(int i10) {
-        vi viVar = this.f27671b;
+        vi viVar = this.f27360b;
         if (i10 > 1) {
-            viVar.f29995d1.K(0);
+            viVar.f29666d1.K(0);
         } else {
-            viVar.f29995d1.r(0);
+            viVar.f29666d1.r(0);
         }
     }
 
@@ -62,14 +62,14 @@ public final class en extends ni {
         this.Q = true;
         if (niVar instanceof ChatAttachAlertPhotoLayout) {
             this.P = (ChatAttachAlertPhotoLayout) niVar;
-            dnVar.f24451c.clear();
+            dnVar.f24144c.clear();
             ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.P;
             dnVar.h = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             dnVar.d = chatAttachAlertPhotoLayout.getSelectedPhotos();
             dnVar.c();
             dnVar.requestLayout();
-            this.f24747s.h1(0, 0);
-            this.f24746r.post(new sk(5, this, niVar));
+            this.f24434s.h1(0, 0);
+            this.f24433r.post(new vm(0, this, niVar));
             postDelayed(new qg(this, 25), 250L);
             dnVar.i(this.P, false);
         } else {
@@ -79,18 +79,18 @@ public final class en extends ni {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f24749x.animate().alpha(1.0f).setDuration(150L).setInterpolator(es.f24771f);
+        ViewPropertyAnimator interpolator = this.f24436x.animate().alpha(1.0f).setDuration(150L).setInterpolator(es.f24465f);
         this.O = interpolator;
         interpolator.start();
     }
 
     @Override
     public final void J() {
-        this.f24746r.x0(0);
+        this.f24433r.x0(0);
     }
 
     public final void N() {
-        ArrayList arrayList = this.v.f24450b;
+        ArrayList arrayList = this.v.f24143b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -115,8 +115,8 @@ public final class en extends ni {
                     bnVar.v.recycle();
                 }
                 bnVar.v = createBitmap;
-                bnVar.f23821w = 0.0f;
-                bnVar.O.f24139z.invalidate();
+                bnVar.f23514w = 0.0f;
+                bnVar.O.f23826z.invalidate();
             }
         }
     }
@@ -133,7 +133,7 @@ public final class en extends ni {
     public final void dispatchDraw(Canvas canvas) {
         Drawable d;
         int i10;
-        org.telegram.ui.co coVar = this.f27671b.f30036r;
+        org.telegram.ui.co coVar = this.f27360b.f29707r;
         boolean z10 = false;
         if (coVar != null && (d = coVar.d()) != null) {
             int currentItemTop = getCurrentItemTop();
@@ -165,7 +165,7 @@ public final class en extends ni {
 
     @Override
     public int getCurrentItemTop() {
-        bi.o0 o0Var = this.f24746r;
+        bi.o0 o0Var = this.f24433r;
         if (o0Var.getChildCount() <= 0) {
             o0Var.setTopGlowOffset(o0Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -188,7 +188,7 @@ public final class en extends ni {
 
     @Override
     public int getListTopPadding() {
-        return this.f24746r.getPaddingTop();
+        return this.f24433r.getPaddingTop();
     }
 
     public float getPreviewScale() {
@@ -203,12 +203,12 @@ public final class en extends ni {
     public int getSelectedItemsCount() {
         xm xmVar;
         ArrayList arrayList;
-        ArrayList arrayList2 = this.v.f24450b;
+        ArrayList arrayList2 = this.v.f24143b;
         int size = arrayList2.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
             cn cnVar = (cn) arrayList2.get(i11);
-            if (cnVar != null && (xmVar = cnVar.f24125k) != null && (arrayList = xmVar.f31275g) != null) {
+            if (cnVar != null && (xmVar = cnVar.f23812k) != null && (arrayList = xmVar.f30952g) != null) {
                 i10 = arrayList.size() + i10;
             }
         }
@@ -222,7 +222,7 @@ public final class en extends ni {
 
     @Override
     public final boolean j() {
-        this.f27671b.d2(false);
+        this.f27360b.d2(false);
         return true;
     }
 
@@ -239,11 +239,11 @@ public final class en extends ni {
         }
         if (this.T != z11) {
             this.T = z11;
-            int size = dnVar.f24450b.size();
+            int size = dnVar.f24143b.size();
             for (int i14 = 0; i14 < size; i14++) {
-                cn cnVar = (cn) dnVar.f24450b.get(i14);
-                if (cnVar.f24125k.f31275g.size() == 1) {
-                    cn.a(cnVar, cnVar.f24125k, true);
+                cn cnVar = (cn) dnVar.f24143b.get(i14);
+                if (cnVar.f23812k.f30952g.size() == 1) {
+                    cn.a(cnVar, cnVar.f23812k, true);
                 }
             }
         }
@@ -261,11 +261,11 @@ public final class en extends ni {
     public final void t() {
         MediaController.PhotoEntry photoEntry;
         this.J = null;
-        UndoView undoView = this.f24748w;
+        UndoView undoView = this.f24435w;
         if (undoView != null) {
             undoView.e(0, false);
         }
-        ArrayList arrayList = this.v.f24450b;
+        ArrayList arrayList = this.v.f24143b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -278,7 +278,7 @@ public final class en extends ni {
                 Object obj2 = arrayList2.get(i11);
                 i11++;
                 bn bnVar = (bn) obj2;
-                if (bnVar.e && (photoEntry = bnVar.f23804b) != null) {
+                if (bnVar.e && (photoEntry = bnVar.f23497b) != null) {
                     photoEntry.isChatPreviewSpoilerRevealed = false;
                 }
             }
@@ -294,13 +294,13 @@ public final class en extends ni {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f24749x.animate().alpha(0.0f).setDuration(150L).setInterpolator(es.f24774j);
+        ViewPropertyAnimator interpolator = this.f24436x.animate().alpha(0.0f).setDuration(150L).setInterpolator(es.f24468j);
         this.O = interpolator;
         interpolator.start();
-        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (viVar = this.f27671b).f30013j0) != null) {
-            chatAttachAlertPhotoLayout.f23028c1.setIcon(R.drawable.msg_view_file);
-            viVar.f30013j0.f23028c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
-            viVar.f30013j0.f23028c1.setRightIcon(R.drawable.msg_arrowright);
+        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (viVar = this.f27360b).f29684j0) != null) {
+            chatAttachAlertPhotoLayout.f22728c1.setIcon(R.drawable.msg_view_file);
+            viVar.f29684j0.f22728c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
+            viVar.f29684j0.f22728c1.setRightIcon(R.drawable.msg_arrowright);
         }
         this.v.i(this.P, true);
     }
@@ -308,7 +308,7 @@ public final class en extends ni {
     @Override
     public final void w(int i10) {
         try {
-            this.f27671b.f30013j0.w(i10);
+            this.f27360b.f29684j0.w(i10);
         } catch (Exception unused) {
         }
     }

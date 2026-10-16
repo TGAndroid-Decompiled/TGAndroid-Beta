@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
+import m2.t;
 import r9.n;
 public final class h {
     public static final Object f14624k = new Object();
@@ -44,10 +45,10 @@ public final class h {
         n6.l.f(str);
         this.f14627b = str;
         this.f14628c = jVar;
-        a aVar = FirebaseInitProvider.f6232a;
+        a aVar = FirebaseInitProvider.f6235a;
         Trace.beginSection("Firebase");
         Trace.beginSection("ComponentDiscovery");
-        ArrayList A = new m4.c(21, context, new l2.f(ComponentDiscoveryService.class, 16)).A();
+        ArrayList A = new t(21, context, new gb.e(ComponentDiscoveryService.class)).A();
         Trace.endSection();
         Trace.beginSection("Runtime");
         s9.l lVar = s9.l.f45074a;
@@ -65,7 +66,7 @@ public final class h {
         } else {
             z10 = true;
         }
-        if (z10 && FirebaseInitProvider.f6233b.get()) {
+        if (z10 && FirebaseInitProvider.f6236b.get()) {
             arrayList2.add(r9.a.c(aVar, a.class, new Class[0]));
         }
         r9.g gVar = new r9.g(lVar, arrayList, arrayList2, aVar2);
@@ -76,7 +77,7 @@ public final class h {
         e eVar = new e(this);
         a();
         if (atomicBoolean.get()) {
-            com.google.android.gms.common.api.internal.d.e.f4926a.get();
+            com.google.android.gms.common.api.internal.d.e.f4929a.get();
         }
         copyOnWriteArrayList.add(eVar);
         Trace.endSection();
@@ -202,7 +203,7 @@ public final class h {
         sb3.append(str);
         Log.i("FirebaseApp", sb3.toString());
         a();
-        this.d.d("[DEFAULT]".equals(str));
+        this.d.h("[DEFAULT]".equals(str));
         ((oa.c) this.h.get()).c();
     }
 
@@ -230,9 +231,9 @@ public final class h {
     }
 
     public final String toString() {
-        m4.c cVar = new m4.c(this);
-        cVar.u(this.f14627b, "name");
-        cVar.u(this.f14628c, "options");
-        return cVar.toString();
+        t tVar = new t(this);
+        tVar.q(this.f14627b, "name");
+        tVar.q(this.f14628c, "options");
+        return tVar.toString();
     }
 }

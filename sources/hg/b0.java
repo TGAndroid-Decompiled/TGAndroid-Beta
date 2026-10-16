@@ -13,17 +13,17 @@ import org.telegram.ui.Cells.j2;
 import org.telegram.ui.Cells.n4;
 import org.telegram.ui.Components.lm0;
 public class b0 extends lm0 {
-    public final Context f10500c;
+    public final Context f10504c;
     public final int d;
     public final boolean e;
-    public final boolean f10501f;
+    public final boolean f10505f;
     public final c6 h;
 
     public b0(int i10, Context context, c6 c6Var, boolean z10, boolean z11) {
         this.e = z10;
-        this.f10500c = context;
+        this.f10504c = context;
         this.d = i10;
-        this.f10501f = z11;
+        this.f10505f = z11;
         this.h = c6Var;
     }
 
@@ -85,9 +85,9 @@ public class b0 extends lm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         boolean z10 = this.e;
-        n4 n4Var = new n4(this.f10500c, this.h, z10);
-        if (this.f10501f && !n4Var.f21562x) {
-            n4Var.f21562x = true;
+        n4 n4Var = new n4(this.f10504c, this.h, z10);
+        if (this.f10505f && !n4Var.f21269x) {
+            n4Var.f21269x = true;
             NotificationCenter.getInstance(n4Var.h).listen(n4Var, NotificationCenter.userIsPremiumBlockedUpadted, new j2(n4Var, 1));
         }
         n4Var.setLayoutParams(new s4.o0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));

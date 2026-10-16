@@ -6,7 +6,7 @@ public final class i1 {
     public b2.v0 f44897c;
 
     public static i1 a() {
-        i1 i1Var = (i1) d.b();
+        i1 i1Var = (i1) d.a();
         if (i1Var == null) {
             return new Object();
         }

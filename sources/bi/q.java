@@ -23,9 +23,9 @@ public final class q extends pg.b {
         boolean z10 = this.d;
         px pxVar = this.e;
         if (z10) {
-            arrayList = pxVar.f3843y;
+            arrayList = pxVar.f3847y;
         } else {
-            arrayList = pxVar.f3841x;
+            arrayList = pxVar.f3845x;
         }
         return arrayList.size();
     }
@@ -33,13 +33,13 @@ public final class q extends pg.b {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         u uVar = (u) b1Var.f44838a;
-        uVar.f3760b = i10;
+        uVar.f3764b = i10;
         boolean z10 = this.d;
         px pxVar = this.e;
         if (z10) {
-            uVar.setDialogId(((r) pxVar.f3843y.get(i10)).f3602c);
+            uVar.setDialogId(((r) pxVar.f3847y.get(i10)).f3606c);
         } else {
-            uVar.setDialogId(((r) pxVar.f3841x.get(i10)).f3602c);
+            uVar.setDialogId(((r) pxVar.f3845x.get(i10)).f3606c);
         }
     }
 

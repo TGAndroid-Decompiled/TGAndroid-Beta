@@ -9,22 +9,22 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.tl.TL_account;
 public final class v0 implements Runnable {
-    public final int f7968a;
-    public final MessagesStorage f7969b;
-    public final ArrayList f7970c;
+    public final int f7971a;
+    public final MessagesStorage f7972b;
+    public final ArrayList f7973c;
 
     public v0(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f7968a = i10;
-        this.f7969b = messagesStorage;
-        this.f7970c = arrayList;
+        this.f7971a = i10;
+        this.f7972b = messagesStorage;
+        this.f7973c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f7968a) {
+        switch (this.f7971a) {
             case 0:
-                MessagesStorage messagesStorage = this.f7969b;
-                ArrayList arrayList = this.f7970c;
+                MessagesStorage messagesStorage = this.f7972b;
+                ArrayList arrayList = this.f7973c;
                 try {
                     SQLiteDatabase database = messagesStorage.getDatabase();
                     if (database != null) {
@@ -37,8 +37,8 @@ public final class v0 implements Runnable {
                     return;
                 }
             case 1:
-                MessagesStorage messagesStorage2 = this.f7969b;
-                ArrayList arrayList2 = this.f7970c;
+                MessagesStorage messagesStorage2 = this.f7972b;
+                ArrayList arrayList2 = this.f7973c;
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
@@ -72,8 +72,8 @@ public final class v0 implements Runnable {
                     throw th2;
                 }
             default:
-                MessagesStorage messagesStorage3 = this.f7969b;
-                ArrayList arrayList3 = this.f7970c;
+                MessagesStorage messagesStorage3 = this.f7972b;
+                ArrayList arrayList3 = this.f7973c;
                 try {
                     SQLiteDatabase database3 = messagesStorage3.getDatabase();
                     String join = TextUtils.join(", ", arrayList3);

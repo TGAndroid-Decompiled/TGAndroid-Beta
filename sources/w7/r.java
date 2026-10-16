@@ -1,28 +1,22 @@
 package w7;
-
-import android.os.Build;
-import android.text.TextUtils;
-import android.view.View;
 public abstract class r {
-    public static void a(View view, CharSequence charSequence) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            m.n3.a(view, charSequence);
-            return;
+    public static float a(float f7, float f10, float f11) {
+        if (f7 < f10) {
+            return f10;
         }
-        m.p3 p3Var = m.p3.v;
-        if (p3Var != null && p3Var.f15206a == view) {
-            m.p3.b(null);
+        if (f7 > f11) {
+            return f11;
         }
-        if (TextUtils.isEmpty(charSequence)) {
-            m.p3 p3Var2 = m.p3.f15205w;
-            if (p3Var2 != null && p3Var2.f15206a == view) {
-                p3Var2.a();
-            }
-            view.setOnLongClickListener(null);
-            view.setLongClickable(false);
-            view.setOnHoverListener(null);
-            return;
+        return f7;
+    }
+
+    public static int b(int i10, int i11, int i12) {
+        if (i10 < i11) {
+            return i11;
         }
-        new m.p3(view, charSequence);
+        if (i10 > i12) {
+            return i12;
+        }
+        return i10;
     }
 }

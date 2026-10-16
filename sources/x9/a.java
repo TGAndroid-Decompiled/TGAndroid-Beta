@@ -5,27 +5,27 @@ import android.content.pm.PackageInfo;
 import android.os.Build;
 import java.util.ArrayList;
 public final class a {
-    public final String f48273a;
-    public final String f48274b;
-    public final ArrayList f48275c;
+    public final String f48272a;
+    public final String f48273b;
+    public final ArrayList f48274c;
     public final String d;
     public final String e;
-    public final String f48276f;
-    public final String f48277g;
-    public final m4.c h;
+    public final String f48275f;
+    public final String f48276g;
+    public final m2.t h;
 
-    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, m4.c cVar) {
-        this.f48273a = str;
-        this.f48274b = str2;
-        this.f48275c = arrayList;
+    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, m2.t tVar) {
+        this.f48272a = str;
+        this.f48273b = str2;
+        this.f48274c = arrayList;
         this.d = str3;
         this.e = str4;
-        this.f48276f = str5;
-        this.f48277g = str6;
-        this.h = cVar;
+        this.f48275f = str5;
+        this.f48276g = str6;
+        this.h = tVar;
     }
 
-    public static a a(Context context, v vVar, String str, String str2, ArrayList arrayList, m4.c cVar) {
+    public static a a(Context context, v vVar, String str, String str2, ArrayList arrayList, m2.t tVar) {
         String num;
         String packageName = context.getPackageName();
         String c10 = vVar.c();
@@ -40,6 +40,6 @@ public final class a {
         if (str4 == null) {
             str4 = "0.0";
         }
-        return new a(str, str2, arrayList, c10, packageName, str3, str4, cVar);
+        return new a(str, str2, arrayList, c10, packageName, str3, str4, tVar);
     }
 }

@@ -51,12 +51,12 @@ public abstract class b {
         if (g(context, "com.google.android.gms", i10)) {
             try {
                 PackageInfo packageInfo = context.getPackageManager().getPackageInfo("com.google.android.gms", 64);
-                h p5 = h.p(context);
-                p5.getClass();
+                h a2 = h.a(context);
+                a2.getClass();
                 if (packageInfo != null) {
-                    if (!h.t(packageInfo, false)) {
-                        if (h.t(packageInfo, true)) {
-                            if (!k6.g.a((Context) p5.f14176b)) {
+                    if (!h.c(packageInfo, false)) {
+                        if (h.c(packageInfo, true)) {
+                            if (!k6.g.a(a2.f14178a)) {
                                 Log.w("GoogleSignatureVerifier", "Test-keys aren't accepted on this build.");
                             }
                         }
@@ -97,7 +97,7 @@ public abstract class b {
         k0.b a2 = w6.b.a(context);
         a2.getClass();
         try {
-            AppOpsManager appOpsManager = (AppOpsManager) a2.f13761a.getSystemService("appops");
+            AppOpsManager appOpsManager = (AppOpsManager) a2.f13764a.getSystemService("appops");
             if (appOpsManager != null) {
                 appOpsManager.checkPackage(i10, str);
                 return true;

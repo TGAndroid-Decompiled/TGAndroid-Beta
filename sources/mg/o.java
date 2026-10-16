@@ -2,9 +2,9 @@ package mg;
 public interface o {
     void A();
 
-    void M(boolean z10);
+    void I(boolean z10);
 
-    void i0(boolean z10);
+    void d0(boolean z10);
 
-    void k0();
+    void h0();
 }

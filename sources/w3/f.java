@@ -1,19 +1,12 @@
 package w3;
+public final class f {
+    public final long f47088a;
+    public final boolean f47089b;
+    public final int f47090c;
 
-import e2.x;
-import f2.v;
-public final class f implements d9.k, v {
-    public final i f47088a;
-
-    @Override
-    public void a(long j10, x xVar) {
-        c3.b.c(j10, xVar, this.f47088a.K);
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        r rVar = (r) obj;
-        this.f47088a.getClass();
-        return rVar;
+    public f(int i10, long j10, boolean z10) {
+        this.f47088a = j10;
+        this.f47089b = z10;
+        this.f47090c = i10;
     }
 }

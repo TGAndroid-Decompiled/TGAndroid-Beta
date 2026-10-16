@@ -9,31 +9,30 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.messenger.yh;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.o9;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.lm;
+import org.telegram.ui.Components.km;
 import org.telegram.ui.Components.vi;
 import org.telegram.ui.Components.vj;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.fo;
 public final class h0 implements Runnable {
-    public final int f13288a = 1;
-    public final int f13289b;
-    public final int f13290c;
+    public final int f13291a = 1;
+    public final int f13292b;
+    public final int f13293c;
     public final Object d;
     public final Object e;
-    public final Object f13291f;
+    public final Object f13294f;
     public final Object h;
 
-    public h0(m4.j1 j1Var, m4.w wVar, int i10, m4.f0 f0Var, int i11, m4.h1 h1Var) {
-        this.d = j1Var;
-        this.e = wVar;
-        this.f13289b = i10;
-        this.f13291f = f0Var;
-        this.f13290c = i11;
-        this.h = h1Var;
+    public h0(m4.i1 i1Var, m4.v vVar, int i10, m4.e0 e0Var, int i11, m4.g1 g1Var) {
+        this.d = i1Var;
+        this.e = vVar;
+        this.f13292b = i10;
+        this.f13294f = e0Var;
+        this.f13293c = i11;
+        this.h = g1Var;
     }
 
     @Override
@@ -49,20 +48,20 @@ public final class h0 implements Runnable {
         int i12;
         fo foVar;
         boolean z10;
-        int i13 = this.f13288a;
-        final int i14 = this.f13290c;
+        int i13 = this.f13291a;
+        final int i14 = this.f13293c;
         Object obj = this.h;
-        Object obj2 = this.f13291f;
+        Object obj2 = this.f13294f;
         Object obj3 = this.e;
-        int i15 = this.f13289b;
+        int i15 = this.f13292b;
         Object obj4 = this.d;
         switch (i13) {
             case 0:
                 h1 h1Var = (h1) obj3;
                 o9 o9Var = (o9) obj2;
                 j0 j0Var = (j0) obj;
-                k0 k0Var = (k0) ((n4.s) obj4).f16032c;
-                if (h1Var.length() >= i15 && h1Var.getSelectionStart() != h1Var.getSelectionEnd() && o9Var.j0(j0Var.L(), 0, i14, i15)) {
+                k0 k0Var = (k0) ((n4.s) obj4).f15746c;
+                if (h1Var.length() >= i15 && h1Var.getSelectionStart() != h1Var.getSelectionEnd() && o9Var.j0(j0Var.g0(), 0, i14, i15)) {
                     k0Var.d = true;
                     h1Var.setSelection(i15);
                     k0Var.d = false;
@@ -70,26 +69,26 @@ public final class h0 implements Runnable {
                 }
                 return;
             case 1:
-                final m4.w wVar = (m4.w) obj3;
-                final m4.f0 f0Var = (m4.f0) obj2;
-                final m4.h1 h1Var2 = (m4.h1) obj;
-                qi.e eVar = ((m4.j1) obj4).f15475b;
-                if (!eVar.u(wVar, i15)) {
-                    m4.j1.P0(f0Var, wVar, i14, new m4.t1(-4));
+                final m4.v vVar = (m4.v) obj3;
+                final m4.e0 e0Var = (m4.e0) obj2;
+                final m4.g1 g1Var = (m4.g1) obj;
+                pi.e eVar = ((m4.i1) obj4).f15205b;
+                if (!eVar.u(vVar, i15)) {
+                    m4.i1.P0(e0Var, vVar, i14, new m4.s1(-4));
                     return;
                 }
-                pb.a aVar = f0Var.e;
-                f0Var.s(wVar);
+                pb.a aVar = e0Var.e;
+                e0Var.s(vVar);
                 aVar.getClass();
                 if (i15 == 27) {
-                    h1Var2.c(f0Var, wVar, i14);
-                    eVar.b(wVar, i15, new Object());
+                    g1Var.c(e0Var, vVar, i14);
+                    eVar.b(vVar, i15, new Object());
                     return;
                 }
-                eVar.b(wVar, i15, new m4.h() {
+                eVar.b(vVar, i15, new m4.g() {
                     @Override
                     public final j9.y run() {
-                        return (j9.y) h1.this.c(f0Var, wVar, i14);
+                        return (j9.y) g1.this.c(e0Var, vVar, i14);
                     }
                 });
                 return;
@@ -148,12 +147,12 @@ public final class h0 implements Runnable {
                     while (i18 < i16) {
                         int i19 = i18;
                         String str4 = strArr2[i19];
-                        if ((str == null || (!str.startsWith(str4) && !yh.v(" ", str4, str))) && (str2 == null || (!str2.startsWith(str4) && !yh.v(" ", str4, str2)))) {
+                        if ((str == null || (!str.startsWith(str4) && !org.telegram.messenger.g0.w(" ", str4, str))) && (str2 == null || (!str2.startsWith(str4) && !org.telegram.messenger.g0.w(" ", str4, str2)))) {
                             str3 = str;
                             TLRPC.User user2 = contact.user;
                             if (user2 != null && (publicUsername = UserObject.getPublicUsername(user2)) != null && publicUsername.startsWith(str4)) {
                                 c10 = 2;
-                            } else if (!lowerCase2.startsWith(str4) && !yh.v(" ", str4, lowerCase2) && (translitString2 == null || (!translitString2.startsWith(str4) && !yh.v(" ", str4, translitString2)))) {
+                            } else if (!lowerCase2.startsWith(str4) && !org.telegram.messenger.g0.w(" ", str4, lowerCase2) && (translitString2 == null || (!translitString2.startsWith(str4) && !org.telegram.messenger.g0.w(" ", str4, translitString2)))) {
                                 c10 = c11;
                             } else {
                                 c10 = 3;
@@ -174,7 +173,7 @@ public final class h0 implements Runnable {
                             }
                             TLRPC.User user4 = contact.user;
                             if (user4 != null) {
-                                longSparseIntArray.put(user4.f19363id, 1);
+                                longSparseIntArray.put(user4.f19063id, 1);
                             }
                             arrayList4.add(contact);
                             i17++;
@@ -209,7 +208,7 @@ public final class h0 implements Runnable {
                         int i21 = 0;
                         while (i21 < i16) {
                             String str6 = strArr3[i21];
-                            if (lowerCase3.startsWith(str6) || yh.v(" ", str6, lowerCase3) || (translitString3 != null && (translitString3.startsWith(str6) || yh.v(" ", str6, translitString3)))) {
+                            if (lowerCase3.startsWith(str6) || org.telegram.messenger.g0.w(" ", str6, lowerCase3) || (translitString3 != null && (translitString3.startsWith(str6) || org.telegram.messenger.g0.w(" ", str6, translitString3)))) {
                                 i11 = i20;
                                 z11 = true;
                             } else {
@@ -236,20 +235,20 @@ public final class h0 implements Runnable {
                     i11 = i20;
                     i20 = i11 + 1;
                 }
-                AndroidUtilities.runOnUIThread(new n8(vjVar4, this.f13290c, arrayList4, arrayList5, 15));
+                AndroidUtilities.runOnUIThread(new n8(vjVar4, this.f13293c, arrayList4, arrayList5, 15));
                 return;
             default:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj4;
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj3;
                 ArrayList arrayList6 = (ArrayList) obj2;
                 fo foVar2 = (fo) obj;
-                boolean z12 = ChatAttachAlertPhotoLayout.f23018q1;
-                vi viVar = chatAttachAlertPhotoLayout.f27671b;
+                boolean z12 = ChatAttachAlertPhotoLayout.f22718q1;
+                vi viVar = chatAttachAlertPhotoLayout.f27360b;
                 if (viVar.F && !viVar.G) {
                     PhotoViewer.t1().K2(null, m2Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     t12.h = 0;
-                    t12.f32303n = false;
+                    t12.f32005n = false;
                     i12 = 3;
                 } else {
                     i12 = i15;
@@ -259,13 +258,13 @@ public final class h0 implements Runnable {
                 }
                 int i22 = i12;
                 PhotoViewer t13 = PhotoViewer.t1();
-                lm lmVar = chatAttachAlertPhotoLayout.f23038h1;
+                km kmVar = chatAttachAlertPhotoLayout.f22738h1;
                 if (viVar.H) {
                     foVar = null;
                 } else {
                     foVar = foVar2;
                 }
-                t13.g2(arrayList6, this.f13290c, i22, false, lmVar, foVar);
+                t13.g2(arrayList6, this.f13293c, i22, false, kmVar, foVar);
                 PhotoViewer.t1().x2(viVar.Q);
                 if (viVar.F && !viVar.G) {
                     PhotoViewer.t1().O = false;
@@ -285,8 +284,8 @@ public final class h0 implements Runnable {
                 if (ChatAttachAlertPhotoLayout.T()) {
                     PhotoViewer t15 = PhotoViewer.t1();
                     Editable text = viVar.o1().getText();
-                    t15.f32328p7 = true;
-                    t15.f32336q7 = text;
+                    t15.f32030p7 = true;
+                    t15.f32038q7 = text;
                     t15.A2(null, text, false, false);
                     t15.t3(null);
                     return;
@@ -298,27 +297,27 @@ public final class h0 implements Runnable {
     public h0(n4.s sVar, h1 h1Var, int i10, o9 o9Var, j0 j0Var, int i11) {
         this.d = sVar;
         this.e = h1Var;
-        this.f13289b = i10;
-        this.f13291f = o9Var;
+        this.f13292b = i10;
+        this.f13294f = o9Var;
         this.h = j0Var;
-        this.f13290c = i11;
+        this.f13293c = i11;
     }
 
     public h0(vj vjVar, String str, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
         this.d = vjVar;
         this.e = str;
-        this.f13291f = arrayList;
+        this.f13294f = arrayList;
         this.h = arrayList2;
-        this.f13289b = i10;
-        this.f13290c = i11;
+        this.f13292b = i10;
+        this.f13293c = i11;
     }
 
     public h0(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10, org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, int i11, fo foVar) {
         this.d = chatAttachAlertPhotoLayout;
-        this.f13289b = i10;
+        this.f13292b = i10;
         this.e = m2Var;
-        this.f13291f = arrayList;
-        this.f13290c = i11;
+        this.f13294f = arrayList;
+        this.f13293c = i11;
         this.h = foVar;
     }
 }

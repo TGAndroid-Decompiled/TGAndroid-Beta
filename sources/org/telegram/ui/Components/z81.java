@@ -1,108 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.view.View;
-public final class z81 extends AnimatorListenerAdapter {
-    public final int f31811a;
-    public final k91 f31812b;
+public final class z81 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31505a;
+    public final l91 f31506b;
 
-    public z81(k91 k91Var, int i10) {
-        this.f31811a = i10;
-        this.f31812b = k91Var;
+    public z81(l91 l91Var, int i10) {
+        this.f31505a = i10;
+        this.f31506b = l91Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31811a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31505a) {
             case 0:
-                k91 k91Var = this.f31812b;
-                View[] viewArr = k91Var.e;
-                View[] viewArr2 = k91Var.e;
-                if (viewArr[1] != null) {
-                    k91Var.F();
-                    k91Var.h.put(k91Var.f26642f[1], viewArr2[1]);
-                    k91Var.removeView(viewArr2[1]);
-                    k91Var.E(viewArr2[0], 0.0f);
-                    viewArr2[1] = null;
-                }
-                k91Var.Q = null;
-                k91Var.w(true);
-                a91 a91Var = k91Var.M;
-                if (a91Var != null) {
-                    a91Var.v.invalidate();
-                    k91Var.M.v.f1();
-                    k91Var.M.invalidate();
-                }
-                k91Var.u();
-                k91Var.J.unlock();
-                return;
-            case 1:
-                k91 k91Var2 = this.f31812b;
-                k91Var2.f26646w = null;
-                View[] viewArr3 = k91Var2.e;
-                if (viewArr3[1] != null) {
-                    if (!k91Var2.F) {
-                        k91Var2.F();
-                    }
-                    k91Var2.h.put(k91Var2.f26642f[1], viewArr3[1]);
-                    k91Var2.removeView(viewArr3[1]);
-                    viewArr3[1].setVisibility(8);
-                    viewArr3[1] = null;
-                }
-                k91Var2.f26647x = false;
-                k91Var2.I = false;
-                a91 a91Var2 = k91Var2.M;
-                if (a91Var2 != null) {
-                    a91Var2.setEnabled(true);
-                }
-                k91Var2.w(false);
-                k91Var2.u();
-                k91Var2.J.unlock();
-                return;
-            case 2:
-                k91 k91Var3 = this.f31812b;
-                k91Var3.f26646w = null;
-                View[] viewArr4 = k91Var3.e;
-                View view = viewArr4[1];
+                l91 l91Var = this.f31506b;
+                l91Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View[] viewArr = l91Var.e;
+                View view = viewArr[1];
                 if (view != null) {
-                    k91Var3.removeView(view);
-                    viewArr4[1] = null;
-                }
-                k91Var3.f26647x = false;
-                a91 a91Var3 = k91Var3.M;
-                if (a91Var3 != null) {
-                    a91Var3.setEnabled(true);
-                    a91 a91Var4 = k91Var3.M;
-                    a91Var4.J = false;
-                    a91Var4.f26273a = 1.0f;
-                    a91Var4.v.f1();
-                    k91Var3.M.invalidate();
+                    if (l91Var.f26700y) {
+                        l91Var.E(view, (1.0f - floatValue) * viewArr[0].getMeasuredWidth());
+                        View view2 = viewArr[0];
+                        l91Var.E(view2, (-view2.getMeasuredWidth()) * floatValue);
+                    } else {
+                        l91Var.E(view, (1.0f - floatValue) * (-viewArr[0].getMeasuredWidth()));
+                        View view3 = viewArr[0];
+                        l91Var.E(view3, view3.getMeasuredWidth() * floatValue);
+                    }
+                    l91Var.f26693c = floatValue;
+                    l91Var.w(true);
+                    b91 b91Var = l91Var.M;
+                    if (b91Var != null) {
+                        b91Var.v.invalidate();
+                        l91Var.M.v.f1();
+                        l91Var.M.invalidate();
+                        return;
+                    }
                     return;
                 }
                 return;
+            case 1:
+                l91 l91Var2 = this.f31506b;
+                l91Var2.getClass();
+                l91Var2.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 2:
+                l91 l91Var3 = this.f31506b;
+                l91Var3.N.onAnimationUpdate(valueAnimator);
+                l91Var3.M.f26305a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l91Var3.M.v.f1();
+                l91Var3.M.invalidate();
+                return;
             default:
-                k91 k91Var4 = this.f31812b;
-                k91Var4.f26646w = null;
-                View[] viewArr5 = k91Var4.e;
-                if (viewArr5[1] != null) {
-                    if (!k91Var4.F) {
-                        k91Var4.F();
-                    }
-                    k91Var4.h.put(k91Var4.f26642f[1], viewArr5[1]);
-                    k91Var4.removeView(viewArr5[1]);
-                    viewArr5[1].setVisibility(8);
-                    viewArr5[1] = null;
-                }
-                k91Var4.f26647x = false;
-                k91Var4.I = false;
-                a91 a91Var5 = k91Var4.M;
-                if (a91Var5 != null) {
-                    a91Var5.setEnabled(true);
-                }
-                k91Var4.w(false);
-                k91Var4.u();
-                k91Var4.J.unlock();
+                l91 l91Var4 = this.f31506b;
+                l91Var4.getClass();
+                l91Var4.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
         }
     }

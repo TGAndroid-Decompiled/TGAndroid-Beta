@@ -97,8 +97,8 @@ public final class a {
     }
 
     public final w4 e(s4.b bVar) {
-        w4 w4Var = new w4(29, false);
-        w4Var.f13592b = bVar;
+        w4 w4Var = new w4(28);
+        w4Var.f13595b = bVar;
         return w4Var;
     }
 }

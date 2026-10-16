@@ -5,36 +5,36 @@ import android.graphics.Typeface;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.da0;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
 import org.telegram.ui.Components.zb;
-public final class n2 extends k61 {
-    public static final int f49036a = 0;
+public final class n2 extends l61 {
+    public static final int f49035a = 0;
 
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
         Typeface typeface;
         da0 da0Var = (da0) view;
-        da0Var.setGravity(l61Var.f26967z);
-        da0Var.setTextColor((int) l61Var.B);
-        da0Var.setTextSize(1, l61Var.A);
-        if (l61Var.f26959q) {
+        da0Var.setGravity(m61Var.f26959z);
+        da0Var.setTextColor((int) m61Var.B);
+        da0Var.setTextSize(1, m61Var.A);
+        if (m61Var.f26951q) {
             typeface = AndroidUtilities.bold();
         } else {
             typeface = null;
         }
         da0Var.setTypeface(typeface);
-        int i10 = l61Var.f26951i;
-        da0Var.setPadding(i10, 0, i10, l61Var.f26953k);
-        da0Var.setText(l61Var.f26954l);
+        int i10 = m61Var.f26943i;
+        da0Var.setPadding(i10, 0, i10, m61Var.f26945k);
+        da0Var.setText(m61Var.f26946l);
     }
 
     @Override

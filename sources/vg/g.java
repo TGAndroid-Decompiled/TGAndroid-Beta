@@ -53,7 +53,7 @@ public final class g extends pg.a {
             if (g.class == aVar.getClass()) {
                 g gVar = (g) aVar;
                 if (this.f46981k == gVar.f46981k) {
-                    if (this.f43203a == 8) {
+                    if (this.f42904a == 8) {
                         if (TextUtils.equals(this.h, gVar.h)) {
                             if (this.f46983m == null) {
                                 z10 = true;
@@ -81,18 +81,18 @@ public final class g extends pg.a {
         if (this != obj) {
             if (obj != null && g.class == obj.getClass()) {
                 g gVar = (g) obj;
-                int i10 = this.f43203a;
-                if (i10 == gVar.f43203a) {
+                int i10 = this.f42904a;
+                if (i10 == gVar.f42904a) {
                     if (i10 != -1 || this.f46982l == gVar.f46982l) {
                         if (i10 == 3) {
                             TLRPC.User user = this.f46976c;
                             long j11 = 0;
                             if (user != null) {
-                                j10 = user.f19363id;
+                                j10 = user.f19063id;
                             } else {
                                 TLRPC.Chat chat = this.e;
                                 if (chat != null) {
-                                    j10 = -chat.f19216id;
+                                    j10 = -chat.f18916id;
                                 } else {
                                     TLRPC.InputPeer inputPeer = this.d;
                                     if (inputPeer != null) {
@@ -104,11 +104,11 @@ public final class g extends pg.a {
                             }
                             TLRPC.User user2 = gVar.f46976c;
                             if (user2 != null) {
-                                j11 = user2.f19363id;
+                                j11 = user2.f19063id;
                             } else {
                                 TLRPC.Chat chat2 = gVar.e;
                                 if (chat2 != null) {
-                                    j11 = -chat2.f19216id;
+                                    j11 = -chat2.f18916id;
                                 } else {
                                     TLRPC.InputPeer inputPeer2 = gVar.d;
                                     if (inputPeer2 != null) {
@@ -120,12 +120,12 @@ public final class g extends pg.a {
                                 return false;
                             }
                         }
-                        int i11 = this.f43203a;
+                        int i11 = this.f42904a;
                         if (i11 != 6 || this.f46977f == gVar.f46977f) {
                             if (i11 != 7 || TextUtils.equals(this.f46978g, gVar.f46978g)) {
-                                if (this.f43203a != 8 || TextUtils.equals(this.f46978g, gVar.f46978g)) {
-                                    if (this.f43203a != 9 || (TextUtils.equals(this.f46978g, gVar.f46978g) && this.f46979i == gVar.f46979i && this.f46980j == gVar.f46980j)) {
-                                        if (this.f43203a != 10 || this.f46987q == gVar.f46987q) {
+                                if (this.f42904a != 8 || TextUtils.equals(this.f46978g, gVar.f46978g)) {
+                                    if (this.f42904a != 9 || (TextUtils.equals(this.f46978g, gVar.f46978g) && this.f46979i == gVar.f46979i && this.f46980j == gVar.f46980j)) {
+                                        if (this.f42904a != 10 || this.f46987q == gVar.f46987q) {
                                             return true;
                                         }
                                         return false;

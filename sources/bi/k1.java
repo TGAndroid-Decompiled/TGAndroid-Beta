@@ -6,41 +6,41 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.cf0;
+import org.telegram.ui.Components.df0;
 public final class k1 implements Runnable {
-    public final int f3224a;
-    public final t1 f3225b;
+    public final int f3228a;
+    public final t1 f3229b;
 
     public k1(t1 t1Var, int i10) {
-        this.f3224a = i10;
-        this.f3225b = t1Var;
+        this.f3228a = i10;
+        this.f3229b = t1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f3224a) {
+        switch (this.f3228a) {
             case 0:
-                this.f3225b.p();
+                this.f3229b.p();
                 return;
             case 1:
-                this.f3225b.q();
+                this.f3229b.q();
                 return;
             case 2:
-                this.f3225b.t(true);
+                this.f3229b.t(true);
                 return;
             case 3:
-                t1 t1Var = this.f3225b;
-                NotificationCenter.getInstance(t1Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(t1Var.v.f19226id));
+                t1 t1Var = this.f3229b;
+                NotificationCenter.getInstance(t1Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(t1Var.v.f18926id));
                 t1Var.u(true);
                 return;
             case 4:
-                this.f3225b.w();
+                this.f3229b.w();
                 return;
             case 5:
-                this.f3225b.t(true);
+                this.f3229b.t(true);
                 return;
             case 6:
-                t1 t1Var2 = this.f3225b;
+                t1 t1Var2 = this.f3229b;
                 if (t1Var2.E != null) {
                     DispatchQueue dispatchQueue = Utilities.globalQueue;
                     NativeInstance nativeInstance = t1Var2.E;
@@ -52,13 +52,13 @@ public final class k1 implements Runnable {
                 t1Var2.k();
                 return;
             case 7:
-                this.f3225b.t(true);
+                this.f3229b.t(true);
                 return;
             case 8:
-                this.f3225b.t(true);
+                this.f3229b.t(true);
                 return;
             case 9:
-                t1 t1Var3 = this.f3225b;
+                t1 t1Var3 = this.f3229b;
                 if (t1Var3.E != null) {
                     DispatchQueue dispatchQueue2 = Utilities.globalQueue;
                     NativeInstance nativeInstance2 = t1Var3.E;
@@ -70,15 +70,15 @@ public final class k1 implements Runnable {
                 t1Var3.k();
                 return;
             case 10:
-                this.f3225b.p();
+                this.f3229b.p();
                 return;
             case 11:
-                this.f3225b.q();
+                this.f3229b.q();
                 return;
             default:
-                t1 t1Var4 = this.f3225b;
-                if (!t1Var4.f3724n) {
-                    cf0.b(R.raw.permission_request_camera, R.string.PermissionNoCameraMicVideo, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new o1(t1Var4, 0));
+                t1 t1Var4 = this.f3229b;
+                if (!t1Var4.f3728n) {
+                    df0.b(R.raw.permission_request_camera, R.string.PermissionNoCameraMicVideo, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new o1(t1Var4, 0));
                     return;
                 }
                 return;

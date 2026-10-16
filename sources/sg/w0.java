@@ -19,8 +19,8 @@ public final class w0 implements z4.e {
     public final void a(float f7, int i10, int i11) {
         int i12;
         ua uaVar = this.f45397a;
-        uaVar.f29615b = f7;
-        uaVar.f29616c = i10;
+        uaVar.f29299b = f7;
+        uaVar.f29300c = i10;
         uaVar.invalidate();
         y0 y0Var = this.f45398b;
         y0Var.G = i10;
@@ -38,16 +38,16 @@ public final class w0 implements z4.e {
     public final void b(int i10) {
         y0 y0Var = this.f45398b;
         ArrayList arrayList = y0Var.d;
-        if (((qx0) arrayList.get(i10)).f39551a == 0) {
+        if (((qx0) arrayList.get(i10)).f39234a == 0) {
             y0Var.N.setTitle(LocaleController.getString(R.string.DoubledLimits));
             y0Var.N.requestLayout();
-        } else if (((qx0) arrayList.get(i10)).f39551a == 14) {
+        } else if (((qx0) arrayList.get(i10)).f39234a == 14) {
             y0Var.N.setTitle(LocaleController.getString(R.string.UpgradedStories));
             y0Var.N.requestLayout();
-        } else if (((qx0) arrayList.get(i10)).f39551a == 40) {
+        } else if (((qx0) arrayList.get(i10)).f39234a == 40) {
             y0Var.N.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
             y0Var.N.requestLayout();
-        } else if (((qx0) arrayList.get(i10)).f39551a == 28) {
+        } else if (((qx0) arrayList.get(i10)).f39234a == 28) {
             y0Var.N.setTitle(LocaleController.getString(R.string.TelegramBusiness));
             y0Var.N.requestLayout();
         }
@@ -90,13 +90,13 @@ public final class w0 implements z4.e {
             i12++;
         }
         int i14 = y0Var.G;
-        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((qx0) arrayList.get(y0Var.G)).f39551a) == 0 || i11 == 14 || i11 == 28)) {
+        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((qx0) arrayList.get(y0Var.G)).f39234a) == 0 || i11 == 14 || i11 == 28)) {
             z10 = true;
         } else {
             z10 = false;
         }
         int i15 = y0Var.H;
-        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((qx0) arrayList.get(y0Var.H)).f39551a) == 0 || i10 == 14 || i10 == 28)) {
+        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((qx0) arrayList.get(y0Var.H)).f39234a) == 0 || i10 == 14 || i10 == 28)) {
             z11 = true;
         } else {
             z11 = false;
@@ -128,7 +128,7 @@ public final class w0 implements z4.e {
         if (i16 != y0Var.K) {
             y0Var.K = i16;
             y0Var.f45439r.invalidate();
-            AndroidUtilities.runOnUIThread(new rh.j(this, 4));
+            AndroidUtilities.runOnUIThread(new ri.h0(this, 4));
         }
     }
 

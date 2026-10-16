@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.ThemeActivity;
 public final class oc1 extends org.telegram.ui.Components.lm0 {
-    public final Context f38925c;
+    public final Context f38615c;
     public org.telegram.ui.ActionBar.f6 d;
     public ArrayList e;
-    public final ThemeActivity f38926f;
+    public final ThemeActivity f38616f;
 
     public oc1(ThemeActivity themeActivity, Context context) {
-        this.f38926f = themeActivity;
-        this.f38925c = context;
+        this.f38616f = themeActivity;
+        this.f38615c = context;
         l();
     }
 
@@ -41,13 +41,13 @@ public final class oc1 extends org.telegram.ui.Components.lm0 {
     @Override
     public final void l() {
         org.telegram.ui.ActionBar.f6 B0;
-        if (this.f38926f.f32848f == 1) {
+        if (this.f38616f.f32550f == 1) {
             B0 = org.telegram.ui.ActionBar.g6.J;
         } else {
             B0 = org.telegram.ui.ActionBar.g6.B0();
         }
         this.d = B0;
-        this.e = new ArrayList(this.d.f19794b0);
+        this.e = new ArrayList(this.d.f19494b0);
         super.l();
     }
 
@@ -61,13 +61,13 @@ public final class oc1 extends org.telegram.ui.Components.lm0 {
             }
             ec1 ec1Var = (ec1) view;
             org.telegram.ui.ActionBar.f6 f6Var = this.d;
-            int i11 = ec1.f35515c;
+            int i11 = ec1.f35253c;
             ec1Var.getClass();
             if (f6Var.W >= 8) {
-                ec1Var.f35517b = new int[]{f6Var.l(6), f6Var.l(4), f6Var.l(7), f6Var.l(2), f6Var.l(0), f6Var.l(5), f6Var.l(3)};
+                ec1Var.f35255b = new int[]{f6Var.l(6), f6Var.l(4), f6Var.l(7), f6Var.l(2), f6Var.l(0), f6Var.l(5), f6Var.l(3)};
                 return;
             } else {
-                ec1Var.f35517b = new int[7];
+                ec1Var.f35255b = new int[7];
                 return;
             }
         }
@@ -79,7 +79,7 @@ public final class oc1 extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f38925c;
+        Context context = this.f38615c;
         if (i10 != 0) {
             return new s4.b1(new ec1(context));
         }

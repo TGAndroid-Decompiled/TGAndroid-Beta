@@ -11,29 +11,29 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedPrefsHelper;
 import org.telegram.tgnet.TLRPC;
 public final class fa0 implements Runnable {
-    public final LaunchActivity f35770a;
-    public final org.telegram.ui.ActionBar.m2 f35771b;
-    public final int f35772c;
+    public final LaunchActivity f35492a;
+    public final org.telegram.ui.ActionBar.m2 f35493b;
+    public final int f35494c;
     public final TLRPC.User d;
     public final TLRPC.TL_messages_botApp e;
-    public final AtomicBoolean f35773f;
+    public final AtomicBoolean f35495f;
     public final String h;
-    public final boolean f35774n;
-    public final boolean f35775r;
-    public final boolean f35776s;
+    public final boolean f35496n;
+    public final boolean f35497r;
+    public final boolean f35498s;
     public final boolean v;
 
     public fa0(LaunchActivity launchActivity, org.telegram.ui.ActionBar.m2 m2Var, int i10, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z10, boolean z11, boolean z12, boolean z13) {
-        this.f35770a = launchActivity;
-        this.f35771b = m2Var;
-        this.f35772c = i10;
+        this.f35492a = launchActivity;
+        this.f35493b = m2Var;
+        this.f35494c = i10;
         this.d = user;
         this.e = tL_messages_botApp;
-        this.f35773f = atomicBoolean;
+        this.f35495f = atomicBoolean;
         this.h = str;
-        this.f35774n = z10;
-        this.f35775r = z11;
-        this.f35776s = z12;
+        this.f35496n = z10;
+        this.f35497r = z11;
+        this.f35498s = z12;
         this.v = z13;
     }
 
@@ -42,33 +42,33 @@ public final class fa0 implements Runnable {
         TLRPC.TL_attachMenuBot tL_attachMenuBot;
         String formatString;
         Pattern pattern = LaunchActivity.B1;
-        org.telegram.ui.ActionBar.m2 m2Var = this.f35771b;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f35493b;
         if (m2Var != null && LaunchActivity.C1) {
-            LaunchActivity launchActivity = this.f35770a;
+            LaunchActivity launchActivity = this.f35492a;
             if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
                 TLRPC.User user = this.d;
-                long j10 = user.f19363id;
+                long j10 = user.f19063id;
                 TLRPC.TL_messages_botApp tL_messages_botApp = this.e;
                 TLRPC.BotApp botApp = tL_messages_botApp.app;
-                boolean z10 = this.f35773f.get();
-                int i10 = this.f35772c;
+                boolean z10 = this.f35495f.get();
+                int i10 = this.f35494c;
                 String str = this.h;
-                boolean z11 = this.f35774n;
-                boolean z12 = this.f35775r;
+                boolean z11 = this.f35496n;
+                boolean z12 = this.f35497r;
                 fi.e5 b10 = fi.e5.b(i10, j10, j10, null, null, 3, 0, 0L, botApp, z10, str, user, 0, z11, z12);
                 if (launchActivity.P() == null || launchActivity.P().k(b10) == null) {
-                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f19363id, true);
+                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f19063id, true);
                     fi.k3 k3Var = new fi.k3(launchActivity, m2Var.getResourceProvider());
-                    fi.b3 b3Var = k3Var.f9381x;
+                    fi.b3 b3Var = k3Var.f9384x;
                     if (b3Var != null) {
-                        b3Var.setWasOpenedByLinkIntent(this.f35776s);
+                        b3Var.setWasOpenedByLinkIntent(this.f35498s);
                     }
                     k3Var.x(!z11);
                     if (z12) {
-                        k3Var.y(true, false, k3Var.f9358e0);
+                        k3Var.y(true, false, k3Var.f9361e0);
                     }
                     k3Var.A0 = false;
-                    k3Var.f9365k0 = launchActivity;
+                    k3Var.f9368k0 = launchActivity;
                     k3Var.t(m2Var, b10);
                     k3Var.show();
                     if (tL_messages_botApp.inactive || this.v) {
@@ -98,7 +98,7 @@ public final class fa0 implements Runnable {
                             } else {
                                 formatString = LocaleController.formatString(R.string.BotAttachMenuShortcatAddedAttach, user2.first_name);
                             }
-                            AndroidUtilities.runOnUIThread(new di.x6(28, k3Var, formatString), 200L);
+                            AndroidUtilities.runOnUIThread(new di.y6(28, k3Var, formatString), 200L);
                         }
                     }
                 }

@@ -5,23 +5,23 @@ import android.util.SparseArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class h {
-    public final f f44684a;
-    public final TLRPC.TL_messageMediaPoll f44685b;
-    public final TLRPC.TL_inputMediaPoll f44686c;
+    public final f f44443a;
+    public final TLRPC.TL_messageMediaPoll f44444b;
+    public final TLRPC.TL_inputMediaPoll f44445c;
     public final long d;
     public final String e;
-    public final ArrayList f44687f;
+    public final ArrayList f44446f;
 
     public h(f fVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, long j10, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f44684a = fVar;
+        this.f44443a = fVar;
         this.d = j10;
         this.e = str;
-        this.f44687f = arrayList;
+        this.f44446f = arrayList;
         TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
         TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
         tL_inputMediaPoll.poll = tL_poll;
         TLRPC.Poll poll = tL_messageMediaPoll.poll;
-        tL_poll.f19242id = poll.f19242id;
+        tL_poll.f18942id = poll.f18942id;
         tL_poll.flags = poll.flags;
         tL_poll.closed = poll.closed;
         tL_poll.public_voters = poll.public_voters;
@@ -61,7 +61,7 @@ public final class h {
             tL_inputMediaPoll.flags |= 1;
         }
         if (fVar != null) {
-            SparseArray sparseArray = fVar.f44666a;
+            SparseArray sparseArray = fVar.f44425a;
             int size2 = sparseArray.size();
             for (int i11 = 0; i11 < size2; i11++) {
                 int keyAt = sparseArray.keyAt(i11);
@@ -77,10 +77,10 @@ public final class h {
                     TLRPC.TL_inputMediaDocument tL_inputMediaDocument = new TLRPC.TL_inputMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
                     TLRPC.Document document = ((sh.h) eVar).f45473b;
-                    tL_inputDocument.f19228id = document.f19222id;
+                    tL_inputDocument.f18928id = document.f18922id;
                     tL_inputDocument.access_hash = document.access_hash;
                     tL_inputDocument.file_reference = document.file_reference;
-                    tL_inputMediaDocument.f19277id = tL_inputDocument;
+                    tL_inputMediaDocument.f18977id = tL_inputDocument;
                     f.k(tL_inputMediaPoll, keyAt, tL_inputMediaDocument);
                 }
             }
@@ -105,7 +105,7 @@ public final class h {
                 }
             }
         }
-        this.f44685b = tL_messageMediaPoll;
-        this.f44686c = tL_inputMediaPoll;
+        this.f44444b = tL_messageMediaPoll;
+        this.f44445c = tL_inputMediaPoll;
     }
 }

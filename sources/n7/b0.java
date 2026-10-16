@@ -1,58 +1,39 @@
 package n7;
 
-import java.util.Iterator;
-public final class b0 extends o {
-    public final transient Object d;
+import java.io.Serializable;
+public final class b0 extends x implements Serializable {
+    public final x f15879a;
 
-    public b0(Object obj) {
-        this.d = obj;
+    public b0(x xVar) {
+        this.f15879a = xVar;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        return this.d.equals(obj);
+    public final x a() {
+        return this.f15879a;
     }
 
     @Override
-    public final int h(Object[] objArr) {
-        objArr[0] = this.d;
-        return 1;
+    public final int compare(Object obj, Object obj2) {
+        return this.f15879a.compare(obj2, obj);
     }
 
     @Override
-    public final int hashCode() {
-        return this.d.hashCode();
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new t(this.d);
-    }
-
-    @Override
-    public final d0 o() {
-        return new t(this.d);
-    }
-
-    @Override
-    public final m s() {
-        Object[] objArr = {this.d};
-        for (int i10 = 0; i10 < 1; i10++) {
-            i iVar = m.f16200b;
-            if (objArr[i10] == null) {
-                throw new NullPointerException(i2.d.i(i10, "at index "));
-            }
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return m.s(1, objArr);
+        if (obj instanceof b0) {
+            return this.f15879a.equals(((b0) obj).f15879a);
+        }
+        return false;
     }
 
-    @Override
-    public final int size() {
-        return 1;
+    public final int hashCode() {
+        return -this.f15879a.hashCode();
     }
 
-    @Override
     public final String toString() {
-        return a1.g.p("[", this.d.toString(), "]");
+        return this.f15879a.toString().concat(".reverse()");
     }
 }

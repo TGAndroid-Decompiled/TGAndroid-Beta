@@ -1,35 +1,31 @@
 package org.telegram.messenger;
-
-import android.view.View;
-import org.telegram.messenger.RichMessageLayout;
 public final class bi implements Runnable {
-    public final int f16888a = 0;
-    public final RichMessageLayout.Text f16889b;
-    public final RichMessageLayout f16890c;
-    public final View d;
+    public final int f16588a;
+    public final SavedMessagesController f16589b;
 
-    public bi(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
-        this.f16889b = text;
-        this.d = view;
-        this.f16890c = richMessageLayout;
+    public bi(SavedMessagesController savedMessagesController, int i10) {
+        this.f16588a = i10;
+        this.f16589b = savedMessagesController;
     }
 
     @Override
     public final void run() {
-        switch (this.f16888a) {
+        switch (this.f16588a) {
             case 0:
-                RichMessageLayout.Text.c(this.f16889b, this.d, this.f16890c);
+                this.f16589b.update();
+                return;
+            case 1:
+                SavedMessagesController.k(this.f16589b);
+                return;
+            case 2:
+                SavedMessagesController.h(this.f16589b);
+                return;
+            case 3:
+                SavedMessagesController.j(this.f16589b);
                 return;
             default:
-                RichMessageLayout richMessageLayout = this.f16890c;
-                RichMessageLayout.Text.a(this.f16889b, this.d, richMessageLayout);
+                SavedMessagesController.b(this.f16589b);
                 return;
         }
-    }
-
-    public bi(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
-        this.f16889b = text;
-        this.f16890c = richMessageLayout;
-        this.d = view;
     }
 }

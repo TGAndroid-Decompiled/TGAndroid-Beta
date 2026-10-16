@@ -13,18 +13,18 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.pk;
 public final class t3 implements Utilities.Callback {
-    public final int f3732a;
-    public final boolean f3733b;
-    public final int f3734c;
+    public final int f3736a;
+    public final boolean f3737b;
+    public final int f3738c;
     public final Object d;
     public final Object e;
 
     public t3(int i10, int i11, Object obj, Object obj2, boolean z10) {
-        this.f3732a = i11;
+        this.f3736a = i11;
         this.d = obj;
         this.e = obj2;
-        this.f3733b = z10;
-        this.f3734c = i10;
+        this.f3737b = z10;
+        this.f3738c = i10;
     }
 
     @Override
@@ -33,33 +33,33 @@ public final class t3 implements Utilities.Callback {
         String str;
         AccountInstance accountInstance;
         boolean z10;
-        switch (this.f3732a) {
+        switch (this.f3736a) {
             case 0:
                 TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) this.e;
                 Long l4 = (Long) obj;
-                q5 q5Var = ((v3) this.d).f3855a;
-                TLRPC.User user = q5Var.f3517d3.getAdapter().f10638w0;
+                q5 q5Var = ((v3) this.d).f3859a;
+                TLRPC.User user = q5Var.f3521d3.getAdapter().f10642w0;
                 if (user != null) {
-                    j10 = user.f19363id;
+                    j10 = user.f19063id;
                 } else {
                     j10 = 0;
                 }
                 HashMap hashMap = new HashMap();
-                hashMap.put("id", botInlineResult.f19214id);
+                hashMap.put("id", botInlineResult.f18914id);
                 hashMap.put("query_id", "" + botInlineResult.query_id);
                 hashMap.put("bot", "" + j10);
-                TLRPC.User user2 = q5Var.f3517d3.getAdapter().f10638w0;
+                TLRPC.User user2 = q5Var.f3521d3.getAdapter().f10642w0;
                 if (user2 == null) {
                     str = "";
                 } else {
                     str = user2.username;
                 }
                 hashMap.put("bot_name", str);
-                org.telegram.ui.ActionBar.m2 m2Var = q5Var.J0.f3673f;
+                org.telegram.ui.ActionBar.m2 m2Var = q5Var.J0.f3677f;
                 long j11 = j10;
                 accountInstance = q5Var.getAccountInstance();
-                SendMessagesHelper.prepareSendingBotContextResult(m2Var, accountInstance, botInlineResult, hashMap, q5Var.B1, null, null, q5Var.O1.f3413a, null, this.f3733b, this.f3734c, 0, null, 0L, l4.longValue());
-                q5Var.f3508b2.setFieldText("");
+                SendMessagesHelper.prepareSendingBotContextResult(m2Var, accountInstance, botInlineResult, hashMap, q5Var.B1, null, null, q5Var.O1.f3417a, null, this.f3737b, this.f3738c, 0, null, 0L, l4.longValue());
+                q5Var.f3512b2.setFieldText("");
                 if (l4.longValue() <= 0) {
                     z10 = true;
                 } else {
@@ -72,11 +72,11 @@ public final class t3 implements Utilities.Callback {
                 g8 g8Var = (g8) this.d;
                 List list = (List) this.e;
                 Long l10 = (Long) obj;
-                j8 j8Var = g8Var.f3437q;
-                TLObject userOrChat = MessagesController.getInstance(g8Var.f3426c).getUserOrChat(g8Var.D);
+                j8 j8Var = g8Var.f3441q;
+                TLObject userOrChat = MessagesController.getInstance(g8Var.f3430c).getUserOrChat(g8Var.D);
                 g8Var.G = false;
                 if (userOrChat != null) {
-                    g8Var.q(this.f3734c, list, this.f3733b);
+                    g8Var.q(this.f3738c, list, this.f3737b);
                     return;
                 }
                 g8Var.J = 0;
@@ -85,16 +85,16 @@ public final class t3 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(j8Var);
                 return;
             default:
-                ((pk) this.d).Q.m(((Long) obj).longValue(), (ArrayList) this.e, this.f3733b, this.f3734c);
+                ((pk) this.d).Q.m(((Long) obj).longValue(), (ArrayList) this.e, this.f3737b, this.f3738c);
                 return;
         }
     }
 
     public t3(g8 g8Var, boolean z10, int i10, List list) {
-        this.f3732a = 1;
+        this.f3736a = 1;
         this.d = g8Var;
-        this.f3733b = z10;
-        this.f3734c = i10;
+        this.f3737b = z10;
+        this.f3738c = i10;
         this.e = list;
     }
 }

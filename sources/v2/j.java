@@ -4,7 +4,6 @@ import b2.w0;
 import b2.x;
 import c3.i0;
 import g2.b0;
-import n6.o;
 import u2.c1;
 import v7.k7;
 import v7.u6;
@@ -24,21 +23,16 @@ public final class j extends a {
     }
 
     @Override
-    public final void J() {
-        this.I = true;
-    }
-
-    @Override
     public final void a() {
         boolean z10;
         boolean z11;
         c1[] c1VarArr;
         long j10;
-        o oVar = this.f46480x;
-        oVar.getClass();
+        n3.b bVar = this.f46480x;
+        bVar.getClass();
         if (this.H == 0) {
             long j11 = this.F;
-            for (c1 c1Var : (c1[]) oVar.f16132c) {
+            for (c1 c1Var : (c1[]) bVar.f15704c) {
                 if (c1Var.H != j11) {
                     c1Var.H = j11;
                     c1Var.B = true;
@@ -56,7 +50,7 @@ public final class j extends a {
             if (j14 != -9223372036854775807L) {
                 j13 = j14 - this.F;
             }
-            eVar.b(oVar, j10, j13);
+            eVar.b(bVar, j10, j13);
         }
         try {
             g2.m b10 = this.f46499b.b(this.H);
@@ -80,16 +74,16 @@ public final class j extends a {
                 }
             }
             x xVar = this.d;
-            String str = xVar.f2518r;
+            String str = xVar.f2522r;
             int i10 = xVar.R;
             int i11 = xVar.S;
             if (w0.k(str) && ((i10 > 1 || i11 > 1) && i10 != -1 && i11 != -1)) {
-                i0 g02 = oVar.g0(4);
+                i0 j02 = bVar.j0(4);
                 int i12 = i10 * i11;
                 long j15 = (this.f46502n - this.h) / i12;
                 for (int i13 = 1; i13 < i12; i13++) {
-                    g02.d(0, new e2.x());
-                    g02.c(i13 * j15, 0, 0, 0, null);
+                    j02.d(0, new e2.x());
+                    j02.c(i13 * j15, 0, 0, 0, null);
                 }
             }
             this.H = lVar.d - this.f46499b.e;
@@ -99,6 +93,11 @@ public final class j extends a {
             k7.a(this.f46503r);
             throw th2;
         }
+    }
+
+    @Override
+    public final void a0() {
+        this.I = true;
     }
 
     @Override

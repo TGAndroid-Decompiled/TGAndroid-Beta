@@ -11,17 +11,17 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class bh implements fw0, sy {
-    public final boolean f34539a;
-    public final int f34540b;
-    public final Object f34541c;
+public final class bh implements ew0, sy {
+    public final boolean f34329a;
+    public final int f34330b;
+    public final Object f34331c;
     public final Object d;
 
     public bh(fo foVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f34541c = foVar;
-        this.f34539a = z10;
+        this.f34331c = foVar;
+        this.f34329a = z10;
         this.d = messageObject;
-        this.f34540b = i10;
+        this.f34330b = i10;
     }
 
     @Override
@@ -37,9 +37,9 @@ public final class bh implements fw0, sy {
     @Override
     public void b(TLRPC.MessageMedia messageMedia) {
         int i10;
-        fo foVar = (fo) this.f34541c;
+        fo foVar = (fo) this.f34331c;
         MessageObject messageObject = (MessageObject) this.d;
-        if (this.f34539a) {
+        if (this.f34329a) {
             TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
             tL_messages_appendTodoList.peer = foVar.getMessagesController().getInputPeer(messageObject.getDialogId());
             tL_messages_appendTodoList.msg_id = messageObject.getId();
@@ -48,20 +48,20 @@ public final class bh implements fw0, sy {
                 int i11 = 0;
                 int i12 = 0;
                 while (true) {
-                    i10 = this.f34540b;
+                    i10 = this.f34330b;
                     if (i11 >= i10) {
                         break;
                     }
-                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f19361id);
+                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f19061id);
                     i11++;
                 }
                 while (i10 < tL_messageMediaToDo.todo.list.size()) {
                     TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i10);
-                    if (todoItem.f19361id <= i12) {
-                        todoItem.f19361id = i12 + 1;
+                    if (todoItem.f19061id <= i12) {
+                        todoItem.f19061id = i12 + 1;
                     }
                     tL_messages_appendTodoList.list.add(todoItem);
-                    i12 = Math.max(i12, todoItem.f19361id);
+                    i12 = Math.max(i12, todoItem.f19061id);
                     i10++;
                 }
                 TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
@@ -84,14 +84,14 @@ public final class bh implements fw0, sy {
     }
 
     @Override
-    public boolean w(yy yyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, lg1 lg1Var) {
-        LaunchActivity launchActivity = (LaunchActivity) this.f34541c;
+    public boolean w(yy yyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, kg1 kg1Var) {
+        LaunchActivity launchActivity = (LaunchActivity) this.f34331c;
         String str = (String) this.d;
         Pattern pattern = LaunchActivity.B1;
         long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
-        bundle.putBoolean("hasUrl", this.f34539a);
+        bundle.putBoolean("hasUrl", this.f34329a);
         if (DialogObject.isEncryptedDialog(j10)) {
             bundle.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
         } else if (DialogObject.isUserDialog(j10)) {
@@ -99,7 +99,7 @@ public final class bh implements fw0, sy {
         } else {
             bundle.putLong("chat_id", -j10);
         }
-        int i12 = this.f34540b;
+        int i12 = this.f34330b;
         if (MessagesController.getInstance(i12).checkCanOpenChat(bundle, yyVar)) {
             NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
             MediaDataController.getInstance(i12).saveDraft(j10, 0, str, null, null, false, 0L);
@@ -109,9 +109,9 @@ public final class bh implements fw0, sy {
     }
 
     public bh(LaunchActivity launchActivity, boolean z10, int i10, String str) {
-        this.f34541c = launchActivity;
-        this.f34539a = z10;
-        this.f34540b = i10;
+        this.f34331c = launchActivity;
+        this.f34329a = z10;
+        this.f34330b = i10;
         this.d = str;
     }
 }

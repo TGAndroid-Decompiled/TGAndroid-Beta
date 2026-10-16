@@ -4,29 +4,29 @@ import java.util.HashMap;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.voip.VoIPService;
 public final class q1 implements Runnable {
-    public final int f3492a;
-    public final int f3493b;
-    public final long f3494c;
+    public final int f3496a;
+    public final int f3497b;
+    public final long f3498c;
     public final int d;
     public final Object e;
 
     public q1(int i10, int i11, int i12, long j10, Object obj) {
-        this.f3492a = i12;
+        this.f3496a = i12;
         this.e = obj;
-        this.f3493b = i10;
-        this.f3494c = j10;
+        this.f3497b = i10;
+        this.f3498c = j10;
         this.d = i11;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f3492a) {
+        switch (this.f3496a) {
             case 0:
                 t1 t1Var = (t1) this.e;
                 HashMap hashMap = t1Var.F;
-                int i10 = this.f3493b;
-                long j10 = this.f3494c;
+                int i10 = this.f3497b;
+                long j10 = this.f3498c;
                 if (i10 == 0) {
                     str = a1.g.o(j10, "");
                 } else {
@@ -40,7 +40,7 @@ public final class q1 implements Runnable {
                 }
                 return;
             default:
-                ((VoIPService) this.e).lambda$createGroupInstance$76(this.f3493b, this.f3494c, this.d);
+                ((VoIPService) this.e).lambda$createGroupInstance$76(this.f3497b, this.f3498c, this.d);
                 return;
         }
     }

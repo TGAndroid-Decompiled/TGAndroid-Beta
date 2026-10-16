@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
 public final class ma {
-    public int f27338a;
-    public int f27339b;
-    public int f27340c;
+    public int f27050a;
+    public int f27051b;
+    public int f27052c;
     public int d;
     public int e;
-    public int f27341f;
-    public int f27342g;
+    public int f27053f;
+    public int f27054g;
     public int h;
-    public int f27343i;
-    public int f27344j;
-    public int f27345k;
-    public int f27346l;
-    public int f27347m;
+    public int f27055i;
+    public int f27056j;
+    public int f27057k;
+    public int f27058l;
+    public int f27059m;
 }

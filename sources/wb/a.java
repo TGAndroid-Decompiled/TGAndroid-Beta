@@ -6,9 +6,9 @@ import c5.w;
 import com.google.android.gms.tasks.Task;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+import n3.b;
 import n6.i;
 import n6.l;
-import n6.o;
 import rb.m;
 import u2.c;
 import w7.d7;
@@ -18,17 +18,17 @@ import w7.la;
 import w7.na;
 import w7.y6;
 public final class a {
-    public volatile Bitmap f47511a;
-    public final int f47512b;
-    public final int f47513c;
+    public volatile Bitmap f47510a;
+    public final int f47511b;
+    public final int f47512c;
     public final int d;
     public final int e;
 
     public a(Bitmap bitmap, int i10) {
         l.h(bitmap);
-        this.f47511a = bitmap;
-        this.f47512b = bitmap.getWidth();
-        this.f47513c = bitmap.getHeight();
+        this.f47510a = bitmap;
+        this.f47511b = bitmap.getWidth();
+        this.f47512c = bitmap.getHeight();
         boolean z10 = true;
         if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
             z10 = false;
@@ -67,7 +67,7 @@ public final class a {
         j7 j7Var = j7.INPUT_IMAGE_CONSTRUCTION;
         Task task2 = a2.e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f47368i;
+        HashMap hashMap = a2.f47367i;
         if (hashMap.get(j7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -80,23 +80,23 @@ public final class a {
         }
         hashMap.put(j7Var, Long.valueOf(elapsedRealtime3));
         ?? obj = new Object();
-        obj.f15221c = y6.BITMAP;
-        obj.f15220b = d7.BITMAP;
+        obj.f14985c = y6.BITMAP;
+        obj.f14984b = d7.BITMAP;
         obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f15222f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.f14986f = Integer.valueOf(height & Integer.MAX_VALUE);
         obj.e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f15219a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
+        obj.f14983a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
         obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
         e7 e7Var = new e7(obj);
         c cVar = new c(7, false);
         cVar.d = e7Var;
-        o oVar = new o(cVar);
+        b bVar = new b(cVar);
         if (task.isSuccessful()) {
             a10 = (String) task.getResult();
         } else {
-            a10 = i.f16101c.a(a2.f47367g);
+            a10 = i.f15817c.a(a2.f47366g);
         }
-        m.f44110a.execute(new w(a2, oVar, a10));
+        m.f43869a.execute(new w(a2, bVar, a10));
         return aVar;
     }
 }

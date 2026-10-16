@@ -1,18 +1,34 @@
 package m;
 
-import android.view.ViewGroup;
-public final class i3 extends ViewGroup.MarginLayoutParams {
-    public int f15133a;
-    public int f15134b;
+import androidx.appcompat.widget.Toolbar;
+public final class i3 implements Runnable {
+    public final int f14872a;
+    public final Toolbar f14873b;
 
-    public i3(i3 i3Var) {
-        super((ViewGroup.MarginLayoutParams) i3Var);
-        this.f15133a = 0;
-        this.f15133a = i3Var.f15133a;
+    public i3(Toolbar toolbar, int i10) {
+        this.f14872a = i10;
+        this.f14873b = toolbar;
     }
 
-    public i3(ViewGroup.LayoutParams layoutParams) {
-        super(layoutParams);
-        this.f15133a = 0;
+    @Override
+    public final void run() {
+        l.m mVar;
+        switch (this.f14872a) {
+            case 0:
+                k3 k3Var = this.f14873b.f1179e0;
+                if (k3Var == null) {
+                    mVar = null;
+                } else {
+                    mVar = k3Var.f14887b;
+                }
+                if (mVar != null) {
+                    mVar.collapseActionView();
+                    return;
+                }
+                return;
+            default:
+                this.f14873b.m();
+                return;
+        }
     }
 }

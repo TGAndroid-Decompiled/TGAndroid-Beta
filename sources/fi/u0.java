@@ -19,19 +19,19 @@ import org.telegram.ui.Components.a7;
 import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.k9;
 public final class u0 extends Drawable implements a7 {
-    public final Paint f9571a;
-    public final Paint f9572b;
-    public final Paint f9573c;
+    public final Paint f9574a;
+    public final Paint f9575b;
+    public final Paint f9576c;
     public final ImageReceiver d;
     public final ImageReceiver e;
-    public final Drawable f9574f;
+    public final Drawable f9577f;
 
     public u0(Context context, TLRPC.User user, TLRPC.User user2) {
         Paint paint = new Paint(1);
-        this.f9571a = paint;
-        this.f9572b = new Paint(1);
+        this.f9574a = paint;
+        this.f9575b = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f9573c = paint2;
+        this.f9576c = paint2;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.d = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver();
@@ -44,7 +44,7 @@ public final class u0 extends Drawable implements a7 {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setColor(-1);
         Drawable mutate = context.getResources().getDrawable(R.drawable.filled_location).mutate();
-        this.f9574f = mutate;
+        this.f9577f = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(g6.x0(null, g6.L5, false), PorterDuff.Mode.SRC_IN));
         k9 k9Var = new k9((c6) null);
         k9Var.r(user);
@@ -78,7 +78,7 @@ public final class u0 extends Drawable implements a7 {
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         int x02 = g6.x0(null, g6.L5, false);
-        Paint paint = this.f9572b;
+        Paint paint = this.f9575b;
         paint.setColor(x02);
         float dp = AndroidUtilities.dp(136.0f) / 2.0f;
         ImageReceiver imageReceiver = this.d;
@@ -87,13 +87,13 @@ public final class u0 extends Drawable implements a7 {
         float centerX = (bounds.centerX() - dp) + AndroidUtilities.dp(41.0f);
         float dp2 = AndroidUtilities.dp(16.0f) + bounds.centerY();
         canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(14.0f), paint);
-        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(12.0f), this.f9573c);
+        canvas.drawCircle(centerX, dp2, AndroidUtilities.dp(12.0f), this.f9576c);
         int dp3 = (int) (dp2 + AndroidUtilities.dp(9.0f));
-        Drawable drawable = this.f9574f;
+        Drawable drawable = this.f9577f;
         drawable.setBounds((int) (centerX - AndroidUtilities.dp(9.0f)), (int) (dp2 - AndroidUtilities.dp(9.0f)), (int) (centerX + AndroidUtilities.dp(9.0f)), dp3);
         drawable.draw(canvas);
         int centerX2 = bounds.centerX();
-        Paint paint2 = this.f9571a;
+        Paint paint2 = this.f9574a;
         canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), bounds.centerY() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(3.33f) + centerX2, bounds.centerY(), paint2);
         canvas.drawLine(bounds.centerX() - AndroidUtilities.dp(3.33f), AndroidUtilities.dp(7.0f) + bounds.centerY(), AndroidUtilities.dp(3.33f) + bounds.centerX(), bounds.centerY(), paint2);
         ImageReceiver imageReceiver2 = this.e;

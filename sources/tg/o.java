@@ -21,7 +21,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.ActionBar.g6;
 public final class o {
     public static final String[] f45753e0 = {"models/star.binobj"};
@@ -117,12 +117,12 @@ public final class o {
         this.f45780y = new int[length];
         for (int i12 = 0; i12 < this.f45757a0; i12++) {
             j6.l lVar = new j6.l(context, strArr[i12]);
-            this.f45765i[i12] = yh.h(ByteBuffer.allocateDirect(((float[]) lVar.d).length * 4));
+            this.f45765i[i12] = sk.h(ByteBuffer.allocateDirect(((float[]) lVar.d).length * 4));
             this.f45765i[i12].put((float[]) lVar.d).position(0);
-            this.f45766j[i12] = yh.h(ByteBuffer.allocateDirect(((float[]) lVar.f12874c).length * 4));
-            this.f45766j[i12].put((float[]) lVar.f12874c).position(0);
-            this.f45767k[i12] = yh.h(ByteBuffer.allocateDirect(((float[]) lVar.f12873b).length * 4));
-            this.f45767k[i12].put((float[]) lVar.f12873b).position(0);
+            this.f45766j[i12] = sk.h(ByteBuffer.allocateDirect(((float[]) lVar.f12878c).length * 4));
+            this.f45766j[i12].put((float[]) lVar.f12878c).position(0);
+            this.f45767k[i12] = sk.h(ByteBuffer.allocateDirect(((float[]) lVar.f12877b).length * 4));
+            this.f45767k[i12].put((float[]) lVar.f12877b).position(0);
             this.f45780y[i12] = ((float[]) lVar.d).length;
         }
         this.Y = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);

@@ -1,17 +1,33 @@
 package org.telegram.ui.Components;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 public final class bl implements TextWatcher {
-    public final dl f23797a;
+    public boolean f23490a;
+    public final TextView f23491b;
 
-    public bl(dl dlVar) {
-        this.f23797a = dlVar;
+    public bl(ig.b1 b1Var, TextView textView) {
+        this.f23491b = textView;
+        this.f23490a = TextUtils.isEmpty(b1Var.getText());
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f23797a.g0();
+        int i10;
+        boolean isEmpty = TextUtils.isEmpty(editable);
+        if (isEmpty != this.f23490a) {
+            this.f23490a = isEmpty;
+            if (isEmpty) {
+                i10 = R.string.Remove;
+            } else {
+                i10 = R.string.Add;
+            }
+            this.f23491b.setText(LocaleController.getString(i10));
+        }
     }
 
     @Override

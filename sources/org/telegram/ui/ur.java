@@ -9,12 +9,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 public final class ur extends org.telegram.ui.Components.lm0 {
-    public final Context f40789c;
+    public final Context f40471c;
     public final yr d;
 
     public ur(yr yrVar, Context context) {
         this.d = yrVar;
-        this.f40789c = context;
+        this.f40471c = context;
     }
 
     @Override
@@ -49,37 +49,37 @@ public final class ur extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final int h() {
-        return this.d.f42222d1;
+        return this.d.f41899d1;
     }
 
     @Override
     public final int j(int i10) {
         yr yrVar = this.d;
-        if (i10 != yrVar.f42270z0 && i10 != yrVar.A0 && i10 != yrVar.f42259v0 && i10 != yrVar.f42255t0) {
+        if (i10 != yrVar.f41947z0 && i10 != yrVar.A0 && i10 != yrVar.f41936v0 && i10 != yrVar.f41932t0) {
             if ((i10 >= yrVar.E0 && i10 < yrVar.F0) || ((i10 >= yrVar.X0 && i10 < yrVar.Y0) || (i10 >= yrVar.U0 && i10 < yrVar.V0))) {
                 return 0;
             }
             if (i10 != yrVar.C0 && i10 != yrVar.G0 && i10 != yrVar.H0) {
-                if (i10 != yrVar.D0 && i10 != yrVar.S && i10 != yrVar.N0 && i10 != yrVar.f42253s0 && i10 != yrVar.f42245p0) {
-                    if (i10 != yrVar.f42217b1 && i10 != yrVar.P0 && i10 != yrVar.R0 && i10 != yrVar.f42257u0 && i10 != yrVar.f42268y0 && i10 != yrVar.K0 && i10 != yrVar.M0 && i10 != yrVar.f42235j1 && i10 != yrVar.f42243o0 && i10 != yrVar.f42250r0) {
-                        if (i10 == yrVar.f42220c1) {
+                if (i10 != yrVar.D0 && i10 != yrVar.S && i10 != yrVar.N0 && i10 != yrVar.f41930s0 && i10 != yrVar.f41922p0) {
+                    if (i10 != yrVar.f41894b1 && i10 != yrVar.P0 && i10 != yrVar.R0 && i10 != yrVar.f41934u0 && i10 != yrVar.f41945y0 && i10 != yrVar.K0 && i10 != yrVar.M0 && i10 != yrVar.f41912j1 && i10 != yrVar.f41920o0 && i10 != yrVar.f41927r0) {
+                        if (i10 == yrVar.f41897c1) {
                             return 4;
                         }
                         if (i10 == yrVar.B0) {
                             return 6;
                         }
-                        if (i10 != yrVar.f42228g0 && i10 != yrVar.f42230h0 && i10 != yrVar.m0 && i10 != yrVar.f42232i0 && i10 != yrVar.f42234j0 && i10 != yrVar.T && i10 != yrVar.f42223e0 && i10 != yrVar.f42226f0 && i10 != yrVar.f42238l0 && i10 != yrVar.Q0) {
-                            if (i10 != yrVar.Z0 && i10 != yrVar.T0 && i10 != yrVar.W0 && i10 != yrVar.f42229g1) {
+                        if (i10 != yrVar.f41905g0 && i10 != yrVar.f41907h0 && i10 != yrVar.m0 && i10 != yrVar.f41909i0 && i10 != yrVar.f41911j0 && i10 != yrVar.T && i10 != yrVar.f41900e0 && i10 != yrVar.f41903f0 && i10 != yrVar.f41915l0 && i10 != yrVar.Q0) {
+                            if (i10 != yrVar.Z0 && i10 != yrVar.T0 && i10 != yrVar.W0 && i10 != yrVar.f41906g1) {
                                 if (i10 == yrVar.O0) {
                                     return 9;
                                 }
-                                if (i10 == yrVar.f42214a1) {
+                                if (i10 == yrVar.f41891a1) {
                                     return 10;
                                 }
-                                if (i10 == yrVar.f42227f1) {
+                                if (i10 == yrVar.f41904f1) {
                                     return 11;
                                 }
-                                if (i10 != yrVar.f42265x0 && i10 != yrVar.J0 && i10 != yrVar.L0) {
+                                if (i10 != yrVar.f41942x0 && i10 != yrVar.J0 && i10 != yrVar.L0) {
                                     if (yrVar.p0(i10)) {
                                         return 13;
                                     }
@@ -89,8 +89,8 @@ public final class ur extends org.telegram.ui.Components.lm0 {
                                     if (i10 == yrVar.S0) {
                                         return 15;
                                     }
-                                    if (i10 != yrVar.f42231h1 && i10 != yrVar.f42233i1 && i10 != yrVar.f42241n0) {
-                                        if (i10 != yrVar.f42247q0) {
+                                    if (i10 != yrVar.f41908h1 && i10 != yrVar.f41910i1 && i10 != yrVar.f41918n0) {
+                                        if (i10 != yrVar.f41924q0) {
                                             return 0;
                                         }
                                         return 17;
@@ -113,7 +113,7 @@ public final class ur extends org.telegram.ui.Components.lm0 {
     }
 
     @Override
-    public final void v(s4.b1 r27, int r28) {
+    public final void v(s4.b1 r26, int r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ur.v(s4.b1, int):void");
     }
 
@@ -126,7 +126,7 @@ public final class ur extends org.telegram.ui.Components.lm0 {
         org.telegram.ui.Components.sw0 sw0Var2;
         int i12 = 2;
         int i13 = 0;
-        Context context = this.f40789c;
+        Context context = this.f40471c;
         yr yrVar = this.d;
         switch (i10) {
             case 0:
@@ -139,12 +139,12 @@ public final class ur extends org.telegram.ui.Components.lm0 {
                 if (i14 == 0 || i14 == 3) {
                     i12 = 6;
                 }
-                if (yrVar.f42224e1 == 0) {
+                if (yrVar.f41901e1 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(i11, i12, this.f40789c, null, z10);
+                org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(i11, i12, this.f40471c, null, z10);
                 b5Var.setDelegate(new tr(this, 0));
                 sw0Var2 = b5Var;
                 sw0Var = sw0Var2;
@@ -156,7 +156,7 @@ public final class ur extends org.telegram.ui.Components.lm0 {
                 sw0Var = new org.telegram.ui.Cells.y4(context);
                 break;
             case 3:
-                sw0Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.d0) null);
+                sw0Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.c1) null);
                 break;
             case 4:
                 org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(context);
@@ -164,7 +164,7 @@ public final class ur extends org.telegram.ui.Components.lm0 {
                     e9Var.setText(LocaleController.getString(R.string.NoBlockedChannel2));
                     sw0Var = e9Var;
                     break;
-                } else if (yrVar.f42261w) {
+                } else if (yrVar.f41938w) {
                     e9Var.setText(LocaleController.getString(R.string.NoBlockedCommunity2));
                     sw0Var = e9Var;
                     break;
@@ -174,7 +174,7 @@ public final class ur extends org.telegram.ui.Components.lm0 {
                     break;
                 }
             case 5:
-                org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(this.f40789c, org.telegram.ui.ActionBar.g6.L6, 21, 11, false, null);
+                org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(this.f40471c, org.telegram.ui.ActionBar.g6.L6, 21, 11, false, null);
                 m4Var.setHeight(43);
                 sw0Var2 = m4Var;
                 sw0Var = sw0Var2;
@@ -195,7 +195,7 @@ public final class ur extends org.telegram.ui.Components.lm0 {
             case 9:
             default:
                 org.telegram.ui.Components.sw0 sw0Var3 = new org.telegram.ui.Components.sw0(context, null);
-                sw0Var3.b(yrVar.f42246p1, null, LocaleController.getString("SlowmodeOff", R.string.SlowmodeOff), LocaleController.formatString(R.string.SlowmodeSeconds, 5), LocaleController.formatString(R.string.SlowmodeSeconds, 10), LocaleController.formatString(R.string.SlowmodeSeconds, 30), LocaleController.formatString(R.string.SlowmodeMinutes, 1), LocaleController.formatString(R.string.SlowmodeMinutes, 5), LocaleController.formatString(R.string.SlowmodeMinutes, 15), LocaleController.formatString(R.string.SlowmodeHours, 1));
+                sw0Var3.b(yrVar.f41923p1, null, LocaleController.getString("SlowmodeOff", R.string.SlowmodeOff), LocaleController.formatString(R.string.SlowmodeSeconds, 5), LocaleController.formatString(R.string.SlowmodeSeconds, 10), LocaleController.formatString(R.string.SlowmodeSeconds, 30), LocaleController.formatString(R.string.SlowmodeMinutes, 1), LocaleController.formatString(R.string.SlowmodeMinutes, 5), LocaleController.formatString(R.string.SlowmodeMinutes, 15), LocaleController.formatString(R.string.SlowmodeHours, 1));
                 sw0Var3.setCallback(new tr(this, 1));
                 sw0Var = sw0Var3;
                 break;
@@ -206,7 +206,7 @@ public final class ur extends org.telegram.ui.Components.lm0 {
                 org.telegram.ui.Components.f10 f10Var = new org.telegram.ui.Components.f10(context, null);
                 f10Var.setIsSingleCell(true);
                 f10Var.setViewType(6);
-                f10Var.f24856w = false;
+                f10Var.f24549w = false;
                 f10Var.setUseHeaderOffset(false);
                 f10Var.setPaddingLeft(AndroidUtilities.dp(5.0f));
                 s4.o0 o0Var = new s4.o0(-1, -1);
@@ -218,21 +218,21 @@ public final class ur extends org.telegram.ui.Components.lm0 {
                 sw0Var = f10Var;
                 break;
             case 12:
-                org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(23, this.f40789c, yrVar.getResourceProvider(), false, true);
+                org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(23, this.f40471c, yrVar.getResourceProvider(), false, true);
                 r8Var.v = 50;
                 sw0Var = r8Var;
                 break;
             case 13:
-                org.telegram.ui.Cells.a2 a2Var = new org.telegram.ui.Cells.a2(4, 21, this.f40789c, yrVar.getResourceProvider(), false);
+                org.telegram.ui.Cells.a2 a2Var = new org.telegram.ui.Cells.a2(4, 21, this.f40471c, yrVar.getResourceProvider(), false);
                 a2Var.getCheckBoxRound().setDrawBackgroundAsArc(14);
-                a2Var.getCheckBoxRound().b(org.telegram.ui.ActionBar.g6.V6, org.telegram.ui.ActionBar.g6.f19955g7, org.telegram.ui.ActionBar.g6.f20029k7);
+                a2Var.getCheckBoxRound().b(org.telegram.ui.ActionBar.g6.V6, org.telegram.ui.ActionBar.g6.f19655g7, org.telegram.ui.ActionBar.g6.f19729k7);
                 a2Var.setEnabled(true);
                 sw0Var = a2Var;
                 break;
             case 15:
                 org.telegram.ui.Components.sw0 sw0Var4 = new org.telegram.ui.Components.sw0(context, null);
                 Drawable[] drawableArr = {yrVar.getParentActivity().getDrawable(R.drawable.mini_boost_profile_badge), yrVar.getParentActivity().getDrawable(R.drawable.mini_boost_profile_badge2), yrVar.getParentActivity().getDrawable(R.drawable.mini_boost_profile_badge2), yrVar.getParentActivity().getDrawable(R.drawable.mini_boost_profile_badge2), yrVar.getParentActivity().getDrawable(R.drawable.mini_boost_profile_badge2)};
-                int i15 = yrVar.f42254s1;
+                int i15 = yrVar.f41931s1;
                 if (i15 > 0) {
                     i13 = i15 - 1;
                 }

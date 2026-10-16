@@ -1,52 +1,33 @@
 package org.telegram.messenger.voip;
 
-import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.ww0;
-import org.telegram.ui.Components.z61;
-import org.telegram.ui.sl;
-public final class n0 implements Runnable {
-    public final int f18834a;
-    public final int f18835b;
-    public final boolean f18836c;
-    public final Object d;
-    public final Object e;
+import org.telegram.ui.n60;
+public final class n0 implements RequestDelegate {
+    public final int f18531a;
+    public final int f18532b;
+    public final boolean f18533c;
+    public final NotificationCenter.NotificationCenterDelegate d;
 
-    public n0(int i10, int i11, Object obj, Object obj2, boolean z10) {
-        this.f18834a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f18835b = i10;
-        this.f18836c = z10;
+    public n0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, boolean z10, int i11) {
+        this.f18531a = i11;
+        this.d = notificationCenterDelegate;
+        this.f18532b = i10;
+        this.f18533c = z10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.n0.run():void");
-    }
-
-    public n0(sl slVar, boolean z10, ArrayList arrayList, int i10) {
-        this.f18834a = 2;
-        this.d = slVar;
-        this.f18836c = z10;
-        this.e = arrayList;
-        this.f18835b = i10;
-    }
-
-    public n0(ww0 ww0Var, boolean z10, int i10, u1 u1Var) {
-        this.f18834a = 5;
-        this.d = ww0Var;
-        this.f18836c = z10;
-        this.f18835b = i10;
-        this.e = u1Var;
-    }
-
-    public n0(z61 z61Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
-        this.f18834a = i11;
-        this.d = z61Var;
-        this.f18835b = i10;
-        this.e = tL_messages_searchGlobal;
-        this.f18836c = z10;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18531a) {
+            case 0:
+                ((VoIPService) this.d).lambda$startGroupCall$29(this.f18532b, this.f18533c, tLObject, tL_error);
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new m0(this.f18532b, 6, (n60) this.d, tLObject, this.f18533c));
+                return;
+        }
     }
 }

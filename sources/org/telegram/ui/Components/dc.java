@@ -9,16 +9,16 @@ import org.telegram.messenger.support.SparseLongArray;
 public final class dc extends ac implements NotificationCenter.NotificationCenterDelegate {
     public final bc d;
     public SparseLongArray e;
-    public final org.telegram.ui.ActionBar.m2 f24351f;
+    public final org.telegram.ui.ActionBar.m2 f24076f;
     public final int h;
-    public sc f24352n;
+    public sc f24077n;
 
     public dc(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
         super(m2Var.getContext(), m2Var.getResourceProvider());
-        this.f24351f = m2Var;
+        this.f24076f = m2Var;
         this.h = i10;
-        this.f23513b.setLayoutParams(w7.a6.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
-        this.f23512a.setLayoutParams(w7.a6.h(56.0f, 48.0f, 8388659));
+        this.f23192b.setLayoutParams(w7.z5.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
+        this.f23191a.setLayoutParams(w7.z5.h(56.0f, 48.0f, 8388659));
         bc bcVar = new bc(this, m2Var, getContext(), m2Var.getCurrentAccount(), m2Var.getResourceProvider());
         this.d = bcVar;
         bcVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(0.0f));
@@ -29,7 +29,7 @@ public final class dc extends ac implements NotificationCenter.NotificationCente
         this.d.setVisibility(0);
         this.d.setBubbleOffset(-AndroidUtilities.dp(80.0f));
         this.d.setHint(LocaleController.getString(R.string.SavedTagReactionsHint));
-        addView(this.d, w7.a6.a(92.5f, 0.0f, 36.0f, 0.0f, 0.0f, -2, 1));
+        addView(this.d, w7.z5.a(92.5f, 0.0f, 36.0f, 0.0f, 0.0f, -2, 1));
         this.d.p(null, null, true);
     }
 
@@ -43,15 +43,15 @@ public final class dc extends ac implements NotificationCenter.NotificationCente
     public final void f() {
         if (this.d.getReactionsWindow() != null) {
             this.d.e();
-            if (this.d.getReactionsWindow().f864a != null) {
-                this.d.getReactionsWindow().f864a.animate().alpha(0.0f).setDuration(180L).start();
+            if (this.d.getReactionsWindow().f868a != null) {
+                this.d.getReactionsWindow().f868a.animate().alpha(0.0f).setDuration(180L).start();
             }
         }
     }
 
     @Override
     public int getMeasuredBackgroundHeight() {
-        return AndroidUtilities.dp(30.0f) + this.f23513b.getMeasuredHeight();
+        return AndroidUtilities.dp(30.0f) + this.f23192b.getMeasuredHeight();
     }
 
     @Override
@@ -67,6 +67,6 @@ public final class dc extends ac implements NotificationCenter.NotificationCente
     }
 
     public void setBulletin(sc scVar) {
-        this.f24352n = scVar;
+        this.f24077n = scVar;
     }
 }

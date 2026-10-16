@@ -4,15 +4,15 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 public interface fl0 {
-    boolean D();
+    boolean j();
 
-    boolean i();
+    boolean m();
 
-    boolean n();
+    void n(View view, ah.i1 i1Var, boolean z10, boolean z11);
 
-    void r(View view, ah.i1 i1Var, boolean z10, boolean z11);
-
-    void w(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10);
+    void r(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10);
 
     void y();
+
+    boolean z();
 }

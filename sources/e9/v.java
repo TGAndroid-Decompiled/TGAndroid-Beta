@@ -6,16 +6,16 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import v7.u6;
 public abstract class v implements Iterator {
-    public final int f8634a = 0;
-    public int f8635b;
-    public int f8636c;
+    public final int f8637a = 0;
+    public int f8638b;
+    public int f8639c;
     public int d;
     public final AbstractMap e;
 
     public v(x7.j jVar) {
         this.e = jVar;
-        this.f8635b = jVar.e;
-        this.f8636c = jVar.isEmpty() ? -1 : 0;
+        this.f8638b = jVar.e;
+        this.f8639c = jVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
 
@@ -25,19 +25,19 @@ public abstract class v implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        switch (this.f8634a) {
+        switch (this.f8637a) {
             case 0:
-                if (this.f8636c >= 0) {
+                if (this.f8639c >= 0) {
                     return true;
                 }
                 return false;
             case 1:
-                if (this.f8636c >= 0) {
+                if (this.f8639c >= 0) {
                     return true;
                 }
                 return false;
             default:
-                if (this.f8636c >= 0) {
+                if (this.f8639c >= 0) {
                     return true;
                 }
                 return false;
@@ -46,19 +46,19 @@ public abstract class v implements Iterator {
 
     @Override
     public final Object next() {
-        switch (this.f8634a) {
+        switch (this.f8637a) {
             case 0:
                 x xVar = (x) this.e;
-                if (xVar.e == this.f8635b) {
+                if (xVar.e == this.f8638b) {
                     if (hasNext()) {
-                        int i10 = this.f8636c;
+                        int i10 = this.f8639c;
                         this.d = i10;
                         Object a2 = a(i10);
-                        int i11 = this.f8636c + 1;
-                        if (i11 >= xVar.f8649f) {
+                        int i11 = this.f8639c + 1;
+                        if (i11 >= xVar.f8652f) {
                             i11 = -1;
                         }
-                        this.f8636c = i11;
+                        this.f8639c = i11;
                         return a2;
                     }
                     throw new NoSuchElementException();
@@ -66,16 +66,16 @@ public abstract class v implements Iterator {
                 throw new ConcurrentModificationException();
             case 1:
                 x7.j jVar = (x7.j) this.e;
-                if (jVar.e == this.f8635b) {
+                if (jVar.e == this.f8638b) {
                     if (hasNext()) {
-                        int i12 = this.f8636c;
+                        int i12 = this.f8639c;
                         this.d = i12;
                         Object b10 = b(i12);
-                        int i13 = this.f8636c + 1;
-                        if (i13 >= jVar.f48043f) {
+                        int i13 = this.f8639c + 1;
+                        if (i13 >= jVar.f48042f) {
                             i13 = -1;
                         }
-                        this.f8636c = i13;
+                        this.f8639c = i13;
                         return b10;
                     }
                     throw new NoSuchElementException();
@@ -83,16 +83,16 @@ public abstract class v implements Iterator {
                 throw new ConcurrentModificationException();
             default:
                 z7.d dVar = (z7.d) this.e;
-                if (dVar.e == this.f8635b) {
+                if (dVar.e == this.f8638b) {
                     if (hasNext()) {
-                        int i14 = this.f8636c;
+                        int i14 = this.f8639c;
                         this.d = i14;
                         Object b11 = b(i14);
-                        int i15 = this.f8636c + 1;
-                        if (i15 >= dVar.f49378f) {
+                        int i15 = this.f8639c + 1;
+                        if (i15 >= dVar.f49379f) {
                             i15 = -1;
                         }
-                        this.f8636c = i15;
+                        this.f8639c = i15;
                         return b11;
                     }
                     throw new NoSuchElementException();
@@ -106,19 +106,19 @@ public abstract class v implements Iterator {
         boolean z10;
         boolean z11;
         boolean z12;
-        switch (this.f8634a) {
+        switch (this.f8637a) {
             case 0:
                 x xVar = (x) this.e;
-                if (xVar.e == this.f8635b) {
+                if (xVar.e == this.f8638b) {
                     if (this.d >= 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     u6.o("no calls to next() since the last call to remove()", z10);
-                    this.f8635b += 32;
+                    this.f8638b += 32;
                     xVar.remove(xVar.j()[this.d]);
-                    this.f8636c--;
+                    this.f8639c--;
                     this.d = -1;
                     return;
                 }
@@ -126,7 +126,7 @@ public abstract class v implements Iterator {
             case 1:
                 x7.j jVar = (x7.j) this.e;
                 int i10 = jVar.e;
-                int i11 = this.f8635b;
+                int i11 = this.f8638b;
                 if (i10 == i11) {
                     int i12 = this.d;
                     if (i12 >= 0) {
@@ -135,11 +135,11 @@ public abstract class v implements Iterator {
                         z11 = false;
                     }
                     if (z11) {
-                        this.f8635b = i11 + 32;
-                        Object[] objArr = jVar.f48042c;
+                        this.f8638b = i11 + 32;
+                        Object[] objArr = jVar.f48041c;
                         objArr.getClass();
                         jVar.remove(objArr[i12]);
-                        this.f8636c--;
+                        this.f8639c--;
                         this.d = -1;
                         return;
                     }
@@ -149,7 +149,7 @@ public abstract class v implements Iterator {
             default:
                 z7.d dVar = (z7.d) this.e;
                 int i13 = dVar.e;
-                int i14 = this.f8635b;
+                int i14 = this.f8638b;
                 if (i13 == i14) {
                     int i15 = this.d;
                     if (i15 >= 0) {
@@ -158,11 +158,11 @@ public abstract class v implements Iterator {
                         z12 = false;
                     }
                     if (z12) {
-                        this.f8635b = i14 + 32;
-                        Object[] objArr2 = dVar.f49377c;
+                        this.f8638b = i14 + 32;
+                        Object[] objArr2 = dVar.f49378c;
                         objArr2.getClass();
                         dVar.remove(objArr2[i15]);
-                        this.f8636c--;
+                        this.f8639c--;
                         this.d = -1;
                         return;
                     }
@@ -174,15 +174,15 @@ public abstract class v implements Iterator {
 
     public v(z7.d dVar) {
         this.e = dVar;
-        this.f8635b = dVar.e;
-        this.f8636c = dVar.isEmpty() ? -1 : 0;
+        this.f8638b = dVar.e;
+        this.f8639c = dVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
 
     public v(x xVar) {
         this.e = xVar;
-        this.f8635b = xVar.e;
-        this.f8636c = xVar.isEmpty() ? -1 : 0;
+        this.f8638b = xVar.e;
+        this.f8639c = xVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
 }

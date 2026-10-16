@@ -8,59 +8,58 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import l5.r;
-import n6.o;
 public final class c {
-    public final double f6456a;
-    public final double f6457b;
-    public final long f6458c;
+    public final double f6459a;
+    public final double f6460b;
+    public final long f6461c;
     public final long d;
     public final int e;
-    public final ArrayBlockingQueue f6459f;
-    public final ThreadPoolExecutor f6460g;
+    public final ArrayBlockingQueue f6462f;
+    public final ThreadPoolExecutor f6463g;
     public final r h;
-    public final o f6461i;
-    public int f6462j;
-    public long f6463k;
+    public final n3.b f6464i;
+    public int f6465j;
+    public long f6466k;
 
-    public c(r rVar, ea.a aVar, o oVar) {
+    public c(r rVar, ea.a aVar, n3.b bVar) {
         double d = aVar.d;
         double d10 = aVar.e;
-        this.f6456a = d;
-        this.f6457b = d10;
-        this.f6458c = aVar.f8662f * 1000;
+        this.f6459a = d;
+        this.f6460b = d10;
+        this.f6461c = aVar.f8665f * 1000;
         this.h = rVar;
-        this.f6461i = oVar;
+        this.f6464i = bVar;
         this.d = SystemClock.elapsedRealtime();
         int i10 = (int) d;
         this.e = i10;
         ArrayBlockingQueue arrayBlockingQueue = new ArrayBlockingQueue(i10);
-        this.f6459f = arrayBlockingQueue;
-        this.f6460g = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, arrayBlockingQueue);
-        this.f6462j = 0;
-        this.f6463k = 0L;
+        this.f6462f = arrayBlockingQueue;
+        this.f6463g = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, arrayBlockingQueue);
+        this.f6465j = 0;
+        this.f6466k = 0L;
     }
 
     public final int a() {
         int max;
-        if (this.f6463k == 0) {
-            this.f6463k = System.currentTimeMillis();
+        if (this.f6466k == 0) {
+            this.f6466k = System.currentTimeMillis();
         }
-        int currentTimeMillis = (int) ((System.currentTimeMillis() - this.f6463k) / this.f6458c);
-        if (this.f6459f.size() == this.e) {
-            max = Math.min(100, this.f6462j + currentTimeMillis);
+        int currentTimeMillis = (int) ((System.currentTimeMillis() - this.f6466k) / this.f6461c);
+        if (this.f6462f.size() == this.e) {
+            max = Math.min(100, this.f6465j + currentTimeMillis);
         } else {
-            max = Math.max(0, this.f6462j - currentTimeMillis);
+            max = Math.max(0, this.f6465j - currentTimeMillis);
         }
-        if (this.f6462j != max) {
-            this.f6462j = max;
-            this.f6463k = System.currentTimeMillis();
+        if (this.f6465j != max) {
+            this.f6465j = max;
+            this.f6466k = System.currentTimeMillis();
         }
         return max;
     }
 
     public final void b(x9.b bVar, TaskCompletionSource taskCompletionSource) {
         boolean z10;
-        String str = "Sending report through Google DataTransport: " + bVar.f48279b;
+        String str = "Sending report through Google DataTransport: " + bVar.f48278b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", str, null);
         }
@@ -69,6 +68,6 @@ public final class c {
         } else {
             z10 = false;
         }
-        this.h.a(new i5.a(null, bVar.f48278a, d.f11321c, null), new b(this, taskCompletionSource, z10, bVar, 0));
+        this.h.a(new i5.a(null, bVar.f48277a, d.f11325c, null), new b(this, taskCompletionSource, z10, bVar, 0));
     }
 }

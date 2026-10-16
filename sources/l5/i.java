@@ -15,7 +15,7 @@ public final class i {
 
     public static androidx.biometric.e a() {
         androidx.biometric.e eVar = new androidx.biometric.e(28);
-        eVar.d = i5.d.f11319a;
+        eVar.d = i5.d.f11323a;
         return eVar;
     }
 
@@ -24,8 +24,8 @@ public final class i {
         a2.v(this.f14580a);
         if (dVar != null) {
             a2.d = dVar;
-            a2.f1197c = this.f14581b;
-            return a2.g();
+            a2.f1201c = this.f14581b;
+            return a2.e();
         }
         throw new NullPointerException("Null priority");
     }

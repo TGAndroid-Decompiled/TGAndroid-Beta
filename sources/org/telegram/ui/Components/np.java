@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import org.telegram.ui.ce1;
 public final class np extends ce1 {
-    public final int f27692k2;
+    public final int f27380k2;
 
     public np(Object obj, Bitmap bitmap, boolean z10, int i10) {
         super(obj, bitmap, z10);
-        this.f27692k2 = i10;
+        this.f27380k2 = i10;
     }
 
     @Override
     public final boolean U0() {
-        switch (this.f27692k2) {
+        switch (this.f27380k2) {
             case 0:
                 return true;
             case 1:

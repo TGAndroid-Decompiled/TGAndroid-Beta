@@ -8,26 +8,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
-import w7.a6;
+import w7.z5;
 public final class t implements Runnable {
-    public final int f44545a;
-    public final o0 f44546b;
-    public final j f44547c;
+    public final int f44304a;
+    public final o0 f44305b;
+    public final j f44306c;
 
     public t(o0 o0Var, j jVar, int i10) {
-        this.f44545a = i10;
-        this.f44546b = o0Var;
-        this.f44547c = jVar;
+        this.f44304a = i10;
+        this.f44305b = o0Var;
+        this.f44306c = jVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f44545a) {
+        switch (this.f44304a) {
             case 0:
-                this.f44546b.r0(this.f44547c);
+                this.f44305b.r0(this.f44306c);
                 return;
             default:
-                final o0 o0Var = this.f44546b;
+                final o0 o0Var = this.f44305b;
                 LinearLayout linearLayout = new LinearLayout(o0Var.getContext());
                 linearLayout.setOrientation(0);
                 TextView textView = new TextView(o0Var.getContext());
@@ -42,7 +42,7 @@ public final class t implements Runnable {
                 textView.setText(LocaleController.getString(R.string.PaintDelete));
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
-                final j jVar = this.f44547c;
+                final j jVar = this.f44306c;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -70,7 +70,7 @@ public final class t implements Runnable {
                         }
                     }
                 });
-                linearLayout.addView(textView, a6.n(-2, 48));
+                linearLayout.addView(textView, z5.n(-2, 48));
                 if (jVar instanceof x2) {
                     TextView textView2 = new TextView(o0Var.getContext());
                     textView2.setTextColor(g6.w0(i10, aVar));
@@ -82,7 +82,7 @@ public final class t implements Runnable {
                     textView2.setTag(1);
                     textView2.setText(LocaleController.getString(R.string.PaintEdit));
                     textView2.setOnClickListener(new k(o0Var, 2));
-                    linearLayout.addView(textView2, a6.n(-2, 48));
+                    linearLayout.addView(textView2, z5.n(-2, 48));
                 }
                 if (jVar instanceof q2) {
                     TextView textView3 = new TextView(o0Var.getContext());
@@ -121,7 +121,7 @@ public final class t implements Runnable {
                             }
                         }
                     });
-                    linearLayout.addView(textView3, a6.n(-2, 48));
+                    linearLayout.addView(textView3, z5.n(-2, 48));
                 }
                 if (!(jVar instanceof z1)) {
                     TextView textView4 = new TextView(o0Var.getContext());
@@ -134,7 +134,7 @@ public final class t implements Runnable {
                     textView4.setTag(2);
                     textView4.setText(LocaleController.getString(R.string.PaintDuplicate));
                     textView4.setOnClickListener(new k(o0Var, 3));
-                    linearLayout.addView(textView4, a6.n(-2, 48));
+                    linearLayout.addView(textView4, z5.n(-2, 48));
                 }
                 o0Var.S1.addView(linearLayout);
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();

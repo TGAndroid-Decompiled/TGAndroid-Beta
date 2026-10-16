@@ -5,16 +5,16 @@ import org.telegram.messenger.AndroidUtilities;
 public final class dj extends pf.c {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.u1 f35271f;
-    public final fo f35272g;
+    public final org.telegram.ui.Cells.u1 f35062f;
+    public final fo f35063g;
     public final Object h;
 
     public dj(fo foVar, int i10, Object obj, org.telegram.ui.Cells.u1 u1Var, int i11) {
         this.d = i11;
-        this.f35272g = foVar;
+        this.f35063g = foVar;
         this.e = i10;
         this.h = obj;
-        this.f35271f = u1Var;
+        this.f35062f = u1Var;
     }
 
     @Override
@@ -40,19 +40,19 @@ public final class dj extends pf.c {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                fo foVar = this.f35272g;
-                foVar.f36157wb = i10;
-                foVar.f36171xb = 1;
-                foVar.f36184yb = (CharacterStyle) this.h;
-                this.f35271f.invalidate();
+                fo foVar = this.f35063g;
+                foVar.f35858wb = i10;
+                foVar.f35872xb = 1;
+                foVar.f35885yb = (CharacterStyle) this.h;
+                this.f35062f.invalidate();
                 return;
             default:
                 int i11 = this.e;
-                fo foVar2 = this.f35272g;
-                foVar2.f36157wb = i11;
-                foVar2.f36171xb = 3;
-                foVar2.f36196zb = (String) this.h;
-                this.f35271f.invalidate();
+                fo foVar2 = this.f35063g;
+                foVar2.f35858wb = i11;
+                foVar2.f35872xb = 3;
+                foVar2.f35897zb = (String) this.h;
+                this.f35062f.invalidate();
                 return;
         }
     }

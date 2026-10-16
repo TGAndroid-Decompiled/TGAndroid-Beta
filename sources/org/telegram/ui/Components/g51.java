@@ -8,17 +8,17 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import android.widget.TextView;
-public final class g51 extends k61 {
+public final class g51 extends l61 {
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
-    public static l61 a(int i10, CharSequence charSequence, boolean z10, View.OnClickListener onClickListener, ca0 ca0Var, View.OnClickListener onClickListener2) {
-        l61 J = l61.J(g51.class);
+    public static m61 a(int i10, CharSequence charSequence, boolean z10, View.OnClickListener onClickListener, ca0 ca0Var, View.OnClickListener onClickListener2) {
+        m61 J = m61.J(g51.class);
         J.d = i10;
-        J.f26954l = charSequence;
-        J.f26949f = z10;
-        J.f26962t = false;
+        J.f26946l = charSequence;
+        J.f26941f = z10;
+        J.f26954t = false;
         J.D = onClickListener;
         J.G = ca0Var;
         J.E = onClickListener2;
@@ -26,7 +26,7 @@ public final class g51 extends k61 {
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
         ca0 ca0Var;
         CharSequence cloneSpans;
         int i10;
@@ -35,21 +35,21 @@ public final class g51 extends k61 {
         boolean z11;
         int i13;
         h51 h51Var = (h51) view;
-        CharSequence charSequence = l61Var.f26954l;
-        boolean z12 = l61Var.f26949f;
-        View.OnClickListener onClickListener = l61Var.D;
-        Object obj = l61Var.G;
+        CharSequence charSequence = m61Var.f26946l;
+        boolean z12 = m61Var.f26941f;
+        View.OnClickListener onClickListener = m61Var.D;
+        Object obj = m61Var.G;
         if (obj != null) {
             ca0Var = (ca0) obj;
         } else {
             ca0Var = null;
         }
-        boolean z13 = l61Var.f26962t;
-        View.OnClickListener onClickListener2 = l61Var.E;
-        ImageView imageView = h51Var.f25510n;
+        boolean z13 = m61Var.f26954t;
+        View.OnClickListener onClickListener2 = m61Var.E;
+        ImageView imageView = h51Var.f25179n;
         TextView textView = h51Var.d;
-        e51 e51Var = h51Var.f25508c;
-        f51 f51Var = h51Var.f25509f;
+        e51 e51Var = h51Var.f25177c;
+        f51 f51Var = h51Var.f25178f;
         if (charSequence == null) {
             cloneSpans = "";
         } else {
@@ -66,11 +66,11 @@ public final class g51 extends k61 {
                 spannableStringBuilder.removeSpan(ia0VarArr[i14]);
                 int i15 = i14;
                 ia0 ia0Var = ia0VarArr[i15];
-                ia0 ia0Var2 = new ia0(f51Var, ia0Var.f25921a, ia0Var.d, null);
+                ia0 ia0Var2 = new ia0(f51Var, ia0Var.f25616a, ia0Var.d, null);
                 ia0 ia0Var3 = ia0VarArr[i15];
-                ia0Var2.f25924f = ia0Var3.f25924f;
+                ia0Var2.f25619f = ia0Var3.f25619f;
                 ia0Var2.h = ia0Var3.h;
-                ia0Var2.f25925n = ia0Var3.f25925n;
+                ia0Var2.f25620n = ia0Var3.f25620n;
                 spannableStringBuilder.setSpan(ia0Var2, spanStart, spanEnd, 33);
                 i14 = i15 + 1;
                 z13 = z14;
@@ -82,7 +82,7 @@ public final class g51 extends k61 {
         if (h51Var.h && !z12) {
             e51Var.setVisibility(0);
             f51Var.setVisibility(0);
-            ViewPropertyAnimator withEndAction = e51Var.animate().alpha(0.0f).withEndAction(new lr0(h51Var, 24));
+            ViewPropertyAnimator withEndAction = e51Var.animate().alpha(0.0f).withEndAction(new kr0(h51Var, 24));
             TimeInterpolator timeInterpolator = es.h;
             withEndAction.setInterpolator(timeInterpolator).setDuration(320L).start();
             f51Var.animate().alpha(1.0f).setInterpolator(timeInterpolator).setDuration(320L).start();
@@ -125,13 +125,13 @@ public final class g51 extends k61 {
         }
         imageView.setVisibility(i13);
         imageView.setOnClickListener(onClickListener3);
-        h51Var.f25507b = z10;
+        h51Var.f25176b = z10;
         h51Var.setWillNotDraw(true ^ z10);
     }
 
     @Override
-    public final boolean contentsEquals(l61 l61Var, l61 l61Var2) {
-        if (TextUtils.equals(l61Var.f26954l, l61Var2.f26954l) && l61Var.f26949f == l61Var2.f26949f) {
+    public final boolean contentsEquals(m61 m61Var, m61 m61Var2) {
+        if (TextUtils.equals(m61Var.f26946l, m61Var2.f26946l) && m61Var.f26941f == m61Var2.f26941f) {
             return true;
         }
         return false;
@@ -143,8 +143,8 @@ public final class g51 extends k61 {
     }
 
     @Override
-    public final boolean equals(l61 l61Var, l61 l61Var2) {
-        if (l61Var.d == l61Var2.d) {
+    public final boolean equals(m61 m61Var, m61 m61Var2) {
+        if (m61Var.d == m61Var2.d) {
             return true;
         }
         return false;

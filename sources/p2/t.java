@@ -1,6 +1,6 @@
 package p2;
 public interface t {
-    y2.n H();
+    y2.n U();
 
-    y2.n U(p pVar, m mVar);
+    y2.n b0(p pVar, m mVar);
 }

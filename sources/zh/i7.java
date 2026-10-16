@@ -2,18 +2,18 @@ package zh;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.mm0;
-public final class i7 extends k61 {
-    public static final int f50678a = 0;
+public final class i7 extends l61 {
+    public static final int f50679a = 0;
 
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
     @Override
-    public final void bindView(android.view.View r32, org.telegram.ui.Components.l61 r33, boolean r34, org.telegram.ui.Components.z61 r35, org.telegram.ui.Components.h71 r36) {
-        throw new UnsupportedOperationException("Method not decompiled: zh.i7.bindView(android.view.View, org.telegram.ui.Components.l61, boolean, org.telegram.ui.Components.z61, org.telegram.ui.Components.h71):void");
+    public final void bindView(android.view.View r32, org.telegram.ui.Components.m61 r33, boolean r34, org.telegram.ui.Components.a71 r35, org.telegram.ui.Components.i71 r36) {
+        throw new UnsupportedOperationException("Method not decompiled: zh.i7.bindView(android.view.View, org.telegram.ui.Components.m61, boolean, org.telegram.ui.Components.a71, org.telegram.ui.Components.i71):void");
     }
 
     @Override

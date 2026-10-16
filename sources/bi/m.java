@@ -33,22 +33,22 @@ public final class m extends mm0 {
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     u uVar = (u) getChildAt(i11);
                     int R = RecyclerView.R(uVar);
-                    uVar.f3760b = R;
+                    uVar.f3764b = R;
                     boolean z11 = true;
-                    uVar.f3758a = true;
+                    uVar.f3762a = true;
                     if (R == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     uVar.d = z10;
-                    if (R != pxVar.f3843y.size() - 1) {
+                    if (R != pxVar.f3847y.size() - 1) {
                         z11 = false;
                     }
-                    uVar.f3762c = z11;
+                    uVar.f3766c = z11;
                     arrayList.add(uVar);
                 }
-                Collections.sort(arrayList, pxVar.f3840w0);
+                Collections.sort(arrayList, pxVar.f3844w0);
                 while (i10 < arrayList.size()) {
                     u uVar2 = (u) arrayList.get(i10);
                     int save = canvas.save();
@@ -78,7 +78,7 @@ public final class m extends mm0 {
             case 0:
                 if (motionEvent.getAction() == 0) {
                     px pxVar = this.W2;
-                    if (pxVar.f3816c0 > 0.2f || pxVar.getAlpha() == 0.0f) {
+                    if (pxVar.f3820c0 > 0.2f || pxVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }
@@ -130,7 +130,7 @@ public final class m extends mm0 {
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         switch (this.V2) {
             case 0:
-                ArrayList arrayList = this.W2.f3814b0;
+                ArrayList arrayList = this.W2.f3818b0;
                 super.onLayout(z10, i10, i11, i12, i13);
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((Runnable) arrayList.get(i14)).run();

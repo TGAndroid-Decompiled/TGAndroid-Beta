@@ -77,10 +77,10 @@ public class DialogObject {
 
     public static long getDialogId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f19363id;
+            return ((TLRPC.User) tLObject).f19063id;
         }
         if (tLObject instanceof TLRPC.Chat) {
-            return -((TLRPC.Chat) tLObject).f19216id;
+            return -((TLRPC.Chat) tLObject).f18916id;
         }
         return 0L;
     }
@@ -248,26 +248,26 @@ public class DialogObject {
     }
 
     public static void initDialog(TLRPC.Dialog dialog) {
-        if (dialog != null && dialog.f19220id == 0) {
+        if (dialog != null && dialog.f18920id == 0) {
             if (dialog instanceof TLRPC.TL_dialog) {
                 TLRPC.Peer peer = dialog.peer;
                 if (peer != null) {
                     long j10 = peer.user_id;
                     if (j10 != 0) {
-                        dialog.f19220id = j10;
+                        dialog.f18920id = j10;
                         return;
                     }
                     long j11 = peer.chat_id;
                     if (j11 != 0) {
-                        dialog.f19220id = -j11;
+                        dialog.f18920id = -j11;
                     } else {
-                        dialog.f19220id = -peer.channel_id;
+                        dialog.f18920id = -peer.channel_id;
                     }
                 }
             } else if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.f19220id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f19267id);
+                dialog.f18920id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f18967id);
             } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                dialog.f19220id = -dialog.community_id;
+                dialog.f18920id = -dialog.community_id;
             }
         }
     }

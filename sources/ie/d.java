@@ -5,12 +5,12 @@ import be.y0;
 import ge.v;
 import java.util.concurrent.Executor;
 public final class d extends y0 implements Executor {
-    public static final d f11404c = new a0();
+    public static final d f11408c = new a0();
     public static final a0 d;
 
     static {
-        a0 a0Var = l.f11415c;
-        int i10 = v.f10134a;
+        a0 a0Var = l.f11419c;
+        int i10 = v.f10138a;
         if (64 >= i10) {
             i10 = 64;
         }
@@ -21,13 +21,13 @@ public final class d extends y0 implements Executor {
                 if (j10 >= 1) {
                     a0Var = new ge.i(a0Var, j10);
                 } else {
-                    throw new IllegalArgumentException(i2.d.i(j10, "Expected positive parallelism level, but got ").toString());
+                    throw new IllegalArgumentException(i2.d.j(j10, "Expected positive parallelism level, but got ").toString());
                 }
             }
             d = a0Var;
             return;
         }
-        throw new IllegalArgumentException(i2.d.i(j10, "Expected positive parallelism level, but got ").toString());
+        throw new IllegalArgumentException(i2.d.j(j10, "Expected positive parallelism level, but got ").toString());
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class d extends y0 implements Executor {
 
     @Override
     public final void execute(Runnable runnable) {
-        c(kd.i.f14226a, runnable);
+        c(kd.i.f14228a, runnable);
     }
 
     @Override

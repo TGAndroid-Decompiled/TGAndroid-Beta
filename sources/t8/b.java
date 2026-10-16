@@ -21,7 +21,7 @@ import z7.w;
 public abstract class b {
     public static z3.c a(n nVar, byte[] bArr, int i10) {
         k0 t10 = n0.t();
-        nVar.u0(bArr, 0, i10, m.f49271c, new b0(t10, 23));
+        nVar.m0(bArr, 0, i10, m.f49270c, new b0(t10, 23));
         return new z3.c(t10.f());
     }
 
@@ -59,15 +59,15 @@ public abstract class b {
     public static ja.c f(int i10, s sVar) {
         Map unmodifiableMap;
         z7.s sVar2 = new z7.s(i10);
-        if (((HashMap) sVar.f16032c) == null) {
-            sVar.f16032c = new HashMap();
+        if (((HashMap) sVar.f15746c) == null) {
+            sVar.f15746c = new HashMap();
         }
-        ((HashMap) sVar.f16032c).put(w.class, sVar2);
-        String str = (String) sVar.f16031b;
-        if (((HashMap) sVar.f16032c) == null) {
+        ((HashMap) sVar.f15746c).put(w.class, sVar2);
+        String str = (String) sVar.f15745b;
+        if (((HashMap) sVar.f15746c) == null) {
             unmodifiableMap = Collections.EMPTY_MAP;
         } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) sVar.f16032c));
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) sVar.f15746c));
         }
         return new ja.c(str, unmodifiableMap);
     }

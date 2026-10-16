@@ -2,19 +2,19 @@ package e8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import w7.g0;
+import w7.f0;
 public final class d extends o6.a {
     public static final Parcelable.Creator<d> CREATOR = new e6.i(3);
-    public final byte[] f8516a;
+    public final byte[] f8519a;
 
     public d(byte[] bArr) {
-        this.f8516a = bArr;
+        this.f8519a = bArr;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = g0.q(parcel, 20293);
-        g0.c(parcel, 2, this.f8516a);
-        g0.r(parcel, q6);
+        int q6 = f0.q(parcel, 20293);
+        f0.c(parcel, 2, this.f8519a);
+        f0.r(parcel, q6);
     }
 }

@@ -2,25 +2,25 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.ChatObject;
 public final class x0 implements Runnable {
-    public final int f18964a;
-    public final ChatObject.Call f18965b;
+    public final int f18668a;
+    public final ChatObject.Call f18669b;
 
     public x0(ChatObject.Call call, int i10) {
-        this.f18964a = i10;
-        this.f18965b = call;
+        this.f18668a = i10;
+        this.f18669b = call;
     }
 
     @Override
     public final void run() {
-        switch (this.f18964a) {
+        switch (this.f18668a) {
             case 0:
-                ChatObject.Call.j(this.f18965b);
+                ChatObject.Call.j(this.f18669b);
                 return;
             case 1:
-                ChatObject.Call.a(this.f18965b);
+                ChatObject.Call.a(this.f18669b);
                 return;
             default:
-                ChatObject.Call.c(this.f18965b);
+                ChatObject.Call.c(this.f18669b);
                 return;
         }
     }

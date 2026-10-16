@@ -3,7 +3,7 @@ package i0;
 import android.graphics.Color;
 import com.google.android.gms.internal.play_billing.k3;
 public abstract class a {
-    public static final ThreadLocal f10887a = new ThreadLocal();
+    public static final ThreadLocal f10891a = new ThreadLocal();
 
     public static int a(float[] fArr) {
         int round;
@@ -149,7 +149,7 @@ public abstract class a {
         double pow;
         double pow2;
         double pow3;
-        ThreadLocal threadLocal = f10887a;
+        ThreadLocal threadLocal = f10891a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];

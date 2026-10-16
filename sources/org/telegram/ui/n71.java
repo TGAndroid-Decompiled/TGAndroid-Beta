@@ -46,20 +46,20 @@ public abstract class n71 extends Dialog {
     public ValueAnimator N;
     public boolean O;
     public final r71 P;
-    public final a71 f38555a;
-    public final ImageReceiver f38556b;
-    public final Rect f38557c;
+    public final a71 f38270a;
+    public final ImageReceiver f38271b;
+    public final Rect f38272c;
     public final Rect d;
     public final Rect e;
-    public final Runnable f38558f;
+    public final Runnable f38273f;
     public final View h;
-    public Bitmap f38559n;
-    public Paint f38560r;
-    public final l0 f38561s;
+    public Bitmap f38274n;
+    public Paint f38275r;
+    public final l0 f38276s;
     public final ActionBarPopupWindow$ActionBarPopupWindowLayout v;
-    public org.telegram.ui.ActionBar.e3 f38562w;
-    public boolean f38563x;
-    public final int f38564y;
+    public org.telegram.ui.ActionBar.e3 f38277w;
+    public boolean f38278x;
+    public final int f38279y;
 
     public n71(r71 r71Var, Context context, Runnable runnable, View view, a71 a71Var, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
@@ -69,7 +69,7 @@ public abstract class n71 extends Dialog {
         ColorFilter colorFilter;
         this.P = r71Var;
         Rect rect = new Rect();
-        this.f38557c = rect;
+        this.f38272c = rect;
         Rect rect2 = new Rect();
         this.d = rect2;
         Rect rect3 = new Rect();
@@ -78,19 +78,19 @@ public abstract class n71 extends Dialog {
         this.G = iArr;
         this.H = false;
         this.O = false;
-        this.f38555a = a71Var;
-        this.f38558f = runnable;
+        this.f38270a = a71Var;
+        this.f38273f = runnable;
         this.h = view;
         final g61 g61Var = (g61) this;
         l0 l0Var = new l0(g61Var, context, 23);
-        this.f38561s = l0Var;
+        this.f38276s = l0Var;
         setContentView(l0Var, new ViewGroup.LayoutParams(-1, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        linearLayout.addView(new x50(g61Var, context, 9), w7.a6.t(160, 160, 17, 0, 0, 0, 16));
+        linearLayout.addView(new x50(g61Var, context, 9), w7.z5.t(160, 160, 17, 0, 0, 0, 16));
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, 0, context, c6Var);
         this.v = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        linearLayout.addView(actionBarPopupWindow$ActionBarPopupWindowLayout, w7.a6.t(-2, -2, 17, 0, 0, 0, 0));
+        linearLayout.addView(actionBarPopupWindow$ActionBarPopupWindowLayout, w7.z5.t(-2, -2, 17, 0, 0, 0, 0));
         org.telegram.ui.ActionBar.u0.c(true, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, LocaleController.getString(R.string.SetEmojiStatusUntil1Hour), false, c6Var).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -168,7 +168,7 @@ public abstract class n71 extends Dialog {
             }
         });
         org.telegram.ui.ActionBar.u0.c(false, true, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, LocaleController.getString(R.string.SetEmojiStatusUntilOther), false, c6Var).setOnClickListener(new bz0(2, g61Var, context));
-        l0Var.addView(linearLayout, w7.a6.e(-2, -2, 17));
+        l0Var.addView(linearLayout, w7.z5.e(-2, -2, 17));
         Window window = getWindow();
         if (window != null) {
             window.setWindowAnimations(R.style.DialogNoAnimation);
@@ -192,11 +192,11 @@ public abstract class n71 extends Dialog {
             z10 = true;
         }
         if (a71Var != null) {
-            a71Var.f34064b = z10;
+            a71Var.f33767b = z10;
         }
         f();
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f38556b = imageReceiver;
+        this.f38271b = imageReceiver;
         imageReceiver.setParentView(l0Var);
         imageReceiver.setLayerNum(7);
         TLRPC.Document document = a71Var.d;
@@ -207,7 +207,7 @@ public abstract class n71 extends Dialog {
             }
         }
         if (document != null) {
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.g6.f20064m6, 0.2f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.g6.f19764m6, 0.2f);
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
             if ("video/webm".equals(document.mime_type)) {
                 forDocument = ImageLocation.getForDocument(document);
@@ -227,13 +227,13 @@ public abstract class n71 extends Dialog {
             if ((a71Var.E instanceof org.telegram.ui.Components.s5) && (MessageObject.isTextColorEmoji(document2) || ((org.telegram.ui.Components.s5) a71Var.E).c())) {
                 if (!MessageObject.isTextColorEmoji(document2)) {
                     org.telegram.ui.Components.s5 s5Var = (org.telegram.ui.Components.s5) a71Var.E;
-                    SparseArray sparseArray = org.telegram.ui.Components.s5.f29018q;
+                    SparseArray sparseArray = org.telegram.ui.Components.s5.f28726q;
                     if (s5Var == null || !s5Var.l()) {
                         colorFilter = org.telegram.ui.ActionBar.g6.o0(c6Var);
                         imageReceiver.setColorFilter(colorFilter);
                     }
                 }
-                colorFilter = r71Var.f39644k1;
+                colorFilter = r71Var.f39337k1;
                 imageReceiver.setColorFilter(colorFilter);
             }
         }
@@ -244,7 +244,7 @@ public abstract class n71 extends Dialog {
         rect.bottom = (a71Var.getHeight() + iArr[1]) - a71Var.getPaddingBottom();
         AndroidUtilities.lerp(rect, rect2, this.I, rect3);
         view.getLocationOnScreen(iArr);
-        this.f38564y = iArr[0];
+        this.f38279y = iArr[0];
         int i10 = iArr[1];
         this.E = i10;
         this.F = view.getHeight() + i10;
@@ -295,14 +295,14 @@ public abstract class n71 extends Dialog {
             this.N.setInterpolator(org.telegram.ui.Components.es.h);
         } else {
             this.N.setDuration(240L);
-            this.N.setInterpolator(org.telegram.ui.Components.es.f24772g);
+            this.N.setInterpolator(org.telegram.ui.Components.es.f24466g);
         }
         this.N.start();
     }
 
     public final void d(final boolean z10, j71 j71Var, final j71 j71Var2, final boolean z11) {
         float f7;
-        a71 a71Var = this.f38555a;
+        a71 a71Var = this.f38270a;
         if (a71Var == null) {
             if (j71Var != null) {
                 j71Var.run();
@@ -319,7 +319,7 @@ public abstract class n71 extends Dialog {
         }
         this.J = z10;
         if (z10) {
-            a71Var.f34064b = true;
+            a71Var.f33767b = true;
         }
         final boolean[] zArr = new boolean[1];
         float f10 = this.I;
@@ -337,16 +337,16 @@ public abstract class n71 extends Dialog {
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 n71 n71Var = n71.this;
                 n71Var.I = floatValue;
-                AndroidUtilities.lerp(n71Var.f38557c, n71Var.d, floatValue, n71Var.e);
-                n71Var.f38561s.invalidate();
+                AndroidUtilities.lerp(n71Var.f38272c, n71Var.d, floatValue, n71Var.e);
+                n71Var.f38276s.invalidate();
                 boolean z12 = z10;
                 if (!z12) {
                     n71Var.v.setAlpha(n71Var.I);
                 }
                 if (n71Var.I < 0.025f && !z12) {
                     if (z11) {
-                        n71Var.f38555a.f34064b = false;
-                        n71Var.P.f39637h0.invalidate();
+                        n71Var.f38270a.f33767b = false;
+                        n71Var.P.f39330h0.invalidate();
                     }
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
                 }
@@ -413,7 +413,7 @@ public abstract class n71 extends Dialog {
         Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         canvas.scale(0.083333336f, 0.083333336f);
-        canvas.drawColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19901d6, false));
+        canvas.drawColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false));
         decorView.draw(canvas);
         if (activity instanceof LaunchActivity) {
             LaunchActivity launchActivity = (LaunchActivity) activity;
@@ -430,8 +430,8 @@ public abstract class n71 extends Dialog {
             canvas.restore();
         }
         Utilities.stackBlurBitmap(createBitmap, Math.max(10, Math.max(measuredWidth, measuredHeight) / 180));
-        this.f38560r = new Paint(1);
-        this.f38559n = createBitmap;
+        this.f38275r = new Paint(1);
+        this.f38274n = createBitmap;
     }
 
     @Override

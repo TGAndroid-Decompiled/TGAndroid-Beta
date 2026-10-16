@@ -1,134 +1,73 @@
 package n6;
 
-import android.app.PendingIntent;
 import android.os.Bundle;
-import android.os.Looper;
-import android.os.Message;
-import android.text.TextUtils;
+import android.os.IBinder;
+import android.os.Parcel;
 import android.util.Log;
-public final class b0 extends com.google.android.gms.internal.cast.a0 {
-    public final g f16060a;
+public final class b0 extends b8.b {
+    public g f15773b;
+    public final int f15774c;
 
-    public b0(g gVar, Looper looper) {
-        super(looper, 4);
-        this.f16060a = gVar;
+    public b0(g gVar, int i10) {
+        super("com.google.android.gms.common.internal.IGmsCallbacks", 7);
+        this.f15773b = gVar;
+        this.f15774c = i10;
     }
 
     @Override
-    public final void handleMessage(Message message) {
-        Boolean bool;
-        if (this.f16060a.R.get() != message.arg1) {
-            int i10 = message.what;
-            if (i10 != 2 && i10 != 1 && i10 != 7) {
-                return;
-            }
-            x xVar = (x) message.obj;
-            xVar.getClass();
-            xVar.d();
-            return;
-        }
-        int i11 = message.what;
-        if ((i11 != 1 && i11 != 7 && i11 != 4 && i11 != 5) || this.f16060a.g()) {
-            int i12 = message.what;
-            PendingIntent pendingIntent = null;
-            if (i12 == 4) {
-                g gVar = this.f16060a;
-                gVar.O = new k6.a(message.arg2);
-                if (!gVar.P && !TextUtils.isEmpty(gVar.v()) && !TextUtils.isEmpty(null)) {
-                    try {
-                        Class.forName(gVar.v());
-                        g gVar2 = this.f16060a;
-                        if (!gVar2.P) {
-                            gVar2.F(3, null);
-                            return;
-                        }
-                    } catch (ClassNotFoundException unused) {
-                    }
+    public final boolean I0(int i10, Parcel parcel, Parcel parcel2) {
+        n nVar;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    return false;
                 }
-                g gVar3 = this.f16060a;
-                k6.a aVar = gVar3.O;
-                if (aVar == null) {
-                    aVar = new k6.a(8);
-                }
-                gVar3.E.a(aVar);
-                this.f16060a.z(aVar);
-                return;
-            } else if (i12 == 5) {
-                g gVar4 = this.f16060a;
-                k6.a aVar2 = gVar4.O;
-                if (aVar2 == null) {
-                    aVar2 = new k6.a(8);
-                }
-                gVar4.E.a(aVar2);
-                this.f16060a.z(aVar2);
-                return;
-            } else if (i12 == 3) {
-                Object obj = message.obj;
-                if (obj instanceof PendingIntent) {
-                    pendingIntent = (PendingIntent) obj;
-                }
-                k6.a aVar3 = new k6.a(message.arg2, pendingIntent);
-                this.f16060a.E.a(aVar3);
-                this.f16060a.z(aVar3);
-                return;
-            } else if (i12 == 6) {
-                this.f16060a.F(5, null);
-                m mVar = this.f16060a.J;
-                if (mVar != null) {
-                    ((com.google.android.gms.common.api.k) mVar.f16126a).onConnectionSuspended(message.arg2);
-                }
-                this.f16060a.A(message.arg2);
-                g.E(this.f16060a, 5, 1, null);
-                return;
-            } else if (i12 == 2 && !this.f16060a.j()) {
-                x xVar2 = (x) message.obj;
-                xVar2.getClass();
-                xVar2.d();
-                return;
-            } else {
-                int i13 = message.what;
-                if (i13 != 2 && i13 != 1 && i13 != 7) {
-                    Log.wtf("GmsClient", i2.d.i(i13, "Don't know how to handle message: "), new Exception());
-                    return;
-                }
-                x xVar3 = (x) message.obj;
-                synchronized (xVar3) {
-                    try {
-                        bool = xVar3.f16157a;
-                        if (xVar3.f16158b) {
-                            String obj2 = xVar3.toString();
-                            Log.w("GmsClient", "Callback proxy " + obj2 + " being reused. This is not safe.");
-                        }
-                    } catch (Throwable th2) {
-                        throw th2;
-                    }
-                }
-                if (bool != null) {
-                    g gVar5 = xVar3.f16160f;
-                    int i14 = xVar3.d;
-                    if (i14 == 0) {
-                        if (!xVar3.b()) {
-                            gVar5.F(1, null);
-                            xVar3.a(new k6.a(8, null));
-                        }
+                int readInt = parcel.readInt();
+                IBinder readStrongBinder = parcel.readStrongBinder();
+                f0 f0Var = (f0) m7.a.a(parcel, f0.CREATOR);
+                m7.a.b(parcel);
+                g gVar = this.f15773b;
+                l.i(gVar, "onPostInitCompleteWithConnectionInfo can be called only once per call togetRemoteService");
+                l.h(f0Var);
+                gVar.Q = f0Var;
+                if (gVar.C()) {
+                    e eVar = f0Var.d;
+                    m b10 = m.b();
+                    if (eVar == null) {
+                        nVar = null;
                     } else {
-                        gVar5.F(1, null);
-                        Bundle bundle = xVar3.e;
-                        if (bundle != null) {
-                            pendingIntent = (PendingIntent) bundle.getParcelable("pendingIntent");
+                        nVar = eVar.f15781a;
+                    }
+                    synchronized (b10) {
+                        if (nVar == null) {
+                            nVar = m.f15837c;
+                        } else {
+                            n nVar2 = (n) b10.f15838a;
+                            if (nVar2 != null) {
+                                if (nVar2.f15839a < nVar.f15839a) {
+                                }
+                            }
                         }
-                        xVar3.a(new k6.a(i14, pendingIntent));
+                        b10.f15838a = nVar;
                     }
                 }
-                synchronized (xVar3) {
-                    xVar3.f16158b = true;
-                }
-                xVar3.d();
-                return;
+                Bundle bundle = f0Var.f15796a;
+                l.i(this.f15773b, "onPostInitComplete can be called only once per call to getRemoteService");
+                this.f15773b.B(readInt, readStrongBinder, bundle, this.f15774c);
+                this.f15773b = null;
+            } else {
+                parcel.readInt();
+                Bundle bundle2 = (Bundle) m7.a.a(parcel, Bundle.CREATOR);
+                m7.a.b(parcel);
+                Log.wtf("GmsClient", "received deprecated onAccountValidationComplete callback, ignoring", new Exception());
             }
+        } else {
+            m7.a.b(parcel);
+            l.i(this.f15773b, "onPostInitComplete can be called only once per call to getRemoteService");
+            this.f15773b.B(parcel.readInt(), parcel.readStrongBinder(), (Bundle) m7.a.a(parcel, Bundle.CREATOR), this.f15774c);
+            this.f15773b = null;
         }
-        x xVar4 = (x) message.obj;
-        xVar4.getClass();
-        xVar4.d();
+        parcel2.writeNoException();
+        return true;
     }
 }

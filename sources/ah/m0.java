@@ -14,22 +14,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.a8;
 import org.telegram.ui.Components.qb;
-import org.telegram.ui.Components.rm;
+import org.telegram.ui.Components.qm;
 import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.ty0;
+import org.telegram.ui.Components.uy0;
 import org.telegram.ui.Components.wb;
 public final class m0 implements qb {
-    public final int f824a;
-    public final Object f825b;
+    public final int f828a;
+    public final Object f829b;
 
     public m0(Object obj, int i10) {
-        this.f824a = i10;
-        this.f825b = obj;
+        this.f828a = i10;
+        this.f829b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f824a) {
+        switch (this.f828a) {
             case 0:
                 return true;
             case 1:
@@ -60,11 +60,11 @@ public final class m0 implements qb {
     @Override
     public final void b(sc scVar) {
         j5 j5Var;
-        switch (this.f824a) {
+        switch (this.f828a) {
             case 0:
                 return;
             case 1:
-                if (scVar.f29096a == 2 && (j5Var = ((o4) this.f825b).f3412x.Q1) != null) {
+                if (scVar.f28799a == 2 && (j5Var = ((o4) this.f829b).f3416x.Q1) != null) {
                     sb sbVar = ((jb) j5Var).d;
                     sbVar.Y0 = true;
                     sbVar.P();
@@ -83,13 +83,13 @@ public final class m0 implements qb {
                 return;
             default:
                 wb wbVar = scVar.e;
-                yh.k0 k0Var = (yh.k0) this.f825b;
+                yh.k0 k0Var = (yh.k0) this.f829b;
                 dh.d c10 = k0Var.e.c(wbVar, null, true);
                 eh.e eVar = new eh.e(yh.k0.n(k0Var));
                 eVar.e = new w2(18);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
                 float dpf22 = AndroidUtilities.dpf2(0.5f);
-                eVar.f8779f = dpf2;
+                eVar.f8782f = dpf2;
                 eVar.h = dpf22;
                 c10.o(eVar);
                 c10.q(AndroidUtilities.dp(16.0f));
@@ -100,17 +100,17 @@ public final class m0 implements qb {
 
     @Override
     public final void c(float f7) {
-        int i10 = this.f824a;
+        int i10 = this.f828a;
     }
 
     @Override
     public final void d(sc scVar) {
         j5 j5Var;
-        switch (this.f824a) {
+        switch (this.f828a) {
             case 0:
                 return;
             case 1:
-                if (scVar.f29096a == 2 && (j5Var = ((o4) this.f825b).f3412x.Q1) != null) {
+                if (scVar.f28799a == 2 && (j5Var = ((o4) this.f829b).f3416x.Q1) != null) {
                     sb sbVar = ((jb) j5Var).d;
                     sbVar.Y0 = false;
                     sbVar.P();
@@ -133,7 +133,7 @@ public final class m0 implements qb {
 
     @Override
     public final boolean e() {
-        switch (this.f824a) {
+        switch (this.f828a) {
             case 0:
                 return true;
             case 1:
@@ -165,46 +165,46 @@ public final class m0 implements qb {
     public final int f(int i10) {
         int editTextHeight;
         int dp;
-        switch (this.f824a) {
+        switch (this.f828a) {
             case 0:
-                return (int) ((t0) ((v) this.f825b).f891c).f881u;
+                return (int) ((t0) ((v) this.f829b).f895c).f885u;
             case 1:
-                if (((o4) this.f825b).f3412x.f3578x2) {
+                if (((o4) this.f829b).f3416x.f3582x2) {
                     return 0;
                 }
                 return AndroidUtilities.dp(64.0f);
             case 2:
-                return ((w6) this.f825b).f3905r.getPaddingBottom();
+                return ((w6) this.f829b).f3909r.getPaddingBottom();
             case 3:
                 return 0;
             case 4:
-                editTextHeight = ((kc) this.f825b).f7243c1.getEditTextHeight();
+                editTextHeight = ((kc) this.f829b).f7246c1.getEditTextHeight();
                 dp = AndroidUtilities.dp(12.0f);
                 break;
             case 5:
-                return ((a8) this.f825b).e.E.getHeight();
+                return ((a8) this.f829b).e.E.getHeight();
             case 6:
-                return ((m2) this.f825b).getBottomInset();
+                return ((m2) this.f829b).getBottomInset();
             case 7:
-                qb qbVar = (qb) this.f825b;
+                qb qbVar = (qb) this.f829b;
                 if (qbVar == null) {
                     return 0;
                 }
                 return qbVar.f(i10);
             case 8:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((rm) this.f825b).f28872c.f27671b.getBottomInset();
+                dp = ((qm) this.f829b).f28327c.f27360b.getBottomInset();
                 break;
             case 9:
-                FrameLayout frameLayout = ((ty0) this.f825b).f29526w;
+                FrameLayout frameLayout = ((uy0) this.f829b).f29513w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
                 return 0;
             case 10:
-                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.f825b;
-                if (b1Var.getParent() instanceof p4) {
-                    p4 p4Var = (p4) b1Var.getParent();
+                org.telegram.ui.web.c1 c1Var = (org.telegram.ui.web.c1) this.f829b;
+                if (c1Var.getParent() instanceof p4) {
+                    p4 p4Var = (p4) c1Var.getParent();
                     return (int) ((p4Var.getSwipeOffsetY() + p4Var.getOffsetY()) - p4Var.getTopActionBarOffsetY());
                 }
                 return 0;
@@ -216,7 +216,7 @@ public final class m0 implements qb {
 
     @Override
     public final boolean g(int i10) {
-        switch (this.f824a) {
+        switch (this.f828a) {
             case 0:
                 return false;
             case 1:
@@ -235,7 +235,7 @@ public final class m0 implements qb {
             case 6:
                 return false;
             case 7:
-                qb qbVar = (qb) this.f825b;
+                qb qbVar = (qb) this.f829b;
                 if (qbVar != null && qbVar.g(i10)) {
                     return true;
                 }
@@ -253,7 +253,7 @@ public final class m0 implements qb {
 
     @Override
     public final int h(int i10) {
-        switch (this.f824a) {
+        switch (this.f828a) {
             case 0:
                 return 0;
             case 1:
@@ -261,7 +261,7 @@ public final class m0 implements qb {
             case 2:
                 return 0;
             case 3:
-                return (int) (((h7) this.f825b).f3125a + AndroidUtilities.dp(58.0f));
+                return (int) (((h7) this.f829b).f3129a + AndroidUtilities.dp(58.0f));
             case 4:
                 return 0;
             case 5:
@@ -269,7 +269,7 @@ public final class m0 implements qb {
             case 6:
                 return 0;
             case 7:
-                qb qbVar = (qb) this.f825b;
+                qb qbVar = (qb) this.f829b;
                 if (qbVar == null) {
                     return AndroidUtilities.statusBarHeight;
                 }

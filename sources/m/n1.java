@@ -1,31 +1,50 @@
 package m;
 
-import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import java.lang.reflect.Method;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 public abstract class n1 {
-    public static final Method f15180a;
-    public static final Method f15181b;
-    public static final Method f15182c;
-    public static final boolean d;
+    public static final int[] f14901a = {16842912};
+    public static final int[] f14902b = new int[0];
 
     static {
-        try {
-            Class cls = Integer.TYPE;
-            Class cls2 = Float.TYPE;
-            Method declaredMethod = AbsListView.class.getDeclaredMethod("positionSelector", cls, View.class, Boolean.TYPE, cls2, cls2);
-            f15180a = declaredMethod;
-            declaredMethod.setAccessible(true);
-            Method declaredMethod2 = AdapterView.class.getDeclaredMethod("setSelectedPositionInt", cls);
-            f15181b = declaredMethod2;
-            declaredMethod2.setAccessible(true);
-            Method declaredMethod3 = AdapterView.class.getDeclaredMethod("setNextSelectedPositionInt", cls);
-            f15182c = declaredMethod3;
-            declaredMethod3.setAccessible(true);
-            d = true;
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+        new Rect();
+    }
+
+    public static void a(Drawable drawable) {
+        String name = drawable.getClass().getName();
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 29 && i10 < 31 && "android.graphics.drawable.ColorStateListDrawable".equals(name)) {
+            int[] state = drawable.getState();
+            if (state != null && state.length != 0) {
+                drawable.setState(f14902b);
+            } else {
+                drawable.setState(f14901a);
+            }
+            drawable.setState(state);
         }
+    }
+
+    public static PorterDuff.Mode b(int i10, PorterDuff.Mode mode) {
+        if (i10 != 3) {
+            if (i10 != 5) {
+                if (i10 != 9) {
+                    switch (i10) {
+                        case 14:
+                            return PorterDuff.Mode.MULTIPLY;
+                        case 15:
+                            return PorterDuff.Mode.SCREEN;
+                        case 16:
+                            return PorterDuff.Mode.ADD;
+                        default:
+                            return mode;
+                    }
+                }
+                return PorterDuff.Mode.SRC_ATOP;
+            }
+            return PorterDuff.Mode.SRC_IN;
+        }
+        return PorterDuff.Mode.SRC_OVER;
     }
 }

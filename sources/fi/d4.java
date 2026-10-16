@@ -3,25 +3,25 @@ package fi;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
-public final class d4 extends k61 {
-    public static final int f9232a = 0;
+public final class d4 extends l61 {
+    public static final int f9235a = 0;
 
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
         e4 e4Var = (e4) view;
-        CharSequence charSequence = l61Var.f26954l;
-        CharSequence charSequence2 = l61Var.f26955m;
+        CharSequence charSequence = m61Var.f26946l;
+        CharSequence charSequence2 = m61Var.f26947m;
         e4Var.setText(charSequence);
-        e4Var.f9250r.setText(charSequence2);
+        e4Var.f9253r.setText(charSequence2);
     }
 
     @Override

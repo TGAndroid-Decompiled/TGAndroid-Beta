@@ -36,7 +36,7 @@ public final class w3 extends vi {
             case 2:
                 fo foVar = (fo) notificationCenterDelegate;
                 w3 w3Var2 = foVar.J1;
-                if (w3Var2 != null && (w3Var2.isShowing() || this.f30058x0)) {
+                if (w3Var2 != null && (w3Var2.isShowing() || this.f29729x0)) {
                     Activity parentActivity = foVar.getParentActivity();
                     i10 = ((org.telegram.ui.ActionBar.m2) foVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
@@ -45,8 +45,8 @@ public final class w3 extends vi {
                 foVar.Y9(false, true);
                 xm xmVar = foVar.X0;
                 if (xmVar != null) {
-                    WeakHashMap weakHashMap = r0.j0.f43732a;
-                    r0.z.c(xmVar);
+                    WeakHashMap weakHashMap = r0.i0.f43485a;
+                    r0.y.c(xmVar);
                     return;
                 }
                 return;
@@ -67,9 +67,9 @@ public final class w3 extends vi {
                 if (w3Var != null) {
                     w3Var.setFocusable(false);
                 }
-                q3 q3Var = q5Var.f3508b2;
+                q3 q3Var = q5Var.f3512b2;
                 if (q3Var != null && q3Var.getEditField() != null) {
-                    q5Var.f3508b2.getEditField().requestFocus();
+                    q5Var.f3512b2.getEditField().requestFocus();
                     return;
                 }
                 return;
@@ -87,7 +87,7 @@ public final class w3 extends vi {
                 return;
             default:
                 fo foVar = (fo) this.T2;
-                boolean z10 = this.f30058x0;
+                boolean z10 = this.f29729x0;
                 boolean M = this.B0.M();
                 if (!M) {
                     foVar.D3 = false;

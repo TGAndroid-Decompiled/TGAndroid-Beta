@@ -20,39 +20,39 @@ public class l3 {
     public org.telegram.ui.k4 J;
     public fi.z0 K;
     public boolean L;
-    public fi.e5 f20485a;
-    public org.telegram.ui.web.y0 f20486b;
-    public org.telegram.ui.o3 f20487c;
+    public fi.e5 f20185a;
+    public org.telegram.ui.web.z0 f20186b;
+    public org.telegram.ui.o3 f20187c;
     public Object d;
     public boolean e;
-    public String f20488f;
-    public int f20489g;
+    public String f20188f;
+    public int f20189g;
     public int h;
-    public int f20490i;
-    public boolean f20491j;
-    public float f20492k = Float.MAX_VALUE;
-    public boolean f20493l = true;
-    public Bitmap f20494m;
-    public boolean f20495n;
-    public boolean f20496o;
-    public int f20497p;
-    public int f20498q;
-    public int f20499r;
-    public int f20500s;
-    public boolean f20501t;
-    public boolean f20502u;
+    public int f20190i;
+    public boolean f20191j;
+    public float f20192k = Float.MAX_VALUE;
+    public boolean f20193l = true;
+    public Bitmap f20194m;
+    public boolean f20195n;
+    public boolean f20196o;
+    public int f20197p;
+    public int f20198q;
+    public int f20199r;
+    public int f20200s;
+    public boolean f20201t;
+    public boolean f20202u;
     public boolean v;
-    public a5.a f20503w;
-    public String f20504x;
-    public boolean f20505y;
-    public boolean f20506z;
+    public a5.a f20203w;
+    public String f20204x;
+    public boolean f20205y;
+    public boolean f20206z;
 
     public final void a() {
         try {
-            org.telegram.ui.web.y0 y0Var = this.f20486b;
-            if (y0Var != null) {
-                y0Var.destroy();
-                this.f20486b = null;
+            org.telegram.ui.web.z0 z0Var = this.f20186b;
+            if (z0Var != null) {
+                z0Var.destroy();
+                this.f20186b = null;
             }
             org.telegram.ui.k4 k4Var = this.J;
             if (k4Var != null) {
@@ -70,13 +70,13 @@ public class l3 {
             }
             return this.E;
         }
-        fi.e5 e5Var = this.f20485a;
+        fi.e5 e5Var = this.f20185a;
         if (e5Var == null) {
             return "";
         }
-        if (e5Var.f9255g == 6) {
+        if (e5Var.f9258g == 6) {
             return e5Var.e;
         }
-        return UserObject.getUserName(MessagesController.getInstance(e5Var.f9251a).getUser(Long.valueOf(this.f20485a.f9253c)));
+        return UserObject.getUserName(MessagesController.getInstance(e5Var.f9254a).getUser(Long.valueOf(this.f20185a.f9256c)));
     }
 }

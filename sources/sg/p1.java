@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import w7.a6;
+import w7.z5;
 public final class p1 extends FrameLayout {
     public float f45299a;
     public final o1 f45300b;
@@ -34,7 +34,7 @@ public final class p1 extends FrameLayout {
         imageReceiver.setAllowStartAnimation(false);
         imageReceiver2.setAllowStartAnimation(false);
         setClipChildren(false);
-        addView(o1Var, a6.e(-1, -2, 21));
+        addView(o1Var, z5.e(-1, -2, 21));
     }
 
     public final void a(boolean z10, boolean z11, boolean z12) {

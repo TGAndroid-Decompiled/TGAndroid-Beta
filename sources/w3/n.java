@@ -1,10 +1,10 @@
 package w3;
+public final class n {
+    public final long f47156a;
+    public final int f47157b;
 
-import c3.f0;
-public final class n implements f0 {
-    public static final n f47156a = new Object();
-
-    public final String toString() {
-        return "NoDeclaredBrand";
+    public n(long j10, int i10) {
+        this.f47156a = j10;
+        this.f47157b = i10;
     }
 }

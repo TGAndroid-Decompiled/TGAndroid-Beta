@@ -1,46 +1,50 @@
 package org.telegram.ui;
 
-import android.net.Uri;
-import android.text.TextUtils;
-import java.io.File;
-import java.io.IOException;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.tgnet.TLRPC;
-public final class dl0 {
-    public boolean f35323a;
-    public boolean f35324b;
-    public int f35325c;
-    public int d;
-    public TLRPC.Document e;
-    public String f35326f;
-    public String f35327g;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.RadioButton;
+public final class dl0 extends FrameLayout {
+    public TextView f35075a;
+    public RadioButton f35076b;
+    public org.telegram.ui.Components.aq f35077c;
+    public boolean d;
+    public cl0 e;
 
-    public final Uri a(int i10) {
-        if (!TextUtils.isEmpty(this.f35327g)) {
-            return Uri.fromFile(new File(this.f35327g));
-        }
-        TLRPC.Document document = this.e;
-        if (document != null) {
-            String str = document.file_name_fixed;
-            String documentExtension = FileLoader.getDocumentExtension(document);
-            if (documentExtension != null) {
-                String lowerCase = documentExtension.toLowerCase();
-                if (!str.endsWith(lowerCase)) {
-                    str = a1.g.D(str, ".", lowerCase);
-                }
-                File file = new File(AndroidUtilities.getCacheDir(), str);
-                if (!file.exists()) {
-                    try {
-                        AndroidUtilities.copyFile(FileLoader.getInstance(i10).getPathToAttach(this.e), file);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return Uri.fromFile(file);
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        if (this.d) {
+            float f10 = 60.0f;
+            if (LocaleController.isRTL) {
+                f7 = 0.0f;
+            } else {
+                f7 = 60.0f;
             }
-            return null;
+            float dp = AndroidUtilities.dp(f7);
+            float height = getHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (!LocaleController.isRTL) {
+                f10 = 0.0f;
+            }
+            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.g6.f19722k0);
         }
-        return null;
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.f35076b.f22982f);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
     }
 }

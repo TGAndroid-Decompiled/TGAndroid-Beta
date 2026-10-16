@@ -5,6 +5,7 @@ import android.opengl.GLSurfaceView;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import org.telegram.messenger.FileLog;
+import ri.h0;
 public final class d implements GLSurfaceView.Renderer {
     public long f45688a;
     public boolean f45689b;
@@ -123,7 +124,7 @@ public final class d implements GLSurfaceView.Renderer {
             } catch (RuntimeException e) {
                 FileLog.e(e);
                 this.d.f45698r = true;
-                this.d.post(new rh.j(this, 9));
+                this.d.post(new h0(this, 9));
             }
         }
     }
@@ -153,7 +154,7 @@ public final class d implements GLSurfaceView.Renderer {
         } catch (RuntimeException e) {
             FileLog.e(e);
             this.d.f45698r = true;
-            this.d.post(new rh.j(this, 9));
+            this.d.post(new h0(this, 9));
         }
     }
 }

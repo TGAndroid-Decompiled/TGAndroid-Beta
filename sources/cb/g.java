@@ -1,19 +1,19 @@
 package cb;
 public final class g extends md.c {
-    public h f4693a;
-    public Object f4694b;
-    public final h f4695c;
+    public h f4696a;
+    public Object f4697b;
+    public final h f4698c;
     public int d;
 
     public g(h hVar, md.c cVar) {
         super(cVar);
-        this.f4695c = hVar;
+        this.f4698c = hVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f4694b = obj;
+        this.f4697b = obj;
         this.d |= Integer.MIN_VALUE;
-        return this.f4695c.b(this);
+        return this.f4698c.b(this);
     }
 }

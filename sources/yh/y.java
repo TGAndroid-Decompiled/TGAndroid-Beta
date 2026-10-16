@@ -12,8 +12,8 @@ public final class y extends zh.o3 {
     public final int C0;
     public final d0 D0;
 
-    public y(d0 d0Var, Context context, c6 c6Var, rh.j jVar, ah.f fVar, ah.f fVar2, ah.f fVar3, ah.f fVar4, ah.f fVar5, ah.f fVar6, int i10) {
-        super(context, c6Var, jVar, fVar, null, fVar2, fVar3, fVar4, fVar5, fVar6);
+    public y(d0 d0Var, Context context, c6 c6Var, ri.h0 h0Var, ah.f fVar, ah.f fVar2, ah.f fVar3, ah.f fVar4, ah.f fVar5, ah.f fVar6, int i10) {
+        super(context, c6Var, h0Var, fVar, null, fVar2, fVar3, fVar4, fVar5, fVar6);
         this.D0 = d0Var;
         this.C0 = i10;
         this.A0 = new Path();
@@ -30,7 +30,7 @@ public final class y extends zh.o3 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f50908b) {
+        if (view == this.f50909b) {
             return true;
         }
         return super.drawChild(canvas, view, j10);
@@ -49,7 +49,7 @@ public final class y extends zh.o3 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        a0 a0Var = this.D0.f48812c0;
+        a0 a0Var = this.D0.f48811c0;
         if (a0Var != null) {
             a0Var.invalidate();
         }
@@ -57,7 +57,7 @@ public final class y extends zh.o3 {
 
     @Override
     public final void j(int i10) {
-        this.D0.f48812c0.setRibbonColor(i10);
+        this.D0.f48811c0.setRibbonColor(i10);
     }
 
     @Override

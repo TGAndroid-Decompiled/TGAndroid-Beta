@@ -16,7 +16,7 @@ import org.telegram.ui.LaunchActivity;
 public abstract class l1 {
     public static void a(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, y yVar, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
-        long j10 = document.f19222id;
+        long j10 = document.f18922id;
         b6 e = e(document, Long.valueOf(j10), fontMetricsInt);
         linkedHashMap.put(Long.valueOf(j10), e);
         arrayList.add(Long.valueOf(j10));
@@ -59,11 +59,11 @@ public abstract class l1 {
     }
 
     public static boolean c(TLRPC.Reaction reaction, i1 i1Var) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && i1Var.f780g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, i1Var.f779f)) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && i1Var.f784g == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, i1Var.f783f)) {
             return true;
         }
         if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-            long j10 = i1Var.f780g;
+            long j10 = i1Var.f784g;
             if (j10 != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j10) {
                 return true;
             }
@@ -85,7 +85,7 @@ public abstract class l1 {
     public static b6 e(TLRPC.Document document, Long l4, Paint.FontMetricsInt fontMetricsInt) {
         b6 b6Var;
         if (document != null) {
-            b6Var = new b6(document.f19222id, 1.0f, fontMetricsInt);
+            b6Var = new b6(document.f18922id, 1.0f, fontMetricsInt);
             b6Var.document = document;
         } else {
             b6Var = new b6(l4.longValue(), 1.0f, fontMetricsInt);

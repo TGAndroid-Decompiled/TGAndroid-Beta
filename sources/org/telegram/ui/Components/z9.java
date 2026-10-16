@@ -19,43 +19,43 @@ import org.telegram.tgnet.TLObject;
 public class z9 extends View {
     public Path E;
     public ColorMatrixColorFilter F;
-    public ImageReceiver f31813a;
-    public ImageReceiver f31814b;
-    public int f31815c;
+    public ImageReceiver f31507a;
+    public ImageReceiver f31508b;
+    public int f31509c;
     public int d;
     public s5 e;
-    public ColorFilter f31816f;
+    public ColorFilter f31510f;
     public k9 h;
-    public boolean f31817n;
-    public boolean f31818r;
-    public boolean f31819s;
+    public boolean f31511n;
+    public boolean f31512r;
+    public boolean f31513s;
     public boolean v;
-    public boolean f31820w;
-    public ValueAnimator f31821x;
-    public h11 f31822y;
+    public boolean f31514w;
+    public ValueAnimator f31515x;
+    public i11 f31516y;
 
     public z9(Context context) {
         super(context);
-        this.f31815c = -1;
+        this.f31509c = -1;
         this.d = -1;
-        this.f31820w = true;
+        this.f31514w = true;
         ImageReceiver c10 = c();
-        this.f31813a = c10;
+        this.f31507a = c10;
         c10.setCrossfadeByScale(0.0f);
-        this.f31813a.setAllowLoadingOnAttachedOnly(true);
-        this.f31813a.setDelegate(new s(this, 14));
+        this.f31507a.setAllowLoadingOnAttachedOnly(true);
+        this.f31507a.setDelegate(new s(this, 14));
     }
 
     public final void a() {
         Bitmap bitmap;
-        if (this.f31818r && this.f31814b.getBitmap() == null && this.f31813a.getBitmap() != null && (bitmap = this.f31813a.getBitmap()) != null && !bitmap.isRecycled()) {
-            this.f31814b.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap));
+        if (this.f31512r && this.f31508b.getBitmap() == null && this.f31507a.getBitmap() != null && (bitmap = this.f31507a.getBitmap()) != null && !bitmap.isRecycled()) {
+            this.f31508b.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap));
             invalidate();
         }
     }
 
     public final void b() {
-        this.f31813a.clearImage();
+        this.f31507a.clearImage();
     }
 
     public ImageReceiver c() {
@@ -63,17 +63,17 @@ public class z9 extends View {
     }
 
     public final void d() {
-        if (this.f31818r) {
-            if (this.f31814b.getBitmap() != null && !this.f31814b.getBitmap().isRecycled()) {
-                this.f31814b.getBitmap().recycle();
+        if (this.f31512r) {
+            if (this.f31508b.getBitmap() != null && !this.f31508b.getBitmap().isRecycled()) {
+                this.f31508b.getBitmap().recycle();
             }
-            this.f31814b.setImageBitmap((Bitmap) null);
+            this.f31508b.setImageBitmap((Bitmap) null);
             a();
         }
     }
 
     public final void e(TLObject tLObject, k9 k9Var) {
-        this.f31813a.setForUserOrChat(tLObject, k9Var);
+        this.f31507a.setForUserOrChat(tLObject, k9Var);
         d();
     }
 
@@ -93,11 +93,11 @@ public class z9 extends View {
     }
 
     public ImageReceiver getImageReceiver() {
-        return this.f31813a;
+        return this.f31507a;
     }
 
     public int[] getRoundRadius() {
-        return this.f31813a.getRoundRadius();
+        return this.f31507a.getRoundRadius();
     }
 
     public final void h(ImageLocation imageLocation, String str, Drawable drawable, Object obj) {
@@ -113,17 +113,17 @@ public class z9 extends View {
     }
 
     public final void k(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, long j10, String str3, Object obj, int i10) {
-        this.f31813a.setImage(imageLocation, str, imageLocation2, str2, null, j10, str3, obj, i10);
+        this.f31507a.setImage(imageLocation, str, imageLocation2, str2, null, j10, str3, obj, i10);
         d();
     }
 
     public final void l(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, Object obj) {
-        this.f31813a.setImage(imageLocation, str, imageLocation2, str2, null, null, drawable, 0L, null, obj, 1);
+        this.f31507a.setImage(imageLocation, str, imageLocation2, str2, null, null, drawable, 0L, null, obj, 1);
         d();
     }
 
     public final void m(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, String str3, int i10, Object obj) {
-        this.f31813a.setImage(imageLocation, str, imageLocation2, str2, drawable, i10, str3, obj, 0);
+        this.f31507a.setImage(imageLocation, str, imageLocation2, str2, drawable, i10, str3, obj, 0);
         d();
     }
 
@@ -131,11 +131,11 @@ public class z9 extends View {
         m(imageLocation, str, null, null, drawable, null, 0, obj);
     }
 
-    public final void o(s71 s71Var, ImageLocation imageLocation, String str, ImageLocation imageLocation2, ImageLocation imageLocation3, String str2, int i10, String str3) {
-        if (s71Var != null) {
-            this.f31813a.setImageBitmap(s71Var);
+    public final void o(t71 t71Var, ImageLocation imageLocation, String str, ImageLocation imageLocation2, ImageLocation imageLocation3, String str2, int i10, String str3) {
+        if (t71Var != null) {
+            this.f31507a.setImageBitmap(t71Var);
         } else {
-            this.f31813a.setImage(imageLocation, str, imageLocation2, null, imageLocation3, str2, null, i10, null, str3, 1);
+            this.f31507a.setImage(imageLocation, str, imageLocation2, null, imageLocation3, str2, null, i10, null, str3, 1);
         }
         d();
     }
@@ -143,12 +143,12 @@ public class z9 extends View {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f31817n = true;
-        if (this.f31820w) {
-            this.f31813a.onAttachedToWindow();
+        this.f31511n = true;
+        if (this.f31514w) {
+            this.f31507a.onAttachedToWindow();
         }
-        if (this.f31819s) {
-            this.f31814b.onAttachedToWindow();
+        if (this.f31513s) {
+            this.f31508b.onAttachedToWindow();
         }
         s5 s5Var = this.e;
         if (s5Var != null) {
@@ -159,12 +159,12 @@ public class z9 extends View {
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f31817n = false;
-        if (this.f31820w) {
-            this.f31813a.onDetachedFromWindow();
+        this.f31511n = false;
+        if (this.f31514w) {
+            this.f31507a.onDetachedFromWindow();
         }
-        if (this.f31819s) {
-            this.f31814b.onDetachedFromWindow();
+        if (this.f31513s) {
+            this.f31508b.onDetachedFromWindow();
         }
         s5 s5Var = this.e;
         if (s5Var != null) {
@@ -179,62 +179,62 @@ public class z9 extends View {
         ColorFilter colorFilter;
         s5 s5Var = this.e;
         if (s5Var != null) {
-            imageReceiver = s5Var.f29031k;
+            imageReceiver = s5Var.f28739k;
         } else {
-            imageReceiver = this.f31813a;
+            imageReceiver = this.f31507a;
         }
         if (imageReceiver != null) {
-            if (s5Var != null && (colorFilter = this.f31816f) != null) {
+            if (s5Var != null && (colorFilter = this.f31510f) != null) {
                 s5Var.setColorFilter(colorFilter);
             }
-            int i11 = this.f31815c;
+            int i11 = this.f31509c;
             if (i11 != -1 && (i10 = this.d) != -1) {
                 if (this.v) {
                     imageReceiver.setImageCoords(0.0f, 0.0f, i11, i10);
-                    if (this.f31819s) {
-                        this.f31814b.setImageCoords(0.0f, 0.0f, this.f31815c, this.d);
+                    if (this.f31513s) {
+                        this.f31508b.setImageCoords(0.0f, 0.0f, this.f31509c, this.d);
                     }
                 } else {
                     int height = getHeight();
                     int i12 = this.d;
-                    imageReceiver.setImageCoords((getWidth() - this.f31815c) / 2, (height - i12) / 2, this.f31815c, i12);
-                    if (this.f31819s) {
+                    imageReceiver.setImageCoords((getWidth() - this.f31509c) / 2, (height - i12) / 2, this.f31509c, i12);
+                    if (this.f31513s) {
                         int height2 = getHeight();
                         int i13 = this.d;
-                        this.f31814b.setImageCoords((getWidth() - this.f31815c) / 2, (height2 - i13) / 2, this.f31815c, i13);
+                        this.f31508b.setImageCoords((getWidth() - this.f31509c) / 2, (height2 - i13) / 2, this.f31509c, i13);
                     }
                 }
             } else {
                 imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-                if (this.f31819s) {
-                    this.f31814b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
+                if (this.f31513s) {
+                    this.f31508b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
                 }
             }
             imageReceiver.draw(canvas);
-            if (this.f31819s) {
-                this.f31814b.draw(canvas);
+            if (this.f31513s) {
+                this.f31508b.draw(canvas);
             }
         }
     }
 
     public final void p(int i10, int i11, boolean z10) {
-        this.f31813a.setOrientation(i10, i11, true);
+        this.f31507a.setOrientation(i10, i11, true);
     }
 
     public final void q(int i10, boolean z10) {
-        this.f31813a.setOrientation(0, true);
+        this.f31507a.setOrientation(0, true);
     }
 
     public final void r(int i10, int i11, int i12, int i13) {
-        this.f31813a.setRoundRadius(i10, i11, i12, i13);
-        if (this.f31819s) {
-            this.f31814b.setRoundRadius(i10, i11, i12, i13);
+        this.f31507a.setRoundRadius(i10, i11, i12, i13);
+        if (this.f31513s) {
+            this.f31508b.setRoundRadius(i10, i11, i12, i13);
         }
         invalidate();
     }
 
     public final void s(int i10, int i11) {
-        this.f31815c = i10;
+        this.f31509c = i10;
         this.d = i11;
         invalidate();
     }
@@ -244,25 +244,25 @@ public class z9 extends View {
         if (s5Var2 == s5Var) {
             return;
         }
-        if (this.f31817n && s5Var2 != null) {
+        if (this.f31511n && s5Var2 != null) {
             s5Var2.o(this);
         }
         this.e = s5Var;
-        if (this.f31817n && s5Var != null) {
+        if (this.f31511n && s5Var != null) {
             s5Var.a(this);
         }
         invalidate();
     }
 
     public void setAspectFit(boolean z10) {
-        this.f31813a.setAspectFit(z10);
+        this.f31507a.setAspectFit(z10);
     }
 
     public void setBlurAllowed(boolean z10) {
-        if (!this.f31817n) {
-            this.f31819s = z10;
+        if (!this.f31511n) {
+            this.f31513s = z10;
             if (z10) {
-                this.f31814b = new ImageReceiver();
+                this.f31508b = new ImageReceiver();
                 return;
             }
             return;
@@ -272,10 +272,10 @@ public class z9 extends View {
 
     public void setBlurredText(CharSequence charSequence) {
         if (TextUtils.isEmpty(charSequence)) {
-            this.f31822y = null;
+            this.f31516y = null;
             return;
         }
-        this.f31822y = new h11(charSequence, 16.5f, AndroidUtilities.bold());
+        this.f31516y = new i11(charSequence, 16.5f, AndroidUtilities.bold());
         if (this.F == null) {
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(1.2f);
@@ -285,59 +285,59 @@ public class z9 extends View {
     }
 
     public void setColorFilter(ColorFilter colorFilter) {
-        this.f31813a.setColorFilter(colorFilter);
+        this.f31507a.setColorFilter(colorFilter);
     }
 
     public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f31816f = colorFilter;
+        this.f31510f = colorFilter;
         invalidate();
     }
 
     public void setHasBlur(boolean z10) {
-        if (z10 && !this.f31819s) {
+        if (z10 && !this.f31513s) {
             throw new IllegalStateException("You should call setBlurAllowed(...) before calling setHasBlur(true)!");
         }
-        this.f31818r = z10;
+        this.f31512r = z10;
         if (!z10) {
-            if (this.f31814b.getBitmap() != null && !this.f31814b.getBitmap().isRecycled()) {
-                this.f31814b.getBitmap().recycle();
+            if (this.f31508b.getBitmap() != null && !this.f31508b.getBitmap().isRecycled()) {
+                this.f31508b.getBitmap().recycle();
             }
-            this.f31814b.setImageBitmap((Bitmap) null);
+            this.f31508b.setImageBitmap((Bitmap) null);
         }
         a();
     }
 
     public void setImageBitmap(Bitmap bitmap) {
-        this.f31813a.setImageBitmap(bitmap);
+        this.f31507a.setImageBitmap(bitmap);
         d();
     }
 
     public void setImageDrawable(Drawable drawable) {
-        this.f31813a.setImageBitmap(drawable);
+        this.f31507a.setImageBitmap(drawable);
         d();
     }
 
     public void setImageResource(int i10) {
-        this.f31813a.setImageBitmap(getResources().getDrawable(i10));
+        this.f31507a.setImageBitmap(getResources().getDrawable(i10));
         invalidate();
         d();
     }
 
     public void setLayerNum(int i10) {
-        this.f31813a.setLayerNum(i10);
+        this.f31507a.setLayerNum(i10);
     }
 
     public void setRoundRadius(int i10) {
-        this.f31813a.setRoundRadius(i10);
-        if (this.f31819s) {
-            this.f31814b.setRoundRadius(i10);
+        this.f31507a.setRoundRadius(i10);
+        if (this.f31513s) {
+            this.f31508b.setRoundRadius(i10);
         }
         invalidate();
     }
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f31813a.getDrawable() && drawable != this.f31813a.getImageDrawable() && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f31507a.getDrawable() && drawable != this.f31507a.getImageDrawable() && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

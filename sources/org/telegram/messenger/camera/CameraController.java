@@ -358,7 +358,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             AndroidUtilities.runOnUIThread(new c(this, 2));
         } catch (Exception e) {
             FileLog.e(e, !"APP_PAUSED".equals(e.getMessage()));
-            AndroidUtilities.runOnUIThread(new h4(this, z10, e, runnable, 8));
+            AndroidUtilities.runOnUIThread(new h4(this, z10, e, runnable, 7));
         }
     }
 
@@ -455,7 +455,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
     }
 
     public void lambda$recordVideo$12(ICameraView iCameraView, File file, boolean z10, Runnable runnable) {
-        iCameraView.startRecording(file, new t(16, this, z10));
+        iCameraView.startRecording(file, new t(15, this, z10));
         if (runnable != null) {
             runnable.run();
         }
@@ -485,7 +485,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             } else if (obj instanceof Camera2Session) {
                 ((Camera2Session) obj).setRecordingVideo(true);
             }
-            AndroidUtilities.runOnUIThread(new t1(this, iCameraView, file, z10, runnable, 13));
+            AndroidUtilities.runOnUIThread(new t1(this, iCameraView, file, z10, runnable, 12));
         } catch (Exception e7) {
             FileLog.e(e7);
         }
@@ -754,7 +754,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
 
     public void openRound(CameraSession cameraSession, SurfaceTexture surfaceTexture, Runnable runnable, Runnable runnable2) {
         if (cameraSession != null && surfaceTexture != null) {
-            this.threadPool.execute(new androidx.car.app.utils.b(cameraSession, runnable2, surfaceTexture, runnable, 25));
+            this.threadPool.execute(new androidx.car.app.utils.b(cameraSession, runnable2, surfaceTexture, runnable, 24));
         } else if (BuildVars.LOGS_ENABLED) {
             FileLog.d("failed to open round " + cameraSession + " tex = " + surfaceTexture);
         }
@@ -823,12 +823,12 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             return;
         }
         this.loadingCameras = true;
-        this.threadPool.execute(new x0(this, z10, runnable, 9));
+        this.threadPool.execute(new x0(this, z10, runnable, 7));
     }
 
     public void close(CameraSession cameraSession, CountDownLatch countDownLatch, Runnable runnable, Runnable runnable2) {
         cameraSession.destroy();
-        this.threadPool.execute(new androidx.car.app.utils.b(runnable, cameraSession, countDownLatch, runnable2, 26));
+        this.threadPool.execute(new androidx.car.app.utils.b(runnable, cameraSession, countDownLatch, runnable2, 25));
         if (countDownLatch != null) {
             try {
                 countDownLatch.await();

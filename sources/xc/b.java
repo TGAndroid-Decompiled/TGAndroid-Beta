@@ -12,11 +12,11 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.d0;
+import org.telegram.ui.Cells.c1;
 import vc.g;
 import w7.m9;
 public abstract class b {
-    public static final c f48382a = new c();
+    public static final c f48381a = new c();
 
     public static HttpURLConnection a(String str, l lVar) {
         Throwable th2;
@@ -29,7 +29,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = lVar.f6436a;
+        String str2 = lVar.f6439a;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f48382a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f48381a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f48380a;
-            String str2 = aVar.f48381b;
+            String str = aVar.f48379a;
+            String str2 = aVar.f48380b;
             if (str == null) {
                 encode = null;
             } else {
@@ -139,7 +139,7 @@ public abstract class b {
             linkedList3.add(new a(str, obj.toString()));
             return linkedList3;
         } else {
-            throw new g(d0.j("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
+            throw new g(c1.i("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
         }
     }
 

@@ -9,21 +9,21 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class e90 implements Runnable {
-    public final int f35488a = 0;
-    public final LaunchActivity f35489b;
-    public final TLRPC.TL_error f35490c;
+    public final int f35226a = 0;
+    public final LaunchActivity f35227b;
+    public final TLRPC.TL_error f35228c;
     public final TLObject d;
     public final int e;
-    public final String f35491f;
-    public final o00 h;
+    public final String f35229f;
+    public final d20 h;
 
-    public e90(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, o00 o00Var) {
-        this.f35489b = launchActivity;
+    public e90(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, d20 d20Var) {
+        this.f35227b = launchActivity;
         this.d = tLObject;
         this.e = i10;
-        this.f35491f = str;
-        this.f35490c = tL_error;
-        this.h = o00Var;
+        this.f35229f = str;
+        this.f35228c = tL_error;
+        this.h = d20Var;
     }
 
     @Override
@@ -32,21 +32,21 @@ public final class e90 implements Runnable {
         org.telegram.ui.Components.zc a02;
         int i10;
         int i11;
-        int i12 = this.f35488a;
-        o00 o00Var = this.h;
-        String str2 = this.f35491f;
+        int i12 = this.f35226a;
+        d20 d20Var = this.h;
+        String str2 = this.f35229f;
         TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.f35490c;
+        TLRPC.TL_error tL_error = this.f35228c;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
                 boolean z10 = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity = this.f35489b;
+                LaunchActivity launchActivity = this.f35227b;
                 if (z10) {
                     TLRPC.User user = (TLRPC.User) tLObject;
                     MessagesController.getInstance(this.e).putUser(user, false);
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f19363id);
+                    bundle.putLong("user_id", user.f19063id);
                     launchActivity.p0(new fo(bundle));
                 } else {
                     StringBuilder v = a1.g.v("cant import contact token. token=", str2, " err=");
@@ -57,10 +57,10 @@ public final class e90 implements Runnable {
                     }
                     v.append(str);
                     FileLog.e(v.toString());
-                    org.telegram.messenger.yh.p(R.string.NoUsernameFound, org.telegram.ui.Components.zc.a0((org.telegram.ui.ActionBar.m2) i2.d.g(1, launchActivity.f32109d0)), null);
+                    org.telegram.messenger.sk.q(R.string.NoUsernameFound, org.telegram.ui.Components.zc.a0((org.telegram.ui.ActionBar.m2) i2.d.h(1, launchActivity.f31811d0)), null);
                 }
                 try {
-                    o00Var.run();
+                    d20Var.run();
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -80,13 +80,13 @@ public final class e90 implements Runnable {
                             i10 = R.raw.error;
                             i11 = R.string.UniqueGiftNotFound;
                         }
-                        org.telegram.messenger.q.r(i11, a02, i10, 36);
+                        org.telegram.messenger.g0.q(i11, a02, i10, 36);
                     } else {
                         return;
                     }
                 } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity2 = this.f35489b;
+                    LaunchActivity launchActivity2 = this.f35227b;
                     MessagesController.getInstance(launchActivity2.O).putUsers(tL_payments_uniqueStarGift.users, false);
                     MessagesController.getInstance(launchActivity2.O).putChats(tL_payments_uniqueStarGift.chats, false);
                     org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
@@ -106,7 +106,7 @@ public final class e90 implements Runnable {
                     }
                 }
                 try {
-                    o00Var.run();
+                    d20Var.run();
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
@@ -115,12 +115,12 @@ public final class e90 implements Runnable {
         }
     }
 
-    public e90(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, o00 o00Var) {
-        this.f35489b = launchActivity;
-        this.f35490c = tL_error;
+    public e90(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, d20 d20Var) {
+        this.f35227b = launchActivity;
+        this.f35228c = tL_error;
         this.d = tLObject;
         this.e = i10;
-        this.f35491f = str;
-        this.h = o00Var;
+        this.f35229f = str;
+        this.h = d20Var;
     }
 }

@@ -28,7 +28,7 @@ public final class b0 extends t1 {
             this.f45873s = true;
             return;
         }
-        this.f45869o = new z(new a0(aVar.i()), b2.o1.f2249q, z.h);
+        this.f45869o = new z(new a0(aVar.i()), b2.o1.f2253q, z.h);
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class b0 extends t1 {
             }
             this.f45869o = new z(q1Var, zVar.f46108f, zVar.f46109g);
         } else {
-            this.f45869o = new z(new a0(p0Var), b2.o1.f2249q, z.h);
+            this.f45869o = new z(new a0(p0Var), b2.o1.f2253q, z.h);
         }
         this.f46052k.t(p0Var);
     }

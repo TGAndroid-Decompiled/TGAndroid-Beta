@@ -7,8 +7,8 @@ public abstract class s8 {
             }
             throw new IllegalArgumentException(a1.g.l(i10, i11, "fromIndex: ", " > toIndex: "));
         }
-        StringBuilder l4 = i2.d.l("fromIndex: ", i10, ", toIndex: ", i11, ", size: ");
-        l4.append(i12);
-        throw new IndexOutOfBoundsException(l4.toString());
+        StringBuilder m10 = i2.d.m("fromIndex: ", i10, ", toIndex: ", i11, ", size: ");
+        m10.append(i12);
+        throw new IndexOutOfBoundsException(m10.toString());
     }
 }

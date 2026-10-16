@@ -14,7 +14,7 @@ public final class d extends rh.e {
 
     @Override
     public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f44665a;
+        ImageReceiver imageReceiver = this.f44424a;
         imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
         imageReceiver.draw(canvas);
     }

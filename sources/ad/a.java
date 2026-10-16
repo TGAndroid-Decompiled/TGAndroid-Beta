@@ -8,22 +8,22 @@ import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.logging.Level;
 public final class a implements Runnable {
-    public final InputStream f492a;
-    public final Socket f493b;
-    public final l f494c;
+    public final InputStream f496a;
+    public final Socket f497b;
+    public final l f498c;
 
     public a(l lVar, InputStream inputStream, Socket socket) {
-        this.f494c = lVar;
-        this.f492a = inputStream;
-        this.f493b = socket;
+        this.f498c = lVar;
+        this.f496a = inputStream;
+        this.f497b = socket;
     }
 
     @Override
     public final void run() {
         OutputStream outputStream;
-        InputStream inputStream = this.f492a;
-        l lVar = this.f494c;
-        Socket socket = this.f493b;
+        InputStream inputStream = this.f496a;
+        l lVar = this.f498c;
+        Socket socket = this.f497b;
         OutputStream outputStream2 = null;
         try {
             try {
@@ -35,7 +35,7 @@ public final class a implements Runnable {
             th = th2;
         }
         try {
-            e eVar = new e(lVar, new ya.c(2), this.f492a, outputStream, socket.getInetAddress());
+            e eVar = new e(lVar, new ya.c(2), this.f496a, outputStream, socket.getInetAddress());
             while (!socket.isClosed()) {
                 eVar.c();
             }
@@ -49,18 +49,18 @@ public final class a implements Runnable {
             l.d(outputStream2);
             l.d(inputStream);
             l.d(socket);
-            ((List) lVar.f535c.f503c).remove(this);
+            ((List) lVar.f539c.f507c).remove(this);
         } catch (Throwable th3) {
             th = th3;
             outputStream2 = outputStream;
             l.d(outputStream2);
             l.d(inputStream);
             l.d(socket);
-            ((List) lVar.f535c.f503c).remove(this);
+            ((List) lVar.f539c.f507c).remove(this);
             throw th;
         }
         l.d(inputStream);
         l.d(socket);
-        ((List) lVar.f535c.f503c).remove(this);
+        ((List) lVar.f539c.f507c).remove(this);
     }
 }

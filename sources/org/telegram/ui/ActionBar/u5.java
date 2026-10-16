@@ -6,32 +6,32 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class u5 extends Drawable {
-    public final RectF f20722a = new RectF();
-    public final int f20723b;
-    public final int f20724c;
+    public final RectF f20422a = new RectF();
+    public final int f20423b;
+    public final int f20424c;
     public final int d;
     public final int e;
-    public final float f20725f;
+    public final float f20425f;
 
     public u5(int i10, int i11, int i12, int i13, float f7) {
-        this.f20723b = i10;
-        this.f20724c = i11;
+        this.f20423b = i10;
+        this.f20424c = i11;
         this.d = i12;
         this.e = i13;
-        this.f20725f = f7;
+        this.f20425f = f7;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f20722a;
+        RectF rectF = this.f20422a;
         rectF.set(bounds);
-        rectF.left += this.f20723b;
-        rectF.top += this.f20724c;
+        rectF.left += this.f20423b;
+        rectF.top += this.f20424c;
         rectF.right -= this.d;
         rectF.bottom -= this.e;
-        float f7 = this.f20725f;
-        canvas.drawRoundRect(rectF, f7, f7, g6.f20298z);
+        float f7 = this.f20425f;
+        canvas.drawRoundRect(rectF, f7, f7, g6.f19998z);
     }
 
     @Override

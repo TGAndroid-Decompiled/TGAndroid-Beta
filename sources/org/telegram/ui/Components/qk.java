@@ -8,74 +8,74 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class qk extends ni {
-    public final wz f28624n;
-    public final mm0 f28625r;
-    public final s4.b0 f28626s;
+    public final wz f28306n;
+    public final mm0 f28307r;
+    public final s4.b0 f28308s;
     public final HorizontalScrollView v;
-    public final boolean f28627w;
+    public final boolean f28309w;
 
     public qk(vi viVar, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
         super(context, c6Var, viVar);
-        this.f28627w = z10;
-        this.f27673f = true;
-        org.telegram.ui.ActionBar.m2 m2Var = viVar.f30001f0;
+        this.f28309w = z10;
+        this.f27362f = true;
+        org.telegram.ui.ActionBar.m2 m2Var = viVar.f29672f0;
         boolean z11 = !z10 ? 1 : 0;
         wz wzVar = new wz(m2Var, z11, z10, false, getContext(), true, null, null, false, c6Var, false, true);
-        this.f28624n = wzVar;
-        wzVar.f31076w0 = false;
+        this.f28306n = wzVar;
+        wzVar.f30769w0 = false;
         wzVar.I(z11, z10, false, false);
-        wzVar.f31048n2 = true;
-        lx lxVar = wzVar.f31079x;
+        wzVar.f30741n2 = true;
+        lx lxVar = wzVar.f30772x;
         if (lxVar != null) {
             lxVar.setVisibility(8);
         }
-        wzVar.f31051o2 = true;
-        ImageView imageView = wzVar.f31083y;
+        wzVar.f30744o2 = true;
+        ImageView imageView = wzVar.f30776y;
         if (imageView != null) {
             imageView.setVisibility(8);
         }
         wzVar.M2 = true;
-        addView(wzVar, w7.a6.d(-1.0f, -1));
+        addView(wzVar, w7.z5.d(-1.0f, -1));
         HorizontalScrollView z12 = wzVar.z(z11 ? 1 : 0);
         this.v = z12;
         mm0 y3 = wzVar.y(z11 ? 1 : 0);
-        this.f28625r = y3;
+        this.f28307r = y3;
         y3.j(new ah.d0(this, 21));
-        this.f28626s = (s4.b0) y3.getLayoutManager();
+        this.f28308s = (s4.b0) y3.getLayoutManager();
         z12.setTranslationY(Math.max(0, getCurrentItemTop()));
     }
 
     @Override
-    public final void B(int r4, int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qk.B(int, int):void");
+    public final void C(int r4, int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qk.C(int, int):void");
     }
 
     @Override
     public final void G(ni niVar) {
         int i10;
-        vi viVar = this.f27671b;
+        vi viVar = this.f27360b;
         try {
-            viVar.f29985a1.getTitleTextView().setBuildFullLayout(true);
+            viVar.f29656a1.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
-        b8 b8Var = viVar.f29985a1;
-        if (this.f28627w) {
+        b8 b8Var = viVar.f29656a1;
+        if (this.f28309w) {
             i10 = R.string.SelectSticker;
         } else {
             i10 = R.string.SelectEmoji;
         }
         b8Var.setTitle(LocaleController.getString(i10));
-        this.f28626s.h1(0, 0);
+        this.f28308s.h1(0, 0);
     }
 
     @Override
     public final void J() {
-        this.f28625r.x0(0);
+        this.f28307r.x0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        mm0 mm0Var = this.f28625r;
+        mm0 mm0Var = this.f28307r;
         if (mm0Var.getChildCount() <= 0) {
             mm0Var.setTopGlowOffset(mm0Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -98,7 +98,7 @@ public final class qk extends ni {
 
     @Override
     public int getListTopPadding() {
-        return this.f28625r.getPaddingTop();
+        return this.f28307r.getPaddingTop();
     }
 
     @Override
@@ -113,13 +113,13 @@ public final class qk extends ni {
     }
 
     public void setDelegate(wy wyVar) {
-        this.f28624n.setDelegate(wyVar);
+        this.f28306n.setDelegate(wyVar);
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f27671b.getSheetContainer().invalidate();
+        this.f27360b.getSheetContainer().invalidate();
         invalidate();
     }
 }

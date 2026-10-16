@@ -19,9 +19,9 @@ import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.s5;
 import org.telegram.ui.Components.z9;
-import w7.a6;
+import w7.z5;
 public abstract class z1 {
-    public static void a(Activity activity, final int i10, final long j10, final long j11, TL_bots.botVerifierSettings botverifiersettings, final u1 u1Var) {
+    public static void a(Activity activity, final int i10, final long j10, final long j11, TL_bots.BotVerifierSettings botVerifierSettings, final u1 u1Var) {
         String str;
         TLRPC.User user;
         int i11;
@@ -42,34 +42,34 @@ public abstract class z1 {
         }
         FrameLayout frameLayout = new FrameLayout(activity);
         FrameLayout frameLayout2 = new FrameLayout(activity);
-        frameLayout2.setBackground(g6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), g6.x0(null, g6.f19894ci, false)));
+        frameLayout2.setBackground(g6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), g6.x0(null, g6.f19594ci, false)));
         z9 z9Var = new z9(activity);
         z9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         k9 k9Var = new k9((c6) null);
         k9Var.p(user);
         z9Var.e(user, k9Var);
-        frameLayout2.addView(z9Var, a6.e(28, 28, 51));
+        frameLayout2.addView(z9Var, z5.e(28, 28, 51));
         z9 z9Var2 = new z9(activity);
-        z9Var2.setEmojiColorFilter(new PorterDuffColorFilter(g6.x0(null, g6.f20308z9, false), PorterDuff.Mode.SRC_IN));
-        z9Var2.setAnimatedEmojiDrawable(s5.n(i10, botverifiersettings.icon, null, 3));
-        frameLayout2.addView(z9Var2, a6.a(20.0f, 34.0f, 0.0f, 0.0f, 0.0f, 20, 19));
+        z9Var2.setEmojiColorFilter(new PorterDuffColorFilter(g6.x0(null, g6.f20008z9, false), PorterDuff.Mode.SRC_IN));
+        z9Var2.setAnimatedEmojiDrawable(s5.n(i10, botVerifierSettings.icon, null, 3));
+        frameLayout2.addView(z9Var2, z5.a(20.0f, 34.0f, 0.0f, 0.0f, 0.0f, 20, 19));
         h5 h5Var = new h5(activity);
-        h5Var.setTextColor(g6.x0(null, g6.f20007j5, false));
+        h5Var.setTextColor(g6.x0(null, g6.f19707j5, false));
         h5Var.setTextSize(13);
         h5Var.setEllipsizeByGradient(true);
         h5Var.l(str, false);
         h5Var.setWidthWrapContent(true);
-        frameLayout2.addView(h5Var, a6.a(-2.0f, 57.0f, 0.0f, 10.0f, 0.0f, -2, 19));
-        frameLayout.addView(frameLayout2, a6.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 17));
+        frameLayout2.addView(h5Var, z5.a(-2.0f, 57.0f, 0.0f, 10.0f, 0.0f, -2, 19));
+        frameLayout.addView(frameLayout2, z5.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 17));
         final boolean[] zArr = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.BotRemoveVerificationTitle);
+        alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.BotRemoveVerificationTitle);
         if (i12 >= 0) {
             i11 = R.string.BotRemoveVerificationText;
         } else {
             i11 = R.string.BotRemoveVerificationChatText;
         }
-        alertDialog$Builder.f19548a.T = LocaleController.getString(i11);
+        alertDialog$Builder.f19248a.T = LocaleController.getString(i11);
         alertDialog$Builder.n(frameLayout);
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new org.telegram.ui.ActionBar.z1() {

@@ -5,10 +5,10 @@ public final class k6 {
     public final h6 f46694c;
     public final g7 d;
 
-    public k6(qi.e eVar) {
-        this.f46692a = (e8) eVar.f43662a;
-        this.f46693b = (j6) eVar.f43663b;
-        this.f46694c = (h6) eVar.f43664c;
+    public k6(pi.e eVar) {
+        this.f46692a = (e8) eVar.f42944a;
+        this.f46693b = (j6) eVar.f42945b;
+        this.f46694c = (h6) eVar.f42946c;
         this.d = (g7) eVar.d;
     }
 }

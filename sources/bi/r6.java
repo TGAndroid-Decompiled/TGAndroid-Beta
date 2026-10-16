@@ -24,8 +24,8 @@ public abstract class r6 extends mm0 implements e9 {
                 return;
             default:
                 fo foVar = (fo) this.W2;
-                iArr[0] = ((int) foVar.f36104s9) - AndroidUtilities.dp(4.0f);
-                iArr[1] = org.telegram.messenger.q.C(3.0f, foVar.f36160x0.getPaddingBottom(), foVar.f36160x0.getMeasuredHeight());
+                iArr[0] = ((int) foVar.f35805s9) - AndroidUtilities.dp(4.0f);
+                iArr[1] = org.telegram.messenger.g0.A(3.0f, foVar.f35861x0.getPaddingBottom(), foVar.f35861x0.getMeasuredHeight());
                 return;
         }
     }

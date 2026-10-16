@@ -1,66 +1,33 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import org.telegram.messenger.FileLog;
-public final class ao0 implements OnCompleteListener, org.telegram.ui.ActionBar.z1, eu {
-    public final int f34288a;
-    public final cp0 f34289b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ao0 implements RequestDelegate {
+    public final int f34001a;
+    public final ap0 f34002b;
 
-    public ao0(cp0 cp0Var, int i10) {
-        this.f34288a = i10;
-        this.f34289b = cp0Var;
+    public ao0(ap0 ap0Var, int i10) {
+        this.f34001a = i10;
+        this.f34002b = ap0Var;
     }
 
     @Override
-    public void a1(au auVar) {
-        switch (this.f34288a) {
-            case 2:
-                cp0 cp0Var = this.f34289b;
-                cp0Var.A0 = auVar;
-                cp0Var.f35008f[4].setText(auVar.f34339a);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f34001a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new se0(27, this.f34002b, tL_error));
                 return;
-            default:
-                cp0 cp0Var2 = this.f34289b;
-                cp0Var2.A0 = auVar;
-                cp0Var2.f35008f[4].setText(auVar.f34339a);
-                cp0Var2.B0 = auVar.d;
-                return;
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f34288a) {
             case 1:
-                cp0 cp0Var = this.f34289b;
-                cp0Var.I0(cp0Var.R0[0]);
+                AndroidUtilities.runOnUIThread(new zn0(this.f34002b, tL_error, tLObject, 0));
                 return;
             case 2:
+                AndroidUtilities.runOnUIThread(new tn0(this.f34002b, tLObject, 2));
+                return;
             default:
-                cp0 cp0Var2 = this.f34289b;
-                cp0Var2.D0(true);
-                cp0Var2.z0();
-                return;
-            case 3:
-                this.f34289b.A0(true);
+                AndroidUtilities.runOnUIThread(new tn0(this.f34002b, tLObject, 0));
                 return;
         }
-    }
-
-    @Override
-    public void onComplete(Task task) {
-        cp0 cp0Var = this.f34289b;
-        cp0Var.getClass();
-        if (task.isSuccessful()) {
-            FrameLayout frameLayout = cp0Var.O;
-            if (frameLayout != null) {
-                frameLayout.setVisibility(0);
-                return;
-            }
-            return;
-        }
-        FileLog.e("isReadyToPay failed", task.getException());
     }
 }

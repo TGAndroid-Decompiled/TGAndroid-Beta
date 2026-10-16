@@ -9,23 +9,23 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 public final class d31 implements Runnable {
-    public final int f35138a;
-    public final g31 f35139b;
+    public final int f34867a;
+    public final g31 f34868b;
 
     public d31(g31 g31Var, int i10) {
-        this.f35138a = i10;
-        this.f35139b = g31Var;
+        this.f34867a = i10;
+        this.f34868b = g31Var;
     }
 
     @Override
     public final void run() {
         long j10;
         String str;
-        switch (this.f35138a) {
+        switch (this.f34867a) {
             case 0:
-                g31 g31Var = this.f35139b;
+                g31 g31Var = this.f34868b;
                 AndroidUtilities.cancelRunOnUIThread(g31Var.N);
-                boolean z10 = g31Var.f36293r;
+                boolean z10 = g31Var.f36050r;
                 if (z10) {
                     if (z10 && g31Var.F == null) {
                         org.telegram.ui.Components.yj0 yj0Var = new org.telegram.ui.Components.yj0(R.raw.qr_matrix, AndroidUtilities.dp(200.0f), AndroidUtilities.dp(200.0f));
@@ -40,7 +40,7 @@ public final class d31 implements Runnable {
                         if (g31Var.J != 0) {
                             g31Var.I = null;
                             Utilities.themeQueue.postRunnable(new e31(g31Var, g31Var.getWidth(), g31Var.getHeight(), 2));
-                            g31Var.f36294s.t("", true, true);
+                            g31Var.f36051s.t("", true, true);
                         }
                         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                         if (g31Var.J == 0) {
@@ -55,7 +55,7 @@ public final class d31 implements Runnable {
                         long max = Math.max(0L, (i10 - (System.currentTimeMillis() / 1000)) - 1);
                         int i11 = (int) (max % 60);
                         int min = Math.min(99, (int) (max / 60));
-                        org.telegram.ui.Components.kp0 kp0Var = g31Var.f36294s;
+                        org.telegram.ui.Components.kp0 kp0Var = g31Var.f36051s;
                         StringBuilder sb2 = new StringBuilder();
                         if (min >= 10) {
                             str = "";
@@ -80,17 +80,17 @@ public final class d31 implements Runnable {
                 }
                 return;
             default:
-                g31 g31Var2 = this.f35139b;
+                g31 g31Var2 = this.f34868b;
                 g31Var2.S = false;
                 Bitmap bitmap = g31Var2.h;
                 if (bitmap != null) {
                     g31Var2.h = null;
-                    g31Var2.f36296x.d(0.0f, true);
-                    Bitmap bitmap2 = g31Var2.f36292n;
+                    g31Var2.f36053x.d(0.0f, true);
+                    Bitmap bitmap2 = g31Var2.f36049n;
                     if (bitmap2 != null) {
                         bitmap2.recycle();
                     }
-                    g31Var2.f36292n = bitmap;
+                    g31Var2.f36049n = bitmap;
                     g31Var2.invalidate();
                     return;
                 }

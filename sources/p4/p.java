@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 public abstract class p extends q {
-    public final Object f43081a = new Object();
-    public Executor f43082b;
-    public l2.f f43083c;
+    public final Object f42779a = new Object();
+    public Executor f42780b;
+    public m.h f42781c;
     public m d;
     public ArrayList e;
 
@@ -20,12 +20,12 @@ public abstract class p extends q {
 
     public final void l(m mVar, ArrayList arrayList) {
         if (mVar != null) {
-            synchronized (this.f43081a) {
+            synchronized (this.f42779a) {
                 try {
                     try {
-                        Executor executor = this.f43082b;
+                        Executor executor = this.f42780b;
                         if (executor != null) {
-                            executor.execute(new com.google.android.gms.internal.cast.p(this, this.f43083c, mVar, arrayList, false, 3));
+                            executor.execute(new com.google.android.gms.internal.cast.p(this, this.f42781c, mVar, arrayList, false, 3));
                         } else {
                             this.d = mVar;
                             this.e = new ArrayList(arrayList);

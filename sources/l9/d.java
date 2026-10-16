@@ -61,24 +61,24 @@ public final class d implements qa.b {
             default:
                 r9.g gVar = (r9.g) this.f14619c;
                 r9.a aVar2 = (r9.a) this.f14618b;
-                r9.d dVar = aVar2.f44032f;
+                r9.d dVar = aVar2.f43791f;
                 ?? obj2 = new Object();
                 HashSet hashSet = new HashSet();
                 HashSet hashSet2 = new HashSet();
                 HashSet hashSet3 = new HashSet();
                 HashSet hashSet4 = new HashSet();
                 HashSet hashSet5 = new HashSet();
-                Set<r9.j> set = aVar2.f44031c;
-                Set set2 = aVar2.f44033g;
+                Set<r9.j> set = aVar2.f43790c;
+                Set set2 = aVar2.f43792g;
                 for (r9.j jVar : set) {
-                    int i11 = jVar.f44049c;
-                    int i12 = jVar.f44048b;
+                    int i11 = jVar.f43808c;
+                    int i12 = jVar.f43807b;
                     if (i11 == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    r rVar = jVar.f44047a;
+                    r rVar = jVar.f43806a;
                     if (z10) {
                         if (i12 == 2) {
                             hashSet4.add(rVar);
@@ -96,13 +96,13 @@ public final class d implements qa.b {
                 if (!set2.isEmpty()) {
                     hashSet.add(r.a(na.a.class));
                 }
-                obj2.f5426b = DesugarCollections.unmodifiableSet(hashSet);
-                obj2.f5427c = DesugarCollections.unmodifiableSet(hashSet2);
-                obj2.f5425a = DesugarCollections.unmodifiableSet(hashSet3);
+                obj2.f5429b = DesugarCollections.unmodifiableSet(hashSet);
+                obj2.f5430c = DesugarCollections.unmodifiableSet(hashSet2);
+                obj2.f5428a = DesugarCollections.unmodifiableSet(hashSet3);
                 obj2.d = DesugarCollections.unmodifiableSet(hashSet4);
                 DesugarCollections.unmodifiableSet(hashSet5);
                 obj2.e = gVar;
-                return dVar.j2(obj2);
+                return dVar.n2(obj2);
         }
     }
 

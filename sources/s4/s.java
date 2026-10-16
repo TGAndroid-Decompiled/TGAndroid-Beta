@@ -147,25 +147,25 @@ public class s extends b0 {
     @Override
     public void V(RecyclerView recyclerView, int i10, int i11) {
         this.O.j();
-        ((SparseIntArray) this.O.f9777b).clear();
+        ((SparseIntArray) this.O.f9780b).clear();
     }
 
     @Override
     public void W(RecyclerView recyclerView) {
         this.O.j();
-        ((SparseIntArray) this.O.f9777b).clear();
+        ((SparseIntArray) this.O.f9780b).clear();
     }
 
     @Override
     public void X(RecyclerView recyclerView, int i10, int i11) {
         this.O.j();
-        ((SparseIntArray) this.O.f9777b).clear();
+        ((SparseIntArray) this.O.f9780b).clear();
     }
 
     @Override
     public void Y(RecyclerView recyclerView, int i10, int i11) {
         this.O.j();
-        ((SparseIntArray) this.O.f9777b).clear();
+        ((SparseIntArray) this.O.f9780b).clear();
     }
 
     @Override
@@ -176,7 +176,7 @@ public class s extends b0 {
     @Override
     public void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
         this.O.j();
-        ((SparseIntArray) this.O.f9777b).clear();
+        ((SparseIntArray) this.O.f9780b).clear();
     }
 
     @Override
@@ -189,20 +189,20 @@ public class s extends b0 {
             } else {
                 z10 = false;
             }
-            int u12 = u1(o0Var.f11122b, eVar, y0Var);
+            int u12 = u1(o0Var.f11126b, eVar, y0Var);
             if (z10) {
                 while (u12 > 0) {
-                    int i11 = o0Var.f11122b;
+                    int i11 = o0Var.f11126b;
                     if (i11 <= 0) {
                         break;
                     }
                     int i12 = i11 - 1;
-                    o0Var.f11122b = i12;
+                    o0Var.f11126b = i12;
                     u12 = u1(i12, eVar, y0Var);
                 }
             } else {
                 int b10 = y0Var.b() - 1;
-                int i13 = o0Var.f11122b;
+                int i13 = o0Var.f11126b;
                 while (i13 < b10) {
                     int i14 = i13 + 1;
                     int u13 = u1(i14, eVar, y0Var);
@@ -212,7 +212,7 @@ public class s extends b0 {
                     i13 = i14;
                     u12 = u13;
                 }
-                o0Var.f11122b = i13;
+                o0Var.f11126b = i13;
             }
         }
         r1();
@@ -378,14 +378,14 @@ public class s extends b0 {
         if (this.f44826o == 1) {
             int height = rect.height() + C;
             RecyclerView recyclerView = this.f44931b;
-            WeakHashMap weakHashMap = r0.j0.f43732a;
+            WeakHashMap weakHashMap = r0.i0.f43485a;
             g11 = n0.g(i11, height, recyclerView.getMinimumHeight());
             int[] iArr = this.K;
             g10 = n0.g(i10, iArr[iArr.length - 1] + E, this.f44931b.getMinimumWidth());
         } else {
             int width = rect.width() + E;
             RecyclerView recyclerView2 = this.f44931b;
-            WeakHashMap weakHashMap2 = r0.j0.f43732a;
+            WeakHashMap weakHashMap2 = r0.i0.f43485a;
             g10 = n0.g(i10, width, recyclerView2.getMinimumWidth());
             int[] iArr2 = this.K;
             g11 = n0.g(i11, iArr2[iArr2.length - 1] + C, this.f44931b.getMinimumHeight());
@@ -522,7 +522,7 @@ public class s extends b0 {
             l0();
             return;
         }
-        throw new IllegalArgumentException(i2.d.i(i10, "Span count should be at least 1. Provided "));
+        throw new IllegalArgumentException(i2.d.j(i10, "Span count should be at least 1. Provided "));
     }
 
     public final void z1(g.o oVar) {

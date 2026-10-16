@@ -9,7 +9,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.q;
+import org.telegram.messenger.g0;
 import org.telegram.ui.qe;
 import zh.p7;
 public final class d {
@@ -82,7 +82,7 @@ public final class d {
             if (i10 == 1) {
                 return "≈" + BillingController.getInstance().formatCurrency(j10, "USD");
             }
-            return p7.Y0(false, q.i(j10, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return p7.Y0(false, g0.h(j10, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return AndroidUtilities.formatWholeNumber((int) j10, 0);
         }

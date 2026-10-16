@@ -6,19 +6,19 @@ import android.graphics.Point;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class y3 extends LinearLayout {
-    public final int f31463a;
-    public boolean f31464b;
-    public final ud0 f31465c;
+    public final int f31125a;
+    public boolean f31126b;
+    public final ud0 f31127c;
     public final ud0 d;
     public final ud0 e;
 
     public y3(Context context, ud0 ud0Var, ud0 ud0Var2, ud0 ud0Var3, int i10) {
         super(context);
-        this.f31463a = i10;
-        this.f31465c = ud0Var;
+        this.f31125a = i10;
+        this.f31127c = ud0Var;
         this.d = ud0Var2;
         this.e = ud0Var3;
-        this.f31464b = false;
+        this.f31126b = false;
     }
 
     @Override
@@ -29,91 +29,91 @@ public final class y3 extends LinearLayout {
         int i15;
         int i16;
         int i17;
-        switch (this.f31463a) {
+        switch (this.f31125a) {
             case 0:
                 x3 x3Var = (x3) this.e;
                 w3 w3Var = (w3) this.d;
-                this.f31464b = true;
+                this.f31126b = true;
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
                     i12 = 3;
                 } else {
                     i12 = 5;
                 }
-                ud0 ud0Var = this.f31465c;
+                ud0 ud0Var = this.f31127c;
                 ud0Var.setItemCount(i12);
                 w3Var.setItemCount(i12);
                 x3Var.setItemCount(i12);
                 ud0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
                 w3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
                 x3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-                this.f31464b = false;
+                this.f31126b = false;
                 super.onMeasure(i10, i11);
                 return;
             case 1:
                 b4 b4Var = (b4) this.e;
                 z3 z3Var = (z3) this.d;
-                this.f31464b = true;
+                this.f31126b = true;
                 Point point2 = AndroidUtilities.displaySize;
                 if (point2.x > point2.y) {
                     i13 = 3;
                 } else {
                     i13 = 5;
                 }
-                ud0 ud0Var2 = this.f31465c;
+                ud0 ud0Var2 = this.f31127c;
                 ud0Var2.setItemCount(i13);
                 z3Var.setItemCount(i13);
                 b4Var.setItemCount(i13);
                 ud0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
                 z3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
                 b4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
-                this.f31464b = false;
+                this.f31126b = false;
                 super.onMeasure(i10, i11);
                 return;
             case 2:
                 g4 g4Var = (g4) this.e;
                 f4 f4Var = (f4) this.d;
-                this.f31464b = true;
+                this.f31126b = true;
                 Point point3 = AndroidUtilities.displaySize;
                 if (point3.x > point3.y) {
                     i14 = 3;
                 } else {
                     i14 = 5;
                 }
-                ud0 ud0Var3 = this.f31465c;
+                ud0 ud0Var3 = this.f31127c;
                 ud0Var3.setItemCount(i14);
                 f4Var.setItemCount(i14);
                 g4Var.setItemCount(i14);
                 ud0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i14;
                 f4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i14;
                 g4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i14;
-                this.f31464b = false;
+                this.f31126b = false;
                 super.onMeasure(i10, i11);
                 return;
             case 3:
                 j4 j4Var = (j4) this.e;
                 i4 i4Var = (i4) this.d;
-                this.f31464b = true;
+                this.f31126b = true;
                 Point point4 = AndroidUtilities.displaySize;
                 if (point4.x > point4.y) {
                     i15 = 3;
                 } else {
                     i15 = 5;
                 }
-                ud0 ud0Var4 = this.f31465c;
+                ud0 ud0Var4 = this.f31127c;
                 ud0Var4.setItemCount(i15);
                 i4Var.setItemCount(i15);
                 j4Var.setItemCount(i15);
                 ud0Var4.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i15;
                 i4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i15;
                 j4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i15;
-                this.f31464b = false;
+                this.f31126b = false;
                 super.onMeasure(i10, i11);
                 return;
             case 4:
                 n4 n4Var = (n4) this.e;
                 m4 m4Var = (m4) this.d;
-                this.f31464b = true;
+                this.f31126b = true;
                 Point point5 = AndroidUtilities.displaySize;
                 if (point5.x > point5.y) {
                     i16 = 3;
@@ -124,30 +124,30 @@ public final class y3 extends LinearLayout {
                 m4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i16;
                 n4Var.setItemCount(i16);
                 n4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i16;
-                ud0 ud0Var5 = this.f31465c;
+                ud0 ud0Var5 = this.f31127c;
                 ud0Var5.setItemCount(i16);
                 ud0Var5.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i16;
-                this.f31464b = false;
+                this.f31126b = false;
                 super.onMeasure(i10, i11);
                 return;
             default:
                 x4 x4Var = (x4) this.e;
                 w4 w4Var = (w4) this.d;
-                this.f31464b = true;
+                this.f31126b = true;
                 Point point6 = AndroidUtilities.displaySize;
                 if (point6.x > point6.y) {
                     i17 = 3;
                 } else {
                     i17 = 5;
                 }
-                ud0 ud0Var6 = this.f31465c;
+                ud0 ud0Var6 = this.f31127c;
                 ud0Var6.setItemCount(i17);
                 w4Var.setItemCount(i17);
                 x4Var.setItemCount(i17);
                 ud0Var6.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i17;
                 w4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i17;
                 x4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i17;
-                this.f31464b = false;
+                this.f31126b = false;
                 super.onMeasure(i10, i11);
                 return;
         }
@@ -155,39 +155,39 @@ public final class y3 extends LinearLayout {
 
     @Override
     public final void requestLayout() {
-        switch (this.f31463a) {
+        switch (this.f31125a) {
             case 0:
-                if (!this.f31464b) {
+                if (!this.f31126b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 1:
-                if (!this.f31464b) {
+                if (!this.f31126b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 2:
-                if (!this.f31464b) {
+                if (!this.f31126b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 3:
-                if (!this.f31464b) {
+                if (!this.f31126b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 4:
-                if (!this.f31464b) {
+                if (!this.f31126b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             default:
-                if (!this.f31464b) {
+                if (!this.f31126b) {
                     super.requestLayout();
                     return;
                 }
@@ -197,10 +197,10 @@ public final class y3 extends LinearLayout {
 
     public y3(Activity activity, m4 m4Var, n4 n4Var, ud0 ud0Var) {
         super(activity);
-        this.f31463a = 4;
+        this.f31125a = 4;
         this.d = m4Var;
         this.e = n4Var;
-        this.f31465c = ud0Var;
-        this.f31464b = false;
+        this.f31127c = ud0Var;
+        this.f31126b = false;
     }
 }

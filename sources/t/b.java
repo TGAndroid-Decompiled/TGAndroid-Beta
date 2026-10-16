@@ -24,7 +24,7 @@ public final class b {
                         return;
                     }
                 }
-                throw new IllegalArgumentException(d.i(i10, "Custom icon type is not allowed: "));
+                throw new IllegalArgumentException(d.j(i10, "Custom icon type is not allowed: "));
             }
             throw new IllegalStateException("Custom icon does not have a backing IconCompat");
         }

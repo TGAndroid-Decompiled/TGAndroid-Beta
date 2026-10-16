@@ -15,7 +15,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -28,29 +28,29 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.dr;
 import org.telegram.ui.fo;
 import org.telegram.ui.ia0;
-import org.telegram.ui.vj1;
+import org.telegram.ui.uj1;
 import org.telegram.ui.web.HttpGetFileTask;
 import org.telegram.ui.yy;
 public final class d1 implements Runnable {
-    public final int f9222a = 0;
-    public final TLObject f9223b;
-    public final int f9224c;
+    public final int f9225a = 0;
+    public final TLObject f9226b;
+    public final int f9227c;
     public final long d;
     public final Object e;
-    public final Object f9225f;
+    public final Object f9228f;
     public final Object h;
-    public final Object f9226n;
-    public final Object f9227r;
+    public final Object f9229n;
+    public final Object f9230r;
 
     public d1(TLObject tLObject, int i10, org.telegram.ui.ActionBar.a2 a2Var, Context context, long j10, c6 c6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
-        this.f9223b = tLObject;
-        this.f9224c = i10;
+        this.f9226b = tLObject;
+        this.f9227c = i10;
         this.e = a2Var;
-        this.f9225f = context;
+        this.f9228f = context;
         this.d = j10;
         this.h = c6Var;
-        this.f9226n = sVar;
-        this.f9227r = eVar;
+        this.f9229n = sVar;
+        this.f9230r = eVar;
     }
 
     @Override
@@ -61,19 +61,19 @@ public final class d1 implements Runnable {
         yy yyVar;
         TLObject tLObject;
         String[] split;
-        switch (this.f9222a) {
+        switch (this.f9225a) {
             case 0:
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) this.e;
-                Context context = (Context) this.f9225f;
+                Context context = (Context) this.f9228f;
                 c6 c6Var = (c6) this.h;
-                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f9226n;
-                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f9227r;
-                TLObject tLObject2 = this.f9223b;
+                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f9229n;
+                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f9230r;
+                TLObject tLObject2 = this.f9226b;
                 if (tLObject2 instanceof TLRPC.TL_messages_preparedInlineMessage) {
                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) tLObject2;
                     TLRPC.BotInlineMessage botInlineMessage = tL_messages_preparedInlineMessage.result.send_message;
                     boolean z10 = botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaWebPage;
-                    int i11 = this.f9224c;
+                    int i11 = this.f9227c;
                     long j10 = this.d;
                     if (z10) {
                         TLRPC.TL_botInlineMessageMediaWebPage tL_botInlineMessageMediaWebPage = (TLRPC.TL_botInlineMessageMediaWebPage) botInlineMessage;
@@ -122,26 +122,26 @@ public final class d1 implements Runnable {
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) this.e;
-                String str3 = (String) this.f9225f;
+                String str3 = (String) this.f9228f;
                 String str4 = (String) this.h;
-                TLRPC.User user = (TLRPC.User) this.f9226n;
-                String str5 = (String) this.f9227r;
-                ArrayList arrayList = launchActivity.f32113f0;
-                ArrayList arrayList2 = launchActivity.f32109d0;
+                TLRPC.User user = (TLRPC.User) this.f9229n;
+                String str5 = (String) this.f9230r;
+                ArrayList arrayList = launchActivity.f31815f0;
+                ArrayList arrayList2 = launchActivity.f31811d0;
                 ArrayList arrayList3 = launchActivity.E0;
-                TLObject tLObject3 = this.f9223b;
+                TLObject tLObject3 = this.f9226b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
                     TLRPC.TL_attachMenuBotsBot tL_attachMenuBotsBot = (TLRPC.TL_attachMenuBotsBot) tLObject3;
-                    int i12 = this.f9224c;
+                    int i12 = this.f9227c;
                     MessagesController.getInstance(i12).putUsers(tL_attachMenuBotsBot.users, false);
                     TLRPC.TL_attachMenuBot tL_attachMenuBot = tL_attachMenuBotsBot.bot;
                     if (str3 != null) {
                         LaunchActivity.C0(launchActivity, launchActivity.O, tL_attachMenuBot, str3, false);
                         return;
                     }
-                    org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) i2.d.g(1, arrayList2);
+                    org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) i2.d.h(1, arrayList2);
                     if (AndroidUtilities.isTablet() && !(m2Var instanceof fo) && !arrayList.isEmpty()) {
-                        m2Var = (org.telegram.ui.ActionBar.m2) i2.d.g(1, arrayList);
+                        m2Var = (org.telegram.ui.ActionBar.m2) i2.d.h(1, arrayList);
                     }
                     ArrayList arrayList4 = new ArrayList();
                     if (!TextUtils.isEmpty(str4)) {
@@ -190,7 +190,7 @@ public final class d1 implements Runnable {
                                 a02 = zc.a0(m2Var);
                                 i10 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                foVar.ba(user.f19363id, str5, false);
+                                foVar.ba(user.f19063id, str5, false);
                                 return;
                             }
                         } else {
@@ -202,26 +202,26 @@ public final class d1 implements Runnable {
                         z6Var.setColor(g6.x0(null, g6.ia, false));
                         z6Var.setBackgroundColor(g6.x0(null, g6.L5, false));
                         z6Var.setAttachBot(tL_attachMenuBot);
-                        vj1.a(launchActivity, new dr(launchActivity, i12, this.d, yyVar, m2Var, user, str5), null);
+                        uj1.a(launchActivity, new dr(launchActivity, i12, this.d, yyVar, m2Var, user, str5), null);
                         return;
                     }
                 } else {
-                    a02 = zc.a0((org.telegram.ui.ActionBar.m2) i2.d.g(1, arrayList2));
+                    a02 = zc.a0((org.telegram.ui.ActionBar.m2) i2.d.h(1, arrayList2));
                     i10 = R.string.BotCantAddToAttachMenu;
                 }
-                yh.p(i10, a02, null);
+                sk.q(i10, a02, null);
                 return;
         }
     }
 
     public d1(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, String str2, TLRPC.User user, String str3, long j10) {
         this.e = launchActivity;
-        this.f9223b = tLObject;
-        this.f9224c = i10;
-        this.f9225f = str;
+        this.f9226b = tLObject;
+        this.f9227c = i10;
+        this.f9228f = str;
         this.h = str2;
-        this.f9226n = user;
-        this.f9227r = str3;
+        this.f9229n = user;
+        this.f9230r = str3;
         this.d = j10;
     }
 }

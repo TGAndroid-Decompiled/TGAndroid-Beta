@@ -13,16 +13,16 @@ import org.telegram.ui.Components.s6;
 import org.telegram.ui.fi1;
 import org.telegram.ui.un;
 public final class i0 implements pg {
-    public final TL_stars.TL_starGiftUnique f48917a;
-    public final k0 f48918b;
+    public final TL_stars.TL_starGiftUnique f48916a;
+    public final k0 f48917b;
 
     public i0(k0 k0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f48918b = k0Var;
-        this.f48917a = tL_starGiftUnique;
+        this.f48917b = k0Var;
+        this.f48916a = tL_starGiftUnique;
     }
 
     @Override
-    public final boolean B0() {
+    public final boolean C0() {
         return true;
     }
 
@@ -32,7 +32,7 @@ public final class i0 implements pg {
     }
 
     @Override
-    public final int Y0() {
+    public final int Z0() {
         return 0;
     }
 
@@ -40,11 +40,11 @@ public final class i0 implements pg {
         int i10;
         int i11;
         boolean z10;
-        k0 k0Var = this.f48918b;
-        s6 s6Var = k0Var.f48933w;
-        y4 y4Var = k0Var.f48927b;
+        k0 k0Var = this.f48917b;
+        s6 s6Var = k0Var.f48932w;
+        y4 y4Var = k0Var.f48926b;
         i10 = ((org.telegram.ui.ActionBar.e3) k0Var).currentAccount;
-        y4Var.a(this.f48917a, UserConfig.getInstance(i10).getClientUserId(), k0Var.f48930n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        y4Var.a(this.f48916a, UserConfig.getInstance(i10).getClientUserId(), k0Var.f48929n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         k0Var.F = codePointCount;
         int i12 = k0Var.E;
@@ -68,10 +68,10 @@ public final class i0 implements pg {
             s6Var.animate().setListener(null).cancel();
             s6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                s6Var.setTextColor(k0Var.getThemedColor(g6.f20122p7));
+                s6Var.setTextColor(k0Var.getThemedColor(g6.f19822p7));
                 return;
             } else {
-                s6Var.setTextColor(k0Var.getThemedColor(g6.f20288y6));
+                s6Var.setTextColor(k0Var.getThemedColor(g6.f19988y6));
                 return;
             }
         }
@@ -79,32 +79,32 @@ public final class i0 implements pg {
     }
 
     @Override
-    public final TL_stories.StoryItem a1() {
+    public final TL_stories.StoryItem b1() {
         return null;
     }
 
     @Override
-    public final boolean b1(long j10) {
+    public final boolean c1(long j10) {
         return false;
     }
 
     @Override
-    public final boolean e1() {
+    public final boolean f1() {
         return false;
     }
 
     @Override
-    public final void g1(CharSequence charSequence, boolean z10, boolean z11) {
+    public final void h1(CharSequence charSequence, boolean z10, boolean z11) {
         a(charSequence);
     }
 
     @Override
-    public final boolean j1() {
+    public final boolean k1() {
         return false;
     }
 
     @Override
-    public final boolean l() {
+    public final boolean p() {
         return false;
     }
 
@@ -114,43 +114,67 @@ public final class i0 implements pg {
     }
 
     @Override
-    public final int q() {
-        return 0;
-    }
-
-    @Override
-    public final void q1(CharSequence charSequence) {
+    public final void r1(CharSequence charSequence) {
         a(charSequence);
     }
 
     @Override
-    public final boolean r1() {
+    public final boolean s1() {
         return false;
     }
 
     @Override
-    public final TLRPC.Peer x() {
+    public final int v() {
+        return 0;
+    }
+
+    @Override
+    public final TLRPC.Peer y() {
         return null;
     }
 
     @Override
-    public final void F0() {
+    public final void A(float f7) {
     }
 
     @Override
-    public final void G() {
+    public final void D(boolean z10) {
     }
 
     @Override
-    public final void H0() {
+    public final void Y0(int i10) {
     }
 
     @Override
-    public final void Q0() {
+    public final void Y1(int i10) {
     }
 
     @Override
-    public final void T1() {
+    public final void a0(boolean z10) {
+    }
+
+    @Override
+    public final void c2(boolean z10) {
+    }
+
+    @Override
+    public final void G0() {
+    }
+
+    @Override
+    public final void H() {
+    }
+
+    @Override
+    public final void I0() {
+    }
+
+    @Override
+    public final void R0() {
+    }
+
+    @Override
+    public final void W1() {
     }
 
     @Override
@@ -158,11 +182,7 @@ public final class i0 implements pg {
     }
 
     @Override
-    public final void Y1() {
-    }
-
-    @Override
-    public final void e2() {
+    public final void b2() {
     }
 
     @Override
@@ -170,15 +190,15 @@ public final class i0 implements pg {
     }
 
     @Override
-    public final void i1() {
+    public final void h2() {
+    }
+
+    @Override
+    public final void j1() {
     }
 
     @Override
     public final void k() {
-    }
-
-    @Override
-    public final void l1() {
     }
 
     @Override
@@ -190,11 +210,11 @@ public final class i0 implements pg {
     }
 
     @Override
-    public final void m2() {
+    public final void n1() {
     }
 
     @Override
-    public final void n1() {
+    public final void o1() {
     }
 
     @Override
@@ -206,43 +226,23 @@ public final class i0 implements pg {
     }
 
     @Override
-    public final void u1() {
+    public final void u2() {
     }
 
     @Override
-    public final void y() {
+    public final void v1() {
     }
 
     @Override
-    public final void y1() {
+    public final void z() {
     }
 
     @Override
-    public final void C(boolean z10) {
+    public final void z1() {
     }
 
     @Override
-    public final void V1(int i10) {
-    }
-
-    @Override
-    public final void X0(int i10) {
-    }
-
-    @Override
-    public final void Z1(boolean z10) {
-    }
-
-    @Override
-    public final void a0(boolean z10) {
-    }
-
-    @Override
-    public final void z(float f7) {
-    }
-
-    @Override
-    public final void D0(int i10, int i11) {
+    public final void E0(int i10, int i11) {
     }
 
     @Override
@@ -250,7 +250,7 @@ public final class i0 implements pg {
     }
 
     @Override
-    public final void o1(View view, CharSequence charSequence, boolean z10) {
+    public final void p1(View view, CharSequence charSequence, boolean z10) {
     }
 
     @Override
@@ -258,6 +258,6 @@ public final class i0 implements pg {
     }
 
     @Override
-    public final void a2(int i10, int i11, int i12, long j10, long j11, boolean z10) {
+    public final void d2(int i10, int i11, int i12, long j10, long j11, boolean z10) {
     }
 }

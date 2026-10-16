@@ -15,7 +15,8 @@ import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.ma0;
+import org.telegram.ui.Components.ze0;
+import org.telegram.ui.gm0;
 import org.webrtc.EglBase;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.GlUtil;
@@ -461,7 +462,7 @@ public class EglRenderer implements VideoSink {
             try {
                 Handler handler = this.renderThreadHandler;
                 if (handler != null) {
-                    handler.post(new t(1, this, textureCallback));
+                    handler.post(new s(1, this, textureCallback));
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -492,7 +493,7 @@ public class EglRenderer implements VideoSink {
                         }
                     });
                     this.renderThreadHandler = handlerWithExceptionCallback;
-                    handlerWithExceptionCallback.post(new i(this, context, iArr, 0));
+                    handlerWithExceptionCallback.post(new ze0(this, context, iArr, 27));
                     this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
                 } else {
                     throw new IllegalStateException(this.name + "Already initialized");
@@ -564,8 +565,8 @@ public class EglRenderer implements VideoSink {
                     logD("Already released");
                     return;
                 }
-                handler.postAtFrontOfQueue(new t(2, this, countDownLatch));
-                this.renderThreadHandler.post(new t(3, this, this.renderThreadHandler.getLooper()));
+                handler.postAtFrontOfQueue(new s(2, this, countDownLatch));
+                this.renderThreadHandler.post(new s(3, this, this.renderThreadHandler.getLooper()));
                 this.renderThreadHandler = null;
                 ThreadUtils.awaitUninterruptibly(countDownLatch);
                 synchronized (this.frameLock) {
@@ -591,7 +592,7 @@ public class EglRenderer implements VideoSink {
                 Handler handler = this.renderThreadHandler;
                 if (handler != null) {
                     handler.removeCallbacks(this.eglSurfaceCreationRunnable);
-                    this.renderThreadHandler.postAtFrontOfQueue(new ma0(this, z10, runnable, 15));
+                    this.renderThreadHandler.postAtFrontOfQueue(new gm0(this, z10, runnable, 13));
                 } else if (runnable != null) {
                     runnable.run();
                 }
@@ -609,7 +610,7 @@ public class EglRenderer implements VideoSink {
                     return;
                 }
                 if (Thread.currentThread() != this.renderThreadHandler.getLooper().getThread()) {
-                    postToRenderThread(new i(this, countDownLatch, frameListener, 1));
+                    postToRenderThread(new ze0(this, countDownLatch, frameListener, 28));
                     ThreadUtils.awaitUninterruptibly(countDownLatch);
                     return;
                 }
@@ -667,7 +668,7 @@ public class EglRenderer implements VideoSink {
 
     @Override
     public final void setParentSink(VideoSink videoSink) {
-        f0.a(this, videoSink);
+        e0.a(this, videoSink);
     }
 
     public void setRotation(int i10) {

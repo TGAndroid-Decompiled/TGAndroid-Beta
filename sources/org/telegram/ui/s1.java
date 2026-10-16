@@ -9,10 +9,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class s1 extends WebViewClient {
-    public final v1 f39918a;
+    public final v1 f39644a;
 
     public s1(v1 v1Var) {
-        this.f39918a = v1Var;
+        this.f39644a = v1Var;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class s1 extends WebViewClient {
             if (launchActivity != null && launchActivity.isFinishing()) {
                 return true;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f39918a.getContext(), 0, null);
-            alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f19548a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new tu0(this, 8));
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f39644a.getContext(), 0, null);
+            alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f19248a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new su0(this, 8));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
             alertDialog$Builder.o();
             return true;
@@ -36,9 +36,9 @@ public final class s1 extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        v1 v1Var = this.f39918a;
-        if (v1Var.f40853s) {
-            pf.d.s(v1Var.f40855x.L, str);
+        v1 v1Var = this.f39644a;
+        if (v1Var.f40540s) {
+            pf.d.r(v1Var.f40542x.L, str);
             return true;
         }
         return false;

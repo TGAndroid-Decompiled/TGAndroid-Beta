@@ -1,56 +1,69 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-public final class m21 implements Runnable {
-    public final int f27171a;
-    public final int f27172b;
-    public final Object f27173c;
-    public final Object d;
-    public final Object e;
+import org.telegram.messenger.AndroidUtilities;
+public final class m21 extends lm0 {
+    public Context f26891c;
+    public ArrayList d;
 
-    public m21(int i10, Object obj, Object obj2, TLObject tLObject, int i11) {
-        this.f27171a = i11;
-        this.f27172b = i10;
-        this.f27173c = obj;
-        this.d = obj2;
-        this.e = tLObject;
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        return true;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m21.run():void");
+    public final int h() {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty()) {
+            return 0;
+        }
+        return arrayList.size() + 1;
     }
 
-    public m21(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f27171a = i11;
-        this.f27173c = obj;
-        this.f27172b = i10;
-        this.d = obj2;
-        this.e = obj3;
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        return 0;
     }
 
-    public m21(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f27171a = i11;
-        this.f27173c = obj;
-        this.d = obj2;
-        this.f27172b = i10;
-        this.e = obj3;
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int c10;
+        if (b1Var.f44841f == 0) {
+            boolean z10 = true;
+            org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) ((ArrayList) this.d.get(i10 - 1)).get(0);
+            if (i6Var.f20075f == org.telegram.ui.ActionBar.g6.Nd) {
+                c10 = 0;
+            } else {
+                c10 = i6Var.c();
+            }
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) b1Var.f44838a;
+            z8Var.f22520a.setText(org.telegram.ui.ActionBar.e5.i(i6Var.f20075f));
+            z8Var.f22521b = c10;
+            if (c10 != 0) {
+                z10 = false;
+            }
+            z8Var.setWillNotDraw(z10);
+            z8Var.invalidate();
+        }
     }
 
-    public m21(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f27171a = i11;
-        this.f27173c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f27172b = i10;
-    }
-
-    public m21(qg.k1 k1Var, qg.f1 f1Var, int i10, ArrayList arrayList) {
-        this.f27171a = 17;
-        this.f27173c = k1Var;
-        this.e = f1Var;
-        this.f27172b = i10;
-        this.d = arrayList;
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View z8Var;
+        Context context = this.f26891c;
+        if (i10 != 0) {
+            z8Var = new View(context);
+            z8Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(56.0f)));
+        } else {
+            z8Var = new org.telegram.ui.Cells.z8(context);
+            z8Var.setLayoutParams(new s4.o0(-1, -2));
+        }
+        return new s4.b1(z8Var);
     }
 }

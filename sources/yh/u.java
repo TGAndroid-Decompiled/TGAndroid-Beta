@@ -40,9 +40,9 @@ public final class u extends zh.o3 {
     @Override
     public final void j(int i10) {
         w wVar = this.C0;
-        TextView textView = wVar.f49168b0;
+        TextView textView = wVar.f49167b0;
         if (textView != null && g6.C1(textView.getBackground(), i10, false)) {
-            wVar.f49168b0.invalidate();
+            wVar.f49167b0.invalidate();
         }
     }
 

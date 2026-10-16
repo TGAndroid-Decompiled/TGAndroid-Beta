@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ah1 extends org.telegram.ui.Components.lm0 {
-    public final Context f34225c;
+    public final Context f33933c;
     public final TwoStepVerificationActivity d;
 
     public ah1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
         this.d = twoStepVerificationActivity;
-        this.f34225c = context;
+        this.f33933c = context;
     }
 
     @Override
@@ -86,12 +86,12 @@ public final class ah1 extends org.telegram.ui.Components.lm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View caVar;
-        Context context = this.f34225c;
+        Context context = this.f33933c;
         if (i10 != 0) {
             caVar = new org.telegram.ui.Cells.e9(context);
         } else {
             caVar = new org.telegram.ui.Cells.ca(context);
-            caVar.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19901d6, false));
+            caVar.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false));
         }
         return new s4.b1(caVar);
     }

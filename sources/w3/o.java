@@ -1,10 +1,10 @@
 package w3;
-public final class o {
-    public final long f47157a;
-    public final int f47158b;
 
-    public o(long j10, int i10) {
-        this.f47157a = j10;
-        this.f47158b = i10;
-    }
+import java.util.ArrayList;
+public final class o {
+    public static final a5.a d = new a5.a(new ya.c(new d9.e(':', 0), 14));
+    public static final a5.a e = new a5.a(new ya.c(new d9.e('*', 0), 14));
+    public final ArrayList f47158a = new ArrayList();
+    public int f47159b = 0;
+    public int f47160c;
 }

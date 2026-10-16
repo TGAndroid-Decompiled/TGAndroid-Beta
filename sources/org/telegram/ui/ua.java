@@ -10,9 +10,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ua extends FrameLayout {
-    public final org.telegram.ui.Components.da0 f40608a;
-    public final org.telegram.ui.Cells.y1 f40609b;
-    public Integer f40610c;
+    public final org.telegram.ui.Components.da0 f40334a;
+    public final org.telegram.ui.Cells.y1 f40335b;
+    public Integer f40336c;
     public ValueAnimator d;
     public final va e;
 
@@ -24,7 +24,7 @@ public final class ua extends FrameLayout {
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(17.0f));
         setClipChildren(false);
         org.telegram.ui.Components.da0 da0Var = new org.telegram.ui.Components.da0(activity, null);
-        this.f40608a = da0Var;
+        this.f40334a = da0Var;
         da0Var.setTextSize(1, 15.0f);
         int i11 = org.telegram.ui.ActionBar.g6.F6;
         da0Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i11, false));
@@ -41,16 +41,16 @@ public final class ua extends FrameLayout {
         da0Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         org.telegram.ui.Cells.y1 y1Var = new org.telegram.ui.Cells.y1(this, activity, 2);
         vaVar.G = y1Var;
-        this.f40609b = y1Var;
+        this.f40335b = y1Var;
         y1Var.setTextSize(1, 15.0f);
         y1Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i11, false));
         y1Var.setGravity(LocaleController.isRTL ? 5 : 3);
         y1Var.setLinkTextColor(org.telegram.ui.ActionBar.g6.x0(null, i12, false));
         y1Var.setHighlightColor(org.telegram.ui.ActionBar.g6.x0(null, i13, false));
         y1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
-        addView(da0Var, w7.a6.e(-1, -2, 48));
-        addView(y1Var, w7.a6.e(-1, -2, 48));
-        if (vaVar.f40943x != 0) {
+        addView(da0Var, w7.z5.e(-1, -2, 48));
+        addView(y1Var, w7.z5.e(-1, -2, 48));
+        if (vaVar.f40630x != 0) {
             String string = LocaleController.getString(R.string.BotUsernameHelp);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf(42);
@@ -58,20 +58,20 @@ public final class ua extends FrameLayout {
             if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
-                spannableStringBuilder.setSpan(new org.telegram.ui.Components.p61("https://fragment.com", (org.telegram.ui.Components.p11) null), indexOf, lastIndexOf - 1, 33);
+                spannableStringBuilder.setSpan(new org.telegram.ui.Components.q61("https://fragment.com", (org.telegram.ui.Components.q11) null), indexOf, lastIndexOf - 1, 33);
             }
             da0Var.setText(spannableStringBuilder);
             return;
         }
-        org.telegram.ui.Cells.d0.q(R.string.UsernameHelp, da0Var);
+        org.telegram.ui.Cells.c1.o(R.string.UsernameHelp, da0Var);
     }
 
     public static void a(final ua uaVar) {
         int intValue;
         int i10;
         float f7;
-        org.telegram.ui.Components.da0 da0Var = uaVar.f40608a;
-        org.telegram.ui.Cells.y1 y1Var = uaVar.f40609b;
+        org.telegram.ui.Components.da0 da0Var = uaVar.f40334a;
+        org.telegram.ui.Cells.y1 y1Var = uaVar.f40335b;
         if (y1Var.getVisibility() == 0) {
             y1Var.measure(View.MeasureSpec.makeMeasureSpec((uaVar.getMeasuredWidth() - uaVar.getPaddingLeft()) - uaVar.getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
         }
@@ -79,7 +79,7 @@ public final class ua extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        Integer num = uaVar.f40610c;
+        Integer num = uaVar.f40336c;
         if (num == null) {
             intValue = uaVar.getMeasuredHeight();
         } else {
@@ -108,8 +108,8 @@ public final class ua extends FrameLayout {
                 ua uaVar2 = ua.this;
                 uaVar2.getClass();
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                uaVar2.f40608a.setTranslationY(AndroidUtilities.lerp(translationY, f10, floatValue));
-                uaVar2.f40610c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
+                uaVar2.f40334a.setTranslationY(AndroidUtilities.lerp(translationY, f10, floatValue));
+                uaVar2.f40336c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
                 uaVar2.requestLayout();
             }
         });
@@ -120,7 +120,7 @@ public final class ua extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        Integer num = this.f40610c;
+        Integer num = this.f40336c;
         if (num != null) {
             i11 = View.MeasureSpec.makeMeasureSpec(num.intValue(), 1073741824);
         }

@@ -1,44 +1,44 @@
 package k0;
 
+import a4.l;
 import android.hardware.fingerprint.FingerprintManager;
 import androidx.biometric.e;
 import androidx.biometric.x;
 import androidx.biometric.z;
 import java.lang.ref.WeakReference;
-import k6.h;
 public final class a extends FingerprintManager.AuthenticationCallback {
-    public final h f13760a;
+    public final l f13763a;
 
-    public a(h hVar) {
-        this.f13760a = hVar;
+    public a(l lVar) {
+        this.f13763a = lVar;
     }
 
     @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        ((x) ((e) this.f13760a.f14176b).d).a(i10, charSequence);
+        ((x) ((e) this.f13763a.f279b).d).a(i10, charSequence);
     }
 
     @Override
     public final void onAuthenticationFailed() {
-        WeakReference weakReference = ((x) ((e) this.f13760a.f14176b).d).f1221a;
-        if (weakReference.get() != null && ((z) weakReference.get()).f1231n) {
+        WeakReference weakReference = ((x) ((e) this.f13763a.f279b).d).f1225a;
+        if (weakReference.get() != null && ((z) weakReference.get()).f1235n) {
             z zVar = (z) weakReference.get();
-            if (zVar.f1238u == null) {
-                zVar.f1238u = new androidx.lifecycle.z();
+            if (zVar.f1242u == null) {
+                zVar.f1242u = new androidx.lifecycle.z();
             }
-            z.h(zVar.f1238u, Boolean.TRUE);
+            z.h(zVar.f1242u, Boolean.TRUE);
         }
     }
 
     @Override
     public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
-        WeakReference weakReference = ((x) ((e) this.f13760a.f14176b).d).f1221a;
+        WeakReference weakReference = ((x) ((e) this.f13763a.f279b).d).f1225a;
         if (weakReference.get() != null) {
             z zVar = (z) weakReference.get();
-            if (zVar.f1237t == null) {
-                zVar.f1237t = new androidx.lifecycle.z();
+            if (zVar.f1241t == null) {
+                zVar.f1241t = new androidx.lifecycle.z();
             }
-            z.h(zVar.f1237t, charSequence);
+            z.h(zVar.f1241t, charSequence);
         }
     }
 

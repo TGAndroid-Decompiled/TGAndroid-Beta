@@ -8,23 +8,23 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 public final class b extends c {
-    public final AssetManager f9851a;
-    public Uri f9852b;
-    public InputStream f9853c;
+    public final AssetManager f9854a;
+    public Uri f9855b;
+    public InputStream f9856c;
     public long d;
     public boolean e;
 
     public b(Context context) {
         super(false);
-        this.f9851a = context.getAssets();
+        this.f9854a = context.getAssets();
     }
 
     @Override
     public final void close() {
-        this.f9852b = null;
+        this.f9855b = null;
         try {
             try {
-                InputStream inputStream = this.f9853c;
+                InputStream inputStream = this.f9856c;
                 if (inputStream != null) {
                     inputStream.close();
                 }
@@ -32,7 +32,7 @@ public final class b extends c {
                 throw new j(e, 2000);
             }
         } finally {
-            this.f9853c = null;
+            this.f9856c = null;
             if (this.e) {
                 this.e = false;
                 transferEnded();
@@ -42,16 +42,16 @@ public final class b extends c {
 
     @Override
     public final Uri getUri() {
-        return this.f9852b;
+        return this.f9855b;
     }
 
     @Override
     public final long open(m mVar) {
         int i10;
         try {
-            Uri uri = mVar.f9883a;
+            Uri uri = mVar.f9886a;
             long j10 = mVar.e;
-            this.f9852b = uri;
+            this.f9855b = uri;
             String path = uri.getPath();
             path.getClass();
             if (path.startsWith("/android_asset/")) {
@@ -60,14 +60,14 @@ public final class b extends c {
                 path = path.substring(1);
             }
             transferInitializing(mVar);
-            InputStream open = this.f9851a.open(path, 1);
-            this.f9853c = open;
+            InputStream open = this.f9854a.open(path, 1);
+            this.f9856c = open;
             if (open.skip(j10) >= j10) {
-                long j11 = mVar.f9886f;
+                long j11 = mVar.f9889f;
                 if (j11 != -1) {
                     this.d = j11;
                 } else {
-                    long available = this.f9853c.available();
+                    long available = this.f9856c.available();
                     this.d = available;
                     if (available == 2147483647L) {
                         this.d = -1L;
@@ -104,8 +104,8 @@ public final class b extends c {
                     throw new j(e, 2000);
                 }
             }
-            InputStream inputStream = this.f9853c;
-            String str = m0.f8372a;
+            InputStream inputStream = this.f9856c;
+            String str = m0.f8375a;
             int read = inputStream.read(bArr, i10, i11);
             if (read != -1) {
                 long j11 = this.d;

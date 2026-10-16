@@ -11,16 +11,16 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class p10 extends Drawable {
-    public final Drawable f28132a;
-    public final Path f28133b;
-    public boolean f28134c = true;
+    public final Drawable f27816a;
+    public final Path f27817b;
+    public boolean f27818c = true;
     public final Paint d;
     public final Paint e;
 
     public p10(Context context, int i10, int i11) {
-        this.f28132a = context.getResources().getDrawable(i10);
+        this.f27816a = context.getResources().getDrawable(i10);
         if (i11 >= 0) {
-            this.f28133b = new Path();
+            this.f27817b = new Path();
             Paint paint = new Paint(1);
             this.d = paint;
             paint.setStyle(Paint.Style.STROKE);
@@ -32,12 +32,12 @@ public final class p10 extends Drawable {
             Paint paint2 = new Paint(1);
             this.e = paint2;
             paint2.setStyle(Paint.Style.FILL);
-            int[] iArr = org.telegram.ui.ActionBar.g6.f20160r8;
+            int[] iArr = org.telegram.ui.ActionBar.g6.f19860r8;
             paint2.setColor(org.telegram.ui.ActionBar.g6.x0(null, iArr[i11 % iArr.length], false));
             paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
             return;
         }
-        this.f28133b = null;
+        this.f27817b = null;
         this.d = null;
         this.e = null;
     }
@@ -52,13 +52,13 @@ public final class p10 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        Drawable drawable = this.f28132a;
-        Path path = this.f28133b;
+        Drawable drawable = this.f27816a;
+        Path path = this.f27817b;
         if (path != null) {
             canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255);
             drawable.setBounds(getBounds());
             drawable.draw(canvas);
-            boolean z10 = this.f28134c;
+            boolean z10 = this.f27818c;
             Paint paint = this.d;
             if (z10) {
                 path.rewind();
@@ -68,7 +68,7 @@ public final class p10 extends Drawable {
                 path.lineTo(a(0.8974f), b(0.9102f));
                 path.lineTo(a(0.4871f), b(0.9102f));
                 path.close();
-                this.f28134c = false;
+                this.f27818c = false;
                 paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
             }
             canvas.drawPath(path, paint);
@@ -82,32 +82,32 @@ public final class p10 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f28132a.getIntrinsicHeight();
+        return this.f27816a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f28132a.getIntrinsicWidth();
+        return this.f27816a.getIntrinsicWidth();
     }
 
     @Override
     public final int getOpacity() {
-        return this.f28132a.getOpacity();
+        return this.f27816a.getOpacity();
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f28132a.setAlpha(i10);
+        this.f27816a.setAlpha(i10);
     }
 
     @Override
     public final void setBounds(int i10, int i11, int i12, int i13) {
         super.setBounds(i10, i11, i12, i13);
-        this.f28134c = true;
+        this.f27818c = true;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f28132a.setColorFilter(colorFilter);
+        this.f27816a.setColorFilter(colorFilter);
     }
 }

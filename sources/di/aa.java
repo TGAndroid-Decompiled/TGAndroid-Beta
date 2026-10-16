@@ -9,26 +9,26 @@ import android.widget.ScrollView;
 import java.util.ArrayList;
 import org.telegram.ui.Components.z30;
 public final class aa extends ViewGroup {
-    public final int f6632a = 0;
-    public AnimatorSet f6633b;
-    public boolean f6634c;
+    public final int f6635a = 0;
+    public AnimatorSet f6636b;
+    public boolean f6637c;
     public final ArrayList d;
     public final ArrayList e;
-    public final ArrayList f6635f;
+    public final ArrayList f6638f;
     public final ArrayList h;
-    public final ScrollView f6636n;
+    public final ScrollView f6639n;
 
     public aa(yg.i iVar, Context context) {
         super(context);
-        this.f6636n = iVar;
+        this.f6639n = iVar;
         this.d = new ArrayList();
         this.e = new ArrayList();
-        this.f6635f = new ArrayList();
+        this.f6638f = new ArrayList();
         this.h = new ArrayList();
     }
 
     public void a() {
-        ba baVar = (ba) this.f6636n;
+        ba baVar = (ba) this.f6639n;
         baVar.G = true;
         ArrayList arrayList = baVar.d;
         ArrayList arrayList2 = new ArrayList(arrayList);
@@ -40,11 +40,11 @@ public final class aa extends ViewGroup {
             ((z30) arrayList2.get(i10)).setOnClickListener(null);
         }
         c();
-        this.f6634c = false;
+        this.f6637c = false;
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f6633b = animatorSet;
+        this.f6636b = animatorSet;
         animatorSet.addListener(new z9(this, arrayList2, 1));
-        ArrayList arrayList4 = this.f6635f;
+        ArrayList arrayList4 = this.f6638f;
         arrayList4.clear();
         ArrayList arrayList5 = this.d;
         arrayList5.clear();
@@ -60,7 +60,7 @@ public final class aa extends ViewGroup {
     }
 
     public void b(boolean z10) {
-        yg.i iVar = (yg.i) this.f6636n;
+        yg.i iVar = (yg.i) this.f6639n;
         iVar.G = true;
         ArrayList arrayList = iVar.e;
         ArrayList arrayList2 = new ArrayList(arrayList);
@@ -73,11 +73,11 @@ public final class aa extends ViewGroup {
         }
         c();
         if (z10) {
-            this.f6634c = false;
+            this.f6637c = false;
             AnimatorSet animatorSet = new AnimatorSet();
-            this.f6633b = animatorSet;
+            this.f6636b = animatorSet;
             animatorSet.addListener(new yg.h(this, arrayList2, 1));
-            ArrayList arrayList4 = this.f6635f;
+            ArrayList arrayList4 = this.f6638f;
             arrayList4.clear();
             ArrayList arrayList5 = this.d;
             arrayList5.clear();
@@ -94,17 +94,17 @@ public final class aa extends ViewGroup {
                 removeView((View) arrayList2.get(i12));
             }
             arrayList3.clear();
-            this.f6633b = null;
-            this.f6634c = false;
-            iVar.f48768b.setAllowDrawCursor(true);
+            this.f6636b = null;
+            this.f6637c = false;
+            iVar.f48767b.setAllowDrawCursor(true);
         }
         requestLayout();
     }
 
     public final void c() {
-        switch (this.f6632a) {
+        switch (this.f6635a) {
             case 0:
-                AnimatorSet animatorSet = this.f6633b;
+                AnimatorSet animatorSet = this.f6636b;
                 if (animatorSet != null) {
                     animatorSet.cancel();
                 }
@@ -134,7 +134,7 @@ public final class aa extends ViewGroup {
                     }
                 }
             default:
-                AnimatorSet animatorSet2 = this.f6633b;
+                AnimatorSet animatorSet2 = this.f6636b;
                 if (animatorSet2 != null) {
                     animatorSet2.cancel();
                 }
@@ -168,7 +168,7 @@ public final class aa extends ViewGroup {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f6632a) {
+        switch (this.f6635a) {
             case 0:
                 int childCount = getChildCount();
                 for (int i14 = 0; i14 < childCount; i14++) {
@@ -193,10 +193,10 @@ public final class aa extends ViewGroup {
 
     public aa(ba baVar, Context context) {
         super(context);
-        this.f6636n = baVar;
+        this.f6639n = baVar;
         this.d = new ArrayList();
         this.e = new ArrayList();
-        this.f6635f = new ArrayList();
+        this.f6638f = new ArrayList();
         this.h = new ArrayList();
     }
 }

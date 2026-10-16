@@ -1,141 +1,34 @@
 package org.telegram.ui;
 
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.media.AudioRecordingConfiguration;
-import android.media.MediaRoute2Info;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-public final class ul0 implements org.telegram.ui.Components.qd0, org.telegram.ui.ActionBar.z1, Utilities.Callback2Return, org.telegram.ui.Components.rw0, q3.g, g2.g, qg.h0, androidx.car.app.utils.d {
-    public final int f40696a;
+public final class ul0 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.e1 f40427a;
+    public final PasscodeActivity f40428b;
 
-    public ul0(int i10) {
-        this.f40696a = i10;
-    }
-
-    public static AudioRecordingConfiguration c(Object obj) {
-        return (AudioRecordingConfiguration) obj;
-    }
-
-    public static MediaRoute2Info d(Object obj) {
-        return (MediaRoute2Info) obj;
+    public ul0(PasscodeActivity passcodeActivity, org.telegram.ui.ActionBar.e1 e1Var) {
+        this.f40428b = passcodeActivity;
+        this.f40427a = e1Var;
     }
 
     @Override
-    public Typeface a() {
-        switch (this.f40696a) {
-            case 23:
-                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
-            case 24:
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-            case 25:
-                return Typeface.create("serif", 1);
-            case 26:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
-            case 27:
-                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
-            default:
-                return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
+    public final void b(int i10) {
+        PasscodeActivity passcodeActivity = this.f40428b;
+        if (i10 == -1) {
+            passcodeActivity.finishFragment();
+            return;
         }
-    }
-
-    @Override
-    public boolean b(int i10, int i11, int i12, int i13, int i14) {
-        return false;
-    }
-
-    @Override
-    public void call() {
-        throw null;
-    }
-
-    @Override
-    public g2.h createDataSource() {
-        return new g2.b(ApplicationLoader.applicationContext);
-    }
-
-    @Override
-    public String e(int i10) {
-        if (i10 == 0) {
-            return LocaleController.getString(R.string.AutoLockDisabled);
-        }
+        int i11 = 1;
         if (i10 == 1) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0]));
+            if (passcodeActivity.f31884y != 0) {
+                i11 = 0;
+            }
+            passcodeActivity.f31884y = i11;
+            AndroidUtilities.runOnUIThread(new se0(20, this, this.f40427a), 150L);
+            passcodeActivity.h.setText("");
+            for (ks ksVar : passcodeActivity.f31879n.f36645f) {
+                ksVar.setText("");
+            }
+            passcodeActivity.o0();
         }
-        if (i10 == 2) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0]));
-        }
-        if (i10 == 3) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0]));
-        }
-        if (i10 == 4) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0]));
-        }
-        return "";
-    }
-
-    @Override
-    public void f(int i10) {
-        SharedConfig.proxyRotationTimeout = i10;
-        SharedConfig.saveConfig();
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f40696a) {
-            case 1:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return;
-            case 2:
-                a2Var.dismiss();
-                return;
-            case 3:
-                a2Var.dismiss();
-                return;
-            case 4:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            default:
-                a2Var.dismiss();
-                return;
-            case 5:
-                a2Var.dismiss();
-                return;
-            case 6:
-                a2Var.dismiss();
-                return;
-            case 12:
-                a2Var.dismiss();
-                return;
-            case 13:
-                a2Var.dismiss();
-                return;
-            case 14:
-                a2Var.dismiss();
-                return;
-            case 15:
-                a2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2) {
-        Integer num = (Integer) obj2;
-        if (((Integer) obj).intValue() == 0) {
-            return zh.p7.Y0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
-        }
-        return LocaleController.formatNumber(num.intValue(), ',');
-    }
-
-    @Override
-    public void m() {
     }
 }

@@ -6,7 +6,7 @@ public enum c {
     H(2);
     
     public static final c[] e;
-    public final int f11359a;
+    public final int f11363a;
 
     static {
         c cVar;
@@ -15,6 +15,6 @@ public enum c {
     }
 
     c(int i10) {
-        this.f11359a = i10;
+        this.f11363a = i10;
     }
 }

@@ -69,7 +69,7 @@ public class c1 extends ImageView {
             w1Var.c();
         } else if (i10 == 2) {
             this.f45153f = 0.8f;
-            this.f45158x.setColor(g6.x0(null, g6.f19843a7, false));
+            this.f45158x.setColor(g6.x0(null, g6.f19543a7, false));
         } else if (i10 == 3) {
             setScaleType(ImageView.ScaleType.CENTER);
             setImageResource(R.drawable.msg_archive_hide);
@@ -89,7 +89,7 @@ public class c1 extends ImageView {
                 fArr[2] = 0.7f;
             }
             int HSVToColor = Color.HSVToColor(fArr);
-            int i11 = g6.f19901d6;
+            int i11 = g6.f19601d6;
             c6 c6Var = this.d;
             int d = i0.a.d(0.5f, HSVToColor, g6.w0(i11, c6Var));
             int d10 = i0.a.d(0.4f, HSVToColor, g6.w0(i11, c6Var));

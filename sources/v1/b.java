@@ -28,7 +28,7 @@ public final class b implements s0, s {
     }
 
     @Override
-    public p0 W0(Class cls, c cVar) {
+    public p0 X0(Class cls, c cVar) {
         m0 m0Var = null;
         for (d dVar : (d[]) this.f46477a) {
             if (dVar.f46478a.equals(cls)) {
@@ -71,18 +71,18 @@ public final class b implements s0, s {
             Bundle G = bVar.G();
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-            int i10 = e8.c.f8515a;
+            int i10 = e8.c.f8518a;
             obtain.writeInt(1);
             eVar.writeToParcel(obtain, 0);
             obtain.writeInt(1);
             G.writeToParcel(obtain, 0);
             obtain.writeStrongBinder(aVar);
-            iVar.f8523a.transact(14, obtain, null, 1);
+            iVar.f8526a.transact(14, obtain, null, 1);
             obtain.recycle();
         } catch (RemoteException e) {
             Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e);
             Bundle bundle = Bundle.EMPTY;
-            h5.a(Status.h, Boolean.FALSE, aVar.f8514b);
+            h5.a(Status.h, Boolean.FALSE, aVar.f8517b);
         }
     }
 
@@ -113,7 +113,7 @@ public final class b implements s0, s {
     }
 
     @Override
-    public p0 e(Class cls) {
+    public p0 f(Class cls) {
         throw new UnsupportedOperationException("Factory.create(String) is unsupported.  This Factory requires `CreationExtras` to be passed into `create` method.");
     }
 

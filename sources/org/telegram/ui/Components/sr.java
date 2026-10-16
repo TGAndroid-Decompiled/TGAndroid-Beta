@@ -15,10 +15,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class sr extends lm0 {
-    public final ur f29182c;
+    public final ur f28883c;
 
     public sr(ur urVar) {
-        this.f29182c = urVar;
+        this.f28883c = urVar;
     }
 
     @Override
@@ -31,11 +31,11 @@ public final class sr extends lm0 {
 
     @Override
     public final int h() {
-        ur urVar = this.f29182c;
+        ur urVar = this.f28883c;
         if (urVar.Z) {
             return urVar.Y.size() + 3;
         }
-        if (urVar.f29755a0) {
+        if (urVar.f29422a0) {
             return 2;
         }
         return 1;
@@ -67,7 +67,7 @@ public final class sr extends lm0 {
         View view = b1Var.f44838a;
         boolean z11 = true;
         if (i13 == 3) {
-            ur urVar = this.f29182c;
+            ur urVar = this.f28883c;
             TLRPC.Peer peer = (TLRPC.Peer) urVar.Y.get(i10 - 3);
             long peerId = MessageObject.getPeerId(peer);
             if (peerId > 0) {
@@ -86,7 +86,7 @@ public final class sr extends lm0 {
                 z10 = false;
             }
             g4Var.e(chat, null, str, z10);
-            if (peer != urVar.f29758d0) {
+            if (peer != urVar.f29425d0) {
                 z11 = false;
             }
             g4Var.c(z11, false);
@@ -107,18 +107,18 @@ public final class sr extends lm0 {
         String formatString;
         String formatString2;
         Context context = viewGroup.getContext();
-        ur urVar = this.f29182c;
+        ur urVar = this.f28883c;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
-                    boolean z10 = urVar.f29756b0;
+                    boolean z10 = urVar.f29423b0;
                     LinearLayout linearLayout = new LinearLayout(context);
                     linearLayout.setOrientation(1);
                     ?? imageView = new ImageView(context);
                     imageView.setAutoRepeat(true);
                     imageView.f(R.raw.utyan_schedule, 112, 112, null);
                     imageView.d();
-                    linearLayout.addView((View) imageView, w7.a6.t(112, 112, 49, 0, 24, 0, 0));
+                    linearLayout.addView((View) imageView, w7.z5.t(112, 112, 49, 0, 24, 0, 0));
                     TextView textView = new TextView(context);
                     textView.setTypeface(AndroidUtilities.bold());
                     if (z10) {
@@ -129,11 +129,11 @@ public final class sr extends lm0 {
                     textView.setText(formatString);
                     textView.setTextSize(1, 20.0f);
                     textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
-                    linearLayout.addView(textView, w7.a6.t(-2, -2, 1, 0, 14, 0, 7));
+                    linearLayout.addView(textView, w7.z5.t(-2, -2, 1, 0, 14, 0, 7));
                     TextView textView2 = new TextView(context);
                     textView2.setTextSize(1, 14.0f);
                     textView2.setGravity(1);
-                    textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20007j5, false));
+                    textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19707j5, false));
                     if (z10) {
                         formatString2 = LocaleController.formatString(R.string.VoipChannelStart2, new Object[0]);
                     } else {
@@ -141,7 +141,7 @@ public final class sr extends lm0 {
                     }
                     textView2.setText(formatString2);
                     textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
-                    linearLayout.addView(textView2, w7.a6.t(-2, -2, 1, 28, 0, 28, 17));
+                    linearLayout.addView(textView2, w7.z5.t(-2, -2, 1, 28, 0, 28, 17));
                     frameLayout = linearLayout;
                 } else {
                     frameLayout = new org.telegram.ui.Cells.g4(1, 0, context, false);
@@ -151,7 +151,7 @@ public final class sr extends lm0 {
             }
         } else {
             org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(context);
-            int i11 = org.telegram.ui.ActionBar.g6.f19843a7;
+            int i11 = org.telegram.ui.ActionBar.g6.f19543a7;
             c6Var = ((org.telegram.ui.ActionBar.e3) urVar).resourcesProvider;
             e9Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
             e9Var.setTopPadding(17);

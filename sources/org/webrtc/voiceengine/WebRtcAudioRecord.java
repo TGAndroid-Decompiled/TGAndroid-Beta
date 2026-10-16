@@ -283,7 +283,7 @@ public class WebRtcAudioRecord {
                 releaseAudioResources(false);
                 return -1;
             }
-            reportWebRtcAudioRecordInitError(d.i(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(d.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
             return -1;
         }
         return -1;
@@ -477,7 +477,7 @@ public class WebRtcAudioRecord {
                     return;
                 }
             }
-            reportWebRtcAudioRecordInitError(d.i(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(d.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         }
     }
 

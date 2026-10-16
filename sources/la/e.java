@@ -24,7 +24,7 @@ public final class e implements ja.e, g {
 
     @Override
     public final ja.e a(ja.c cVar, boolean z10) {
-        String str = cVar.f12949a;
+        String str = cVar.f12953a;
         j();
         JsonWriter jsonWriter = this.f14650b;
         jsonWriter.name(str);
@@ -49,13 +49,13 @@ public final class e implements ja.e, g {
 
     @Override
     public final ja.e d(ja.c cVar, Object obj) {
-        i(obj, cVar.f12949a);
+        i(obj, cVar.f12953a);
         return this;
     }
 
     @Override
     public final ja.e e(ja.c cVar, double d) {
-        String str = cVar.f12949a;
+        String str = cVar.f12953a;
         j();
         JsonWriter jsonWriter = this.f14650b;
         jsonWriter.name(str);
@@ -66,7 +66,7 @@ public final class e implements ja.e, g {
 
     @Override
     public final ja.e f(ja.c cVar, long j10) {
-        String str = cVar.f12949a;
+        String str = cVar.f12953a;
         j();
         JsonWriter jsonWriter = this.f14650b;
         jsonWriter.name(str);
@@ -77,7 +77,7 @@ public final class e implements ja.e, g {
 
     @Override
     public final ja.e g(ja.c cVar, int i10) {
-        String str = cVar.f12949a;
+        String str = cVar.f12953a;
         j();
         JsonWriter jsonWriter = this.f14650b;
         jsonWriter.name(str);

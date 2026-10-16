@@ -7,18 +7,18 @@ import android.view.ViewGroup;
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
 public final class b {
-    public final gh.a f2742a;
-    public int f2743b;
-    public int f2744c;
+    public final gh.a f2746a;
+    public int f2747b;
+    public int f2748c;
     public re.b d;
     public re.b e;
-    public ih.j f2745f;
-    public ViewGroup f2746g;
-    public ni.e h;
-    public boolean f2747i;
+    public ih.j f2749f;
+    public ViewGroup f2750g;
+    public mi.e h;
+    public boolean f2751i;
 
     public b(gh.a aVar) {
-        this.f2742a = aVar;
+        this.f2746a = aVar;
     }
 
     public final dh.d a(View view) {
@@ -30,32 +30,32 @@ public final class b {
     }
 
     public final dh.d c(View view, eh.a aVar, boolean z10) {
-        dh.d k10 = this.f2742a.k();
-        if (this.f2747i && Build.VERSION.SDK_INT >= 33 && (k10 instanceof dh.e)) {
-            dh.e eVar = (dh.e) k10;
+        dh.d f7 = this.f2746a.f();
+        if (this.f2751i && Build.VERSION.SDK_INT >= 33 && (f7 instanceof dh.e)) {
+            dh.e eVar = (dh.e) f7;
             eVar.P = new g(eVar.K);
         }
-        k10.o(aVar);
-        int i10 = this.f2743b;
-        int i11 = this.f2744c;
-        k10.h = i10;
-        k10.f6557i = i11;
+        f7.o(aVar);
+        int i10 = this.f2747b;
+        int i11 = this.f2748c;
+        f7.h = i10;
+        f7.f6560i = i11;
         re.b bVar = this.e;
         if (bVar != null && view != null) {
             bVar.add(view);
         }
-        ni.e eVar2 = this.h;
+        mi.e eVar2 = this.h;
         if (eVar2 != null && view != null) {
-            eVar2.d.add(new ni.d(view, k10));
+            eVar2.d.add(new mi.d(view, f7));
         }
-        if (this.f2745f != null && this.f2746g != null && view != null) {
-            this.f2745f.d(view, this.f2746g, new h0(1, k10, new WeakReference(view)), z10);
+        if (this.f2749f != null && this.f2750g != null && view != null) {
+            this.f2749f.d(view, this.f2750g, new h0(1, f7, new WeakReference(view)), z10);
         }
         re.b bVar2 = this.d;
         if (bVar2 != null) {
-            bVar2.add(k10);
+            bVar2.add(f7);
         }
-        return k10;
+        return f7;
     }
 
     public final void d() {
@@ -73,7 +73,7 @@ public final class b {
     }
 
     public final void f(ih.j jVar, ViewGroup viewGroup) {
-        this.f2745f = jVar;
-        this.f2746g = viewGroup;
+        this.f2749f = jVar;
+        this.f2750g = viewGroup;
     }
 }

@@ -9,24 +9,24 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.n60;
 public final class c3 implements Runnable {
-    public final int f2889a;
-    public final Object f2890b;
-    public final Object f2891c;
+    public final int f2893a;
+    public final Object f2894b;
+    public final Object f2895c;
     public final Object d;
     public final Object e;
-    public final Object f2892f;
+    public final Object f2896f;
 
     public c3(q5 q5Var, Runnable runnable, TLRPC.TL_error tL_error, TL_stories.StoryItem storyItem, di.ca caVar) {
-        this.f2889a = 1;
-        this.f2891c = q5Var;
-        this.f2890b = runnable;
+        this.f2893a = 1;
+        this.f2895c = q5Var;
+        this.f2894b = runnable;
         this.d = tL_error;
         this.e = storyItem;
-        this.f2892f = caVar;
+        this.f2896f = caVar;
     }
 
     private final void a() {
-        n60.D((n60) this.f2891c, (org.telegram.ui.ActionBar.a2) this.d, (TLObject) this.e, (TL_phone.exportGroupCallInvite) this.f2892f, (TLRPC.TL_error) this.f2890b);
+        n60.D((n60) this.f2895c, (org.telegram.ui.ActionBar.a2) this.d, (TLObject) this.e, (TL_phone.exportGroupCallInvite) this.f2896f, (TLRPC.TL_error) this.f2894b);
     }
 
     @Override
@@ -35,20 +35,20 @@ public final class c3 implements Runnable {
     }
 
     public c3(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f2889a = i10;
-        this.f2891c = obj;
+        this.f2893a = i10;
+        this.f2895c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f2892f = obj4;
-        this.f2890b = obj5;
+        this.f2896f = obj4;
+        this.f2894b = obj5;
     }
 
     public c3(CameraController cameraController, CameraSession cameraSession, Runnable runnable, SurfaceTexture surfaceTexture, Runnable runnable2) {
-        this.f2889a = 11;
-        this.f2891c = cameraController;
+        this.f2893a = 11;
+        this.f2895c = cameraController;
         this.d = cameraSession;
-        this.f2890b = runnable;
+        this.f2894b = runnable;
         this.e = surfaceTexture;
-        this.f2892f = runnable2;
+        this.f2896f = runnable2;
     }
 }

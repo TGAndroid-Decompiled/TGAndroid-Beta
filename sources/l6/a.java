@@ -12,7 +12,7 @@ public abstract class a {
         l.h(dataHolder);
         this.f14604a = dataHolder;
         boolean z10 = false;
-        if (i10 >= 0 && i10 < dataHolder.f5088n) {
+        if (i10 >= 0 && i10 < dataHolder.f5091n) {
             z10 = true;
         }
         l.k(z10);

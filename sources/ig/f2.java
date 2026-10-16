@@ -15,27 +15,27 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public final class f2 {
     public static volatile f2[] e = new f2[4];
-    public static final Object[] f11504f = new Object[4];
-    public final int f11505a;
-    public boolean f11506b;
-    public boolean f11507c;
+    public static final Object[] f11508f = new Object[4];
+    public final int f11509a;
+    public boolean f11510b;
+    public boolean f11511c;
     public final ArrayList d = new ArrayList();
 
     static {
         for (int i10 = 0; i10 < 4; i10++) {
-            f11504f[i10] = new Object();
+            f11508f[i10] = new Object();
         }
     }
 
     public f2(int i10) {
-        this.f11505a = i10;
+        this.f11509a = i10;
     }
 
     public static f2 b(int i10) {
         f2 f2Var;
         f2 f2Var2 = e[i10];
         if (f2Var2 == null) {
-            synchronized (f11504f[i10]) {
+            synchronized (f11508f[i10]) {
                 try {
                     f2Var = e[i10];
                     if (f2Var == null) {
@@ -109,7 +109,7 @@ public final class f2 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i10);
-            if (TextUtils.equals(tL_timezone.f19354id, str)) {
+            if (TextUtils.equals(tL_timezone.f19054id, str)) {
                 return tL_timezone;
             }
             i10++;
@@ -150,9 +150,9 @@ public final class f2 {
     }
 
     public final void g() {
-        if (!this.f11506b && !this.f11507c) {
-            this.f11506b = true;
-            int i10 = this.f11505a;
+        if (!this.f11510b && !this.f11511c) {
+            this.f11510b = true;
+            int i10 = this.f11509a;
             SharedPreferences mainSettings = MessagesController.getInstance(i10).getMainSettings();
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = mainSettings.getString("timezones", null);

@@ -37,7 +37,7 @@ public final class k {
         if (pVar == null) {
             return "";
         }
-        return pVar.a().f4393c;
+        return pVar.a().f4396c;
     }
 
     public final int b() {
@@ -96,7 +96,7 @@ public final class k {
         if (pVar == null) {
             return 0L;
         }
-        return pVar.a().f4392b;
+        return pVar.a().f4395b;
     }
 
     public final long f() {

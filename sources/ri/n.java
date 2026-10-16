@@ -1,20 +1,23 @@
 package ri;
 
-import java.io.File;
+import android.os.SystemClock;
+import java.util.concurrent.atomic.AtomicLong;
+import org.telegram.messenger.FileLog;
 public final class n {
-    public final File f44742a;
-    public final long f44743b;
-    public final byte[] f44744c;
+    public static final AtomicLong f44654c = new AtomicLong(1);
+    public final long f44655a = f44654c.getAndIncrement();
+    public final long f44656b = SystemClock.elapsedRealtime();
 
-    public n(File file, long j10, byte[] bArr) {
-        byte[] bArr2;
-        this.f44742a = file;
-        this.f44743b = j10;
-        if (bArr == null) {
-            bArr2 = null;
-        } else {
-            bArr2 = (byte[]) bArr.clone();
-        }
-        this.f44744c = bArr2;
+    public final void a(String str, Exception exc) {
+        FileLog.e(c() + str + ": " + exc);
+        FileLog.e(exc);
+    }
+
+    public final void b(String str) {
+        FileLog.d(c() + str);
+    }
+
+    public final String c() {
+        return "RoundVideo[" + this.f44655a + "] t+" + (SystemClock.elapsedRealtime() - this.f44656b) + "ms [" + Thread.currentThread().getName() + "] ";
     }
 }

@@ -24,7 +24,7 @@ import org.telegram.ui.Components.qd0;
 import u2.a1;
 import u2.e0;
 import u2.r1;
-import w3.r;
+import w3.q;
 import yh.f4;
 public final class a implements qa.a, r9.d, k, e2.j, z1, qd0, q3.g, Continuation, GenericProvider {
     public final int f45497a;
@@ -55,15 +55,15 @@ public final class a implements qa.a, r9.d, k, e2.j, z1, qd0, q3.g, Continuation
             case 3:
                 return ((o) obj).b().getClass().getSimpleName();
             case 4:
-                return n0.u(s.x(((e0) obj).r().f46034b, new a(6)));
+                return n0.u(s.x(((e0) obj).o().f46034b, new a(6)));
             case 6:
-                return Integer.valueOf(((q1) obj).f2293c);
+                return Integer.valueOf(((q1) obj).f2297c);
             case 19:
-                return Long.valueOf(((z3.b) obj).f49253b);
+                return Long.valueOf(((z3.b) obj).f49252b);
             case 20:
-                return Long.valueOf(((z3.b) obj).f49254c);
+                return Long.valueOf(((z3.b) obj).f49253c);
             case 21:
-                return (r) obj;
+                return (q) obj;
             default:
                 r1 r1Var = (r1) obj;
                 r1Var.getClass();
@@ -105,21 +105,6 @@ public final class a implements qa.a, r9.d, k, e2.j, z1, qd0, q3.g, Continuation
     }
 
     @Override
-    public void f(qa.b bVar) {
-        switch (this.f45497a) {
-            case 1:
-                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
-                }
-                bVar.get().getClass();
-                throw new ClassCastException();
-            default:
-                bVar.get().getClass();
-                throw new ClassCastException();
-        }
-    }
-
-    @Override
     public void g(a2 a2Var, int i10) {
         switch (this.f45497a) {
             case 8:
@@ -140,33 +125,48 @@ public final class a implements qa.a, r9.d, k, e2.j, z1, qd0, q3.g, Continuation
     }
 
     @Override
-    public Object j2(z5 z5Var) {
+    public void h(qa.b bVar) {
+        switch (this.f45497a) {
+            case 1:
+                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                    Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
+                }
+                bVar.get().getClass();
+                throw new ClassCastException();
+            default:
+                bVar.get().getClass();
+                throw new ClassCastException();
+        }
+    }
+
+    @Override
+    public Object n2(z5 z5Var) {
         switch (this.f45497a) {
             case 2:
                 return a(z5Var);
             default:
-                Set v = z5Var.v(ya.a.class);
-                ya.c cVar = ya.c.f48730c;
+                Set w9 = z5Var.w(ya.a.class);
+                ya.c cVar = ya.c.f48729c;
                 if (cVar == null) {
                     synchronized (ya.c.class) {
                         try {
-                            cVar = ya.c.f48730c;
+                            cVar = ya.c.f48729c;
                             if (cVar == null) {
                                 cVar = new ya.c(0);
-                                ya.c.f48730c = cVar;
+                                ya.c.f48729c = cVar;
                             }
                         } finally {
                         }
                     }
                 }
-                return new ya.b(v, cVar);
+                return new ya.b(w9, cVar);
         }
     }
 
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = f4.f48862k0;
+        int i10 = f4.f48861k0;
         return 0;
     }
 
@@ -177,9 +177,9 @@ public final class a implements qa.a, r9.d, k, e2.j, z1, qd0, q3.g, Continuation
         if (task.isSuccessful()) {
             x9.b bVar = (x9.b) task.getResult();
             u9.b bVar2 = u9.b.f46235a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f48279b);
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f48278b);
             z10 = true;
-            if (bVar.f48280c.delete()) {
+            if (bVar.f48279c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);

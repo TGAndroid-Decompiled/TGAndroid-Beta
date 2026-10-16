@@ -1,29 +1,31 @@
 package p4;
+
+import m.h3;
 public final class c implements Runnable {
-    public final int f43004a;
-    public final androidx.emoji2.text.p f43005b;
-    public final int f43006c;
+    public final int f42701a;
+    public final androidx.emoji2.text.p f42702b;
+    public final int f42703c;
 
     public c(androidx.emoji2.text.p pVar, int i10, int i11) {
-        this.f43004a = i11;
-        this.f43005b = pVar;
-        this.f43006c = i10;
+        this.f42701a = i11;
+        this.f42702b = pVar;
+        this.f42703c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f43004a) {
+        switch (this.f42701a) {
             case 0:
-                w wVar = ((e) ((li.k) this.f43005b.f1505f).d).d;
-                if (wVar != null) {
-                    wVar.j(this.f43006c);
+                v vVar = ((e) ((h3) this.f42702b.f1509f).d).d;
+                if (vVar != null) {
+                    vVar.j(this.f42703c);
                     return;
                 }
                 return;
             default:
-                w wVar2 = ((e) ((li.k) this.f43005b.f1505f).d).d;
-                if (wVar2 != null) {
-                    wVar2.k(this.f43006c);
+                v vVar2 = ((e) ((h3) this.f42702b.f1509f).d).d;
+                if (vVar2 != null) {
+                    vVar2.k(this.f42703c);
                     return;
                 }
                 return;

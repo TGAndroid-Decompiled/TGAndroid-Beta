@@ -9,40 +9,28 @@ import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class is implements org.telegram.ui.Components.fw0, org.telegram.ui.Components.gw0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.qd0, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.sd0 {
-    public final int f37198a;
+    public final int f36865a;
 
     public is(int i10) {
-        this.f37198a = i10;
+        this.f36865a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         ks ksVar = (ks) obj;
-        switch (this.f37198a) {
-            case 1:
-                ksVar.d = f7;
-                if (ksVar.getParent() != null) {
-                    ((View) ksVar.getParent()).invalidate();
-                    return;
-                }
-                return;
-            default:
-                ksVar.e = f7;
-                if (ksVar.getParent() != null) {
-                    ((View) ksVar.getParent()).invalidate();
-                    return;
-                }
-                return;
+        ksVar.e = f7;
+        if (ksVar.getParent() != null) {
+            ((View) ksVar.getParent()).invalidate();
         }
     }
 
     @Override
     public String e(int i10) {
         int i11;
-        switch (this.f37198a) {
-            case 6:
-                return i2.d.i(i10, "");
-            case 7:
+        switch (this.f36865a) {
+            case 4:
+                return i2.d.j(i10, "");
+            case 5:
                 switch (i10) {
                     case 0:
                         return LocaleController.getString(R.string.January);
@@ -69,15 +57,15 @@ public final class is implements org.telegram.ui.Components.fw0, org.telegram.ui
                     default:
                         return LocaleController.getString(R.string.December);
                 }
-            case 8:
+            case 6:
                 return String.format("%02d", Integer.valueOf(i10));
-            case 9:
-            case 10:
-            case 20:
-            case 27:
+            case 7:
+            case 8:
+            case 18:
+            case 25:
             default:
                 return String.format("%02d", Integer.valueOf(i10));
-            case 11:
+            case 9:
                 if (i10 == 0) {
                     return LocaleController.getString(R.string.MessageScheduleToday);
                 }
@@ -93,20 +81,20 @@ public final class is implements org.telegram.ui.Components.fw0, org.telegram.ui
                 } else {
                     return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis);
                 }
+            case 10:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 11:
+                return String.format("%02d", Integer.valueOf(i10));
             case 12:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 13:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 14:
                 Calendar calendar2 = Calendar.getInstance();
                 calendar2.set(5, 1);
                 calendar2.set(2, i10);
                 return calendar2.getDisplayName(2, 1, Locale.getDefault());
+            case 13:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 14:
+                return String.format("%02d", Integer.valueOf(i10));
             case 15:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 16:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 17:
                 if (i10 == 0) {
                     return LocaleController.getString(R.string.MessageScheduleToday);
                 }
@@ -118,17 +106,17 @@ public final class is implements org.telegram.ui.Components.fw0, org.telegram.ui
                     return LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis2);
                 }
                 return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis2);
-            case 18:
+            case 16:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 17:
                 return String.format("%02d", Integer.valueOf(i10));
             case 19:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 21:
                 return LocaleController.formatPluralString("Times", i10 + 1, new Object[0]);
-            case 22:
+            case 20:
                 return LocaleController.formatPluralString("Minutes", i10 + 1, new Object[0]);
-            case 23:
+            case 21:
                 return LocaleController.getString(R.string.NotificationsFrequencyDivider);
-            case 24:
+            case 22:
                 if (i10 == 0) {
                     return LocaleController.getString(R.string.MessageScheduleToday);
                 }
@@ -140,11 +128,11 @@ public final class is implements org.telegram.ui.Components.fw0, org.telegram.ui
                     return LocaleController.getInstance().getFormatterWeek().format(timeInMillis3) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis3);
                 }
                 return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis3);
-            case 25:
+            case 23:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 24:
                 return String.format("%02d", Integer.valueOf(i10));
             case 26:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 28:
                 boolean z10 = LocaleController.is24HourFormat;
                 int i16 = 12;
                 if (z10) {
@@ -161,16 +149,30 @@ public final class is implements org.telegram.ui.Components.fw0, org.telegram.ui
                     return LocaleController.formatString(R.string.BusinessHoursNextDayPicker, format);
                 }
                 return format;
+            case 27:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 28:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                Calendar calendar5 = Calendar.getInstance();
+                int i18 = calendar5.get(1);
+                calendar5.add(6, i10);
+                long timeInMillis4 = calendar5.getTimeInMillis();
+                if (calendar5.get(1) == i18) {
+                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis4) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis4);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis4);
         }
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f37198a) {
-            case 9:
+        switch (this.f36865a) {
+            case 7:
                 a2Var.dismiss();
                 return;
-            case 20:
+            case 18:
                 a2Var.dismiss();
                 return;
             default:
@@ -181,24 +183,18 @@ public final class is implements org.telegram.ui.Components.fw0, org.telegram.ui
 
     @Override
     public float get(Object obj) {
-        ks ksVar = (ks) obj;
-        switch (this.f37198a) {
-            case 0:
-                return ksVar.d;
-            default:
-                return ksVar.e;
-        }
+        return ((ks) obj).e;
     }
 
     @Override
     public void r(org.telegram.ui.Components.ud0 ud0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.g5.f25184a;
+        Pattern pattern = org.telegram.ui.Components.g5.f24879a;
     }
 
     @Override
     public void run(Exception exc) {
-        switch (this.f37198a) {
-            case 4:
+        switch (this.f36865a) {
+            case 2:
                 FileLog.e(exc);
                 return;
             default:

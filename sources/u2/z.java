@@ -24,8 +24,8 @@ public final class z extends s {
     @Override
     public final b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
         this.e.f(i10, m1Var, z10);
-        if (Objects.equals(m1Var.f2212b, this.f46109g) && z10) {
-            m1Var.f2212b = h;
+        if (Objects.equals(m1Var.f2216b, this.f46109g) && z10) {
+            m1Var.f2216b = h;
         }
         return m1Var;
     }
@@ -42,8 +42,8 @@ public final class z extends s {
     @Override
     public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
         this.e.m(i10, o1Var, j10);
-        if (Objects.equals(o1Var.f2258a, this.f46108f)) {
-            o1Var.f2258a = b2.o1.f2249q;
+        if (Objects.equals(o1Var.f2262a, this.f46108f)) {
+            o1Var.f2262a = b2.o1.f2253q;
         }
         return o1Var;
     }

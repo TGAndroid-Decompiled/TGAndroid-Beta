@@ -1,31 +1,31 @@
 package org.telegram.ui;
 public final class d21 implements Runnable {
-    public final int f35123a;
-    public final h21 f35124b;
-    public final int f35125c;
+    public final int f34852a;
+    public final h21 f34853b;
+    public final int f34854c;
 
     public d21(h21 h21Var, int i10, int i11) {
-        this.f35123a = i11;
-        this.f35124b = h21Var;
-        this.f35125c = i10;
+        this.f34852a = i11;
+        this.f34853b = h21Var;
+        this.f34854c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f35123a) {
+        switch (this.f34852a) {
             case 0:
-                h21 h21Var = this.f35124b;
-                org.telegram.ui.Components.j91 j91Var = h21Var.f36585n;
-                g21 g21Var = h21Var.f36587s;
-                int i10 = this.f35125c;
-                j91Var.d(i10, g21Var.i(i10));
+                h21 h21Var = this.f34853b;
+                org.telegram.ui.Components.k91 k91Var = h21Var.f36375n;
+                g21 g21Var = h21Var.f36377s;
+                int i10 = this.f34854c;
+                k91Var.d(i10, g21Var.i(i10));
                 return;
             default:
-                h21 h21Var2 = this.f35124b;
-                org.telegram.ui.Components.j91 j91Var2 = h21Var2.f36585n;
-                g21 g21Var2 = h21Var2.f36587s;
-                int i11 = this.f35125c;
-                j91Var2.d(i11, g21Var2.i(i11));
+                h21 h21Var2 = this.f34853b;
+                org.telegram.ui.Components.k91 k91Var2 = h21Var2.f36375n;
+                g21 g21Var2 = h21Var2.f36377s;
+                int i11 = this.f34854c;
+                k91Var2.d(i11, g21Var2.i(i11));
                 return;
         }
     }

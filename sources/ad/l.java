@@ -13,9 +13,9 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 public abstract class l {
     public static final Logger d;
-    public volatile ServerSocket f533a;
-    public Thread f534b;
-    public d f535c;
+    public volatile ServerSocket f537a;
+    public Thread f538b;
+    public d f539c;
 
     static {
         Pattern.compile("([ |\t]*Content-Disposition[ |\t]*:)(.*)", 2);
@@ -41,7 +41,7 @@ public abstract class l {
             return new i(hVar, str, new ByteArrayInputStream(new byte[0]), 0L);
         }
         String str4 = "US-ASCII";
-        String str5 = bVar.f498c;
+        String str5 = bVar.f502c;
         if (str5 == null) {
             str3 = "US-ASCII";
         } else {
@@ -51,7 +51,7 @@ public abstract class l {
             if (!Charset.forName(str3).newEncoder().canEncode(str2) && str5 == null) {
                 bVar = new b(str + "; charset=UTF-8");
             }
-            String str6 = bVar.f498c;
+            String str6 = bVar.f502c;
             if (str6 != null) {
                 str4 = str6;
             }
@@ -60,7 +60,7 @@ public abstract class l {
             d.log(Level.SEVERE, "encoding problem, responding nothing", (Throwable) e);
             bArr = new byte[0];
         }
-        return new i(hVar, bVar.f496a, new ByteArrayInputStream(bArr), bArr.length);
+        return new i(hVar, bVar.f500a, new ByteArrayInputStream(bArr), bArr.length);
     }
 
     public static final void d(Object obj) {
@@ -82,7 +82,7 @@ public abstract class l {
     }
 
     public static boolean g(i iVar) {
-        String str = iVar.f523b;
+        String str = iVar.f527b;
         if (str != null) {
             if (str.toLowerCase().contains("text/") || str.toLowerCase().contains("/json")) {
                 return true;
@@ -95,21 +95,21 @@ public abstract class l {
     public abstract i e(e eVar);
 
     public final void f() {
-        this.f533a = new ServerSocket();
-        this.f533a.setReuseAddress(true);
+        this.f537a = new ServerSocket();
+        this.f537a.setReuseAddress(true);
         k kVar = new k(this);
         Thread thread = new Thread(kVar);
-        this.f534b = thread;
+        this.f538b = thread;
         thread.setDaemon(true);
-        this.f534b.setName("NanoHttpd Main Listener");
-        this.f534b.start();
-        while (!kVar.f531b && ((IOException) kVar.f532c) == null) {
+        this.f538b.setName("NanoHttpd Main Listener");
+        this.f538b.start();
+        while (!kVar.f535b && ((IOException) kVar.f536c) == null) {
             try {
                 Thread.sleep(10L);
             } catch (Throwable unused) {
             }
         }
-        IOException iOException = (IOException) kVar.f532c;
+        IOException iOException = (IOException) kVar.f536c;
         if (iOException == null) {
             return;
         }

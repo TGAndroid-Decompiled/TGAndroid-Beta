@@ -24,38 +24,38 @@ import org.telegram.ui.Components.a7;
 import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.es;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.i11;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.s5;
 public final class b5 extends Drawable implements a7, NotificationCenter.NotificationCenterDelegate {
-    public final Paint f9189a;
-    public final Paint f9190b;
-    public final ImageReceiver f9191c;
+    public final Paint f9192a;
+    public final Paint f9193b;
+    public final ImageReceiver f9194c;
     public final ImageReceiver d;
     public int e;
-    public final s5[] f9192f;
-    public final h11 h;
-    public final RectF f9193n;
-    public final boolean f9194r;
-    public final g6 f9195s;
+    public final s5[] f9195f;
+    public final i11 h;
+    public final RectF f9196n;
+    public final boolean f9197r;
+    public final g6 f9198s;
     public boolean v;
-    public boolean f9196w;
-    public View f9197x;
+    public boolean f9199w;
+    public View f9200x;
 
     public b5(TLRPC.User user) {
         Paint paint = new Paint(1);
-        this.f9189a = paint;
+        this.f9192a = paint;
         Paint paint2 = new Paint(1);
-        this.f9190b = paint2;
+        this.f9193b = paint2;
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f9191c = imageReceiver;
+        this.f9194c = imageReceiver;
         this.d = new ImageReceiver();
         this.e = 1;
-        this.f9192f = new s5[2];
-        this.f9193n = new RectF();
-        this.f9195s = new g6(new a5(this, 1), 320L, es.h, 0);
-        this.f9194r = false;
-        int i10 = org.telegram.ui.ActionBar.g6.f19901d6;
+        this.f9195f = new s5[2];
+        this.f9196n = new RectF();
+        this.f9198s = new g6(new a5(this, 1), 320L, es.h, 0);
+        this.f9197r = false;
+        int i10 = org.telegram.ui.ActionBar.g6.f19601d6;
         paint.setColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
         paint2.setColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.g6.m1(0.18f, -16777216));
@@ -64,47 +64,47 @@ public final class b5 extends Drawable implements a7, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, k9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         d();
-        this.h = new h11(UserObject.getUserName(user), 14.0f, null);
+        this.h = new i11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override
     public final void a(bk0 bk0Var) {
-        this.f9197x = bk0Var;
+        this.f9200x = bk0Var;
         this.d.setParentView(bk0Var);
-        this.f9191c.setParentView(bk0Var);
+        this.f9194c.setParentView(bk0Var);
     }
 
     @Override
     public final void b(ImageReceiver imageReceiver) {
-        this.f9196w = false;
-        this.f9191c.onDetachedFromWindow();
+        this.f9199w = false;
+        this.f9194c.onDetachedFromWindow();
         this.d.onDetachedFromWindow();
         NotificationCenter.getInstance(UserConfig.selectedAccount).removeObserver(this, NotificationCenter.recentEmojiStatusesUpdate);
-        s5[] s5VarArr = this.f9192f;
+        s5[] s5VarArr = this.f9195f;
         s5 s5Var = s5VarArr[0];
         if (s5Var != null) {
-            s5Var.o(this.f9197x);
+            s5Var.o(this.f9200x);
         }
         s5 s5Var2 = s5VarArr[1];
         if (s5Var2 != null) {
-            s5Var2.o(this.f9197x);
+            s5Var2.o(this.f9200x);
         }
     }
 
     @Override
     public final void c(ImageReceiver imageReceiver) {
-        this.f9196w = true;
-        this.f9191c.onAttachedToWindow();
+        this.f9199w = true;
+        this.f9194c.onAttachedToWindow();
         this.d.onAttachedToWindow();
         NotificationCenter.getInstance(UserConfig.selectedAccount).addObserver(this, NotificationCenter.recentEmojiStatusesUpdate);
-        s5[] s5VarArr = this.f9192f;
+        s5[] s5VarArr = this.f9195f;
         s5 s5Var = s5VarArr[0];
         if (s5Var != null) {
-            s5Var.a(this.f9197x);
+            s5Var.a(this.f9200x);
         }
         s5 s5Var2 = s5VarArr[1];
         if (s5Var2 != null) {
-            s5Var2.a(this.f9197x);
+            s5Var2.a(this.f9200x);
         }
     }
 
@@ -115,15 +115,15 @@ public final class b5 extends Drawable implements a7, NotificationCenter.Notific
             TLRPC.Document document = stickerSet.documents.get((int) Math.floor(Math.random() * stickerSet.documents.size()));
             int i10 = 1 - this.e;
             this.e = i10;
-            s5[] s5VarArr = this.f9192f;
+            s5[] s5VarArr = this.f9195f;
             s5 s5Var2 = s5VarArr[i10];
             if (s5Var2 != null) {
-                s5Var2.o(this.f9197x);
+                s5Var2.o(this.f9200x);
             }
             s5VarArr[this.e] = s5.m(UserConfig.selectedAccount, 9, document);
             s5VarArr[this.e].setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Oh, false), PorterDuff.Mode.SRC_IN));
-            if (this.f9196w && (s5Var = s5VarArr[this.e]) != null) {
-                s5Var.a(this.f9197x);
+            if (this.f9199w && (s5Var = s5VarArr[this.e]) != null) {
+                s5Var.a(this.f9200x);
             }
             AndroidUtilities.runOnUIThread(new a5(this, 0), 2500L);
             return;
@@ -133,7 +133,7 @@ public final class b5 extends Drawable implements a7, NotificationCenter.Notific
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.groupStickersDidLoad && this.v && this.f9196w) {
+        if (i10 == NotificationCenter.groupStickersDidLoad && this.v && this.f9199w) {
             this.v = false;
             d();
         }
@@ -150,35 +150,35 @@ public final class b5 extends Drawable implements a7, NotificationCenter.Notific
         s5 s5Var2;
         int i11;
         Rect bounds = getBounds();
-        boolean z10 = this.f9194r;
+        boolean z10 = this.f9197r;
         if (z10) {
             i10 = 48;
         } else {
             i10 = 28;
         }
-        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f25473c) / 2.0f;
+        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f25455c) / 2.0f;
         float dp2 = AndroidUtilities.dp(32.0f) / 2.0f;
-        RectF rectF = this.f9193n;
+        RectF rectF = this.f9196n;
         rectF.set(bounds.centerX() - dp, bounds.centerY() - dp2, bounds.centerX() + dp, bounds.centerY() + dp2);
-        canvas.drawRoundRect(rectF, dp2, dp2, this.f9189a);
-        ImageReceiver imageReceiver = this.f9191c;
+        canvas.drawRoundRect(rectF, dp2, dp2, this.f9192a);
+        ImageReceiver imageReceiver = this.f9194c;
         imageReceiver.setImageCoords(rectF.left, rectF.top, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
         imageReceiver.draw(canvas);
         this.h.c(AndroidUtilities.dp(36.0f) + rectF.left, rectF.centerY(), 1.0f, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false), canvas);
         if (z10) {
             float dp3 = rectF.right - AndroidUtilities.dp(22.66f);
-            canvas.drawCircle(dp3, rectF.centerY(), AndroidUtilities.dp(24.0f), this.f9190b);
+            canvas.drawCircle(dp3, rectF.centerY(), AndroidUtilities.dp(24.0f), this.f9193b);
             ImageReceiver imageReceiver2 = this.d;
             imageReceiver2.setImageCoords(dp3 - AndroidUtilities.dp(16.0f), rectF.centerY() - AndroidUtilities.dp(16.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
             imageReceiver2.draw(canvas);
             return;
         }
-        float d = this.f9195s.d(this.e, false);
+        float d = this.f9198s.d(this.e, false);
         canvas.save();
         canvas.translate((int) (rectF.right - AndroidUtilities.dp(30.66f)), (int) (rectF.centerY() - AndroidUtilities.dp(12.0f)));
         int i12 = (d > 1.0f ? 1 : (d == 1.0f ? 0 : -1));
         int i13 = -1;
-        s5[] s5VarArr = this.f9192f;
+        s5[] s5VarArr = this.f9195f;
         if (i12 < 0 && (s5Var2 = s5VarArr[0]) != null) {
             canvas.save();
             f7 = 24.0f;
@@ -227,19 +227,19 @@ public final class b5 extends Drawable implements a7, NotificationCenter.Notific
 
     public b5(TLRPC.User user, TLRPC.Document document) {
         Paint paint = new Paint(1);
-        this.f9189a = paint;
+        this.f9192a = paint;
         Paint paint2 = new Paint(1);
-        this.f9190b = paint2;
+        this.f9193b = paint2;
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f9191c = imageReceiver;
+        this.f9194c = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver();
         this.d = imageReceiver2;
         this.e = 1;
-        this.f9192f = new s5[2];
-        this.f9193n = new RectF();
-        this.f9195s = new g6(new a5(this, 1), 320L, es.h, 0);
-        this.f9194r = true;
-        int i10 = org.telegram.ui.ActionBar.g6.f19901d6;
+        this.f9195f = new s5[2];
+        this.f9196n = new RectF();
+        this.f9198s = new g6(new a5(this, 1), 320L, es.h, 0);
+        this.f9197r = true;
+        int i10 = org.telegram.ui.ActionBar.g6.f19601d6;
         paint.setColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
         paint2.setColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.g6.m1(0.18f, -16777216));
@@ -248,8 +248,8 @@ public final class b5 extends Drawable implements a7, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, k9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120);
-        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.g6.f19843a7, 0.35f), 0L, null, null, 0);
-        this.h = new h11(UserObject.getUserName(user), 14.0f, null);
+        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.g6.f19543a7, 0.35f), 0L, null, null, 0);
+        this.h = new i11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override

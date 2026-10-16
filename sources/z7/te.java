@@ -1,14 +1,14 @@
 package z7;
 public final class te {
-    public final Integer f49790a;
-    public final Integer f49791b;
-    public final Integer f49792c;
+    public final Integer f49792a;
+    public final Integer f49793b;
+    public final Integer f49794c;
     public final Integer d;
 
-    public te(qi.e eVar) {
-        this.f49790a = (Integer) eVar.f43662a;
-        this.f49791b = (Integer) eVar.f43663b;
-        this.f49792c = (Integer) eVar.f43664c;
+    public te(pi.e eVar) {
+        this.f49792a = (Integer) eVar.f42944a;
+        this.f49793b = (Integer) eVar.f42945b;
+        this.f49794c = (Integer) eVar.f42946c;
         this.d = (Integer) eVar.d;
     }
 }

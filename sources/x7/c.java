@@ -15,7 +15,7 @@ public final class c extends e9.d implements ListIterator {
         e9.m mVar = this.e;
         boolean isEmpty = mVar.isEmpty();
         b();
-        ((ListIterator) this.f8544b).add(obj);
+        ((ListIterator) this.f8547b).add(obj);
         ((f) mVar.h).d++;
         if (isEmpty) {
             mVar.o();
@@ -25,35 +25,35 @@ public final class c extends e9.d implements ListIterator {
     @Override
     public final boolean hasPrevious() {
         b();
-        return ((ListIterator) this.f8544b).hasPrevious();
+        return ((ListIterator) this.f8547b).hasPrevious();
     }
 
     @Override
     public final int nextIndex() {
         b();
-        return ((ListIterator) this.f8544b).nextIndex();
+        return ((ListIterator) this.f8547b).nextIndex();
     }
 
     @Override
     public final Object previous() {
         b();
-        return ((ListIterator) this.f8544b).previous();
+        return ((ListIterator) this.f8547b).previous();
     }
 
     @Override
     public final int previousIndex() {
         b();
-        return ((ListIterator) this.f8544b).previousIndex();
+        return ((ListIterator) this.f8547b).previousIndex();
     }
 
     @Override
     public final void set(Object obj) {
         b();
-        ((ListIterator) this.f8544b).set(obj);
+        ((ListIterator) this.f8547b).set(obj);
     }
 
     public c(e9.m mVar, int i10) {
-        super(mVar, ((List) mVar.f8587c).listIterator(i10), (byte) 0);
+        super(mVar, ((List) mVar.f8590c).listIterator(i10), (byte) 0);
         this.e = mVar;
     }
 }

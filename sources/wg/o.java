@@ -4,23 +4,23 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import sg.x1;
 public final class o extends x1 {
-    public final r f47598n;
+    public final r f47597n;
 
     public o(r rVar, Context context) {
         super(context);
-        this.f47598n = rVar;
+        this.f47597n = rVar;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f47598n.f47603b.setPaused(false);
+        this.f47597n.f47602b.setPaused(false);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f47598n.f47603b.setPaused(true);
+        this.f47597n.f47602b.setPaused(true);
     }
 
     @Override

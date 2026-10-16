@@ -9,17 +9,17 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class h61 implements org.telegram.ui.Components.dm0 {
-    public final int f36628a;
-    public final Context f36629b;
-    public final org.telegram.ui.ActionBar.c6 f36630c;
+    public final int f36418a;
+    public final Context f36419b;
+    public final org.telegram.ui.ActionBar.c6 f36420c;
     public final Integer d;
     public final r71 e;
 
     public h61(r71 r71Var, int i10, Context context, org.telegram.ui.ActionBar.c6 c6Var, Integer num) {
         this.e = r71Var;
-        this.f36628a = i10;
-        this.f36629b = context;
-        this.f36630c = c6Var;
+        this.f36418a = i10;
+        this.f36419b = context;
+        this.f36420c = c6Var;
         this.d = num;
     }
 
@@ -27,8 +27,8 @@ public final class h61 implements org.telegram.ui.Components.dm0 {
     public final boolean mo17d(float f7, float f10, int i10, View view) {
         r71 r71Var = this.e;
         int i11 = r71Var.V;
-        int i12 = this.f36628a;
-        if (i12 != 11 && i12 != 13 && r71Var.f39638h1) {
+        int i12 = this.f36418a;
+        if (i12 != 11 && i12 != 13 && r71Var.f39331h1) {
             boolean z10 = view instanceof a71;
             if (z10 && (i12 == 1 || i12 == 8)) {
                 r71Var.l();
@@ -37,7 +37,7 @@ public final class h61 implements org.telegram.ui.Components.dm0 {
                 } catch (Exception unused) {
                 }
                 a71 a71Var = (a71) view;
-                if (!a71Var.f34069s && !UserConfig.getInstance(i11).isPremium()) {
+                if (!a71Var.f33772s && !UserConfig.getInstance(i11).isPremium()) {
                     org.telegram.ui.Components.b6 b6Var = a71Var.e;
                     TLRPC.Document document = b6Var.document;
                     if (document == null) {
@@ -49,23 +49,23 @@ public final class h61 implements org.telegram.ui.Components.dm0 {
                 r71Var.S0 = a71Var;
                 r71Var.U0 = 0.0f;
                 r71Var.T0 = false;
-                if (a71Var.f34069s) {
+                if (a71Var.f33772s) {
                     r71Var.setBigReactionAnimatedEmoji(null);
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i11).getReactionsMap().get(r71Var.S0.f34071x.f779f);
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i11).getReactionsMap().get(r71Var.S0.f33774x.f783f);
                     if (tL_availableReaction != null) {
-                        r71Var.V0.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_pcache", null, null, null, 0L, "tgs", r71Var.S0.f34071x, 0);
+                        r71Var.V0.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_pcache", null, null, null, 0L, "tgs", r71Var.S0.f33774x, 0);
                     }
                 } else {
                     r71Var.setBigReactionAnimatedEmoji(new org.telegram.ui.Components.s5(4, i11, r71Var.S0.e.documentId));
                 }
-                r71Var.f39637h0.invalidate();
+                r71Var.f39330h0.invalidate();
                 r71Var.m();
                 return true;
             } else if (z10) {
                 a71 a71Var2 = (a71) view;
                 if (a71Var2.e != null && (i12 == 0 || i12 == 12 || i12 == 9 || i12 == 10)) {
                     TL_stars.TL_starGiftUnique tL_starGiftUnique = a71Var2.v;
-                    g61 g61Var = new g61(this, this.f36629b, r71Var.T1, r71Var, a71Var2, this.f36630c, view, tL_starGiftUnique);
+                    g61 g61Var = new g61(this, this.f36419b, r71Var.T1, r71Var, a71Var2, this.f36420c, view, tL_starGiftUnique);
                     r71Var.X0 = g61Var;
                     g61Var.show();
                     try {
@@ -86,9 +86,9 @@ public final class h61 implements org.telegram.ui.Components.dm0 {
             r71Var.T0 = true;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(r71Var.U0, 0.0f);
             ofFloat.addUpdateListener(new f21(this, 8));
-            ofFloat.addListener(new lj0(this, 23));
+            ofFloat.addListener(new kj0(this, 23));
             ofFloat.setDuration(150L);
-            ofFloat.setInterpolator(org.telegram.ui.Components.es.f24771f);
+            ofFloat.setInterpolator(org.telegram.ui.Components.es.f24465f);
             ofFloat.start();
         }
     }

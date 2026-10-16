@@ -18,24 +18,24 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.lg1;
+import org.telegram.ui.kg1;
 import org.telegram.ui.sy;
 import org.telegram.ui.yy;
 public final class n1 implements org.telegram.ui.ActionBar.z1, sy {
-    public final int f11587a;
-    public final KeyEvent.Callback f11588b;
-    public final Object f11589c;
+    public final int f11591a;
+    public final KeyEvent.Callback f11592b;
+    public final Object f11593c;
     public final Object d;
     public final Object e;
-    public final Object f11590f;
+    public final Object f11594f;
 
     public n1(r1 r1Var, u3 u3Var, int i10, a2 a2Var, TextView textView, Utilities.Callback callback) {
-        this.f11588b = r1Var;
-        this.f11589c = u3Var;
-        this.f11587a = i10;
+        this.f11592b = r1Var;
+        this.f11593c = u3Var;
+        this.f11591a = i10;
         this.d = a2Var;
         this.e = textView;
-        this.f11590f = callback;
+        this.f11594f = callback;
     }
 
     @Override
@@ -51,21 +51,21 @@ public final class n1 implements org.telegram.ui.ActionBar.z1, sy {
     @Override
     public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         int i11;
-        r1 r1Var = (r1) this.f11588b;
-        u3 u3Var = (u3) this.f11589c;
+        r1 r1Var = (r1) this.f11592b;
+        u3 u3Var = (u3) this.f11593c;
         a2 a2Var2 = (a2) this.d;
         TextView textView = (TextView) this.e;
-        Utilities.Callback callback = (Utilities.Callback) this.f11590f;
+        Utilities.Callback callback = (Utilities.Callback) this.f11594f;
         String obj = r1Var.getText().toString();
         if (obj.length() > 0 && obj.length() <= 32) {
-            b2 f7 = b2.f(this.f11587a);
+            b2 f7 = b2.f(this.f11591a);
             if (a2Var2 == null) {
                 i11 = -1;
             } else {
-                i11 = a2Var2.f11434a;
+                i11 = a2Var2.f11438a;
             }
             a2 d = f7.d(obj);
-            if (d != null && d.f11434a != i11) {
+            if (d != null && d.f11438a != i11) {
                 AndroidUtilities.shakeView(r1Var);
                 textView.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
                 u3Var.run(Boolean.TRUE);
@@ -80,18 +80,18 @@ public final class n1 implements org.telegram.ui.ActionBar.z1, sy {
     }
 
     @Override
-    public boolean w(yy yyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, lg1 lg1Var) {
+    public boolean w(yy yyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, kg1 kg1Var) {
         String str;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        final LaunchActivity launchActivity = (LaunchActivity) this.f11588b;
-        final TLRPC.User user = (TLRPC.User) this.f11589c;
+        final LaunchActivity launchActivity = (LaunchActivity) this.f11592b;
+        final TLRPC.User user = (TLRPC.User) this.f11593c;
         final String str2 = (String) this.d;
         final String str3 = (String) this.e;
-        final yy yyVar2 = (yy) this.f11590f;
+        final yy yyVar2 = (yy) this.f11594f;
         Pattern pattern = LaunchActivity.B1;
         final long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         final TLRPC.Chat chat = MessagesController.getInstance(launchActivity.O).getChat(Long.valueOf(-j10));
-        final int i12 = this.f11587a;
+        final int i12 = this.f11591a;
         if (chat != null && (chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.add_admins))) {
             MessagesController.getInstance(i12).checkIsInChat(false, chat, user, new MessagesController.IsInChatCheckedCallback() {
                 @Override
@@ -103,7 +103,7 @@ public final class n1 implements org.telegram.ui.ActionBar.z1, sy {
         } else {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
             String string = LocaleController.getString(R.string.AddBot);
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19548a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
             a2Var.R = string;
             if (chat == null) {
                 str = "";
@@ -132,11 +132,11 @@ public final class n1 implements org.telegram.ui.ActionBar.z1, sy {
     }
 
     public n1(LaunchActivity launchActivity, int i10, TLRPC.User user, String str, String str2, yy yyVar) {
-        this.f11588b = launchActivity;
-        this.f11587a = i10;
-        this.f11589c = user;
+        this.f11592b = launchActivity;
+        this.f11591a = i10;
+        this.f11593c = user;
         this.d = str;
         this.e = str2;
-        this.f11590f = yyVar;
+        this.f11594f = yyVar;
     }
 }

@@ -8,7 +8,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
 public final class s extends r {
     public final void b(int i10, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i11) {
-        ArrayList arrayList = this.f50206a;
+        ArrayList arrayList = this.f50207a;
         int size = arrayList.size();
         int i12 = 0;
         while (i12 < size) {
@@ -24,17 +24,17 @@ public final class s extends r {
                 b10.edit_date = i11;
                 b10.flags |= 32768;
             }
-            a0.h hVar = this.f50207b;
+            a0.h hVar = this.f50208b;
             TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) hVar.f(dialogId);
             if (tL_messages_messages == null) {
                 tL_messages_messages = new TLRPC.TL_messages_messages();
                 hVar.k(tL_messages_messages, dialogId);
             }
             tL_messages_messages.messages.add(b10);
-            a0.h hVar2 = this.f50208c;
+            a0.h hVar2 = this.f50209c;
             ArrayList arrayList2 = (ArrayList) hVar2.f(dialogId);
             if (arrayList2 == null) {
-                arrayList2 = org.telegram.messenger.q.k(dialogId, hVar2);
+                arrayList2 = org.telegram.messenger.g0.j(dialogId, hVar2);
             }
             arrayList2.add(messageObject);
             i10 = i13;

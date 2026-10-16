@@ -1,5 +1,6 @@
 package v3;
 
+import a4.l;
 import b2.u0;
 import c3.i0;
 import c3.k;
@@ -21,7 +22,7 @@ public final class d implements o {
     public final x f46531c;
     public final z d;
     public final w e;
-    public final k6.h f46532f;
+    public final l f46532f;
     public final n f46533g;
     public q h;
     public i0 f46534i;
@@ -51,9 +52,9 @@ public final class d implements o {
     @Override
     public final void c(q qVar) {
         this.h = qVar;
-        i0 a02 = qVar.a0(0, 1);
-        this.f46534i = a02;
-        this.f46535j = a02;
+        i0 W = qVar.W(0, 1);
+        this.f46534i = W;
+        this.f46535j = W;
         this.h.D();
     }
 
@@ -73,7 +74,7 @@ public final class d implements o {
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8592b;
+        l0 l0Var = n0.f8595b;
         return x1.e;
     }
 
@@ -84,19 +85,19 @@ public final class d implements o {
 
     public final a g(p pVar, boolean z10) {
         x xVar = this.f46531c;
-        pVar.a(0, 4, xVar.f8411a);
+        pVar.b(0, 4, xVar.f8414a);
         xVar.N(0);
         int m10 = xVar.m();
         z zVar = this.d;
         zVar.a(m10);
-        return new a(pVar.getLength(), pVar.getPosition(), zVar.e, zVar.f4312b, z10, true);
+        return new a(pVar.getLength(), pVar.getPosition(), zVar.e, zVar.f4316b, z10, true);
     }
 
     public final void h() {
         h hVar = this.f46544s;
         if ((hVar instanceof a) && ((k) hVar).d()) {
             long j10 = this.f46542q;
-            if (j10 != -1 && j10 != this.f46544s.a()) {
+            if (j10 != -1 && j10 != this.f46544s.b()) {
                 a aVar = (a) this.f46544s;
                 this.f46544s = new a(this.f46542q, aVar.f46521i, aVar.f46522j, aVar.f46523k, aVar.f46524l, false);
                 q qVar = this.h;
@@ -119,10 +120,10 @@ public final class d implements o {
         int h;
         pVar.q();
         if (pVar.getPosition() == 0) {
-            u0 r10 = this.f46532f.r(pVar, null, 131072);
-            this.f46537l = r10;
-            if (r10 != null) {
-                this.e.b(r10);
+            u0 P = this.f46532f.P(pVar, null, 131072);
+            this.f46537l = P;
+            if (P != null) {
+                this.e.b(P);
             }
             i10 = (int) pVar.k();
             if (!z10) {
@@ -191,7 +192,7 @@ public final class d implements o {
         this.d = new Object();
         this.e = new w();
         this.f46539n = -9223372036854775807L;
-        this.f46532f = new k6.h(10);
+        this.f46532f = new l(9);
         n nVar = new n();
         this.f46533g = nVar;
         this.f46535j = nVar;

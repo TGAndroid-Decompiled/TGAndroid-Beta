@@ -19,7 +19,7 @@ import java.util.zip.GZIPOutputStream;
 import n6.l;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.d0;
+import org.telegram.ui.Cells.c1;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
@@ -77,7 +77,7 @@ public final class c {
             } else {
                 h = t8.b.h(", ", str);
             }
-            Log.w("Firebase-Installations", d0.j("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, h));
+            Log.w("Firebase-Installations", c1.i("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, h));
         }
     }
 
@@ -111,7 +111,7 @@ public final class c {
                 while (jsonReader.hasNext()) {
                     String nextName2 = jsonReader.nextName();
                     if (nextName2.equals("token")) {
-                        a2.f280c = jsonReader.nextString();
+                        a2.f282c = jsonReader.nextString();
                     } else if (nextName2.equals("expiresIn")) {
                         a2.d = Long.valueOf(d(jsonReader.nextString()));
                     } else {
@@ -139,7 +139,7 @@ public final class c {
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
             if (nextName.equals("token")) {
-                a2.f280c = jsonReader.nextString();
+                a2.f282c = jsonReader.nextString();
             } else if (nextName.equals("expiresIn")) {
                 a2.d = Long.valueOf(d(jsonReader.nextString()));
             } else {
@@ -149,7 +149,7 @@ public final class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        a2.f279b = 1;
+        a2.f281b = 1;
         return a2.f();
     }
 

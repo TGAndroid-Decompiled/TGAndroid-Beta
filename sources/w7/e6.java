@@ -1,28 +1,21 @@
 package w7;
 
-import android.content.Context;
-import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.da0;
+import org.telegram.ui.Components.z31;
 public abstract class e6 {
-    public static da0 a(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.c6 c6Var) {
-        int i11 = org.telegram.ui.ActionBar.g6.f19960gc;
-        da0 da0Var = new da0(context, null);
-        da0Var.setTextSize(1, f7);
-        da0Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
-        da0Var.setLinkTextColor(org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
-        if (z10) {
-            da0Var.setTypeface(AndroidUtilities.bold());
-        }
-        return da0Var;
+    public static int a(z31 z31Var) {
+        z31Var.getClass();
+        return Math.max(1, (int) Math.ceil(0.5f * AndroidUtilities.density)) + (((int) Math.ceil(1.9f * AndroidUtilities.density)) * 2);
     }
 
-    public static TextView b(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.c6 c6Var) {
-        TextView g10 = org.telegram.messenger.q.g(context, 1, f7);
-        g10.setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
-        if (z10) {
-            g10.setTypeface(AndroidUtilities.bold());
-        }
-        return g10;
+    public static void b(Canvas canvas, Bitmap bitmap, int i10, float f7, float f10, int i11, int i12, Paint paint) {
+        int min = Math.min(i10, bitmap.getWidth());
+        int i13 = (int) f7;
+        int i14 = (int) f10;
+        canvas.drawBitmap(bitmap, new Rect(0, i11, min, i11 + i12), new Rect(i13, i14, min + i13, i12 + i14), paint);
     }
 }

@@ -1,22 +1,11 @@
 package org.telegram.ui;
-public final class dt0 extends org.telegram.ui.Cells.y9 {
-    public final int f35388q0 = 0;
 
-    public dt0(bi.ga gaVar, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(gaVar, c6Var);
-    }
+import android.view.View;
+public final class dt0 extends fv0 {
+    public final PhotoViewer f35137t;
 
-    @Override
-    public final int o() {
-        switch (this.f35388q0) {
-            case 0:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    public dt0(bi.b bVar) {
-        super(null, bVar);
+    public dt0(PhotoViewer photoViewer, View view) {
+        super(photoViewer, view);
+        this.f35137t = photoViewer;
     }
 }

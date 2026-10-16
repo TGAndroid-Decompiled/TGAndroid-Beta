@@ -2,67 +2,80 @@ package m;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.text.InputFilter;
+import android.text.method.KeyListener;
+import android.text.method.NumberKeyListener;
 import android.util.AttributeSet;
-import android.widget.CheckBox;
+import android.view.ActionMode;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.AutoCompleteTextView;
 import v7.q7;
-import w7.o6;
-public final class n extends CheckBox implements u0.k {
-    public final p f15176a;
-    public final e2.c f15177b;
-    public final w0 f15178c;
-    public t d;
+import w7.w7;
+public class n extends AutoCompleteTextView implements u0.k {
+    public static final int[] d = {16843126};
+    public final e2.c f14896a;
+    public final y0 f14897b;
+    public final a0 f14898c;
 
-    public n(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, 2130968716);
-        c3.a(context);
-        b3.a(this, getContext());
-        p pVar = new p(this);
-        this.f15176a = pVar;
-        pVar.e(attributeSet, 2130968716);
-        e2.c cVar = new e2.c(this);
-        this.f15177b = cVar;
-        cVar.f(attributeSet, 2130968716);
-        w0 w0Var = new w0(this);
-        this.f15178c = w0Var;
-        w0Var.f(attributeSet, 2130968716);
-        getEmojiTextViewHelper().a(attributeSet, 2130968716);
-    }
-
-    private t getEmojiTextViewHelper() {
-        if (this.d == null) {
-            this.d = new t(this);
+    public n(Context context, AttributeSet attributeSet, int i10) {
+        super(context, attributeSet, i10);
+        e3.a(context);
+        d3.a(this, getContext());
+        h3 P = h3.P(getContext(), attributeSet, d, i10);
+        if (((TypedArray) P.f14851c).hasValue(0)) {
+            setDropDownBackgroundDrawable(P.F(0));
         }
-        return this.d;
+        P.Q();
+        e2.c cVar = new e2.c(this);
+        this.f14896a = cVar;
+        cVar.f(attributeSet, i10);
+        y0 y0Var = new y0(this);
+        this.f14897b = y0Var;
+        y0Var.f(attributeSet, i10);
+        y0Var.b();
+        a0 a0Var = new a0(this);
+        this.f14898c = a0Var;
+        a0Var.b(attributeSet, i10);
+        KeyListener keyListener = getKeyListener();
+        if (!(keyListener instanceof NumberKeyListener)) {
+            boolean isFocusable = super.isFocusable();
+            boolean isClickable = super.isClickable();
+            boolean isLongClickable = super.isLongClickable();
+            int inputType = super.getInputType();
+            KeyListener a2 = a0Var.a(keyListener);
+            if (a2 != keyListener) {
+                super.setKeyListener(a2);
+                super.setRawInputType(inputType);
+                super.setFocusable(isFocusable);
+                super.setClickable(isClickable);
+                super.setLongClickable(isLongClickable);
+            }
+        }
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f15177b;
+        e2.c cVar = this.f14896a;
         if (cVar != null) {
             cVar.b();
         }
-        w0 w0Var = this.f15178c;
-        if (w0Var != null) {
-            w0Var.b();
+        y0 y0Var = this.f14897b;
+        if (y0Var != null) {
+            y0Var.b();
         }
     }
 
     @Override
-    public int getCompoundPaddingLeft() {
-        int compoundPaddingLeft = super.getCompoundPaddingLeft();
-        p pVar = this.f15176a;
-        if (pVar != null) {
-            pVar.getClass();
-        }
-        return compoundPaddingLeft;
+    public ActionMode.Callback getCustomSelectionActionModeCallback() {
+        return w7.d(super.getCustomSelectionActionModeCallback());
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f15177b;
+        e2.c cVar = this.f14896a;
         if (cVar != null) {
             return cVar.d();
         }
@@ -70,47 +83,32 @@ public final class n extends CheckBox implements u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f15177b;
+        e2.c cVar = this.f14896a;
         if (cVar != null) {
             return cVar.e();
         }
         return null;
     }
 
-    public ColorStateList getSupportButtonTintList() {
-        p pVar = this.f15176a;
-        if (pVar != null) {
-            return (ColorStateList) pVar.f15193a;
-        }
-        return null;
-    }
-
-    public PorterDuff.Mode getSupportButtonTintMode() {
-        p pVar = this.f15176a;
-        if (pVar != null) {
-            return (PorterDuff.Mode) pVar.f15194b;
-        }
-        return null;
-    }
-
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f15178c.d();
+        return this.f14897b.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f15178c.e();
+        return this.f14897b.e();
     }
 
     @Override
-    public void setAllCaps(boolean z10) {
-        super.setAllCaps(z10);
-        getEmojiTextViewHelper().b(z10);
+    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        w7.p.a(editorInfo, onCreateInputConnection, this);
+        return this.f14898c.c(onCreateInputConnection, editorInfo);
     }
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f15177b;
+        e2.c cVar = this.f14896a;
         if (cVar != null) {
             cVar.g();
         }
@@ -119,101 +117,83 @@ public final class n extends CheckBox implements u0.k {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f15177b;
+        e2.c cVar = this.f14896a;
         if (cVar != null) {
             cVar.h(i10);
         }
     }
 
     @Override
-    public void setButtonDrawable(Drawable drawable) {
-        super.setButtonDrawable(drawable);
-        p pVar = this.f15176a;
-        if (pVar != null) {
-            if (pVar.e) {
-                pVar.e = false;
-                return;
-            }
-            pVar.e = true;
-            pVar.a();
-        }
-    }
-
-    @Override
     public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f15178c;
-        if (w0Var != null) {
-            w0Var.b();
+        y0 y0Var = this.f14897b;
+        if (y0Var != null) {
+            y0Var.b();
         }
     }
 
     @Override
     public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f15178c;
-        if (w0Var != null) {
-            w0Var.b();
+        y0 y0Var = this.f14897b;
+        if (y0Var != null) {
+            y0Var.b();
         }
     }
 
-    public void setEmojiCompatEnabled(boolean z10) {
-        getEmojiTextViewHelper().c(z10);
+    @Override
+    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
+        super.setCustomSelectionActionModeCallback(w7.e(callback, this));
     }
 
     @Override
-    public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((o6) getEmojiTextViewHelper().f15242b.f14503b).a(inputFilterArr));
+    public void setDropDownBackgroundResource(int i10) {
+        setDropDownBackgroundDrawable(q7.b(getContext(), i10));
+    }
+
+    public void setEmojiCompatEnabled(boolean z10) {
+        this.f14898c.d(z10);
+    }
+
+    @Override
+    public void setKeyListener(KeyListener keyListener) {
+        super.setKeyListener(this.f14898c.a(keyListener));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f15177b;
+        e2.c cVar = this.f14896a;
         if (cVar != null) {
             cVar.l(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f15177b;
+        e2.c cVar = this.f14896a;
         if (cVar != null) {
             cVar.m(mode);
         }
     }
 
-    public void setSupportButtonTintList(ColorStateList colorStateList) {
-        p pVar = this.f15176a;
-        if (pVar != null) {
-            pVar.f15193a = colorStateList;
-            pVar.f15195c = true;
-            pVar.a();
-        }
-    }
-
-    public void setSupportButtonTintMode(PorterDuff.Mode mode) {
-        p pVar = this.f15176a;
-        if (pVar != null) {
-            pVar.f15194b = mode;
-            pVar.d = true;
-            pVar.a();
-        }
-    }
-
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f15178c;
-        w0Var.l(colorStateList);
-        w0Var.b();
+        y0 y0Var = this.f14897b;
+        y0Var.l(colorStateList);
+        y0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f15178c;
-        w0Var.m(mode);
-        w0Var.b();
+        y0 y0Var = this.f14897b;
+        y0Var.m(mode);
+        y0Var.b();
     }
 
     @Override
-    public void setButtonDrawable(int i10) {
-        setButtonDrawable(q7.b(getContext(), i10));
+    public final void setTextAppearance(Context context, int i10) {
+        super.setTextAppearance(context, i10);
+        y0 y0Var = this.f14897b;
+        if (y0Var != null) {
+            y0Var.g(context, i10);
+        }
     }
 }

@@ -1,56 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class rq0 implements View.OnTouchListener {
-    public final int f28924a;
-    public final Rect f28925b;
-    public final jr0 f28926c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.widget.FrameLayout;
+public final class rq0 extends AnimatorListenerAdapter {
+    public final int f28625a;
+    public final boolean f28626b;
+    public final ir0 f28627c;
 
-    public rq0(jr0 jr0Var, int i10) {
-        this.f28924a = i10;
-        switch (i10) {
-            case 1:
-                this.f28926c = jr0Var;
-                this.f28925b = new Rect();
+    public rq0(ir0 ir0Var, boolean z10, int i10) {
+        this.f28625a = i10;
+        this.f28627c = ir0Var;
+        this.f28626b = z10;
+    }
+
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f28625a) {
+            case 0:
+                AnimatorSet[] animatorSetArr = this.f28627c.T;
+                AnimatorSet animatorSet = animatorSetArr[0];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    animatorSetArr[0] = null;
+                    return;
+                }
                 return;
             default:
-                this.f28926c = jr0Var;
-                this.f28925b = new Rect();
+                ir0 ir0Var = this.f28627c;
+                if (animator.equals(ir0Var.f25771y)) {
+                    ir0Var.f25771y = null;
+                    return;
+                }
                 return;
         }
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        jr0 jr0Var;
-        org.telegram.ui.ActionBar.m1 m1Var;
-        jr0 jr0Var2;
-        org.telegram.ui.ActionBar.m1 m1Var2;
-        switch (this.f28924a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28625a) {
             case 0:
-                if (motionEvent.getActionMasked() == 0 && (m1Var = (jr0Var = this.f28926c).J0) != null && m1Var.isShowing()) {
-                    Rect rect = this.f28925b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        jr0Var.J0.d(true);
-                        return false;
+                ir0 ir0Var = this.f28627c;
+                AnimatorSet[] animatorSetArr = ir0Var.T;
+                AnimatorSet animatorSet = animatorSetArr[0];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f28626b) {
+                        ir0Var.S[0].setVisibility(4);
                     }
-                    return false;
+                    animatorSetArr[0] = null;
+                    return;
                 }
-                return false;
+                return;
             default:
-                if (motionEvent.getActionMasked() == 0 && (m1Var2 = (jr0Var2 = this.f28926c).J0) != null && m1Var2.isShowing()) {
-                    Rect rect2 = this.f28925b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        jr0Var2.J0.d(true);
-                        return false;
+                ir0 ir0Var2 = this.f28627c;
+                FrameLayout frameLayout = ir0Var2.h;
+                if (animator.equals(ir0Var2.f25771y)) {
+                    if (!this.f28626b) {
+                        ir0Var2.f25743c.setVisibility(4);
+                        FrameLayout frameLayout2 = ir0Var2.f25744c0;
+                        if (frameLayout2 != null && frameLayout == null) {
+                            frameLayout2.setVisibility(4);
+                        }
+                        ir0Var2.f25747f.setVisibility(4);
+                    } else if (frameLayout != null) {
+                        frameLayout.setVisibility(4);
                     }
-                    return false;
+                    ir0Var2.f25771y = null;
+                    return;
                 }
-                return false;
+                return;
         }
     }
 }

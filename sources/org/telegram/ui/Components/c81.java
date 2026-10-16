@@ -1,46 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.util.Map;
-import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
-public final class c81 implements g2.h {
-    public final g2.h f23968a;
-    public final long f23969b;
+import android.content.Context;
+public final class c81 extends i2.k {
+    public final i81 d;
 
-    public c81(ExtendedDefaultDataSource extendedDefaultDataSource, long j10) {
-        this.f23968a = extendedDefaultDataSource;
-        this.f23969b = j10;
+    public c81(Context context, i81 i81Var) {
+        super(context);
+        this.d = i81Var;
     }
 
     @Override
-    public final void addTransferListener(g2.c0 c0Var) {
-        this.f23968a.addTransferListener(c0Var);
-    }
-
-    @Override
-    public final void close() {
-        this.f23968a.close();
-    }
-
-    @Override
-    public final Map getResponseHeaders() {
-        return this.f23968a.getResponseHeaders();
-    }
-
-    @Override
-    public final Uri getUri() {
-        return this.f23968a.getUri();
-    }
-
-    @Override
-    public final long open(g2.m mVar) {
-        g2.l a2 = mVar.a();
-        a2.f9878b = mVar.e + this.f23969b;
-        return this.f23968a.open(a2.d());
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        return this.f23968a.read(bArr, i10, i11);
+    public final k2.s0 a(Context context) {
+        bi.p5 p5Var = new bi.p5(context);
+        p5Var.d = new androidx.biometric.e(new c2.n[]{new k2.a1(new h81(this.d))});
+        return p5Var.a();
     }
 }

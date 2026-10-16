@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class xu extends org.telegram.ui.Components.fd {
-    public final yu f41959e0;
+    public final yu f41662e0;
 
     public xu(yu yuVar, Context context, int i10, int[] iArr, int[] iArr2) {
         super(context, i10, iArr, 1, iArr2);
-        this.f41959e0 = yuVar;
+        this.f41662e0 = yuVar;
     }
 
     @Override
@@ -17,13 +17,13 @@ public final class xu extends org.telegram.ui.Components.fd {
     @Override
     public final void d(int i10, boolean z10) {
         int i11;
-        av avVar = (av) this.f41959e0.e;
+        av avVar = (av) this.f41662e0.e;
         if (!z10) {
             avVar.j1();
-        } else if (i10 >= 0 && i10 < avVar.f34350e3.length) {
+        } else if (i10 >= 0 && i10 < avVar.f34094e3.length) {
             int i12 = 0;
             while (true) {
-                zu[] zuVarArr = avVar.f34350e3;
+                zu[] zuVarArr = avVar.f34094e3;
                 i11 = -1;
                 if (i12 < zuVarArr.length) {
                     if (zuVarArr[i12].d == i10) {
@@ -37,9 +37,9 @@ public final class xu extends org.telegram.ui.Components.fd {
             }
             int i13 = 0;
             while (true) {
-                if (i13 < avVar.f34346a3.size()) {
-                    vu vuVar = (vu) avVar.f34346a3.get(i13);
-                    if (vuVar != null && vuVar.f43203a == 2 && vuVar.h == i12) {
+                if (i13 < avVar.f34090a3.size()) {
+                    vu vuVar = (vu) avVar.f34090a3.get(i13);
+                    if (vuVar != null && vuVar.f42904a == 2 && vuVar.h == i12) {
                         i11 = i13;
                         break;
                     }

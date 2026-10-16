@@ -2,19 +2,19 @@ package i2;
 
 import android.media.MediaFormat;
 public final class c0 implements a3.y, m1 {
-    public a3.y f10929a;
-    public c0 f10930b;
+    public a3.y f10933a;
+    public c0 f10934b;
 
     @Override
     public final void a(long j10, long j11, b2.x xVar, MediaFormat mediaFormat) {
-        a3.y yVar = this.f10929a;
+        a3.y yVar = this.f10933a;
         if (yVar != null) {
             yVar.a(j10, j11, xVar, mediaFormat);
         }
     }
 
     public final void b() {
-        c0 c0Var = this.f10930b;
+        c0 c0Var = this.f10934b;
         if (c0Var != null) {
             c0Var.b();
         }
@@ -29,14 +29,14 @@ public final class c0 implements a3.y, m1 {
                 }
                 throw new ClassCastException();
             }
-            this.f10930b = (c0) obj;
+            this.f10934b = (c0) obj;
             return;
         }
-        this.f10929a = (a3.y) obj;
+        this.f10933a = (a3.y) obj;
     }
 
     public final void d() {
-        c0 c0Var = this.f10930b;
+        c0 c0Var = this.f10934b;
         if (c0Var != null) {
             c0Var.d();
         }

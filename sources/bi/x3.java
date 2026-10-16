@@ -11,19 +11,19 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.hh;
 import org.telegram.ui.Components.ti;
 public final class x3 implements ti {
-    public final q5 f3950a;
+    public final q5 f3954a;
 
     public x3(q5 q5Var) {
-        this.f3950a = q5Var;
+        this.f3954a = q5Var;
     }
 
     @Override
-    public final void H() {
-        this.f3950a.f3508b2.N();
+    public final void F() {
+        this.f3954a.f3512b2.N();
     }
 
     @Override
-    public final void g0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
         TL_stories.StoryItem storyItem;
         boolean z14;
         boolean z15;
@@ -32,9 +32,9 @@ public final class x3 implements ti {
         boolean z17;
         String str;
         String str2;
-        q5 q5Var = this.f3950a;
-        if (q5Var.J0.m0 && (storyItem = q5Var.O1.f3413a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || q5Var.I2.f30013j0.getSelectedPhotos().isEmpty())) {
+        q5 q5Var = this.f3954a;
+        if (q5Var.J0.m0 && (storyItem = q5Var.O1.f3417a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || q5Var.I2.f29684j0.getSelectedPhotos().isEmpty())) {
                 w3 w3Var = q5Var.I2;
                 if (w3Var != null) {
                     w3Var.dismissWithButtonClick(i10);
@@ -46,8 +46,8 @@ public final class x3 implements ti {
             if (i10 != 8) {
                 q5Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = q5Var.I2.f30013j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = q5Var.I2.f30013j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = q5Var.I2.f29684j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = q5Var.I2.f29684j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -107,7 +107,7 @@ public final class x3 implements ti {
                         z16 = true;
                         z17 = 1;
                     }
-                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j12, null, null, storyItem, null, z17, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, q5Var.f3508b2.getSendMonoForumPeerId(), q5Var.f3508b2.getSendMessageSuggestionParams());
+                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j12, null, null, storyItem, null, z17, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, q5Var.f3512b2.getSendMonoForumPeerId(), q5Var.f3512b2.getSendMessageSuggestionParams());
                     i14++;
                     z18 = true;
                     selectedPhotos = hashMap;
@@ -116,7 +116,7 @@ public final class x3 implements ti {
                 }
                 boolean z20 = z18;
                 int i19 = i13;
-                q5Var.f3508b2.setFieldText("");
+                q5Var.f3512b2.setFieldText("");
                 if (j11 <= 0) {
                     z14 = z20;
                 } else {
@@ -128,17 +128,17 @@ public final class x3 implements ti {
     }
 
     @Override
-    public final boolean p0() {
+    public final boolean r0() {
         return false;
     }
 
     @Override
-    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final void s0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
         AccountInstance accountInstance;
         CharSequence charSequence2;
         boolean z12;
-        q5 q5Var = this.f3950a;
-        TL_stories.StoryItem storyItem = q5Var.O1.f3413a;
+        q5 q5Var = this.f3954a;
+        TL_stories.StoryItem storyItem = q5Var.O1.f3417a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = q5Var.getAccountInstance();
             if (charSequence != null) {
@@ -158,23 +158,23 @@ public final class x3 implements ti {
 
     @Override
     public final void v(hh hhVar) {
-        NotificationCenter.getInstance(this.f3950a.C2).doOnIdle(hhVar);
+        NotificationCenter.getInstance(this.f3954a.C2).doOnIdle(hhVar);
     }
 
     @Override
-    public final boolean x() {
-        return this.f3950a.N0();
+    public final boolean w() {
+        return this.f3954a.N0();
+    }
+
+    @Override
+    public final void J(Object obj) {
+    }
+
+    @Override
+    public final void U(TLRPC.User user) {
     }
 
     @Override
     public final void z() {
-    }
-
-    @Override
-    public final void U(Object obj) {
-    }
-
-    @Override
-    public final void W(TLRPC.User user) {
     }
 }

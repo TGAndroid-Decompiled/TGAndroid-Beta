@@ -5,11 +5,11 @@ import v7.u6;
 public final class m extends b2.z0 {
     public final u2.g0 E;
     public final boolean F;
-    public final int f11083s;
+    public final int f11087s;
     public final String v;
-    public final int f11084w;
-    public final b2.x f11085x;
-    public final int f11086y;
+    public final int f11088w;
+    public final b2.x f11089x;
+    public final int f11090y;
 
     public m(int i10, Exception exc, int i11) {
         this(i10, exc, i11, null, -1, null, 4, null, false);
@@ -17,8 +17,8 @@ public final class m extends b2.z0 {
 
     public final m a(u2.g0 g0Var) {
         String message = getMessage();
-        String str = e2.m0.f8372a;
-        return new m(message, getCause(), this.f2538a, this.f11083s, this.v, this.f11084w, this.f11085x, this.f11086y, g0Var, this.f2539b, this.F);
+        String str = e2.m0.f8375a;
+        return new m(message, getCause(), this.f2542a, this.f11087s, this.v, this.f11088w, this.f11089x, this.f11090y, g0Var, this.f2543b, this.F);
     }
 
     public m(String str, Throwable th2, int i10, int i11, String str2, int i12, b2.x xVar, int i13, u2.g0 g0Var, long j10, boolean z10) {
@@ -27,11 +27,11 @@ public final class m extends b2.z0 {
         boolean z11 = false;
         u6.g(!z10 || i11 == 1);
         u6.g((th2 != null || i11 == 3) ? true : z11);
-        this.f11083s = i11;
+        this.f11087s = i11;
         this.v = str2;
-        this.f11084w = i12;
-        this.f11085x = xVar;
-        this.f11086y = i13;
+        this.f11088w = i12;
+        this.f11089x = xVar;
+        this.f11090y = i13;
         this.E = g0Var;
         this.F = z10;
     }

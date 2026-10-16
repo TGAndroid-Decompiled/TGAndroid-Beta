@@ -9,13 +9,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class p0 extends TextView {
-    public final RectF f30392a;
-    public final o1 f30393b;
+    public final RectF f30063a;
+    public final o1 f30064b;
 
     public p0(Activity activity, o1 o1Var) {
         super(activity);
-        this.f30392a = new RectF();
-        this.f30393b = o1Var;
+        this.f30063a = new RectF();
+        this.f30064b = o1Var;
         o1Var.a(this);
         setText(LocaleController.getString(R.string.VoipHideEmoji));
         setContentDescription(LocaleController.getString(R.string.VoipHideEmoji));
@@ -26,11 +26,11 @@ public final class p0 extends TextView {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        RectF rectF = this.f30392a;
+        RectF rectF = this.f30063a;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         float x10 = ((View) getParent()).getX() + getX();
         float y3 = ((View) getParent()).getY() + getY();
-        o1 o1Var = this.f30393b;
+        o1 o1Var = this.f30064b;
         o1Var.d(x10, y3);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), o1Var.b());
         super.onDraw(canvas);

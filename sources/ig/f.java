@@ -7,14 +7,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 public final class f {
-    public static volatile f[] f11494g = new f[4];
+    public static volatile f[] f11498g = new f[4];
     public static final Object[] h = new Object[4];
-    public final int f11495a;
-    public long f11496b;
-    public TL_account.connectedBots f11497c;
+    public final int f11499a;
+    public long f11500b;
+    public TL_account.connectedBots f11501c;
     public final ArrayList d = new ArrayList();
     public boolean e;
-    public boolean f11498f;
+    public boolean f11502f;
 
     static {
         for (int i10 = 0; i10 < 4; i10++) {
@@ -23,18 +23,18 @@ public final class f {
     }
 
     public f(int i10) {
-        this.f11495a = i10;
+        this.f11499a = i10;
     }
 
     public static f a(int i10) {
         f fVar;
-        f fVar2 = f11494g[i10];
+        f fVar2 = f11498g[i10];
         if (fVar2 == null) {
             synchronized (h[i10]) {
                 try {
-                    fVar = f11494g[i10];
+                    fVar = f11498g[i10];
                     if (fVar == null) {
-                        f[] fVarArr = f11494g;
+                        f[] fVarArr = f11498g;
                         f fVar3 = new f(i10);
                         fVarArr[i10] = fVar3;
                         fVar = fVar3;
@@ -49,7 +49,7 @@ public final class f {
     }
 
     public final void b() {
-        this.f11498f = false;
+        this.f11502f = false;
         c(null);
     }
 
@@ -59,7 +59,7 @@ public final class f {
             this.d.add(callback);
         }
         if (!this.e) {
-            if (System.currentTimeMillis() - this.f11496b <= 60000 && (z10 = this.f11498f)) {
+            if (System.currentTimeMillis() - this.f11500b <= 60000 && (z10 = this.f11502f)) {
                 if (z10) {
                     d();
                     return;
@@ -67,7 +67,7 @@ public final class f {
                 return;
             }
             this.e = true;
-            ConnectionsManager.getInstance(this.f11495a).sendRequest(new TL_account.getConnectedBots(), new z7(this, 11));
+            ConnectionsManager.getInstance(this.f11499a).sendRequest(new TL_account.getConnectedBots(), new z7(this, 11));
         }
     }
 
@@ -77,12 +77,12 @@ public final class f {
             ArrayList arrayList = this.d;
             if (i10 < arrayList.size()) {
                 if (arrayList.get(i10) != null) {
-                    ((Utilities.Callback) arrayList.get(i10)).run(this.f11497c);
+                    ((Utilities.Callback) arrayList.get(i10)).run(this.f11501c);
                 }
                 i10++;
             } else {
                 arrayList.clear();
-                NotificationCenter.getInstance(this.f11495a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updatedChatbot, new Object[0]);
+                NotificationCenter.getInstance(this.f11499a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updatedChatbot, new Object[0]);
                 return;
             }
         }

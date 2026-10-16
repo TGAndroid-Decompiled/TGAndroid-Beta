@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import v7.c8;
 public final class u0 {
-    public final t0[] f2398a;
-    public final long f2399b;
+    public final t0[] f2402a;
+    public final long f2403b;
 
     public u0(t0... t0VarArr) {
         this(-9223372036854775807L, t0VarArr);
@@ -15,18 +15,18 @@ public final class u0 {
         if (t0VarArr.length == 0) {
             return this;
         }
-        String str = e2.m0.f8372a;
-        t0[] t0VarArr2 = this.f2398a;
+        String str = e2.m0.f8375a;
+        t0[] t0VarArr2 = this.f2402a;
         Object[] copyOf = Arrays.copyOf(t0VarArr2, t0VarArr2.length + t0VarArr.length);
         System.arraycopy(t0VarArr, 0, copyOf, t0VarArr2.length, t0VarArr.length);
-        return new u0(this.f2399b, (t0[]) copyOf);
+        return new u0(this.f2403b, (t0[]) copyOf);
     }
 
     public final u0 b(u0 u0Var) {
         if (u0Var == null) {
             return this;
         }
-        return a(u0Var.f2398a);
+        return a(u0Var.f2402a);
     }
 
     public final boolean equals(Object obj) {
@@ -35,7 +35,7 @@ public final class u0 {
         }
         if (obj != null && u0.class == obj.getClass()) {
             u0 u0Var = (u0) obj;
-            if (Arrays.equals(this.f2398a, u0Var.f2398a) && this.f2399b == u0Var.f2399b) {
+            if (Arrays.equals(this.f2402a, u0Var.f2402a) && this.f2403b == u0Var.f2403b) {
                 return true;
             }
         }
@@ -43,14 +43,14 @@ public final class u0 {
     }
 
     public final int hashCode() {
-        return c8.b(this.f2399b) + (Arrays.hashCode(this.f2398a) * 31);
+        return c8.b(this.f2403b) + (Arrays.hashCode(this.f2402a) * 31);
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("entries=");
-        sb2.append(Arrays.toString(this.f2398a));
-        long j10 = this.f2399b;
+        sb2.append(Arrays.toString(this.f2402a));
+        long j10 = this.f2403b;
         if (j10 == -9223372036854775807L) {
             str = "";
         } else {
@@ -61,8 +61,8 @@ public final class u0 {
     }
 
     public u0(long j10, t0... t0VarArr) {
-        this.f2399b = j10;
-        this.f2398a = t0VarArr;
+        this.f2403b = j10;
+        this.f2402a = t0VarArr;
     }
 
     public u0(List list) {

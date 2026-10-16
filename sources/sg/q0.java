@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import bi.w5;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.Components.bk0;
 import org.telegram.ui.Components.es;
@@ -25,7 +25,8 @@ import org.telegram.ui.Components.jr;
 import org.telegram.ui.Components.s6;
 import org.telegram.ui.fi1;
 import org.telegram.ui.i50;
-import w7.a6;
+import w7.b6;
+import w7.z5;
 public class q0 extends FrameLayout implements ga0 {
     public boolean E;
     public boolean F;
@@ -63,7 +64,7 @@ public class q0 extends FrameLayout implements ga0 {
         }
         this.E = true;
         o0 o0Var = this.d;
-        if (z10 && o0Var.f29045c.h()) {
+        if (z10 && o0Var.f28752c.h()) {
             o0Var.a();
         }
         o0Var.c(str, z10, true);
@@ -112,7 +113,7 @@ public class q0 extends FrameLayout implements ga0 {
         ofFloat.addUpdateListener(new w5(this, 12));
         this.f45315s.addListener(new fi1(this, 13));
         this.f45315s.setDuration(250L);
-        this.f45315s.setInterpolator(es.f24771f);
+        this.f45315s.setInterpolator(es.f24465f);
         this.f45315s.start();
     }
 
@@ -122,19 +123,19 @@ public class q0 extends FrameLayout implements ga0 {
         jr jrVar = this.G;
         o0 o0Var = this.e;
         if (jrVar != null) {
-            ir irVar = jrVar.f26455a;
+            ir irVar = jrVar.f26123a;
             if (irVar.h == 0) {
                 dp = 0;
             } else {
-                dp = AndroidUtilities.dp(irVar.C - 0.5f) + irVar.f26069s;
+                dp = AndroidUtilities.dp(irVar.C - 0.5f) + irVar.f25732s;
             }
             g6 g6Var = this.J;
             g6Var.d(((dp * 0.85f) + AndroidUtilities.dp(3.0f)) / 2.0f, false);
             float e = (o0Var.getDrawable().e() / 2.0f) + (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(3.0f);
             g6 g6Var2 = this.K;
             g6Var2.d(e, false);
-            o0Var.setTranslationX(-g6Var.f25190c);
-            this.G.setTranslationX(g6Var2.f25190c - g6Var.f25190c);
+            o0Var.setTranslationX(-g6Var.f24885c);
+            this.G.setTranslationX(g6Var2.f24885c - g6Var.f24885c);
         } else if (o0Var != null) {
             o0Var.setTranslationX(0.0f);
         }
@@ -171,7 +172,7 @@ public class q0 extends FrameLayout implements ga0 {
         if (!BuildVars.IS_BILLING_UNAVAILABLE && !this.F) {
             int measuredWidth = getMeasuredWidth();
             org.telegram.ui.Components.voip.h hVar = this.f45316w;
-            hVar.f30196f = measuredWidth;
+            hVar.f29865f = measuredWidth;
             hVar.a(i11, canvas, rectF, null);
         }
         float f13 = this.f45313n;
@@ -250,8 +251,8 @@ public class q0 extends FrameLayout implements ga0 {
         bk0 bk0Var = this.f45318y;
         bk0Var.f(i10, 24, 24, null);
         org.telegram.ui.Components.voip.h hVar = this.f45316w;
-        hVar.f30197g = 2.0f;
-        hVar.f30205p = new rh.j(this, 3);
+        hVar.f29866g = 2.0f;
+        hVar.f29874p = new ri.h0(this, 3);
         invalidate();
         bk0Var.setVisibility(0);
     }
@@ -294,10 +295,10 @@ public class q0 extends FrameLayout implements ga0 {
         this.f45312f = i10;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
         this.f45316w = hVar;
-        hVar.f30203n = 1.2f;
-        hVar.f30200k = false;
-        hVar.f30202m = 4.0f;
-        LinearLayout e = yh.e(context, 0);
+        hVar.f29872n = 1.2f;
+        hVar.f29869k = false;
+        hVar.f29871m = 4.0f;
+        LinearLayout e = sk.e(context, 0);
         o0 o0Var = new o0(this, context, 0);
         this.d = o0Var;
         o0Var.b(0.35f, 350L, es.h);
@@ -311,15 +312,15 @@ public class q0 extends FrameLayout implements ga0 {
         imageView.setVisibility(8);
         p0 p0Var = new p0(this, context, 0);
         this.f45314r = p0Var;
-        p0Var.addView(e, a6.e(-2, -2, 17));
+        p0Var.addView(e, z5.e(-2, -2, 17));
         int k10 = i0.a.k(-1, 120);
         p0Var.setBackground(org.telegram.ui.ActionBar.g6.j0(i10, i10, i10, i10, 0, k10, k10));
-        e.addView(o0Var, a6.q(-2, -2, 16));
-        e.addView((View) imageView, a6.p(24, 24, 0.0f, 16, 4, 0, 0, 0));
+        e.addView(o0Var, z5.q(-2, -2, 16));
+        e.addView((View) imageView, z5.p(24, 24, 0.0f, 16, 4, 0, 0, 0));
         addView(p0Var);
-        setOutlineProvider(zf.j0.f50192b);
+        setOutlineProvider(zf.j0.f50193b);
         setClipToOutline(true);
-        w7.c6.b(this, 0.02f, 1.2f);
+        b6.b(this, 0.02f, 1.2f);
         if (z10) {
             o0 o0Var2 = new o0(this, context, 1);
             this.e = o0Var2;

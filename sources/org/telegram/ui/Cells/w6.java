@@ -1,34 +1,82 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
-import org.telegram.ui.o11;
-public final class w6 extends k61 {
-    public static final int f22619a = 0;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.text.style.ImageSpan;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.e41;
+public final class w6 extends ImageSpan {
+    public static e41 f22388b;
+    public final int f22389a = 1;
 
-    static {
-        k61.setup(new k61());
+    public w6(Drawable drawable) {
+        super(drawable);
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
-        Object obj = l61Var.G;
-        if (obj instanceof o11) {
-            o11 o11Var = (o11) obj;
-            ((y6) view).b(l61Var.f26954l, o11Var.d, o11Var.e, z10);
-        } else if (obj instanceof MessagesController.FaqSearchResult) {
-            ((y6) view).a(l61Var.f26954l, ((MessagesController.FaqSearchResult) obj).path, true, z10);
+    public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        switch (this.f22389a) {
+            case 0:
+                Drawable drawable = getDrawable();
+                canvas.save();
+                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
+                int i15 = fontMetricsInt.descent;
+                canvas.translate(f7, ((i13 + i15) - ((i15 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
+                if (LocaleController.isRTL) {
+                    canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
+                }
+                drawable.draw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+                return;
         }
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        return new y6(context);
+    public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f22389a) {
+            case 0:
+                Rect bounds = getDrawable().getBounds();
+                if (fontMetricsInt != null) {
+                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
+                    int i12 = fontMetricsInt2.descent;
+                    int i13 = fontMetricsInt2.ascent;
+                    int i14 = ((i12 - i13) / 2) + i13;
+                    int i15 = (bounds.bottom - bounds.top) / 2;
+                    int i16 = i14 - i15;
+                    fontMetricsInt.ascent = i16;
+                    fontMetricsInt.top = i16;
+                    int i17 = i14 + i15;
+                    fontMetricsInt.bottom = i17;
+                    fontMetricsInt.descent = i17;
+                }
+                return bounds.right;
+            default:
+                return super.getSize(paint, charSequence, i10, i11, fontMetricsInt);
+        }
+    }
+
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        switch (this.f22389a) {
+            case 1:
+                float textSize = textPaint.getTextSize() * 0.89f;
+                int i10 = (int) (0.02f * textSize);
+                getDrawable().setBounds(0, i10, (int) textSize, ((int) (textSize * 1.25f)) + i10);
+                super.updateDrawState(textPaint);
+                return;
+            default:
+                super.updateDrawState(textPaint);
+                return;
+        }
+    }
+
+    public w6() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.w6.<init>():void");
     }
 }

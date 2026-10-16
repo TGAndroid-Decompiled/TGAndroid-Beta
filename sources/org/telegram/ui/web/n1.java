@@ -1,52 +1,85 @@
 package org.telegram.ui.web;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-public final class n1 {
-    public static ArrayList d;
-    public final String f41440a;
-    public final String f41441b;
-    public final String f41442c;
+import java.io.BufferedInputStream;
+import java.io.FilterInputStream;
+public final class n1 extends FilterInputStream {
+    public final int f41131a;
 
-    public n1(String str, String str2, String str3) {
-        this.f41440a = str;
-        this.f41441b = str2;
-        this.f41442c = str3;
+    public n1(BufferedInputStream bufferedInputStream, int i10) {
+        super(bufferedInputStream);
+        this.f41131a = i10;
     }
 
-    public static n1 a() {
-        ArrayList b10 = b();
-        if (b10.isEmpty()) {
-            return new n1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
+    public static int a(int i10) {
+        if (i10 >= 48 && i10 <= 57) {
+            return i10 - 48;
         }
-        return (n1) b10.get(Utilities.clamp(SharedConfig.searchEngineType, b10.size() - 1, 0));
+        if (i10 >= 65 && i10 <= 70) {
+            return i10 - 55;
+        }
+        if (i10 >= 97 && i10 <= 102) {
+            return i10 - 87;
+        }
+        return 0;
     }
 
-    public static ArrayList b() {
-        if (d == null) {
-            d = new ArrayList();
-            int i10 = 1;
-            while (true) {
-                String c10 = c(LocaleController.getString("SearchEngine" + i10 + "Name"));
-                if (c10 == null) {
-                    break;
-                }
-                String c11 = c(LocaleController.getString("SearchEngine" + i10 + "SearchURL"));
-                String c12 = c(LocaleController.getString("SearchEngine" + i10 + "AutocompleteURL"));
-                c(LocaleController.getString("SearchEngine" + i10 + "PrivacyPolicyURL"));
-                d.add(new n1(c10, c11, c12));
-                i10++;
+    public void b(int i10, byte[] bArr) {
+        int i11 = 0;
+        while (i11 < i10) {
+            int read = read(bArr, i11, i10 - i11);
+            if (read > 0) {
+                i11 += read;
+            } else {
+                throw new tc.j(i11);
             }
         }
-        return d;
     }
 
-    public static String c(String str) {
-        if (str != null && !str.startsWith("LOC_ERR") && !"reserved".equals(str)) {
-            return str;
+    public tc.x c() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.n1.c():tc.x");
+    }
+
+    @Override
+    public int read() {
+        switch (this.f41131a) {
+            case 0:
+                int read = ((FilterInputStream) this).in.read();
+                if (read == 61) {
+                    int read2 = ((FilterInputStream) this).in.read();
+                    int read3 = ((FilterInputStream) this).in.read();
+                    if (read2 == -1 || read3 == -1) {
+                        return -1;
+                    }
+                    if (read2 == 13 && read3 == 10) {
+                        return read();
+                    }
+                    return (read2 == 10 || read3 == 10) ? read3 : (a(read2) << 4) | a(read3);
+                }
+                return read;
+            default:
+                return super.read();
         }
-        return null;
+    }
+
+    @Override
+    public int read(byte[] bArr, int i10, int i11) {
+        switch (this.f41131a) {
+            case 0:
+                int i12 = 0;
+                for (int i13 = 0; i13 < i11; i13++) {
+                    int read = read();
+                    if (read == -1) {
+                        if (i12 == 0) {
+                            return -1;
+                        }
+                        return i12;
+                    }
+                    bArr[i10 + i13] = (byte) read;
+                    i12++;
+                }
+                return i12;
+            default:
+                return super.read(bArr, i10, i11);
+        }
     }
 }

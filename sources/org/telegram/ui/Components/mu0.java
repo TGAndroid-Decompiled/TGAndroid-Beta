@@ -5,10 +5,15 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class mu0 implements hg.z1, org.telegram.ui.Cells.a5 {
-    public final ou0 f27502a;
+    public final ou0 f27205a;
 
     public mu0(ou0 ou0Var) {
-        this.f27502a = ou0Var;
+        this.f27205a = ou0Var;
+    }
+
+    @Override
+    public boolean E0(int i10) {
+        return true;
     }
 
     @Override
@@ -19,7 +24,7 @@ public final class mu0 implements hg.z1, org.telegram.ui.Cells.a5 {
     @Override
     public boolean d(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
         int intValue = ((Integer) b5Var.getTag()).intValue();
-        ou0 ou0Var = this.f27502a;
+        ou0 ou0Var = this.f27205a;
         TLObject E = ou0Var.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
@@ -28,33 +33,28 @@ public final class mu0 implements hg.z1, org.telegram.ui.Cells.a5 {
             tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
             tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
             tL_chatChannelParticipant.date = channelParticipant.date;
-            return ou0Var.f28063s.D1.h(tL_chatChannelParticipant, true, !z10, b5Var);
+            return ou0Var.f27747s.D1.h(tL_chatChannelParticipant, true, !z10, b5Var);
         }
         return false;
     }
 
     @Override
-    public a0.h j0() {
-        return null;
-    }
-
-    @Override
-    public void k(int i10) {
-        ou0 ou0Var = this.f27502a;
+    public void f(int i10) {
+        ou0 ou0Var = this.f27205a;
         ou0Var.l();
         if (i10 == 1) {
-            int i11 = ou0Var.f28062r - 1;
-            ou0Var.f28062r = i11;
+            int i11 = ou0Var.f27746r - 1;
+            ou0Var.f27746r = i11;
             if (i11 == 0) {
                 int i12 = 0;
                 while (true) {
-                    xv0 xv0Var = ou0Var.f28063s;
-                    qu0[] qu0VarArr = xv0Var.f31364k0;
+                    xv0 xv0Var = ou0Var.f27747s;
+                    qu0[] qu0VarArr = xv0Var.f31045k0;
                     if (i12 < qu0VarArr.length) {
                         qu0 qu0Var = qu0VarArr[i12];
                         if (qu0Var.F == 7) {
                             if (ou0Var.h == 0) {
-                                qu0Var.f28682w.e(false, true);
+                                qu0Var.f28368w.e(false, true);
                             } else {
                                 xv0Var.z(qu0Var.h, 0, null);
                             }
@@ -69,11 +69,11 @@ public final class mu0 implements hg.z1, org.telegram.ui.Cells.a5 {
     }
 
     @Override
-    public boolean t0(int i10) {
-        return true;
+    public a0.h k0() {
+        return null;
     }
 
     @Override
-    public void I0(ArrayList arrayList) {
+    public void O0(ArrayList arrayList) {
     }
 }

@@ -33,7 +33,7 @@ class WrappedNativeI420Buffer implements VideoFrame.I420Buffer {
 
     @Override
     public final int getBufferType() {
-        return c0.a(this);
+        return b0.a(this);
     }
 
     @Override

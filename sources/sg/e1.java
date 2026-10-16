@@ -17,7 +17,7 @@ public final class e1 implements Runnable {
             case 0:
                 m1 m1Var = this.f45174b;
                 Context context = m1Var.getContext();
-                pf.d.s(context, "https://" + MessagesController.getInstance(m1Var.Y).linkPrefix + "/nft/" + m1Var.D0.slug);
+                pf.d.r(context, "https://" + MessagesController.getInstance(m1Var.Y).linkPrefix + "/nft/" + m1Var.D0.slug);
                 return;
             case 1:
                 m1 m1Var2 = this.f45174b;

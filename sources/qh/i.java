@@ -2,7 +2,6 @@ package qh;
 
 import android.view.View;
 import ji.p1;
-import n6.o;
 import ne.m;
 import ne.n;
 import org.telegram.messenger.AndroidUtilities;
@@ -14,24 +13,24 @@ public class i implements g, f, d {
     public View E;
     public int F;
     public int G;
-    public final ne.e f43638a;
+    public final ne.e f43380a;
     public final Runnable h;
-    public boolean f43642n;
-    public l1 f43643r;
+    public boolean f43384n;
+    public l1 f43385r;
     public int v;
-    public int f43645w;
-    public e f43647y;
-    public final m f43639b = new m(0.0f);
-    public final n f43640c = new n();
+    public int f43387w;
+    public e f43389y;
+    public final m f43381b = new m(0.0f);
+    public final n f43382c = new n();
     public final n d = new n();
     public final AnimationNotificationsLocker e = new AnimationNotificationsLocker();
-    public final c f43641f = new c(new p1(this, 7));
-    public int f43644s = 1;
-    public final h f43646x = new h(this, 0);
+    public final c f43383f = new c(new p1(this, 7));
+    public int f43386s = 1;
+    public final h f43388x = new h(this, 0);
 
     public i(Runnable runnable) {
         this.h = runnable;
-        this.f43638a = new ne.e(0, new o(this, runnable, false, 13), o1.f20554w, 250L);
+        this.f43380a = new ne.e(0, new n3.b(this, runnable, false, 14), o1.f20254w, 250L);
     }
 
     @Override
@@ -48,61 +47,61 @@ public class i implements g, f, d {
     }
 
     public final void a() {
-        boolean z10 = this.f43638a.f16301g;
-        boolean z11 = this.f43642n;
+        boolean z10 = this.f43380a.f16012g;
+        boolean z11 = this.f43384n;
         AnimationNotificationsLocker animationNotificationsLocker = this.e;
         if (!z11 && z10) {
-            this.f43642n = true;
+            this.f43384n = true;
             animationNotificationsLocker.lock();
         }
-        if (this.f43642n && !z10) {
-            this.f43642n = false;
+        if (this.f43384n && !z10) {
+            this.f43384n = false;
             animationNotificationsLocker.unlock();
         }
     }
 
     public final float c() {
-        e eVar = this.f43647y;
+        e eVar = this.f43389y;
         n nVar = this.d;
         if (eVar != null && this.G > 0) {
-            return Math.max(this.F, nVar.d.f16316a);
+            return Math.max(this.F, nVar.d.f16027a);
         }
-        return nVar.d.f16316a;
+        return nVar.d.f16027a;
     }
 
     public final float d() {
-        e eVar = this.f43647y;
-        n nVar = this.f43640c;
+        e eVar = this.f43389y;
+        n nVar = this.f43382c;
         if (eVar != null && this.G > 0) {
-            return Math.max(this.F, nVar.d.f16316a);
+            return Math.max(this.F, nVar.d.f16027a);
         }
-        return nVar.d.f16316a;
+        return nVar.d.f16027a;
     }
 
     public final int e() {
-        if (this.f43647y != null && this.G > 0) {
+        if (this.f43389y != null && this.G > 0) {
             return Math.max(this.F, Math.max(f(527).d, this.v));
         }
         return Math.max(f(527).d, this.v);
     }
 
     public final i0.b f(int i10) {
-        l1 l1Var = this.f43643r;
+        l1 l1Var = this.f43385r;
         if (l1Var != null) {
-            return l1Var.f43741a.f(i10);
+            return l1Var.f43497a.f(i10);
         }
         return i0.b.e;
     }
 
     public final void g(int i10) {
-        if (this.v == i10 && this.f43644s == 0) {
+        if (this.v == i10 && this.f43386s == 0) {
             return;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f43646x);
-        this.f43645w = Math.max(this.v, i10);
+        AndroidUtilities.cancelRunOnUIThread(this.f43388x);
+        this.f43387w = Math.max(this.v, i10);
         this.v = i10;
-        this.f43644s = 0;
-        j(this.f43643r);
+        this.f43386s = 0;
+        j(this.f43385r);
     }
 
     public final void h(int i10) {
@@ -116,15 +115,15 @@ public class i implements g, f, d {
     public final void i(boolean z10) {
         int i10;
         if (this.v != 0) {
-            h hVar = this.f43646x;
+            h hVar = this.f43388x;
             AndroidUtilities.cancelRunOnUIThread(hVar);
             if (z10) {
                 i10 = 3;
             } else {
                 i10 = 2;
             }
-            this.f43644s = i10;
-            j(this.f43643r);
+            this.f43386s = i10;
+            j(this.f43385r);
             if (z10) {
                 AndroidUtilities.runOnUIThread(hVar, 1000L);
             }
@@ -133,7 +132,7 @@ public class i implements g, f, d {
 
     public final void j(l1 l1Var) {
         boolean z10;
-        if (this.f43643r != null) {
+        if (this.f43385r != null) {
             z10 = true;
         } else {
             z10 = false;
@@ -146,7 +145,7 @@ public class i implements g, f, d {
         int i10;
         l1 b10 = b(l1Var);
         if (b10 != null) {
-            i10 = b10.f43741a.f(8).d;
+            i10 = b10.f43497a.f(8).d;
         } else {
             i10 = 0;
         }
@@ -163,19 +162,19 @@ public class i implements g, f, d {
         ne.e eVar;
         float f10;
         l1 b10 = b(l1Var);
-        this.f43643r = b10;
+        this.f43385r = b10;
         i0.b bVar3 = i0.b.e;
         if (b10 != null) {
-            i1 i1Var = b10.f43741a;
+            i1 i1Var = b10.f43497a;
             bVar = i0.b.a(i1Var.f(647), i1Var.g(647));
         } else {
             bVar = bVar3;
         }
         if (b10 != null) {
-            bVar3 = b10.f43741a.f(8);
+            bVar3 = b10.f43497a.f(8);
         }
-        c cVar = this.f43641f;
-        b bVar4 = cVar.f43632c;
+        c cVar = this.f43383f;
+        b bVar4 = cVar.f43374c;
         if (bVar3.d > 0) {
             z11 = true;
         } else {
@@ -185,17 +184,17 @@ public class i implements g, f, d {
             if (z11) {
                 bVar2 = b.d;
             } else {
-                bVar2 = b.f43627a;
+                bVar2 = b.f43369a;
             }
         } else if (z11) {
-            bVar2 = b.f43629c;
+            bVar2 = b.f43371c;
         } else {
-            bVar2 = b.f43628b;
+            bVar2 = b.f43370b;
         }
         if (bVar4 != bVar2) {
             cVar.a(bVar2, false);
         }
-        int i11 = this.f43644s;
+        int i11 = this.f43386s;
         if (i11 == 2) {
             this.v = 0;
         }
@@ -203,20 +202,20 @@ public class i implements g, f, d {
             this.v = 0;
         }
         i0.b a2 = i0.b.a(bVar3, i0.b.b(0, 0, 0, this.v));
-        int i12 = a2.f10890c;
-        int i13 = a2.f10889b;
-        int i14 = a2.f10888a;
+        int i12 = a2.f10894c;
+        int i13 = a2.f10893b;
+        int i14 = a2.f10892a;
         int i15 = a2.d;
         i0.b a10 = i0.b.a(bVar, a2);
         int i16 = a10.d;
-        int i17 = a10.f10890c;
-        int i18 = a10.f10889b;
-        int i19 = a10.f10888a;
+        int i17 = a10.f10894c;
+        int i18 = a10.f10893b;
+        int i19 = a10.f10892a;
         Runnable runnable = this.h;
-        ne.e eVar2 = this.f43638a;
+        ne.e eVar2 = this.f43380a;
         n nVar = this.d;
-        n nVar2 = this.f43640c;
-        m mVar = this.f43639b;
+        n nVar2 = this.f43382c;
+        m mVar = this.f43381b;
         if (z10) {
             if (i15 > 0) {
                 f7 = 1.0f;
@@ -244,7 +243,7 @@ public class i implements g, f, d {
             } else {
                 f10 = 0.0f;
             }
-            mVar.f16318c = f10;
+            mVar.f16029c = f10;
             nVar2.e(i19, i18, i10, i16);
             nVar.e(i14, i13, i12, i15);
             ne.e eVar3 = eVar;

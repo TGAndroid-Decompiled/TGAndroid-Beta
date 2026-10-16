@@ -75,7 +75,7 @@ public final class e extends InputConnectionWrapper {
                     }
                     Bundle bundle2 = (Bundle) bundle.getParcelable(str7);
                     if (uri != null && clipDescription != null) {
-                        z10 = fVar.j(new j(uri, clipDescription, uri2), i10, bundle2);
+                        z10 = fVar.f(new j(uri, clipDescription, uri2), i10, bundle2);
                     }
                     if (resultReceiver != null) {
                         resultReceiver.send(z10 ? 1 : 0, null);

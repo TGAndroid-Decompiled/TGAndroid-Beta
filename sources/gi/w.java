@@ -4,16 +4,16 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class w implements TextWatcher {
-    public final k0 f10273a;
+    public final k0 f10277a;
 
     public w(k0 k0Var) {
-        this.f10273a = k0Var;
+        this.f10277a = k0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String obj = editable.toString();
-        k0 k0Var = this.f10273a;
+        k0 k0Var = this.f10277a;
         boolean isEmpty = TextUtils.isEmpty(k0Var.R);
         k0Var.R = obj;
         k0Var.F.h(0L, k0Var.e, 0L, 0L, null, false, obj, isEmpty);

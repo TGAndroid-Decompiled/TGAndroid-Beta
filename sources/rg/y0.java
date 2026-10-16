@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.google.android.gms.internal.play_billing.k3;
 import java.util.ArrayList;
-import ji.h5;
+import ji.w4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
@@ -22,7 +22,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.iw0;
-import w7.a6;
+import w7.z5;
 public abstract class y0 extends FrameLayout {
     public float E;
     public float F;
@@ -30,35 +30,35 @@ public abstract class y0 extends FrameLayout {
     public float H;
     public final ArrayList I;
     public final Rect J;
-    public final int f44607a;
-    public final qg.t1 f44608b;
-    public final DispatchQueue f44609c;
+    public final int f44366a;
+    public final qg.t1 f44367b;
+    public final DispatchQueue f44368c;
     public final MediaController.CropState d;
     public final qg.c1 e;
-    public final Bitmap f44610f;
+    public final Bitmap f44369f;
     public final int h;
-    public final boolean f44611n;
-    public final FrameLayout f44612r;
-    public final TextView f44613s;
+    public final boolean f44370n;
+    public final FrameLayout f44371r;
+    public final TextView f44372s;
     public final TextView v;
-    public final y1 f44614w;
-    public iw0 f44615x;
-    public boolean f44616y;
+    public final y1 f44373w;
+    public iw0 f44374x;
+    public boolean f44375y;
 
     public y0(Context context, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, MediaController.CropState cropState) {
         super(context);
-        x1 h5Var = new h5(this, 23);
+        x1 w4Var = new w4(this, 23);
         this.I = new ArrayList();
         this.J = new Rect();
-        this.f44607a = i10;
-        this.f44611n = context instanceof BubbleActivity;
+        this.f44366a = i10;
+        this.f44370n = context instanceof BubbleActivity;
         qg.t1 t1Var = new qg.t1();
-        this.f44608b = t1Var;
-        t1Var.f43585a = new Object();
+        this.f44367b = t1Var;
+        t1Var.f43327a = new Object();
         DispatchQueue dispatchQueue = new DispatchQueue("MaskPaint");
-        this.f44609c = dispatchQueue;
+        this.f44368c = dispatchQueue;
         this.d = cropState;
-        this.f44610f = bitmap;
+        this.f44369f = bitmap;
         this.h = i11;
         qg.q0 q0Var = new qg.q0(getPaintingSize(), bitmap2, i11, null);
         q0Var.G = true;
@@ -70,25 +70,25 @@ public abstract class y0 extends FrameLayout {
         c1Var.setQueue(dispatchQueue);
         c1Var.setVisibility(4);
         c1Var.setBrush(new Object());
-        c1Var.setBrushSize(h5Var.get());
+        c1Var.setBrushSize(w4Var.get());
         c1Var.setColor(-65536);
-        addView(c1Var, a6.e(-1, -1, 51));
+        addView(c1Var, z5.e(-1, -1, 51));
         y1 y1Var = new y1(context);
-        this.f44614w = y1Var;
+        this.f44373w = y1Var;
         y1Var.b(0.05f, 1.0f);
-        y1Var.setBrushWeight(h5Var.get());
+        y1Var.setBrushWeight(w4Var.get());
         y1Var.setRenderView(c1Var);
-        y1Var.setValueOverride(h5Var);
+        y1Var.setValueOverride(w4Var);
         y1Var.setTranslationX(-AndroidUtilities.dp(18.0f));
         y1Var.setAlpha(0.0f);
-        addView(y1Var, a6.d(-1.0f, -1));
+        addView(y1Var, z5.d(-1.0f, -1));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f44612r = frameLayout;
+        this.f44371r = frameLayout;
         frameLayout.setAlpha(0.0f);
         frameLayout.setVisibility(8);
-        addView(frameLayout, a6.e(-1, 44, 80));
+        addView(frameLayout, z5.e(-1, 44, 80));
         TextView textView = new TextView(context);
-        this.f44613s = textView;
+        this.f44372s = textView;
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setBackground(g6.g0(g6.m1(0.15f, -1), 3, -1));
@@ -96,36 +96,36 @@ public abstract class y0 extends FrameLayout {
         textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
         textView.setTextColor(-1);
         textView.setGravity(17);
-        TextView h = org.telegram.ui.Cells.d0.h(frameLayout, textView, a6.a(44.0f, -8.0f, 0.0f, 0.0f, 0.0f, -2, 3), context);
-        this.v = h;
-        k3.m(15.0f, 1, h);
-        int i12 = g6.f20313zf;
-        h.setBackground(g6.g0(g6.m1(0.15f, g6.x0(null, i12, false)), 3, -1));
-        h.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
-        h.setText(LocaleController.getString(R.string.Save).toUpperCase());
-        h.setTextColor(g6.x0(null, i12, false));
-        h.setGravity(17);
-        frameLayout.addView(h, a6.a(44.0f, 0.0f, 0.0f, -8.0f, 0.0f, -2, 5));
+        TextView g10 = org.telegram.ui.Cells.c1.g(frameLayout, textView, z5.a(44.0f, -8.0f, 0.0f, 0.0f, 0.0f, -2, 3), context);
+        this.v = g10;
+        k3.m(15.0f, 1, g10);
+        int i12 = g6.f20013zf;
+        g10.setBackground(g6.g0(g6.m1(0.15f, g6.x0(null, i12, false)), 3, -1));
+        g10.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
+        g10.setText(LocaleController.getString(R.string.Save).toUpperCase());
+        g10.setTextColor(g6.x0(null, i12, false));
+        g10.setGravity(17);
+        frameLayout.addView(g10, z5.a(44.0f, 0.0f, 0.0f, -8.0f, 0.0f, -2, 5));
     }
 
     private iw0 getPaintingSize() {
         float f7;
         float f10;
-        iw0 iw0Var = this.f44615x;
+        iw0 iw0Var = this.f44374x;
         if (iw0Var != null) {
             return iw0Var;
         }
-        Bitmap bitmap = this.f44610f;
+        Bitmap bitmap = this.f44369f;
         iw0 iw0Var2 = new iw0(bitmap.getWidth(), bitmap.getHeight());
         float f11 = 1280;
-        iw0Var2.f26116a = f11;
+        iw0Var2.f25809a = f11;
         float floor = (float) Math.floor((f11 * f10) / f7);
-        iw0Var2.f26117b = floor;
+        iw0Var2.f25810b = floor;
         if (floor > f11) {
-            iw0Var2.f26117b = f11;
-            iw0Var2.f26116a = (float) Math.floor((f11 * f7) / f10);
+            iw0Var2.f25810b = f11;
+            iw0Var2.f25809a = (float) Math.floor((f11 * f7) / f10);
         }
-        this.f44615x = iw0Var2;
+        this.f44374x = iw0Var2;
         return iw0Var2;
     }
 
@@ -138,7 +138,7 @@ public abstract class y0 extends FrameLayout {
         double radians = (float) Math.toRadians(-c1Var.getRotation());
         double d10 = y3;
         float measuredWidth = (c1Var.getMeasuredWidth() / 2.0f) + ((float) ((Math.cos(radians) * d) - (Math.sin(radians) * d10)));
-        float measuredHeight = (c1Var.getMeasuredHeight() / 2.0f) + ((float) org.telegram.messenger.q.a(radians, d10, Math.sin(radians) * d));
+        float measuredHeight = (c1Var.getMeasuredHeight() / 2.0f) + ((float) i2.d.f(radians, d10, Math.sin(radians) * d));
         MotionEvent obtain = MotionEvent.obtain(motionEvent);
         obtain.setLocation(measuredWidth, measuredHeight);
         c1Var.e(obtain);
@@ -199,7 +199,7 @@ public abstract class y0 extends FrameLayout {
         int i10 = 0;
         if (view == this.e && (cropState = this.d) != null) {
             canvas.save();
-            if (!this.f44611n) {
+            if (!this.f44370n) {
                 i10 = AndroidUtilities.statusBarHeight;
             }
             int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10;
@@ -264,14 +264,14 @@ public abstract class y0 extends FrameLayout {
         super.onLayout(z10, i10, i11, i12, i13);
         int i14 = i12 - i10;
         int i15 = i13 - i11;
-        if (!this.f44611n) {
+        if (!this.f44370n) {
             int i16 = AndroidUtilities.REPLACING_TAG_TYPE_LINK;
         }
         qg.c1 c1Var = this.e;
         int ceil = (int) Math.ceil((i14 - c1Var.getMeasuredWidth()) / 2.0f);
         int measuredHeight = (i15 - c1Var.getMeasuredHeight()) / 2;
         c1Var.layout(ceil, measuredHeight, c1Var.getMeasuredWidth() + ceil, c1Var.getMeasuredHeight() + measuredHeight);
-        FrameLayout frameLayout = this.f44612r;
+        FrameLayout frameLayout = this.f44371r;
         frameLayout.layout(0, i15 - frameLayout.getMeasuredHeight(), frameLayout.getMeasuredWidth(), i15);
     }
 
@@ -284,7 +284,7 @@ public abstract class y0 extends FrameLayout {
         int size2 = View.MeasureSpec.getSize(i11);
         setMeasuredDimension(size, size2);
         int i12 = AndroidUtilities.displaySize.y;
-        Bitmap bitmap = this.f44610f;
+        Bitmap bitmap = this.f44369f;
         if (bitmap != null) {
             f10 = bitmap.getWidth();
             f7 = bitmap.getHeight();
@@ -301,8 +301,8 @@ public abstract class y0 extends FrameLayout {
         }
         this.e.measure(View.MeasureSpec.makeMeasureSpec((int) f11, 1073741824), View.MeasureSpec.makeMeasureSpec((int) floor, 1073741824));
         this.H = 1.0f;
-        measureChild(this.f44614w, i10, i11);
-        measureChild(this.f44612r, i10, i11);
+        measureChild(this.f44373w, i10, i11);
+        measureChild(this.f44371r, i10, i11);
         this.G = false;
         if (Build.VERSION.SDK_INT >= 29) {
             ArrayList arrayList = this.I;
@@ -325,10 +325,10 @@ public abstract class y0 extends FrameLayout {
 
     public void setEraser(boolean z10) {
         ?? r22;
-        if (this.f44616y == z10) {
+        if (this.f44375y == z10) {
             return;
         }
-        this.f44616y = z10;
+        this.f44375y = z10;
         if (z10) {
             r22 = new Object();
         } else {

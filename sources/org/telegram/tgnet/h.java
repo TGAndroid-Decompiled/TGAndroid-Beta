@@ -3,24 +3,24 @@ package org.telegram.tgnet;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class h implements Runnable {
-    public final int f19400a;
-    public final int f19401b;
-    public final TLRPC.Updates f19402c;
+    public final int f19100a;
+    public final int f19101b;
+    public final TLRPC.Updates f19102c;
 
     public h(int i10, TLRPC.Updates updates, int i11) {
-        this.f19400a = i11;
-        this.f19401b = i10;
-        this.f19402c = updates;
+        this.f19100a = i11;
+        this.f19101b = i10;
+        this.f19102c = updates;
     }
 
     @Override
     public final void run() {
-        switch (this.f19400a) {
+        switch (this.f19100a) {
             case 0:
-                ConnectionsManager.lambda$onUnparsedMessageReceived$12(this.f19401b, this.f19402c);
+                ConnectionsManager.lambda$onUnparsedMessageReceived$12(this.f19101b, this.f19102c);
                 return;
             default:
-                MessagesController.getInstance(this.f19401b).lambda$processUpdates$377(this.f19402c, false);
+                MessagesController.getInstance(this.f19101b).lambda$processUpdates$377(this.f19102c, false);
                 return;
         }
     }

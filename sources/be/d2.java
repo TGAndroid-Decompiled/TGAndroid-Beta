@@ -1,9 +1,9 @@
 package be;
 public abstract class d2 {
-    public static final ThreadLocal f2657a = new ThreadLocal();
+    public static final ThreadLocal f2661a = new ThreadLocal();
 
     public static x0 a() {
-        ThreadLocal threadLocal = f2657a;
+        ThreadLocal threadLocal = f2661a;
         x0 x0Var = (x0) threadLocal.get();
         if (x0Var == null) {
             i iVar = new i(Thread.currentThread());

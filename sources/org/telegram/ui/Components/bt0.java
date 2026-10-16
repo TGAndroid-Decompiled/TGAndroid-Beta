@@ -18,15 +18,15 @@ public final class bt0 extends org.telegram.ui.fo {
         xv0 xv0Var = this.Sc;
         iv0 iv0Var = xv0Var.S;
         if (this.Qc) {
-            if (this.f35983j0 != null) {
+            if (this.f35684j0 != null) {
                 qa("");
-                this.f35983j0.H(iv0Var.f26113w, false);
+                this.f35684j0.H(iv0Var.f25806w, false);
             }
-            org.telegram.ui.dl dlVar = this.f36047o1;
+            org.telegram.ui.dl dlVar = this.f35748o1;
             if (dlVar != null) {
-                dlVar.e(iv0Var.f26114x, false);
+                dlVar.e(iv0Var.f25807x, false);
             }
-            xv0Var.f31388v1.getMediaDataController().portSavedSearchResults(getClassGuid(), iv0Var.f26114x, iv0Var.f26113w, iv0Var.f26110n, iv0Var.h, this.Rc, iv0Var.v, iv0Var.f26112s);
+            xv0Var.f31069v1.getMediaDataController().portSavedSearchResults(getClassGuid(), iv0Var.f25807x, iv0Var.f25806w, iv0Var.f25803n, iv0Var.h, this.Rc, iv0Var.v, iv0Var.f25805s);
             this.Qc = false;
         }
         super.onTransitionAnimationStart(z10, z11);

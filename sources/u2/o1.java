@@ -9,8 +9,8 @@ public final class o1 implements d1 {
     }
 
     @Override
-    public final void d() {
-        this.f46012a.d();
+    public final void b() {
+        this.f46012a.b();
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class o1 implements d1 {
     }
 
     @Override
-    public final int m(long j10) {
-        return this.f46012a.m(j10 - this.f46013b);
+    public final int j(long j10) {
+        return this.f46012a.j(j10 - this.f46013b);
     }
 }

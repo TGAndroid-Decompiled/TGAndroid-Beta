@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class q9 {
-    public Class f28553a;
-    public int f28554b;
-    public TLRPC.Chat f28555c;
+    public Class f28242a;
+    public int f28243b;
+    public TLRPC.Chat f28244c;
     public TLRPC.User d;
     public TLRPC.TL_forumTopic e;
-    public long f28556f;
-    public int f28557g;
+    public long f28245f;
+    public int f28246g;
     public int h;
 }

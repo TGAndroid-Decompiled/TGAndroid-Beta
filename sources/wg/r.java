@@ -18,44 +18,44 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Components.aa0;
 import org.telegram.ui.Components.da0;
 import org.telegram.ui.Components.es;
-import org.telegram.ui.jg0;
+import org.telegram.ui.ig0;
 import sg.w1;
-import w7.a6;
+import w7.z5;
 public final class r extends FrameLayout {
-    public final jg0 f47602a;
-    public final o f47603b;
-    public final TextView f47604c;
+    public final ig0 f47601a;
+    public final o f47602b;
+    public final TextView f47603c;
     public final da0 d;
     public final c6 e;
-    public final aa0 f47605f;
+    public final aa0 f47604f;
     public final Paint[] h;
-    public ValueAnimator f47606n;
+    public ValueAnimator f47605n;
 
     public r(Context context, c6 c6Var) {
         super(context);
         this.e = c6Var;
-        LinearLayout e = yh.e(context, 1);
-        jg0 jg0Var = new jg0(context, 1, 0, 3);
-        this.f47602a = jg0Var;
+        LinearLayout e = sk.e(context, 1);
+        ig0 ig0Var = new ig0(context, 1, 0, 3);
+        this.f47601a = ig0Var;
         Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         int i10 = g6.Mj;
-        canvas.drawColor(i0.a.d(0.5f, g6.w0(i10, c6Var), g6.w0(g6.f19972h5, c6Var)));
-        jg0Var.setBackgroundBitmap(createBitmap);
-        tg.g gVar = jg0Var.f45740b;
+        canvas.drawColor(i0.a.d(0.5f, g6.w0(i10, c6Var), g6.w0(g6.f19672h5, c6Var)));
+        ig0Var.setBackgroundBitmap(createBitmap);
+        tg.g gVar = ig0Var.f45740b;
         gVar.f45724z = i10;
         gVar.A = g6.Lj;
         gVar.b();
-        e.addView(jg0Var, a6.q(160, 160, 1));
+        e.addView(ig0Var, z5.q(160, 160, 1));
         o oVar = new o(this, context);
-        this.f47603b = oVar;
+        this.f47602b = oVar;
         this.h = new Paint[20];
         a(0.0f);
         w1 w1Var = oVar.f45428a;
@@ -65,16 +65,16 @@ public final class r extends FrameLayout {
         w1Var.H = true;
         w1Var.f45407l = new w7(this, 4);
         w1Var.c();
-        jg0Var.setStarParticlesView(oVar);
+        ig0Var.setStarParticlesView(oVar);
         TextView textView = new TextView(context);
-        this.f47604c = textView;
-        yh.k(22.0f, 1, textView);
+        this.f47603c = textView;
+        sk.k(22.0f, 1, textView);
         int i11 = g6.G6;
         textView.setTextColor(g6.w0(i11, c6Var));
         textView.setGravity(1);
-        e.addView(textView, a6.t(-2, -2, 1, 24, -8, 24, 0));
+        e.addView(textView, z5.t(-2, -2, 1, 24, -8, 24, 0));
         aa0 aa0Var = new aa0(this);
-        this.f47605f = aa0Var;
+        this.f47604f = aa0Var;
         da0 da0Var = new da0(context, aa0Var, c6Var);
         this.d = da0Var;
         da0Var.setTextSize(1, 15.0f);
@@ -83,9 +83,9 @@ public final class r extends FrameLayout {
         da0Var.setMovementMethod(LinkMovementMethod.getInstance());
         da0Var.setLinkTextColor(g6.w0(g6.J6, c6Var));
         da0Var.setImportantForAccessibility(2);
-        e.addView(da0Var, a6.a(-2.0f, 24.0f, 8.0f, 24.0f, 18.0f, -1, 17));
+        e.addView(da0Var, z5.a(-2.0f, 24.0f, 8.0f, 24.0f, 18.0f, -1, 17));
         setClipChildren(false);
-        addView(oVar, a6.e(-1, 234, 48));
+        addView(oVar, z5.e(-1, 234, 48));
         addView(e);
         setWillNotDraw(false);
     }
@@ -113,7 +113,7 @@ public final class r extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        aa0 aa0Var = this.f47605f;
+        aa0 aa0Var = this.f47604f;
         if (aa0Var != null) {
             canvas.save();
             da0 da0Var = this.d;
@@ -128,9 +128,9 @@ public final class r extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        jg0 jg0Var = this.f47602a;
-        float measuredHeight = (jg0Var.getMeasuredHeight() / 2.0f) + jg0Var.getTop();
-        o oVar = this.f47603b;
+        ig0 ig0Var = this.f47601a;
+        float measuredHeight = (ig0Var.getMeasuredHeight() / 2.0f) + ig0Var.getTop();
+        o oVar = this.f47602b;
         oVar.setTranslationY(measuredHeight - (oVar.getMeasuredHeight() / 2.0f));
     }
 
@@ -141,10 +141,10 @@ public final class r extends FrameLayout {
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
         marginLayoutParams.topMargin = -AndroidUtilities.dp(6.0f);
         setLayoutParams(marginLayoutParams);
-        int i11 = g6.f19843a7;
+        int i11 = g6.f19543a7;
         c6 c6Var = this.e;
         setBackgroundColor(g6.w0(i11, c6Var));
-        this.f47604c.setText(LocaleController.formatString("BoostingBoostsViaGifts", R.string.BoostingBoostsViaGifts, new Object[0]));
+        this.f47603c.setText(LocaleController.formatString("BoostingBoostsViaGifts", R.string.BoostingBoostsViaGifts, new Object[0]));
         if (ChatObject.isChannelAndNotMegaGroup(chat)) {
             i10 = R.string.BoostingGetMoreBoost2;
         } else {
@@ -153,33 +153,33 @@ public final class r extends FrameLayout {
         String formatString = LocaleController.formatString(i10, new Object[0]);
         da0 da0Var = this.d;
         da0Var.setText(formatString);
-        da0Var.setTextColor(g6.w0(g6.f20157r5, c6Var));
+        da0Var.setTextColor(g6.w0(g6.f19857r5, c6Var));
     }
 
     public void setPaused(boolean z10) {
-        this.f47602a.setPaused(z10);
-        this.f47603b.setPaused(z10);
+        this.f47601a.setPaused(z10);
+        this.f47602b.setPaused(z10);
     }
 
     public void setStars(final boolean z10) {
         final float f7;
-        ValueAnimator valueAnimator = this.f47606n;
+        ValueAnimator valueAnimator = this.f47605n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        jg0 jg0Var = this.f47602a;
-        final float f10 = jg0Var.f45740b.f45711l;
+        ig0 ig0Var = this.f47601a;
+        final float f10 = ig0Var.f45740b.f45711l;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        this.f47606n = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f47605n = ValueAnimator.ofFloat(0.0f, 1.0f);
         final float[] fArr = {0.0f};
-        AndroidUtilities.cancelRunOnUIThread(jg0Var.f45741b0);
-        jg0Var.d();
-        jg0Var.l();
-        this.f47606n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        AndroidUtilities.cancelRunOnUIThread(ig0Var.f45741b0);
+        ig0Var.d();
+        ig0Var.l();
+        this.f47605n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 int i10;
@@ -191,8 +191,8 @@ public final class r extends FrameLayout {
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 float f13 = floatValue - fArr2[0];
                 fArr2[0] = floatValue;
-                rVar.f47602a.f45740b.f45711l = AndroidUtilities.lerp(f11, f12, floatValue);
-                tg.g gVar = rVar.f47602a.f45740b;
+                rVar.f47601a.f45740b.f45711l = AndroidUtilities.lerp(f11, f12, floatValue);
+                tg.g gVar = rVar.f47601a.f45740b;
                 float f14 = gVar.f45706f;
                 float f15 = f13 * 360.0f;
                 if (z11) {
@@ -201,13 +201,13 @@ public final class r extends FrameLayout {
                     i10 = -1;
                 }
                 gVar.f45706f = (f15 * i10) + f14;
-                rVar.f47602a.f45740b.b();
-                rVar.a(rVar.f47602a.f45740b.f45711l);
+                rVar.f47601a.f45740b.b();
+                rVar.a(rVar.f47601a.f45740b.f45711l);
             }
         });
-        this.f47606n.addListener(new q(this, fArr, f10, f7, z10));
-        this.f47606n.setDuration(680L);
-        this.f47606n.setInterpolator(es.h);
-        this.f47606n.start();
+        this.f47605n.addListener(new q(this, fArr, f10, f7, z10));
+        this.f47605n.setDuration(680L);
+        this.f47605n.setInterpolator(es.h);
+        this.f47605n.start();
     }
 }

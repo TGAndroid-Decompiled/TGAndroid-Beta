@@ -5,17 +5,17 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 public final class ce0 extends TextView {
-    public final de0 f24066a;
+    public final de0 f23720a;
 
     public ce0(de0 de0Var, Context context, int i10) {
         super(context);
-        this.f24066a = de0Var;
+        this.f23720a = de0Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        de0 de0Var = this.f24066a;
+        de0 de0Var = this.f23720a;
         if (de0Var.e.getAdapter() instanceof be0) {
             ((be0) de0Var.e.getAdapter()).getClass();
         }
@@ -27,7 +27,7 @@ public final class ce0 extends TextView {
         float f10;
         super.setSelected(z10);
         Drawable background = getBackground();
-        de0 de0Var = this.f24066a;
+        de0 de0Var = this.f23720a;
         if (background != null) {
             if (z10) {
                 f10 = 0.1f;

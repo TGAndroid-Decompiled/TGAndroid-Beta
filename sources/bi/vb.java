@@ -12,7 +12,7 @@ public final class vb extends rg.u0 {
 
     @Override
     public final void invalidate() {
-        View view = this.Q.f3938c;
+        View view = this.Q.f3942c;
         if (view != null) {
             view.invalidate();
         }

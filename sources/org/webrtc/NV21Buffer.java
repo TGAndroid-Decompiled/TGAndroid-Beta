@@ -26,7 +26,7 @@ public class NV21Buffer implements VideoFrame.Buffer {
 
     @Override
     public final int getBufferType() {
-        return b0.a(this);
+        return a0.a(this);
     }
 
     @Override

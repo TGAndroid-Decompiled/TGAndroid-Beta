@@ -2,9 +2,9 @@ package l;
 
 import android.view.View;
 import androidx.appcompat.view.menu.ActionMenuItemView;
-import m.u1;
-public final class b extends u1 {
-    public final int f14379s = 0;
+import m.w1;
+public final class b extends w1 {
+    public final int f14381s = 0;
     public final View v;
 
     public b(ActionMenuItemView actionMenuItemView) {
@@ -15,10 +15,10 @@ public final class b extends u1 {
     @Override
     public final b0 b() {
         m.d dVar;
-        switch (this.f14379s) {
+        switch (this.f14381s) {
             case 0:
-                c cVar = ((ActionMenuItemView) this.v).f1096x;
-                if (cVar != null && (dVar = ((m.e) cVar).f15096a.J) != null) {
+                c cVar = ((ActionMenuItemView) this.v).f1100x;
+                if (cVar != null && (dVar = ((m.e) cVar).f14822a.J) != null) {
                     return dVar.a();
                 }
                 return null;
@@ -34,11 +34,11 @@ public final class b extends u1 {
     @Override
     public final boolean c() {
         b0 b10;
-        switch (this.f14379s) {
+        switch (this.f14381s) {
             case 0:
                 ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.v;
                 j jVar = actionMenuItemView.v;
-                if (jVar != null && jVar.a(actionMenuItemView.f1092n) && (b10 = b()) != null && b10.a()) {
+                if (jVar != null && jVar.a(actionMenuItemView.f1096n) && (b10 = b()) != null && b10.a()) {
                     return true;
                 }
                 return false;
@@ -50,13 +50,13 @@ public final class b extends u1 {
 
     @Override
     public boolean d() {
-        switch (this.f14379s) {
+        switch (this.f14381s) {
             case 1:
-                m.h hVar = ((m.g) this.v).d;
-                if (hVar.K != null) {
+                m.i iVar = ((m.g) this.v).d;
+                if (iVar.K != null) {
                     return false;
                 }
-                hVar.f();
+                iVar.f();
                 return true;
             default:
                 return super.d();

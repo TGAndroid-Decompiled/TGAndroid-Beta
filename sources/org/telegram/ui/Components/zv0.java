@@ -9,12 +9,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.R;
 public final class zv0 extends lm0 {
-    public final Context f31996c;
+    public final Context f31698c;
     public final bw0 d;
 
     public zv0(bw0 bw0Var, Context context) {
         this.d = bw0Var;
-        this.f31996c = context;
+        this.f31698c = context;
     }
 
     @Override
@@ -56,7 +56,7 @@ public final class zv0 extends lm0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         FrameLayout w7Var;
         org.telegram.ui.ActionBar.c6 c6Var;
-        Context context = this.f31996c;
+        Context context = this.f31698c;
         bw0 bw0Var = this.d;
         if (i10 == 0) {
             c6Var = ((org.telegram.ui.ActionBar.e3) bw0Var).resourcesProvider;
@@ -70,7 +70,7 @@ public final class zv0 extends lm0 {
             bw0Var.e.setTextSize(1, 14.0f);
             bw0Var.e.setGravity(17);
             bw0Var.e.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
-            w7Var.addView(bw0Var.e, w7.a6.d(40.0f, -1));
+            w7Var.addView(bw0Var.e, w7.z5.d(40.0f, -1));
         }
         return new s4.b1(w7Var);
     }

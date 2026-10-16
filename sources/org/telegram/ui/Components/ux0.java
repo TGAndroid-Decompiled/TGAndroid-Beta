@@ -20,34 +20,34 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public abstract class ux0 extends mm0 {
-    public static final sx0 f29795v3 = new CacheFetcher();
-    public static final tx0 f29796w3 = new CacheFetcher();
+    public static final sx0 f29463v3 = new CacheFetcher();
+    public static final tx0 f29464w3 = new CacheFetcher();
     public float V2;
     public qx0[] W2;
     public final lx0 X2;
     public final g6 Y2;
     public Drawable Z2;
-    public Drawable f29797a3;
-    public Paint f29798b3;
-    public final Paint f29799c3;
-    public int f29800d3;
-    public int f29801e3;
-    public Utilities.Callback f29802f3;
-    public Utilities.Callback f29803g3;
-    public boolean f29804h3;
-    public boolean f29805i3;
-    public di.ab f29806j3;
-    public int f29807k3;
-    public Utilities.Callback f29808l3;
-    public float f29809m3;
-    public ValueAnimator f29810n3;
-    public boolean f29811o3;
-    public final g6 f29812p3;
-    public final g6 f29813q3;
-    public final RectF f29814r3;
-    public final RectF f29815s3;
-    public final RectF f29816t3;
-    public boolean f29817u3;
+    public Drawable f29465a3;
+    public Paint f29466b3;
+    public final Paint f29467c3;
+    public int f29468d3;
+    public int f29469e3;
+    public Utilities.Callback f29470f3;
+    public Utilities.Callback f29471g3;
+    public boolean f29472h3;
+    public boolean f29473i3;
+    public di.ab f29474j3;
+    public int f29475k3;
+    public Utilities.Callback f29476l3;
+    public float f29477m3;
+    public ValueAnimator f29478n3;
+    public boolean f29479o3;
+    public final g6 f29480p3;
+    public final g6 f29481q3;
+    public final RectF f29482r3;
+    public final RectF f29483s3;
+    public final RectF f29484t3;
+    public boolean f29485u3;
 
     static {
         new HashSet();
@@ -60,15 +60,15 @@ public abstract class ux0 extends mm0 {
         es esVar = es.h;
         this.Y2 = new g6(this, 360L, esVar);
         Paint paint = new Paint(1);
-        this.f29799c3 = paint;
-        this.f29807k3 = -1;
-        this.f29809m3 = 0.0f;
-        this.f29811o3 = true;
-        this.f29812p3 = new g6(this, 350L, esVar);
-        this.f29813q3 = new g6(this, 350L, esVar);
-        this.f29814r3 = new RectF();
-        this.f29815s3 = new RectF();
-        this.f29816t3 = new RectF();
+        this.f29467c3 = paint;
+        this.f29475k3 = -1;
+        this.f29477m3 = 0.0f;
+        this.f29479o3 = true;
+        this.f29480p3 = new g6(this, 350L, esVar);
+        this.f29481q3 = new g6(this, 350L, esVar);
+        this.f29482r3 = new RectF();
+        this.f29483s3 = new RectF();
+        this.f29484t3 = new RectF();
         setPadding(0, 0, AndroidUtilities.dp(2.0f), 0);
         lx0 lx0Var = new lx0(this);
         this.X2 = lx0Var;
@@ -78,13 +78,13 @@ public abstract class ux0 extends mm0 {
         b0Var.j1(0);
         setSelectorRadius(AndroidUtilities.dp(15.0f));
         setSelectorType(1);
-        int i11 = org.telegram.ui.ActionBar.g6.f19990i6;
-        setSelectorDrawableColor(org.telegram.ui.ActionBar.g6.w0(i11, this.f27439n2));
-        paint.setColor(org.telegram.ui.ActionBar.g6.w0(i11, this.f27439n2));
+        int i11 = org.telegram.ui.ActionBar.g6.f19690i6;
+        setSelectorDrawableColor(org.telegram.ui.ActionBar.g6.w0(i11, this.f27148n2));
+        paint.setColor(org.telegram.ui.ActionBar.g6.w0(i11, this.f27148n2));
         setWillNotDraw(false);
         setOnItemClickListener(new j(this, 15));
         long currentTimeMillis = System.currentTimeMillis();
-        f29795v3.fetch(UserConfig.selectedAccount, Integer.valueOf(i10), new di.o9(this, currentTimeMillis, 2));
+        f29463v3.fetch(UserConfig.selectedAccount, Integer.valueOf(i10), new di.o9(this, currentTimeMillis, 2));
     }
 
     public static void A1(RectF rectF, View view) {
@@ -94,7 +94,7 @@ public abstract class ux0 extends mm0 {
         float width = (view.getWidth() / 2.0f) - AndroidUtilities.dp(1.0f);
         if (view instanceof px0) {
             px0 px0Var = (px0) view;
-            f7 = com.google.android.gms.internal.play_billing.k3.y(1.0f, px0Var.E, 0.15f, 0.85f) * px0Var.f28445y;
+            f7 = com.google.android.gms.internal.play_billing.k3.y(1.0f, px0Var.E, 0.15f, 0.85f) * px0Var.f28131y;
         }
         float f10 = width * f7;
         rectF.set(left - f10, top - f10, left + f10, top + f10);
@@ -106,13 +106,13 @@ public abstract class ux0 extends mm0 {
         }
         View childAt = getChildAt(0);
         if (childAt instanceof px0) {
-            return Math.max(0, getHeight() * (RecyclerView.R(childAt) - 1)) + this.f29800d3 + (-childAt.getLeft());
+            return Math.max(0, getHeight() * (RecyclerView.R(childAt) - 1)) + this.f29468d3 + (-childAt.getLeft());
         }
         return -childAt.getLeft();
     }
 
     public void setCategoriesShownT(float f7) {
-        this.f29809m3 = f7;
+        this.f29477m3 = f7;
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             View childAt = getChildAt(i10);
             if (childAt instanceof px0) {
@@ -135,20 +135,20 @@ public abstract class ux0 extends mm0 {
             qx0[] qx0VarArr = ux0Var.W2;
             TLRPC.EmojiGroup emojiGroup = tL_messages_emojiGroups.groups.get(i10);
             ?? obj = new Object();
-            obj.f28691c = emojiGroup.icon_emoji_id;
+            obj.f28377c = emojiGroup.icon_emoji_id;
             if (emojiGroup instanceof TLRPC.TL_emojiGroupPremium) {
-                obj.f28689a = "premium";
+                obj.f28375a = "premium";
             } else {
-                obj.f28689a = TextUtils.concat((CharSequence[]) emojiGroup.emoticons.toArray(new String[0])).toString();
+                obj.f28375a = TextUtils.concat((CharSequence[]) emojiGroup.emoticons.toArray(new String[0])).toString();
             }
-            obj.f28690b = emojiGroup instanceof TLRPC.TL_emojiGroupGreeting;
+            obj.f28376b = emojiGroup instanceof TLRPC.TL_emojiGroupGreeting;
             obj.d = emojiGroup.title;
             qx0VarArr[i10] = obj;
         }
         ux0Var.W2 = ux0Var.C1(ux0Var.W2);
         ux0Var.X2.l();
         ux0Var.setCategoriesShownT(0.0f);
-        boolean z11 = ux0Var.f29811o3;
+        boolean z11 = ux0Var.f29479o3;
         if (System.currentTimeMillis() - j10 > 16) {
             z10 = true;
         }
@@ -162,9 +162,9 @@ public abstract class ux0 extends mm0 {
     public abstract boolean B1();
 
     public final void D1() {
-        int dp = (AndroidUtilities.dp(34.0f) * this.f29807k3) + ((-getScrollToStartWidth()) - Math.max(0, this.f29801e3));
+        int dp = (AndroidUtilities.dp(34.0f) * this.f29475k3) + ((-getScrollToStartWidth()) - Math.max(0, this.f29469e3));
         scrollBy(dp, 0);
-        post(new o8((di.j2) this, dp, 12));
+        post(new o8((di.j2) this, dp, 11));
     }
 
     public final void E1() {
@@ -173,16 +173,16 @@ public abstract class ux0 extends mm0 {
 
     public void F1(int i10) {
         boolean z10;
-        if (this.f29807k3 < 0 && i10 >= 0) {
-            this.f29813q3.d(i10, true);
+        if (this.f29475k3 < 0 && i10 >= 0) {
+            this.f29481q3.d(i10, true);
         }
-        this.f29807k3 = i10;
+        this.f29475k3 = i10;
         for (int i11 = 0; i11 < getChildCount(); i11++) {
             View childAt = getChildAt(i11);
             if (childAt instanceof px0) {
                 int R = RecyclerView.R(childAt);
                 px0 px0Var = (px0) childAt;
-                if (this.f29807k3 == R - 1) {
+                if (this.f29475k3 == R - 1) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -215,31 +215,31 @@ public abstract class ux0 extends mm0 {
 
     public final void H1(boolean z10, boolean z11) {
         int length;
-        this.f29811o3 = z10;
+        this.f29479o3 = z10;
         ?? r52 = z10;
         if (this.W2 == null) {
             r52 = 0;
         }
-        if (this.f29809m3 == ((float) r52)) {
+        if (this.f29477m3 == ((float) r52)) {
             return;
         }
-        ValueAnimator valueAnimator = this.f29810n3;
+        ValueAnimator valueAnimator = this.f29478n3;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f29810n3 = null;
+            this.f29478n3 = null;
         }
         float f7 = 0.0f;
         if (z11) {
-            float f10 = this.f29809m3;
+            float f10 = this.f29477m3;
             if (r52 != 0) {
                 f7 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f29810n3 = ofFloat;
-            ofFloat.addUpdateListener(new g80(this, 24));
-            this.f29810n3.addListener(new k90(this, 20));
-            this.f29810n3.setInterpolator(es.h);
-            ValueAnimator valueAnimator2 = this.f29810n3;
+            this.f29478n3 = ofFloat;
+            ofFloat.addUpdateListener(new f80(this, 24));
+            this.f29478n3.addListener(new k90(this, 20));
+            this.f29478n3.setInterpolator(es.h);
+            ValueAnimator valueAnimator2 = this.f29478n3;
             qx0[] qx0VarArr = this.W2;
             if (qx0VarArr == null) {
                 length = 5;
@@ -247,7 +247,7 @@ public abstract class ux0 extends mm0 {
                 length = qx0VarArr.length;
             }
             valueAnimator2.setDuration(length * 120);
-            this.f29810n3.start();
+            this.f29478n3.start();
             return;
         }
         if (r52 != 0) {
@@ -273,13 +273,13 @@ public abstract class ux0 extends mm0 {
     }
 
     public int getCategoryIndex() {
-        return this.f29807k3;
+        return this.f29475k3;
     }
 
     public qx0 getSelectedCategory() {
         int i10;
         qx0[] qx0VarArr = this.W2;
-        if (qx0VarArr != null && (i10 = this.f29807k3) >= 0 && i10 < qx0VarArr.length) {
+        if (qx0VarArr != null && (i10 = this.f29475k3) >= 0 && i10 < qx0VarArr.length) {
             return qx0VarArr[i10];
         }
         return null;
@@ -297,7 +297,7 @@ public abstract class ux0 extends mm0 {
             if (childAt instanceof px0) {
                 z10 = true;
             } else {
-                if (childAt.getRight() > this.f29801e3) {
+                if (childAt.getRight() > this.f29469e3) {
                     z11 = false;
                 }
                 z10 = false;
@@ -306,23 +306,23 @@ public abstract class ux0 extends mm0 {
             z10 = false;
             z11 = false;
         }
-        boolean z12 = this.f29804h3;
+        boolean z12 = this.f29472h3;
         if (z12 != z11) {
-            this.f29804h3 = z11;
-            Utilities.Callback callback2 = this.f29802f3;
+            this.f29472h3 = z11;
+            Utilities.Callback callback2 = this.f29470f3;
             if (callback2 != null) {
                 if (z11) {
-                    i12 = Math.max(0, getScrollToStartWidth() - (this.f29800d3 - this.f29801e3));
+                    i12 = Math.max(0, getScrollToStartWidth() - (this.f29468d3 - this.f29469e3));
                 }
                 callback2.run(Integer.valueOf(i12));
             }
             invalidate();
-        } else if (z12 && (callback = this.f29802f3) != null) {
-            callback.run(Integer.valueOf(Math.max(0, getScrollToStartWidth() - (this.f29800d3 - this.f29801e3))));
+        } else if (z12 && (callback = this.f29470f3) != null) {
+            callback.run(Integer.valueOf(Math.max(0, getScrollToStartWidth() - (this.f29468d3 - this.f29469e3))));
         }
-        if (this.f29805i3 != z10) {
-            this.f29805i3 = z10;
-            Utilities.Callback callback3 = this.f29803g3;
+        if (this.f29473i3 != z10) {
+            this.f29473i3 = z10;
+            Utilities.Callback callback3 = this.f29471g3;
             if (callback3 != null) {
                 callback3.run(Boolean.valueOf(z10));
             }
@@ -333,13 +333,13 @@ public abstract class ux0 extends mm0 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        H1(this.f29811o3, false);
+        H1(this.f29479o3, false);
     }
 
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        di.ab abVar = this.f29806j3;
+        di.ab abVar = this.f29474j3;
         if (abVar != null) {
             abVar.requestLayout();
         }
@@ -347,33 +347,33 @@ public abstract class ux0 extends mm0 {
 
     @Override
     public void setBackgroundColor(int i10) {
-        if (this.f29798b3 == null) {
-            this.f29798b3 = new Paint(1);
+        if (this.f29466b3 == null) {
+            this.f29466b3 = new Paint(1);
         }
-        this.f29798b3.setColor(i10);
+        this.f29466b3.setColor(i10);
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.gradient_right).mutate();
         this.Z2 = mutate;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         mutate.setColorFilter(new PorterDuffColorFilter(i10, mode));
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.gradient_left).mutate();
-        this.f29797a3 = mutate2;
+        this.f29465a3 = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(i10, mode));
     }
 
     public void setDontOccupyWidth(int i10) {
-        this.f29801e3 = i10;
+        this.f29469e3 = i10;
     }
 
     public void setOnCategoryClick(Utilities.Callback<qx0> callback) {
-        this.f29808l3 = callback;
+        this.f29476l3 = callback;
     }
 
     public void setOnScrollFully(Utilities.Callback<Boolean> callback) {
-        this.f29803g3 = callback;
+        this.f29471g3 = callback;
     }
 
     public void setOnScrollIntoOccupiedWidth(Utilities.Callback<Integer> callback) {
-        this.f29802f3 = callback;
+        this.f29470f3 = callback;
     }
 
     public void setShownButtonsAtStart(float f7) {

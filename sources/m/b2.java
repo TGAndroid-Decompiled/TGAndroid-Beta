@@ -1,25 +1,13 @@
 package m;
 
-import android.widget.AbsListView;
-public final class b2 implements AbsListView.OnScrollListener {
-    public final d2 f15067a;
-
-    public b2(d2 d2Var) {
-        this.f15067a = d2Var;
+import android.graphics.Rect;
+import android.widget.PopupWindow;
+public abstract class b2 {
+    public static void a(PopupWindow popupWindow, Rect rect) {
+        popupWindow.setEpicenterBounds(rect);
     }
 
-    @Override
-    public final void onScrollStateChanged(AbsListView absListView, int i10) {
-        d2 d2Var = this.f15067a;
-        a2 a2Var = d2Var.G;
-        x xVar = d2Var.O;
-        if (i10 == 1 && xVar.getInputMethodMode() != 2 && xVar.getContentView() != null) {
-            d2Var.K.removeCallbacks(a2Var);
-            a2Var.run();
-        }
-    }
-
-    @Override
-    public final void onScroll(AbsListView absListView, int i10, int i11, int i12) {
+    public static void b(PopupWindow popupWindow, boolean z10) {
+        popupWindow.setIsClippedToScreen(z10);
     }
 }

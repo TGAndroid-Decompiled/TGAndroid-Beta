@@ -1,10 +1,10 @@
 package h9;
 
+import a4.l;
 import d9.b;
 import d9.c;
 import d9.e;
 import d9.i;
-import d9.l;
 import e9.d0;
 import e9.g0;
 import e9.h0;
@@ -28,17 +28,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import k6.h;
 import v7.s6;
 public final class a {
-    public static final o0 f10389f;
-    public static final d9.a f10390g;
+    public static final o0 f10393f;
+    public static final d9.a f10394g;
     public static final HashMap h;
-    public static final a f10391i;
-    public static final h f10392j;
-    public final String f10393a;
-    public final String f10394b;
-    public final o0 f10395c;
+    public static final a f10395i;
+    public static final l f10396j;
+    public final String f10397a;
+    public final String f10398b;
+    public final o0 f10399c;
     public String d;
     public int e;
 
@@ -49,7 +48,7 @@ public final class a {
         x a2 = x.a();
         h0 h0Var = (h0) a2.get("charset");
         if (h0Var == null) {
-            l0 l0Var = n0.f8592b;
+            l0 l0Var = n0.f8595b;
             s.f(4, "expectedSize");
             h0Var = new g0(4);
             a2.put("charset", h0Var);
@@ -60,7 +59,7 @@ public final class a {
             o0Var = d0.h;
         } else {
             u uVar = (u) entrySet;
-            a5.a aVar = new a5.a(uVar.f8626b.size(), 5);
+            a5.a aVar = new a5.a(uVar.f8629b.size(), 5);
             Iterator it = uVar.iterator();
             int i10 = 0;
             while (it.hasNext()) {
@@ -72,13 +71,13 @@ public final class a {
             }
             o0Var = new o0(aVar.e(true), i10);
         }
-        f10389f = o0Var;
+        f10393f = o0Var;
         b bVar = b.d;
         b bVar2 = b.e;
         bVar2.getClass();
         c cVar = new c(bVar2);
         bVar.getClass();
-        f10390g = new d9.a(new d9.a(new d9.a(bVar, cVar), new e(' ', 1)), i.b("()<>@,;:\\\"/[]?=").d());
+        f10394g = new d9.a(new d9.a(new d9.a(bVar, cVar), new e(' ', 1)), i.b("()<>@,;:\\\"/[]?=").d());
         i.b("\"\\\r").d().getClass();
         i.b(" \t\r\n");
         h = new HashMap();
@@ -152,7 +151,7 @@ public final class a {
         b("application", "javascript");
         a("application", "jose");
         a("application", "jose+json");
-        f10391i = b("application", "json");
+        f10395i = b("application", "json");
         a("application", "jwt");
         b("application", "manifest+json");
         a("application", "vnd.google-earth.kml+xml");
@@ -198,13 +197,13 @@ public final class a {
         a("font", "ttf");
         a("font", "woff");
         a("font", "woff2");
-        f10392j = new h(new l("; "), 17);
+        f10396j = new l(new d9.l("; "), 16);
     }
 
     public a(String str, String str2, o0 o0Var) {
-        this.f10393a = str;
-        this.f10394b = str2;
-        this.f10395c = o0Var;
+        this.f10397a = str;
+        this.f10398b = str2;
+        this.f10399c = o0Var;
     }
 
     public static void a(String str, String str2) {
@@ -213,21 +212,21 @@ public final class a {
     }
 
     public static a b(String str, String str2) {
-        a aVar = new a(str, str2, f10389f);
+        a aVar = new a(str, str2, f10393f);
         h.put(aVar, aVar);
         StandardCharsets.UTF_8.getClass();
         return aVar;
     }
 
     public final m1 c() {
-        return new m1(this.f10395c.b(), new h(new c2(13), 20));
+        return new m1(this.f10399c.b(), new l(new c2(13), 19));
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (this.f10393a.equals(aVar.f10393a) && this.f10394b.equals(aVar.f10394b) && c().equals(aVar.c())) {
+                if (this.f10397a.equals(aVar.f10397a) && this.f10398b.equals(aVar.f10398b) && c().equals(aVar.c())) {
                     return true;
                 }
                 return false;
@@ -240,7 +239,7 @@ public final class a {
     public final int hashCode() {
         int i10 = this.e;
         if (i10 == 0) {
-            int hashCode = Arrays.hashCode(new Object[]{this.f10393a, this.f10394b, c()});
+            int hashCode = Arrays.hashCode(new Object[]{this.f10397a, this.f10398b, c()});
             this.e = hashCode;
             return hashCode;
         }
@@ -251,17 +250,17 @@ public final class a {
         String str = this.d;
         if (str == null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f10393a);
+            sb2.append(this.f10397a);
             sb2.append('/');
-            sb2.append(this.f10394b);
-            o0 o0Var = this.f10395c;
-            if (o0Var.f8595f != 0) {
+            sb2.append(this.f10398b);
+            o0 o0Var = this.f10399c;
+            if (o0Var.f8598f != 0) {
                 sb2.append("; ");
-                Collection a2 = new q1(o0Var, new h(new c2(12), 20)).a();
-                h hVar = f10392j;
-                hVar.getClass();
+                Collection a2 = new q1(o0Var, new l(new c2(12), 19)).a();
+                l lVar = f10396j;
+                lVar.getClass();
                 try {
-                    hVar.g(sb2, a2.iterator());
+                    lVar.K(sb2, a2.iterator());
                 } catch (IOException e) {
                     throw new AssertionError(e);
                 }

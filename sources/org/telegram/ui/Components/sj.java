@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class sj implements xj {
-    public final int f29144a;
-    public final TLRPC.User f29145b;
+    public final int f28846a;
+    public final TLRPC.User f28847b;
 
     public sj(int i10, TLRPC.User user) {
-        this.f29144a = i10;
-        this.f29145b = user;
+        this.f28846a = i10;
+        this.f28847b = user;
     }
 
     @Override
@@ -15,18 +15,18 @@ public final class sj implements xj {
         jf.b c10;
         StringBuilder sb2;
         String str;
-        switch (this.f29144a) {
+        switch (this.f28846a) {
             case 0:
                 c10 = jf.b.c();
                 sb2 = new StringBuilder("+");
-                str = this.f29145b.phone;
+                str = this.f28847b.phone;
                 break;
             default:
                 c10 = jf.b.c();
                 sb2 = new StringBuilder("+");
-                str = this.f29145b.phone;
+                str = this.f28847b.phone;
                 break;
         }
-        return org.telegram.messenger.yh.g(sb2, str, c10);
+        return org.telegram.messenger.sk.g(sb2, str, c10);
     }
 }

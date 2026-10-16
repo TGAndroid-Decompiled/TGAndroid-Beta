@@ -1,27 +1,27 @@
 package i2;
 public final class u implements e2.o, e2.j {
-    public final int f11196a;
-    public final float f11197b;
+    public final int f11200a;
+    public final float f11201b;
 
     public u(float f7, int i10) {
-        this.f11196a = i10;
-        this.f11197b = f7;
+        this.f11200a = i10;
+        this.f11201b = f7;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f11196a) {
+        switch (this.f11200a) {
             case 1:
-                ((m4.n1) obj).a(this.f11197b);
+                ((m4.m1) obj).a(this.f11201b);
                 return;
             default:
-                ((m4.n1) obj).U(this.f11197b);
+                ((m4.m1) obj).U(this.f11201b);
                 return;
         }
     }
 
     @Override
     public void invoke(Object obj) {
-        ((b2.e1) obj).onVolumeChanged(this.f11197b);
+        ((b2.e1) obj).onVolumeChanged(this.f11201b);
     }
 }

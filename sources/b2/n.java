@@ -4,12 +4,12 @@ import android.os.Build;
 import android.os.IBinder;
 import java.util.UUID;
 public abstract class n {
-    public static final int f2216a;
-    public static final UUID f2217b;
-    public static final UUID f2218c;
+    public static final int f2220a;
+    public static final UUID f2221b;
+    public static final UUID f2222c;
     public static final UUID d;
     public static final UUID e;
-    public static final UUID f2219f;
+    public static final UUID f2223f;
 
     static {
         int i10;
@@ -18,11 +18,11 @@ public abstract class n {
         } else {
             i10 = 65536;
         }
-        f2216a = i10;
-        f2217b = new UUID(0L, 0L);
-        f2218c = new UUID(1186680826959645954L, -5988876978535335093L);
+        f2220a = i10;
+        f2221b = new UUID(0L, 0L);
+        f2222c = new UUID(1186680826959645954L, -5988876978535335093L);
         d = new UUID(-2129748144642739255L, 8654423357094679310L);
         e = new UUID(-1301668207276963122L, -6645017420763422227L);
-        f2219f = new UUID(-7348484286925749626L, -6083546864340672619L);
+        f2223f = new UUID(-7348484286925749626L, -6083546864340672619L);
     }
 }

@@ -1,52 +1,70 @@
 package org.telegram.ui;
 
-import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
-public final class cr0 implements org.telegram.ui.Components.nm0 {
-    public final hr0 f35056a;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class cr0 implements org.telegram.ui.Cells.s5 {
+    public final dr0 f34771a;
 
-    public cr0(hr0 hr0Var) {
-        this.f35056a = hr0Var;
+    public cr0(dr0 dr0Var) {
+        this.f34771a = dr0Var;
     }
 
-    @Override
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.b5 b5Var;
-        hr0 hr0Var = this.f35056a;
-        hr0Var.W = z10 ? 1 : 0;
-        if (z10) {
-            b5Var = ((org.telegram.ui.ActionBar.m2) hr0Var).parentLayout;
-            b5Var.getView().requestDisallowInterceptTouchEvent(true);
-        }
-        hr0Var.K.d1(true);
-    }
-
-    @Override
-    public final boolean b(int i10) {
-        if (this.f35056a.L.j(i10) == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(View view, boolean z10) {
-        if (z10 == this.f35056a.X && (view instanceof org.telegram.ui.Cells.t5)) {
-            org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-            t5Var.f22092w.c(t5Var);
+    public final void a() {
+        fo foVar;
+        TLRPC.Chat chat;
+        fr0 fr0Var = this.f34771a.d;
+        if (fr0Var.I && (foVar = fr0Var.U) != null && (chat = foVar.e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && fr0Var.W != 2) {
+            org.telegram.ui.Components.g5.t0(fr0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
+            if (fr0Var.W == 1) {
+                fr0Var.W = 2;
+            }
         }
     }
 
     @Override
-    public final boolean d(int i10) {
-        Object obj;
-        hr0 hr0Var = this.f35056a;
-        MediaController.AlbumEntry albumEntry = hr0Var.J;
+    public final void c(org.telegram.ui.Cells.t5 t5Var) {
+        boolean z10;
+        int intValue = ((Integer) t5Var.getTag()).intValue();
+        fr0 fr0Var = this.f34771a.d;
+        MediaController.AlbumEntry albumEntry = fr0Var.J;
+        int i10 = -1;
+        int i11 = 1;
         if (albumEntry != null) {
-            obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
+            MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
+            boolean containsKey = fr0Var.f35913b.containsKey(Integer.valueOf(photoEntry.imageId));
+            z10 = !containsKey;
+            if (!containsKey && fr0Var.H > 0 && fr0Var.f35913b.size() >= fr0Var.H) {
+                a();
+                return;
+            }
+            if (fr0Var.e && !containsKey) {
+                i10 = fr0Var.f35915c.size();
+            }
+            t5Var.b(i10, z10, true);
+            fr0Var.Y(intValue, photoEntry);
         } else {
-            obj = ((MediaController.SearchImage) hr0Var.f36921f.get(i10)).f16702id;
+            AndroidUtilities.hideKeyboard(fr0Var.getParentActivity().getCurrentFocus());
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) fr0Var.f35919f.get(intValue);
+            boolean containsKey2 = fr0Var.f35913b.containsKey(searchImage.f16394id);
+            z10 = !containsKey2;
+            if (!containsKey2 && fr0Var.H > 0 && fr0Var.f35913b.size() >= fr0Var.H) {
+                a();
+                return;
+            }
+            if (fr0Var.e && !containsKey2) {
+                i10 = fr0Var.f35915c.size();
+            }
+            t5Var.b(i10, z10, true);
+            fr0Var.Y(intValue, searchImage);
         }
-        return hr0Var.f36915b.containsKey(obj);
+        if (!z10) {
+            i11 = 2;
+        }
+        fr0Var.i0(i11);
+        fr0Var.f35935s0.a();
     }
 }

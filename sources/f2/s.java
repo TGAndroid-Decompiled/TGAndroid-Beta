@@ -3,26 +3,26 @@ package f2;
 import java.nio.ByteBuffer;
 import v7.u6;
 public final class s {
-    public final boolean f8894a;
-    public final boolean f8895b;
-    public final boolean f8896c;
+    public final boolean f8897a;
+    public final boolean f8898b;
+    public final boolean f8899c;
     public final boolean d;
     public final boolean e;
-    public final int f8897f;
-    public final int f8898g;
+    public final int f8900f;
+    public final int f8901g;
     public final boolean h;
-    public final boolean f8899i;
-    public final boolean f8900j;
-    public final boolean f8901k;
-    public final boolean f8902l;
-    public final byte f8903m;
-    public final byte f8904n;
-    public final byte f8905o;
+    public final boolean f8902i;
+    public final boolean f8903j;
+    public final boolean f8904k;
+    public final boolean f8905l;
+    public final byte f8906m;
+    public final byte f8907n;
+    public final byte f8908o;
 
     public s(r rVar) {
         boolean z10;
-        int i10 = rVar.f8892a;
-        ByteBuffer byteBuffer = rVar.f8893b;
+        int i10 = rVar.f8895a;
+        ByteBuffer byteBuffer = rVar.f8896b;
         if (i10 == 1) {
             z10 = true;
         } else {
@@ -33,13 +33,13 @@ public final class s {
         byte[] bArr = new byte[remaining];
         byteBuffer.asReadOnlyBuffer().get(bArr);
         a4.g gVar = new a4.g(bArr, remaining);
-        this.f8898g = gVar.g(3);
+        this.f8901g = gVar.g(3);
         gVar.n();
         boolean f7 = gVar.f();
-        this.f8894a = f7;
+        this.f8897a = f7;
         if (f7) {
             gVar.g(5);
-            this.f8895b = false;
+            this.f8898b = false;
             this.h = false;
         } else {
             if (gVar.f()) {
@@ -54,12 +54,12 @@ public final class s {
                     }
                 }
                 boolean f10 = gVar.f();
-                this.f8895b = f10;
+                this.f8898b = f10;
                 if (f10) {
                     gVar.o(47);
                 }
             } else {
-                this.f8895b = false;
+                this.f8898b = false;
             }
             this.h = gVar.f();
             int g10 = gVar.g(5);
@@ -72,7 +72,7 @@ public final class s {
                 } else if (gVar.g(5) > 7) {
                     gVar.n();
                 }
-                if (this.f8895b) {
+                if (this.f8898b) {
                     gVar.n();
                 }
                 if (this.h && gVar.f()) {
@@ -88,20 +88,20 @@ public final class s {
         int g12 = gVar.g(4);
         gVar.o(g11 + 1);
         gVar.o(g12 + 1);
-        if (!this.f8894a) {
-            this.f8896c = gVar.f();
+        if (!this.f8897a) {
+            this.f8899c = gVar.f();
         } else {
-            this.f8896c = false;
+            this.f8899c = false;
         }
-        if (this.f8896c) {
+        if (this.f8899c) {
             gVar.o(4);
             gVar.o(3);
         }
         gVar.o(3);
-        if (this.f8894a) {
+        if (this.f8897a) {
             this.e = true;
             this.d = true;
-            this.f8897f = 0;
+            this.f8900f = 0;
         } else {
             gVar.o(4);
             boolean f11 = gVar.f();
@@ -123,61 +123,61 @@ public final class s {
                 this.e = true;
             }
             if (f11) {
-                this.f8897f = gVar.g(3) + 1;
+                this.f8900f = gVar.g(3) + 1;
             } else {
-                this.f8897f = 0;
+                this.f8900f = 0;
             }
         }
         gVar.o(3);
         boolean f12 = gVar.f();
-        if (this.f8898g == 2 && f12) {
-            this.f8899i = gVar.f();
+        if (this.f8901g == 2 && f12) {
+            this.f8902i = gVar.f();
         } else {
-            this.f8899i = false;
+            this.f8902i = false;
         }
-        if (this.f8898g != 1) {
-            this.f8900j = gVar.f();
+        if (this.f8901g != 1) {
+            this.f8903j = gVar.f();
         } else {
-            this.f8900j = false;
+            this.f8903j = false;
         }
         if (gVar.f()) {
-            this.f8903m = (byte) gVar.g(8);
-            this.f8904n = (byte) gVar.g(8);
-            this.f8905o = (byte) gVar.g(8);
+            this.f8906m = (byte) gVar.g(8);
+            this.f8907n = (byte) gVar.g(8);
+            this.f8908o = (byte) gVar.g(8);
         } else {
-            this.f8903m = (byte) 0;
-            this.f8904n = (byte) 0;
-            this.f8905o = (byte) 0;
+            this.f8906m = (byte) 0;
+            this.f8907n = (byte) 0;
+            this.f8908o = (byte) 0;
         }
-        if (this.f8900j) {
+        if (this.f8903j) {
             gVar.n();
-            this.f8901k = false;
-            this.f8902l = false;
-        } else if (this.f8903m == 1 && this.f8904n == 13 && this.f8905o == 0) {
-            this.f8901k = false;
-            this.f8902l = false;
+            this.f8904k = false;
+            this.f8905l = false;
+        } else if (this.f8906m == 1 && this.f8907n == 13 && this.f8908o == 0) {
+            this.f8904k = false;
+            this.f8905l = false;
         } else {
             gVar.n();
-            int i13 = this.f8898g;
+            int i13 = this.f8901g;
             if (i13 == 0) {
-                this.f8901k = true;
-                this.f8902l = true;
+                this.f8904k = true;
+                this.f8905l = true;
             } else if (i13 == 1) {
-                this.f8901k = false;
-                this.f8902l = false;
-            } else if (this.f8899i) {
+                this.f8904k = false;
+                this.f8905l = false;
+            } else if (this.f8902i) {
                 boolean f13 = gVar.f();
-                this.f8901k = f13;
+                this.f8904k = f13;
                 if (f13) {
-                    this.f8902l = gVar.f();
+                    this.f8905l = gVar.f();
                 } else {
-                    this.f8902l = false;
+                    this.f8905l = false;
                 }
             } else {
-                this.f8901k = true;
-                this.f8902l = false;
+                this.f8904k = true;
+                this.f8905l = false;
             }
-            if (this.f8901k && this.f8902l) {
+            if (this.f8904k && this.f8905l) {
                 gVar.g(2);
             }
         }

@@ -4,33 +4,33 @@ import android.graphics.Rect;
 import android.text.Layout;
 import org.telegram.ui.Cells.z9;
 public final class i5 implements z9 {
-    public final int f13331a;
-    public final Layout f13332b;
-    public final int f13333c;
+    public final int f13334a;
+    public final Layout f13335b;
+    public final int f13336c;
     public final int d;
 
     public i5(Layout layout, int i10, int i11, int i12) {
-        this.f13331a = i12;
-        this.f13332b = layout;
-        this.f13333c = i10;
+        this.f13334a = i12;
+        this.f13335b = layout;
+        this.f13336c = i10;
         this.d = i11;
     }
 
     @Override
     public final Layout getLayout() {
-        switch (this.f13331a) {
+        switch (this.f13334a) {
             case 0:
-                return this.f13332b;
+                return this.f13335b;
             case 1:
-                return this.f13332b;
+                return this.f13335b;
             default:
-                return this.f13332b;
+                return this.f13335b;
         }
     }
 
     @Override
     public final CharSequence getPrefix() {
-        switch (this.f13331a) {
+        switch (this.f13334a) {
             case 0:
                 return null;
             case 1:
@@ -42,7 +42,7 @@ public final class i5 implements z9 {
 
     @Override
     public final int getRow() {
-        switch (this.f13331a) {
+        switch (this.f13334a) {
             case 0:
                 return 0;
             case 1:
@@ -54,7 +54,7 @@ public final class i5 implements z9 {
 
     @Override
     public final Rect getSelectionBounds() {
-        switch (this.f13331a) {
+        switch (this.f13334a) {
             case 0:
                 return null;
             case 1:
@@ -66,31 +66,31 @@ public final class i5 implements z9 {
 
     @Override
     public final CharSequence getText() {
-        switch (this.f13331a) {
+        switch (this.f13334a) {
             case 0:
-                return this.f13332b.getText();
+                return this.f13335b.getText();
             case 1:
-                return this.f13332b.getText();
+                return this.f13335b.getText();
             default:
-                return this.f13332b.getText();
+                return this.f13335b.getText();
         }
     }
 
     @Override
     public final int getX() {
-        switch (this.f13331a) {
+        switch (this.f13334a) {
             case 0:
-                return this.f13333c;
+                return this.f13336c;
             case 1:
-                return this.f13333c;
+                return this.f13336c;
             default:
-                return this.f13333c;
+                return this.f13336c;
         }
     }
 
     @Override
     public final int getY() {
-        switch (this.f13331a) {
+        switch (this.f13334a) {
             case 0:
                 return this.d;
             case 1:

@@ -1,46 +1,26 @@
 package ri;
-public final class o {
-    public static final o f44745a;
-    public static final o f44746b;
-    public static final o f44747c;
-    public static final o d;
-    public static final o e;
-    public static final o f44748f;
-    public static final o h;
-    public static final o f44749n;
-    public static final o f44750r;
-    public static final o f44751s;
-    public static final o[] v;
+public final class o implements Runnable {
+    public final int f44660a;
+    public final s f44661b;
 
-    static {
-        ?? r02 = new Enum("IDLE", 0);
-        f44745a = r02;
-        ?? r12 = new Enum("STARTING", 1);
-        f44746b = r12;
-        ?? r32 = new Enum("RECORDING", 2);
-        f44747c = r32;
-        ?? r52 = new Enum("PAUSING", 3);
-        d = r52;
-        ?? r72 = new Enum("PREVIEWING", 4);
-        e = r72;
-        ?? r92 = new Enum("RESUMING", 5);
-        f44748f = r92;
-        ?? r11 = new Enum("FINISHING", 6);
-        h = r11;
-        ?? r13 = new Enum("COMPLETED", 7);
-        f44749n = r13;
-        ?? r15 = new Enum("ERROR", 8);
-        f44750r = r15;
-        ?? r22 = new Enum("RELEASED", 9);
-        f44751s = r22;
-        v = new o[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22};
+    public o(s sVar, int i10) {
+        this.f44660a = i10;
+        this.f44661b = sVar;
     }
 
-    public static o valueOf(String str) {
-        return (o) Enum.valueOf(o.class, str);
-    }
-
-    public static o[] values() {
-        return (o[]) v.clone();
+    @Override
+    public final void run() {
+        switch (this.f44660a) {
+            case 0:
+                s sVar = this.f44661b;
+                if (sVar.W != 0) {
+                    sVar.V = true;
+                    return;
+                }
+                return;
+            default:
+                this.f44661b.c();
+                return;
+        }
     }
 }

@@ -12,13 +12,13 @@ import z3.e;
 import z3.n;
 public final class b implements n {
     public static final z3.b e;
-    public final x f10363a = new x();
-    public final x f10364b = new x();
-    public final a f10365c;
+    public final x f10367a = new x();
+    public final x f10368b = new x();
+    public final a f10369c;
     public Inflater d;
 
     static {
-        l0 l0Var = n0.f8592b;
+        l0 l0Var = n0.f8595b;
         e = new z3.b(-9223372036854775807L, -9223372036854775807L, x1.e);
     }
 
@@ -26,15 +26,15 @@ public final class b implements n {
         String[] split;
         int i10;
         a aVar = new a();
-        this.f10365c = aVar;
+        this.f10369c = aVar;
         String trim = new String((byte[]) list.get(0), StandardCharsets.UTF_8).trim();
-        String str = m0.f8372a;
+        String str = m0.f8375a;
         for (String str2 : trim.split("\\r?\\n", -1)) {
             if (str2.startsWith("palette: ")) {
                 String[] split2 = str2.substring(9).split(",", -1);
-                aVar.f10358f = new int[split2.length];
+                aVar.f10362f = new int[split2.length];
                 for (int i11 = 0; i11 < split2.length; i11++) {
-                    int[] iArr = aVar.f10358f;
+                    int[] iArr = aVar.f10362f;
                     try {
                         i10 = Integer.parseInt(split2[i11].trim(), 16);
                     } catch (RuntimeException e7) {
@@ -49,7 +49,7 @@ public final class b implements n {
                     e2.a.l("VobsubParser", "Ignoring malformed IDX size line: '" + str2 + "'");
                 } else {
                     try {
-                        aVar.f10359g = Integer.parseInt(split3[0]);
+                        aVar.f10363g = Integer.parseInt(split3[0]);
                         aVar.h = Integer.parseInt(split3[1]);
                         aVar.d = true;
                     } catch (RuntimeException e10) {
@@ -61,17 +61,17 @@ public final class b implements n {
     }
 
     @Override
-    public final int h0() {
+    public final int X() {
         return 2;
     }
 
     @Override
-    public final void u0(byte[] r27, int r28, int r29, z3.m r30, e2.j r31) {
-        throw new UnsupportedOperationException("Method not decompiled: h4.b.u0(byte[], int, int, z3.m, e2.j):void");
+    public final void m0(byte[] r27, int r28, int r29, z3.m r30, e2.j r31) {
+        throw new UnsupportedOperationException("Method not decompiled: h4.b.m0(byte[], int, int, z3.m, e2.j):void");
     }
 
     @Override
-    public final e w(int i10, int i11, byte[] bArr) {
+    public final e x(int i10, int i11, byte[] bArr) {
         return t8.b.a(this, bArr, i11);
     }
 

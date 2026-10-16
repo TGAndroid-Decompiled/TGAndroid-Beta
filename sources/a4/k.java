@@ -85,7 +85,7 @@ public abstract class k implements z3.f {
         this.d = null;
     }
 
-    public abstract k6.h f();
+    public abstract l f();
 
     @Override
     public void flush() {
@@ -100,7 +100,7 @@ public abstract class k implements z3.f {
                 break;
             }
             i iVar = (i) arrayDeque2.poll();
-            String str = m0.f8372a;
+            String str = m0.f8375a;
             iVar.clear();
             arrayDeque.add(iVar);
         }
@@ -123,7 +123,7 @@ public abstract class k implements z3.f {
         while (true) {
             ArrayDeque arrayDeque2 = this.f275c;
             if (!arrayDeque2.isEmpty()) {
-                String str = m0.f8372a;
+                String str = m0.f8375a;
                 if (((i) arrayDeque2.peek()).e <= this.e) {
                     i iVar = (i) arrayDeque2.poll();
                     boolean isEndOfStream = iVar.isEndOfStream();
@@ -137,12 +137,12 @@ public abstract class k implements z3.f {
                     }
                     g(iVar);
                     if (i()) {
-                        k6.h f7 = f();
+                        l f7 = f();
                         z3.k kVar2 = (z3.k) arrayDeque.pollFirst();
                         long j10 = iVar.e;
                         kVar2.timeUs = j10;
-                        kVar2.f49269a = f7;
-                        kVar2.f49270b = j10;
+                        kVar2.f49268a = f7;
+                        kVar2.f49269b = j10;
                         iVar.clear();
                         arrayDeque3.add(iVar);
                         return kVar2;

@@ -12,7 +12,7 @@ public abstract class pa {
             new oa(storyItem).readParams(nativeByteBuffer, true);
             return;
         }
-        throw new RuntimeException(i2.d.i(readInt32, "(story) can't read params version = "));
+        throw new RuntimeException(i2.d.j(readInt32, "(story) can't read params version = "));
     }
 
     public static NativeByteBuffer b(TL_stories.StoryItem storyItem) {

@@ -2,11 +2,11 @@ package g2;
 
 import java.util.Map;
 public final class p implements d9.m {
-    public final int f9899a;
+    public final int f9902a;
 
     @Override
     public final boolean apply(Object obj) {
-        switch (this.f9899a) {
+        switch (this.f9902a) {
             case 0:
                 if (((Map.Entry) obj).getKey() != null) {
                     return true;

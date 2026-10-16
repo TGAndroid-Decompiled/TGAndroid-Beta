@@ -2,12 +2,11 @@ package p4;
 
 import android.media.MediaRouter;
 public final class i0 {
-    public final MediaRouter.RouteInfo f43048a;
-    public final String f43049b;
-    public m f43050c;
+    public final v f42748a;
+    public final MediaRouter.UserRouteInfo f42749b;
 
-    public i0(MediaRouter.RouteInfo routeInfo, String str) {
-        this.f43048a = routeInfo;
-        this.f43049b = str;
+    public i0(v vVar, MediaRouter.UserRouteInfo userRouteInfo) {
+        this.f42748a = vVar;
+        this.f42749b = userRouteInfo;
     }
 }

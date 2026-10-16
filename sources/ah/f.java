@@ -25,15 +25,15 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class f implements View.OnClickListener {
-    public final int f718a;
+    public final int f722a;
 
     public f(int i10) {
-        this.f718a = i10;
+        this.f722a = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f718a) {
+        switch (this.f722a) {
             case 0:
                 int i10 = i.e;
                 return;
@@ -47,7 +47,7 @@ public final class f implements View.OnClickListener {
                 PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 4:
-                int i12 = fi.n.f9420n;
+                int i12 = fi.n.f9423n;
                 return;
             case 5:
                 return;
@@ -76,17 +76,17 @@ public final class f implements View.OnClickListener {
                 }
                 return;
             case 10:
-                int i15 = zq.f31960e0;
+                int i15 = zq.f31663e0;
                 return;
             case 11:
-                int i16 = is.f26081s;
+                int i16 = is.f25774s;
                 return;
             case 12:
                 float[] fArr = FragmentContextView.Q0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 13:
-                fh0 fh0Var = fh0.f25035p0;
+                fh0 fh0Var = fh0.f24733p0;
                 hv hvVar = fh0Var.U;
                 if (hvVar != null) {
                     hvVar.H();
@@ -119,7 +119,7 @@ public final class f implements View.OnClickListener {
                 ug.m1.f0(0, null);
                 return;
             case 18:
-                ArrayList arrayList = ExternalActionActivity.f32078x;
+                ArrayList arrayList = ExternalActionActivity.f31780x;
                 return;
             case 19:
                 return;
@@ -151,10 +151,10 @@ public final class f implements View.OnClickListener {
                 int i17 = yh.n.A0;
                 return;
             case 26:
-                bd[] bdVarArr = yh.w.f49165p0;
+                bd[] bdVarArr = yh.w.f49164p0;
                 return;
             case 27:
-                int i18 = yh.d0.f48809f0;
+                int i18 = yh.d0.f48808f0;
                 return;
             default:
                 int i19 = zh.r0.D0;
@@ -163,7 +163,7 @@ public final class f implements View.OnClickListener {
     }
 
     public f(Object obj, int i10) {
-        this.f718a = i10;
+        this.f722a = i10;
     }
 
     private final void a(View view) {

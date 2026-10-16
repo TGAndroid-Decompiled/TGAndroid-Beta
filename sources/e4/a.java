@@ -18,9 +18,9 @@ import z3.n;
 public final class a implements n {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f8454a = new StringBuilder();
-    public final ArrayList f8455b = new ArrayList();
-    public final x f8456c = new x();
+    public final StringBuilder f8457a = new StringBuilder();
+    public final ArrayList f8458b = new ArrayList();
+    public final x f8459c = new x();
 
     public static d2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.a(android.text.Spanned, java.lang.String):d2.b");
@@ -48,18 +48,18 @@ public final class a implements n {
     }
 
     @Override
-    public final int h0() {
+    public final int X() {
         return 1;
     }
 
     @Override
-    public final void u0(byte[] bArr, int i10, int i11, m mVar, j jVar) {
+    public final void m0(byte[] bArr, int i10, int i11, m mVar, j jVar) {
         ArrayList arrayList;
         String n10;
         String str;
         a aVar = this;
-        long j10 = mVar.f49272a;
-        x xVar = aVar.f8456c;
+        long j10 = mVar.f49271a;
+        x xVar = aVar.f8459c;
         xVar.L(i10 + i11, bArr);
         xVar.N(i10);
         Charset J = xVar.J();
@@ -67,7 +67,7 @@ public final class a implements n {
             J = StandardCharsets.UTF_8;
         }
         long j11 = -9223372036854775807L;
-        if (j10 != -9223372036854775807L && mVar.f49273b) {
+        if (j10 != -9223372036854775807L && mVar.f49272b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -91,10 +91,10 @@ public final class a implements n {
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f8454a;
+                    StringBuilder sb2 = aVar.f8457a;
                     sb2.setLength(0);
                     long j12 = j11;
-                    ArrayList arrayList2 = aVar.f8455b;
+                    ArrayList arrayList2 = aVar.f8458b;
                     arrayList2.clear();
                     for (String n12 = xVar.n(J); !TextUtils.isEmpty(n12); n12 = xVar.n(J)) {
                         if (sb2.length() > 0) {
@@ -158,7 +158,7 @@ public final class a implements n {
     }
 
     @Override
-    public final e w(int i10, int i11, byte[] bArr) {
+    public final e x(int i10, int i11, byte[] bArr) {
         return t8.b.a(this, bArr, i11);
     }
 

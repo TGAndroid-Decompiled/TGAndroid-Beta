@@ -6,28 +6,28 @@ import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.n71;
+import org.telegram.ui.Components.o71;
 import org.telegram.ui.Components.oh0;
 import org.telegram.ui.Components.qh0;
-import org.telegram.ui.pc0;
+import org.telegram.ui.oc0;
 public final class x1 extends org.telegram.ui.Components.s6 {
-    public final int f22733s;
+    public final int f22429s;
     public Object v;
 
     public x1(Context context, boolean z10, boolean z11, boolean z12) {
         super(context, z10, z11, z12);
-        this.f22733s = 3;
+        this.f22429s = 3;
     }
 
     @Override
     public void invalidate() {
-        switch (this.f22733s) {
+        switch (this.f22429s) {
             case 1:
                 super.invalidate();
                 oh0 oh0Var = (oh0) this.v;
                 qh0 qh0Var = oh0Var.d;
-                if (oh0Var == qh0Var.f28604b.getPinnedHeader()) {
-                    qh0Var.f28604b.invalidate();
+                if (oh0Var == qh0Var.f28286b.getPinnedHeader()) {
+                    qh0Var.f28286b.invalidate();
                     return;
                 }
                 return;
@@ -39,7 +39,7 @@ public final class x1 extends org.telegram.ui.Components.s6 {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f22733s) {
+        switch (this.f22429s) {
             case 0:
                 super.onDraw(canvas);
                 ((a2) this.v).f();
@@ -53,7 +53,7 @@ public final class x1 extends org.telegram.ui.Components.s6 {
                 canvas.translate(AndroidUtilities.dp(15.0f), 0.0f);
                 super.onDraw(canvas);
                 canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(11.0f));
-                ((n71) this.v).f27601b.draw(canvas);
+                ((o71) this.v).f27594b.draw(canvas);
                 canvas.restore();
                 return;
             case 3:
@@ -67,14 +67,14 @@ public final class x1 extends org.telegram.ui.Components.s6 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f22733s) {
+        switch (this.f22429s) {
             case 4:
-                pc0 pc0Var = (pc0) this.v;
+                oc0 oc0Var = (oc0) this.v;
                 int size = View.MeasureSpec.getSize(i10);
                 if (size <= 0) {
                     size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - pc0Var.d.getPaint().measureText(pc0Var.d.getText().toString())) - pc0Var.f39185f.getPaint().measureText(pc0Var.f39185f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - oc0Var.d.getPaint().measureText(oc0Var.d.getText().toString())) - oc0Var.f38608f.getPaint().measureText(oc0Var.f38608f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -84,7 +84,7 @@ public final class x1 extends org.telegram.ui.Components.s6 {
 
     @Override
     public boolean post(Runnable runnable) {
-        switch (this.f22733s) {
+        switch (this.f22429s) {
             case 1:
                 return qh0.r(((oh0) this.v).d).post(runnable);
             default:
@@ -94,7 +94,7 @@ public final class x1 extends org.telegram.ui.Components.s6 {
 
     @Override
     public boolean postDelayed(Runnable runnable, long j10) {
-        switch (this.f22733s) {
+        switch (this.f22429s) {
             case 1:
                 return qh0.s(((oh0) this.v).d).postDelayed(runnable, j10);
             default:
@@ -104,19 +104,19 @@ public final class x1 extends org.telegram.ui.Components.s6 {
 
     public x1(FrameLayout frameLayout, Context context, int i10) {
         super(context, false, false, false);
-        this.f22733s = i10;
+        this.f22429s = i10;
         this.v = frameLayout;
     }
 
-    public x1(n71 n71Var, Context context) {
+    public x1(o71 o71Var, Context context) {
         super(context, true, true, true);
-        this.f22733s = 2;
-        this.v = n71Var;
+        this.f22429s = 2;
+        this.v = o71Var;
     }
 
-    public x1(pc0 pc0Var, Context context) {
+    public x1(oc0 oc0Var, Context context) {
         super(context, false, true, true);
-        this.f22733s = 4;
-        this.v = pc0Var;
+        this.f22429s = 4;
+        this.v = oc0Var;
     }
 }

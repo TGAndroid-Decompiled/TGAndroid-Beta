@@ -7,37 +7,37 @@ import java.util.ArrayList;
 import s4.b1;
 import s4.o0;
 public final class g {
-    public final RecyclerView f11748a;
+    public final RecyclerView f11752a;
 
     public g(RecyclerView recyclerView) {
-        this.f11748a = recyclerView;
+        this.f11752a = recyclerView;
     }
 
     public void a(s4.a aVar) {
         int i10 = aVar.f44810a;
-        RecyclerView recyclerView = this.f11748a;
+        RecyclerView recyclerView = this.f11752a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 4) {
                     if (i10 != 8) {
                         return;
                     }
-                    recyclerView.f2017x.X(recyclerView, aVar.f44811b, aVar.d);
+                    recyclerView.f2021x.X(recyclerView, aVar.f44811b, aVar.d);
                     return;
                 }
-                recyclerView.f2017x.a0(recyclerView, aVar.f44811b, aVar.d, aVar.f44812c);
+                recyclerView.f2021x.a0(recyclerView, aVar.f44811b, aVar.d, aVar.f44812c);
                 return;
             }
-            recyclerView.f2017x.Y(recyclerView, aVar.f44811b, aVar.d);
+            recyclerView.f2021x.Y(recyclerView, aVar.f44811b, aVar.d);
             return;
         }
-        recyclerView.f2017x.V(recyclerView, aVar.f44811b, aVar.d);
+        recyclerView.f2021x.V(recyclerView, aVar.f44811b, aVar.d);
     }
 
     public void b(int i10, int i11, Object obj) {
         int i12;
         int i13;
-        RecyclerView recyclerView = this.f11748a;
+        RecyclerView recyclerView = this.f11752a;
         int L = recyclerView.e.L();
         int i14 = i11 + i10;
         for (int i15 = 0; i15 < L; i15++) {
@@ -58,7 +58,7 @@ public final class g {
                 ((o0) K.getLayoutParams()).f44944c = true;
             }
         }
-        qf.e eVar = recyclerView.f1989b;
+        qf.e eVar = recyclerView.f1993b;
         ArrayList arrayList2 = (ArrayList) eVar.e;
         for (int size = arrayList2.size() - 1; size >= 0; size--) {
             b1 b1Var = (b1) arrayList2.get(size);
@@ -67,20 +67,20 @@ public final class g {
                 eVar.f(size);
             }
         }
-        recyclerView.f2020y0 = true;
+        recyclerView.f2024y0 = true;
     }
 
     public void c(int i10, int i11) {
-        RecyclerView recyclerView = this.f11748a;
+        RecyclerView recyclerView = this.f11752a;
         int L = recyclerView.e.L();
         for (int i12 = 0; i12 < L; i12++) {
             b1 U = RecyclerView.U(recyclerView.e.K(i12));
             if (U != null && !U.r() && U.f44840c >= i10) {
                 U.n(i11, false);
-                recyclerView.f2013u0.f44997f = true;
+                recyclerView.f2017u0.f44997f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f1989b.e;
+        ArrayList arrayList = (ArrayList) recyclerView.f1993b.e;
         int size = arrayList.size();
         for (int i13 = 0; i13 < size; i13++) {
             b1 b1Var = (b1) arrayList.get(i13);
@@ -89,7 +89,7 @@ public final class g {
             }
         }
         recyclerView.requestLayout();
-        recyclerView.f2018x0 = true;
+        recyclerView.f2022x0 = true;
     }
 
     public void d(int i10, int i11) {
@@ -100,7 +100,7 @@ public final class g {
         int i16;
         int i17;
         int i18;
-        RecyclerView recyclerView = this.f11748a;
+        RecyclerView recyclerView = this.f11752a;
         int L = recyclerView.e.L();
         int i19 = -1;
         if (i10 < i11) {
@@ -120,10 +120,10 @@ public final class g {
                 } else {
                     U.n(i14, false);
                 }
-                recyclerView.f2013u0.f44997f = true;
+                recyclerView.f2017u0.f44997f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f1989b.e;
+        ArrayList arrayList = (ArrayList) recyclerView.f1993b.e;
         if (i10 < i11) {
             i16 = i10;
             i15 = i11;
@@ -144,6 +144,6 @@ public final class g {
             }
         }
         recyclerView.requestLayout();
-        recyclerView.f2018x0 = true;
+        recyclerView.f2022x0 = true;
     }
 }

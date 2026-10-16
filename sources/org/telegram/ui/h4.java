@@ -11,12 +11,12 @@ public abstract class h4 {
     public static TLRPC.Document a(TLRPC.WebPage webPage, long j10) {
         if (webPage != null && webPage.cached_page != null) {
             TLRPC.Document document = webPage.document;
-            if (document != null && document.f19222id == j10) {
+            if (document != null && document.f18922id == j10) {
                 return document;
             }
             for (int i10 = 0; i10 < webPage.cached_page.documents.size(); i10++) {
                 TLRPC.Document document2 = webPage.cached_page.documents.get(i10);
-                if (document2.f19222id == j10) {
+                if (document2.f18922id == j10) {
                     return document2;
                 }
             }
@@ -30,7 +30,7 @@ public abstract class h4 {
         }
         for (int i10 = 0; i10 < richMessage.documents.size(); i10++) {
             TLRPC.Document document = richMessage.documents.get(i10);
-            if (document.f19222id == j10) {
+            if (document.f18922id == j10) {
                 return document;
             }
         }
@@ -61,7 +61,7 @@ public abstract class h4 {
             TL_iv.Page page = (TL_iv.Page) tLObject;
             for (int i10 = 0; i10 < page.photos.size(); i10++) {
                 TLRPC.Photo photo = page.photos.get(i10);
-                if (photo.f19240id == j10) {
+                if (photo.f18940id == j10) {
                     return photo;
                 }
             }
@@ -76,12 +76,12 @@ public abstract class h4 {
     public static TLRPC.Photo e(TLRPC.WebPage webPage, long j10) {
         if (webPage != null && webPage.cached_page != null) {
             TLRPC.Photo photo = webPage.photo;
-            if (photo != null && photo.f19240id == j10) {
+            if (photo != null && photo.f18940id == j10) {
                 return photo;
             }
             for (int i10 = 0; i10 < webPage.cached_page.photos.size(); i10++) {
                 TLRPC.Photo photo2 = webPage.cached_page.photos.get(i10);
-                if (photo2.f19240id == j10) {
+                if (photo2.f18940id == j10) {
                     return photo2;
                 }
             }
@@ -95,7 +95,7 @@ public abstract class h4 {
         }
         for (int i10 = 0; i10 < richMessage.photos.size(); i10++) {
             TLRPC.Photo photo = richMessage.photos.get(i10);
-            if (photo.f19240id == j10) {
+            if (photo.f18940id == j10) {
                 return photo;
             }
         }

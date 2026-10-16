@@ -7,63 +7,63 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class u71 implements TextWatcher {
-    public final uz0 f40557a = new uz0(this, 17);
-    public final b81 f40558b;
+    public final tz0 f40283a = new tz0(this, 17);
+    public final b81 f40284b;
 
     public u71(b81 b81Var) {
-        this.f40558b = b81Var;
+        this.f40284b = b81Var;
     }
 
     public final void a() {
         boolean z10;
         boolean z11;
         TLRPC.TL_channelParticipantsSearch tL_channelParticipantsSearch = new TLRPC.TL_channelParticipantsSearch();
-        b81 b81Var = this.f40558b;
-        String obj = b81Var.f34451c0.getText().toString();
-        tL_channelParticipantsSearch.f19215q = obj;
-        a81 a81Var = b81Var.f34455g0;
-        TLRPC.ChannelParticipantsFilter channelParticipantsFilter = a81Var.f34082c;
+        b81 b81Var = this.f40284b;
+        String obj = b81Var.f34235c0.getText().toString();
+        tL_channelParticipantsSearch.f18915q = obj;
+        a81 a81Var = b81Var.f34239g0;
+        TLRPC.ChannelParticipantsFilter channelParticipantsFilter = a81Var.f33785c;
         if (channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) {
-            z10 = !TextUtils.equals(channelParticipantsFilter.f19215q, obj);
+            z10 = !TextUtils.equals(channelParticipantsFilter.f18915q, obj);
             z11 = false;
         } else {
             z10 = true;
             z11 = true;
         }
-        a81Var.f34082c = tL_channelParticipantsSearch;
+        a81Var.f33785c = tL_channelParticipantsSearch;
         if (z10) {
             if (z11) {
-                a81Var.f34085r = false;
-                if (a81Var.f34084n >= 0) {
-                    ConnectionsManager.getInstance(a81Var.f34080a).cancelRequest(a81Var.f34084n, true);
-                    a81Var.f34084n = -1;
+                a81Var.f33788r = false;
+                if (a81Var.f33787n >= 0) {
+                    ConnectionsManager.getInstance(a81Var.f33783a).cancelRequest(a81Var.f33787n, true);
+                    a81Var.f33787n = -1;
                 }
-                a81Var.f34083f = false;
+                a81Var.f33786f = false;
                 a81Var.d.clear();
                 a81Var.h = false;
             } else {
-                a81Var.f34085r = true;
+                a81Var.f33788r = true;
                 a81Var.h = false;
             }
             a81Var.b();
         }
-        org.telegram.ui.Components.z61 z61Var = b81Var.f34457i0;
-        if (z61Var != null) {
-            z61Var.N(true);
+        org.telegram.ui.Components.a71 a71Var = b81Var.f34241i0;
+        if (a71Var != null) {
+            a71Var.N(true);
         }
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int length = editable.length();
-        uz0 uz0Var = this.f40557a;
+        tz0 tz0Var = this.f40283a;
         if (length <= 0) {
-            AndroidUtilities.cancelRunOnUIThread(uz0Var);
+            AndroidUtilities.cancelRunOnUIThread(tz0Var);
             a();
             return;
         }
-        AndroidUtilities.cancelRunOnUIThread(uz0Var);
-        AndroidUtilities.runOnUIThread(uz0Var, 300L);
+        AndroidUtilities.cancelRunOnUIThread(tz0Var);
+        AndroidUtilities.runOnUIThread(tz0Var, 300L);
     }
 
     @Override

@@ -20,7 +20,7 @@ public final class l9 extends e9.j2 {
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f49707b.f8551b.entrySet();
+        Set entrySet = this.f49707b.f8554b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -48,7 +48,7 @@ public final class l9 extends e9.j2 {
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
         Object key = entry.getKey();
-        d dVar = ((lg) this.f49707b.e).f49708c;
+        d dVar = ((mg) this.f49707b.e).f49722c;
         dVar.getClass();
         try {
             obj2 = dVar.remove(key);
@@ -94,7 +94,7 @@ public final class l9 extends e9.j2 {
                 if (size >= 0) {
                     i10 = size + 1;
                 } else {
-                    throw new IllegalArgumentException(i2.d.i(size, "expectedSize cannot be negative but was: "));
+                    throw new IllegalArgumentException(i2.d.j(size, "expectedSize cannot be negative but was: "));
                 }
             } else if (size < 1073741824) {
                 i10 = (int) Math.ceil(size / 0.75d);
@@ -107,11 +107,11 @@ public final class l9 extends e9.j2 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            lg lgVar = (lg) this.f49707b.e;
-            ed edVar = lgVar.f49698a;
+            mg mgVar = (mg) this.f49707b.e;
+            ed edVar = mgVar.f49708a;
             if (edVar == null) {
-                edVar = new ed(lgVar, lgVar.f49708c);
-                lgVar.f49698a = edVar;
+                edVar = new ed(mgVar, mgVar.f49722c);
+                mgVar.f49708a = edVar;
             }
             return edVar.retainAll(hashSet);
         }
@@ -119,6 +119,6 @@ public final class l9 extends e9.j2 {
 
     @Override
     public final int size() {
-        return this.f49707b.f8551b.size();
+        return this.f49707b.f8554b.size();
     }
 }

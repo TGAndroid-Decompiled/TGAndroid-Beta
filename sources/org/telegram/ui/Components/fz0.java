@@ -1,309 +1,140 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.text.SpannableStringBuilder;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class fz0 implements org.telegram.ui.vt {
-    public final kz0 f25147a;
+import org.telegram.tgnet.tl.TL_account;
+public final class fz0 {
+    public final int f24836a;
+    public final org.telegram.ui.Cells.w0 f24837b;
+    public final org.telegram.ui.ActionBar.c6 f24838c;
+    public final yj0 d;
+    public TL_account.TL_birthday e;
+    public i11 f24839f;
+    public i11[] f24840g;
+    public i11[] h;
+    public boolean f24841i;
+    public i11 f24842j;
+    public final RectF f24843k = new RectF();
+    public final Paint f24844l = new Paint(1);
+    public final ad f24845m;
 
-    public fz0(kz0 kz0Var) {
-        this.f25147a = kz0Var;
+    public fz0(int i10, org.telegram.ui.Cells.w0 w0Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f24836a = i10;
+        this.f24837b = w0Var;
+        this.f24838c = c6Var;
+        yj0 yj0Var = new yj0(R.raw.cake, AndroidUtilities.dp(66.0f), AndroidUtilities.dp(66.0f), true, null);
+        this.d = yj0Var;
+        yj0Var.H(false);
+        this.f24845m = new ad(w0Var);
     }
 
-    @Override
-    public final MessageObject A() {
-        return null;
-    }
-
-    @Override
-    public final boolean B() {
-        return false;
-    }
-
-    @Override
-    public final void C(TLRPC.Document document) {
-        kz0 kz0Var = this.f25147a;
-        iz0 iz0Var = kz0Var.f26831c;
-        if (iz0Var != null) {
-            org.telegram.ui.ActionBar.m2 parentFragment = iz0Var.getParentFragment();
-            if (parentFragment instanceof org.telegram.ui.fo) {
-                ((org.telegram.ui.fo) parentFragment).fb(document);
-                kz0Var.f26831c.setFieldText("");
-            }
+    public final void a(Canvas canvas) {
+        int dp = AndroidUtilities.dp(66.0f);
+        org.telegram.ui.Cells.w0 w0Var = this.f24837b;
+        int width = (w0Var.getWidth() - dp) / 2;
+        yj0 yj0Var = this.d;
+        yj0Var.setBounds(width, AndroidUtilities.dp(13.0f), width + dp, AndroidUtilities.dp(13.0f) + dp);
+        yj0Var.draw(canvas);
+        this.f24839f.c((w0Var.getWidth() - this.f24839f.l()) / 2.0f, AndroidUtilities.dp(19.0f) + dp, 1.0f, -1, canvas);
+        int j10 = (int) (this.f24839f.j() + AndroidUtilities.dp(19.0f) + dp + AndroidUtilities.dp(17.0f));
+        int i10 = 0;
+        for (int i11 = 0; i11 < this.f24840g.length; i11++) {
+            i10 = (int) (Math.max(this.f24840g[i11].l(), this.h[i11].l()) + AndroidUtilities.dp(9.0f) + AndroidUtilities.dp(9.0f) + i10);
+        }
+        int width2 = (w0Var.getWidth() - i10) / 2;
+        int i12 = 0;
+        while (i12 < this.f24840g.length) {
+            float max = Math.max(this.f24840g[i12].l(), this.h[i12].l()) + AndroidUtilities.dp(9.0f) + AndroidUtilities.dp(9.0f);
+            float f7 = width2;
+            float f10 = (max / 2.0f) + f7;
+            int i13 = (int) (f7 + max);
+            i11 i11Var = this.f24840g[i12];
+            i11Var.c(f10 - (i11Var.l() / 2.0f), j10, 0.75f, -1, canvas);
+            i11 i11Var2 = this.h[i12];
+            i11Var2.c(f10 - (i11Var2.l() / 2.0f), AndroidUtilities.dp(16.0f) + j10, 1.0f, -1, canvas);
+            i12++;
+            width2 = i13;
+        }
+        if (this.f24841i) {
+            canvas.save();
+            float l4 = this.f24842j.l() + AndroidUtilities.dp(26.0f);
+            float dp2 = AndroidUtilities.dp(30.0f);
+            float dp3 = AndroidUtilities.dp(38.0f) + j10;
+            RectF rectF = this.f24843k;
+            rectF.set((w0Var.getWidth() - l4) / 2.0f, dp3, (w0Var.getWidth() + l4) / 2.0f, dp3 + dp2);
+            float a2 = this.f24845m.a(0.1f);
+            canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
+            float f11 = dp2 / 2.0f;
+            canvas.drawRoundRect(rectF, f11, f11, this.f24844l);
+            this.f24842j.c(rectF.left + AndroidUtilities.dp(13.0f), rectF.centerY(), 1.0f, -1, canvas);
+            canvas.restore();
         }
     }
 
-    @Override
-    public final boolean D() {
-        return false;
+    public final void b() {
+        g5.l(this.f24837b.getContext(), LocaleController.getString(R.string.DateOfBirth), LocaleController.getString(R.string.DateOfBirthAddToProfile), this.e, new a3(this, 12), null, true, false, this.f24838c).f20538a.show();
     }
 
-    @Override
-    public final boolean E(TLRPC.Document document) {
-        if (this.f25147a.f26840y) {
-            return false;
-        }
-        return UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
-    }
-
-    @Override
-    public final String G(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-        iz0 iz0Var;
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
-        valueOf.setSpan(new b6(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
-        if (AndroidUtilities.addToClipboard(valueOf) && (iz0Var = this.f25147a.f26831c) != null) {
-            org.telegram.messenger.yh.o(R.string.EmojiCopied, zc.a0(iz0Var.getParentFragment()));
-        }
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        TLRPC.User currentUser;
-        boolean z10;
-        if (this.f25147a.E || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) == null) {
-            return null;
-        }
-        Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f19222id)) {
-            z10 = true;
+    public final void c(MessageObject messageObject) {
+        int i10;
+        String j10;
+        boolean q6;
+        int i11;
+        TLRPC.TL_messageActionSuggestBirthday tL_messageActionSuggestBirthday = (TLRPC.TL_messageActionSuggestBirthday) messageObject.messageOwner.action;
+        this.e = tL_messageActionSuggestBirthday.birthday;
+        i11 i11Var = new i11(TextUtils.concat(messageObject.messageText, ":"), 13.0f, null);
+        i11Var.n(6);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        i11Var.a();
+        i11Var.q(AndroidUtilities.dp(174.0f) - AndroidUtilities.dp(32.0f));
+        this.f24839f = i11Var;
+        if ((tL_messageActionSuggestBirthday.birthday.flags & 1) != 0) {
+            i10 = 3;
         } else {
-            z10 = false;
+            i10 = 2;
         }
-        return Boolean.valueOf(z10);
-    }
-
-    @Override
-    public final boolean Q() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        iz0 iz0Var = this.f25147a.f26831c;
-        if (iz0Var == null) {
-            return false;
-        }
-        org.telegram.ui.ActionBar.m2 parentFragment = iz0Var.getParentFragment();
-        if (!(parentFragment instanceof org.telegram.ui.fo)) {
-            return false;
-        }
-        return ((org.telegram.ui.fo) parentFragment).c();
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer h() {
-        return null;
-    }
-
-    @Override
-    public final boolean i() {
-        return true;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final boolean l(int i10) {
-        iz0 iz0Var = this.f25147a.f26831c;
-        if (iz0Var == null) {
-            return false;
-        }
-        org.telegram.ui.ActionBar.m2 parentFragment = iz0Var.getParentFragment();
-        if (parentFragment instanceof org.telegram.ui.fo) {
-            org.telegram.ui.fo foVar = (org.telegram.ui.fo) parentFragment;
-            if (foVar.H6()) {
-                if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-                    if (foVar.i() != null && UserObject.isUserSelf(foVar.i())) {
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean p() {
-        return false;
-    }
-
-    @Override
-    public final m80 u(ah.v vVar) {
-        return null;
-    }
-
-    @Override
-    public final void v(TLRPC.Document document) {
-        TLRPC.EmojiStatus emojiStatus;
-        Object obj;
-        org.telegram.ui.ActionBar.m2 parentFragment;
-        kz0 kz0Var = this.f25147a;
-        org.telegram.ui.ActionBar.c6 c6Var = kz0Var.f26829b;
-        if (document == null) {
-            emojiStatus = new TLRPC.TL_emojiStatusEmpty();
+        i11[] i11VarArr = new i11[i10];
+        this.f24840g = i11VarArr;
+        this.h = new i11[i10];
+        i11VarArr[0] = new i11(LocaleController.getString(R.string.DateDay), 11.0f, null);
+        this.h[0] = new i11("" + tL_messageActionSuggestBirthday.birthday.day, 11.0f, AndroidUtilities.bold());
+        this.f24840g[1] = new i11(LocaleController.getString(R.string.DateMonth), 11.0f, null);
+        i11[] i11VarArr2 = this.h;
+        StringBuilder sb2 = new StringBuilder("");
+        int i12 = tL_messageActionSuggestBirthday.birthday.month - 1;
+        int[] iArr = {R.string.January, R.string.February, R.string.March, R.string.April, R.string.May, R.string.June, R.string.July, R.string.August, R.string.September, R.string.October, R.string.November, R.string.December};
+        if (i12 >= 0 && i12 < 12) {
+            j10 = LocaleController.getString(iArr[i12]);
         } else {
-            TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f19222id;
-            emojiStatus = tL_emojiStatus;
+            j10 = i2.d.j(i12, "");
         }
-        TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
-        if (currentUser == null) {
-            obj = new TLRPC.TL_emojiStatusEmpty();
+        sb2.append(j10);
+        i11VarArr2[1] = new i11(sb2.toString(), 11.0f, AndroidUtilities.bold());
+        if ((tL_messageActionSuggestBirthday.birthday.flags & 1) != 0) {
+            this.f24840g[2] = new i11(LocaleController.getString(R.string.DateYear), 11.0f, null);
+            this.h[2] = new i11("" + tL_messageActionSuggestBirthday.birthday.year, 11.0f, AndroidUtilities.bold());
+        }
+        this.f24841i = !messageObject.isOutOwner();
+        org.telegram.ui.ActionBar.c6 c6Var = this.f24838c;
+        if (c6Var != null) {
+            q6 = c6Var.a();
         } else {
-            obj = currentUser.emoji_status;
+            q6 = org.telegram.ui.ActionBar.g6.I.q();
         }
-        MessagesController.getInstance(kz0Var.f26827a).updateEmojiStatus(emojiStatus);
-        f60 f60Var = new f60(29, this, obj);
-        iz0 iz0Var = kz0Var.f26831c;
-        if (iz0Var == null) {
-            parentFragment = null;
+        if (q6) {
+            i11 = -1;
         } else {
-            parentFragment = iz0Var.getParentFragment();
+            i11 = -16777216;
         }
-        if (parentFragment != null) {
-            if (document == null) {
-                kc kcVar = new kc(kz0Var.getContext(), c6Var);
-                kcVar.f26665b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
-                kcVar.f26664a.setImageResource(R.drawable.msg_settings_premium);
-                qc qcVar = new qc(kz0Var.getContext(), c6Var, true);
-                qcVar.f28576a = f60Var;
-                kcVar.setButton(qcVar);
-                sc.g(parentFragment, kcVar, 1500).j();
-                return;
-            }
-            zc.a0(parentFragment).q(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.UndoNoCaps), f60Var).j();
-        }
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void j(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void n(String str) {
-    }
-
-    @Override
-    public final void o(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void q(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r() {
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void x(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void f(CharSequence charSequence, String str, org.telegram.ui.mt mtVar) {
-    }
-
-    @Override
-    public final void s(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+        this.f24844l.setColor(org.telegram.ui.ActionBar.g6.m1(0.12f, i11));
+        this.f24842j = new i11(LocaleController.getString(R.string.SuggestedDateOfBirthView), 14.0f, AndroidUtilities.bold());
     }
 }

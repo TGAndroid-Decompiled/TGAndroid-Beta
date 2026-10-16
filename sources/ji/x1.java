@@ -9,25 +9,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.es;
 import org.telegram.ui.p20;
 public final class x1 extends HorizontalScrollView {
-    public final p20 f13616a;
-    public final org.telegram.ui.Components.g6 f13617b;
-    public final org.telegram.ui.Components.g6 f13618c;
+    public final p20 f13619a;
+    public final org.telegram.ui.Components.g6 f13620b;
+    public final org.telegram.ui.Components.g6 f13621c;
     public final d2 d;
 
     public x1(d2 d2Var, Context context) {
         super(context);
         this.d = d2Var;
-        this.f13616a = new p20();
+        this.f13619a = new p20();
         es esVar = es.h;
-        this.f13617b = new org.telegram.ui.Components.g6(this, 300L, esVar);
-        this.f13618c = new org.telegram.ui.Components.g6(this, 300L, esVar);
+        this.f13620b = new org.telegram.ui.Components.g6(this, 300L, esVar);
+        this.f13621c = new org.telegram.ui.Components.g6(this, 300L, esVar);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        float e = this.f13617b.e(canScrollHorizontally(-1));
-        float e7 = this.f13618c.e(canScrollHorizontally(1));
+        float e = this.f13620b.e(canScrollHorizontally(-1));
+        float e7 = this.f13621c.e(canScrollHorizontally(1));
         int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
         if (i10 <= 0 && e7 <= 0.0f) {
             canvas2 = canvas;
@@ -40,7 +40,7 @@ public final class x1 extends HorizontalScrollView {
             return;
         }
         canvas2.save();
-        p20 p20Var = this.f13616a;
+        p20 p20Var = this.f13619a;
         if (i10 > 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getScrollX(), 0.0f, AndroidUtilities.dp(48.0f) + getScrollX(), getHeight());
@@ -63,7 +63,7 @@ public final class x1 extends HorizontalScrollView {
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 0), i11);
         int measuredWidth = getMeasuredWidth();
-        int i12 = this.d.f13210k0;
+        int i12 = this.d.f13214k0;
         if (mode == Integer.MIN_VALUE) {
             i12 = Math.min(i12, View.MeasureSpec.getSize(i10));
         }

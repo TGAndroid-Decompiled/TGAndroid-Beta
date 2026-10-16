@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.Components.mm0;
 public final class v1 extends mm0 implements NotificationCenter.NotificationCenterDelegate {
     public final Path V2;
@@ -62,7 +62,7 @@ public final class v1 extends mm0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, yh.D(16.0f, AndroidUtilities.dp(48.0f) * Math.min(qg.j0.c().size(), 6), 1073741824));
+        super.onMeasure(i10, sk.C(16.0f, AndroidUtilities.dp(48.0f) * Math.min(qg.j0.c().size(), 6), 1073741824));
     }
 
     public void setMaskProvider(q0.a aVar) {

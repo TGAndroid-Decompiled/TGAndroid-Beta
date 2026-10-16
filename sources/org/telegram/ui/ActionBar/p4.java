@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
 public final class p4 extends ImageButton {
-    public final t4 f20592a;
+    public final t4 f20292a;
 
     public p4(t4 t4Var, Context context) {
         super(context);
-        this.f20592a = t4Var;
+        this.f20292a = t4Var;
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f20592a.N) {
+        if (this.f20292a.N) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);

@@ -1,8 +1,20 @@
 package p4;
-public final class g0 extends k0 {
+
+import android.media.MediaRouter;
+public final class g0 extends q {
+    public final MediaRouter.RouteInfo f42740a;
+
+    public g0(MediaRouter.RouteInfo routeInfo) {
+        this.f42740a = routeInfo;
+    }
+
     @Override
-    public void u(i0 i0Var, l lVar) {
-        super.u(i0Var, lVar);
-        lVar.f43064a.putInt("deviceType", i0Var.f43048a.getDeviceType());
+    public final void f(int i10) {
+        this.f42740a.requestSetVolume(i10);
+    }
+
+    @Override
+    public final void i(int i10) {
+        this.f42740a.requestUpdateVolume(i10);
     }
 }

@@ -8,22 +8,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.bp0;
-import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.k71;
 public final class l implements b, bp0, ne.d, oe.a {
-    public final Object f8754a;
+    public final Object f8757a;
 
     public l(Object obj) {
-        this.f8754a = obj;
+        this.f8757a = obj;
     }
 
     @Override
-    public void C(float f7, int i10) {
-        ((ne.j) this.f8754a).h(f7);
+    public void A(float f7, int i10) {
+        ((ne.j) this.f8757a).h(f7);
     }
 
     @Override
     public void b(float f7) {
-        z zVar = (z) this.f8754a;
+        z zVar = (z) this.f8757a;
         MessageObject messageObject = zVar.P;
         if (messageObject == null) {
             return;
@@ -34,7 +34,7 @@ public final class l implements b, bp0, ne.d, oe.a {
 
     @Override
     public void c(float f7) {
-        MessageObject messageObject = ((z) this.f8754a).P;
+        MessageObject messageObject = ((z) this.f8757a).P;
         if (messageObject == null) {
             return;
         }
@@ -69,12 +69,12 @@ public final class l implements b, bp0, ne.d, oe.a {
     @Override
     public boolean needClickAt(View view, float f7, float f10) {
         int dp = AndroidUtilities.dp(9.0f);
-        j71 j71Var = (j71) this.f8754a;
+        k71 k71Var = (k71) this.f8757a;
         float f11 = -dp;
-        j71Var.f26217g.inset(f11, f11);
-        boolean contains = j71Var.f26217g.contains(f7, f10);
+        k71Var.f26238g.inset(f11, f11);
+        boolean contains = k71Var.f26238g.contains(f7, f10);
         float f12 = dp;
-        j71Var.f26217g.inset(f12, f12);
+        k71Var.f26238g.inset(f12, f12);
         return contains;
     }
 
@@ -85,7 +85,7 @@ public final class l implements b, bp0, ne.d, oe.a {
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((j71) this.f8754a).f26219j;
+        Runnable runnable = ((k71) this.f8757a).f26240j;
         if (runnable != null) {
             runnable.run();
         }
@@ -93,12 +93,12 @@ public final class l implements b, bp0, ne.d, oe.a {
 
     @Override
     public void onClickTouchDown(View view, float f7, float f10) {
-        ((j71) this.f8754a).h.c(true);
+        ((k71) this.f8757a).h.c(true);
     }
 
     @Override
     public void onClickTouchUp(View view, float f7, float f10) {
-        ((j71) this.f8754a).h.c(false);
+        ((k71) this.f8757a).h.c(false);
     }
 
     @Override
@@ -108,7 +108,7 @@ public final class l implements b, bp0, ne.d, oe.a {
 
     @Override
     public void p(int i10, float f7, float f10, ne.e eVar) {
-        ((ne.j) this.f8754a).h(f7);
+        ((ne.j) this.f8757a).h(f7);
     }
 
     @Override

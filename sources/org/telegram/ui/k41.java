@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class k41 extends org.telegram.ui.Components.lm0 {
-    public final Context f37564c;
+    public final Context f37285c;
     public final boolean d;
     public final l41 e;
 
     public k41(l41 l41Var, Context context, boolean z10) {
         this.e = l41Var;
-        this.f37564c = context;
+        this.f37285c = context;
         this.d = z10;
     }
 
@@ -30,7 +30,7 @@ public final class k41 extends org.telegram.ui.Components.lm0 {
         int i10 = 0;
         l41 l41Var = this.e;
         if (z10) {
-            ArrayList arrayList = l41Var.f37841f;
+            ArrayList arrayList = l41Var.f37607f;
             if (arrayList == null) {
                 return 0;
             }
@@ -58,10 +58,10 @@ public final class k41 extends org.telegram.ui.Components.lm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.m4 m4Var;
-        Context context = this.f37564c;
+        Context context = this.f37285c;
         if (i10 != 0) {
             if (i10 != 2) {
-                m4Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.d0) null);
+                m4Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.c1) null);
             } else {
                 org.telegram.ui.Cells.m4 m4Var2 = new org.telegram.ui.Cells.m4(context);
                 m4Var2.setText(LocaleController.getString(R.string.ChooseLanguages));

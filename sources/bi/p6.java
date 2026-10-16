@@ -3,11 +3,11 @@ package bi;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-import org.telegram.messenger.yh;
+import org.telegram.messenger.sk;
 import org.telegram.ui.Components.f10;
 import org.telegram.ui.Components.pk;
 import org.telegram.ui.Components.wx0;
-import org.telegram.ui.lg1;
+import org.telegram.ui.kg1;
 public final class p6 extends wx0 {
     public final int K = 0;
     public final Object L;
@@ -21,19 +21,19 @@ public final class p6 extends wx0 {
     public void e(boolean z10, boolean z11) {
         switch (this.K) {
             case 2:
-                lg1 lg1Var = (lg1) this.L;
+                kg1 kg1Var = (kg1) this.L;
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = lg1Var.f37985n.f34536a.animate();
+                    ViewPropertyAnimator animate = kg1Var.f37408n.f33899a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                lg1Var.f37985n.f34536a.animate().cancel();
-                TextView textView = lg1Var.f37985n.f34536a;
+                kg1Var.f37408n.f33899a.animate().cancel();
+                TextView textView = kg1Var.f37408n.f33899a;
                 if (z10) {
                     f7 = 0.0f;
                 }
@@ -60,7 +60,7 @@ public final class p6 extends wx0 {
         switch (this.K) {
             case 0:
                 w6 w6Var = ((q6) this.L).d;
-                super.onMeasure(i10, yh.z(w6Var.e, w6Var.f3904n - w6Var.f3905r.getPaddingTop(), 1073741824));
+                super.onMeasure(i10, sk.c(w6Var.e, w6Var.f3908n - w6Var.f3909r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -85,8 +85,8 @@ public final class p6 extends wx0 {
         this.L = q6Var;
     }
 
-    public p6(lg1 lg1Var, Context context, f10 f10Var) {
+    public p6(kg1 kg1Var, Context context, f10 f10Var) {
         super(context, f10Var, 0, null);
-        this.L = lg1Var;
+        this.L = kg1Var;
     }
 }

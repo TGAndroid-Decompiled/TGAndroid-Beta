@@ -1,11 +1,11 @@
 package f2;
 public abstract class e {
-    public final int f8840a;
-    public final int f8841b;
+    public final int f8843a;
+    public final int f8844b;
 
     public e(int i10, int i11) {
-        this.f8840a = i11;
-        this.f8841b = i10;
+        this.f8843a = i11;
+        this.f8844b = i10;
     }
 
     public static String a(int i10) {
@@ -21,9 +21,9 @@ public abstract class e {
     public abstract e b();
 
     public String toString() {
-        switch (this.f8840a) {
+        switch (this.f8843a) {
             case 0:
-                return a(this.f8841b);
+                return a(this.f8844b);
             default:
                 return super.toString();
         }

@@ -3,21 +3,21 @@ package af;
 import java.io.Serializable;
 import java.util.ArrayList;
 public final class j extends ff.a {
-    public final int f582a;
-    public final df.a f583b;
-    public final Serializable f584c;
+    public final int f586a;
+    public final df.a f587b;
+    public final Serializable f588c;
 
     public j() {
-        this.f582a = 1;
-        this.f583b = new df.p();
-        this.f584c = new ArrayList();
+        this.f586a = 1;
+        this.f587b = new df.p();
+        this.f588c = new ArrayList();
     }
 
     @Override
     public void a(CharSequence charSequence) {
-        switch (this.f582a) {
+        switch (this.f586a) {
             case 1:
-                ((ArrayList) this.f584c).add(charSequence);
+                ((ArrayList) this.f588c).add(charSequence);
                 return;
             default:
                 return;
@@ -28,9 +28,9 @@ public final class j extends ff.a {
     public void d() {
         int i10;
         boolean z10;
-        switch (this.f582a) {
+        switch (this.f586a) {
             case 1:
-                ArrayList arrayList = (ArrayList) this.f584c;
+                ArrayList arrayList = (ArrayList) this.f588c;
                 int size = arrayList.size() - 1;
                 while (true) {
                     if (size >= 0) {
@@ -64,7 +64,7 @@ public final class j extends ff.a {
                     sb2.append((CharSequence) arrayList.get(i10));
                     sb2.append('\n');
                 }
-                ((df.l) this.f583b).f6524g = sb2.toString();
+                ((df.l) this.f587b).f6527g = sb2.toString();
                 return;
             default:
                 return;
@@ -73,19 +73,19 @@ public final class j extends ff.a {
 
     @Override
     public final df.a e() {
-        switch (this.f582a) {
+        switch (this.f586a) {
             case 0:
-                return (df.i) this.f583b;
+                return (df.i) this.f587b;
             default:
-                return (df.l) this.f583b;
+                return (df.l) this.f587b;
         }
     }
 
     @Override
     public void g(ef.a aVar) {
-        switch (this.f582a) {
+        switch (this.f586a) {
             case 0:
-                aVar.a((String) this.f584c, (df.i) this.f583b);
+                aVar.a((String) this.f588c, (df.i) this.f587b);
                 return;
             default:
                 return;
@@ -94,12 +94,12 @@ public final class j extends ff.a {
 
     @Override
     public final a h(h hVar) {
-        switch (this.f582a) {
+        switch (this.f586a) {
             case 0:
                 return null;
             default:
-                if (hVar.f571g >= 4) {
-                    return new a(-1, hVar.f569c + 4, false);
+                if (hVar.f575g >= 4) {
+                    return new a(-1, hVar.f573c + 4, false);
                 }
                 if (hVar.h) {
                     return a.a(hVar.e);
@@ -109,10 +109,10 @@ public final class j extends ff.a {
     }
 
     public j(int i10, String str) {
-        this.f582a = 0;
+        this.f586a = 0;
         ?? pVar = new df.p();
-        this.f583b = pVar;
-        pVar.f6520g = i10;
-        this.f584c = str;
+        this.f587b = pVar;
+        pVar.f6523g = i10;
+        this.f588c = str;
     }
 }

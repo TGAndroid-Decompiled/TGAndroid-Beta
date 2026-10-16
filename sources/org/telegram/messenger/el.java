@@ -1,23 +1,33 @@
 package org.telegram.messenger;
 public final class el implements Runnable {
-    public final int f17196a;
-    public final TranslateController f17197b;
-    public final long f17198c;
+    public final int f16893a;
+    public final TranslateController f16894b;
+    public final String f16895c;
+    public final MessageObject d;
+    public final long e;
+    public final int f16896f;
 
-    public el(TranslateController translateController, long j10, int i10) {
-        this.f17196a = i10;
-        this.f17197b = translateController;
-        this.f17198c = j10;
+    public el(TranslateController translateController, String str, MessageObject messageObject, long j10, int i10, int i11) {
+        this.f16893a = i11;
+        this.f16894b = translateController;
+        this.f16895c = str;
+        this.d = messageObject;
+        this.e = j10;
+        this.f16896f = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17196a) {
+        switch (this.f16893a) {
             case 0:
-                TranslateController.G(this.f17197b, this.f17198c);
+                long j10 = this.e;
+                int i10 = this.f16896f;
+                this.f16894b.lambda$checkLanguage$16(this.f16895c, this.d, j10, i10);
                 return;
             default:
-                TranslateController.p(this.f17197b, this.f17198c);
+                long j11 = this.e;
+                int i11 = this.f16896f;
+                this.f16894b.lambda$checkLanguage$12(this.f16895c, this.d, j11, i11);
                 return;
         }
     }

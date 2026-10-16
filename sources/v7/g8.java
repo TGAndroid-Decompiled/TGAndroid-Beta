@@ -6,9 +6,9 @@ public abstract class g8 {
         kotlin.jvm.internal.i.e(th2, "<this>");
         kotlin.jvm.internal.i.e(exception, "exception");
         if (th2 != exception) {
-            Integer num = pd.a.f43194a;
+            Integer num = pd.a.f42895a;
             if (num != null && num.intValue() < 19) {
-                Method method = od.a.f16632a;
+                Method method = od.a.f16325a;
                 if (method != null) {
                     method.invoke(th2, exception);
                     return;

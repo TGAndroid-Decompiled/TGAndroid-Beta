@@ -1,43 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class om implements nm0 {
-    public final ChatAttachAlertPhotoLayout f27987a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class om extends TextView {
+    public float f27676a;
+    public boolean f27677b;
+    public final Paint f27678c;
 
-    public om(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f27987a = chatAttachAlertPhotoLayout;
+    public om(Context context, Paint paint) {
+        super(context);
+        this.f27678c = paint;
+        this.f27676a = 0.0f;
     }
 
     @Override
-    public final void a(boolean z10) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f27987a;
-        chatAttachAlertPhotoLayout.L = z10 ? 1 : 0;
-        chatAttachAlertPhotoLayout.E.d1(true);
-    }
-
-    @Override
-    public final boolean b(int i10) {
-        if (this.f27987a.G.j(i10) == 0) {
-            return true;
+    public final void onDraw(Canvas canvas) {
+        int i10 = (int) ((this.f27676a * 130.0f) + 125.0f);
+        Paint paint = this.f27678c;
+        paint.setAlpha(i10);
+        if (!this.f27677b) {
+            float f7 = this.f27676a - 0.026666667f;
+            this.f27676a = f7;
+            if (f7 <= 0.0f) {
+                this.f27676a = 0.0f;
+                this.f27677b = true;
+            }
+        } else {
+            float f10 = this.f27676a + 0.026666667f;
+            this.f27676a = f10;
+            if (f10 >= 1.0f) {
+                this.f27676a = 1.0f;
+                this.f27677b = false;
+            }
         }
-        return false;
-    }
-
-    @Override
-    public final void c(View view, boolean z10) {
-        if (z10 == this.f27987a.K && (view instanceof org.telegram.ui.Cells.t5)) {
-            org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-            t5Var.f22092w.c(t5Var);
-        }
-    }
-
-    @Override
-    public final boolean d(int i10) {
-        MediaController.PhotoEntry M = this.f27987a.G.M(i10);
-        if (M != null && ChatAttachAlertPhotoLayout.f23020s1.containsKey(Integer.valueOf(M.imageId))) {
-            return true;
-        }
-        return false;
+        super.onDraw(canvas);
+        canvas.drawCircle(AndroidUtilities.dp(14.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(4.0f), paint);
+        invalidate();
     }
 }

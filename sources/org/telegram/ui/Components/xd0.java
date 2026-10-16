@@ -17,11 +17,11 @@ public final class xd0 extends yd0 {
         g2Var.setSingleLine(true);
         g2Var.setInputType(1);
         g2Var.setTypeface(Typeface.DEFAULT);
-        g2Var.setCursorColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f20045l6, false));
+        g2Var.setCursorColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19745l6, false));
         g2Var.setCursorWidth(1.5f);
         g2Var.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         e(g2Var);
-        addView(g2Var, w7.a6.e(-1, -2, 16));
+        addView(g2Var, w7.z5.e(-1, -2, 16));
     }
 
     public EditTextBoldCursor getEditText() {

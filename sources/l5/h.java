@@ -39,14 +39,14 @@ public final class h {
         ?? obj = new Object();
         String str = this.f14576a;
         if (str != null) {
-            obj.f6191a = str;
-            obj.f6192b = this.f14577b;
+            obj.f6194a = str;
+            obj.f6195b = this.f14577b;
             l lVar = this.f14578c;
             if (lVar != null) {
-                obj.f6193c = lVar;
+                obj.f6196c = lVar;
                 obj.d = Long.valueOf(this.d);
                 obj.e = Long.valueOf(this.e);
-                obj.f6194f = new HashMap(this.f14579f);
+                obj.f6197f = new HashMap(this.f14579f);
                 return obj;
             }
             throw new NullPointerException("Null encodedPayload");

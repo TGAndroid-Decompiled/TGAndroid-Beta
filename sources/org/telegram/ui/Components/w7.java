@@ -4,22 +4,22 @@ import android.content.Context;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.PhotoViewer;
 public final class w7 extends nd {
-    public final int f30809b;
-    public final NotificationCenter.NotificationCenterDelegate f30810c;
+    public final int f30485b;
+    public final NotificationCenter.NotificationCenterDelegate f30486c;
 
     public w7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
         super(context);
-        this.f30809b = i10;
-        this.f30810c = notificationCenterDelegate;
+        this.f30485b = i10;
+        this.f30486c = notificationCenterDelegate;
     }
 
     @Override
     public final void c(boolean z10) {
         boolean z11;
         int i10;
-        switch (this.f30809b) {
+        switch (this.f30485b) {
             case 0:
-                m8 m8Var = (m8) this.f30810c;
+                m8 m8Var = (m8) this.f30486c;
                 m8Var.d();
                 org.telegram.ui.cs csVar = m8Var.O;
                 if (csVar != null) {
@@ -28,7 +28,7 @@ public final class w7 extends nd {
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f30810c;
+                PhotoViewer photoViewer = (PhotoViewer) this.f30486c;
                 org.telegram.ui.ActionBar.e1 e1Var = photoViewer.F0;
                 if (e1Var != null) {
                     e1Var.d(z10);
@@ -40,16 +40,16 @@ public final class w7 extends nd {
                     }
                     e1Var2.setSelectorColor(i10);
                 }
-                h81 h81Var = photoViewer.F2;
-                if (h81Var != null) {
-                    if (!b5.d.u() && !photoViewer.f32338r) {
+                i81 i81Var = photoViewer.F2;
+                if (i81Var != null) {
+                    if (!b5.d.u() && !photoViewer.f32040r) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
-                    h81Var.O(z11);
+                    i81Var.O(z11);
                 }
-                org.telegram.ui.cs csVar2 = photoViewer.f32386w0;
+                org.telegram.ui.cs csVar2 = photoViewer.f32088w0;
                 if (csVar2 != null) {
                     csVar2.a(b5.d.u());
                     return;

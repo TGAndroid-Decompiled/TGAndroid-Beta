@@ -8,21 +8,21 @@ import org.telegram.messenger.ChatsWidgetProvider;
 import org.telegram.messenger.ContactsWidgetProvider;
 import org.telegram.messenger.MessagesStorage;
 public final class bz extends org.telegram.ui.ActionBar.j {
-    public final hz f34643a;
+    public final hz f34397a;
 
     public bz(hz hzVar) {
-        this.f34643a = hzVar;
+        this.f34397a = hzVar;
     }
 
     @Override
     public final void b(int i10) {
         int i11;
-        hz hzVar = this.f34643a;
-        int i12 = hzVar.f36991w;
+        hz hzVar = this.f34397a;
+        int i12 = hzVar.f36677w;
         ArrayList arrayList = hzVar.e;
-        int i13 = hzVar.f36992x;
+        int i13 = hzVar.f36678x;
         if (i10 == -1) {
-            if (hzVar.f36993y == null) {
+            if (hzVar.f36679y == null) {
                 hzVar.Y();
             } else {
                 hzVar.finishFragment();
@@ -44,10 +44,10 @@ public final class bz extends org.telegram.ui.ActionBar.j {
             } else {
                 ContactsWidgetProvider.updateWidget(hzVar.getParentActivity(), appWidgetManager, i13);
             }
-            b1 b1Var = hzVar.f36993y;
+            b1 b1Var = hzVar.f36679y;
             if (b1Var != null) {
-                int i15 = b1Var.f34392a;
-                Object obj = b1Var.f34393b;
+                int i15 = b1Var.f34138a;
+                Object obj = b1Var.f34139b;
                 switch (i15) {
                     case 25:
                         ChatsWidgetConfigActivity chatsWidgetConfigActivity = (ChatsWidgetConfigActivity) obj;

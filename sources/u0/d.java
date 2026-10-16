@@ -5,17 +5,17 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AnimationUtils;
-import m.r1;
-import org.telegram.ui.Wallet.m5;
+import m.t1;
+import p4.s0;
 public final class d implements View.OnTouchListener {
     public static final int H = ViewConfiguration.getTapTimeout();
     public boolean E;
     public boolean F;
-    public final r1 G;
+    public final t1 G;
     public final a f45841a;
     public final AccelerateInterpolator f45842b;
-    public final r1 f45843c;
-    public m5 d;
+    public final t1 f45843c;
+    public s0 d;
     public final float[] e;
     public final float[] f45844f;
     public final int h;
@@ -27,7 +27,7 @@ public final class d implements View.OnTouchListener {
     public boolean f45849x;
     public boolean f45850y;
 
-    public d(r1 r1Var) {
+    public d(t1 t1Var) {
         ?? obj = new Object();
         obj.e = Long.MIN_VALUE;
         obj.f45839g = -1L;
@@ -44,7 +44,7 @@ public final class d implements View.OnTouchListener {
         this.f45847s = fArr4;
         float[] fArr5 = {Float.MAX_VALUE, Float.MAX_VALUE};
         this.v = fArr5;
-        this.f45843c = r1Var;
+        this.f45843c = t1Var;
         float f7 = Resources.getSystem().getDisplayMetrics().density;
         float f10 = ((int) ((1575.0f * f7) + 0.5f)) / 1000.0f;
         fArr5[0] = f10;
@@ -62,7 +62,7 @@ public final class d implements View.OnTouchListener {
         this.f45845n = H;
         obj.f45835a = 500;
         obj.f45836b = 500;
-        this.G = r1Var;
+        this.G = t1Var;
     }
 
     public static float b(float f7, float f10, float f11) {
@@ -119,17 +119,17 @@ public final class d implements View.OnTouchListener {
     }
 
     public final boolean e() {
-        r1 r1Var;
+        t1 t1Var;
         int count;
         a aVar = this.f45841a;
         float f7 = aVar.d;
         int abs = (int) (f7 / Math.abs(f7));
         Math.abs(aVar.f45837c);
-        if (abs != 0 && (count = (r1Var = this.G).getCount()) != 0) {
-            int childCount = r1Var.getChildCount();
-            int firstVisiblePosition = r1Var.getFirstVisiblePosition();
+        if (abs != 0 && (count = (t1Var = this.G).getCount()) != 0) {
+            int childCount = t1Var.getChildCount();
+            int firstVisiblePosition = t1Var.getFirstVisiblePosition();
             int i10 = firstVisiblePosition + childCount;
-            if (abs <= 0 ? !(abs >= 0 || (firstVisiblePosition <= 0 && r1Var.getChildAt(0).getTop() >= 0)) : !(i10 >= count && r1Var.getChildAt(childCount - 1).getBottom() <= r1Var.getHeight())) {
+            if (abs <= 0 ? !(abs >= 0 || (firstVisiblePosition <= 0 && t1Var.getChildAt(0).getTop() >= 0)) : !(i10 >= count && t1Var.getChildAt(childCount - 1).getBottom() <= t1Var.getHeight())) {
                 return true;
             }
         }

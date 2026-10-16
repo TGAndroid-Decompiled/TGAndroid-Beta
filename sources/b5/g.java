@@ -4,27 +4,27 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.concurrent.atomic.AtomicReference;
-import m.q3;
+import m.t3;
 import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
 public final class g implements Callable {
-    public final int f2587a;
-    public final Object f2588b;
+    public final int f2591a;
+    public final Object f2592b;
 
     public g(Object obj, int i10) {
-        this.f2587a = i10;
-        this.f2588b = obj;
+        this.f2591a = i10;
+        this.f2592b = obj;
     }
 
     private final Object a() {
         boolean z10;
         String str;
-        q3 q3Var = (q3) this.f2588b;
-        synchronized (((AtomicMarkableReference) q3Var.h)) {
+        t3 t3Var = (t3) this.f2592b;
+        synchronized (((AtomicMarkableReference) t3Var.h)) {
             try {
                 z10 = false;
-                if (((AtomicMarkableReference) q3Var.h).isMarked()) {
-                    str = (String) ((AtomicMarkableReference) q3Var.h).getReference();
-                    ((AtomicMarkableReference) q3Var.h).set(str, false);
+                if (((AtomicMarkableReference) t3Var.h).isMarked()) {
+                    str = (String) ((AtomicMarkableReference) t3Var.h).getReference();
+                    ((AtomicMarkableReference) t3Var.h).set(str, false);
                     z10 = true;
                 } else {
                     str = null;
@@ -34,7 +34,7 @@ public final class g implements Callable {
             }
         }
         if (z10) {
-            ((y9.f) q3Var.f15219a).i((String) q3Var.f15221c, str);
+            ((y9.f) t3Var.f14983a).i((String) t3Var.f14985c, str);
         }
         return null;
     }
@@ -42,19 +42,19 @@ public final class g implements Callable {
     @Override
     public final Object call() {
         Map map;
-        switch (this.f2587a) {
+        switch (this.f2591a) {
             case 0:
-                return new h((JsReplyProxyBoundaryInterface) this.f2588b);
+                return new h((JsReplyProxyBoundaryInterface) this.f2592b);
             case 1:
                 return a();
             default:
-                c2.b bVar = (c2.b) this.f2588b;
-                ((AtomicReference) bVar.f4120c).set(null);
+                c2.b bVar = (c2.b) this.f2592b;
+                ((AtomicReference) bVar.f4124c).set(null);
                 synchronized (bVar) {
                     try {
-                        if (((AtomicMarkableReference) bVar.f4119b).isMarked()) {
-                            map = ((y9.d) ((AtomicMarkableReference) bVar.f4119b).getReference()).a();
-                            AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) bVar.f4119b;
+                        if (((AtomicMarkableReference) bVar.f4123b).isMarked()) {
+                            map = ((y9.d) ((AtomicMarkableReference) bVar.f4123b).getReference()).a();
+                            AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) bVar.f4123b;
                             atomicMarkableReference.set((y9.d) atomicMarkableReference.getReference(), false);
                         } else {
                             map = null;
@@ -64,8 +64,8 @@ public final class g implements Callable {
                     }
                 }
                 if (map != null) {
-                    q3 q3Var = (q3) bVar.d;
-                    ((y9.f) q3Var.f15219a).g((String) q3Var.f15221c, map, bVar.f4118a);
+                    t3 t3Var = (t3) bVar.d;
+                    ((y9.f) t3Var.f14983a).g((String) t3Var.f14985c, map, bVar.f4122a);
                 }
                 return null;
         }

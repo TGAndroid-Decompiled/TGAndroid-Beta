@@ -14,38 +14,38 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class k7 implements RequestDelegate {
-    public final int f26593a = 0;
-    public final boolean f26594b;
-    public final boolean f26595c;
+    public final int f26228a = 0;
+    public final boolean f26229b;
+    public final boolean f26230c;
     public final long d;
     public final KeyEvent.Callback e;
-    public final Object f26596f;
-    public final Object f26597g;
+    public final Object f26231f;
+    public final Object f26232g;
     public final Object h;
 
     public k7(m8 m8Var, boolean z10, MessageObject messageObject, boolean z11, Runnable runnable, long j10, TLRPC.Document document) {
         this.e = m8Var;
-        this.f26594b = z10;
-        this.f26596f = messageObject;
-        this.f26595c = z11;
-        this.f26597g = runnable;
+        this.f26229b = z10;
+        this.f26231f = messageObject;
+        this.f26230c = z11;
+        this.f26232g = runnable;
         this.d = j10;
         this.h = document;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f26593a) {
+        switch (this.f26228a) {
             case 0:
-                m8.A((m8) this.e, this.f26594b, (MessageObject) this.f26596f, this.f26595c, (Runnable) this.f26597g, this.d, (TLRPC.Document) this.h, tL_error);
+                m8.B((m8) this.e, this.f26229b, (MessageObject) this.f26231f, this.f26230c, (Runnable) this.f26232g, this.d, (TLRPC.Document) this.h, tL_error);
                 return;
             default:
                 final zh0 zh0Var = (zh0) this.e;
-                final MessagesController messagesController = (MessagesController) this.f26596f;
-                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f26597g;
+                final MessagesController messagesController = (MessagesController) this.f26231f;
+                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f26232g;
                 final ConnectionsManager connectionsManager = (ConnectionsManager) this.h;
-                final boolean z10 = this.f26594b;
-                final boolean z11 = this.f26595c;
+                final boolean z10 = this.f26229b;
+                final boolean z11 = this.f26230c;
                 final long j10 = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -55,8 +55,8 @@ public final class k7 implements RequestDelegate {
                         boolean z13;
                         boolean z14;
                         zh0 zh0Var2 = zh0.this;
-                        int i10 = zh0Var2.f31869b;
-                        h71 h71Var = zh0Var2.f31870c;
+                        int i10 = zh0Var2.f31563b;
+                        i71 i71Var = zh0Var2.f31564c;
                         zh0Var2.K = -1;
                         zh0Var2.v = false;
                         zh0Var2.H.setLoading(false);
@@ -77,7 +77,7 @@ public final class k7 implements RequestDelegate {
                             if (z16) {
                                 arrayList = zh0Var2.e;
                             } else {
-                                arrayList = zh0Var2.f31872n;
+                                arrayList = zh0Var2.f31566n;
                             }
                             boolean isEmpty = arrayList.isEmpty();
                             ArrayList<TLRPC.Message> arrayList3 = messages_messages.messages;
@@ -94,29 +94,29 @@ public final class k7 implements RequestDelegate {
                             }
                             if (!z16) {
                                 if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                                    zh0Var2.f31873r = messages_messages.next_rate;
+                                    zh0Var2.f31567r = messages_messages.next_rate;
                                     if ((messages_messages.flags & 1) == 0) {
                                         z14 = true;
                                     } else {
                                         z14 = false;
                                     }
-                                    zh0Var2.f31874s = z14;
+                                    zh0Var2.f31568s = z14;
                                     z12 = true;
                                 } else if (messages_messages instanceof TLRPC.TL_messages_messages) {
-                                    zh0Var2.f31873r = 0;
+                                    zh0Var2.f31567r = 0;
                                     z12 = true;
-                                    zh0Var2.f31874s = true;
+                                    zh0Var2.f31568s = true;
                                 } else {
                                     z12 = true;
                                     if (messages_messages instanceof TLRPC.TL_messages_channelMessages) {
-                                        zh0Var2.f31873r = 0;
-                                        zh0Var2.f31874s = true;
+                                        zh0Var2.f31567r = 0;
+                                        zh0Var2.f31568s = true;
                                     }
                                 }
                             } else {
                                 z12 = true;
                                 if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                                    zh0Var2.f31871f = messages_messages.next_rate;
+                                    zh0Var2.f31565f = messages_messages.next_rate;
                                     if ((messages_messages.flags & 1) == 0) {
                                         z13 = true;
                                     } else {
@@ -124,23 +124,23 @@ public final class k7 implements RequestDelegate {
                                     }
                                     zh0Var2.h = z13;
                                 } else if (messages_messages instanceof TLRPC.TL_messages_messages) {
-                                    zh0Var2.f31871f = 0;
+                                    zh0Var2.f31565f = 0;
                                     zh0Var2.h = true;
                                 } else if (messages_messages instanceof TLRPC.TL_messages_channelMessages) {
-                                    zh0Var2.f31871f = 0;
+                                    zh0Var2.f31565f = 0;
                                     zh0Var2.h = true;
                                 }
                             }
                             zh0Var2.d();
                             if (isEmpty) {
-                                h71Var.u0(0);
+                                i71Var.u0(0);
                             }
-                            h71Var.W2.N(z12);
-                            if (!arrayList.isEmpty() && (!z16 ? !zh0Var2.f31874s : !zh0Var2.h)) {
-                                AndroidUtilities.runOnUIThread(new di.x0(zh0Var2, z16, arrayList, 24));
+                            i71Var.W2.N(z12);
+                            if (!arrayList.isEmpty() && (!z16 ? !zh0Var2.f31568s : !zh0Var2.h)) {
+                                AndroidUtilities.runOnUIThread(new di.x0(zh0Var2, z16, arrayList, 22));
                             }
                             if (z11 && j11 > 0 && !z16) {
-                                zc.a0(zh0Var2.f31868a).Q(R.raw.stars_topup, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("SearchPaidStars", (int) j11))).j();
+                                zc.a0(zh0Var2.f31562a).Q(R.raw.stars_topup, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("SearchPaidStars", (int) j11))).j();
                                 return;
                             }
                             return;
@@ -158,14 +158,14 @@ public final class k7 implements RequestDelegate {
                                     zh0Var2.d.stars_amount = parseInt2;
                                 }
                                 zh0Var2.d();
-                                h71Var.W2.N(true);
+                                i71Var.W2.N(true);
                             }
                         } else if (tL_error2 != null && "PREMIUM_ACCOUNT_REQUIRED".equalsIgnoreCase(tL_error2.text)) {
                             zh0Var2.d();
-                            h71Var.W2.N(true);
+                            i71Var.W2.N(true);
                         } else if (tL_error2 != null && "BALANCE_TOO_LOW".equalsIgnoreCase(tL_error2.text)) {
                             zh0Var2.d();
-                            h71Var.W2.N(true);
+                            i71Var.W2.N(true);
                             zh.n5.y(i10, false).q(true, true, new bi.g(zh0Var2, j11, 24));
                         }
                     }
@@ -176,10 +176,10 @@ public final class k7 implements RequestDelegate {
 
     public k7(zh0 zh0Var, MessagesController messagesController, boolean z10, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z11, long j10, ConnectionsManager connectionsManager) {
         this.e = zh0Var;
-        this.f26596f = messagesController;
-        this.f26594b = z10;
-        this.f26597g = tL_channels_searchPosts;
-        this.f26595c = z11;
+        this.f26231f = messagesController;
+        this.f26229b = z10;
+        this.f26232g = tL_channels_searchPosts;
+        this.f26230c = z11;
         this.d = j10;
         this.h = connectionsManager;
     }

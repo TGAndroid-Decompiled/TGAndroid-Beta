@@ -25,52 +25,52 @@ public final class h9 extends FrameLayout {
     public final Rect E;
     public final int[] F;
     public final int[] G;
-    public final n1 H;
-    public final m1 I;
+    public final o1 H;
+    public final n1 I;
     public int J;
     public int K;
     public int L;
     public int M;
     public final TextView[] N;
-    public final EditText f33260a;
-    public final TextView f33261b;
-    public final TextView f33262c;
+    public final EditText f32990a;
+    public final TextView f32991b;
+    public final TextView f32992c;
     public final ImageView d;
     public final org.telegram.ui.ActionBar.c6 e;
-    public Runnable f33263f;
+    public Runnable f32993f;
     public Runnable h;
-    public Runnable f33264n;
-    public Runnable f33265r;
-    public PopupWindow f33266s;
+    public Runnable f32994n;
+    public Runnable f32995r;
+    public PopupWindow f32996s;
     public boolean v;
-    public LinearLayout f33267w;
-    public ImageView f33268x;
-    public final Rect f33269y;
+    public LinearLayout f32997w;
+    public ImageView f32998x;
+    public final Rect f32999y;
 
     public h9(int i10, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
         super(context);
         float f7;
-        this.f33269y = new Rect();
+        this.f32999y = new Rect();
         this.E = new Rect();
         this.F = new int[2];
         this.G = new int[2];
-        this.H = new n1(this, 1);
-        this.I = new m1(this, 1);
+        this.H = new o1(this, 1);
+        this.I = new n1(this, 1);
         this.N = new TextView[3];
         this.e = c6Var;
-        setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.g6.m1(0.5f, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19843a7, c6Var))));
+        setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.g6.m1(0.5f, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19543a7, c6Var))));
         setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(11.0f), 0);
         TextView textView = new TextView(context);
-        this.f33261b = textView;
+        this.f32991b = textView;
         textView.setTextSize(15.0f);
         textView.setGravity(17);
         textView.setIncludeFontPadding(false);
         textView.setText((i10 + 1) + ".");
         textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.A6, c6Var));
-        addView(textView, w7.a6.a(-2.0f, 0.0f, 0.0f, 8.0f, 0.0f, 22, 16));
+        addView(textView, w7.z5.a(-2.0f, 0.0f, 0.0f, 8.0f, 0.0f, 22, 16));
         setClipChildren(false);
         EditText editText = new EditText(context);
-        this.f33260a = editText;
+        this.f32990a = editText;
         editText.setTextSize(16.0f);
         editText.setGravity(16);
         editText.setBackground(null);
@@ -79,7 +79,7 @@ public final class h9 extends FrameLayout {
         editText.setSingleLine(true);
         editText.setImeOptions(5);
         editText.setTypeface(Typeface.DEFAULT);
-        editText.setHintTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20305z6, c6Var));
+        editText.setHintTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20005z6, c6Var));
         editText.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.G6, c6Var));
         editText.setHint("");
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -89,7 +89,7 @@ public final class h9 extends FrameLayout {
                 if (z11) {
                     h9Var.setError(false);
                     h9Var.e();
-                    String lowerCase = h9Var.f33260a.getText().toString().trim().toLowerCase();
+                    String lowerCase = h9Var.f32990a.getText().toString().trim().toLowerCase();
                     if (lowerCase.isEmpty()) {
                         h9Var.a();
                     } else {
@@ -110,24 +110,24 @@ public final class h9 extends FrameLayout {
         } else {
             f7 = 8.0f;
         }
-        addView(editText, w7.a6.a(-1.0f, 30.0f, 0.0f, f7, 0.0f, -1, 16));
-        editText.setOnEditorActionListener(new p7(this, 1));
+        addView(editText, w7.z5.a(-1.0f, 30.0f, 0.0f, f7, 0.0f, -1, 16));
+        editText.setOnEditorActionListener(new q7(this, 1));
         FrameLayout frameLayout = new FrameLayout(context);
-        addView(frameLayout, w7.a6.e(-2, -2, 21));
+        addView(frameLayout, w7.z5.e(-2, -2, 21));
         if (z10) {
             TextView textView2 = new TextView(context);
-            this.f33262c = textView2;
+            this.f32992c = textView2;
             textView2.setTextSize(14.0f);
             textView2.setTypeface(AndroidUtilities.bold());
             textView2.setGravity(17);
             textView2.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.q6, c6Var));
-            textView2.setPadding(org.telegram.ui.Cells.d0.c(12.0f, R.string.WalletPaste, textView2), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-            textView2.setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(28.0f), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19901d6, c6Var)));
+            textView2.setPadding(org.telegram.ui.Cells.c1.b(12.0f, R.string.WalletPaste, textView2), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
+            textView2.setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(28.0f), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19601d6, c6Var)));
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final h9 f33189b;
+                public final h9 f32934b;
 
                 {
-                    this.f33189b = this;
+                    this.f32934b = this;
                 }
 
                 @Override
@@ -135,8 +135,8 @@ public final class h9 extends FrameLayout {
                     CharSequence text;
                     switch (r2) {
                         case 0:
-                            h9 h9Var = this.f33189b;
-                            EditText editText2 = h9Var.f33260a;
+                            h9 h9Var = this.f32934b;
+                            EditText editText2 = h9Var.f32990a;
                             try {
                                 ClipboardManager clipboardManager = (ClipboardManager) h9Var.getContext().getSystemService("clipboard");
                                 if (clipboardManager != null && clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() > 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
@@ -154,30 +154,30 @@ public final class h9 extends FrameLayout {
                                 return;
                             }
                         default:
-                            EditText editText3 = this.f33189b.f33260a;
+                            EditText editText3 = this.f32934b.f32990a;
                             editText3.setText("");
                             editText3.setSelection(0);
                             return;
                     }
                 }
             });
-            frameLayout.addView(textView2, w7.a6.e(-2, -2, 17));
+            frameLayout.addView(textView2, w7.z5.e(-2, -2, 17));
         } else {
-            this.f33262c = null;
+            this.f32992c = null;
         }
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20288y6, c6Var), PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19988y6, c6Var), PorterDuff.Mode.SRC_IN));
         imageView.setImageResource(R.drawable.ic_ab_close);
-        imageView.setBackground(org.telegram.ui.ActionBar.g6.g0(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19990i6, c6Var), 3, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.g6.g0(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19690i6, c6Var), 3, -1));
         imageView.setVisibility(8);
         imageView.setFocusable(false);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final h9 f33189b;
+            public final h9 f32934b;
 
             {
-                this.f33189b = this;
+                this.f32934b = this;
             }
 
             @Override
@@ -185,8 +185,8 @@ public final class h9 extends FrameLayout {
                 CharSequence text;
                 switch (r2) {
                     case 0:
-                        h9 h9Var = this.f33189b;
-                        EditText editText2 = h9Var.f33260a;
+                        h9 h9Var = this.f32934b;
+                        EditText editText2 = h9Var.f32990a;
                         try {
                             ClipboardManager clipboardManager = (ClipboardManager) h9Var.getContext().getSystemService("clipboard");
                             if (clipboardManager != null && clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() > 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
@@ -204,27 +204,27 @@ public final class h9 extends FrameLayout {
                             return;
                         }
                     default:
-                        EditText editText3 = this.f33189b.f33260a;
+                        EditText editText3 = this.f32934b.f32990a;
                         editText3.setText("");
                         editText3.setSelection(0);
                         return;
                 }
             }
         });
-        frameLayout.addView(imageView, w7.a6.e(28, 28, 17));
+        frameLayout.addView(imageView, w7.z5.e(28, 28, 17));
         e();
         d();
     }
 
     public final void a() {
-        PopupWindow popupWindow = this.f33266s;
+        PopupWindow popupWindow = this.f32996s;
         if (popupWindow != null && popupWindow.isShowing()) {
-            this.f33266s.dismiss();
+            this.f32996s.dismiss();
         }
     }
 
     public final boolean b() {
-        String lowerCase = this.f33260a.getText().toString().trim().toLowerCase();
+        String lowerCase = this.f32990a.getText().toString().trim().toLowerCase();
         if (lowerCase.isEmpty()) {
             return true;
         }
@@ -240,7 +240,7 @@ public final class h9 extends FrameLayout {
         int i10;
         int height;
         float f7;
-        Rect rect = this.f33269y;
+        Rect rect = this.f32999y;
         getWindowVisibleDisplayFrame(rect);
         int[] iArr = this.F;
         getLocationOnScreen(iArr);
@@ -256,7 +256,7 @@ public final class h9 extends FrameLayout {
             a();
             return;
         }
-        LinearLayout linearLayout = (LinearLayout) this.f33266s.getContentView();
+        LinearLayout linearLayout = (LinearLayout) this.f32996s.getContentView();
         linearLayout.measure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), rect.width()), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
         int measuredWidth = linearLayout.getMeasuredWidth();
         int measuredHeight = linearLayout.getMeasuredHeight();
@@ -270,10 +270,10 @@ public final class h9 extends FrameLayout {
             a();
             return;
         }
-        if (linearLayout.indexOfChild(this.f33268x) != i10) {
-            linearLayout.removeView(this.f33268x);
-            linearLayout.addView(this.f33268x, i10);
-            ImageView imageView = this.f33268x;
+        if (linearLayout.indexOfChild(this.f32998x) != i10) {
+            linearLayout.removeView(this.f32998x);
+            linearLayout.addView(this.f32998x, i10);
+            ImageView imageView = this.f32998x;
             if (i10 != 0) {
                 f7 = 180.0f;
             } else {
@@ -289,14 +289,14 @@ public final class h9 extends FrameLayout {
         }
         int i11 = (max + iArr2[0]) - iArr[0];
         int i12 = (height + iArr2[1]) - iArr[1];
-        if (this.f33266s.isShowing()) {
+        if (this.f32996s.isShowing()) {
             if (this.J != i11 || this.K != i12 || this.L != measuredWidth || this.M != measuredHeight) {
-                this.f33266s.update(i11, i12, measuredWidth, measuredHeight);
+                this.f32996s.update(i11, i12, measuredWidth, measuredHeight);
             }
         } else {
-            this.f33266s.setWidth(measuredWidth);
-            this.f33266s.setHeight(measuredHeight);
-            this.f33266s.showAtLocation(this, 51, i11, i12);
+            this.f32996s.setWidth(measuredWidth);
+            this.f32996s.setHeight(measuredHeight);
+            this.f32996s.showAtLocation(this, 51, i11, i12);
             getViewTreeObserver().addOnGlobalLayoutListener(this.H);
             getViewTreeObserver().addOnScrollChangedListener(this.I);
         }
@@ -313,7 +313,7 @@ public final class h9 extends FrameLayout {
     public final void e() {
         boolean z10;
         int w02;
-        if (!this.v && this.f33260a.getText().length() <= 0) {
+        if (!this.v && this.f32990a.getText().length() <= 0) {
             z10 = false;
         } else {
             z10 = true;
@@ -321,20 +321,20 @@ public final class h9 extends FrameLayout {
         boolean z11 = this.v;
         org.telegram.ui.ActionBar.c6 c6Var = this.e;
         if (z11) {
-            w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20139q7, c6Var);
+            w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19839q7, c6Var);
         } else if (z10) {
             w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.G6, c6Var);
         } else {
             w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.A6, c6Var);
         }
-        this.f33261b.setTextColor(w02);
+        this.f32991b.setTextColor(w02);
     }
 
     public final void f(String str) {
         String[] mnemonicWordlist;
         ShapeDrawable shapeDrawable;
         int i10;
-        if (this.f33260a.hasFocus() && !TextUtils.isEmpty(str) && str.length() >= 1 && WalletEngine2.getMnemonicWordlist().length != 0) {
+        if (this.f32990a.hasFocus() && !TextUtils.isEmpty(str) && str.length() >= 1 && WalletEngine2.getMnemonicWordlist().length != 0) {
             ArrayList arrayList = new ArrayList();
             for (String str2 : WalletEngine2.getMnemonicWordlist()) {
                 if (str2.startsWith(str) && !str2.equals(str)) {
@@ -349,35 +349,35 @@ public final class h9 extends FrameLayout {
                 return;
             }
             Context context = getContext();
-            PopupWindow popupWindow = this.f33266s;
+            PopupWindow popupWindow = this.f32996s;
             TextView[] textViewArr = this.N;
             if (popupWindow == null) {
                 PopupWindow popupWindow2 = new PopupWindow(context);
-                this.f33266s = popupWindow2;
+                this.f32996s = popupWindow2;
                 popupWindow2.setOutsideTouchable(false);
-                this.f33266s.setFocusable(false);
-                this.f33266s.setInputMethodMode(1);
-                this.f33266s.setBackgroundDrawable(null);
-                this.f33266s.setElevation(AndroidUtilities.dp(8.0f));
+                this.f32996s.setFocusable(false);
+                this.f32996s.setInputMethodMode(1);
+                this.f32996s.setBackgroundDrawable(null);
+                this.f32996s.setElevation(AndroidUtilities.dp(8.0f));
                 LinearLayout linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(1);
                 linearLayout.setClipToPadding(false);
                 ImageView imageView = new ImageView(context);
-                this.f33268x = imageView;
+                this.f32998x = imageView;
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                this.f33268x.setColorFilter(new PorterDuffColorFilter(-872415232, PorterDuff.Mode.SRC_IN));
-                this.f33268x.setImageResource(R.drawable.wallet_tooltip_arrow);
-                linearLayout.addView(this.f33268x, w7.a6.t(18, 9, 1, 0, 0, 0, 0));
+                this.f32998x.setColorFilter(new PorterDuffColorFilter(-872415232, PorterDuff.Mode.SRC_IN));
+                this.f32998x.setImageResource(R.drawable.wallet_tooltip_arrow);
+                linearLayout.addView(this.f32998x, w7.z5.t(18, 9, 1, 0, 0, 0, 0));
                 LinearLayout linearLayout2 = new LinearLayout(context);
-                this.f33267w = linearLayout2;
+                this.f32997w = linearLayout2;
                 linearLayout2.setOrientation(0);
-                this.f33267w.setGravity(16);
-                this.f33267w.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-                this.f33267w.setClipToPadding(false);
+                this.f32997w.setGravity(16);
+                this.f32997w.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+                this.f32997w.setClipToPadding(false);
                 GradientDrawable gradientDrawable = new GradientDrawable();
                 gradientDrawable.setColor(-872415232);
                 gradientDrawable.setCornerRadius(AndroidUtilities.dp(8.0f));
-                this.f33267w.setBackground(gradientDrawable);
+                this.f32997w.setBackground(gradientDrawable);
                 for (int i11 = 0; i11 < 3; i11++) {
                     TextView textView = new TextView(context);
                     textView.setTextSize(14.0f);
@@ -391,19 +391,19 @@ public final class h9 extends FrameLayout {
                     textView.setVisibility(8);
                     textView.setOnClickListener(new di.m4(this, i11, 26));
                     textViewArr[i11] = textView;
-                    LinearLayout linearLayout3 = this.f33267w;
+                    LinearLayout linearLayout3 = this.f32997w;
                     if (i11 == 0) {
                         i10 = 0;
                     } else {
                         i10 = 12;
                     }
-                    linearLayout3.addView(textView, w7.a6.t(-2, -2, 16, i10, 0, 0, 0));
+                    linearLayout3.addView(textView, w7.z5.t(-2, -2, 16, i10, 0, 0, 0));
                 }
-                linearLayout.addView(this.f33267w, w7.a6.n(-2, -2));
-                this.f33266s.setContentView(linearLayout);
-                this.f33266s.setWidth(-2);
-                this.f33266s.setHeight(-2);
-                this.f33266s.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                linearLayout.addView(this.f32997w, w7.z5.n(-2, -2));
+                this.f32996s.setContentView(linearLayout);
+                this.f32996s.setWidth(-2);
+                this.f32996s.setHeight(-2);
+                this.f32996s.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public final void onDismiss() {
                         h9 h9Var = h9.this;
@@ -441,7 +441,7 @@ public final class h9 extends FrameLayout {
     }
 
     public String getWord() {
-        return this.f33260a.getText().toString().trim();
+        return this.f32990a.getText().toString().trim();
     }
 
     @Override
@@ -459,27 +459,27 @@ public final class h9 extends FrameLayout {
         if (this.v != z10) {
             this.v = z10;
             ImageView imageView = this.d;
-            EditText editText = this.f33260a;
+            EditText editText = this.f32990a;
             org.telegram.ui.ActionBar.c6 c6Var = this.e;
             if (z10) {
-                setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.g6.m1(0.24f, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20159r7, c6Var))));
-                int i10 = org.telegram.ui.ActionBar.g6.f20139q7;
-                this.f33261b.setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
+                setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.g6.m1(0.24f, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19859r7, c6Var))));
+                int i10 = org.telegram.ui.ActionBar.g6.f19839q7;
+                this.f32991b.setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
                 editText.setTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
                 if (imageView != null) {
                     imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(i10, c6Var), PorterDuff.Mode.SRC_IN));
                 }
                 AndroidUtilities.shakeViewSpring(this);
             } else {
-                setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.g6.m1(0.5f, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19843a7, c6Var))));
+                setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.g6.m1(0.5f, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19543a7, c6Var))));
                 editText.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.G6, c6Var));
                 if (imageView != null) {
-                    imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20288y6, c6Var), PorterDuff.Mode.SRC_IN));
+                    imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19988y6, c6Var), PorterDuff.Mode.SRC_IN));
                 }
                 e();
                 d();
             }
-            Runnable runnable = this.f33264n;
+            Runnable runnable = this.f32994n;
             if (runnable != null) {
                 runnable.run();
             }
@@ -487,11 +487,11 @@ public final class h9 extends FrameLayout {
     }
 
     public void setOnErrorClearListener(Runnable runnable) {
-        this.f33264n = runnable;
+        this.f32994n = runnable;
     }
 
     public void setOnNextListener(Runnable runnable) {
-        this.f33265r = runnable;
+        this.f32995r = runnable;
     }
 
     public void setOnPasteListener(Runnable runnable) {
@@ -499,11 +499,11 @@ public final class h9 extends FrameLayout {
     }
 
     public void setOnTextChangedListener(Runnable runnable) {
-        this.f33263f = runnable;
+        this.f32993f = runnable;
     }
 
     public void setText(String str) {
-        EditText editText = this.f33260a;
+        EditText editText = this.f32990a;
         editText.setText(str);
         editText.setSelection(str.length());
         setError(false);

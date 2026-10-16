@@ -1,22 +1,15 @@
 package org.webrtc;
-public final class o implements Runnable {
-    public final int f42804a;
-    public final RenderSynchronizer f42805b;
 
-    public o(RenderSynchronizer renderSynchronizer, int i10) {
-        this.f42804a = i10;
-        this.f42805b = renderSynchronizer;
+import android.view.Choreographer;
+public final class o implements Choreographer.FrameCallback {
+    public final RenderSynchronizer f42506a;
+
+    public o(RenderSynchronizer renderSynchronizer) {
+        this.f42506a = renderSynchronizer;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42804a) {
-            case 0:
-                RenderSynchronizer.b(this.f42805b);
-                return;
-            default:
-                RenderSynchronizer.c(this.f42805b);
-                return;
-        }
+    public final void doFrame(long j10) {
+        this.f42506a.onDisplayRefreshCycleBegin(j10);
     }
 }

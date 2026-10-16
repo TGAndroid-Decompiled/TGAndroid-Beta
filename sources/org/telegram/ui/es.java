@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class es {
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f35669a;
-    public org.telegram.ui.ActionBar.a1 f35670b;
-    public org.telegram.ui.ActionBar.e1[] f35671c;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f35370a;
+    public org.telegram.ui.ActionBar.a1 f35371b;
+    public org.telegram.ui.ActionBar.e1[] f35372c;
 
     public final void a(float f7, boolean z10) {
-        org.telegram.ui.ActionBar.e1[] e1VarArr = this.f35671c;
+        org.telegram.ui.ActionBar.e1[] e1VarArr = this.f35372c;
         for (int i10 = 0; i10 < e1VarArr.length; i10++) {
             if (z10 && ((i10 == 0 && Math.abs(f7 - 0.2f) < 0.01f) || ((i10 == 1 && Math.abs(f7 - 0.5f) < 0.1f) || ((i10 == 2 && Math.abs(f7 - 1.0f) < 0.1f) || ((i10 == 3 && Math.abs(f7 - 1.5f) < 0.1f) || (i10 == 4 && Math.abs(f7 - 2.0f) < 0.1f)))))) {
                 e1VarArr[i10].c(-9718023, -9718023);
@@ -15,6 +15,6 @@ public final class es {
                 e1VarArr[i10].c(-328966, -328966);
             }
         }
-        this.f35670b.d(f7, true);
+        this.f35371b.d(f7, true);
     }
 }

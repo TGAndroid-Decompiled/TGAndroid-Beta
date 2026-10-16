@@ -2,26 +2,26 @@ package org.telegram.ui.Components.voip;
 
 import android.content.DialogInterface;
 public final class a2 implements DialogInterface.OnDismissListener {
-    public final int f30098a;
-    public final Runnable f30099b;
+    public final int f29767a;
+    public final Runnable f29768b;
 
     public a2(int i10, Runnable runnable) {
-        this.f30098a = i10;
-        this.f30099b = runnable;
+        this.f29767a = i10;
+        this.f29768b = runnable;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f30098a) {
+        switch (this.f29767a) {
             case 0:
-                Runnable runnable = this.f30099b;
+                Runnable runnable = this.f29768b;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                Runnable runnable2 = this.f30099b;
+                Runnable runnable2 = this.f29768b;
                 if (runnable2 != null) {
                     runnable2.run();
                     return;

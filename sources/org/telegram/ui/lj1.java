@@ -1,79 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class lj1 implements RequestDelegate {
-    public final int f38032a;
-    public final Object f38033b;
-    public final Object f38034c;
+import android.util.LongSparseArray;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class lj1 extends org.telegram.ui.ActionBar.j {
+    public final WallpapersListActivity f37773a;
 
-    public lj1(int i10, Object obj, Object obj2) {
-        this.f38032a = i10;
-        this.f38033b = obj;
-        this.f38034c = obj2;
+    public lj1(WallpapersListActivity wallpapersListActivity) {
+        this.f37773a = wallpapersListActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38032a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.t8(1, (mj1) this.f38033b, (int[]) this.f38034c));
+    public final void b(int i10) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        WallpapersListActivity wallpapersListActivity = this.f37773a;
+        LongSparseArray longSparseArray = wallpapersListActivity.f33690i0;
+        if (i10 == -1) {
+            kVar = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).actionBar;
+            if (kVar.t()) {
+                longSparseArray.clear();
+                kVar2 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).actionBar;
+                kVar2.s();
+                wallpapersListActivity.D0();
                 return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new ss0((rg.p2) this.f38033b, tLObject, (rg.n2) this.f38034c, tL_error, 24));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new org.webrtc.i(tLObject, (MessagesController) this.f38033b, (ug.x0) this.f38034c, 9));
-                return;
-            case 3:
-                MessagesController messagesController = (MessagesController) this.f38033b;
-                mt mtVar = (mt) this.f38034c;
-                if (tLObject instanceof TLRPC.TL_contacts_found) {
-                    TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
-                    messagesController.putUsers(tL_contacts_found.users, false);
-                    ArrayList arrayList = new ArrayList();
-                    for (int i10 = 0; i10 < tL_contacts_found.users.size(); i10++) {
-                        TLRPC.User user = tL_contacts_found.users.get(i10);
-                        if (!user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f19363id)) {
-                            arrayList.add(user);
-                        }
-                    }
-                    AndroidUtilities.runOnUIThread(new s9.b(12, mtVar, arrayList));
-                    return;
+            }
+            wallpapersListActivity.finishFragment();
+        } else if (i10 == 4) {
+            if (wallpapersListActivity.getParentActivity() != null) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wallpapersListActivity.getParentActivity());
+                alertDialog$Builder.f19248a.R = LocaleController.formatPluralString("DeleteBackground", longSparseArray.size(), new Object[0]);
+                alertDialog$Builder.f19248a.T = LocaleController.formatString("DeleteChatBackgroundsAlert", R.string.DeleteChatBackgroundsAlert, new Object[0]);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new jj1(this));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
+                wallpapersListActivity.showDialog(a2Var);
+                TextView textView = (TextView) a2Var.d(-1);
+                if (textView != null) {
+                    textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19839q7, false));
                 }
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new org.webrtc.i((org.telegram.ui.Components.ns0) this.f38033b, tL_error, (org.telegram.ui.ActionBar.m2) this.f38034c, 15));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new org.webrtc.i((yh.t3) this.f38033b, tLObject, (TL_stars.getResaleStarGifts) this.f38034c, 18));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new org.webrtc.i((zh.g) this.f38033b, tLObject, (Context) this.f38034c, 19));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new ss0((zh.r3) this.f38033b, tLObject, (org.webrtc.i) this.f38034c, tL_error, 29));
-                return;
-            case 8:
-                zh.r3.g1((zh.r3) this.f38033b, (TL_stars.InputSavedStarGift) this.f38034c, tLObject, tL_error);
-                return;
-            case 9:
-                zh.r3.W0((zh.r3) this.f38033b, (org.telegram.ui.ActionBar.a2) this.f38034c, tLObject, tL_error);
-                return;
-            case 10:
-                AndroidUtilities.runOnUIThread(new org.webrtc.i((zh.n5) this.f38033b, tLObject, tL_error, (Utilities.Callback) this.f38034c, 28));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new org.webrtc.i((zh.n5) this.f38033b, tLObject, (Runnable) this.f38034c, 29));
-                return;
+            }
+        } else if (i10 == 3) {
+            yy yyVar = new yy(org.telegram.messenger.sk.d(3, "onlySelect", "dialogsType", true));
+            yyVar.C2 = new jj1(this);
+            wallpapersListActivity.presentFragment(yyVar);
         }
     }
 }

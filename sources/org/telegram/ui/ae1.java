@@ -15,12 +15,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
 public final class ae1 extends org.telegram.ui.Components.lm0 {
-    public final Context f34193c;
+    public final Context f33889c;
     public final ce1 d;
 
     public ae1(Context context, ce1 ce1Var) {
         this.d = ce1Var;
-        this.f34193c = context;
+        this.f33889c = context;
     }
 
     @Override
@@ -48,21 +48,21 @@ public final class ae1 extends org.telegram.ui.Components.lm0 {
         org.telegram.ui.Cells.k5 k5Var = (org.telegram.ui.Cells.k5) b1Var.f44838a;
         ce1 ce1Var = this.d;
         k5Var.setPattern((TLRPC.TL_wallPaper) ce1Var.U0.get(i10));
-        k5Var.getImageReceiver().setColorFilter(new PorterDuffColorFilter(ce1Var.f34884j1, ce1Var.f34904s1));
+        k5Var.getImageReceiver().setColorFilter(new PorterDuffColorFilter(ce1Var.f34608j1, ce1Var.f34628s1));
         if (Build.VERSION.SDK_INT >= 29) {
             int i11 = 0;
-            if (ce1Var.f34856b == 1) {
+            if (ce1Var.f34580b == 1) {
                 int C0 = org.telegram.ui.ActionBar.g6.C0(org.telegram.ui.ActionBar.g6.Pd);
-                long j10 = ce1Var.f34902s.f19753l;
+                long j10 = ce1Var.f34626s.f19453l;
                 int i12 = (int) j10;
                 if (i12 != 0 || j10 == 0) {
                     i11 = i12 != 0 ? i12 : C0;
                 }
-            } else if (ce1Var.B1 instanceof pj1) {
-                i11 = ce1Var.f34862c1;
+            } else if (ce1Var.B1 instanceof oj1) {
+                i11 = ce1Var.f34586c1;
             }
             if (i11 != 0 && ce1Var.l1 >= 0.0f) {
-                ImageReceiver imageReceiver = ce1Var.f34915x0.getImageReceiver();
+                ImageReceiver imageReceiver = ce1Var.f34639x0.getImageReceiver();
                 blendMode = BlendMode.SOFT_LIGHT;
                 imageReceiver.setBlendMode(blendMode);
                 return;
@@ -75,7 +75,7 @@ public final class ae1 extends org.telegram.ui.Components.lm0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         int i11 = this.d.H1;
         zd1 zd1Var = new zd1(this);
-        ?? z9Var = new org.telegram.ui.Components.z9(this.f34193c);
+        ?? z9Var = new org.telegram.ui.Components.z9(this.f33889c);
         z9Var.G = new RectF();
         int i12 = UserConfig.selectedAccount;
         z9Var.J = i12;

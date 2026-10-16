@@ -20,14 +20,14 @@ import org.telegram.ui.Components.zc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.fo;
 public final class m implements Runnable {
-    public final int f50808a;
-    public final Object f50809b;
-    public final Object f50810c;
+    public final int f50809a;
+    public final Object f50810b;
+    public final Object f50811c;
 
     public m(int i10, Object obj, Object obj2) {
-        this.f50808a = i10;
-        this.f50809b = obj;
-        this.f50810c = obj2;
+        this.f50809a = i10;
+        this.f50810b = obj;
+        this.f50811c = obj2;
     }
 
     @Override
@@ -40,37 +40,37 @@ public final class m implements Runnable {
         TLRPC.TL_messageReactions tL_messageReactions;
         boolean z11;
         TLRPC.TL_messageReactions tL_messageReactions2;
-        int i12 = this.f50808a;
+        int i12 = this.f50809a;
         ArrayList<TLRPC.MessageReactor> arrayList = null;
-        Object obj = this.f50810c;
-        Object obj2 = this.f50809b;
+        Object obj = this.f50811c;
+        Object obj2 = this.f50810b;
         switch (i12) {
             case 0:
                 n nVar = (n) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i13 = nVar.f50843a;
+                int i13 = nVar.f50844a;
                 ArrayList arrayList2 = nVar.e;
                 if (tLObject instanceof TL_payments.suggestedStarRefBots) {
                     TL_payments.suggestedStarRefBots suggestedstarrefbots = (TL_payments.suggestedStarRefBots) tLObject;
                     MessagesController.getInstance(i13).putUsers(suggestedstarrefbots.users, false);
-                    if (nVar.f50845c <= 0) {
+                    if (nVar.f50846c <= 0) {
                         arrayList2.clear();
                     }
-                    nVar.f50845c = suggestedstarrefbots.count;
+                    nVar.f50846c = suggestedstarrefbots.count;
                     arrayList2.addAll(suggestedstarrefbots.suggested_bots);
-                    nVar.f50849j = suggestedstarrefbots.next_offset;
-                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList2.size() < nVar.f50845c) {
+                    nVar.f50850j = suggestedstarrefbots.next_offset;
+                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList2.size() < nVar.f50846c) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
                     nVar.d = z10;
                 } else {
-                    nVar.f50848i = true;
+                    nVar.f50849i = true;
                     nVar.d = true;
                 }
                 nVar.h = false;
-                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(nVar.f50844b));
+                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(nVar.f50845b));
                 return;
             case 1:
                 r3.V0((r3) obj2, (Long) obj);
@@ -79,11 +79,11 @@ public final class m implements Runnable {
                 r3 r3Var = (r3) obj2;
                 if (!((n5) obj).e) {
                     sc Q = r3Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f29112t = true;
+                    Q.f28815t = true;
                     Q.j();
                     return;
                 }
-                r3Var.f51088k0.setLoading(false);
+                r3Var.f51089k0.setLoading(false);
                 r3Var.x1();
                 return;
             case 3:
@@ -96,7 +96,7 @@ public final class m implements Runnable {
                 r3 r3Var2 = (r3) obj2;
                 r3Var2.getClass();
                 ((boolean[]) obj)[0] = true;
-                r3Var2.f51088k0.setLoading(false);
+                r3Var2.f51089k0.setLoading(false);
                 r3Var2.x1();
                 return;
             case 6:
@@ -127,21 +127,21 @@ public final class m implements Runnable {
                         i10 = R.raw.error;
                         i11 = R.string.UniqueGiftNotFound;
                     }
-                    org.telegram.messenger.q.r(i11, a02, i10, 36);
+                    org.telegram.messenger.g0.q(i11, a02, i10, 36);
                     return;
                 }
                 return;
             case 11:
                 v3 v3Var = (v3) obj2;
                 fo foVar = (fo) obj;
-                org.telegram.ui.Cells.a0 a0Var = v3Var.f51237b;
+                org.telegram.ui.Cells.a0 a0Var = v3Var.f51238b;
                 if (a0Var != null) {
                     try {
                         a0Var.performHapticFeedback(0);
                     } catch (Exception unused) {
                     }
                     v3Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                    org.telegram.ui.Cells.a0 a0Var2 = v3Var.f51237b;
+                    org.telegram.ui.Cells.a0 a0Var2 = v3Var.f51238b;
                     if (a0Var2 instanceof org.telegram.ui.Cells.u1) {
                         messageObject = ((org.telegram.ui.Cells.u1) a0Var2).getPrimaryMessageObject();
                         if (messageObject != null) {
@@ -152,7 +152,7 @@ public final class m implements Runnable {
                         } else {
                             return;
                         }
-                    } else if ((a0Var2 instanceof org.telegram.ui.Cells.x0) && (messageObject = ((org.telegram.ui.Cells.x0) a0Var2).getMessageObject()) != null) {
+                    } else if ((a0Var2 instanceof org.telegram.ui.Cells.w0) && (messageObject = ((org.telegram.ui.Cells.w0) a0Var2).getMessageObject()) != null) {
                         TLRPC.Message message2 = messageObject.messageOwner;
                         if (message2 != null && (tL_messageReactions = message2.reactions) != null) {
                             arrayList = tL_messageReactions.top_reactors;
@@ -177,7 +177,7 @@ public final class m implements Runnable {
                     }
                     h8 h8Var = new h8(context, currentAccount, a2, foVar, messageObject2, arrayList3, z11, false, 0L, foVar.getResourceProvider());
                     messageObject2.getId();
-                    org.telegram.ui.Cells.a0 a0Var3 = v3Var.f51237b;
+                    org.telegram.ui.Cells.a0 a0Var3 = v3Var.f51238b;
                     h8Var.U = foVar;
                     h8Var.V = a0Var3;
                     h8Var.show();
@@ -206,8 +206,8 @@ public final class m implements Runnable {
             case 14:
                 f5 f5Var = (f5) obj2;
                 TLObject tLObject3 = (TLObject) obj;
-                ArrayList arrayList4 = f5Var.f50509l;
-                int i14 = f5Var.f50501a;
+                ArrayList arrayList4 = f5Var.f50510l;
+                int i14 = f5Var.f50502a;
                 if (tLObject3 instanceof TL_stars.TL_payments_savedStarGifts) {
                     TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject3;
                     MessagesController.getInstance(i14).putUsers(tL_payments_savedStarGifts.users, false);
@@ -219,7 +219,7 @@ public final class m implements Runnable {
                             i15++;
                         }
                         arrayList4.add(i15, savedStarGift);
-                        NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(f5Var.f50502b), f5Var);
+                        NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(f5Var.f50503b), f5Var);
                         return;
                     }
                     return;
@@ -241,14 +241,14 @@ public final class m implements Runnable {
     }
 
     public m(TLObject tLObject, ji.p1 p1Var) {
-        this.f50808a = 12;
-        this.f50810c = tLObject;
-        this.f50809b = p1Var;
+        this.f50809a = 12;
+        this.f50811c = tLObject;
+        this.f50810b = p1Var;
     }
 
     public m(n5 n5Var, boolean[] zArr, Utilities.Callback2 callback2) {
-        this.f50808a = 13;
-        this.f50809b = zArr;
-        this.f50810c = callback2;
+        this.f50809a = 13;
+        this.f50810b = zArr;
+        this.f50811c = callback2;
     }
 }

@@ -1,62 +1,59 @@
 package org.telegram.ui;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.transition.Fade;
-import android.transition.TransitionValues;
-import android.view.View;
+import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
-public final class ju0 extends Fade {
-    public final int f37437a;
-    public final boolean f37438b;
-    public final boolean f37439c;
-    public final PhotoViewer d;
+import java.lang.reflect.Method;
+import org.telegram.messenger.FileLog;
+public final class ju0 extends AnimatorListenerAdapter {
+    public final int f37142a;
+    public final org.telegram.ui.Components.gn0 f37143b;
 
-    public ju0(PhotoViewer photoViewer, boolean z10, boolean z11, int i10) {
-        super(1);
-        this.f37437a = i10;
-        switch (i10) {
-            case 1:
-                this.d = photoViewer;
-                this.f37438b = z10;
-                this.f37439c = z11;
-                super(2);
-                return;
-            default:
-                this.d = photoViewer;
-                this.f37438b = z10;
-                this.f37439c = z11;
-                return;
-        }
+    public ju0(org.telegram.ui.Components.gn0 gn0Var, int i10) {
+        this.f37142a = i10;
+        this.f37143b = gn0Var;
     }
 
     @Override
-    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f37437a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37142a) {
             case 0:
-                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-                if (this.f37438b && !this.f37439c && view == this.d.Q1) {
-                    onAppear.addListener(new lj0(this, 9));
-                    ((ObjectAnimator) onAppear).addUpdateListener(new e3(this, 20));
+                PhotoViewer photoViewer = (PhotoViewer) this.f37143b.f25057b;
+                photoViewer.Q1.getNextView().setText((CharSequence) null);
+                hu0 hu0Var = photoViewer.T1;
+                hu0Var.f40489l0 = false;
+                if (hu0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) hu0Var.f40491o0.getLayoutParams()).topMargin = hu0Var.m0;
+                    hu0Var.m0 = -1;
+                    hu0Var.requestLayout();
+                    return;
                 }
-                return onAppear;
+                return;
             default:
-                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                ((PhotoViewer) this.f37143b.f25057b).Q1.setTranslationY(0.0f);
+                return;
         }
     }
 
     @Override
-    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f37437a) {
-            case 1:
-                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-                if (!this.f37438b && this.f37439c && view == this.d.Q1) {
-                    onDisappear.addListener(new lj0(this, 10));
-                    ((ObjectAnimator) onDisappear).addUpdateListener(new e3(this, 21));
+    public void onAnimationStart(Animator animator) {
+        switch (this.f37142a) {
+            case 0:
+                hu0 hu0Var = ((PhotoViewer) this.f37143b.f25057b).T1;
+                Method method = hu0Var.f40483f0;
+                if (method != null) {
+                    try {
+                        method.invoke(hu0Var, null);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
                 }
-                return onDisappear;
+                return;
             default:
-                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

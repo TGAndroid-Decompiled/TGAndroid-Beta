@@ -5,14 +5,14 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import v7.r8;
 public final class b extends r8 {
-    public final Method f12951a = Class.class.getMethod("isRecord", null);
-    public final Method f12952b = Class.class.getMethod("getRecordComponents", null);
-    public final Method f12953c;
+    public final Method f12955a = Class.class.getMethod("isRecord", null);
+    public final Method f12956b = Class.class.getMethod("getRecordComponents", null);
+    public final Method f12957c;
     public final Method d;
 
     public b() {
         Class<?> cls = Class.forName("java.lang.reflect.RecordComponent");
-        this.f12953c = cls.getMethod("getName", null);
+        this.f12957c = cls.getMethod("getName", null);
         this.d = cls.getMethod("getType", null);
     }
 
@@ -28,7 +28,7 @@ public final class b extends r8 {
     @Override
     public final Constructor b(Class cls) {
         try {
-            Object[] objArr = (Object[]) this.f12952b.invoke(cls, null);
+            Object[] objArr = (Object[]) this.f12956b.invoke(cls, null);
             Class<?>[] clsArr = new Class[objArr.length];
             for (int i10 = 0; i10 < objArr.length; i10++) {
                 clsArr[i10] = (Class) this.d.invoke(objArr[i10], null);
@@ -42,10 +42,10 @@ public final class b extends r8 {
     @Override
     public final String[] c(Class cls) {
         try {
-            Object[] objArr = (Object[]) this.f12952b.invoke(cls, null);
+            Object[] objArr = (Object[]) this.f12956b.invoke(cls, null);
             String[] strArr = new String[objArr.length];
             for (int i10 = 0; i10 < objArr.length; i10++) {
-                strArr[i10] = (String) this.f12953c.invoke(objArr[i10], null);
+                strArr[i10] = (String) this.f12957c.invoke(objArr[i10], null);
             }
             return strArr;
         } catch (ReflectiveOperationException e) {
@@ -56,7 +56,7 @@ public final class b extends r8 {
     @Override
     public final boolean d(Class cls) {
         try {
-            return ((Boolean) this.f12951a.invoke(cls, null)).booleanValue();
+            return ((Boolean) this.f12955a.invoke(cls, null)).booleanValue();
         } catch (ReflectiveOperationException e) {
             throw new RuntimeException("Unexpected ReflectiveOperationException occurred (Gson 2.11.0). To support Java records, reflection is utilized to read out information about records. All these invocations happens after it is established that records exist in the JVM. This exception is unexpected behavior.", e);
         }

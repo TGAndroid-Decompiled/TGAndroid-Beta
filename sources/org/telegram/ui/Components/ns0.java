@@ -16,7 +16,7 @@ public final class ns0 extends yh.q2 {
         float f7;
         float f10;
         xv0 xv0Var = this.U;
-        TextView textView = xv0Var.f31375q0;
+        TextView textView = xv0Var.f31056q0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f11 = 1.0f;
@@ -35,7 +35,7 @@ public final class ns0 extends yh.q2 {
         if (!z10) {
             f11 = 0.4f;
         }
-        scaleX.scaleY(f11).withEndAction(new sn0(2, this, z10)).start();
-        xv0Var.q1(true);
+        scaleX.scaleY(f11).withEndAction(new zr0(1, this, z10)).start();
+        xv0Var.r1(true);
     }
 }

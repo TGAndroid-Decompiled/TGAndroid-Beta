@@ -2,21 +2,21 @@ package ji;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.h71;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z61;
-public final class u0 extends k61 {
-    public static final int f13546a = 0;
+public final class u0 extends l61 {
+    public static final int f13549a = 0;
 
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
-        ((v0) view).f13570c = (a) l61Var.G;
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
+        ((v0) view).f13573c = (a) m61Var.G;
     }
 
     @Override

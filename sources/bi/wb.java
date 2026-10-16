@@ -8,22 +8,22 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
 public final class wb extends tb {
-    public final vb f3936a;
-    public final TL_stories.TL_mediaAreaWeather f3937b;
-    public View f3938c;
+    public final vb f3940a;
+    public final TL_stories.TL_mediaAreaWeather f3941b;
+    public View f3942c;
     public final xb d;
 
     public wb(xb xbVar, TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather) {
         this.d = xbVar;
-        this.f3937b = tL_mediaAreaWeather;
+        this.f3941b = tL_mediaAreaWeather;
         ?? tLObject = new TLObject();
-        tLObject.f7091c = tL_mediaAreaWeather.emoji;
+        tLObject.f7094c = tL_mediaAreaWeather.emoji;
         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
         vb vbVar = new vb(this, ApplicationLoader.applicationContext, AndroidUtilities.density);
-        this.f3936a = vbVar;
+        this.f3940a = vbVar;
         vbVar.setMaxWidth(AndroidUtilities.displaySize.x);
         vbVar.setIsVideo(false);
-        vbVar.d(UserConfig.selectedAccount, tLObject.f7091c);
+        vbVar.d(UserConfig.selectedAccount, tLObject.f7094c);
         vbVar.setText(tLObject.a());
         vbVar.e(3, tL_mediaAreaWeather.color);
         vbVar.f();
@@ -35,15 +35,15 @@ public final class wb extends tb {
         int heightInternal;
         xb xbVar = this.d;
         double d = xbVar.d;
-        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f3937b;
+        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f3941b;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaWeather.coordinates;
-        double d10 = (mediaAreaCoordinates.f19448x * d) / 100.0d;
+        double d10 = (mediaAreaCoordinates.f19148x * d) / 100.0d;
         double d11 = xbVar.e;
-        double d12 = (mediaAreaCoordinates.f19449y * d11) / 100.0d;
-        float f10 = (float) ((d * mediaAreaCoordinates.f19447w) / 100.0d);
+        double d12 = (mediaAreaCoordinates.f19149y * d11) / 100.0d;
+        float f10 = (float) ((d * mediaAreaCoordinates.f19147w) / 100.0d);
         canvas.save();
-        canvas.translate((float) (d10 + xbVar.f3998b), (float) (d12 + xbVar.f3999c));
-        vb vbVar = this.f3936a;
+        canvas.translate((float) (d10 + xbVar.f4002b), (float) (d12 + xbVar.f4003c));
+        vb vbVar = this.f3940a;
         float min = Math.min(f10 / ((vbVar.getWidthInternal() - vbVar.getPaddingLeft()) - vbVar.getPaddingRight()), ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / ((vbVar.getHeightInternal() - vbVar.getPaddingTop()) - vbVar.getPaddingBottom()));
         canvas.scale(min, min);
         double d13 = tL_mediaAreaWeather.coordinates.rotation;
@@ -57,24 +57,24 @@ public final class wb extends tb {
 
     @Override
     public final void b(boolean z10) {
-        vb vbVar = this.f3936a;
+        vb vbVar = this.f3940a;
         if (z10) {
             vbVar.K = true;
             if (vbVar.L) {
-                vbVar.f44567s.onAttachedToWindow();
+                vbVar.f44326s.onAttachedToWindow();
                 return;
             } else {
-                vbVar.f44566r.onAttachedToWindow();
+                vbVar.f44325r.onAttachedToWindow();
                 return;
             }
         }
         vbVar.K = false;
-        vbVar.f44566r.onDetachedFromWindow();
-        vbVar.f44567s.onDetachedFromWindow();
+        vbVar.f44325r.onDetachedFromWindow();
+        vbVar.f44326s.onDetachedFromWindow();
     }
 
     @Override
     public final void c(View view) {
-        this.f3938c = view;
+        this.f3942c = view;
     }
 }

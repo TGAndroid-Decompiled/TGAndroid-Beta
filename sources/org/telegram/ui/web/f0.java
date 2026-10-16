@@ -12,11 +12,11 @@ public final class f0 extends fo {
     public boolean Qc;
     public final TLRPC.User Rc;
     public final long Sc;
-    public final b1 Tc;
+    public final c1 Tc;
 
-    public f0(b1 b1Var, Bundle bundle, TLRPC.User user, long j10) {
+    public f0(c1 c1Var, Bundle bundle, TLRPC.User user, long j10) {
         super(bundle);
-        this.Tc = b1Var;
+        this.Tc = c1Var;
         this.Rc = user;
         this.Sc = j10;
     }

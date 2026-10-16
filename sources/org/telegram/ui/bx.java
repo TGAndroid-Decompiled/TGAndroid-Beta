@@ -21,7 +21,7 @@ public final class bx extends s4.b0 {
     @Override
     public final int R0() {
         xy xyVar = this.L;
-        if (xyVar.f41986s == 0 && this.M.W3() && xyVar.v == 2) {
+        if (xyVar.f41685s == 0 && this.M.X3() && xyVar.v == 2) {
             return 1;
         }
         return 0;
@@ -38,7 +38,7 @@ public final class bx extends s4.b0 {
                 yy yyVar = this.M;
                 sb2.append(yyVar.S1);
                 sb2.append(" lastUpdateAction=");
-                sb2.append(yyVar.y3);
+                sb2.append(yyVar.f42113z3);
                 throw new RuntimeException(sb2.toString());
             }
         }
@@ -65,13 +65,13 @@ public final class bx extends s4.b0 {
             this.K.cancel();
         }
         xy xyVar = this.L;
-        if (xyVar.f41980a.getScrollState() != 1) {
+        if (xyVar.f41679a.getScrollState() != 1) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.T, 0.0f);
             this.K = ofFloat;
             ofFloat.addUpdateListener(new ah.l0(22, this, xyVar));
-            this.K.addListener(new org.telegram.ui.Components.u61(this, 20));
+            this.K.addListener(new org.telegram.ui.Components.v61(this, 20));
             this.K.setDuration(200L);
-            this.K.setInterpolator(org.telegram.ui.Components.es.f24771f);
+            this.K.setInterpolator(org.telegram.ui.Components.es.f24465f);
             this.K.start();
         }
     }
@@ -79,7 +79,7 @@ public final class bx extends s4.b0 {
     @Override
     public final void h1(int i10, int i11) {
         if (this.I) {
-            i11 -= this.L.f41980a.getPaddingTop();
+            i11 -= this.L.f41679a.getPaddingTop();
         }
         super.h1(i10, i11);
     }
@@ -91,7 +91,7 @@ public final class bx extends s4.b0 {
 
     @Override
     public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
-        if (this.M.W3() && i10 == 1) {
+        if (this.M.X3() && i10 == 1) {
             super.v0(recyclerView, y0Var, i10);
             return;
         }

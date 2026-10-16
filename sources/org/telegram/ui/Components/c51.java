@@ -5,17 +5,17 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-public final class c51 extends k61 {
+public final class c51 extends l61 {
     static {
-        k61.setup(new k61());
+        l61.setup(new l61());
     }
 
-    public static l61 a(int i10, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z10, View.OnClickListener onClickListener2, n nVar) {
-        l61 J = l61.J(c51.class);
+    public static m61 a(int i10, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z10, View.OnClickListener onClickListener2, n nVar) {
+        m61 J = m61.J(c51.class);
         J.d = i10;
-        J.f26954l = charSequence;
-        J.f26955m = charSequence2;
-        J.f26956n = charSequence3;
+        J.f26946l = charSequence;
+        J.f26947m = charSequence2;
+        J.f26948n = charSequence3;
         J.D = onClickListener;
         J.e = z10;
         J.E = onClickListener2;
@@ -23,36 +23,36 @@ public final class c51 extends k61 {
         return J;
     }
 
-    public static l61 b(int i10, String str, String str2, String str3, z41 z41Var) {
+    public static m61 b(int i10, String str, String str2, String str3, z41 z41Var) {
         return a(i10, str, str2, str3, z41Var, false, null, null);
     }
 
     @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, z61 z61Var, h71 h71Var) {
+    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
         View.OnClickListener onClickListener;
         int i10;
         boolean z11;
         int i11;
         d51 d51Var = (d51) view;
-        CharSequence charSequence = l61Var.f26954l;
-        CharSequence charSequence2 = l61Var.f26955m;
-        CharSequence charSequence3 = l61Var.f26956n;
-        View.OnClickListener onClickListener2 = l61Var.D;
-        boolean z12 = l61Var.e;
-        View.OnClickListener onClickListener3 = l61Var.E;
-        Object obj = l61Var.G;
+        CharSequence charSequence = m61Var.f26946l;
+        CharSequence charSequence2 = m61Var.f26947m;
+        CharSequence charSequence3 = m61Var.f26948n;
+        View.OnClickListener onClickListener2 = m61Var.D;
+        boolean z12 = m61Var.e;
+        View.OnClickListener onClickListener3 = m61Var.E;
+        Object obj = m61Var.G;
         if (obj instanceof View.OnClickListener) {
             onClickListener = (View.OnClickListener) obj;
         } else {
             onClickListener = null;
         }
-        LinearLayout linearLayout = d51Var.f24300r;
+        LinearLayout linearLayout = d51Var.f23990r;
         LinearLayout linearLayout2 = d51Var.h;
-        LinearLayout linearLayout3 = d51Var.f24296b;
-        d51Var.f24297c.setText(charSequence);
+        LinearLayout linearLayout3 = d51Var.f23986b;
+        d51Var.f23987c.setText(charSequence);
         d51Var.d.setText(charSequence2);
         d51Var.e.setText(charSequence3);
-        ImageView imageView = d51Var.f24298f;
+        ImageView imageView = d51Var.f23988f;
         int i12 = 8;
         if (onClickListener2 != null) {
             i10 = 0;
@@ -67,7 +67,7 @@ public final class c51 extends k61 {
             z11 = false;
         }
         linearLayout3.setClickable(z11);
-        d51Var.f24299n.a(z12, false);
+        d51Var.f23989n.a(z12, false);
         if (onClickListener3 != null) {
             i11 = 0;
         } else {
@@ -84,8 +84,8 @@ public final class c51 extends k61 {
     }
 
     @Override
-    public final boolean contentsEquals(l61 l61Var, l61 l61Var2) {
-        if (TextUtils.equals(l61Var.f26954l, l61Var2.f26954l) && TextUtils.equals(l61Var.f26955m, l61Var2.f26955m) && TextUtils.equals(l61Var.f26956n, l61Var2.f26956n) && l61Var.E == l61Var2.E) {
+    public final boolean contentsEquals(m61 m61Var, m61 m61Var2) {
+        if (TextUtils.equals(m61Var.f26946l, m61Var2.f26946l) && TextUtils.equals(m61Var.f26947m, m61Var2.f26947m) && TextUtils.equals(m61Var.f26948n, m61Var2.f26948n) && m61Var.E == m61Var2.E) {
             return true;
         }
         return false;
@@ -97,8 +97,8 @@ public final class c51 extends k61 {
     }
 
     @Override
-    public final boolean equals(l61 l61Var, l61 l61Var2) {
-        if (l61Var.d == l61Var2.d) {
+    public final boolean equals(m61 m61Var, m61 m61Var2) {
+        if (m61Var.d == m61Var2.d) {
             return true;
         }
         return false;

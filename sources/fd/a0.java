@@ -8,7 +8,7 @@ public enum a0 extends a2 {
     public final void d(k kVar, a aVar) {
         if (aVar.j()) {
             kVar.l(this);
-            kVar.f9124c = a2.f9076a;
+            kVar.f9127c = a2.f9079a;
             return;
         }
         char d = aVar.d();
@@ -18,14 +18,14 @@ public enum a0 extends a2 {
                 if (d != '<') {
                     if (d != '>') {
                         kVar.f(d);
-                        kVar.f9124c = yVar;
+                        kVar.f9127c = yVar;
                         return;
                     }
                     kVar.f(d);
-                    kVar.f9124c = a2.f9084f;
+                    kVar.f9127c = a2.f9087f;
                     return;
                 }
-                kVar.f9124c = a2.N;
+                kVar.f9127c = a2.N;
                 return;
             }
             kVar.f(d);
@@ -33,6 +33,6 @@ public enum a0 extends a2 {
         }
         kVar.m(this);
         kVar.f((char) 65533);
-        kVar.f9124c = yVar;
+        kVar.f9127c = yVar;
     }
 }

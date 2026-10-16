@@ -7,29 +7,29 @@ import android.support.v4.media.session.x;
 import org.telegram.messenger.AndroidUtilities;
 import zf.g0;
 public final class e {
-    public final d f2770b;
-    public final d f2771c;
+    public final d f2774b;
+    public final d f2775c;
     public long e;
-    public final RenderNode f2769a = x.c();
+    public final RenderNode f2773a = x.c();
     public final Rect d = new Rect();
 
     public e(f fVar) {
         int i10;
-        if (fVar.f2772a) {
+        if (fVar.f2776a) {
             d dVar = new d(fVar, "glass", 0, true);
-            this.f2771c = dVar;
+            this.f2775c = dVar;
             dVar.e = 4;
-            dVar.f2765f = 4;
+            dVar.f2769f = 4;
             dVar.d(AndroidUtilities.dpf2(6.0f), g0.b());
             d dVar2 = new d(fVar, "blur", 0, false);
-            this.f2770b = dVar2;
+            this.f2774b = dVar2;
             dVar2.e = 8;
-            dVar2.f2765f = 8;
+            dVar2.f2769f = 8;
             dVar2.c(AndroidUtilities.dpf2(38.34f));
-        } else if (fVar.f2774c) {
+        } else if (fVar.f2778c) {
             d dVar3 = new d(fVar, "blur", 0, false);
-            this.f2770b = dVar3;
-            boolean z10 = fVar.f2773b;
+            this.f2774b = dVar3;
+            boolean z10 = fVar.f2777b;
             if (z10) {
                 i10 = 16;
             } else {
@@ -37,17 +37,17 @@ public final class e {
             }
             int i11 = z10 ? 16 : 8;
             dVar3.e = i10;
-            dVar3.f2765f = i11;
+            dVar3.f2769f = i11;
             dVar3.d(AndroidUtilities.dpf2(40.0f), g0.b());
-            this.f2771c = null;
+            this.f2775c = null;
         } else {
             d dVar4 = new d(fVar, "blur", 1, false);
-            this.f2770b = dVar4;
+            this.f2774b = dVar4;
             dVar4.e = 8;
-            dVar4.f2765f = 8;
+            dVar4.f2769f = 8;
             dVar4.c(AndroidUtilities.dpf2(40.0f));
             dVar4.e(g0.b());
-            this.f2771c = null;
+            this.f2775c = null;
         }
     }
 

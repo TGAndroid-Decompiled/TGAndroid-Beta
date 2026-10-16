@@ -116,7 +116,7 @@ public class NativeInstance {
         if (this.isGroup && iArr != null && iArr.length == 0) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new n(this, iArr, fArr, zArr, 1));
+        AndroidUtilities.runOnUIThread(new m(this, iArr, fArr, zArr, 1));
     }
 
     private void onCancelRequestBroadcastPart(long j10, int i10, int i11) {

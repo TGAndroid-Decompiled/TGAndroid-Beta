@@ -33,24 +33,24 @@ public final class f extends k {
         h hVar = this.F;
         e eVar = hVar.S0;
         int b10 = b1Var.b();
-        List list = eVar.f15844c;
+        List list = eVar.f15579c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f15844c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f15579c.get(b10);
         }
         if (groupCallMessage != null && (i1Var = groupCallMessage.visibleReaction) != null) {
             View view = b1Var.f44838a;
             if ((view instanceof c) && (gVar = hVar.X0) != null) {
-                n60 n60Var = ((k40) gVar).f37563a;
+                n60 n60Var = ((k40) gVar).f37284a;
                 Context context = n60Var.getContext();
                 gl0 gl0Var = n60Var.K;
                 i10 = ((e3) n60Var).currentAccount;
                 d1 d1Var = new d1(context, null, gl0Var, (c) view, null, 0.0f, 0.0f, i1Var, i10, 1, false);
                 d1.B = d1Var;
-                d1Var.f689i.setTag(R.id.parent_tag, 1);
-                n60Var.container.addView(d1Var.f689i);
-                d1Var.f699s = true;
-                d1Var.f704y = System.currentTimeMillis();
+                d1Var.f693i.setTag(R.id.parent_tag, 1);
+                n60Var.container.addView(d1Var.f693i);
+                d1Var.f703s = true;
+                d1Var.f708y = System.currentTimeMillis();
             }
         }
     }

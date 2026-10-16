@@ -29,21 +29,21 @@ public final class nb0 extends mm0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         ob0 ob0Var = this.Z2;
-        hg.j1 j1Var = ob0Var.f27929f;
+        hg.j1 j1Var = ob0Var.f27627f;
         hg.p1 p1Var = ob0Var.e;
-        if (!ob0Var.f27928c.f44831t ? this.W2 || p1Var == null || p1Var.e == null || !p1Var.f10705f || motionEvent.getY() >= p1Var.e.getBottom() : this.W2 || p1Var == null || p1Var.e == null || !p1Var.f10705f || motionEvent.getY() <= p1Var.e.getTop()) {
-            if (!this.V2 && org.telegram.ui.xt.q().r(motionEvent, ob0Var.f27927b, null, this.f27439n2)) {
+        if (!ob0Var.f27626c.f44831t ? this.W2 || p1Var == null || p1Var.e == null || !p1Var.f10709f || motionEvent.getY() >= p1Var.e.getBottom() : this.W2 || p1Var == null || p1Var.e == null || !p1Var.f10709f || motionEvent.getY() <= p1Var.e.getTop()) {
+            if (!this.V2 && org.telegram.ui.xt.q().r(motionEvent, ob0Var.f27625b, null, this.f27148n2)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (((j1Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && j1Var.N()) {
-                if (j1Var.f10626n0 == null) {
-                    hg.f1 f1Var = new hg.f1(j1Var, j1Var.f10617f, j1Var.f10625n, j1Var.f10630r, 0);
-                    j1Var.f10626n0 = f1Var;
+                if (j1Var.f10630n0 == null) {
+                    hg.f1 f1Var = new hg.f1(j1Var, j1Var.f10621f, j1Var.f10629n, j1Var.f10634r, 0);
+                    j1Var.f10630n0 = f1Var;
                     f1Var.a();
                 }
-                j1Var.f10626n0.b();
+                j1Var.f10630n0.b();
             }
             if (super.onInterceptTouchEvent(motionEvent) || z10) {
                 return true;
@@ -117,11 +117,11 @@ public final class nb0 extends mm0 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         ob0 ob0Var = this.Z2;
         hg.p1 p1Var = ob0Var.e;
-        if (ob0Var.f27928c.f44831t) {
-            if (!this.W2 && p1Var != null && p1Var.e != null && p1Var.f10705f && motionEvent.getY() > p1Var.e.getTop()) {
+        if (ob0Var.f27626c.f44831t) {
+            if (!this.W2 && p1Var != null && p1Var.e != null && p1Var.f10709f && motionEvent.getY() > p1Var.e.getTop()) {
                 return false;
             }
-        } else if (!this.W2 && p1Var != null && p1Var.e != null && p1Var.f10705f && motionEvent.getY() < p1Var.e.getBottom()) {
+        } else if (!this.W2 && p1Var != null && p1Var.e != null && p1Var.f10709f && motionEvent.getY() < p1Var.e.getBottom()) {
             return false;
         }
         return super.onTouchEvent(motionEvent);

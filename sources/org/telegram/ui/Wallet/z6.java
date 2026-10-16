@@ -1,428 +1,223 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.Arrays;
+import android.graphics.Bitmap;
+import java.util.Calendar;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.da0;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.xu;
-import org.telegram.ui.Components.z9;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.ns0;
 import org.telegram.ui.Components.zc;
-import org.telegram.ui.c90;
-import org.telegram.ui.je1;
-import org.telegram.ui.li1;
-public final class z6 extends org.telegram.ui.ActionBar.m2 {
-    public int f33952a;
-    public u4 f33953b;
-    public LinearLayout f33954c;
-    public di.d d;
-    public ImageView e;
-    public ScrollView f33955f;
-    public da0 h;
-    public int f33956n;
-    public boolean f33957r;
-    public byte[] f33958s;
-    public final ArrayList v;
+import org.telegram.ui.Components.ze0;
+public final class z6 implements Utilities.Callback {
+    public final int f33659a;
+    public final Object f33660b;
+    public final Object f33661c;
 
-    public z6() {
-        super(null);
-        this.f33952a = 12;
-        this.v = new ArrayList();
+    public z6(int i10, Object obj, Object obj2) {
+        this.f33659a = i10;
+        this.f33660b = obj;
+        this.f33661c = obj2;
     }
 
-    public static void U(z6 z6Var, String str, j0 j0Var, org.telegram.ui.ActionBar.m2 m2Var, String str2) {
-        z6Var.d.setLoading(false);
-        if (!"WRONG_CONTRACT".equalsIgnoreCase(str2) && !"INVALID_PHRASE".equalsIgnoreCase(str2)) {
-            if (str2 != null) {
-                zc.a0(z6Var).e0(str2, false);
+    @Override
+    public final void run(Object obj) {
+        int i10 = this.f33659a;
+        Object obj2 = this.f33661c;
+        Object obj3 = this.f33660b;
+        switch (i10) {
+            case 0:
+                a7 a7Var = (a7) obj3;
+                k0 k0Var = (k0) obj2;
+                String str = (String) obj;
+                a7Var.d.setLoading(false);
+                if (str != null) {
+                    zc.a0(a7Var).e0(str, false);
+                    return;
+                }
+                a7Var.finishFragment();
+                k0Var.I();
                 return;
-            }
-            if (z6Var.f33957r && !TextUtils.isEmpty(str) && !TextUtils.equals(str, j0Var.r())) {
-                new o0(z6Var.getParentActivity(), str, z6Var.currentAccount).B();
-            }
-            AndroidUtilities.runOnUIThread(new je1(26, z6Var, m2Var), 300L);
-            return;
-        }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(z6Var.getParentActivity(), 0, z6Var.getResourceProvider());
-        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
-        alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
-        org.telegram.messenger.q.A(R.string.WalletOK, alertDialog$Builder, null);
-    }
-
-    public static void V(z6 z6Var) {
-        byte[] bArr;
-        String str;
-        FrameLayout frameLayout;
-        if (!z6Var.d.N) {
-            ArrayList arrayList = new ArrayList();
-            ArrayList arrayList2 = z6Var.v;
-            int size = arrayList2.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList2.get(i10);
-                i10++;
-                arrayList.add(((h9) obj).getWord().toLowerCase().trim());
-            }
-            g0 d = g0.d(arrayList);
-            try {
-                z6Var.d.setLoading(true);
-                org.telegram.ui.ActionBar.m2 m2Var = null;
-                if (z6Var.f33958s != null) {
-                    try {
-                        bArr = WalletEngine2.secretPhraseToPublicKey(d);
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        bArr = null;
-                    }
-                    if (bArr == null) {
-                        z6Var.d.setLoading(false);
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(z6Var.getParentActivity(), 0, z6Var.getResourceProvider());
-                        alertDialog$Builder.f19548a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
-                        alertDialog$Builder.f19548a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
-                        alertDialog$Builder.k(LocaleController.getString(R.string.WalletOK), null);
-                        alertDialog$Builder.o();
-                    } else if (!Arrays.equals(bArr, z6Var.f33958s)) {
-                        try {
-                            str = WalletEngine2.secretPhraseToAddress(d);
-                        } catch (Exception e7) {
-                            FileLog.e(e7);
-                            str = null;
-                        }
-                        if (!TextUtils.isEmpty(str)) {
-                            frameLayout = new FrameLayout(z6Var.getParentActivity());
-                            TextView textView = new TextView(z6Var.getParentActivity());
-                            textView.setTextSize(1, 14.0f);
-                            textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.G6, z6Var.resourceProvider));
-                            textView.setText(X(str));
-                            textView.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(12.0f));
-                            textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
-                            textView.setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19843a7, z6Var.resourceProvider)));
-                            textView.setGravity(17);
-                            frameLayout.addView(textView, w7.a6.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, 7));
-                        } else {
-                            frameLayout = null;
-                        }
-                        z6Var.d.setLoading(false);
-                        AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(z6Var.getParentActivity(), 0, z6Var.getResourceProvider());
-                        alertDialog$Builder2.f19548a.R = LocaleController.getString(R.string.WalletWrongSecretPhrase);
-                        alertDialog$Builder2.f19548a.T = LocaleController.getString(R.string.WalletWrongSecretPhraseInfo);
-                        alertDialog$Builder2.n(frameLayout);
-                        alertDialog$Builder2.k(LocaleController.getString(R.string.OK), null);
-                        alertDialog$Builder2.o();
-                    } else {
-                        j0 v = j0.v(z6Var.currentAccount);
-                        v.f33321c.p(UserConfig.getInstance(z6Var.currentAccount).getClientUserId(), bArr, d, new y6(0, z6Var, v));
-                    }
-                    d.close();
+            case 1:
+                l7 l7Var = (l7) obj3;
+                l lVar = (l) obj2;
+                String str2 = (String) obj;
+                if (str2 != null) {
+                    zc.a0(l7Var).e0(str2, false);
                     return;
-                }
-                z6Var.d.setLoading(true);
-                j0 v10 = j0.v(z6Var.currentAccount);
-                String r10 = v10.r();
-                if (z6Var.getParentLayout() != null && z6Var.getParentLayout().getFragmentStack().size() > 1) {
-                    m2Var = (org.telegram.ui.ActionBar.m2) z6Var.getParentLayout().getFragmentStack().get(z6Var.getParentLayout().getFragmentStack().size() - 2);
-                }
-                v10.A(false, true, d, new q(z6Var, r10, v10, m2Var));
-                d.close();
-            } catch (Throwable th2) {
-                try {
-                    d.close();
-                } catch (Throwable th3) {
-                    th2.addSuppressed(th3);
-                }
-                throw th2;
-            }
-        }
-    }
-
-    public static SpannableStringBuilder X(String str) {
-        char c10;
-        if (str == null) {
-            return null;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        int i10 = 0;
-        int i11 = 0;
-        for (int i12 = 0; i12 < str.length(); i12++) {
-            if (i12 > 0 && i12 % 4 == 0) {
-                int i13 = i12 % 24;
-                if (i13 == 0) {
-                    c10 = '\n';
                 } else {
-                    c10 = ' ';
-                }
-                spannableStringBuilder.append(c10);
-                if (i13 == 0) {
-                    i11++;
-                }
-                i10 = spannableStringBuilder.length();
-            }
-            spannableStringBuilder.append(str.charAt(i12));
-            if (i12 % 4 == 3) {
-                int i14 = i11 + 1;
-                if (i11 % 2 == 1) {
-                    xu xuVar = new xu(false);
-                    xuVar.f31330b = (int) 191.25f;
-                    spannableStringBuilder.setSpan(xuVar, i10, spannableStringBuilder.length(), 33);
-                }
-                i10 = spannableStringBuilder.length();
-                i11 = i14;
-            }
-        }
-        return spannableStringBuilder;
-    }
-
-    public final void W(Context context) {
-        boolean z10;
-        int i10;
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = this.v;
-        int size = arrayList2.size();
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList2.get(i11);
-            i11++;
-            arrayList.add(((h9) obj).getWord());
-        }
-        this.f33954c.removeAllViews();
-        arrayList2.clear();
-        for (int i12 = 0; i12 < this.f33952a; i12++) {
-            if (i12 == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            h9 h9Var = new h9(i12, context, this.resourceProvider, z10);
-            h9Var.setOnTextChangedListener(new x6(this, 1));
-            h9Var.setOnPasteListener(new li1(this, i12, 4));
-            h9Var.setOnNextListener(new c90(this, i12, h9Var, 15));
-            LinearLayout linearLayout = this.f33954c;
-            if (i12 == 0) {
-                i10 = 0;
-            } else {
-                i10 = 12;
-            }
-            linearLayout.addView(h9Var, w7.a6.t(-1, 50, 1, 0, i10, 0, 0));
-            arrayList2.add(h9Var);
-        }
-        for (int i13 = 0; i13 < arrayList.size() && i13 < arrayList2.size(); i13++) {
-            if (!((String) arrayList.get(i13)).isEmpty()) {
-                ((h9) arrayList2.get(i13)).setText((String) arrayList.get(i13));
-            }
-        }
-    }
-
-    public final void Y() {
-        ArrayList arrayList = this.v;
-        int size = arrayList.size();
-        boolean z10 = false;
-        int i10 = 0;
-        while (true) {
-            if (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                if (((h9) obj).getWord().isEmpty()) {
-                    break;
-                }
-            } else {
-                z10 = true;
-                break;
-            }
-        }
-        this.d.setEnabled(z10);
-    }
-
-    @Override
-    public final View createView(Context context) {
-        int i10;
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setOccupyStatusBar(false);
-        ow0 ow0Var = new ow0(context, null);
-        this.fragmentView = ow0Var;
-        ow0Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19901d6, this.resourceProvider));
-        ScrollView scrollView = new ScrollView(context);
-        scrollView.setFillViewport(true);
-        scrollView.setVerticalScrollBarEnabled(false);
-        scrollView.setClipToPadding(false);
-        scrollView.setPadding(0, AndroidUtilities.dp(96.0f), 0, 0);
-        this.f33955f = scrollView;
-        scrollView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public final void onLayoutChange(View view, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
-                int i19 = i14 - i12;
-                int i20 = i18 - i16;
-                z6 z6Var = z6.this;
-                if (i19 < i20) {
-                    ArrayList arrayList = z6Var.v;
-                    int size = arrayList.size();
-                    int i21 = 0;
-                    while (i21 < size) {
-                        Object obj = arrayList.get(i21);
-                        i21++;
-                        h9 h9Var = (h9) obj;
-                        if (h9Var.hasFocus()) {
-                            h9Var.requestRectangleOnScreen(new Rect(0, 0, h9Var.getWidth(), h9Var.getHeight()), true);
-                            return;
-                        }
-                    }
+                    lVar.run();
                     return;
                 }
-                z6Var.getClass();
-            }
-        });
-        ((FrameLayout) this.fragmentView).addView(scrollView, w7.a6.d(-1.0f, -1));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(24.0f));
-        linearLayout.setClipToPadding(false);
-        scrollView.addView(linearLayout, w7.a6.n(-1, -2));
-        ImageView imageView = new ImageView(context);
-        this.e = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        ImageView imageView2 = this.e;
-        int i11 = org.telegram.ui.ActionBar.g6.G6;
-        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(i11, this.resourceProvider), PorterDuff.Mode.SRC_IN));
-        this.e.setImageResource(R.drawable.ic_ab_close);
-        this.e.setBackground(org.telegram.ui.ActionBar.g6.g0(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19990i6, this.resourceProvider), 3, -1));
-        this.e.setOnClickListener(new View.OnClickListener(this) {
-            public final z6 f33800b;
-
-            {
-                this.f33800b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f33800b.finishFragment();
-                        return;
-                    default:
-                        z6.V(this.f33800b);
-                        return;
+            case 2:
+                l7 l7Var2 = (l7) obj3;
+                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj2;
+                String str3 = (String) obj;
+                if (str3 != null) {
+                    zc.a0(l7Var2).e0(str3, false);
+                    return;
                 }
-            }
-        });
-        ((FrameLayout) this.fragmentView).addView(this.e, w7.a6.a(48.0f, 4.0f, 12.0f, 0.0f, 0.0f, 48, 51));
-        z9 z9Var = new z9(context);
-        z9Var.setAspectFit(true);
-        z9Var.getImageReceiver().setCurrentAccount(AndroidUtilities.getAccountInProduction());
-        MediaDataController.getInstance(AndroidUtilities.getAccountInProduction()).setPlaceholderImage(z9Var, "RestrictedEmoji", "📝", "100_100");
-        z9Var.getImageReceiver().setAutoRepeatCount(1);
-        linearLayout.addView(z9Var, w7.a6.t(100, 100, 1, 0, 0, 0, 12));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(1);
-        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(i11, this.resourceProvider));
-        if (this.f33958s != null) {
-            i10 = R.string.WalletSecretPhrase;
-        } else {
-            i10 = R.string.WalletImport;
-        }
-        textView.setText(LocaleController.getString(i10));
-        linearLayout.addView(textView, w7.a6.t(-1, -2, 1, 32, 0, 32, 10));
-        da0 da0Var = new da0(context, null);
-        this.h = da0Var;
-        da0Var.setTextSize(1, 14.0f);
-        this.h.setGravity(1);
-        this.h.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f20305z6, this.resourceProvider));
-        this.h.setLinkTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19960gc, this.resourceProvider));
-        if (this.f33958s != null) {
-            this.h.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.WalletEnterSecretPhrase), new x6(this, 0)));
-        } else {
-            this.h.setText(LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, 12));
-        }
-        linearLayout.addView(this.h, w7.a6.t(-1, -2, 1, 32, 0, 32, 8));
-        u4 u4Var = new u4(context, new CharSequence[]{LocaleController.formatPluralString("WalletPhraseWords", 12, new Object[0]), LocaleController.formatPluralString("WalletPhraseWords", 24, new Object[0])}, new j(this, 4), this.resourceProvider);
-        this.f33953b = u4Var;
-        u4Var.e = true;
-        u4Var.d();
-        this.f33953b.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        this.f33953b.setClipToPadding(false);
-        linearLayout.addView(this.f33953b, w7.a6.t(-1, -2, 1, 0, 0, 0, 4));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f33954c = linearLayout2;
-        linearLayout2.setOrientation(1);
-        this.f33954c.setGravity(1);
-        this.f33954c.setClipChildren(false);
-        linearLayout.addView(this.f33954c, w7.a6.t(-1, -2, 1, 0, 16, 0, 0));
-        di.d dVar = new di.d(context, this.resourceProvider, true);
-        this.d = dVar;
-        dVar.e();
-        this.d.setText(LocaleController.getString(R.string.WalletImportButton));
-        this.d.setEnabled(false);
-        this.d.setOnClickListener(new View.OnClickListener(this) {
-            public final z6 f33800b;
-
-            {
-                this.f33800b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f33800b.finishFragment();
-                        return;
-                    default:
-                        z6.V(this.f33800b);
-                        return;
+                l7Var2.finishFragment();
+                if (m2Var instanceof a5) {
+                    AndroidUtilities.runOnUIThread(new n(m2Var, 11), 300L);
+                    return;
                 }
-            }
-        });
-        linearLayout.addView(this.d, w7.a6.t(-1, 48, 1, 0, 24, 0, 0));
-        W(context);
-        Y();
-        return this.fragmentView;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        FrameLayout.LayoutParams layoutParams;
-        ScrollView scrollView = this.f33955f;
-        if (scrollView != null) {
-            scrollView.setPadding(i10, AndroidUtilities.dp(96.0f) + i11, i12, 0);
-            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f33955f.getLayoutParams();
-            int max = Math.max(i13, this.f33956n);
-            if (layoutParams2.bottomMargin != max) {
-                layoutParams2.bottomMargin = max;
-                this.f33955f.setLayoutParams(layoutParams2);
-            }
+                return;
+            case 3:
+                ((l7) obj3).f24003a.W2.N(true);
+                ((Utilities.Callback) obj2).run((String) obj);
+                return;
+            case 4:
+                s8 s8Var = (s8) obj3;
+                String str4 = (String) obj;
+                ((Utilities.Callback) obj2).run(str4);
+                if (str4 == null && !s8Var.f33436n) {
+                    if (s8Var.getParentLayout() != null) {
+                        for (org.telegram.ui.ActionBar.m2 m2Var2 : s8Var.getParentLayout().getFragmentStack()) {
+                            if (m2Var2 instanceof a5) {
+                                a5 a5Var = (a5) m2Var2;
+                                a5Var.f32642f0 = 0;
+                                di.h1 h1Var = a5Var.f32650n0;
+                                if (h1Var != null) {
+                                    h1Var.setPosition(0);
+                                }
+                            }
+                        }
+                    }
+                    s8Var.finishFragment();
+                    return;
+                }
+                return;
+            case 5:
+                c9.Y((c9) obj3, (TL_wallet.tonConnectSession) obj2, (Utilities.Callback) obj);
+                return;
+            case 6:
+                org.telegram.ui.web.z1 z1Var = (org.telegram.ui.web.z1) obj3;
+                org.telegram.ui.web.d1 d1Var = (org.telegram.ui.web.d1) obj;
+                z1Var.getClass();
+                ((org.telegram.ui.web.h1[]) obj2)[0].finishFragment();
+                Utilities.Callback callback = z1Var.e;
+                if (callback != null) {
+                    z1Var.finishFragment();
+                    callback.run(d1Var);
+                    return;
+                }
+                pf.d.r(z1Var.getParentActivity(), d1Var.f41021c);
+                return;
+            case 7:
+                org.telegram.ui.web.i2 i2Var = (org.telegram.ui.web.i2) obj3;
+                i2Var.getClass();
+                AndroidUtilities.runOnUIThread(new ze0(i2Var, (org.telegram.ui.web.h2) obj2, (Bitmap) obj, 26));
+                return;
+            case 8:
+                yh.p1 p1Var = (yh.p1) obj3;
+                Utilities.Callback callback2 = (Utilities.Callback) obj2;
+                Boolean bool = (Boolean) obj;
+                p1Var.getClass();
+                if (callback2 != null) {
+                    callback2.run(bool);
+                }
+                if (bool.booleanValue()) {
+                    p1Var.skipDismissAnimation();
+                }
+                p1Var.dismiss();
+                return;
+            case 9:
+                org.telegram.messenger.voip.f fVar = (org.telegram.messenger.voip.f) obj2;
+                if (((Object[]) obj)[1] == ((zh.f5) obj3)) {
+                    fVar.run();
+                    return;
+                }
+                return;
+            case 10:
+                ns0 ns0Var = (ns0) obj3;
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj2;
+                String str5 = (String) obj;
+                zh.e5 e5Var = ns0Var.e;
+                int i11 = tL_starGiftCollection.collection_id;
+                e5Var.getClass();
+                TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
+                int i12 = e5Var.f50441a;
+                updatestargiftcollection.peer = MessagesController.getInstance(i12).getInputPeer(e5Var.f50442b);
+                updatestargiftcollection.collection_id = i11;
+                updatestargiftcollection.flags |= 1;
+                updatestargiftcollection.title = str5;
+                ConnectionsManager.getInstance(i12).sendRequest(updatestargiftcollection, null);
+                tL_starGiftCollection.title = str5;
+                ns0Var.f(true);
+                return;
+            case 11:
+                yh.x4 x4Var = (yh.x4) obj3;
+                TLRPC.User user = (TLRPC.User) obj2;
+                Void r12 = (Void) obj;
+                long j10 = x4Var.Z;
+                Runnable runnable = x4Var.f49205g0;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                x4Var.dismiss();
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.giftsToUserSent, new Object[0]);
+                AndroidUtilities.runOnUIThread(new yh.o4(0, user), 250L);
+                MessagesController.getInstance(x4Var.Y).getMainSettings().edit().putBoolean("show_gift_for_" + j10, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j10, true).apply();
+                return;
+            case 12:
+                zh.r3 r3Var = (zh.r3) obj3;
+                String str6 = (String) obj2;
+                TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
+                zh.o3 o3Var = r3Var.f51079f0;
+                fi.k[] kVarArr = r3Var.f51103t0;
+                di.d dVar = r3Var.f51089k0;
+                if (stargiftupgradepreview != null) {
+                    o3Var.setPreviewingAttributes(stargiftupgradepreview.sample_attributes);
+                    r3Var.s2(1, false, null);
+                    o3Var.i(1, LocaleController.getString(R.string.Gift2LearnMoreTitle), LocaleController.formatString(R.string.Gift2LearnMoreText, str6), null);
+                    kVarArr[0].setText(LocaleController.getString(R.string.Gift2UpgradeFeature1TextLearn));
+                    kVarArr[1].setText(LocaleController.getString(R.string.Gift2UpgradeFeature2TextLearn));
+                    kVarArr[2].setText(LocaleController.getString(R.string.Gift2UpgradeFeature3TextLearn));
+                    r3Var.f51105v0.setVisibility(8);
+                    r3Var.f51104u0.setVisibility(8);
+                    dVar.setFilled(true);
+                    dVar.g(LocaleController.getString(R.string.OK), false, true);
+                    dVar.f(null, false);
+                    dVar.setOnClickListener(new zh.t0(r3Var, 4));
+                    r3Var.show();
+                    return;
+                }
+                return;
+            case 13:
+                zh.r3.n0((zh.r3) obj3, (org.telegram.ui.ActionBar.a2) obj2, (TL_stars.SavedStarGift) obj);
+                return;
+            case 14:
+                zh.s2 s2Var = (zh.s2) obj3;
+                s2Var.getClass();
+                ((zh.q2) obj2).a((TL_stars.StarGift) obj, true);
+                s2Var.d(true);
+                return;
+            case 15:
+                zh.x2 x2Var = (zh.x2) obj3;
+                ag.b bVar = (ag.b) obj2;
+                TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) obj;
+                pf.c cVar = x2Var.f51302n;
+                if (cVar != null && bVar == x2Var.f51305q) {
+                    cVar.c(false);
+                }
+                x2Var.f51304p.remove(bVar);
+                if (tL_payments_paymentFormStarGift != null) {
+                    x2Var.f51303o.put(bVar, new zh.v2(bVar, tL_payments_paymentFormStarGift));
+                    x2Var.a(true);
+                    return;
+                }
+                return;
+            default:
+                ((Utilities.Callback2) obj3).run((ag.a) obj, new zf.c((zh.h0[]) obj2, 16));
+                return;
         }
-        ImageView imageView = this.e;
-        if (imageView != null && (layoutParams = (FrameLayout.LayoutParams) imageView.getLayoutParams()) != null) {
-            layoutParams.topMargin = AndroidUtilities.dp(12.0f) + i11;
-            this.e.setLayoutParams(layoutParams);
-        }
-    }
-
-    @Override
-    public final r0.l1 onInsetsInternal(View view, r0.l1 l1Var) {
-        this.f33956n = l1Var.f43741a.f(8).d;
-        return super.onInsetsInternal(view, l1Var);
     }
 }

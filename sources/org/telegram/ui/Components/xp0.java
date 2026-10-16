@@ -14,26 +14,26 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xp0 extends View {
     public static final hw0 v;
-    public ImageReceiver f31300a;
-    public k9 f31301b;
-    public org.telegram.ui.Cells.z f31302c;
+    public ImageReceiver f30986a;
+    public k9 f30987b;
+    public org.telegram.ui.Cells.z f30988c;
     public Paint d;
     public Paint e;
-    public o1.k f31303f;
+    public o1.k f30989f;
     public ValueAnimator h;
-    public float f31304n;
-    public boolean f31305r;
-    public boolean f31306s;
+    public float f30990n;
+    public boolean f30991r;
+    public boolean f30992s;
 
     static {
-        hw0 hw0Var = new hw0(new zg0(4), new zg0(5));
-        hw0Var.f25769c = 100.0f;
+        hw0 hw0Var = new hw0(new co0(2), new co0(3));
+        hw0Var.f25423c = 100.0f;
         v = hw0Var;
     }
 
     public final void a(boolean z10, boolean z11, float f7) {
         if (z10) {
-            o1.k kVar = this.f31303f;
+            o1.k kVar = this.f30989f;
             if (kVar != null) {
                 kVar.c();
             }
@@ -42,68 +42,68 @@ public final class xp0 extends View {
                 valueAnimator.cancel();
             }
             boolean z12 = false;
-            this.f31306s = false;
-            this.f31305r = false;
+            this.f30992s = false;
+            this.f30991r = false;
             if (z11) {
-                float f10 = this.f31304n * 100.0f;
+                float f10 = this.f30990n * 100.0f;
                 o1.k kVar2 = new o1.k(this, v);
-                kVar2.f16459b = f10;
-                kVar2.f16460c = true;
-                this.f31303f = kVar2;
-                if (f7 < this.f31304n) {
+                kVar2.f16152b = f10;
+                kVar2.f16153c = true;
+                this.f30989f = kVar2;
+                if (f7 < this.f30990n) {
                     z12 = true;
                 }
                 float f11 = f7 * 100.0f;
-                this.f31306s = z12;
-                this.f31305r = !z12;
+                this.f30992s = z12;
+                this.f30991r = !z12;
                 o1.l lVar = new o1.l(f11);
-                lVar.f16474i = f11;
+                lVar.f16167i = f11;
                 lVar.b(450.0f);
                 lVar.a(1.0f);
-                kVar2.f16468u = lVar;
-                this.f31303f.b(new oh(this, z12, f10, f11));
-                this.f31303f.a(new jb(this, 4));
-                this.f31303f.h();
+                kVar2.f16161u = lVar;
+                this.f30989f.b(new oh(this, z12, f10, f11));
+                this.f30989f.a(new jb(this, 4));
+                this.f30989f.h();
                 return;
             }
-            ValueAnimator duration = ValueAnimator.ofFloat(this.f31304n, f7).setDuration(200L);
+            ValueAnimator duration = ValueAnimator.ofFloat(this.f30990n, f7).setDuration(200L);
             this.h = duration;
-            duration.setInterpolator(es.f24771f);
-            this.h.addUpdateListener(new g80(this, 17));
+            duration.setInterpolator(es.f24465f);
+            this.h.addUpdateListener(new f80(this, 17));
             this.h.addListener(new k90(this, 15));
             this.h.start();
             return;
         }
-        this.f31304n = f7;
+        this.f30990n = f7;
         invalidate();
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        this.f31302c.setState(getDrawableState());
+        this.f30988c.setState(getDrawableState());
     }
 
     public float getProgress() {
-        return this.f31304n;
+        return this.f30990n;
     }
 
     @Override
     public final void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        this.f31302c.jumpToCurrentState();
+        this.f30988c.jumpToCurrentState();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f31300a.onAttachedToWindow();
+        this.f30986a.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f31300a.onDetachedFromWindow();
+        this.f30986a.onDetachedFromWindow();
     }
 
     @Override
@@ -112,15 +112,15 @@ public final class xp0 extends View {
         Paint paint2 = this.e;
         canvas.save();
         float f7 = 1.0f;
-        if (this.f31305r) {
-            f7 = 1.0f - this.f31304n;
-        } else if (this.f31306s) {
-            f7 = this.f31304n;
+        if (this.f30991r) {
+            f7 = 1.0f - this.f30990n;
+        } else if (this.f30992s) {
+            f7 = this.f30990n;
         }
         canvas.scale(f7, f7, getWidth() / 2.0f, getHeight() / 2.0f);
         super.onDraw(canvas);
-        this.f31300a.draw(canvas);
-        int i10 = (int) (this.f31304n * 255.0f);
+        this.f30986a.draw(canvas);
+        int i10 = (int) (this.f30990n * 255.0f);
         paint.setAlpha(i10);
         canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth(), getHeight()) / 2.0f, paint);
         canvas.save();
@@ -129,20 +129,20 @@ public final class xp0 extends View {
         canvas.drawLine(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth, paint2);
         canvas.drawLine(strokeWidth, getHeight() - strokeWidth, getWidth() - strokeWidth, strokeWidth, paint2);
         canvas.restore();
-        this.f31302c.setBounds(0, 0, getWidth(), getHeight());
-        this.f31302c.draw(canvas);
+        this.f30988c.setBounds(0, 0, getWidth(), getHeight());
+        this.f30988c.draw(canvas);
         canvas.restore();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(getLayoutParams().width, 1073741824), View.MeasureSpec.makeMeasureSpec(getLayoutParams().height, 1073741824));
-        this.f31300a.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        this.f30986a.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
     }
 
     public void setAvatar(TLObject tLObject) {
         String str;
-        k9 k9Var = this.f31301b;
+        k9 k9Var = this.f30987b;
         if (tLObject instanceof TLRPC.User) {
             str = UserObject.getFirstName((TLRPC.User) tLObject);
         } else if (tLObject instanceof TLRPC.Chat) {
@@ -154,7 +154,7 @@ public final class xp0 extends View {
         }
         setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, str));
         k9Var.p(tLObject);
-        this.f31300a.setForUserOrChat(tLObject, k9Var);
+        this.f30986a.setForUserOrChat(tLObject, k9Var);
     }
 
     public void setProgress(float f7) {
@@ -169,7 +169,7 @@ public final class xp0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && this.f31302c != drawable) {
+        if (!super.verifyDrawable(drawable) && this.f30988c != drawable) {
             return false;
         }
         return true;

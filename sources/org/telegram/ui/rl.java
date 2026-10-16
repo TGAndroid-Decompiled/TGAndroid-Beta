@@ -27,12 +27,12 @@ public final class rl extends org.telegram.ui.Components.z9 {
                 if (((org.telegram.ui.Components.dp) this.J).h) {
                     path.rewind();
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(this.f31813a.getImageX(), this.f31813a.getImageY(), this.f31813a.getImageX2(), this.f31813a.getImageY2());
+                    rectF.set(this.f31507a.getImageX(), this.f31507a.getImageY(), this.f31507a.getImageX2(), this.f31507a.getImageY2());
                     path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Path.Direction.CW);
                     canvas.save();
                     canvas.clipPath(path);
                     gVar.h(i0.a.k(-1, (int) (Color.alpha(-1) * 0.325f)));
-                    gVar.setBounds((int) this.f31813a.getImageX(), (int) this.f31813a.getImageY(), (int) this.f31813a.getImageX2(), (int) this.f31813a.getImageY2());
+                    gVar.setBounds((int) this.f31507a.getImageX(), (int) this.f31507a.getImageY(), (int) this.f31507a.getImageX2(), (int) this.f31507a.getImageY2());
                     gVar.draw(canvas);
                     invalidate();
                     canvas.restore();
@@ -53,11 +53,11 @@ public final class rl extends org.telegram.ui.Components.z9 {
                 wh.g gVar = (wh.g) this.I;
                 Path path = (Path) this.H;
                 super.onDraw(canvas);
-                if (this.f31818r) {
+                if (this.f31512r) {
                     canvas.save();
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                    int[] roundRadius = this.f31813a.getRoundRadius();
+                    int[] roundRadius = this.f31507a.getRoundRadius();
                     float f7 = roundRadius[0];
                     fArr[1] = f7;
                     fArr[0] = f7;
@@ -89,9 +89,9 @@ public final class rl extends org.telegram.ui.Components.z9 {
                 org.telegram.ui.Components.voip.h hVar = (org.telegram.ui.Components.voip.h) this.I;
                 super.onDraw(canvas);
                 org.telegram.ui.Components.p60 p60Var = (org.telegram.ui.Components.p60) this.J;
-                if (p60Var.f28197x0) {
+                if (p60Var.f27890x0) {
                     int i10 = p60Var.X0;
-                    hVar.f30196f = i10;
+                    hVar.f29865f = i10;
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     float f13 = i10;
                     rectF2.set(0.0f, 0.0f, f13, f13);
@@ -106,13 +106,13 @@ public final class rl extends org.telegram.ui.Components.z9 {
             case 3:
                 org.telegram.ui.Components.voip.h hVar2 = (org.telegram.ui.Components.voip.h) this.I;
                 super.onDraw(canvas);
-                if (((org.telegram.ui.Components.o60) this.J).f27872l0) {
+                if (((org.telegram.ui.Components.o60) this.J).f27568l0) {
                     float min = Math.min(getWidth(), getHeight()) * 0.5f;
                     RectF rectF3 = AndroidUtilities.rectTmp;
                     rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
                     canvas.drawRoundRect(rectF3, min, min, (Paint) this.H);
                     rectF3.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-                    hVar2.f30196f = getWidth();
+                    hVar2.f29865f = getWidth();
                     hVar2.a(min, canvas, rectF3, null);
                     invalidate();
                     return;

@@ -18,16 +18,15 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Cells.b7;
+import org.telegram.ui.Cells.a7;
 import org.telegram.ui.Cells.m4;
 import org.telegram.ui.Components.da0;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.li1;
 public final class m0 extends lm0 {
-    public final s0 f46339c;
+    public final s0 f46338c;
 
     public m0(s0 s0Var) {
-        this.f46339c = s0Var;
+        this.f46338c = s0Var;
     }
 
     @Override
@@ -40,7 +39,7 @@ public final class m0 extends lm0 {
 
     @Override
     public final int h() {
-        return this.f46339c.Y.size() + 3;
+        return this.f46338c.Y.size() + 3;
     }
 
     @Override
@@ -63,7 +62,7 @@ public final class m0 extends lm0 {
         String str;
         int i11 = b1Var.f44841f;
         View view = b1Var.f44838a;
-        s0 s0Var = this.f46339c;
+        s0 s0Var = this.f46338c;
         if (i11 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) s0Var.Y.get(i10 - 3);
             yg.l lVar = (yg.l) view;
@@ -76,7 +75,7 @@ public final class m0 extends lm0 {
             m4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
         } else if (i11 == 0) {
             r0 r0Var = (r0) view;
-            s0Var.f46389b0 = r0Var;
+            s0Var.f46388b0 = r0Var;
             TLRPC.Chat chat = s0Var.Z;
             da0 da0Var = r0Var.e;
             try {
@@ -87,11 +86,11 @@ public final class m0 extends lm0 {
                     str = chat.title;
                 }
                 SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", i12, str, "%3$s"));
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), g6.f19960gc, 2, new rh.j(s0Var, 18));
+                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), g6.f19660gc, 2, new ri.h0(s0Var, 18));
                 int indexOf = TextUtils.indexOf(replaceTags, "%3$s");
                 replaceTags.replace(indexOf, indexOf + 4, (CharSequence) replaceSingleTag);
                 da0Var.setText(replaceTags, TextView.BufferType.EDITABLE);
-                da0Var.post(new li1(r0Var, indexOf, 10));
+                da0Var.post(new org.telegram.ui.Wallet.i(r0Var, indexOf, 9));
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -103,7 +102,7 @@ public final class m0 extends lm0 {
         View view;
         c6 c6Var;
         Context context = viewGroup.getContext();
-        s0 s0Var = this.f46339c;
+        s0 s0Var = this.f46338c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -117,7 +116,7 @@ public final class m0 extends lm0 {
                     view = new m4(context, 22);
                 }
             } else {
-                view = new b7(context, g6.x0(null, g6.f19843a7, false), 0);
+                view = new a7(context, g6.x0(null, g6.f19543a7, false), 0);
             }
         } else {
             r0 r0Var = new r0(context);

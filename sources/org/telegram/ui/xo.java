@@ -26,6 +26,6 @@ public final class xo extends org.telegram.ui.Cells.r8 {
         } else {
             i10 = 0;
         }
-        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f20022k0);
+        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f19722k0);
     }
 }

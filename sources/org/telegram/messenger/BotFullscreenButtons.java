@@ -18,21 +18,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.i11;
 import org.telegram.ui.p20;
 public class BotFullscreenButtons extends View {
     private final org.telegram.ui.Components.g6 animatedBack;
     private final org.telegram.ui.Components.g6 animatedDownloading;
     private final org.telegram.ui.Components.g6 animatedPreview;
     private boolean back;
-    private final h11 backText;
+    private final i11 backText;
     private final Paint backgroundPaint;
     private final Path backgroundPath;
     private RenderNode blurNode;
     private final org.telegram.ui.Components.ad closeBounce;
     private final RectF closeRect;
     private final RectF closeRectArea;
-    private final h11 closeText;
+    private final i11 closeText;
     private final org.telegram.ui.Components.ad collapseBounce;
     private final RectF collapseClickRect;
     private final RectF collapseRect;
@@ -55,7 +55,7 @@ public class BotFullscreenButtons extends View {
     int pressed;
     private boolean preview;
     private final p20 previewClip;
-    private h11 previewText;
+    private i11 previewText;
     private final RectF rightMenu;
     private final long start;
     private Drawable verifiedBackground;
@@ -194,8 +194,8 @@ public class BotFullscreenButtons extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.backText = new h11(LocaleController.getString(R.string.BotFullscreenBack), 13.0f, AndroidUtilities.bold());
-        this.closeText = new h11(LocaleController.getString(R.string.BotFullscreenClose), 13.0f, AndroidUtilities.bold());
+        this.backText = new i11(LocaleController.getString(R.string.BotFullscreenBack), 13.0f, AndroidUtilities.bold());
+        this.closeText = new i11(LocaleController.getString(R.string.BotFullscreenClose), 13.0f, AndroidUtilities.bold());
         paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
         path.rewind();
         path.moveTo(-AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(0.16f));
@@ -279,12 +279,12 @@ public class BotFullscreenButtons extends View {
         float e = this.animatedBack.e(this.back);
         float e7 = this.animatedPreview.e(this.preview);
         float dp4 = (this.rightMenu.left - AndroidUtilities.dp(18.0f)) - (this.insets.left + AndroidUtilities.dp(38.0f));
-        h11 h11Var = this.previewText;
-        if (h11Var == null) {
+        i11 i11Var = this.previewText;
+        if (i11Var == null) {
             f7 = 18.0f;
             dp = 0.0f;
         } else {
-            float f16 = h11Var.f25473c;
+            float f16 = i11Var.f25455c;
             f7 = 18.0f;
             if (this.verifiedBackground != null) {
                 f10 = 30.0f;
@@ -294,7 +294,7 @@ public class BotFullscreenButtons extends View {
             dp = f16 + AndroidUtilities.dp(f10);
         }
         float min = Math.min(dp4, dp);
-        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.f25473c, this.backText.f25473c, e) + AndroidUtilities.dp(12.0f), min, e7), this.insets.top + AndroidUtilities.dp(38.0f));
+        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.f25455c, this.backText.f25455c, e) + AndroidUtilities.dp(12.0f), min, e7), this.insets.top + AndroidUtilities.dp(38.0f));
         RectF rectF9 = this.closeRect;
         RectF rectF10 = this.leftMenu;
         float f17 = rectF10.left;
@@ -319,7 +319,7 @@ public class BotFullscreenButtons extends View {
             }
             RenderNode c10 = b.c(this.parentRenderNode);
             f11 = 16.0f;
-            this.blurNode.setPosition(0, 0, q.c(16.0f, c10.getWidth(), 1), Math.max(1, (int) Math.min(this.insets.top + AndroidUtilities.dp(46.0f), c10.getHeight())));
+            this.blurNode.setPosition(0, 0, g0.b(16.0f, c10.getWidth(), 1), Math.max(1, (int) Math.min(this.insets.top + AndroidUtilities.dp(46.0f), c10.getHeight())));
             RecordingCanvas beginRecording = this.blurNode.beginRecording();
             beginRecording.translate(-AndroidUtilities.dp(8.0f), 0.0f);
             beginRecording.drawRenderNode(c10);
@@ -358,16 +358,16 @@ public class BotFullscreenButtons extends View {
         if (e7 > 0.0f && this.previewText != null) {
             canvas2.save();
             canvas2.translate(com.google.android.gms.internal.play_billing.k3.D(1.0f, e7, min, this.leftMenu.left + AndroidUtilities.dp(30.0f)), this.leftMenu.centerY());
-            h11 h11Var2 = this.previewText;
+            i11 i11Var2 = this.previewText;
             float f22 = this.leftMenu.right;
             if (this.verifiedBackground != null) {
                 f15 = 30.0f;
             } else {
                 f15 = f12;
             }
-            h11Var2.f25483p = ((f22 - AndroidUtilities.dp(f15)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f;
+            i11Var2.f25465p = ((f22 - AndroidUtilities.dp(f15)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f;
             f14 = 1.0f;
-            h11Var2.c(0.0f, 0.0f, e7, -1, canvas);
+            i11Var2.c(0.0f, 0.0f, e7, -1, canvas);
             f13 = e7;
             canvas2 = canvas;
             canvas2.translate(this.previewText.l() + AndroidUtilities.dp(5.0f), 0.0f);
@@ -507,7 +507,7 @@ public class BotFullscreenButtons extends View {
     }
 
     public void setName(String str, boolean z10) {
-        this.previewText = new h11(str, 13.0f, AndroidUtilities.bold());
+        this.previewText = new i11(str, 13.0f, AndroidUtilities.bold());
         if (!z10) {
             this.verifiedBackground = null;
             this.verifiedForeground = null;

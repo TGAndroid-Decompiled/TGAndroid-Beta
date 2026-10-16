@@ -10,21 +10,21 @@ public final class dt extends hg.t1 {
         this.d = new ArrayList();
         this.e = new ArrayList();
         this.H = new ArrayList();
-        this.f10747c = context;
+        this.f10751c = context;
         this.h = hVar;
-        this.f10750r = z10;
-        this.f10751s = z11;
-        this.f10753x = 0;
+        this.f10754r = z10;
+        this.f10755s = z11;
+        this.f10757x = 0;
         this.v = z12;
-        this.f10752w = true;
+        this.f10756w = true;
         hg.a2 a2Var = new hg.a2(true);
-        this.f10748f = a2Var;
-        a2Var.f10484a = new hg.q1(this);
+        this.f10752f = a2Var;
+        a2Var.f10488a = new hg.q1(this);
     }
 
     @Override
     public final void F() {
-        if (!this.f10754y && !this.f10748f.e() && h() == 0) {
+        if (!this.f10758y && !this.f10752f.e() && h() == 0) {
             this.K.e.e(false, true);
         }
     }

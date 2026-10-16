@@ -9,29 +9,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class y6 extends FrameLayout {
-    public final org.telegram.ui.Components.s6 f51339a;
-    public final ImageView f51340b;
-    public int f51341c;
+    public final org.telegram.ui.Components.s6 f51340a;
+    public final ImageView f51341b;
+    public int f51342c;
     public boolean d;
 
     public y6(Context context) {
         super(context);
         org.telegram.ui.Components.s6 s6Var = new org.telegram.ui.Components.s6(context, false, false, false);
-        this.f51339a = s6Var;
+        this.f51340a = s6Var;
         s6Var.getDrawable().r(true, true);
         s6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        addView(s6Var, w7.a6.i(-1.0f, -1.0f, 8388627, 22.0f, 0.0f, 58.0f, 0.0f));
+        addView(s6Var, w7.z5.i(-1.0f, -1.0f, 8388627, 22.0f, 0.0f, 58.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f51340b = imageView;
+        this.f51341b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.arrow_more);
-        addView(imageView, w7.a6.i(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 17.0f, 0.0f));
+        addView(imageView, w7.z5.i(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 17.0f, 0.0f));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f51341c = Integer.MAX_VALUE;
+        this.f51342c = Integer.MAX_VALUE;
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class y6 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.g6.f20022k0);
+            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.g6.f19722k0);
         }
     }
 

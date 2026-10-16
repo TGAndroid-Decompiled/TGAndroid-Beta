@@ -3,16 +3,16 @@ package bi;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class u3 implements Utilities.Callback {
-    public final int f3778a;
-    public final Object f3779b;
-    public final Object f3780c;
+    public final int f3782a;
+    public final Object f3783b;
+    public final Object f3784c;
     public final Object d;
     public final Object e;
 
     public u3(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f3778a = i10;
-        this.f3779b = obj;
-        this.f3780c = obj2;
+        this.f3782a = i10;
+        this.f3783b = obj;
+        this.f3784c = obj2;
         this.d = obj3;
         this.e = obj4;
     }
@@ -23,10 +23,10 @@ public final class u3 implements Utilities.Callback {
     }
 
     public u3(Object obj, String str, ArrayList arrayList, Object obj2, int i10) {
-        this.f3778a = i10;
-        this.f3779b = obj;
+        this.f3782a = i10;
+        this.f3783b = obj;
         this.d = str;
-        this.f3780c = arrayList;
+        this.f3784c = arrayList;
         this.e = obj2;
     }
 }

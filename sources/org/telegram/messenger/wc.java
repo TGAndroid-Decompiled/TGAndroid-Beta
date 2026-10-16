@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class wc implements Runnable {
-    public final int f18923a;
-    public final boolean[] f18924b;
+    public final int f18623a;
+    public final boolean[] f18624b;
 
     public wc(int i10, boolean[] zArr) {
-        this.f18923a = i10;
-        this.f18924b = zArr;
+        this.f18623a = i10;
+        this.f18624b = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f18923a) {
+        switch (this.f18623a) {
             case 0:
-                MessagesController.lambda$openByUserName$459(this.f18924b);
+                MessagesController.lambda$openByUserName$459(this.f18624b);
                 return;
             default:
-                MessagesController.lambda$openApp$500(this.f18924b);
+                MessagesController.lambda$openApp$500(this.f18624b);
                 return;
         }
     }

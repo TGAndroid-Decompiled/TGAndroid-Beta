@@ -1,369 +1,176 @@
 package org.telegram.ui.Wallet;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.Utilities;
-public final class p5 extends FrameLayout implements SensorEventListener {
-    public final float[] E;
-    public final SensorManager F;
-    public final Sensor G;
-    public final boolean H;
-    public final float[] I;
-    public final float[] J;
-    public final l5 K;
-    public float L;
-    public float M;
-    public float N;
-    public float O;
-    public float P;
-    public float Q;
-    public float R;
-    public float S;
-    public float T;
-    public long U;
-    public final m5 V;
-    public final o5 f33596a;
-    public final c5 f33597b;
-    public boolean f33598c;
-    public boolean d;
-    public boolean e;
-    public long f33599f;
-    public long h;
-    public Runnable f33600n;
-    public boolean f33601r;
-    public boolean f33602s;
-    public final n5 v;
-    public final n5 f33603w;
-    public final m.q3 f33604x;
-    public final float[] f33605y;
+import android.graphics.SurfaceTexture;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
+import di.xa;
+import org.telegram.messenger.sk;
+import org.telegram.ui.fi1;
+public final class p5 extends tg.n {
+    public final l5 f33336f0;
+    public final q5 f33337g0;
+    public final int f33338h0;
+    public final n f33339i0;
+    public float f33340j0;
+    public float f33341k0;
+    public float f33342l0;
+    public float m0;
+    public boolean f33343n0;
+    public ValueAnimator f33344o0;
 
-    public p5(Context context, int i10, int i11) {
-        super(context);
-        boolean z10 = true;
-        this.f33598c = true;
-        this.f33599f = 1L;
-        this.f33604x = new m.q3();
-        this.f33605y = new float[8];
-        this.E = new float[8];
-        this.I = new float[9];
-        this.J = new float[3];
-        this.K = new Object();
-        this.L = -0.22f;
-        this.M = -0.28f;
-        this.P = 1.0f;
-        this.V = new m5(this, 0);
-        setClipChildren(false);
-        setClipToPadding(false);
-        w7.c6.b(this, 0.02f, 1.2f);
-        Utilities.globalQueue.postRunnable(new org.telegram.messenger.voip.q(context.getApplicationContext(), i10, i11, 1));
-        o5 o5Var = new o5(context, this, i10, i11);
-        this.f33596a = o5Var;
-        addView(o5Var, w7.a6.a(-1.0f, -24.0f, -24.0f, -24.0f, -24.0f, -1, 17));
-        c5 c5Var = new c5(i10, i11, context, true);
-        this.f33597b = c5Var;
-        addView(c5Var, w7.a6.d(-1.0f, -1));
-        n5 n5Var = new n5(context);
-        this.v = n5Var;
-        n5 n5Var2 = new n5(context);
-        this.f33603w = n5Var2;
-        addView(n5Var2, w7.a6.e(-1, -1, 17));
-        addView(n5Var, w7.a6.e(-1, -1, 17));
-        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.F = sensorManager;
-        Sensor defaultSensor = sensorManager.getDefaultSensor(15);
-        defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(11) : defaultSensor;
-        defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(4) : defaultSensor;
-        this.G = defaultSensor;
-        this.H = (defaultSensor == null || defaultSensor.getType() == 4) ? false : z10;
-    }
-
-    public static float b(float f7, float f10, float f11) {
-        return Math.max(f10, Math.min(f11, f7));
-    }
-
-    public final void a(float f7, float f10) {
-        int i10;
-        int i11;
-        int i12 = 0;
-        this.f33596a.f33562f0.P = new float[]{f7, f10};
-        e();
-        double cos = Math.cos(Math.toRadians(f10)) * Math.cos(Math.toRadians(f7));
-        if (this.f33598c) {
-            this.f33597b.b(f7, f10);
-            c5 c5Var = this.f33597b;
-            if (cos >= 0.0d) {
-                i11 = 0;
-            } else {
-                i11 = 4;
-            }
-            c5Var.setVisibility(i11);
-        }
-        n5 n5Var = this.v;
-        if (cos >= 0.0d) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        n5Var.setVisibility(i10);
-        n5 n5Var2 = this.f33603w;
-        if (cos >= 0.0d) {
-            i12 = 4;
-        }
-        n5Var2.setVisibility(i12);
-        postInvalidateOnAnimation();
-    }
-
-    public final void c(float f7, float f10, float f11, float f12) {
-        j5 j5Var = this.f33596a.f33562f0;
-        float[] fArr = j5Var.N;
-        if (fArr[0] == f7 && fArr[1] == f10 && fArr[2] == f11 && fArr[3] == f12) {
-            return;
-        }
-        j5Var.N = new float[]{f7, f10, f11, f12};
-    }
-
-    public final void d() {
-        long j10;
-        this.f33598c = true;
-        o5 o5Var = this.f33596a;
-        j5 j5Var = o5Var.f33562f0;
-        synchronized (j5Var) {
-            j10 = j5Var.U + 1;
-        }
-        this.f33599f = j10;
-        o5Var.setAlpha(0.003921569f);
-        n5 n5Var = this.v;
-        n5Var.e = true;
-        n5Var.f33517f = true;
-        a(this.N, this.Q);
+    public p5(Context context, q5 q5Var, int i10, int i11) {
+        super(context, 0, 0);
+        this.f33337g0 = q5Var;
+        this.f33339i0 = new n(q5Var, 9);
+        l5 l5Var = new l5(context, i10, i11);
+        this.f33336f0 = l5Var;
+        setRenderer(l5Var);
+        setOpaque(false);
+        this.f33338h0 = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        n5 n5Var = this.v;
-        this.d = true;
-        try {
-            n5Var.a(this.f33596a.f33562f0);
-            this.d = false;
-            n5Var.f33517f = this.f33598c;
-            super.dispatchDraw(canvas);
-        } catch (Throwable th2) {
-            this.d = false;
-            throw th2;
-        }
-    }
-
-    public final void e() {
-        int width = getWidth();
-        int height = getHeight();
-        if (width != 0 && height != 0) {
-            this.f33604x.c(width, height, this.N, this.Q, false, this.f33605y);
-            this.f33604x.c(width, height, this.N, this.Q, true, this.E);
-            this.v.b(this.f33605y);
-            this.f33603w.b(this.E);
-        }
-    }
-
-    public final void f() {
-        SensorManager sensorManager;
-        boolean z10;
-        o5 o5Var = this.f33596a;
-        if (o5Var != null && (sensorManager = this.F) != null) {
-            if (!isShown() || getWindowVisibility() != 0) {
-                this.e = true;
-            }
-            if (this.f33601r && isShown() && getWindowVisibility() == 0 && hasWindowFocus()) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (this.f33602s != z10) {
-                this.f33602s = z10;
-                o5Var.setPaused(!z10);
-                m5 m5Var = this.V;
-                removeCallbacks(m5Var);
-                if (z10) {
-                    if (this.e) {
-                        this.e = false;
-                        d();
-                    }
-                    this.U = 0L;
-                    Sensor sensor = this.G;
-                    if (sensor != null) {
-                        sensorManager.registerListener(this, sensor, 1);
-                    }
-                    postOnAnimation(m5Var);
-                    return;
-                }
-                sensorManager.unregisterListener(this);
-            }
-        }
-    }
-
-    public FrameLayout getBackFace() {
-        return this.f33603w.f33516c;
-    }
-
-    public float getCardRotationX() {
-        return this.N;
-    }
-
-    public float getCardRotationY() {
-        return this.Q;
-    }
-
-    public FrameLayout getFrontFace() {
-        return this.v.f33516c;
+    public final int getMaxFrameRate() {
+        return 60;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f33601r = true;
-        this.U = 0L;
-        l5 l5Var = this.K;
-        l5Var.f33434a = false;
-        l5Var.h = 0L;
-        l5Var.f33439i = 0L;
-        l5Var.f33440j = 0L;
-        this.R = 0.0f;
-        this.S = 0.0f;
-        this.T = 0.0f;
-        f();
+    public final boolean j() {
+        return true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f33601r = false;
-        f();
+        removeCallbacks(this.f33339i0);
+        this.f33337g0.setPressed(false);
+        ValueAnimator valueAnimator = this.f33344o0;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f33344o0.cancel();
+            this.f33344o0 = null;
+        }
         super.onDetachedFromWindow();
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (z10) {
-            e();
-        }
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
+        this.f33336f0.getClass();
+        this.f33337g0.d();
+        super.onSurfaceTextureAvailable(surfaceTexture, i10, i11);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.round(size / 1.64f), 1073741824));
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        this.f33337g0.d();
+        super.onSurfaceTextureDestroyed(surfaceTexture);
+        return true;
     }
 
     @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        if (this.H) {
-            float[] fArr = sensorEvent.values;
-            float[] fArr2 = this.I;
-            SensorManager.getRotationMatrixFromVector(fArr2, fArr);
-            float[] fArr3 = this.J;
-            SensorManager.getOrientation(fArr2, fArr3);
-            this.L = b((float) Math.sin(fArr3[2]), -0.82f, 0.82f);
-            this.M = b(-((float) Math.sin(fArr3[1])), -0.82f, 0.82f);
-        } else {
-            long j10 = this.U;
-            if (j10 != 0) {
-                float f7 = ((float) (sensorEvent.timestamp - j10)) * 1.0E-9f;
-                if (f7 > 0.0f && f7 < 0.1f) {
-                    this.L = b(this.L - ((sensorEvent.values[1] * f7) * (-0.75f)), -0.82f, 0.82f);
-                    this.M = b(com.google.android.gms.internal.play_billing.k3.t(sensorEvent.values[0], f7, -0.75f, this.M), -0.82f, 0.82f);
+    public final void onSurfaceTextureUpdated(android.graphics.SurfaceTexture r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.p5.onSurfaceTextureUpdated(android.graphics.SurfaceTexture):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        l5 l5Var = this.f33336f0;
+        q5 q5Var = this.f33337g0;
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked == 3) {
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                        q5Var.setPressed(false);
+                        if (this.f33343n0) {
+                            p();
+                        }
+                        this.f33343n0 = true;
+                        return true;
+                    }
+                } else {
+                    float abs = Math.abs(motionEvent.getX() - this.f33340j0);
+                    float f7 = this.f33338h0;
+                    if (abs > f7 || Math.abs(motionEvent.getY() - this.f33341k0) > f7) {
+                        this.f33343n0 = true;
+                        q5Var.setPressed(false);
+                    }
+                    if (this.f33343n0) {
+                        float D = com.google.android.gms.internal.play_billing.k3.D(motionEvent.getX(), this.f33340j0, 0.03f, this.f33342l0);
+                        float f10 = this.f33342l0;
+                        l5Var.d = q5.b(D, f10 - 32.0f, f10 + 32.0f);
+                        float D2 = com.google.android.gms.internal.play_billing.k3.D(motionEvent.getY(), this.f33341k0, 0.03f, this.m0);
+                        float f11 = this.m0;
+                        l5Var.f45708i = q5.b(D2, f11 - 22.0f, f11 + 22.0f);
+                    }
                 }
+                return true;
             }
-            this.U = sensorEvent.timestamp;
-        }
-        long j11 = sensorEvent.timestamp;
-        this.K.a(((-this.M) / 0.82f) * 15.0f, (this.L / 0.82f) * 15.0f, j11);
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        e();
-    }
-
-    @Override
-    public final void onVisibilityChanged(View view, int i10) {
-        super.onVisibilityChanged(view, i10);
-        f();
-    }
-
-    @Override
-    public final void onWindowFocusChanged(boolean z10) {
-        super.onWindowFocusChanged(z10);
-        f();
-    }
-
-    @Override
-    public final void onWindowVisibilityChanged(int i10) {
-        super.onWindowVisibilityChanged(i10);
-        f();
-    }
-
-    public void setAdditionalTilt(float f7) {
-        float f10 = this.O;
-        if (f10 == f7) {
-            return;
-        }
-        float f11 = (f7 - f10) + this.N;
-        this.N = f11;
-        this.O = f7;
-        a(f11, this.Q);
-    }
-
-    public void setCardIcon(int i10) {
-        this.f33597b.setCardIcon(i10);
-        this.f33596a.f33562f0.f33356a0 = i10;
-    }
-
-    public void setDiamondAlpha(float f7) {
-        j5 j5Var = this.f33596a.f33562f0;
-        j5Var.getClass();
-        j5Var.O = Math.max(0.0f, Math.min(1.0f, f7));
-    }
-
-    public void setEngravingBitmap(Bitmap bitmap) {
-        this.f33597b.setEngravingBitmap(bitmap);
-        this.f33596a.f33562f0.Y = bitmap;
-    }
-
-    public void setOnFrontContentPresented(Runnable runnable) {
-        long j10;
-        this.f33600n = runnable;
-        if (runnable != null) {
-            j5 j5Var = this.f33596a.f33562f0;
-            synchronized (j5Var) {
-                j10 = j5Var.U + 1;
+            getParent().requestDisallowInterceptTouchEvent(false);
+            q5Var.setPressed(false);
+            if (this.f33343n0) {
+                p();
+                return true;
             }
-            this.h = j10;
-            this.v.e = true;
-            invalidate();
+            postDelayed(this.f33339i0, Math.max(0L, 80 - (motionEvent.getEventTime() - motionEvent.getDownTime())));
+            return true;
         }
+        ValueAnimator valueAnimator = this.f33344o0;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f33344o0.cancel();
+            this.f33344o0 = null;
+        }
+        getParent().requestDisallowInterceptTouchEvent(true);
+        this.f33340j0 = motionEvent.getX();
+        this.f33341k0 = motionEvent.getY();
+        this.f33342l0 = l5Var.d;
+        this.m0 = l5Var.f45708i;
+        this.f33343n0 = false;
+        q5Var.setPressed(true);
+        return true;
     }
 
-    public void setUseGyroscope(float f7) {
-        if (this.P == f7) {
-            return;
+    public final void p() {
+        ValueAnimator valueAnimator = this.f33344o0;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f33344o0.cancel();
+            this.f33344o0 = null;
         }
-        this.P = f7;
-        j5 j5Var = this.f33596a.f33562f0;
-        float f10 = (this.S * f7) + j5Var.f45708i + this.O;
-        this.N = f10;
-        float f11 = (this.T * f7) + j5Var.d;
-        this.Q = f11;
-        a(f10, f11);
+        l5 l5Var = this.f33336f0;
+        float f7 = l5Var.d;
+        float f10 = l5Var.f45708i;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f33344o0 = ofFloat;
+        ofFloat.setDuration(600L);
+        sk.l(1.2f, this.f33344o0);
+        this.f33344o0.addUpdateListener(new xa(this, f7, f10, 7));
+        this.f33344o0.addListener(new fi1(this, 5));
+        this.f33344o0.start();
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+    public final boolean performClick() {
+        super.performClick();
+        return true;
+    }
+
+    @Override
+    public final void setPaused(boolean z10) {
+        l5 l5Var = this.f33336f0;
+        synchronized (l5Var) {
+            if (l5Var.f33165e0 != z10) {
+                l5Var.f33165e0 = z10;
+                l5Var.f33167g0 = 0L;
+            }
+        }
+        super.setPaused(z10);
+    }
+
+    @Override
+    public final void n() {
     }
 }

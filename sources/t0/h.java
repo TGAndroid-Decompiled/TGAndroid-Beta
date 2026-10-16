@@ -31,7 +31,7 @@ public final class h implements i {
     }
 
     @Override
-    public final Object j() {
+    public final Object i() {
         return this.f45501a;
     }
 

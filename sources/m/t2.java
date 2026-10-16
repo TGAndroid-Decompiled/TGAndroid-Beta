@@ -1,3 +1,44 @@
 package m;
-public interface t2 {
+
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.appcompat.widget.SearchView;
+public final class t2 implements View.OnFocusChangeListener {
+    public final int f14981a;
+    public final ViewGroup f14982b;
+
+    public t2(ViewGroup viewGroup, int i10) {
+        this.f14981a = i10;
+        this.f14982b = viewGroup;
+    }
+
+    @Override
+    public final void onFocusChange(View view, boolean z10) {
+        switch (this.f14981a) {
+            case 0:
+                SearchView searchView = (SearchView) this.f14982b;
+                View.OnFocusChangeListener onFocusChangeListener = searchView.f1152d0;
+                if (onFocusChangeListener != null) {
+                    onFocusChangeListener.onFocusChange(searchView, z10);
+                    return;
+                }
+                return;
+            case 1:
+                org.telegram.ui.Cells.g3 g3Var = (org.telegram.ui.Cells.g3) this.f14982b;
+                g3Var.h = z10;
+                if (g3Var.f20907f) {
+                    g3Var.c();
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Cells.j3 j3Var = (org.telegram.ui.Cells.j3) this.f14982b;
+                j3Var.f21086n = z10;
+                if (j3Var.f21085f) {
+                    j3Var.c();
+                }
+                j3Var.a(z10);
+                return;
+        }
+    }
 }

@@ -10,7 +10,7 @@ public abstract class a {
     public final ArrayList f45859a = new ArrayList(1);
     public final HashSet f45860b = new HashSet(1);
     public final a5.a f45861c = new a5.a(new CopyOnWriteArrayList(), 0, null, 21);
-    public final n2.k d = new n2.k(new CopyOnWriteArrayList(), 0, null);
+    public final n2.j d = new n2.j(new CopyOnWriteArrayList(), 0, null);
     public Looper e;
     public b2.p1 f45862f;
     public j2.k f45863g;
@@ -111,13 +111,13 @@ public abstract class a {
 
     public abstract void q();
 
-    public final void r(n2.l lVar) {
-        CopyOnWriteArrayList copyOnWriteArrayList = this.d.f15965c;
+    public final void r(n2.k kVar) {
+        CopyOnWriteArrayList copyOnWriteArrayList = this.d.f15676c;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
-            n2.j jVar = (n2.j) it.next();
-            if (jVar.f15962b == lVar) {
-                copyOnWriteArrayList.remove(jVar);
+            n2.i iVar = (n2.i) it.next();
+            if (iVar.f15673b == kVar) {
+                copyOnWriteArrayList.remove(iVar);
             }
         }
     }

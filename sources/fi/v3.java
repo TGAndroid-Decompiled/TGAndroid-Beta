@@ -13,24 +13,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.m80;
+import org.telegram.ui.Components.l80;
 public final class v3 implements View.OnClickListener {
-    public final int f9610a = 1;
-    public final int f9611b;
-    public final org.telegram.ui.ActionBar.e3 f9612c;
+    public final int f9613a = 1;
+    public final int f9614b;
+    public final org.telegram.ui.ActionBar.e3 f9615c;
     public final c6 d;
     public final long e;
-    public final Context f9613f;
+    public final Context f9616f;
     public final TL_payments.connectedBotStarRef h;
-    public final Object f9614n;
+    public final Object f9617n;
 
     public v3(int i10, org.telegram.ui.ActionBar.e3 e3Var, c6 c6Var, LinearLayout linearLayout, long j10, Context context, TL_payments.connectedBotStarRef connectedbotstarref) {
-        this.f9611b = i10;
-        this.f9612c = e3Var;
+        this.f9614b = i10;
+        this.f9615c = e3Var;
         this.d = c6Var;
-        this.f9614n = linearLayout;
+        this.f9617n = linearLayout;
         this.e = j10;
-        this.f9613f = context;
+        this.f9616f = context;
         this.h = connectedbotstarref;
     }
 
@@ -38,15 +38,15 @@ public final class v3 implements View.OnClickListener {
     public final void onClick(View view) {
         long j10;
         boolean z10;
-        switch (this.f9610a) {
+        switch (this.f9613a) {
             case 0:
-                androidx.car.app.utils.b bVar = (androidx.car.app.utils.b) this.f9614n;
+                androidx.car.app.utils.b bVar = (androidx.car.app.utils.b) this.f9617n;
                 TL_payments.connectedBotStarRef connectedbotstarref = this.h;
                 if (connectedbotstarref.revoked) {
-                    int i10 = this.f9611b;
+                    int i10 = this.f9614b;
                     TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(connectedbotstarref.bot_id));
                     if (user != null) {
-                        MessagesController.getInstance(i10).loadFullUser(user, 0, true, new r3(this.f9612c, this.f9613f, i10, this.e, this.d, 0));
+                        MessagesController.getInstance(i10).loadFullUser(user, 0, true, new r3(this.f9615c, this.f9616f, i10, this.e, this.d, 0));
                         return;
                     }
                     return;
@@ -54,37 +54,37 @@ public final class v3 implements View.OnClickListener {
                 bVar.run();
                 return;
             default:
-                LinearLayout linearLayout = (LinearLayout) this.f9614n;
-                int i11 = this.f9611b;
+                LinearLayout linearLayout = (LinearLayout) this.f9617n;
+                int i11 = this.f9614b;
                 zh.p g10 = zh.p.g(i11);
                 g10.n();
                 g10.o();
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f50964j;
+                ArrayList arrayList2 = g10.f50965j;
                 if (arrayList2 != null) {
                     arrayList.addAll(arrayList2);
                 }
-                ArrayList arrayList3 = g10.f50966l;
+                ArrayList arrayList3 = g10.f50967l;
                 if (arrayList3 != null) {
                     arrayList.addAll(arrayList3);
                 }
                 arrayList.add(0, UserConfig.getInstance(i11).getCurrentUser());
-                org.telegram.ui.ActionBar.e3 e3Var = this.f9612c;
+                org.telegram.ui.ActionBar.e3 e3Var = this.f9615c;
                 ViewGroup containerView = e3Var.getContainerView();
                 c6 c6Var = this.d;
-                m80 F = m80.F(containerView, c6Var, linearLayout);
+                l80 F = l80.F(containerView, c6Var, linearLayout);
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
                     int i13 = i12 + 1;
                     TLObject tLObject = (TLObject) arrayList.get(i12);
                     if (tLObject instanceof TLRPC.User) {
-                        j10 = ((TLRPC.User) tLObject).f19363id;
+                        j10 = ((TLRPC.User) tLObject).f19063id;
                     } else {
                         if (tLObject instanceof TLRPC.Chat) {
                             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                             if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                                j10 = -chat.f19216id;
+                                j10 = -chat.f18916id;
                             }
                         }
                         i12 = i13;
@@ -94,11 +94,11 @@ public final class v3 implements View.OnClickListener {
                     } else {
                         z10 = false;
                     }
-                    F.g(tLObject, z10, new p3(i11, j10, this.f9613f, this.h, e3Var, c6Var));
+                    F.g(tLObject, z10, new p3(i11, j10, this.f9616f, this.h, e3Var, c6Var));
                     i12 = i13;
                 }
-                F.f27299t = false;
-                F.f27298s = 0;
+                F.f26669t = false;
+                F.f26668s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();
@@ -108,11 +108,11 @@ public final class v3 implements View.OnClickListener {
 
     public v3(TL_payments.connectedBotStarRef connectedbotstarref, int i10, org.telegram.ui.ActionBar.e3 e3Var, Context context, long j10, c6 c6Var, androidx.car.app.utils.b bVar) {
         this.h = connectedbotstarref;
-        this.f9611b = i10;
-        this.f9612c = e3Var;
-        this.f9613f = context;
+        this.f9614b = i10;
+        this.f9615c = e3Var;
+        this.f9616f = context;
         this.e = j10;
         this.d = c6Var;
-        this.f9614n = bVar;
+        this.f9617n = bVar;
     }
 }

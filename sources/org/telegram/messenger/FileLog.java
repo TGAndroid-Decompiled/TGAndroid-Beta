@@ -96,7 +96,7 @@ public class FileLog {
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.n("_", name == null ? eb.k.f8691a : new eb.m(name));
+            lVar.n("_", name == null ? eb.k.f8694a : new eb.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -115,7 +115,7 @@ public class FileLog {
                                         }
                                     }
                                 }
-                                lVar.n(field.getName(), ((a6.i) nVar).l(obj));
+                                lVar.n(field.getName(), ((a6.i) nVar).n(obj));
                             }
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
@@ -169,8 +169,8 @@ public class FileLog {
                 @Override
                 public boolean shouldSkipField(eb.b bVar) {
                     HashSet hashSet3 = FileLog.privateFields;
-                    Field field = bVar.f8675a;
-                    Field field2 = bVar.f8675a;
+                    Field field = bVar.f8678a;
+                    Field field2 = bVar.f8678a;
                     if (!hashSet3.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -180,19 +180,19 @@ public class FileLog {
                     return true;
                 }
             };
-            gb.g gVar = gb.g.f10049c;
+            gb.h hVar = gb.h.f10053c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             eb.c cVar = eb.g.h;
-            eb.p pVar = eb.g.f8683i;
-            eb.q qVar = eb.g.f8684j;
+            eb.p pVar = eb.g.f8686i;
+            eb.q qVar = eb.g.f8687j;
             ArrayDeque arrayDeque = new ArrayDeque();
             eb.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
-            gb.g clone = gVar.clone();
-            ArrayList arrayList3 = new ArrayList(gVar.f10050a);
-            clone.f10050a = arrayList3;
+            gb.h clone = hVar.clone();
+            ArrayList arrayList3 = new ArrayList(hVar.f10054a);
+            clone.f10054a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
             boolean z11 = byteArrayHexAdapter instanceof eb.o;
@@ -207,7 +207,7 @@ public class FileLog {
                     arrayList.add(new hb.z(byteArrayHexAdapter, aVar2, z10, null));
                 }
                 lb.a aVar3 = new lb.a(byte[].class);
-                hb.x0 x0Var = hb.h1.f10414a;
+                hb.x0 x0Var = hb.h1.f10418a;
                 arrayList.add(new hb.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);
@@ -221,7 +221,7 @@ public class FileLog {
                     ArrayList arrayList5 = new ArrayList(arrayList2);
                     Collections.reverse(arrayList5);
                     arrayList4.addAll(arrayList5);
-                    boolean z12 = kb.f.f14202a;
+                    boolean z12 = kb.f.f14204a;
                     gson = new eb.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
                     return;
                 }

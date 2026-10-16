@@ -14,28 +14,28 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.aq;
 public final class z5 extends FrameLayout {
-    public org.telegram.ui.Components.z9 f22805a;
-    public FrameLayout f22806b;
-    public aq f22807c;
+    public org.telegram.ui.Components.z9 f22503a;
+    public FrameLayout f22504b;
+    public aq f22505c;
     public TextView d;
     public org.telegram.ui.x5 e;
-    public int f22808f;
+    public int f22506f;
     public int h;
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f22807c.b(org.telegram.ui.ActionBar.g6.W9, org.telegram.ui.ActionBar.g6.X9, org.telegram.ui.ActionBar.g6.V9);
+        this.f22505c.b(org.telegram.ui.ActionBar.g6.W9, org.telegram.ui.ActionBar.g6.X9, org.telegram.ui.ActionBar.g6.V9);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22808f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f22808f, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22506f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f22506f, 1073741824));
     }
 
     public void setImage(MediaController.PhotoEntry photoEntry) {
         org.telegram.ui.x5 x5Var = this.e;
-        org.telegram.ui.Components.z9 z9Var = this.f22805a;
+        org.telegram.ui.Components.z9 z9Var = this.f22503a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         String str = photoEntry.thumbPath;
         if (str != null) {
@@ -50,7 +50,7 @@ public final class z5 extends FrameLayout {
                 x5Var.setVisibility(0);
                 this.d.setText(AndroidUtilities.formatShortDuration(photoEntry.duration));
                 StringBuilder sb2 = new StringBuilder();
-                d0.n(R.string.AttachVideo, ", ", sb2);
+                c1.l(R.string.AttachVideo, ", ", sb2);
                 sb2.append(LocaleController.formatDuration(photoEntry.duration));
                 setContentDescription(sb2.toString());
                 z9Var.f("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
@@ -65,11 +65,11 @@ public final class z5 extends FrameLayout {
     }
 
     public void setNum(int i10) {
-        this.f22807c.setNum(i10);
+        this.f22505c.setNum(i10);
     }
 
     public void setImage(MediaController.SearchImage searchImage) {
-        org.telegram.ui.Components.z9 z9Var = this.f22805a;
+        org.telegram.ui.Components.z9 z9Var = this.f22503a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         TLRPC.PhotoSize photoSize = searchImage.thumbPhotoSize;
         if (photoSize != null) {

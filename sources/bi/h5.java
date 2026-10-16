@@ -16,28 +16,28 @@ import org.telegram.ui.Components.ks;
 import org.telegram.ui.Components.vh0;
 import org.telegram.ui.zr;
 public final class h5 extends ks {
-    public boolean f3116c;
+    public boolean f3120c;
     public final org.telegram.ui.ActionBar.c6 d;
     public final sb e;
-    public final boolean f3117f;
-    public final boolean f3118g;
+    public final boolean f3121f;
+    public final boolean f3122g;
     public final boolean h;
-    public final Context f3119i;
-    public final n5 f3120j;
-    public final boolean[] f3121k;
-    public final q5 f3122l;
+    public final Context f3123i;
+    public final n5 f3124j;
+    public final boolean[] f3125k;
+    public final q5 f3126l;
 
     public h5(q5 q5Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.ActionBar.c6 c6Var2, sb sbVar, boolean z10, boolean z11, boolean z12, Context context2, n5 n5Var, boolean[] zArr) {
         super(context, c6Var, true);
-        this.f3122l = q5Var;
+        this.f3126l = q5Var;
         this.d = c6Var2;
         this.e = sbVar;
-        this.f3117f = z10;
-        this.f3118g = z11;
+        this.f3121f = z10;
+        this.f3122g = z11;
         this.h = z12;
-        this.f3119i = context2;
-        this.f3120j = n5Var;
-        this.f3121k = zArr;
+        this.f3123i = context2;
+        this.f3124j = n5Var;
+        this.f3125k = zArr;
     }
 
     @Override
@@ -47,27 +47,27 @@ public final class h5 extends ks {
 
     @Override
     public final void c() {
-        if (!this.f3116c && !this.f3121k[0]) {
+        if (!this.f3120c && !this.f3125k[0]) {
             AndroidUtilities.runOnUIThread(new z4(this, 0));
         }
-        q5 q5Var = this.f3122l;
-        q5Var.f3563t1 = null;
-        q5Var.f3560s1 = null;
+        q5 q5Var = this.f3126l;
+        q5Var.f3567t1 = null;
+        q5Var.f3564s1 = null;
     }
 
     public final void d(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, boolean z10) {
         o5 o5Var;
-        boolean z11 = this.f3117f;
-        q5 q5Var = this.f3122l;
-        if (z11 && ((o5Var = q5Var.O1) == null || o5Var.f3414b == null)) {
+        boolean z11 = this.f3121f;
+        q5 q5Var = this.f3126l;
+        if (z11 && ((o5Var = q5Var.O1) == null || o5Var.f3418b == null)) {
             Context context = q5Var.getContext();
             vh0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
             final qf.b bVar = new qf.b(this, actionBarPopupWindow$ActionBarPopupWindowLayout, false, 7);
             ?? obj = new Object();
             org.telegram.ui.ActionBar.e1[] e1VarArr = new org.telegram.ui.ActionBar.e1[5];
-            obj.f35671c = e1VarArr;
+            obj.f35372c = e1VarArr;
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, context, null);
-            obj.f35669a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            obj.f35370a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
             actionBarPopupWindow$ActionBarPopupWindowLayout2.setFitItems(true);
             org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
             c10.setOnClickListener(new zr(swipeBack, 1));
@@ -85,13 +85,13 @@ public final class h5 extends ks {
             layoutParams.height = AndroidUtilities.dp(8.0f);
             i5Var.setLayoutParams(layoutParams);
             org.telegram.ui.ActionBar.a1 a1Var = new org.telegram.ui.ActionBar.a1(context, null);
-            obj.f35670b = a1Var;
+            obj.f35371b = a1Var;
             a1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
             a1Var.setDrawShadow(false);
             a1Var.setBackgroundColor(-14540254);
             a1Var.setTextColor(-1);
             a1Var.setOnValueChange(new org.telegram.ui.f5(bVar, 6));
-            actionBarPopupWindow$ActionBarPopupWindowLayout2.a(a1Var, w7.a6.n(-1, 44));
+            actionBarPopupWindow$ActionBarPopupWindowLayout2.a(a1Var, w7.z5.n(-1, 44));
             View i5Var2 = new i5(context, 13);
             i5Var2.setMinimumWidth(AndroidUtilities.dp(196.0f));
             i5Var2.setBackgroundColor(-15198184);
@@ -110,19 +110,19 @@ public final class h5 extends ks {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Z(true, true, 0.2f);
+                            bVar.b0(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Z(true, true, 0.5f);
+                            bVar.b0(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Z(true, true, 1.0f);
+                            bVar.b0(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Z(true, true, 1.5f);
+                            bVar.b0(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Z(true, true, 2.0f);
+                            bVar.b0(true, true, 2.0f);
                             return;
                     }
                 }
@@ -136,19 +136,19 @@ public final class h5 extends ks {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Z(true, true, 0.2f);
+                            bVar.b0(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Z(true, true, 0.5f);
+                            bVar.b0(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Z(true, true, 1.0f);
+                            bVar.b0(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Z(true, true, 1.5f);
+                            bVar.b0(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Z(true, true, 2.0f);
+                            bVar.b0(true, true, 2.0f);
                             return;
                     }
                 }
@@ -162,19 +162,19 @@ public final class h5 extends ks {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Z(true, true, 0.2f);
+                            bVar.b0(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Z(true, true, 0.5f);
+                            bVar.b0(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Z(true, true, 1.0f);
+                            bVar.b0(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Z(true, true, 1.5f);
+                            bVar.b0(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Z(true, true, 2.0f);
+                            bVar.b0(true, true, 2.0f);
                             return;
                     }
                 }
@@ -188,19 +188,19 @@ public final class h5 extends ks {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Z(true, true, 0.2f);
+                            bVar.b0(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Z(true, true, 0.5f);
+                            bVar.b0(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Z(true, true, 1.0f);
+                            bVar.b0(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Z(true, true, 1.5f);
+                            bVar.b0(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Z(true, true, 2.0f);
+                            bVar.b0(true, true, 2.0f);
                             return;
                     }
                 }
@@ -214,19 +214,19 @@ public final class h5 extends ks {
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            bVar.Z(true, true, 0.2f);
+                            bVar.b0(true, true, 0.2f);
                             return;
                         case 1:
-                            bVar.Z(true, true, 0.5f);
+                            bVar.b0(true, true, 0.5f);
                             return;
                         case 2:
-                            bVar.Z(true, true, 1.0f);
+                            bVar.b0(true, true, 1.0f);
                             return;
                         case 3:
-                            bVar.Z(true, true, 1.5f);
+                            bVar.b0(true, true, 1.5f);
                             return;
                         default:
-                            bVar.Z(true, true, 2.0f);
+                            bVar.b0(true, true, 2.0f);
                             return;
                     }
                 }
@@ -249,15 +249,15 @@ public final class h5 extends ks {
             layoutParams3.width = -1;
             layoutParams3.height = AndroidUtilities.dp(48.0f);
             q5Var.D3.setLayoutParams(layoutParams3);
-            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(q5Var.C3.f35669a);
+            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(q5Var.C3.f35370a);
             org.telegram.ui.ActionBar.e1 e1Var2 = q5Var.D3;
             e1Var2.G = new a5(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
             e1Var2.setOnClickListener(new v4(this, 11));
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f19540c = true;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f19240c = true;
             if (z10) {
                 org.telegram.ui.ActionBar.j1 j1Var = new org.telegram.ui.ActionBar.j1(q5Var.getContext(), org.telegram.ui.ActionBar.g6.H8, this.d);
                 j1Var.setTag(R.id.fit_width_tag, 1);
-                actionBarPopupWindow$ActionBarPopupWindowLayout.a(j1Var, w7.a6.n(-1, 8));
+                actionBarPopupWindow$ActionBarPopupWindowLayout.a(j1Var, w7.z5.n(-1, 8));
                 return;
             }
             return;
@@ -268,11 +268,11 @@ public final class h5 extends ks {
 
     public final void e(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, TL_stories.StoryItem storyItem) {
         TLRPC.Chat chat;
-        q5 q5Var = this.f3122l;
+        q5 q5Var = this.f3126l;
         if (q5Var.D1 && storyItem != null && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) && (chat = MessagesController.getInstance(q5Var.C2).getChat(Long.valueOf(-q5Var.B1))) != null) {
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(q5Var.C2).getChatFull(chat.f19216id);
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(q5Var.C2).getChatFull(chat.f18916id);
             if (chatFull == null) {
-                chatFull = MessagesStorage.getInstance(q5Var.C2).loadChatInfo(chat.f19216id, true, new CountDownLatch(1), false, false);
+                chatFull = MessagesStorage.getInstance(q5Var.C2).loadChatInfo(chat.f18916id, true, new CountDownLatch(1), false, false);
             }
             if (chatFull != null && chatFull.can_view_stats) {
                 org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_stats, LocaleController.getString(R.string.ViewStatistics), false, this.d).setOnClickListener(new b5(this, storyItem, this.e, chat, 0));

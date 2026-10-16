@@ -1,117 +1,21 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class e01 implements qq {
-    public final int f35417a;
-    public final TLRPC.ChatParticipant f35418b;
-    public final boolean f35419c;
-    public final boolean[] d;
-    public final ProfileActivity e;
+public final class e01 extends org.telegram.ui.Components.ir0 {
+    public final ProfileActivity f35166b1;
 
-    public e01(ProfileActivity profileActivity, int i10, TLRPC.ChatParticipant chatParticipant, boolean z10, boolean[] zArr) {
-        this.e = profileActivity;
-        this.f35417a = i10;
-        this.f35418b = chatParticipant;
-        this.f35419c = z10;
-        this.d = zArr;
+    public e01(ProfileActivity profileActivity, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.f35166b1 = profileActivity;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i10;
-        ProfileActivity profileActivity = this.e;
-        UndoView undoView = profileActivity.M;
-        long j10 = -profileActivity.f32567f1;
-        if (profileActivity.E2.megagroup) {
-            i10 = 10;
-        } else {
-            i10 = 9;
+    public final void S0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
-        undoView.m(j10, user, i10);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.ChatFull chatFull;
-        boolean z10;
-        TLRPC.ChatParticipant tL_chatParticipant;
-        int i11 = 0;
-        TLRPC.ChatParticipant chatParticipant = this.f35418b;
-        ProfileActivity profileActivity = this.e;
-        int i12 = this.f35417a;
-        if (i12 == 0) {
-            if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
-                TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
-                if (i10 == 1) {
-                    TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
-                    tL_chatChannelParticipant.channelParticipant = tL_channelParticipantAdmin;
-                    tL_channelParticipantAdmin.flags |= 4;
-                } else {
-                    tL_chatChannelParticipant.channelParticipant = new TLRPC.TL_channelParticipant();
-                }
-                tL_chatChannelParticipant.channelParticipant.inviter_id = profileActivity.getUserConfig().getClientUserId();
-                tL_chatChannelParticipant.channelParticipant.peer = new TLRPC.TL_peerUser();
-                TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
-                channelParticipant.peer.user_id = chatParticipant.user_id;
-                channelParticipant.date = chatParticipant.date;
-                channelParticipant.banned_rights = tL_chatBannedRights;
-                channelParticipant.admin_rights = tL_chatAdminRights;
-                channelParticipant.rank = str;
-            } else if (chatParticipant != null) {
-                if (i10 == 1) {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipantAdmin();
-                } else {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                }
-                tL_chatParticipant.user_id = chatParticipant.user_id;
-                tL_chatParticipant.date = chatParticipant.date;
-                tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                int indexOf = profileActivity.f32671u2.participants.participants.indexOf(chatParticipant);
-                if (indexOf >= 0) {
-                    profileActivity.f32671u2.participants.participants.set(indexOf, tL_chatParticipant);
-                }
-            }
-            if (i10 == 1 && !this.f35419c) {
-                this.d[0] = true;
-            }
-        } else if (i12 == 1 && i10 == 0 && profileActivity.E2.megagroup && (chatFull = profileActivity.f32671u2) != null && chatFull.participants != null) {
-            int i13 = 0;
-            while (true) {
-                if (i13 < profileActivity.f32671u2.participants.participants.size()) {
-                    if (MessageObject.getPeerId(((TLRPC.TL_chatChannelParticipant) profileActivity.f32671u2.participants.participants.get(i13)).channelParticipant.peer) == chatParticipant.user_id) {
-                        TLRPC.ChatFull chatFull2 = profileActivity.f32671u2;
-                        chatFull2.participants_count--;
-                        chatFull2.participants.participants.remove(i13);
-                        z10 = true;
-                        break;
-                    }
-                    i13++;
-                } else {
-                    z10 = false;
-                    break;
-                }
-            }
-            TLRPC.ChatFull chatFull3 = profileActivity.f32671u2;
-            if (chatFull3 != null && chatFull3.participants != null) {
-                while (true) {
-                    if (i11 >= profileActivity.f32671u2.participants.participants.size()) {
-                        break;
-                    } else if (profileActivity.f32671u2.participants.participants.get(i11).user_id == chatParticipant.user_id) {
-                        profileActivity.f32671u2.participants.participants.remove(i11);
-                        z10 = true;
-                        break;
-                    } else {
-                        i11++;
-                    }
-                }
-            }
-            if (z10) {
-                profileActivity.h5(true);
-                profileActivity.j5();
-                profileActivity.d.l();
-            }
-        }
+        AndroidUtilities.runOnUIThread(new rr0(this, hVar, i10, 28), 250L);
     }
 }

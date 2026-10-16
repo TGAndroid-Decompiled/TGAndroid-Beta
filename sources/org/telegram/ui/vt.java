@@ -79,7 +79,7 @@ public interface vt {
 
     void t();
 
-    org.telegram.ui.Components.m80 u(ah.v vVar);
+    org.telegram.ui.Components.l80 u(ah.v vVar);
 
     void v(TLRPC.Document document);
 

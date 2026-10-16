@@ -13,7 +13,7 @@ public class i extends androidx.fragment.app.o {
     public final Dialog O() {
         Dialog dialog = this.A0;
         if (dialog == null) {
-            this.f1626r0 = false;
+            this.f1630r0 = false;
             if (this.C0 == null) {
                 Context n10 = n();
                 n6.l.h(n10);

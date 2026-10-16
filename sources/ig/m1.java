@@ -2,30 +2,30 @@ package ig;
 
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 public final class m1 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final y1 f11579a;
+    public final y1 f11583a;
 
     @Override
     public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        y1.W(this.f11579a, (l61) obj, (View) obj2);
+        y1.W(this.f11583a, (m61) obj, (View) obj2);
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         boolean z10;
-        l61 l61Var = (l61) obj;
+        m61 m61Var = (m61) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        if (l61Var.f43203a == 16) {
-            Object obj6 = l61Var.G;
-            if (!(obj6 instanceof a2) || !((a2) obj6).f11438g) {
-                this.f11579a.e0(l61Var, view);
+        if (m61Var.f42904a == 16) {
+            Object obj6 = m61Var.G;
+            if (!(obj6 instanceof a2) || !((a2) obj6).f11442g) {
+                this.f11583a.e0(m61Var, view);
                 z10 = true;
                 return Boolean.valueOf(z10);
             }

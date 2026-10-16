@@ -11,9 +11,9 @@ public class b1 extends eb.u {
             if (p5 <= 255 && p5 >= -128) {
                 return Byte.valueOf((byte) p5);
             }
-            StringBuilder k10 = i2.d.k(p5, "Lossy conversion from ", " to byte; at path ");
-            k10.append(aVar.j());
-            throw new RuntimeException(k10.toString());
+            StringBuilder l4 = i2.d.l(p5, "Lossy conversion from ", " to byte; at path ");
+            l4.append(aVar.j());
+            throw new RuntimeException(l4.toString());
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }

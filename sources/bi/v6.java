@@ -21,25 +21,25 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class v6 {
-    public int f3859a;
-    public final TL_stories.StoryItem f3860b;
-    public final long f3861c;
+    public int f3863a;
+    public final TL_stories.StoryItem f3864b;
+    public final long f3865c;
     public final int d;
     public boolean e;
-    public final boolean f3862f;
-    public final boolean f3865j;
-    public final boolean f3866k;
-    public boolean f3867l;
-    public String f3869n;
-    public final boolean f3872q;
-    public final ArrayList f3863g = new ArrayList();
+    public final boolean f3866f;
+    public final boolean f3869j;
+    public final boolean f3870k;
+    public boolean f3871l;
+    public String f3873n;
+    public final boolean f3876q;
+    public final ArrayList f3867g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f3864i = new ArrayList();
-    public boolean f3868m = true;
-    public int f3870o = -1;
-    public final HashSet f3871p = new HashSet();
-    public final ArrayList f3873r = new ArrayList();
-    public final g6 f3874s = new g6();
+    public final ArrayList f3868i = new ArrayList();
+    public boolean f3872m = true;
+    public int f3874o = -1;
+    public final HashSet f3875p = new HashSet();
+    public final ArrayList f3877r = new ArrayList();
+    public final g6 f3878s = new g6();
 
     public v6(int i10, long j10, TL_stories.StoryItem storyItem) {
         boolean z10;
@@ -47,36 +47,36 @@ public final class v6 {
         boolean z11;
         TL_stories.StoryViews storyViews;
         this.d = i10;
-        this.f3860b = storyItem;
+        this.f3864b = storyItem;
         if (j10 < 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f3862f = z10;
-        this.f3861c = j10;
+        this.f3866f = z10;
+        this.f3865c = j10;
         TL_stories.StoryViews storyViews2 = storyItem.views;
         if (storyViews2 == null) {
             i11 = 0;
         } else {
             i11 = storyViews2.views_count;
         }
-        this.f3859a = i11;
+        this.f3863a = i11;
         if (i11 < 200) {
-            this.f3872q = true;
+            this.f3876q = true;
         }
         if (s9.v(storyItem) && !UserConfig.getInstance(i10).isPremium()) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f3865j = z11;
+        this.f3869j = z11;
         if (z11 && (storyViews = storyItem.views) != null && storyViews.reactions_count > 0) {
-            this.f3865j = false;
-            this.f3866k = true;
+            this.f3869j = false;
+            this.f3870k = true;
         }
-        if (!this.f3865j) {
-            this.f3867l = true;
+        if (!this.f3869j) {
+            this.f3871l = true;
             if (storyItem.views != null) {
                 for (int i12 = 0; i12 < storyItem.views.recent_viewers.size(); i12++) {
                     Long l4 = storyItem.views.recent_viewers.get(i12);
@@ -85,7 +85,7 @@ public final class v6 {
                         TL_stories.TL_storyView tL_storyView = new TL_stories.TL_storyView();
                         tL_storyView.user_id = longValue;
                         tL_storyView.date = 0;
-                        this.f3863g.add(tL_storyView);
+                        this.f3867g.add(tL_storyView);
                     }
                 }
             }
@@ -98,17 +98,17 @@ public final class v6 {
         String str3;
         String str4;
         boolean z10;
-        if (!this.f3862f) {
-            ArrayList arrayList = this.f3863g;
+        if (!this.f3866f) {
+            ArrayList arrayList = this.f3867g;
             arrayList.clear();
-            g6 g6Var = this.f3874s;
-            boolean z11 = g6Var.f3078b;
+            g6 g6Var = this.f3878s;
+            boolean z11 = g6Var.f3082b;
             ArrayList arrayList2 = this.h;
-            if (!z11 && TextUtils.isEmpty(g6Var.f3079c)) {
+            if (!z11 && TextUtils.isEmpty(g6Var.f3083c)) {
                 arrayList.addAll(arrayList2);
             } else {
-                if (!TextUtils.isEmpty(g6Var.f3079c)) {
-                    str = g6Var.f3079c.trim().toLowerCase();
+                if (!TextUtils.isEmpty(g6Var.f3083c)) {
+                    str = g6Var.f3083c.trim().toLowerCase();
                     str2 = LocaleController.getInstance().getTranslitString(str);
                     str4 = t8.b.h(" ", str);
                     str3 = t8.b.h(" ", str2);
@@ -120,7 +120,7 @@ public final class v6 {
                 }
                 for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                     TLRPC.User user = MessagesController.getInstance(this.d).getUser(Long.valueOf(((TL_stories.StoryView) arrayList2.get(i10)).user_id));
-                    if (g6Var.f3078b && (user == null || !user.contact)) {
+                    if (g6Var.f3082b && (user == null || !user.contact)) {
                         z10 = false;
                     } else {
                         z10 = true;
@@ -138,7 +138,7 @@ public final class v6 {
                     }
                 }
             }
-            if (!g6Var.f3077a) {
+            if (!g6Var.f3081a) {
                 Collections.sort(arrayList, Comparator$CC.comparingInt(new s6(0)));
             }
         }
@@ -146,32 +146,32 @@ public final class v6 {
 
     public final int b() {
         ArrayList arrayList;
-        if (this.f3862f) {
-            arrayList = this.f3864i;
+        if (this.f3866f) {
+            arrayList = this.f3868i;
         } else {
-            arrayList = this.f3863g;
+            arrayList = this.f3867g;
         }
         return arrayList.size();
     }
 
     public final void c() {
-        if (!this.e && this.f3868m && !this.f3865j) {
-            boolean z10 = this.f3862f;
+        if (!this.e && this.f3872m && !this.f3869j) {
+            boolean z10 = this.f3866f;
             int i10 = 100;
-            long j10 = this.f3861c;
-            g6 g6Var = this.f3874s;
+            long j10 = this.f3865c;
+            g6 g6Var = this.f3878s;
             int i11 = this.d;
-            TL_stories.StoryItem storyItem = this.f3860b;
+            TL_stories.StoryItem storyItem = this.f3864b;
             if (z10) {
                 TL_stories.TL_getStoryReactionsList tL_getStoryReactionsList = new TL_stories.TL_getStoryReactionsList();
-                tL_getStoryReactionsList.forwards_first = g6Var.f3077a;
-                tL_getStoryReactionsList.f19452id = storyItem.f19451id;
+                tL_getStoryReactionsList.forwards_first = g6Var.f3081a;
+                tL_getStoryReactionsList.f19152id = storyItem.f19151id;
                 tL_getStoryReactionsList.peer = MessagesController.getInstance(i11).getInputPeer(j10);
-                if (this.f3867l || this.f3864i.size() < 20) {
+                if (this.f3871l || this.f3868i.size() < 20) {
                     i10 = 20;
                 }
                 tL_getStoryReactionsList.limit = i10;
-                String str = this.f3869n;
+                String str = this.f3873n;
                 tL_getStoryReactionsList.offset = str;
                 if (str == null) {
                     tL_getStoryReactionsList.offset = "";
@@ -179,19 +179,19 @@ public final class v6 {
                     tL_getStoryReactionsList.flags |= 2;
                 }
                 this.e = true;
-                FileLog.d("SelfStoryViewsPage reactions load next " + storyItem.f19451id + " " + this.f3867l + " offset=" + tL_getStoryReactionsList.offset);
+                FileLog.d("SelfStoryViewsPage reactions load next " + storyItem.f19151id + " " + this.f3871l + " offset=" + tL_getStoryReactionsList.offset);
                 int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_getStoryReactionsList, new RequestDelegate(this) {
-                    public final v6 f3749b;
+                    public final v6 f3753b;
 
                     {
-                        this.f3749b = this;
+                        this.f3753b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r3) {
                             case 0:
-                                final v6 v6Var = this.f3749b;
+                                final v6 v6Var = this.f3753b;
                                 final int[] iArr = r2;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
@@ -200,17 +200,17 @@ public final class v6 {
                                         switch (r5) {
                                             case 0:
                                                 v6 v6Var2 = v6Var;
-                                                ArrayList arrayList = v6Var2.f3873r;
+                                                ArrayList arrayList = v6Var2.f3877r;
                                                 ArrayList arrayList2 = v6Var2.h;
                                                 int i12 = v6Var2.d;
-                                                ArrayList arrayList3 = v6Var2.f3863g;
-                                                TL_stories.StoryItem storyItem2 = v6Var2.f3860b;
-                                                if (iArr[0] != v6Var2.f3870o) {
-                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f19451id + " localId != reqId");
+                                                ArrayList arrayList3 = v6Var2.f3867g;
+                                                TL_stories.StoryItem storyItem2 = v6Var2.f3864b;
+                                                if (iArr[0] != v6Var2.f3874o) {
+                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f19151id + " localId != reqId");
                                                     return;
                                                 }
                                                 v6Var2.e = false;
-                                                v6Var2.f3870o = -1;
+                                                v6Var2.f3874o = -1;
                                                 TLObject tLObject2 = tLObject;
                                                 if (tLObject2 != null) {
                                                     TL_stories.StoryViewsList storyViewsList = (TL_stories.StoryViewsList) tLObject2;
@@ -227,29 +227,29 @@ public final class v6 {
                                                     MessagesController.getInstance(i12).putChats(storyViewsList.chats, false);
                                                     boolean z12 = true;
                                                     MessagesStorage.getInstance(i12).putUsersAndChats(storyViewsList.users, storyViewsList.chats, true, false);
-                                                    if (v6Var2.f3867l) {
-                                                        v6Var2.f3867l = false;
+                                                    if (v6Var2.f3871l) {
+                                                        v6Var2.f3871l = false;
                                                         for (int i14 = 0; i14 < arrayList3.size(); i14++) {
-                                                            v6Var2.f3871p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
+                                                            v6Var2.f3875p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
                                                         }
                                                         arrayList3.clear();
                                                         arrayList2.clear();
                                                     }
-                                                    if (v6Var2.f3872q) {
+                                                    if (v6Var2.f3876q) {
                                                         arrayList2.addAll(storyViewsList.views);
                                                         v6Var2.a();
                                                     } else {
                                                         arrayList3.addAll(storyViewsList.views);
                                                     }
                                                     if (!storyViewsList.views.isEmpty()) {
-                                                        v6Var2.f3868m = true;
+                                                        v6Var2.f3872m = true;
                                                     } else {
-                                                        v6Var2.f3868m = false;
+                                                        v6Var2.f3872m = false;
                                                     }
                                                     String str2 = storyViewsList.next_offset;
-                                                    v6Var2.f3869n = str2;
+                                                    v6Var2.f3873n = str2;
                                                     if (TextUtils.isEmpty(str2)) {
-                                                        v6Var2.f3868m = false;
+                                                        v6Var2.f3872m = false;
                                                     }
                                                     if (storyItem2.views == null) {
                                                         storyItem2.views = new TL_stories.TL_storyViews();
@@ -258,7 +258,7 @@ public final class v6 {
                                                     TL_stories.StoryViews storyViews = storyItem2.views;
                                                     if (i15 > storyViews.views_count) {
                                                         storyViews.recent_viewers.clear();
-                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.play_billing.k3.h(storyViewsList.users.get(i16).f19363id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.play_billing.k3.h(storyViewsList.users.get(i16).f19063id, storyItem2.views.recent_viewers, i16, 1)) {
                                                         }
                                                         storyItem2.views.views_count = storyViewsList.count;
                                                         z11 = true;
@@ -279,31 +279,31 @@ public final class v6 {
                                                 } else {
                                                     TLRPC.TL_error tL_error2 = tL_error;
                                                     if (tL_error2 != null && "MSG_ID_INVALID".equals(tL_error2.text)) {
-                                                        v6Var2.f3859a = 0;
+                                                        v6Var2.f3863a = 0;
                                                     }
-                                                    v6Var2.f3868m = false;
+                                                    v6Var2.f3872m = false;
                                                 }
-                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f19451id + " response  totalItems " + arrayList3.size() + " has next " + v6Var2.f3868m);
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f19151id + " response  totalItems " + arrayList3.size() + " has next " + v6Var2.f3872m);
                                                 for (int i19 = 0; i19 < arrayList.size(); i19++) {
                                                     ((w6) arrayList.get(i19)).e(v6Var2);
                                                 }
-                                                if (arrayList3.size() < 20 && v6Var2.f3868m) {
+                                                if (arrayList3.size() < 20 && v6Var2.f3872m) {
                                                     v6Var2.c();
                                                     return;
                                                 }
                                                 return;
                                             default:
                                                 v6 v6Var3 = v6Var;
-                                                ArrayList arrayList4 = v6Var3.f3873r;
-                                                TL_stories.StoryItem storyItem3 = v6Var3.f3860b;
+                                                ArrayList arrayList4 = v6Var3.f3877r;
+                                                TL_stories.StoryItem storyItem3 = v6Var3.f3864b;
                                                 int i20 = v6Var3.d;
-                                                ArrayList arrayList5 = v6Var3.f3864i;
-                                                if (iArr[0] != v6Var3.f3870o) {
-                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19451id + " localId != reqId");
+                                                ArrayList arrayList5 = v6Var3.f3868i;
+                                                if (iArr[0] != v6Var3.f3874o) {
+                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19151id + " localId != reqId");
                                                     return;
                                                 }
                                                 v6Var3.e = false;
-                                                v6Var3.f3870o = -1;
+                                                v6Var3.f3874o = -1;
                                                 TLObject tLObject3 = tLObject;
                                                 if (tLObject3 != null) {
                                                     TL_stories.TL_storyReactionsList tL_storyReactionsList = (TL_stories.TL_storyReactionsList) tLObject3;
@@ -311,49 +311,49 @@ public final class v6 {
                                                     MessagesController.getInstance(i20).putChats(tL_storyReactionsList.chats, false);
                                                     boolean z13 = true;
                                                     MessagesStorage.getInstance(i20).putUsersAndChats(tL_storyReactionsList.users, tL_storyReactionsList.chats, true, false);
-                                                    if (v6Var3.f3867l) {
-                                                        v6Var3.f3867l = false;
+                                                    if (v6Var3.f3871l) {
+                                                        v6Var3.f3871l = false;
                                                         for (int i21 = 0; i21 < arrayList5.size(); i21++) {
-                                                            v6Var3.f3871p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
+                                                            v6Var3.f3875p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
                                                         }
                                                         arrayList5.clear();
                                                         v6Var3.h.clear();
                                                     }
                                                     arrayList5.addAll(tL_storyReactionsList.reactions);
                                                     if (!tL_storyReactionsList.reactions.isEmpty()) {
-                                                        v6Var3.f3868m = true;
+                                                        v6Var3.f3872m = true;
                                                     } else {
-                                                        v6Var3.f3868m = false;
+                                                        v6Var3.f3872m = false;
                                                     }
                                                     String str3 = tL_storyReactionsList.next_offset;
-                                                    v6Var3.f3869n = str3;
+                                                    v6Var3.f3873n = str3;
                                                     if (TextUtils.isEmpty(str3)) {
-                                                        v6Var3.f3868m = false;
+                                                        v6Var3.f3872m = false;
                                                     }
                                                     if (storyItem3.views == null) {
                                                         storyItem3.views = new TL_stories.TL_storyViews();
                                                     }
-                                                    int i22 = v6Var3.f3859a;
+                                                    int i22 = v6Var3.f3863a;
                                                     int i23 = tL_storyReactionsList.count;
                                                     if (i22 == i23) {
                                                         z13 = false;
                                                     }
-                                                    v6Var3.f3859a = i23;
+                                                    v6Var3.f3863a = i23;
                                                     if (z13) {
                                                         NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                                                     }
                                                 } else {
                                                     TLRPC.TL_error tL_error3 = tL_error;
                                                     if (tL_error3 != null && "MSG_ID_INVALID".equals(tL_error3.text)) {
-                                                        v6Var3.f3859a = 0;
+                                                        v6Var3.f3863a = 0;
                                                     }
-                                                    v6Var3.f3868m = false;
+                                                    v6Var3.f3872m = false;
                                                 }
-                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19451id + " response  totalItems " + arrayList5.size() + " has next " + v6Var3.f3868m);
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19151id + " response  totalItems " + arrayList5.size() + " has next " + v6Var3.f3872m);
                                                 for (int i24 = 0; i24 < arrayList4.size(); i24++) {
                                                     ((w6) arrayList4.get(i24)).e(v6Var3);
                                                 }
-                                                if (arrayList5.size() < 20 && v6Var3.f3868m) {
+                                                if (arrayList5.size() < 20 && v6Var3.f3872m) {
                                                     v6Var3.c();
                                                     return;
                                                 }
@@ -363,7 +363,7 @@ public final class v6 {
                                 });
                                 return;
                             default:
-                                final v6 v6Var2 = this.f3749b;
+                                final v6 v6Var2 = this.f3753b;
                                 final int[] iArr2 = r2;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
@@ -372,17 +372,17 @@ public final class v6 {
                                         switch (r5) {
                                             case 0:
                                                 v6 v6Var22 = v6Var2;
-                                                ArrayList arrayList = v6Var22.f3873r;
+                                                ArrayList arrayList = v6Var22.f3877r;
                                                 ArrayList arrayList2 = v6Var22.h;
                                                 int i12 = v6Var22.d;
-                                                ArrayList arrayList3 = v6Var22.f3863g;
-                                                TL_stories.StoryItem storyItem2 = v6Var22.f3860b;
-                                                if (iArr2[0] != v6Var22.f3870o) {
-                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f19451id + " localId != reqId");
+                                                ArrayList arrayList3 = v6Var22.f3867g;
+                                                TL_stories.StoryItem storyItem2 = v6Var22.f3864b;
+                                                if (iArr2[0] != v6Var22.f3874o) {
+                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f19151id + " localId != reqId");
                                                     return;
                                                 }
                                                 v6Var22.e = false;
-                                                v6Var22.f3870o = -1;
+                                                v6Var22.f3874o = -1;
                                                 TLObject tLObject2 = tLObject;
                                                 if (tLObject2 != null) {
                                                     TL_stories.StoryViewsList storyViewsList = (TL_stories.StoryViewsList) tLObject2;
@@ -399,29 +399,29 @@ public final class v6 {
                                                     MessagesController.getInstance(i12).putChats(storyViewsList.chats, false);
                                                     boolean z12 = true;
                                                     MessagesStorage.getInstance(i12).putUsersAndChats(storyViewsList.users, storyViewsList.chats, true, false);
-                                                    if (v6Var22.f3867l) {
-                                                        v6Var22.f3867l = false;
+                                                    if (v6Var22.f3871l) {
+                                                        v6Var22.f3871l = false;
                                                         for (int i14 = 0; i14 < arrayList3.size(); i14++) {
-                                                            v6Var22.f3871p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
+                                                            v6Var22.f3875p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
                                                         }
                                                         arrayList3.clear();
                                                         arrayList2.clear();
                                                     }
-                                                    if (v6Var22.f3872q) {
+                                                    if (v6Var22.f3876q) {
                                                         arrayList2.addAll(storyViewsList.views);
                                                         v6Var22.a();
                                                     } else {
                                                         arrayList3.addAll(storyViewsList.views);
                                                     }
                                                     if (!storyViewsList.views.isEmpty()) {
-                                                        v6Var22.f3868m = true;
+                                                        v6Var22.f3872m = true;
                                                     } else {
-                                                        v6Var22.f3868m = false;
+                                                        v6Var22.f3872m = false;
                                                     }
                                                     String str2 = storyViewsList.next_offset;
-                                                    v6Var22.f3869n = str2;
+                                                    v6Var22.f3873n = str2;
                                                     if (TextUtils.isEmpty(str2)) {
-                                                        v6Var22.f3868m = false;
+                                                        v6Var22.f3872m = false;
                                                     }
                                                     if (storyItem2.views == null) {
                                                         storyItem2.views = new TL_stories.TL_storyViews();
@@ -430,7 +430,7 @@ public final class v6 {
                                                     TL_stories.StoryViews storyViews = storyItem2.views;
                                                     if (i15 > storyViews.views_count) {
                                                         storyViews.recent_viewers.clear();
-                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.play_billing.k3.h(storyViewsList.users.get(i16).f19363id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.play_billing.k3.h(storyViewsList.users.get(i16).f19063id, storyItem2.views.recent_viewers, i16, 1)) {
                                                         }
                                                         storyItem2.views.views_count = storyViewsList.count;
                                                         z11 = true;
@@ -451,31 +451,31 @@ public final class v6 {
                                                 } else {
                                                     TLRPC.TL_error tL_error2 = tL_error;
                                                     if (tL_error2 != null && "MSG_ID_INVALID".equals(tL_error2.text)) {
-                                                        v6Var22.f3859a = 0;
+                                                        v6Var22.f3863a = 0;
                                                     }
-                                                    v6Var22.f3868m = false;
+                                                    v6Var22.f3872m = false;
                                                 }
-                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f19451id + " response  totalItems " + arrayList3.size() + " has next " + v6Var22.f3868m);
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f19151id + " response  totalItems " + arrayList3.size() + " has next " + v6Var22.f3872m);
                                                 for (int i19 = 0; i19 < arrayList.size(); i19++) {
                                                     ((w6) arrayList.get(i19)).e(v6Var22);
                                                 }
-                                                if (arrayList3.size() < 20 && v6Var22.f3868m) {
+                                                if (arrayList3.size() < 20 && v6Var22.f3872m) {
                                                     v6Var22.c();
                                                     return;
                                                 }
                                                 return;
                                             default:
                                                 v6 v6Var3 = v6Var2;
-                                                ArrayList arrayList4 = v6Var3.f3873r;
-                                                TL_stories.StoryItem storyItem3 = v6Var3.f3860b;
+                                                ArrayList arrayList4 = v6Var3.f3877r;
+                                                TL_stories.StoryItem storyItem3 = v6Var3.f3864b;
                                                 int i20 = v6Var3.d;
-                                                ArrayList arrayList5 = v6Var3.f3864i;
-                                                if (iArr2[0] != v6Var3.f3870o) {
-                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19451id + " localId != reqId");
+                                                ArrayList arrayList5 = v6Var3.f3868i;
+                                                if (iArr2[0] != v6Var3.f3874o) {
+                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19151id + " localId != reqId");
                                                     return;
                                                 }
                                                 v6Var3.e = false;
-                                                v6Var3.f3870o = -1;
+                                                v6Var3.f3874o = -1;
                                                 TLObject tLObject3 = tLObject;
                                                 if (tLObject3 != null) {
                                                     TL_stories.TL_storyReactionsList tL_storyReactionsList = (TL_stories.TL_storyReactionsList) tLObject3;
@@ -483,49 +483,49 @@ public final class v6 {
                                                     MessagesController.getInstance(i20).putChats(tL_storyReactionsList.chats, false);
                                                     boolean z13 = true;
                                                     MessagesStorage.getInstance(i20).putUsersAndChats(tL_storyReactionsList.users, tL_storyReactionsList.chats, true, false);
-                                                    if (v6Var3.f3867l) {
-                                                        v6Var3.f3867l = false;
+                                                    if (v6Var3.f3871l) {
+                                                        v6Var3.f3871l = false;
                                                         for (int i21 = 0; i21 < arrayList5.size(); i21++) {
-                                                            v6Var3.f3871p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
+                                                            v6Var3.f3875p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
                                                         }
                                                         arrayList5.clear();
                                                         v6Var3.h.clear();
                                                     }
                                                     arrayList5.addAll(tL_storyReactionsList.reactions);
                                                     if (!tL_storyReactionsList.reactions.isEmpty()) {
-                                                        v6Var3.f3868m = true;
+                                                        v6Var3.f3872m = true;
                                                     } else {
-                                                        v6Var3.f3868m = false;
+                                                        v6Var3.f3872m = false;
                                                     }
                                                     String str3 = tL_storyReactionsList.next_offset;
-                                                    v6Var3.f3869n = str3;
+                                                    v6Var3.f3873n = str3;
                                                     if (TextUtils.isEmpty(str3)) {
-                                                        v6Var3.f3868m = false;
+                                                        v6Var3.f3872m = false;
                                                     }
                                                     if (storyItem3.views == null) {
                                                         storyItem3.views = new TL_stories.TL_storyViews();
                                                     }
-                                                    int i22 = v6Var3.f3859a;
+                                                    int i22 = v6Var3.f3863a;
                                                     int i23 = tL_storyReactionsList.count;
                                                     if (i22 == i23) {
                                                         z13 = false;
                                                     }
-                                                    v6Var3.f3859a = i23;
+                                                    v6Var3.f3863a = i23;
                                                     if (z13) {
                                                         NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                                                     }
                                                 } else {
                                                     TLRPC.TL_error tL_error3 = tL_error;
                                                     if (tL_error3 != null && "MSG_ID_INVALID".equals(tL_error3.text)) {
-                                                        v6Var3.f3859a = 0;
+                                                        v6Var3.f3863a = 0;
                                                     }
-                                                    v6Var3.f3868m = false;
+                                                    v6Var3.f3872m = false;
                                                 }
-                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19451id + " response  totalItems " + arrayList5.size() + " has next " + v6Var3.f3868m);
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19151id + " response  totalItems " + arrayList5.size() + " has next " + v6Var3.f3872m);
                                                 for (int i24 = 0; i24 < arrayList4.size(); i24++) {
                                                     ((w6) arrayList4.get(i24)).e(v6Var3);
                                                 }
-                                                if (arrayList5.size() < 20 && v6Var3.f3868m) {
+                                                if (arrayList5.size() < 20 && v6Var3.f3872m) {
                                                     v6Var3.c();
                                                     return;
                                                 }
@@ -537,49 +537,49 @@ public final class v6 {
                         }
                     }
                 });
-                this.f3870o = sendRequest;
+                this.f3874o = sendRequest;
                 final int[] iArr = {sendRequest};
                 return;
             }
             TL_stories.TL_stories_getStoryViewsList tL_stories_getStoryViewsList = new TL_stories.TL_stories_getStoryViewsList();
-            tL_stories_getStoryViewsList.f19460id = storyItem.f19451id;
+            tL_stories_getStoryViewsList.f19160id = storyItem.f19151id;
             tL_stories_getStoryViewsList.peer = MessagesController.getInstance(i11).getInputPeer(j10);
-            if (this.f3872q) {
-                tL_stories_getStoryViewsList.f19461q = "";
+            if (this.f3876q) {
+                tL_stories_getStoryViewsList.f19161q = "";
                 tL_stories_getStoryViewsList.just_contacts = false;
                 tL_stories_getStoryViewsList.reactions_first = true;
             } else {
-                String str2 = g6Var.f3079c;
-                tL_stories_getStoryViewsList.f19461q = str2;
+                String str2 = g6Var.f3083c;
+                tL_stories_getStoryViewsList.f19161q = str2;
                 if (!TextUtils.isEmpty(str2)) {
                     tL_stories_getStoryViewsList.flags |= 2;
                 }
-                tL_stories_getStoryViewsList.just_contacts = g6Var.f3078b;
-                tL_stories_getStoryViewsList.reactions_first = g6Var.f3077a;
+                tL_stories_getStoryViewsList.just_contacts = g6Var.f3082b;
+                tL_stories_getStoryViewsList.reactions_first = g6Var.f3081a;
             }
-            if (this.f3867l || this.f3863g.size() < 20) {
+            if (this.f3871l || this.f3867g.size() < 20) {
                 i10 = 20;
             }
             tL_stories_getStoryViewsList.limit = i10;
-            String str3 = this.f3869n;
+            String str3 = this.f3873n;
             tL_stories_getStoryViewsList.offset = str3;
             if (str3 == null) {
                 tL_stories_getStoryViewsList.offset = "";
             }
             this.e = true;
-            FileLog.d("SelfStoryViewsPage load next " + storyItem.f19451id + " " + this.f3867l + " offset=" + tL_stories_getStoryViewsList.offset + " q" + tL_stories_getStoryViewsList.f19461q + " " + tL_stories_getStoryViewsList.just_contacts + " " + tL_stories_getStoryViewsList.reactions_first);
+            FileLog.d("SelfStoryViewsPage load next " + storyItem.f19151id + " " + this.f3871l + " offset=" + tL_stories_getStoryViewsList.offset + " q" + tL_stories_getStoryViewsList.f19161q + " " + tL_stories_getStoryViewsList.just_contacts + " " + tL_stories_getStoryViewsList.reactions_first);
             int sendRequest2 = ConnectionsManager.getInstance(i11).sendRequest(tL_stories_getStoryViewsList, new RequestDelegate(this) {
-                public final v6 f3749b;
+                public final v6 f3753b;
 
                 {
-                    this.f3749b = this;
+                    this.f3753b = this;
                 }
 
                 @Override
                 public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                     switch (r3) {
                         case 0:
-                            final v6 v6Var = this.f3749b;
+                            final v6 v6Var = this.f3753b;
                             final int[] iArr2 = r2;
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
@@ -588,17 +588,17 @@ public final class v6 {
                                     switch (r5) {
                                         case 0:
                                             v6 v6Var22 = v6Var;
-                                            ArrayList arrayList = v6Var22.f3873r;
+                                            ArrayList arrayList = v6Var22.f3877r;
                                             ArrayList arrayList2 = v6Var22.h;
                                             int i12 = v6Var22.d;
-                                            ArrayList arrayList3 = v6Var22.f3863g;
-                                            TL_stories.StoryItem storyItem2 = v6Var22.f3860b;
-                                            if (iArr2[0] != v6Var22.f3870o) {
-                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f19451id + " localId != reqId");
+                                            ArrayList arrayList3 = v6Var22.f3867g;
+                                            TL_stories.StoryItem storyItem2 = v6Var22.f3864b;
+                                            if (iArr2[0] != v6Var22.f3874o) {
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f19151id + " localId != reqId");
                                                 return;
                                             }
                                             v6Var22.e = false;
-                                            v6Var22.f3870o = -1;
+                                            v6Var22.f3874o = -1;
                                             TLObject tLObject2 = tLObject;
                                             if (tLObject2 != null) {
                                                 TL_stories.StoryViewsList storyViewsList = (TL_stories.StoryViewsList) tLObject2;
@@ -615,29 +615,29 @@ public final class v6 {
                                                 MessagesController.getInstance(i12).putChats(storyViewsList.chats, false);
                                                 boolean z12 = true;
                                                 MessagesStorage.getInstance(i12).putUsersAndChats(storyViewsList.users, storyViewsList.chats, true, false);
-                                                if (v6Var22.f3867l) {
-                                                    v6Var22.f3867l = false;
+                                                if (v6Var22.f3871l) {
+                                                    v6Var22.f3871l = false;
                                                     for (int i14 = 0; i14 < arrayList3.size(); i14++) {
-                                                        v6Var22.f3871p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
+                                                        v6Var22.f3875p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
                                                     }
                                                     arrayList3.clear();
                                                     arrayList2.clear();
                                                 }
-                                                if (v6Var22.f3872q) {
+                                                if (v6Var22.f3876q) {
                                                     arrayList2.addAll(storyViewsList.views);
                                                     v6Var22.a();
                                                 } else {
                                                     arrayList3.addAll(storyViewsList.views);
                                                 }
                                                 if (!storyViewsList.views.isEmpty()) {
-                                                    v6Var22.f3868m = true;
+                                                    v6Var22.f3872m = true;
                                                 } else {
-                                                    v6Var22.f3868m = false;
+                                                    v6Var22.f3872m = false;
                                                 }
                                                 String str22 = storyViewsList.next_offset;
-                                                v6Var22.f3869n = str22;
+                                                v6Var22.f3873n = str22;
                                                 if (TextUtils.isEmpty(str22)) {
-                                                    v6Var22.f3868m = false;
+                                                    v6Var22.f3872m = false;
                                                 }
                                                 if (storyItem2.views == null) {
                                                     storyItem2.views = new TL_stories.TL_storyViews();
@@ -646,7 +646,7 @@ public final class v6 {
                                                 TL_stories.StoryViews storyViews = storyItem2.views;
                                                 if (i15 > storyViews.views_count) {
                                                     storyViews.recent_viewers.clear();
-                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.play_billing.k3.h(storyViewsList.users.get(i16).f19363id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.play_billing.k3.h(storyViewsList.users.get(i16).f19063id, storyItem2.views.recent_viewers, i16, 1)) {
                                                     }
                                                     storyItem2.views.views_count = storyViewsList.count;
                                                     z11 = true;
@@ -667,31 +667,31 @@ public final class v6 {
                                             } else {
                                                 TLRPC.TL_error tL_error2 = tL_error;
                                                 if (tL_error2 != null && "MSG_ID_INVALID".equals(tL_error2.text)) {
-                                                    v6Var22.f3859a = 0;
+                                                    v6Var22.f3863a = 0;
                                                 }
-                                                v6Var22.f3868m = false;
+                                                v6Var22.f3872m = false;
                                             }
-                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f19451id + " response  totalItems " + arrayList3.size() + " has next " + v6Var22.f3868m);
+                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f19151id + " response  totalItems " + arrayList3.size() + " has next " + v6Var22.f3872m);
                                             for (int i19 = 0; i19 < arrayList.size(); i19++) {
                                                 ((w6) arrayList.get(i19)).e(v6Var22);
                                             }
-                                            if (arrayList3.size() < 20 && v6Var22.f3868m) {
+                                            if (arrayList3.size() < 20 && v6Var22.f3872m) {
                                                 v6Var22.c();
                                                 return;
                                             }
                                             return;
                                         default:
                                             v6 v6Var3 = v6Var;
-                                            ArrayList arrayList4 = v6Var3.f3873r;
-                                            TL_stories.StoryItem storyItem3 = v6Var3.f3860b;
+                                            ArrayList arrayList4 = v6Var3.f3877r;
+                                            TL_stories.StoryItem storyItem3 = v6Var3.f3864b;
                                             int i20 = v6Var3.d;
-                                            ArrayList arrayList5 = v6Var3.f3864i;
-                                            if (iArr2[0] != v6Var3.f3870o) {
-                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19451id + " localId != reqId");
+                                            ArrayList arrayList5 = v6Var3.f3868i;
+                                            if (iArr2[0] != v6Var3.f3874o) {
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19151id + " localId != reqId");
                                                 return;
                                             }
                                             v6Var3.e = false;
-                                            v6Var3.f3870o = -1;
+                                            v6Var3.f3874o = -1;
                                             TLObject tLObject3 = tLObject;
                                             if (tLObject3 != null) {
                                                 TL_stories.TL_storyReactionsList tL_storyReactionsList = (TL_stories.TL_storyReactionsList) tLObject3;
@@ -699,49 +699,49 @@ public final class v6 {
                                                 MessagesController.getInstance(i20).putChats(tL_storyReactionsList.chats, false);
                                                 boolean z13 = true;
                                                 MessagesStorage.getInstance(i20).putUsersAndChats(tL_storyReactionsList.users, tL_storyReactionsList.chats, true, false);
-                                                if (v6Var3.f3867l) {
-                                                    v6Var3.f3867l = false;
+                                                if (v6Var3.f3871l) {
+                                                    v6Var3.f3871l = false;
                                                     for (int i21 = 0; i21 < arrayList5.size(); i21++) {
-                                                        v6Var3.f3871p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
+                                                        v6Var3.f3875p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
                                                     }
                                                     arrayList5.clear();
                                                     v6Var3.h.clear();
                                                 }
                                                 arrayList5.addAll(tL_storyReactionsList.reactions);
                                                 if (!tL_storyReactionsList.reactions.isEmpty()) {
-                                                    v6Var3.f3868m = true;
+                                                    v6Var3.f3872m = true;
                                                 } else {
-                                                    v6Var3.f3868m = false;
+                                                    v6Var3.f3872m = false;
                                                 }
                                                 String str32 = tL_storyReactionsList.next_offset;
-                                                v6Var3.f3869n = str32;
+                                                v6Var3.f3873n = str32;
                                                 if (TextUtils.isEmpty(str32)) {
-                                                    v6Var3.f3868m = false;
+                                                    v6Var3.f3872m = false;
                                                 }
                                                 if (storyItem3.views == null) {
                                                     storyItem3.views = new TL_stories.TL_storyViews();
                                                 }
-                                                int i22 = v6Var3.f3859a;
+                                                int i22 = v6Var3.f3863a;
                                                 int i23 = tL_storyReactionsList.count;
                                                 if (i22 == i23) {
                                                     z13 = false;
                                                 }
-                                                v6Var3.f3859a = i23;
+                                                v6Var3.f3863a = i23;
                                                 if (z13) {
                                                     NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                                                 }
                                             } else {
                                                 TLRPC.TL_error tL_error3 = tL_error;
                                                 if (tL_error3 != null && "MSG_ID_INVALID".equals(tL_error3.text)) {
-                                                    v6Var3.f3859a = 0;
+                                                    v6Var3.f3863a = 0;
                                                 }
-                                                v6Var3.f3868m = false;
+                                                v6Var3.f3872m = false;
                                             }
-                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19451id + " response  totalItems " + arrayList5.size() + " has next " + v6Var3.f3868m);
+                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19151id + " response  totalItems " + arrayList5.size() + " has next " + v6Var3.f3872m);
                                             for (int i24 = 0; i24 < arrayList4.size(); i24++) {
                                                 ((w6) arrayList4.get(i24)).e(v6Var3);
                                             }
-                                            if (arrayList5.size() < 20 && v6Var3.f3868m) {
+                                            if (arrayList5.size() < 20 && v6Var3.f3872m) {
                                                 v6Var3.c();
                                                 return;
                                             }
@@ -751,7 +751,7 @@ public final class v6 {
                             });
                             return;
                         default:
-                            final v6 v6Var2 = this.f3749b;
+                            final v6 v6Var2 = this.f3753b;
                             final int[] iArr22 = r2;
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
@@ -760,17 +760,17 @@ public final class v6 {
                                     switch (r5) {
                                         case 0:
                                             v6 v6Var22 = v6Var2;
-                                            ArrayList arrayList = v6Var22.f3873r;
+                                            ArrayList arrayList = v6Var22.f3877r;
                                             ArrayList arrayList2 = v6Var22.h;
                                             int i12 = v6Var22.d;
-                                            ArrayList arrayList3 = v6Var22.f3863g;
-                                            TL_stories.StoryItem storyItem2 = v6Var22.f3860b;
-                                            if (iArr22[0] != v6Var22.f3870o) {
-                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f19451id + " localId != reqId");
+                                            ArrayList arrayList3 = v6Var22.f3867g;
+                                            TL_stories.StoryItem storyItem2 = v6Var22.f3864b;
+                                            if (iArr22[0] != v6Var22.f3874o) {
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f19151id + " localId != reqId");
                                                 return;
                                             }
                                             v6Var22.e = false;
-                                            v6Var22.f3870o = -1;
+                                            v6Var22.f3874o = -1;
                                             TLObject tLObject2 = tLObject;
                                             if (tLObject2 != null) {
                                                 TL_stories.StoryViewsList storyViewsList = (TL_stories.StoryViewsList) tLObject2;
@@ -787,29 +787,29 @@ public final class v6 {
                                                 MessagesController.getInstance(i12).putChats(storyViewsList.chats, false);
                                                 boolean z12 = true;
                                                 MessagesStorage.getInstance(i12).putUsersAndChats(storyViewsList.users, storyViewsList.chats, true, false);
-                                                if (v6Var22.f3867l) {
-                                                    v6Var22.f3867l = false;
+                                                if (v6Var22.f3871l) {
+                                                    v6Var22.f3871l = false;
                                                     for (int i14 = 0; i14 < arrayList3.size(); i14++) {
-                                                        v6Var22.f3871p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
+                                                        v6Var22.f3875p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
                                                     }
                                                     arrayList3.clear();
                                                     arrayList2.clear();
                                                 }
-                                                if (v6Var22.f3872q) {
+                                                if (v6Var22.f3876q) {
                                                     arrayList2.addAll(storyViewsList.views);
                                                     v6Var22.a();
                                                 } else {
                                                     arrayList3.addAll(storyViewsList.views);
                                                 }
                                                 if (!storyViewsList.views.isEmpty()) {
-                                                    v6Var22.f3868m = true;
+                                                    v6Var22.f3872m = true;
                                                 } else {
-                                                    v6Var22.f3868m = false;
+                                                    v6Var22.f3872m = false;
                                                 }
                                                 String str22 = storyViewsList.next_offset;
-                                                v6Var22.f3869n = str22;
+                                                v6Var22.f3873n = str22;
                                                 if (TextUtils.isEmpty(str22)) {
-                                                    v6Var22.f3868m = false;
+                                                    v6Var22.f3872m = false;
                                                 }
                                                 if (storyItem2.views == null) {
                                                     storyItem2.views = new TL_stories.TL_storyViews();
@@ -818,7 +818,7 @@ public final class v6 {
                                                 TL_stories.StoryViews storyViews = storyItem2.views;
                                                 if (i15 > storyViews.views_count) {
                                                     storyViews.recent_viewers.clear();
-                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.play_billing.k3.h(storyViewsList.users.get(i16).f19363id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.play_billing.k3.h(storyViewsList.users.get(i16).f19063id, storyItem2.views.recent_viewers, i16, 1)) {
                                                     }
                                                     storyItem2.views.views_count = storyViewsList.count;
                                                     z11 = true;
@@ -839,31 +839,31 @@ public final class v6 {
                                             } else {
                                                 TLRPC.TL_error tL_error2 = tL_error;
                                                 if (tL_error2 != null && "MSG_ID_INVALID".equals(tL_error2.text)) {
-                                                    v6Var22.f3859a = 0;
+                                                    v6Var22.f3863a = 0;
                                                 }
-                                                v6Var22.f3868m = false;
+                                                v6Var22.f3872m = false;
                                             }
-                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f19451id + " response  totalItems " + arrayList3.size() + " has next " + v6Var22.f3868m);
+                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f19151id + " response  totalItems " + arrayList3.size() + " has next " + v6Var22.f3872m);
                                             for (int i19 = 0; i19 < arrayList.size(); i19++) {
                                                 ((w6) arrayList.get(i19)).e(v6Var22);
                                             }
-                                            if (arrayList3.size() < 20 && v6Var22.f3868m) {
+                                            if (arrayList3.size() < 20 && v6Var22.f3872m) {
                                                 v6Var22.c();
                                                 return;
                                             }
                                             return;
                                         default:
                                             v6 v6Var3 = v6Var2;
-                                            ArrayList arrayList4 = v6Var3.f3873r;
-                                            TL_stories.StoryItem storyItem3 = v6Var3.f3860b;
+                                            ArrayList arrayList4 = v6Var3.f3877r;
+                                            TL_stories.StoryItem storyItem3 = v6Var3.f3864b;
                                             int i20 = v6Var3.d;
-                                            ArrayList arrayList5 = v6Var3.f3864i;
-                                            if (iArr22[0] != v6Var3.f3870o) {
-                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19451id + " localId != reqId");
+                                            ArrayList arrayList5 = v6Var3.f3868i;
+                                            if (iArr22[0] != v6Var3.f3874o) {
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19151id + " localId != reqId");
                                                 return;
                                             }
                                             v6Var3.e = false;
-                                            v6Var3.f3870o = -1;
+                                            v6Var3.f3874o = -1;
                                             TLObject tLObject3 = tLObject;
                                             if (tLObject3 != null) {
                                                 TL_stories.TL_storyReactionsList tL_storyReactionsList = (TL_stories.TL_storyReactionsList) tLObject3;
@@ -871,49 +871,49 @@ public final class v6 {
                                                 MessagesController.getInstance(i20).putChats(tL_storyReactionsList.chats, false);
                                                 boolean z13 = true;
                                                 MessagesStorage.getInstance(i20).putUsersAndChats(tL_storyReactionsList.users, tL_storyReactionsList.chats, true, false);
-                                                if (v6Var3.f3867l) {
-                                                    v6Var3.f3867l = false;
+                                                if (v6Var3.f3871l) {
+                                                    v6Var3.f3871l = false;
                                                     for (int i21 = 0; i21 < arrayList5.size(); i21++) {
-                                                        v6Var3.f3871p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
+                                                        v6Var3.f3875p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
                                                     }
                                                     arrayList5.clear();
                                                     v6Var3.h.clear();
                                                 }
                                                 arrayList5.addAll(tL_storyReactionsList.reactions);
                                                 if (!tL_storyReactionsList.reactions.isEmpty()) {
-                                                    v6Var3.f3868m = true;
+                                                    v6Var3.f3872m = true;
                                                 } else {
-                                                    v6Var3.f3868m = false;
+                                                    v6Var3.f3872m = false;
                                                 }
                                                 String str32 = tL_storyReactionsList.next_offset;
-                                                v6Var3.f3869n = str32;
+                                                v6Var3.f3873n = str32;
                                                 if (TextUtils.isEmpty(str32)) {
-                                                    v6Var3.f3868m = false;
+                                                    v6Var3.f3872m = false;
                                                 }
                                                 if (storyItem3.views == null) {
                                                     storyItem3.views = new TL_stories.TL_storyViews();
                                                 }
-                                                int i22 = v6Var3.f3859a;
+                                                int i22 = v6Var3.f3863a;
                                                 int i23 = tL_storyReactionsList.count;
                                                 if (i22 == i23) {
                                                     z13 = false;
                                                 }
-                                                v6Var3.f3859a = i23;
+                                                v6Var3.f3863a = i23;
                                                 if (z13) {
                                                     NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                                                 }
                                             } else {
                                                 TLRPC.TL_error tL_error3 = tL_error;
                                                 if (tL_error3 != null && "MSG_ID_INVALID".equals(tL_error3.text)) {
-                                                    v6Var3.f3859a = 0;
+                                                    v6Var3.f3863a = 0;
                                                 }
-                                                v6Var3.f3868m = false;
+                                                v6Var3.f3872m = false;
                                             }
-                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19451id + " response  totalItems " + arrayList5.size() + " has next " + v6Var3.f3868m);
+                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f19151id + " response  totalItems " + arrayList5.size() + " has next " + v6Var3.f3872m);
                                             for (int i24 = 0; i24 < arrayList4.size(); i24++) {
                                                 ((w6) arrayList4.get(i24)).e(v6Var3);
                                             }
-                                            if (arrayList5.size() < 20 && v6Var3.f3868m) {
+                                            if (arrayList5.size() < 20 && v6Var3.f3872m) {
                                                 v6Var3.c();
                                                 return;
                                             }
@@ -925,39 +925,39 @@ public final class v6 {
                     }
                 }
             });
-            this.f3870o = sendRequest2;
+            this.f3874o = sendRequest2;
             final int[] iArr2 = {sendRequest2};
         }
     }
 
     public final void d() {
-        if (this.f3870o >= 0) {
-            ConnectionsManager.getInstance(this.d).cancelRequest(this.f3870o, false);
+        if (this.f3874o >= 0) {
+            ConnectionsManager.getInstance(this.d).cancelRequest(this.f3874o, false);
         }
-        this.f3870o = -1;
+        this.f3874o = -1;
     }
 
     public final void e(g6 g6Var, boolean z10, boolean z11) {
         g6 g6Var2 = new g6();
-        g6Var2.f3077a = g6Var.f3077a;
-        g6Var2.f3078b = g6Var.f3078b;
-        g6Var2.f3079c = g6Var.f3079c;
+        g6Var2.f3081a = g6Var.f3081a;
+        g6Var2.f3082b = g6Var.f3082b;
+        g6Var2.f3083c = g6Var.f3083c;
         int i10 = 0;
         if (!z10) {
-            g6Var2.f3078b = false;
+            g6Var2.f3082b = false;
         }
         if (!z11) {
-            g6Var2.f3077a = true;
+            g6Var2.f3081a = true;
         }
-        g6 g6Var3 = this.f3874s;
+        g6 g6Var3 = this.f3878s;
         if (!g6Var3.equals(g6Var2)) {
-            g6Var3.f3077a = g6Var2.f3077a;
-            g6Var3.f3078b = g6Var2.f3078b;
-            g6Var3.f3079c = g6Var2.f3079c;
-            if (!this.f3862f && this.f3872q) {
+            g6Var3.f3081a = g6Var2.f3081a;
+            g6Var3.f3082b = g6Var2.f3082b;
+            g6Var3.f3083c = g6Var2.f3083c;
+            if (!this.f3866f && this.f3876q) {
                 a();
                 while (true) {
-                    ArrayList arrayList = this.f3873r;
+                    ArrayList arrayList = this.f3877r;
                     if (i10 < arrayList.size()) {
                         ((w6) arrayList.get(i10)).e(this);
                         i10++;
@@ -967,12 +967,12 @@ public final class v6 {
                 }
             } else {
                 d();
-                this.f3863g.clear();
-                this.f3864i.clear();
-                this.f3867l = true;
+                this.f3867g.clear();
+                this.f3868i.clear();
+                this.f3871l = true;
                 this.e = false;
-                this.f3868m = true;
-                this.f3869n = "";
+                this.f3872m = true;
+                this.f3873n = "";
                 c();
             }
         }

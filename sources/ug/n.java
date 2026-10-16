@@ -13,23 +13,23 @@ import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.sc;
-import org.telegram.ui.ow0;
+import org.telegram.ui.nw0;
 public final class n extends e3 {
     public static n e;
-    public final l f46365b;
-    public final z0 f46366c;
+    public final l f46364b;
+    public final z0 f46365c;
     public boolean d;
 
     public n(Activity activity, a0 a0Var, z0 z0Var, c6 c6Var, boolean z10) {
         super(1, (Context) activity, c6Var, true);
         boolean z11;
-        this.f46366c = z0Var;
+        this.f46365c = z0Var;
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
         this.useBackgroundTopPadding = false;
         setBackgroundColor(0);
         fixNavigationBar();
-        if (i0.a.f(g6.w0(g6.f19972h5, this.resourcesProvider)) > 0.699999988079071d) {
+        if (i0.a.f(g6.w0(g6.f19672h5, this.resourcesProvider)) > 0.699999988079071d) {
             z11 = true;
         } else {
             z11 = false;
@@ -37,16 +37,16 @@ public final class n extends e3 {
         AndroidUtilities.setLightStatusBar(this, z11);
         this.d = getContext().getResources().getConfiguration().orientation == 2;
         l lVar = new l(this, getContext(), z0Var, c6Var, a0Var);
-        this.f46365b = lVar;
+        this.f46364b = lVar;
         lVar.setOverScrollMode(2);
         lVar.setClipToPadding(false);
-        lVar.setAdapter(new ow0(a0Var, z0Var));
+        lVar.setAdapter(new nw0(a0Var, z0Var));
         lVar.setPosition(0);
         setCustomView(lVar);
-        a0Var.f46272t0 = new k(this, 0);
-        a0Var.f46270r0 = new n6.o(this, z0Var, false, 18);
-        z0Var.f46433u0 = new m(this, a0Var, c6Var);
-        z0Var.f46431s0 = new k(this, 1);
+        a0Var.f46271t0 = new k(this, 0);
+        a0Var.f46269r0 = new n3.b(this, z0Var, false, 19);
+        z0Var.f46432u0 = new m(this, a0Var, c6Var);
+        z0Var.f46430s0 = new k(this, 1);
         if (!z10) {
             MessagesController.getInstance(this.currentAccount).getStoriesController().R();
         }
@@ -82,9 +82,9 @@ public final class n extends e3 {
 
     @Override
     public final void onBackPressed() {
-        l lVar = this.f46365b;
+        l lVar = this.f46364b;
         if (lVar.getCurrentPosition() > 0) {
-            z0 z0Var = this.f46366c;
+            z0 z0Var = this.f46365c;
             if (z0Var.T()) {
                 return;
             }
@@ -100,7 +100,7 @@ public final class n extends e3 {
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         boolean z10;
-        this.f46366c.onConfigurationChanged(configuration);
+        this.f46365c.onConfigurationChanged(configuration);
         if (getContext().getResources().getConfiguration().orientation == 2) {
             z10 = true;
         } else {

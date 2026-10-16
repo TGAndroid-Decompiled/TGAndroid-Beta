@@ -3,9 +3,9 @@ package ji;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class e4 {
-    public String f13242a;
-    public boolean f13243b;
-    public String f13244c;
+    public String f13245a;
+    public boolean f13246b;
+    public String f13247c;
     public HashMap d;
     public final ArrayList e = new ArrayList();
 

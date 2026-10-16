@@ -207,18 +207,6 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public CameraCapturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler, CameraEnumerator cameraEnumerator) {
         this.eventsHandler = cameraEventsHandler == null ? new CameraVideoCapturer.CameraEventsHandler() {
             @Override
-            public void onCameraClosed() {
-            }
-
-            @Override
-            public void onCameraDisconnected() {
-            }
-
-            @Override
-            public void onFirstFrameAvailable() {
-            }
-
-            @Override
             public void onCameraError(String str2) {
             }
 
@@ -228,6 +216,18 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
             @Override
             public void onCameraOpening(String str2) {
+            }
+
+            @Override
+            public void onCameraClosed() {
+            }
+
+            @Override
+            public void onCameraDisconnected() {
+            }
+
+            @Override
+            public void onFirstFrameAvailable() {
             }
         } : cameraEventsHandler;
         this.cameraEnumerator = cameraEnumerator;
@@ -328,9 +328,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder l4 = i2.d.l("changeCaptureFormat: ", i10, "x", i11, "@");
-        l4.append(i12);
-        Logging.d("CameraCapturer", l4.toString());
+        StringBuilder m10 = i2.d.m("changeCaptureFormat: ", i10, "x", i11, "@");
+        m10.append(i12);
+        Logging.d("CameraCapturer", m10.toString());
         synchronized (this.stateLock) {
             stopCapture();
             startCapture(i10, i11, i12);
@@ -392,9 +392,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i10, int i11, int i12) {
-        StringBuilder l4 = i2.d.l("startCapture: ", i10, "x", i11, "@");
-        l4.append(i12);
-        Logging.d("CameraCapturer", l4.toString());
+        StringBuilder m10 = i2.d.m("startCapture: ", i10, "x", i11, "@");
+        m10.append(i12);
+        Logging.d("CameraCapturer", m10.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {

@@ -13,7 +13,7 @@ public final class ki extends org.telegram.ui.Components.ew {
     @Override
     public final void dismiss() {
         super.dismiss();
-        fo foVar = this.W.f38018p;
+        fo foVar = this.W.f37765p;
         foVar.getClass();
         foVar.j8(false, true, 0.0f);
     }

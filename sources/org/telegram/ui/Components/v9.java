@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 
 import android.view.ViewGroup;
-public final class v9 extends w7.x5 {
-    public final ViewGroup f29922a;
-    public final y9 f29923b;
+public final class v9 extends w7.w5 {
+    public final ViewGroup f29607a;
+    public final y9 f29608b;
 
     public v9(y9 y9Var, ViewGroup viewGroup) {
-        this.f29923b = y9Var;
-        this.f29922a = viewGroup;
+        this.f29608b = y9Var;
+        this.f29607a = viewGroup;
     }
 
     @Override
     public final void a() {
-        this.f29922a.invalidate();
+        this.f29607a.invalidate();
     }
 }

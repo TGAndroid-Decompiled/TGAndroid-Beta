@@ -7,11 +7,11 @@ public final class do0 extends s4.k {
         jo0 jo0Var;
         io0 io0Var;
         View view = b1Var.f44838a;
-        if ((view instanceof jo0) && (io0Var = (jo0Var = (jo0) view).f26420a) != null) {
-            io0Var.f748i = io0Var.N;
-            io0Var.f746g = io0Var.O;
+        if ((view instanceof jo0) && (io0Var = (jo0Var = (jo0) view).f26089a) != null) {
+            io0Var.f752i = io0Var.N;
+            io0Var.f750g = io0Var.O;
             io0Var.h = io0Var.P;
-            jo0Var.f26421b.d(0.0f, true);
+            jo0Var.f26090b.d(0.0f, true);
             jo0Var.invalidate();
         }
         int translationX = i10 + ((int) view.getTranslationX());

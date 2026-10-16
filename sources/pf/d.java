@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import n6.o;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
@@ -26,18 +25,17 @@ import org.telegram.ui.ActionBar.m3;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.b3;
 import org.telegram.ui.k4;
-import org.telegram.ui.lz;
 import org.telegram.ui.o3;
-import org.telegram.ui.web.y0;
+import org.telegram.ui.web.z0;
 import x9.l;
 import xf.e;
 public abstract class d {
-    public static o f43199a;
-    public static l f43200b;
-    public static a9.d f43201c;
+    public static n3.b f42900a;
+    public static l f42901b;
+    public static a9.d f42902c;
     public static String d;
     public static WeakReference e;
-    public static Pattern f43202f;
+    public static Pattern f42903f;
 
     public static java.lang.String a(java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: pf.d.a(java.lang.String):java.lang.String");
@@ -65,44 +63,32 @@ public abstract class d {
         return null;
     }
 
-    public static o c() {
-        l lVar = f43200b;
-        o oVar = null;
+    public static n3.b c() {
+        l lVar = f42901b;
+        n3.b bVar = null;
         if (lVar == null) {
-            f43199a = null;
-        } else if (f43199a == null) {
-            rb.b bVar = new rb.b(19);
-            e eVar = (e) lVar.f48300a;
-            xf.b bVar2 = new xf.b(bVar);
+            f42900a = null;
+        } else if (f42900a == null) {
+            rb.b bVar2 = new rb.b(19);
+            e eVar = (e) lVar.f48299a;
+            xf.b bVar3 = new xf.b(bVar2);
             try {
-                if (((xf.c) eVar).F0(bVar2)) {
-                    oVar = new o(27, bVar2, (ComponentName) lVar.f48301b);
+                if (((xf.c) eVar).F0(bVar3)) {
+                    bVar = new n3.b(28, bVar3, (ComponentName) lVar.f48300b);
                 }
             } catch (RemoteException unused) {
             }
-            f43199a = oVar;
-            new WeakReference(oVar);
+            f42900a = bVar;
+            new WeakReference(bVar);
         }
-        return f43199a;
+        return f42900a;
     }
 
     public static boolean d(android.content.Context r8, java.lang.String r9) {
         throw new UnsupportedOperationException("Method not decompiled: pf.d.d(android.content.Context, java.lang.String):boolean");
     }
 
-    public static boolean e() {
-        lz sheetFragment;
-        m2 U = LaunchActivity.U();
-        if (U != null && (U.getParentLayout() instanceof ActionBarLayout) && (sheetFragment = ((ActionBarLayout) U.getParentLayout()).getSheetFragment()) != null && sheetFragment.getArticleViewer() != null) {
-            return true;
-        }
-        if (U != null && U.getArticleViewer() != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean f(Uri uri, boolean z10, boolean[] zArr) {
+    public static boolean e(Uri uri, boolean z10, boolean[] zArr) {
         String str;
         String str2;
         String str3;
@@ -189,7 +175,7 @@ public abstract class d {
         return false;
     }
 
-    public static boolean g(String str) {
+    public static boolean f(String str) {
         try {
             return TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix);
         } catch (Exception e7) {
@@ -198,7 +184,7 @@ public abstract class d {
         }
     }
 
-    public static boolean h(String str, boolean z10, boolean z11) {
+    public static boolean g(String str, boolean z10, boolean z11) {
         String str2;
         if (z10) {
             if (!str.equals("telegra.ph") && !str.equals("te.legra.ph") && !str.equals("graph.org")) {
@@ -217,7 +203,7 @@ public abstract class d {
         return str.matches(sb2.toString());
     }
 
-    public static boolean i(String str) {
+    public static boolean h(String str) {
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
             return true;
@@ -229,18 +215,18 @@ public abstract class d {
         return false;
     }
 
-    public static boolean j(String str) {
+    public static boolean i(String str) {
         boolean matches;
-        if (f43202f == null) {
-            f43202f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        if (f42903f == null) {
+            f42903f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
         }
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            matches = f43202f.matcher(hostAuthority).matches();
+            matches = f42903f.matcher(hostAuthority).matches();
         } else {
             Uri parse = Uri.parse(str);
             if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
-                matches = f43202f.matcher(parse.getScheme()).matches();
+                matches = f42903f.matcher(parse.getScheme()).matches();
             } else {
                 return false;
             }
@@ -248,7 +234,7 @@ public abstract class d {
         return !matches;
     }
 
-    public static boolean k(Context context, String str, boolean z10, boolean z11, c cVar) {
+    public static boolean j(Context context, String str, boolean z10, boolean z11, c cVar) {
         LaunchActivity launchActivity;
         if (str == null) {
             return false;
@@ -274,11 +260,11 @@ public abstract class d {
         return true;
     }
 
-    public static boolean l(android.content.Context r5, java.lang.String r6, boolean r7) {
-        throw new UnsupportedOperationException("Method not decompiled: pf.d.l(android.content.Context, java.lang.String, boolean):boolean");
+    public static boolean k(android.content.Context r5, java.lang.String r6, boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: pf.d.k(android.content.Context, java.lang.String, boolean):boolean");
     }
 
-    public static boolean m(Context context, String str, boolean z10, String str2) {
+    public static boolean l(Context context, String str, boolean z10, String str2) {
         boolean z11;
         Intent intent;
         if (str != null) {
@@ -311,7 +297,7 @@ public abstract class d {
         return false;
     }
 
-    public static void n(String str) {
+    public static void m(String str) {
         m3 P;
         l3 l3Var;
         String openURL;
@@ -324,18 +310,18 @@ public abstract class d {
                 for (int i10 = 0; i10 < tabs.size(); i10++) {
                     l3Var = tabs.get(i10);
                     k4 k4Var = l3Var.J;
-                    if (k4Var != null && !k4Var.f37541d0.isEmpty()) {
-                        Object g10 = i2.d.g(1, l3Var.J.f37541d0);
-                        if (g10 instanceof b3) {
-                            y0 y0Var = ((b3) g10).f20486b;
-                            if (y0Var == null && (o3VarArr = l3Var.J.f37557u0) != null && (o3Var = o3VarArr[0]) != null) {
-                                y0Var = o3Var.getWebView();
+                    if (k4Var != null && !k4Var.f37262d0.isEmpty()) {
+                        Object h = i2.d.h(1, l3Var.J.f37262d0);
+                        if (h instanceof b3) {
+                            z0 z0Var = ((b3) h).f20186b;
+                            if (z0Var == null && (o3VarArr = l3Var.J.f37278u0) != null && (o3Var = o3VarArr[0]) != null) {
+                                z0Var = o3Var.getWebView();
                             }
-                            if (y0Var != null) {
-                                if (y0Var.canGoBack()) {
-                                    openURL = y0Var.getUrl();
+                            if (z0Var != null) {
+                                if (z0Var.canGoBack()) {
+                                    openURL = z0Var.getUrl();
                                 } else {
-                                    openURL = y0Var.getOpenURL();
+                                    openURL = z0Var.getOpenURL();
                                 }
                                 if (TextUtils.equals(m3.p(openURL), m3.p(str))) {
                                     P.e(l3Var);
@@ -369,43 +355,43 @@ public abstract class d {
         U.createArticleViewer(false).N(null, null, null, str);
     }
 
-    public static void o(Activity activity, String str, boolean z10) {
+    public static void n(Activity activity, String str, boolean z10) {
         if (activity != null && str != null) {
-            p(activity, Uri.parse(str), z10, true);
+            o(activity, Uri.parse(str), z10, true);
         }
     }
 
-    public static void p(Context context, Uri uri, boolean z10, boolean z11) {
-        r(context, uri, z10, z11, false, null, null, false, true, false);
+    public static void o(Context context, Uri uri, boolean z10, boolean z11) {
+        q(context, uri, z10, z11, false, null, null, false, true, false);
     }
 
-    public static void q(Context context, Uri uri, boolean z10, boolean z11, c cVar) {
-        r(context, uri, z10, z11, false, cVar, null, false, true, false);
+    public static void p(Context context, Uri uri, boolean z10, boolean z11, c cVar) {
+        q(context, uri, z10, z11, false, cVar, null, false, true, false);
     }
 
-    public static void r(android.content.Context r19, android.net.Uri r20, boolean r21, boolean r22, boolean r23, pf.c r24, java.lang.String r25, boolean r26, boolean r27, boolean r28) {
-        throw new UnsupportedOperationException("Method not decompiled: pf.d.r(android.content.Context, android.net.Uri, boolean, boolean, boolean, pf.c, java.lang.String, boolean, boolean, boolean):void");
+    public static void q(android.content.Context r19, android.net.Uri r20, boolean r21, boolean r22, boolean r23, pf.c r24, java.lang.String r25, boolean r26, boolean r27, boolean r28) {
+        throw new UnsupportedOperationException("Method not decompiled: pf.d.q(android.content.Context, android.net.Uri, boolean, boolean, boolean, pf.c, java.lang.String, boolean, boolean, boolean):void");
     }
 
-    public static void s(Context context, String str) {
+    public static void r(Context context, String str) {
         if (str == null) {
             return;
         }
-        p(context, Uri.parse(str), true, true);
+        o(context, Uri.parse(str), true, true);
     }
 
-    public static void t(LaunchActivity launchActivity, Uri uri) {
-        p(launchActivity, uri, true, true);
+    public static void s(LaunchActivity launchActivity, Uri uri) {
+        o(launchActivity, uri, true, true);
     }
 
-    public static void u(Context context, String str) {
+    public static void t(Context context, String str) {
         if (str == null) {
             return;
         }
-        r(context, Uri.parse(str), false, true, false, null, null, false, false, false);
+        q(context, Uri.parse(str), false, true, false, null, null, false, false, false);
     }
 
-    public static String v(Uri uri, String str, String str2, String str3, String str4) {
+    public static String u(Uri uri, String str, String str2, String str3, String str4) {
         StringBuilder sb2 = new StringBuilder();
         if (str == null) {
             str = uri.getScheme();
@@ -450,13 +436,13 @@ public abstract class d {
         return sb2.toString();
     }
 
-    public static String w(Uri uri, String str) {
-        return v(uri, null, null, str, null);
+    public static String v(Uri uri, String str) {
+        return u(uri, null, null, str, null);
     }
 
-    public static void x(Activity activity) {
+    public static void w(Activity activity) {
         Activity activity2;
-        if (f43201c == null) {
+        if (f42902c == null) {
             return;
         }
         WeakReference weakReference = e;
@@ -469,15 +455,15 @@ public abstract class d {
             e.clear();
         }
         try {
-            activity.unbindService(f43201c);
+            activity.unbindService(f42902c);
         } catch (Exception unused) {
         }
-        f43200b = null;
-        f43199a = null;
+        f42901b = null;
+        f42900a = null;
     }
 
-    public static boolean y(String str) {
-        if (!h(str, false, true) && !str.matches("^(https://)?t\\.me/iv\\??(/.*|$)") && !str.matches("^(https://)?telegram\\.org/(blog|tour)(/.*|$)") && !str.matches("^(https://)?fragment\\.com(/.*|$)")) {
+    public static boolean x(String str) {
+        if (!g(str, false, true) && !str.matches("^(https://)?t\\.me/iv\\??(/.*|$)") && !str.matches("^(https://)?telegram\\.org/(blog|tour)(/.*|$)") && !str.matches("^(https://)?fragment\\.com(/.*|$)")) {
             return false;
         }
         return true;

@@ -8,8 +8,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 public final class a extends u {
-    public static final C0000a f14195b = new C0000a();
-    public final SimpleDateFormat f14196a;
+    public static final C0000a f14197b = new C0000a();
+    public final SimpleDateFormat f14198a;
 
     public class C0000a implements v {
         @Override
@@ -34,10 +34,10 @@ public final class a extends u {
         }
         String v = aVar.v();
         synchronized (this) {
-            TimeZone timeZone = this.f14196a.getTimeZone();
+            TimeZone timeZone = this.f14198a.getTimeZone();
             try {
-                date = new Date(this.f14196a.parse(v).getTime());
-                this.f14196a.setTimeZone(timeZone);
+                date = new Date(this.f14198a.parse(v).getTime());
+                this.f14198a.setTimeZone(timeZone);
             } catch (ParseException e) {
                 throw new RuntimeException("Failed parsing '" + v + "' as SQL Date; at path " + aVar.j(), e);
             }
@@ -54,12 +54,12 @@ public final class a extends u {
             return;
         }
         synchronized (this) {
-            format = this.f14196a.format((java.util.Date) date);
+            format = this.f14198a.format((java.util.Date) date);
         }
         bVar.r(format);
     }
 
     private a() {
-        this.f14196a = new SimpleDateFormat("MMM d, yyyy");
+        this.f14198a = new SimpleDateFormat("MMM d, yyyy");
     }
 }

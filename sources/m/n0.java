@@ -1,15 +1,21 @@
 package m;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.view.View;
-public final class n0 extends View.BaseSavedState {
-    public static final Parcelable.Creator<n0> CREATOR = new g8.j(25);
-    public boolean f15179a;
+import android.view.ViewTreeObserver;
+import android.widget.PopupWindow;
+public final class n0 implements PopupWindow.OnDismissListener {
+    public final androidx.mediarouter.app.i f14899a;
+    public final o0 f14900b;
+
+    public n0(o0 o0Var, androidx.mediarouter.app.i iVar) {
+        this.f14900b = o0Var;
+        this.f14899a = iVar;
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        super.writeToParcel(parcel, i10);
-        parcel.writeByte(this.f15179a ? (byte) 1 : (byte) 0);
+    public final void onDismiss() {
+        ViewTreeObserver viewTreeObserver = this.f14900b.W.getViewTreeObserver();
+        if (viewTreeObserver != null) {
+            viewTreeObserver.removeGlobalOnLayoutListener(this.f14899a);
+        }
     }
 }

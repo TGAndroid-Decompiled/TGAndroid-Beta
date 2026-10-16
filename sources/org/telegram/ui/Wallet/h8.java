@@ -1,546 +1,124 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.method.DigitsKeyListener;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.yh;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.ci;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.fi1;
-public final class h8 extends FrameLayout {
-    public static final es R = es.h;
-    public final boolean E;
-    public final ArrayList F;
-    public ValueAnimator G;
-    public float H;
-    public float I;
-    public String J;
-    public final ArrayList K;
-    public float L;
-    public float M;
-    public float N;
-    public String O;
-    public String P;
-    public boolean Q;
-    public final LinearLayout f33250a;
-    public final d8 f33251b;
-    public final b6 f33252c;
-    public final FrameLayout d;
-    public final TextView e;
-    public final org.telegram.ui.Cells.u3 f33253f;
-    public ValueAnimator h;
-    public o1.k f33254n;
-    public o1.k f33255r;
-    public boolean f33256s;
-    public boolean v;
-    public boolean f33257w;
-    public int f33258x;
-    public final org.telegram.ui.ActionBar.c6 f33259y;
+public final class h8 {
+    public final float f32985a;
+    public final float f32986b;
+    public final float f32987c;
+    public final float d;
+    public final float e;
+    public final boolean f32988f;
+    public final long f32989g;
+    public final i8 h;
 
-    public h8(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.F = new ArrayList();
-        this.H = 1.0f;
-        this.J = "";
-        this.K = new ArrayList();
-        this.N = 0.5f;
-        this.O = ",";
-        this.P = ".";
-        this.f33259y = c6Var;
-        this.E = true;
-        setClipChildren(false);
-        setClipToPadding(false);
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f33250a = linearLayout;
-        linearLayout.setOrientation(0);
-        linearLayout.setGravity(16);
-        linearLayout.setLayoutDirection(0);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        addView(linearLayout, w7.a6.e(-2, -1, 17));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.d = frameLayout;
-        frameLayout.setClipChildren(false);
-        frameLayout.setClipToPadding(false);
-        frameLayout.setTranslationZ(AndroidUtilities.dp(1.0f));
-        linearLayout.addView(frameLayout, w7.a6.q(59, 60, 16));
-        this.f33258x = AndroidUtilities.dp(59.0f);
-        b6 b6Var = new b6(60, context, true);
-        this.f33252c = b6Var;
-        b6Var.i();
-        frameLayout.addView(b6Var, w7.a6.a(60.0f, 0.0f, -5.0f, -2.0f, 0.0f, 60, 19));
-        TextView textView = new TextView(context);
-        this.e = textView;
-        int i10 = org.telegram.ui.ActionBar.g6.f20305z6;
-        yh.n(i10, c6Var, textView, 1, 44.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
-        textView.setGravity(16);
-        textView.setIncludeFontPadding(false);
-        textView.setSingleLine(true);
-        textView.setVisibility(4);
-        textView.setAlpha(0.0f);
-        frameLayout.addView(textView, w7.a6.e(-2, 60, 19));
-        d8 d8Var = new d8(this, context);
-        this.f33251b = d8Var;
-        d8Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.G6, c6Var));
-        d8Var.setHintTextColor(org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
-        d8Var.setHint("0");
-        d8Var.setTextSize(1, 44.0f);
-        d8Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
-        d8Var.setIncludeFontPadding(false);
-        d8Var.setSingleLine(true);
-        d8Var.setGravity(21);
-        d8Var.setBackground(null);
-        d8Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
-        d8Var.setMinWidth(AndroidUtilities.dp(24.0f));
-        d8Var.setHorizontallyScrolling(true);
-        d8Var.setCursorWidth(3.0f);
-        d8Var.setCursorSize(AndroidUtilities.dp(48.0f));
-        int i11 = org.telegram.ui.ActionBar.g6.Oh;
-        int w02 = org.telegram.ui.ActionBar.g6.w0(i11, c6Var);
-        d8Var.setCursorColor(w02);
-        d8Var.setHandlesColor(w02);
-        d8Var.setHighlightColor(org.telegram.ui.ActionBar.g6.m1(0.3f, w02));
-        d8Var.setAllowDrawCursor(true);
-        d8Var.setInputType(8194);
-        d8Var.setKeyListener(DigitsKeyListener.getInstance("0123456789.,"));
-        d8Var.setImeOptions(33554438);
-        linearLayout.addView(d8Var, w7.a6.q(-2, 60, 16));
-        org.telegram.ui.Cells.u3 u3Var = new org.telegram.ui.Cells.u3(context, false, true, false, true, true);
-        this.f33253f = u3Var;
-        u3Var.f29045c.m(0.35f, 420L, 3.5f, es.h);
-        u3Var.setScaleProperty(0.2f);
-        u3Var.setAllowCancel(true);
-        u3Var.getDrawable().f28749b0 = new m(u3Var, 13);
-        u3Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
-        u3Var.setTextSize(AndroidUtilities.dp(28.0f));
-        u3Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
-        u3Var.setGravity(3);
-        u3Var.getDrawable().S = false;
-        u3Var.c(LocaleController.getString(R.string.GramCurrency), false, true);
-        linearLayout.addView(u3Var, w7.a6.t(-2, 60, 16, 4, 0, 0, 0));
-        setOnClickListener(new j3(this, 5));
-        d8Var.addTextChangedListener(new ci(this, 1));
+    public h8(i8 i8Var, h8 h8Var, float f7, boolean z10) {
+        float y3;
+        this.h = i8Var;
+        this.f32988f = z10;
+        this.f32986b = f7;
+        this.f32985a = h8Var != null ? h8Var.f32985a : f7;
+        this.f32989g = (h8Var == null || z10) ? SystemClock.uptimeMillis() : h8Var.f32989g;
+        float f10 = 0.0f;
+        float a2 = (h8Var == null || !z10) ? 0.0f : h8Var.a();
+        if (h8Var != null) {
+            float f11 = h8Var.f32987c;
+            f10 = com.google.android.gms.internal.play_billing.k3.y(1.0f, f11, a2, f11);
+        }
+        this.f32987c = f10;
+        if (h8Var == null) {
+            y3 = i8Var.N;
+        } else {
+            float f12 = h8Var.d;
+            y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, f12, a2, f12);
+        }
+        this.d = y3;
+        this.e = h8Var == null ? (-AndroidUtilities.dpf2(44.0f)) * 0.1f : h8Var.e * (1.0f - a2);
     }
 
-    public final void a(boolean z10) {
-        float f7;
+    public final float a() {
+        if (this.h.H >= 1.0f) {
+            return 1.0f;
+        }
+        return i8.R.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f32989g)) / 320.0f));
+    }
+
+    public final void b(Canvas canvas, Paint paint, String str, float f7, int i10) {
         float f10;
         float f11;
-        float f12;
-        float f13;
-        int i10;
-        ValueAnimator valueAnimator = this.h;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.h.cancel();
-            this.h = null;
-        }
-        o1.k kVar = this.f33254n;
-        if (kVar != null) {
-            kVar.c();
-        }
-        o1.k kVar2 = this.f33255r;
-        if (kVar2 != null) {
-            kVar2.c();
-        }
-        FrameLayout frameLayout = this.d;
-        int i11 = 0;
-        TextView textView = this.e;
-        float f14 = 1.0f;
-        b6 b6Var = this.f33252c;
-        if (!z10) {
-            if (this.v) {
-                f13 = 0.0f;
-            } else {
-                f13 = 1.0f;
-            }
-            b6Var.setAlpha(f13);
-            if (!this.f33257w) {
-                f14 = 0.0f;
-            }
-            textView.setAlpha(f14);
-            b6Var.setConversionWobble(0.0f);
-            textView.setRotation(0.0f);
-            b6Var.setEnabled(!this.v);
-            if (this.v) {
-                i10 = 4;
-            } else {
-                i10 = 0;
-            }
-            b6Var.setVisibility(i10);
-            if (!this.f33257w) {
-                i11 = 4;
-            }
-            textView.setVisibility(i11);
-            frameLayout.getLayoutParams().width = this.f33258x;
-            frameLayout.requestLayout();
-            return;
-        }
-        int i12 = frameLayout.getLayoutParams().width;
-        float alpha = b6Var.getAlpha();
-        float alpha2 = textView.getAlpha();
-        if (this.v) {
-            f7 = 0.0f;
-        } else {
-            f7 = 1.0f;
-        }
-        if (this.f33257w) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        if (alpha > 0.0f || f7 > 0.0f) {
-            b6Var.setVisibility(0);
-        }
-        if (alpha2 > 0.0f || f10 > 0.0f) {
-            textView.setVisibility(0);
-        }
-        b6Var.setEnabled(!this.v);
-        if (this.v) {
-            f11 = 24.0f;
-        } else {
-            f11 = -24.0f;
-        }
-        if (b6Var.getAlpha() < 0.01f) {
-            b6Var.setConversionWobble(f11);
-        }
-        o1.k kVar3 = new o1.k(new o1.j(b6Var.getConversionWobble()));
-        o1.l lVar = new o1.l(0.0f);
-        lVar.a(0.3f);
-        lVar.b(180.0f);
-        kVar3.f16468u = lVar;
-        kVar3.e(0.1f);
-        kVar3.f16458a = (-f11) * 10.0f;
-        kVar3.b(new r2(this, 2));
-        kVar3.h();
-        this.f33255r = kVar3;
-        if (this.v) {
-            f12 = 18.0f;
-        } else {
-            f12 = -18.0f;
-        }
-        textView.setPivotX(textView.getLayoutParams().width / 2.0f);
-        textView.setPivotY(0.0f);
-        if (textView.getAlpha() < 0.01f) {
-            textView.setRotation(f12);
-        }
-        o1.k kVar4 = new o1.k(textView, o1.h.f16454q);
-        o1.l lVar2 = new o1.l(0.0f);
-        lVar2.a(0.3f);
-        lVar2.b(180.0f);
-        kVar4.f16468u = lVar2;
-        kVar4.f16458a = (-f12) * 10.0f;
-        kVar4.h();
-        this.f33254n = kVar4;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.h = ofFloat;
-        ofFloat.setDuration(320L);
-        this.h.setInterpolator(new LinearInterpolator());
-        this.h.addUpdateListener(new c8(this, alpha, f7, alpha2, f10, i12, 0));
-        this.h.addListener(new fi1(this, 7));
-        this.h.start();
-    }
-
-    public final void b() {
-        ValueAnimator valueAnimator = this.G;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.G = null;
-            this.H = 1.0f;
-            c();
-        }
-    }
-
-    public final void c() {
-        int dp;
-        CharSequence charSequence;
-        d8 d8Var = this.f33251b;
-        Editable text = d8Var.getText();
-        boolean z10 = this.E;
+        float a2 = a();
+        float f12 = 1.0f;
+        boolean z10 = this.f32988f;
         if (z10) {
-            if (text.length() == 0) {
-                charSequence = "0";
-            } else {
-                charSequence = null;
-            }
-            if (!TextUtils.equals(d8Var.getHint(), charSequence)) {
-                d8Var.setHint(charSequence);
-            }
-        }
-        float f7 = 0.0f;
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.F;
-            if (i10 >= arrayList.size()) {
-                break;
-            }
-            e8 e8Var = (e8) arrayList.get(i10);
-            e8Var.d = f7;
-            f7 += e8Var.a();
-            if (text.getSpanStart(e8Var) >= 0) {
-                text.setSpan(e8Var, text.getSpanStart(e8Var), text.getSpanEnd(e8Var), 33);
-            }
-            i10++;
-        }
-        if (text.length() == 0 && this.H < 1.0f) {
-            float measureText = d8Var.getPaint().measureText("0");
-            int dp2 = AndroidUtilities.dp(24.0f);
-            float f10 = this.L;
-            d8Var.setMinWidth(Math.max(dp2, d8Var.getPaddingRight() + d8Var.getPaddingLeft() + Math.round((R.getInterpolation(this.H) * (measureText - f10)) + f10)));
+            f10 = 0.0f;
         } else {
-            if (z10 && text.length() > 0) {
-                dp = AndroidUtilities.dp(3.0f) + d8Var.getPaddingRight() + d8Var.getPaddingLeft();
-            } else {
-                dp = AndroidUtilities.dp(24.0f);
-            }
-            d8Var.setMinWidth(dp);
+            f10 = 1.0f;
         }
-        d8Var.requestLayout();
-        d8Var.invalidate();
-    }
-
-    public final void d(j0 j0Var, boolean z10) {
-        boolean z11;
-        String str;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        TL_wallet.currencyRate currencyrate;
-        int i10;
-        int i11;
-        boolean z15;
-        int dp;
-        TL_wallet.currencyRate currencyrate2;
-        String str2;
-        String str3;
-        int i12;
-        f fVar = j0Var.h;
-        if (this.f33256s && isAttachedToWindow() && isShown()) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        boolean z16 = this.E;
-        d8 d8Var = this.f33251b;
-        org.telegram.ui.Cells.u3 u3Var = this.f33253f;
-        TextView textView = this.e;
-        if (z16) {
-            if (z10) {
-                i12 = org.telegram.ui.ActionBar.g6.ll;
-            } else {
-                i12 = org.telegram.ui.ActionBar.g6.Oh;
-            }
-            int w02 = org.telegram.ui.ActionBar.g6.w0(i12, this.f33259y);
-            textView.setTextColor(w02);
-            u3Var.f29045c.v(w02, z11);
-            u3Var.invalidate();
-            d8Var.setCursorColor(w02);
-            d8Var.setHandlesColor(w02);
-            d8Var.setHighlightColor(org.telegram.ui.ActionBar.g6.m1(0.3f, w02));
-        }
-        TL_wallet.currencyRate j10 = fVar.j();
-        String g10 = fVar.g();
-        boolean equals = TextUtils.equals(g10, "USD");
-        if (j10 != null && !TextUtils.isEmpty(j10.symbol)) {
-            str = j10.symbol;
-        } else if (equals) {
-            str = "$";
-        } else {
-            str = g10;
-        }
-        if (z10 && (j10 == null ? equals : j10.symbolLeft)) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        if (j10 != null && j10.spaceBetween) {
-            z13 = true;
-        } else {
-            z13 = false;
-        }
-        if (this.v == z10 && this.f33257w == z12 && (!z12 || TextUtils.equals(textView.getText(), str))) {
-            z14 = false;
-        } else {
-            z14 = true;
-        }
-        if (z12) {
-            textView.setText(str);
-            currencyrate = j10;
-            textView.getLayoutParams().width = (int) Math.ceil(textView.getPaint().measureText(str));
-            textView.requestLayout();
-        } else {
-            currencyrate = j10;
-        }
-        this.v = z10;
-        this.f33257w = z12;
-        if (!z10) {
-            i10 = AndroidUtilities.dp(59.0f);
-        } else if (z12) {
-            int ceil = (int) Math.ceil(textView.getPaint().measureText(str));
-            if (z13) {
-                i11 = AndroidUtilities.dp(8.0f);
-            } else {
-                i11 = 0;
-            }
-            i10 = ceil + i11;
-        } else {
-            i10 = 0;
-        }
-        this.f33258x = i10;
-        if (z14 || !this.f33256s) {
-            if (z11 && z14) {
-                z15 = true;
-            } else {
-                z15 = false;
-            }
-            a(z15);
-        }
-        this.f33256s = true;
-        if (!z10) {
-            g10 = LocaleController.getString(R.string.GramCurrency);
-        } else if (!z12) {
-            g10 = str;
-        }
-        u3Var.c(g10, z11, true);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) u3Var.getLayoutParams();
-        if (z10 && !z12 && !z13) {
-            dp = 0;
-        } else {
-            dp = AndroidUtilities.dp(4.0f);
-        }
-        layoutParams.leftMargin = dp;
-        u3Var.setLayoutParams(layoutParams);
-        if (z10 && currencyrate != null) {
-            currencyrate2 = currencyrate;
-            str2 = currencyrate2.thousandsSeparator;
-            if (str2 == null) {
-                str2 = "";
-            }
-        } else {
-            currencyrate2 = currencyrate;
-            str2 = ",";
-        }
-        if (z10 && currencyrate2 != null && !TextUtils.isEmpty(currencyrate2.decimalSeparator)) {
-            str3 = currencyrate2.decimalSeparator;
-        } else {
-            str3 = ".";
-        }
-        if (TextUtils.equals(this.O, str2) && TextUtils.equals(this.P, str3)) {
+        float f13 = this.f32987c;
+        float y3 = com.google.android.gms.internal.play_billing.k3.y(f10, f13, a2, f13);
+        if (y3 <= 0.0f) {
             return;
         }
-        b();
-        this.O = str2;
-        this.P = str3;
-        f(d8Var.getText());
-        b();
-    }
-
-    public final void e(float f7, float f10, boolean z10) {
-        int right;
-        boolean z11;
-        float f11 = 1.0f - f7;
-        LinearLayout linearLayout = this.f33250a;
-        float width = (getWidth() / 2.0f) - linearLayout.getLeft();
-        FrameLayout frameLayout = this.d;
-        b6 b6Var = this.f33252c;
-        frameLayout.setTranslationX((((width - frameLayout.getLeft()) - b6Var.getLeft()) - (b6Var.getWidth() / 2.0f)) * f11);
-        frameLayout.setTranslationY(yh.x(b6Var.getHeight(), 2.0f, (((getHeight() / 2.0f) - linearLayout.getTop()) - frameLayout.getTop()) - b6Var.getTop(), f11) - (AndroidUtilities.dp(36.0f) * ((float) Math.sin(f7 * 3.141592653589793d))));
-        org.telegram.ui.Cells.u3 u3Var = this.f33253f;
-        int visibility = u3Var.getVisibility();
-        d8 d8Var = this.f33251b;
-        if (visibility == 8) {
-            right = d8Var.getRight();
+        int alpha = paint.getAlpha();
+        float measureText = paint.measureText(str);
+        canvas.save();
+        float d = d() + f7;
+        float f14 = i10;
+        float f15 = this.e;
+        float f16 = f14 + f15;
+        if (z10) {
+            f11 = AndroidUtilities.dpf2(44.0f) * 0.1f;
         } else {
-            right = u3Var.getRight();
+            f11 = 0.0f;
         }
-        float left = (1.0f - f10) * (width - ((d8Var.getLeft() + right) / 2.0f));
-        d8Var.setTranslationX(left);
-        u3Var.setTranslationX(left);
-        d8Var.setAlpha(f10);
-        u3Var.setAlpha(f10);
-        if (z10 && !this.v) {
-            z11 = true;
-        } else {
-            z11 = false;
+        canvas.translate(d, com.google.android.gms.internal.play_billing.k3.y(f11, f15, a2, f16));
+        if (z10) {
+            f12 = this.h.N;
         }
-        b6Var.setEnabled(z11);
-        b6Var.setIntroProgress(f7);
+        float f17 = this.d;
+        float y10 = com.google.android.gms.internal.play_billing.k3.y(f12, f17, a2, f17);
+        canvas.scale(y10, y10, measureText / 2.0f, (paint.descent() + paint.ascent()) / 2.0f);
+        paint.setAlpha(Math.round(alpha * y3));
+        canvas.drawText(str, 0.0f, 0.0f, paint);
+        paint.setAlpha(alpha);
+        canvas.restore();
     }
 
-    public final void f(android.text.Editable r37) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.h8.f(android.text.Editable):void");
-    }
-
-    public org.telegram.ui.Components.s6 getCurrencyView() {
-        return this.f33253f;
-    }
-
-    public b6 getDiamondView() {
-        return this.f33252c;
-    }
-
-    public EditTextBoldCursor getEditText() {
-        return this.f33251b;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        b();
-        a(false);
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        d8 d8Var = this.f33251b;
-        int baseline = d8Var.getBaseline() + d8Var.getTop();
-        TextView textView = this.e;
-        if (textView.getVisibility() == 0) {
-            textView.setTranslationY(((baseline - this.d.getTop()) - textView.getTop()) - textView.getBaseline());
+    public final h8 c() {
+        i8 i8Var = this.h;
+        if (i8Var.H >= 1.0f) {
+            return new h8(i8Var, d());
         }
-        org.telegram.ui.Cells.u3 u3Var = this.f33253f;
-        u3Var.setTranslationY((baseline - u3Var.getTop()) - u3Var.getBaseline());
+        return new h8(i8Var, d(), this);
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        LinearLayout linearLayout = this.f33250a;
-        linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
-        float min = Math.min(1.0f, getMeasuredWidth() / Math.max(1, linearLayout.getMeasuredWidth()));
-        linearLayout.setPivotX(linearLayout.getMeasuredWidth() / 2.0f);
-        linearLayout.setPivotY(linearLayout.getMeasuredHeight() / 2.0f);
-        linearLayout.setScaleX(min);
-        linearLayout.setScaleY(min);
+    public final float d() {
+        float f7 = this.f32986b;
+        float f10 = this.f32985a;
+        return (i8.R.getInterpolation(this.h.H) * (f7 - f10)) + f10;
     }
 
-    public void setAmountText(String str) {
-        this.Q = true;
-        try {
-            this.f33251b.setText(str);
-        } finally {
-            this.Q = false;
-        }
+    public h8(i8 i8Var, float f7) {
+        this.h = i8Var;
+        this.f32988f = false;
+        this.f32986b = f7;
+        this.f32985a = f7;
+        this.f32987c = 1.0f;
+        this.d = 1.0f;
+        this.e = 0.0f;
+        this.f32989g = SystemClock.uptimeMillis();
     }
 
-    public void setScaleProperty(float f7) {
-        this.N = 1.0f - Math.max(0.0f, Math.min(1.0f, f7));
+    public h8(i8 i8Var, float f7, h8 h8Var) {
+        this.h = i8Var;
+        this.f32988f = h8Var.f32988f;
+        this.f32986b = f7;
+        this.f32985a = f7;
+        this.f32987c = h8Var.f32987c;
+        this.d = h8Var.d;
+        this.e = h8Var.e;
+        this.f32989g = h8Var.f32989g;
     }
 }
