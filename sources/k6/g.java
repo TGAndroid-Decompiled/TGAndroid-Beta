@@ -8,35 +8,35 @@ import android.os.Build;
 import android.util.Log;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class g {
-    public static boolean f14175b = false;
-    public static boolean f14176c = false;
+    public static boolean f14970b = false;
+    public static boolean f14971c = false;
     public static final int e = 0;
-    public static final AtomicBoolean f14174a = new AtomicBoolean();
+    public static final AtomicBoolean f14969a = new AtomicBoolean();
     public static final AtomicBoolean d = new AtomicBoolean();
 
     public static boolean a(Context context) {
         try {
-            if (!f14176c) {
+            if (!f14971c) {
                 try {
-                    PackageInfo e7 = w6.b.a(context).e(64, "com.google.android.gms");
-                    h.a(context);
-                    if (e7 != null && !h.c(e7, false) && h.c(e7, true)) {
-                        f14175b = true;
+                    PackageInfo b10 = w6.b.a(context).b(64, "com.google.android.gms");
+                    h.c(context);
+                    if (b10 != null && !h.f(b10, false) && h.f(b10, true)) {
+                        f14970b = true;
                     } else {
-                        f14175b = false;
+                        f14970b = false;
                     }
-                    f14176c = true;
-                } catch (PackageManager.NameNotFoundException e10) {
-                    Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e10);
-                    f14176c = true;
+                    f14971c = true;
+                } catch (PackageManager.NameNotFoundException e7) {
+                    Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e7);
+                    f14971c = true;
                 }
             }
-            if (!f14175b && "user".equals(Build.TYPE)) {
+            if (!f14970b && "user".equals(Build.TYPE)) {
                 return false;
             }
             return true;
         } catch (Throwable th2) {
-            f14176c = true;
+            f14971c = true;
             throw th2;
         }
     }

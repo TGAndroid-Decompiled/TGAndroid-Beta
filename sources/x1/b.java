@@ -1,22 +1,22 @@
 package x1;
 
 import android.util.Log;
-import c5.y;
+import c5.x;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class b extends FutureTask {
-    public final a f47722a;
+    public final a f49131a;
 
-    public b(a aVar, y yVar) {
-        super(yVar);
-        this.f47722a = aVar;
+    public b(a aVar, x xVar) {
+        super(xVar);
+        this.f49131a = aVar;
     }
 
     @Override
     public final void done() {
-        a aVar = this.f47722a;
+        a aVar = this.f49131a;
         AtomicBoolean atomicBoolean = aVar.d;
         try {
             Object obj = get();

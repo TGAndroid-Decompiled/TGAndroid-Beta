@@ -1,12 +1,12 @@
 package l;
 
-import m.t1;
+import m.s1;
 public interface b0 {
     boolean a();
 
     void dismiss();
 
-    t1 f();
+    s1 f();
 
     void g();
 }

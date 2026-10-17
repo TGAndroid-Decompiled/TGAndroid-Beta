@@ -1,23 +1,32 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class zr implements View.OnClickListener {
-    public final int f42412a;
-    public final org.telegram.ui.Components.vh0 f42413b;
+import org.telegram.messenger.AndroidUtilities;
+public final class zr implements Runnable {
+    public final int f43795a;
+    public final hs f43796b;
 
-    public zr(org.telegram.ui.Components.vh0 vh0Var, int i10) {
-        this.f42412a = i10;
-        this.f42413b = vh0Var;
+    public zr(hs hsVar, int i10) {
+        this.f43795a = i10;
+        this.f43796b = hsVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f42412a) {
+    public final void run() {
+        switch (this.f43795a) {
             case 0:
-                this.f42413b.b(true);
+                hs hsVar = this.f43796b;
+                if (hsVar.J) {
+                    hsVar.d.f22401b.requestFocus();
+                    AndroidUtilities.showKeyboard(hsVar.d.f22401b);
+                    return;
+                }
+                return;
+            case 1:
+                hs.Z(this.f43796b);
                 return;
             default:
-                this.f42413b.b(true);
+                hs hsVar2 = this.f43796b;
+                hsVar2.presentFragment(sn.W9(hsVar2.H), true);
                 return;
         }
     }

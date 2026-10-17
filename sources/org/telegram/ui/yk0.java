@@ -1,171 +1,72 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class yk0 extends org.telegram.ui.Components.lm0 {
-    public final Context f41844c;
-    public final NotificationsSettingsActivity d;
+import org.telegram.messenger.AndroidUtilities;
+public final class yk0 implements Runnable {
+    public final int f43419a;
+    public final PasscodeActivity f43420b;
 
-    public yk0(NotificationsSettingsActivity notificationsSettingsActivity, Context context) {
-        this.d = notificationsSettingsActivity;
-        this.f41844c = context;
+    public yk0(PasscodeActivity passcodeActivity, int i10) {
+        this.f43419a = i10;
+        this.f43420b = passcodeActivity;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        int b10 = b1Var.b();
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (b10 != notificationsSettingsActivity.f31873x && b10 != notificationsSettingsActivity.f31874y && b10 != notificationsSettingsActivity.E && b10 != notificationsSettingsActivity.K && b10 != notificationsSettingsActivity.M && b10 != notificationsSettingsActivity.S && b10 != notificationsSettingsActivity.N && b10 != notificationsSettingsActivity.L && b10 != notificationsSettingsActivity.R && b10 != notificationsSettingsActivity.F && b10 != notificationsSettingsActivity.G && b10 != notificationsSettingsActivity.O && b10 != notificationsSettingsActivity.f31870r && b10 != notificationsSettingsActivity.f31871s && b10 != notificationsSettingsActivity.T && b10 != notificationsSettingsActivity.J) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.U;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        int i19;
-        int i20;
-        int i21;
-        int i22;
-        int i23;
-        int i24;
-        int i25;
-        int i26;
-        int i27;
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (i10 != notificationsSettingsActivity.K && i10 != notificationsSettingsActivity.M && i10 != notificationsSettingsActivity.S && i10 != notificationsSettingsActivity.G && i10 != notificationsSettingsActivity.N && i10 != notificationsSettingsActivity.E && i10 != notificationsSettingsActivity.f31873x && i10 != notificationsSettingsActivity.f31870r) {
-            i11 = notificationsSettingsActivity.inappSoundRow;
-            if (i10 != i11) {
-                i12 = notificationsSettingsActivity.inappVibrateRow;
-                if (i10 != i12 && i10 != notificationsSettingsActivity.f31872w) {
-                    i13 = notificationsSettingsActivity.inappPreviewRow;
-                    if (i10 != i13) {
-                        i14 = notificationsSettingsActivity.contactJoinedRow;
-                        if (i10 != i14) {
-                            i15 = notificationsSettingsActivity.pinnedMessageRow;
-                            if (i10 != i15 && i10 != notificationsSettingsActivity.v) {
-                                i16 = notificationsSettingsActivity.badgeNumberMutedRow;
-                                if (i10 != i16) {
-                                    i17 = notificationsSettingsActivity.badgeNumberMessagesRow;
-                                    if (i10 != i17) {
-                                        i18 = notificationsSettingsActivity.badgeNumberShowRow;
-                                        if (i10 != i18) {
-                                            i19 = notificationsSettingsActivity.inappPriorityRow;
-                                            if (i10 != i19) {
-                                                i20 = notificationsSettingsActivity.inchatSoundRow;
-                                                if (i10 != i20 && i10 != notificationsSettingsActivity.P) {
-                                                    i21 = notificationsSettingsActivity.accountsAllRow;
-                                                    if (i10 != i21) {
-                                                        i22 = notificationsSettingsActivity.resetNotificationsRow;
-                                                        if (i10 != i22) {
-                                                            i23 = notificationsSettingsActivity.privateRow;
-                                                            if (i10 != i23) {
-                                                                i24 = notificationsSettingsActivity.groupRow;
-                                                                if (i10 != i24) {
-                                                                    i25 = notificationsSettingsActivity.channelsRow;
-                                                                    if (i10 != i25) {
-                                                                        i26 = notificationsSettingsActivity.storiesRow;
-                                                                        if (i10 != i26) {
-                                                                            i27 = notificationsSettingsActivity.reactionsRow;
-                                                                            if (i10 != i27) {
-                                                                                if (i10 != notificationsSettingsActivity.J && i10 != notificationsSettingsActivity.f31874y && i10 != notificationsSettingsActivity.L && i10 != notificationsSettingsActivity.R && i10 != notificationsSettingsActivity.F && i10 != notificationsSettingsActivity.O && i10 != notificationsSettingsActivity.T) {
-                                                                                    if (i10 == notificationsSettingsActivity.f31871s) {
-                                                                                        return 6;
-                                                                                    }
-                                                                                    return 5;
-                                                                                }
-                                                                                return 4;
-                                                                            }
-                                                                            return 3;
-                                                                        }
-                                                                        return 3;
-                                                                    }
-                                                                    return 3;
-                                                                }
-                                                                return 3;
-                                                            }
-                                                            return 3;
-                                                        }
-                                                        return 2;
-                                                    }
-                                                    return 1;
-                                                }
-                                                return 1;
-                                            }
-                                            return 1;
-                                        }
-                                        return 1;
-                                    }
-                                    return 1;
-                                }
-                                return 1;
-                            }
-                            return 1;
-                        }
-                        return 1;
-                    }
-                    return 1;
+    public final void run() {
+        long j10;
+        switch (this.f43419a) {
+            case 0:
+                PasscodeActivity passcodeActivity = this.f43420b;
+                passcodeActivity.f33217n.postDelayed(passcodeActivity.S, 3000L);
+                passcodeActivity.R = true;
+                return;
+            case 1:
+                PasscodeActivity passcodeActivity2 = this.f43420b;
+                m71 m71Var = passcodeActivity2.V;
+                if (m71Var != null) {
+                    AndroidUtilities.runOnUIThread(m71Var);
+                    passcodeActivity2.V = null;
                 }
-                return 1;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 r23, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yk0.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View m4Var;
-        org.telegram.ui.ActionBar.c6 c6Var;
-        org.telegram.ui.ActionBar.c6 c6Var2;
-        org.telegram.ui.ActionBar.c6 c6Var3;
-        org.telegram.ui.ActionBar.c6 c6Var4;
-        org.telegram.ui.ActionBar.c6 c6Var5;
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        Context context = this.f41844c;
-        if (i10 == 0) {
-            c6Var = ((org.telegram.ui.ActionBar.m2) notificationsSettingsActivity).resourceProvider;
-            m4Var = new org.telegram.ui.Cells.m4(context, c6Var);
-        } else if (i10 == 1) {
-            c6Var2 = ((org.telegram.ui.ActionBar.m2) notificationsSettingsActivity).resourceProvider;
-            m4Var = new org.telegram.ui.Cells.w8(context, c6Var2);
-        } else if (i10 != 2) {
-            if (i10 == 3) {
-                c6Var3 = ((org.telegram.ui.ActionBar.m2) notificationsSettingsActivity).resourceProvider;
-                m4Var = new org.telegram.ui.Cells.j5(21, 64, this.f41844c, c6Var3, true);
-            } else if (i10 != 4) {
-                if (i10 != 5) {
-                    c6Var5 = ((org.telegram.ui.ActionBar.m2) notificationsSettingsActivity).resourceProvider;
-                    m4Var = new org.telegram.ui.Cells.e9(context, c6Var5);
+                passcodeActivity2.finishFragment();
+                return;
+            case 2:
+                PasscodeActivity passcodeActivity3 = new PasscodeActivity(0);
+                PasscodeActivity passcodeActivity4 = this.f43420b;
+                passcodeActivity4.presentFragment(passcodeActivity3, true);
+                gb0 gb0Var = passcodeActivity4.U;
+                if (gb0Var != null) {
+                    AndroidUtilities.runOnUIThread(gb0Var);
+                    passcodeActivity4.U = null;
+                    return;
+                }
+                return;
+            case 3:
+                PasscodeActivity passcodeActivity5 = this.f43420b;
+                yk0 yk0Var = new yk0(passcodeActivity5, 4);
+                if (passcodeActivity5.h0()) {
+                    j10 = 150;
                 } else {
-                    c6Var4 = ((org.telegram.ui.ActionBar.m2) notificationsSettingsActivity).resourceProvider;
-                    m4Var = new org.telegram.ui.Cells.ca(context, 0, c6Var4);
+                    j10 = 1000;
                 }
-            } else {
-                m4Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.c1) null);
-            }
-        } else {
-            m4Var = new org.telegram.ui.Cells.d9(context);
+                AndroidUtilities.runOnUIThread(yk0Var, j10);
+                return;
+            case 4:
+                PasscodeActivity passcodeActivity6 = this.f43420b;
+                if (passcodeActivity6.h0()) {
+                    for (vr vrVar : passcodeActivity6.f33217n.f41486f) {
+                        vrVar.i(0.0f);
+                    }
+                    return;
+                }
+                passcodeActivity6.f33216f.a(0.0f);
+                return;
+            case 5:
+                PasscodeActivity passcodeActivity7 = this.f43420b;
+                passcodeActivity7.R = false;
+                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity7.f33218r, false);
+                return;
+            default:
+                this.f43420b.n0();
+                return;
         }
-        return new s4.b1(m4Var);
     }
 }

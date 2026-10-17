@@ -1,29 +1,33 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.messenger.Utilities;
 public final class y6 implements Runnable {
-    public final int f33627a;
-    public final a7 f33628b;
+    public final int f35178a = 1;
+    public final WalletEngine2 f35179b;
+    public final String f35180c;
+    public final Utilities.Callback d;
 
-    public y6(a7 a7Var, int i10) {
-        this.f33627a = i10;
-        this.f33628b = a7Var;
+    public y6(WalletEngine2 walletEngine2, String str, Utilities.Callback callback) {
+        this.f35179b = walletEngine2;
+        this.f35180c = str;
+        this.d = callback;
     }
 
     @Override
     public final void run() {
-        switch (this.f33627a) {
+        switch (this.f35178a) {
             case 0:
-                a7 a7Var = this.f33628b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(a7Var.getParentActivity(), 0, a7Var.getResourceProvider());
-                alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.WalletEnterSecretPhraseInfo);
-                org.telegram.messenger.g0.p(R.string.OK, alertDialog$Builder, null);
+                this.f35179b.lambda$previewSignMessage$7(this.d, this.f35180c);
                 return;
             default:
-                this.f33628b.Y();
+                this.f35179b.lambda$getTransactionByHash$39(this.f35180c, this.d);
                 return;
         }
+    }
+
+    public y6(WalletEngine2 walletEngine2, Utilities.Callback callback, String str) {
+        this.f35179b = walletEngine2;
+        this.d = callback;
+        this.f35180c = str;
     }
 }

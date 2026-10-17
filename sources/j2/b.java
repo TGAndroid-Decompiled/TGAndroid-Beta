@@ -1,17 +1,17 @@
 package j2;
 
-import b2.b2;
-import b2.g1;
-import b2.z0;
+import b2.a2;
+import b2.f1;
+import b2.y0;
 import u2.c0;
 public interface b {
-    void a(i2.e eVar);
+    void a(i2.d dVar);
 
     void b(c0 c0Var);
 
-    void c(b2 b2Var);
+    void c(a2 a2Var);
 
-    void d(g1 g1Var, qf.b bVar);
+    void d(f1 f1Var, qf.b bVar);
 
     void e(a aVar, c0 c0Var);
 
@@ -19,7 +19,7 @@ public interface b {
 
     void g(a aVar, int i10);
 
-    void h(z0 z0Var);
+    void h(y0 y0Var);
 
     void onRenderedFirstFrame(a aVar);
 

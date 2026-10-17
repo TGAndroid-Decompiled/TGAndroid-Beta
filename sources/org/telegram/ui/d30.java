@@ -1,34 +1,25 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class d30 implements DialogInterface.OnDismissListener {
-    public final int f34865a;
-    public final n60 f34866b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class d30 extends TextView {
+    public final RectF f36057a;
+    public final s50 f36058b;
 
-    public d30(n60 n60Var, int i10) {
-        this.f34865a = i10;
-        this.f34866b = n60Var;
+    public d30(s50 s50Var, Context context) {
+        super(context);
+        this.f36058b = s50Var;
+        this.f36057a = new RectF();
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f34865a) {
-            case 0:
-                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-                if (this.f34866b.f38253x0 && (U instanceof fo)) {
-                    ((fo) U).Y9(true, true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f34866b.dismiss();
-                return;
-            case 2:
-                this.f34866b.E1 = null;
-                return;
-            default:
-                this.f34866b.f38226r0 = null;
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = this.f36057a;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f36058b.f40939g1);
+        super.onDraw(canvas);
     }
 }

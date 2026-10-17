@@ -1,235 +1,121 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class fj0 extends FrameLayout {
-    public static final int R = 0;
-    public boolean E;
-    public es F;
-    public ud0 G;
-    public ud0 H;
-    public org.telegram.ui.tc0 I;
-    public dj0 J;
-    public TextView K;
-    public boolean L;
-    public TLRPC.User M;
-    public int N;
-    public boolean O;
-    public cj0 P;
-    public org.telegram.ui.vc0 Q;
-    public VelocityTracker f24760a;
-    public int f24761b;
-    public int f24762c;
-    public int d;
-    public boolean e;
-    public boolean f24763f;
-    public AnimatorSet h;
-    public Rect f24764n;
-    public boolean f24765r;
-    public AnimatorSet f24766s;
-    public bj0 v;
-    public boolean f24767w;
-    public int f24768x;
-    public int f24769y;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.TelegramQRCodeWriter;
+public class fj0 extends org.telegram.ui.ActionBar.f3 {
+    public final Bitmap f26259b;
+    public final TextView f26260c;
+    public final TextView d;
+    public final TextView e;
+    public final int f26261f;
+    public final xj0 h;
 
-    public final void a() {
-        bj0 bj0Var = this.v;
-        if (this.f24765r) {
-            return;
+    public fj0(Context context, String str, String str2, String str3, boolean z10) {
+        super(1, context, (org.telegram.ui.ActionBar.d6) null, false);
+        Bitmap bitmap = null;
+        fixNavigationBar();
+        setTitle(str, true);
+        ig.k kVar = new ig.k(context, 3);
+        kVar.setScaleType(ImageView.ScaleType.FIT_XY);
+        kVar.setOutlineProvider(new ci.o1(15));
+        kVar.setClipToOutline(true);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
+        Bitmap bitmap2 = this.f26259b;
+        try {
+            HashMap hashMap = new HashMap();
+            hashMap.put(dc.b.f7923a, ic.c.M);
+            hashMap.put(dc.b.f7925c, 0);
+            TelegramQRCodeWriter telegramQRCodeWriter = new TelegramQRCodeWriter();
+            Bitmap encode = telegramQRCodeWriter.encode(str2, 768, 768, hashMap, bitmap2);
+            this.f26261f = telegramQRCodeWriter.getImageSize();
+            bitmap = encode;
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        this.f24765r = true;
-        AnimatorSet animatorSet = this.f24766s;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.f24766s = null;
+        this.f26259b = bitmap;
+        kVar.setImageBitmap(bitmap);
+        ?? imageView = new ImageView(context);
+        this.h = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setBackgroundColor(-1);
+        org.telegram.ui.sl0 sl0Var = new org.telegram.ui.sl0(this, context, kVar);
+        sl0Var.addView(kVar, w7.z5.d(-1.0f, -1));
+        sl0Var.addView((View) imageView, w7.z5.e(60, 60, 17));
+        linearLayout.addView(sl0Var, w7.z5.t(220, 220, 1, 30, 0, 30, 0));
+        TextView textView = new TextView(context);
+        this.f26260c = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setText(str3);
+        textView.setGravity(1);
+        linearLayout.addView(textView, w7.z5.a(-2.0f, 40.0f, 8.0f, 40.0f, 8.0f, -1, 0));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        textView2.setGravity(17);
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setText(LocaleController.getString(R.string.ShareQrCode));
+        textView2.setOnClickListener(new ca(22, this, context));
+        linearLayout.addView(textView2, w7.z5.t(-1, 48, 80, 16, 15, 16, 3));
+        if (z10) {
+            TextView textView3 = new TextView(context);
+            this.e = textView3;
+            textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+            textView3.setGravity(17);
+            textView3.setTextSize(1, 14.0f);
+            textView3.setText(LocaleController.getString(R.string.ShareLink));
+            textView3.setOnClickListener(new ca(23, str2, context));
+            linearLayout.addView(textView3, w7.z5.t(-1, 48, 80, 16, 3, 16, 16));
         }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f24766s = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(bj0Var, View.TRANSLATION_Y, AndroidUtilities.dp(10.0f) + bj0Var.getMeasuredHeight()));
-        if (this.E) {
-            float measuredHeight = bj0Var.getMeasuredHeight();
-            this.f24766s.setDuration(Math.max(60, (int) (((measuredHeight - bj0Var.getTranslationY()) * 250.0f) / measuredHeight)));
-            this.E = false;
-        } else {
-            this.f24766s.setDuration(250L);
+        d();
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.addView(linearLayout);
+        setCustomView(scrollView);
+    }
+
+    public final void d() {
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.h6.Sh);
+        TextView textView = this.d;
+        textView.setTextColor(themedColor);
+        int dp = AndroidUtilities.dp(24.0f);
+        int i10 = org.telegram.ui.ActionBar.h6.Oh;
+        int themedColor2 = getThemedColor(i10);
+        int themedColor3 = getThemedColor(org.telegram.ui.ActionBar.h6.Qh);
+        textView.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, themedColor2, themedColor3, themedColor3));
+        TextView textView2 = this.e;
+        if (textView2 != null) {
+            textView2.setTextColor(getThemedColor(i10));
+            textView2.setBackground(org.telegram.ui.ActionBar.h6.g0(i0.b.o(getThemedColor(i10), Math.min(255, Color.alpha(getThemedColor(org.telegram.ui.ActionBar.h6.f21075i6)) * 2)), 7, -1));
         }
-        this.f24766s.setInterpolator(es.f24465f);
-        this.f24766s.addListener(new ej0(this, 2));
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-        this.f24766s.start();
-    }
-
-    public final boolean b(MotionEvent motionEvent, boolean z10) {
-        float translationY;
-        bj0 bj0Var = this.v;
-        if (!this.f24765r) {
-            if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f24763f && !this.e && motionEvent.getPointerCount() == 1)) {
-                this.f24761b = (int) motionEvent.getX();
-                int y3 = (int) motionEvent.getY();
-                this.f24762c = y3;
-                if (y3 >= bj0Var.getTop() && this.f24761b >= bj0Var.getLeft() && this.f24761b <= bj0Var.getRight()) {
-                    this.d = motionEvent.getPointerId(0);
-                    this.e = true;
-                    AnimatorSet animatorSet = this.h;
-                    if (animatorSet != null) {
-                        animatorSet.cancel();
-                        this.h = null;
-                    }
-                    VelocityTracker velocityTracker = this.f24760a;
-                    if (velocityTracker != null) {
-                        velocityTracker.clear();
-                    }
-                } else {
-                    requestDisallowInterceptTouchEvent(true);
-                    a();
-                    return true;
-                }
-            } else {
-                float f7 = 0.0f;
-                if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
-                    if (this.f24760a == null) {
-                        this.f24760a = VelocityTracker.obtain();
-                    }
-                    float abs = Math.abs((int) (motionEvent.getX() - this.f24761b));
-                    float y10 = ((int) motionEvent.getY()) - this.f24762c;
-                    this.f24760a.addMovement(motionEvent);
-                    if (this.e && !this.f24763f && y10 > 0.0f && y10 / 3.0f > Math.abs(abs) && Math.abs(y10) >= this.f24769y) {
-                        this.f24762c = (int) motionEvent.getY();
-                        this.e = false;
-                        this.f24763f = true;
-                        requestDisallowInterceptTouchEvent(true);
-                    } else if (this.f24763f) {
-                        float translationY2 = bj0Var.getTranslationY() + y10;
-                        if (translationY2 >= 0.0f) {
-                            f7 = translationY2;
-                        }
-                        bj0Var.setTranslationY(f7);
-                        this.f24762c = (int) motionEvent.getY();
-                    }
-                } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                    if (this.f24760a == null) {
-                        this.f24760a = VelocityTracker.obtain();
-                    }
-                    this.f24760a.computeCurrentVelocity(1000);
-                    float translationY3 = bj0Var.getTranslationY();
-                    if (!this.f24763f && translationY3 == 0.0f) {
-                        this.e = false;
-                        this.f24763f = false;
-                    } else {
-                        float xVelocity = this.f24760a.getXVelocity();
-                        float yVelocity = this.f24760a.getYVelocity();
-                        if ((bj0Var.getTranslationY() < AndroidUtilities.getPixelsInCM(0.8f, false) && (yVelocity < 3500.0f || Math.abs(yVelocity) < Math.abs(xVelocity))) || (yVelocity < 0.0f && Math.abs(yVelocity) >= 3500.0f)) {
-                            AnimatorSet animatorSet2 = new AnimatorSet();
-                            this.h = animatorSet2;
-                            animatorSet2.playTogether(ObjectAnimator.ofFloat(bj0Var, View.TRANSLATION_Y, 0.0f));
-                            this.h.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 150.0f));
-                            this.h.setInterpolator(es.f24466g);
-                            this.h.addListener(new ej0(this, 0));
-                            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-                            this.h.start();
-                        } else {
-                            this.E = true;
-                            a();
-                        }
-                        this.f24763f = false;
-                    }
-                    VelocityTracker velocityTracker2 = this.f24760a;
-                    if (velocityTracker2 != null) {
-                        velocityTracker2.recycle();
-                        this.f24760a = null;
-                    }
-                    this.d = -1;
-                }
-            }
-            if ((!z10 && this.e) || this.f24763f) {
-                return true;
-            }
+        int i11 = org.telegram.ui.ActionBar.h6.f21374y6;
+        int themedColor4 = getThemedColor(i11);
+        TextView textView3 = this.f26260c;
+        textView3.setTextColor(themedColor4);
+        textView3.setTextColor(getThemedColor(i11));
+        if (getTitleView() != null) {
+            getTitleView().setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.G6));
         }
-        return false;
+        setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.h6.f21057h5));
     }
 
-    public final void c(boolean r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fj0.c(boolean):void");
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f24765r) {
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public View getCustomView() {
-        return this.P;
-    }
-
-    public boolean getRadiusSet() {
-        return this.L;
-    }
-
-    public float getValue() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fj0.getValue():float");
-    }
-
-    @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f24765r || b(motionEvent, true)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean r9, int r10, int r11, int r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fj0.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        getRootView();
-        getWindowVisibleDisplayFrame(this.f24764n);
-        setMeasuredDimension(size, size2);
-        bj0 bj0Var = this.v;
-        bj0Var.measure(View.MeasureSpec.makeMeasureSpec((this.f24768x * 2) + size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-        int childCount = getChildCount();
-        for (int i12 = 0; i12 < childCount; i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt.getVisibility() != 8 && childAt != bj0Var) {
-                measureChildWithMargins(childAt, View.MeasureSpec.makeMeasureSpec(size, 1073741824), 0, View.MeasureSpec.makeMeasureSpec(size2, 1073741824), 0);
-            }
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f24765r && !b(motionEvent, false)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void requestDisallowInterceptTouchEvent(boolean z10) {
-        if (this.e && !this.f24763f) {
-            onTouchEvent(null);
-        }
-        super.requestDisallowInterceptTouchEvent(z10);
+    public final void n(int i10) {
+        xj0 xj0Var = this.h;
+        xj0Var.setAutoRepeat(true);
+        xj0Var.f(i10, 60, 60, null);
+        xj0Var.d();
     }
 }

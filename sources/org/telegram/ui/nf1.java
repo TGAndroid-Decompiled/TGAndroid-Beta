@@ -1,63 +1,34 @@
 package org.telegram.ui;
+public final class nf1 implements org.telegram.ui.ActionBar.a2 {
+    public final int f39441a;
+    public final xf1 f39442b;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class nf1 extends s4.r0 {
-    public final int f38386a;
-    public final kg1 f38387b;
-
-    public nf1(kg1 kg1Var, int i10) {
-        this.f38386a = i10;
-        this.f38387b = kg1Var;
+    public nf1(xf1 xf1Var, int i10) {
+        this.f39441a = i10;
+        this.f39442b = xf1Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        boolean z10;
-        kg1 kg1Var;
-        bh.f fVar;
-        switch (this.f38386a) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f39441a) {
             case 0:
-                kg1 kg1Var2 = this.f38387b;
-                int L0 = kg1Var2.F.L0();
-                if (L0 != -1) {
-                    s4.b1 K = recyclerView.K(L0);
-                    boolean z11 = false;
-                    if (K != null) {
-                        i12 = K.f44838a.getTop();
-                    } else {
-                        i12 = 0;
-                    }
-                    if (L0 == 0) {
-                        int i13 = 0 - i12;
-                        if (i12 < 0) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        Math.abs(i13);
-                    } else if (L0 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10 || !kg1Var2.K) {
-                        z11 = true;
-                    }
-                    kg1Var2.G0(z11, true);
-                    return;
-                }
+                this.f39442b.finishFragment();
                 return;
             case 1:
-                this.f38387b.y0();
+                xf1 xf1Var = this.f39442b;
+                xf1Var.B0();
+                xf1Var.finishFragment();
+                return;
+            case 2:
+                xf1 xf1Var2 = this.f39442b;
+                xf1Var2.R = "";
+                xf1Var2.E0(false);
+                return;
+            case 3:
+                xf1.a0(this.f39442b);
                 return;
             default:
-                if (Build.VERSION.SDK_INT >= 31 && (fVar = (kg1Var = this.f38387b).f37395f1) != null) {
-                    fVar.f(i10, i11);
-                    kg1Var.x0();
-                    return;
-                }
+                xf1.X(this.f39442b);
                 return;
         }
     }

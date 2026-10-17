@@ -1,82 +1,44 @@
 package r0;
 
-import android.os.Build;
-import android.view.WindowInsets;
+import android.view.ViewGroup;
 import android.view.WindowInsetsAnimation;
-import android.view.WindowInsetsAnimation$Callback;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-public final class t0 extends WindowInsetsAnimation$Callback {
-    public final qh.e f43512a;
-    public List f43513b;
-    public ArrayList f43514c;
-    public final HashMap d;
+public final class t0 extends u0 {
+    public final WindowInsetsAnimation e;
 
-    public t0(qh.e eVar) {
-        super(0);
-        this.d = new HashMap();
-        this.f43512a = eVar;
+    public t0(WindowInsetsAnimation windowInsetsAnimation) {
+        super(0, 0L, null);
+        this.e = windowInsetsAnimation;
     }
 
-    public final w0 a(WindowInsetsAnimation windowInsetsAnimation) {
-        w0 w0Var = (w0) this.d.get(windowInsetsAnimation);
-        if (w0Var == null) {
-            w0Var = new w0(0, 0L, null);
-            if (Build.VERSION.SDK_INT >= 30) {
-                w0Var.f43521a = new u0(windowInsetsAnimation);
-            }
-            this.d.put(windowInsetsAnimation, w0Var);
-        }
-        return w0Var;
+    public static i0.c e(WindowInsetsAnimation.Bounds bounds) {
+        return i0.c.c(bounds.getUpperBound());
     }
 
-    public final void onEnd(WindowInsetsAnimation windowInsetsAnimation) {
-        a(windowInsetsAnimation);
-        this.f43512a.V0();
-        this.d.remove(windowInsetsAnimation);
+    public static i0.c f(WindowInsetsAnimation.Bounds bounds) {
+        return i0.c.c(bounds.getLowerBound());
     }
 
-    public final void onPrepare(WindowInsetsAnimation windowInsetsAnimation) {
-        a(windowInsetsAnimation);
-        this.f43512a.getClass();
+    public static void g(ViewGroup viewGroup, qh.e eVar) {
+        viewGroup.setWindowInsetsAnimationCallback(new s0(eVar));
     }
 
-    public final WindowInsets onProgress(WindowInsets windowInsets, List list) {
-        ArrayList arrayList = this.f43514c;
-        if (arrayList == null) {
-            ArrayList arrayList2 = new ArrayList(list.size());
-            this.f43514c = arrayList2;
-            this.f43513b = DesugarCollections.unmodifiableList(arrayList2);
-        } else {
-            arrayList.clear();
-        }
-        for (int size = list.size() - 1; size >= 0; size--) {
-            WindowInsetsAnimation windowInsetsAnimation = (WindowInsetsAnimation) list.get(size);
-            w0 a2 = a(windowInsetsAnimation);
-            a2.f43521a.d(windowInsetsAnimation.getFraction());
-            this.f43514c.add(a2);
-        }
-        l1 h = l1.h(null, windowInsets);
-        this.f43512a.W0(h, this.f43513b);
-        return h.g();
+    @Override
+    public final long a() {
+        return this.e.getDurationMillis();
     }
 
-    public final WindowInsetsAnimation.Bounds onStart(WindowInsetsAnimation windowInsetsAnimation, WindowInsetsAnimation.Bounds bounds) {
-        a(windowInsetsAnimation);
-        i0.b f7 = u0.f(bounds);
-        i0.b e = u0.e(bounds);
-        qh.e eVar = this.f43512a;
-        if (eVar.f43377c == 0) {
-            Iterator it = eVar.d.iterator();
-            while (it.hasNext()) {
-                ((qh.d) it.next()).u();
-            }
-        }
-        eVar.f43377c++;
-        r0.c();
-        return r0.a(f7.d(), e.d());
+    @Override
+    public final float b() {
+        return this.e.getInterpolatedFraction();
+    }
+
+    @Override
+    public final int c() {
+        return this.e.getTypeMask();
+    }
+
+    @Override
+    public final void d(float f7) {
+        this.e.setFraction(f7);
     }
 }

@@ -1,15 +1,20 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-public interface lb0 {
-    void g(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10);
+public final class lb0 extends a6 {
+    public final ob0 f28192a;
 
-    Paint.FontMetricsInt i();
+    public lb0(ob0 ob0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
+        super(document, fontMetricsInt);
+        this.f28192a = ob0Var;
+    }
 
-    void m(TLRPC.TL_document tL_document, String str, Object obj);
-
-    void r(int i10, int i11, CharSequence charSequence, boolean z10);
-
-    void y(String str);
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = i14 + i12;
+        int i16 = this.measuredSize;
+        this.f28192a.f28910c.set((int) f7, (i15 - i16) / 2, (int) (f7 + i16), (i15 + i16) / 2);
+    }
 }

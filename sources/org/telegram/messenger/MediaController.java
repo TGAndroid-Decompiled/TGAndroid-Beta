@@ -75,15 +75,15 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.da1;
-import org.telegram.ui.Components.df0;
-import org.telegram.ui.Components.f81;
-import org.telegram.ui.Components.fg0;
-import org.telegram.ui.Components.hv;
-import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.a81;
+import org.telegram.ui.Components.cv;
+import org.telegram.ui.Components.u91;
+import org.telegram.ui.Components.we0;
+import org.telegram.ui.Components.x71;
+import org.telegram.ui.Components.yf0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.fo;
+import org.telegram.ui.sn;
 import org.xmlpull.v1.XmlPullParserException;
 public class MediaController implements AudioManager.OnAudioFocusChangeListener, NotificationCenter.NotificationCenterDelegate, SensorEventListener {
     private static final int AUDIO_FOCUSED = 2;
@@ -126,7 +126,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private Activity baseActivity;
     private boolean callInProgress;
     private int countLess;
-    private org.telegram.ui.n4 currentAspectRatioFrameLayout;
+    private org.telegram.ui.o4 currentAspectRatioFrameLayout;
     private float currentAspectRatioFrameLayoutRatio;
     private boolean currentAspectRatioFrameLayoutReady;
     private int currentAspectRatioFrameLayoutRotation;
@@ -140,7 +140,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private View feedbackView;
     private ByteBuffer fileBuffer;
     private DispatchQueue fileEncodingQueue;
-    private org.telegram.ui.ActionBar.m2 flagSecureFragment;
+    private org.telegram.ui.ActionBar.n2 flagSecureFragment;
     private boolean forceLoopCurrentPlaylist;
     private MessageObject goingToShowMessageObject;
     private Sensor gravitySensor;
@@ -181,7 +181,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private Sensor proximitySensor;
     private boolean proximityTouched;
     private PowerManager.WakeLock proximityWakeLock;
-    private fo raiseChat;
+    private sn raiseChat;
     private boolean raiseToEarRecord;
     private int raisedToBack;
     private int raisedToTop;
@@ -219,7 +219,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private StopMediaObserverRunnable stopMediaObserverRunnable;
     private long timeSinceRaise;
     private boolean useFrontSpeaker;
-    private i81 videoPlayer;
+    private a81 videoPlayer;
     private ArrayList<MessageObject> voiceMessagesPlaylist;
     private SparseArray<MessageObject> voiceMessagesPlaylistMap;
     private boolean voiceMessagesPlaylistUnread;
@@ -244,8 +244,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public boolean isSilent = false;
     private boolean isPaused = false;
     private boolean wasPlayingAudioBeforePause = false;
-    private i81 audioPlayer = null;
-    private i81 emojiSoundPlayer = null;
+    private a81 audioPlayer = null;
+    private a81 emojiSoundPlayer = null;
     private int emojiSoundPlayerNum = 0;
     private float currentPlaybackSpeed = 1.0f;
     private float currentMusicPlaybackSpeed = 1.0f;
@@ -398,7 +398,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     if (read != byteBuffer.capacity()) {
                         z10 = true;
                     }
-                    MediaController.this.fileEncodingQueue.postRunnable(new q6(this, byteBuffer, z10, 0));
+                    MediaController.this.fileEncodingQueue.postRunnable(new p6(this, byteBuffer, z10, 0));
                     MediaController.this.recordQueue.postRunnable(MediaController.this.recordRunnable);
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -423,8 +423,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         public void lambda$onCallStateChanged$0(int i10) {
-            da1 da1Var;
-            da1 da1Var2;
+            u91 u91Var;
+            u91 u91Var2;
             if (i10 == 1) {
                 MediaController mediaController = MediaController.this;
                 if (mediaController.isPlayingMessage(mediaController.playingMessageObject) && !MediaController.this.isMessagePaused()) {
@@ -433,21 +433,21 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 } else if (MediaController.this.recordStartRunnable != null || MediaController.this.recordingAudio != null) {
                     MediaController.this.stopRecording(2, false, 0, false, 0L);
                 }
-                hv hvVar = hv.S;
-                if (hvVar != null && (da1Var2 = hvVar.f25406c) != null && da1Var2.f24064w) {
-                    da1Var2.f24046a.B();
-                    da1Var2.n();
-                    da1Var2.f24055f0.d(true, true);
+                cv cvVar = cv.S;
+                if (cvVar != null && (u91Var2 = cvVar.f25372c) != null && u91Var2.f30944w) {
+                    u91Var2.f30926a.B();
+                    u91Var2.n();
+                    u91Var2.f30935f0.d(true, true);
                 }
                 MediaController.this.callInProgress = true;
             } else if (i10 == 0) {
                 MediaController.this.callInProgress = false;
             } else if (i10 == 2) {
-                hv hvVar2 = hv.S;
-                if (hvVar2 != null && (da1Var = hvVar2.f25406c) != null && da1Var.f24064w) {
-                    da1Var.f24046a.B();
-                    da1Var.n();
-                    da1Var.f24055f0.d(true, true);
+                cv cvVar2 = cv.S;
+                if (cvVar2 != null && (u91Var = cvVar2.f25372c) != null && u91Var.f30944w) {
+                    u91Var.f30926a.B();
+                    u91Var.n();
+                    u91Var.f30935f0.d(true, true);
                 }
                 MediaController.this.callInProgress = true;
             }
@@ -455,7 +455,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         @Override
         public void onCallStateChanged(int i10, String str) {
-            AndroidUtilities.runOnUIThread(new s6(this, i10, 0));
+            AndroidUtilities.runOnUIThread(new r6(this, i10, 0));
         }
     }
 
@@ -535,7 +535,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public class AnonymousClass7 implements f81 {
+    public class AnonymousClass7 implements x71 {
         final boolean val$destroyAtEnd;
         final MessageObject val$messageObject;
         final int[] val$playCount;
@@ -554,7 +554,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         @Override
-        public void onError(i81 i81Var, Exception exc) {
+        public void onError(a81 a81Var, Exception exc) {
             FileLog.e(exc);
         }
 
@@ -598,10 +598,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             }
                         }
                         if (MediaController.this.pipRoundVideoView != null) {
-                            if (MediaController.this.pipRoundVideoView.f22902c.getSurfaceTexture() != surfaceTexture) {
-                                MediaController.this.pipRoundVideoView.f22902c.setSurfaceTexture(surfaceTexture);
+                            if (MediaController.this.pipRoundVideoView.f24257c.getSurfaceTexture() != surfaceTexture) {
+                                MediaController.this.pipRoundVideoView.f24257c.setSurfaceTexture(surfaceTexture);
                             }
-                            MediaController.this.videoPlayer.V(MediaController.this.pipRoundVideoView.f22902c);
+                            MediaController.this.videoPlayer.V(MediaController.this.pipRoundVideoView.f24257c);
                         }
                     }
                     MediaController.this.pipSwitchingState = 0;
@@ -657,7 +657,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public class AnonymousClass8 implements f81 {
+    public class AnonymousClass8 implements x71 {
         final int val$tag;
 
         public AnonymousClass8(int i10) {
@@ -682,7 +682,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         @Override
         public void onStateChanged(boolean z10, int i10) {
-            AndroidUtilities.runOnUIThread(new u6(this, this.val$tag, i10, 0));
+            AndroidUtilities.runOnUIThread(new t6(this, this.val$tag, i10, 0));
         }
 
         @Override
@@ -707,7 +707,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         @Override
-        public void onError(i81 i81Var, Exception exc) {
+        public void onError(a81 a81Var, Exception exc) {
         }
 
         @Override
@@ -715,7 +715,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public class AnonymousClass9 implements f81 {
+    public class AnonymousClass9 implements x71 {
         final boolean val$destroyAtEnd;
         final MessageObject val$messageObject;
         final int[] val$playCount;
@@ -734,7 +734,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         @Override
-        public void onError(i81 i81Var, Exception exc) {
+        public void onError(a81 a81Var, Exception exc) {
             FileLog.e(exc);
         }
 
@@ -778,10 +778,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             }
                         }
                         if (MediaController.this.pipRoundVideoView != null) {
-                            if (MediaController.this.pipRoundVideoView.f22902c.getSurfaceTexture() != surfaceTexture) {
-                                MediaController.this.pipRoundVideoView.f22902c.setSurfaceTexture(surfaceTexture);
+                            if (MediaController.this.pipRoundVideoView.f24257c.getSurfaceTexture() != surfaceTexture) {
+                                MediaController.this.pipRoundVideoView.f24257c.setSurfaceTexture(surfaceTexture);
                             }
-                            MediaController.this.videoPlayer.V(MediaController.this.pipRoundVideoView.f22902c);
+                            MediaController.this.videoPlayer.V(MediaController.this.pipRoundVideoView.f24257c);
                         }
                     }
                     MediaController.this.pipSwitchingState = 0;
@@ -877,7 +877,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public String author;
         public int duration;
         public String genre;
-        public long f16393id;
+        public long f17788id;
         public MessageObject messageObject;
         public String path;
         public String title;
@@ -1223,11 +1223,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         private HashMap<String, MessageObject> loadingMessageObjects = new HashMap<>();
         private ArrayList<MessageObject> messageObjects;
         private MessagesStorage.IntCallback onFinishRunnable;
-        private org.telegram.ui.ActionBar.a2 progressDialog;
+        private org.telegram.ui.ActionBar.b2 progressDialog;
         private CountDownLatch waitingForFile;
 
         public MediaLoader(Context context, AccountInstance accountInstance, ArrayList<MessageObject> arrayList, MessagesStorage.IntCallback intCallback) {
-            bi.b bVar;
+            ci.b bVar;
             this.currentAccount = accountInstance;
             this.messageObjects = arrayList;
             this.onFinishRunnable = intCallback;
@@ -1236,17 +1236,17 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.currentAccount.getNotificationCenter().addObserver(this, NotificationCenter.fileLoadProgressChanged);
             this.currentAccount.getNotificationCenter().addObserver(this, NotificationCenter.fileLoadFailed);
             if (PhotoViewer.t1().R1()) {
-                bVar = new bi.b();
+                bVar = new ci.b();
             } else {
                 bVar = null;
             }
-            org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(context, 2, bVar);
-            this.progressDialog = a2Var;
-            a2Var.m(LocaleController.getString(R.string.Loading));
+            org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(context, 2, bVar);
+            this.progressDialog = b2Var;
+            b2Var.m(LocaleController.getString(R.string.Loading));
             this.progressDialog.setCancelable(true);
-            org.telegram.ui.ActionBar.a2 a2Var2 = this.progressDialog;
-            a2Var2.H = true;
-            a2Var2.setOnCancelListener(new z5(this, 3));
+            org.telegram.ui.ActionBar.b2 b2Var2 = this.progressDialog;
+            b2Var2.H = true;
+            b2Var2.setOnCancelListener(new y5(this, 3));
         }
 
         private void addMessageToLoad(MessageObject messageObject) {
@@ -1257,7 +1257,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (!this.loadingMessageObjects.isEmpty()) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new w6(this, 4));
+            AndroidUtilities.runOnUIThread(new v6(this, 4));
         }
 
         private boolean copyFile(java.io.File r28, java.io.File r29, java.lang.String r30) {
@@ -1296,7 +1296,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     this.finished = true;
                 }
                 if (this.onFinishRunnable != null) {
-                    AndroidUtilities.runOnUIThread(new w6(this, 3));
+                    AndroidUtilities.runOnUIThread(new v6(this, 3));
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -1549,7 +1549,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             int i10 = r22 + r62;
             if (i10 > 0) {
                 this.waitingForFile = new CountDownLatch(i10);
-                AndroidUtilities.runOnUIThread(new x6(this, (boolean) r22, closestPhotoSizeWithSize, messageObject, media.photo, (boolean) r62, media.document));
+                AndroidUtilities.runOnUIThread(new w6(this, (boolean) r22, closestPhotoSizeWithSize, messageObject, media.photo, (boolean) r62, media.document));
                 this.waitingForFile.await();
             }
             if (!this.cancelled) {
@@ -1631,7 +1631,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                     float size = (100.0f / this.messageObjects.size()) + this.finishedProgress;
                     this.finishedProgress = size;
-                    AndroidUtilities.runOnUIThread(new v6(this, (int) size, 3));
+                    AndroidUtilities.runOnUIThread(new u6(this, (int) size, 3));
                     return true;
                 }
             }
@@ -1643,7 +1643,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (i10 != NotificationCenter.fileLoaded && i10 != NotificationCenter.fileLoadFailed) {
                 if (i10 == NotificationCenter.fileLoadProgressChanged) {
                     if (this.loadingMessageObjects.containsKey((String) objArr[0])) {
-                        AndroidUtilities.runOnUIThread(new v6(this, (int) a1.g.d(((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()), this.messageObjects.size(), 100.0f, this.finishedProgress), 0));
+                        AndroidUtilities.runOnUIThread(new u6(this, (int) a1.g.d(((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()), this.messageObjects.size(), 100.0f, this.finishedProgress), 0));
                         return;
                     }
                     return;
@@ -1656,8 +1656,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         public void start() {
-            AndroidUtilities.runOnUIThread(new w6(this, 0), 250L);
-            new Thread(new w6(this, 1)).start();
+            AndroidUtilities.runOnUIThread(new v6(this, 0), 250L);
+            new Thread(new v6(this, 1)).start();
         }
     }
 
@@ -1712,7 +1712,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 return;
             }
             TLRPC.TL_messages_reportMusicListen tL_messages_reportMusicListen = new TLRPC.TL_messages_reportMusicListen();
-            tL_messages_reportMusicListen.f19021id = this.audio;
+            tL_messages_reportMusicListen.f20377id = this.audio;
             tL_messages_reportMusicListen.listened_duration = (int) Math.round(getTotalListened() / 1000.0d);
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_reportMusicListen, null);
             this.rangeStart = -9223372036854775807L;
@@ -1727,14 +1727,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.audio = null;
         }
 
-        public b2.e1 getPlayerListener(final i2.q qVar) {
-            return new b2.e1() {
+        public b2.d1 getPlayerListener(final i2.p pVar) {
+            return new b2.d1() {
                 {
                     MusicListenReporter.this = this;
                 }
 
                 private void closeRange() {
-                    long M0 = ((i2.h0) qVar).M0();
+                    long M0 = ((i2.g0) pVar).M0();
                     if (MusicListenReporter.this.rangeStart != -9223372036854775807L && M0 > MusicListenReporter.this.rangeStart) {
                         MusicListenReporter musicListenReporter = MusicListenReporter.this;
                         musicListenReporter.listenedRange(musicListenReporter.rangeStart, M0);
@@ -1749,7 +1749,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 @Override
                 public void onIsPlayingChanged(boolean z10) {
                     if (z10) {
-                        MusicListenReporter.this.rangeStart = ((i2.h0) qVar).M0();
+                        MusicListenReporter.this.rangeStart = ((i2.g0) pVar).M0();
                     } else {
                         closeRange();
                     }
@@ -1770,13 +1770,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
 
                 @Override
-                public void onPositionDiscontinuity(b2.f1 f1Var, b2.f1 f1Var2, int i10) {
+                public void onPositionDiscontinuity(b2.e1 e1Var, b2.e1 e1Var2, int i10) {
                     if (i10 == 1) {
                         if (MusicListenReporter.this.rangeStart != -9223372036854775807L) {
                             MusicListenReporter musicListenReporter = MusicListenReporter.this;
-                            musicListenReporter.listenedRange(musicListenReporter.rangeStart, f1Var.f2141f);
+                            musicListenReporter.listenedRange(musicListenReporter.rangeStart, e1Var.f3737f);
                         }
-                        MusicListenReporter.this.rangeStart = ((b2.h) qVar).j0() ? f1Var2.f2141f : -9223372036854775807L;
+                        MusicListenReporter.this.rangeStart = ((ai.c1) pVar).j0() ? e1Var2.f3737f : -9223372036854775807L;
                         AndroidUtilities.cancelRunOnUIThread(MusicListenReporter.this.reportRunnable);
                     }
                 }
@@ -1794,10 +1794,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
 
                 @Override
-                public void onAvailableCommandsChanged(b2.c1 c1Var) {
+                public void onAvailableCommandsChanged(b2.b1 b1Var) {
                 }
 
-                public void onDeviceInfoChanged(b2.q qVar2) {
+                public void onDeviceInfoChanged(b2.p pVar2) {
                 }
 
                 @Override
@@ -1813,15 +1813,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
 
                 @Override
-                public void onMediaMetadataChanged(b2.s0 s0Var) {
+                public void onMediaMetadataChanged(b2.r0 r0Var) {
                 }
 
                 @Override
-                public void onMetadata(b2.u0 u0Var) {
+                public void onMetadata(b2.t0 t0Var) {
                 }
 
                 @Override
-                public void onPlaybackParametersChanged(b2.a1 a1Var) {
+                public void onPlaybackParametersChanged(b2.z0 z0Var) {
                 }
 
                 @Override
@@ -1833,15 +1833,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
 
                 @Override
-                public void onPlayerError(b2.z0 z0Var) {
+                public void onPlayerError(b2.y0 y0Var) {
                 }
 
                 @Override
-                public void onPlayerErrorChanged(b2.z0 z0Var) {
+                public void onPlayerErrorChanged(b2.y0 y0Var) {
                 }
 
                 @Override
-                public void onPlaylistMetadataChanged(b2.s0 s0Var) {
+                public void onPlaylistMetadataChanged(b2.r0 r0Var) {
                 }
 
                 @Override
@@ -1863,15 +1863,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
 
                 @Override
-                public void onTrackSelectionParametersChanged(b2.u1 u1Var) {
+                public void onTrackSelectionParametersChanged(b2.t1 t1Var) {
                 }
 
                 @Override
-                public void onTracksChanged(b2.w1 w1Var) {
+                public void onTracksChanged(b2.v1 v1Var) {
                 }
 
                 @Override
-                public void onVideoSizeChanged(b2.b2 b2Var) {
+                public void onVideoSizeChanged(b2.a2 a2Var) {
                 }
 
                 @Override
@@ -1882,11 +1882,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
 
                 @Override
-                public void onEvents(b2.g1 g1Var, b2.d1 d1Var) {
+                public void onEvents(b2.f1 f1Var, b2.c1 c1Var) {
                 }
 
                 @Override
-                public void onMediaItemTransition(b2.p0 p0Var, int i10) {
+                public void onMediaItemTransition(b2.o0 o0Var, int i10) {
                 }
 
                 @Override
@@ -1903,14 +1903,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
 
                 @Override
-                public void onTimelineChanged(b2.p1 p1Var, int i10) {
+                public void onTimelineChanged(b2.o1 o1Var, int i10) {
                 }
             };
         }
 
         public void setup(TLRPC.InputDocument inputDocument) {
             AndroidUtilities.cancelRunOnUIThread(this.reportRunnable);
-            if (inputDocument != null && inputDocument.f18928id == 0) {
+            if (inputDocument != null && inputDocument.f20284id == 0) {
                 inputDocument = null;
             }
             this.audio = inputDocument;
@@ -2071,16 +2071,16 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         k3.c cVar = null;
                         try {
                             dVar = k3.d.a(b10);
-                        } catch (b2.x0 | NumberFormatException | XmlPullParserException unused) {
+                        } catch (b2.w0 | NumberFormatException | XmlPullParserException unused) {
                             e2.a.l("MotionPhotoXmpParser", "Ignoring unexpected XMP metadata");
                             dVar = null;
                         }
                         if (dVar != null) {
-                            e9.x1 x1Var = (e9.x1) dVar.f507c;
+                            e9.x1 x1Var = (e9.x1) dVar.f506c;
                             k3.c cVar2 = null;
                             for (int i10 = 0; i10 < x1Var.d; i10++) {
                                 k3.c cVar3 = (k3.c) x1Var.get(i10);
-                                String str = cVar3.f14074b;
+                                String str = cVar3.f14869b;
                                 if ("Primary".equalsIgnoreCase(str)) {
                                     cVar = cVar3;
                                 } else if ("MotionPhoto".equalsIgnoreCase(str)) {
@@ -2088,13 +2088,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                                 }
                             }
                             if (cVar != null && cVar2 != null) {
-                                long j10 = cVar2.f14075c;
+                                long j10 = cVar2.f14870c;
                                 if (j10 > 0) {
                                     try {
                                         this.isVideo = true;
                                         this.isLivePhoto = true;
                                         this.livePhotoVideoOffset = new File(this.path).length() - j10;
-                                        this.livePhotoTimestampUs = dVar.f506b;
+                                        this.livePhotoTimestampUs = dVar.f505b;
                                     } catch (Exception e) {
                                         FileLog.e(e);
                                     }
@@ -2110,7 +2110,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 sb2.append(this.isLivePhoto);
                 sb2.append(" in ");
                 sb2.append(System.currentTimeMillis() - currentTimeMillis);
-                i2.d.v("ms", sb2);
+                i0.a.v("ms", sb2);
                 return this.isLivePhoto;
             }
             return this.isLivePhoto;
@@ -2185,7 +2185,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public static class PlaylistGlobalSearchParams {
         final long dialogId;
         public boolean endReached;
-        final hg.p0 filter;
+        final hg.o0 filter;
         public int folderId;
         final long maxDate;
         final long minDate;
@@ -2195,8 +2195,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public long topicId;
         public int totalCount;
 
-        public PlaylistGlobalSearchParams(String str, long j10, long j11, long j12, hg.p0 p0Var) {
-            this.filter = p0Var;
+        public PlaylistGlobalSearchParams(String str, long j10, long j11, long j12, hg.o0 o0Var) {
+            this.filter = o0Var;
             this.query = str;
             this.dialogId = j10;
             this.minDate = j11;
@@ -2211,7 +2211,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public float blurExcludeSize;
         public int blurType;
         public float contrastValue;
-        public fg0 curvesToolValue = new fg0();
+        public yf0 curvesToolValue = new yf0();
         public float enhanceValue;
         public float exposureValue;
         public float fadeValue;
@@ -2249,11 +2249,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.grainValue = inputSerializedData.readFloat(z10);
             this.blurType = inputSerializedData.readInt32(z10);
             this.sharpenValue = inputSerializedData.readFloat(z10);
-            fg0 fg0Var = this.curvesToolValue;
-            fg0Var.f24725a.c(inputSerializedData, z10);
-            fg0Var.f24726b.c(inputSerializedData, z10);
-            fg0Var.f24727c.c(inputSerializedData, z10);
-            fg0Var.d.c(inputSerializedData, z10);
+            yf0 yf0Var = this.curvesToolValue;
+            yf0Var.f32619a.c(inputSerializedData, z10);
+            yf0Var.f32620b.c(inputSerializedData, z10);
+            yf0Var.f32621c.c(inputSerializedData, z10);
+            yf0Var.d.c(inputSerializedData, z10);
             this.blurExcludeSize = inputSerializedData.readFloat(z10);
             if (inputSerializedData.readInt32(z10) == 1450380236) {
                 this.blurExcludePoint = null;
@@ -2284,11 +2284,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             outputSerializedData.writeFloat(this.grainValue);
             outputSerializedData.writeInt32(this.blurType);
             outputSerializedData.writeFloat(this.sharpenValue);
-            fg0 fg0Var = this.curvesToolValue;
-            fg0Var.f24725a.d(outputSerializedData);
-            fg0Var.f24726b.d(outputSerializedData);
-            fg0Var.f24727c.d(outputSerializedData);
-            fg0Var.d.d(outputSerializedData);
+            yf0 yf0Var = this.curvesToolValue;
+            yf0Var.f32619a.d(outputSerializedData);
+            yf0Var.f32620b.d(outputSerializedData);
+            yf0Var.f32621c.d(outputSerializedData);
+            yf0Var.d.d(outputSerializedData);
             outputSerializedData.writeFloat(this.blurExcludeSize);
             if (this.blurExcludePoint == null) {
                 outputSerializedData.writeInt32(1450380236);
@@ -2321,7 +2321,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public int date;
         public TLRPC.Document document;
         public int height;
-        public String f16394id;
+        public String f17789id;
         public String imageUrl;
         public TLRPC.BotInlineResult inlineResult;
         public HashMap<String, String> params;
@@ -2373,7 +2373,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         public SearchImage clone() {
             SearchImage searchImage = new SearchImage();
-            searchImage.f16394id = this.f16394id;
+            searchImage.f17789id = this.f17789id;
             searchImage.imageUrl = this.imageUrl;
             searchImage.thumbUrl = this.thumbUrl;
             searchImage.width = this.width;
@@ -2501,10 +2501,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         DispatchQueue dispatchQueue2 = new DispatchQueue("fileEncodingQueue");
         this.fileEncodingQueue = dispatchQueue2;
         dispatchQueue2.setPriority(10);
-        this.recordQueue.postRunnable(new c6(this, 6));
-        Utilities.globalQueue.postRunnable(new c6(this, 7));
+        this.recordQueue.postRunnable(new b6(this, 6));
+        Utilities.globalQueue.postRunnable(new b6(this, 7));
         this.fileBuffer = ByteBuffer.allocateDirect(1920);
-        AndroidUtilities.runOnUIThread(new c6(this, 8));
+        AndroidUtilities.runOnUIThread(new b6(this, 8));
         if (Build.VERSION.SDK_INT > 28) {
             str = "date_modified";
         } else {
@@ -2545,7 +2545,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     private static String buildMotionPhotoXmp(long j10) {
-        return org.telegram.ui.Cells.c1.h(j10, "<?xpacket begin=\"\ufeff\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?><x:xmpmeta xmlns:x=\"adobe:ns:meta/\"><rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"><rdf:Description rdf:about=\"\" xmlns:GCamera=\"http://ns.google.com/photos/1.0/camera/\" xmlns:Container=\"http://ns.google.com/photos/1.0/container/\" xmlns:Item=\"http://ns.google.com/photos/1.0/container/item/\" GCamera:MotionPhoto=\"1\" GCamera:MotionPhotoVersion=\"1\" GCamera:MotionPhotoPresentationTimestampUs=\"0\"><Container:Directory><rdf:Seq><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"image/jpeg\" Item:Semantic=\"Primary\" Item:Length=\"0\" Item:Padding=\"0\"/></rdf:li><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"video/mp4\" Item:Semantic=\"MotionPhoto\" Item:Length=\"", "\" Item:Padding=\"0\"/></rdf:li></rdf:Seq></Container:Directory></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end=\"w\"?>");
+        return r.c.f(j10, "<?xpacket begin=\"\ufeff\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?><x:xmpmeta xmlns:x=\"adobe:ns:meta/\"><rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"><rdf:Description rdf:about=\"\" xmlns:GCamera=\"http://ns.google.com/photos/1.0/camera/\" xmlns:Container=\"http://ns.google.com/photos/1.0/container/\" xmlns:Item=\"http://ns.google.com/photos/1.0/container/item/\" GCamera:MotionPhoto=\"1\" GCamera:MotionPhotoVersion=\"1\" GCamera:MotionPhotoPresentationTimestampUs=\"0\"><Container:Directory><rdf:Seq><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"image/jpeg\" Item:Semantic=\"Primary\" Item:Length=\"0\" Item:Padding=\"0\"/></rdf:li><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"video/mp4\" Item:Semantic=\"MotionPhoto\" Item:Length=\"", "\" Item:Padding=\"0\"/></rdf:li></rdf:Seq></Container:Directory></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end=\"w\"?>");
     }
 
     private void buildShuffledPlayList() {
@@ -2629,7 +2629,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public static void checkGallery() {
         AlbumEntry albumEntry;
         if (Build.VERSION.SDK_INT >= 24 && (albumEntry = allPhotosAlbumEntry) != null) {
-            Utilities.globalQueue.postRunnable(new fi.r2(albumEntry.photos.size(), 3), 2000L);
+            Utilities.globalQueue.postRunnable(new gi.l2(albumEntry.photos.size(), 3), 2000L);
         }
     }
 
@@ -2763,15 +2763,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.savedMusicPlaylistState = null;
     }
 
-    public void completeAudioRecordingV2(qi.n nVar) {
+    public void completeAudioRecordingV2(ri.m mVar) {
         byte[] bArr;
         TLRPC.TL_document tL_document;
         int i10;
-        File file = nVar.f43418a;
+        File file = mVar.f45842a;
         this.recordingAudioFile = file;
-        long j10 = nVar.f43419b;
+        long j10 = mVar.f45843b;
         this.recordTimeCount = j10;
-        byte[] bArr2 = nVar.f43420c;
+        byte[] bArr2 = mVar.f45844c;
         String str = null;
         if (bArr2 == null) {
             bArr = null;
@@ -3003,8 +3003,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
 
             @Override
-            public void onCompleted(qi.n nVar) {
-                MediaController.this.completeAudioRecordingV2(nVar);
+            public void onCompleted(ri.m mVar) {
+                MediaController.this.completeAudioRecordingV2(mVar);
             }
 
             @Override
@@ -3220,7 +3220,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     private static int getVideoBitrateWithFactor(float f7) {
-        return (int) com.google.android.gms.internal.play_billing.k3.C(f7, 2000.0f, 1000.0f, 1.13f);
+        return (int) com.google.android.gms.internal.cast.a6.C(f7, 2000.0f, 1000.0f, 1.13f);
     }
 
     public static native byte[] getWaveform(String str);
@@ -3322,14 +3322,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$checkGallery$1(int):void");
     }
 
-    public void lambda$cleanupPlayer$10(i81 i81Var, ValueAnimator valueAnimator) {
+    public void lambda$cleanupPlayer$10(a81 a81Var, ValueAnimator valueAnimator) {
         float f7;
         if (this.audioFocus != 1) {
             f7 = 1.0f;
         } else {
             f7 = 0.2f;
         }
-        i81Var.W(((Float) valueAnimator.getAnimatedValue()).floatValue() * f7);
+        a81Var.W(((Float) valueAnimator.getAnimatedValue()).floatValue() * f7);
     }
 
     public void lambda$didWriteData$60(boolean z10, boolean z11, VideoConvertMessage videoConvertMessage, File file, float f7, long j10, boolean z12, long j11) {
@@ -3389,13 +3389,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
             tL_messages_messages.messages.add(remove.messageOwner);
             MessagesStorage.getInstance(remove.currentAccount).putMessages((TLRPC.messages_Messages) tL_messages_messages, remove.getDialogId(), -1, 0, false, messageObject.scheduled ? 1 : 0, 0L);
-            NotificationCenter.getInstance(remove.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(remove.getDialogId()), g0.k(remove));
+            NotificationCenter.getInstance(remove.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(remove.getDialogId()), q.k(remove));
         }
     }
 
     public void lambda$generateWaveform$40(String str, String str2, MessageObject messageObject) {
         try {
-            AndroidUtilities.runOnUIThread(new tk(this, str2, getWaveform(str), messageObject, 12));
+            AndroidUtilities.runOnUIThread(new lk(this, str2, getWaveform(str), messageObject, 12));
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -3456,7 +3456,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void lambda$loadMoreMusic$12(int i10, int i11, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new fi.x4(i10, i11, this, tLObject, tL_error));
+        AndroidUtilities.runOnUIThread(new gi.m4(i10, i11, this, tLObject, tL_error));
     }
 
     public void lambda$new$0(int i10) {
@@ -3563,21 +3563,21 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         try {
             int i10 = this.emojiSoundPlayerNum + 1;
             this.emojiSoundPlayerNum = i10;
-            i81 i81Var = this.emojiSoundPlayer;
-            if (i81Var != null) {
-                i81Var.H();
+            a81 a81Var = this.emojiSoundPlayer;
+            if (a81Var != null) {
+                a81Var.H();
             }
-            i81 i81Var2 = new i81(false, false);
-            this.emojiSoundPlayer = i81Var2;
-            i81Var2.J = new AnonymousClass8(i10);
+            a81 a81Var2 = new a81(false, false);
+            this.emojiSoundPlayer = a81Var2;
+            a81Var2.J = new AnonymousClass8(i10);
             this.emojiSoundPlayer.D(Uri.fromFile(file), "other");
             this.emojiSoundPlayer.S(3);
             this.emojiSoundPlayer.C();
         } catch (Exception e) {
             FileLog.e(e);
-            i81 i81Var3 = this.emojiSoundPlayer;
-            if (i81Var3 != null) {
-                i81Var3.H();
+            a81 a81Var3 = this.emojiSoundPlayer;
+            if (a81Var3 != null) {
+                a81Var3.H();
                 this.emojiSoundPlayer = null;
             }
         }
@@ -3590,7 +3590,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public void lambda$playEmojiSound$19(MessagesController.EmojiSound emojiSound, AccountInstance accountInstance, boolean z10) {
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
         tL_document.access_hash = emojiSound.accessHash;
-        tL_document.f18922id = emojiSound.f16401id;
+        tL_document.f20278id = emojiSound.f17796id;
         tL_document.mime_type = "sound/ogg";
         tL_document.file_reference = emojiSound.fileReference;
         tL_document.dc_id = accountInstance.getConnectionsManager().getCurrentDatacenterId();
@@ -3651,7 +3651,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordingAudio = tL_document;
         this.recordingGuid = i10;
         tL_document.dc_id = Integer.MIN_VALUE;
-        tL_document.f18922id = draftVoice.f16395id;
+        tL_document.f20278id = draftVoice.f17790id;
         tL_document.user_id = UserConfig.getInstance(i11).getClientUserId();
         TLRPC.TL_document tL_document2 = this.recordingAudio;
         tL_document2.mime_type = "audio/ogg";
@@ -3692,7 +3692,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.recordReplyingTopMsg = messageObject;
             this.recordReplyingStory = storyItem;
             this.recordSendMessageChatArguments = this.recordSendMessageChatArguments;
-            AndroidUtilities.runOnUIThread(new tk(this, this.recordingAudioFile, this.recordingAudio, draftVoice, 11));
+            AndroidUtilities.runOnUIThread(new lk(this, this.recordingAudioFile, this.recordingAudio, draftVoice, 11));
         } catch (Exception e) {
             FileLog.e(e);
             this.recordingAudio = null;
@@ -3706,7 +3706,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 FileLog.e(e7);
             }
             setBluetoothScoOn(false);
-            AndroidUtilities.runOnUIThread(new bi.m7(this, i11, j10, 2));
+            AndroidUtilities.runOnUIThread(new ai.yb(this, i11, j10, 3));
         }
     }
 
@@ -3719,32 +3719,32 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         zArr[0] = true;
     }
 
-    public static void lambda$saveFile$46(boolean[] zArr, org.telegram.ui.ActionBar.a2 a2Var) {
+    public static void lambda$saveFile$46(boolean[] zArr, org.telegram.ui.ActionBar.b2 b2Var) {
         if (!zArr[0]) {
-            a2Var.show();
+            b2Var.show();
         }
     }
 
-    public static void lambda$saveFile$47(org.telegram.ui.ActionBar.a2 a2Var) {
+    public static void lambda$saveFile$47(org.telegram.ui.ActionBar.b2 b2Var) {
         try {
-            a2Var.dismiss();
+            b2Var.dismiss();
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
-    public static void lambda$saveFile$48(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+    public static void lambda$saveFile$48(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         try {
-            a2Var.n(i10);
+            b2Var.n(i10);
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
-    public static void lambda$saveFile$50(org.telegram.ui.ActionBar.a2 a2Var, boolean[] zArr) {
+    public static void lambda$saveFile$50(org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr) {
         try {
-            if (a2Var.isShowing()) {
-                a2Var.dismiss();
+            if (b2Var.isShowing()) {
+                b2Var.dismiss();
             } else {
                 zArr[0] = true;
             }
@@ -3753,24 +3753,24 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void lambda$saveFile$51(int r23, java.io.File r24, java.lang.String r25, org.telegram.ui.ActionBar.a2 r26, boolean[] r27, java.lang.String r28, org.telegram.messenger.Utilities.Callback r29, boolean[] r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$saveFile$51(int, java.io.File, java.lang.String, org.telegram.ui.ActionBar.a2, boolean[], java.lang.String, org.telegram.messenger.Utilities$Callback, boolean[]):void");
+    public static void lambda$saveFile$51(int r23, java.io.File r24, java.lang.String r25, org.telegram.ui.ActionBar.b2 r26, boolean[] r27, java.lang.String r28, org.telegram.messenger.Utilities.Callback r29, boolean[] r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$saveFile$51(int, java.io.File, java.lang.String, org.telegram.ui.ActionBar.b2, boolean[], java.lang.String, org.telegram.messenger.Utilities$Callback, boolean[]):void");
     }
 
     public static void lambda$saveFile$52(boolean[] zArr, DialogInterface dialogInterface) {
         zArr[0] = true;
     }
 
-    public static void lambda$saveFile$53(boolean[] zArr, org.telegram.ui.ActionBar.a2 a2Var) {
+    public static void lambda$saveFile$53(boolean[] zArr, org.telegram.ui.ActionBar.b2 b2Var) {
         if (!zArr[0]) {
-            a2Var.show();
+            b2Var.show();
         }
     }
 
-    public static void lambda$saveFile$55(org.telegram.ui.ActionBar.a2 a2Var, boolean[] zArr) {
+    public static void lambda$saveFile$55(org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr) {
         try {
-            if (a2Var.isShowing()) {
-                a2Var.dismiss();
+            if (b2Var.isShowing()) {
+                b2Var.dismiss();
             } else {
                 zArr[0] = true;
             }
@@ -3779,7 +3779,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static void lambda$saveFile$56(File file, File file2, boolean[] zArr, Utilities.Callback callback, org.telegram.ui.ActionBar.a2 a2Var, boolean[] zArr2) {
+    public static void lambda$saveFile$56(File file, File file2, boolean[] zArr, Utilities.Callback callback, org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr2) {
         Uri uri = null;
         boolean z10 = false;
         try {
@@ -3832,10 +3832,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             FileLog.e(e);
         }
         if (z10 && callback != null) {
-            AndroidUtilities.runOnUIThread(new e6(callback, uri, 1));
+            AndroidUtilities.runOnUIThread(new d6(callback, uri, 1));
         }
-        if (a2Var != null) {
-            AndroidUtilities.runOnUIThread(new a6(a2Var, zArr2, 3));
+        if (b2Var != null) {
+            AndroidUtilities.runOnUIThread(new z5(b2Var, zArr2, 3));
         }
     }
 
@@ -3915,26 +3915,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public void lambda$startRecording$38(final int i10, final int i11, long j10, long j11, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) {
         if (this.audioRecorder != null) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final MediaController f17698b;
+                public final MediaController f19035b;
 
                 {
-                    this.f17698b = this;
+                    this.f19035b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r4) {
                         case 0:
-                            this.f17698b.lambda$startRecording$34(i10, i11);
+                            this.f19035b.lambda$startRecording$34(i10, i11);
                             return;
                         case 1:
-                            this.f17698b.lambda$startRecording$35(i10, i11);
+                            this.f19035b.lambda$startRecording$35(i10, i11);
                             return;
                         case 2:
-                            this.f17698b.lambda$startRecording$36(i10, i11);
+                            this.f19035b.lambda$startRecording$36(i10, i11);
                             return;
                         default:
-                            this.f17698b.lambda$startRecording$37(i10, i11);
+                            this.f19035b.lambda$startRecording$37(i10, i11);
                             return;
                     }
                 }
@@ -3948,7 +3948,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordingGuid = i11;
         tL_document.file_reference = new byte[0];
         tL_document.dc_id = Integer.MIN_VALUE;
-        tL_document.f18922id = SharedConfig.getLastLocalId();
+        tL_document.f20278id = SharedConfig.getLastLocalId();
         this.recordingAudio.user_id = UserConfig.getInstance(i10).getClientUserId();
         TLRPC.TL_document tL_document2 = this.recordingAudio;
         tL_document2.mime_type = "audio/ogg";
@@ -3976,26 +3976,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         try {
             if (startRecord(this.recordingAudioFile.getPath(), this.sampleRate) == 0) {
                 AndroidUtilities.runOnUIThread(new Runnable(this) {
-                    public final MediaController f17698b;
+                    public final MediaController f19035b;
 
                     {
-                        this.f17698b = this;
+                        this.f19035b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r4) {
                             case 0:
-                                this.f17698b.lambda$startRecording$34(i10, i11);
+                                this.f19035b.lambda$startRecording$34(i10, i11);
                                 return;
                             case 1:
-                                this.f17698b.lambda$startRecording$35(i10, i11);
+                                this.f19035b.lambda$startRecording$35(i10, i11);
                                 return;
                             case 2:
-                                this.f17698b.lambda$startRecording$36(i10, i11);
+                                this.f19035b.lambda$startRecording$36(i10, i11);
                                 return;
                             default:
-                                this.f17698b.lambda$startRecording$37(i10, i11);
+                                this.f19035b.lambda$startRecording$37(i10, i11);
                                 return;
                         }
                     }
@@ -4029,26 +4029,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.audioRecorder.startRecording();
             this.recordQueue.postRunnable(this.recordRunnable);
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final MediaController f17698b;
+                public final MediaController f19035b;
 
                 {
-                    this.f17698b = this;
+                    this.f19035b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r4) {
                         case 0:
-                            this.f17698b.lambda$startRecording$34(i10, i11);
+                            this.f19035b.lambda$startRecording$34(i10, i11);
                             return;
                         case 1:
-                            this.f17698b.lambda$startRecording$35(i10, i11);
+                            this.f19035b.lambda$startRecording$35(i10, i11);
                             return;
                         case 2:
-                            this.f17698b.lambda$startRecording$36(i10, i11);
+                            this.f19035b.lambda$startRecording$36(i10, i11);
                             return;
                         default:
-                            this.f17698b.lambda$startRecording$37(i10, i11);
+                            this.f19035b.lambda$startRecording$37(i10, i11);
                             return;
                     }
                 }
@@ -4073,26 +4073,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             setBluetoothScoOn(false);
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final MediaController f17698b;
+                public final MediaController f19035b;
 
                 {
-                    this.f17698b = this;
+                    this.f19035b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r4) {
                         case 0:
-                            this.f17698b.lambda$startRecording$34(i10, i11);
+                            this.f19035b.lambda$startRecording$34(i10, i11);
                             return;
                         case 1:
-                            this.f17698b.lambda$startRecording$35(i10, i11);
+                            this.f19035b.lambda$startRecording$35(i10, i11);
                             return;
                         case 2:
-                            this.f17698b.lambda$startRecording$36(i10, i11);
+                            this.f19035b.lambda$startRecording$36(i10, i11);
                             return;
                         default:
-                            this.f17698b.lambda$startRecording$37(i10, i11);
+                            this.f19035b.lambda$startRecording$37(i10, i11);
                             return;
                     }
                 }
@@ -4108,7 +4108,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.recordingAudio = tL_document;
             tL_document.file_reference = new byte[0];
             tL_document.dc_id = Integer.MIN_VALUE;
-            tL_document.f18922id = SharedConfig.getLastLocalId();
+            tL_document.f20278id = SharedConfig.getLastLocalId();
             this.recordingAudio.user_id = UserConfig.getInstance(i10).getClientUserId();
             this.recordingAudio.mime_type = "audio/ogg";
             SharedConfig.saveConfig();
@@ -4196,7 +4196,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.feedbackView.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        AndroidUtilities.runOnUIThread(new d6(this, i10, 1));
+        AndroidUtilities.runOnUIThread(new c6(this, i10, 1));
     }
 
     public void lambda$stopRecordingInternal$41(File file, TLRPC.TL_document tL_document, int i10, boolean z10, int i11, boolean z11, long j10) {
@@ -4213,7 +4213,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             } else {
                 str = file.exists() + " " + file.length() + "  recordTimeCount " + this.recordTimeCount + " writedFrames" + this.writtenFrame;
             }
-            i2.d.v(str, sb2);
+            i0.a.v(str, sb2);
         }
         if ((file == null || !file.exists()) && BuildVars.DEBUG_VERSION) {
             FileLog.e(new RuntimeException("file not found :( recordTimeCount " + this.recordTimeCount + " writedFrames" + this.writtenFrame));
@@ -4299,7 +4299,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("stop recording internal in queue " + joinRecord.exists() + " " + joinRecord.length());
         }
-        AndroidUtilities.runOnUIThread(new p6(this, joinRecord, tL_document, i10, z10, i11, z11, j10));
+        AndroidUtilities.runOnUIThread(new o6(this, joinRecord, tL_document, i10, z10, i11, z11, j10));
     }
 
     public void lambda$toggleRecordingPause$28(File file, boolean z10, TLRPC.TL_document tL_document) {
@@ -4332,7 +4332,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         TLRPC.TL_document tL_document = this.recordingAudio;
         File joinRecord = joinRecord(this.recordingPrevAudioFile, this.recordingAudioFile, tL_document);
         if (tL_document != null && joinRecord != null) {
-            AndroidUtilities.runOnUIThread(new ek(this, joinRecord, z10, tL_document, 5));
+            AndroidUtilities.runOnUIThread(new xj(this, joinRecord, z10, tL_document, 5));
         }
     }
 
@@ -4371,14 +4371,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         };
         this.recordingAudioFile = file;
         if (startRecord(file.getPath(), this.sampleRate) == 0) {
-            AndroidUtilities.runOnUIThread(new c6(this, 0));
+            AndroidUtilities.runOnUIThread(new b6(this, 0));
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("cant resume audio encoder");
                 return;
             }
             return;
         }
-        AndroidUtilities.runOnUIThread(new c6(this, 1));
+        AndroidUtilities.runOnUIThread(new b6(this, 1));
     }
 
     public void lambda$toggleRecordingPause$33(boolean z10) {
@@ -4392,13 +4392,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     audioRecord.stop();
                     this.audioRecorder.release();
                     this.audioRecorder = null;
-                    this.recordQueue.postRunnable(new g6(this, z10, 0));
+                    this.recordQueue.postRunnable(new f6(this, z10, 0));
                     return;
                 }
                 return;
             }
             this.recordQueue.cancelRunnable(this.recordRunnable);
-            this.recordQueue.postRunnable(new c6(this, 2));
+            this.recordQueue.postRunnable(new b6(this, 2));
         }
     }
 
@@ -4417,7 +4417,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public static void loadGalleryPhotosAlbums(int i10) {
-        Thread thread = new Thread(new fi.r2(i10, 2));
+        Thread thread = new Thread(new gi.l2(i10, 2));
         thread.setPriority(1);
         thread.start();
     }
@@ -4459,9 +4459,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             i10 = -1;
         }
         if (traversePlaylist(arrayList, i10) && z10 && SharedConfig.repeatMode == 0 && !this.forceLoopCurrentPlaylist) {
-            i81 i81Var = this.audioPlayer;
-            if (i81Var != null || this.videoPlayer != null) {
-                if (i81Var != null) {
+            a81 a81Var = this.audioPlayer;
+            if (a81Var != null || this.videoPlayer != null) {
+                if (a81Var != null) {
                     MusicListenReporter musicListenReporter = this.reporter;
                     if (musicListenReporter != null) {
                         musicListenReporter.destroy();
@@ -4473,7 +4473,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         FileLog.e(e);
                     }
                     this.audioPlayer = null;
-                    org.telegram.ui.ActionBar.g6.H1(this.playingMessageObject);
+                    org.telegram.ui.ActionBar.h6.H1(this.playingMessageObject);
                 } else {
                     this.currentAspectRatioFrameLayout = null;
                     this.currentTextureViewContainer = null;
@@ -4524,25 +4524,25 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         } else if (z10) {
             int currentAccount = this.raiseChat.getCurrentAccount();
             long a2 = this.raiseChat.a();
-            fo foVar = this.raiseChat;
-            MessageObject messageObject = foVar.X3;
-            int classGuid = foVar.getClassGuid();
-            fo foVar2 = this.raiseChat;
+            sn snVar = this.raiseChat;
+            MessageObject messageObject = snVar.X3;
+            int classGuid = snVar.getClassGuid();
+            sn snVar2 = this.raiseChat;
             MessageSuggestionParams messageSuggestionParams = null;
-            if (foVar2 != null) {
-                sendMessageChatArguments = foVar2.H8();
+            if (snVar2 != null) {
+                sendMessageChatArguments = snVar2.H8();
             } else {
                 sendMessageChatArguments = null;
             }
-            fo foVar3 = this.raiseChat;
-            if (foVar3 != null) {
-                j10 = foVar3.S8();
+            sn snVar3 = this.raiseChat;
+            if (snVar3 != null) {
+                j10 = snVar3.S8();
             } else {
                 j10 = 0;
             }
-            fo foVar4 = this.raiseChat;
-            if (foVar4 != null) {
-                messageSuggestionParams = foVar4.f35653g5;
+            sn snVar4 = this.raiseChat;
+            if (snVar4 != null) {
+                messageSuggestionParams = snVar4.f41225g5;
             }
             startRecording(currentAccount, a2, null, messageObject, null, classGuid, false, sendMessageChatArguments, j10, messageSuggestionParams);
         } else {
@@ -4597,13 +4597,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     this.audioVolume = 1.0f;
                     setPlayerVolume();
                 }
-                i81 i81Var = this.audioPlayer;
-                if (i81Var != null) {
-                    i81Var.C();
+                a81 a81Var = this.audioPlayer;
+                if (a81Var != null) {
+                    a81Var.C();
                 } else {
-                    i81 i81Var2 = this.videoPlayer;
-                    if (i81Var2 != null) {
-                        i81Var2.C();
+                    a81 a81Var2 = this.videoPlayer;
+                    if (a81Var2 != null) {
+                        a81Var2.C();
                     }
                 }
                 checkAudioFocus(messageObject);
@@ -4756,7 +4756,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public void setBluetoothScoOn(boolean z10) {
         AudioManager audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
-        if (SharedConfig.recordViaSco && !df0.d("android.permission.BLUETOOTH_CONNECT")) {
+        if (SharedConfig.recordViaSco && !we0.d("android.permission.BLUETOOTH_CONNECT")) {
             SharedConfig.recordViaSco = false;
             SharedConfig.saveConfig();
         }
@@ -4801,20 +4801,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             } else {
                 f7 = 0.2f;
             }
-            i81 i81Var = this.audioPlayer;
-            if (i81Var != null) {
+            a81 a81Var = this.audioPlayer;
+            if (a81Var != null) {
                 if (!b5.d.u()) {
                     f10 = this.audioVolume * f7;
                 }
-                i81Var.W(f10);
+                a81Var.W(f10);
                 return;
             }
-            i81 i81Var2 = this.videoPlayer;
-            if (i81Var2 != null) {
+            a81 a81Var2 = this.videoPlayer;
+            if (a81Var2 != null) {
                 if (!b5.d.u()) {
                     f10 = f7;
                 }
-                i81Var2.W(f10);
+                a81Var2.W(f10);
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -4833,9 +4833,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     private boolean shouldUseAudioRecorderV2(int i10) {
-        si.a aVar = si.e.f45485b;
+        ti.a aVar = ti.e.f47236b;
         aVar.a();
-        if (aVar.f45477c) {
+        if (aVar.f47228c) {
             aVar.a();
             return aVar.d;
         } else if (!MessagesController.getInstance(i10).config.audioRecorderV2Disabled.get()) {
@@ -4855,12 +4855,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (messageObject != null) {
             int i10 = 0;
             NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRouteChanged, Boolean.valueOf(this.useFrontSpeaker));
-            i81 i81Var = this.videoPlayer;
-            if (i81Var != null) {
+            a81 a81Var = this.videoPlayer;
+            if (a81Var != null) {
                 if (!this.useFrontSpeaker) {
                     i10 = 3;
                 }
-                i81Var.S(i10);
+                a81Var.S(i10);
                 if (!z10) {
                     if (this.videoPlayer.n() < 1000) {
                         this.videoPlayer.K(0L);
@@ -4871,8 +4871,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 lambda$startAudioAgain$7(this.playingMessageObject);
                 return;
             }
-            i81 i81Var2 = this.audioPlayer;
-            if (i81Var2 != null) {
+            a81 a81Var2 = this.audioPlayer;
+            if (a81Var2 != null) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -4880,7 +4880,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             MessageObject messageObject2 = this.playingMessageObject;
             float f7 = messageObject2.audioProgress;
             int i11 = messageObject2.audioPlayerDuration;
-            if (!z10 && i81Var2 != null && i81Var2.y() && i11 * f7 <= 1.0f) {
+            if (!z10 && a81Var2 != null && a81Var2.y() && i11 * f7 <= 1.0f) {
                 messageObject2.audioProgress = 0.0f;
             } else {
                 messageObject2.audioProgress = f7;
@@ -4944,14 +4944,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.writtenFrame = 0;
         this.samplesCount = 0L;
         this.sendAfterDone = 0;
-        s sVar = new s(this, i10, j10, i11);
-        this.audioRecorderV2StartRunnable = sVar;
+        t tVar = new t(this, i10, j10, i11);
+        this.audioRecorderV2StartRunnable = tVar;
         if (z10) {
             j12 = 500;
         } else {
             j12 = 50;
         }
-        AndroidUtilities.runOnUIThread(sVar, j12);
+        AndroidUtilities.runOnUIThread(tVar, j12);
     }
 
     private boolean startVideoConvertFromQueue() {
@@ -5265,7 +5265,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 throw th4;
             }
         } else {
-            throw new IOException(i2.d.j(length, "XMP segment too large: "));
+            throw new IOException(i0.a.j(length, "XMP segment too large: "));
         }
     }
 
@@ -5513,7 +5513,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
                 return;
             } else if (i10 == NotificationCenter.playerDidStartPlaying) {
-                if (!isCurrentPlayer((i81) objArr[0])) {
+                if (!isCurrentPlayer((a81) objArr[0])) {
                     MessageObject playingMessageObject = getPlayingMessageObject();
                     if (playingMessageObject != null && isPlayingMessage(playingMessageObject) && !isMessagePaused() && (playingMessageObject.isMusic() || playingMessageObject.isVoice())) {
                         this.wasPlayingAudioBeforePause = true;
@@ -5589,7 +5589,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return;
         }
         this.generatingWaveform.put(str, messageObject);
-        Utilities.globalQueue.postRunnable(new tk(this, absolutePath, str, messageObject, 10));
+        Utilities.globalQueue.postRunnable(new lk(this, absolutePath, str, messageObject, 10));
     }
 
     public lf.a getAudioInfo() {
@@ -5613,11 +5613,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public long getDuration() {
-        i81 i81Var = this.audioPlayer;
-        if (i81Var == null) {
+        a81 a81Var = this.audioPlayer;
+        if (a81Var == null) {
             return 0L;
         }
-        return i81Var.p();
+        return a81Var.p();
     }
 
     public float getFastPlaybackSpeed(boolean z10) {
@@ -5654,13 +5654,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         MessageObject messageObject2 = this.playingMessageObject;
         if ((this.audioPlayer != null || this.videoPlayer != null) && messageObject != null && messageObject2 != null && isSamePlayingMessage(messageObject)) {
             try {
-                i81 i81Var = this.audioPlayer;
-                if (i81Var != null) {
-                    return i81Var.n();
+                a81 a81Var = this.audioPlayer;
+                if (a81Var != null) {
+                    return a81Var.n();
                 }
-                i81 i81Var2 = this.videoPlayer;
-                if (i81Var2 != null) {
-                    return i81Var2.n();
+                a81 a81Var2 = this.videoPlayer;
+                if (a81Var2 != null) {
+                    return a81Var2.n();
                 }
             } catch (Exception unused) {
             }
@@ -5668,7 +5668,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         return -1L;
     }
 
-    public i81 getVideoPlayer() {
+    public a81 getVideoPlayer() {
         return this.videoPlayer;
     }
 
@@ -5683,16 +5683,16 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         return false;
     }
 
-    public void injectVideoPlayer(i81 i81Var, MessageObject messageObject) {
-        if (i81Var != null && messageObject != null) {
+    public void injectVideoPlayer(a81 a81Var, MessageObject messageObject) {
+        if (a81Var != null && messageObject != null) {
             FileLoader.getInstance(messageObject.currentAccount).setLoadingVideoForPlayer(messageObject.getDocument(), true);
             this.playerWasReady = false;
             clearPlaylist();
-            this.videoPlayer = i81Var;
+            this.videoPlayer = a81Var;
             this.playingMessageObject = messageObject;
             int i10 = this.playerNum + 1;
             this.playerNum = i10;
-            i81Var.J = new AnonymousClass7(i10, messageObject, null, true);
+            a81Var.J = new AnonymousClass7(i10, messageObject, null, true);
             this.currentAspectRatioFrameLayoutReady = false;
             TextureView textureView = this.currentTextureView;
             if (textureView != null) {
@@ -5713,15 +5713,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public boolean isBuffering() {
-        i81 i81Var = this.audioPlayer;
-        if (i81Var == null || i81Var.d == null || i81Var.L != 2) {
+        a81 a81Var = this.audioPlayer;
+        if (a81Var == null || a81Var.d == null || a81Var.L != 2) {
             return false;
         }
         return true;
     }
 
-    public boolean isCurrentPlayer(i81 i81Var) {
-        if (this.videoPlayer != i81Var && this.audioPlayer != i81Var) {
+    public boolean isCurrentPlayer(a81 a81Var) {
+        if (this.videoPlayer != a81Var && this.audioPlayer != a81Var) {
             return false;
         }
         return true;
@@ -5814,8 +5814,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public boolean isVideoDrawingReady() {
-        org.telegram.ui.n4 n4Var = this.currentAspectRatioFrameLayout;
-        if (n4Var != null && n4Var.d) {
+        org.telegram.ui.o4 o4Var = this.currentAspectRatioFrameLayout;
+        if (o4Var != null && o4Var.d) {
             return true;
         }
         return false;
@@ -5827,7 +5827,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     @Override
     public void onAudioFocusChange(int i10) {
-        AndroidUtilities.runOnUIThread(new d6(this, i10, 0));
+        AndroidUtilities.runOnUIThread(new c6(this, i10, 0));
     }
 
     @Override
@@ -5836,9 +5836,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void pauseByRewind() {
-        i81 i81Var = this.audioPlayer;
-        if (i81Var != null) {
-            i81Var.B();
+        a81 a81Var = this.audioPlayer;
+        if (a81Var != null) {
+            a81Var.B();
         }
     }
 
@@ -5850,7 +5850,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (emojiSound == null) {
             return;
         }
-        Utilities.stageQueue.postRunnable(new ek(this, emojiSound, accountInstance, z10));
+        Utilities.stageQueue.postRunnable(new xj(this, emojiSound, accountInstance, z10));
     }
 
     public boolean playMessage(MessageObject messageObject) {
@@ -5906,7 +5906,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.manualRecording = false;
         requestRecordAudioFocus(true);
         this.recordQueue.cancelRunnable(this.recordStartRunnable);
-        this.recordQueue.postRunnable(new n6(this, i11, draftVoice, i10, j10, j11, messageSuggestionParams, messageObject2, messageObject, storyItem));
+        this.recordQueue.postRunnable(new m6(this, i11, draftVoice, i10, j10, j11, messageSuggestionParams, messageObject2, messageObject, storyItem));
     }
 
     public void requestRecordAudioFocus(boolean z10) {
@@ -5926,14 +5926,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public void resumeByRewind() {
         MessageObject messageObject;
-        i81 i81Var = this.audioPlayer;
-        if (i81Var != null && (messageObject = this.playingMessageObject) != null && !this.isPaused) {
-            if (i81Var.d != null && i81Var.L == 2) {
+        a81 a81Var = this.audioPlayer;
+        if (a81Var != null && (messageObject = this.playingMessageObject) != null && !this.isPaused) {
+            if (a81Var.d != null && a81Var.L == 2) {
                 cleanupPlayer(false, false);
                 playMessage(messageObject);
                 return;
             }
-            i81Var.C();
+            a81Var.C();
         }
     }
 
@@ -5945,9 +5945,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         MessageObject messageObject2 = this.playingMessageObject;
         if ((this.audioPlayer != null || this.videoPlayer != null) && messageObject != null && messageObject2 != null && isSamePlayingMessage(messageObject)) {
             try {
-                i81 i81Var = this.audioPlayer;
-                if (i81Var != null) {
-                    long p5 = i81Var.p();
+                a81 a81Var = this.audioPlayer;
+                if (a81Var != null) {
+                    long p5 = a81Var.p();
                     if (p5 == -9223372036854775807L) {
                         this.seekToProgressPending = f7;
                     } else {
@@ -5960,9 +5960,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         }
                     }
                 } else {
-                    i81 i81Var2 = this.videoPlayer;
-                    if (i81Var2 != null) {
-                        i81Var2.K(((float) i81Var2.p()) * f7);
+                    a81 a81Var2 = this.videoPlayer;
+                    if (a81Var2 != null) {
+                        a81Var2.K(((float) a81Var2.p()) * f7);
                         if (!this.ignorePlayerUpdate) {
                             b5.d.v(((float) this.videoPlayer.p()) * f7);
                         }
@@ -5982,9 +5982,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         MessageObject messageObject2 = this.playingMessageObject;
         if ((this.audioPlayer != null || this.videoPlayer != null) && messageObject != null && messageObject2 != null && isSamePlayingMessage(messageObject)) {
             try {
-                i81 i81Var = this.audioPlayer;
-                if (i81Var != null) {
-                    j11 = i81Var.p();
+                a81 a81Var = this.audioPlayer;
+                if (a81Var != null) {
+                    j11 = a81Var.p();
                     if (j11 != -9223372036854775807L) {
                         messageObject2.audioProgress = Utilities.clamp01(((float) j10) / ((float) j11));
                     }
@@ -5994,9 +5994,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         b5.d.v(j10);
                     }
                 } else {
-                    i81 i81Var2 = this.videoPlayer;
-                    if (i81Var2 != null) {
-                        j11 = i81Var2.p();
+                    a81 a81Var2 = this.videoPlayer;
+                    if (a81Var2 != null) {
+                        j11 = a81Var2.p();
                         this.videoPlayer.K(j10);
                         if (!this.ignorePlayerUpdate) {
                             b5.d.v(j10);
@@ -6029,8 +6029,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void setCurrentVideoVisible(boolean z10) {
-        org.telegram.ui.n4 n4Var = this.currentAspectRatioFrameLayout;
-        if (n4Var != null) {
+        org.telegram.ui.o4 o4Var = this.currentAspectRatioFrameLayout;
+        if (o4Var != null) {
             if (z10) {
                 PipRoundVideoView pipRoundVideoView = this.pipRoundVideoView;
                 if (pipRoundVideoView != null) {
@@ -6039,11 +6039,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     this.pipRoundVideoView = null;
                     return;
                 }
-                if (n4Var.getParent() == null) {
+                if (o4Var.getParent() == null) {
                     this.currentTextureViewContainer.addView(this.currentAspectRatioFrameLayout);
                 }
                 this.videoPlayer.V(this.currentTextureView);
-            } else if (n4Var.getParent() != null) {
+            } else if (o4Var.getParent() != null) {
                 this.pipSwitchingState = 1;
                 this.currentTextureViewContainer.removeView(this.currentAspectRatioFrameLayout);
             } else {
@@ -6051,14 +6051,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     try {
                         PipRoundVideoView pipRoundVideoView2 = new PipRoundVideoView();
                         this.pipRoundVideoView = pipRoundVideoView2;
-                        pipRoundVideoView2.d(this.baseActivity, new c6(this, 9));
+                        pipRoundVideoView2.d(this.baseActivity, new b6(this, 9));
                     } catch (Exception unused) {
                         this.pipRoundVideoView = null;
                     }
                 }
                 PipRoundVideoView pipRoundVideoView3 = this.pipRoundVideoView;
                 if (pipRoundVideoView3 != null) {
-                    this.videoPlayer.V(pipRoundVideoView3.f22902c);
+                    this.videoPlayer.V(pipRoundVideoView3.f24257c);
                 }
             }
         }
@@ -6115,7 +6115,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (this.currentMusicPlaybackSpeed >= 6.0f && f7 == 1.0f && this.playingMessageObject != null) {
                 this.audioPlayer.B();
                 MessageObject messageObject = this.playingMessageObject;
-                AndroidUtilities.runOnUIThread(new f6(this, messageObject, messageObject.audioProgress, 0), 50L);
+                AndroidUtilities.runOnUIThread(new e6(this, messageObject, messageObject.audioProgress, 0), 50L);
             }
             this.currentMusicPlaybackSpeed = f7;
             if (Math.abs(f7 - 1.0f) > 0.001f) {
@@ -6127,13 +6127,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 this.fastPlaybackSpeed = f7;
             }
         }
-        i81 i81Var = this.audioPlayer;
-        if (i81Var != null) {
-            i81Var.Q(Math.round(f7 * 10.0f) / 10.0f);
+        a81 a81Var = this.audioPlayer;
+        if (a81Var != null) {
+            a81Var.Q(Math.round(f7 * 10.0f) / 10.0f);
         } else {
-            i81 i81Var2 = this.videoPlayer;
-            if (i81Var2 != null) {
-                i81Var2.Q(Math.round(f7 * 10.0f) / 10.0f);
+            a81 a81Var2 = this.videoPlayer;
+            if (a81Var2 != null) {
+                a81Var2.Q(Math.round(f7 * 10.0f) / 10.0f);
             }
         }
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
@@ -6170,8 +6170,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         this.recordReplyingStory = storyItem;
     }
 
-    public void setTextureView(TextureView textureView, org.telegram.ui.n4 n4Var, FrameLayout frameLayout, boolean z10) {
-        setTextureView(textureView, n4Var, frameLayout, z10, null);
+    public void setTextureView(TextureView textureView, org.telegram.ui.o4 o4Var, FrameLayout frameLayout, boolean z10) {
+        setTextureView(textureView, o4Var, frameLayout, z10, null);
     }
 
     public void setVoiceMessagesPlaylist(ArrayList<MessageObject> arrayList, boolean z10) {
@@ -6219,8 +6219,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void startRaiseToEarSensors(fo foVar) {
-        if (foVar != null) {
+    public void startRaiseToEarSensors(sn snVar) {
+        if (snVar != null) {
             if ((this.accelerometerSensor != null || (this.gravitySensor != null && this.linearAcceleration != null)) && this.proximitySensor != null) {
                 if (!SharedConfig.enabledRaiseTo(false)) {
                     MessageObject messageObject = this.playingMessageObject;
@@ -6232,7 +6232,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         return;
                     }
                 }
-                this.raiseChat = foVar;
+                this.raiseChat = snVar;
                 if (!this.sensorsStarted) {
                     float[] fArr = this.gravity;
                     fArr[2] = 0.0f;
@@ -6252,7 +6252,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     this.raisedToTopSign = 0;
                     this.countLess = 0;
                     this.raisedToBack = 0;
-                    Utilities.globalQueue.postRunnable(new c6(this, 10));
+                    Utilities.globalQueue.postRunnable(new b6(this, 10));
                     this.sensorsStarted = true;
                 }
             }
@@ -6299,14 +6299,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             i13 = i11;
         }
         DispatchQueue dispatchQueue = this.recordQueue;
-        n6 n6Var = new n6(this, i12, i13, j12, j11, messageSuggestionParams, messageObject2, messageObject, storyItem, sendMessageChatArguments);
-        this.recordStartRunnable = n6Var;
+        m6 m6Var = new m6(this, i12, i13, j12, j11, messageSuggestionParams, messageObject2, messageObject, storyItem, sendMessageChatArguments);
+        this.recordStartRunnable = m6Var;
         if (z12) {
             j13 = 500;
         } else {
             j13 = 50;
         }
-        dispatchQueue.postRunnable(n6Var, j13);
+        dispatchQueue.postRunnable(m6Var, j13);
     }
 
     public void startRecordingIfFromSpeaker() {
@@ -6316,25 +6316,25 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.raiseToEarRecord = true;
             int currentAccount = this.raiseChat.getCurrentAccount();
             long a2 = this.raiseChat.a();
-            fo foVar = this.raiseChat;
-            MessageObject messageObject = foVar.X3;
-            int classGuid = foVar.getClassGuid();
-            fo foVar2 = this.raiseChat;
+            sn snVar = this.raiseChat;
+            MessageObject messageObject = snVar.X3;
+            int classGuid = snVar.getClassGuid();
+            sn snVar2 = this.raiseChat;
             MessageSuggestionParams messageSuggestionParams = null;
-            if (foVar2 != null) {
-                sendMessageChatArguments = foVar2.H8();
+            if (snVar2 != null) {
+                sendMessageChatArguments = snVar2.H8();
             } else {
                 sendMessageChatArguments = null;
             }
-            fo foVar3 = this.raiseChat;
-            if (foVar3 != null) {
-                j10 = foVar3.S8();
+            sn snVar3 = this.raiseChat;
+            if (snVar3 != null) {
+                j10 = snVar3.S8();
             } else {
                 j10 = 0;
             }
-            fo foVar4 = this.raiseChat;
-            if (foVar4 != null) {
-                messageSuggestionParams = foVar4.f35653g5;
+            sn snVar4 = this.raiseChat;
+            if (snVar4 != null) {
+                messageSuggestionParams = snVar4.f41225g5;
             }
             startRecording(currentAccount, a2, null, messageObject, null, classGuid, false, sendMessageChatArguments, j10, messageSuggestionParams);
             this.ignoreOnPause = true;
@@ -6349,7 +6349,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         ApplicationLoader.applicationHandler.postDelayed(this.stopMediaObserverRunnable, 5000L);
     }
 
-    public void stopRaiseToEarSensors(fo foVar, boolean z10, boolean z11) {
+    public void stopRaiseToEarSensors(sn snVar, boolean z10, boolean z11) {
         MediaController mediaController;
         int i10;
         if (this.ignoreOnPause) {
@@ -6368,14 +6368,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 mediaController = this;
                 mediaController.stopRecording(i10, false, 0, false, 0L);
                 if (!mediaController.sensorsStarted && !mediaController.ignoreOnPause) {
-                    if ((mediaController.accelerometerSensor != null || (mediaController.gravitySensor != null && mediaController.linearAcceleration != null)) && mediaController.proximitySensor != null && mediaController.raiseChat == foVar) {
+                    if ((mediaController.accelerometerSensor != null || (mediaController.gravitySensor != null && mediaController.linearAcceleration != null)) && mediaController.proximitySensor != null && mediaController.raiseChat == snVar) {
                         mediaController.raiseChat = null;
                         mediaController.sensorsStarted = false;
                         mediaController.accelerometerVertical = false;
                         mediaController.proximityTouched = false;
                         mediaController.raiseToEarRecord = false;
                         mediaController.useFrontSpeaker = false;
-                        Utilities.globalQueue.postRunnable(new c6(this, 5));
+                        Utilities.globalQueue.postRunnable(new b6(this, 5));
                         PowerManager.WakeLock wakeLock = mediaController.proximityWakeLock;
                         if (wakeLock != null && wakeLock.isHeld()) {
                             mediaController.proximityWakeLock.release();
@@ -6419,7 +6419,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return;
         }
         this.ignorePlayerUpdate = true;
-        if (b5.d.u() && ((atomicInteger = b5.d.f2588b) == null || atomicInteger.get() <= 0)) {
+        if (b5.d.u() && ((atomicInteger = b5.d.f4200b) == null || atomicInteger.get() <= 0)) {
             e6.h e7 = b5.d.e();
             if (e7 == null) {
                 a2 = -1;
@@ -6433,7 +6433,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             e6.h e10 = b5.d.e();
             if (e10 == null) {
                 m10 = false;
-            } else if (b5.d.f2587a == 0) {
+            } else if (b5.d.f4199a == 0) {
                 m10 = !e10.l();
             } else {
                 m10 = e10.m();
@@ -6468,7 +6468,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             return;
         }
-        this.recordQueue.postRunnable(new g6(this, z10, 1));
+        this.recordQueue.postRunnable(new f6(this, z10, 1));
     }
 
     public void trimCurrentRecording(long j10, long j11, Runnable runnable) {
@@ -6510,9 +6510,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public void updateSilent(boolean z10) {
         int i10;
         this.isSilent = z10;
-        i81 i81Var = this.videoPlayer;
-        if (i81Var != null) {
-            i81Var.N(z10);
+        a81 a81Var = this.videoPlayer;
+        if (a81Var != null) {
+            a81Var.N(z10);
         }
         setPlayerVolume();
         checkVolumeBarUI();
@@ -6578,7 +6578,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             stopProgressTimer();
             try {
                 if (this.audioPlayer != null) {
-                    if (z10 && !b5.d.u() && !this.playingMessageObject.isVoice() && this.playingMessageObject.getDuration() * (1.0f - this.playingMessageObject.audioProgress) > 1.0d && LaunchActivity.E1) {
+                    if (z10 && !b5.d.u() && !this.playingMessageObject.isVoice() && this.playingMessageObject.getDuration() * (1.0f - this.playingMessageObject.audioProgress) > 1.0d && LaunchActivity.F1) {
                         ValueAnimator valueAnimator = this.audioVolumeAnimator;
                         if (valueAnimator != null) {
                             valueAnimator.removeAllUpdateListeners();
@@ -6605,9 +6605,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         this.audioPlayer.B();
                     }
                 } else {
-                    i81 i81Var = this.videoPlayer;
-                    if (i81Var != null) {
-                        i81Var.B();
+                    a81 a81Var = this.videoPlayer;
+                    if (a81Var != null) {
+                        a81Var.B();
                     }
                 }
                 this.isPaused = true;
@@ -6615,8 +6615,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 try {
                     b5.d.b(1);
                     if (!this.ignorePlayerUpdate) {
-                        if (qf.b.X().a0()) {
-                            qf.b.X().d0(getCurrentChromecastMedia());
+                        if (qf.b.Y().b0()) {
+                            qf.b.Y().d0(getCurrentChromecastMedia());
                         }
                         b5.d.x(false);
                     }
@@ -6644,7 +6644,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         return setPlaylist(arrayList, messageObject, j10, true, null);
     }
 
-    public void setTextureView(TextureView textureView, org.telegram.ui.n4 n4Var, FrameLayout frameLayout, boolean z10, Runnable runnable) {
+    public void setTextureView(TextureView textureView, org.telegram.ui.o4 o4Var, FrameLayout frameLayout, boolean z10, Runnable runnable) {
         if (textureView == null) {
             return;
         }
@@ -6656,29 +6656,29 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.currentTextureViewContainer = null;
         } else if (this.videoPlayer == null || textureView == this.currentTextureView) {
         } else {
-            this.isDrawingWasReady = (n4Var == null || !n4Var.d) ? false : false;
+            this.isDrawingWasReady = (o4Var == null || !o4Var.d) ? false : false;
             this.currentTextureView = textureView;
             if (runnable != null && this.pipRoundVideoView == null) {
                 try {
                     PipRoundVideoView pipRoundVideoView = new PipRoundVideoView();
                     this.pipRoundVideoView = pipRoundVideoView;
-                    pipRoundVideoView.d(this.baseActivity, new c6(this, 4));
+                    pipRoundVideoView.d(this.baseActivity, new b6(this, 4));
                 } catch (Exception unused) {
                     this.pipRoundVideoView = null;
                 }
             }
             PipRoundVideoView pipRoundVideoView2 = this.pipRoundVideoView;
             if (pipRoundVideoView2 != null) {
-                this.videoPlayer.V(pipRoundVideoView2.f22902c);
+                this.videoPlayer.V(pipRoundVideoView2.f24257c);
             } else {
                 this.videoPlayer.V(this.currentTextureView);
             }
-            this.currentAspectRatioFrameLayout = n4Var;
+            this.currentAspectRatioFrameLayout = o4Var;
             this.currentTextureViewContainer = frameLayout;
-            if (!this.currentAspectRatioFrameLayoutReady || n4Var == null) {
+            if (!this.currentAspectRatioFrameLayoutReady || o4Var == null) {
                 return;
             }
-            n4Var.a(this.currentAspectRatioFrameLayoutRatio, this.currentAspectRatioFrameLayoutRotation);
+            o4Var.a(this.currentAspectRatioFrameLayoutRatio, this.currentAspectRatioFrameLayoutRotation);
         }
     }
 
@@ -6768,7 +6768,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public static void saveFile(String str, String str2, Context context, Utilities.Callback<Uri> callback) {
-        org.telegram.ui.ActionBar.a2 a2Var;
+        org.telegram.ui.ActionBar.b2 b2Var;
         if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2) || context == null) {
             return;
         }
@@ -6781,18 +6781,18 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             boolean[] zArr = {false};
             boolean[] zArr2 = new boolean[1];
             try {
-                org.telegram.ui.ActionBar.a2 a2Var2 = new org.telegram.ui.ActionBar.a2(context, 2, null);
-                a2Var2.m(LocaleController.getString(R.string.Loading));
-                a2Var2.setCanceledOnTouchOutside(false);
-                a2Var2.setCancelable(true);
-                a2Var2.setOnCancelListener(new z5(zArr, 1));
-                AndroidUtilities.runOnUIThread(new a6(zArr2, a2Var2, 2), 250L);
-                a2Var = a2Var2;
+                org.telegram.ui.ActionBar.b2 b2Var2 = new org.telegram.ui.ActionBar.b2(context, 2, null);
+                b2Var2.m(LocaleController.getString(R.string.Loading));
+                b2Var2.setCanceledOnTouchOutside(false);
+                b2Var2.setCancelable(true);
+                b2Var2.setOnCancelListener(new y5(zArr, 1));
+                AndroidUtilities.runOnUIThread(new z5(zArr2, b2Var2, 2), 250L);
+                b2Var = b2Var2;
             } catch (Exception e) {
                 FileLog.e(e);
-                a2Var = null;
+                b2Var = null;
             }
-            new Thread(new b0(file, file2, zArr, callback, a2Var, zArr2, 2)).start();
+            new Thread(new c0(file, file2, zArr, callback, b2Var, zArr2, 2)).start();
             return;
         }
         saveFile(str, context, 0, null, null, callback);

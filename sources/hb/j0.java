@@ -6,11 +6,11 @@ public class j0 extends eb.u {
             aVar.t();
             return null;
         }
-        return new gb.j(aVar.v());
+        return new gb.h(aVar.v());
     }
 
     @Override
     public final void write(mb.b bVar, Object obj) {
-        bVar.q((gb.j) obj);
+        bVar.q((gb.h) obj);
     }
 }

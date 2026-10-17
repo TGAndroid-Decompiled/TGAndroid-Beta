@@ -1,54 +1,41 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class vg0 implements ViewSwitcher.ViewFactory {
-    public final int f40699a;
-    public final Object f40700b;
+import org.telegram.tgnet.TLRPC;
+public final class vg0 implements org.telegram.ui.Components.yl0, org.telegram.ui.ActionBar.a2 {
+    public final kh0 f42203a;
 
-    public vg0(Object obj, int i10) {
-        this.f40699a = i10;
-        this.f40700b = obj;
+    public vg0(kh0 kh0Var) {
+        this.f42203a = kh0Var;
     }
 
     @Override
-    public final View makeView() {
-        int i10;
-        int i11 = this.f40699a;
-        Object obj = this.f40700b;
-        switch (i11) {
-            case 0:
-                TextView textView = new TextView((Context) obj);
-                textView.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f));
-                textView.setTextSize(1, 16.0f);
-                textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
-                textView.setHintTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.H6, false));
-                textView.setMaxLines(1);
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                if (LocaleController.isRTL) {
-                    i10 = 5;
-                } else {
-                    i10 = 3;
-                }
-                textView.setGravity(i10 | 1);
-                return textView;
-            case 1:
-                TextView textView2 = new TextView((Context) obj);
-                com.google.android.gms.internal.play_billing.k3.o(org.telegram.ui.ActionBar.g6.D6, null, false, textView2, 1);
-                textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-                textView2.setTextSize(1, 15.0f);
-                return textView2;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return new wu0(photoViewer.E, photoViewer.T1, photoViewer.Q, new ur0(photoViewer, 0), new sg0(photoViewer, 1));
+    public boolean a(int i10, View view) {
+        kh0 kh0Var = this.f42203a;
+        if ((i10 < kh0Var.f38554y || i10 >= kh0Var.E) && (i10 < kh0Var.H || i10 >= kh0Var.I)) {
+            return false;
         }
+        ((hh0) view).f37560x.callOnClick();
+        try {
+            view.performHapticFeedback(0, 2);
+            return true;
+        } catch (Exception unused) {
+            return true;
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        TLRPC.TL_messages_deleteRevokedExportedChatInvites tL_messages_deleteRevokedExportedChatInvites = new TLRPC.TL_messages_deleteRevokedExportedChatInvites();
+        kh0 kh0Var = this.f42203a;
+        tL_messages_deleteRevokedExportedChatInvites.peer = kh0Var.getMessagesController().getInputPeer(-kh0Var.f38542n);
+        long j10 = kh0Var.f38534f;
+        if (j10 == kh0Var.getUserConfig().getClientUserId()) {
+            tL_messages_deleteRevokedExportedChatInvites.admin_id = kh0Var.getMessagesController().getInputUser(kh0Var.getUserConfig().getCurrentUser());
+        } else {
+            tL_messages_deleteRevokedExportedChatInvites.admin_id = kh0Var.getMessagesController().getInputUser(j10);
+        }
+        kh0Var.f38531c0 = true;
+        kh0Var.getConnectionsManager().sendRequest(tL_messages_deleteRevokedExportedChatInvites, new sg0(kh0Var, 1));
     }
 }

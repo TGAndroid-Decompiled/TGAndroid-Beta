@@ -1,79 +1,79 @@
 package h1;
 
 import android.database.DataSetObserver;
-import m.c3;
-import m.f2;
+import m.b3;
+import m.e2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.h11;
-import org.telegram.ui.tz0;
+import org.telegram.ui.g01;
+import org.telegram.ui.sy0;
 import z4.g;
 public final class a extends DataSetObserver {
-    public final int f10312a;
-    public final Object f10313b;
+    public final int f11617a;
+    public final Object f11618b;
 
     public a(Object obj, int i10) {
-        this.f10312a = i10;
-        this.f10313b = obj;
+        this.f11617a = i10;
+        this.f11618b = obj;
     }
 
     @Override
     public final void onChanged() {
-        switch (this.f10312a) {
+        switch (this.f11617a) {
             case 0:
-                c3 c3Var = (c3) this.f10313b;
-                c3Var.f10314a = true;
-                c3Var.notifyDataSetChanged();
+                b3 b3Var = (b3) this.f11618b;
+                b3Var.f11619a = true;
+                b3Var.notifyDataSetChanged();
                 return;
             case 1:
-                f2 f2Var = (f2) this.f10313b;
-                if (f2Var.O.isShowing()) {
-                    f2Var.g();
+                e2 e2Var = (e2) this.f11618b;
+                if (e2Var.O.isShowing()) {
+                    e2Var.g();
                     return;
                 }
                 return;
             case 2:
-                h11 h11Var = (h11) this.f10313b;
-                ProfileActivity profileActivity = h11Var.f36368n;
-                int realCount = profileActivity.f32322n0.getRealCount();
-                if (profileActivity.A0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.E) {
-                    profileActivity.A0 = 1;
+                g01 g01Var = (g01) this.f11618b;
+                ProfileActivity profileActivity = g01Var.f37078n;
+                int realCount = profileActivity.f33667o0.getRealCount();
+                if (profileActivity.B0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.E) {
+                    profileActivity.B0 = 1;
                 }
-                h11Var.a(false);
-                h11Var.b(1.0f);
-                if (profileActivity.f32342q0 != null) {
-                    if (profileActivity.T0.t()) {
-                        AndroidUtilities.runOnUIThread(new tz0(h11Var, 3), 500L);
+                g01Var.a(false);
+                g01Var.b(1.0f);
+                if (profileActivity.f33687r0 != null) {
+                    if (profileActivity.U0.t()) {
+                        AndroidUtilities.runOnUIThread(new sy0(g01Var, 3), 500L);
                         return;
                     } else {
-                        h11Var.c();
+                        g01Var.c();
                         return;
                     }
                 }
                 return;
             default:
-                ((g) this.f10313b).f();
+                ((g) this.f11618b).f();
                 return;
         }
     }
 
     @Override
     public void onInvalidated() {
-        switch (this.f10312a) {
+        switch (this.f11617a) {
             case 0:
-                c3 c3Var = (c3) this.f10313b;
-                c3Var.f10314a = false;
-                c3Var.notifyDataSetInvalidated();
+                b3 b3Var = (b3) this.f11618b;
+                b3Var.f11619a = false;
+                b3Var.notifyDataSetInvalidated();
                 return;
             case 1:
-                ((f2) this.f10313b).dismiss();
+                ((e2) this.f11618b).dismiss();
                 return;
             case 2:
             default:
                 super.onInvalidated();
                 return;
             case 3:
-                ((g) this.f10313b).f();
+                ((g) this.f11618b).f();
                 return;
         }
     }

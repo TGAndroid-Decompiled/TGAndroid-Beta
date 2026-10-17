@@ -1,49 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class r51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28430a;
-    public final View f28431b;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+public final class r51 extends im0 {
+    public final y51 V2;
+    public final b61 W2;
 
-    public r51(int i10, View view) {
-        this.f28430a = i10;
-        this.f28431b = view;
+    public r51(b61 b61Var, Context context, y51 y51Var) {
+        super(context, null);
+        this.W2 = b61Var;
+        this.V2 = y51Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28430a) {
-            case 0:
-                t51 t51Var = (t51) this.f28431b;
-                t51Var.getClass();
-                t51Var.B0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t51Var.invalidate();
-                return;
-            case 1:
-                j71 j71Var = (j71) this.f28431b;
-                j71Var.getClass();
-                j71Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                j71Var.invalidate();
-                return;
-            case 2:
-                p71 p71Var = (p71) this.f28431b;
-                p71Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p71Var.f27920b = floatValue;
-                p71Var.setTranslationY(floatValue);
-                return;
-            default:
-                k91 k91Var = (k91) this.f28431b;
-                k91Var.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k91Var.setAnimationIdicatorProgress(floatValue2);
-                j91 j91Var = k91Var.f26331y;
-                if (j91Var != null) {
-                    ((m.h) j91Var).e(floatValue2);
-                    return;
-                }
-                return;
+    public final boolean E0(float f7) {
+        if (f7 >= AndroidUtilities.dp(58.0f) + this.W2.E) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.W2.F = true;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.V2.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.W2.L != null) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.W2.H) {
+            super.requestLayout();
         }
     }
 }

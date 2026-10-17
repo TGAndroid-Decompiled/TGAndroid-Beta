@@ -1,23 +1,91 @@
 package sg;
 
 import android.content.Context;
-import android.widget.Scroller;
-public final class u0 extends Scroller {
-    public final v0 f45366a;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import java.lang.reflect.Field;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public final class u0 extends z4.g {
+    public long f46445w0;
+    public boolean f46446x0;
+    public final t0 f46447y0;
+    public final x0 f46448z0;
 
-    public u0(v0 v0Var, Context context) {
+    public u0(x0 x0Var, Context context) {
         super(context);
-        this.f45366a = v0Var;
+        this.f46448z0 = x0Var;
+        try {
+            Field declaredField = z4.g.class.getDeclaredField("r");
+            declaredField.setAccessible(true);
+            t0 t0Var = new t0(this, getContext());
+            this.f46447y0 = t0Var;
+            declaredField.set(this, t0Var);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public final boolean A(MotionEvent motionEvent) {
+        t0 t0Var;
+        if (motionEvent.getAction() == 0) {
+            this.f46445w0 = System.currentTimeMillis();
+            return true;
+        }
+        if (motionEvent.getAction() == 1) {
+            if (System.currentTimeMillis() - this.f46445w0 <= ViewConfiguration.getTapTimeout() && (t0Var = this.f46447y0) != null && t0Var.isFinished()) {
+                this.f46446x0 = true;
+                int i10 = (motionEvent.getX() > (getWidth() * 0.45f) ? 1 : (motionEvent.getX() == (getWidth() * 0.45f) ? 0 : -1));
+                x0 x0Var = this.f46448z0;
+                if (i10 > 0) {
+                    if (x0Var.G + 1 < x0Var.d.size()) {
+                        x(x0Var.G + 1, true);
+                    }
+                } else {
+                    int i11 = x0Var.G - 1;
+                    if (i11 >= 0) {
+                        x(i11, true);
+                    }
+                }
+                this.f46446x0 = false;
+                return false;
+            }
+        } else if (motionEvent.getAction() == 3) {
+            this.f46445w0 = -1L;
+        }
+        return false;
     }
 
     @Override
-    public final void startScroll(int i10, int i11, int i12, int i13, int i14) {
-        int i15;
-        if (this.f45366a.f45377x0) {
-            i15 = 3;
-        } else {
-            i15 = 1;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        try {
+            A(motionEvent);
+            return super.onInterceptTouchEvent(motionEvent);
+        } catch (Exception unused) {
+            return false;
         }
-        super.startScroll(i10, i11, i12, i13, i15 * i14);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int dp = AndroidUtilities.dp(100.0f);
+        if (getChildCount() > 0) {
+            getChildAt(0).measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
+            dp = getChildAt(0).getMeasuredHeight();
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp + this.f46448z0.L, 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f46448z0.f46511w) {
+            boolean A = A(motionEvent);
+            if (!super.onTouchEvent(motionEvent) && !A) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 }

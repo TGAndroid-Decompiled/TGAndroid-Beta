@@ -1,25 +1,16 @@
 package p2;
 
 import android.net.Uri;
-import b2.x;
 public final class o {
-    public final Uri f42630a;
-    public final x f42631b;
-    public final String f42632c;
+    public final Uri f44037a;
+    public final b2.w f44038b;
+    public final String f44039c;
     public final String d;
-    public final String e;
-    public final String f42633f;
-    public final String f42634g;
-    public final String h;
 
-    public o(Uri uri, x xVar, String str, String str2, String str3, String str4, String str5, String str6) {
-        this.f42630a = uri;
-        this.f42631b = xVar;
-        this.f42632c = str;
+    public o(Uri uri, b2.w wVar, String str, String str2) {
+        this.f44037a = uri;
+        this.f44038b = wVar;
+        this.f44039c = str;
         this.d = str2;
-        this.e = str3;
-        this.f42633f = str4;
-        this.f42634g = str5;
-        this.h = str6;
     }
 }

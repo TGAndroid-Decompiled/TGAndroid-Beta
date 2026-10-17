@@ -1,5 +1,5 @@
 package hg;
 public final class y1 {
-    public String f10805a;
-    public int f10806b;
+    public String f12110a;
+    public int f12111b;
 }

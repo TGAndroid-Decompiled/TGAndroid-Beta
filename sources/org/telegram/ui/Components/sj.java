@@ -1,32 +1,41 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class sj implements xj {
-    public final int f28846a;
-    public final TLRPC.User f28847b;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+public final class sj implements Runnable {
+    public final int f30280a;
+    public final tj f30281b;
+    public final String f30282c;
+    public final int d;
 
-    public sj(int i10, TLRPC.User user) {
-        this.f28846a = i10;
-        this.f28847b = user;
+    public sj(tj tjVar, String str, int i10, int i11) {
+        this.f30280a = i11;
+        this.f30281b = tjVar;
+        this.f30282c = str;
+        this.d = i10;
     }
 
     @Override
-    public final String run() {
-        jf.b c10;
-        StringBuilder sb2;
-        String str;
-        switch (this.f28846a) {
+    public final void run() {
+        switch (this.f30280a) {
             case 0:
-                c10 = jf.b.c();
-                sb2 = new StringBuilder("+");
-                str = this.f28847b.phone;
-                break;
+                tj tjVar = this.f30281b;
+                String str = this.f30282c;
+                int i10 = this.d;
+                tjVar.getClass();
+                AndroidUtilities.runOnUIThread(new sj(tjVar, str, i10, 1));
+                return;
             default:
-                c10 = jf.b.c();
-                sb2 = new StringBuilder("+");
-                str = this.f28847b.phone;
-                break;
+                tj tjVar2 = this.f30281b;
+                String str2 = this.f30282c;
+                int i11 = this.d;
+                tjVar2.getClass();
+                int i12 = UserConfig.selectedAccount;
+                Utilities.searchQueue.postRunnable(new ki.h0(tjVar2, str2, new ArrayList(ContactsController.getInstance(i12).contactsBook.values()), new ArrayList(ContactsController.getInstance(i12).contacts), i12, i11));
+                return;
         }
-        return org.telegram.messenger.sk.g(sb2, str, c10);
     }
 }

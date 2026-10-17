@@ -4,36 +4,36 @@ import android.text.style.URLSpan;
 import android.view.View;
 import java.util.HashSet;
 public final class p3 extends URLSpan {
-    public final int f38805a;
-    public final q3 f38806b;
+    public final int f39948a;
+    public final q3 f39949b;
 
     public p3(q3 q3Var, String str, int i10) {
         super(str);
-        this.f38805a = i10;
-        this.f38806b = q3Var;
+        this.f39948a = i10;
+        this.f39949b = q3Var;
     }
 
     @Override
     public final void onClick(View view) {
-        k0 k0Var;
-        int i10 = this.f38805a;
-        q3 q3Var = this.f38806b;
+        l0 l0Var;
+        int i10 = this.f39948a;
+        q3 q3Var = this.f39949b;
         switch (i10) {
             case 0:
-                k4 k4Var = q3Var.f39055c;
+                l4 l4Var = q3Var.f40304c;
                 String url = getURL();
-                org.telegram.ui.Components.ea0 ea0Var = k4Var.f42175b;
-                d3 d3Var = k4Var.d;
-                HashSet hashSet = k4.f37234b1;
-                if (ea0Var == null) {
-                    k0Var = null;
+                org.telegram.ui.Components.y90 y90Var = l4Var.f36085b;
+                d3 d3Var = l4Var.d;
+                HashSet hashSet = l4.f38735b1;
+                if (y90Var == null) {
+                    l0Var = null;
                 } else {
-                    k0Var = new k0(k4Var, d3Var, ea0Var);
+                    l0Var = new l0(l4Var, d3Var, y90Var);
                 }
-                k4Var.Q(url, null, k0Var);
+                l4Var.Q(url, null, l0Var);
                 return;
             default:
-                q3Var.f39055c.Q(getURL(), null, null);
+                q3Var.f40304c.Q(getURL(), null, null);
                 return;
         }
     }

@@ -1,63 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class s7 extends FrameLayout {
-    public final int f28758a;
-    public final m8 f28759b;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class s7 extends xj0 {
+    public final r7 E;
+    public long F;
+    public final float G;
+    public final k8 H;
+    public float f30205r;
+    public float f30206s;
+    public int v;
+    public long f30207w;
+    public long f30208x;
+    public final r7 f30209y;
 
-    public s7(m8 m8Var, Context context, int i10) {
+    public s7(k8 k8Var, Context context, float f7) {
         super(context);
-        this.f28758a = i10;
-        this.f28759b = m8Var;
+        this.H = k8Var;
+        this.G = f7;
+        this.v = 0;
+        this.f30209y = new r7(this, 0);
+        this.E = new r7(this, 1);
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        TextView textView;
-        switch (this.f28758a) {
-            case 0:
-                int A = org.telegram.messenger.sk.A(248.0f, i12 - i10, 4);
-                for (int i14 = 0; i14 < 5; i14++) {
-                    int dp = (A * i14) + AndroidUtilities.dp((i14 * 48) + 4);
-                    int dp2 = AndroidUtilities.dp(9.0f);
-                    m8 m8Var = this.f28759b;
-                    View view = m8Var.f26983n0[i14];
-                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, m8Var.f26983n0[i14].getMeasuredHeight() + dp2);
-                }
-                return;
-            case 1:
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-            case 2:
-                super.onLayout(z10, i10, i11, i12, i13);
-                m8 m8Var2 = this.f28759b;
-                if (m8Var2.V != null && (textView = m8Var2.f26967a0) != null) {
-                    int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - m8Var2.V.getMeasuredWidth();
-                    org.telegram.ui.ActionBar.u0 u0Var = m8Var2.V;
-                    u0Var.layout(left, u0Var.getTop(), m8Var2.V.getMeasuredWidth() + left, m8Var2.V.getBottom());
-                    return;
-                }
-                return;
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.addAction(16);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f28758a) {
-            case 1:
-                m8 m8Var = this.f28759b;
-                if (m8Var.f26978i0.getTag() != null) {
-                    m8Var.B0(false, true);
-                }
-                return true;
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
+    public final boolean onTouchEvent(android.view.MotionEvent r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s7.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

@@ -1,36 +1,23 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class o41 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38545a;
-    public final r41 f38546b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_stars;
+public final class o41 extends v51 {
+    public final View Q;
+    public final TL_stars.TL_starGiftUnique R;
+    public final p41 S;
 
-    public o41(r41 r41Var, int i10) {
-        this.f38545a = i10;
-        this.f38546b = r41Var;
+    public o41(p41 p41Var, Context context, Runnable runnable, View view, i51 i51Var, org.telegram.ui.ActionBar.d6 d6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        super(p41Var.e, context, runnable, view, i51Var, d6Var);
+        this.S = p41Var;
+        this.Q = view2;
+        this.R = tL_starGiftUnique;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38545a) {
-            case 0:
-                r41 r41Var = this.f38546b;
-                r41Var.getClass();
-                r41Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                r41Var.g();
-                return;
-            case 1:
-                r41 r41Var2 = this.f38546b;
-                r41Var2.getClass();
-                r41Var2.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                r41Var2.g();
-                return;
-            default:
-                r41 r41Var3 = this.f38546b;
-                r41Var3.getClass();
-                r41Var3.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                r41Var3.g();
-                return;
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.S.e.X0 = null;
     }
 }

@@ -1,29 +1,35 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class ih implements Runnable {
-    public final int f17196a;
-    public final NotificationsController f17197b;
-    public final LongSparseIntArray f17198c;
-    public final ArrayList d;
+import android.content.Context;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class ih implements Utilities.Callback2 {
+    public final int f18623a = 0;
+    public final int f18624b;
+    public final Object f18625c;
+    public final Object d;
 
-    public ih(NotificationsController notificationsController, LongSparseIntArray longSparseIntArray, ArrayList arrayList, int i10) {
-        this.f17196a = i10;
-        this.f17197b = notificationsController;
-        this.f17198c = longSparseIntArray;
-        this.d = arrayList;
+    public ih(Context context, int i10, Utilities.Callback2 callback2) {
+        this.f18625c = callback2;
+        this.d = context;
+        this.f18624b = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17196a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f18623a) {
             case 0:
-                this.f17197b.lambda$processDialogsUpdateRead$31(this.f17198c, this.d);
+                PasskeysController.lambda$create$7((Utilities.Callback2) this.f18625c, (Context) this.d, this.f18624b, (v0.c) obj, (Throwable) obj2);
                 return;
             default:
-                this.f17197b.lambda$removeDeletedHisoryFromNotifications$14(this.f17198c, this.d);
+                ((TranslateController) this.f18625c).lambda$pushToSummarize$19(this.f18624b, (Utilities.Callback) this.d, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
                 return;
         }
+    }
+
+    public ih(TranslateController translateController, int i10, Utilities.Callback callback) {
+        this.f18625c = translateController;
+        this.f18624b = i10;
+        this.d = callback;
     }
 }

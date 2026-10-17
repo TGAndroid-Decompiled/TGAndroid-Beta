@@ -1,25 +1,23 @@
 package org.telegram.ui.Components;
+public final class bu extends p6 {
+    public final int f25044e0;
+    public final EditTextBoldCursor f25045f0;
 
-import android.os.Build;
-import android.widget.EdgeEffect;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-public final class bu extends s4.k0 {
-    public final au[] f23548a = new au[4];
-    public final ArrayList f23549b = new ArrayList();
-
-    @Override
-    public final EdgeEffect a(RecyclerView recyclerView, int i10) {
-        au auVar = new au(recyclerView, i10, new yt(this, 0));
-        this.f23548a[i10] = auVar;
-        return auVar;
+    public bu(int i10, EditTextBoldCursor editTextBoldCursor) {
+        super(false, false, false);
+        this.f25044e0 = i10;
+        this.f25045f0 = editTextBoldCursor;
     }
 
-    public final float b(int i10) {
-        au auVar = this.f23548a[i10];
-        if (Build.VERSION.SDK_INT >= 31 && auVar != null && !auVar.isFinished()) {
-            return auVar.getDistance();
+    @Override
+    public final void invalidateSelf() {
+        switch (this.f25044e0) {
+            case 0:
+                this.f25045f0.invalidate();
+                return;
+            default:
+                this.f25045f0.invalidate();
+                return;
         }
-        return 0.0f;
     }
 }

@@ -1,191 +1,178 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseIntArray;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public class zz extends s4.s {
-    public final boolean Q;
-    public final SparseIntArray R;
-    public final SparseIntArray S;
-    public int T;
-    public int U;
-    public int V;
-    public int W;
+import org.telegram.messenger.Utilities;
+public final class zz extends View {
+    public final Paint f33055a;
+    public final Paint f33056b;
+    public final Path f33057c;
+    public int d;
+    public int e;
+    public d11[] f33058f;
+    public RectF[] h;
+    public float f33059n;
+    public org.telegram.ui.ho0 f33060r;
+    public int f33061s;
 
-    public zz(int i10, boolean z10) {
-        super(i10);
-        this.R = new SparseIntArray();
-        this.S = new SparseIntArray();
-        this.Q = z10;
+    public zz(Context context) {
+        super(context);
+        this.f33055a = new Paint(1);
+        this.f33056b = new Paint(1);
+        this.f33057c = new Path();
+        this.d = -1;
+        this.e = -1;
+        this.f33061s = -1;
     }
 
-    public static iw0 C1(iw0 iw0Var) {
-        if (iw0Var == null) {
-            return null;
+    public final void a(float f7, int i10, int i11, Canvas canvas) {
+        d11[] d11VarArr = this.f33058f;
+        int length = d11VarArr.length;
+        int i12 = 0;
+        float f10 = f7;
+        while (i12 < length) {
+            d11 d11Var = d11VarArr[i12];
+            int i13 = i11;
+            d11Var.c(f10, i10 / 2.0f, 1.0f, i13, canvas);
+            f10 += d11Var.l() + AndroidUtilities.dp(24.0f);
+            i12++;
+            i11 = i13;
         }
-        if (iw0Var.f25809a == 0.0f) {
-            iw0Var.f25809a = 100.0f;
-        }
-        if (iw0Var.f25810b == 0.0f) {
-            iw0Var.f25810b = 100.0f;
-        }
-        float f7 = iw0Var.f25809a;
-        float f10 = iw0Var.f25810b;
-        float f11 = f7 / f10;
-        if (f11 <= 4.0f && f11 >= 0.2f) {
-            return iw0Var;
-        }
-        float max = Math.max(f7, f10);
-        iw0Var.f25809a = max;
-        iw0Var.f25810b = max;
-        return iw0Var;
     }
 
-    public final void B1() {
-        iw0 iw0Var;
-        int i10;
-        int min;
-        boolean z10;
-        boolean z11;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
         float f7;
-        SparseIntArray sparseIntArray = this.R;
-        if (sparseIntArray.size() != A() || this.W != this.f44939m || this.T != this.J) {
-            int i11 = this.f44939m;
-            this.W = i11;
-            float f10 = i11;
-            if (f10 == 0.0f) {
-                f10 = 100.0f;
-            }
-            sparseIntArray.clear();
-            SparseIntArray sparseIntArray2 = this.S;
-            sparseIntArray2.clear();
-            boolean z12 = false;
-            this.V = 0;
-            this.U = 0;
-            int A = A();
-            this.T = A;
-            if (A == 0) {
-                return;
-            }
-            int dp = AndroidUtilities.dp(100.0f);
-            int i12 = this.J;
-            boolean z13 = this.Q;
-            int i13 = A + (z13 ? 1 : 0);
-            int i14 = 0;
-            int i15 = 0;
-            int i16 = i12;
-            while (i14 < i13) {
-                if (i14 < A) {
-                    iw0Var = C1(D1(i14));
-                } else {
-                    iw0Var = null;
-                }
-                if (iw0Var == null) {
-                    if (i15 != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = z12;
-                    }
-                    i10 = dp;
-                    min = i12;
-                } else {
-                    i10 = dp;
-                    min = Math.min(i12, (int) Math.floor((((iw0Var.f25809a / iw0Var.f25810b) * dp) / f10) * i12));
-                    if (i16 >= min && (min <= 33 || i16 >= min - 15)) {
-                        z10 = false;
-                    } else {
-                        z10 = true;
-                    }
-                    if (iw0Var.f25811c) {
-                        sparseIntArray.put(i14, i16);
-                        this.V++;
-                        f7 = f10;
-                        i16 = i12;
-                        i15 = 0;
-                        i14++;
-                        dp = i10;
-                        f10 = f7;
-                        z12 = false;
-                    } else {
-                        z11 = z10;
-                    }
-                }
-                if (z11) {
-                    if (i16 != 0 && i15 != 0) {
-                        int i17 = i16 / i15;
-                        int i18 = i14 - i15;
-                        f7 = f10;
-                        int i19 = i18;
-                        while (true) {
-                            int i20 = i18 + i15;
-                            if (i19 >= i20) {
-                                break;
-                            }
-                            if (i19 == i20 - 1) {
-                                sparseIntArray.put(i19, sparseIntArray.get(i19) + i16);
-                            } else {
-                                sparseIntArray.put(i19, sparseIntArray.get(i19) + i17);
-                            }
-                            i16 -= i17;
-                            i19++;
-                        }
-                        sparseIntArray2.put(i14 - 1, this.V);
-                    } else {
-                        f7 = f10;
-                    }
-                    if (i14 == A) {
-                        break;
-                    }
-                    this.V++;
-                    i16 = i12;
-                    i15 = 0;
-                } else {
-                    f7 = f10;
-                    if (i16 < min) {
-                        min = i16;
-                    }
-                }
-                if (this.V == 0) {
-                    this.U = Math.max(this.U, i14);
-                }
-                if (i14 == A - 1 && !z13) {
-                    sparseIntArray2.put(i14, this.V);
-                }
-                i15++;
-                i16 -= min;
-                sparseIntArray.put(i14, min);
-                i14++;
-                dp = i10;
-                f10 = f7;
-                z12 = false;
-            }
-            this.V++;
+        if (this.f33058f == null) {
+            return;
         }
+        int width = getWidth();
+        int height = getHeight();
+        float f10 = 4.0f;
+        int dp = AndroidUtilities.dp(4.0f) + org.telegram.messenger.q.D(24.0f, this.f33058f.length, AndroidUtilities.dp(4.0f));
+        int i10 = 0;
+        while (true) {
+            d11[] d11VarArr = this.f33058f;
+            if (i10 >= d11VarArr.length) {
+                break;
+            }
+            dp = (int) (d11VarArr[i10].l() + dp);
+            i10++;
+        }
+        float dp2 = (height - AndroidUtilities.dp(36.0f)) / 2.0f;
+        float dp3 = (AndroidUtilities.dp(36.0f) + height) / 2.0f;
+        float f11 = (width - dp) / 2.0f;
+        float dp4 = AndroidUtilities.dp(16.0f) + f11;
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f11, dp2, dp + f11, dp3);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f33055a);
+        float dp5 = f11 + AndroidUtilities.dp(16.0f);
+        int i11 = 0;
+        while (i11 < this.f33058f.length) {
+            this.h[i11].set(dp5 - AndroidUtilities.dp(16.0f), dp2, this.f33058f[i11].l() + dp5 + AndroidUtilities.dp(16.0f), dp3);
+            dp5 += this.f33058f[i11].l() + AndroidUtilities.dp(24.0f);
+            i11++;
+            f10 = f10;
+        }
+        AndroidUtilities.dp(f10);
+        int clamp = Utilities.clamp((int) Math.floor(this.f33059n), this.f33058f.length - 1, 0);
+        int clamp2 = Utilities.clamp((int) Math.ceil(this.f33059n), this.f33058f.length - 1, 0);
+        float dp6 = this.h[clamp].left + AndroidUtilities.dp(f7);
+        float dp7 = this.h[clamp2].left + AndroidUtilities.dp(f7);
+        float f12 = this.f33059n;
+        float lerp = AndroidUtilities.lerp(dp6, dp7, (float) (f12 - Math.floor(f12)));
+        float dp8 = this.h[clamp].right - AndroidUtilities.dp(f7);
+        float dp9 = this.h[clamp2].right - AndroidUtilities.dp(f7);
+        float f13 = this.f33059n;
+        float lerp2 = AndroidUtilities.lerp(dp8, dp9, (float) (f13 - Math.floor(f13)));
+        RectF rectF2 = AndroidUtilities.rectTmp;
+        rectF2.set(lerp, (height - AndroidUtilities.dp(28.0f)) / 2.0f, lerp2, (AndroidUtilities.dp(28.0f) + height) / 2.0f);
+        Path path = this.f33057c;
+        path.rewind();
+        path.addRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), Path.Direction.CW);
+        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.f33056b);
+        a(dp4, height, this.d, canvas);
+        canvas.save();
+        canvas.clipPath(path);
+        a(dp4, height, this.e, canvas);
+        canvas.restore();
     }
 
-    public iw0 D1(int i10) {
-        return new iw0(100.0f, 100.0f);
-    }
-
-    public final boolean E1(int i10) {
-        B1();
-        if (this.S.get(i10, Integer.MAX_VALUE) != Integer.MAX_VALUE) {
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int i10 = 0;
+        if (this.f33058f == null || this.h == null) {
+            return false;
+        }
+        while (true) {
+            RectF[] rectFArr = this.h;
+            if (i10 < rectFArr.length) {
+                if (rectFArr[i10].contains(motionEvent.getX(), motionEvent.getY())) {
+                    break;
+                }
+                i10++;
+            } else {
+                i10 = -1;
+                break;
+            }
+        }
+        if (i10 >= 0 && i10 != this.f33061s) {
+            this.f33061s = i10;
+            org.telegram.ui.ho0 ho0Var = this.f33060r;
+            if (ho0Var != null) {
+                ho0Var.run(Integer.valueOf(i10));
+            }
+        }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            this.f33061s = -1;
+        }
+        if (motionEvent.getAction() == 0 && i10 >= 0) {
             return true;
         }
-        return false;
+        return super.onTouchEvent(motionEvent);
     }
 
     @Override
-    public final int I(qf.e eVar, s4.y0 y0Var) {
-        return y0Var.b();
+    public void setBackgroundColor(int i10) {
+        this.f33055a.setColor(i10);
+        invalidate();
     }
 
-    @Override
-    public final int u(qf.e eVar, s4.y0 y0Var) {
-        return 1;
+    public void setSelected(float f7) {
+        if (Math.abs(f7 - this.f33059n) > 0.001f) {
+            invalidate();
+        }
+        this.f33059n = f7;
     }
 
-    @Override
-    public boolean y0() {
-        return false;
+    public void setSelectedColor(int i10) {
+        this.f33056b.setColor(i10);
+        invalidate();
+    }
+
+    public void setSelectedTextColor(int i10) {
+        this.e = i10;
+        invalidate();
+    }
+
+    public void setTabs(CharSequence... charSequenceArr) {
+        this.f33058f = new d11[charSequenceArr.length];
+        this.h = new RectF[charSequenceArr.length];
+        for (int i10 = 0; i10 < charSequenceArr.length; i10++) {
+            this.f33058f[i10] = new d11(charSequenceArr[i10], 14.0f, AndroidUtilities.bold());
+            this.h[i10] = new RectF();
+        }
+        invalidate();
+    }
+
+    public void setTextColor(int i10) {
+        this.d = i10;
+        invalidate();
     }
 }

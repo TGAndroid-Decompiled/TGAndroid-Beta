@@ -1,20 +1,15 @@
 package qi;
-public interface h {
-    void onCompleted(n nVar);
 
-    void onError(Exception exc);
+import java.net.Socket;
+public final class h {
+    public final int f44782a;
+    public final Socket f44783b;
+    public long f44784c = 4194304;
+    public long d = 4194304;
+    public boolean e;
 
-    void onMaximumDurationReached();
-
-    void onPreviewPlaybackChanged(boolean z10);
-
-    void onPreviewProgress(long j10, long j11);
-
-    void onPreviewReady(long j10, long j11, long j12, byte[] bArr);
-
-    void onRecordingProgress(long j10, double d);
-
-    void onRecordingTooShort(long j10);
-
-    void onStateChanged(p pVar);
+    public h(int i10, Socket socket) {
+        this.f44782a = i10;
+        this.f44783b = socket;
+    }
 }

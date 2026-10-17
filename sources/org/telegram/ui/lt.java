@@ -1,55 +1,62 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-public final class lt implements View.OnClickListener {
-    public final int f37821a;
-    public final xt f37822b;
+import java.util.Comparator;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
+public final class lt implements Comparator {
+    public final int f38930a;
+    public final Object f38931b;
 
-    public lt(xt xtVar, int i10) {
-        this.f37821a = i10;
-        this.f37822b = xtVar;
+    public lt(Object obj, int i10) {
+        this.f38930a = i10;
+        this.f38931b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f37821a) {
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f38930a) {
             case 0:
-                xt xtVar = this.f37822b;
-                xtVar.K = false;
-                xtVar.f41660z.invalidate();
-                xtVar.n();
-                return;
+                return ((Comparator) this.f38931b).compare(((kt) obj).f38677a, ((kt) obj2).f38677a);
             case 1:
-                xt xtVar2 = this.f37822b;
-                Activity activity = xtVar2.f41657w;
-                if (activity instanceof LaunchActivity) {
-                    LaunchActivity launchActivity = (LaunchActivity) activity;
-                    if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
-                        launchActivity.O().getLastFragment().dismissCurrentDialog();
-                    }
-                    launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
+                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f38931b;
+                int i10 = longSparseIntArray.get(((Long) obj).longValue());
+                int i11 = longSparseIntArray.get(((Long) obj2).longValue());
+                if (i10 > i11) {
+                    return 1;
                 }
-                xtVar2.K = false;
-                xtVar2.f41660z.invalidate();
-                xtVar2.n();
-                return;
+                if (i10 < i11) {
+                    return -1;
+                }
+                return 0;
             case 2:
-                xt xtVar3 = this.f37822b;
-                vt vtVar = xtVar3.f41647l;
-                if (vtVar != null) {
-                    vtVar.K();
+                LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) this.f38931b;
+                LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) obj;
+                LocaleController.LocaleInfo localeInfo3 = (LocaleController.LocaleInfo) obj2;
+                if (localeInfo2 != localeInfo) {
+                    if (localeInfo3 != localeInfo) {
+                        int i12 = localeInfo2.serverIndex;
+                        int i13 = localeInfo3.serverIndex;
+                        if (i12 == i13) {
+                            return localeInfo2.name.compareTo(localeInfo3.name);
+                        }
+                        if (i12 <= i13) {
+                            if (i12 >= i13) {
+                                return 0;
+                            }
+                        }
+                    }
+                    return 1;
                 }
-                xtVar3.p();
-                return;
+                return -1;
             default:
-                xt xtVar4 = this.f37822b;
-                vt vtVar2 = xtVar4.f41647l;
-                if (vtVar2 != null) {
-                    vtVar2.r();
+                StickersActivity stickersActivity = (StickersActivity) this.f38931b;
+                int indexOf = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf2 = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf >= 0 && indexOf2 >= 0) {
+                    return indexOf - indexOf2;
                 }
-                xtVar4.p();
-                return;
+                return 0;
         }
     }
 }

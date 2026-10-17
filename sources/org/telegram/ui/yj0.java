@@ -1,6 +1,28 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public interface yj0 {
-    void b(Canvas canvas);
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class yj0 extends org.telegram.ui.Cells.q8 {
+    public ImageView R;
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int dp;
+        super.onLayout(z10, i10, i11, i12, i13);
+        int i14 = i12 - i10;
+        if (LocaleController.isRTL) {
+            dp = AndroidUtilities.dp(17.0f);
+        } else {
+            dp = i14 - AndroidUtilities.dp(41.0f);
+        }
+        int B = org.telegram.messenger.wh.B(24.0f, i13 - i11, 2);
+        this.R.layout(dp, B, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + B);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.R.measure(i10, i11);
+    }
 }

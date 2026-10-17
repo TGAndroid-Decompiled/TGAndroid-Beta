@@ -1,118 +1,78 @@
 package ad;
 
-import java.io.ByteArrayInputStream;
-import java.io.Closeable;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.ServerSocket;
+import java.io.InputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.URLDecoder;
-import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
-public abstract class l {
-    public static final Logger d;
-    public volatile ServerSocket f537a;
-    public Thread f538b;
-    public d f539c;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.n2;
+public final class l implements Runnable {
+    public final int f534a;
+    public boolean f535b;
+    public Object f536c;
+    public final Object d;
 
-    static {
-        Pattern.compile("([ |\t]*Content-Disposition[ |\t]*:)(.*)", 2);
-        Pattern.compile("([ |\t]*content-type[ |\t]*:)(.*)", 2);
-        Pattern.compile("[ |\t]*([a-zA-Z]*)[ |\t]*=[ |\t]*['|\"]([^\"^']*)['|\"]");
-        d = Logger.getLogger(l.class.getName());
+    public l(Object obj, Object obj2, boolean z10, int i10) {
+        this.f534a = i10;
+        this.d = obj;
+        this.f536c = obj2;
+        this.f535b = z10;
     }
 
-    public static String b(String str) {
-        try {
-            return URLDecoder.decode(str, "UTF8");
-        } catch (UnsupportedEncodingException e) {
-            d.log(Level.WARNING, "Encoding not supported, ignored", (Throwable) e);
-            return null;
-        }
-    }
-
-    public static i c(h hVar, String str, String str2) {
-        String str3;
-        byte[] bArr;
-        b bVar = new b(str);
-        if (str2 == null) {
-            return new i(hVar, str, new ByteArrayInputStream(new byte[0]), 0L);
-        }
-        String str4 = "US-ASCII";
-        String str5 = bVar.f502c;
-        if (str5 == null) {
-            str3 = "US-ASCII";
-        } else {
-            str3 = str5;
-        }
-        try {
-            if (!Charset.forName(str3).newEncoder().canEncode(str2) && str5 == null) {
-                bVar = new b(str + "; charset=UTF-8");
-            }
-            String str6 = bVar.f502c;
-            if (str6 != null) {
-                str4 = str6;
-            }
-            bArr = str2.getBytes(str4);
-        } catch (UnsupportedEncodingException e) {
-            d.log(Level.SEVERE, "encoding problem, responding nothing", (Throwable) e);
-            bArr = new byte[0];
-        }
-        return new i(hVar, bVar.f500a, new ByteArrayInputStream(bArr), bArr.length);
-    }
-
-    public static final void d(Object obj) {
-        if (obj != null) {
-            try {
-                if (obj instanceof Closeable) {
-                    ((Closeable) obj).close();
-                } else if (obj instanceof Socket) {
-                    ((Socket) obj).close();
-                } else if (obj instanceof ServerSocket) {
-                    ((ServerSocket) obj).close();
-                } else {
-                    throw new IllegalArgumentException("Unknown object to close");
+    @Override
+    public final void run() {
+        switch (this.f534a) {
+            case 0:
+                try {
+                    ((m) this.d).f537a.bind(new InetSocketAddress(61578));
+                    this.f535b = true;
+                    do {
+                        try {
+                            Socket accept = ((m) this.d).f537a.accept();
+                            accept.setSoTimeout(5000);
+                            InputStream inputStream = accept.getInputStream();
+                            m mVar = (m) this.d;
+                            mVar.f539c.C(new a(mVar, inputStream, accept));
+                        } catch (IOException e) {
+                            m.d.log(Level.FINE, "Communication with the client broken", (Throwable) e);
+                        }
+                    } while (!((m) this.d).f537a.isClosed());
+                    return;
+                } catch (IOException e7) {
+                    this.f536c = e7;
+                    return;
                 }
-            } catch (IOException e) {
-                d.log(Level.SEVERE, "Could not close", (Throwable) e);
-            }
+            case 1:
+                li.m mVar2 = (li.m) this.d;
+                ArrayList arrayList = (ArrayList) this.f536c;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    s4.j jVar = (s4.j) obj;
+                    mVar2.T(jVar.f45998a, jVar, this.f535b);
+                }
+                arrayList.clear();
+                mVar2.f46007u.remove(arrayList);
+                return;
+            default:
+                ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
+                if (actionBarLayout.e == this) {
+                    actionBarLayout.e = null;
+                    ((n2) this.f536c).onTransitionAnimationStart(true, false);
+                    actionBarLayout.d0(true, true, this.f535b);
+                    return;
+                }
+                return;
         }
     }
 
-    public static boolean g(i iVar) {
-        String str = iVar.f527b;
-        if (str != null) {
-            if (str.toLowerCase().contains("text/") || str.toLowerCase().contains("/json")) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public abstract i e(e eVar);
-
-    public final void f() {
-        this.f537a = new ServerSocket();
-        this.f537a.setReuseAddress(true);
-        k kVar = new k(this);
-        Thread thread = new Thread(kVar);
-        this.f538b = thread;
-        thread.setDaemon(true);
-        this.f538b.setName("NanoHttpd Main Listener");
-        this.f538b.start();
-        while (!kVar.f535b && ((IOException) kVar.f536c) == null) {
-            try {
-                Thread.sleep(10L);
-            } catch (Throwable unused) {
-            }
-        }
-        IOException iOException = (IOException) kVar.f536c;
-        if (iOException == null) {
-            return;
-        }
-        throw iOException;
+    public l(m mVar) {
+        this.f534a = 0;
+        this.d = mVar;
+        this.f535b = false;
     }
 }

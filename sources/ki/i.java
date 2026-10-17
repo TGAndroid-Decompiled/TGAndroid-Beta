@@ -1,19 +1,48 @@
 package ki;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.MessageObject;
-public final class i extends AnimatorListenerAdapter {
-    public final MessageObject.GroupedMessages.TransitionParams f14322a;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class i implements ViewTreeObserver.OnGlobalFocusChangeListener {
+    public final int f15316a;
+    public final Object f15317b;
 
-    public i(MessageObject.GroupedMessages.TransitionParams transitionParams) {
-        this.f14322a = transitionParams;
+    public i(Object obj, int i10) {
+        this.f15316a = i10;
+        this.f15317b = obj;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        MessageObject.GroupedMessages.TransitionParams transitionParams = this.f14322a;
-        transitionParams.backgroundChangeBounds = false;
-        transitionParams.drawBackgroundForDeletedItems = false;
+    public final void onGlobalFocusChanged(View view, View view2) {
+        boolean z10;
+        switch (this.f15316a) {
+            case 0:
+                ((q) this.f15317b).c0();
+                return;
+            case 1:
+                ((d2) this.f15317b).w0();
+                return;
+            case 2:
+                w3 w3Var = (w3) this.f15317b;
+                if (view2 != null && w3Var.F(view2) != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                w3Var.Y2 = z10;
+                if (view2 instanceof h1) {
+                    w3Var.J3 = (h1) view2;
+                    return;
+                }
+                return;
+            default:
+                o5 o5Var = (o5) this.f15317b;
+                o5Var.x();
+                q5 q5Var = o5Var.v;
+                if (q5Var != null) {
+                    q5Var.invalidate();
+                    return;
+                }
+                return;
+        }
     }
 }

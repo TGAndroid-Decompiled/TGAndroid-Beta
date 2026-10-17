@@ -6,22 +6,22 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.em0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.mm0;
-public final class f0 extends im0 {
-    public final ArrayList f11503r;
-    public final int f11504s;
+public final class f0 extends em0 {
+    public final ArrayList f12895r;
+    public final int f12896s;
     public final Context v;
-    public final i0 f11505w;
+    public final i0 f12897w;
 
     public f0(i0 i0Var, Context context) {
-        this.f11505w = i0Var;
+        this.f12897w = i0Var;
         ArrayList arrayList = new ArrayList();
-        this.f11503r = arrayList;
+        this.f12895r = arrayList;
         int i10 = UserConfig.selectedAccount;
-        this.f11504s = i10;
+        this.f12896s = i10;
         this.v = context;
-        arrayList.addAll(b2.f(i10).e());
+        arrayList.addAll(y1.f(i10).e());
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class f0 extends im0 {
     }
 
     @Override
-    public final void G(mm0 mm0Var, float f7, int[] iArr) {
+    public final void G(im0 im0Var, float f7, int[] iArr) {
         iArr[0] = 0;
         iArr[1] = 0;
     }
@@ -38,7 +38,7 @@ public final class f0 extends im0 {
     @Override
     public final int M(int i10) {
         if (i10 != 0 && i10 != 2) {
-            return this.f11503r.size();
+            return this.f12895r.size();
         }
         return 1;
     }
@@ -46,7 +46,7 @@ public final class f0 extends im0 {
     @Override
     public final Object O(int i10, int i11) {
         if (i10 != 0 && i11 >= 0) {
-            ArrayList arrayList = this.f11503r;
+            ArrayList arrayList = this.f12895r;
             if (i11 < arrayList.size()) {
                 return arrayList.get(i11);
             }
@@ -77,7 +77,7 @@ public final class f0 extends im0 {
 
     @Override
     public final boolean V(int i10, int i11, s4.b1 b1Var) {
-        if (i10 != 0 && i10 != 2 && i11 < this.f11503r.size()) {
+        if (i10 != 0 && i10 != 2 && i11 < this.f12895r.size()) {
             return true;
         }
         return false;
@@ -85,46 +85,46 @@ public final class f0 extends im0 {
 
     @Override
     public final void W(int i10, int i11, s4.b1 b1Var) {
-        if (b1Var.f44841f == 0) {
-            x1 x1Var = (x1) b1Var.f44838a;
+        if (b1Var.f45941f == 0) {
+            u1 u1Var = (u1) b1Var.f45938a;
             Object O = O(i10, i11);
             boolean z10 = true;
             if (i10 == 1 && i11 == M(i10) - 1) {
                 z10 = false;
             }
-            if (O instanceof a2) {
-                a2 a2Var = (a2) O;
-                x1Var.a(a2Var, null, z10);
-                x1Var.d.a(this.f11505w.f11530w.contains(Integer.valueOf(a2Var.f11438a)), false);
+            if (O instanceof x1) {
+                x1 x1Var = (x1) O;
+                u1Var.a(x1Var, null, z10);
+                u1Var.d.a(this.f12897w.f12926w.contains(Integer.valueOf(x1Var.f13080a)), false);
             }
         }
     }
 
     @Override
     public final void l() {
-        ArrayList arrayList = this.f11503r;
+        ArrayList arrayList = this.f12895r;
         arrayList.clear();
-        arrayList.addAll(b2.f(this.f11504s).e());
+        arrayList.addAll(y1.f(this.f12896s).e());
         X(false);
-        this.f11505w.O();
+        this.f12897w.O();
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View x1Var;
+        View u1Var;
         Context context = this.v;
         if (i10 != 0) {
             if (i10 != 1) {
-                x1Var = new View(context);
-                x1Var.setTag(-33024);
+                u1Var = new View(context);
+                u1Var.setTag(-33024);
             } else {
-                x1Var = new View(context);
-                x1Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(56.0f)));
-                x1Var.setTag(-33024);
+                u1Var = new View(context);
+                u1Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(56.0f)));
+                u1Var.setTag(-33024);
             }
         } else {
-            x1Var = new x1(context, this.f11505w.f27359a, false);
+            u1Var = new u1(context, this.f12897w.f28237a, false);
         }
-        return new s4.b1(x1Var);
+        return new s4.b1(u1Var);
     }
 }

@@ -1,24 +1,33 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-public final class e50 implements ViewTreeObserver.OnPreDrawListener {
-    public final n60 f35203a;
+import android.view.View;
+import java.util.Iterator;
+public final class e50 implements org.telegram.ui.Components.x5 {
+    public final int f36398a;
+    public final Object f36399b;
 
-    public e50(n60 n60Var) {
-        this.f35203a = n60Var;
+    public e50(Object obj, int i10) {
+        this.f36398a = i10;
+        this.f36399b = obj;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        ViewGroup viewGroup;
-        n60 n60Var = this.f35203a;
-        n60Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
-        n60Var.a2.j(null);
-        AndroidUtilities.updateVisibleRows(n60Var.f38206m2);
-        viewGroup = ((org.telegram.ui.ActionBar.e3) n60Var).containerView;
-        viewGroup.requestLayout();
-        return false;
+    public final void invalidate() {
+        switch (this.f36398a) {
+            case 0:
+                Iterator it = ((f50) this.f36399b).f36804i.iterator();
+                while (it.hasNext()) {
+                    ((View) it.next()).invalidate();
+                }
+                return;
+            default:
+                i51 i51Var = (i51) this.f36399b;
+                i51Var.getClass();
+                if (!ah.x0.f903b && i51Var.getParent() != null) {
+                    ((View) i51Var.getParent()).invalidate();
+                    return;
+                }
+                return;
+        }
     }
 }

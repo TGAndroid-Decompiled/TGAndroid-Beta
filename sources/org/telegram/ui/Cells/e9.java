@@ -1,197 +1,105 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.SpannableString;
+import android.graphics.Typeface;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
-import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.aa0;
-import org.telegram.ui.Components.da0;
-public class e9 extends FrameLayout {
-    public final y1 f20836a;
-    public final aa0 f20837b;
-    public int f20838c;
-    public Integer d;
-    public int e;
-    public int f20839f;
-    public int h;
-    public boolean f20840n;
-    public CharSequence f20841r;
-    public final org.telegram.ui.ActionBar.c6 f20842s;
+public final class e9 extends FrameLayout {
+    public final TextView f22206a;
+    public final TextView f22207b;
 
     public e9(Context context) {
-        this(context, 24, null);
+        super(context);
+        int i10;
+        int i11;
+        int i12;
+        setWillNotDraw(false);
+        TextView textView = new TextView(context);
+        this.f22206a = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setLines(1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        textView.setGravity(i10 | 16);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(textView, w7.z5.a(-1.0f, 21.0f, 0.0f, 21.0f, 0.0f, -2, i11 | 48));
+        TextView textView2 = new TextView(context);
+        this.f22207b = textView2;
+        textView2.setTextSize(1, 16.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setLines(1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setEllipsize(truncateAt);
+        if (LocaleController.isRTL) {
+            i12 = 3;
+        } else {
+            i12 = 5;
+        }
+        textView2.setGravity(i12 | 16);
+        addView(textView2, w7.z5.a(-1.0f, 21.0f, 0.0f, 21.0f, 0.0f, -2, (LocaleController.isRTL ? 3 : 5) | 48));
     }
 
-    public final void c(ArrayList arrayList, boolean z10) {
-        float f7 = 0.5f;
-        y1 y1Var = this.f20836a;
-        if (arrayList != null) {
-            if (z10) {
-                f7 = 1.0f;
-            }
-            arrayList.add(ObjectAnimator.ofFloat(y1Var, View.ALPHA, f7));
-            return;
+    public final void a(String str, String str2, boolean z10) {
+        TextView textView = this.f22206a;
+        textView.setText(str);
+        TextView textView2 = this.f22207b;
+        if (str2 != null) {
+            textView2.setText(str2);
+            textView2.setVisibility(0);
+        } else {
+            textView2.setVisibility(4);
         }
         if (z10) {
-            f7 = 1.0f;
+            int i10 = org.telegram.ui.ActionBar.h6.G6;
+            setTag(Integer.valueOf(i10));
+            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+            textView.setTypeface(AndroidUtilities.bold());
+            textView2.setTypeface(AndroidUtilities.bold());
+        } else {
+            int i11 = org.telegram.ui.ActionBar.h6.f21391z6;
+            setTag(Integer.valueOf(i11));
+            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
+            Typeface typeface = Typeface.DEFAULT;
+            textView.setTypeface(typeface);
+            textView2.setTypeface(typeface);
         }
-        y1Var.setAlpha(f7);
-    }
-
-    public int getFixedSize() {
-        return this.h;
-    }
-
-    public CharSequence getText() {
-        return this.f20836a.getText();
-    }
-
-    public da0 getTextView() {
-        return this.f20836a;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        aa0 aa0Var = this.f20837b;
-        if (aa0Var != null) {
-            canvas.save();
-            y1 y1Var = this.f20836a;
-            canvas.translate(y1Var.getLeft(), y1Var.getTop());
-            if (aa0Var.f(canvas)) {
-                invalidate();
-            }
-            canvas.restore();
-        }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName(TextView.class.getName());
-        accessibilityNodeInfo.setText(this.f20841r);
+        requestLayout();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int i12 = this.h;
-        if (i12 == -1) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 1073741824));
-        } else if (i12 != 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.h), 1073741824));
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        }
-    }
-
-    public void setBottomPadding(int i10) {
-        this.f20839f = i10;
-    }
-
-    public void setFixedSize(int i10) {
-        this.h = i10;
-    }
-
-    public void setLinkTextColorKey(int i10) {
-        this.f20838c = i10;
-    }
-
-    public void setLinkTextRippleColor(Integer num) {
-        this.d = num;
-    }
-
-    public void setText(CharSequence charSequence) {
-        if (!TextUtils.equals(charSequence, this.f20841r)) {
-            this.f20841r = charSequence;
-            y1 y1Var = this.f20836a;
-            if (charSequence == null) {
-                y1Var.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
-            } else {
-                y1Var.setPadding(0, AndroidUtilities.dp(this.e), 0, AndroidUtilities.dp(this.f20839f));
-            }
-            SpannableString spannableString = null;
-            if (charSequence != null) {
-                int length = charSequence.length();
-                for (int i10 = 0; i10 < length - 1; i10++) {
-                    if (charSequence.charAt(i10) == '\n') {
-                        int i11 = i10 + 1;
-                        if (charSequence.charAt(i11) == '\n') {
-                            if (spannableString == null) {
-                                spannableString = new SpannableString(charSequence);
-                            }
-                            spannableString.setSpan(new AbsoluteSizeSpan(10, true), i11, i10 + 2, 33);
-                        }
-                    }
-                }
-            }
-            if (spannableString != null) {
-                charSequence = spannableString;
-            }
-            y1Var.setText(charSequence);
-        }
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(40.0f));
+        int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(34.0f);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredWidth / 2, Integer.MIN_VALUE);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
+        TextView textView = this.f22207b;
+        textView.measure(makeMeasureSpec, makeMeasureSpec2);
+        this.f22206a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i10) {
-        this.f20836a.setTextColor(i10);
+        this.f22206a.setTextColor(i10);
     }
 
-    public void setTextColorByKey(int i10) {
-        int w02 = org.telegram.ui.ActionBar.g6.w0(i10, this.f20842s);
-        y1 y1Var = this.f20836a;
-        y1Var.setTextColor(w02);
-        y1Var.setTag(Integer.valueOf(i10));
-    }
-
-    public void setTextGravity(int i10) {
-        this.f20836a.setGravity(i10);
-    }
-
-    public void setTopPadding(int i10) {
-        this.e = i10;
-    }
-
-    public e9(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        this(context, 24, c6Var);
-    }
-
-    public e9(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.f20838c = org.telegram.ui.ActionBar.g6.J6;
-        this.e = 10;
-        this.f20839f = 17;
-        this.f20842s = c6Var;
-        aa0 aa0Var = new aa0(this);
-        this.f20837b = aa0Var;
-        y1 y1Var = new y1(this, context, aa0Var, c6Var);
-        this.f20836a = y1Var;
-        y1Var.setTextSize(1, 14.0f);
-        y1Var.setGravity(LocaleController.isRTL ? 5 : 3);
-        y1Var.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(17.0f));
-        y1Var.setMovementMethod(LinkMovementMethod.getInstance());
-        int i11 = org.telegram.ui.ActionBar.g6.B6;
-        y1Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
-        y1Var.setEmojiColor(org.telegram.ui.ActionBar.g6.w0(i11, c6Var));
-        y1Var.setLinkTextColor(org.telegram.ui.ActionBar.g6.w0(this.f20838c, c6Var));
-        y1Var.setImportantForAccessibility(2);
-        float f7 = i10;
-        addView(y1Var, w7.z5.a(-2.0f, f7, 0.0f, f7, 0.0f, -1, (LocaleController.isRTL ? 5 : 3) | 48));
-        this.f20840n = LocaleController.isRTL;
-        setWillNotDraw(false);
-    }
-
-    public void a() {
-    }
-
-    public void b() {
+    public void setTextValueColor(int i10) {
+        this.f22207b.setTextColor(i10);
     }
 }

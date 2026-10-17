@@ -1,22 +1,22 @@
 package u2;
 public final class d implements d1 {
-    public final d1 f45904a;
-    public boolean f45905b;
-    public final e f45906c;
+    public final d1 f47311a;
+    public boolean f47312b;
+    public final e f47313c;
 
     public d(e eVar, d1 d1Var) {
-        this.f45906c = eVar;
-        this.f45904a = d1Var;
+        this.f47313c = eVar;
+        this.f47311a = d1Var;
     }
 
     @Override
-    public final void b() {
-        this.f45904a.b();
+    public final void a() {
+        this.f47311a.a();
     }
 
     @Override
     public final boolean e() {
-        if (!this.f45906c.a() && this.f45904a.e()) {
+        if (!this.f47313c.a() && this.f47311a.e()) {
             return true;
         }
         return false;
@@ -24,26 +24,26 @@ public final class d implements d1 {
 
     @Override
     public final int f(qf.b bVar, h2.h hVar, int i10) {
-        e eVar = this.f45906c;
+        e eVar = this.f47313c;
         if (eVar.a()) {
             return -3;
         }
-        if (this.f45905b) {
+        if (this.f47312b) {
             hVar.setFlags(4);
             return -4;
         }
-        long p5 = eVar.p();
-        int f7 = this.f45904a.f(bVar, hVar, i10);
+        long s10 = eVar.s();
+        int f7 = this.f47311a.f(bVar, hVar, i10);
         if (eVar.e != -9223372036854775807L && f7 != -3) {
             eVar.e = -9223372036854775807L;
         }
         if (f7 == -5) {
-            long j10 = eVar.f45910f;
+            long j10 = eVar.f47317f;
             long j11 = eVar.h;
-            b2.x xVar = (b2.x) bVar.f43098c;
-            xVar.getClass();
-            int i11 = xVar.O;
-            int i12 = xVar.N;
+            b2.w wVar = (b2.w) bVar.f44466c;
+            wVar.getClass();
+            int i11 = wVar.O;
+            int i12 = wVar.N;
             if (i12 != 0 || i11 != 0) {
                 if (j10 != 0) {
                     i12 = 0;
@@ -51,28 +51,28 @@ public final class d implements d1 {
                 if (j11 != Long.MIN_VALUE) {
                     i11 = 0;
                 }
-                b2.w a2 = xVar.a();
+                b2.v a2 = wVar.a();
                 a2.M = i12;
                 a2.N = i11;
-                bVar.f43098c = new b2.x(a2);
+                bVar.f44466c = new b2.w(a2);
             }
             return -5;
         }
         long j12 = eVar.h;
-        if (j12 != Long.MIN_VALUE && ((f7 == -4 && hVar.e >= j12) || (f7 == -3 && p5 == Long.MIN_VALUE && !hVar.d))) {
+        if (j12 != Long.MIN_VALUE && ((f7 == -4 && hVar.e >= j12) || (f7 == -3 && s10 == Long.MIN_VALUE && !hVar.d))) {
             hVar.clear();
             hVar.setFlags(4);
-            this.f45905b = true;
+            this.f47312b = true;
             return -4;
         }
         return f7;
     }
 
     @Override
-    public final int j(long j10) {
-        if (this.f45906c.a()) {
+    public final int h(long j10) {
+        if (this.f47313c.a()) {
             return -3;
         }
-        return this.f45904a.j(j10);
+        return this.f47311a.h(j10);
     }
 }

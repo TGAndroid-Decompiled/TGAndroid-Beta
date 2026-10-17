@@ -1,18 +1,18 @@
 package v3;
 
 import android.util.Pair;
-import c3.a0;
-import c3.c0;
+import c3.b0;
+import c3.d0;
 import e2.m0;
 public final class c implements h {
-    public final long[] f46526a;
-    public final long[] f46527b;
-    public final long f46528c;
+    public final long[] f47934a;
+    public final long[] f47935b;
+    public final long f47936c;
 
     public c(long j10, long[] jArr, long[] jArr2) {
-        this.f46526a = jArr;
-        this.f46527b = jArr2;
-        this.f46528c = j10 == -9223372036854775807L ? m0.S(jArr2[jArr2.length - 1]) : j10;
+        this.f47934a = jArr;
+        this.f47935b = jArr2;
+        this.f47936c = j10 == -9223372036854775807L ? m0.S(jArr2[jArr2.length - 1]) : j10;
     }
 
     public static Pair i(long j10, long[] jArr, long[] jArr2) {
@@ -36,7 +36,7 @@ public final class c implements h {
 
     @Override
     public final long a(long j10) {
-        return m0.S(((Long) i(j10, this.f46526a, this.f46527b).second).longValue());
+        return m0.S(((Long) i(j10, this.f47934a, this.f47935b).second).longValue());
     }
 
     @Override
@@ -60,10 +60,10 @@ public final class c implements h {
     }
 
     @Override
-    public final a0 f(long j10) {
-        Pair i10 = i(m0.h0(m0.j(j10, 0L, this.f46528c)), this.f46527b, this.f46526a);
-        c0 c0Var = new c0(m0.S(((Long) i10.first).longValue()), ((Long) i10.second).longValue());
-        return new a0(c0Var, c0Var);
+    public final b0 f(long j10) {
+        Pair i10 = i(m0.h0(m0.j(j10, 0L, this.f47936c)), this.f47935b, this.f47934a);
+        d0 d0Var = new d0(m0.S(((Long) i10.first).longValue()), ((Long) i10.second).longValue());
+        return new b0(d0Var, d0Var);
     }
 
     @Override
@@ -73,6 +73,6 @@ public final class c implements h {
 
     @Override
     public final long h() {
-        return this.f46528c;
+        return this.f47936c;
     }
 }

@@ -1,124 +1,157 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-public final class sr extends s4.o {
-    public int f39926b;
-    public int e;
-    public int f39928f;
-    public int f39929g;
-    public int h;
-    public int f39930i;
-    public int f39931j;
-    public final yr f39935n;
-    public final SparseIntArray f39927c = new SparseIntArray();
-    public final SparseIntArray d = new SparseIntArray();
-    public final ArrayList f39932k = new ArrayList();
-    public final ArrayList f39933l = new ArrayList();
-    public final ArrayList f39934m = new ArrayList();
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class sr extends LinearLayout {
+    public final Paint f41483a;
+    public final Paint f41484b;
+    public float f41485c;
+    public boolean d;
+    public boolean e;
+    public vr[] f41486f;
 
-    public sr(yr yrVar) {
-        this.f39935n = yrVar;
+    public sr(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f41483a = paint;
+        this.f41484b = new Paint(1);
+        paint.setStyle(Paint.Style.STROKE);
+        setOrientation(0);
     }
 
-    public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
-        if (i11 >= 0) {
-            sparseIntArray.put(i11, i10);
+    public abstract void a();
+
+    public final void b(int r13, int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sr.b(int, int):void");
+    }
+
+    public final void c(String str, boolean z10) {
+        if (this.f41486f != null) {
+            int i10 = 0;
+            if (z10) {
+                int i11 = 0;
+                while (true) {
+                    vr[] vrVarArr = this.f41486f;
+                    if (i11 >= vrVarArr.length) {
+                        break;
+                    } else if (vrVarArr[i11].isFocused()) {
+                        i10 = i11;
+                        break;
+                    } else {
+                        i11++;
+                    }
+                }
+            }
+            for (int i12 = i10; i12 < Math.min(this.f41486f.length, str.length() + i10); i12++) {
+                this.f41486f[i12].setText(Character.toString(str.charAt(i12 - i10)));
+            }
         }
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        if (!b(i10, i11) || this.f39935n.D0 == i11) {
-            return false;
+    public final void dispatchDraw(Canvas canvas) {
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            View childAt = getChildAt(i10);
+            if (childAt instanceof vr) {
+                vr vrVar = (vr) childAt;
+                if (!this.e) {
+                    if (childAt.isFocused()) {
+                        vrVar.j(1.0f);
+                    } else if (!childAt.isFocused()) {
+                        vrVar.j(0.0f);
+                    }
+                }
+                float successProgress = vrVar.getSuccessProgress();
+                int f7 = i0.b.f(successProgress, i0.b.f(vrVar.getErrorProgress(), i0.b.f(vrVar.getFocusedProgress(), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21113k6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21130l6, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21224q7, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21076i7, false));
+                Paint paint = this.f41483a;
+                paint.setColor(f7);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
+                float f10 = this.f41485c;
+                rectF.inset(f10, f10);
+                if (successProgress != 0.0f) {
+                    float f11 = -Math.max(0.0f, (vrVar.getSuccessScaleProgress() - 1.0f) * this.f41485c);
+                    rectF.inset(f11, f11);
+                }
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
+            }
         }
-        return true;
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final boolean b(int i10, int i11) {
-        int i12 = this.f39930i;
-        yr yrVar = this.f39935n;
-        if (i10 >= i12 && i10 < this.f39931j && i11 >= yrVar.X0 && i11 < yrVar.Y0) {
-            return ((TLObject) this.f39933l.get(i10 - i12)).equals(yrVar.G.get(i11 - yrVar.X0));
-        }
-        int i13 = this.f39929g;
-        if (i10 >= i13 && i10 < this.h && i11 >= yrVar.U0 && i11 < yrVar.V0) {
-            return ((TLObject) this.f39934m.get(i10 - i13)).equals(yrVar.H.get(i11 - yrVar.U0));
-        }
-        int i14 = this.e;
-        if (i10 >= i14 && i10 < this.f39928f && i11 >= yrVar.E0 && i11 < yrVar.F0) {
-            return ((TLObject) this.f39932k.get(i10 - i14)).equals(yrVar.F.get(i11 - yrVar.E0));
-        }
-        if (this.f39927c.get(i10) == this.d.get(i11)) {
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view instanceof vr) {
+            vr vrVar = (vr) view;
+            canvas.save();
+            float f7 = vrVar.v;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
+            float f10 = this.f41485c;
+            rectF.inset(f10, f10);
+            canvas.clipRect(rectF);
+            if (vrVar.f42263x) {
+                float f11 = (f7 * 0.5f) + 0.5f;
+                view.setAlpha(f7);
+                canvas.scale(f11, f11, (vrVar.getMeasuredWidth() / 2.0f) + vrVar.getX(), (vrVar.getMeasuredHeight() / 2.0f) + vrVar.getY());
+            } else {
+                view.setAlpha(1.0f);
+                canvas.translate(0.0f, (1.0f - f7) * view.getMeasuredHeight());
+            }
+            super.drawChild(canvas, view, j10);
+            canvas.restore();
+            float f12 = vrVar.f42262w;
+            if (f12 < 1.0f) {
+                canvas.save();
+                float f13 = 1.0f - f12;
+                float f14 = (f13 * 0.5f) + 0.5f;
+                canvas.scale(f14, f14, (vrVar.getMeasuredWidth() / 2.0f) + vrVar.getX(), (vrVar.getMeasuredHeight() / 2.0f) + vrVar.getY());
+                Paint paint = this.f41484b;
+                paint.setAlpha((int) (f13 * 255.0f));
+                canvas.drawBitmap(vrVar.f42264y, vrVar.getX(), vrVar.getY(), paint);
+                canvas.restore();
+                return true;
+            }
             return true;
         }
-        return false;
+        return super.drawChild(canvas, view, j10);
     }
 
-    @Override
-    public final int d() {
-        return this.f39935n.f41899d1;
-    }
-
-    @Override
-    public final int e() {
-        return this.f39926b;
-    }
-
-    public final void f(SparseIntArray sparseIntArray) {
-        sparseIntArray.clear();
-        yr yrVar = this.f39935n;
-        g(1, yrVar.f41936v0, sparseIntArray);
-        g(2, yrVar.f41947z0, sparseIntArray);
-        g(3, yrVar.A0, sparseIntArray);
-        g(4, yrVar.C0, sparseIntArray);
-        g(5, yrVar.D0, sparseIntArray);
-        g(6, yrVar.G0, sparseIntArray);
-        g(7, yrVar.H0, sparseIntArray);
-        g(8, yrVar.f41930s0, sparseIntArray);
-        g(9, yrVar.f41932t0, sparseIntArray);
-        g(10, yrVar.f41934u0, sparseIntArray);
-        g(11, yrVar.f41894b1, sparseIntArray);
-        g(12, yrVar.f41897c1, sparseIntArray);
-        g(13, yrVar.S, sparseIntArray);
-        g(14, yrVar.T, sparseIntArray);
-        g(15, yrVar.U, sparseIntArray);
-        g(16, yrVar.f41900e0, sparseIntArray);
-        g(17, yrVar.f41898d0, sparseIntArray);
-        g(18, yrVar.f41903f0, sparseIntArray);
-        g(19, yrVar.f41907h0, sparseIntArray);
-        g(20, yrVar.m0, sparseIntArray);
-        g(21, yrVar.f41909i0, sparseIntArray);
-        g(22, yrVar.f41911j0, sparseIntArray);
-        int i10 = 23;
-        g(23, yrVar.f41913k0, sparseIntArray);
-        if (yrVar.f41941x) {
-            i10 = 24;
-            g(24, yrVar.f41915l0, sparseIntArray);
+    public String getCode() {
+        if (this.f41486f == null) {
+            return "";
         }
-        g(i10 + 1, yrVar.f41905g0, sparseIntArray);
-        g(i10 + 2, yrVar.B0, sparseIntArray);
-        g(i10 + 3, yrVar.T0, sparseIntArray);
-        g(i10 + 4, yrVar.W0, sparseIntArray);
-        g(i10 + 5, yrVar.Z0, sparseIntArray);
-        g(i10 + 6, yrVar.N0, sparseIntArray);
-        g(i10 + 7, yrVar.O0, sparseIntArray);
-        g(i10 + 8, yrVar.P0, sparseIntArray);
-        g(i10 + 9, yrVar.Q0, sparseIntArray);
-        g(i10 + 10, yrVar.S0, sparseIntArray);
-        g(i10 + 11, yrVar.R0, sparseIntArray);
-        g(i10 + 12, yrVar.f41891a1, sparseIntArray);
-        g(i10 + 13, yrVar.f41904f1, sparseIntArray);
-        g(i10 + 14, yrVar.f41906g1, sparseIntArray);
-        g(i10 + 15, yrVar.f41908h1, sparseIntArray);
-        g(i10 + 16, yrVar.f41910i1, sparseIntArray);
-        g(i10 + 17, yrVar.f41912j1, sparseIntArray);
-        g(i10 + 18, yrVar.f41918n0, sparseIntArray);
-        g(i10 + 19, yrVar.f41920o0, sparseIntArray);
-        g(i10 + 20, yrVar.f41922p0, sparseIntArray);
-        g(i10 + 21, yrVar.f41924q0, sparseIntArray);
-        g(i10 + 22, yrVar.f41927r0, sparseIntArray);
+        StringBuilder sb2 = new StringBuilder();
+        int i10 = 0;
+        while (true) {
+            vr[] vrVarArr = this.f41486f;
+            if (i10 < vrVarArr.length) {
+                sb2.append(jf.b.d(vrVarArr[i10].getText().toString(), false));
+                i10++;
+            } else {
+                return sb2.toString();
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        float dp = AndroidUtilities.dp(1.5f);
+        this.f41485c = dp;
+        this.f41483a.setStrokeWidth(dp);
+    }
+
+    public void setCode(String str) {
+        this.f41486f[0].setText(str);
+    }
+
+    public void setText(String str) {
+        c(str, false);
     }
 }

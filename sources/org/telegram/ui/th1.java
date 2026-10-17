@@ -1,47 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class th1 implements Utilities.Callback {
-    public final int f40118a;
-    public final UserInfoActivity f40119b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class th1 extends View {
+    public int f41755a;
+    public final WallpapersListActivity f41756b;
 
-    public th1(UserInfoActivity userInfoActivity, int i10) {
-        this.f40118a = i10;
-        this.f40119b = userInfoActivity;
+    public th1(WallpapersListActivity wallpapersListActivity, Context context) {
+        super(context);
+        this.f41756b = wallpapersListActivity;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f40118a) {
-            case 0:
-                UserInfoActivity userInfoActivity = this.f40119b;
-                userInfoActivity.J = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.c71 c71Var = userInfoActivity.f32599x;
-                if (c71Var != null) {
-                    c71Var.W2.N(true);
-                }
-                userInfoActivity.b0(true);
-                return;
-            default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f40119b;
-                if (userInfoActivity2.K != chat) {
-                    userInfoActivity2.K = chat;
-                    if (chat != null) {
-                        org.telegram.messenger.g0.q(R.string.EditProfileChannelSet, org.telegram.ui.Components.zc.a0(userInfoActivity2), R.raw.contact_check, 36);
-                    }
-                    userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.c71 c71Var2 = userInfoActivity2.f32599x;
-                    if (c71Var2 != null) {
-                        c71Var2.W2.N(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        WallpapersListActivity wallpapersListActivity = this.f41756b;
+        wallpapersListActivity.f35244w.setColor(this.f41755a);
+        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f35244w);
+        if (this.f41755a == org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false)) {
+            canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f35245x);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(62.0f));
     }
 }

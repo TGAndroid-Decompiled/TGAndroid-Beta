@@ -1,81 +1,53 @@
 package di;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.BuildVars;
-public final class t {
-    public static ArrayList f7811f;
-    public final String f7812a;
-    public final int f7813b;
-    public final int f7814c;
-    public final int[] d;
-    public final ArrayList e = new ArrayList();
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.ActionBar.h6;
+import w7.z5;
+public final class t extends LinearLayout {
+    public final TextView f8067a;
+    public final TextView f8068b;
+    public boolean f8069c;
 
-    public t(String str) {
-        str = str == null ? "." : str;
-        this.f7812a = str;
-        String[] split = str.split("/");
-        int length = split.length;
-        this.f7814c = length;
-        this.d = new int[length];
-        int i10 = 0;
-        for (int i11 = 0; i11 < split.length; i11++) {
-            this.d[i11] = split[i11].length();
-            i10 = Math.max(i10, split[i11].length());
+    public t(Context context) {
+        super(context);
+        int i10;
+        setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+        setOrientation(1);
+        TextView textView = new TextView(context);
+        this.f8067a = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setTextColor(h6.x0(null, h6.f21092j5, false));
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        this.f7813b = i10;
-        for (int i12 = 0; i12 < split.length; i12++) {
-            for (int i13 = 0; i13 < split[i12].length(); i13++) {
-                this.e.add(new s(this, i13, i12));
-            }
+        textView.setGravity(i10);
+        addView(textView, z5.t(-1, -2, 51, 0, 7, 0, 0));
+        TextView textView2 = new TextView(context);
+        this.f8068b = textView2;
+        textView2.setTextSize(1, 13.0f);
+        textView2.setTextColor(h6.x0(null, h6.f21223q5, false));
+        textView2.setGravity(LocaleController.isRTL ? 5 : 3);
+        addView(textView2, z5.t(-1, -2, 51, 0, 4, 0, 0));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f8069c) {
+            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), h6.f21107k0);
         }
     }
 
-    public static ArrayList a() {
-        if (f7811f == null) {
-            ArrayList arrayList = new ArrayList();
-            f7811f = arrayList;
-            arrayList.add(new t("./."));
-            f7811f.add(new t(".."));
-            f7811f.add(new t("../."));
-            f7811f.add(new t("./.."));
-            f7811f.add(new t("././."));
-            f7811f.add(new t("..."));
-            f7811f.add(new t("../.."));
-            f7811f.add(new t("./../.."));
-            f7811f.add(new t("../../."));
-            f7811f.add(new t("../../.."));
-            if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                f7811f.add(new t("../../../.."));
-                f7811f.add(new t(".../.../..."));
-                f7811f.add(new t("..../..../...."));
-                f7811f.add(new t(".../.../.../..."));
-            }
-        }
-        return f7811f;
-    }
-
-    public static int b() {
-        ArrayList a2 = a();
-        int size = a2.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = a2.get(i11);
-            i11++;
-            i10 = Math.max(i10, ((t) obj).e.size());
-        }
-        return i10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof t) {
-            return TextUtils.equals(this.f7812a, ((t) obj).f7812a);
-        }
-        return false;
-    }
-
-    public final String toString() {
-        return this.f7812a;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 }

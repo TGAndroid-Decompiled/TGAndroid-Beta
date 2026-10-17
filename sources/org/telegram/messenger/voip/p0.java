@@ -1,17 +1,25 @@
 package org.telegram.messenger.voip;
 public final class p0 implements Runnable {
-    public final int f18541a;
-    public final Object f18542b;
-    public final Object f18543c;
+    public final int f19896a;
+    public final VoIPService f19897b;
 
-    public p0(int i10, Object obj, Object obj2) {
-        this.f18541a = i10;
-        this.f18542b = obj;
-        this.f18543c = obj2;
+    public p0(VoIPService voIPService, int i10) {
+        this.f19896a = i10;
+        this.f19897b = voIPService;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.p0.run():void");
+        switch (this.f19896a) {
+            case 0:
+                this.f19897b.destroyConverting();
+                return;
+            case 1:
+                this.f19897b.lambda$updateConnectionState$82();
+                return;
+            default:
+                this.f19897b.lambda$onConnectionStateChanged$118();
+                return;
+        }
     }
 }

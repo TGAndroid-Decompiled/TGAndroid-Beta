@@ -1,64 +1,64 @@
 package lh;
 
-import ig.t0;
+import ki.u;
 import ne.d;
 import ne.e;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.voip.u2;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.voip.t2;
 public final class a implements d {
-    public final e f14734a;
-    public final e f14735b;
-    public final ne.b f14736c;
+    public final e f16071a;
+    public final e f16072b;
+    public final ne.b f16073c;
     public final ne.b d;
-    public final u2 e;
-    public final t0 f14737f;
+    public final t2 e;
+    public final u f16074f;
     public boolean h;
 
-    public a(u2 u2Var, t0 t0Var) {
-        es esVar = es.h;
-        this.f14734a = new e(1, this, esVar, 350L);
-        this.f14735b = new e(2, this, esVar, 350L);
-        this.f14736c = new ne.b(0, this, esVar, 350L, true);
-        this.d = new ne.b(3, this, esVar, 350L, true);
+    public a(t2 t2Var, u uVar) {
+        bs bsVar = bs.h;
+        this.f16071a = new e(1, this, bsVar, 350L);
+        this.f16072b = new e(2, this, bsVar, 350L);
+        this.f16073c = new ne.b(0, this, bsVar, 350L, true);
+        this.d = new ne.b(3, this, bsVar, 350L, true);
         this.h = true;
-        this.e = u2Var;
-        this.f14737f = t0Var;
+        this.e = t2Var;
+        this.f16074f = uVar;
     }
 
     @Override
-    public final void p(int i10, float f7, float f10, e eVar) {
+    public final void u(int i10, float f7, float f10, e eVar) {
         int i11;
-        u2 u2Var = this.e;
+        t2 t2Var = this.e;
         if (i10 == 1) {
-            u2Var.setTranslationX(this.f14734a.e);
+            t2Var.setTranslationX(this.f16071a.e);
         }
         if (i10 == 2) {
-            u2Var.setTranslationY(this.f14735b.e);
+            t2Var.setTranslationY(this.f16072b.e);
         }
         ne.b bVar = this.d;
-        ne.b bVar2 = this.f14736c;
+        ne.b bVar2 = this.f16073c;
         if (i10 == 0) {
-            u2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.e) * bVar2.e);
-            u2Var.setScaleX(AndroidUtilities.lerp(0.3f, 1.0f, f7));
-            u2Var.setScaleY(AndroidUtilities.lerp(0.3f, 1.0f, f7));
+            t2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.e) * bVar2.e);
+            t2Var.setScaleX(AndroidUtilities.lerp(0.3f, 1.0f, f7));
+            t2Var.setScaleY(AndroidUtilities.lerp(0.3f, 1.0f, f7));
             if (f7 > 0.0f) {
                 i11 = 0;
             } else {
                 i11 = 8;
             }
-            u2Var.setVisibility(i11);
+            t2Var.setVisibility(i11);
         }
         if (i10 == 3) {
-            u2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.e) * bVar2.e);
+            t2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.e) * bVar2.e);
         }
-        t0 t0Var = this.f14737f;
-        if (t0Var != null) {
-            t0Var.run();
+        u uVar = this.f16074f;
+        if (uVar != null) {
+            uVar.run();
         }
     }
 
     @Override
-    public final void A(float f7, int i10) {
+    public final void E(float f7, int i10) {
     }
 }

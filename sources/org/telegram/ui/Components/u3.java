@@ -1,9 +1,46 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-public final class u3 extends ud0 {
+import android.content.Context;
+import android.graphics.Point;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class u3 extends LinearLayout {
+    public boolean f30867a;
+    public final r3 f30868b;
+    public final t3 f30869c;
+
+    public u3(Context context, r3 r3Var, t3 t3Var) {
+        super(context);
+        this.f30868b = r3Var;
+        this.f30869c = t3Var;
+        this.f30867a = false;
+    }
+
     @Override
-    public final CharSequence d(int i10) {
-        return LocaleController.formatPluralString("Minutes", i10, new Object[0]);
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        this.f30867a = true;
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            i12 = 3;
+        } else {
+            i12 = 5;
+        }
+        r3 r3Var = this.f30868b;
+        r3Var.setItemCount(i12);
+        t3 t3Var = this.f30869c;
+        t3Var.setItemCount(i12);
+        r3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        t3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        this.f30867a = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f30867a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

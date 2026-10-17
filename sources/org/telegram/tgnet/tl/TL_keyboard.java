@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLParseException;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.s;
+import org.telegram.tgnet.r;
 import org.telegram.tgnet.tl.TL_iv;
 public class TL_keyboard {
 
@@ -137,12 +137,12 @@ public class TL_keyboard {
 
         @Override
         public final byte[] getData() {
-            return b.a(this);
+            return a.a(this);
         }
 
         @Override
         public final String getUrl() {
-            return b.b(this);
+            return a.b(this);
         }
     }
 
@@ -174,7 +174,7 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.buttons = Vector.deserialize(inputSerializedData, new a(1), z10);
+            this.buttons = Vector.deserialize(inputSerializedData, new b(0), z10);
         }
 
         @Override
@@ -314,12 +314,12 @@ public class TL_keyboard {
 
         @Override
         public final byte[] getData() {
-            return b.a(this);
+            return a.a(this);
         }
 
         @Override
         public final String getUrl() {
-            return b.b(this);
+            return a.b(this);
         }
     }
 
@@ -360,7 +360,7 @@ public class TL_keyboard {
 
         @Override
         public final byte[] getData() {
-            return b.a(this);
+            return a.a(this);
         }
 
         @Override
@@ -374,7 +374,7 @@ public class TL_keyboard {
 
         @Override
         public final String getUrl() {
-            return b.b(this);
+            return a.b(this);
         }
 
         @Override
@@ -575,7 +575,7 @@ public class TL_keyboard {
             this.same_peer = TLObject.hasFlag(readInt32, 1);
             this.query = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.peer_types = Vector.deserialize(inputSerializedData, new s(17), z10);
+                this.peer_types = Vector.deserialize(inputSerializedData, new r(17), z10);
             }
         }
 
@@ -1785,7 +1785,7 @@ public class TL_keyboard {
             this.text = inputSerializedData.readString(z10);
             this.mType.query = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.mType.peer_types = Vector.deserialize(inputSerializedData, new s(17), z10);
+                this.mType.peer_types = Vector.deserialize(inputSerializedData, new r(17), z10);
             }
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = this.mType;
             tL_inlineButtonTypeSwitchInline.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline.flags, 1, tL_inlineButtonTypeSwitchInline.same_peer);
@@ -1834,7 +1834,7 @@ public class TL_keyboard {
             this.text = inputSerializedData.readString(z10);
             this.mType.query = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.mType.peer_types = Vector.deserialize(inputSerializedData, new s(17), z10);
+                this.mType.peer_types = Vector.deserialize(inputSerializedData, new r(17), z10);
             }
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = this.mType;
             tL_inlineButtonTypeSwitchInline.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline.flags, 1, tL_inlineButtonTypeSwitchInline.same_peer);
@@ -2250,7 +2250,7 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.buttons = Vector.deserialize(inputSerializedData, new a(2), z10);
+            this.buttons = Vector.deserialize(inputSerializedData, new b(1), z10);
         }
 
         @Override

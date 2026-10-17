@@ -14,13 +14,13 @@ public abstract class a0 {
         }
     }
 
-    public static l1 b(View view, l1 l1Var, Rect rect) {
-        WindowInsets g10 = l1Var.g();
+    public static k1 b(View view, k1 k1Var, Rect rect) {
+        WindowInsets g10 = k1Var.g();
         if (g10 != null) {
-            return l1.h(view, view.computeSystemWindowInsets(g10, rect));
+            return k1.h(view, view.computeSystemWindowInsets(g10, rect));
         }
         rect.setEmpty();
-        return l1Var;
+        return k1Var;
     }
 
     public static ColorStateList c(View view) {

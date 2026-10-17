@@ -2,9 +2,9 @@ package e2;
 
 import v7.u6;
 public final class y {
-    public static final y f8417c = new y(-1, -1);
-    public final int f8418a;
-    public final int f8419b;
+    public static final y f8296c = new y(-1, -1);
+    public final int f8297a;
+    public final int f8298b;
 
     static {
         new y(0, 0);
@@ -20,8 +20,8 @@ public final class y {
             z10 = true;
         }
         u6.g(z10);
-        this.f8418a = i10;
-        this.f8419b = i11;
+        this.f8297a = i10;
+        this.f8298b = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -33,7 +33,7 @@ public final class y {
         }
         if (obj instanceof y) {
             y yVar = (y) obj;
-            if (this.f8418a == yVar.f8418a && this.f8419b == yVar.f8419b) {
+            if (this.f8297a == yVar.f8297a && this.f8298b == yVar.f8298b) {
                 return true;
             }
         }
@@ -41,11 +41,11 @@ public final class y {
     }
 
     public final int hashCode() {
-        int i10 = this.f8418a;
-        return ((i10 >>> 16) | (i10 << 16)) ^ this.f8419b;
+        int i10 = this.f8297a;
+        return ((i10 >>> 16) | (i10 << 16)) ^ this.f8298b;
     }
 
     public final String toString() {
-        return this.f8418a + "x" + this.f8419b;
+        return this.f8297a + "x" + this.f8298b;
     }
 }

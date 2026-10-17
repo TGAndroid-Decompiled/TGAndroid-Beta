@@ -1,55 +1,56 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class db0 implements MessagesController.MessagesLoadedCallback {
-    public final d20 f34938a;
-    public final boolean[] f34939b;
-    public final Bundle f34940c;
-    public final TLRPC.ChatInvite d;
-    public final LaunchActivity e;
+import org.telegram.tgnet.tl.TL_account;
+public final class db0 implements Utilities.Callback2 {
+    public final int f36126a;
+    public final kb0 f36127b;
+    public final String f36128c;
 
-    public db0(LaunchActivity launchActivity, d20 d20Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
-        this.e = launchActivity;
-        this.f34938a = d20Var;
-        this.f34939b = zArr;
-        this.f34940c = bundle;
-        this.d = chatInvite;
+    public db0(kb0 kb0Var, String str, int i10) {
+        this.f36126a = i10;
+        this.f36127b = kb0Var;
+        this.f36128c = str;
     }
 
     @Override
-    public final void onError() {
-        LaunchActivity launchActivity = this.e;
-        if (!launchActivity.isFinishing()) {
-            org.telegram.ui.Components.g5.t0((org.telegram.ui.ActionBar.m2) i2.d.h(1, launchActivity.f31811d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
+    public final void run(Object obj, Object obj2) {
+        switch (this.f36126a) {
+            case 0:
+                TL_account.Passkeys passkeys = (TL_account.Passkeys) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                kb0 kb0Var = this.f36127b;
+                kb0Var.c();
+                if (passkeys != null) {
+                    kb0Var.u(new PasskeysActivity(passkeys.passkeys), false);
+                    if ("create".equalsIgnoreCase(this.f36128c)) {
+                        kb0Var.x("addPasskeyRow");
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Wallet.a2 a2Var = (org.telegram.ui.Wallet.a2) obj;
+                String str = (String) obj2;
+                kb0 kb0Var2 = this.f36127b;
+                kb0Var2.c();
+                if (a2Var == null) {
+                    if (str == null) {
+                        str = LocaleController.getString(R.string.WalletTonConnectSessionResponseEmpty);
+                    }
+                    org.telegram.ui.Components.xc.b0(str);
+                    return;
+                }
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null && U.getContext() != null) {
+                    org.telegram.ui.Wallet.f2.B(U.getContext(), kb0Var2.f38460b, a2Var, null, U.getResourceProvider(), null, new gb0(kb0Var2, this.f36128c, 1));
+                    return;
+                }
+                return;
         }
-        try {
-            this.f34938a.run();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public final void onMessagesLoaded(boolean z10) {
-        try {
-            this.f34938a.run();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        if (this.f34939b[0]) {
-            return;
-        }
-        fo foVar = new fo(this.f34940c);
-        TLRPC.ChatInvite chatInvite = this.d;
-        if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
-            foVar.K5 = chatInvite;
-        }
-        ((ActionBarLayout) this.e.O()).P(foVar);
     }
 }

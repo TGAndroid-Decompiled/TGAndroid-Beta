@@ -1,25 +1,23 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.MessagesStorage;
 public final class gf implements Runnable {
-    public final int f17025a;
-    public final MessagesStorage.IntCallback f17026b;
-    public final int[] f17027c;
+    public final int f18466a;
+    public final MessagesStorage f18467b;
+    public final boolean f18468c;
 
-    public gf(MessagesStorage.IntCallback intCallback, int[] iArr, int i10) {
-        this.f17025a = i10;
-        this.f17026b = intCallback;
-        this.f17027c = iArr;
+    public gf(MessagesStorage messagesStorage, boolean z10, int i10) {
+        this.f18466a = i10;
+        this.f18467b = messagesStorage;
+        this.f18468c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17025a) {
+        switch (this.f18466a) {
             case 0:
-                MessagesStorage.lambda$getDialogMaxMessageId$254(this.f17026b, this.f17027c);
+                this.f18467b.lambda$getCachedPhoneBook$150(this.f18468c);
                 return;
             default:
-                MessagesStorage.lambda$getSavedDialogMaxMessageId$52(this.f17026b, this.f17027c);
+                this.f18467b.lambda$cleanup$6(this.f18468c);
                 return;
         }
     }

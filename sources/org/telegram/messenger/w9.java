@@ -1,52 +1,47 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import android.os.Bundle;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class w9 implements RequestDelegate {
-    public final int f18613a;
-    public final BaseController f18614b;
-    public final Object f18615c;
-    public final Object d;
-    public final Object e;
-    public final Object f18616f;
+import java.util.ArrayList;
+public final class w9 implements Runnable {
+    public final int f19968a;
+    public final MessagesController f19969b;
+    public final ArrayList f19970c;
+    public final long d;
 
-    public w9(BaseController baseController, Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f18613a = i10;
-        this.f18614b = baseController;
-        this.f18615c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f18616f = obj4;
+    public w9(MessagesController messagesController, long j10, ArrayList arrayList, int i10) {
+        this.f19968a = i10;
+        this.f19969b = messagesController;
+        this.d = j10;
+        this.f19970c = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18613a) {
+    public final void run() {
+        switch (this.f19968a) {
             case 0:
-                ((MessagesController) this.f18614b).lambda$checkCanOpenChat$455((org.telegram.ui.ActionBar.a2) this.f18615c, (pf.c) this.d, (org.telegram.ui.ActionBar.m2) this.e, (Bundle) this.f18616f, tLObject, tL_error);
+                this.f19969b.lambda$deleteMessagesByPush$368(this.f19970c, this.d);
                 return;
             case 1:
-                ((MessagesController) this.f18614b).lambda$didReceivedNotification$50((TLRPC.TL_theme) this.f18615c, (org.telegram.ui.ActionBar.f6) this.d, (TLRPC.TL_inputThemeSettings) this.e, (org.telegram.ui.ActionBar.e6) this.f18616f, tLObject, tL_error);
+                this.f19969b.lambda$markAllTopicsAsRead$7(this.f19970c, this.d);
                 return;
             case 2:
-                ((SecretChatHelper) this.f18614b).lambda$startSecretChat$28((Context) this.d, (org.telegram.ui.ActionBar.a2) this.f18615c, (byte[]) this.e, (TLRPC.User) this.f18616f, tLObject, tL_error);
+                this.f19969b.lambda$getDifference$353(this.d, this.f19970c);
+                return;
+            case 3:
+                this.f19969b.lambda$generateJoinMessage$367(this.d, this.f19970c);
+                return;
+            case 4:
+                this.f19969b.lambda$processUpdateArray$421(this.d, this.f19970c);
                 return;
             default:
-                ((SendMessagesHelper) this.f18614b).lambda$performSendDelayedMessage$59((TLRPC.InputMedia) this.f18615c, (SendMessagesHelper.DelayedMessage) this.d, (String) this.e, (MessageObject) this.f18616f, tLObject, tL_error);
+                this.f19969b.lambda$getDifference$354(this.d, this.f19970c);
                 return;
         }
     }
 
-    public w9(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.a2 a2Var, byte[] bArr, TLRPC.User user) {
-        this.f18613a = 2;
-        this.f18614b = secretChatHelper;
-        this.d = context;
-        this.f18615c = a2Var;
-        this.e = bArr;
-        this.f18616f = user;
+    public w9(MessagesController messagesController, ArrayList arrayList, long j10, int i10) {
+        this.f19968a = i10;
+        this.f19969b = messagesController;
+        this.f19970c = arrayList;
+        this.d = j10;
     }
 }

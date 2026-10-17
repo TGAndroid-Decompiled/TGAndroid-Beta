@@ -1,40 +1,30 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 public final class uj implements Runnable {
-    public final int f29390a;
-    public final vj f29391b;
-    public final String f29392c;
-    public final int d;
+    public final int f30998a;
+    public final wj f30999b;
 
-    public uj(vj vjVar, String str, int i10, int i11) {
-        this.f29390a = i11;
-        this.f29391b = vjVar;
-        this.f29392c = str;
-        this.d = i10;
+    public uj(wj wjVar, int i10) {
+        this.f30998a = i10;
+        this.f30999b = wjVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f29390a) {
+        switch (this.f30998a) {
             case 0:
-                vj vjVar = this.f29391b;
-                String str = this.f29392c;
-                int i10 = this.d;
-                vjVar.getClass();
-                AndroidUtilities.runOnUIThread(new uj(vjVar, str, i10, 1));
+                wj wjVar = this.f30999b;
+                if (wjVar.f32134f != null) {
+                    wjVar.v = org.telegram.messenger.wh.g(new StringBuilder("+"), wjVar.f32134f.phone, jf.b.c());
+                    wjVar.f32137s = wjVar.f32134f;
+                    AndroidUtilities.runOnUIThread(new uj(wjVar, 1));
+                    return;
+                }
                 return;
             default:
-                vj vjVar2 = this.f29391b;
-                String str2 = this.f29392c;
-                int i11 = this.d;
-                vjVar2.getClass();
-                int i12 = UserConfig.selectedAccount;
-                Utilities.searchQueue.postRunnable(new ji.h0(vjVar2, str2, new ArrayList(ContactsController.getInstance(i12).contactsBook.values()), new ArrayList(ContactsController.getInstance(i12).contacts), i12, i11));
+                wj wjVar2 = this.f30999b;
+                wjVar2.f32133c.l(wjVar2.v, false);
                 return;
         }
     }

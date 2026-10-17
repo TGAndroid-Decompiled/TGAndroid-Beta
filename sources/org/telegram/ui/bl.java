@@ -1,33 +1,35 @@
 package org.telegram.ui;
+public final class bl implements Runnable {
+    public final int f35704a;
+    public final cl f35705b;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class bl extends vv0 {
-    public bl(ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(viewGroup, viewGroup2);
+    public bl(cl clVar, int i10) {
+        this.f35704a = i10;
+        this.f35705b = clVar;
     }
 
     @Override
-    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
-        if (f7 > 0.0f) {
-            View view = this.e;
-            if (view instanceof org.telegram.ui.Cells.u1) {
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(f10, (int) Math.max(f12, f11), u1Var.getMeasuredWidth() + f10, (int) Math.min(f13, u1Var.getMeasuredHeight() + f11));
-                canvas.saveLayerAlpha(rectF, (int) (f7 * 255.0f), 31);
-                canvas.translate(f10, f11 + u1Var.getPaddingTop());
-                u1Var.Ed = true;
-                u1Var.Y1(canvas);
-                if (u1Var.f4() && u1Var.getCurrentMessagesGroup() == null) {
-                    u1Var.m2(1.0f, canvas, false);
+    public final void run() {
+        switch (this.f35704a) {
+            case 0:
+                hk hkVar = this.f35705b.H.Y;
+                if (hkVar != null) {
+                    hkVar.T0 = false;
+                    org.telegram.ui.Components.dg dgVar = hkVar.U0;
+                    if (dgVar != null) {
+                        dgVar.v(false);
+                        return;
+                    }
+                    return;
                 }
-                u1Var.Ed = false;
-                canvas.restore();
-            }
+                return;
+            default:
+                hk hkVar2 = this.f35705b.H.Y;
+                if (hkVar2 != null) {
+                    hkVar2.F0();
+                    return;
+                }
+                return;
         }
     }
 }

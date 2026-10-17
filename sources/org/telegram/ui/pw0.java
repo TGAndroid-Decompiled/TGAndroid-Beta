@@ -1,80 +1,189 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-public final class pw0 extends org.telegram.ui.Cells.u1 {
-    public final Path Ge;
-    public final Paint He;
-    public final byte[] Ie;
-    public final int Je;
-    public final int Ke;
-    public final rw0 Le;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class pw0 extends LinearLayout {
+    public final TextView f40248a;
+    public final TextView f40249b;
+    public final FrameLayout f40250c;
+    public final lw0 d;
+    public final mw0 e;
+    public boolean f40251f;
+    public boolean h;
+    public final PremiumPreviewFragment f40252n;
 
-    public pw0(rw0 rw0Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, byte[] bArr, int i11, int i12) {
-        super(context, i10, false, null, c6Var);
-        this.Le = rw0Var;
-        this.Ie = bArr;
-        this.Je = i11;
-        this.Ke = i12;
-        this.Ge = new Path();
-        this.He = new Paint(1);
-    }
-
-    @Override
-    public final void Y1(Canvas canvas) {
-        this.f21964i6 = 0;
-        this.f21978j6 = this.Y5.size() - 1;
-        this.f21993k6 = (-AndroidUtilities.dp(7.0f)) * this.Le.f39614y;
-        super.Y1(canvas);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        canvas.save();
-        int I2 = I2(this.Ie);
-        float H2 = H2(I2);
-        float G2 = G2(I2);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getPollButtonsLeft(), H2, getPollButtonsRight(), G2);
-        float f10 = rectF.top;
-        float dp = AndroidUtilities.dp(3.0f);
-        rw0 rw0Var = this.Le;
-        if (rw0Var.V) {
-            f7 = -AndroidUtilities.dp(3.0f);
+    public pw0(PremiumPreviewFragment premiumPreviewFragment, Context context) {
+        super(context);
+        int i10;
+        int i11;
+        int i12;
+        this.f40252n = premiumPreviewFragment;
+        setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f40250c = frameLayout;
+        int i13 = premiumPreviewFragment.f33495g0;
+        if (i13 == 1) {
+            i10 = 175;
         } else {
-            f7 = 0.0f;
+            i10 = 190;
         }
-        rectF.top = AndroidUtilities.lerp(dp, f7, rw0Var.f39614y) + f10;
-        float f11 = rectF.bottom;
-        boolean z10 = rw0Var.V;
-        float dp2 = AndroidUtilities.dp(3.0f);
-        if (!z10) {
-            dp2 = AndroidUtilities.lerp(dp2, 0.0f, rw0Var.f39614y);
+        addView(frameLayout, w7.z5.q(i10, i10, 1));
+        boolean z10 = premiumPreviewFragment.f33496h0;
+        if (i13 == 1) {
+            i11 = 1;
+        } else {
+            i11 = 0;
         }
-        rectF.bottom = f11 + dp2;
-        Path path = this.Ge;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
-        Paint paint = this.He;
-        paint.setColor(0);
-        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.g6.m1(rw0Var.f39614y * 0.2f, -16777216));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        canvas.clipPath(path);
-        S1(canvas);
-        canvas.restore();
+        lw0 lw0Var = new lw0(this, context, z10 ? 1 : 0, i11, context);
+        this.d = lw0Var;
+        frameLayout.addView(lw0Var, w7.z5.d(-1.0f, -1));
+        frameLayout.setClipChildren(false);
+        setClipChildren(false);
+        TextView textView = new TextView(context);
+        this.f40248a = textView;
+        textView.setTextSize(1, 22.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(1);
+        if (i13 == 1) {
+            i12 = 8;
+        } else {
+            i12 = 20;
+        }
+        addView(textView, w7.z5.p(-2, -2, 0.0f, 1, 16, i12, 16, 0));
+        TextView textView2 = new TextView(context);
+        this.f40249b = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        textView2.setGravity(1);
+        addView(textView2, w7.z5.p(-1, -2, 0.0f, 1, 16, 7, 16, 0));
+        mw0 mw0Var = new mw0(this, context);
+        this.e = mw0Var;
+        mw0Var.setOverScrollMode(2);
+        mw0Var.setLayoutManager(new s4.b0());
+        mw0Var.setAdapter(new ow0(this, context));
+        mw0Var.setOnItemClickListener(new i(this, 26));
+        final Path path = new Path();
+        final float[] fArr = new float[8];
+        mw0Var.setSelectorTransformer(new q0.a() {
+            @Override
+            public final void accept(Object obj) {
+                int b10;
+                Canvas canvas = (Canvas) obj;
+                mw0 mw0Var2 = pw0.this.e;
+                View pressedChildView = mw0Var2.getPressedChildView();
+                if (pressedChildView == null) {
+                    b10 = -1;
+                } else {
+                    b10 = mw0Var2.T(pressedChildView).b();
+                }
+                Path path2 = path;
+                path2.rewind();
+                Rect selectorRect = mw0Var2.getSelectorRect();
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(selectorRect.left, selectorRect.top, selectorRect.right, selectorRect.bottom);
+                float[] fArr2 = fArr;
+                Arrays.fill(fArr2, 0.0f);
+                if (b10 == 0) {
+                    Arrays.fill(fArr2, 0, 4, AndroidUtilities.dp(12.0f));
+                }
+                if (b10 == mw0Var2.getAdapter().h() - 1) {
+                    Arrays.fill(fArr2, 4, 8, AndroidUtilities.dp(12.0f));
+                }
+                path2.addRoundRect(rectF, fArr2, Path.Direction.CW);
+                canvas.clipPath(path2);
+            }
+        });
+        setClipChildren(false);
+        setClipToPadding(false);
+        addView(mw0Var, w7.z5.k(12.0f, 16.0f, 12.0f, 4.0f, -1, -2));
+        a();
+        b();
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pw0.a():void");
+    }
+
+    public final void b() {
+        int i10;
+        int i11;
+        boolean z10;
+        int i12;
+        int i13;
+        PremiumPreviewFragment premiumPreviewFragment = this.f40252n;
+        int i14 = premiumPreviewFragment.f33495g0;
+        TextView textView = this.f40248a;
+        TextView textView2 = this.f40249b;
+        if (i14 == 0) {
+            if (premiumPreviewFragment.f33504p0) {
+                i12 = R.string.TelegramPremiumSubscribedTitle;
+            } else {
+                i12 = R.string.TelegramPremium;
+            }
+            textView.setText(LocaleController.getString(i12));
+            if (!premiumPreviewFragment.getUserConfig().isPremium() && !premiumPreviewFragment.f33504p0) {
+                i13 = R.string.TelegramPremiumSubtitle;
+            } else {
+                i13 = R.string.TelegramPremiumSubscribedSubtitle;
+            }
+            org.telegram.messenger.q.n(i13, textView2);
+        } else if (i14 == 1) {
+            if (premiumPreviewFragment.f33504p0) {
+                i10 = R.string.TelegramPremiumSubscribedTitle;
+            } else {
+                i10 = R.string.TelegramBusiness;
+            }
+            textView.setText(LocaleController.getString(i10));
+            if (!premiumPreviewFragment.getUserConfig().isPremium() && !premiumPreviewFragment.f33504p0) {
+                i11 = R.string.TelegramBusinessSubtitleTemp;
+            } else {
+                i11 = R.string.TelegramBusinessSubscribedSubtitleTemp;
+            }
+            org.telegram.messenger.q.n(i11, textView2);
+        }
+        textView2.getLayoutParams().width = Math.min(AndroidUtilities.displaySize.x - AndroidUtilities.dp(42.0f), ei.x3.a(textView2.getText(), textView2.getPaint()));
+        int i15 = 0;
+        if (!premiumPreviewFragment.f33504p0 && !BuildVars.IS_BILLING_UNAVAILABLE && premiumPreviewFragment.d.size() > 1) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        boolean z11 = this.f40251f;
+        mw0 mw0Var = this.e;
+        if (z11 && z10) {
+            if (mw0Var.getVisibility() == 0 && z10 && this.h == z10) {
+                ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(250L);
+                duration.addUpdateListener(new kw0(this, mw0Var, duration, 0));
+                duration.addListener(new org.telegram.ui.Components.ml0(11, this, mw0Var));
+                duration.setInterpolator(org.telegram.ui.Components.bs.f25030f);
+                duration.start();
+            }
+        } else {
+            if (z10) {
+                i15 = 8;
+            }
+            mw0Var.setVisibility(i15);
+            this.f40251f = true;
+        }
+        this.h = !z10;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(this.Je, this.Ke);
-    }
-
-    @Override
-    public final void setPressed(boolean z10) {
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return true;
     }
 }

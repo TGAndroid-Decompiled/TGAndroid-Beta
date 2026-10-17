@@ -1,22 +1,11 @@
 package org.telegram.ui.Components;
 public final class dw0 {
-    public static final dw0 f24190a;
-    public static final dw0 f24191b;
-    public static final dw0[] f24192c;
+    public float f25720a;
+    public float f25721b;
+    public boolean f25722c;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f24190a = r02;
-        ?? r12 = new Enum("RECORDING", 1);
-        f24191b = r12;
-        f24192c = new dw0[]{r02, r12};
-    }
-
-    public static dw0 valueOf(String str) {
-        return (dw0) Enum.valueOf(dw0.class, str);
-    }
-
-    public static dw0[] values() {
-        return (dw0[]) f24192c.clone();
+    public dw0(float f7, float f10) {
+        this.f25720a = f7;
+        this.f25721b = f10;
     }
 }

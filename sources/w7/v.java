@@ -2,39 +2,39 @@ package w7;
 
 import android.util.SparseBooleanArray;
 public abstract class v {
-    public static b2.c1 a(b2.c1 c1Var, b2.c1 c1Var2) {
-        if (c1Var != null) {
-            b2.v vVar = c1Var.f2097a;
-            if (c1Var2 != null) {
+    public static b2.b1 a(b2.b1 b1Var, b2.b1 b1Var2) {
+        if (b1Var != null) {
+            b2.u uVar = b1Var.f3703a;
+            if (b1Var2 != null) {
                 SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
-                for (int i10 = 0; i10 < vVar.f2447a.size(); i10++) {
-                    if (c1Var2.a(vVar.a(i10))) {
-                        int a2 = vVar.a(i10);
+                for (int i10 = 0; i10 < uVar.f4055a.size(); i10++) {
+                    if (b1Var2.a(uVar.a(i10))) {
+                        int a2 = uVar.a(i10);
                         v7.u6.p(!false);
                         sparseBooleanArray.append(a2, true);
                     }
                 }
                 v7.u6.p(!false);
-                return new b2.c1(new b2.v(sparseBooleanArray));
+                return new b2.b1(new b2.u(sparseBooleanArray));
             }
         }
-        return b2.c1.f2095b;
+        return b2.b1.f3701b;
     }
 
-    public static void b(b2.g1 g1Var, m4.w wVar) {
-        int i10 = wVar.f15405b;
-        long j10 = wVar.f15406c;
-        e9.n0 n0Var = wVar.f15404a;
+    public static void b(b2.f1 f1Var, m4.w wVar) {
+        int i10 = wVar.f16757b;
+        long j10 = wVar.f16758c;
+        e9.n0 n0Var = wVar.f16756a;
         if (i10 == -1) {
-            if (g1Var.o0(20)) {
-                g1Var.L0(n0Var);
+            if (f1Var.o0(20)) {
+                f1Var.L0(n0Var);
             } else if (!n0Var.isEmpty()) {
-                g1Var.l0((b2.p0) n0Var.get(0));
+                f1Var.l0((b2.o0) n0Var.get(0));
             }
-        } else if (g1Var.o0(20)) {
-            g1Var.S(j10, wVar.f15405b, n0Var);
+        } else if (f1Var.o0(20)) {
+            f1Var.S(j10, wVar.f16757b, n0Var);
         } else if (!n0Var.isEmpty()) {
-            g1Var.k((b2.p0) n0Var.get(0), j10);
+            f1Var.k((b2.o0) n0Var.get(0), j10);
         }
     }
 }

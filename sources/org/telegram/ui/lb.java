@@ -1,69 +1,110 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class lb extends zu0 {
-    public final ac f37673a;
+public final class lb extends ub {
+    public final ih.k f38841x0;
+    public final xb f38842y0;
 
-    public lb(ac acVar) {
-        this.f37673a = acVar;
+    public lb(xb xbVar, Context context) {
+        super(xbVar, context);
+        this.f38842y0 = xbVar;
+        this.f38841x0 = new ih.k();
     }
 
     @Override
-    public final jv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        org.telegram.ui.Cells.w0 w0Var;
-        MessageObject messageObject2;
-        org.telegram.ui.Cells.u1 u1Var;
-        MessageObject messageObject3;
-        ac acVar = this.f37673a;
-        int childCount = acVar.v.getChildCount();
-        int i11 = 0;
-        while (true) {
-            ImageReceiver imageReceiver = null;
-            if (i11 >= childCount) {
-                return null;
+    public final void U(Drawable drawable) {
+        if (drawable instanceof org.telegram.ui.Components.wc0) {
+            ((org.telegram.ui.Components.wc0) drawable).p();
+        }
+        ih.k kVar = this.f38841x0;
+        gh.a c10 = kVar.c(drawable);
+        AndroidUtilities.computePerceivedBrightness(kVar.a(c10));
+        xb xbVar = this.f38842y0;
+        xbVar.f43042a.f11064a = c10;
+        kh.f fVar = xbVar.W;
+        if (fVar != null) {
+            fVar.invalidate();
+        }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        c2.b bVar = c2.b.e;
+        if (bVar != null && bVar.f4492a) {
+            x4 x4Var = (x4) c2.b.m().d;
+            if (x4Var != null) {
+                x4Var.onTouchEvent(motionEvent);
+                return true;
             }
-            View childAt = acVar.v.getChildAt(i11);
-            if (childAt instanceof org.telegram.ui.Cells.u1) {
-                if (messageObject != null && (messageObject3 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && messageObject3.getId() == messageObject.getId()) {
-                    imageReceiver = u1Var.getPhotoImage();
-                }
-            } else if ((childAt instanceof org.telegram.ui.Cells.w0) && (messageObject2 = (w0Var = (org.telegram.ui.Cells.w0) childAt).getMessageObject()) != null) {
-                if (messageObject != null) {
-                    if (messageObject2.getId() == messageObject.getId()) {
-                        imageReceiver = w0Var.getPhotoImage();
-                    }
-                } else if (fileLocation != null && messageObject2.photoThumbs != null) {
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 >= messageObject2.photoThumbs.size()) {
-                            break;
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+        if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
+            long dialogId = playingMessageObject.getDialogId();
+            xb xbVar = this.f38842y0;
+            if (dialogId == (-xbVar.f43050f.f20272id)) {
+                MediaController.getInstance().setTextureView(xbVar.Q0(false), xbVar.f43049e0, xbVar.f43048d0, true);
+            }
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lb.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        org.telegram.ui.ActionBar.k kVar3;
+        org.telegram.ui.ActionBar.k kVar4;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        xb xbVar = this.f38842y0;
+        gh.a aVar = xbVar.f43042a.f11064a;
+        if (aVar instanceof gh.b) {
+            ((gh.b) aVar).c(size, size2);
+        }
+        setMeasuredDimension(size, size2);
+        int paddingTop = size2 - getPaddingTop();
+        kVar = ((org.telegram.ui.ActionBar.n2) xbVar).actionBar;
+        measureChildWithMargins(kVar, i10, 0, i11, 0);
+        kVar2 = ((org.telegram.ui.ActionBar.n2) xbVar).actionBar;
+        int measuredHeight = kVar2.getMeasuredHeight();
+        kVar3 = ((org.telegram.ui.ActionBar.n2) xbVar).actionBar;
+        if (kVar3.getVisibility() == 0) {
+            paddingTop -= measuredHeight;
+        }
+        int childCount = getChildCount();
+        for (int i12 = 0; i12 < childCount; i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt != null && childAt.getVisibility() != 8) {
+                kVar4 = ((org.telegram.ui.ActionBar.n2) xbVar).actionBar;
+                if (childAt != kVar4) {
+                    if (childAt != xbVar.v && childAt != xbVar.f43058n) {
+                        if (childAt == xbVar.H) {
+                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
+                        } else {
+                            measureChildWithMargins(childAt, i10, 0, i11, 0);
                         }
-                        TLRPC.FileLocation fileLocation2 = messageObject2.photoThumbs.get(i12).location;
-                        if (fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.local_id == fileLocation.local_id) {
-                            imageReceiver = w0Var.getPhotoImage();
-                            break;
-                        }
-                        i12++;
+                    } else {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (xbVar.e * 2), 1073741824));
                     }
                 }
             }
-            if (imageReceiver != null) {
-                int[] iArr = new int[2];
-                childAt.getLocationInWindow(iArr);
-                jv0 jv0Var = new jv0();
-                jv0Var.f37146b = iArr[0];
-                jv0Var.f37147c = iArr[1];
-                jv0Var.d = acVar.v;
-                jv0Var.f37145a = imageReceiver;
-                jv0Var.e = imageReceiver.getBitmapSafe();
-                jv0Var.h = imageReceiver.getRoundRadius(true);
-                jv0Var.f37153l = true;
-                return jv0Var;
-            }
-            i11++;
         }
     }
 }

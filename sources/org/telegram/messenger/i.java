@@ -3,34 +3,34 @@ package org.telegram.messenger;
 import android.content.Intent;
 import org.telegram.messenger.NotificationBadge;
 public final class i implements Runnable {
-    public final int f17148a;
-    public final Intent f17149b;
+    public final int f18555a;
+    public final Intent f18556b;
 
     public i(Intent intent, int i10) {
-        this.f17148a = i10;
-        this.f17149b = intent;
+        this.f18555a = i10;
+        this.f18556b = intent;
     }
 
     @Override
     public final void run() {
-        switch (this.f17148a) {
+        switch (this.f18555a) {
             case 0:
-                AndroidUtilities.lambda$googleVoiceClientService_performAction$2(this.f17149b);
+                AndroidUtilities.lambda$googleVoiceClientService_performAction$2(this.f18556b);
                 return;
             case 1:
-                NotificationBadge.AdwHomeBadger.a(this.f17149b);
+                NotificationBadge.AdwHomeBadger.a(this.f18556b);
                 return;
             case 2:
-                NotificationBadge.ApexHomeBadger.a(this.f17149b);
+                NotificationBadge.ApexHomeBadger.a(this.f18556b);
                 return;
             case 3:
-                NotificationBadge.AsusHomeBadger.a(this.f17149b);
+                NotificationBadge.AsusHomeBadger.a(this.f18556b);
                 return;
             case 4:
-                NotificationBadge.DefaultBadger.a(this.f17149b);
+                NotificationBadge.DefaultBadger.a(this.f18556b);
                 return;
             default:
-                NotificationBadge.SonyHomeBadger.a(this.f17149b);
+                NotificationBadge.SonyHomeBadger.a(this.f18556b);
                 return;
         }
     }

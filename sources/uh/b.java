@@ -3,31 +3,31 @@ package uh;
 import android.view.View;
 import android.view.WindowInsets;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.p20;
-import r0.l1;
+import org.telegram.ui.Components.l20;
+import r0.k1;
 import r0.n;
-import ri.h0;
-public final class b implements p20, n {
-    public final f f46436a;
+import tg.p;
+public final class b implements l20, n {
+    public final f f47846a;
 
     public b(f fVar) {
-        this.f46436a = fVar;
+        this.f47846a = fVar;
     }
 
     @Override
-    public l1 Q0(View view, l1 l1Var) {
+    public k1 B0(View view, k1 k1Var) {
         boolean z10;
-        WindowInsets g10 = l1Var.g();
-        f fVar = this.f46436a;
+        WindowInsets g10 = k1Var.g();
+        f fVar = this.f47846a;
         fVar.processLegacyContainerInsets(g10);
         ne.b bVar = fVar.Y;
-        if (l1Var.f43497a.f(8).d > 0) {
+        if (k1Var.f44853a.f(8).d > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         bVar.a(z10, true);
-        return l1.f43496b;
+        return k1.f44852b;
     }
 
     @Override
@@ -36,11 +36,11 @@ public final class b implements p20, n {
         if (i10 > 0) {
             min -= AndroidUtilities.dp(8.0f);
         }
-        f fVar = this.f46436a;
-        if (fVar.f46456l0 != min) {
-            fVar.f46456l0 = min;
+        f fVar = this.f47846a;
+        if (fVar.f47866l0 != min) {
+            fVar.f47866l0 = min;
             fVar.X.a(min);
-            fVar.f46452h0.postOnAnimation(new h0(fVar, 19));
+            fVar.f47862h0.postOnAnimation(new p(fVar, 9));
         }
     }
 }

@@ -4,17 +4,17 @@ import com.google.android.gms.common.data.DataHolder;
 public final class l extends l6.a implements x8.f {
     @Override
     public final String a() {
-        DataHolder dataHolder = this.f14604a;
-        int i10 = this.f14605b;
+        DataHolder dataHolder = this.f15939a;
+        int i10 = this.f15940b;
         dataHolder.c(i10, "asset_key");
-        return dataHolder.d[this.f14606c].getString(i10, dataHolder.f5089c.getInt("asset_key"));
+        return dataHolder.d[this.f15941c].getString(i10, dataHolder.f6543c.getInt("asset_key"));
     }
 
     @Override
     public final String getId() {
-        DataHolder dataHolder = this.f14604a;
-        int i10 = this.f14605b;
+        DataHolder dataHolder = this.f15939a;
+        int i10 = this.f15940b;
         dataHolder.c(i10, "asset_id");
-        return dataHolder.d[this.f14606c].getString(i10, dataHolder.f5089c.getInt("asset_id"));
+        return dataHolder.d[this.f15941c].getString(i10, dataHolder.f6543c.getInt("asset_id"));
     }
 }

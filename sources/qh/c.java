@@ -1,28 +1,28 @@
 package qh;
 
-import ji.p1;
+import ig.l0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.voip.r2;
+import org.telegram.ui.web.z1;
 public final class c {
-    public final p1 f43372a;
-    public b f43374c = b.f43369a;
-    public final r2 d = new r2(this, 19);
-    public final long f43373b = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
+    public final l0 f44745a;
+    public b f44747c = b.f44742a;
+    public final z1 d = new z1(this, 8);
+    public final long f44746b = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
 
-    public c(p1 p1Var) {
-        this.f43372a = p1Var;
+    public c(l0 l0Var) {
+        this.f44745a = l0Var;
     }
 
     public final void a(b bVar, boolean z10) {
-        if (this.f43374c != bVar) {
-            r2 r2Var = this.d;
-            AndroidUtilities.cancelRunOnUIThread(r2Var);
-            this.f43374c = bVar;
+        if (this.f44747c != bVar) {
+            z1 z1Var = this.d;
+            AndroidUtilities.cancelRunOnUIThread(z1Var);
+            this.f44747c = bVar;
             if (z10) {
-                this.f43372a.run(bVar);
+                this.f44745a.run(bVar);
             }
-            if (bVar == b.f43370b || bVar == b.f43371c) {
-                AndroidUtilities.runOnUIThread(r2Var, this.f43373b);
+            if (bVar == b.f44743b || bVar == b.f44744c) {
+                AndroidUtilities.runOnUIThread(z1Var, this.f44746b);
             }
         }
     }

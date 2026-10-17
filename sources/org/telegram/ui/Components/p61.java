@@ -1,54 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class p61 extends MetricAffectingSpan {
-    public final CharSequence f27894a;
-    public final int f27895b;
-    public final int f27896c;
-    public final byte d;
-    public final q11 e;
-
-    public p61(CharSequence charSequence, int i10, int i11, byte b10, q11 q11Var) {
-        this.f27894a = charSequence;
-        this.f27895b = i10;
-        this.f27896c = i11;
-        this.d = b10;
-        this.e = q11Var;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+public final class p61 extends FrameLayout {
+    public int f29215a;
+    public boolean f29216b;
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        byte b10 = this.d;
-        if (b10 == 2) {
-            textPaint.setColor(-1);
-        } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.fc, false));
+    public final void onMeasure(int i10, int i11) {
+        View view;
+        int i12 = this.f29215a;
+        if (getParent() instanceof View) {
+            view = (View) getParent();
         } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19623ec, false));
+            view = null;
         }
-        q11 q11Var = this.e;
-        if (q11Var != null) {
-            q11Var.a(textPaint);
-            return;
+        if (this.f29216b && view != null) {
+            i12 = view.getPaddingBottom() + view.getPaddingTop() + i12;
         }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        q11 q11Var = this.e;
-        if (q11Var != null) {
-            q11Var.a(textPaint);
+        if (view != null && view.getMeasuredHeight() > 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight() - i12, 1073741824));
+        } else if (View.MeasureSpec.getMode(i11) != 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11) - i12, 1073741824));
         } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
+            int size = View.MeasureSpec.getSize(i11);
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+            measureChildren(makeMeasureSpec, i11);
+            int i13 = 0;
+            for (int i14 = 0; i14 < getChildCount(); i14++) {
+                i13 = Math.max(i13, getChildAt(i14).getMeasuredHeight());
+            }
+            if (size > 0) {
+                i13 = Math.min(i13, size - i12);
+            }
+            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i13, 1073741824));
         }
     }
 }

@@ -1,5 +1,25 @@
 package org.telegram.ui.Components;
-public final class y61 {
-    public int f31170a;
-    public int f31171b;
+public final class y61 extends g.o {
+    public final x61 f32551c;
+    public final a71 d;
+
+    public y61(a71 a71Var, x61 x61Var) {
+        this.d = a71Var;
+        this.f32551c = x61Var;
+    }
+
+    @Override
+    public final int i(int i10) {
+        int i11;
+        s61 s61Var = this.d.W2;
+        x61 x61Var = this.f32551c;
+        if (s61Var == null) {
+            return x61Var.J;
+        }
+        f61 G = s61Var.G(i10);
+        if (G != null && (i11 = G.f26149u) != -1) {
+            return i11;
+        }
+        return x61Var.J;
+    }
 }

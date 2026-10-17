@@ -1,38 +1,166 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Random;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public interface t0 {
-    void D1(w0 w0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str);
+import org.telegram.ui.Components.b10;
+import org.telegram.ui.Components.x90;
+import org.telegram.ui.Components.xc;
+public abstract class t0 {
+    public static int A(int i10, int i11, Drawable drawable) {
+        return (drawable.getIntrinsicHeight() / i10) + i11;
+    }
 
-    org.telegram.ui.ActionBar.m2 M0();
+    public static int B(int i10, int i11, Drawable drawable) {
+        return (drawable.getIntrinsicWidth() / i10) + i11;
+    }
 
-    void O0(TLRPC.TL_chatInviteExported tL_chatInviteExported);
+    public static String C(int i10) {
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 == 4) {
+                        return "FAILED";
+                    }
+                    throw null;
+                }
+                return "PENDING";
+            }
+            return "CANCELLED";
+        }
+        return "PAID";
+    }
 
-    void W(w0 w0Var, int i10);
+    public static boolean a(MessageObject messageObject) {
+        if (messageObject != null && messageObject.getDialogId() == 1271266957) {
+            return true;
+        }
+        return false;
+    }
 
-    long a();
+    public static float b(float f7, float f10, float f11) {
+        return (AndroidUtilities.dpf2(f7) * f10) + f11;
+    }
 
-    void a2(w0 w0Var, String str);
+    public static float c(float f7, float f10, float f11, float f12) {
+        return Math.min(f12, (f7 / f10) + f11);
+    }
 
-    void b0(w0 w0Var);
+    public static float d(Random random, float f7, float f10) {
+        return (random.nextFloat() * f7) + f10;
+    }
 
-    long d();
+    public static int e(float f7, int i10, int i11) {
+        return (i10 - AndroidUtilities.dp(f7)) + i11;
+    }
 
-    void d1(w0 w0Var, TLRPC.Document document, TLRPC.VideoSize videoSize);
+    public static int f(float f7, int i10, TextView textView) {
+        textView.setText(LocaleController.getString(i10));
+        return AndroidUtilities.dp(f7);
+    }
 
-    boolean e();
+    public static int g(int i10, int i11, Drawable drawable) {
+        return i11 - (drawable.getIntrinsicHeight() / i10);
+    }
 
-    void g0(w0 w0Var, int i10, int i11);
+    public static int h(Random random, int i10) {
+        return Math.abs(random.nextInt() % i10);
+    }
 
-    void k0(w0 w0Var);
+    public static int i(b10 b10Var, int i10) {
+        return b10Var.c(b10Var.getMeasuredWidth()) + i10;
+    }
 
-    boolean k2(w0 w0Var, float f7, float f10);
+    public static Bundle j(int i10, String str) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(str, i10);
+        return bundle;
+    }
 
-    void o2(w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
+    public static TextView k(FrameLayout frameLayout, TextView textView, FrameLayout.LayoutParams layoutParams, Context context) {
+        frameLayout.addView(textView, layoutParams);
+        return new TextView(context);
+    }
 
-    void r0(w0 w0Var);
+    public static o1.l l(float f7, float f10, float f11) {
+        o1.l lVar = new o1.l(f7);
+        lVar.b(f10);
+        lVar.a(f11);
+        return lVar;
+    }
 
-    void t1(long j10);
+    public static void m(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
+        arrayList.add(Integer.valueOf(i10));
+        arrayList2.add(Integer.valueOf(i11));
+    }
 
-    void u1(w0 w0Var);
+    public static void n(int i10, String str, StringBuilder sb2) {
+        sb2.append(LocaleController.getString(i10));
+        sb2.append(str);
+    }
+
+    public static void o(int i10, String str, ArrayList arrayList) {
+        arrayList.add(new r6(str, i10));
+    }
+
+    public static void p(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
+        arrayList.add(Integer.valueOf(i10));
+        arrayList2.add(num);
+    }
+
+    public static void q(int i10, org.telegram.ui.ActionBar.d6 d6Var, TextView textView, int i11) {
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        textView.setGravity(i11);
+    }
+
+    public static void r(int i10, org.telegram.ui.ActionBar.d6 d6Var, TextView textView, int i11, float f7) {
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        textView.setTextSize(i11, f7);
+        textView.setTypeface(AndroidUtilities.bold());
+    }
+
+    public static void s(int i10, x90 x90Var) {
+        x90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    }
+
+    public static void t(FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.TL_error tL_error, boolean z10) {
+        new xc(frameLayout, d6Var).f0(tL_error, z10);
+    }
+
+    public static boolean u(TLRPC.TL_game tL_game) {
+        if (tL_game != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static float v(float f7, float f10, float f11, float f12) {
+        return Math.max(f12, f11 - (f7 / f10));
+    }
+
+    public static int w(int i10, int i11, Drawable drawable) {
+        return i11 - (drawable.getIntrinsicWidth() / i10);
+    }
+
+    public static void x(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
+        arrayList.add(LocaleController.getString(i10));
+        arrayList2.add(Integer.valueOf(i11));
+    }
+
+    public static void y(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
+        arrayList.add(LocaleController.getString(i10));
+        arrayList2.add(num);
+    }
+
+    public static float z(float f7, float f10, float f11, float f12) {
+        return f12 - ((f7 * f10) * f11);
+    }
 }

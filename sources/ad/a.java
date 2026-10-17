@@ -8,22 +8,22 @@ import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.logging.Level;
 public final class a implements Runnable {
-    public final InputStream f496a;
-    public final Socket f497b;
-    public final l f498c;
+    public final InputStream f495a;
+    public final Socket f496b;
+    public final m f497c;
 
-    public a(l lVar, InputStream inputStream, Socket socket) {
-        this.f498c = lVar;
-        this.f496a = inputStream;
-        this.f497b = socket;
+    public a(m mVar, InputStream inputStream, Socket socket) {
+        this.f497c = mVar;
+        this.f495a = inputStream;
+        this.f496b = socket;
     }
 
     @Override
     public final void run() {
         OutputStream outputStream;
-        InputStream inputStream = this.f496a;
-        l lVar = this.f498c;
-        Socket socket = this.f497b;
+        InputStream inputStream = this.f495a;
+        m mVar = this.f497c;
+        Socket socket = this.f496b;
         OutputStream outputStream2 = null;
         try {
             try {
@@ -35,32 +35,32 @@ public final class a implements Runnable {
             th = th2;
         }
         try {
-            e eVar = new e(lVar, new ya.c(2), this.f496a, outputStream, socket.getInetAddress());
+            f fVar = new f(mVar, new e(0), this.f495a, outputStream, socket.getInetAddress());
             while (!socket.isClosed()) {
-                eVar.c();
+                fVar.c();
             }
-            l.d(outputStream);
+            m.d(outputStream);
         } catch (Exception e7) {
             e = e7;
             outputStream2 = outputStream;
             if ((!(e instanceof SocketException) || !"NanoHttpd Shutdown".equals(e.getMessage())) && !(e instanceof SocketTimeoutException)) {
-                l.d.log(Level.SEVERE, "Communication with the client broken, or an bug in the handler code", (Throwable) e);
+                m.d.log(Level.SEVERE, "Communication with the client broken, or an bug in the handler code", (Throwable) e);
             }
-            l.d(outputStream2);
-            l.d(inputStream);
-            l.d(socket);
-            ((List) lVar.f539c.f507c).remove(this);
+            m.d(outputStream2);
+            m.d(inputStream);
+            m.d(socket);
+            ((List) mVar.f539c.f506c).remove(this);
         } catch (Throwable th3) {
             th = th3;
             outputStream2 = outputStream;
-            l.d(outputStream2);
-            l.d(inputStream);
-            l.d(socket);
-            ((List) lVar.f539c.f507c).remove(this);
+            m.d(outputStream2);
+            m.d(inputStream);
+            m.d(socket);
+            ((List) mVar.f539c.f506c).remove(this);
             throw th;
         }
-        l.d(inputStream);
-        l.d(socket);
-        ((List) lVar.f539c.f507c).remove(this);
+        m.d(inputStream);
+        m.d(socket);
+        ((List) mVar.f539c.f506c).remove(this);
     }
 }

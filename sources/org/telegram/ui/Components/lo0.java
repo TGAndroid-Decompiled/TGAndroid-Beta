@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 public final class lo0 extends s4.k {
-    public final org.telegram.ui.iy F;
+    public final org.telegram.ui.nx F;
 
-    public lo0(org.telegram.ui.iy iyVar) {
-        this.F = iyVar;
+    public lo0(org.telegram.ui.nx nxVar) {
+        this.F = nxVar;
     }
 
     @Override

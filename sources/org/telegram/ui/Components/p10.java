@@ -1,113 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class p10 extends Drawable {
-    public final Drawable f27816a;
-    public final Path f27817b;
-    public boolean f27818c = true;
-    public final Paint d;
-    public final Paint e;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.TLRPC;
+public final class p10 extends URLSpan {
+    public static final int e = 0;
+    public final String f29130a;
+    public final TLRPC.TL_messageEntityFormattedDate f29131b;
+    public final l11 f29132c;
+    public final boolean d;
 
-    public p10(Context context, int i10, int i11) {
-        this.f27816a = context.getResources().getDrawable(i10);
-        if (i11 >= 0) {
-            this.f27817b = new Path();
-            Paint paint = new Paint(1);
-            this.d = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setColor(-16777216);
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setStrokeJoin(Paint.Join.ROUND);
-            Paint paint2 = new Paint(1);
-            this.e = paint2;
-            paint2.setStyle(Paint.Style.FILL);
-            int[] iArr = org.telegram.ui.ActionBar.g6.f19860r8;
-            paint2.setColor(org.telegram.ui.ActionBar.g6.x0(null, iArr[i11 % iArr.length], false));
-            paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
-            return;
-        }
-        this.f27817b = null;
-        this.d = null;
-        this.e = null;
+    public p10(String str, l11 l11Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
+        super(str);
+        this.f29130a = str;
+        this.f29131b = tL_messageEntityFormattedDate;
+        this.f29132c = l11Var;
+        this.d = false;
     }
 
-    public final int a(float f7) {
-        return AndroidUtilities.lerp(getBounds().left, getBounds().right, f7);
-    }
-
-    public final int b(float f7) {
-        return AndroidUtilities.lerp(getBounds().top, getBounds().bottom, f7);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Drawable drawable = this.f27816a;
-        Path path = this.f27817b;
-        if (path != null) {
-            canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255);
-            drawable.setBounds(getBounds());
-            drawable.draw(canvas);
-            boolean z10 = this.f27818c;
-            Paint paint = this.d;
-            if (z10) {
-                path.rewind();
-                path.moveTo(a(0.4871f), b(0.6025f));
-                path.lineTo(a(0.8974f), b(0.6025f));
-                path.lineTo(a(1.0f), b(0.7564f));
-                path.lineTo(a(0.8974f), b(0.9102f));
-                path.lineTo(a(0.4871f), b(0.9102f));
-                path.close();
-                this.f27818c = false;
-                paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+    public static CharSequence a(CharSequence charSequence, boolean z10) {
+        String str;
+        if (charSequence instanceof Spanned) {
+            Spanned spanned = (Spanned) charSequence;
+            int i10 = 0;
+            p10[] p10VarArr = (p10[]) spanned.getSpans(0, spanned.length(), p10.class);
+            int length = p10VarArr.length;
+            ?? r42 = 0;
+            while (i10 < length) {
+                p10 p10Var = p10VarArr[i10];
+                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = p10Var.f29131b;
+                if (tL_messageEntityFormattedDate.flags != 0 && (p10Var.d != z10 || (z10 && tL_messageEntityFormattedDate.relative))) {
+                    if (r42 == 0) {
+                        charSequence = new SpannableStringBuilder(spanned);
+                        r42 = charSequence;
+                    }
+                    int spanStart = r42.getSpanStart(p10Var);
+                    int spanEnd = r42.getSpanEnd(p10Var);
+                    if (z10) {
+                        str = LocaleController.formatEntityFormattedDate(p10Var.f29131b);
+                    } else {
+                        str = p10Var.f29130a;
+                    }
+                    r42.removeSpan(p10Var);
+                    r42.replace(spanStart, spanEnd, str);
+                    r42.setSpan(new p10(p10Var, z10), spanStart, str.length() + spanStart, 33);
+                }
+                i10++;
+                r42 = r42;
             }
-            canvas.drawPath(path, paint);
-            canvas.drawPath(path, this.e);
-            canvas.restore();
-            return;
         }
-        drawable.setBounds(getBounds());
-        drawable.draw(canvas);
+        return charSequence;
+    }
+
+    public static CharSequence b(SpannableStringBuilder spannableStringBuilder) {
+        return a(spannableStringBuilder, false);
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.f27816a.getIntrinsicHeight();
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int i10 = textPaint.linkColor;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        l11 l11Var = this.f29132c;
+        if (l11Var != null) {
+            l11Var.a(textPaint);
+        }
+        if (i10 == color) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
+    }
+
+    public p10(p10 p10Var, boolean z10) {
+        super(p10Var.f29130a);
+        this.f29130a = p10Var.f29130a;
+        this.f29131b = p10Var.f29131b;
+        this.f29132c = p10Var.f29132c;
+        this.d = z10;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return this.f27816a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return this.f27816a.getOpacity();
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f27816a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        this.f27818c = true;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27816a.setColorFilter(colorFilter);
+    public final void onClick(View view) {
     }
 }

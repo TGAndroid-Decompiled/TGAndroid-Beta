@@ -1,74 +1,46 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class g20 extends pg.a {
-    public CharSequence f36039c;
-    public MessagesController.DialogFilter d;
-    public TLRPC.TL_dialogFilterSuggested e;
+import java.util.Calendar;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class g20 implements org.telegram.ui.Components.kd0 {
+    public final int f37115a;
+    public final long f37116b;
+    public final Calendar f37117c;
+    public final int d;
 
-    public final boolean equals(Object obj) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        if (obj == this) {
-            return true;
+    public g20(long j10, Calendar calendar, int i10, int i11) {
+        this.f37115a = i11;
+        this.f37116b = j10;
+        this.f37117c = calendar;
+        this.d = i10;
+    }
+
+    @Override
+    public final String e(int i10) {
+        switch (this.f37115a) {
+            case 0:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                long j10 = (i10 * 86400000) + this.f37116b;
+                Calendar calendar = this.f37117c;
+                calendar.setTimeInMillis(j10);
+                if (calendar.get(1) == this.d) {
+                    return LocaleController.getInstance().getFormatterWeek().format(j10) + " " + LocaleController.getInstance().getFormatterScheduleDay().format(j10);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(j10);
+            default:
+                if (i10 == 0) {
+                    return LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
+                }
+                long j11 = (i10 * 86400000) + this.f37116b;
+                Calendar calendar2 = this.f37117c;
+                calendar2.setTimeInMillis(j11);
+                if (calendar2.get(1) == this.d) {
+                    return LocaleController.getInstance().getFormatterScheduleDay().format(j11);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(j11);
         }
-        if (!(obj instanceof g20)) {
-            return false;
-        }
-        g20 g20Var = (g20) obj;
-        int i10 = g20Var.f42904a;
-        int i11 = this.f42904a;
-        if (i10 != i11) {
-            return false;
-        }
-        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f36039c, g20Var.f36039c)) {
-            return false;
-        }
-        int i12 = this.f42904a;
-        if (i12 == 2) {
-            MessagesController.DialogFilter dialogFilter = this.d;
-            if (dialogFilter == null) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            MessagesController.DialogFilter dialogFilter2 = g20Var.d;
-            if (dialogFilter2 == null) {
-                z13 = true;
-            } else {
-                z13 = false;
-            }
-            if (z12 != z13) {
-                return false;
-            }
-            if (dialogFilter != null && dialogFilter.f16400id != dialogFilter2.f16400id) {
-                return false;
-            }
-        }
-        if (i12 == 5) {
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.e;
-            if (tL_dialogFilterSuggested == null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = g20Var.e;
-            if (tL_dialogFilterSuggested2 == null) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            if (z10 != z11) {
-                return false;
-            }
-            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f18921id != tL_dialogFilterSuggested2.filter.f18921id) {
-                return false;
-            }
-        }
-        return true;
     }
 }

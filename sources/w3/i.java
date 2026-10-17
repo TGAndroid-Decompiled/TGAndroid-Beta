@@ -1,18 +1,18 @@
 package w3;
 
-import c3.f0;
-public final class i implements f0 {
-    public static final i f47123b = new i(true);
-    public static final i f47124c = new i(false);
-    public final boolean f47125a;
+import c3.g0;
+public final class i implements g0 {
+    public static final i f48530b = new i(true);
+    public static final i f48531c = new i(false);
+    public final boolean f48532a;
 
     public i(boolean z10) {
-        this.f47125a = z10;
+        this.f48532a = z10;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("IncorrectFragmentation{expected=");
-        sb2.append(!this.f47125a);
+        sb2.append(!this.f48532a);
         sb2.append("}");
         return sb2.toString();
     }

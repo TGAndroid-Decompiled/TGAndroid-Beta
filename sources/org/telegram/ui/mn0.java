@@ -1,57 +1,31 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class mn0 implements TextWatcher {
-    public final int f38040a;
-    public final on0 f38041b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class mn0 implements do0 {
+    public final fo0 f39222a;
 
-    public mn0(on0 on0Var, int i10) {
-        this.f38041b = on0Var;
-        this.f38040a = i10;
+    public mn0(fo0 fo0Var) {
+        this.f39222a = fo0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int length;
-        String code;
-        on0 on0Var = this.f38041b;
-        if (!on0Var.H && (length = editable.length()) >= 1) {
-            int i10 = this.f38040a;
-            if (length > 1) {
-                String obj = editable.toString();
-                on0Var.H = true;
-                for (int i11 = 0; i11 < Math.min(on0Var.O - i10, length); i11++) {
-                    if (i11 == 0) {
-                        editable.replace(0, length, obj.substring(i11, i11 + 1));
-                    } else {
-                        on0Var.d[i10 + i11].setText(obj.substring(i11, i11 + 1));
-                    }
-                }
-                on0Var.H = false;
-            }
-            if (i10 != on0Var.O - 1) {
-                int i12 = i10 + 1;
-                EditTextBoldCursor editTextBoldCursor = on0Var.d[i12];
-                editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                on0Var.d[i12].requestFocus();
-            }
-            int i13 = on0Var.O;
-            if (i10 == i13 - 1 || (i10 == i13 - 2 && length >= 2)) {
-                code = on0Var.getCode();
-                if (code.length() == on0Var.O) {
-                    on0Var.h(null);
-                }
-            }
-        }
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        fo0 fo0Var = this.f39222a;
+        fo0Var.I0 = tL_payments_validateRequestedInfo;
+        fo0Var.B0(tL_payments_validateRequestedInfo.info);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

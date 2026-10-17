@@ -5,14 +5,13 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import e0.r;
 import java.util.ArrayList;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public class LocationSharingService extends Service implements NotificationCenter.NotificationCenterDelegate {
-    private r builder;
+    private e0.q builder;
     private Handler handler;
     private Runnable runnable;
 
@@ -79,7 +78,7 @@ public class LocationSharingService extends Service implements NotificationCente
             this.builder.p(format);
             this.builder.f(format);
             if (z10) {
-                new e0.l0(ApplicationLoader.applicationContext).e(null, 6, this.builder.b());
+                new e0.k0(ApplicationLoader.applicationContext).e(null, 6, this.builder.b());
             }
         }
     }
@@ -88,7 +87,7 @@ public class LocationSharingService extends Service implements NotificationCente
     public void didReceivedNotification(int i10, int i11, Object... objArr) {
         Handler handler;
         if (i10 == NotificationCenter.liveLocationsChanged && (handler = this.handler) != null) {
-            handler.post(new y5(this, 1));
+            handler.post(new x5(this, 1));
         }
     }
 
@@ -102,9 +101,9 @@ public class LocationSharingService extends Service implements NotificationCente
         super.onCreate();
         Handler handler = new Handler();
         this.handler = handler;
-        y5 y5Var = new y5(this, 0);
-        this.runnable = y5Var;
-        handler.postDelayed(y5Var, 1000L);
+        x5 x5Var = new x5(this, 0);
+        this.runnable = x5Var;
+        handler.postDelayed(x5Var, 1000L);
     }
 
     @Override
@@ -115,7 +114,7 @@ public class LocationSharingService extends Service implements NotificationCente
             handler.removeCallbacks(this.runnable);
         }
         stopForeground(true);
-        new e0.l0(ApplicationLoader.applicationContext).b(6, null);
+        new e0.k0(ApplicationLoader.applicationContext).b(6, null);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.liveLocationsChanged);
     }
 
@@ -130,16 +129,16 @@ public class LocationSharingService extends Service implements NotificationCente
                 intent2.setAction("org.tmessages.openlocations");
                 intent2.addCategory("android.intent.category.LAUNCHER");
                 PendingIntent activity = PendingIntent.getActivity(ApplicationLoader.applicationContext, 0, intent2, 167772160);
-                r rVar = new r(ApplicationLoader.applicationContext, null);
-                this.builder = rVar;
-                rVar.E.when = System.currentTimeMillis();
-                r rVar2 = this.builder;
-                rVar2.E.icon = R.drawable.live_loc;
-                rVar2.f8270g = activity;
+                e0.q qVar = new e0.q(ApplicationLoader.applicationContext, null);
+                this.builder = qVar;
+                qVar.E.when = System.currentTimeMillis();
+                e0.q qVar2 = this.builder;
+                qVar2.E.icon = R.drawable.live_loc;
+                qVar2.f8147g = activity;
                 NotificationsController.checkOtherNotificationsChannel();
-                r rVar3 = this.builder;
-                rVar3.f8286y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
-                rVar3.g(LocaleController.getString(R.string.AppName));
+                e0.q qVar3 = this.builder;
+                qVar3.f8163y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+                qVar3.g(LocaleController.getString(R.string.AppName));
                 this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, StopLiveLocationReceiver.class), 167772160));
             }
             updateNotification(false);

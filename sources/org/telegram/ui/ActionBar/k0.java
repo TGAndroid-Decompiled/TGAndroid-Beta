@@ -3,24 +3,24 @@ package org.telegram.ui.ActionBar;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class k0 extends AnimatorListenerAdapter {
-    public final int f20167a;
-    public final u0 f20168b;
+    public final int f21518a;
+    public final u0 f21519b;
 
     public k0(u0 u0Var, int i10) {
-        this.f20167a = i10;
-        this.f20168b = u0Var;
+        this.f21518a = i10;
+        this.f21519b = u0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f20167a) {
+        switch (this.f21518a) {
             case 0:
-                u0 u0Var = this.f20168b;
-                u0Var.f20396s.setVisibility(4);
+                u0 u0Var = this.f21519b;
+                u0Var.f21749s.setVisibility(4);
                 u0Var.v = null;
                 return;
             default:
-                this.f20168b.v = null;
+                this.f21519b.v = null;
                 return;
         }
     }

@@ -1,58 +1,90 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class wr implements org.telegram.ui.Cells.a5, hg.z1 {
-    public final xr f41342a;
+import org.telegram.messenger.AndroidUtilities;
+public final class wr extends Drawable {
+    public final Drawable f42911a;
+    public final Drawable f42912b;
+    public int d;
+    public int e;
+    public final ArrayList f42913c = new ArrayList();
+    public boolean f42914f = false;
+    public final org.telegram.ui.Components.f6 f42915g = new org.telegram.ui.Components.f6(new vi(this, 14), 420, org.telegram.ui.Components.bs.h);
+    public int h = 255;
 
-    public wr(xr xrVar) {
-        this.f41342a = xrVar;
+    public wr(Drawable drawable, Drawable drawable2) {
+        this.f42911a = drawable;
+        this.f42912b = drawable2;
     }
 
-    @Override
-    public boolean E0(int i10) {
-        return true;
+    public final void a(int i10, int i11) {
+        this.d = i10;
+        this.e = i11;
     }
 
-    @Override
-    public a0.h K() {
-        return null;
-    }
-
-    @Override
-    public boolean d(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
-        int intValue = ((Integer) b5Var.getTag()).intValue();
-        xr xrVar = this.f41342a;
-        TLObject E = xrVar.E(intValue);
-        if (E instanceof TLRPC.ChannelParticipant) {
-            return xrVar.f41624y.h0((TLRPC.ChannelParticipant) E, !z10, b5Var);
+    public final void b(boolean z10) {
+        if (this.f42914f == z10) {
+            return;
         }
-        return false;
+        this.f42914f = z10;
+        ArrayList arrayList = this.f42913c;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((View) obj).invalidate();
+        }
+        invalidateSelf();
     }
 
     @Override
-    public void f(int i10) {
-        xr xrVar = this.f41342a;
-        yr yrVar = xrVar.f41624y;
-        if (!xrVar.h.e()) {
-            int i11 = xrVar.f41620r;
-            xrVar.l();
-            if (xrVar.f41620r > i11) {
-                yrVar.y0(i11);
-            }
-            if (!xrVar.f41621s && xrVar.f41620r == 0 && i10 != 0) {
-                yrVar.f41892b.e(false, true);
-            }
+    public final void draw(Canvas canvas) {
+        float e = this.f42915g.e(this.f42914f);
+        int i10 = this.h;
+        Drawable drawable = this.f42911a;
+        drawable.setAlpha(i10);
+        drawable.setBounds(getBounds());
+        drawable.draw(canvas);
+        if (e > 0.0f) {
+            Drawable drawable2 = this.f42912b;
+            drawable2.setAlpha((int) (this.h * e));
+            drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.e);
+            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, e);
+            canvas.save();
+            canvas.scale(lerp, lerp, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
+            drawable2.draw(canvas);
+            canvas.restore();
         }
     }
 
     @Override
-    public a0.h k0() {
-        return null;
+    public final int getIntrinsicHeight() {
+        return this.f42911a.getIntrinsicHeight();
     }
 
     @Override
-    public void O0(ArrayList arrayList) {
+    public final int getIntrinsicWidth() {
+        return this.f42911a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.h = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f42911a.setColorFilter(colorFilter);
+        this.f42912b.setColorFilter(colorFilter);
     }
 }

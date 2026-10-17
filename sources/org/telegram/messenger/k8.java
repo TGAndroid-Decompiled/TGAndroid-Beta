@@ -1,49 +1,46 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Timer;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.support.LongSparseIntArray;
 public final class k8 implements Runnable {
-    public final int f17368a = 0;
-    public final long f17369b;
-    public final ArrayList f17370c;
-    public final a0.h d;
-    public final Runnable e;
-    public final BaseController f17371f;
-    public final Object h;
-    public final Object f17372n;
+    public final int f18763a = 0;
+    public final ArrayList f18764b;
+    public final long f18765c;
+    public final int d;
+    public final int e;
+    public final boolean f18766f;
+    public final BaseController h;
+    public final Object f18767n;
 
-    public k8(MediaDataController mediaDataController, Timer.Task task, Timer timer, ArrayList arrayList, long j10, a0.h hVar, Runnable runnable) {
-        this.f17371f = mediaDataController;
-        this.h = task;
-        this.f17372n = timer;
-        this.f17370c = arrayList;
-        this.f17369b = j10;
-        this.d = hVar;
-        this.e = runnable;
+    public k8(MediaDataController mediaDataController, boolean z10, ArrayList arrayList, int i10, long j10, int i11, Runnable runnable) {
+        this.h = mediaDataController;
+        this.f18766f = z10;
+        this.f18764b = arrayList;
+        this.d = i10;
+        this.f18765c = j10;
+        this.e = i11;
+        this.f18767n = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f17368a) {
+        switch (this.f18763a) {
             case 0:
-                ((MediaDataController) this.f17371f).lambda$loadReplyMessagesForMessages$171((Timer.Task) this.h, (Timer) this.f17372n, this.f17370c, this.f17369b, this.d, this.e);
+                ((MediaDataController) this.h).lambda$processLoadedStickers$107(this.f18766f, this.f18764b, this.d, this.f18765c, this.e, (Runnable) this.f18767n);
                 return;
             default:
-                Runnable runnable = this.e;
-                ((TopicsController) this.f17371f).lambda$reloadTopics$13((TLRPC.TL_messages_savedDialogs) this.h, this.f17369b, this.f17370c, this.d, (HashSet) this.f17372n, runnable);
+                ((NotificationsController) this.h).lambda$processReadMessages$22((LongSparseIntArray) this.f18767n, this.f18764b, this.f18765c, this.d, this.e, this.f18766f);
                 return;
         }
     }
 
-    public k8(TopicsController topicsController, TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j10, ArrayList arrayList, a0.h hVar, HashSet hashSet, Runnable runnable) {
-        this.f17371f = topicsController;
-        this.h = tL_messages_savedDialogs;
-        this.f17369b = j10;
-        this.f17370c = arrayList;
-        this.d = hVar;
-        this.f17372n = hashSet;
-        this.e = runnable;
+    public k8(NotificationsController notificationsController, LongSparseIntArray longSparseIntArray, ArrayList arrayList, long j10, int i10, int i11, boolean z10) {
+        this.h = notificationsController;
+        this.f18767n = longSparseIntArray;
+        this.f18764b = arrayList;
+        this.f18765c = j10;
+        this.d = i10;
+        this.e = i11;
+        this.f18766f = z10;
     }
 }

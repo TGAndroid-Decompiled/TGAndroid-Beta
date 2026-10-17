@@ -1,6 +1,6 @@
 package kg;
 public final class c extends b {
-    public float[] f14259l;
+    public float[] f15054l;
 
     @Override
     public final void e() {
@@ -13,13 +13,13 @@ public final class c extends b {
                 j10 = j11;
             }
         }
-        this.f14259l = new float[size];
+        this.f15054l = new float[size];
         for (int i11 = 0; i11 < size; i11++) {
             long j12 = ((a) this.d.get(i11)).e;
             if (j10 == j12) {
-                this.f14259l[i11] = 1.0f;
+                this.f15054l[i11] = 1.0f;
             } else {
-                this.f14259l[i11] = (float) (j10 / j12);
+                this.f15054l[i11] = (float) (j10 / j12);
             }
         }
     }

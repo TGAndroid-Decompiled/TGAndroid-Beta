@@ -8,7 +8,7 @@ import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import ji.w4;
+import ki.t1;
 import la.d;
 import z9.a0;
 import z9.a1;
@@ -66,7 +66,6 @@ import z9.s0;
 import z9.s1;
 import z9.t;
 import z9.t0;
-import z9.t1;
 import z9.u;
 import z9.u0;
 import z9.u1;
@@ -86,90 +85,90 @@ import z9.z;
 import z9.z0;
 import z9.z1;
 public final class b {
-    public static final w4 f363a;
+    public static final t1 f362a;
 
     static {
         d dVar = new d();
-        z9.d dVar2 = z9.d.f49948a;
+        z9.d dVar2 = z9.d.f51353a;
         dVar.a(e2.class, dVar2);
         dVar.a(a0.class, dVar2);
-        j jVar = j.f50010a;
+        j jVar = j.f51415a;
         dVar.a(d2.class, jVar);
         dVar.a(h0.class, jVar);
-        g gVar = g.f49975a;
+        g gVar = g.f51380a;
         dVar.a(l1.class, gVar);
         dVar.a(i0.class, gVar);
-        h hVar = h.f49989a;
+        h hVar = h.f51394a;
         dVar.a(k1.class, hVar);
         dVar.a(j0.class, hVar);
-        z zVar = z.f50119a;
+        z zVar = z.f51524a;
         dVar.a(c2.class, zVar);
         dVar.a(a1.class, zVar);
-        y yVar = y.f50115a;
+        y yVar = y.f51520a;
         dVar.a(b2.class, yVar);
         dVar.a(z0.class, yVar);
-        i iVar = i.f49999a;
+        i iVar = i.f51404a;
         dVar.a(m1.class, iVar);
         dVar.a(k0.class, iVar);
-        t tVar = t.f50087a;
+        t tVar = t.f51492a;
         dVar.a(a2.class, tVar);
         dVar.a(l0.class, tVar);
-        k kVar = k.f50020a;
+        k kVar = k.f51425a;
         dVar.a(u1.class, kVar);
         dVar.a(m0.class, kVar);
-        m mVar = m.f50038a;
+        m mVar = m.f51443a;
         dVar.a(s1.class, mVar);
         dVar.a(n0.class, mVar);
-        p pVar = p.f50060a;
+        p pVar = p.f51465a;
         dVar.a(r1.class, pVar);
         dVar.a(r0.class, pVar);
-        q qVar = q.f50066a;
+        q qVar = q.f51471a;
         dVar.a(q1.class, qVar);
         dVar.a(s0.class, qVar);
-        n nVar = n.f50047a;
+        n nVar = n.f51452a;
         dVar.a(o1.class, nVar);
         dVar.a(p0.class, nVar);
-        z9.b bVar = z9.b.f49922a;
+        z9.b bVar = z9.b.f51327a;
         dVar.a(g1.class, bVar);
         dVar.a(b0.class, bVar);
-        z9.a aVar = z9.a.f49910a;
+        z9.a aVar = z9.a.f51315a;
         dVar.a(f1.class, aVar);
         dVar.a(c0.class, aVar);
-        o oVar = o.f50054a;
+        o oVar = o.f51459a;
         dVar.a(p1.class, oVar);
         dVar.a(q0.class, oVar);
-        l lVar = l.f50031a;
+        l lVar = l.f51436a;
         dVar.a(n1.class, lVar);
         dVar.a(o0.class, lVar);
-        c cVar = c.f49938a;
+        c cVar = c.f51343a;
         dVar.a(h1.class, cVar);
         dVar.a(d0.class, cVar);
-        r rVar = r.f50073a;
-        dVar.a(t1.class, rVar);
+        r rVar = r.f51478a;
+        dVar.a(z9.t1.class, rVar);
         dVar.a(t0.class, rVar);
-        s sVar = s.f50079a;
+        s sVar = s.f51484a;
         dVar.a(v1.class, sVar);
         dVar.a(u0.class, sVar);
-        u uVar = u.f50095a;
+        u uVar = u.f51500a;
         dVar.a(w1.class, uVar);
         dVar.a(v0.class, uVar);
-        x xVar = x.f50111a;
+        x xVar = x.f51516a;
         dVar.a(z1.class, xVar);
         dVar.a(y0.class, xVar);
-        v vVar = v.f50101a;
+        v vVar = v.f51506a;
         dVar.a(y1.class, vVar);
         dVar.a(w0.class, vVar);
-        w wVar = w.f50105a;
+        w wVar = w.f51510a;
         dVar.a(x1.class, wVar);
         dVar.a(x0.class, wVar);
-        e eVar = e.f49963a;
+        e eVar = e.f51368a;
         dVar.a(j1.class, eVar);
         dVar.a(e0.class, eVar);
-        f fVar = f.f49970a;
+        f fVar = f.f51375a;
         dVar.a(i1.class, fVar);
         dVar.a(f0.class, fVar);
         dVar.d = true;
-        f363a = new w4(dVar, 4);
+        f362a = new t1(dVar, 4);
     }
 
     public static s0 a(JsonReader jsonReader) {
@@ -218,16 +217,16 @@ public final class b {
                 case 1:
                     String nextString = jsonReader.nextString();
                     if (nextString != null) {
-                        obj.f5428a = nextString;
+                        obj.f6882a = nextString;
                         break;
                     } else {
                         throw new NullPointerException("Null symbol");
                     }
                 case 2:
-                    obj.f5429b = Long.valueOf(jsonReader.nextLong());
+                    obj.f6883b = Long.valueOf(jsonReader.nextLong());
                     break;
                 case 3:
-                    obj.f5430c = jsonReader.nextString();
+                    obj.f6884c = jsonReader.nextString();
                     break;
                 case 4:
                     obj.e = Integer.valueOf(jsonReader.nextInt());
@@ -238,7 +237,7 @@ public final class b {
             }
         }
         jsonReader.endObject();
-        return obj.k();
+        return obj.p();
     }
 
     public static d0 b(JsonReader jsonReader) {
@@ -345,30 +344,30 @@ public final class b {
             }
             switch (c10) {
                 case 0:
-                    obj.f8671i = d(jsonReader, new a(0));
+                    obj.f8552i = d(jsonReader, new a(0));
                     break;
                 case 1:
-                    obj.f8666a = Integer.valueOf(jsonReader.nextInt());
+                    obj.f8547a = Integer.valueOf(jsonReader.nextInt());
                     break;
                 case 2:
                     obj.e = Long.valueOf(jsonReader.nextLong());
                     break;
                 case 3:
-                    obj.f8669f = Long.valueOf(jsonReader.nextLong());
+                    obj.f8550f = Long.valueOf(jsonReader.nextLong());
                     break;
                 case 4:
-                    obj.f8670g = Long.valueOf(jsonReader.nextLong());
+                    obj.f8551g = Long.valueOf(jsonReader.nextLong());
                     break;
                 case 5:
                     String nextString = jsonReader.nextString();
                     if (nextString != null) {
-                        obj.f8667b = nextString;
+                        obj.f8548b = nextString;
                         break;
                     } else {
                         throw new NullPointerException("Null processName");
                     }
                 case 6:
-                    obj.f8668c = Integer.valueOf(jsonReader.nextInt());
+                    obj.f8549c = Integer.valueOf(jsonReader.nextInt());
                     break;
                 case 7:
                     obj.h = jsonReader.nextString();
@@ -402,7 +401,7 @@ public final class b {
             Long l4 = null;
             String str5 = null;
             String str6 = null;
-            switch (aVar.f362a) {
+            switch (aVar.f361a) {
                 case 0:
                     jsonReader.beginObject();
                     String str7 = null;
@@ -472,7 +471,7 @@ public final class b {
                         str3 = str3.concat(" libraryName");
                     }
                     if (str8 == null) {
-                        str3 = t8.b.u(str3, " buildId");
+                        str3 = r.c.u(str3, " buildId");
                     }
                     if (str3.isEmpty()) {
                         c0Var = new c0(str4, str7, str8);
@@ -561,7 +560,7 @@ public final class b {
                             case 0:
                                 String nextString3 = jsonReader.nextString();
                                 if (nextString3 != null) {
-                                    obj2.f42945b = nextString3;
+                                    obj2.f44778b = nextString3;
                                     break;
                                 } else {
                                     throw new NullPointerException("Null parameterKey");
@@ -602,7 +601,7 @@ public final class b {
                                     str = str.concat(" variantId");
                                 }
                                 if (str.isEmpty()) {
-                                    obj2.f42944a = new x0(str9, str10);
+                                    obj2.f44777a = new x0(str9, str10);
                                     break;
                                 } else {
                                     throw new IllegalStateException("Missing required properties:".concat(str));
@@ -610,7 +609,7 @@ public final class b {
                             case 3:
                                 String nextString4 = jsonReader.nextString();
                                 if (nextString4 != null) {
-                                    obj2.f42946c = nextString4;
+                                    obj2.f44779c = nextString4;
                                     break;
                                 } else {
                                     throw new NullPointerException("Null parameterValue");
@@ -621,7 +620,7 @@ public final class b {
                         }
                     }
                     jsonReader.endObject();
-                    c0Var = obj2.e();
+                    c0Var = obj2.h();
                     continue;
                     arrayList.add(c0Var);
                 case 3:
@@ -689,7 +688,7 @@ public final class b {
                         str2 = str2.concat(" importance");
                     }
                     if (list == null) {
-                        str2 = t8.b.u(str2, " frames");
+                        str2 = r.c.u(str2, " frames");
                     }
                     if (str2.isEmpty()) {
                         obj = new r0(str5, num.intValue(), list);
@@ -751,7 +750,7 @@ public final class b {
                                 l10 = Long.valueOf(jsonReader.nextLong());
                                 break;
                             case 2:
-                                str12 = new String(Base64.decode(jsonReader.nextString(), 2), e2.f49969a);
+                                str12 = new String(Base64.decode(jsonReader.nextString(), 2), e2.f51374a);
                                 break;
                             case 3:
                                 l4 = Long.valueOf(jsonReader.nextLong());
@@ -769,7 +768,7 @@ public final class b {
                         str3 = str3.concat(" size");
                     }
                     if (str11 == null) {
-                        str3 = t8.b.u(str3, " name");
+                        str3 = r.c.u(str3, " name");
                     }
                     if (str3.isEmpty()) {
                         c0Var = new o0(str11, l4.longValue(), l10.longValue(), str12);
@@ -910,22 +909,22 @@ public final class b {
                         }
                         switch (c11) {
                             case 0:
-                                obj2.f6194a = Double.valueOf(jsonReader.nextDouble());
+                                obj2.f7647a = Double.valueOf(jsonReader.nextDouble());
                                 break;
                             case 1:
-                                obj2.f6195b = Integer.valueOf(jsonReader.nextInt());
+                                obj2.f7648b = Integer.valueOf(jsonReader.nextInt());
                                 break;
                             case 2:
                                 obj2.d = Integer.valueOf(jsonReader.nextInt());
                                 break;
                             case 3:
-                                obj2.f6197f = Long.valueOf(jsonReader.nextLong());
+                                obj2.f7650f = Long.valueOf(jsonReader.nextLong());
                                 break;
                             case 4:
                                 obj2.e = Long.valueOf(jsonReader.nextLong());
                                 break;
                             case 5:
-                                obj2.f6196c = Boolean.valueOf(jsonReader.nextBoolean());
+                                obj2.f7649c = Boolean.valueOf(jsonReader.nextBoolean());
                                 break;
                             default:
                                 jsonReader.skipValue();
@@ -933,7 +932,7 @@ public final class b {
                         }
                     }
                     jsonReader.endObject();
-                    obj.d = obj2.j();
+                    obj.d = obj2.l();
                     break;
                 case 1:
                     jsonReader.beginObject();
@@ -957,7 +956,7 @@ public final class b {
                         str3 = " rolloutAssignments";
                     }
                     if (str3.isEmpty()) {
-                        obj.f6197f = new y0(list);
+                        obj.f7650f = new y0(list);
                         break;
                     } else {
                         throw new IllegalStateException("Missing required properties:".concat(str3));
@@ -1169,7 +1168,7 @@ public final class b {
                                                 str2 = str2.concat(" code");
                                             }
                                             if (l4 == null) {
-                                                str2 = t8.b.u(str2, " address");
+                                                str2 = r.c.u(str2, " address");
                                             }
                                             if (str2.isEmpty()) {
                                                 t0Var2 = t0Var3;
@@ -1253,7 +1252,7 @@ public final class b {
                         str3 = str3.concat(" uiOrientation");
                     }
                     if (str3.isEmpty()) {
-                        obj.f6196c = new m0(n0Var, list2, list4, bool, t0Var4, list3, num.intValue());
+                        obj.f7649c = new m0(n0Var, list2, list4, bool, t0Var4, list3, num.intValue());
                         break;
                     } else {
                         throw new IllegalStateException("Missing required properties:".concat(str3));
@@ -1286,13 +1285,13 @@ public final class b {
                 case 4:
                     String nextString2 = jsonReader.nextString();
                     if (nextString2 != null) {
-                        obj.f6195b = nextString2;
+                        obj.f7648b = nextString2;
                         break;
                     } else {
                         throw new NullPointerException("Null type");
                     }
                 case 5:
-                    obj.f6194a = Long.valueOf(jsonReader.nextLong());
+                    obj.f7647a = Long.valueOf(jsonReader.nextLong());
                     break;
                 default:
                     jsonReader.skipValue();
@@ -1300,7 +1299,7 @@ public final class b {
             }
         }
         jsonReader.endObject();
-        return obj.i();
+        return obj.k();
     }
 
     public static p0 f(JsonReader jsonReader) {
@@ -1388,7 +1387,7 @@ public final class b {
             str = str.concat(" frames");
         }
         if (num == null) {
-            str = t8.b.u(str, " overflowCount");
+            str = r.c.u(str, " overflowCount");
         }
         if (str.isEmpty()) {
             return new p0(str2, str3, list, p0Var, num.intValue());
@@ -1397,7 +1396,7 @@ public final class b {
     }
 
     public static t0 g(JsonReader jsonReader) {
-        com.google.firebase.messaging.s sVar = new com.google.firebase.messaging.s(13, false);
+        com.google.firebase.messaging.r rVar = new com.google.firebase.messaging.r(13, false);
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
@@ -1431,21 +1430,21 @@ public final class b {
             }
             switch (c10) {
                 case 0:
-                    sVar.d = Integer.valueOf(jsonReader.nextInt());
+                    rVar.d = Integer.valueOf(jsonReader.nextInt());
                     break;
                 case 1:
                     String nextString = jsonReader.nextString();
                     if (nextString != null) {
-                        sVar.f6209b = nextString;
+                        rVar.f7662b = nextString;
                         break;
                     } else {
                         throw new NullPointerException("Null processName");
                     }
                 case 2:
-                    sVar.f6210c = Boolean.valueOf(jsonReader.nextBoolean());
+                    rVar.f7663c = Boolean.valueOf(jsonReader.nextBoolean());
                     break;
                 case 3:
-                    sVar.e = Integer.valueOf(jsonReader.nextInt());
+                    rVar.e = Integer.valueOf(jsonReader.nextInt());
                     break;
                 default:
                     jsonReader.skipValue();
@@ -1453,7 +1452,7 @@ public final class b {
             }
         }
         jsonReader.endObject();
-        return sVar.c();
+        return rVar.c();
     }
 
     public static a0 h(JsonReader jsonReader) {
@@ -1464,7 +1463,7 @@ public final class b {
         String str;
         char c14;
         String str2;
-        Charset charset = e2.f49969a;
+        Charset charset = e2.f51374a;
         ?? obj = new Object();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
@@ -1588,7 +1587,7 @@ public final class b {
                 case 1:
                     String nextString = jsonReader.nextString();
                     if (nextString != null) {
-                        obj.f46606a = nextString;
+                        obj.f48013a = nextString;
                         break;
                     } else {
                         throw new NullPointerException("Null sdkVersion");
@@ -1597,12 +1596,12 @@ public final class b {
                     obj.e = jsonReader.nextString();
                     break;
                 case 3:
-                    obj.f46612j = c(jsonReader);
+                    obj.f48019j = c(jsonReader);
                     break;
                 case 4:
                     String nextString2 = jsonReader.nextString();
                     if (nextString2 != null) {
-                        obj.f46613k = nextString2;
+                        obj.f48020k = nextString2;
                         break;
                     } else {
                         throw new NullPointerException("Null buildVersion");
@@ -1610,7 +1609,7 @@ public final class b {
                 case 5:
                     String nextString3 = jsonReader.nextString();
                     if (nextString3 != null) {
-                        obj.f46607b = nextString3;
+                        obj.f48014b = nextString3;
                         break;
                     } else {
                         throw new NullPointerException("Null gmpAppId");
@@ -1618,7 +1617,7 @@ public final class b {
                 case 6:
                     String nextString4 = jsonReader.nextString();
                     if (nextString4 != null) {
-                        obj.f46608c = nextString4;
+                        obj.f48015c = nextString4;
                         break;
                     } else {
                         throw new NullPointerException("Null installationUuid");
@@ -1627,19 +1626,19 @@ public final class b {
                     obj.d = jsonReader.nextString();
                     break;
                 case '\b':
-                    obj.f46611i = Integer.valueOf(jsonReader.nextInt());
+                    obj.f48018i = Integer.valueOf(jsonReader.nextInt());
                     break;
                 case '\t':
                     String nextString5 = jsonReader.nextString();
                     if (nextString5 != null) {
-                        obj.f46609f = nextString5;
+                        obj.f48016f = nextString5;
                         break;
                     } else {
                         throw new NullPointerException("Null displayVersion");
                     }
                 case '\n':
                     ?? obj2 = new Object();
-                    obj2.f49983f = Boolean.FALSE;
+                    obj2.f51388f = Boolean.FALSE;
                     jsonReader.beginObject();
                     while (jsonReader.hasNext()) {
                         String nextName3 = jsonReader.nextName();
@@ -1738,10 +1737,10 @@ public final class b {
                                 obj2.d = Long.valueOf(jsonReader.nextLong());
                                 break;
                             case 1:
-                                obj2.f49982c = jsonReader.nextString();
+                                obj2.f51387c = jsonReader.nextString();
                                 break;
                             case 2:
-                                obj2.f49981b = new String(Base64.decode(jsonReader.nextString(), 2), e2.f49969a);
+                                obj2.f51386b = new String(Base64.decode(jsonReader.nextString(), 2), e2.f51374a);
                                 break;
                             case 3:
                                 obj2.e = Long.valueOf(jsonReader.nextLong());
@@ -1822,7 +1821,7 @@ public final class b {
                                     }
                                     switch (c12) {
                                         case 0:
-                                            obj3.f8669f = Boolean.valueOf(jsonReader.nextBoolean());
+                                            obj3.f8550f = Boolean.valueOf(jsonReader.nextBoolean());
                                             break;
                                         case 1:
                                             String nextString6 = jsonReader.nextString();
@@ -1836,29 +1835,29 @@ public final class b {
                                             obj3.d = Long.valueOf(jsonReader.nextLong());
                                             break;
                                         case 3:
-                                            obj3.f8666a = Integer.valueOf(jsonReader.nextInt());
+                                            obj3.f8547a = Integer.valueOf(jsonReader.nextInt());
                                             break;
                                         case 4:
                                             obj3.e = Long.valueOf(jsonReader.nextLong());
                                             break;
                                         case 5:
-                                            obj3.f8668c = Integer.valueOf(jsonReader.nextInt());
+                                            obj3.f8549c = Integer.valueOf(jsonReader.nextInt());
                                             break;
                                         case 6:
                                             String nextString7 = jsonReader.nextString();
                                             if (nextString7 != null) {
-                                                obj3.f8667b = nextString7;
+                                                obj3.f8548b = nextString7;
                                                 break;
                                             } else {
                                                 throw new NullPointerException("Null model");
                                             }
                                         case 7:
-                                            obj3.f8670g = Integer.valueOf(jsonReader.nextInt());
+                                            obj3.f8551g = Integer.valueOf(jsonReader.nextInt());
                                             break;
                                         case '\b':
                                             String nextString8 = jsonReader.nextString();
                                             if (nextString8 != null) {
-                                                obj3.f8671i = nextString8;
+                                                obj3.f8552i = nextString8;
                                                 break;
                                             } else {
                                                 throw new NullPointerException("Null modelClass");
@@ -1869,7 +1868,7 @@ public final class b {
                                     }
                                 }
                                 jsonReader.endObject();
-                                obj2.f49986j = obj3.b();
+                                obj2.f51391j = obj3.b();
                                 break;
                             case 5:
                                 ArrayList arrayList = new ArrayList();
@@ -1878,10 +1877,10 @@ public final class b {
                                     arrayList.add(e(jsonReader));
                                 }
                                 jsonReader.endArray();
-                                obj2.f49987k = DesugarCollections.unmodifiableList(arrayList);
+                                obj2.f51392k = DesugarCollections.unmodifiableList(arrayList);
                                 break;
                             case 6:
-                                com.google.firebase.messaging.s sVar = new com.google.firebase.messaging.s(14, false);
+                                com.google.firebase.messaging.r rVar = new com.google.firebase.messaging.r(14, false);
                                 jsonReader.beginObject();
                                 while (jsonReader.hasNext()) {
                                     String nextName5 = jsonReader.nextName();
@@ -1923,24 +1922,24 @@ public final class b {
                                         case 0:
                                             String nextString9 = jsonReader.nextString();
                                             if (nextString9 != null) {
-                                                sVar.e = nextString9;
+                                                rVar.e = nextString9;
                                                 break;
                                             } else {
                                                 throw new NullPointerException("Null buildVersion");
                                             }
                                         case 1:
-                                            sVar.f6210c = Boolean.valueOf(jsonReader.nextBoolean());
+                                            rVar.f7663c = Boolean.valueOf(jsonReader.nextBoolean());
                                             break;
                                         case 2:
                                             String nextString10 = jsonReader.nextString();
                                             if (nextString10 != null) {
-                                                sVar.f6209b = nextString10;
+                                                rVar.f7662b = nextString10;
                                                 break;
                                             } else {
                                                 throw new NullPointerException("Null version");
                                             }
                                         case 3:
-                                            sVar.d = Integer.valueOf(jsonReader.nextInt());
+                                            rVar.d = Integer.valueOf(jsonReader.nextInt());
                                             break;
                                         default:
                                             jsonReader.skipValue();
@@ -1948,7 +1947,7 @@ public final class b {
                                     }
                                 }
                                 jsonReader.endObject();
-                                obj2.f49985i = sVar.d();
+                                obj2.f51390i = rVar.d();
                                 break;
                             case 7:
                                 jsonReader.beginObject();
@@ -2050,7 +2049,7 @@ public final class b {
                                     str = str.concat(" version");
                                 }
                                 if (str.isEmpty()) {
-                                    obj2.f49984g = new i0(str6, str7, str8, str9, str10, str11);
+                                    obj2.f51389g = new i0(str6, str7, str8, str9, str10, str11);
                                     break;
                                 } else {
                                     throw new IllegalStateException("Missing required properties:".concat(str));
@@ -2083,16 +2082,16 @@ public final class b {
                             case '\t':
                                 String nextString11 = jsonReader.nextString();
                                 if (nextString11 != null) {
-                                    obj2.f49980a = nextString11;
+                                    obj2.f51385a = nextString11;
                                     break;
                                 } else {
                                     throw new NullPointerException("Null generator");
                                 }
                             case '\n':
-                                obj2.f49983f = Boolean.valueOf(jsonReader.nextBoolean());
+                                obj2.f51388f = Boolean.valueOf(jsonReader.nextBoolean());
                                 break;
                             case 11:
-                                obj2.f49988l = Integer.valueOf(jsonReader.nextInt());
+                                obj2.f51393l = Integer.valueOf(jsonReader.nextInt());
                                 break;
                             default:
                                 jsonReader.skipValue();
@@ -2100,7 +2099,7 @@ public final class b {
                         }
                     }
                     jsonReader.endObject();
-                    obj.f46610g = obj2.a();
+                    obj.f48017g = obj2.a();
                     break;
                 default:
                     jsonReader.skipValue();

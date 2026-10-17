@@ -1,240 +1,145 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PathMeasure;
-import android.graphics.RectF;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-public final class ck0 {
-    public static DecelerateInterpolator A;
-    public final View f23753i;
-    public boolean f23755k;
-    public boolean f23756l;
-    public Drawable f23757m;
-    public Drawable f23758n;
-    public final Paint f23760p;
-    public boolean f23765u;
-    public long f23748a = 0;
-    public float f23749b = 0.0f;
-    public float f23750c = 0.0f;
-    public float d = 0.0f;
-    public long e = 0;
-    public float f23751f = 0.0f;
-    public final RectF f23752g = new RectF();
-    public final RectF h = new RectF();
-    public float f23754j = 1.0f;
-    public int f23759o = -1;
-    public int f23761q = AndroidUtilities.dp(4.0f);
-    public final boolean f23762r = true;
-    public final float f23763s = 1.0f;
-    public Paint f23764t = null;
-    public float v = 3000.0f;
-    public final Path f23766w = new Path();
-    public final Matrix f23767x = new Matrix();
-    public final PathMeasure f23768y = new PathMeasure();
-    public final Path f23769z = new Path();
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class ck0 extends FrameLayout {
+    public final b10 f25246a;
+    public final TextView f25247b;
+    public final k9 f25248c;
+    public final ImageView d;
+    public final w9 e;
+    public final int f25249f;
+    public boolean h;
+    public final ArrayList f25250n;
+    public final ArrayList f25251r;
+    public final MessageObject f25252s;
+    public int v;
+    public q0.a f25253w;
 
-    public ck0(View view) {
-        if (A == null) {
-            A = new DecelerateInterpolator();
-        }
-        Paint paint = new Paint(1);
-        this.f23760p = paint;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        Paint paint2 = new Paint(1);
-        paint2.setStyle(style);
-        paint2.setStrokeCap(cap);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        new Paint(1);
-        this.f23753i = view;
+    public ck0(Context context, int i10, MessageObject messageObject) {
+        super(context);
+        this.f25250n = new ArrayList();
+        this.f25251r = new ArrayList();
+        this.f25249f = i10;
+        this.f25252s = messageObject;
+        b10 b10Var = new b10(context, null);
+        this.f25246a = b10Var;
+        b10Var.f(org.telegram.ui.ActionBar.h6.G8, org.telegram.ui.ActionBar.h6.f21075i6, -1);
+        b10Var.setViewType(13);
+        b10Var.setIsSingleCell(false);
+        addView(b10Var, w7.z5.d(-1.0f, -2));
+        TextView textView = new TextView(context);
+        this.f25247b = textView;
+        org.telegram.messenger.wh.u(textView, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E8, false), 1, 16.0f, 1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, w7.z5.i(-2.0f, -2.0f, 8388627, 40.0f, 0.0f, 62.0f, 0.0f));
+        k9 k9Var = new k9(context, false);
+        this.f25248c = k9Var;
+        k9Var.setStyle(11);
+        k9Var.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
+        addView(k9Var, w7.z5.i(56.0f, -1.0f, 8388629, 0.0f, 0.0f, 0.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        addView(imageView, w7.z5.i(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
+        Drawable mutate = context.getDrawable(R.drawable.msg_reactions).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.F8, false), PorterDuff.Mode.MULTIPLY));
+        imageView.setImageDrawable(mutate);
+        imageView.setVisibility(8);
+        w9 w9Var = new w9(context);
+        this.e = w9Var;
+        addView(w9Var, w7.z5.i(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
+        textView.setAlpha(0.0f);
+        k9Var.setAlpha(0.0f);
+        setBackground(org.telegram.ui.ActionBar.h6.L0(false));
     }
 
-    public final void a(Canvas canvas) {
-        Paint paint;
-        Drawable drawable = this.f23758n;
-        RectF rectF = this.f23752g;
-        float f7 = this.f23763s;
-        if (drawable != null) {
-            if (this.f23762r) {
-                drawable.setAlpha((int) (this.f23754j * 255.0f * f7));
+    public final void a() {
+        int i10 = this.f25249f;
+        MessagesController messagesController = MessagesController.getInstance(i10);
+        TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
+        MessageObject messageObject = this.f25252s;
+        tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(messageObject.getDialogId());
+        tL_messages_getMessageReactionsList.f20365id = messageObject.getId();
+        tL_messages_getMessageReactionsList.limit = 3;
+        tL_messages_getMessageReactionsList.reaction = null;
+        tL_messages_getMessageReactionsList.offset = null;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getMessageReactionsList, new y1(this, 10), 64);
+    }
+
+    public List<bk0> getSeenUsers() {
+        return this.f25250n;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        long j10;
+        super.onAttachedToWindow();
+        int i10 = this.f25249f;
+        MessagesController messagesController = MessagesController.getInstance(i10);
+        MessageObject messageObject = this.f25252s;
+        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(messageObject.getChatId()));
+        TLRPC.ChatFull chatFull = messagesController.getChatFull(messageObject.getChatId());
+        if (chat != null && messageObject.isOutOwner() && messageObject.isSent() && !messageObject.isEditing() && !messageObject.isSending() && !messageObject.isSendError() && !messageObject.isContentUnread() && !messageObject.isUnread() && ConnectionsManager.getInstance(i10).getCurrentTime() - messageObject.messageOwner.date < 604800 && ((ChatObject.isMegagroup(chat) || !ChatObject.isChannel(chat)) && chatFull != null && chatFull.participants_count <= MessagesController.getInstance(i10).chatReadMarkSizeThreshold && !(messageObject.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
+            TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
+            tL_messages_getMessageReadParticipants.msg_id = messageObject.getId();
+            tL_messages_getMessageReadParticipants.peer = MessagesController.getInstance(i10).getInputPeer(messageObject.getDialogId());
+            TLRPC.Peer peer = messageObject.messageOwner.from_id;
+            if (peer != null) {
+                j10 = peer.user_id;
             } else {
-                drawable.setAlpha((int) (f7 * 255.0f));
+                j10 = 0;
             }
-            this.f23758n.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            this.f23758n.draw(canvas);
-        }
-        Drawable drawable2 = this.f23757m;
-        if (drawable2 != null) {
-            if (this.f23758n != null) {
-                drawable2.setAlpha((int) org.telegram.messenger.g0.z(1.0f, this.f23754j, 255.0f, f7));
-            } else {
-                drawable2.setAlpha((int) (f7 * 255.0f));
-            }
-            this.f23757m.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            this.f23757m.draw(canvas);
-        }
-        if (!this.f23755k && !this.f23756l) {
-            g(false);
+            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getMessageReadParticipants, new ai.p9(this, j10, chat, 4), 64);
             return;
         }
-        Paint paint2 = this.f23764t;
-        if (paint2 != null) {
-            paint = paint2;
-        } else {
-            int i10 = this.f23759o;
-            Paint paint3 = this.f23760p;
-            paint3.setColor(i10);
-            if (this.f23756l) {
-                paint3.setAlpha((int) (this.f23754j * 255.0f * f7));
-            } else {
-                paint3.setAlpha((int) (f7 * 255.0f));
-            }
-            paint = paint3;
-        }
-        float f10 = rectF.left;
-        float f11 = this.f23761q;
-        RectF rectF2 = this.h;
-        rectF2.set(f10 + f11, rectF.top + f11, rectF.right - f11, rectF.bottom - f11);
-        b(this.f23749b - 90.0f, Math.max(4.0f, this.f23751f * 360.0f), canvas, paint, rectF2);
-        g(true);
+        a();
     }
 
-    public final void b(float f7, float f10, Canvas canvas, Paint paint, RectF rectF) {
-        if (this.f23765u) {
-            float height = rectF.height() * 0.32f;
-            if (Math.abs(f10) == 360.0f) {
-                canvas.drawRoundRect(rectF, height, height, paint);
-                return;
-            }
-            float f11 = ((((int) f7) / 90) * 90) + 90;
-            float f12 = (-199.0f) + f11;
-            float f13 = ((f7 + f10) - f12) / 360.0f;
-            Path path = this.f23766w;
-            path.rewind();
-            path.addRoundRect(rectF, height, height, Path.Direction.CW);
-            Matrix matrix = this.f23767x;
-            matrix.reset();
-            matrix.postRotate(f11, rectF.centerX(), rectF.centerY());
-            path.transform(matrix);
-            PathMeasure pathMeasure = this.f23768y;
-            pathMeasure.setPath(path, false);
-            float length = pathMeasure.getLength();
-            Path path2 = this.f23769z;
-            path2.reset();
-            pathMeasure.getSegment(((f7 - f12) / 360.0f) * length, length * f13, path2, true);
-            path2.rLineTo(0.0f, 0.0f);
-            canvas.drawPath(path2, paint);
-            if (f13 > 1.0f) {
-                b(f7 + 90.0f, f10 - 90.0f, canvas, paint, rectF);
-                return;
-            }
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12 = this.v;
+        if (i12 > 0) {
+            i10 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        }
+        b10 b10Var = this.f25246a;
+        if (b10Var.getVisibility() == 0) {
+            this.h = true;
+            b10Var.setVisibility(8);
+            super.onMeasure(i10, i11);
+            b10Var.getLayoutParams().width = getMeasuredWidth();
+            b10Var.setVisibility(0);
+            this.h = false;
+            super.onMeasure(i10, i11);
             return;
         }
-        canvas.drawArc(rectF, f7, f10, false, paint);
+        super.onMeasure(i10, i11);
     }
 
-    public final void c() {
-        int dp = AndroidUtilities.dp(2.0f);
-        RectF rectF = this.f23752g;
-        int i10 = ((int) rectF.left) - dp;
-        int i11 = ((int) rectF.top) - dp;
-        int i12 = dp * 2;
-        this.f23753i.invalidate(i10, i11, ((int) rectF.right) + i12, ((int) rectF.bottom) + i12);
+    @Override
+    public final void requestLayout() {
+        if (this.h) {
+            return;
+        }
+        super.requestLayout();
     }
 
-    public final void d(Drawable drawable, boolean z10, boolean z11) {
-        Drawable drawable2;
-        this.f23748a = System.currentTimeMillis();
-        if (z11 && (drawable2 = this.f23757m) != drawable) {
-            this.f23758n = drawable2;
-            this.f23756l = this.f23755k;
-            this.f23754j = 1.0f;
-            e(1.0f, z11);
-        } else {
-            this.f23758n = null;
-            this.f23756l = false;
-        }
-        this.f23755k = z10;
-        this.f23757m = drawable;
-        if (!z11) {
-            this.f23753i.invalidate();
-        } else {
-            c();
-        }
-    }
-
-    public final void e(float f7, boolean z10) {
-        if (f7 != 1.0f && this.f23754j != 0.0f && this.f23758n != null) {
-            this.f23754j = 0.0f;
-            this.f23758n = null;
-        }
-        if (!z10) {
-            this.f23751f = f7;
-            this.d = f7;
-        } else {
-            if (this.f23751f > f7) {
-                this.f23751f = f7;
-            }
-            this.d = this.f23751f;
-        }
-        this.f23750c = f7;
-        this.e = 0L;
-        c();
-    }
-
-    public final void f(int i10, int i11, int i12, int i13) {
-        this.f23752g.set(i10, i11, i12, i13);
-    }
-
-    public final void g(boolean z10) {
-        long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f23748a;
-        this.f23748a = currentTimeMillis;
-        if (z10) {
-            if (this.f23751f != 1.0f) {
-                this.f23749b = (((float) (360 * j10)) / this.v) + this.f23749b;
-                float f7 = this.f23750c;
-                float f10 = this.d;
-                float f11 = f7 - f10;
-                if (f11 > 0.0f) {
-                    long j11 = this.e + j10;
-                    this.e = j11;
-                    if (j11 >= 300) {
-                        this.f23751f = f7;
-                        this.d = f7;
-                        this.e = 0L;
-                    } else {
-                        this.f23751f = (A.getInterpolation(((float) j11) / 300.0f) * f11) + f10;
-                    }
-                }
-                c();
-            }
-            if (this.f23751f >= 1.0f && this.f23758n != null) {
-                float f12 = this.f23754j - (((float) j10) / 200.0f);
-                this.f23754j = f12;
-                if (f12 <= 0.0f) {
-                    this.f23754j = 0.0f;
-                    this.f23758n = null;
-                }
-                c();
-            }
-        } else if (this.f23758n != null) {
-            float f13 = this.f23754j - (((float) j10) / 200.0f);
-            this.f23754j = f13;
-            if (f13 <= 0.0f) {
-                this.f23754j = 0.0f;
-                this.f23758n = null;
-            }
-            c();
-        }
+    public void setSeenCallback(q0.a aVar) {
+        this.f25253w = aVar;
     }
 }

@@ -1,26 +1,38 @@
 package org.telegram.ui;
-public final class qf implements Runnable {
-    public final int f39146a;
-    public final fo f39147b;
-    public final long f39148c;
-    public final long d;
 
-    public qf(fo foVar, long j10, long j11, int i10) {
-        this.f39146a = i10;
-        this.f39147b = foVar;
-        this.f39148c = j10;
-        this.d = j11;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class qf implements Utilities.CallbackReturn {
+    public final int f40414a;
+    public final Object f40415b;
+    public final Object f40416c;
+
+    public qf(int i10, Object obj, Object obj2) {
+        this.f40414a = i10;
+        this.f40415b = obj;
+        this.f40416c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39146a) {
+    public final Object run(Object obj) {
+        org.telegram.ui.Cells.u1 u1Var;
+        switch (this.f40414a) {
             case 0:
-                fo.Y(this.f39147b, this.f39148c, this.d);
-                return;
+                sn snVar = (sn) this.f40415b;
+                View view = (View) this.f40416c;
+                URLSpan uRLSpan = (URLSpan) obj;
+                MessageObject messageObject = snVar.f41189d5;
+                if (view instanceof org.telegram.ui.Cells.u1) {
+                    u1Var = (org.telegram.ui.Cells.u1) view;
+                } else {
+                    u1Var = null;
+                }
+                snVar.X7(uRLSpan, false, messageObject, u1Var);
+                return Boolean.TRUE;
             default:
-                fo.X(this.f39147b, this.f39148c, this.d);
-                return;
+                return sh.c.d((View) obj, (String) this.f40415b, (String) this.f40416c, null, null);
         }
     }
 }

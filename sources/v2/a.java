@@ -1,20 +1,20 @@
 package v2;
 
-import b2.x;
+import b2.w;
 public abstract class a extends l {
     public final long v;
-    public final long f46479w;
-    public n3.b f46480x;
-    public int[] f46481y;
+    public final long f47887w;
+    public n2.e f47888x;
+    public int[] f47889y;
 
-    public a(g2.h hVar, g2.m mVar, x xVar, int i10, Object obj, long j10, long j11, long j12, long j13, long j14) {
-        super(hVar, mVar, xVar, i10, obj, j10, j11, j14);
+    public a(g2.h hVar, g2.m mVar, w wVar, int i10, Object obj, long j10, long j11, long j12, long j13, long j14) {
+        super(hVar, mVar, wVar, i10, obj, j10, j11, j14);
         this.v = j12;
-        this.f46479w = j13;
+        this.f47887w = j13;
     }
 
     public final int d(int i10) {
-        int[] iArr = this.f46481y;
+        int[] iArr = this.f47889y;
         iArr.getClass();
         return iArr[i10];
     }

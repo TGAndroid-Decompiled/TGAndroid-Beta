@@ -1,25 +1,36 @@
 package org.telegram.messenger.camera;
-
-import org.telegram.messenger.camera.CameraView;
 public final class m implements Runnable {
-    public final int f16673a;
-    public final CameraView f16674b;
-    public final CameraView.CameraGLThread f16675c;
+    public final int f18058a;
+    public final CameraView f18059b;
 
-    public m(CameraView cameraView, CameraView.CameraGLThread cameraGLThread, int i10) {
-        this.f16673a = i10;
-        this.f16674b = cameraView;
-        this.f16675c = cameraGLThread;
+    public m(CameraView cameraView, int i10) {
+        this.f18058a = i10;
+        this.f18059b = cameraView;
     }
 
     @Override
     public final void run() {
-        switch (this.f16673a) {
+        switch (this.f18058a) {
             case 0:
-                this.f16674b.lambda$createCamera$10(this.f16675c);
+                this.f18059b.lambda$resetCamera$4();
+                return;
+            case 1:
+                this.f18059b.lambda$new$7();
+                return;
+            case 2:
+                this.f18059b.lambda$toggleDual$2();
+                return;
+            case 3:
+                this.f18059b.lambda$switchCamera$3();
+                return;
+            case 4:
+                this.f18059b.lambda$onSurfaceTextureDestroyed$5();
+                return;
+            case 5:
+                this.f18059b.onSurfaceTextureUpdatedInternal();
                 return;
             default:
-                this.f16674b.lambda$createCamera$8(this.f16675c);
+                this.f18059b.lambda$enableDualInternal$0();
                 return;
         }
     }

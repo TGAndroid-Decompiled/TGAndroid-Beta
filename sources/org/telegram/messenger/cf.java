@@ -1,44 +1,36 @@
 package org.telegram.messenger;
-public final class cf implements Runnable {
-    public final int f16704a = 2;
-    public final MessagesStorage f16705b;
-    public final boolean f16706c;
-    public final int d;
-    public final long e;
 
-    public cf(MessagesStorage messagesStorage, int i10, boolean z10, long j10) {
-        this.f16705b = messagesStorage;
-        this.d = i10;
-        this.f16706c = z10;
-        this.e = j10;
+import org.telegram.ui.sn;
+import org.webrtc.TextureViewRenderer;
+public final class cf implements Runnable {
+    public final int f18094a;
+    public final int f18095b;
+    public final int f18096c;
+    public final int d;
+    public final int e;
+    public final Object f18097f;
+
+    public cf(Object obj, int i10, int i11, int i12, int i13, int i14) {
+        this.f18094a = i14;
+        this.f18097f = obj;
+        this.f18095b = i10;
+        this.f18096c = i11;
+        this.d = i12;
+        this.e = i13;
     }
 
     @Override
     public final void run() {
-        switch (this.f16704a) {
+        switch (this.f18094a) {
             case 0:
-                MessagesStorage.Z2(this.f16705b, this.d, this.f16706c, this.e);
+                ((MessagesStorage) this.f18097f).lambda$saveDiffParams$35(this.f18095b, this.f18096c, this.d, this.e);
                 return;
             case 1:
-                MessagesStorage.f4(this.f16705b, this.d, this.f16706c, this.e);
+                sn.w1((sn) this.f18097f, this.f18095b, this.f18096c, this.d, this.e);
                 return;
             default:
-                MessagesStorage.V2(this.f16705b, this.d, this.f16706c, this.e);
+                TextureViewRenderer.a((TextureViewRenderer) this.f18097f, this.f18095b, this.f18096c, this.d, this.e);
                 return;
         }
-    }
-
-    public cf(MessagesStorage messagesStorage, long j10, int i10, boolean z10) {
-        this.f16705b = messagesStorage;
-        this.e = j10;
-        this.d = i10;
-        this.f16706c = z10;
-    }
-
-    public cf(MessagesStorage messagesStorage, boolean z10, int i10, long j10) {
-        this.f16705b = messagesStorage;
-        this.f16706c = z10;
-        this.d = i10;
-        this.e = j10;
     }
 }

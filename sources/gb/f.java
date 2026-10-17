@@ -1,9 +1,59 @@
 package gb;
-public final class f implements p {
-    public String f10048a;
+
+import eb.u;
+import eb.v;
+import java.lang.reflect.Modifier;
+import java.util.Collections;
+import java.util.List;
+import v7.r8;
+public final class f implements v, Cloneable {
+    public static final f f10957c = new f();
+    public List f10958a;
+    public final List f10959b;
+
+    public f() {
+        List list = Collections.EMPTY_LIST;
+        this.f10958a = list;
+        this.f10959b = list;
+    }
+
+    public final f clone() {
+        try {
+            return (f) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    public final boolean b(Class cls, boolean z10) {
+        List<eb.a> list;
+        if (!z10 && !Enum.class.isAssignableFrom(cls)) {
+            r8 r8Var = jb.c.f14365a;
+            if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
+                return true;
+            }
+        }
+        if (z10) {
+            list = this.f10958a;
+        } else {
+            list = this.f10959b;
+        }
+        for (eb.a aVar : list) {
+            if (aVar.shouldSkipClass(cls)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
-    public Object i2() {
-        throw new RuntimeException(this.f10048a);
+    public final u create(eb.g gVar, lb.a aVar) {
+        Class cls = aVar.f15988a;
+        boolean b10 = b(cls, true);
+        boolean b11 = b(cls, false);
+        if (!b10 && !b11) {
+            return null;
+        }
+        return new e(this, b11, b10, gVar, aVar);
     }
 }

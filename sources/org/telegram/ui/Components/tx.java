@@ -1,12 +1,22 @@
 package org.telegram.ui.Components;
-public final class tx extends org.telegram.ui.fo {
+public final class tx extends w7.a6 {
+    public final tz f30729a;
+
+    public tx(tz tzVar) {
+        this.f30729a = tzVar;
+    }
+
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        org.telegram.ui.sk skVar;
-        super.onTransitionAnimationEnd(z10, z11);
-        if (z10 && (skVar = this.Y) != null) {
-            skVar.p1();
-            this.Y.postDelayed(new kq(this, 13), 100L);
-        }
+    public final void a() {
+        tz tzVar = this.f30729a;
+        tzVar.f30756f0 = false;
+        tzVar.P.z1();
+    }
+
+    @Override
+    public final void b() {
+        tz tzVar = this.f30729a;
+        tzVar.P.z1();
+        tzVar.f30756f0 = true;
     }
 }

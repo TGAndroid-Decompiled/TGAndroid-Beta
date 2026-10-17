@@ -1,51 +1,28 @@
 package org.telegram.ui;
+public final class wc0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f42485a;
+    public final fg0 f42486b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.IMapsProvider;
-public final class wc0 implements Runnable {
-    public final int f40929a;
-    public final ld0 f40930b;
-    public final IMapsProvider.IMapView f40931c;
-
-    public wc0(ld0 ld0Var, IMapsProvider.IMapView iMapView, int i10) {
-        this.f40929a = i10;
-        this.f40930b = ld0Var;
-        this.f40931c = iMapView;
+    public wc0(fg0 fg0Var, int i10) {
+        this.f42485a = i10;
+        this.f42486b = fg0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40929a) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f42485a) {
             case 0:
-                ld0 ld0Var = this.f40930b;
-                IMapsProvider.IMapView iMapView = this.f40931c;
-                if (ld0Var.K != null && ld0Var.getParentActivity() != null) {
-                    try {
-                        iMapView.onCreate(null);
-                        ApplicationLoader.getMapsProvider().initializeMaps(ApplicationLoader.applicationContext);
-                        ld0Var.K.getMapAsync(new xc0(ld0Var, 0));
-                        ld0Var.f37709u0 = true;
-                        if (ld0Var.f37710v0) {
-                            ld0Var.K.onResume();
-                            return;
-                        }
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
+                fg0 fg0Var = this.f42486b;
+                fg0Var.f36905b[fg0Var.f36903a].d();
+                fg0Var.k1(true, true);
                 return;
             default:
-                ld0 ld0Var2 = this.f40930b;
-                IMapsProvider.IMapView iMapView2 = this.f40931c;
-                try {
-                    iMapView2.onCreate(null);
-                } catch (Exception unused) {
+                fg0 fg0Var2 = this.f42486b;
+                fg0Var2.f36918l0 = true;
+                if (fg0Var2.f36903a != 0) {
+                    fg0Var2.u1(0, true, null, true);
+                    return;
                 }
-                AndroidUtilities.runOnUIThread(new wc0(ld0Var2, iMapView2, 0));
                 return;
         }
     }

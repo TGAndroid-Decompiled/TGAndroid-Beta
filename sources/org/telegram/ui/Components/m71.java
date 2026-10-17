@@ -1,38 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import androidx.core.widget.NestedScrollView;
-public final class m71 extends NestedScrollView {
-    public boolean W;
-    public final n71 f26966a0;
+import android.graphics.Point;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class m71 implements View.OnLayoutChangeListener {
+    public Boolean f28460a;
+    public boolean f28461b;
+    public final m.g3 f28462c;
 
-    public m71(n71 n71Var, Context context) {
-        super(context);
-        this.f26966a0 = n71Var;
+    public m71(m.g3 g3Var, View view) {
+        this.f28462c = g3Var;
+        o1.k kVar = new o1.k(view, o1.h.f17538n, 0.0f);
+        g3Var.f16197c = kVar;
+        kVar.f17555u.a(1.0f);
+        ((o1.k) g3Var.f16197c).f17555u.b(350.0f);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        n71.n(this.f26966a0);
-    }
-
-    @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m71.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        n71.n(this.f26966a0);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W) {
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        boolean z10;
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        Boolean bool = this.f28460a;
+        if (bool == null || bool.booleanValue() != z10) {
+            this.f28460a = Boolean.valueOf(z10);
+            this.f28461b = true;
+        }
+        if (i15 != 0 && i15 != i11 && !this.f28461b) {
+            m.g3 g3Var = this.f28462c;
+            ((o1.k) g3Var.f16197c).c();
+            if (view.getVisibility() != 0) {
+                view.setTranslationY(0.0f);
+                return;
+            }
+            ((o1.k) g3Var.f16197c).f17555u.f17561i = 0.0f;
+            view.setTranslationY((i15 - i11) + 0.0f);
+            ((o1.k) g3Var.f16197c).h();
             return;
         }
-        super.requestLayout();
+        this.f28461b = false;
     }
 }

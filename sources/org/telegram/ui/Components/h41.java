@@ -1,25 +1,44 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LanguageDetector;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
+import android.view.View;
 import org.telegram.messenger.Utilities;
-public final class h41 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final String f25171a;
-    public final String f25172b;
-    public final Utilities.Callback2 f25173c;
+public final class h41 extends ClickableSpan {
+    public final URLSpan f26760a;
+    public final r41 f26761b;
 
-    public h41(String str, String str2, Utilities.Callback2 callback2) {
-        this.f25171a = str;
-        this.f25172b = str2;
-        this.f25173c = callback2;
+    public h41(r41 r41Var, URLSpan uRLSpan) {
+        this.f26761b = r41Var;
+        this.f26760a = uRLSpan;
     }
 
     @Override
-    public void run(String str) {
-        x41.z(this.f25171a, str, this.f25172b, this.f25173c);
+    public final void onClick(View view) {
+        r41 r41Var = this.f26761b;
+        Utilities.CallbackReturn callbackReturn = r41Var.N;
+        URLSpan uRLSpan = this.f26760a;
+        if (callbackReturn != null) {
+            if (((Boolean) callbackReturn.run(uRLSpan)).booleanValue()) {
+                r41Var.dismiss();
+                return;
+            }
+            return;
+        }
+        org.telegram.ui.ActionBar.n2 n2Var = r41Var.M;
+        if (n2Var != null) {
+            f5.p0(n2Var, uRLSpan.getURL(), false, false);
+        }
     }
 
     @Override
-    public void run(Exception exc) {
-        x41.z(this.f25171a, "en", this.f25172b, this.f25173c);
+    public final void updateDrawState(TextPaint textPaint) {
+        int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
+        if (!(this.f26760a instanceof j61)) {
+            textPaint.setUnderlineText(true);
+        }
+        textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21112k5, false));
+        textPaint.setAlpha(min);
     }
 }

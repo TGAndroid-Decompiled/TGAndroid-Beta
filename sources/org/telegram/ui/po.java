@@ -1,29 +1,68 @@
 package org.telegram.ui;
 
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class po implements RequestDelegate {
-    public final int f38979a;
-    public final zo f38980b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class po implements View.OnClickListener {
+    public final int f40199a;
+    public final yo f40200b;
 
-    public po(zo zoVar, int i10) {
-        this.f38979a = i10;
-        this.f38980b = zoVar;
+    public po(yo yoVar, int i10) {
+        this.f40199a = i10;
+        this.f40200b = yoVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38979a) {
+    public final void onClick(View view) {
+        int i10 = this.f40199a;
+        yo yoVar = this.f40200b;
+        switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new t1(this.f38980b, tL_error, tLObject, 27));
+                TLRPC.Chat currentChannel = ((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel();
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(yoVar.getParentActivity());
+                String string = LocaleController.getString(R.string.AppName);
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                b2Var.R = string;
+                if (yoVar.f43436a0) {
+                    b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlertChannel", R.string.RevokeLinkAlertChannel, yoVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
+                } else {
+                    b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlert", R.string.RevokeLinkAlert, yoVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
+                }
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new m4.y0(19, yoVar, currentChannel));
+                yoVar.showDialog(b2Var);
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new ro(this.f38980b, 1));
+                if (!yoVar.V) {
+                    yoVar.V = true;
+                    yoVar.b0();
+                    return;
+                }
+                return;
+            case 2:
+                if (yoVar.V) {
+                    if (!yoVar.f43440c0) {
+                        yoVar.Z();
+                        return;
+                    }
+                    yoVar.V = false;
+                    yoVar.b0();
+                    return;
+                }
+                return;
+            case 3:
+                kh0 kh0Var = new kh0(yoVar.Z, 0L, 0);
+                kh0Var.g0(yoVar.Y, yoVar.f43450l0);
+                yoVar.presentFragment(kh0Var);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ro(this.f38980b, 4));
+                boolean z10 = !yoVar.f43438b0;
+                yoVar.f43438b0 = z10;
+                ((org.telegram.ui.Cells.v8) view).setChecked(z10);
                 return;
         }
     }

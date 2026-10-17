@@ -1,75 +1,75 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class ix extends ChatActivityEnterView {
-    public final yy f36885o5;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class ix extends UndoView {
+    public final ey f37992f0;
 
-    public ix(yy yyVar, Activity activity, ry ryVar) {
-        super(activity, ryVar, null, false, null);
-        this.f36885o5 = yyVar;
+    public ix(ey eyVar, Activity activity) {
+        super(activity);
+        this.f37992f0 = eyVar;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int i10;
-        if (motionEvent.getAction() == 0) {
-            yy yyVar = this.f36885o5;
-            Activity parentActivity = yyVar.getParentActivity();
-            i10 = ((org.telegram.ui.ActionBar.m2) yyVar).classGuid;
-            AndroidUtilities.requestAdjustResize(parentActivity, i10);
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final int getMessagesCount() {
-        CharSequence fieldText;
-        yy yyVar = this.f36885o5;
-        int i10 = yyVar.S0;
-        ix ixVar = yyVar.B1;
-        if (ixVar == null) {
-            fieldText = "";
-        } else {
-            fieldText = ixVar.getFieldText();
-        }
-        return Math.max(1, i10 + (!TextUtils.isEmpty(fieldText) ? 1 : 0));
-    }
-
-    @Override
-    public final long getStarsPrice() {
-        yy yyVar = this.f36885o5;
-        ArrayList arrayList = yyVar.I2;
-        if (arrayList == null) {
-            return 0L;
-        }
-        int size = arrayList.size();
+    public final boolean a() {
         int i10 = 0;
-        long j10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            long longValue = ((Long) obj).longValue();
-            long sendPaidMessagesStars = yyVar.getMessagesController().getSendPaidMessagesStars(longValue);
-            if (sendPaidMessagesStars <= 0 && longValue > 0) {
-                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(yyVar.getMessagesController().isUserContactBlocked(longValue));
+        while (true) {
+            dy[] dyVarArr = this.f37992f0.f36630e0;
+            if (i10 < dyVarArr.length) {
+                if (dyVarArr[i10].f36341x.k()) {
+                    return false;
+                }
+                i10++;
+            } else {
+                return true;
             }
-            j10 += sendPaidMessagesStars;
         }
-        return j10;
     }
 
     @Override
-    public final void y0(float f7) {
-        yy yyVar = this.f36885o5;
-        yyVar.f42108y1.setInputBubbleHeight(f7);
-        yyVar.q3();
-        yyVar.j3();
-        yyVar.r3();
+    public final void h(int i10, long j10) {
+        if (i10 != 1 && i10 != 27) {
+            return;
+        }
+        ey eyVar = this.f37992f0;
+        eyVar.f36739z3 = 1;
+        eyVar.y4(true, true);
+        if (eyVar.R1 != null) {
+            int i11 = 0;
+            while (true) {
+                if (i11 < eyVar.R1.size()) {
+                    if (((TLRPC.Dialog) eyVar.R1.get(i11)).f20276id == j10) {
+                        break;
+                    }
+                    i11++;
+                } else {
+                    i11 = -1;
+                    break;
+                }
+            }
+            if (i11 >= 0) {
+                eyVar.f36630e0[0].d.l();
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.w31(this, i11, (TLRPC.Dialog) eyVar.R1.remove(i11), 1));
+            } else {
+                eyVar.y4(false, true);
+            }
+        }
+        eyVar.m3();
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        ey eyVar = this.f37992f0;
+        UndoView[] undoViewArr = eyVar.f36733y0;
+        if (this == undoViewArr[0]) {
+            UndoView undoView = undoViewArr[1];
+            if (undoView == null || undoView.getVisibility() != 0) {
+                eyVar.f36712u1 = Math.max(0.0f, (AndroidUtilities.dp(8.0f) + getMeasuredHeight()) - f7);
+                eyVar.V4();
+            }
+        }
     }
 }

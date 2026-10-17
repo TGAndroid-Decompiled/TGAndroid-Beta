@@ -1,43 +1,55 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-public final class fh implements MessagesStorage.IntCallback {
-    public final int f35532a;
-    public final fo f35533b;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+public final class fh implements Runnable {
+    public final int f36934a;
+    public final View f36935b;
 
-    public fh(fo foVar, int i10) {
-        this.f35532a = i10;
-        this.f35533b = foVar;
+    public fh(int i10, View view) {
+        this.f36934a = i10;
+        this.f36935b = view;
     }
 
     @Override
-    public final void run(int i10) {
-        switch (this.f35532a) {
+    public final void run() {
+        int i10 = this.f36934a;
+        View view = this.f36935b;
+        switch (i10) {
             case 0:
-                fo foVar = this.f35533b;
-                if (foVar.getParentActivity() != null && foVar.fragmentView != null && i10 > 0) {
-                    org.telegram.ui.Components.zc.a0(foVar).m(org.telegram.ui.Components.yc.f31211r, i10, 0, 0, foVar.f35633ea).j();
+                try {
+                    view.performHapticFeedback(3, 2);
+                    return;
+                } catch (Exception unused) {
                     return;
                 }
-                return;
             case 1:
-                fo foVar2 = this.f35533b;
-                if (i10 == 0) {
-                    foVar2.f35726m6 = false;
-                    foVar2.M9();
-                    return;
-                }
-                foVar2.j(i10, 0, false, 0, true, 0);
+                view.setBackgroundDrawable(null);
+                return;
+            case 2:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                AndroidUtilities.removeFromParent(view);
+                return;
+            case 3:
+                Drawable[] drawableArr2 = PhotoViewer.U8;
+                view.setVisibility(8);
+                return;
+            case 4:
+                SharedConfig.setSuggestStickers(0);
+                ((org.telegram.ui.Cells.ba) view).f22063c.c(LocaleController.getString(R.string.SuggestStickersAll), true, true);
+                return;
+            case 5:
+                SharedConfig.setSuggestStickers(1);
+                ((org.telegram.ui.Cells.ba) view).f22063c.c(LocaleController.getString(R.string.SuggestStickersInstalled), true, true);
                 return;
             default:
-                fo foVar3 = this.f35533b;
-                if (i10 == 0) {
-                    foVar3.Uc(true);
-                    return;
-                } else {
-                    foVar3.finishFragment();
-                    return;
-                }
+                SharedConfig.setSuggestStickers(2);
+                ((org.telegram.ui.Cells.ba) view).f22063c.c(LocaleController.getString(R.string.SuggestStickersNone), true, true);
+                return;
         }
     }
 }

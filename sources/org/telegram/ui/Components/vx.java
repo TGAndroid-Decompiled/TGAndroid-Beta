@@ -1,23 +1,62 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.FileLog;
-public final class vx extends s4.s {
-    public final wz Q;
+import android.content.Context;
+import android.graphics.ColorFilter;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class vx extends kw {
+    public final tz f31922g0;
 
-    public vx(wz wzVar) {
-        super(8);
-        this.Q = wzVar;
+    public vx(tz tzVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, lw lwVar, boolean z11) {
+        super(context, d6Var, true, false, true, z10, 0, lwVar, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21319v6, d6Var), z11);
+        this.f31922g0 = tzVar;
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
-        try {
-            di.l1 l1Var = new di.l1(this, recyclerView.getContext(), 2);
-            l1Var.f44979a = i10;
-            w0(l1Var);
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final boolean d() {
+        return this.f31922g0.U0;
+    }
+
+    @Override
+    public final void e() {
+        tz tzVar = this.f31922g0;
+        ArrayList arrayList = tzVar.f30780n1;
+        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && MessagesController.getEmojiSettings(tzVar.f30747c1).getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f20299id) {
+            UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
+        }
+    }
+
+    @Override
+    public final boolean g(fy fyVar) {
+        if (!fyVar.f26406f && !this.f31922g0.f30786p1.contains(Long.valueOf(fyVar.f26404b.f20299id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final ColorFilter getEmojiColorFilter() {
+        return this.f31922g0.f30754e2;
+    }
+
+    @Override
+    public final boolean h(int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vx.h(int):boolean");
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            super.setTranslationY(f7);
+            tz tzVar = this.f31922g0;
+            View view = tzVar.O;
+            if (view != null) {
+                view.setTranslationY(f7);
+            }
+            tzVar.J.invalidate();
         }
     }
 }

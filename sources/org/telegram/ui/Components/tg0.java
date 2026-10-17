@@ -1,61 +1,203 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.Drawable;
+import android.view.WindowManager;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class tg0 extends FrameLayout {
-    public final TextView f29065a;
-    public final TextView f29066b;
-    public final TextView f29067c;
-    public final boolean d;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FlagSecureReason;
+import org.telegram.messenger.GenericProvider;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.LaunchActivity;
+public final class tg0 implements aw0, bw0, org.telegram.ui.ActionBar.a2, GenericProvider, ImageReceiver.ImageReceiverDelegate, LanguageDetector.ExceptionCallback, kd0, FlagSecureReason.FlagSecureCondition {
+    public final int f30543a;
 
-    public tg0(Context context) {
-        super(context);
-        this.d = true;
-        setBackgroundColor(-15066598);
-        TextView textView = new TextView(context);
-        this.f29065a = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(-1);
-        textView.setGravity(17);
-        textView.setBackground(org.telegram.ui.ActionBar.g6.g0(-12763843, 0, -1));
-        textView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
-        textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, w7.z5.e(-2, -1, 51));
-        TextView textView2 = new TextView(context);
-        this.f29066b = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(-1);
-        textView2.setGravity(17);
-        textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.g6.g0(-12763843, 0, -1));
-        textView2.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        textView2.setText(LocaleController.getString(R.string.Send).toUpperCase());
-        textView2.setTypeface(AndroidUtilities.bold());
-        addView(textView2, w7.z5.e(-2, -1, 53));
-        TextView textView3 = new TextView(context);
-        this.f29067c = textView3;
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setTextSize(1, 13.0f);
-        textView3.setTextColor(-1);
-        textView3.setGravity(17);
-        textView3.setBackgroundResource(R.drawable.photobadge);
-        textView3.setMinWidth(AndroidUtilities.dp(23.0f));
-        textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
-        addView(textView3, w7.z5.a(23.0f, 0.0f, 0.0f, 7.0f, 0.0f, -2, 53));
+    public tg0(int i10) {
+        this.f30543a = i10;
     }
 
-    public final void a() {
-        int i10;
-        this.f29067c.setVisibility(8);
-        if (this.d) {
-            i10 = -1;
-        } else {
-            i10 = -15095832;
+    @Override
+    public void b(Object obj, float f7) {
+        switch (this.f30543a) {
+            case 1:
+                zg0 zg0Var = (zg0) obj;
+                WindowManager.LayoutParams layoutParams = zg0Var.f32910c;
+                zg0Var.L = f7;
+                layoutParams.y = (int) f7;
+                try {
+                    AndroidUtilities.updateViewLayout(zg0Var.f32908b, zg0Var.d, layoutParams);
+                    return;
+                } catch (IllegalArgumentException unused) {
+                    zg0Var.N.c();
+                    return;
+                }
+            case 6:
+                sp0 sp0Var = (sp0) obj;
+                sp0Var.f30308n = f7;
+                sp0Var.invalidate();
+                return;
+            case 17:
+                org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) obj;
+                WindowManager.LayoutParams layoutParams2 = h1Var.f31484c;
+                h1Var.Q = f7;
+                layoutParams2.x = (int) f7;
+                AndroidUtilities.updateViewLayout(h1Var.f31483b, h1Var.d, layoutParams2);
+                return;
+            default:
+                org.telegram.ui.Components.voip.h1 h1Var2 = (org.telegram.ui.Components.voip.h1) obj;
+                WindowManager.LayoutParams layoutParams3 = h1Var2.f31484c;
+                h1Var2.R = f7;
+                layoutParams3.y = (int) f7;
+                AndroidUtilities.updateViewLayout(h1Var2.f31483b, h1Var2.d, layoutParams3);
+                return;
         }
-        this.f29066b.setTextColor(i10);
+    }
+
+    @Override
+    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        if (!imageReceiver.canInvertBitmap()) {
+            return;
+        }
+        imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
+    }
+
+    @Override
+    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        org.telegram.messenger.k5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public String e(int i10) {
+        switch (this.f30543a) {
+            case 24:
+                return String.format("%02d", Integer.valueOf(i10));
+            default:
+                return String.format("%02d", Integer.valueOf(i10));
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f30543a) {
+            case 3:
+                b2Var.dismiss();
+                return;
+            case 4:
+                b2Var.dismiss();
+                return;
+            case 5:
+            case 6:
+            case 7:
+            case 13:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            default:
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutFSILockscreen", true).commit();
+                return;
+            case 8:
+                b2Var.dismiss();
+                return;
+            case 9:
+                b2Var.dismiss();
+                return;
+            case 10:
+                b2Var.dismiss();
+                return;
+            case 11:
+                int i11 = oy0.f29079u0;
+                return;
+            case 12:
+                b2Var.dismiss();
+                return;
+            case 14:
+                b2Var.dismiss();
+                return;
+            case 20:
+                b2Var.dismiss();
+                return;
+            case 21:
+                return;
+            case 22:
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
+                return;
+        }
+    }
+
+    @Override
+    public float get(Object obj) {
+        switch (this.f30543a) {
+            case 0:
+                return ((zg0) obj).L;
+            case 5:
+                return ((sp0) obj).f30308n;
+            case 16:
+                return ((org.telegram.ui.Components.voip.h1) obj).Q;
+            default:
+                return ((org.telegram.ui.Components.voip.h1) obj).R;
+        }
+    }
+
+    @Override
+    public void onAnimationReady(ImageReceiver imageReceiver) {
+        org.telegram.messenger.k5.b(this, imageReceiver);
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        switch (this.f30543a) {
+            case 7:
+                Integer num = (Integer) obj;
+                int i10 = dr0.f25651a1;
+                return 0;
+            case 26:
+                Void r82 = (Void) obj;
+                int dp = AndroidUtilities.dp(150.0f);
+                Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+                Paint paint = new Paint(1);
+                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);
+                return createBitmap;
+            case 27:
+                Void r83 = (Void) obj;
+                Paint paint2 = new Paint(1);
+                paint2.setColor(-14509328);
+                int dp2 = AndroidUtilities.dp(150.0f);
+                Bitmap createBitmap2 = Bitmap.createBitmap(dp2, dp2, Bitmap.Config.ARGB_8888);
+                float f7 = dp2 / 2.0f;
+                new Canvas(createBitmap2).drawCircle(f7, f7, f7, paint2);
+                return createBitmap2;
+            default:
+                Void r84 = (Void) obj;
+                Pattern pattern = LaunchActivity.C1;
+                return new org.telegram.ui.pg0();
+        }
+    }
+
+    @Override
+    public void run(Exception exc) {
+        FileLog.e(exc);
+    }
+
+    @Override
+    public boolean run() {
+        Pattern pattern = LaunchActivity.C1;
+        return SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture;
+    }
+
+    private final void a(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
     }
 }

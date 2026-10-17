@@ -26,9 +26,9 @@ public final class n {
         }
         String str2 = this.e;
         ?? pVar = new df.p();
-        pVar.f6528g = str2;
+        pVar.f7983g = str2;
         pVar.h = a2;
-        pVar.f6529i = str;
+        pVar.f7984i = str;
         this.f614c.add(pVar);
         this.d = null;
         this.f617i = false;

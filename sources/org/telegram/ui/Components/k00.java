@@ -1,53 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PointF;
-import java.nio.ByteBuffer;
-public interface k00 {
-    ByteBuffer a();
+import android.animation.ValueAnimator;
+public final class k00 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27664a;
+    public final q00 f27665b;
 
-    boolean b();
+    public k00(q00 q00Var, int i10) {
+        this.f27664a = i10;
+        this.f27665b = q00Var;
+    }
 
-    boolean c();
-
-    float getBlurAngle();
-
-    float getBlurExcludeBlurSize();
-
-    PointF getBlurExcludePoint();
-
-    float getBlurExcludeSize();
-
-    int getBlurType();
-
-    float getContrastValue();
-
-    float getEnhanceValue();
-
-    float getExposureValue();
-
-    float getFadeValue();
-
-    float getGrainValue();
-
-    float getHighlightsValue();
-
-    float getSaturationValue();
-
-    float getShadowsValue();
-
-    float getSharpenValue();
-
-    float getSoftenSkinValue();
-
-    int getTintHighlightsColor();
-
-    float getTintHighlightsIntensityValue();
-
-    int getTintShadowsColor();
-
-    float getTintShadowsIntensityValue();
-
-    float getVignetteValue();
-
-    float getWarmthValue();
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f27664a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q00 q00Var = this.f27665b;
+                q00Var.f29504x = floatValue;
+                q00Var.invalidate();
+                return;
+            default:
+                q00 q00Var2 = this.f27665b;
+                q00Var2.getClass();
+                q00Var2.f29505y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q00Var2.invalidate();
+                return;
+        }
+    }
 }

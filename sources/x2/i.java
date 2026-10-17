@@ -4,15 +4,15 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
+import b2.s1;
 import b2.t1;
-import b2.u1;
 import e2.m0;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Map;
 import u2.r1;
 import v7.b8;
-public final class i extends u1 {
+public final class i extends t1 {
     public static final i F0 = new i(new h());
     public static final String G0;
     public static final String H0;
@@ -38,13 +38,13 @@ public final class i extends u1 {
     public final boolean C0;
     public final SparseArray D0;
     public final SparseBooleanArray E0;
-    public final boolean f47755w0;
-    public final boolean f47756x0;
-    public final boolean f47757y0;
-    public final boolean f47758z0;
+    public final boolean f49164w0;
+    public final boolean f49165x0;
+    public final boolean f49166y0;
+    public final boolean f49167z0;
 
     static {
-        String str = m0.f8375a;
+        String str = m0.f8254a;
         G0 = Integer.toString(1000, 36);
         H0 = Integer.toString(1001, 36);
         I0 = Integer.toString(1002, 36);
@@ -68,10 +68,10 @@ public final class i extends u1 {
 
     public i(h hVar) {
         super(hVar);
-        this.f47755w0 = hVar.J;
-        this.f47756x0 = hVar.K;
-        this.f47757y0 = hVar.L;
-        this.f47758z0 = hVar.M;
+        this.f49164w0 = hVar.J;
+        this.f49165x0 = hVar.K;
+        this.f49166y0 = hVar.L;
+        this.f49167z0 = hVar.M;
         this.A0 = hVar.N;
         this.B0 = hVar.O;
         this.C0 = hVar.P;
@@ -80,23 +80,23 @@ public final class i extends u1 {
     }
 
     @Override
-    public final t1 a() {
+    public final s1 a() {
         return new h(this);
     }
 
     @Override
     public final Bundle c() {
         Bundle c10 = super.c();
-        c10.putBoolean(G0, this.f47755w0);
+        c10.putBoolean(G0, this.f49164w0);
         c10.putBoolean(H0, false);
-        c10.putBoolean(I0, this.f47756x0);
+        c10.putBoolean(I0, this.f49165x0);
         c10.putBoolean(U0, false);
-        c10.putBoolean(J0, this.f47757y0);
+        c10.putBoolean(J0, this.f49166y0);
         c10.putBoolean(K0, false);
         c10.putBoolean(L0, false);
         c10.putBoolean(M0, false);
         c10.putBoolean(V0, false);
-        c10.putBoolean(Y0, this.f47758z0);
+        c10.putBoolean(Y0, this.f49167z0);
         c10.putBoolean(W0, this.A0);
         c10.putBoolean(N0, this.B0);
         c10.putBoolean(O0, false);
@@ -119,7 +119,7 @@ public final class i extends u1 {
                     }
                 }
                 c10.putIntArray(Q0, b8.f(arrayList));
-                c10.putParcelableArrayList(R0, e2.e.h(arrayList2, new t0.a(22)));
+                c10.putParcelableArrayList(R0, e2.e.h(arrayList2, new si.a(25)));
                 SparseArray<? extends Parcelable> sparseArray3 = new SparseArray<>(sparseArray.size());
                 if (sparseArray.size() <= 0) {
                     c10.putSparseParcelableArray(S0, sparseArray3);
@@ -146,7 +146,7 @@ public final class i extends u1 {
         if (this != obj) {
             if (obj != null && i.class == obj.getClass()) {
                 i iVar = (i) obj;
-                if (super.equals(iVar) && this.f47755w0 == iVar.f47755w0 && this.f47756x0 == iVar.f47756x0 && this.f47757y0 == iVar.f47757y0 && this.f47758z0 == iVar.f47758z0 && this.A0 == iVar.A0 && this.B0 == iVar.B0 && this.C0 == iVar.C0) {
+                if (super.equals(iVar) && this.f49164w0 == iVar.f49164w0 && this.f49165x0 == iVar.f49165x0 && this.f49166y0 == iVar.f49166y0 && this.f49167z0 == iVar.f49167z0 && this.A0 == iVar.A0 && this.B0 == iVar.B0 && this.C0 == iVar.C0) {
                     SparseBooleanArray sparseBooleanArray = iVar.E0;
                     SparseBooleanArray sparseBooleanArray2 = this.E0;
                     int size = sparseBooleanArray2.size();
@@ -193,6 +193,6 @@ public final class i extends u1 {
 
     @Override
     public final int hashCode() {
-        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f47755w0 ? 1 : 0)) * 961) + (this.f47756x0 ? 1 : 0)) * 961) + (this.f47757y0 ? 1 : 0)) * 28629151) + (this.f47758z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
+        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f49164w0 ? 1 : 0)) * 961) + (this.f49165x0 ? 1 : 0)) * 961) + (this.f49166y0 ? 1 : 0)) * 28629151) + (this.f49167z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
     }
 }

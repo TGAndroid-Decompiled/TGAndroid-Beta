@@ -1,106 +1,44 @@
 package i2;
 
-import android.graphics.SurfaceTexture;
-import android.view.Surface;
-import android.view.SurfaceHolder;
-import android.view.TextureView;
-import b2.a2;
-import di.x8;
-import fi.q3;
-import java.util.ArrayList;
-import org.telegram.ui.Components.i81;
-public final class b0 implements a3.m0, k2.u, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
-    public final h0 f10929a;
-
-    public b0(h0 h0Var) {
-        this.f10929a = h0Var;
-    }
+import android.media.MediaFormat;
+public final class b0 implements a3.y, k1 {
+    public a3.y f12323a;
+    public b0 f12324b;
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        h0 h0Var = this.f10929a;
-        org.telegram.messenger.f1 f1Var = h0Var.f11017s0;
-        if (f1Var != null) {
-            f1Var.execute(new z(this, surfaceTexture, i10, i11, 0));
-            return;
+    public final void a(long j10, long j11, b2.w wVar, MediaFormat mediaFormat) {
+        a3.y yVar = this.f12323a;
+        if (yVar != null) {
+            yVar.a(j10, j11, wVar, mediaFormat);
         }
-        Surface surface = new Surface(surfaceTexture);
-        h0Var.x1(surface);
-        h0Var.U = surface;
-        h0Var.q1(i10, i11);
+    }
+
+    public final void b() {
+        b0 b0Var = this.f12324b;
+        if (b0Var != null) {
+            b0Var.b();
+        }
     }
 
     @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        h0 h0Var = this.f10929a;
-        ArrayList arrayList = h0Var.f11019t0;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            if (((i81) ((a2) obj)).J.onSurfaceDestroyed(surfaceTexture)) {
-                return false;
+    public final void c(int i10, Object obj) {
+        if (i10 != 7) {
+            if (i10 != 8) {
+                if (i10 != 10000 || obj == null) {
+                    return;
+                }
+                throw new ClassCastException();
             }
-        }
-        org.telegram.messenger.f1 f1Var = h0Var.f11017s0;
-        if (f1Var != null) {
-            f1Var.execute(new x8(this, surfaceTexture));
-            return true;
-        }
-        h0Var.x1(null);
-        h0Var.q1(0, 0);
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        h0 h0Var = this.f10929a;
-        org.telegram.messenger.f1 f1Var = h0Var.f11017s0;
-        if (f1Var != null) {
-            f1Var.execute(new hg.n(this, surfaceTexture, i10, i11));
-        } else {
-            h0Var.q1(i10, i11);
-        }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        h0 h0Var = this.f10929a;
-        org.telegram.messenger.f1 f1Var = h0Var.f11017s0;
-        if (f1Var != null) {
-            f1Var.execute(new q3(13, this, surfaceTexture));
+            this.f12324b = (b0) obj;
             return;
         }
-        ArrayList arrayList = h0Var.f11019t0;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((i81) ((a2) obj)).J.onSurfaceTextureUpdated(surfaceTexture);
-        }
+        this.f12323a = (a3.y) obj;
     }
 
-    @Override
-    public final void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
-        this.f10929a.q1(i11, i12);
-    }
-
-    @Override
-    public final void surfaceCreated(SurfaceHolder surfaceHolder) {
-        h0 h0Var = this.f10929a;
-        if (h0Var.W) {
-            h0Var.x1(surfaceHolder.getSurface());
+    public final void d() {
+        b0 b0Var = this.f12324b;
+        if (b0Var != null) {
+            b0Var.d();
         }
-    }
-
-    @Override
-    public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        h0 h0Var = this.f10929a;
-        if (h0Var.W) {
-            h0Var.x1(null);
-        }
-        h0Var.q1(0, 0);
     }
 }

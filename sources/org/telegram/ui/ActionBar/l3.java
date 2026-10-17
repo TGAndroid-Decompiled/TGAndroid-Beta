@@ -1,82 +1,132 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.text.TextUtils;
-import org.telegram.messenger.FileLog;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-public class l3 {
-    public boolean A;
-    public boolean B;
-    public boolean C;
-    public boolean D;
-    public String E;
-    public Bitmap F;
-    public boolean G;
-    public String H;
-    public float I;
-    public org.telegram.ui.k4 J;
-    public fi.z0 K;
-    public boolean L;
-    public fi.e5 f20185a;
-    public org.telegram.ui.web.z0 f20186b;
-    public org.telegram.ui.o3 f20187c;
-    public Object d;
-    public boolean e;
-    public String f20188f;
-    public int f20189g;
-    public int h;
-    public int f20190i;
-    public boolean f20191j;
-    public float f20192k = Float.MAX_VALUE;
-    public boolean f20193l = true;
-    public Bitmap f20194m;
-    public boolean f20195n;
-    public boolean f20196o;
-    public int f20197p;
-    public int f20198q;
-    public int f20199r;
-    public int f20200s;
-    public boolean f20201t;
-    public boolean f20202u;
-    public boolean v;
-    public a5.a f20203w;
-    public String f20204x;
-    public boolean f20205y;
-    public boolean f20206z;
+public final class l3 extends j1.b {
+    public static final int f21555r = 0;
+    public final RectF f21556o;
+    public final Rect f21557p;
+    public final n3 f21558q;
 
-    public final void a() {
-        try {
-            org.telegram.ui.web.z0 z0Var = this.f20186b;
-            if (z0Var != null) {
-                z0Var.destroy();
-                this.f20186b = null;
+    public l3(n3 n3Var, n3 n3Var2) {
+        super(n3Var2);
+        this.f21558q = n3Var;
+        this.f21556o = new RectF();
+        this.f21557p = new Rect();
+    }
+
+    @Override
+    public final int g(float f7, float f10) {
+        k3 c10;
+        n3 n3Var = this.f21558q;
+        if (n3Var.f21610b) {
+            ArrayList<m3> tabs = n3Var.getTabs();
+            if (!tabs.isEmpty() && (c10 = n3Var.c(tabs.get(0))) != null) {
+                float c11 = c10.c();
+                RectF rectF = this.f21556o;
+                n3Var.d(rectF, c11);
+                Rect bounds = c10.f21528l.getBounds();
+                if (!bounds.isEmpty() && bounds.contains((int) (f7 - rectF.left), (int) (f10 - rectF.centerY()))) {
+                    return 2;
+                }
+                if (rectF.contains(f7, f10)) {
+                    return 1;
+                }
+                return -1;
             }
-            org.telegram.ui.k4 k4Var = this.J;
-            if (k4Var != null) {
-                k4Var.s();
+            return -1;
+        }
+        return -1;
+    }
+
+    @Override
+    public final void h(ArrayList arrayList) {
+        n3 n3Var = this.f21558q;
+        if (n3Var.f21610b) {
+            ArrayList<m3> tabs = n3Var.getTabs();
+            if (tabs.isEmpty() || n3Var.c(tabs.get(0)) == null) {
+                return;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+            arrayList.add(1);
+            arrayList.add(2);
         }
     }
 
-    public String b() {
-        if (this.J != null) {
-            if (TextUtils.isEmpty(this.E)) {
-                return LocaleController.getString(R.string.WebEmpty);
+    @Override
+    public final boolean k(int i10, int i11) {
+        if (i11 == 16) {
+            n3 n3Var = this.f21558q;
+            ArrayList<m3> tabs = n3Var.getTabs();
+            if (!tabs.isEmpty()) {
+                m3 m3Var = tabs.get(0);
+                if (i10 == 1) {
+                    n3Var.b();
+                    return true;
+                } else if (i10 == 2) {
+                    n3Var.g(m3Var, new ci.e(7));
+                    return true;
+                }
             }
-            return this.E;
         }
-        fi.e5 e5Var = this.f20185a;
-        if (e5Var == null) {
-            return "";
+        return false;
+    }
+
+    @Override
+    public final void l(int i10, s0.c cVar) {
+        m3 m3Var;
+        String str;
+        String str2;
+        n3 n3Var = this.f21558q;
+        ArrayList<m3> tabs = n3Var.getTabs();
+        k3 k3Var = null;
+        if (tabs.isEmpty()) {
+            m3Var = null;
+        } else {
+            m3Var = tabs.get(0);
         }
-        if (e5Var.f9258g == 6) {
-            return e5Var.e;
+        if (m3Var != null) {
+            k3Var = n3Var.c(m3Var);
         }
-        return UserObject.getUserName(MessagesController.getInstance(e5Var.f9254a).getUser(Long.valueOf(this.f20185a.f9256c)));
+        cVar.i("android.widget.Button");
+        cVar.b(s0.b.f45889c);
+        String str3 = "";
+        Rect rect = this.f21557p;
+        if (k3Var == null) {
+            rect.set(0, 0, 1, 1);
+            cVar.h(rect);
+            cVar.j("");
+            cVar.p(false);
+            return;
+        }
+        float c10 = k3Var.c();
+        RectF rectF = this.f21556o;
+        n3Var.d(rectF, c10);
+        if (m3Var.b() != null) {
+            str3 = m3Var.b();
+        }
+        if (i10 == 2) {
+            Rect bounds = k3Var.f21528l.getBounds();
+            rect.set((int) (rectF.left + bounds.left), (int) (rectF.centerY() + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.centerY() + bounds.bottom));
+            cVar.h(rect);
+            if (TextUtils.isEmpty(str3)) {
+                str2 = LocaleController.getString(R.string.Close);
+            } else {
+                str2 = LocaleController.getString(R.string.Close) + ", " + str3;
+            }
+            cVar.j(str2);
+            return;
+        }
+        rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        cVar.h(rect);
+        if (TextUtils.isEmpty(str3)) {
+            str = LocaleController.getString(R.string.Open);
+        } else {
+            str = LocaleController.getString(R.string.Open) + ", " + str3;
+        }
+        cVar.j(str);
     }
 }

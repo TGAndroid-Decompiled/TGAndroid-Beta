@@ -1,44 +1,52 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class bk implements Runnable {
-    public final int f34344a;
-    public final ck f34345b;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class bk extends FragmentContextView {
+    public final int R0;
+    public final sn S0;
 
-    public bk(ck ckVar, int i10) {
-        this.f34344a = i10;
-        this.f34345b = ckVar;
+    public bk(sn snVar, Context context, sn snVar2, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, snVar2, null, true, d6Var);
+        this.R0 = i10;
+        switch (i10) {
+            case 1:
+                this.S0 = snVar;
+                super(context, snVar2, null, false, d6Var);
+                return;
+            default:
+                this.S0 = snVar;
+                return;
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f34344a) {
+    public final void setVisibility(int i10) {
+        boolean z10;
+        boolean z11;
+        switch (this.R0) {
             case 0:
-                ck ckVar = this.f34345b;
-                ckVar.W = null;
-                fo foVar = ckVar.X;
-                if (foVar.H9 != -1) {
-                    foVar.getNotificationCenter().onAnimationFinish(foVar.H9);
-                    foVar.H9 = -1;
+                sn snVar = this.S0;
+                org.telegram.ui.Components.ch chVar = snVar.M0;
+                FrameLayout frameLayout = snVar.a2;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
+                chVar.i(frameLayout, z10, true);
                 return;
             default:
-                ck ckVar2 = this.f34345b;
-                ckVar2.W = null;
-                fo foVar2 = ckVar2.X;
-                if (foVar2.H9 != -1) {
-                    foVar2.getNotificationCenter().onAnimationFinish(foVar2.H9);
-                    foVar2.H9 = -1;
+                sn snVar2 = this.S0;
+                org.telegram.ui.Components.ch chVar2 = snVar2.M0;
+                FrameLayout frameLayout2 = snVar2.Y1;
+                if (i10 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
                 }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
+                chVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

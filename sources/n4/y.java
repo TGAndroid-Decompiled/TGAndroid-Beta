@@ -12,30 +12,30 @@ import java.util.AbstractCollection;
 import java.util.ArrayList;
 public final class y implements Parcelable {
     public static final Parcelable.Creator<y> CREATOR = new m8.h(7);
-    public final int f15757a;
-    public final long f15758b;
-    public final long f15759c;
+    public final int f17133a;
+    public final long f17134b;
+    public final long f17135c;
     public final float d;
     public final long e;
-    public final int f15760f;
+    public final int f17136f;
     public final CharSequence h;
-    public final long f15761n;
-    public final AbstractCollection f15762r;
-    public final long f15763s;
+    public final long f17137n;
+    public final AbstractCollection f17138r;
+    public final long f17139s;
     public final Bundle v;
-    public PlaybackState f15764w;
+    public PlaybackState f17140w;
 
     public y(int i10, long j10, long j11, float f7, long j12, int i11, CharSequence charSequence, long j13, ArrayList arrayList, long j14, Bundle bundle) {
-        this.f15757a = i10;
-        this.f15758b = j10;
-        this.f15759c = j11;
+        this.f17133a = i10;
+        this.f17134b = j10;
+        this.f17135c = j11;
         this.d = f7;
         this.e = j12;
-        this.f15760f = i11;
+        this.f17136f = i11;
         this.h = charSequence;
-        this.f15761n = j13;
-        this.f15762r = new ArrayList(arrayList);
-        this.f15763s = j14;
+        this.f17137n = j13;
+        this.f17138r = new ArrayList(arrayList);
+        this.f17139s = j14;
         this.v = bundle;
     }
 
@@ -46,58 +46,58 @@ public final class y implements Parcelable {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("PlaybackState {state=");
-        sb2.append(this.f15757a);
+        sb2.append(this.f17133a);
         sb2.append(", position=");
-        sb2.append(this.f15758b);
+        sb2.append(this.f17134b);
         sb2.append(", buffered position=");
-        sb2.append(this.f15759c);
+        sb2.append(this.f17135c);
         sb2.append(", speed=");
         sb2.append(this.d);
         sb2.append(", updated=");
-        sb2.append(this.f15761n);
+        sb2.append(this.f17137n);
         sb2.append(", actions=");
         sb2.append(this.e);
         sb2.append(", error code=");
-        sb2.append(this.f15760f);
+        sb2.append(this.f17136f);
         sb2.append(", error message=");
         sb2.append(this.h);
         sb2.append(", custom actions=");
-        sb2.append(this.f15762r);
+        sb2.append(this.f17138r);
         sb2.append(", active item id=");
-        return a1.g.r(sb2, this.f15763s, "}");
+        return a1.g.r(sb2, this.f17139s, "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f15757a);
-        parcel.writeLong(this.f15758b);
+        parcel.writeInt(this.f17133a);
+        parcel.writeLong(this.f17134b);
         parcel.writeFloat(this.d);
-        parcel.writeLong(this.f15761n);
-        parcel.writeLong(this.f15759c);
+        parcel.writeLong(this.f17137n);
+        parcel.writeLong(this.f17135c);
         parcel.writeLong(this.e);
         TextUtils.writeToParcel(this.h, parcel, i10);
-        parcel.writeTypedList(this.f15762r);
-        parcel.writeLong(this.f15763s);
+        parcel.writeTypedList(this.f17138r);
+        parcel.writeLong(this.f17139s);
         parcel.writeBundle(this.v);
-        parcel.writeInt(this.f15760f);
+        parcel.writeInt(this.f17136f);
     }
 
     public y(Parcel parcel) {
-        this.f15757a = parcel.readInt();
-        this.f15758b = parcel.readLong();
+        this.f17133a = parcel.readInt();
+        this.f17134b = parcel.readLong();
         this.d = parcel.readFloat();
-        this.f15761n = parcel.readLong();
-        this.f15759c = parcel.readLong();
+        this.f17137n = parcel.readLong();
+        this.f17135c = parcel.readLong();
         this.e = parcel.readLong();
         this.h = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
         AbstractCollection createTypedArrayList = parcel.createTypedArrayList(x.CREATOR);
         if (createTypedArrayList == null) {
-            l0 l0Var = n0.f8595b;
+            l0 l0Var = n0.f8476b;
             createTypedArrayList = x1.e;
         }
-        this.f15762r = createTypedArrayList;
-        this.f15763s = parcel.readLong();
+        this.f17138r = createTypedArrayList;
+        this.f17139s = parcel.readLong();
         this.v = parcel.readBundle(s.class.getClassLoader());
-        this.f15760f = parcel.readInt();
+        this.f17136f = parcel.readInt();
     }
 }

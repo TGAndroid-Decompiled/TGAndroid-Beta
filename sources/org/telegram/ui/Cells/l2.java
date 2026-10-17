@@ -3,55 +3,55 @@ package org.telegram.ui.Cells;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class l2 extends AnimatorListenerAdapter {
-    public final int f21175a;
-    public final s2 f21176b;
+    public final int f22524a;
+    public final r2 f22525b;
 
-    public l2(s2 s2Var, int i10) {
-        this.f21175a = i10;
-        this.f21176b = s2Var;
+    public l2(r2 r2Var, int i10) {
+        this.f22524a = i10;
+        this.f22525b = r2Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
         int i11;
-        switch (this.f21175a) {
+        switch (this.f22524a) {
             case 0:
-                s2 s2Var = this.f21176b;
-                s2Var.V3 = 1.0f;
-                s2Var.Y3 = null;
-                s2Var.Z3 = null;
-                s2Var.f21503a4 = null;
-                s2Var.invalidate();
+                r2 r2Var = this.f22525b;
+                r2Var.V3 = 1.0f;
+                r2Var.Y3 = null;
+                r2Var.Z3 = null;
+                r2Var.f22807a4 = null;
+                r2Var.invalidate();
                 return;
             case 1:
-                s2 s2Var2 = this.f21176b;
-                s2Var2.W3 = 1.0f;
-                s2Var2.invalidate();
+                r2 r2Var2 = this.f22525b;
+                r2Var2.W3 = 1.0f;
+                r2Var2.invalidate();
                 return;
             default:
-                s2 s2Var3 = this.f21176b;
-                boolean z10 = s2Var3.S2;
-                if (s2Var3.Q2) {
+                r2 r2Var3 = this.f22525b;
+                boolean z10 = r2Var3.S2;
+                if (r2Var3.Q2) {
                     i10 = 2;
                 } else {
                     i10 = 0;
                 }
                 int i12 = (z10 ? 1 : 0) + i10;
-                if (s2Var3.R2) {
+                if (r2Var3.R2) {
                     i11 = 4;
                 } else {
                     i11 = 0;
                 }
                 int i13 = i12 + i11;
-                int i14 = s2Var3.f21609v4;
+                int i14 = r2Var3.f22913v4;
                 if (i14 != i13) {
-                    s2Var3.B(i14, i13);
+                    r2Var3.A(i14, i13);
                 } else {
-                    s2Var3.f21631z4 = false;
-                    s2Var3.f21621x4 = i14;
+                    r2Var3.f22935z4 = false;
+                    r2Var3.f22925x4 = i14;
                 }
-                s2Var3.invalidate();
+                r2Var3.invalidate();
                 return;
         }
     }

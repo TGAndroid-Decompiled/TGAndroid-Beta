@@ -7,16 +7,16 @@ public enum w0 extends a2 {
     @Override
     public final void d(k kVar, a aVar) {
         if (aVar.k("--")) {
-            kVar.f9135n.b();
-            kVar.f9127c = a2.f9090h0;
+            kVar.f10576n.b();
+            kVar.f10568c = a2.f10531h0;
         } else if (aVar.l("DOCTYPE")) {
-            kVar.f9127c = a2.f9096n0;
+            kVar.f10568c = a2.f10537n0;
         } else if (aVar.k("[CDATA[")) {
             kVar.e();
-            kVar.f9127c = a2.D0;
+            kVar.f10568c = a2.D0;
         } else {
             kVar.m(this);
-            kVar.a(a2.f9088f0);
+            kVar.a(a2.f10529f0);
         }
     }
 }

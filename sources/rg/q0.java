@@ -1,518 +1,119 @@
 package rg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.view.View;
+import android.graphics.PointF;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.i11;
-public class q0 extends View {
-    public final Paint E;
-    public boolean F;
-    public i11 G;
-    public final Paint H;
-    public boolean I;
-    public i11 J;
-    public boolean K;
-    public i11 L;
-    public boolean M;
-    public final TextPaint N;
-    public StaticLayout O;
-    public float P;
-    public float Q;
-    public boolean R;
-    public boolean S;
-    public final ImageReceiver T;
-    public boolean U;
-    public int V;
-    public p0 W;
-    public int f44239a;
-    public float f44240a0;
-    public int f44241b;
-    public float f44242b0;
-    public boolean f44243c;
-    public float f44244c0;
-    public boolean d;
-    public float f44245d0;
-    public final float e;
-    public int f44246e0;
-    public final int f44247f;
-    public final RectF f44248f0;
-    public final RectF f44249g0;
-    public final int h;
-    public final Path f44250h0;
-    public final Path f44251i0;
-    public final RectF f44252j0;
-    public final RectF f44253k0;
-    public final g6 f44254l0;
-    public final g6 m0;
-    public float f44255n;
-    public final g6 f44256n0;
-    public final g6 f44257o0;
-    public final g6 f44258p0;
-    public final g6 f44259q0;
-    public final TextPaint f44260r;
-    public final g6 f44261r0;
-    public StaticLayout f44262s;
-    public final g6 f44263s0;
-    public float v;
-    public float f44264w;
-    public final RectF f44265x;
-    public final Drawable f44266y;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.el0;
+import w7.z5;
+public final class q0 extends j {
+    public final o0 f45626q0;
+    public int f45627r0;
+    public int f45628s0;
+    public boolean f45629t0;
+    public n0 f45630u0;
 
-    public q0(Context context, float f7) {
-        super(context);
-        this.f44243c = true;
-        this.f44255n = 1.0f;
-        TextPaint textPaint = new TextPaint(1);
-        this.f44260r = textPaint;
-        this.f44265x = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
-        this.E = new Paint(1);
-        this.H = new Paint(1);
-        this.N = new TextPaint(1);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.T = imageReceiver;
-        this.f44248f0 = new RectF();
-        this.f44249g0 = new RectF();
-        this.f44250h0 = new Path();
-        this.f44251i0 = new Path();
-        this.f44252j0 = new RectF();
-        this.f44253k0 = new RectF();
-        es esVar = es.h;
-        this.f44254l0 = new g6(this, 0L, 350L, esVar);
-        this.m0 = new g6(this, 0L, 350L, esVar);
-        this.f44256n0 = new g6(this, 0L, 350L, esVar);
-        this.f44257o0 = new g6(this, 0L, 350L, esVar);
-        this.f44258p0 = new g6(this, 0L, 350L, esVar);
-        this.f44259q0 = new g6(this, 0L, 350L, esVar);
-        this.f44261r0 = new g6(this, 0L, 350L, esVar);
-        this.f44263s0 = new g6(this, 0L, 350L, esVar);
-        this.e = f7;
-        imageReceiver.setInvalidateAll(true);
-        this.f44247f = (int) (f7 * 3.0f);
-        this.h = (int) (f7 * 1.0f);
-        this.f44266y = context.getResources().getDrawable(R.drawable.story_link).mutate();
-        textPaint.setTextSize(24.0f * f7);
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
-    }
-
-    public final void a(android.graphics.Canvas r27) {
-        throw new UnsupportedOperationException("Method not decompiled: rg.q0.a(android.graphics.Canvas):void");
-    }
-
-    public final void b(int i10, p0 p0Var, boolean z10) {
-        this.f44239a = i10;
-        if (this.W == p0Var && !z10) {
-            return;
-        }
-        this.W = p0Var;
-        this.f44243c = true;
-        this.d = z10;
-        requestLayout();
-    }
-
-    public final void c(int i10, int i11) {
-        int i12 = -16777216;
-        Drawable drawable = this.f44266y;
-        TextPaint textPaint = this.f44260r;
-        if (i10 == 0) {
-            this.f44246e0 = i11;
-            if (AndroidUtilities.computePerceivedBrightness(i11) < 0.721f) {
-                i12 = -1;
-            }
-            textPaint.setColor(i12);
-            drawable.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
-        } else if (i10 == 1) {
-            this.f44246e0 = -16777216;
-            textPaint.setColor(-1);
-            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        } else if (i10 == 2) {
-            this.f44246e0 = 1275068416;
-            textPaint.setColor(-1);
-            drawable.setColorFilter(null);
-        } else {
-            this.f44246e0 = -1;
-            textPaint.setColor(-13397548);
-            drawable.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
-    }
-
-    public final void d() {
-        String str;
-        double d;
-        String str2;
-        MessagesController.PeerColor peerColor;
-        int color1;
-        boolean z10;
-        float f7;
-        int i10;
-        float f10;
-        int i11;
-        int i12;
-        ImageLocation forDocument;
-        int i13;
-        float f11;
-        float f12;
-        int i14;
-        boolean z11;
-        float f13;
-        float f14;
-        float f15;
-        float f16;
-        float f17;
-        ImageLocation forPhoto;
-        if (this.f44243c && this.W != null) {
-            boolean e = e();
-            int i15 = this.f44247f;
-            float f18 = this.e;
-            if (e) {
-                if (TextUtils.isEmpty(this.W.f44205b)) {
-                    str2 = this.W.f44206c;
-                } else {
-                    str2 = this.W.f44205b;
-                }
-                TLRPC.WebPage webPage = this.W.d;
-                float f19 = (this.f44241b - i15) - i15;
-                this.f44242b0 = 0.0f;
-                this.f44240a0 = 0.0f;
-                this.f44244c0 = 0.0f;
-                int colorId = UserObject.getColorId(UserConfig.getInstance(this.f44239a).getCurrentUser());
-                MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f44239a).peerColors;
-                String str3 = null;
-                if (peerColors != null && colorId >= 7) {
-                    peerColor = peerColors.getColor(colorId);
-                } else {
-                    peerColor = null;
-                }
-                if (peerColor == null) {
-                    int[] iArr = org.telegram.ui.ActionBar.g6.f19860r8;
-                    color1 = org.telegram.ui.ActionBar.g6.x0(null, iArr[colorId % iArr.length], false);
-                } else {
-                    color1 = peerColor.getColor1();
-                }
-                this.H.setColor(color1);
-                this.f44242b0 = (7.33f * f18) + this.f44242b0;
-                this.F = this.W.f44207f;
-                i11 i11Var = new i11(str2, 16.0f, null);
-                i11Var.f25453a.setTextSize(16.0f * f18);
-                float f20 = 20.0f * f18;
-                i11Var.q(f19 - f20);
-                this.G = i11Var;
-                this.f44240a0 = Math.max(this.f44240a0, Math.min(f20 + i11Var.f25455c, f19));
-                float f21 = 7.0f * f18;
-                this.f44242b0 = this.G.j() + this.f44242b0 + f21;
-                if (webPage.photo == null && !MessageObject.isVideoDocument(webPage.document)) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                this.R = z10;
-                p0 p0Var = this.W;
-                boolean z12 = p0Var.e;
-                this.S = !z12;
-                if (this.U && (p0Var.f44204a & 4) != 0) {
-                    i10 = p0Var.f44208i;
-                } else {
-                    if (!z12) {
-                        f7 = 48.0f;
-                    } else {
-                        f7 = (f19 / f18) - 40.0f;
-                    }
-                    i10 = 2 * ((int) f7);
-                }
-                ImageReceiver imageReceiver = this.T;
-                imageReceiver.setRoundRadius((int) (4.0f * f18));
-                TLRPC.Photo photo = webPage.photo;
-                if (photo != null) {
-                    TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 1, false, null, false);
-                    f10 = 48.0f;
-                    TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, (int) (i10 * f18), false, closestPhotoSizeWithSize, false);
-                    if (closestPhotoSizeWithSize2 != null) {
-                        i12 = closestPhotoSizeWithSize2.f18941w;
-                        i11 = closestPhotoSizeWithSize2.h;
-                    } else {
-                        i11 = 0;
-                        i12 = 0;
-                    }
-                    ImageLocation forPhoto2 = ImageLocation.getForPhoto(closestPhotoSizeWithSize2, webPage.photo);
-                    String k10 = a1.g.k(i10, i10, "_");
-                    if (this.U) {
-                        forPhoto = null;
-                    } else {
-                        forPhoto = ImageLocation.getForPhoto(closestPhotoSizeWithSize, webPage.photo);
-                    }
-                    if (!this.U) {
-                        str3 = a1.g.k(i10, i10, "_");
-                    }
-                    imageReceiver.setImage(forPhoto2, k10, forPhoto, str3, 0L, null, null, 0);
-                } else {
-                    f10 = 48.0f;
-                    TLRPC.Document document = webPage.document;
-                    if (document != null) {
-                        TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 1, false, null, false);
-                        TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(webPage.document.thumbs, (int) (i10 * f18), false, closestPhotoSizeWithSize3, false);
-                        if (closestPhotoSizeWithSize4 != null) {
-                            i12 = closestPhotoSizeWithSize4.f18941w;
-                            i11 = closestPhotoSizeWithSize4.h;
-                        } else {
-                            i11 = 0;
-                            i12 = 0;
-                        }
-                        ImageLocation forDocument2 = ImageLocation.getForDocument(closestPhotoSizeWithSize4, webPage.document);
-                        String k11 = a1.g.k(i10, i10, "_");
-                        if (this.U) {
-                            forDocument = null;
-                        } else {
-                            forDocument = ImageLocation.getForDocument(closestPhotoSizeWithSize3, webPage.document);
-                        }
-                        if (!this.U) {
-                            str3 = a1.g.k(i10, i10, "_");
-                        }
-                        imageReceiver.setImage(forDocument2, k11, forDocument, str3, 0L, null, null, 0);
-                    } else {
-                        i11 = 0;
-                        i12 = 0;
-                    }
-                }
-                this.f44244c0 = (5.66f * f18) + this.f44244c0;
-                boolean isEmpty = TextUtils.isEmpty(webPage.site_name);
-                this.K = !isEmpty;
-                if (!isEmpty) {
-                    i11 i11Var2 = new i11(webPage.site_name, 14.0f, AndroidUtilities.bold());
-                    i11Var2.f25453a.setTextSize(f18 * 14.0f);
-                    float f22 = f18 * 40.0f;
-                    float f23 = f19 - f22;
-                    if (this.R && this.S) {
-                        f16 = f18 * 60.0f;
-                    } else {
-                        f16 = 0.0f;
-                    }
-                    i11Var2.q((int) Math.ceil(f23 - f16));
-                    this.L = i11Var2;
-                    float f24 = this.f44240a0;
-                    float f25 = f22 + i11Var2.f25455c;
-                    if (this.R && this.S) {
-                        f17 = f18 * 60.0f;
-                    } else {
-                        f17 = 0.0f;
-                    }
-                    this.f44240a0 = Math.max(f24, Math.min(f25 + f17, f19));
-                    this.f44244c0 = (f18 * 2.66f) + this.L.j() + this.f44244c0;
-                    i13 = this.L.f25454b.getLineCount();
-                } else {
-                    i13 = 0;
-                }
-                boolean isEmpty2 = TextUtils.isEmpty(webPage.title);
-                this.I = !isEmpty2;
-                if (!isEmpty2) {
-                    i11 i11Var3 = new i11(webPage.title, 14.0f, AndroidUtilities.bold());
-                    i11Var3.f25453a.setTextSize(f18 * 14.0f);
-                    float f26 = f18 * 40.0f;
-                    float f27 = f19 - f26;
-                    f11 = 2.66f;
-                    if (this.R && this.S) {
-                        f14 = f18 * 60.0f;
-                    } else {
-                        f14 = 0.0f;
-                    }
-                    f12 = f18;
-                    i11Var3.q((int) Math.ceil(f27 - f14));
-                    this.J = i11Var3;
-                    float f28 = this.f44240a0;
-                    float f29 = f26 + i11Var3.f25455c;
-                    if (this.R && this.S) {
-                        f15 = 60.0f * f12;
-                    } else {
-                        f15 = 0.0f;
-                    }
-                    this.f44240a0 = Math.max(f28, Math.min(f29 + f15, f19));
-                    this.f44244c0 = (f12 * 2.66f) + this.J.j() + this.f44244c0;
-                    i13 += this.J.f25454b.getLineCount();
-                } else {
-                    f11 = 2.66f;
-                    f12 = f18;
-                }
-                boolean isEmpty3 = TextUtils.isEmpty(webPage.description);
-                this.M = !isEmpty3;
-                if (!isEmpty3) {
-                    TextPaint textPaint = this.N;
-                    textPaint.setTextSize(f12 * 14.0f);
-                    String str4 = webPage.description;
-                    float f30 = f12 * 40.0f;
-                    int ceil = (int) Math.ceil(Math.max(1.0f, f19 - f30));
-                    if (this.R && this.S) {
-                        i14 = 60;
-                    } else {
-                        i14 = 0;
-                    }
-                    int i16 = 3 - i13;
-                    this.O = org.telegram.ui.Cells.u1.u2(str4, textPaint, ceil, (int) Math.ceil(Math.max(1.0f, f19 - ((40 + i14) * f12))), i16, 4);
-                    this.P = 0.0f;
-                    this.Q = Float.MAX_VALUE;
-                    for (int i17 = 0; i17 < this.O.getLineCount(); i17++) {
-                        if (this.R && this.S && i17 < i16) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        float f31 = this.P;
-                        float lineWidth = this.O.getLineWidth(i17);
-                        if (z11) {
-                            f13 = f12 * f10;
-                        } else {
-                            f13 = 0.0f;
-                        }
-                        this.P = Math.max(f31, lineWidth + f13);
-                        this.Q = Math.min(this.Q, this.O.getLineLeft(i17));
-                    }
-                    this.f44240a0 = Math.max(this.f44240a0, Math.min(f30 + this.P, f19));
-                    this.f44244c0 = (f12 * f11) + this.f44244c0 + this.O.getHeight();
-                }
-                if (this.R && !this.S) {
-                    if (i12 > 0 && i11 > 0) {
-                        this.f44245d0 = Math.min((Math.max(0.0f, this.f44240a0 - (f12 * 40.0f)) / i12) * i11, f12 * 200.0f);
-                    } else {
-                        this.f44245d0 = f12 * 120.0f;
-                    }
-                    this.f44244c0 = (f12 * f11) + this.f44244c0 + this.f44245d0;
-                }
-                float f32 = f21 + this.f44244c0;
-                this.f44244c0 = f32;
-                this.f44242b0 = (f12 * 11.0f) + this.f44242b0 + f32;
-            } else {
-                if (TextUtils.isEmpty(this.W.f44205b)) {
-                    String str5 = this.W.f44206c;
-                    if (str5.startsWith("https://")) {
-                        str5 = str5.substring(8);
-                    }
-                    str = str5.toUpperCase();
-                } else {
-                    str = this.W.f44205b;
-                }
-                RectF rectF = this.f44265x;
-                float f33 = ((this.f44241b - i15) - i15) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * f18);
-                this.f44255n = 1.0f;
-                TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                TextPaint textPaint2 = this.f44260r;
-                this.f44262s = new StaticLayout(TextUtils.ellipsize(str, textPaint2, (int) Math.ceil(d), truncateAt), textPaint2, (int) Math.ceil(f33), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.v = 0.0f;
-                this.f44264w = Float.MAX_VALUE;
-                for (int i18 = 0; i18 < this.f44262s.getLineCount(); i18++) {
-                    this.v = Math.max(this.v, this.f44262s.getLineWidth(i18));
-                    this.f44264w = Math.min(this.f44264w, this.f44262s.getLineLeft(i18));
-                }
-                if (this.f44262s.getLineCount() > 2) {
-                    this.f44255n = 0.3f;
-                } else {
-                    this.f44255n = Math.min(1.0f, f33 / this.v);
-                }
-                this.f44240a0 = (this.v * this.f44255n) + ((rectF.left + 30.0f + 3.25f + rectF.right) * f18);
-                this.f44242b0 = Math.max(f18 * 30.0f, this.f44262s.getHeight() * this.f44255n) + ((rectF.top + rectF.bottom) * f18);
-            }
-            if (!this.d) {
-                this.f44254l0.f(this.F, true);
-                this.f44256n0.f(this.S, true);
-                this.m0.f(this.R, true);
-                this.f44259q0.d(this.f44244c0, true);
-            } else {
-                invalidate();
-            }
-            this.f44243c = false;
-        }
+    public q0(Context context, PointF pointF, int i10, n0 n0Var, float f7, int i11) {
+        super(context, pointF);
+        o0 o0Var = new o0(context, f7);
+        this.f45626q0 = o0Var;
+        o0Var.setMaxWidth(i11);
+        this.f45630u0 = n0Var;
+        o0Var.b(i10, n0Var, false);
+        m();
+        this.f45628s0 = 3;
+        o0Var.c(3, this.f45627r0);
+        addView(o0Var, z5.e(-2, -2, 51));
+        setClipChildren(false);
+        setClipToPadding(false);
+        k();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        a(canvas);
+    public final i a() {
+        return new p0(this, getContext());
     }
 
-    public final boolean e() {
-        p0 p0Var = this.W;
-        if (p0Var != null && p0Var.d != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public int getPhotoSide() {
-        float f7;
-        if (this.S) {
-            f7 = 48.0f;
-        } else {
-            int i10 = this.f44241b;
-            int i11 = this.f44247f;
-            f7 = (((i10 - i11) - i11) / this.e) - 40.0f;
-        }
-        return ((int) f7) * 2;
-    }
-
-    public int getPreviewType() {
-        return this.V;
-    }
-
-    public float getRadius() {
-        float f7;
-        float f10;
-        if (e()) {
-            f7 = 16.66f;
-            f10 = this.e;
-        } else {
-            f7 = 0.2f;
-            f10 = this.f44242b0;
-        }
-        return f10 * f7;
+    public int getColor() {
+        return this.f45627r0;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.T.onAttachedToWindow();
+    public float getMaxScale() {
+        return 1.5f;
+    }
+
+    public int getNextType() {
+        int i10 = this.f45628s0 + 1;
+        if (i10 == 4) {
+            return !this.f45629t0 ? 1 : 0;
+        }
+        return i10;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.T.onDetachedFromWindow();
+    public el0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float scale = getScale();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float scale2 = getScale();
+        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
+        float A = wh.A(dp, 2.0f, getPositionX(), scaleX);
+        return new el0(A, wh.A(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + A) - A, dp2 * scaleX);
+    }
+
+    @Override
+    public float getStickyPaddingBottom() {
+        return this.f45626q0.h;
+    }
+
+    @Override
+    public float getStickyPaddingLeft() {
+        return this.f45626q0.f45579f;
+    }
+
+    @Override
+    public float getStickyPaddingRight() {
+        return this.f45626q0.f45579f;
+    }
+
+    @Override
+    public float getStickyPaddingTop() {
+        return this.f45626q0.h;
+    }
+
+    public int getType() {
+        return this.f45628s0;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        k();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        d();
-        int i12 = this.f44247f;
-        int ceil = ((int) Math.ceil(this.f44240a0)) + i12 + i12;
-        int ceil2 = (int) Math.ceil(this.f44242b0);
-        int i13 = this.h;
-        setMeasuredDimension(ceil, ceil2 + i13 + i13);
+        super.onMeasure(i10, i11);
+        k();
+    }
+
+    public void setColor(int i10) {
+        this.f45629t0 = true;
+        this.f45627r0 = i10;
     }
 
     public void setMaxWidth(int i10) {
-        this.f44241b = i10;
-        this.f44243c = true;
+        this.f45626q0.setMaxWidth(i10);
     }
 
-    public void setPreviewType(int i10) {
-        this.V = i10;
-        invalidate();
+    public void setType(int i10) {
+        this.f45628s0 = i10;
+        this.f45626q0.c(i10, this.f45627r0);
     }
 }

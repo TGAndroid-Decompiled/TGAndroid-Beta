@@ -1,46 +1,45 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class gq0 implements er0 {
-    public final HashMap f36291a;
-    public final ArrayList f36292b;
-    public final oq0 f36293c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class gq0 extends org.telegram.ui.Components.b10 {
+    public final int U;
 
-    public gq0(oq0 oq0Var, HashMap hashMap, ArrayList arrayList) {
-        this.f36293c = oq0Var;
-        this.f36291a = hashMap;
-        this.f36292b = arrayList;
+    public gq0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.U = i10;
     }
 
     @Override
-    public final void b(Editable editable) {
-        oq0 oq0Var = this.f36293c;
-        org.telegram.ui.Components.vu vuVar = oq0Var.M;
-        oq0Var.f38728a = editable;
-        vuVar.setText(editable);
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void h(int i10, boolean z10, boolean z11) {
-        oq0 oq0Var = this.f36293c;
-        oq0Var.removeSelfFromStack();
-        if (!z10) {
-            oq0Var.V(this.f36291a, this.f36292b, z11, i10);
+    public int getColumnsCount() {
+        switch (this.U) {
+            case 0:
+                return 3;
+            default:
+                return super.getColumnsCount();
         }
     }
 
     @Override
-    public final void a() {
+    public int getViewType() {
+        switch (this.U) {
+            case 0:
+                return 2;
+            default:
+                return super.getViewType();
+        }
     }
 
     @Override
-    public final void g() {
+    public void onMeasure(int i10, int i11) {
+        switch (this.U) {
+            case 1:
+                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

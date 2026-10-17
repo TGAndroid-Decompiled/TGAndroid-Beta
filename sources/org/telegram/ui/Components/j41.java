@@ -1,36 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class j41 extends mm0 {
-    public final x41 V2;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class j41 extends r41 {
+    public final org.telegram.ui.mf T;
 
-    public j41(x41 x41Var, Context context) {
-        super(context, null);
-        this.V2 = x41Var;
+    public j41(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i10, TL_iv.RichMessage richMessage, org.telegram.ui.mf mfVar) {
+        super(activity, str, str2, null, inputPeer, i10, false, richMessage);
+        this.T = mfVar;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            float y3 = motionEvent.getY();
-            x41 x41Var = this.V2;
-            if (y3 < x41Var.C(true) - getTop()) {
-                x41Var.dismiss();
-                return true;
-            }
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onRequestFocusInDescendants(int i10, Rect rect) {
-        return true;
-    }
-
-    @Override
-    public final void requestChildFocus(View view, View view2) {
+    public final void dismiss() {
+        super.dismiss();
+        this.T.run();
     }
 }

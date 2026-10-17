@@ -1,46 +1,20 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-public final class ru implements DialogInterface.OnClickListener {
-    public final DataSettingsActivity f39585a;
-    public final SharedPreferences f39586b;
-    public final int f39587c;
+import android.content.Context;
+import android.view.View;
+public final class ru implements View.OnClickListener {
+    public final Context f40812a;
+    public final org.telegram.ui.ActionBar.n2 f40813b;
+    public final tu f40814c;
 
-    public ru(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i10) {
-        this.f39585a = dataSettingsActivity;
-        this.f39586b = sharedPreferences;
-        this.f39587c = i10;
+    public ru(tu tuVar, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f40814c = tuVar;
+        this.f40812a = context;
+        this.f40813b = n2Var;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        int i11;
-        DataSettingsActivity dataSettingsActivity = this.f39585a;
-        dataSettingsActivity.getClass();
-        if (i10 != 0) {
-            i11 = 3;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        i11 = -1;
-                    } else {
-                        i11 = 2;
-                    }
-                } else {
-                    i11 = 1;
-                }
-            }
-        } else {
-            i11 = 0;
-        }
-        if (i11 != -1) {
-            this.f39586b.edit().putInt("VoipDataSaving", i11).commit();
-            dataSettingsActivity.V = true;
-        }
-        su suVar = dataSettingsActivity.f31770a;
-        if (suVar != null) {
-            suVar.m(this.f39587c);
-        }
+    public final void onClick(android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ru.onClick(android.view.View):void");
     }
 }

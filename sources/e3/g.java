@@ -1,11 +1,11 @@
 package e3;
 
-import b2.x;
+import b2.w;
 public final class g implements a {
-    public final x f8455a;
+    public final w f8334a;
 
-    public g(x xVar) {
-        this.f8455a = xVar;
+    public g(w wVar) {
+        this.f8334a = wVar;
     }
 
     @Override

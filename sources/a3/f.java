@@ -1,7 +1,7 @@
 package a3;
 
 import android.view.Surface;
-import b2.b2;
+import b2.a2;
 import java.util.ArrayDeque;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -12,7 +12,7 @@ public final class f implements p0 {
     public final g0 f81c;
     public final ArrayDeque d;
     public Surface e;
-    public b2.x f82f;
+    public b2.w f82f;
     public long f83g;
     public n0 h;
     public Executor f84i;
@@ -24,7 +24,7 @@ public final class f implements p0 {
         a0Var.f64l = g0Var;
         this.f81c = new g0(new qf.b(this), a0Var, b0Var);
         this.d = new ArrayDeque();
-        this.f82f = new b2.x(new b2.w());
+        this.f82f = new b2.w(new b2.v());
         this.f83g = -9223372036854775807L;
         this.h = n0.f172g;
         this.f84i = new b(0);
@@ -54,7 +54,7 @@ public final class f implements p0 {
     }
 
     @Override
-    public final boolean d(b2.x xVar) {
+    public final boolean d(b2.w wVar) {
         return true;
     }
 
@@ -82,7 +82,7 @@ public final class f implements p0 {
     @Override
     public final void g(a6.i iVar) {
         this.h = iVar;
-        this.f84i = j9.r.f12944a;
+        this.f84i = j9.r.f14351a;
     }
 
     @Override
@@ -117,16 +117,16 @@ public final class f implements p0 {
     }
 
     @Override
-    public final void l(b2.x xVar, long j10, int i10, List list) {
+    public final void l(b2.w wVar, long j10, int i10, List list) {
         long j11;
         long j12;
         u6.p(list.isEmpty());
-        int i11 = xVar.f2529z;
-        int i12 = xVar.A;
-        b2.x xVar2 = this.f82f;
-        int i13 = xVar2.f2529z;
+        int i11 = wVar.f4137z;
+        int i12 = wVar.A;
+        b2.w wVar2 = this.f82f;
+        int i13 = wVar2.f4137z;
         g0 g0Var = this.f81c;
-        if (i11 != i13 || i12 != xVar2.A) {
+        if (i11 != i13 || i12 != wVar2.A) {
             e2.j0 j0Var = g0Var.d;
             long j13 = g0Var.h;
             if (j13 == -9223372036854775807L) {
@@ -134,15 +134,15 @@ public final class f implements p0 {
             } else {
                 j11 = j13 + 1;
             }
-            j0Var.a(new b2(i11, i12), j11);
+            j0Var.a(new a2(i11, i12), j11);
         }
-        float f7 = xVar.D;
+        float f7 = wVar.D;
         if (f7 != this.f82f.D) {
             this.f79a.f(f7);
         }
-        this.f82f = xVar;
+        this.f82f = wVar;
         if (j10 != this.f83g) {
-            if (g0Var.f110f.f8403c == 0) {
+            if (g0Var.f110f.f8282c == 0) {
                 g0Var.f108b.e(i10);
                 g0Var.f115l = j10;
             } else {
@@ -176,38 +176,38 @@ public final class f implements p0 {
         g0 g0Var = this.f81c;
         e2.j0 j0Var = g0Var.d;
         e2.s sVar = g0Var.f110f;
-        sVar.f8401a = 0;
-        sVar.f8402b = -1;
-        sVar.f8403c = 0;
+        sVar.f8280a = 0;
+        sVar.f8281b = -1;
+        sVar.f8282c = 0;
         g0Var.h = -9223372036854775807L;
         g0Var.f112i = -9223372036854775807L;
         g0Var.f113j = -9223372036854775807L;
         e2.j0 j0Var2 = g0Var.e;
-        if (j0Var2.m() > 0) {
-            if (j0Var2.m() > 0) {
+        if (j0Var2.j() > 0) {
+            if (j0Var2.j() > 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             u6.g(z11);
-            while (j0Var2.m() > 1) {
-                j0Var2.h();
+            while (j0Var2.j() > 1) {
+                j0Var2.f();
             }
-            Object h = j0Var2.h();
-            h.getClass();
-            g0Var.f115l = ((Long) h).longValue();
+            Object f7 = j0Var2.f();
+            f7.getClass();
+            g0Var.f115l = ((Long) f7).longValue();
         }
-        if (j0Var.m() > 0) {
-            if (j0Var.m() > 0) {
+        if (j0Var.j() > 0) {
+            if (j0Var.j() > 0) {
                 z12 = true;
             }
             u6.g(z12);
-            while (j0Var.m() > 1) {
-                j0Var.h();
+            while (j0Var.j() > 1) {
+                j0Var.f();
             }
-            Object h10 = j0Var.h();
-            h10.getClass();
-            j0Var.a((b2) h10, 0L);
+            Object f10 = j0Var.f();
+            f10.getClass();
+            j0Var.a((a2) f10, 0L);
         }
         this.d.clear();
     }
@@ -217,29 +217,29 @@ public final class f implements p0 {
         this.d.add(jVar);
         g0 g0Var = this.f81c;
         e2.s sVar = g0Var.f110f;
-        int i10 = sVar.f8403c;
+        int i10 = sVar.f8282c;
         long[] jArr = (long[]) sVar.e;
         if (i10 == jArr.length) {
             int length = jArr.length << 1;
             if (length >= 0) {
                 long[] jArr2 = new long[length];
                 int length2 = jArr.length;
-                int i11 = sVar.f8401a;
+                int i11 = sVar.f8280a;
                 int i12 = length2 - i11;
                 System.arraycopy(jArr, i11, jArr2, 0, i12);
                 System.arraycopy((long[]) sVar.e, 0, jArr2, i12, i11);
-                sVar.f8401a = 0;
-                sVar.f8402b = sVar.f8403c - 1;
+                sVar.f8280a = 0;
+                sVar.f8281b = sVar.f8282c - 1;
                 sVar.e = jArr2;
                 sVar.d = length - 1;
             } else {
                 throw new IllegalStateException();
             }
         }
-        int i13 = (sVar.f8402b + 1) & sVar.d;
-        sVar.f8402b = i13;
+        int i13 = (sVar.f8281b + 1) & sVar.d;
+        sVar.f8281b = i13;
         ((long[]) sVar.e)[i13] = j10;
-        sVar.f8403c++;
+        sVar.f8282c++;
         g0Var.h = j10;
         g0Var.f113j = -9223372036854775807L;
         this.f84i.execute(new d(this, 0));
@@ -255,7 +255,7 @@ public final class f implements p0 {
     public final void p(long j10, long j11) {
         try {
             this.f81c.a(j10, j11);
-        } catch (i2.m e) {
+        } catch (i2.l e) {
             throw new o0(e, this.f82f);
         }
     }

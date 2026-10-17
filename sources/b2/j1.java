@@ -1,79 +1,55 @@
 package b2;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class j1 implements Comparable, Parcelable {
-    public static final Parcelable.Creator<j1> CREATOR = new r(2);
+import android.os.Bundle;
+import j$.util.Objects;
+public final class j1 extends g1 {
     public static final String d;
     public static final String e;
-    public static final String f2179f;
-    public final int f2180a;
-    public final int f2181b;
-    public final int f2182c;
+    public final boolean f3805b;
+    public final boolean f3806c;
 
     static {
-        String str = e2.m0.f8375a;
-        d = Integer.toString(0, 36);
-        e = Integer.toString(1, 36);
-        f2179f = Integer.toString(2, 36);
+        String str = e2.m0.f8254a;
+        d = Integer.toString(1, 36);
+        e = Integer.toString(2, 36);
     }
 
-    public j1(int i10, int i11, int i12) {
-        this.f2180a = i10;
-        this.f2181b = i11;
-        this.f2182c = i12;
-    }
-
-    @Override
-    public final int compareTo(Object obj) {
-        j1 j1Var = (j1) obj;
-        int i10 = this.f2180a - j1Var.f2180a;
-        if (i10 == 0) {
-            int i11 = this.f2181b - j1Var.f2181b;
-            if (i11 == 0) {
-                return this.f2182c - j1Var.f2182c;
-            }
-            return i11;
-        }
-        return i10;
+    public j1() {
+        this.f3805b = false;
+        this.f3806c = false;
     }
 
     @Override
-    public final int describeContents() {
-        return 0;
+    public final boolean b() {
+        return this.f3805b;
+    }
+
+    @Override
+    public final Bundle c() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(g1.f3771a, 3);
+        bundle.putBoolean(d, this.f3805b);
+        bundle.putBoolean(e, this.f3806c);
+        return bundle;
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && j1.class == obj.getClass()) {
+        if (obj instanceof j1) {
             j1 j1Var = (j1) obj;
-            if (this.f2180a == j1Var.f2180a && this.f2181b == j1Var.f2181b && this.f2182c == j1Var.f2182c) {
+            if (this.f3806c == j1Var.f3806c && this.f3805b == j1Var.f3805b) {
                 return true;
             }
+            return false;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (((this.f2180a * 31) + this.f2181b) * 31) + this.f2182c;
+        return Objects.hash(Boolean.valueOf(this.f3805b), Boolean.valueOf(this.f3806c));
     }
 
-    public final String toString() {
-        return this.f2180a + "." + this.f2181b + "." + this.f2182c;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f2180a);
-        parcel.writeInt(this.f2181b);
-        parcel.writeInt(this.f2182c);
-    }
-
-    public j1(Parcel parcel) {
-        this.f2180a = parcel.readInt();
-        this.f2181b = parcel.readInt();
-        this.f2182c = parcel.readInt();
+    public j1(boolean z10) {
+        this.f3805b = true;
+        this.f3806c = z10;
     }
 }

@@ -1,38 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import android.view.View;
-import java.lang.ref.WeakReference;
-import org.telegram.messenger.Emoji;
-public final class w5 implements y5 {
-    public final WeakReference f30473a;
-    public final boolean f30474b;
-    public Layout f30475c;
-    public b6 d;
-    public Rect e;
-    public s5 f30476f;
-    public Emoji.EmojiDrawable h;
-    public boolean f30477n;
-    public float f30478r;
-    public float f30479s;
-    public boolean v;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class w5 {
+    public ArrayList f32005a;
+    public HashMap f32006b;
+    public ArrayList f32007c;
 
-    public w5(View view, boolean z10) {
-        this.f30473a = new WeakReference(view);
-        this.f30474b = z10;
+    public final void a() {
+        ArrayList arrayList = this.f32005a;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            ((v5) arrayList.get(i10)).d.spanDrawn = false;
+        }
     }
 
-    @Override
-    public final void invalidate() {
-        View view = (View) this.f30473a.get();
-        if (view == null) {
+    public final void b(int i10) {
+        v5 v5Var = (v5) this.f32005a.remove(i10);
+        HashMap hashMap = this.f32006b;
+        y5 y5Var = (y5) hashMap.get(v5Var.f31176c);
+        if (y5Var != null) {
+            ArrayList arrayList = y5Var.f32549b;
+            arrayList.remove(v5Var);
+            y5Var.a();
+            if (arrayList.isEmpty()) {
+                hashMap.remove(v5Var.f31176c);
+                this.f32007c.remove(y5Var);
+            }
+            r5 r5Var = v5Var.f31177f;
+            if (r5Var != null) {
+                r5Var.p(v5Var);
+                return;
+            }
             return;
         }
-        if (this.f30474b && view.getParent() != null) {
-            ((View) view.getParent()).invalidate();
-        } else {
-            view.invalidate();
-        }
+        throw new RuntimeException("!!!");
     }
 }

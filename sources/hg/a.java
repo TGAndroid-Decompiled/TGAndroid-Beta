@@ -3,31 +3,31 @@ package hg;
 import android.location.Location;
 import org.telegram.messenger.AndroidUtilities;
 public final class a implements Runnable {
-    public final int f10482a;
-    public final c f10483b;
-    public final String f10484c;
+    public final int f11787a;
+    public final c f11788b;
+    public final String f11789c;
     public final Location d;
 
     public a(c cVar, String str, Location location, int i10) {
-        this.f10482a = i10;
-        this.f10483b = cVar;
-        this.f10484c = str;
+        this.f11787a = i10;
+        this.f11788b = cVar;
+        this.f11789c = str;
         this.d = location;
     }
 
     @Override
     public final void run() {
-        switch (this.f10482a) {
+        switch (this.f11787a) {
             case 0:
-                c cVar = this.f10483b;
+                c cVar = this.f11788b;
                 cVar.getClass();
-                AndroidUtilities.runOnUIThread(new a(cVar, this.f10484c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new a(cVar, this.f11789c, this.d, 1));
                 return;
             default:
-                c cVar2 = this.f10483b;
+                c cVar2 = this.f11788b;
                 cVar2.E = null;
                 cVar2.v = null;
-                cVar2.H(this.f10484c, this.d, true);
+                cVar2.H(this.f11789c, this.d, true);
                 return;
         }
     }

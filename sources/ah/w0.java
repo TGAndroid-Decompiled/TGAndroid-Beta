@@ -10,42 +10,41 @@ import android.view.ActionMode;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MotionEvent;
-import ji.h5;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.nu;
-public abstract class w0 extends nu {
-    public final c6 f896c;
-    public final h5 d;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.iu;
+public abstract class w0 extends iu {
+    public final d6 f898c;
+    public final k0.b d;
     public Runnable e;
-    public int f897f;
+    public int f899f;
 
-    public w0(Context context, int i10, c6 c6Var) {
-        super(context, c6Var);
-        this.f896c = c6Var;
-        this.d = new h5(getContext(), new GestureDetector.SimpleOnGestureListener());
+    public w0(Context context, int i10, d6 d6Var) {
+        super(context, d6Var);
+        this.f898c = d6Var;
+        this.d = new k0.b(getContext(), new GestureDetector.SimpleOnGestureListener());
         setBackground(null);
         setIncludeFontPadding(true);
         int i11 = Build.VERSION.SDK_INT;
         setShowSoftInputOnFocus(false);
         setSingleLine(false);
         setMaxLines(50);
-        this.f897f = i10;
+        this.f899f = i10;
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         setTextSize(1, 22.0f);
         setGravity(80);
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
-        setTextColor(g6.w0(g6.Ud, c6Var));
-        setLinkTextColor(g6.w0(g6.hc, c6Var));
-        setHighlightColor(g6.w0(g6.f19924uf, c6Var));
-        int i12 = g6.Vd;
-        setHintColor(g6.w0(i12, c6Var));
-        setHintTextColor(g6.w0(i12, c6Var));
-        setCursorColor(g6.w0(g6.Wd, c6Var));
-        setHandlesColor(g6.w0(g6.f19942vf, c6Var));
+        setTextColor(h6.w0(h6.Ud, d6Var));
+        setLinkTextColor(h6.w0(h6.hc, d6Var));
+        setHighlightColor(h6.w0(h6.f21310uf, d6Var));
+        int i12 = h6.Vd;
+        setHintColor(h6.w0(i12, d6Var));
+        setHintTextColor(h6.w0(i12, d6Var));
+        setCursorColor(h6.w0(h6.Wd, d6Var));
+        setHandlesColor(h6.w0(h6.f21328vf, d6Var));
         if (i11 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -57,7 +56,7 @@ public abstract class w0 extends nu {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.d.f13315b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.d.f14559b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -95,8 +94,8 @@ public abstract class w0 extends nu {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         if (((c[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), c.class)).length == 0) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
-            c cVar = new c(this.f896c);
-            ValueAnimator ofInt = ValueAnimator.ofInt(cVar.f665f, 255);
+            c cVar = new c(this.f898c);
+            ValueAnimator ofInt = ValueAnimator.ofInt(cVar.f667f, 255);
             ofInt.addUpdateListener(new a(cVar, this, 0));
             ofInt.setDuration(200L);
             ofInt.start();
@@ -112,7 +111,7 @@ public abstract class w0 extends nu {
             a1.f fVar = new a1.f(11, this, cVar);
             if (z10) {
                 setCursorVisible(false);
-                ValueAnimator ofInt = ValueAnimator.ofInt(cVar.f665f, 0);
+                ValueAnimator ofInt = ValueAnimator.ofInt(cVar.f667f, 0);
                 ofInt.addUpdateListener(new a(cVar, this, 1));
                 ofInt.addListener(new b(fVar, 0));
                 ofInt.setDuration(200L);
@@ -132,8 +131,8 @@ public abstract class w0 extends nu {
     }
 
     public void setMaxLength(int i10) {
-        if (this.f897f != i10) {
-            this.f897f = i10;
+        if (this.f899f != i10) {
+            this.f899f = i10;
             setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
         }
     }

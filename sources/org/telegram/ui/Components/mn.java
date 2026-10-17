@@ -1,33 +1,20 @@
 package org.telegram.ui.Components;
-public final class mn extends org.telegram.ui.zu0 {
-    public boolean f27173a;
-    public final int f27174b;
-    public final io f27175c;
 
-    public mn(io ioVar, int i10) {
-        this.f27175c = ioVar;
-        this.f27174b = i10;
+import android.content.Context;
+public final class mn extends ti {
+    public final Runnable S2;
+
+    public mn(Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.d6 d6Var, Runnable runnable) {
+        super(context, n2Var, false, false, true, d6Var);
+        this.S2 = runnable;
     }
 
     @Override
-    public final void D() {
-        if (this.f27173a) {
-            this.f27175c.e0(this.f27174b);
+    public final void dismissInternal() {
+        super.dismissInternal();
+        Runnable runnable = this.S2;
+        if (runnable != null) {
+            runnable.run();
         }
-    }
-
-    @Override
-    public final void J() {
-        this.f27175c.h0(this.f27174b, null);
-    }
-
-    @Override
-    public final void W() {
-        this.f27173a = true;
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
     }
 }

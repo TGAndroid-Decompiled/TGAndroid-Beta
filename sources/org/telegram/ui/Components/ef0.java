@@ -1,15 +1,25 @@
 package org.telegram.ui.Components;
-public final class ef0 implements u0.g, f5 {
-    public final pf0 f24383a;
 
-    public ef0(pf0 pf0Var) {
-        this.f24383a = pf0Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ef0 extends AnimatorListenerAdapter {
+    public final int f25914a;
+    public final if0 f25915b;
+
+    public ef0(if0 if0Var, int i10) {
+        this.f25914a = i10;
+        this.f25915b = if0Var;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z10) {
-        pf0 pf0Var = this.f24383a;
-        pf0Var.K.b(pf0Var.N, z10, i10, 0L);
-        pf0Var.dismiss();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25914a) {
+            case 0:
+                this.f25915b.f27226x = null;
+                return;
+            default:
+                this.f25915b.f27227y = null;
+                return;
+        }
     }
 }

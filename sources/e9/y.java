@@ -1,17 +1,17 @@
 package e9;
 
 import java.io.Serializable;
-import org.telegram.ui.ds0;
+import org.telegram.ui.lg0;
 public final class y extends v1 implements Serializable {
-    public final ds0 f8656a;
+    public final lg0 f8537a;
 
-    public y(ds0 ds0Var) {
-        this.f8656a = ds0Var;
+    public y(lg0 lg0Var) {
+        this.f8537a = lg0Var;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        return this.f8656a.compare(obj, obj2);
+        return this.f8537a.compare(obj, obj2);
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class y extends v1 implements Serializable {
             return true;
         }
         if (obj instanceof y) {
-            return this.f8656a.equals(((y) obj).f8656a);
+            return this.f8537a.equals(((y) obj).f8537a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f8656a.hashCode();
+        return this.f8537a.hashCode();
     }
 
     public final String toString() {
-        return this.f8656a.toString();
+        return this.f8537a.toString();
     }
 }

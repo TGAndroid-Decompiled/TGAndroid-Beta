@@ -26,10 +26,10 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.l80;
-import org.telegram.ui.Components.s10;
+import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.o10;
 import org.telegram.ui.IUpdateLayout;
-import org.telegram.ui.nb0;
+import org.telegram.ui.qa0;
 public class ApplicationLoader extends Application {
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -64,7 +64,7 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = k6.g.f14174a;
+            AtomicBoolean atomicBoolean = k6.g.f14969a;
             if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }
@@ -503,7 +503,7 @@ public class ApplicationLoader extends Application {
             StringBuilder sb2 = new StringBuilder("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
-            i2.d.x(sb2, elapsedRealtime);
+            q.r(sb2, elapsedRealtime);
             try {
                 PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
                 int i11 = packageInfo.versionCode % 10;
@@ -528,7 +528,7 @@ public class ApplicationLoader extends Application {
             sb3.append(", model=");
             sb3.append(Build.MODEL);
             sb3.append(", product=");
-            i2.d.v(Build.PRODUCT, sb3);
+            i0.a.v(Build.PRODUCT, sb3);
         }
         if (applicationContext == null) {
             applicationContext = getApplicationContext();
@@ -536,7 +536,7 @@ public class ApplicationLoader extends Application {
         NativeLoader.initNativeLibs(applicationContext);
         try {
             ConnectionsManager.native_setJava(false);
-            new s10(this) {
+            new o10(this) {
                 @Override
                 public void onActivityStarted(Activity activity) {
                     boolean isBackground = isBackground();
@@ -552,7 +552,7 @@ public class ApplicationLoader extends Application {
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
             AndroidUtilities.runOnUIThread(new y1(6));
-            nb0[] values = nb0.values();
+            qa0[] values = qa0.values();
             int length = values.length;
             while (true) {
                 if (i10 < length) {
@@ -561,7 +561,7 @@ public class ApplicationLoader extends Application {
                     }
                     i10++;
                 } else {
-                    w7.g6.b(nb0.h);
+                    w7.g6.b(qa0.h);
                     break;
                 }
             }
@@ -603,7 +603,7 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
-    public org.telegram.ui.ActionBar.m2 openSettings(int i10) {
+    public org.telegram.ui.ActionBar.n2 openSettings(int i10) {
         return null;
     }
 
@@ -673,7 +673,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(l80 l80Var) {
+    public void addItemOptions(i80 i80Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {

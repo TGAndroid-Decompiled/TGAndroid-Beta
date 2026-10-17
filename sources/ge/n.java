@@ -5,20 +5,20 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class n {
     public static final AtomicReferenceFieldUpdater e = AtomicReferenceFieldUpdater.newUpdater(n.class, Object.class, "_next$volatile");
-    public static final AtomicLongFieldUpdater f10129f = AtomicLongFieldUpdater.newUpdater(n.class, "_state$volatile");
-    public static final a6.i f10130g = new a6.i("REMOVE_FROZEN", 22);
+    public static final AtomicLongFieldUpdater f11033f = AtomicLongFieldUpdater.newUpdater(n.class, "_state$volatile");
+    public static final com.google.android.gms.internal.clearcut.e f11034g = new com.google.android.gms.internal.clearcut.e("REMOVE_FROZEN", 1);
     private volatile Object _next$volatile;
     private volatile long _state$volatile;
-    public final int f10131a;
-    public final boolean f10132b;
-    public final int f10133c;
+    public final int f11035a;
+    public final boolean f11036b;
+    public final int f11037c;
     public final AtomicReferenceArray d;
 
     public n(int i10, boolean z10) {
-        this.f10131a = i10;
-        this.f10132b = z10;
+        this.f11035a = i10;
+        this.f11036b = z10;
         int i11 = i10 - 1;
-        this.f10133c = i11;
+        this.f11037c = i11;
         this.d = new AtomicReferenceArray(i10);
         if (i11 <= 1073741823) {
             if ((i10 & i11) == 0) {
@@ -31,7 +31,7 @@ public final class n {
 
     public final int a(Object obj) {
         while (true) {
-            AtomicLongFieldUpdater atomicLongFieldUpdater = f10129f;
+            AtomicLongFieldUpdater atomicLongFieldUpdater = f11033f;
             long j10 = atomicLongFieldUpdater.get(this);
             if ((3458764513820540928L & j10) != 0) {
                 if ((2305843009213693952L & j10) != 0) {
@@ -41,25 +41,25 @@ public final class n {
             }
             int i10 = (int) (1073741823 & j10);
             int i11 = (int) ((1152921503533105152L & j10) >> 30);
-            int i12 = this.f10133c;
+            int i12 = this.f11037c;
             if (((i11 + 2) & i12) != (i10 & i12)) {
-                boolean z10 = this.f10132b;
+                boolean z10 = this.f11036b;
                 AtomicReferenceArray atomicReferenceArray = this.d;
                 if (!z10 && atomicReferenceArray.get(i11 & i12) != null) {
-                    int i13 = this.f10131a;
+                    int i13 = this.f11035a;
                     if (i13 < 1024 || ((i11 - i10) & 1073741823) > (i13 >> 1)) {
                         return 1;
                     }
                 } else {
-                    if (f10129f.compareAndSet(this, j10, ((-1152921503533105153L) & j10) | (((i11 + 1) & 1073741823) << 30))) {
+                    if (f11033f.compareAndSet(this, j10, ((-1152921503533105153L) & j10) | (((i11 + 1) & 1073741823) << 30))) {
                         atomicReferenceArray.set(i11 & i12, obj);
                         n nVar = this;
                         while ((atomicLongFieldUpdater.get(nVar) & 1152921504606846976L) != 0) {
                             nVar = nVar.c();
                             AtomicReferenceArray atomicReferenceArray2 = nVar.d;
-                            int i14 = nVar.f10133c & i11;
+                            int i14 = nVar.f11037c & i11;
                             Object obj2 = atomicReferenceArray2.get(i14);
-                            if ((obj2 instanceof m) && ((m) obj2).f10128a == i11) {
+                            if ((obj2 instanceof m) && ((m) obj2).f11032a == i11) {
                                 atomicReferenceArray2.set(i14, obj);
                                 continue;
                             } else {
@@ -83,7 +83,7 @@ public final class n {
         AtomicLongFieldUpdater atomicLongFieldUpdater;
         long j10;
         do {
-            atomicLongFieldUpdater = f10129f;
+            atomicLongFieldUpdater = f11033f;
             j10 = atomicLongFieldUpdater.get(this);
             if ((j10 & 2305843009213693952L) != 0) {
                 return true;
@@ -100,7 +100,7 @@ public final class n {
         long j10;
         n nVar;
         while (true) {
-            atomicLongFieldUpdater = f10129f;
+            atomicLongFieldUpdater = f11033f;
             j10 = atomicLongFieldUpdater.get(this);
             if ((j10 & 1152921504606846976L) != 0) {
                 nVar = this;
@@ -119,11 +119,11 @@ public final class n {
             if (nVar2 != null) {
                 return nVar2;
             }
-            n nVar3 = new n(nVar.f10131a * 2, nVar.f10132b);
+            n nVar3 = new n(nVar.f11035a * 2, nVar.f11036b);
             int i10 = (int) (1073741823 & j10);
             int i11 = (int) ((1152921503533105152L & j10) >> 30);
             while (true) {
-                int i12 = nVar.f10133c;
+                int i12 = nVar.f11037c;
                 int i13 = i10 & i12;
                 if (i13 == (i12 & i11)) {
                     break;
@@ -132,7 +132,7 @@ public final class n {
                 if (obj == null) {
                     obj = new m(i10);
                 }
-                nVar3.d.set(nVar3.f10133c & i10, obj);
+                nVar3.d.set(nVar3.f11037c & i10, obj);
                 i10++;
             }
             atomicLongFieldUpdater.set(nVar3, (-1152921504606846977L) & j10);
@@ -144,20 +144,20 @@ public final class n {
     public final Object d() {
         n nVar = this;
         while (true) {
-            AtomicLongFieldUpdater atomicLongFieldUpdater = f10129f;
+            AtomicLongFieldUpdater atomicLongFieldUpdater = f11033f;
             long j10 = atomicLongFieldUpdater.get(nVar);
             if ((j10 & 1152921504606846976L) != 0) {
-                return f10130g;
+                return f11034g;
             }
             int i10 = (int) (j10 & 1073741823);
-            int i11 = nVar.f10133c;
+            int i11 = nVar.f11037c;
             int i12 = i10 & i11;
             if ((((int) ((1152921503533105152L & j10) >> 30)) & i11) == i12) {
                 break;
             }
             AtomicReferenceArray atomicReferenceArray = nVar.d;
             Object obj = atomicReferenceArray.get(i12);
-            boolean z10 = nVar.f10132b;
+            boolean z10 = nVar.f11036b;
             if (obj == null) {
                 if (z10) {
                     break;
@@ -166,7 +166,7 @@ public final class n {
                 break;
             } else {
                 long j11 = (i10 + 1) & 1073741823;
-                if (f10129f.compareAndSet(nVar, j10, (j10 & (-1073741824)) | j11)) {
+                if (f11033f.compareAndSet(nVar, j10, (j10 & (-1073741824)) | j11)) {
                     atomicReferenceArray.set(i12, null);
                     return obj;
                 }
@@ -179,8 +179,8 @@ public final class n {
                             nVar = nVar.c();
                         } else {
                             n nVar2 = nVar;
-                            if (f10129f.compareAndSet(nVar2, j12, (j12 & (-1073741824)) | j11)) {
-                                nVar2.d.set(i13 & nVar2.f10133c, null);
+                            if (f11033f.compareAndSet(nVar2, j12, (j12 & (-1073741824)) | j11)) {
+                                nVar2.d.set(i13 & nVar2.f11037c, null);
                                 nVar = null;
                             } else {
                                 nVar = nVar2;

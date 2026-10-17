@@ -9,22 +9,22 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class s1 extends WebViewClient {
-    public final v1 f39644a;
+    public final v1 f40858a;
 
     public s1(v1 v1Var) {
-        this.f39644a = v1Var;
+        this.f40858a = v1Var;
     }
 
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
         try {
-            LaunchActivity launchActivity = LaunchActivity.G1;
+            LaunchActivity launchActivity = LaunchActivity.H1;
             if (launchActivity != null && launchActivity.isFinishing()) {
                 return true;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f39644a.getContext(), 0, null);
-            alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f19248a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new su0(this, 8));
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f40858a.getContext(), 0, null);
+            alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20601a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new ut0(this, 8));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
             alertDialog$Builder.o();
             return true;
@@ -36,9 +36,9 @@ public final class s1 extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        v1 v1Var = this.f39644a;
-        if (v1Var.f40540s) {
-            pf.d.r(v1Var.f40542x.L, str);
+        v1 v1Var = this.f40858a;
+        if (v1Var.f42098s) {
+            pf.d.r(v1Var.f42100x.L, str);
             return true;
         }
         return false;

@@ -1,47 +1,42 @@
 package org.telegram.ui;
 
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class uw implements RequestDelegate {
-    public final int f40497a = 0;
-    public final org.telegram.ui.ActionBar.a2 f40498b;
-    public final long f40499c;
-    public final NotificationCenter.NotificationCenterDelegate d;
-    public final Object e;
-    public final TLObject f40500f;
-    public final Object f40501g;
+public final class uw {
+    public final int f42060a;
+    public final vw f42061b;
+    public final View f42062c;
 
-    public uw(yy yyVar, org.telegram.ui.ActionBar.a2 a2Var, TLRPC.User user, TLRPC.Chat chat, long j10, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
-        this.d = yyVar;
-        this.f40498b = a2Var;
-        this.e = user;
-        this.f40500f = chat;
-        this.f40499c = j10;
-        this.f40501g = tL_messages_checkHistoryImportPeer;
+    public uw(vw vwVar, View view, int i10) {
+        this.f42060a = i10;
+        this.f42061b = vwVar;
+        this.f42062c = view;
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40497a) {
+    public final void a(boolean z10) {
+        switch (this.f42060a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new iw((yy) this.d, this.f40498b, tLObject, (TLRPC.User) this.e, (TLRPC.Chat) this.f40500f, this.f40499c, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f40501g));
+                View view = this.f42062c;
+                if (view instanceof ci.q) {
+                    this.f42061b.O0.E0.i((ci.q) view, false);
+                    if (z10) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.rc(22), 500L);
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new iw((zh.r3) this.d, (pf.c) this.e, this.f40498b, tLObject, (TL_stars.TL_starGiftUnique) this.f40500f, tL_error, this.f40499c, (CharSequence) this.f40501g));
+                View view2 = this.f42062c;
+                if (view2 instanceof ci.q) {
+                    this.f42061b.O0.E0.i((ci.q) view2, false);
+                    if (z10) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.rc(22), 500L);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
-    }
-
-    public uw(zh.r3 r3Var, pf.c cVar, org.telegram.ui.ActionBar.a2 a2Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, CharSequence charSequence) {
-        this.d = r3Var;
-        this.e = cVar;
-        this.f40498b = a2Var;
-        this.f40500f = tL_starGiftUnique;
-        this.f40499c = j10;
-        this.f40501g = charSequence;
     }
 }

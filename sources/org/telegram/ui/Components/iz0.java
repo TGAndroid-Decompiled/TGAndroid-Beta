@@ -1,77 +1,221 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import java.util.ArrayList;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-public final class iz0 extends lm0 {
-    public final lz0 f25830c;
-    public final lz0 d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessageSuggestionParams;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class iz0 {
+    public final org.telegram.ui.ActionBar.d6 f27376a;
+    public StaticLayout f27377b;
+    public final ArrayList f27378c = new ArrayList(2);
+    public int d;
+    public int e;
+    public int f27379f;
+    public int f27380g;
+    public int h;
 
-    public iz0(lz0 lz0Var, lz0 lz0Var2) {
-        this.d = lz0Var;
-        this.f25830c = lz0Var2;
+    public iz0(org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f27376a = d6Var;
     }
 
-    @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        ArrayList arrayList = this.f25830c.f26858w;
-        if (arrayList == null) {
-            return 0;
-        }
-        return arrayList.size();
-    }
-
-    @Override
-    public final long i(int i10) {
-        ArrayList arrayList = this.f25830c.f26858w;
-        if (arrayList == null) {
-            return 0L;
-        }
-        return ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.hashCode();
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        String str;
-        kz0 kz0Var = (kz0) b1Var.f44838a;
-        lz0 lz0Var = this.f25830c;
-        ArrayList arrayList = lz0Var.f26858w;
-        if (arrayList == null) {
-            str = null;
-        } else {
-            str = ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji;
-        }
-        int direction = lz0Var.getDirection();
-        kz0Var.f26508a = str;
-        if (str != null && str.startsWith("animated_")) {
-            try {
-                long parseLong = Long.parseLong(str.substring(9));
-                Drawable drawable = kz0Var.f26509b;
-                if (!(drawable instanceof s5) || ((s5) drawable).i() != parseLong) {
-                    kz0Var.setImageDrawable(s5.n(UserConfig.selectedAccount, parseLong, null, kz0Var.f26511f.d()));
-                }
-            } catch (Exception unused) {
-                kz0Var.setImageDrawable(null);
+    public static void c(StringBuilder sb2, int i10, boolean z10) {
+        if (sb2.length() > 0) {
+            if (z10) {
+                sb2.append(' ');
+                sb2.append(LocaleController.getString(R.string.SuggestionOfferInfoTitleEditedAnd));
+                sb2.append(' ');
+            } else {
+                sb2.append(", ");
             }
-        } else {
-            kz0Var.setImageDrawable(Emoji.getEmojiBigDrawable(str));
         }
-        if (kz0Var.d != direction) {
-            kz0Var.d = direction;
-            kz0Var.requestLayout();
-        }
+        sb2.append(LocaleController.getString(i10));
     }
 
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new kz0(this.d, this.f25830c.getContext()));
+    public final int a() {
+        return this.f27380g;
+    }
+
+    public final void b(MessageObject messageObject) {
+        TLRPC.SuggestedPost suggestedPost;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        float f7;
+        int i14;
+        int i15;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        int i16;
+        TLRPC.Message message;
+        Paint paint = null;
+        if (messageObject != null && (message = messageObject.messageOwner) != null) {
+            suggestedPost = message.suggested_post;
+        } else {
+            suggestedPost = null;
+        }
+        if (suggestedPost == null) {
+            return;
+        }
+        MessageSuggestionParams of2 = MessageSuggestionParams.of(suggestedPost);
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27376a;
+        if (d6Var != null) {
+            paint = d6Var.n("paintChatActionText3");
+        }
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.h6.T0("paintChatActionText3");
+        }
+        TextPaint textPaint = (TextPaint) paint;
+        this.f27380g = AndroidUtilities.dp(14.0f) * 2;
+        ArrayList arrayList = this.f27378c;
+        arrayList.clear();
+        ag.a aVar = of2.amount;
+        if (aVar != null && !aVar.k()) {
+            arrayList.add(new hz0(new d11(LocaleController.getString(R.string.SuggestionOfferInfoPrice), textPaint), new d11(LocaleController.bold(of2.amount.f()), textPaint)));
+        }
+        if (suggestedPost.schedule_date > 0) {
+            arrayList.add(new hz0(new d11(LocaleController.getString(R.string.SuggestionOfferInfoTime), textPaint), new d11(LocaleController.bold(LocaleController.formatDateTime(suggestedPost.schedule_date, true)), textPaint)));
+        }
+        int size = arrayList.size();
+        float f10 = 0.0f;
+        boolean z13 = false;
+        float f11 = 0.0f;
+        int i17 = 0;
+        while (i17 < size) {
+            Object obj = arrayList.get(i17);
+            i17++;
+            hz0 hz0Var = (hz0) obj;
+            f10 = Math.max(f10, hz0Var.f26967a.l());
+            f11 = Math.max(f11, hz0Var.f26968b.l());
+            int j10 = ((int) hz0Var.f26967a.j()) + this.f27380g;
+            this.f27380g = j10;
+            this.f27380g = AndroidUtilities.dp(7.0f) + j10;
+        }
+        int dp = (int) (f11 + f10 + AndroidUtilities.dp(11.0f));
+        int max = Math.max(dp, AndroidUtilities.dp(160.0f));
+        String name = DialogObject.getName(messageObject.getFromChatId());
+        int editedSuggestionFlags = messageObject.getEditedSuggestionFlags();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (editedSuggestionFlags == 0) {
+            if (messageObject.isOutOwner()) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.SuggestionOfferInfoTitleYou));
+            } else {
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.SuggestionOfferInfoTitle, name));
+            }
+            f7 = 11.0f;
+            i15 = 0;
+        } else {
+            MessageObject messageObject2 = messageObject.replyMessageObject;
+            if (messageObject2 != null) {
+                DialogObject.getName(messageObject2.getFromChatId());
+            }
+            StringBuilder sb2 = new StringBuilder();
+            int i18 = editedSuggestionFlags & 4;
+            if (i18 != 0) {
+                i10 = 1;
+            } else {
+                i10 = 0;
+            }
+            int i19 = editedSuggestionFlags & 2;
+            if (i19 != 0) {
+                i11 = 1;
+            } else {
+                i11 = 0;
+            }
+            int i20 = i10 + i11;
+            int i21 = editedSuggestionFlags & 8;
+            if (i21 != 0) {
+                i12 = 1;
+            } else {
+                i12 = 0;
+            }
+            int i22 = i20 + i12;
+            int i23 = editedSuggestionFlags & 1;
+            if (i23 != 0) {
+                i13 = 1;
+            } else {
+                i13 = 0;
+            }
+            int i24 = i22 + i13;
+            if (i23 != 0) {
+                int i25 = R.string.SuggestionOfferInfoTitleEditedPrice;
+                f7 = 11.0f;
+                if (i24 == 1) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                c(sb2, i25, z12);
+                i14 = 1;
+            } else {
+                f7 = 11.0f;
+                i14 = 0;
+            }
+            if (i19 != 0) {
+                int i26 = R.string.SuggestionOfferInfoTitleEditedTime;
+                i14++;
+                i15 = 0;
+                if (i24 == i14) {
+                    z13 = true;
+                }
+                c(sb2, i26, z13);
+            } else {
+                i15 = 0;
+            }
+            if (i18 != 0) {
+                int i27 = R.string.SuggestionOfferInfoTitleEditedText;
+                i14++;
+                if (i24 == i14) {
+                    z11 = true;
+                } else {
+                    z11 = i15;
+                }
+                c(sb2, i27, z11);
+            }
+            if (i21 != 0) {
+                int i28 = R.string.SuggestionOfferInfoTitleEditedMedia;
+                if (i24 == i14 + 1) {
+                    z10 = true;
+                } else {
+                    z10 = i15;
+                }
+                c(sb2, i28, z10);
+            }
+            if (messageObject.isOutOwner()) {
+                int i29 = R.string.SuggestionOfferInfoTitleEditedFromYou;
+                Object[] objArr = new Object[1];
+                objArr[i15] = sb2;
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(i29, objArr));
+            } else {
+                int i30 = R.string.SuggestionOfferInfoTitleEditedFromX;
+                Object[] objArr2 = new Object[2];
+                objArr2[i15] = name;
+                objArr2[1] = sb2;
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(i30, objArr2));
+            }
+        }
+        this.f27377b = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        int i31 = i15;
+        for (int i32 = i31; i32 < this.f27377b.getLineCount(); i32++) {
+            i31 = (int) Math.max(i31, this.f27377b.getLineWidth(i32));
+        }
+        int height = this.f27377b.getHeight() + this.f27380g;
+        this.f27380g = height;
+        this.f27380g = AndroidUtilities.dp(5.0f) + height;
+        int D = org.telegram.messenger.q.D(24.0f, 2, Math.max(dp, i31));
+        this.h = D;
+        this.d = (D - max) / 2;
+        this.e = (D - dp) / 2;
+        this.f27379f = (int) (AndroidUtilities.dp(f7) + i16 + f10);
     }
 }

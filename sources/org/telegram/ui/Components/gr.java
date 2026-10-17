@@ -2,106 +2,50 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
 public final class gr extends View {
-    public final Paint f25092a;
-    public final Paint f25093b;
-    public final RectF f25094c;
-    public int d;
-    public long e;
-    public int f25095f;
-    public int h;
-    public int f25096n;
-    public int f25097r;
+    public final fr f26654a;
 
-    public gr(Context context, int i10) {
+    public gr(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        Paint paint = new Paint(1);
-        this.f25092a = paint;
-        Paint paint2 = new Paint(1);
-        this.f25093b = paint2;
-        this.f25094c = new RectF();
-        this.d = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        if (i10 == 0) {
-            this.f25095f = org.telegram.ui.ActionBar.g6.B7;
-            this.h = org.telegram.ui.ActionBar.g6.C7;
-        } else if (i10 == 1) {
-            this.f25095f = org.telegram.ui.ActionBar.g6.D7;
-            this.h = org.telegram.ui.ActionBar.g6.E7;
-        } else if (i10 == 2) {
-            this.f25095f = org.telegram.ui.ActionBar.g6.F7;
-            this.h = org.telegram.ui.ActionBar.g6.G7;
-        } else if (i10 == 3) {
-            this.f25095f = org.telegram.ui.ActionBar.g6.H7;
-            this.h = org.telegram.ui.ActionBar.g6.I7;
-        }
-        b();
+        setVisibility(8);
+        fr frVar = new fr(this, true, d6Var);
+        this.f26654a = frVar;
+        frVar.G = true;
     }
 
-    public final void a(int i10, int i11) {
-        this.f25095f = -1;
-        this.h = -1;
-        this.f25096n = i10;
-        this.f25097r = i11;
-        b();
-    }
-
-    public final void b() {
-        int i10 = this.f25095f;
-        Paint paint = this.f25092a;
-        if (i10 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
+    public float getEnterProgress() {
+        int i10;
+        fr frVar = this.f26654a;
+        float f7 = frVar.f26362l;
+        if (f7 != 1.0f && ((i10 = frVar.f26356c) == 0 || i10 == 1)) {
+            if (i10 == 0) {
+                return f7;
+            }
+            return 1.0f - f7;
+        } else if (frVar.h != 0) {
+            return 1.0f;
         } else {
-            paint.setColor(this.f25096n);
+            return 0.0f;
         }
-        int i11 = this.h;
-        Paint paint2 = this.f25093b;
-        if (i11 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.g6.x0(null, i11, false));
-        } else {
-            paint2.setColor(this.f25097r);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.e = System.currentTimeMillis();
-        invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
-            return;
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.e;
-        this.e = currentTimeMillis;
-        this.d = (int) ((((float) (j10 * 360)) / 1000.0f) + this.d);
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        RectF rectF = this.f25094c;
-        rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f25092a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f25093b);
-        invalidate();
+        this.f26654a.a(canvas);
     }
 
     @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        this.e = System.currentTimeMillis();
-        invalidate();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.f26654a.d(getMeasuredHeight(), getMeasuredWidth());
+    }
+
+    public void setGravity(int i10) {
+        this.f26654a.f26375z = i10;
+    }
+
+    public void setReverse(boolean z10) {
+        this.f26654a.D = z10;
     }
 }

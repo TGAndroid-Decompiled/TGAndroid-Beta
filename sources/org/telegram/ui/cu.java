@@ -1,189 +1,115 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.os.Build;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import j$.util.Objects;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Locale;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-public final class cu extends org.telegram.ui.Components.im0 {
-    public final Context f34791r;
-    public final HashMap f34792s = new HashMap();
-    public final ArrayList v = new ArrayList();
-    public final fu f34793w;
+import org.telegram.messenger.R;
+public final class cu extends FrameLayout {
+    public final ImageView f35987a;
+    public final TextView f35988b;
+    public final ImageView f35989c;
+    public final TextView d;
+    public boolean e;
 
-    public cu(fu fuVar, Context context, ArrayList arrayList, boolean z10) {
-        Comparator ds0Var;
-        Locale locale;
-        this.f34793w = fuVar;
-        this.f34791r = context;
-        if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                au auVar = (au) arrayList.get(i10);
-                String upperCase = auVar.f34084a.substring(0, 1).toUpperCase();
-                ArrayList arrayList2 = (ArrayList) this.f34792s.get(upperCase);
-                if (arrayList2 == null) {
-                    arrayList2 = new ArrayList();
-                    this.f34792s.put(upperCase, arrayList2);
-                    this.v.add(upperCase);
-                }
-                arrayList2.add(auVar);
-            }
+    public cu(nu nuVar, Context context) {
+        super(context);
+        int i10;
+        int i11;
+        setBackgroundColor(nuVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6));
+        ImageView imageView = new ImageView(context);
+        this.f35987a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        if (LocaleController.isRTL) {
+            i10 = 5;
         } else {
-            try {
-                InputStream open = ApplicationLoader.applicationContext.getResources().getAssets().open("countries.txt");
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open));
-                while (true) {
-                    String readLine = bufferedReader.readLine();
-                    if (readLine == null) {
-                        break;
-                    }
-                    String[] split = readLine.split(";");
-                    ?? obj = new Object();
-                    obj.f34084a = split[2];
-                    obj.f34086c = split[0];
-                    String str = split[1];
-                    obj.d = str;
-                    if (!str.equals("FT") || !z10) {
-                        String upperCase2 = obj.f34084a.substring(0, 1).toUpperCase();
-                        ArrayList arrayList3 = (ArrayList) this.f34792s.get(upperCase2);
-                        if (arrayList3 == null) {
-                            arrayList3 = new ArrayList();
-                            this.f34792s.put(upperCase2, arrayList3);
-                            this.v.add(upperCase2);
-                        }
-                        arrayList3.add(obj);
-                    }
-                }
-                bufferedReader.close();
-                open.close();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
+            i10 = 3;
         }
-        if (Build.VERSION.SDK_INT >= 24) {
-            if (LocaleController.getInstance().getCurrentLocale() != null) {
-                locale = LocaleController.getInstance().getCurrentLocale();
+        addView(imageView, w7.z5.a(28.0f, 18.0f, 0.0f, 18.0f, 0.0f, 28, i10 | 16));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setWeightSum(2.0f);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(linearLayout, w7.z5.i(-1.0f, -2.0f, i11 | 16, 64.0f, 0.0f, 20.0f, 0.0f));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(0);
+        if (LocaleController.isRTL) {
+            linearLayout2.setGravity(5);
+        }
+        linearLayout2.setWeightSum(2.0f);
+        TextView textView = new TextView(context);
+        this.f35988b = textView;
+        textView.setTextSize(1, 16.0f);
+        int i12 = org.telegram.ui.ActionBar.h6.G6;
+        textView.setTextColor(nuVar.getThemedColor(i12));
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setSingleLine();
+        textView.setLines(1);
+        ImageView imageView2 = new ImageView(context);
+        this.f35989c = imageView2;
+        imageView2.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView2.setImageResource(R.drawable.arrow_more);
+        imageView2.setColorFilter(new PorterDuffColorFilter(nuVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
+        imageView2.setTranslationY(AndroidUtilities.dp(1.0f));
+        imageView2.setVisibility(8);
+        if (LocaleController.isRTL) {
+            linearLayout2.addView(imageView2, w7.z5.t(16, 16, 21, 3, 0, 0, 0));
+            linearLayout2.addView(textView, w7.z5.q(-2, -2, 21));
+        } else {
+            linearLayout2.addView(textView, w7.z5.q(-2, -2, 16));
+            linearLayout2.addView(imageView2, w7.z5.t(16, 16, 16, 3, 0, 0, 0));
+        }
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 16.0f);
+        textView2.setTextColor(nuVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21189o6));
+        textView2.setGravity(LocaleController.isRTL ? 3 : 5);
+        if (LocaleController.isRTL) {
+            linearLayout.addView(textView2, w7.z5.q(-2, -2, 19));
+            linearLayout.addView(linearLayout2, w7.z5.o(0, -2, 2.0f, 21));
+            return;
+        }
+        linearLayout.addView(linearLayout2, w7.z5.o(0, -2, 2.0f, 16));
+        linearLayout.addView(textView2, w7.z5.q(-2, -2, 21));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        super.onDraw(canvas);
+        if (this.e) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
             } else {
-                locale = Locale.getDefault();
+                dp = AndroidUtilities.dp(64.0f);
             }
-            Collator collator = Collator.getInstance(locale);
-            Objects.requireNonNull(collator);
-            ds0Var = new bi.q7(collator, 5);
-        } else {
-            ds0Var = new ds0(13);
-        }
-        Collections.sort(this.v, ds0Var);
-        for (ArrayList arrayList4 : this.f34792s.values()) {
-            Collections.sort(arrayList4, new bu(ds0Var, 0));
-        }
-    }
-
-    @Override
-    public final String F(int i10) {
-        int S = S(i10);
-        ArrayList arrayList = this.v;
-        if (S == -1) {
-            S = arrayList.size() - 1;
-        }
-        return (String) arrayList.get(S);
-    }
-
-    @Override
-    public final void G(org.telegram.ui.Components.mm0 mm0Var, float f7, int[] iArr) {
-        iArr[0] = (int) (h() * f7);
-        iArr[1] = 0;
-    }
-
-    @Override
-    public final int M(int i10) {
-        ArrayList arrayList = this.v;
-        int size = ((ArrayList) this.f34792s.get(arrayList.get(i10))).size();
-        if (i10 != arrayList.size() - 1) {
-            return size + 1;
-        }
-        return size;
-    }
-
-    @Override
-    public final int P(int i10, int i11) {
-        if (i11 < ((ArrayList) this.f34792s.get(this.v.get(i10))).size()) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final int R() {
-        return this.v.size();
-    }
-
-    @Override
-    public final View T(int i10, View view) {
-        return null;
-    }
-
-    @Override
-    public final boolean V(int i10, int i11, s4.b1 b1Var) {
-        if (i11 < ((ArrayList) this.f34792s.get(this.v.get(i10))).size()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void W(int i10, int i11, s4.b1 b1Var) {
-        String str;
-        if (b1Var.f44841f == 0) {
-            au auVar = (au) ((ArrayList) this.f34792s.get(this.v.get(i10))).get(i11);
-            org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) b1Var.f44838a;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(fu.V(auVar), caVar.getTextView().getPaint().getFontMetricsInt(), false);
-            if (this.f34793w.h) {
-                str = "+" + auVar.f34086c;
+            float f7 = dp;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(64.0f);
             } else {
-                str = null;
+                i10 = 0;
             }
-            caVar.c(replaceEmoji, str, false, false);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21107k0);
         }
     }
 
     @Override
-    public final au O(int i10, int i11) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.v;
-            if (i10 < arrayList.size()) {
-                ArrayList arrayList2 = (ArrayList) this.f34792s.get(arrayList.get(i10));
-                if (i11 >= 0 && i11 < arrayList2.size()) {
-                    return (au) arrayList2.get(i11);
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View U;
-        Context context = this.f34791r;
-        if (i10 != 0) {
-            U = new org.telegram.ui.Cells.d3(context, null);
-            U.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(8.0f));
-        } else {
-            U = fu.U(context);
-        }
-        return new s4.b1(U);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 }

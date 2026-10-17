@@ -1,27 +1,14 @@
 package org.telegram.ui.Components;
 
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class h70 implements RequestDelegate {
-    public final int f25196a;
-    public final j70 f25197b;
-
-    public h70(j70 j70Var, int i10) {
-        this.f25196a = i10;
-        this.f25197b = j70Var;
-    }
+public final class h70 extends FrameLayout {
+    public TextView f26786a;
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f25196a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f(this.f25197b, tL_error, tLObject, 25));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new vm(28, this.f25197b, tL_error));
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(84.0f), 1073741824));
     }
 }

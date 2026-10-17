@@ -1,9 +1,10 @@
 package nf;
 
 import java.util.logging.Logger;
+import m2.t;
 public final class g extends lf.a {
-    public static final Logger f16046s = Logger.getLogger(g.class.getName());
-    public byte f16047r;
+    public static final Logger f17422s = Logger.getLogger(g.class.getName());
+    public byte f17423r;
 
     public static boolean b(m mVar) {
         boolean z10;
@@ -22,14 +23,14 @@ public final class g extends lf.a {
         }
     }
 
-    public static c5.a c(e eVar) {
+    public static t c(e eVar) {
         b b10 = eVar.b();
         eVar.c(3, b.ISO_8859_1);
-        return new c5.a(eVar.d(200, b10), eVar.c((int) eVar.f16038a.e(), b10), false);
+        return new t(2, eVar.d(200, b10), eVar.c((int) eVar.f17414a.e(), b10));
     }
 
     public static String e(e eVar) {
-        return eVar.c((int) eVar.f16038a.e(), eVar.b());
+        return eVar.c((int) eVar.f17414a.e(), eVar.b());
     }
 
     public final void d(nf.e r12) {

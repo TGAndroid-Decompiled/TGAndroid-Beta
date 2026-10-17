@@ -1,243 +1,134 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-public final class wf implements Runnable {
-    public final int f41273a;
-    public final fo f41274b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class wf implements org.telegram.ui.Components.lk0 {
+    public final int f42825a;
+    public final sn f42826b;
+    public final boolean f42827c;
+    public final MessageObject d;
 
-    public wf(fo foVar, int i10) {
-        this.f41273a = i10;
-        this.f41274b = foVar;
+    public wf(sn snVar, boolean z10, MessageObject messageObject, int i10) {
+        this.f42825a = i10;
+        this.f42826b = snVar;
+        this.f42827c = z10;
+        this.d = messageObject;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.e1 e1Var;
-        sk skVar;
-        View sendButton;
-        View sendButton2;
-        int i10 = this.f41273a;
-        fo foVar = this.f41274b;
-        switch (i10) {
+    public final void c(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
+        switch (this.f42825a) {
             case 0:
-                foVar.D7(true);
-                return;
-            case 1:
-                foVar.D7(true);
-                return;
-            case 2:
-                foVar.D7(false);
-                sg.y0 y0Var = new sg.y0((org.telegram.ui.ActionBar.m2) foVar, 24, true);
-                y0Var.setDimBehind(false);
-                y0Var.setOnHideListener(new we(foVar, 2));
-                y0Var.show();
-                return;
-            case 3:
-                fo.U(foVar);
-                return;
-            case 4:
-                fo.f0(foVar);
-                return;
-            case 5:
-                if (foVar.getUserConfig().isPremium()) {
-                    foVar.Mb = null;
-                    foVar.Uc(true);
-                    org.telegram.ui.Components.zc.a0(foVar).c(LocaleController.getString(R.string.AdHidden)).j();
-                    foVar.getMessagesController().disableAds(true);
-                    return;
-                }
-                foVar.showDialog(new sg.y0((org.telegram.ui.ActionBar.m2) foVar, 3, true));
-                return;
-            case 6:
-                sk skVar2 = foVar.Y;
-                if (skVar2 != null) {
-                    skVar2.o0(true);
-                    return;
-                }
-                return;
-            case 7:
-                foVar.f35778qa = null;
-                foVar.f35766pa = -1;
-                View view = foVar.fragmentView;
-                if (view != null) {
-                    view.requestLayout();
-                    return;
-                }
-                return;
-            case 8:
-                ArrayList arrayList = foVar.f35828u6;
-                for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    MessageObject messageObject = (MessageObject) arrayList.get(i11);
-                    if (messageObject.messageOwner.mentioned && !messageObject.isContentUnread()) {
-                        messageObject.setContentIsRead();
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
+                    final sn snVar = this.f42826b;
+                    if (j10 != snVar.getUserConfig().getClientUserId() && this.f42827c) {
+                        final ArrayList arrayList = new ArrayList(1);
+                        arrayList.add(this.d);
+                        TLObject userOrChat = snVar.getMessagesController().getUserOrChat(j10);
+                        final ArrayList arrayList2 = new ArrayList(1);
+                        arrayList2.add(userOrChat);
+                        final TLRPC.ChannelParticipant[] channelParticipantArr = new TLRPC.ChannelParticipant[1];
+                        TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
+                        tL_channels_getParticipant.channel = MessagesController.getInputChannel(snVar.e);
+                        tL_channels_getParticipant.participant = MessagesController.getInputPeer(userOrChat);
+                        snVar.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant, new Object(), new Utilities.Callback2() {
+                            @Override
+                            public final void run(Object obj, Object obj2) {
+                                TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) obj;
+                                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                                switch (r5) {
+                                    case 0:
+                                        sn snVar2 = snVar;
+                                        TLRPC.ChannelParticipant[] channelParticipantArr2 = channelParticipantArr;
+                                        if (tL_channels_channelParticipant != null) {
+                                            snVar2.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
+                                            snVar2.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
+                                            channelParticipantArr2[0] = tL_channels_channelParticipant.participant;
+                                        } else {
+                                            snVar2.getClass();
+                                        }
+                                        int i10 = snVar2.R3;
+                                        ah.j jVar = new ah.j(22);
+                                        new org.telegram.ui.Components.ps(snVar2, snVar2.e, arrayList, arrayList2, channelParticipantArr2, snVar2.L6, (int) snVar2.d(), i10, true, jVar).show();
+                                        return;
+                                    default:
+                                        sn snVar3 = snVar;
+                                        TLRPC.ChannelParticipant[] channelParticipantArr3 = channelParticipantArr;
+                                        if (tL_channels_channelParticipant != null) {
+                                            snVar3.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
+                                            snVar3.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
+                                            channelParticipantArr3[0] = tL_channels_channelParticipant.participant;
+                                        } else {
+                                            snVar3.getClass();
+                                        }
+                                        int i11 = snVar3.R3;
+                                        ah.j jVar2 = new ah.j(22);
+                                        new org.telegram.ui.Components.ps(snVar3, snVar3.e, arrayList, arrayList2, channelParticipantArr3, snVar3.L6, (int) snVar3.d(), i11, true, jVar2).show();
+                                        return;
+                                }
+                            }
+                        });
+                        snVar.D7(true);
+                        return;
                     }
-                }
-                foVar.f35714l6 = 0;
-                foVar.getMessagesController().markMentionsAsRead(foVar.T5, foVar.d());
-                foVar.f35726m6 = true;
-                foVar.Ob(false);
-                org.telegram.ui.ActionBar.m1 m1Var = foVar.Q8;
-                if (m1Var != null) {
-                    m1Var.dismiss();
                     return;
                 }
-                return;
-            case 9:
-                ArrayList arrayList2 = foVar.f35828u6;
-                for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                    ((MessageObject) arrayList2.get(i12)).markReactionsAsRead();
-                }
-                foVar.l1 = 0;
-                foVar.Fc(true);
-                foVar.getMessagesController().markReactionsAsRead(foVar.T5, foVar.d());
-                org.telegram.ui.ActionBar.m1 m1Var2 = foVar.Q8;
-                if (m1Var2 != null) {
-                    m1Var2.dismiss();
-                    return;
-                }
-                return;
-            case 10:
-                ArrayList arrayList3 = foVar.f35828u6;
-                for (int i13 = 0; i13 < arrayList3.size(); i13++) {
-                    ((MessageObject) arrayList3.get(i13)).markPollVotesAsRead();
-                }
-                foVar.f35721m1 = 0;
-                foVar.Ec(true);
-                foVar.getMessagesController().markPollVotesAsRead(foVar.T5, foVar.d());
-                org.telegram.ui.ActionBar.m1 m1Var3 = foVar.Q8;
-                if (m1Var3 != null) {
-                    m1Var3.dismiss();
-                    return;
-                }
-                return;
-            case 11:
-                foVar.Y.F0();
-                return;
-            case 12:
-                fo.g0(foVar);
-                return;
-            case 13:
-                foVar.j8(false, true, 0.0f);
-                return;
-            case 14:
-                org.telegram.ui.Components.zc.a0(foVar).M(LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessTitle), LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessSubTitle), R.raw.chats_infotip).j();
-                return;
-            case 15:
-                foVar.j8(false, true, 0.0f);
-                return;
-            case 16:
-                foVar.G5 = null;
-                foVar.m8();
-                return;
-            case 17:
-                foVar.G5 = null;
-                foVar.m8();
-                return;
-            case 18:
-                foVar.finishFragment();
-                return;
-            case 19:
-                foVar.j8(false, true, 0.0f);
-                return;
-            case 20:
-                foVar.C4 = null;
-                foVar.t9();
-                foVar.w9();
-                return;
-            case 21:
-                foVar.V6();
-                return;
-            case 22:
-                org.telegram.ui.ActionBar.e1[] e1VarArr = foVar.S8;
-                if (e1VarArr != null && e1VarArr.length > 0 && (e1Var = e1VarArr[0]) != null) {
-                    e1Var.requestFocus();
-                    foVar.S8[0].performAccessibilityAction(64, null);
-                    foVar.S8[0].sendAccessibilityEvent(8);
-                    return;
-                }
-                return;
-            case 23:
-                org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(foVar.getParentActivity(), 3, foVar.f35633ea);
-                foVar.f35767pb = a2Var;
-                a2Var.setOnShowListener(new uf(foVar, 1));
-                foVar.f35767pb.setOnCancelListener(foVar.f35730ma);
-                foVar.f35767pb.q(500L);
-                return;
-            case 24:
-                vk vkVar = foVar.f35817t8;
-                if (vkVar != null && vkVar.getParent() != null) {
-                    foVar.f35861x0.f1();
-                    foVar.f35842v8.setDrawingReady(false);
-                    foVar.f35817t8.setTag(null);
-                    foVar.X0.removeView(foVar.f35817t8);
-                    return;
-                }
-                return;
-            case 25:
-                foVar.f35756o9 = false;
-                foVar.j9(true);
-                return;
-            case 26:
-                foVar.f35775q7 = null;
-                org.telegram.ui.Components.u60 u60Var = foVar.f35588b3;
-                if (u60Var != null) {
-                    org.telegram.ui.Components.r60 cameraContainer = u60Var.getCameraContainer();
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, 0.5f);
-                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, 0.5f);
-                    Property property = View.ALPHA;
-                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(foVar.f35588b3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(foVar.f35588b3.getPaint(), org.telegram.ui.Components.v6.f29576b, 0), ObjectAnimator.ofFloat(foVar.f35588b3.getMuteImageView(), property, 0.0f));
-                    animatorSet.addListener(new bj(foVar, 0));
-                    animatorSet.start();
-                    return;
-                }
-                return;
-            case 27:
-                if (foVar.getParentActivity() != null && foVar.fragmentView != null && (skVar = foVar.Y) != null && (sendButton = skVar.getSendButton()) != null && foVar.Y.getEditField() != null && foVar.Y.getEditField().getText().length() >= 5) {
-                    SharedConfig.increaseScheduledOrNoSoundHintShowed();
-                    if (foVar.f35650g2 == null) {
-                        nj njVar = new nj(4, 0, foVar.getParentActivity(), foVar.f35633ea, false);
-                        foVar.f35650g2 = njVar;
-                        njVar.a();
-                        foVar.f35650g2.setAlpha(0.0f);
-                        foVar.f35650g2.setVisibility(4);
-                        foVar.f35650g2.setText(LocaleController.getString(R.string.ScheduledOrNoSoundHint));
-                        foVar.X0.addView(foVar.f35650g2, w7.z5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
-                    }
-                    foVar.f35650g2.f(sendButton, true);
-                    foVar.f35663h2 = true;
-                    return;
-                }
-                return;
-            case 28:
-                foVar.A0.M.clear();
-                rm rmVar = foVar.A0;
-                rmVar.L = false;
-                rmVar.O(true);
-                foVar.Tb(false);
                 return;
             default:
-                if (foVar.getParentActivity() != null && foVar.fragmentView != null && foVar.Y != null && foVar.Fa == null && foVar.getMessagesController().getSendPaidMessagesStars(foVar.a()) <= 0 && (sendButton2 = foVar.Y.getSendButton()) != null && foVar.Y.getEditField() != null && foVar.Y.getEditField().getText().length() != 0) {
-                    SharedConfig.increaseScheduledHintShowed();
-                    if (foVar.f35674i2 == null) {
-                        org.telegram.ui.Components.v40 v40Var = new org.telegram.ui.Components.v40(4, foVar.getParentActivity(), foVar.f35633ea, false);
-                        foVar.f35674i2 = v40Var;
-                        v40Var.a();
-                        foVar.f35674i2.setAlpha(0.0f);
-                        foVar.f35674i2.setVisibility(4);
-                        foVar.f35674i2.setText(LocaleController.getString(R.string.ScheduledHint));
-                        foVar.X0.addView(foVar.f35674i2, w7.z5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
-                    }
-                    foVar.f35674i2.f(sendButton2, true);
-                    foVar.f35686j2 = true;
+                final sn snVar2 = this.f42826b;
+                snVar2.getClass();
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != snVar2.getUserConfig().getClientUserId() && this.f42827c) {
+                    final ArrayList arrayList3 = new ArrayList(1);
+                    arrayList3.add(this.d);
+                    TLObject userOrChat2 = snVar2.getMessagesController().getUserOrChat(j10);
+                    final ArrayList arrayList4 = new ArrayList(1);
+                    arrayList4.add(userOrChat2);
+                    final TLRPC.ChannelParticipant[] channelParticipantArr2 = new TLRPC.ChannelParticipant[1];
+                    TLRPC.TL_channels_getParticipant tL_channels_getParticipant2 = new TLRPC.TL_channels_getParticipant();
+                    tL_channels_getParticipant2.channel = MessagesController.getInputChannel(snVar2.e);
+                    tL_channels_getParticipant2.participant = MessagesController.getInputPeer(userOrChat2);
+                    snVar2.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant2, new Object(), new Utilities.Callback2() {
+                        @Override
+                        public final void run(Object obj, Object obj2) {
+                            TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) obj;
+                            TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                            switch (r5) {
+                                case 0:
+                                    sn snVar22 = snVar2;
+                                    TLRPC.ChannelParticipant[] channelParticipantArr22 = channelParticipantArr2;
+                                    if (tL_channels_channelParticipant != null) {
+                                        snVar22.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
+                                        snVar22.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
+                                        channelParticipantArr22[0] = tL_channels_channelParticipant.participant;
+                                    } else {
+                                        snVar22.getClass();
+                                    }
+                                    int i10 = snVar22.R3;
+                                    ah.j jVar = new ah.j(22);
+                                    new org.telegram.ui.Components.ps(snVar22, snVar22.e, arrayList3, arrayList4, channelParticipantArr22, snVar22.L6, (int) snVar22.d(), i10, true, jVar).show();
+                                    return;
+                                default:
+                                    sn snVar3 = snVar2;
+                                    TLRPC.ChannelParticipant[] channelParticipantArr3 = channelParticipantArr2;
+                                    if (tL_channels_channelParticipant != null) {
+                                        snVar3.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
+                                        snVar3.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
+                                        channelParticipantArr3[0] = tL_channels_channelParticipant.participant;
+                                    } else {
+                                        snVar3.getClass();
+                                    }
+                                    int i11 = snVar3.R3;
+                                    ah.j jVar2 = new ah.j(22);
+                                    new org.telegram.ui.Components.ps(snVar3, snVar3.e, arrayList3, arrayList4, channelParticipantArr3, snVar3.L6, (int) snVar3.d(), i11, true, jVar2).show();
+                                    return;
+                            }
+                        }
+                    });
+                    snVar2.D7(true);
                     return;
                 }
                 return;

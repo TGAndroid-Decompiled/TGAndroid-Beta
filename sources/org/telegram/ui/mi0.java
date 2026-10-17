@@ -1,56 +1,49 @@
 package org.telegram.ui;
 
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class mi0 implements Runnable {
-    public final int f38017a;
-    public final gj0 f38018b;
-    public final EditText f38019c;
-
-    public mi0(gj0 gj0Var, EditText editText, int i10) {
-        this.f38017a = i10;
-        this.f38018b = gj0Var;
-        this.f38019c = editText;
-    }
-
+import org.telegram.messenger.MessageObject;
+public final class mi0 extends s4.m0 {
     @Override
-    public final void run() {
-        switch (this.f38017a) {
-            case 0:
-                gj0 gj0Var = this.f38018b;
-                if (!gj0Var.f36251p0) {
-                    try {
-                        Window window = gj0Var.getWindow();
-                        WindowManager.LayoutParams attributes = window.getAttributes();
-                        attributes.flags &= -131073;
-                        window.setAttributes(attributes);
-                        gj0Var.f36251p0 = true;
-                    } catch (Exception e) {
-                        FileLog.e(e);
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
+        org.telegram.ui.Cells.u1 u1Var;
+        MessageObject.GroupedMessages currentMessagesGroup;
+        MessageObject.GroupedMessagePosition currentPosition;
+        float[] fArr;
+        int i10 = 0;
+        rect.bottom = 0;
+        if ((view instanceof org.telegram.ui.Cells.u1) && (currentMessagesGroup = (u1Var = (org.telegram.ui.Cells.u1) view).getCurrentMessagesGroup()) != null && (currentPosition = u1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
+            Point point = AndroidUtilities.displaySize;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int extraInsetHeight = u1Var.getExtraInsetHeight();
+            int i11 = 0;
+            while (true) {
+                if (i11 >= currentPosition.siblingHeights.length) {
+                    break;
+                }
+                extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
+                i11++;
+            }
+            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
+            int size = currentMessagesGroup.posArray.size();
+            while (true) {
+                if (i10 < size) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i10);
+                    byte b10 = groupedMessagePosition.minY;
+                    byte b11 = currentPosition.minY;
+                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
+                        round = org.telegram.messenger.q.A(4.0f, (int) Math.ceil(max * groupedMessagePosition.f17792ph), round);
+                        break;
                     }
+                    i10++;
+                } else {
+                    break;
                 }
-                AndroidUtilities.runOnUIThread(new mi0(gj0Var, this.f38019c, 1), 100L);
-                return;
-            default:
-                gj0 gj0Var2 = this.f38018b;
-                int[] iArr = gj0Var2.f36250o0;
-                AndroidUtilities.showKeyboard(this.f38019c);
-                org.telegram.ui.Components.wg wgVar = gj0Var2.W;
-                if (wgVar != null) {
-                    wgVar.getLocationOnScreen(iArr);
-                    int i10 = iArr[0];
-                    int width = gj0Var2.W.getWidth();
-                    org.telegram.ui.Components.wg wgVar2 = gj0Var2.W;
-                    wgVar2.getHeight();
-                    iArr[0] = org.telegram.messenger.sk.D(6.0f, width - wgVar2.m(), i10);
-                    gj0Var2.X.setScaleX(gj0Var2.W.getScaleX());
-                    gj0Var2.X.setScaleY(gj0Var2.W.getScaleY());
-                    return;
-                }
-                return;
+            }
+            rect.bottom = -round;
         }
     }
 }

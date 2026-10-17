@@ -1,43 +1,19 @@
 package org.telegram.ui.Wallet;
 
-import android.view.View;
-public final class z2 implements o1.g {
-    public final int f33652a;
-    public final e3 f33653b;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.drawable.ShapeDrawable;
+import org.telegram.ui.Components.v40;
+public final class z2 extends ShapeDrawable.ShaderFactory {
+    public final v40 f35192a;
 
-    public z2(e3 e3Var, int i10) {
-        this.f33652a = i10;
-        this.f33653b = e3Var;
+    public z2(v40 v40Var) {
+        this.f35192a = v40Var;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f33652a) {
-            case 0:
-                e3 e3Var = this.f33653b;
-                e3Var.C = f7;
-                e3Var.f32822a.invalidate();
-                return;
-            case 1:
-                e3 e3Var2 = this.f33653b;
-                e3Var2.f32827c0 = f7;
-                org.telegram.ui.Cells.w0 w0Var = e3Var2.f32822a;
-                w0Var.invalidate();
-                if (w0Var.getParent() instanceof View) {
-                    ((View) w0Var.getParent()).invalidate();
-                    return;
-                }
-                return;
-            default:
-                e3 e3Var3 = this.f33653b;
-                e3Var3.f32823a0 = f7;
-                org.telegram.ui.Cells.w0 w0Var2 = e3Var3.f32822a;
-                w0Var2.invalidate();
-                if (w0Var2.getParent() instanceof View) {
-                    ((View) w0Var2.getParent()).invalidate();
-                    return;
-                }
-                return;
-        }
+    public final Shader resize(int i10, int i11) {
+        v40 v40Var = this.f35192a;
+        return new LinearGradient(0.0f, 0.0f, 0.0f, i11, v40Var.f31171a, v40Var.f31172b, Shader.TileMode.CLAMP);
     }
 }

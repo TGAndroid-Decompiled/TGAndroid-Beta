@@ -1,131 +1,124 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
-import java.io.Serializable;
+import android.util.SparseIntArray;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.regex.Pattern;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class dr implements Utilities.Callback {
-    public final int f35128a = 1;
-    public final int f35129b;
-    public final long f35130c;
-    public final Object d;
-    public final Object e;
-    public final Object f35131f;
-    public final Object f35132g;
-    public final Serializable h;
+public final class dr extends s4.o {
+    public int f36305b;
+    public int e;
+    public int f36307f;
+    public int f36308g;
+    public int h;
+    public int f36309i;
+    public int f36310j;
+    public final jr f36314n;
+    public final SparseIntArray f36306c = new SparseIntArray();
+    public final SparseIntArray d = new SparseIntArray();
+    public final ArrayList f36311k = new ArrayList();
+    public final ArrayList f36312l = new ArrayList();
+    public final ArrayList f36313m = new ArrayList();
 
-    public dr(int i10, long j10, Activity activity, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f35129b = i10;
-        this.d = arrayList;
-        this.f35130c = j10;
-        this.e = activity;
-        this.f35131f = c6Var;
-        this.f35132g = callback;
-        this.h = hashMap;
+    public dr(jr jrVar) {
+        this.f36314n = jrVar;
     }
 
-    @Override
-    public final void run(Object obj) {
-        int i10 = this.f35128a;
-        boolean z10 = false;
-        Serializable serializable = this.h;
-        Object obj2 = this.f35132g;
-        Object obj3 = this.f35131f;
-        Object obj4 = this.e;
-        Object obj5 = this.d;
-        switch (i10) {
-            case 0:
-                yr yrVar = (yr) obj5;
-                TLObject tLObject = (TLObject) obj4;
-                TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) obj3;
-                TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) obj2;
-                String str = (String) serializable;
-                int intValue = ((Integer) obj).intValue();
-                boolean[] zArr = new boolean[1];
-                if ((tLObject instanceof TLRPC.TL_channelParticipantAdmin) || (tLObject instanceof TLRPC.TL_chatParticipantAdmin)) {
-                    z10 = true;
-                }
-                long j10 = yrVar.N;
-                TLRPC.TL_chatBannedRights tL_chatBannedRights2 = yrVar.E;
-                long j11 = this.f35130c;
-                gr grVar = new gr(yrVar, j11, j10, tL_chatAdminRights, tL_chatBannedRights2, tL_chatBannedRights, str, intValue, zArr, j11);
-                grVar.X0 = new hr(yrVar, intValue, j11, this.f35129b, z10, zArr);
-                yrVar.presentFragment(grVar);
-                return;
-            case 1:
-                ArrayList arrayList = (ArrayList) obj5;
-                Activity activity = (Activity) obj4;
-                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) obj3;
-                Utilities.Callback callback = (Utilities.Callback) obj2;
-                HashMap hashMap = (HashMap) serializable;
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                int i11 = this.f35129b;
-                if (booleanValue) {
-                    SharedPreferences.Editor edit = MessagesController.getInstance(i11).getMainSettings().edit();
-                    int size = arrayList.size();
-                    int i12 = 0;
-                    while (i12 < size) {
-                        Object obj6 = arrayList.get(i12);
-                        i12++;
-                        Long l4 = (Long) obj6;
-                        long longValue = l4.longValue();
-                        long sendPaidMessagesStars = MessagesController.getInstance(i11).getSendPaidMessagesStars(longValue);
-                        if (sendPaidMessagesStars <= 0 && longValue > 0) {
-                            sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(MessagesController.getInstance(i11).isUserContactBlocked(longValue));
-                        }
-                        edit.putLong(org.telegram.ui.Cells.c1.h(longValue, "ask_paid_message_", "_price"), sendPaidMessagesStars);
-                        zh.n5.y(i11, false).O.put(l4, Long.valueOf(System.currentTimeMillis()));
-                    }
-                    edit.apply();
-                }
-                org.telegram.ui.Components.m1 m1Var = new org.telegram.ui.Components.m1(i11, this.f35130c, activity, arrayList, hashMap, callback, c6Var);
-                if (!zh.n5.y(i11, false).e) {
-                    zh.n5 y3 = zh.n5.y(i11, false);
-                    y3.e = false;
-                    y3.q(false, true, m1Var);
-                    y3.e = true;
-                    return;
-                }
-                m1Var.run();
-                return;
-            default:
-                Boolean bool = (Boolean) obj;
-                Pattern pattern = LaunchActivity.B1;
-                TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
-                int i13 = this.f35129b;
-                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i13).getInputUser(this.f35130c);
-                tL_messages_toggleBotInAttachMenu.enabled = true;
-                tL_messages_toggleBotInAttachMenu.write_allowed = true;
-                ConnectionsManager.getInstance(i13).sendRequest(tL_messages_toggleBotInAttachMenu, new org.telegram.messenger.mi((LaunchActivity) obj5, i13, (yy) obj4, (org.telegram.ui.ActionBar.m2) obj3, (TLRPC.User) obj2, (String) serializable), 66);
-                return;
+    public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
+        if (i11 >= 0) {
+            sparseIntArray.put(i11, i10);
         }
     }
 
-    public dr(yr yrVar, long j10, int i10, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
-        this.d = yrVar;
-        this.f35130c = j10;
-        this.f35129b = i10;
-        this.e = tLObject;
-        this.f35131f = tL_chatAdminRights;
-        this.f35132g = tL_chatBannedRights;
-        this.h = str;
+    @Override
+    public final boolean a(int i10, int i11) {
+        if (!b(i10, i11) || this.f36314n.D0 == i11) {
+            return false;
+        }
+        return true;
     }
 
-    public dr(LaunchActivity launchActivity, int i10, long j10, yy yyVar, org.telegram.ui.ActionBar.m2 m2Var, TLRPC.User user, String str) {
-        this.d = launchActivity;
-        this.f35129b = i10;
-        this.f35130c = j10;
-        this.e = yyVar;
-        this.f35131f = m2Var;
-        this.f35132g = user;
-        this.h = str;
+    @Override
+    public final boolean b(int i10, int i11) {
+        int i12 = this.f36309i;
+        jr jrVar = this.f36314n;
+        if (i10 >= i12 && i10 < this.f36310j && i11 >= jrVar.X0 && i11 < jrVar.Y0) {
+            return ((TLObject) this.f36312l.get(i10 - i12)).equals(jrVar.G.get(i11 - jrVar.X0));
+        }
+        int i13 = this.f36308g;
+        if (i10 >= i13 && i10 < this.h && i11 >= jrVar.U0 && i11 < jrVar.V0) {
+            return ((TLObject) this.f36313m.get(i10 - i13)).equals(jrVar.H.get(i11 - jrVar.U0));
+        }
+        int i14 = this.e;
+        if (i10 >= i14 && i10 < this.f36307f && i11 >= jrVar.E0 && i11 < jrVar.F0) {
+            return ((TLObject) this.f36311k.get(i10 - i14)).equals(jrVar.F.get(i11 - jrVar.E0));
+        }
+        if (this.f36306c.get(i10) == this.d.get(i11)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f36314n.f38274d1;
+    }
+
+    @Override
+    public final int e() {
+        return this.f36305b;
+    }
+
+    public final void f(SparseIntArray sparseIntArray) {
+        sparseIntArray.clear();
+        jr jrVar = this.f36314n;
+        g(1, jrVar.f38311v0, sparseIntArray);
+        g(2, jrVar.f38322z0, sparseIntArray);
+        g(3, jrVar.A0, sparseIntArray);
+        g(4, jrVar.C0, sparseIntArray);
+        g(5, jrVar.D0, sparseIntArray);
+        g(6, jrVar.G0, sparseIntArray);
+        g(7, jrVar.H0, sparseIntArray);
+        g(8, jrVar.f38305s0, sparseIntArray);
+        g(9, jrVar.f38307t0, sparseIntArray);
+        g(10, jrVar.f38309u0, sparseIntArray);
+        g(11, jrVar.f38269b1, sparseIntArray);
+        g(12, jrVar.f38272c1, sparseIntArray);
+        g(13, jrVar.S, sparseIntArray);
+        g(14, jrVar.T, sparseIntArray);
+        g(15, jrVar.U, sparseIntArray);
+        g(16, jrVar.f38275e0, sparseIntArray);
+        g(17, jrVar.f38273d0, sparseIntArray);
+        g(18, jrVar.f38278f0, sparseIntArray);
+        g(19, jrVar.f38282h0, sparseIntArray);
+        g(20, jrVar.m0, sparseIntArray);
+        g(21, jrVar.f38284i0, sparseIntArray);
+        g(22, jrVar.f38286j0, sparseIntArray);
+        int i10 = 23;
+        g(23, jrVar.f38288k0, sparseIntArray);
+        if (jrVar.f38316x) {
+            i10 = 24;
+            g(24, jrVar.f38290l0, sparseIntArray);
+        }
+        g(i10 + 1, jrVar.f38280g0, sparseIntArray);
+        g(i10 + 2, jrVar.B0, sparseIntArray);
+        g(i10 + 3, jrVar.T0, sparseIntArray);
+        g(i10 + 4, jrVar.W0, sparseIntArray);
+        g(i10 + 5, jrVar.Z0, sparseIntArray);
+        g(i10 + 6, jrVar.N0, sparseIntArray);
+        g(i10 + 7, jrVar.O0, sparseIntArray);
+        g(i10 + 8, jrVar.P0, sparseIntArray);
+        g(i10 + 9, jrVar.Q0, sparseIntArray);
+        g(i10 + 10, jrVar.S0, sparseIntArray);
+        g(i10 + 11, jrVar.R0, sparseIntArray);
+        g(i10 + 12, jrVar.f38266a1, sparseIntArray);
+        g(i10 + 13, jrVar.f38279f1, sparseIntArray);
+        g(i10 + 14, jrVar.f38281g1, sparseIntArray);
+        g(i10 + 15, jrVar.f38283h1, sparseIntArray);
+        g(i10 + 16, jrVar.f38285i1, sparseIntArray);
+        g(i10 + 17, jrVar.f38287j1, sparseIntArray);
+        g(i10 + 18, jrVar.f38293n0, sparseIntArray);
+        g(i10 + 19, jrVar.f38295o0, sparseIntArray);
+        g(i10 + 20, jrVar.f38297p0, sparseIntArray);
+        g(i10 + 21, jrVar.f38299q0, sparseIntArray);
+        g(i10 + 22, jrVar.f38302r0, sparseIntArray);
     }
 }

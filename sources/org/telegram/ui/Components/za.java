@@ -1,37 +1,121 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-public final class za extends org.telegram.ui.ActionBar.k {
-    public final ow0 f31530u1;
-    public final db f31531v1;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class za extends hm0 {
+    public final int f32870c;
+    public final Context d;
+    public final Object e;
+    public final KeyEvent.Callback f32871f;
 
-    public za(db dbVar, Context context, ow0 ow0Var) {
-        super(context, null);
-        this.f31531v1 = dbVar;
-        this.f31530u1 = ow0Var;
+    public za(ij ijVar, Context context) {
+        this.f32870c = 1;
+        this.f32871f = ijVar;
+        this.e = new ArrayList();
+        this.d = context;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        db dbVar = this.f31531v1;
-        if (dbVar.L && dbVar.M) {
-            return false;
+    public void B(s4.i0 i0Var) {
+        switch (this.f32870c) {
+            case 0:
+                ((hm0) this.e).B(new ya(this, i0Var));
+                return;
+            default:
+                super.B(i0Var);
+                return;
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        if (getAlpha() != f7) {
-            super.setAlpha(f7);
-            this.f31530u1.invalidate();
+    public final boolean D(s4.b1 b1Var) {
+        switch (this.f32870c) {
+            case 0:
+                return ((hm0) this.e).D(b1Var);
+            default:
+                if (b1Var.f45941f == 0) {
+                    return true;
+                }
+                return false;
         }
     }
 
     @Override
-    public final void setTag(Object obj) {
-        super.setTag(obj);
-        this.f31531v1.N();
+    public final int h() {
+        switch (this.f32870c) {
+            case 0:
+                return ((hm0) this.e).h() + 1;
+            default:
+                return ((ArrayList) this.e).size();
+        }
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        switch (this.f32870c) {
+            case 0:
+                bb bbVar = (bb) this.f32871f;
+                if (bbVar.P) {
+                    i11 = h() - 1;
+                } else {
+                    i11 = 0;
+                }
+                if (i10 == i11) {
+                    return -1000;
+                }
+                return ((hm0) this.e).j(i10 - (!bbVar.P ? 1 : 0));
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int i11;
+        switch (this.f32870c) {
+            case 0:
+                bb bbVar = (bb) this.f32871f;
+                if (bbVar.P) {
+                    i11 = h() - 1;
+                } else {
+                    i11 = 0;
+                }
+                if (i10 != i11) {
+                    ((hm0) this.e).v(b1Var, i10 - (!bbVar.P ? 1 : 0));
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Cells.ab abVar = (org.telegram.ui.Cells.ab) b1Var.f45938a;
+                abVar.d(1, false, false);
+                abVar.setSize(((ij) this.f32871f).f27240r);
+                abVar.e(1, ((ArrayList) this.e).get(i10), null, 0);
+                return;
+        }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        switch (this.f32870c) {
+            case 0:
+                if (i10 == -1000) {
+                    return new s4.b1(new ai.hc((bb) this.f32871f, this.d));
+                }
+                return ((hm0) this.e).x(viewGroup, i10);
+            default:
+                hj hjVar = new hj(this, this.d);
+                hjVar.f22017b = false;
+                return new s4.b1(hjVar);
+        }
+    }
+
+    public za(bb bbVar, hm0 hm0Var, Context context) {
+        this.f32870c = 0;
+        this.f32871f = bbVar;
+        this.e = hm0Var;
+        this.d = context;
     }
 }

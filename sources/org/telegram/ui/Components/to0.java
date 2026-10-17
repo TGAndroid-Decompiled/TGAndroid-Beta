@@ -1,13 +1,9 @@
 package org.telegram.ui.Components;
-public final class to0 extends s4.k {
-    public final org.telegram.ui.iy F;
+public final class to0 {
+    public final int f30688a;
+    public int f30689b;
 
-    public to0(org.telegram.ui.iy iyVar) {
-        this.F = iyVar;
-    }
-
-    @Override
-    public final void P(s4.b1 b1Var) {
-        this.F.invalidate();
+    public to0(int i10) {
+        this.f30688a = i10;
     }
 }

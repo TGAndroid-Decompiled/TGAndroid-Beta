@@ -1,41 +1,80 @@
 package c3;
+
+import java.io.Serializable;
 public final class a0 {
-    public final c0 f4194a;
-    public final c0 f4195b;
+    public int f4564a;
+    public int f4565b;
+    public int f4566c;
+    public int d;
+    public int e;
+    public int f4567f;
+    public Serializable f4568g;
 
-    public a0(c0 c0Var, c0 c0Var2) {
-        this.f4194a = c0Var;
-        this.f4195b = c0Var2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public boolean a(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        if ((i10 & (-2097152)) != -2097152 || (i11 = (i10 >>> 19) & 3) == 1 || (i12 = (i10 >>> 17) & 3) == 0 || (i13 = (i10 >>> 12) & 15) == 0 || i13 == 15 || (i14 = (i10 >>> 10) & 3) == 3) {
+            return false;
         }
-        if (obj != null && a0.class == obj.getClass()) {
-            a0 a0Var = (a0) obj;
-            if (this.f4194a.equals(a0Var.f4194a) && this.f4195b.equals(a0Var.f4195b)) {
-                return true;
+        this.f4564a = i11;
+        this.f4568g = b.f4584s[3 - i12];
+        int i17 = b.f4585t[i14];
+        this.f4566c = i17;
+        int i18 = 2;
+        if (i11 == 2) {
+            this.f4566c = i17 / 2;
+        } else if (i11 == 0) {
+            this.f4566c = i17 / 4;
+        }
+        int i19 = (i10 >>> 9) & 1;
+        int i20 = 1152;
+        if (i12 != 1) {
+            if (i12 != 2) {
+                if (i12 == 3) {
+                    i20 = 384;
+                } else {
+                    throw new IllegalArgumentException();
+                }
+            }
+        } else if (i11 != 3) {
+            i20 = 576;
+        }
+        this.f4567f = i20;
+        if (i12 == 3) {
+            if (i11 == 3) {
+                i16 = b.f4586u[i13 - 1];
+            } else {
+                i16 = b.v[i13 - 1];
+            }
+            this.e = i16;
+            this.f4565b = (((i16 * 12) / this.f4566c) + i19) * 4;
+        } else {
+            int i21 = 144;
+            if (i11 == 3) {
+                if (i12 == 2) {
+                    i15 = b.f4587w[i13 - 1];
+                } else {
+                    i15 = b.f4588x[i13 - 1];
+                }
+                this.e = i15;
+                this.f4565b = ((i15 * 144) / this.f4566c) + i19;
+            } else {
+                int i22 = b.f4589y[i13 - 1];
+                this.e = i22;
+                if (i12 == 1) {
+                    i21 = 72;
+                }
+                this.f4565b = ((i21 * i22) / this.f4566c) + i19;
             }
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f4195b.hashCode() + (this.f4194a.hashCode() * 31);
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("[");
-        c0 c0Var = this.f4194a;
-        sb2.append(c0Var);
-        c0 c0Var2 = this.f4195b;
-        if (c0Var.equals(c0Var2)) {
-            str = "";
-        } else {
-            str = ", " + c0Var2;
+        if (((i10 >> 6) & 3) == 3) {
+            i18 = 1;
         }
-        return a1.g.s(sb2, str, "]");
+        this.d = i18;
+        return true;
     }
 }

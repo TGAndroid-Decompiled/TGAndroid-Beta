@@ -1,20 +1,20 @@
 package m3;
 
 import a1.g;
-import b2.r0;
-import b2.t0;
-import b2.x;
-public final class a implements t0 {
-    public final int f15112a;
-    public final String f15113b;
+import b2.q0;
+import b2.s0;
+import b2.w;
+public final class a implements s0 {
+    public final int f16465a;
+    public final String f16466b;
 
     public a(int i10, String str) {
-        this.f15112a = i10;
-        this.f15113b = str;
+        this.f16465a = i10;
+        this.f16466b = str;
     }
 
     @Override
-    public final x a() {
+    public final w a() {
         return null;
     }
 
@@ -25,12 +25,12 @@ public final class a implements t0 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Ait(controlCode=");
-        sb2.append(this.f15112a);
+        sb2.append(this.f16465a);
         sb2.append(",url=");
-        return g.s(sb2, this.f15113b, ")");
+        return g.s(sb2, this.f16466b, ")");
     }
 
     @Override
-    public final void b(r0 r0Var) {
+    public final void b(q0 q0Var) {
     }
 }

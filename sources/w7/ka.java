@@ -3,24 +3,24 @@ package w7;
 import android.content.Context;
 import java.util.ArrayList;
 public final class ka implements ja {
-    public final ArrayList f47345a;
+    public final ArrayList f48754a;
 
     public ka(Context context, ia iaVar) {
         ArrayList arrayList = new ArrayList();
-        this.f47345a = arrayList;
+        this.f48754a = arrayList;
         iaVar.getClass();
         arrayList.add(new ma(context, iaVar));
     }
 
     @Override
-    public final void a(n3.b bVar) {
-        ArrayList arrayList = this.f47345a;
+    public final void a(n2.e eVar) {
+        ArrayList arrayList = this.f48754a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            ((ja) obj).a(bVar);
+            ((ja) obj).a(eVar);
         }
     }
 }

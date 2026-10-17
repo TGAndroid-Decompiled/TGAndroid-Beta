@@ -1,35 +1,16 @@
 package org.telegram.ui;
-public final class ml implements Runnable {
-    public final int f38025a;
-    public final nl f38026b;
 
-    public ml(nl nlVar, int i10) {
-        this.f38025a = i10;
-        this.f38026b = nlVar;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class ml extends bu0 {
+    public final sn f39216a;
+
+    public ml(sn snVar) {
+        this.f39216a = snVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38025a) {
-            case 0:
-                sk skVar = this.f38026b.H.Y;
-                if (skVar != null) {
-                    skVar.T0 = false;
-                    org.telegram.ui.Components.fg fgVar = skVar.U0;
-                    if (fgVar != null) {
-                        fgVar.v(false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                sk skVar2 = this.f38026b.H.Y;
-                if (skVar2 != null) {
-                    skVar2.F0();
-                    return;
-                }
-                return;
-        }
+    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return sn.E1(this.f39216a, messageObject, fileLocation, i10, z10, false);
     }
 }

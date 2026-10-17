@@ -3,13 +3,13 @@ package q1;
 import android.text.Editable;
 import androidx.emoji2.text.u;
 public final class a extends Editable.Factory {
-    public static final Object f42979a = new Object();
-    public static volatile a f42980b;
-    public static Class f42981c;
+    public static final Object f44346a = new Object();
+    public static volatile a f44347b;
+    public static Class f44348c;
 
     @Override
     public final Editable newEditable(CharSequence charSequence) {
-        Class cls = f42981c;
+        Class cls = f44348c;
         if (cls != null) {
             return new u(charSequence, cls);
         }

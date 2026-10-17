@@ -1,15 +1,112 @@
 package org.telegram.ui;
-public final class uv implements Runnable {
-    public final int f40492a;
-    public final yy f40493b;
 
-    public uv(yy yyVar, int i10) {
-        this.f40492a = i10;
-        this.f40493b = yyVar;
+import android.content.SharedPreferences;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.UndoView;
+public final class uv implements Runnable {
+    public final int f42056a;
+    public final ey f42057b;
+
+    public uv(ey eyVar, int i10) {
+        this.f42056a = i10;
+        this.f42057b = eyVar;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.uv.run():void");
+        switch (this.f42056a) {
+            case 0:
+                ey eyVar = this.f42057b;
+                nx nxVar = eyVar.C0;
+                if (nxVar != null && nxVar.f31362y0) {
+                    nxVar.Q(false);
+                    return;
+                }
+                eyVar.X.f27712r.getText().clear();
+                AndroidUtilities.hideKeyboard(eyVar.X.f27712r);
+                eyVar.X.f27712r.clearFocus();
+                eyVar.Y.b(false);
+                return;
+            case 1:
+                ey eyVar2 = this.f42057b;
+                if (eyVar2.R0 != 10) {
+                    eyVar2.a4(false);
+                }
+                if (eyVar2.L && eyVar2.V3().G()) {
+                    eyVar2.E0.h();
+                    return;
+                } else {
+                    eyVar2.v4(true, true);
+                    return;
+                }
+            case 2:
+                ey eyVar3 = this.f42057b;
+                ih.f fVar = eyVar3.f36734y1;
+                if (fVar != null) {
+                    fVar.d();
+                }
+                eyVar3.q3();
+                eyVar3.j3();
+                eyVar3.r3();
+                ki.y1 y1Var = eyVar3.C1;
+                if (y1Var != null) {
+                    y1Var.setTranslationY(-eyVar3.v.d());
+                    return;
+                }
+                return;
+            case 3:
+                this.f42057b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
+                return;
+            case 4:
+                this.f42057b.K3();
+                return;
+            case 5:
+                this.f42057b.S4();
+                return;
+            case 6:
+                ey.x0(this.f42057b);
+                return;
+            case 7:
+                this.f42057b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
+                return;
+            case 8:
+                ey eyVar4 = this.f42057b;
+                ei.x3 x3Var = eyVar4.f36689q0;
+                if (x3Var != null) {
+                    x3Var.e(true);
+                }
+                eyVar4.presentFragment(new PremiumPreviewFragment(0, "stories"));
+                return;
+            case 9:
+                this.f42057b.f36630e0[0].d.l();
+                return;
+            case 10:
+                ey eyVar5 = this.f42057b;
+                UndoView W3 = eyVar5.W3();
+                if (W3 != null) {
+                    W3.l(0L, 15, null, new dv(eyVar5, 27));
+                    return;
+                }
+                return;
+            case 11:
+                ey eyVar6 = this.f42057b;
+                eyVar6.getClass();
+                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                long j10 = globalMainSettings.getLong("cache_hint_period", 604800000L);
+                if (j10 <= 604800000) {
+                    j10 = 2592000000L;
+                }
+                globalMainSettings.edit().putLong("cache_hint_showafter", System.currentTimeMillis() + j10).putLong("cache_hint_period", j10).apply();
+                eyVar6.S4();
+                return;
+            case 12:
+                MessagesController.getInstance(this.f42057b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
+                return;
+            default:
+                this.f42057b.Y4();
+                return;
+        }
     }
 }

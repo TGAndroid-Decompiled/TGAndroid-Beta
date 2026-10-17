@@ -1,246 +1,324 @@
 package rg;
 
-import android.animation.ValueAnimator;
-import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Rect;
+import android.graphics.PointF;
+import android.graphics.RectF;
 import android.os.Build;
-import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import bi.i7;
-import ji.o4;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.l80;
-import org.telegram.ui.Components.uc0;
-import org.telegram.ui.ee;
+import org.telegram.messenger.wh;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.a6;
+import org.telegram.ui.Components.el0;
+import org.telegram.ui.td0;
 import w7.z5;
-public final class v2 extends Dialog {
-    public ValueAnimator E;
-    public boolean F;
-    public p0 G;
-    public bi.o1 H;
-    public final int f44340a;
-    public final ah.x f44341b;
-    public final ee f44342c;
-    public final i7 d;
-    public final ImageView e;
-    public final t2 f44343f;
-    public final Rect h;
-    public Bitmap f44344n;
-    public BitmapShader f44345r;
-    public Paint f44346s;
-    public Matrix v;
-    public final uc0 f44347w;
-    public final uc0 f44348x;
-    public float f44349y;
+public final class v2 extends j {
+    public String A0;
+    public final u2 f45687q0;
+    public qg.s1 f45688r0;
+    public int f45689s0;
+    public int f45690t0;
+    public int f45691u0;
+    public qg.l0 f45692v0;
+    public int f45693w0;
+    public int f45694x0;
+    public Runnable f45695y0;
+    public boolean f45696z0;
 
-    public v2(Context context, final int i10) {
-        super(context, R.style.TransparentDialog);
-        bi.b bVar = new bi.b();
-        this.h = new Rect();
-        this.F = false;
-        this.f44340a = i10;
-        ah.x xVar = new ah.x(this, context, 29);
-        this.f44341b = xVar;
-        xVar.setOnClickListener(new o4(this, 8));
-        ee eeVar = new ee(context, 8);
-        this.f44342c = eeVar;
-        eeVar.setOrientation(1);
-        xVar.addView(eeVar, z5.a(-2.0f, 8.0f, 8.0f, 8.0f, 8.0f, -2, 17));
-        i7 i7Var = new i7(this, context, 10);
-        i7Var.setWillNotDraw(false);
-        eeVar.addView(i7Var, z5.p(-1, -2, 1.0f, 49, 0, 0, 0, 0));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(-14737633);
-        i7Var.addView(frameLayout, z5.e(-1, 56, 55));
-        TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString(R.string.StoryLinkPreviewTitle));
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 18.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        TextView g10 = org.telegram.ui.Cells.c1.g(frameLayout, textView, z5.a(-2.0f, 18.0f, 8.33f, 18.0f, 0.0f, -1, 55), context);
-        g10.setText(LocaleController.getString(R.string.StoryLinkPreviewSubtitle));
-        g10.setTextColor(-8421505);
-        g10.setTextSize(1, 14.0f);
-        frameLayout.addView(g10, z5.a(-2.0f, 18.0f, 31.0f, 18.0f, 0.0f, -1, 55));
-        i7 i7Var2 = new i7(this, context, 11);
-        this.d = i7Var2;
-        i7Var.addView(i7Var2, z5.a(-1.0f, 0.0f, 56.0f, 0.0f, 0.0f, -1, 119));
-        ImageView imageView = new ImageView(context);
-        this.e = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        i7Var2.addView(imageView, z5.e(-1, -1, 119));
-        t2 t2Var = new t2(this, context, AndroidUtilities.density);
-        this.f44343f = t2Var;
-        i7Var2.addView(t2Var, z5.e(-2, -2, 17));
-        l80 F = l80.F(xVar, bVar, xVar);
-        uc0 uc0Var = new uc0(getContext(), R.raw.position_below, LocaleController.getString(R.string.StoryLinkCaptionAbove), R.raw.position_above, LocaleController.getString(R.string.StoryLinkCaptionBelow), bVar);
-        this.f44347w = uc0Var;
-        uc0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final v2 f44302b;
-
-            {
-                this.f44302b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r3) {
-                    case 0:
-                        v2 v2Var = this.f44302b;
-                        p0 p0Var = v2Var.G;
-                        boolean z10 = p0Var.f44207f;
-                        p0Var.f44207f = !z10;
-                        v2Var.f44347w.a(z10, true);
-                        v2Var.f44343f.b(i10, v2Var.G, true);
-                        return;
-                    default:
-                        v2 v2Var2 = this.f44302b;
-                        p0 p0Var2 = v2Var2.G;
-                        boolean z11 = p0Var2.e;
-                        p0Var2.e = !z11;
-                        v2Var2.f44348x.a(z11, true);
-                        v2Var2.f44343f.b(i10, v2Var2.G, true);
-                        return;
-                }
-            }
-        });
-        F.q(uc0Var);
-        uc0 uc0Var2 = new uc0(context, R.raw.media_shrink, LocaleController.getString(R.string.LinkMediaLarger), R.raw.media_enlarge, LocaleController.getString(R.string.LinkMediaSmaller), bVar);
-        this.f44348x = uc0Var2;
-        uc0Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final v2 f44302b;
-
-            {
-                this.f44302b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r3) {
-                    case 0:
-                        v2 v2Var = this.f44302b;
-                        p0 p0Var = v2Var.G;
-                        boolean z10 = p0Var.f44207f;
-                        p0Var.f44207f = !z10;
-                        v2Var.f44347w.a(z10, true);
-                        v2Var.f44343f.b(i10, v2Var.G, true);
-                        return;
-                    default:
-                        v2 v2Var2 = this.f44302b;
-                        p0 p0Var2 = v2Var2.G;
-                        boolean z11 = p0Var2.e;
-                        p0Var2.e = !z11;
-                        v2Var2.f44348x.a(z11, true);
-                        v2Var2.f44343f.b(i10, v2Var2.G, true);
-                        return;
-                }
-            }
-        });
-        F.q(uc0Var2);
-        F.k();
-        F.c(R.drawable.msg_select, LocaleController.getString(R.string.ApplyChanges), new r2(this, 2), false);
-        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DoNotLinkPreview), new r2(this, 3), true);
-        eeVar.addView(F.A, z5.o(-2, -2, 0.0f, 85));
-        xVar.setFitsSystemWindows(true);
-        xVar.setOnApplyWindowInsetsListener(new u2(this));
-    }
-
-    public final void b(boolean z10, r2 r2Var) {
-        float f7;
-        long j10;
-        ValueAnimator valueAnimator = this.E;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        float f10 = this.f44349y;
-        if (z10) {
-            f7 = 1.0f;
+    public v2(Context context, PointF pointF, int i10, CharSequence charSequence, qg.s1 s1Var, int i11) {
+        super(context, pointF);
+        this.f45692v0 = qg.l0.e;
+        this.f45690t0 = i10;
+        u2 u2Var = new u2(this, context);
+        this.f45687q0 = u2Var;
+        NotificationCenter.listenEmojiLoading(u2Var);
+        u2Var.setGravity(19);
+        u2Var.setBackgroundColor(0);
+        u2Var.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
+        u2Var.setClickable(false);
+        u2Var.setEnabled(false);
+        u2Var.setCursorColor(-1);
+        u2Var.setTextSize(0, this.f45690t0);
+        u2Var.setCursorSize(AndroidUtilities.dp(this.f45690t0 * 0.4f));
+        u2Var.setText(charSequence);
+        s();
+        u2Var.setTextColor(s1Var.f44667a);
+        u2Var.setTypeface(null, 1);
+        u2Var.setHorizontallyScrolling(false);
+        int i12 = Build.VERSION.SDK_INT;
+        if (i12 >= 26) {
+            u2Var.setImeOptions(285212672);
         } else {
-            f7 = 0.0f;
+            u2Var.setImeOptions(268435456);
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.E = ofFloat;
-        ofFloat.addUpdateListener(new ki.a(this, 14));
-        this.E.addListener(new ah.q0(this, z10, r2Var, 13));
-        this.E.setInterpolator(es.h);
-        ValueAnimator valueAnimator2 = this.E;
-        if (z10) {
-            j10 = 420;
+        u2Var.setFocusableInTouchMode(true);
+        u2Var.setInputType(16384);
+        u2Var.setSingleLine(false);
+        addView(u2Var, z5.e(-2, -2, 51));
+        if (i12 >= 29) {
+            u2Var.setBreakStrategy(0);
         } else {
-            j10 = 320;
+            u2Var.setBreakStrategy(0);
         }
-        valueAnimator2.setDuration(j10);
-        this.E.start();
+        setSwatch(s1Var);
+        setType(i11);
+        k();
+        u2Var.addTextChangedListener(new td0(this));
     }
 
     @Override
-    public final void dismiss() {
-        if (this.F) {
+    public final i a() {
+        return new p0(this, getContext());
+    }
+
+    public int getAlign() {
+        return this.f45691u0;
+    }
+
+    public int getBaseFontSize() {
+        return this.f45690t0;
+    }
+
+    public b getEditText() {
+        return this.f45687q0;
+    }
+
+    public View getFocusedView() {
+        return this.f45687q0;
+    }
+
+    public Paint.FontMetricsInt getFontMetricsInt() {
+        return this.f45687q0.getPaint().getFontMetricsInt();
+    }
+
+    public float getFontSize() {
+        return this.f45687q0.getTextSize();
+    }
+
+    @Override
+    public el0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (getScale() * getMeasuredWidth());
+        float dp2 = (AndroidUtilities.dp(52.0f) / scaleX) + (getScale() * getMeasuredHeight());
+        float A = wh.A(dp, 2.0f, getPositionX(), scaleX);
+        float positionY = getPositionY();
+        u2 u2Var = this.f45687q0;
+        return new el0(A, (positionY - (((dp2 - u2Var.getExtendedPaddingTop()) - AndroidUtilities.dpf2(4.0f)) / 2.0f)) * scaleX, ((dp * scaleX) + A) - A, (dp2 - u2Var.getExtendedPaddingBottom()) * scaleX);
+    }
+
+    @Override
+    public float getStickyPaddingBottom() {
+        RectF rectF = this.f45687q0.f45319w;
+        if (rectF == null) {
+            return 0.0f;
+        }
+        return rectF.bottom;
+    }
+
+    @Override
+    public float getStickyPaddingLeft() {
+        RectF rectF = this.f45687q0.f45319w;
+        if (rectF == null) {
+            return 0.0f;
+        }
+        return rectF.left;
+    }
+
+    @Override
+    public float getStickyPaddingRight() {
+        RectF rectF = this.f45687q0.f45319w;
+        if (rectF == null) {
+            return 0.0f;
+        }
+        return rectF.right;
+    }
+
+    @Override
+    public float getStickyPaddingTop() {
+        RectF rectF = this.f45687q0.f45319w;
+        if (rectF == null) {
+            return 0.0f;
+        }
+        return rectF.top;
+    }
+
+    public qg.s1 getSwatch() {
+        return this.f45688r0;
+    }
+
+    public CharSequence getText() {
+        return this.f45687q0.getText();
+    }
+
+    public int getTextSize() {
+        return (int) this.f45687q0.getTextSize();
+    }
+
+    public int getType() {
+        return this.f45689s0;
+    }
+
+    public qg.l0 getTypeface() {
+        return this.f45692v0;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        k();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        k();
+    }
+
+    public final void q() {
+        u2 u2Var = this.f45687q0;
+        u2Var.setEnabled(true);
+        u2Var.setClickable(true);
+        u2Var.requestFocus();
+        u2Var.setSelection(u2Var.getText().length());
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z1(this, 15), 300L);
+    }
+
+    public final void r() {
+        int i10;
+        u2 u2Var = this.f45687q0;
+        u2Var.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+        int i11 = this.f45688r0.f44667a;
+        int i12 = this.f45689s0;
+        int i13 = -1;
+        if (i12 == 0) {
+            u2Var.setFrameColor(i11);
+            i11 = AndroidUtilities.computePerceivedBrightness(this.f45688r0.f44667a) >= 0.721f ? -16777216 : -1;
+        } else if (i12 == 1) {
+            if (AndroidUtilities.computePerceivedBrightness(i11) >= 0.25f) {
+                i10 = -1728053248;
+            } else {
+                i10 = -1711276033;
+            }
+            u2Var.setFrameColor(i10);
+        } else if (i12 == 2) {
+            if (AndroidUtilities.computePerceivedBrightness(i11) >= 0.25f) {
+                i13 = -16777216;
+            }
+            u2Var.setFrameColor(i13);
+        } else {
+            u2Var.setFrameColor(0);
+        }
+        u2Var.setTextColor(i11);
+        u2Var.setCursorColor(i11);
+        u2Var.setHandlesColor(i11);
+        u2Var.setHighlightColor(h6.m1(0.4f, i11));
+    }
+
+    public final void s() {
+        u2 u2Var = this.f45687q0;
+        if (u2Var.getText().length() <= 0) {
+            u2Var.setHint(LocaleController.getString(R.string.TextPlaceholder));
+            u2Var.setHintTextColor(1627389951);
             return;
         }
-        bi.o1 o1Var = this.H;
-        if (o1Var != null) {
-            o1Var.run(this.G);
-            this.H = null;
-        }
-        this.F = true;
-        b(false, new r2(this, 1));
-        this.f44341b.invalidate();
+        u2Var.setHint((CharSequence) null);
     }
 
-    @Override
-    public final boolean isShowing() {
-        return !this.F;
+    public void setAlign(int i10) {
+        this.f45691u0 = i10;
     }
 
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        ah.x xVar = this.f44341b;
-        setContentView(xVar, layoutParams);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        int i10 = attributes.flags & (-3);
-        attributes.softInputMode = 16;
-        attributes.flags = 131072 | i10;
-        int i11 = Build.VERSION.SDK_INT;
-        attributes.flags = i10 | (-1945959040);
-        if (i11 >= 28) {
-            attributes.layoutInDisplayCutoutMode = 1;
+    public void setBaseFontSize(int i10) {
+        this.f45690t0 = i10;
+        float f7 = i10;
+        u2 u2Var = this.f45687q0;
+        u2Var.setTextSize(0, f7);
+        u2Var.setCursorSize(AndroidUtilities.dp(f7 * 0.4f));
+        if (u2Var.getText() != null) {
+            Editable text = u2Var.getText();
+            Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) text.getSpans(0, text.length(), Emoji.EmojiSpan.class);
+            for (int i11 = 0; i11 < emojiSpanArr.length; i11++) {
+                emojiSpanArr[i11].replaceFontMetrics(getFontMetricsInt());
+                emojiSpanArr[i11].scale = 0.85f;
+            }
+            for (a6 a6Var : (a6[]) text.getSpans(0, text.length(), a6.class)) {
+                a6Var.replaceFontMetrics(getFontMetricsInt());
+            }
+            u2Var.invalidateForce();
         }
-        window.setAttributes(attributes);
-        xVar.setSystemUiVisibility(256);
-        AndroidUtilities.setLightNavigationBar(xVar, !g6.I.q());
     }
 
-    @Override
-    public final void show() {
-        if (!AndroidUtilities.isSafeToShow(getContext())) {
-            return;
+    public void setMaxWidth(int i10) {
+        this.f45687q0.setMaxWidth(i10);
+    }
+
+    public void setSwatch(qg.s1 s1Var) {
+        this.f45688r0 = new qg.s1(s1Var.f44668b, s1Var.f44669c, s1Var.f44667a);
+        r();
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f45687q0.setText(charSequence);
+        s();
+    }
+
+    public void setType(int i10) {
+        this.f45689s0 = i10;
+        r();
+    }
+
+    public void setTypeface(qg.l0 l0Var) {
+        this.f45692v0 = l0Var;
+        if (l0Var != null) {
+            this.f45687q0.setTypeface(l0Var.d());
         }
-        super.show();
-        AndroidUtilities.makeGlobalBlurBitmap(new ji.p1(this, 9), 14.0f);
-        b(true, null);
+        m();
+    }
+
+    public void setTypeface(String str) {
+        Iterator it = qg.l0.c().iterator();
+        while (true) {
+            if (!it.hasNext()) {
+                break;
+            }
+            qg.l0 l0Var = (qg.l0) it.next();
+            if (l0Var.f44579a.equals(str)) {
+                setTypeface(l0Var);
+                str = null;
+                break;
+            }
+        }
+        this.A0 = str;
+        m();
+    }
+
+    public v2(Context context, v2 v2Var, PointF pointF) {
+        this(context, pointF, v2Var.f45690t0, v2Var.getText(), v2Var.getSwatch(), v2Var.f45689s0);
+        setRotation(v2Var.getRotation());
+        setScale(v2Var.getScale());
+        setTypeface(v2Var.getTypeface());
+        setAlign(v2Var.getAlign());
+        int align = getAlign();
+        int i10 = 2;
+        this.f45687q0.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
+        int align2 = getAlign();
+        if (align2 == 1) {
+            i10 = 4;
+        } else if (align2 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
+            i10 = 3;
+        }
+        this.f45687q0.setTextAlignment(i10);
     }
 }

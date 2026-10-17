@@ -1,6 +1,4 @@
 package w2;
-
-import v0.k;
 public interface d {
-    public static final k C = new k(2);
+    public static final le.b C = new le.b(25);
 }

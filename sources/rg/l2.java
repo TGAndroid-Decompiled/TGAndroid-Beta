@@ -1,8 +1,10 @@
 package rg;
 
-import android.graphics.Point;
-public final class l2 extends Point {
-    public l2(float f7, int i10, int i11) {
-        super((int) (i10 * f7), (int) (i11 * f7));
-    }
+import android.graphics.Bitmap;
+public final class l2 {
+    public Bitmap f45487a;
+    public int f45488b;
+    public int f45489c;
+    public int d;
+    public int e;
 }

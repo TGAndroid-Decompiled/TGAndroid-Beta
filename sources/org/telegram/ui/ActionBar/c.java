@@ -3,39 +3,39 @@ package org.telegram.ui.ActionBar;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class c extends AnimatorListenerAdapter {
-    public final int f19350a;
-    public final boolean f19351b;
-    public final k f19352c;
+    public final int f20707a;
+    public final boolean f20708b;
+    public final k f20709c;
 
     public c(k kVar, boolean z10, int i10) {
-        this.f19350a = i10;
-        this.f19352c = kVar;
-        this.f19351b = z10;
+        this.f20707a = i10;
+        this.f20709c = kVar;
+        this.f20708b = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
         float f10;
-        switch (this.f19350a) {
+        switch (this.f20707a) {
             case 0:
-                if (this.f19351b) {
+                if (this.f20708b) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                k kVar = this.f19352c;
-                kVar.f20155s1 = f7;
+                k kVar = this.f20709c;
+                kVar.f21506s1 = f7;
                 kVar.b();
                 return;
             default:
-                if (this.f19351b) {
+                if (this.f20708b) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
                 }
-                k kVar2 = this.f19352c;
-                kVar2.f20155s1 = f10;
+                k kVar2 = this.f20709c;
+                kVar2.f21506s1 = f10;
                 kVar2.b();
                 return;
         }

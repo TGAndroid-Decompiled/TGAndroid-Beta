@@ -1,19 +1,21 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class y50 {
-    public final ByteBuffer[] f31159a = new ByteBuffer[10];
-    public final long[] f31160b = new long[10];
-    public final int[] f31161c = new int[10];
-    public int d;
-    public int e;
-    public boolean f31162f;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.VideoEditedInfo;
+public interface y50 {
+    long a();
 
-    public y50() {
-        for (int i10 = 0; i10 < 10; i10++) {
-            this.f31159a[i10] = ByteBuffer.allocateDirect(2048);
-            this.f31159a[i10].order(ByteOrder.nativeOrder());
-        }
-    }
+    boolean c();
+
+    int getClassGuid();
+
+    View getFragmentView();
+
+    Activity getParentActivity();
+
+    void r(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z10, int i10, int i11, boolean z11, long j10);
+
+    boolean x();
 }

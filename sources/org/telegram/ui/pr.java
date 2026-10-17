@@ -1,27 +1,20 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class pr implements e70 {
-    public final j70 f38997a;
-    public final yr f38998b;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class pr {
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f40228a;
+    public org.telegram.ui.ActionBar.a1 f40229b;
+    public org.telegram.ui.ActionBar.e1[] f40230c;
 
-    public pr(yr yrVar, j70 j70Var) {
-        this.f38998b = yrVar;
-        this.f38997a = j70Var;
-    }
-
-    @Override
-    public final void h(TLRPC.User user) {
-        this.f38998b.t0(user.f19063id, null, null, null, "", true, 0, false);
-    }
-
-    @Override
-    public final void i(int i10, ArrayList arrayList) {
-        if (this.f38997a.getParentActivity() == null) {
-            return;
+    public final void a(float f7, boolean z10) {
+        org.telegram.ui.ActionBar.e1[] e1VarArr = this.f40230c;
+        for (int i10 = 0; i10 < e1VarArr.length; i10++) {
+            if (z10 && ((i10 == 0 && Math.abs(f7 - 0.2f) < 0.01f) || ((i10 == 1 && Math.abs(f7 - 0.5f) < 0.1f) || ((i10 == 2 && Math.abs(f7 - 1.0f) < 0.1f) || ((i10 == 3 && Math.abs(f7 - 1.5f) < 0.1f) || (i10 == 4 && Math.abs(f7 - 2.0f) < 0.1f)))))) {
+                e1VarArr[i10].c(-9718023, -9718023);
+            } else {
+                e1VarArr[i10].c(-328966, -328966);
+            }
         }
-        yr yrVar = this.f38998b;
-        yrVar.getMessagesController().addUsersToChat(yrVar.f41926r, yrVar, arrayList, i10, new j3(this, 2), new or(0), null);
+        this.f40229b.d(f7, true);
     }
 }

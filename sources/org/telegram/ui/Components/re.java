@@ -1,29 +1,32 @@
 package org.telegram.ui.Components;
-public final class re implements f5 {
-    public final int f28498a;
-    public final ChatActivityEnterView f28499b;
 
-    public re(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f28498a = i10;
-        this.f28499b = chatActivityEnterView;
+import android.view.View;
+public final class re implements e5, yl0 {
+    public final ChatActivityEnterView f29919a;
+
+    public re(ChatActivityEnterView chatActivityEnterView) {
+        this.f29919a = chatActivityEnterView;
     }
 
     @Override
-    public final void J(int i10, int i11, boolean z10) {
-        switch (this.f28498a) {
-            case 0:
-                this.f28499b.R0(i10, z10, i11, true, 0L);
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView = this.f28499b;
-                chatActivityEnterView.R0(i10, z10, i11, true, 0L);
-                of ofVar = chatActivityEnterView.L0;
-                if (ofVar != null) {
-                    ofVar.i();
-                    chatActivityEnterView.L0 = null;
-                    return;
-                }
-                return;
+    public void C(int i10, int i11, boolean z10) {
+        ChatActivityEnterView chatActivityEnterView = this.f29919a;
+        boolean R0 = chatActivityEnterView.R0(i10, z10, i11, true, 0L);
+        mf mfVar = chatActivityEnterView.L0;
+        if (mfVar != null) {
+            mfVar.h(!R0);
+            chatActivityEnterView.L0 = null;
         }
+    }
+
+    @Override
+    public boolean a(int i10, View view) {
+        if (view instanceof gi.z) {
+            ChatActivityEnterView chatActivityEnterView = this.f29919a;
+            chatActivityEnterView.setFieldText(((gi.z) view).getCommand() + " ");
+            chatActivityEnterView.m0.c();
+            return true;
+        }
+        return false;
     }
 }

@@ -4,16 +4,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.q;
 public final class b implements q {
-    public final Status f49326a;
-    public final GoogleSignInAccount f49327b;
+    public final Status f50731a;
+    public final GoogleSignInAccount f50732b;
 
     public b(GoogleSignInAccount googleSignInAccount, Status status) {
-        this.f49327b = googleSignInAccount;
-        this.f49326a = status;
+        this.f50732b = googleSignInAccount;
+        this.f50731a = status;
     }
 
     @Override
     public final Status h() {
-        return this.f49326a;
+        return this.f50731a;
     }
 }

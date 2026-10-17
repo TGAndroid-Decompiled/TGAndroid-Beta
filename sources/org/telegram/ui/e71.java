@@ -1,24 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class e71 implements Runnable {
-    public final int f35213a;
-    public final org.telegram.ui.Cells.c6 f35214b;
+import android.content.Context;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.UndoView;
+public final class e71 extends UndoView {
+    public final SessionsActivity f36418f0;
 
-    public e71(org.telegram.ui.Cells.c6 c6Var, int i10) {
-        this.f35213a = i10;
-        this.f35214b = c6Var;
+    public e71(SessionsActivity sessionsActivity, Context context) {
+        super(context);
+        this.f36418f0 = sessionsActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35213a) {
-            case 0:
-                AndroidUtilities.showKeyboard(((i61) this.f35214b.d).h);
-                return;
-            default:
-                this.f35214b.requestFocus();
-                return;
+    public final void e(int i10, boolean z10) {
+        int i11;
+        if (!z10 && getCurrentInfoObject() != null) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
+            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
+            resetauthorization.hash = tL_authorization.hash;
+            i11 = ((org.telegram.ui.ActionBar.n2) this.f36418f0).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new z40(26, this, tL_authorization));
         }
+        super.e(i10, z10);
     }
 }

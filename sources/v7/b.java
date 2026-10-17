@@ -2,17 +2,17 @@ package v7;
 
 import java.util.Iterator;
 public final class b extends i9 {
-    public final transient d f46581c;
+    public final transient d f47989c;
     public final transient c d;
 
     public b(d dVar, c cVar) {
-        this.f46581c = dVar;
+        this.f47989c = dVar;
         this.d = cVar;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        if (this.f46581c.get(obj) != null) {
+        if (this.f47989c.get(obj) != null) {
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public final class b extends i9 {
 
     @Override
     public final int size() {
-        this.f46581c.getClass();
+        this.f47989c.getClass();
         return 1;
     }
 }

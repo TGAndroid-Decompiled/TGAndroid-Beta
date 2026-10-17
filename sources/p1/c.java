@@ -6,20 +6,20 @@ import java.nio.ByteBuffer;
 import oa.d;
 import r0.i0;
 public abstract class c {
-    public int f42530a;
-    public int f42531b;
-    public int f42532c;
+    public int f43937a;
+    public int f43938b;
+    public int f43939c;
     public Object d;
 
     public c() {
-        if (d.f16321b == null) {
-            d.f16321b = new d(19);
+        if (d.f17715b == null) {
+            d.f17715b = new d(19);
         }
     }
 
     public int a(int i10) {
-        if (i10 < this.f42532c) {
-            return ((ByteBuffer) this.d).getShort(this.f42531b + i10);
+        if (i10 < this.f43939c) {
+            return ((ByteBuffer) this.d).getShort(this.f43938b + i10);
         }
         return 0;
     }
@@ -31,14 +31,14 @@ public abstract class c {
     public void d(View view, Object obj) {
         Object tag;
         r0.b bVar;
-        if (Build.VERSION.SDK_INT >= this.f42531b) {
+        if (Build.VERSION.SDK_INT >= this.f43938b) {
             c(view, obj);
             return;
         }
-        if (Build.VERSION.SDK_INT >= this.f42531b) {
+        if (Build.VERSION.SDK_INT >= this.f43938b) {
             tag = b(view);
         } else {
-            tag = view.getTag(this.f42530a);
+            tag = view.getTag(this.f43937a);
             if (!((Class) this.d).isInstance(tag)) {
                 tag = null;
             }
@@ -48,7 +48,7 @@ public abstract class c {
             if (d == null) {
                 bVar = null;
             } else if (d instanceof r0.a) {
-                bVar = ((r0.a) d).f43451a;
+                bVar = ((r0.a) d).f44808a;
             } else {
                 bVar = new r0.b(d);
             }
@@ -56,8 +56,8 @@ public abstract class c {
                 bVar = new r0.b();
             }
             i0.j(view, bVar);
-            view.setTag(this.f42530a, obj);
-            i0.f(this.f42532c, view);
+            view.setTag(this.f43937a, obj);
+            i0.f(this.f43939c, view);
         }
     }
 

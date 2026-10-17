@@ -1,30 +1,56 @@
 package org.telegram.ui;
+public final class er implements org.telegram.ui.Cells.z4, org.telegram.ui.Components.mw0 {
+    public final int f36585a;
+    public final fr f36586b;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class er implements qq {
-    public final TLObject f35368a;
-    public final yr f35369b;
-
-    public er(yr yrVar, TLObject tLObject) {
-        this.f35369b = yrVar;
-        this.f35368a = tLObject;
+    public er(fr frVar, int i10) {
+        this.f36585a = i10;
+        this.f36586b = frVar;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        yr.c0(this.f35369b, user);
+    public boolean d(org.telegram.ui.Cells.a5 a5Var, boolean z10) {
+        jr jrVar = this.f36586b.d;
+        return jrVar.h0(jrVar.f38264a.E(((Integer) a5Var.getTag()).intValue()), !z10, a5Var);
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f35368a;
-        if (tLObject instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
-            channelParticipant.admin_rights = tL_chatAdminRights;
-            channelParticipant.banned_rights = tL_chatBannedRights;
-            channelParticipant.rank = str;
-            yr.W(this.f35369b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
+    public void h(int i10) {
+        boolean z10;
+        switch (this.f36585a) {
+            case 1:
+                jr jrVar = this.f36586b.d;
+                if (jrVar.f38304s != null) {
+                    int i11 = jrVar.f38298p1;
+                    if ((i11 > 0 && i10 == 0) || (i11 == 0 && i10 > 0)) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    jrVar.f38298p1 = i10;
+                    if (z10) {
+                        dr w02 = jrVar.w0();
+                        jrVar.B0();
+                        jrVar.A0(w02);
+                    }
+                    jrVar.f38264a.m(jrVar.P0);
+                    return;
+                }
+                return;
+            default:
+                this.f36586b.d.f38306s1 = i10 + 1;
+                return;
         }
+    }
+
+    @Override
+    public void m() {
+        int i10 = this.f36585a;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

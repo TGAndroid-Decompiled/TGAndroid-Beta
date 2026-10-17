@@ -1,11 +1,11 @@
 package i4;
 public final class d {
-    public static final a4.d f11298c = new a4.d(18);
-    public final e f11299a;
-    public final int f11300b;
+    public static final a4.d f12687c = new a4.d(21);
+    public final e f12688a;
+    public final int f12689b;
 
     public d(e eVar, int i10) {
-        this.f11299a = eVar;
-        this.f11300b = i10;
+        this.f12688a = eVar;
+        this.f12689b = i10;
     }
 }

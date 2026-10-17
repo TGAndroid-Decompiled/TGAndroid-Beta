@@ -1,23 +1,38 @@
 package ug;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
 public final class r implements Runnable {
-    public final int f46381a;
-    public final v f46382b;
+    public final int f47771a;
+    public final y f47772b;
 
-    public r(v vVar, int i10) {
-        this.f46381a = i10;
-        this.f46382b = vVar;
+    public r(y yVar, int i10) {
+        this.f47771a = i10;
+        this.f47772b = yVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f46381a) {
+        int i10 = this.f47771a;
+        y yVar = this.f47772b;
+        switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new r(this.f46382b, 1));
+                AndroidUtilities.hideKeyboard(yVar.d);
+                return;
+            case 1:
+                yVar.getClass();
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, yVar.f47816b0, Boolean.TRUE);
+                return;
+            case 2:
+                yVar.getClass();
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, yVar.f47816b0, Boolean.FALSE);
+                return;
+            case 3:
+                y.S(yVar);
                 return;
             default:
-                this.f46382b.run(null);
+                y.T(yVar);
                 return;
         }
     }

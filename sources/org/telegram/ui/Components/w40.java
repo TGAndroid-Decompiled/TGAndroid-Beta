@@ -1,86 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-public final class w40 {
-    public static final w40 d;
-    public static final w40 e;
-    public static final w40 f30463f;
-    public static final w40 h;
-    public static final w40 f30464n;
-    public static final w40 f30465r;
-    public static final w40 f30466s;
-    public static final w40 v;
-    public static final w40 f30467w;
-    public static final w40[] f30468x;
-    public final String f30469a;
-    public final int f30470b;
-    public final float f30471c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class w40 extends Drawable {
+    public byte[] f32002a;
+    public final Paint f32003b = new Paint();
+    public final int[] f32004c = {-1, -2758925, -13805707, -13657655};
 
-    static {
-        w40 w40Var = new w40("RoundHint2", 0, "needShowRoundHint2", 3, 0.2f);
-        d = w40Var;
-        w40 w40Var2 = new w40("RoundHintChannel2", 1, "needShowRoundHintChannel2", 3, 0.2f);
-        e = w40Var2;
-        w40 w40Var3 = new w40("ChannelSuggestHint", 2, "channelsuggesthint", 3, 0.2f);
-        f30463f = w40Var3;
-        w40 w40Var4 = new w40("ChannelGiftHint", 3, "channelgifthint", 3, 0.2f);
-        h = w40Var4;
-        w40 w40Var5 = new w40("GroupEmojiPackHintShown", 4, "groupEmojiPackShownHint", 1, 1.0f);
-        f30464n = w40Var5;
-        w40 w40Var6 = new w40("AccountSwitchHint", 5, "accountswitchhint", 3, 1.0f);
-        f30465r = w40Var6;
-        w40 w40Var7 = new w40("GiftMessageHint", 6, "giftMessaheHint", 3, 1.0f);
-        f30466s = w40Var7;
-        w40 w40Var8 = new w40("PlaybackSpeedHint", 7, "playbackspeedhint", 3, 0.2f);
-        v = w40Var8;
-        w40 w40Var9 = new w40();
-        f30467w = w40Var9;
-        f30468x = new w40[]{w40Var, w40Var2, w40Var3, w40Var4, w40Var5, w40Var6, w40Var7, w40Var8, w40Var9};
-    }
-
-    public w40() {
-        this.f30469a = "hints_controller_" + this;
-        this.f30470b = 3;
-        this.f30471c = 1.0f;
-    }
-
-    public static w40 valueOf(String str) {
-        return (w40) Enum.valueOf(w40.class, str);
-    }
-
-    public static w40[] values() {
-        return (w40[]) f30468x.clone();
-    }
-
-    public final void a() {
-        MessagesController.getGlobalMainSettings().edit().putInt(this.f30469a, this.f30470b).apply();
-    }
-
-    public final void b() {
-        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-        String str = this.f30469a;
-        MessagesController.getGlobalMainSettings().edit().putInt(str, globalMainSettings.getInt(str, 0) + 1).apply();
-    }
-
-    public final boolean c() {
-        if (MessagesController.getGlobalMainSettings().getInt(this.f30469a, 0) < this.f30470b) {
-            float f7 = this.f30471c;
-            if (f7 < 1.0f) {
-                if (f7 > 0.0f && Utilities.fastRandom.nextFloat() < f7) {
-                    return true;
+    @Override
+    public final void draw(Canvas canvas) {
+        byte[] bArr = this.f32002a;
+        if (bArr != null) {
+            int length = bArr.length;
+            int[] iArr = this.f32004c;
+            Paint paint = this.f32003b;
+            if (length == 16) {
+                float floor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
+                float f7 = 8.0f * floor;
+                float max = Math.max(0.0f, (getBounds().width() - f7) / 2.0f);
+                float max2 = Math.max(0.0f, (getBounds().height() - f7) / 2.0f);
+                int i10 = 0;
+                for (int i11 = 0; i11 < 8; i11++) {
+                    int i12 = 0;
+                    while (i12 < 8) {
+                        int i13 = i10 + 2;
+                        paint.setColor(iArr[Math.abs((this.f32002a[i10 / 8] >> (i10 % 8)) & 3) % 4]);
+                        float f10 = (i12 * floor) + max;
+                        float f11 = i11 * floor;
+                        canvas.drawRect(f10, f11 + max2, f10 + floor, f11 + floor + max2, paint);
+                        i12++;
+                        i10 = i13;
+                    }
                 }
-            } else {
-                return true;
+                return;
+            }
+            float floor2 = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 12.0f);
+            float f12 = 12.0f * floor2;
+            float max3 = Math.max(0.0f, (getBounds().width() - f12) / 2.0f);
+            float max4 = Math.max(0.0f, (getBounds().height() - f12) / 2.0f);
+            int i14 = 0;
+            int i15 = 0;
+            while (i15 < 12) {
+                int i16 = i14;
+                for (int i17 = 0; i17 < 12; i17++) {
+                    paint.setColor(iArr[Math.abs((this.f32002a[i16 / 8] >> (i16 % 8)) & 3) % 4]);
+                    float f13 = (i17 * floor2) + max3;
+                    float f14 = i15 * floor2;
+                    canvas.drawRect(f13, f14 + max4, f13 + floor2, f14 + floor2 + max4, paint);
+                    i16 += 2;
+                }
+                i15++;
+                i14 = i16;
             }
         }
-        return false;
     }
 
-    public w40(String str, int i10, String str2, int i11, float f7) {
-        this.f30469a = str2;
-        this.f30470b = i11;
-        this.f30471c = f7;
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

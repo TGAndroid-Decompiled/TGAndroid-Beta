@@ -1,84 +1,87 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-public abstract class nl0 extends lm0 {
-    public boolean f27373c;
+import java.util.HashSet;
+public final class nl0 {
+    public final im0 f28789a;
     public boolean d;
-    public ArrayList e;
-    public ArrayList f27374f;
+    public final boolean e;
+    public final SparseArray f28790b = new SparseArray();
+    public final HashSet f28791c = new HashSet();
+    public final boolean f28792f = true;
+    public final ArrayList f28793g = new ArrayList();
+    public final ArrayList h = new ArrayList();
 
-    public final void E() {
-        this.f27373c = false;
-        if (!this.d && this.e.isEmpty() && this.f27374f.isEmpty()) {
-            return;
-        }
-        ((org.telegram.ui.rm) this).O(false);
+    public nl0(im0 im0Var, boolean z10) {
+        this.f28789a = im0Var;
+        this.e = z10;
+        im0Var.setItemsEnterAnimator(this);
     }
 
-    @Override
-    public void l() {
-        if (!this.f27373c) {
-            super.l();
-        } else {
-            this.d = true;
+    public final void a() {
+        ArrayList arrayList = this.f28793g;
+        int i10 = 0;
+        if (!arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList(arrayList);
+            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                ((AnimatorSet) arrayList2.get(i11)).end();
+                ((AnimatorSet) arrayList2.get(i11)).cancel();
+            }
         }
-    }
-
-    @Override
-    public void m(int i10) {
-        if (!this.f27373c) {
-            super.m(i10);
-        }
-    }
-
-    @Override
-    public void o(int i10) {
-        ArrayList arrayList = this.e;
-        if (!this.f27373c) {
-            super.o(i10);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i10));
-        arrayList.add(1);
-    }
-
-    @Override
-    public void q(int i10, int i11) {
-        if (!this.f27373c) {
-            super.q(i10, i11);
+        arrayList.clear();
+        while (true) {
+            ArrayList arrayList3 = this.h;
+            int size = arrayList3.size();
+            im0 im0Var = this.f28789a;
+            if (i10 < size) {
+                im0Var.getViewTreeObserver().removeOnPreDrawListener((ViewTreeObserver.OnPreDrawListener) arrayList3.get(i10));
+                i10++;
+            } else {
+                arrayList3.clear();
+                this.f28790b.clear();
+                im0Var.invalidate();
+                this.d = true;
+                return;
+            }
         }
     }
 
-    @Override
-    public void s(int i10, int i11) {
-        ArrayList arrayList = this.e;
-        if (!this.f27373c) {
-            super.s(i10, i11);
-            return;
+    public final void b(int i10) {
+        Animator ofFloat;
+        im0 im0Var = this.f28789a;
+        int childCount = im0Var.getChildCount();
+        b10 b10Var = null;
+        for (int i11 = 0; i11 < childCount; i11++) {
+            View childAt = im0Var.getChildAt(i11);
+            if (RecyclerView.R(childAt) >= 0 && (childAt instanceof b10)) {
+                b10Var = childAt;
+            }
         }
-        arrayList.add(Integer.valueOf(i10));
-        arrayList.add(Integer.valueOf(i11));
-    }
-
-    @Override
-    public void t(int i10, int i11) {
-        ArrayList arrayList = this.f27374f;
-        if (!this.f27373c) {
-            super.t(i10, i11);
-            return;
+        s4.n0 layoutManager = im0Var.getLayoutManager();
+        if (b10Var != null && layoutManager != null) {
+            im0Var.removeView(b10Var);
+            this.f28791c.add(b10Var);
+            im0Var.addView(b10Var);
+            layoutManager.M(b10Var);
+            if (this.f28792f) {
+                ofFloat = ObjectAnimator.ofFloat(b10Var, View.ALPHA, b10Var.getAlpha(), 0.0f);
+            } else {
+                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            }
+            ofFloat.addListener(new ml0(this, b10Var, layoutManager));
+            ofFloat.start();
+            i10--;
         }
-        arrayList.add(Integer.valueOf(i10));
-        arrayList.add(Integer.valueOf(i11));
-    }
-
-    @Override
-    public void u(int i10) {
-        ArrayList arrayList = this.f27374f;
-        if (!this.f27373c) {
-            super.u(i10);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i10));
-        arrayList.add(1);
+        org.telegram.ui.qq qqVar = new org.telegram.ui.qq(this, b10Var, i10, 2);
+        this.h.add(qqVar);
+        im0Var.getViewTreeObserver().addOnPreDrawListener(qqVar);
     }
 }

@@ -1,279 +1,144 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
-import android.opengl.GLES20;
-import android.opengl.GLES30;
-import android.opengl.GLUtils;
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.util.ArrayList;
-import java.util.Random;
-import org.telegram.messenger.sk;
-public class k5 {
-    public final int f33128a;
-    public final int f33129b;
-    public final int f33130c;
-    public final int d;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class k5 extends Drawable {
+    public static Path f34435f;
+    public final int f34436a;
+    public final Paint f34437b;
+    public final Path f34438c;
+    public final Object d;
+    public final Object e;
 
-    public k5() {
-        int i10;
-        int i11;
-        float f7;
-        float f10;
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        Random random = new Random(24560118926758988L);
-        int i12 = 16;
-        float[] fArr = new float[16];
-        float[] fArr2 = new float[16];
-        int i13 = 0;
-        while (true) {
-            float f11 = 312.5f;
-            float f12 = 512.0f;
-            if (i13 >= i12) {
-                break;
-            }
-            if (i13 == 0) {
-                i10 = i12;
-                i11 = 1;
-            } else {
-                i10 = i12;
-                i11 = 32;
-            }
-            float f13 = 0.0f;
-            float f14 = 0.0f;
-            float f15 = -1.0f;
-            int i14 = 0;
-            while (i14 < i11) {
-                float nextFloat = random.nextFloat() * f12;
-                float nextFloat2 = random.nextFloat() * f11;
-                float f16 = f11;
-                float f17 = Float.MAX_VALUE;
-                float f18 = f12;
-                for (int i15 = 0; i15 < i13; i15++) {
-                    float abs = Math.abs(nextFloat - fArr[i15]);
-                    float abs2 = Math.abs(nextFloat2 - fArr2[i15]);
-                    float min = Math.min(abs, f18 - abs);
-                    float min2 = Math.min(abs2, f16 - abs2);
-                    f17 = Math.min(f17, (min2 * min2) + (min * min));
-                }
-                if (f17 > f15) {
-                    f15 = f17;
-                    f13 = nextFloat;
-                    f14 = nextFloat2;
-                }
-                i14++;
-                f12 = f18;
-                f11 = f16;
-            }
-            float f19 = f11;
-            float f20 = f12;
-            fArr[i13] = f13;
-            fArr2[i13] = f14;
-            float nextFloat3 = (random.nextFloat() * 6.0f) + 1.0f;
-            float nextFloat4 = (random.nextFloat() * 0.45f) + 0.05f;
-            double nextFloat5 = random.nextFloat() * 6.2831855f;
-            float cos = (float) Math.cos(nextFloat5);
-            float sin = (float) Math.sin(nextFloat5);
-            float f21 = -sin;
-            float f22 = cos * nextFloat4;
-            float f23 = sin * nextFloat4;
-            float f24 = f21 * 0.6f;
-            float f25 = 0.6f * cos;
-            float f26 = f22 + f24;
-            float f27 = f23 + f25;
-            Random random2 = random;
-            int a2 = (a(f26) << 16) | (-16777216) | (a(f27) << 8) | a((float) Math.sqrt(Math.max(0.0f, (1.0f - (f26 * f26)) - (f27 * f27))));
-            int a10 = (a(f22 - f24) << 16) | (-16777216) | (a(f23 - f25) << 8) | a((float) Math.sqrt(Math.max(0.0f, (1.0f - (f7 * f7)) - (f10 * f10))));
-            float f28 = f21 * nextFloat3;
-            float f29 = cos * nextFloat3;
-            int i16 = -1;
-            while (true) {
-                if (i16 <= 1) {
-                    int i17 = -1;
-                    for (int i18 = 1; i17 <= i18; i18 = 1) {
-                        float f30 = f13 + (i17 * 512);
-                        float f31 = (i16 * f19) + f14;
-                        if (f30 + nextFloat3 > 0.0f && f30 - nextFloat3 < f20 && f31 + nextFloat3 > 0.0f && f31 - nextFloat3 < f20) {
-                            int max = Math.max(0, Math.min(464, Math.round((f30 - 24.0f) / 8.0f) * 8));
-                            int max2 = Math.max(0, Math.min(464, Math.round((f31 - 24.0f) / 8.0f) * 8));
-                            Rect rect = new Rect(max, max2, max + 48, max2 + 48);
-                            if (!arrayList.contains(rect)) {
-                                arrayList.add(rect);
-                            }
+    public k5(int i10) {
+        this.f34436a = i10;
+        switch (i10) {
+            case 1:
+                Paint paint = new Paint(1);
+                this.f34437b = paint;
+                this.f34438c = new Path();
+                this.d = new Matrix();
+                this.e = new Rect();
+                paint.setColor(-1);
+                return;
+            default:
+                this.f34437b = new Paint(1);
+                this.f34438c = new Path();
+                this.d = new RectF();
+                this.e = new float[]{AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 0.0f, 0.0f, 0.0f, 0.0f};
+                return;
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        switch (this.f34436a) {
+            case 0:
+                canvas.drawPath(this.f34438c, this.f34437b);
+                return;
+            default:
+                Rect rect = (Rect) this.e;
+                Matrix matrix = (Matrix) this.d;
+                Rect bounds = getBounds();
+                if (!bounds.isEmpty()) {
+                    boolean equals = bounds.equals(rect);
+                    Path path = this.f34438c;
+                    if (!equals) {
+                        rect.set(bounds);
+                        matrix.setScale(bounds.width() / 52.0f, bounds.height() / 52.0f);
+                        matrix.postTranslate(bounds.left, bounds.top);
+                        if (f34435f == null) {
+                            f34435f = v7.x7.d("M25.0339 38.8535L16.4947 44.2223C15.6075 44.7802 14.4361 44.5131 13.8782 43.6258C13.6038 43.1893 13.5188 42.6601 13.6426 42.1598L15.0264 36.5704C15.4811 34.7334 16.7041 33.1809 18.3835 32.3088L26.359 28.1671C26.7894 27.9436 26.9572 27.4137 26.7337 26.9833C26.5595 26.6481 26.1903 26.4617 25.8172 26.5208L16.9312 27.9261C14.8088 28.2617 12.6463 27.6475 11.0173 26.2465L7.5978 23.3054C6.8032 22.622 6.71306 21.4239 7.39646 20.6293C7.7225 20.2503 8.18486 20.0153 8.68322 19.9753L18.8056 19.1622C19.5221 19.1046 20.1443 18.6473 20.4134 17.9809L24.2843 8.39097C24.6766 7.41912 25.7823 6.94929 26.7542 7.34157C27.232 7.53443 27.6108 7.91321 27.8037 8.39097L31.6745 17.9809C31.9435 18.6473 32.5659 19.1046 33.2822 19.1622L43.4582 19.9795C44.5029 20.0634 45.2817 20.9784 45.1978 22.023C45.1582 22.5159 44.9279 22.9737 44.5559 23.2992L36.7229 30.1527C36.1947 30.6149 35.9647 31.3308 36.125 32.0141L38.5201 42.2261C38.7594 43.2465 38.1263 44.2677 37.106 44.507C36.6119 44.6228 36.0921 44.536 35.6626 44.2659L27.054 38.8535C26.4366 38.4654 25.6513 38.4654 25.0339 38.8535Z");
                         }
-                        arrayList2.add(new j5(f30, f31, nextFloat3, f28, f29, a2, a10));
-                        i17++;
+                        f34435f.transform(matrix, path);
                     }
-                    i16++;
+                    canvas.drawPath(path, this.f34437b);
+                    return;
                 }
-            }
-            i13++;
-            random = random2;
-            i12 = i10;
-        }
-        int[] iArr = new int[3];
-        GLES20.glGenTextures(3, iArr, 0);
-        int i19 = iArr[0];
-        int i20 = iArr[1];
-        this.f33128a = i20;
-        this.f33129b = iArr[2];
-        GLES20.glBindTexture(35866, i20);
-        e(35866);
-        GLES20.glTexParameteri(35866, 33085, 3);
-        GLES30.glTexStorage3D(35866, 4, 32856, 48, 48, arrayList.size());
-        Bitmap createBitmap = Bitmap.createBitmap(48, 48, Bitmap.Config.ARGB_8888);
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(9216);
-        int i21 = 0;
-        while (i21 < arrayList.size()) {
-            Rect rect2 = (Rect) arrayList.get(i21);
-            c(createBitmap, rect2.left, rect2.top, arrayList2);
-            allocateDirect.clear();
-            createBitmap.copyPixelsToBuffer(allocateDirect);
-            allocateDirect.position(0);
-            int i22 = i21;
-            GLES30.glTexSubImage3D(35866, 0, 0, 0, i22, 48, 48, 1, 6408, 5121, allocateDirect);
-            i21 = i22 + 1;
-        }
-        createBitmap.recycle();
-        GLES20.glGenerateMipmap(35866);
-        GLES20.glBindTexture(3553, this.f33129b);
-        e(3553);
-        GLES30.glTexStorage2D(3553, 8, 32856, 128, 128);
-        int[] iArr2 = new int[1];
-        int[] iArr3 = new int[1];
-        GLES20.glGetIntegerv(36006, iArr3, 0);
-        GLES20.glGenFramebuffers(1, iArr2, 0);
-        GLES20.glBindFramebuffer(36160, iArr2[0]);
-        Bitmap createBitmap2 = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888);
-        GLES20.glBindTexture(3553, i19);
-        e(3553);
-        GLES20.glTexParameteri(3553, 33085, 2);
-        GLES30.glTexStorage2D(3553, 3, 32856, 64, 64);
-        GLES20.glFramebufferTexture2D(36160, 36064, 3553, i19, 2);
-        for (int i23 = 0; i23 < 512; i23 += 64) {
-            for (int i24 = 0; i24 < 512; i24 += 64) {
-                c(createBitmap2, i24, i23, arrayList2);
-                GLES20.glBindTexture(3553, i19);
-                GLUtils.texSubImage2D(3553, 0, 0, 0, createBitmap2);
-                GLES20.glGenerateMipmap(3553);
-                GLES20.glBindTexture(3553, this.f33129b);
-                GLES20.glCopyTexSubImage2D(3553, 0, i24 / 4, i23 / 4, 0, 0, 16, 16);
-            }
-        }
-        createBitmap2.recycle();
-        GLES20.glBindFramebuffer(36160, iArr3[0]);
-        GLES20.glGenerateMipmap(3553);
-        GLES20.glDeleteFramebuffers(1, iArr2, 0);
-        GLES20.glDeleteTextures(1, new int[]{i19}, 0);
-        GLES20.glBindTexture(3553, 0);
-        GLES20.glBindTexture(35866, 0);
-        int size = arrayList.size();
-        this.d = size * 6;
-        FloatBuffer h = sk.h(ByteBuffer.allocateDirect(size * 192));
-        int[] iArr4 = {0, 1, 2, 2, 1, 3};
-        for (int i25 = 0; i25 < arrayList.size(); i25++) {
-            Rect rect3 = (Rect) arrayList.get(i25);
-            for (int i26 = 0; i26 < 6; i26++) {
-                int i27 = iArr4[i26];
-                float f32 = (i27 & 1) == 0 ? -1.0f : 1.0f;
-                float f33 = (i27 & 2) == 0 ? -1.0f : 1.0f;
-                float f34 = f32 < 0.0f ? rect3.left : rect3.right;
-                float f35 = f33 < 0.0f ? rect3.top : rect3.bottom;
-                h.put(-0.0125f);
-                h.put((0.5f - (f35 / 312.5f)) * 1.219512f);
-                h.put(((f34 / 512.0f) * 2.0f) - 1.0f);
-                h.put(rect3.left).put(rect3.top).put(i25);
-                h.put(f32).put(f33);
-            }
-        }
-        h.position(0);
-        int[] iArr5 = new int[1];
-        GLES20.glGenBuffers(1, iArr5, 0);
-        int i28 = iArr5[0];
-        this.f33130c = i28;
-        GLES20.glBindBuffer(34962, i28);
-        GLES20.glBufferData(34962, this.d * 32, h, 35044);
-        GLES20.glBindBuffer(34962, 0);
-    }
-
-    public static int a(float f7) {
-        return Math.max(0, Math.min(255, Math.round(((f7 * 0.5f) + 0.5f) * 255.0f)));
-    }
-
-    public static void c(Bitmap bitmap, int i10, int i11, ArrayList arrayList) {
-        int i12 = 0;
-        bitmap.eraseColor(0);
-        Canvas canvas = new Canvas(bitmap);
-        canvas.translate(-i10, -i11);
-        Paint paint = new Paint(1);
-        int size = arrayList.size();
-        while (i12 < size) {
-            Object obj = arrayList.get(i12);
-            i12++;
-            j5 j5Var = (j5) obj;
-            paint.setShader(j5Var.f33061b);
-            canvas.drawPath(j5Var.f33060a, paint);
+                return;
         }
     }
 
-    public static void e(int i10) {
-        GLES20.glTexParameteri(i10, 10241, 9987);
-        GLES20.glTexParameteri(i10, 10240, 9729);
-        GLES20.glTexParameteri(i10, 10242, 33071);
-        GLES20.glTexParameteri(i10, 10243, 33071);
-    }
-
-    public boolean b(int i10) {
-        if (i10 == 1) {
-            if (this.f33128a - this.f33129b <= 1) {
-                return false;
-            }
-        } else if (this.f33130c - this.d <= 1) {
-            return false;
+    @Override
+    public int getIntrinsicHeight() {
+        switch (this.f34436a) {
+            case 1:
+                return AndroidUtilities.dp(18.0f);
+            default:
+                return super.getIntrinsicHeight();
         }
-        return true;
     }
 
-    public void d() {
-        GLES20.glDeleteProgram(this.f33128a);
-        GLES20.glDeleteShader(this.f33129b);
-        GLES20.glDeleteShader(this.f33130c);
-    }
-
-    public k5(int i10, int i11, int i12, int i13) {
-        this.f33128a = i10;
-        this.f33129b = i11;
-        this.f33130c = i12;
-        this.d = i13;
-    }
-
-    public k5(String str, String str2) {
-        int a2 = ri.b0.a(35633, str);
-        this.f33129b = a2;
-        int a10 = ri.b0.a(35632, str2);
-        this.f33130c = a10;
-        int glCreateProgram = GLES20.glCreateProgram();
-        GLES20.glAttachShader(glCreateProgram, a2);
-        GLES20.glAttachShader(glCreateProgram, a10);
-        GLES20.glBindAttribLocation(glCreateProgram, 0, "aPosition");
-        GLES20.glBindAttribLocation(glCreateProgram, 1, "aTextureCoord");
-        GLES20.glLinkProgram(glCreateProgram);
-        int[] iArr = new int[1];
-        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
-        if (iArr[0] != 0) {
-            this.f33128a = glCreateProgram;
-            this.d = 1;
-            int glGetUniformLocation = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
-            GLES20.glUseProgram(glCreateProgram);
-            GLES20.glUniform1i(glGetUniformLocation, 0);
-            return;
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f34436a) {
+            case 1:
+                return AndroidUtilities.dp(18.0f);
+            default:
+                return super.getIntrinsicWidth();
         }
-        String glGetProgramInfoLog = GLES20.glGetProgramInfoLog(glCreateProgram);
-        GLES20.glDeleteProgram(glCreateProgram);
-        throw new IllegalStateException(t8.b.h("Unable to link program: ", glGetProgramInfoLog));
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f34436a) {
+            case 0:
+                return -3;
+            default:
+                return -3;
+        }
+    }
+
+    @Override
+    public void onBoundsChange(Rect rect) {
+        switch (this.f34436a) {
+            case 0:
+                super.onBoundsChange(rect);
+                RectF rectF = (RectF) this.d;
+                rectF.set(rect);
+                Path path = this.f34438c;
+                path.reset();
+                path.addRoundRect(rectF, (float[]) this.e, Path.Direction.CW);
+                this.f34437b.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
+                return;
+            default:
+                super.onBoundsChange(rect);
+                return;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f34436a) {
+            case 0:
+                this.f34437b.setAlpha(i10);
+                invalidateSelf();
+                return;
+            default:
+                this.f34437b.setAlpha(i10);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f34436a) {
+            case 0:
+                this.f34437b.setColorFilter(colorFilter);
+                invalidateSelf();
+                return;
+            default:
+                this.f34437b.setColorFilter(colorFilter);
+                return;
+        }
     }
 }

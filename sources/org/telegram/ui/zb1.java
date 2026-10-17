@@ -1,39 +1,52 @@
 package org.telegram.ui;
 
-import android.location.Address;
-import android.location.Geocoder;
-import java.util.List;
-import java.util.Locale;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class zb1 implements Runnable {
-    public final int f42271a;
-    public final ThemeActivity f42272b;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+public final class zb1 extends bu0 {
+    public final MediaController.PhotoEntry f43714a;
+    public final ac1 f43715b;
 
-    public zb1(ThemeActivity themeActivity, int i10) {
-        this.f42271a = i10;
-        this.f42272b = themeActivity;
+    public zb1(ac1 ac1Var, MediaController.PhotoEntry photoEntry) {
+        this.f43715b = ac1Var;
+        this.f43714a = photoEntry;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42271a) {
-            case 0:
-                ThemeActivity themeActivity = this.f42272b;
-                themeActivity.f32544b.e1(new vb1(themeActivity, 0), 700, true);
-                return;
-            default:
-                ThemeActivity themeActivity2 = this.f42272b;
-                String str = null;
-                try {
-                    List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, Locale.getDefault()).getFromLocation(org.telegram.ui.ActionBar.g6.f19963x, org.telegram.ui.ActionBar.g6.f19982y, 1);
-                    if (fromLocation.size() > 0) {
-                        str = fromLocation.get(0).getLocality();
-                    }
-                } catch (Exception unused) {
-                }
-                AndroidUtilities.runOnUIThread(new i11(20, themeActivity2, str));
-                return;
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        mc1 mc1Var = this.f43715b.f35391a;
+        MediaController.PhotoEntry photoEntry = this.f43714a;
+        if (photoEntry.imagePath != null) {
+            File directory = FileLoader.getDirectory(4);
+            File file = new File(directory, Utilities.random.nextInt() + ".jpg");
+            Point realScreenSize = AndroidUtilities.getRealScreenSize();
+            Bitmap loadBitmap = ImageLoader.loadBitmap(photoEntry.imagePath, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+            try {
+                loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            File file2 = new File(photoEntry.imagePath);
+            mc1Var.B1 = new vh1(file2, file2, "");
+            mc1Var.C1 = loadBitmap;
+            mc1Var.f39103b2 = 0;
+            mc1Var.f39159x0.requestLayout();
+            mc1Var.b1(false);
+            mc1Var.f39157w1 = null;
+            mc1Var.i1();
         }
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

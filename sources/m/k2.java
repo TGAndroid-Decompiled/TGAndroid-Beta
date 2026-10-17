@@ -1,96 +1,45 @@
 package m;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.widget.HeaderViewListAdapter;
-import android.widget.ListAdapter;
-import androidx.appcompat.view.menu.ListMenuItemView;
-public final class k2 extends t1 {
-    public g2 E;
-    public l.m F;
-    public final int f14884x;
-    public final int f14885y;
+import android.os.Build;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.PopupWindow;
+import java.lang.reflect.Method;
+public final class k2 extends e2 implements f2 {
+    public static final Method T;
+    public ki.t1 S;
 
-    public k2(Context context, boolean z10) {
-        super(context, z10);
-        if (1 == j2.a(context.getResources().getConfiguration())) {
-            this.f14884x = 21;
-            this.f14885y = 22;
-            return;
-        }
-        this.f14884x = 22;
-        this.f14885y = 21;
-    }
-
-    @Override
-    public final boolean onHoverEvent(MotionEvent motionEvent) {
-        l.h hVar;
-        int i10;
-        l.m mVar;
-        int pointToPosition;
-        int i11;
-        if (this.E != null) {
-            ListAdapter adapter = getAdapter();
-            if (adapter instanceof HeaderViewListAdapter) {
-                HeaderViewListAdapter headerViewListAdapter = (HeaderViewListAdapter) adapter;
-                i10 = headerViewListAdapter.getHeadersCount();
-                hVar = (l.h) headerViewListAdapter.getWrappedAdapter();
-            } else {
-                hVar = (l.h) adapter;
-                i10 = 0;
+    static {
+        try {
+            if (Build.VERSION.SDK_INT <= 28) {
+                T = PopupWindow.class.getDeclaredMethod("setTouchModal", Boolean.TYPE);
             }
-            if (motionEvent.getAction() != 10 && (pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY())) != -1 && (i11 = pointToPosition - i10) >= 0 && i11 < hVar.getCount()) {
-                mVar = hVar.getItem(i11);
-            } else {
-                mVar = null;
-            }
-            l.m mVar2 = this.F;
-            if (mVar2 != mVar) {
-                l.k kVar = hVar.f14410a;
-                if (mVar2 != null) {
-                    this.E.z(kVar, mVar2);
-                }
-                this.F = mVar;
-                if (mVar != null) {
-                    this.E.w0(kVar, mVar);
-                }
-            }
-        }
-        return super.onHoverEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        l.h hVar;
-        ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i10 == this.f14884x) {
-            if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
-                performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
-            }
-            return true;
-        } else if (listMenuItemView != null && i10 == this.f14885y) {
-            setSelection(-1);
-            ListAdapter adapter = getAdapter();
-            if (adapter instanceof HeaderViewListAdapter) {
-                hVar = (l.h) ((HeaderViewListAdapter) adapter).getWrappedAdapter();
-            } else {
-                hVar = (l.h) adapter;
-            }
-            hVar.f14410a.c(false);
-            return true;
-        } else {
-            return super.onKeyDown(i10, keyEvent);
+        } catch (NoSuchMethodException unused) {
+            Log.i("MenuPopupWindow", "Could not find method setTouchModal() on PopupWindow. Oh well.");
         }
     }
 
-    public void setHoverListener(g2 g2Var) {
-        this.E = g2Var;
+    @Override
+    public final void e(l.k kVar, MenuItem menuItem) {
+        ki.t1 t1Var = this.S;
+        if (t1Var != null) {
+            t1Var.e(kVar, menuItem);
+        }
     }
 
     @Override
-    public void setSelector(Drawable drawable) {
-        super.setSelector(drawable);
+    public final void p(l.k kVar, l.m mVar) {
+        ki.t1 t1Var = this.S;
+        if (t1Var != null) {
+            t1Var.p(kVar, mVar);
+        }
+    }
+
+    @Override
+    public final s1 q(Context context, boolean z10) {
+        j2 j2Var = new j2(context, z10);
+        j2Var.setHoverListener(this);
+        return j2Var;
     }
 }

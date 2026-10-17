@@ -1,45 +1,37 @@
 package gb;
-public final class g extends eb.u {
-    public volatile eb.u f10049a;
-    public final boolean f10050b;
-    public final boolean f10051c;
-    public final eb.g d;
-    public final lb.a e;
-    public final h f10052f;
+public abstract class g {
+    public static final int f10960a;
 
-    public g(h hVar, boolean z10, boolean z11, eb.g gVar, lb.a aVar) {
-        this.f10052f = hVar;
-        this.f10050b = z10;
-        this.f10051c = z11;
-        this.d = gVar;
-        this.e = aVar;
-    }
-
-    @Override
-    public final Object read(mb.a aVar) {
-        if (this.f10050b) {
-            aVar.C();
-            return null;
+    static {
+        int i10;
+        String property = System.getProperty("java.version");
+        try {
+            String[] split = property.split("[._]", 3);
+            i10 = Integer.parseInt(split[0]);
+            if (i10 == 1 && split.length > 1) {
+                i10 = Integer.parseInt(split[1]);
+            }
+        } catch (NumberFormatException unused) {
+            i10 = -1;
         }
-        eb.u uVar = this.f10049a;
-        if (uVar == null) {
-            uVar = this.d.c(this.f10052f, this.e);
-            this.f10049a = uVar;
+        if (i10 == -1) {
+            try {
+                StringBuilder sb2 = new StringBuilder();
+                for (int i11 = 0; i11 < property.length(); i11++) {
+                    char charAt = property.charAt(i11);
+                    if (!Character.isDigit(charAt)) {
+                        break;
+                    }
+                    sb2.append(charAt);
+                }
+                i10 = Integer.parseInt(sb2.toString());
+            } catch (NumberFormatException unused2) {
+                i10 = -1;
+            }
         }
-        return uVar.read(aVar);
-    }
-
-    @Override
-    public final void write(mb.b bVar, Object obj) {
-        if (this.f10051c) {
-            bVar.i();
-            return;
+        if (i10 == -1) {
+            i10 = 6;
         }
-        eb.u uVar = this.f10049a;
-        if (uVar == null) {
-            uVar = this.d.c(this.f10052f, this.e);
-            this.f10049a = uVar;
-        }
-        uVar.write(bVar, obj);
+        f10960a = i10;
     }
 }

@@ -1,29 +1,31 @@
 package v7;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.os.Build;
 public abstract class c9 {
-    public static t7.r f46599a;
-    public static StaticLayout f46600b;
+    public static t7.r f48007a;
 
-    public static ji.b0 a(int i10, int i11, int i12, int i13) {
-        Rect rect = new Rect(i10, i11, i12, i13);
-        if (f46600b == null) {
-            f46600b = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+    public static boolean a(int i10) {
+        if (i10 == 8 || i10 == 7) {
+            return true;
         }
-        return new ji.b0(f46600b, rect);
+        int i11 = Build.VERSION.SDK_INT;
+        if (i11 >= 31 && (i10 == 26 || i10 == 27)) {
+            return true;
+        }
+        if (i11 >= 33 && i10 == 30) {
+            return true;
+        }
+        return false;
     }
 
     public static synchronized y8 b(v8 v8Var) {
         y8 y8Var;
         synchronized (c9.class) {
             try {
-                if (f46599a == null) {
-                    f46599a = new t7.r(1);
+                if (f48007a == null) {
+                    f48007a = new t7.r(1);
                 }
-                y8Var = (y8) f46599a.R0(v8Var);
+                y8Var = (y8) f48007a.R0(v8Var);
             } catch (Throwable th2) {
                 throw th2;
             }

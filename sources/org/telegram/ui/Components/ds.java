@@ -1,90 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class ds extends Drawable {
-    public final Drawable f24172a;
-    public final Drawable f24173b;
-    public float f24174c;
-    public float d = 255.0f;
-    public ValueAnimator e;
+import android.content.Context;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+public final class ds extends ImageView {
+    public final int f25686a = 1;
+    public Object f25687b;
+    public final ViewGroup f25688c;
 
-    public ds(Drawable drawable, Drawable drawable2) {
-        this.f24172a = drawable;
-        this.f24173b = drawable2;
-        if (drawable != null) {
-            drawable.setCallback(new cs(this, 0));
-        }
-        if (drawable2 != null) {
-            drawable2.setCallback(new cs(this, 1));
-        }
-    }
-
-    public final void a(float f7) {
-        ValueAnimator valueAnimator = this.e;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f24174c, f7);
-        this.e = ofFloat;
-        ofFloat.addUpdateListener(new n6(this, 16));
-        this.e.setDuration(Math.abs(this.f24174c - f7) * 200.0f);
-        this.e.setInterpolator(es.f24465f);
-        this.e.start();
-    }
-
-    public final void b(float f7) {
-        this.f24174c = f7;
-        invalidateSelf();
+    public ds(fs fsVar, Context context, k0.b bVar) {
+        super(context);
+        this.f25688c = fsVar;
+        this.f25687b = bVar;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i10 = (int) ((1.0f - this.f24174c) * this.d);
-        Drawable drawable = this.f24172a;
-        drawable.setAlpha(i10);
-        int i11 = (int) (this.d * this.f24174c);
-        Drawable drawable2 = this.f24173b;
-        drawable2.setAlpha(i11);
-        if (i10 > 0) {
-            drawable.draw(canvas);
-        }
-        if (i11 > 0) {
-            drawable2.draw(canvas);
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f25686a) {
+            case 0:
+                fs fsVar = (fs) this.f25688c;
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (fsVar.f26383n || fsVar.f26382f)) {
+                    fsVar.f26383n = false;
+                    fsVar.f26382f = false;
+                    removeCallbacks(fsVar.f26384r);
+                    removeCallbacks(fsVar.h);
+                }
+                super.onTouchEvent(motionEvent);
+                return ((GestureDetector) ((k0.b) this.f25687b).f14559b).onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f24172a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f24172a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f24172a.setBounds(rect);
-        this.f24173b.setBounds(rect);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.d = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f24172a.setColorFilter(colorFilter);
+    public ds(cl0 cl0Var, Context context) {
+        super(context);
+        this.f25688c = cl0Var;
     }
 }

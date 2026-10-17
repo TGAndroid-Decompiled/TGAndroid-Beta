@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
-import org.telegram.ui.jv;
+import org.telegram.ui.su;
 public class s extends b0 {
     public boolean I;
     public int J;
@@ -26,7 +26,7 @@ public class s extends b0 {
         this.J = -1;
         this.M = new SparseIntArray();
         this.N = new SparseIntArray();
-        this.O = new jv(1);
+        this.O = new su(1);
         this.P = new Rect();
         y1(i10);
     }
@@ -36,7 +36,7 @@ public class s extends b0 {
         int i10 = this.J;
         for (int i11 = 0; i11 < this.J && zVar.b(y0Var) && i10 > 0; i11++) {
             int i12 = zVar.d;
-            fVar.b(i12, Math.max(0, zVar.f45009g));
+            fVar.b(i12, Math.max(0, zVar.f46109g));
             i10 -= this.O.i(i12);
             zVar.d += zVar.e;
         }
@@ -45,11 +45,11 @@ public class s extends b0 {
     public final void A1() {
         int C;
         int F;
-        if (this.f44826o == 1) {
-            C = this.f44939m - E();
+        if (this.f45926o == 1) {
+            C = this.f46039m - E();
             F = D();
         } else {
-            C = this.f44940n - C();
+            C = this.f46040n - C();
             F = F();
         }
         int i10 = C - F;
@@ -58,7 +58,7 @@ public class s extends b0 {
 
     @Override
     public int I(qf.e eVar, y0 y0Var) {
-        if (this.f44826o == 0) {
+        if (this.f45926o == 0) {
             return this.J;
         }
         if (y0Var.b() < 1) {
@@ -71,8 +71,8 @@ public class s extends b0 {
     public final View Q0(qf.e eVar, y0 y0Var, int i10, int i11, int i12) {
         int i13;
         G0();
-        int j10 = this.f44828q.j();
-        int f7 = this.f44828q.f();
+        int j10 = this.f45928q.j();
+        int f7 = this.f45928q.f();
         if (i11 > i10) {
             i13 = 1;
         } else {
@@ -84,11 +84,11 @@ public class s extends b0 {
             View q6 = q(i10);
             int H = n0.H(q6);
             if (H >= 0 && H < i12 && u1(H, eVar, y0Var) == 0) {
-                if (((o0) q6.getLayoutParams()).f44942a.j()) {
+                if (((o0) q6.getLayoutParams()).f46042a.j()) {
                     if (view2 == null) {
                         view2 = q6;
                     }
-                } else if (this.f44828q.d(q6) < f7 && this.f44828q.a(q6) >= j10) {
+                } else if (this.f45928q.d(q6) < f7 && this.f45928q.a(q6) >= j10) {
                     return q6;
                 } else {
                     if (view == null) {
@@ -113,7 +113,7 @@ public class s extends b0 {
     public void U(qf.e eVar, y0 y0Var, View view, s0.c cVar) {
         boolean z10;
         boolean z11;
-        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f44795a;
+        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45895a;
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         if (!(layoutParams instanceof r)) {
             T(view, cVar);
@@ -121,9 +121,9 @@ public class s extends b0 {
         }
         r rVar = (r) layoutParams;
         int t12 = t1(rVar.b(), eVar, y0Var);
-        if (this.f44826o == 0) {
+        if (this.f45926o == 0) {
             int i10 = rVar.e;
-            int i11 = rVar.f44952f;
+            int i11 = rVar.f46052f;
             int i12 = this.J;
             if (i12 > 1 && i11 == i12) {
                 z11 = true;
@@ -134,7 +134,7 @@ public class s extends b0 {
             return;
         }
         int i13 = rVar.e;
-        int i14 = rVar.f44952f;
+        int i14 = rVar.f46052f;
         int i15 = this.J;
         if (i15 > 1 && i14 == i15) {
             z10 = true;
@@ -147,25 +147,25 @@ public class s extends b0 {
     @Override
     public void V(RecyclerView recyclerView, int i10, int i11) {
         this.O.j();
-        ((SparseIntArray) this.O.f9780b).clear();
+        ((SparseIntArray) this.O.f10686b).clear();
     }
 
     @Override
     public void W(RecyclerView recyclerView) {
         this.O.j();
-        ((SparseIntArray) this.O.f9780b).clear();
+        ((SparseIntArray) this.O.f10686b).clear();
     }
 
     @Override
     public void X(RecyclerView recyclerView, int i10, int i11) {
         this.O.j();
-        ((SparseIntArray) this.O.f9780b).clear();
+        ((SparseIntArray) this.O.f10686b).clear();
     }
 
     @Override
     public void Y(RecyclerView recyclerView, int i10, int i11) {
         this.O.j();
-        ((SparseIntArray) this.O.f9780b).clear();
+        ((SparseIntArray) this.O.f10686b).clear();
     }
 
     @Override
@@ -176,33 +176,33 @@ public class s extends b0 {
     @Override
     public void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
         this.O.j();
-        ((SparseIntArray) this.O.f9780b).clear();
+        ((SparseIntArray) this.O.f10686b).clear();
     }
 
     @Override
-    public final void a1(qf.e eVar, y0 y0Var, i2.o0 o0Var, int i10) {
+    public final void a1(qf.e eVar, y0 y0Var, i2.m0 m0Var, int i10) {
         boolean z10;
         A1();
-        if (y0Var.b() > 0 && !y0Var.f44998g) {
+        if (y0Var.b() > 0 && !y0Var.f46098g) {
             if (i10 == 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int u12 = u1(o0Var.f11126b, eVar, y0Var);
+            int u12 = u1(m0Var.f12490b, eVar, y0Var);
             if (z10) {
                 while (u12 > 0) {
-                    int i11 = o0Var.f11126b;
+                    int i11 = m0Var.f12490b;
                     if (i11 <= 0) {
                         break;
                     }
                     int i12 = i11 - 1;
-                    o0Var.f11126b = i12;
+                    m0Var.f12490b = i12;
                     u12 = u1(i12, eVar, y0Var);
                 }
             } else {
                 int b10 = y0Var.b() - 1;
-                int i13 = o0Var.f11126b;
+                int i13 = m0Var.f12490b;
                 while (i13 < b10) {
                     int i14 = i13 + 1;
                     int u13 = u1(i14, eVar, y0Var);
@@ -212,7 +212,7 @@ public class s extends b0 {
                     i13 = i14;
                     u12 = u13;
                 }
-                o0Var.f11126b = i13;
+                m0Var.f12490b = i13;
             }
         }
         r1();
@@ -220,7 +220,7 @@ public class s extends b0 {
 
     @Override
     public void b0(qf.e eVar, y0 y0Var) {
-        boolean z10 = y0Var.f44998g;
+        boolean z10 = y0Var.f46098g;
         SparseIntArray sparseIntArray = this.N;
         SparseIntArray sparseIntArray2 = this.M;
         if (z10) {
@@ -228,7 +228,7 @@ public class s extends b0 {
             for (int i10 = 0; i10 < r10; i10++) {
                 r rVar = (r) q(i10).getLayoutParams();
                 int b10 = rVar.b();
-                sparseIntArray2.put(b10, rVar.f44952f);
+                sparseIntArray2.put(b10, rVar.f46052f);
                 sparseIntArray.put(b10, rVar.e);
             }
         }
@@ -282,7 +282,7 @@ public class s extends b0 {
 
     @Override
     public final o0 n() {
-        if (this.f44826o == 0) {
+        if (this.f45926o == 0) {
             return new r(-2, -1);
         }
         return new r(-1, -2);
@@ -292,7 +292,7 @@ public class s extends b0 {
     public final o0 o(Context context, AttributeSet attributeSet) {
         ?? o0Var = new o0(context, attributeSet);
         o0Var.e = -1;
-        o0Var.f44952f = 0;
+        o0Var.f46052f = 0;
         return o0Var;
     }
 
@@ -308,12 +308,12 @@ public class s extends b0 {
         if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
             ?? o0Var = new o0((ViewGroup.MarginLayoutParams) layoutParams);
             o0Var.e = -1;
-            o0Var.f44952f = 0;
+            o0Var.f46052f = 0;
             return o0Var;
         }
         ?? o0Var2 = new o0(layoutParams);
         o0Var2.e = -1;
-        o0Var2.f44952f = 0;
+        o0Var2.f46052f = 0;
         return o0Var2;
     }
 
@@ -335,7 +335,7 @@ public class s extends b0 {
             View view = this.L[i11];
             r rVar = (r) view.getLayoutParams();
             int v12 = v1(((o0) view.getLayoutParams()).b(), eVar, y0Var);
-            rVar.f44952f = v12;
+            rVar.f46052f = v12;
             rVar.e = i14;
             i14 += v12;
             i11 += i13;
@@ -375,22 +375,22 @@ public class s extends b0 {
         }
         int E = E() + D();
         int C = C() + F();
-        if (this.f44826o == 1) {
+        if (this.f45926o == 1) {
             int height = rect.height() + C;
-            RecyclerView recyclerView = this.f44931b;
-            WeakHashMap weakHashMap = r0.i0.f43485a;
+            RecyclerView recyclerView = this.f46031b;
+            WeakHashMap weakHashMap = r0.i0.f44844a;
             g11 = n0.g(i11, height, recyclerView.getMinimumHeight());
             int[] iArr = this.K;
-            g10 = n0.g(i10, iArr[iArr.length - 1] + E, this.f44931b.getMinimumWidth());
+            g10 = n0.g(i10, iArr[iArr.length - 1] + E, this.f46031b.getMinimumWidth());
         } else {
             int width = rect.width() + E;
-            RecyclerView recyclerView2 = this.f44931b;
-            WeakHashMap weakHashMap2 = r0.i0.f43485a;
+            RecyclerView recyclerView2 = this.f46031b;
+            WeakHashMap weakHashMap2 = r0.i0.f44844a;
             g10 = n0.g(i10, width, recyclerView2.getMinimumWidth());
             int[] iArr2 = this.K;
-            g11 = n0.g(i11, iArr2[iArr2.length - 1] + C, this.f44931b.getMinimumHeight());
+            g11 = n0.g(i11, iArr2[iArr2.length - 1] + C, this.f46031b.getMinimumHeight());
         }
-        this.f44931b.setMeasuredDimension(g10, g11);
+        this.f46031b.setMeasuredDimension(g10, g11);
     }
 
     public final void r1() {
@@ -402,7 +402,7 @@ public class s extends b0 {
     }
 
     public final int s1(int i10, int i11) {
-        if (this.f44826o == 1 && Y0()) {
+        if (this.f45926o == 1 && Y0()) {
             int[] iArr = this.K;
             int i12 = this.J;
             return iArr[i12 - i10] - iArr[(i12 - i10) - i11];
@@ -412,7 +412,7 @@ public class s extends b0 {
     }
 
     public final int t1(int i10, qf.e eVar, y0 y0Var) {
-        if (!y0Var.f44998g) {
+        if (!y0Var.f46098g) {
             return this.O.g(i10, this.J);
         }
         int b10 = eVar.b(i10);
@@ -425,7 +425,7 @@ public class s extends b0 {
 
     @Override
     public int u(qf.e eVar, y0 y0Var) {
-        if (this.f44826o == 1) {
+        if (this.f45926o == 1) {
             return this.J;
         }
         if (y0Var.b() < 1) {
@@ -435,7 +435,7 @@ public class s extends b0 {
     }
 
     public final int u1(int i10, qf.e eVar, y0 y0Var) {
-        if (!y0Var.f44998g) {
+        if (!y0Var.f46098g) {
             return this.O.h(i10, this.J);
         }
         int i11 = this.N.get(i10, -1);
@@ -451,7 +451,7 @@ public class s extends b0 {
     }
 
     public final int v1(int i10, qf.e eVar, y0 y0Var) {
-        if (!y0Var.f44998g) {
+        if (!y0Var.f46098g) {
             return this.O.i(i10);
         }
         int i11 = this.M.get(i10, -1);
@@ -470,16 +470,16 @@ public class s extends b0 {
         int i11;
         int i12;
         r rVar = (r) view.getLayoutParams();
-        Rect rect = rVar.f44943b;
+        Rect rect = rVar.f46043b;
         int i13 = rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) rVar).topMargin + ((ViewGroup.MarginLayoutParams) rVar).bottomMargin;
         int i14 = rect.left + rect.right + ((ViewGroup.MarginLayoutParams) rVar).leftMargin + ((ViewGroup.MarginLayoutParams) rVar).rightMargin;
-        int s12 = s1(rVar.e, rVar.f44952f);
-        if (this.f44826o == 1) {
+        int s12 = s1(rVar.e, rVar.f46052f);
+        if (this.f45926o == 1) {
             i12 = n0.s(false, s12, i10, i14, ((ViewGroup.MarginLayoutParams) rVar).width);
-            i11 = n0.s(true, this.f44828q.k(), this.f44938l, i13, ((ViewGroup.MarginLayoutParams) rVar).height);
+            i11 = n0.s(true, this.f45928q.k(), this.f46038l, i13, ((ViewGroup.MarginLayoutParams) rVar).height);
         } else {
             int s10 = n0.s(false, s12, i10, i13, ((ViewGroup.MarginLayoutParams) rVar).height);
-            int s11 = n0.s(true, this.f44828q.k(), this.f44937k, i14, ((ViewGroup.MarginLayoutParams) rVar).width);
+            int s11 = n0.s(true, this.f45928q.k(), this.f46037k, i14, ((ViewGroup.MarginLayoutParams) rVar).width);
             i11 = s10;
             i12 = s11;
         }
@@ -490,7 +490,7 @@ public class s extends b0 {
         boolean u02;
         o0 o0Var = (o0) view.getLayoutParams();
         if (z10) {
-            if (this.f44934g && n0.N(view.getMeasuredWidth(), i10, ((ViewGroup.MarginLayoutParams) o0Var).width) && n0.N(view.getMeasuredHeight(), i11, ((ViewGroup.MarginLayoutParams) o0Var).height)) {
+            if (this.f46034g && n0.N(view.getMeasuredWidth(), i10, ((ViewGroup.MarginLayoutParams) o0Var).width) && n0.N(view.getMeasuredHeight(), i11, ((ViewGroup.MarginLayoutParams) o0Var).height)) {
                 u02 = false;
             } else {
                 u02 = true;
@@ -522,7 +522,7 @@ public class s extends b0 {
             l0();
             return;
         }
-        throw new IllegalArgumentException(i2.d.j(i10, "Span count should be at least 1. Provided "));
+        throw new IllegalArgumentException(i0.a.j(i10, "Span count should be at least 1. Provided "));
     }
 
     public final void z1(g.o oVar) {
@@ -535,7 +535,7 @@ public class s extends b0 {
         this.J = -1;
         this.M = new SparseIntArray();
         this.N = new SparseIntArray();
-        this.O = new jv(1);
+        this.O = new su(1);
         this.P = new Rect();
         y1(i10);
     }

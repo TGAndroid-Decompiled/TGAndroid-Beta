@@ -1,31 +1,21 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import android.view.View;
-public final class dz0 implements View.OnClickListener {
-    public final int f35156a;
-    public final ProfileActivity f35157b;
-    public final String f35158c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class dz0 extends org.telegram.ui.Components.dr0 {
+    public final ProfileActivity f36347b1;
 
-    public dz0(ProfileActivity profileActivity, String str, int i10) {
-        this.f35156a = i10;
-        this.f35157b = profileActivity;
-        this.f35158c = str;
+    public dz0(ProfileActivity profileActivity, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.f36347b1 = profileActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f35156a) {
-            case 0:
-                ProfileActivity profileActivity = this.f35157b;
-                Activity parentActivity = profileActivity.getParentActivity();
-                pf.d.r(parentActivity, "https://" + profileActivity.getMessagesController().linkPrefix + "/nft/" + this.f35158c);
-                return;
-            default:
-                ProfileActivity profileActivity2 = this.f35157b;
-                Activity parentActivity2 = profileActivity2.getParentActivity();
-                pf.d.r(parentActivity2, "https://" + profileActivity2.getMessagesController().linkPrefix + "/nft/" + this.f35158c);
-                return;
+    public final void S0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new lv0(this, hVar, i10, 16), 250L);
     }
 }

@@ -1,46 +1,38 @@
 package org.telegram.ui.Components;
 
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.td1;
-public final class rp implements td1 {
-    public final zp f28618a;
+public final class rp implements ResultCallback {
+    public final ChatThemeController f30001a;
+    public final wp f30002b;
 
-    public rp(zp zpVar) {
-        this.f28618a = zpVar;
+    public rp(wp wpVar, ChatThemeController chatThemeController) {
+        this.f30002b = wpVar;
+        this.f30001a = chatThemeController;
     }
 
     @Override
-    public final boolean Y0() {
-        return true;
+    public final void onComplete(Object obj) {
+        int i10;
+        List list = (List) obj;
+        List<org.telegram.ui.ActionBar.c4> emojiThemes = this.f30001a.getEmojiThemes(7);
+        wp wpVar = this.f30002b;
+        i10 = ((org.telegram.ui.ActionBar.f3) wpVar).currentAccount;
+        NotificationCenter.getInstance(i10).doOnIdle(new ee(21, this, emojiThemes));
+        wpVar.f32172b0 = false;
     }
 
     @Override
-    public final boolean a() {
-        return this.f28618a.N;
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
     }
 
     @Override
-    public final void o1(boolean z10) {
-        TLRPC.WallPaper wallPaper;
-        zp zpVar = this.f28618a;
-        org.telegram.ui.fo foVar = zpVar.v;
-        zpVar.N = !zpVar.N;
-        if (zpVar.M != null) {
-            zpVar.P = true;
-            foVar.e7 = true;
-            if (zpVar.x()) {
-                wallPaper = null;
-            } else {
-                wallPaper = zpVar.f31654n.h;
-            }
-            TLRPC.WallPaper wallPaper2 = wallPaper;
-            org.telegram.ui.ActionBar.b4 b4Var = zpVar.M.f31345a;
-            if (b4Var.f19342a) {
-                zpVar.f31654n.i(null, wallPaper2, z10, Boolean.valueOf(zpVar.N), false);
-            } else {
-                zpVar.f31654n.i(b4Var, wallPaper2, z10, Boolean.valueOf(zpVar.N), false);
-            }
-            foVar.e7 = false;
-        }
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f30002b.getContext(), tL_error.text, 0).show();
     }
 }

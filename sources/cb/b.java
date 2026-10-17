@@ -6,40 +6,40 @@ import java.util.Map;
 import org.json.JSONObject;
 import td.p;
 public final class b extends md.i implements p {
-    public final int f4684a = 1;
-    public int f4685b;
-    public Object f4686c;
+    public final int f5054a = 1;
+    public int f5055b;
+    public Object f5056c;
     public Object d;
     public Serializable e;
-    public final Object f4687f;
+    public final Object f5057f;
 
     public b(androidx.biometric.e eVar, Map map, b bVar, c cVar, kd.c cVar2) {
         super(2, cVar2);
         this.d = eVar;
-        this.f4686c = map;
+        this.f5056c = map;
         this.e = bVar;
-        this.f4687f = cVar;
+        this.f5057f = cVar;
     }
 
     @Override
     public final kd.c create(Object obj, kd.c cVar) {
-        switch (this.f4684a) {
+        switch (this.f5054a) {
             case 0:
-                b bVar = new b((d) this.f4687f, cVar);
-                bVar.f4686c = obj;
+                b bVar = new b((d) this.f5057f, cVar);
+                bVar.f5056c = obj;
                 return bVar;
             default:
-                return new b((androidx.biometric.e) this.d, this.f4686c, (b) this.e, (c) this.f4687f, cVar);
+                return new b((androidx.biometric.e) this.d, this.f5056c, (b) this.e, (c) this.f5057f, cVar);
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f4684a) {
+        switch (this.f5054a) {
             case 0:
-                return ((b) create((JSONObject) obj, (kd.c) obj2)).invokeSuspend(id.i.f11390a);
+                return ((b) create((JSONObject) obj, (kd.c) obj2)).invokeSuspend(id.i.f12779a);
             default:
-                return ((b) create((c0) obj, (kd.c) obj2)).invokeSuspend(id.i.f11390a);
+                return ((b) create((c0) obj, (kd.c) obj2)).invokeSuspend(id.i.f12779a);
         }
     }
 
@@ -50,6 +50,6 @@ public final class b extends md.i implements p {
 
     public b(d dVar, kd.c cVar) {
         super(2, cVar);
-        this.f4687f = dVar;
+        this.f5057f = dVar;
     }
 }

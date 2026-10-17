@@ -1,96 +1,88 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
 import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-public final class zf1 extends pg.b {
-    public final kg1 d;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+public final class zf1 extends ViewGroup {
+    public final Paint f43739a;
+    public View f43740b;
+    public boolean f43741c;
 
-    public zf1(kg1 kg1Var) {
-        this.d = kg1Var;
+    public zf1(Context context) {
+        super(context);
+        this.f43739a = new Paint(1);
+        setClipToPadding(false);
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f44841f;
-        if (i10 != 0 && i10 != 3) {
-            return false;
+    public final void dispatchDraw(Canvas canvas) {
+        int paddingBottom = getPaddingBottom();
+        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
+        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
+        int k10 = i0.b.k(org.telegram.ui.ActionBar.h6.m1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false)), x02);
+        Paint paint = this.f43739a;
+        paint.setColor(x02);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
+        paint.setColor(k10);
+        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
         }
-        return true;
-    }
-
-    public final ArrayList F() {
-        kg1 kg1Var = this.d;
-        kg1Var.getClass();
-        return kg1Var.f37383b;
     }
 
     @Override
-    public final int h() {
-        return F().size() + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == h() - 1) {
-            return 2;
-        }
-        return ((bg1) this.d.f37383b.get(i10)).f42904a;
-    }
-
-    @Override
-    public final void l() {
-        this.d.f37386c = h();
-        super.l();
-    }
-
-    @Override
-    public final void v(s4.b1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zf1.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+    public final void onMeasure(int i10, int i11) {
         boolean z10;
-        int i11;
         int i12;
-        int i13;
-        kg1 kg1Var = this.d;
-        if (i10 != 0 && i10 != 3) {
-            if (i10 == 2) {
-                yf1 yf1Var = new yf1(this, kg1Var.getParentActivity());
-                kg1Var.E0 = yf1Var;
-                return new s4.b1(yf1Var);
-            }
-            org.telegram.ui.Components.f10 f10Var = new org.telegram.ui.Components.f10(viewGroup.getContext(), null);
-            f10Var.setViewType(24);
-            f10Var.setIsSingleCell(true);
-            f10Var.f24549w = true;
-            return new s4.b1(f10Var);
+        View view = this.f43740b;
+        if (view != null && view.getVisibility() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        hg1 hg1Var = new hg1(kg1Var, viewGroup.getContext(), false);
-        if (i10 == 3) {
-            i11 = ((org.telegram.ui.ActionBar.m2) kg1Var).currentAccount;
-            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -kg1Var.f37380a);
-            hg1Var.setForumIcon(og.d.d(og.a.f16332k[0], ""));
-            if (!isBotForumWithEditableTopics) {
-                i12 = R.string.BotForumAskForStartOffNewChatTitle;
-            } else {
-                i12 = R.string.BotForumAskForStartNewChatTitle;
-            }
-            hg1Var.setTitleOverride(LocaleController.getString(i12));
-            if (!isBotForumWithEditableTopics) {
-                i13 = R.string.BotForumAskForStartOffNewChatForward;
-            } else {
-                i13 = R.string.BotForumAskForStartNewChatForward;
-            }
-            hg1Var.setCustomMessage(LocaleController.getString(i13));
+        int size = View.MeasureSpec.getSize(i10);
+        if (z10) {
+            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
+        } else {
+            i12 = 0;
         }
-        z10 = ((org.telegram.ui.ActionBar.m2) kg1Var).inPreviewMode;
-        hg1Var.f21550k0 = z10;
-        hg1Var.setArchivedPullAnimation(kg1Var.f37420w);
-        return new s4.b1(hg1Var);
+        setMeasuredDimension(size, i12);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
+        }
+        if (this.f43741c != z10) {
+            this.f43741c = z10;
+            WeakHashMap weakHashMap = r0.i0.f44844a;
+            r0.y.c(this);
+        }
+    }
+
+    @Override
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        this.f43740b = view;
+    }
+
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        super.setPadding(i10, i11, i12, i13);
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            getChildAt(i14).setPadding(i10, i11, i12, i13);
+        }
     }
 }

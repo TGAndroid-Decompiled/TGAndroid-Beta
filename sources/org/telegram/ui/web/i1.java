@@ -1,61 +1,37 @@
 package org.telegram.ui.web;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.ui.Wallet.z6;
-public final class i1 extends AsyncTask {
-    public final HashMap f41074a = new HashMap();
-    public final z6 f41075b;
-    public Exception f41076c;
+import java.io.File;
+import java.io.FileInputStream;
+public final class i1 extends FileInputStream {
+    public final long f42631a;
 
-    public i1(z6 z6Var) {
-        this.f41075b = z6Var;
-    }
-
-    @Override
-    public final Object doInBackground(Object[] objArr) {
-        try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f41074a.entrySet()) {
-                if (entry.getKey() != null && entry.getValue() != null) {
-                    httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
-                }
-            }
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setDoInput(true);
-            int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode >= 200 && responseCode < 300) {
-                if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                    return SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
-                }
-                return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
-            }
-            httpURLConnection.disconnect();
-            return null;
-        } catch (Exception e) {
-            this.f41076c = e;
-            return null;
+    public i1(long j10, long j11, File file) {
+        super(file);
+        this.f42631a = j11;
+        if (j10 > 0 && skip(j10) != j10) {
+            throw new RuntimeException("BoundedInputStream failed to skip");
         }
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        z6 z6Var = this.f41075b;
-        if (z6Var != null) {
-            if (this.f41076c == null) {
-                z6Var.run(bitmap);
-            } else {
-                z6Var.run(null);
-            }
+    public final int read() {
+        if (getChannel().position() >= this.f42631a) {
+            return -1;
         }
+        return super.read();
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        long position = getChannel().position();
+        long j10 = this.f42631a;
+        if (position >= j10) {
+            return -1;
+        }
+        long position2 = j10 - getChannel().position();
+        if (i11 > position2) {
+            i11 = (int) position2;
+        }
+        return super.read(bArr, i10, i11);
     }
 }

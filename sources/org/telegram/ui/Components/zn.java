@@ -1,39 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-public final class zn implements View.OnKeyListener {
-    public final int f31596a;
-    public final Object f31597b;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class zn extends org.telegram.ui.Cells.c6 {
+    public final co F;
 
-    public zn(Object obj, int i10) {
-        this.f31596a = i10;
-        this.f31597b = obj;
+    public zn(co coVar, Context context, int i10) {
+        super(context, i10, null, null);
+        this.F = coVar;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f31596a) {
-            case 0:
-                fo foVar = (fo) this.f31597b;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    ImageView imageView = foVar.f20767f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
-            default:
-                jv jvVar = (jv) this.f31597b;
-                jvVar.getClass();
-                if (i10 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && jvVar.isShowing()) {
-                    jvVar.dismiss();
-                    return true;
-                }
-                return false;
+    public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
+        if (b6Var.isFocused() && b6Var.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.sn.n8(menu, ((org.telegram.ui.sn) this.F.d.f28238b.f30574f0).h, false, true, true, true);
+            }
         }
+    }
+
+    @Override
+    public final void i(boolean z10) {
+        fo.P(this.F.d, this, z10);
+    }
+
+    @Override
+    public final void j(org.telegram.ui.Cells.c6 c6Var) {
+        fo.Q(this.F.d, c6Var);
+    }
+
+    @Override
+    public final void k(org.telegram.ui.Cells.b6 b6Var) {
+        this.F.d.f28238b.w1(b6Var, true);
     }
 }

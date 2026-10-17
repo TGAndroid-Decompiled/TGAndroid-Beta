@@ -1,39 +1,20 @@
 package org.telegram.ui.Components;
+public final class zw implements Runnable {
+    public final int f33036a;
+    public final hz f33037b;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class zw extends s4.m0 {
-    public final wz f31699a;
-
-    public zw(wz wzVar) {
-        this.f31699a = wzVar;
+    public zw(hz hzVar, int i10) {
+        this.f33036a = i10;
+        this.f33037b = hzVar;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
-        recyclerView.getClass();
-        int R = RecyclerView.R(view);
-        wz wzVar = this.f31699a;
-        s4.g0 adapter = wzVar.f30722h0.getAdapter();
-        az azVar = wzVar.f30739n0;
-        int i10 = 0;
-        if (adapter == azVar && R == azVar.I) {
-            rect.set(0, 0, 0, 0);
-            return;
+    public final void run() {
+        switch (this.f33036a) {
+            case 0:
+            default:
+                this.f33037b.e();
+                return;
         }
-        if (R == 0) {
-            azVar.getClass();
-        }
-        rect.left = 0;
-        rect.bottom = 0;
-        rect.top = AndroidUtilities.dp(2.0f);
-        bz bzVar = wzVar.f30725i0;
-        azVar.getClass();
-        if (!bzVar.E1(R)) {
-            i10 = AndroidUtilities.dp(2.0f);
-        }
-        rect.right = i10;
     }
 }

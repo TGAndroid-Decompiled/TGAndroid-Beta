@@ -1,13 +1,15 @@
 package org.telegram.ui;
-public final class ib0 extends org.telegram.ui.Components.d10 {
-    @Override
-    public final void b() {
-        setVisibility(8);
+
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+public final class ib0 extends zh.m0 {
+    public ib0(Bundle bundle) {
+        super(bundle);
     }
 
     @Override
-    public final void c(boolean z10) {
-        setVisibility(0);
-        super.c(z10);
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        AndroidUtilities.runOnUIThread(new fz(this, 17));
     }
 }

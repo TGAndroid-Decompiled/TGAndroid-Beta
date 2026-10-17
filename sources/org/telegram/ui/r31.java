@@ -1,73 +1,26 @@
 package org.telegram.ui;
+public final class r31 extends org.telegram.ui.Components.a81 {
+    public final SecretMediaViewer m0;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class r31 extends FrameLayout {
-    public final org.telegram.ui.Components.q5 f39271a;
-    public final s31 f39272b;
-
-    public r31(s31 s31Var, Context context) {
-        super(context);
-        this.f39272b = s31Var;
-        TextView f7 = org.telegram.messenger.g0.f(context, 1, 16.0f);
-        f7.setTextColor(s31Var.getThemedColor(org.telegram.ui.ActionBar.g6.G6));
-        f7.setText(LocaleController.getString(R.string.DoubleTapSetting));
-        addView(f7, w7.z5.a(-2.0f, 20.0f, 0.0f, 48.0f, 0.0f, -1, 23));
-        this.f39271a = new org.telegram.ui.Components.q5(AndroidUtilities.dp(24.0f), this);
-    }
-
-    public final void a(boolean z10) {
-        s31 s31Var = this.f39272b;
-        String doubleTapReaction = MediaDataController.getInstance(s31.Y(s31Var)).getDoubleTapReaction();
-        org.telegram.ui.Components.q5 q5Var = this.f39271a;
-        if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
-            try {
-                q5Var.j(Long.parseLong(doubleTapReaction.substring(9)), z10);
-                return;
-            } catch (Exception unused) {
-            }
-        }
-        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(s31.Z(s31Var)).getReactionsMap().get(doubleTapReaction);
-        if (tL_availableReaction != null) {
-            q5Var.i(tL_availableReaction.static_icon, z10);
-        }
-    }
-
-    public final void b() {
-        int width = getWidth();
-        org.telegram.ui.Components.q5 q5Var = this.f39271a;
-        q5Var.setBounds((width - q5Var.f28200s) - AndroidUtilities.dp(21.0f), (getHeight() - q5Var.f28200s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + q5Var.f28200s) / 2);
+    public r31(SecretMediaViewer secretMediaViewer) {
+        this.m0 = secretMediaViewer;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        b();
-        this.f39271a.draw(canvas);
+    public final void B() {
+        super.B();
+        this.m0.W.a(false, true);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f39271a.a();
+    public final void C() {
+        super.C();
+        this.m0.W.a(true, true);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f39271a.b();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+    public final void P(boolean z10) {
+        super.P(z10);
+        this.m0.W.a(z10, true);
     }
 }

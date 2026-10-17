@@ -1,158 +1,94 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewParent;
+import android.graphics.BlendMode;
+import android.graphics.Paint;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.os.Build;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class kc1 extends org.telegram.ui.Components.mm0 {
-    public final int V2;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.RadialProgress2;
+public final class kc1 extends org.telegram.ui.Components.hm0 {
+    public final Context f38469c;
+    public final mc1 d;
 
-    public kc1(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        this.V2 = i10;
+    public kc1(Context context, mc1 mc1Var) {
+        this.d = mc1Var;
+        this.f38469c = context;
     }
 
     @Override
-    public Integer W0(int i10) {
-        switch (this.V2) {
-            case 1:
-                return 0;
-            case 3:
-                return 0;
-            case 4:
-                return 0;
-            case 8:
-                return 0;
-            default:
-                return super.W0(i10);
+    public final boolean D(s4.b1 b1Var) {
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        ArrayList arrayList = this.d.U0;
+        if (arrayList != null) {
+            return arrayList.size();
         }
+        return 0;
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.V2) {
-            case 0:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 2:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent = getParent().getParent();
-                    boolean z10 = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z10 = false;
-                    }
-                    parent.requestDisallowInterceptTouchEvent(z10);
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 6:
-                if (getParent() != null && getParent().getParent() != null) {
-                    ViewParent parent2 = getParent().getParent();
-                    boolean z11 = true;
-                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                        z11 = false;
-                    }
-                    parent2.requestDisallowInterceptTouchEvent(z11);
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            case 13:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
+    public final int j(int i10) {
+        return 0;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.V2) {
-            case 7:
-                int size = View.MeasureSpec.getSize(i11);
-                int h = (getAdapter().h() * AndroidUtilities.dp(50.0f)) + AndroidUtilities.dp(4.0f);
-                if (h <= size) {
-                    size = h;
+    public final void v(s4.b1 b1Var, int i10) {
+        BlendMode blendMode;
+        org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) b1Var.f45938a;
+        mc1 mc1Var = this.d;
+        j5Var.setPattern((TLRPC.TL_wallPaper) mc1Var.U0.get(i10));
+        j5Var.getImageReceiver().setColorFilter(new PorterDuffColorFilter(mc1Var.f39128j1, mc1Var.f39148s1));
+        if (Build.VERSION.SDK_INT >= 29) {
+            int i11 = 0;
+            if (mc1Var.f39100b == 1) {
+                int C0 = org.telegram.ui.ActionBar.h6.C0(org.telegram.ui.ActionBar.h6.Pd);
+                long j10 = mc1Var.f39146s.f20836l;
+                int i12 = (int) j10;
+                if (i12 != 0 || j10 == 0) {
+                    i11 = i12 != 0 ? i12 : C0;
                 }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+            } else if (mc1Var.B1 instanceof uh1) {
+                i11 = mc1Var.f39106c1;
+            }
+            if (i11 != 0 && mc1Var.l1 >= 0.0f) {
+                ImageReceiver imageReceiver = mc1Var.f39159x0.getImageReceiver();
+                blendMode = BlendMode.SOFT_LIGHT;
+                imageReceiver.setBlendMode(blendMode);
                 return;
-            case 10:
-                int size2 = View.MeasureSpec.getSize(i11);
-                int h10 = (getAdapter().h() * AndroidUtilities.dp(50.0f)) + AndroidUtilities.dp(4.0f);
-                if (h10 <= size2) {
-                    size2 = h10;
-                }
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+            }
+            j5Var.getImageReceiver().setBlendMode(null);
         }
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.V2) {
-            case 12:
-                if (motionEvent.getAction() == 0) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void q0(View view, View view2) {
-        switch (this.V2) {
-            case 5:
-                if (view instanceof org.telegram.ui.Cells.d6) {
-                    super.q0(view, view2);
-                    return;
-                }
-                return;
-            case 11:
-                if (view instanceof org.telegram.ui.Cells.d6) {
-                    super.q0(view, view2);
-                    return;
-                }
-                return;
-            default:
-                super.q0(view, view2);
-                return;
-        }
-    }
-
-    @Override
-    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.V2) {
-            case 5:
-                rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            case 11:
-                rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-        }
-    }
-
-    @Override
-    public boolean requestFocus(int i10, Rect rect) {
-        switch (this.V2) {
-            case 9:
-                return false;
-            default:
-                return super.requestFocus(i10, rect);
-        }
-    }
-
-    public kc1(Context context) {
-        super(context, null);
-        this.V2 = 12;
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        int i11 = this.d.H1;
+        jc1 jc1Var = new jc1(this);
+        ?? w9Var = new org.telegram.ui.Components.w9(this.f38469c);
+        w9Var.G = new RectF();
+        int i12 = UserConfig.selectedAccount;
+        w9Var.J = i12;
+        w9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
+        w9Var.U = i11;
+        w9Var.T = jc1Var;
+        RadialProgress2 radialProgress2 = new RadialProgress2(w9Var, null);
+        w9Var.H = radialProgress2;
+        radialProgress2.q(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+        w9Var.Q = new Paint(3);
+        w9Var.S = DownloadController.getInstance(i12).generateObserverTag();
+        w9Var.setOutlineProvider(new ci.o1(7));
+        w9Var.setClipToOutline(true);
+        return new s4.b1(w9Var);
     }
 }

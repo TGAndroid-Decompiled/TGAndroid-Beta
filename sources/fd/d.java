@@ -1,15 +1,15 @@
 package fd;
-public class d extends f2.e {
-    public String f9114c;
+public class d extends f2.f {
+    public String f10555c;
 
     @Override
-    public final f2.e b() {
-        this.f9114c = null;
+    public final f2.f b() {
+        this.f10555c = null;
         return this;
     }
 
     @Override
     public String toString() {
-        return this.f9114c;
+        return this.f10555c;
     }
 }

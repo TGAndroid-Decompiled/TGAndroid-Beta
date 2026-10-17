@@ -1,51 +1,43 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class sz0 implements qq {
-    public final TLRPC.Chat f39970a;
-    public final tq f39971b;
-    public final ProfileActivity f39972c;
+public final class sz0 implements View.OnClickListener {
+    public final int f41548a;
+    public final d01 f41549b;
 
-    public sz0(ProfileActivity profileActivity, TLRPC.Chat chat, tq tqVar) {
-        this.f39972c = profileActivity;
-        this.f39970a = chat;
-        this.f39971b = tqVar;
+    public sz0(d01 d01Var, int i10) {
+        this.f41548a = i10;
+        this.f41549b = d01Var;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i10;
-        ProfileActivity profileActivity = this.f39972c;
-        UndoView undoView = profileActivity.M;
-        long j10 = -profileActivity.f32269f1;
-        if (profileActivity.E2.megagroup) {
-            i10 = 10;
-        } else {
-            i10 = 9;
-        }
-        undoView.m(j10, user, i10);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f39972c;
-        profileActivity.removeSelfFromStack();
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f32261e1));
-        if (user != null && (chat = this.f39970a) != null && profileActivity.f32261e1 != 0) {
-            tq tqVar = this.f39971b;
-            if (tqVar.Q && tqVar.getParentLayout() != null) {
-                for (org.telegram.ui.ActionBar.m2 m2Var : tqVar.getParentLayout().getFragmentStack()) {
-                    if (m2Var instanceof ac) {
-                        ac acVar = (ac) m2Var;
-                        acVar.V0();
-                        AndroidUtilities.runOnUIThread(new tf0(acVar, user, chat, 25));
-                        return;
-                    }
+    public final void onClick(View view) {
+        switch (this.f41548a) {
+            case 0:
+                d01 d01Var = this.f41549b;
+                ProfileActivity profileActivity = d01Var.e;
+                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33607f1));
+                MessagesController messagesController = profileActivity.getMessagesController();
+                ProfileActivity profileActivity2 = d01Var.e;
+                messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
+                return;
+            default:
+                ProfileActivity profileActivity3 = this.f41549b.e;
+                profileActivity3.Q4 = !profileActivity3.Q4;
+                if (!profileActivity3.P4) {
+                    profileActivity3.P4 = true;
                 }
-            }
+                profileActivity3.F4();
+                view.requestLayout();
+                profileActivity3.d.m(profileActivity3.P3);
+                int i10 = profileActivity3.W5;
+                if (i10 >= 0) {
+                    profileActivity3.f33583c.h1(i10, profileActivity3.X5 - profileActivity3.f33568a.getPaddingTop());
+                    return;
+                }
+                return;
         }
     }
 }

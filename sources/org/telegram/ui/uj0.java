@@ -1,28 +1,69 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class uj0 extends di.d {
-    public final wj0 f40418h0;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class uj0 implements Runnable {
+    public final int f42006a;
+    public final NotificationsCustomSettingsActivity f42007b;
+    public final View f42008c;
+    public final int d;
 
-    public uj0(wj0 wj0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var, true);
-        this.f40418h0 = wj0Var;
+    public uj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i10, int i11) {
+        this.f42006a = i11;
+        this.f42007b = notificationsCustomSettingsActivity;
+        this.f42008c = view;
+        this.d = i10;
     }
 
     @Override
-    public final float a(float f7, float f10) {
-        boolean z10;
-        wj0 wj0Var = this.f40418h0;
-        if (wj0Var.f41312n0 == 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void run() {
+        switch (this.f42006a) {
+            case 0:
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f42007b;
+                ArrayList arrayList = notificationsCustomSettingsActivity.I;
+                View view = this.f42008c;
+                if (view instanceof org.telegram.ui.Cells.x8) {
+                    int i10 = this.d;
+                    if (i10 >= 0 && i10 < arrayList.size()) {
+                        ((zj0) arrayList.get(i10)).h = notificationsCustomSettingsActivity.f0();
+                    }
+                    ((org.telegram.ui.Cells.x8) view).b(notificationsCustomSettingsActivity.f0(), LocaleController.getString("LedColor", R.string.LedColor), true);
+                    return;
+                }
+                notificationsCustomSettingsActivity.l0(true);
+                return;
+            case 1:
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity2 = this.f42007b;
+                ArrayList arrayList2 = notificationsCustomSettingsActivity2.I;
+                View view2 = this.f42008c;
+                if (view2 instanceof org.telegram.ui.Cells.ba) {
+                    int i11 = this.d;
+                    if (i11 >= 0 && i11 < arrayList2.size()) {
+                        ((zj0) arrayList2.get(i11)).f43753f = notificationsCustomSettingsActivity2.g0();
+                    }
+                    org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) view2;
+                    baVar.c(LocaleController.getString("PopupNotification", R.string.PopupNotification), notificationsCustomSettingsActivity2.g0(), true, baVar.h);
+                    return;
+                }
+                notificationsCustomSettingsActivity2.l0(true);
+                return;
+            default:
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity3 = this.f42007b;
+                ArrayList arrayList3 = notificationsCustomSettingsActivity3.I;
+                View view3 = this.f42008c;
+                if (view3 instanceof org.telegram.ui.Cells.ba) {
+                    int i12 = this.d;
+                    if (i12 >= 0 && i12 < arrayList3.size()) {
+                        ((zj0) arrayList3.get(i12)).f43753f = notificationsCustomSettingsActivity3.h0();
+                    }
+                    org.telegram.ui.Cells.ba baVar2 = (org.telegram.ui.Cells.ba) view3;
+                    baVar2.c(LocaleController.getString("NotificationsImportance", R.string.NotificationsImportance), notificationsCustomSettingsActivity3.h0(), true, baVar2.h);
+                    return;
+                }
+                notificationsCustomSettingsActivity3.l0(true);
+                return;
         }
-        wj0Var.f41312n0 = f7;
-        if (z10) {
-            wj0Var.f41313o0 = new org.telegram.ui.Components.sb0(wj0Var, 1);
-            wj0Var.T(false);
-        }
-        return f7;
     }
 }

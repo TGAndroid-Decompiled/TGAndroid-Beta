@@ -1,6 +1,12 @@
 package org.telegram.ui.Components;
-public final class jm0 {
-    public float f26076a;
-    public float f26077b;
-    public float f26078c;
+
+import android.view.View;
+public interface jm0 {
+    void a(boolean z10);
+
+    boolean b(int i10);
+
+    void c(View view, boolean z10);
+
+    boolean d(int i10);
 }

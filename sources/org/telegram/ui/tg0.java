@@ -1,277 +1,171 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.text.TextUtils;
-import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 public final class tg0 implements RequestDelegate {
-    public final int f40108a;
-    public final zg0 f40109b;
+    public final int f41746a;
+    public final kh0 f41747b;
+    public final TLRPC.TL_chatInviteExported f41748c;
 
-    public tg0(zg0 zg0Var, int i10) {
-        this.f40108a = i10;
-        this.f40109b = zg0Var;
+    public tg0(kh0 kh0Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, int i10) {
+        this.f41746a = i10;
+        this.f41747b = kh0Var;
+        this.f41748c = tL_chatInviteExported;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f40108a) {
+        switch (this.f41746a) {
             case 0:
-                final zg0 zg0Var = this.f40109b;
+                final kh0 kh0Var = this.f41747b;
+                final TLRPC.TL_chatInviteExported tL_chatInviteExported = this.f41748c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        int i10;
-                        au auVar;
-                        switch (r4) {
+                        switch (r5) {
                             case 0:
-                                zg0 zg0Var2 = zg0Var;
-                                fk0 fk0Var = zg0Var2.f42309a;
-                                HashMap hashMap = zg0Var2.G;
-                                ArrayList arrayList = zg0Var2.E;
-                                HashMap hashMap2 = zg0Var2.F;
                                 if (tL_error == null) {
-                                    arrayList.clear();
-                                    hashMap2.clear();
-                                    hashMap.clear();
-                                    TLRPC.TL_help_countriesList tL_help_countriesList = (TLRPC.TL_help_countriesList) tLObject;
-                                    for (int i11 = 0; i11 < tL_help_countriesList.countries.size(); i11++) {
-                                        TLRPC.TL_help_country tL_help_country = tL_help_countriesList.countries.get(i11);
-                                        for (int i12 = 0; i12 < tL_help_country.country_codes.size(); i12++) {
-                                            TLRPC.TL_help_countryCode tL_help_countryCode = tL_help_country.country_codes.get(i12);
-                                            if (tL_help_countryCode != null) {
-                                                ?? obj = new Object();
-                                                String str = tL_help_country.name;
-                                                obj.f34084a = str;
-                                                String str2 = tL_help_country.default_name;
-                                                obj.f34085b = str2;
-                                                if (str == null && str2 != null) {
-                                                    obj.f34084a = str2;
-                                                }
-                                                obj.f34086c = tL_help_countryCode.country_code;
-                                                obj.d = tL_help_country.iso2;
-                                                arrayList.add(obj);
-                                                List list = (List) hashMap2.get(tL_help_countryCode.country_code);
-                                                if (list == null) {
-                                                    String str3 = tL_help_countryCode.country_code;
-                                                    ArrayList arrayList2 = new ArrayList();
-                                                    hashMap2.put(str3, arrayList2);
-                                                    list = arrayList2;
-                                                }
-                                                list.add(obj);
-                                                if (tL_help_countryCode.patterns.size() > 0) {
-                                                    hashMap.put(tL_help_countryCode.country_code, tL_help_countryCode.patterns);
-                                                }
-                                            }
-                                        }
+                                    TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) tLObject;
+                                    kh0 kh0Var2 = kh0Var;
+                                    kh0Var2.e = tL_chatInviteExported2;
+                                    TLRPC.ChatFull chatFull = kh0Var2.d;
+                                    if (chatFull != null) {
+                                        chatFull.exported_invite = tL_chatInviteExported2;
                                     }
-                                    ah0 ah0Var = zg0Var2.V;
-                                    if (ah0Var.F == 2) {
-                                        i10 = ((org.telegram.ui.ActionBar.m2) ah0Var).currentAccount;
-                                        String d = jf.b.d(UserConfig.getInstance(i10).getClientPhone(), false);
-                                        if (!TextUtils.isEmpty(d)) {
-                                            if (d.length() > 4) {
-                                                for (int i13 = 4; i13 >= 1; i13--) {
-                                                    String substring = d.substring(0, i13);
-                                                    List list2 = (List) hashMap2.get(substring);
-                                                    au auVar2 = null;
-                                                    if (list2 != null) {
-                                                        if (list2.size() > 1) {
-                                                            String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
-                                                            if (string != null) {
-                                                                auVar = (au) t8.b.g(1, list2);
-                                                                int size = arrayList.size();
-                                                                int i14 = 0;
-                                                                while (true) {
-                                                                    if (i14 < size) {
-                                                                        Object obj2 = arrayList.get(i14);
-                                                                        i14++;
-                                                                        au auVar3 = (au) obj2;
-                                                                        if (Objects.equals(auVar3.d, string)) {
-                                                                            auVar = auVar3;
-                                                                        }
-                                                                    }
-                                                                }
-                                                            } else {
-                                                                auVar = (au) t8.b.g(1, list2);
-                                                            }
-                                                            auVar2 = auVar;
-                                                        } else {
-                                                            auVar2 = (au) list2.get(0);
-                                                        }
-                                                    }
-                                                    if (auVar2 != null) {
-                                                        fk0Var.setText(substring);
-                                                        return;
-                                                    }
-                                                }
-                                                fk0Var.setText(d.substring(0, 1));
-                                                return;
-                                            }
-                                            return;
-                                        }
+                                    if (kh0Var2.getParentActivity() != null) {
+                                        TLRPC.TL_chatInviteExported tL_chatInviteExported3 = tL_chatInviteExported;
+                                        tL_chatInviteExported3.revoked = true;
+                                        bh0 f02 = kh0Var2.f0();
+                                        kh0Var2.f38539j0.add(0, tL_chatInviteExported3);
+                                        kh0Var2.h0(f02);
+                                        org.telegram.messenger.q.q(R.string.InviteRevokedHint, org.telegram.ui.Components.xc.a0(kh0Var2), R.raw.linkbroken, 36);
                                         return;
                                     }
                                     return;
                                 }
                                 return;
                             default:
-                                zg0 zg0Var3 = zg0Var;
-                                zg0Var3.K = false;
-                                ah0 ah0Var2 = zg0Var3.V;
-                                ah0Var2.v1(false, true);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 == null) {
-                                    TL_account.Password password = (TL_account.Password) tLObject;
-                                    if (!TwoStepVerificationActivity.i0(password, true)) {
-                                        org.telegram.ui.Components.g5.w0(ah0Var2.getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
+                                kh0 kh0Var3 = kh0Var;
+                                ArrayList arrayList = kh0Var3.f38538i0;
+                                if (tL_error == null) {
+                                    TLObject tLObject2 = tLObject;
+                                    boolean z10 = tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced;
+                                    TLRPC.TL_chatInviteExported tL_chatInviteExported4 = tL_chatInviteExported;
+                                    if (z10) {
+                                        TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
+                                        if (!kh0Var3.f38544o0) {
+                                            kh0Var3.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        }
+                                        tL_chatInviteExported4.revoked = true;
+                                        bh0 f03 = kh0Var3.f0();
+                                        if (kh0Var3.f38544o0 && kh0Var3.f38534f == kh0Var3.getAccountInstance().getUserConfig().getClientUserId()) {
+                                            arrayList.remove(tL_chatInviteExported4);
+                                            arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
+                                        } else if (kh0Var3.e != null) {
+                                            kh0Var3.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        }
+                                        kh0Var3.f38539j0.add(0, tL_chatInviteExported4);
+                                        kh0Var3.h0(f03);
+                                    } else {
+                                        kh0Var3.f38550s0.b(tL_chatInviteExported4, tLObject2);
+                                        TLRPC.ChatFull chatFull2 = kh0Var3.d;
+                                        if (chatFull2 != null) {
+                                            int i10 = chatFull2.invitesCount - 1;
+                                            chatFull2.invitesCount = i10;
+                                            if (i10 < 0) {
+                                                chatFull2.invitesCount = 0;
+                                            }
+                                            kh0Var3.getMessagesStorage().saveChatLinksCount(kh0Var3.f38542n, kh0Var3.d.invitesCount);
+                                        }
+                                    }
+                                    if (kh0Var3.getParentActivity() != null) {
+                                        org.telegram.messenger.q.q(R.string.InviteRevokedHint, org.telegram.ui.Components.xc.a0(kh0Var3), R.raw.linkbroken, 36);
                                         return;
                                     }
-                                    Bundle bundle = new Bundle();
-                                    SerializedData serializedData = new SerializedData(password.getObjectSize());
-                                    password.serializeToStream(serializedData);
-                                    bundle.putString("password", Utilities.bytesToHex(serializedData.toByteArray()));
-                                    ah0Var2.u1(6, true, bundle, false);
                                     return;
                                 }
-                                ah0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error2.text);
                                 return;
                         }
                     }
                 });
                 return;
+            case 1:
+                kh0 kh0Var2 = this.f41747b;
+                kh0Var2.getClass();
+                AndroidUtilities.runOnUIThread(new xe0(kh0Var2, tL_error, this.f41748c, 6));
+                return;
             default:
-                final zg0 zg0Var2 = this.f40109b;
+                final kh0 kh0Var3 = this.f41747b;
+                final TLRPC.TL_chatInviteExported tL_chatInviteExported2 = this.f41748c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        int i10;
-                        au auVar;
-                        switch (r4) {
+                        switch (r5) {
                             case 0:
-                                zg0 zg0Var22 = zg0Var2;
-                                fk0 fk0Var = zg0Var22.f42309a;
-                                HashMap hashMap = zg0Var22.G;
-                                ArrayList arrayList = zg0Var22.E;
-                                HashMap hashMap2 = zg0Var22.F;
                                 if (tL_error == null) {
-                                    arrayList.clear();
-                                    hashMap2.clear();
-                                    hashMap.clear();
-                                    TLRPC.TL_help_countriesList tL_help_countriesList = (TLRPC.TL_help_countriesList) tLObject;
-                                    for (int i11 = 0; i11 < tL_help_countriesList.countries.size(); i11++) {
-                                        TLRPC.TL_help_country tL_help_country = tL_help_countriesList.countries.get(i11);
-                                        for (int i12 = 0; i12 < tL_help_country.country_codes.size(); i12++) {
-                                            TLRPC.TL_help_countryCode tL_help_countryCode = tL_help_country.country_codes.get(i12);
-                                            if (tL_help_countryCode != null) {
-                                                ?? obj = new Object();
-                                                String str = tL_help_country.name;
-                                                obj.f34084a = str;
-                                                String str2 = tL_help_country.default_name;
-                                                obj.f34085b = str2;
-                                                if (str == null && str2 != null) {
-                                                    obj.f34084a = str2;
-                                                }
-                                                obj.f34086c = tL_help_countryCode.country_code;
-                                                obj.d = tL_help_country.iso2;
-                                                arrayList.add(obj);
-                                                List list = (List) hashMap2.get(tL_help_countryCode.country_code);
-                                                if (list == null) {
-                                                    String str3 = tL_help_countryCode.country_code;
-                                                    ArrayList arrayList2 = new ArrayList();
-                                                    hashMap2.put(str3, arrayList2);
-                                                    list = arrayList2;
-                                                }
-                                                list.add(obj);
-                                                if (tL_help_countryCode.patterns.size() > 0) {
-                                                    hashMap.put(tL_help_countryCode.country_code, tL_help_countryCode.patterns);
-                                                }
-                                            }
-                                        }
+                                    TLRPC.TL_chatInviteExported tL_chatInviteExported22 = (TLRPC.TL_chatInviteExported) tLObject;
+                                    kh0 kh0Var22 = kh0Var3;
+                                    kh0Var22.e = tL_chatInviteExported22;
+                                    TLRPC.ChatFull chatFull = kh0Var22.d;
+                                    if (chatFull != null) {
+                                        chatFull.exported_invite = tL_chatInviteExported22;
                                     }
-                                    ah0 ah0Var = zg0Var22.V;
-                                    if (ah0Var.F == 2) {
-                                        i10 = ((org.telegram.ui.ActionBar.m2) ah0Var).currentAccount;
-                                        String d = jf.b.d(UserConfig.getInstance(i10).getClientPhone(), false);
-                                        if (!TextUtils.isEmpty(d)) {
-                                            if (d.length() > 4) {
-                                                for (int i13 = 4; i13 >= 1; i13--) {
-                                                    String substring = d.substring(0, i13);
-                                                    List list2 = (List) hashMap2.get(substring);
-                                                    au auVar2 = null;
-                                                    if (list2 != null) {
-                                                        if (list2.size() > 1) {
-                                                            String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
-                                                            if (string != null) {
-                                                                auVar = (au) t8.b.g(1, list2);
-                                                                int size = arrayList.size();
-                                                                int i14 = 0;
-                                                                while (true) {
-                                                                    if (i14 < size) {
-                                                                        Object obj2 = arrayList.get(i14);
-                                                                        i14++;
-                                                                        au auVar3 = (au) obj2;
-                                                                        if (Objects.equals(auVar3.d, string)) {
-                                                                            auVar = auVar3;
-                                                                        }
-                                                                    }
-                                                                }
-                                                            } else {
-                                                                auVar = (au) t8.b.g(1, list2);
-                                                            }
-                                                            auVar2 = auVar;
-                                                        } else {
-                                                            auVar2 = (au) list2.get(0);
-                                                        }
-                                                    }
-                                                    if (auVar2 != null) {
-                                                        fk0Var.setText(substring);
-                                                        return;
-                                                    }
-                                                }
-                                                fk0Var.setText(d.substring(0, 1));
-                                                return;
-                                            }
-                                            return;
-                                        }
+                                    if (kh0Var22.getParentActivity() != null) {
+                                        TLRPC.TL_chatInviteExported tL_chatInviteExported3 = tL_chatInviteExported2;
+                                        tL_chatInviteExported3.revoked = true;
+                                        bh0 f02 = kh0Var22.f0();
+                                        kh0Var22.f38539j0.add(0, tL_chatInviteExported3);
+                                        kh0Var22.h0(f02);
+                                        org.telegram.messenger.q.q(R.string.InviteRevokedHint, org.telegram.ui.Components.xc.a0(kh0Var22), R.raw.linkbroken, 36);
                                         return;
                                     }
                                     return;
                                 }
                                 return;
                             default:
-                                zg0 zg0Var3 = zg0Var2;
-                                zg0Var3.K = false;
-                                ah0 ah0Var2 = zg0Var3.V;
-                                ah0Var2.v1(false, true);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 == null) {
-                                    TL_account.Password password = (TL_account.Password) tLObject;
-                                    if (!TwoStepVerificationActivity.i0(password, true)) {
-                                        org.telegram.ui.Components.g5.w0(ah0Var2.getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
+                                kh0 kh0Var32 = kh0Var3;
+                                ArrayList arrayList = kh0Var32.f38538i0;
+                                if (tL_error == null) {
+                                    TLObject tLObject2 = tLObject;
+                                    boolean z10 = tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced;
+                                    TLRPC.TL_chatInviteExported tL_chatInviteExported4 = tL_chatInviteExported2;
+                                    if (z10) {
+                                        TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
+                                        if (!kh0Var32.f38544o0) {
+                                            kh0Var32.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        }
+                                        tL_chatInviteExported4.revoked = true;
+                                        bh0 f03 = kh0Var32.f0();
+                                        if (kh0Var32.f38544o0 && kh0Var32.f38534f == kh0Var32.getAccountInstance().getUserConfig().getClientUserId()) {
+                                            arrayList.remove(tL_chatInviteExported4);
+                                            arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
+                                        } else if (kh0Var32.e != null) {
+                                            kh0Var32.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        }
+                                        kh0Var32.f38539j0.add(0, tL_chatInviteExported4);
+                                        kh0Var32.h0(f03);
+                                    } else {
+                                        kh0Var32.f38550s0.b(tL_chatInviteExported4, tLObject2);
+                                        TLRPC.ChatFull chatFull2 = kh0Var32.d;
+                                        if (chatFull2 != null) {
+                                            int i10 = chatFull2.invitesCount - 1;
+                                            chatFull2.invitesCount = i10;
+                                            if (i10 < 0) {
+                                                chatFull2.invitesCount = 0;
+                                            }
+                                            kh0Var32.getMessagesStorage().saveChatLinksCount(kh0Var32.f38542n, kh0Var32.d.invitesCount);
+                                        }
+                                    }
+                                    if (kh0Var32.getParentActivity() != null) {
+                                        org.telegram.messenger.q.q(R.string.InviteRevokedHint, org.telegram.ui.Components.xc.a0(kh0Var32), R.raw.linkbroken, 36);
                                         return;
                                     }
-                                    Bundle bundle = new Bundle();
-                                    SerializedData serializedData = new SerializedData(password.getObjectSize());
-                                    password.serializeToStream(serializedData);
-                                    bundle.putString("password", Utilities.bytesToHex(serializedData.toByteArray()));
-                                    ah0Var2.u1(6, true, bundle, false);
                                     return;
                                 }
-                                ah0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error2.text);
                                 return;
                         }
                     }

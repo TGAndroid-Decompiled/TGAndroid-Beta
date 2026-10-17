@@ -1,10 +1,10 @@
 package mg;
 public interface o {
-    void A();
+    void D(boolean z10);
 
-    void I(boolean z10);
+    void R(boolean z10);
 
-    void d0(boolean z10);
+    void V();
 
-    void h0();
+    void r();
 }

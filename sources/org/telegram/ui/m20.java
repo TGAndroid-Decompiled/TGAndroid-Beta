@@ -1,6 +1,26 @@
 package org.telegram.ui;
-public abstract class m20 {
-    public static void a(android.app.Activity r30, int r31, java.lang.String r32, org.telegram.tgnet.TLObject r33, org.telegram.tgnet.tl.TL_fragment.TL_collectibleInfo r34, org.telegram.ui.ActionBar.c6 r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.m20.a(android.app.Activity, int, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.tl.TL_fragment$TL_collectibleInfo, org.telegram.ui.ActionBar.c6):void");
+
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class m20 implements RequestDelegate {
+    public final int f38993a;
+    public final s50 f38994b;
+
+    public m20(s50 s50Var, int i10) {
+        this.f38993a = i10;
+        this.f38994b = s50Var;
+    }
+
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f38993a) {
+            case 0:
+                s50.w(this.f38994b, tLObject);
+                return;
+            default:
+                s50.t(this.f38994b, tLObject);
+                return;
+        }
     }
 }

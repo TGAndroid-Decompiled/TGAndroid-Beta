@@ -3,7 +3,7 @@ package a0;
 import java.util.LinkedHashMap;
 public class j {
     public final int f19a;
-    public final ya.c f20b;
+    public final a6.i f20b;
     public final rb.b f21c;
     public int d;
     public int e;
@@ -12,7 +12,7 @@ public class j {
     public j(int i10) {
         this.f19a = i10;
         if (i10 > 0) {
-            this.f20b = new ya.c(6);
+            this.f20b = new a6.i(7);
             this.f21c = new rb.b(3);
             return;
         }
@@ -22,9 +22,9 @@ public class j {
     public final Object a(Object key) {
         kotlin.jvm.internal.i.e(key, "key");
         synchronized (this.f21c) {
-            ya.c cVar = this.f20b;
-            cVar.getClass();
-            Object obj = ((LinkedHashMap) cVar.f48731b).get(key);
+            a6.i iVar = this.f20b;
+            iVar.getClass();
+            Object obj = ((LinkedHashMap) iVar.f306b).get(key);
             if (obj != null) {
                 this.e++;
                 return obj;
@@ -39,9 +39,9 @@ public class j {
         kotlin.jvm.internal.i.e(key, "key");
         synchronized (this.f21c) {
             this.d++;
-            ya.c cVar = this.f20b;
-            cVar.getClass();
-            put = ((LinkedHashMap) cVar.f48731b).put(key, obj);
+            a6.i iVar = this.f20b;
+            iVar.getClass();
+            put = ((LinkedHashMap) iVar.f306b).put(key, obj);
             if (put != null) {
                 this.d--;
             }

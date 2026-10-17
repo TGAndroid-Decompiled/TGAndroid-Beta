@@ -1,59 +1,79 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class vl0 implements TextWatcher {
-    public final int f40727a;
-    public final PasscodeActivity f40728b;
+import android.text.TextUtils;
+import java.util.Locale;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MrzRecognizer;
+import org.telegram.messenger.R;
+public final class vl0 implements x9 {
+    public final xm0 f42231a;
 
-    public vl0(PasscodeActivity passcodeActivity, int i10) {
-        this.f40727a = i10;
-        this.f40728b = passcodeActivity;
+    public vl0(xm0 xm0Var) {
+        this.f42231a = xm0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10 = this.f40727a;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f40727a) {
-            case 0:
-                PasscodeActivity passcodeActivity = this.f40728b;
-                rl0 rl0Var = passcodeActivity.S;
-                if (passcodeActivity.R) {
-                    passcodeActivity.f31879n.removeCallbacks(rl0Var);
-                    rl0Var.run();
-                    return;
+    public final void F0(MrzRecognizer.Result result) {
+        boolean isEmpty = TextUtils.isEmpty(result.firstName);
+        xm0 xm0Var = this.f42231a;
+        if (!isEmpty) {
+            xm0Var.Y[0].setText(result.firstName);
+        }
+        if (!TextUtils.isEmpty(result.middleName)) {
+            xm0Var.Y[1].setText(result.middleName);
+        }
+        if (!TextUtils.isEmpty(result.lastName)) {
+            xm0Var.Y[2].setText(result.lastName);
+        }
+        int i10 = result.gender;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 == 2) {
+                    xm0Var.f43212w = "female";
+                    xm0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
                 }
-                return;
-            default:
-                PasscodeActivity passcodeActivity2 = this.f40728b;
-                rl0 rl0Var2 = passcodeActivity2.S;
-                if (passcodeActivity2.R) {
-                    passcodeActivity2.f31879n.removeCallbacks(rl0Var2);
-                    rl0Var2.run();
-                    return;
-                }
-                return;
+            } else {
+                xm0Var.f43212w = "male";
+                xm0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
+            }
+        }
+        if (!TextUtils.isEmpty(result.nationality)) {
+            String str = result.nationality;
+            xm0Var.f43203s = str;
+            String str2 = (String) xm0Var.Y0.get(str);
+            if (str2 != null) {
+                xm0Var.Y[5].setText(str2);
+            }
+        }
+        if (!TextUtils.isEmpty(result.issuingCountry)) {
+            String str3 = result.issuingCountry;
+            xm0Var.v = str3;
+            String str4 = (String) xm0Var.Y0.get(str3);
+            if (str4 != null) {
+                xm0Var.Y[6].setText(str4);
+            }
+        }
+        int i11 = result.birthDay;
+        if (i11 > 0 && result.birthMonth > 0 && result.birthYear > 0) {
+            xm0Var.Y[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i11), Integer.valueOf(result.birthMonth), Integer.valueOf(result.birthYear)));
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f40727a;
+    public final boolean U0(String str, n9 n9Var) {
+        return false;
     }
 
-    private final void a(Editable editable) {
+    @Override
+    public final String p0() {
+        return null;
     }
 
-    private final void b(Editable editable) {
+    @Override
+    public final void E(String str) {
     }
 
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    @Override
+    public final void onDismiss() {
     }
 }

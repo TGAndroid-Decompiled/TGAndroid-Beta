@@ -3,7 +3,7 @@ package rc;
 import java.nio.ByteBuffer;
 import java.nio.channels.ByteChannel;
 public final class b implements ByteChannel {
-    public ByteBuffer f43886a;
+    public ByteBuffer f45242a;
 
     @Override
     public final boolean isOpen() {
@@ -13,7 +13,7 @@ public final class b implements ByteChannel {
     @Override
     public final int read(ByteBuffer byteBuffer) {
         int remaining = byteBuffer.remaining();
-        ByteBuffer byteBuffer2 = this.f43886a;
+        ByteBuffer byteBuffer2 = this.f45242a;
         if (byteBuffer2.remaining() <= 0) {
             return -1;
         }
@@ -25,7 +25,7 @@ public final class b implements ByteChannel {
     @Override
     public final int write(ByteBuffer byteBuffer) {
         int remaining = byteBuffer.remaining();
-        this.f43886a.put(byteBuffer);
+        this.f45242a.put(byteBuffer);
         return remaining;
     }
 

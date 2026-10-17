@@ -1,45 +1,37 @@
 package org.telegram.ui.Components;
 
-import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
+import android.view.View;
 import org.telegram.ui.LaunchActivity;
-public final class f3 implements Runnable {
-    public final int f24564a = 1;
-    public final int f24565b;
-    public final int[] f24566c;
-    public final Runnable d;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class f3 implements View.OnClickListener {
+    public final int f26065a;
+    public final org.telegram.ui.ActionBar.f3 f26066b;
 
-    public f3(int i10, int[] iArr, org.telegram.ui.d20 d20Var) {
-        this.f24565b = i10;
-        this.f24566c = iArr;
-        this.d = d20Var;
+    public f3(org.telegram.ui.ActionBar.f3 f3Var, int i10) {
+        this.f26065a = i10;
+        this.f26066b = f3Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f24564a;
-        Runnable runnable = this.d;
-        int[] iArr = this.f24566c;
-        int i11 = this.f24565b;
-        switch (i10) {
+    public final void onClick(View view) {
+        switch (this.f26065a) {
             case 0:
-                iArr[0] = i11;
-                runnable.run();
+                this.f26066b.dismiss();
                 return;
-            default:
-                Pattern pattern = LaunchActivity.B1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                if (runnable != null) {
-                    runnable.run();
+            case 1:
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (R != null) {
+                    R.presentFragment(new PremiumPreviewFragment(0, "contact"));
+                    this.f26066b.dismiss();
                     return;
                 }
                 return;
+            case 2:
+                this.f26066b.dismiss();
+                return;
+            default:
+                this.f26066b.dismiss();
+                return;
         }
-    }
-
-    public f3(int[] iArr, Runnable runnable, int i10) {
-        this.f24566c = iArr;
-        this.f24565b = i10;
-        this.d = runnable;
     }
 }

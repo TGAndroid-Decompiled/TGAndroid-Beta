@@ -1,76 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-public final class q51 extends s4.r0 {
-    public final int f28206a;
-    public int f28207b;
-    public final Object f28208c;
+import org.telegram.tgnet.ConnectionsManager;
+public final class q51 extends un0 {
+    public final b61 h;
 
-    public q51(u51 u51Var) {
-        this.f28206a = 0;
-        this.f28208c = u51Var;
+    public q51(b61 b61Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, 14.0f, d6Var);
+        this.h = b61Var;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        switch (this.f28206a) {
-            case 0:
-                if (i10 == 0) {
-                    this.f28207b = 0;
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final void a(String str) {
+        hg.e2 e2Var = this.h.v;
+        hg.c2 c2Var = e2Var.S;
+        int i10 = e2Var.f11850c;
+        if (e2Var.N != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.N, true);
+            e2Var.N = 0;
         }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f28206a) {
-            case 0:
-                u51 u51Var = (u51) this.f28208c;
-                this.f28207b += i11;
-                if (recyclerView.getScrollState() == 1 && Math.abs(this.f28207b) > AndroidUtilities.dp(96.0f)) {
-                    View findFocus = u51Var.e.findFocus();
-                    if (findFocus == null) {
-                        findFocus = u51Var.e;
-                    }
-                    AndroidUtilities.hideKeyboard(findFocus);
-                }
-                if (i11 != 0) {
-                    u51.n(u51Var);
-                    return;
-                }
-                return;
-            case 1:
-                int i12 = this.f28207b + i11;
-                this.f28207b = i12;
-                ((org.telegram.ui.k31) this.f28208c).H.setAlpha((i12 * 1.0f) / AndroidUtilities.dp(6.0f));
-                return;
-            default:
-                org.telegram.ui.Wallet.a5 a5Var = ((org.telegram.ui.Wallet.x3) this.f28208c).f33583a;
-                if (this.f28207b == 0) {
-                    a5Var.q0();
-                    return;
-                } else {
-                    recyclerView.post(new org.telegram.ui.Wallet.g3(a5Var, 13));
-                    return;
-                }
+        if (e2Var.O != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.O, true);
+            e2Var.O = 0;
         }
-    }
-
-    public q51(org.telegram.ui.k31 k31Var) {
-        this.f28206a = 1;
-        this.f28208c = k31Var;
-        this.f28207b = 0;
-    }
-
-    public q51(org.telegram.ui.Wallet.x3 x3Var, int i10) {
-        this.f28206a = 2;
-        this.f28208c = x3Var;
-        this.f28207b = i10;
+        if (TextUtils.isEmpty(str)) {
+            e2Var.R = null;
+            e2Var.F.clear();
+            e2Var.I.clear();
+            e2Var.E.clear();
+            e2Var.e.b(false);
+            e2Var.l();
+        } else {
+            e2Var.R = str.toLowerCase();
+        }
+        AndroidUtilities.cancelRunOnUIThread(c2Var);
+        AndroidUtilities.runOnUIThread(c2Var, 300L);
     }
 }

@@ -29,7 +29,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f18401w;
+    int f19766w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -94,7 +94,7 @@ public class VideoFramesRewinder {
             }
         }
         while (!arrayList.isEmpty() && this.frames.size() < this.maxFramesCount) {
-            this.frames.add((Frame) i2.d.A(1, arrayList));
+            this.frames.add((Frame) i0.a.z(1, arrayList));
         }
         if (arrayList.size() > 0) {
             FileLog.d("[VideoFramesRewinder] prepared " + arrayList.size() + " more frames than I could fit :(");
@@ -116,7 +116,7 @@ public class VideoFramesRewinder {
         char c11 = 4;
         int i12 = iArr[4];
         int i13 = 0;
-        int min = Math.min(this.f18401w / 4, iArr[0]);
+        int min = Math.min(this.f19766w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i14 = this.maxFrameSide;
         if (min > i14 || min2 > i14) {
@@ -182,7 +182,7 @@ public class VideoFramesRewinder {
             c12 = c10;
             i13 = 0;
         }
-        AndroidUtilities.runOnUIThread(new i0(this, arrayList, currentTimeMillis, 9));
+        AndroidUtilities.runOnUIThread(new i0(this, arrayList, currentTimeMillis, 12));
     }
 
     private void prepare(long j10) {
@@ -204,7 +204,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i10, int i11) {
-        this.f18401w = i10;
+        this.f19766w = i10;
         this.h = i11;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();

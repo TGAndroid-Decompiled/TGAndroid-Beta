@@ -3,16 +3,16 @@ package wd;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class b implements Iterator {
-    public final int f47533a = 0;
-    public final int f47534b;
-    public final int f47535c;
+    public final int f48942a = 0;
+    public final int f48943b;
+    public final int f48944c;
     public boolean d;
     public int e;
 
     public b(char c10, char c11, int i10) {
         boolean z10 = false;
-        this.f47534b = i10;
-        this.f47535c = c11;
+        this.f48943b = i10;
+        this.f48944c = c11;
         if (i10 <= 0 ? c10 >= c11 : c10 < c11 || c10 == c11) {
             z10 = true;
         }
@@ -22,7 +22,7 @@ public final class b implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        switch (this.f47533a) {
+        switch (this.f48942a) {
             case 0:
                 return this.d;
             default:
@@ -32,17 +32,17 @@ public final class b implements Iterator {
 
     @Override
     public final Object next() {
-        switch (this.f47533a) {
+        switch (this.f48942a) {
             case 0:
                 int i10 = this.e;
-                if (i10 == this.f47535c) {
+                if (i10 == this.f48944c) {
                     if (this.d) {
                         this.d = false;
                     } else {
                         throw new NoSuchElementException();
                     }
                 } else {
-                    this.e = this.f47534b + i10;
+                    this.e = this.f48943b + i10;
                 }
                 return Character.valueOf((char) i10);
             default:
@@ -52,20 +52,20 @@ public final class b implements Iterator {
 
     public int nextInt() {
         int i10 = this.e;
-        if (i10 == this.f47535c) {
+        if (i10 == this.f48944c) {
             if (this.d) {
                 this.d = false;
                 return i10;
             }
             throw new NoSuchElementException();
         }
-        this.e = this.f47534b + i10;
+        this.e = this.f48943b + i10;
         return i10;
     }
 
     @Override
     public final void remove() {
-        switch (this.f47533a) {
+        switch (this.f48942a) {
             case 0:
                 throw new UnsupportedOperationException("Operation is not supported for read-only collection");
             default:
@@ -74,8 +74,8 @@ public final class b implements Iterator {
     }
 
     public b(int i10, int i11, int i12) {
-        this.f47534b = i12;
-        this.f47535c = i11;
+        this.f48943b = i12;
+        this.f48944c = i11;
         boolean z10 = false;
         if (i12 <= 0 ? i10 >= i11 : i10 <= i11) {
             z10 = true;

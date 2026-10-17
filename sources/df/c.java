@@ -2,7 +2,7 @@ package df;
 
 import v7.x6;
 public final class c extends n {
-    public char f6516g;
+    public char f7971g;
 
     @Override
     public final void a(x6 x6Var) {

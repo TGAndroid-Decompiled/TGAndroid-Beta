@@ -1,40 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-public final class dt0 implements dm0 {
-    public final ts0 f24184a;
-    public final xv0 f24185b;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class dt0 extends org.telegram.ui.Cells.h7 {
+    public final sv0 f25695l0;
 
-    public dt0(xv0 xv0Var, ts0 ts0Var) {
-        this.f24185b = xv0Var;
-        this.f24184a = ts0Var;
+    public dt0(sv0 sv0Var, Context context) {
+        super(context);
+        this.f25695l0 = sv0Var;
     }
 
     @Override
-    public final boolean mo17d(float r18, float r19, int r20, android.view.View r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dt0.mo17d(float, float, int, android.view.View):boolean");
-    }
-
-    @Override
-    public final void h() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f24185b.f31069v1;
-        if (m2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                m2Var.finishPreviewFragment();
+    public final boolean d(MessageObject messageObject) {
+        ArrayList<MessageObject> arrayList;
+        boolean isVoice = messageObject.isVoice();
+        sv0 sv0Var = this.f25695l0;
+        if (!isVoice && !messageObject.isRoundVideo()) {
+            if (!messageObject.isMusic()) {
+                return false;
             }
+            return MediaController.getInstance().setPlaylist(sv0Var.f30384t1[4].f26942a, messageObject, sv0Var.f30347c1);
         }
-    }
-
-    @Override
-    public final void q(float f7) {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f24185b.f31069v1;
-        if (m2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                m2Var.movePreviewFragment(f7);
-            }
+        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
+        MediaController mediaController = MediaController.getInstance();
+        if (playMessage) {
+            arrayList = sv0Var.f30384t1[4].f26942a;
+        } else {
+            arrayList = null;
         }
+        mediaController.setVoiceMessagesPlaylist(arrayList, false);
+        return playMessage;
     }
 }

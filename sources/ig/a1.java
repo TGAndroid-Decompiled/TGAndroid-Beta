@@ -1,102 +1,44 @@
 package ig;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sk;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.zc;
-public final class a1 implements RequestDelegate {
-    public final int f11436a;
-    public final e1 f11437b;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.Components.h9;
+public final class a1 extends View {
+    public final Drawable f12825a;
+    public final ImageReceiver f12826b;
 
-    public a1(e1 e1Var, int i10) {
-        this.f11436a = i10;
-        this.f11437b = e1Var;
+    public a1(b1 b1Var, Context context) {
+        super(context);
+        this.f12825a = getContext().getResources().getDrawable(R.drawable.map_pin_photo).mutate();
+        h9 h9Var = new h9((d6) null);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f12826b = imageReceiver;
+        h9Var.r(b1Var.getUserConfig().getCurrentUser());
+        imageReceiver.setForUserOrChat(b1Var.getUserConfig().getCurrentUser(), h9Var);
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f11436a) {
-            case 0:
-                final e1 e1Var = this.f11437b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                e1 e1Var2 = e1Var;
-                                e1Var2.f11484b.a(0.0f);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 != null) {
-                                    zc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    sk.q(R.string.UnknownError, zc.a0(e1Var2), null);
-                                    return;
-                                } else {
-                                    e1Var2.finishFragment();
-                                    return;
-                                }
-                            default:
-                                e1 e1Var3 = e1Var;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null) {
-                                    e1Var3.f11484b.a(0.0f);
-                                    zc.d0(tL_error3);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    e1Var3.f11484b.a(0.0f);
-                                    sk.q(R.string.UnknownError, zc.a0(e1Var3), null);
-                                    return;
-                                } else {
-                                    e1Var3.finishFragment();
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
-            default:
-                final e1 e1Var2 = this.f11437b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                e1 e1Var22 = e1Var2;
-                                e1Var22.f11484b.a(0.0f);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 != null) {
-                                    zc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    sk.q(R.string.UnknownError, zc.a0(e1Var22), null);
-                                    return;
-                                } else {
-                                    e1Var22.finishFragment();
-                                    return;
-                                }
-                            default:
-                                e1 e1Var3 = e1Var2;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null) {
-                                    e1Var3.f11484b.a(0.0f);
-                                    zc.d0(tL_error3);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    e1Var3.f11484b.a(0.0f);
-                                    sk.q(R.string.UnknownError, zc.a0(e1Var3), null);
-                                    return;
-                                } else {
-                                    e1Var3.finishFragment();
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(62.0f);
+        int dp2 = AndroidUtilities.dp(85.0f);
+        Drawable drawable = this.f12825a;
+        drawable.setBounds(0, 0, dp, dp2);
+        drawable.draw(canvas);
+        int dp3 = AndroidUtilities.dp(62.0f);
+        ImageReceiver imageReceiver = this.f12826b;
+        imageReceiver.setRoundRadius(dp3);
+        imageReceiver.setImageCoords(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
+        imageReceiver.draw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(85.0f), 1073741824));
     }
 }

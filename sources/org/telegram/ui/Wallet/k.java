@@ -1,77 +1,50 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.da0;
-import org.telegram.ui.j90;
-public final class k implements Utilities.Callback {
-    public final int f33090a;
-    public final Object f33091b;
+import org.telegram.tgnet.ConnectionsManager;
+public final class k implements Utilities.Callback2 {
+    public final int f34373a;
+    public final Object f34374b;
+    public final Object f34375c;
+    public final Object d;
 
-    public k(Object obj, int i10) {
-        this.f33090a = i10;
-        this.f33091b = obj;
+    public k(Object obj, Object obj2, Object obj3, int i10) {
+        this.f34373a = i10;
+        this.f34374b = obj;
+        this.d = obj2;
+        this.f34375c = obj3;
     }
 
     @Override
-    public final void run(Object obj) {
-        String str;
-        int i10;
-        CharSequence formatSpannable;
-        int i11 = this.f33090a;
-        boolean z10 = false;
-        Object obj2 = this.f33091b;
-        switch (i11) {
-            case 0:
-                bi.y2 y2Var = (bi.y2) obj2;
-                if (((String) obj) == null) {
-                    z10 = true;
-                }
-                y2Var.run(Boolean.valueOf(z10));
-                return;
-            case 1:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) obj2;
-                h0 h0Var = (h0) obj;
-                if (h0Var == null) {
-                    str = "LOCAL_STORAGE_ERROR";
-                } else {
-                    str = null;
-                }
-                callback2.run(h0Var, str);
-                return;
-            case 2:
-                String str2 = (String) obj;
-                e2.k("approve session", str2);
-                ((j90) obj2).run(str2);
-                return;
-            case 3:
-                String str3 = (String) obj;
-                e2.k("disconnect session", str3);
-                ((Utilities.Callback) obj2).run(str3);
-                return;
-            default:
-                a7 a7Var = (a7) obj2;
-                a7Var.getClass();
-                if (((Integer) obj).intValue() == 0) {
-                    i10 = 12;
-                } else {
-                    i10 = 24;
-                }
-                if (a7Var.f32669a != i10) {
-                    a7Var.f32669a = i10;
-                    a7Var.W(a7Var.getParentActivity());
-                    a7Var.Y();
-                    da0 da0Var = a7Var.h;
-                    if (a7Var.f32675s != null) {
-                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i10));
-                    } else {
-                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i10));
-                    }
-                    da0Var.setText(formatSpannable);
-                    return;
-                }
-                return;
-        }
+    public final void run(java.lang.Object r22, java.lang.Object r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.k.run(java.lang.Object, java.lang.Object):void");
+    }
+
+    public k(Utilities.Callback callback, m0 m0Var, ConnectionsManager connectionsManager) {
+        this.f34373a = 10;
+        this.d = callback;
+        this.f34374b = m0Var;
+        this.f34375c = connectionsManager;
+    }
+
+    public k(m0 m0Var, Object obj, Object obj2, int i10) {
+        this.f34373a = i10;
+        this.f34374b = m0Var;
+        this.f34375c = obj;
+        this.d = obj2;
+    }
+
+    public k(m0 m0Var, q qVar, String str, String str2) {
+        this.f34373a = 3;
+        this.f34374b = qVar;
+        this.d = str;
+        this.f34375c = str2;
+    }
+
+    public k(k8 k8Var, org.telegram.ui.ActionBar.b2 b2Var, m0 m0Var) {
+        this.f34373a = 11;
+        this.d = k8Var;
+        this.f34375c = b2Var;
+        this.f34374b = m0Var;
     }
 }

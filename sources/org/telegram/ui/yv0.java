@@ -1,31 +1,43 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class yv0 extends AnimatorListenerAdapter {
-    public final int f41966a;
-    public final fw0 f41967b;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class yv0 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5 {
+    public final int f43492a;
+    public final zv0 f43493b;
 
-    public yv0(fw0 fw0Var, int i10) {
-        this.f41966a = i10;
-        this.f41967b = fw0Var;
+    public yv0(zv0 zv0Var, int i10) {
+        this.f43492a = i10;
+        this.f43493b = zv0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41966a) {
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f43492a) {
             case 0:
-                this.f41967b.R.setTranslationY(0.0f);
-                return;
-            case 1:
-                this.f41967b.R.setTranslationY(0.0f);
+                this.f43493b.Y();
                 return;
             default:
-                fw0 fw0Var = this.f41967b;
-                fw0Var.getClass();
-                fw0Var.R.setTranslationY(0.0f);
-                fw0Var.l0();
+                this.f43493b.finishFragment();
                 return;
+        }
+    }
+
+    @Override
+    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        zv0 zv0Var = this.f43493b;
+        zv0Var.getClass();
+        if (((org.telegram.ui.Components.f61) obj).d == 1) {
+            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) view;
+            boolean z10 = !v8Var.e.h;
+            zv0Var.f43819r = z10;
+            v8Var.setChecked(z10);
+            zv0Var.d.W2.N(true);
+            zv0Var.V(true);
         }
     }
 }

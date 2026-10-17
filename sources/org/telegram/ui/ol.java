@@ -1,33 +1,47 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.UndoView;
-public final class ol extends UndoView {
-    public final fo f38700f0;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.VideoEditedInfo;
+public final class ol extends bu0 {
+    public final ArrayList f39841a;
+    public final boolean[] f39842b;
+    public final sn f39843c;
 
-    public ol(fo foVar, Activity activity, fo foVar2, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(activity, foVar2, true, c6Var);
-        this.f38700f0 = foVar;
+    public ol(sn snVar, ArrayList arrayList, boolean[] zArr) {
+        this.f39843c = snVar;
+        this.f39841a = arrayList;
+        this.f39842b = zArr;
     }
 
     @Override
-    public final void b(CharacterStyle characterStyle) {
-        this.f38700f0.X7(characterStyle, false, null, null);
+    public final boolean T() {
+        return false;
     }
 
     @Override
-    public final void k(long j10, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        float f7;
-        int i11;
-        mk mkVar = this.f38700f0.X1;
-        if (mkVar != null && (((i11 = mkVar.U) == 1 || i11 == 3) && mkVar.T)) {
-            f7 = AndroidUtilities.dp(mkVar.getStyleHeight());
-        } else {
-            f7 = 0.0f;
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return null;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        ArrayList arrayList = this.f39841a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (!this.f39842b[size]) {
+                arrayList.remove(size);
+            }
         }
-        setAdditionalTranslationY(f7);
-        super.k(j10, i10, obj, obj2, runnable, runnable2);
+        this.f39843c.ib(arrayList, i11, z10, z11);
+    }
+
+    @Override
+    public final boolean x(int i10) {
+        return this.f39842b[i10];
+    }
+
+    @Override
+    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
+        return i10;
     }
 }

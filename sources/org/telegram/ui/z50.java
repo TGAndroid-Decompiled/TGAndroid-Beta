@@ -1,33 +1,23 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.Iterator;
-public final class z50 implements org.telegram.ui.Components.y5 {
-    public final int f42165a;
-    public final Object f42166b;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+public final class z50 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final FrameLayout f43574a;
+    public final b60 f43575b;
 
-    public z50(Object obj, int i10) {
-        this.f42165a = i10;
-        this.f42166b = obj;
+    public z50(b60 b60Var, FrameLayout frameLayout) {
+        this.f43575b = b60Var;
+        this.f43574a = frameLayout;
     }
 
     @Override
-    public final void invalidate() {
-        switch (this.f42165a) {
-            case 0:
-                Iterator it = ((a60) this.f42166b).f33754i.iterator();
-                while (it.hasNext()) {
-                    ((View) it.next()).invalidate();
-                }
-                return;
-            default:
-                a71 a71Var = (a71) this.f42166b;
-                a71Var.getClass();
-                if (!ah.x0.f901b && a71Var.getParent() != null) {
-                    ((View) a71Var.getParent()).invalidate();
-                    return;
-                }
-                return;
+    public final void onGlobalLayout() {
+        this.f43574a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        b60 b60Var = this.f43575b;
+        if (b60Var.f35573z0 == null) {
+            b60Var.f35573z0 = (vc) b60Var.y0(b60Var.Z);
         }
+        b60Var.f35573z0.f42172f.setOnClickListener(new y50(this, 0));
     }
 }

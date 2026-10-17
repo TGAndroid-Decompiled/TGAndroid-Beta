@@ -4,9 +4,9 @@ import android.net.Uri;
 import java.util.Map;
 import v7.u6;
 public final class t implements g2.h {
-    public final g2.h f46040a;
-    public final int f46041b;
-    public final t0 f46042c;
+    public final g2.h f47447a;
+    public final int f47448b;
+    public final t0 f47449c;
     public final byte[] d;
     public int e;
 
@@ -18,9 +18,9 @@ public final class t implements g2.h {
             z10 = false;
         }
         u6.g(z10);
-        this.f46040a = hVar;
-        this.f46041b = i10;
-        this.f46042c = t0Var;
+        this.f47447a = hVar;
+        this.f47448b = i10;
+        this.f47449c = t0Var;
         this.d = new byte[1];
         this.e = i10;
     }
@@ -28,7 +28,7 @@ public final class t implements g2.h {
     @Override
     public final void addTransferListener(g2.c0 c0Var) {
         c0Var.getClass();
-        this.f46040a.addTransferListener(c0Var);
+        this.f47447a.addTransferListener(c0Var);
     }
 
     @Override
@@ -38,12 +38,12 @@ public final class t implements g2.h {
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f46040a.getResponseHeaders();
+        return this.f47447a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f46040a.getUri();
+        return this.f47447a.getUri();
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class t implements g2.h {
     public final int read(byte[] bArr, int i10, int i11) {
         long max;
         int i12 = this.e;
-        g2.h hVar = this.f46040a;
+        g2.h hVar = this.f47447a;
         if (i12 == 0) {
             byte[] bArr2 = this.d;
             int i13 = 0;
@@ -76,22 +76,22 @@ public final class t implements g2.h {
                     }
                     if (i14 > 0) {
                         e2.x xVar = new e2.x(bArr3, i14);
-                        t0 t0Var = this.f46042c;
-                        if (!t0Var.f46050w) {
-                            max = t0Var.f46048r;
+                        t0 t0Var = this.f47449c;
+                        if (!t0Var.f47457w) {
+                            max = t0Var.f47455r;
                         } else {
-                            max = Math.max(t0Var.f46051x.j(true), t0Var.f46048r);
+                            max = Math.max(t0Var.f47458x.h(true), t0Var.f47455r);
                         }
                         long j10 = max;
                         int a2 = xVar.a();
-                        c3.i0 i0Var = t0Var.v;
-                        i0Var.getClass();
-                        i0Var.d(a2, xVar);
-                        i0Var.c(j10, 1, a2, 0, null);
-                        t0Var.f46050w = true;
+                        c3.j0 j0Var = t0Var.v;
+                        j0Var.getClass();
+                        j0Var.d(a2, xVar);
+                        j0Var.c(j10, 1, a2, 0, null);
+                        t0Var.f47457w = true;
                     }
                 }
-                this.e = this.f46041b;
+                this.e = this.f47448b;
             }
             return -1;
         }

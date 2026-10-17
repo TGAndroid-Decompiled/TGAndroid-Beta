@@ -1,16 +1,16 @@
 package ab;
 public final class d0 {
-    public final String f388a;
-    public final String f389b;
-    public final int f390c;
+    public final String f387a;
+    public final String f388b;
+    public final int f389c;
     public final long d;
 
     public d0(int i10, long j10, String sessionId, String firstSessionId) {
         kotlin.jvm.internal.i.e(sessionId, "sessionId");
         kotlin.jvm.internal.i.e(firstSessionId, "firstSessionId");
-        this.f388a = sessionId;
-        this.f389b = firstSessionId;
-        this.f390c = i10;
+        this.f387a = sessionId;
+        this.f388b = firstSessionId;
+        this.f389c = i10;
         this.d = j10;
     }
 
@@ -22,7 +22,7 @@ public final class d0 {
             return false;
         }
         d0 d0Var = (d0) obj;
-        if (kotlin.jvm.internal.i.a(this.f388a, d0Var.f388a) && kotlin.jvm.internal.i.a(this.f389b, d0Var.f389b) && this.f390c == d0Var.f390c && this.d == d0Var.d) {
+        if (kotlin.jvm.internal.i.a(this.f387a, d0Var.f387a) && kotlin.jvm.internal.i.a(this.f388b, d0Var.f388b) && this.f389c == d0Var.f389c && this.d == d0Var.d) {
             return true;
         }
         return false;
@@ -30,10 +30,10 @@ public final class d0 {
 
     public final int hashCode() {
         long j10 = this.d;
-        return ((a1.g.g(this.f388a.hashCode() * 31, 31, this.f389b) + this.f390c) * 31) + ((int) (j10 ^ (j10 >>> 32)));
+        return ((a1.g.g(this.f387a.hashCode() * 31, 31, this.f388b) + this.f389c) * 31) + ((int) (j10 ^ (j10 >>> 32)));
     }
 
     public final String toString() {
-        return "SessionDetails(sessionId=" + this.f388a + ", firstSessionId=" + this.f389b + ", sessionIndex=" + this.f390c + ", sessionStartTimestampUs=" + this.d + ')';
+        return "SessionDetails(sessionId=" + this.f387a + ", firstSessionId=" + this.f388b + ", sessionIndex=" + this.f389c + ", sessionStartTimestampUs=" + this.d + ')';
     }
 }

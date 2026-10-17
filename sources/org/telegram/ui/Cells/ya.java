@@ -1,17 +1,33 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.i11;
-public final class ya {
-    public final i11 f22491a;
-    public i11 f22492b;
-    public final boolean f22493c;
-    public final RectF d = new RectF();
+import android.view.View;
+public final class ya implements View.OnLongClickListener {
+    public final int f23853a = 1;
+    public final int f23854b;
+    public final Object f23855c;
+    public final Object d;
 
-    public ya(CharSequence charSequence, CharSequence charSequence2, boolean z10) {
-        this.f22491a = new i11(charSequence, 12.0f, null);
-        this.f22492b = new i11(charSequence2, 12.0f, AndroidUtilities.bold());
-        this.f22493c = z10;
+    public ya(ai.x9 x9Var, int i10, Runnable runnable) {
+        this.f23855c = x9Var;
+        this.f23854b = i10;
+        this.d = runnable;
+    }
+
+    @Override
+    public final boolean onLongClick(View view) {
+        switch (this.f23853a) {
+            case 0:
+                return ((ab) this.f23855c).b(((za) this.d).h, this.f23854b);
+            default:
+                ((ai.x9) this.f23855c).g(this.f23854b, true);
+                ((Runnable) this.d).run();
+                return true;
+        }
+    }
+
+    public ya(ab abVar, za zaVar, int i10) {
+        this.f23855c = abVar;
+        this.d = zaVar;
+        this.f23854b = i10;
     }
 }

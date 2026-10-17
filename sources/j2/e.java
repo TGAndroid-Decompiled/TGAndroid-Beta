@@ -2,19 +2,20 @@ package j2;
 
 import android.media.AudioDescriptor;
 import android.os.SystemClock;
+import b2.o0;
+import b2.w;
 import e2.m0;
 import e2.o;
-import k2.h0;
-import k2.n0;
-import k2.o0;
+import k2.i0;
 import k2.p0;
-import k2.s0;
+import k2.q0;
+import k2.t0;
 import k2.x;
 public final class e implements o {
-    public final int f12528a;
+    public final int f13933a;
 
     public e(int i10) {
-        this.f12528a = i10;
+        this.f13933a = i10;
     }
 
     public static AudioDescriptor b(Object obj) {
@@ -25,7 +26,7 @@ public final class e implements o {
     public void invoke(Object obj) {
         long j10;
         x xVar;
-        switch (this.f12528a) {
+        switch (this.f13933a) {
             case 0:
                 ((b) obj).getClass();
                 return;
@@ -90,58 +91,49 @@ public final class e implements o {
                 ((b) obj).getClass();
                 return;
             case 21:
+                ((b) obj).getClass();
+                return;
             case 22:
+                ((b) obj).getClass();
+                return;
             case 23:
             case 24:
-            default:
-                x xVar2 = ((n0) obj).f13965a.f14008n;
-                if (xVar2 != null) {
-                    xVar2.w();
-                    return;
-                }
-                return;
             case 25:
-                o0 o0Var = (o0) obj;
-                s0 s0Var = o0Var.f13975b;
-                if (o0Var.equals(s0Var.f14004j) && s0Var.f14008n != null) {
-                    p0 p0Var = s0Var.f14010p;
-                    int i10 = p0Var.f13977b;
-                    if (i10 != -1) {
-                        long j11 = ((k2.o) p0Var.e).f13969f / i10;
-                        h0 h0Var = s0Var.f14014t;
-                        h0Var.getClass();
-                        j10 = m0.Y(h0Var.f13893a.getSampleRate(), j11);
-                    } else {
-                        j10 = -9223372036854775807L;
-                    }
-                    s0Var.f14008n.t(((k2.o) s0Var.f14010p.e).f13969f, m0.h0(j10), SystemClock.elapsedRealtime() - s0Var.W);
-                    return;
-                }
-                return;
             case 26:
-                o0 o0Var2 = (o0) obj;
-                o0Var2.getClass();
-                s0.f13995c0.getAndDecrement();
-                x xVar3 = o0Var2.f13975b.f14008n;
-                if (xVar3 != 0) {
-                    int i11 = o0Var2.f13974a.f13966a;
-                    xVar3.F(new Object());
+            default:
+                p0 p0Var = (p0) obj;
+                t0 t0Var = p0Var.f14771b;
+                if (p0Var.equals(t0Var.f14803j) && (xVar = t0Var.f14807n) != null && t0Var.O) {
+                    xVar.T();
                     return;
                 }
                 return;
             case 27:
-                o0 o0Var3 = (o0) obj;
-                s0 s0Var2 = o0Var3.f13975b;
-                if (o0Var3.equals(s0Var2.f14004j) && (xVar = s0Var2.f14008n) != null && s0Var2.O) {
-                    xVar.G();
+                p0 p0Var2 = (p0) obj;
+                t0 t0Var2 = p0Var2.f14771b;
+                if (p0Var2.equals(t0Var2.f14803j) && t0Var2.f14807n != null) {
+                    q0 q0Var = t0Var2.f14809p;
+                    int i10 = q0Var.f14776b;
+                    if (i10 != -1) {
+                        long j11 = ((k2.o) q0Var.e).f14764f / i10;
+                        i0 i0Var = t0Var2.f14813t;
+                        i0Var.getClass();
+                        j10 = m0.Y(i0Var.f14689a.getSampleRate(), j11);
+                    } else {
+                        j10 = -9223372036854775807L;
+                    }
+                    t0Var2.f14807n.s(((k2.o) t0Var2.f14809p.e).f14764f, m0.h0(j10), SystemClock.elapsedRealtime() - t0Var2.W);
                     return;
                 }
                 return;
             case 28:
-                o0 o0Var4 = (o0) obj;
-                s0 s0Var3 = o0Var4.f13975b;
-                if (o0Var4.equals(s0Var3.f14004j) && s0Var3.M) {
-                    s0Var3.N = true;
+                p0 p0Var3 = (p0) obj;
+                p0Var3.getClass();
+                t0.f14794c0.getAndDecrement();
+                x xVar2 = p0Var3.f14771b.f14807n;
+                if (xVar2 != 0) {
+                    int i11 = p0Var3.f14770a.f14761a;
+                    xVar2.S(new Object());
                     return;
                 }
                 return;
@@ -149,34 +141,34 @@ public final class e implements o {
     }
 
     public e(a aVar, float f7) {
-        this.f12528a = 20;
+        this.f13933a = 22;
     }
 
     public e(a aVar, int i10) {
-        this.f12528a = i10;
+        this.f13933a = i10;
     }
 
     public e(a aVar, int i10, int i11) {
-        this.f12528a = i11;
+        this.f13933a = i11;
     }
 
     public e(a aVar, long j10) {
-        this.f12528a = 11;
+        this.f13933a = 13;
     }
 
-    public e(a aVar, b2.x xVar, i2.f fVar) {
-        this.f12528a = 2;
+    public e(a aVar, w wVar, i2.e eVar, int i10) {
+        this.f13933a = i10;
     }
 
-    public e(a aVar, b2.p0 p0Var, int i10) {
-        this.f12528a = 19;
+    public e(a aVar, o0 o0Var, int i10) {
+        this.f13933a = 21;
     }
 
     public e(a aVar, Object obj, int i10) {
-        this.f12528a = i10;
+        this.f13933a = i10;
     }
 
     public e(a aVar, boolean z10, int i10) {
-        this.f12528a = i10;
+        this.f13933a = i10;
     }
 }

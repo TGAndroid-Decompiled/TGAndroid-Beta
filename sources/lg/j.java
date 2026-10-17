@@ -1,14 +1,14 @@
 package lg;
 public final class j {
-    public float f14726a;
-    public float f14727b;
-    public float f14728c;
+    public float f16063a;
+    public float f16064b;
+    public float f16065c;
     public float d;
     public float e;
-    public float f14729f;
-    public float[] f14730g;
+    public float f16066f;
+    public float[] f16067g;
     public float[] h;
-    public float[] f14731i;
-    public float[] f14732j;
-    public float[] f14733k;
+    public float[] f16068i;
+    public float[] f16069j;
+    public float[] f16070k;
 }

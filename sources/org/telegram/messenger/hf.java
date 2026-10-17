@@ -1,35 +1,41 @@
 package org.telegram.messenger;
-
-import org.telegram.ui.fo;
-import org.webrtc.TextureViewRenderer;
 public final class hf implements Runnable {
-    public final int f17118a;
-    public final int f17119b;
-    public final int f17120c;
-    public final int d;
-    public final int e;
-    public final Object f17121f;
+    public final int f18529a;
+    public final MessagesStorage f18530b;
+    public final long f18531c;
 
-    public hf(Object obj, int i10, int i11, int i12, int i13, int i14) {
-        this.f17118a = i14;
-        this.f17121f = obj;
-        this.f17119b = i10;
-        this.f17120c = i11;
-        this.d = i12;
-        this.e = i13;
+    public hf(MessagesStorage messagesStorage, long j10, int i10) {
+        this.f18529a = i10;
+        this.f18530b = messagesStorage;
+        this.f18531c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17118a) {
+        switch (this.f18529a) {
             case 0:
-                ((MessagesStorage) this.f17121f).lambda$saveDiffParams$35(this.f17119b, this.f17120c, this.d, this.e);
+                this.f18530b.lambda$deleteStoryPushMessage$39(this.f18531c);
                 return;
             case 1:
-                fo.w1((fo) this.f17121f, this.f17119b, this.f17120c, this.d, this.e);
+                this.f18530b.lambda$clearUserPhotos$92(this.f18531c);
+                return;
+            case 2:
+                this.f18530b.lambda$removeAllTopics$56(this.f18531c);
+                return;
+            case 3:
+                this.f18530b.lambda$deleteWallpaper$79(this.f18531c);
+                return;
+            case 4:
+                this.f18530b.lambda$deleteSavedDialog$55(this.f18531c);
+                return;
+            case 5:
+                this.f18530b.lambda$onDeleteQueryComplete$91(this.f18531c);
+                return;
+            case 6:
+                this.f18530b.lambda$removePendingTask$11(this.f18531c);
                 return;
             default:
-                TextureViewRenderer.a((TextureViewRenderer) this.f17121f, this.f17119b, this.f17120c, this.d, this.e);
+                this.f18530b.lambda$loadChannelAdmins$123(this.f18531c);
                 return;
         }
     }

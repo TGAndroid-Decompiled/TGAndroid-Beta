@@ -1,61 +1,38 @@
 package gi;
 
-import android.text.TextUtils;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GiftAuctionController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.zc;
-import org.telegram.ui.LaunchActivity;
-public final class o0 implements Utilities.Callback2 {
-    public final int f10228a;
-    public final long f10229b;
-    public final Object f10230c;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class o0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f11365a;
+    public final Activity f11366b;
 
-    public o0(Object obj, long j10, int i10) {
-        this.f10228a = i10;
-        this.f10230c = obj;
-        this.f10229b = j10;
+    public o0(Activity activity, int i10) {
+        this.f11365a = i10;
+        this.f11366b = activity;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        int i10 = this.f10228a;
-        long j10 = this.f10229b;
-        Object obj3 = this.f10230c;
-        switch (i10) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f11365a) {
             case 0:
-                m2 m2Var = (m2) obj3;
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (tL_error != null) {
-                    if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
-                        u0.d(m2Var, -j10, 2);
-                        return;
-                    } else {
-                        zc.a0(m2Var).f0(tL_error, false);
-                        return;
-                    }
-                }
-                u0.d(m2Var, -j10, 1);
-                return;
-            case 1:
-                ((GiftAuctionController) obj3).lambda$subscribeToGiftAuctionStateInternal$1(j10, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 2:
-                LaunchActivity launchActivity = (LaunchActivity) obj3;
-                Long l4 = (Long) obj2;
-                Pattern pattern = LaunchActivity.B1;
-                if ("paid".equals((String) obj) && l4.longValue() != 0) {
-                    AndroidUtilities.runOnUIThread(new a3.i0(launchActivity, l4, this.f10229b, 25));
+                Activity activity = this.f11366b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    activity.startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
                     return;
                 }
-                return;
             default:
-                yh.n.T((yh.n) obj3, j10, (Boolean) obj, (String) obj2);
+                Activity activity2 = this.f11366b;
+                Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                intent2.setData(Uri.fromParts("package", activity2.getPackageName(), null));
+                activity2.startActivity(intent2);
                 return;
         }
     }

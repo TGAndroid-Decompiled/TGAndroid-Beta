@@ -5,44 +5,44 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.j5;
-import org.telegram.ui.Components.r6;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.i5;
+import org.telegram.ui.Components.p6;
 public final class s extends EditTextBoldCursor {
-    public final j5 f11624b;
-    public int f11625c;
-    public final r6 d;
-    public final c6 e;
+    public final i5 f13025b;
+    public int f13026c;
+    public final p6 d;
+    public final d6 e;
 
-    public s(Context context, c6 c6Var) {
+    public s(Context context, d6 d6Var) {
         super(context);
-        this.e = c6Var;
-        this.f11624b = new j5(this);
-        r6 r6Var = new r6(false, true, true);
-        this.d = r6Var;
-        r6Var.n(0.2f, 160L, es.h);
-        r6Var.w(AndroidUtilities.dp(15.33f));
-        r6Var.setCallback(this);
-        r6Var.f28435b = 5;
+        this.e = d6Var;
+        this.f13025b = new i5(this);
+        p6 p6Var = new p6(false, true, true);
+        this.d = p6Var;
+        p6Var.n(0.2f, 160L, bs.h);
+        p6Var.w(AndroidUtilities.dp(15.33f));
+        p6Var.setCallback(this);
+        p6Var.f29192b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f11625c < 0) {
-            i10 = g6.f19822p7;
+        if (this.f13026c < 0) {
+            i10 = h6.f21207p7;
         } else {
-            i10 = g6.P5;
+            i10 = h6.P5;
         }
-        int a2 = this.f11624b.a(g6.w0(i10, this.e), false);
-        r6 r6Var = this.d;
-        r6Var.u(a2);
-        r6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        r6Var.draw(canvas);
+        int a2 = this.f13025b.a(h6.w0(i10, this.e), false);
+        p6 p6Var = this.d;
+        p6Var.u(a2);
+        p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        p6Var.draw(canvas);
     }
 
     @Override
@@ -53,15 +53,15 @@ public final class s extends EditTextBoldCursor {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        r6 r6Var = this.d;
-        if (r6Var != null) {
-            this.f11625c = 32 - charSequence.length();
-            r6Var.a();
+        p6 p6Var = this.d;
+        if (p6Var != null) {
+            this.f13026c = 32 - charSequence.length();
+            p6Var.a();
             String str = "";
-            if (this.f11625c <= 4) {
-                str = "" + this.f11625c;
+            if (this.f13026c <= 4) {
+                str = "" + this.f13026c;
             }
-            r6Var.t(str, true, true);
+            p6Var.t(str, true, true);
         }
     }
 

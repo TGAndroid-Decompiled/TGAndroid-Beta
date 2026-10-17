@@ -1,55 +1,82 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.video.VideoFramesRewinder;
-import org.telegram.messenger.video.VideoPlayerRewinder;
-public final class qt0 extends VideoPlayerRewinder {
-    public final PhotoViewer f39214a;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.webkit.CookieManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.RadialProgressView;
+public final class qt0 extends org.telegram.ui.Components.kg0 {
+    public final Rect M;
+    public final PhotoViewer N;
 
-    public qt0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
-        super(videoFramesRewinder);
-        this.f39214a = photoViewer;
+    public qt0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.e1 e1Var) {
+        super(context);
+        this.N = photoViewer;
+        this.f27863a = UserConfig.selectedAccount;
+        this.v = new ArrayList();
+        this.L = new org.telegram.ui.Components.rc0(this, 10);
+        this.f27864b = photoViewer2;
+        this.f27868r = e1Var;
+        org.telegram.ui.Components.wu wuVar = new org.telegram.ui.Components.wu(this, context, context, 1);
+        this.f27866f = wuVar;
+        wuVar.getSettings().setJavaScriptEnabled(true);
+        wuVar.getSettings().setDomStorageEnabled(true);
+        wuVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        wuVar.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(wuVar, true);
+        wuVar.setWebViewClient(new org.telegram.ui.Components.gg0(this, 0));
+        addView(wuVar, w7.z5.e(-1, -1, 51));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f27865c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(17);
+        linearLayout.setVisibility(8);
+        addView(linearLayout, w7.z5.e(-2, -2, 17));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        com.google.android.gms.internal.cast.a6.o(org.telegram.ui.ActionBar.h6.f21374y6, null, false, textView, 17);
+        linearLayout.addView(textView, w7.z5.q(-2, -2, 1));
+        TextView textView2 = new TextView(context);
+        this.e = textView2;
+        textView2.setTextSize(1, 16.0f);
+        int i10 = org.telegram.ui.ActionBar.h6.f21169n6;
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+        textView2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
+        int i11 = org.telegram.ui.ActionBar.x5.f21886a;
+        textView2.setBackground(org.telegram.ui.ActionBar.x5.d(new float[]{12.0f}, 0, org.telegram.ui.ActionBar.x5.b(org.telegram.ui.ActionBar.h6.x0(null, i10, false))));
+        textView2.setVisibility(8);
+        linearLayout.addView(textView2, w7.z5.t(-2, -2, 1, 0, 8, 0, 0));
+        ai.hc hcVar = new ai.hc(this, context, 21);
+        this.h = hcVar;
+        hcVar.setBackgroundColor(-16777216);
+        hcVar.setVisibility(4);
+        addView(hcVar, w7.z5.d(-1.0f, -1));
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        this.f27867n = radialProgressView;
+        radialProgressView.setVisibility(4);
+        addView(radialProgressView, w7.z5.e(-2, -2, 17));
+        this.M = new Rect();
     }
 
-    @Override
-    public final void onRewindCanceled() {
-        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-        PhotoViewer photoViewer = this.f39214a;
-        PhotoViewer.k(photoViewer, obtain);
-        photoViewer.f32117z1.f(false);
-        org.telegram.ui.Components.fh0.f24733p0.Q.f(false);
-    }
-
-    @Override
-    public final void onRewindStart(boolean z10) {
-        PhotoViewer photoViewer = this.f39214a;
-        photoViewer.f32117z1.e(false);
-        photoViewer.f32117z1.d(!z10);
-        photoViewer.f32117z1.f(true);
-        photoViewer.f31928e0.invalidate();
-        org.telegram.ui.Components.fh0.v(z10);
-    }
-
-    @Override
-    public final void updateRewindProgressUi(long j10, float f7, boolean z10) {
-        PhotoViewer photoViewer = this.f39214a;
-        photoViewer.f32117z1.g(Math.abs(j10));
-        if (z10) {
-            photoViewer.f32035q3.h(f7, false);
-            photoViewer.f32044r3.invalidate();
-        }
-        org.telegram.ui.Components.fh0 fh0Var = org.telegram.ui.Components.fh0.f24733p0;
-        fh0Var.Q.g(0L);
-        if (z10) {
-            fh0Var.Z = f7;
-            bi.d4 d4Var = fh0Var.f24737b0;
-            if (d4Var != null) {
-                d4Var.invalidate();
-            }
-            org.telegram.ui.Components.eh0 eh0Var = fh0Var.h;
-            if (eh0Var != null) {
-                eh0Var.invalidate();
-            }
+    public final void j(Canvas canvas, int i10, int i11) {
+        Bitmap bitmap = this.N.C4.getBitmap();
+        if (bitmap != null) {
+            float min = Math.min(i10 / bitmap.getWidth(), i11 / bitmap.getHeight());
+            int width = (int) (bitmap.getWidth() * min);
+            int height = (int) (bitmap.getHeight() * min);
+            int i12 = (i11 - height) / 2;
+            int i13 = (i10 - width) / 2;
+            Rect rect = this.M;
+            rect.set(i13, i12, width + i13, height + i12);
+            canvas.drawBitmap(bitmap, (Rect) null, rect, (Paint) null);
         }
     }
 }

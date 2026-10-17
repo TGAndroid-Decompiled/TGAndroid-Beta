@@ -1,43 +1,155 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class d61 implements sy0 {
-    public final TLRPC.InputStickerSet f23997a;
-    public final i61 f23998b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.view.animation.DecelerateInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+public final class d61 extends fx0 {
+    public final int f25493a = UserConfig.selectedAccount;
+    public boolean f25494b = false;
+    public final float[] f25495c = new float[3];
+    public final float[] d = {0.0f, 150.0f, 300.0f};
+    public final float[] e = {0.0f, 0.0f, 0.0f};
+    public long f25496f = 0;
+    public boolean f25497g = false;
+    public final DecelerateInterpolator h = new DecelerateInterpolator();
+    public boolean f25498i;
+    public final Paint f25499j;
 
-    public d61(i61 i61Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f23998b = i61Var;
-        this.f23997a = inputStickerSet;
+    public d61(boolean z10) {
+        if (z10) {
+            this.f25499j = new Paint(1);
+        }
     }
 
     @Override
-    public final void a() {
-        i61 i61Var = this.f23998b;
-        s4.g0 adapter = i61Var.f25565n.getAdapter();
-        h61 h61Var = i61Var.f25567s;
-        TLRPC.InputStickerSet inputStickerSet = this.f23997a;
-        int i10 = 0;
-        if (adapter == h61Var) {
-            while (i10 < h61Var.e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) h61Var.e.get(i10);
-                if (stickerSetCovered.set.f18943id == inputStickerSet.f18936id) {
-                    h61Var.F(stickerSetCovered, null);
-                    return;
-                }
-                i10++;
-            }
-            return;
+    public final void b(int i10) {
+        Paint paint = this.f25499j;
+        if (paint != null) {
+            paint.setColor(i10);
         }
-        hg.e2 e2Var = i61Var.v;
-        ArrayList arrayList = e2Var.E;
-        while (i10 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
-            if (stickerSetCovered2.set.f18943id == inputStickerSet.f18936id) {
-                e2Var.F(stickerSetCovered2, null);
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        this.f25494b = z10;
+    }
+
+    @Override
+    public final void d() {
+        this.f25496f = System.currentTimeMillis();
+        this.f25497g = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int dp;
+        int i10;
+        int i11 = getBounds().left;
+        if (this.f25494b) {
+            dp = AndroidUtilities.dp(8.5f);
+            i10 = getBounds().top;
+        } else {
+            dp = AndroidUtilities.dp(9.3f);
+            i10 = getBounds().top;
+        }
+        int i12 = dp + i10;
+        Paint paint = this.f25499j;
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.h6.f20963c2;
+            paint.setAlpha(255);
+        }
+        float f7 = i12;
+        float[] fArr = this.f25495c;
+        canvas.drawCircle(AndroidUtilities.dp(3.0f) + i11, f7, fArr[0] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(9.0f) + i11, f7, fArr[1] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(15.0f) + i11, f7, fArr[2] * AndroidUtilities.density, paint);
+        f();
+    }
+
+    @Override
+    public final void e() {
+        for (int i10 = 0; i10 < 3; i10++) {
+            this.e[i10] = 0.0f;
+            this.f25495c[i10] = 1.33f;
+        }
+        float[] fArr = this.d;
+        fArr[0] = 0.0f;
+        fArr[1] = 150.0f;
+        fArr[2] = 300.0f;
+        this.f25497g = false;
+    }
+
+    public final void f() {
+        if (this.f25497g) {
+            if (NotificationCenter.getInstance(this.f25493a).isAnimationInProgress() && !this.f25498i) {
+                AndroidUtilities.runOnUIThread(new fr0(this, 26), 100L);
                 return;
             }
-            i10++;
+            long currentTimeMillis = System.currentTimeMillis();
+            long j10 = currentTimeMillis - this.f25496f;
+            this.f25496f = currentTimeMillis;
+            if (j10 > 50) {
+                j10 = 50;
+            }
+            for (int i10 = 0; i10 < 3; i10++) {
+                float[] fArr = this.e;
+                float f7 = fArr[i10] + ((float) j10);
+                fArr[i10] = f7;
+                float[] fArr2 = this.d;
+                float f10 = f7 - fArr2[i10];
+                int i11 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+                float[] fArr3 = this.f25495c;
+                if (i11 > 0) {
+                    int i12 = (f10 > 320.0f ? 1 : (f10 == 320.0f ? 0 : -1));
+                    DecelerateInterpolator decelerateInterpolator = this.h;
+                    if (i12 <= 0) {
+                        fArr3[i10] = decelerateInterpolator.getInterpolation(f10 / 320.0f) + 1.33f;
+                    } else if (f10 <= 640.0f) {
+                        fArr3[i10] = (1.0f - decelerateInterpolator.getInterpolation((f10 - 320.0f) / 320.0f)) + 1.33f;
+                    } else if (f10 >= 800.0f) {
+                        fArr[i10] = 0.0f;
+                        fArr2[i10] = 0.0f;
+                        fArr3[i10] = 1.33f;
+                    } else {
+                        fArr3[i10] = 1.33f;
+                    }
+                } else {
+                    fArr3[i10] = 1.33f;
+                }
+            }
+            a();
         }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Paint paint = this.f25499j;
+        if (paint != null) {
+            paint.setColorFilter(colorFilter);
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

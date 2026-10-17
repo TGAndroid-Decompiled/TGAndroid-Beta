@@ -1,28 +1,97 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import org.telegram.ui.ce1;
-public final class np extends ce1 {
-    public final int f27380k2;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.vh1;
+public final class np implements ri {
+    public final wp f28810a;
 
-    public np(Object obj, Bitmap bitmap, boolean z10, int i10) {
-        super(obj, bitmap, z10);
-        this.f27380k2 = i10;
+    public np(wp wpVar) {
+        this.f28810a = wpVar;
     }
 
     @Override
-    public final boolean U0() {
-        switch (this.f27380k2) {
-            case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
-            default:
-                return true;
+    public final void O(Object obj) {
+        kp kpVar = new kp(obj, null, true, 3);
+        wp wpVar = this.f28810a;
+        kpVar.V1 = wpVar.f32178f0;
+        kpVar.c1(wpVar.v.a());
+        kpVar.I1 = new mp(this, 1);
+        wp.r(wpVar, kpVar);
+    }
+
+    @Override
+    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+        wp wpVar = this.f28810a;
+        try {
+            HashMap<Object, Object> selectedPhotos = wpVar.Y.f30586j0.getSelectedPhotos();
+            if (!selectedPhotos.isEmpty()) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
+                String str = photoEntry.imagePath;
+                if (str == null) {
+                    str = photoEntry.path;
+                }
+                if (str != null) {
+                    File directory = FileLoader.getDirectory(4);
+                    File file = new File(directory, Utilities.random.nextInt() + ".jpg");
+                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                    Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+                    kp kpVar = new kp(new vh1(file, file, ""), loadBitmap, false, 2);
+                    kpVar.V1 = wpVar.f32178f0;
+                    kpVar.F1 = false;
+                    kpVar.E1 = false;
+                    kpVar.f39136n1 = 0.2f;
+                    kpVar.c1(wpVar.v.a());
+                    kpVar.I1 = new mp(this, 0);
+                    wp.r(wpVar, kpVar);
+                }
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
         }
+    }
+
+    @Override
+    public final boolean p0() {
+        System.currentTimeMillis();
+        return true;
+    }
+
+    @Override
+    public final void r(gh ghVar) {
+        ghVar.run();
+    }
+
+    @Override
+    public final boolean v() {
+        return false;
+    }
+
+    @Override
+    public final void E() {
+    }
+
+    @Override
+    public final void J() {
+    }
+
+    @Override
+    public final void X(TLRPC.User user) {
+    }
+
+    @Override
+    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
     }
 }

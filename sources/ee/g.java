@@ -1,11 +1,13 @@
 package ee;
-public final class g implements c {
-    public final c f8746a;
-    public final kotlin.jvm.internal.p f8747b;
 
-    public g(c cVar, kotlin.jvm.internal.p pVar) {
-        this.f8746a = cVar;
-        this.f8747b = pVar;
+import kotlin.jvm.internal.p;
+public final class g implements c {
+    public final c f8627a;
+    public final p f8628b;
+
+    public g(c cVar, p pVar) {
+        this.f8627a = cVar;
+        this.f8628b = pVar;
     }
 
     @Override

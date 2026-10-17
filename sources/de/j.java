@@ -2,13 +2,13 @@ package de;
 
 import be.j2;
 public final class j {
-    public final j2 f6515a;
+    public final j2 f7970a;
 
     public j(j2 j2Var) {
-        this.f6515a = j2Var;
+        this.f7970a = j2Var;
     }
 
     public final String toString() {
-        return "WaiterEB(" + this.f6515a + ')';
+        return "WaiterEB(" + this.f7970a + ')';
     }
 }

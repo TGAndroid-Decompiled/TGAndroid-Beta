@@ -5,8 +5,8 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 public abstract class w0 extends x0 implements k0 {
     public static final AtomicReferenceFieldUpdater h = AtomicReferenceFieldUpdater.newUpdater(w0.class, Object.class, "_queue$volatile");
-    public static final AtomicReferenceFieldUpdater f2723n = AtomicReferenceFieldUpdater.newUpdater(w0.class, Object.class, "_delayed$volatile");
-    public static final AtomicIntegerFieldUpdater f2724r = AtomicIntegerFieldUpdater.newUpdater(w0.class, "_isCompleted$volatile");
+    public static final AtomicReferenceFieldUpdater f4335n = AtomicReferenceFieldUpdater.newUpdater(w0.class, Object.class, "_delayed$volatile");
+    public static final AtomicIntegerFieldUpdater f4336r = AtomicIntegerFieldUpdater.newUpdater(w0.class, "_isCompleted$volatile");
     private volatile Object _delayed$volatile;
     private volatile int _isCompleted$volatile = 0;
     private volatile Object _queue$volatile;
@@ -30,7 +30,7 @@ public abstract class w0 extends x0 implements k0 {
     }
 
     public p0 b(long j10, f2 f2Var, kd.h hVar) {
-        return h0.f2681a.b(j10, f2Var, hVar);
+        return h0.f4293a.b(j10, f2Var, hVar);
     }
 
     @Override
@@ -52,7 +52,7 @@ public abstract class w0 extends x0 implements k0 {
             }
             return;
         }
-        g0.f2679s.l(runnable);
+        g0.f4291s.l(runnable);
     }
 
     public final boolean m(java.lang.Runnable r7) {
@@ -66,16 +66,16 @@ public abstract class w0 extends x0 implements k0 {
     public final void o(long j10, u0 u0Var) {
         int c10;
         Thread g10;
-        int i10 = f2724r.get(this);
+        int i10 = f4336r.get(this);
         u0 u0Var2 = null;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f2723n;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f4335n;
         if (i10 != 0) {
             c10 = 1;
         } else {
             v0 v0Var = (v0) atomicReferenceFieldUpdater.get(this);
             if (v0Var == null) {
                 ?? obj = new Object();
-                obj.f2720c = j10;
+                obj.f4332c = j10;
                 while (!atomicReferenceFieldUpdater.compareAndSet(this, null, obj) && atomicReferenceFieldUpdater.get(this) == null) {
                 }
                 Object obj2 = atomicReferenceFieldUpdater.get(this);
@@ -106,14 +106,14 @@ public abstract class w0 extends x0 implements k0 {
     @Override
     public void shutdown() {
         u0 u0Var;
-        d2.f2661a.set(null);
-        f2724r.set(this, 1);
-        a6.i iVar = f0.f2670c;
+        d2.f4273a.set(null);
+        f4336r.set(this, 1);
+        com.google.android.gms.internal.clearcut.e eVar = f0.f4282c;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = h;
         loop0: while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
             if (obj == null) {
-                while (!atomicReferenceFieldUpdater.compareAndSet(this, null, iVar)) {
+                while (!atomicReferenceFieldUpdater.compareAndSet(this, null, eVar)) {
                     if (atomicReferenceFieldUpdater.get(this) != null) {
                         break;
                     }
@@ -122,7 +122,7 @@ public abstract class w0 extends x0 implements k0 {
             } else if (obj instanceof ge.n) {
                 ((ge.n) obj).b();
                 break;
-            } else if (obj != iVar) {
+            } else if (obj != eVar) {
                 ge.n nVar = new ge.n(8, true);
                 nVar.a((Runnable) obj);
                 while (!atomicReferenceFieldUpdater.compareAndSet(this, obj, nVar)) {
@@ -139,10 +139,10 @@ public abstract class w0 extends x0 implements k0 {
         } while (i() <= 0);
         long nanoTime = System.nanoTime();
         while (true) {
-            v0 v0Var = (v0) f2723n.get(this);
+            v0 v0Var = (v0) f4335n.get(this);
             if (v0Var != null) {
                 synchronized (v0Var) {
-                    if (ge.x.f10141b.get(v0Var) > 0) {
+                    if (ge.x.f11045b.get(v0Var) > 0) {
                         u0Var = v0Var.d(0);
                     } else {
                         u0Var = null;

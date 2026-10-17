@@ -1,262 +1,211 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.util.SparseArray;
-import android.view.View;
-import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class kv0 extends ul0 {
-    public final Context f26490c;
-    public final int d;
-    public boolean e;
-    public final xv0 f26491f;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class kv0 implements NotificationCenter.NotificationCenterDelegate {
+    public final NotificationCenter.ObserversGroup E;
+    public boolean f27993f;
+    public boolean h;
+    public final hv0[] f27994n;
+    public final long f27995r;
+    public final long f27996s;
+    public long v;
+    public final org.telegram.ui.ActionBar.n2 f27997w;
+    public boolean f27999y;
+    public int[] f27990a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public int[] f27991b = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] f27992c = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] d = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] e = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final ArrayList f27998x = new ArrayList();
 
-    public kv0(xv0 xv0Var, Context context, int i10) {
-        this.f26491f = xv0Var;
-        this.f26490c = context;
-        this.d = i10;
-    }
-
-    @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
-    }
-
-    @Override
-    public final String F(int i10) {
-        ArrayList arrayList = this.f26491f.f31065t1[this.d].e;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                if (i10 <= ((vu0) arrayList.get(i11)).f30329b) {
-                    return ((vu0) arrayList.get(i11)).f30328a;
-                }
-            }
-            return ((vu0) i2.d.h(1, arrayList)).f30328a;
-        }
-        return "";
-    }
-
-    @Override
-    public final void G(mm0 mm0Var, float f7, int[] iArr) {
-        int measuredHeight = mm0Var.getChildAt(0).getMeasuredHeight();
-        float k10 = f7 * ((k() * measuredHeight) - (mm0Var.getMeasuredHeight() - mm0Var.getPaddingTop()));
-        iArr[0] = (int) (k10 / measuredHeight);
-        iArr[1] = ((int) k10) % measuredHeight;
-    }
-
-    @Override
-    public final void J(mm0 mm0Var) {
-        if (this.e) {
-            this.e = false;
-            int i10 = 0;
-            for (int i11 = 0; i11 < mm0Var.getChildCount() && (i10 = xv0.p(mm0Var.getChildAt(i11))) == 0; i11++) {
-            }
-            if (i10 == 0) {
-                this.f26491f.S(this.d, mm0Var, true);
-            }
-        }
-    }
-
-    @Override
-    public final void K() {
-        this.e = true;
-        qu0 W = this.f26491f.W(this.d);
-        if (W != null) {
-            xv0.q(W, null, false);
-        }
-    }
-
-    @Override
-    public final int h() {
+    public kv0(org.telegram.ui.ActionBar.n2 n2Var) {
         int i10;
-        int i11;
-        mv0[] mv0VarArr = this.f26491f.f31065t1;
-        int i12 = this.d;
-        mv0 mv0Var = mv0VarArr[i12];
-        if (mv0Var.f27222o) {
-            return mv0Var.e();
-        }
-        if (mv0Var.f27211a.size() == 0 && !mv0VarArr[i12].f27215g) {
-            return 1;
-        }
-        if (mv0VarArr[i12].f27211a.size() == 0) {
-            mv0 mv0Var2 = mv0VarArr[i12];
-            boolean[] zArr = mv0Var2.f27216i;
-            if ((!zArr[0] || !zArr[1]) && mv0Var2.f27219l) {
-                return 0;
-            }
-        }
-        if (mv0VarArr[i12].e() == 0) {
-            int size = mv0VarArr[i12].c().size() + mv0VarArr[i12].d();
-            if (size != 0) {
-                mv0 mv0Var3 = mv0VarArr[i12];
-                boolean[] zArr2 = mv0Var3.f27216i;
-                if (!zArr2[0] || !zArr2[1]) {
-                    boolean z10 = mv0Var3.f27225r;
-                    if (z10) {
-                        i10 = mv0Var3.f27228u;
-                    } else {
-                        i10 = mv0Var3.f27221n;
+        TLRPC.ChatFull chatFull;
+        this.f27997w = n2Var;
+        if (n2Var instanceof bh) {
+            bh bhVar = (bh) n2Var;
+            long a2 = bhVar.a();
+            this.f27995r = a2;
+            this.v = bhVar.I();
+            this.f27996s = bhVar.d();
+            if (a2 != n2Var.getUserConfig().getClientUserId()) {
+                n2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a2, new Utilities.Callback(this) {
+                    public final kv0 f27605b;
+
+                    {
+                        this.f27605b = this;
                     }
-                    if (i10 != 0) {
-                        if (z10) {
-                            i11 = mv0Var3.f27228u;
-                        } else {
-                            i11 = mv0Var3.f27221n;
+
+                    @Override
+                    public final void run(Object obj) {
+                        Boolean bool = (Boolean) obj;
+                        switch (r2) {
+                            case 0:
+                                kv0 kv0Var = this.f27605b;
+                                ArrayList arrayList = kv0Var.f27998x;
+                                boolean booleanValue = bool.booleanValue();
+                                kv0Var.f27993f = booleanValue;
+                                kv0Var.h = true;
+                                if (booleanValue) {
+                                    int size = arrayList.size();
+                                    for (int i11 = 0; i11 < size; i11++) {
+                                        ((lv0) arrayList.get(i11)).M();
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                kv0 kv0Var2 = this.f27605b;
+                                ArrayList arrayList2 = kv0Var2.f27998x;
+                                boolean booleanValue2 = bool.booleanValue();
+                                kv0Var2.f27993f = booleanValue2;
+                                kv0Var2.h = true;
+                                if (booleanValue2) {
+                                    int size2 = arrayList2.size();
+                                    for (int i12 = 0; i12 < size2; i12++) {
+                                        ((lv0) arrayList2.get(i12)).M();
+                                    }
+                                    return;
+                                }
+                                return;
                         }
-                        return i11 + size;
                     }
-                    return size + 1;
-                }
-                return size;
+                });
             }
-            return size;
-        }
-        return Math.max(mv0VarArr[i12].e(), mv0VarArr[i12].c().size() + mv0VarArr[i12].d());
-    }
-
-    @Override
-    public final int j(int i10) {
-        mv0[] mv0VarArr = this.f26491f.f31065t1;
-        int i11 = this.d;
-        if (mv0VarArr[i11].f27213c.size() == 0 && !mv0VarArr[i11].f27215g) {
-            return 9;
-        }
-        mv0 mv0Var = mv0VarArr[i11];
-        int i12 = mv0Var.f27220m;
-        if (i10 >= i12 && i10 < mv0Var.f27211a.size() + i12) {
-            if (i11 != 2 && i11 != 4) {
-                return 7;
-            }
-            return 10;
-        }
-        return 8;
-    }
-
-    @Override
-    public final int k() {
-        return this.f26491f.f31065t1[this.d].e();
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        boolean z10;
-        char c10;
-        boolean z11;
-        char c11;
-        xv0 xv0Var = this.f26491f;
-        long j10 = xv0Var.f31044j1;
-        SparseArray[] sparseArrayArr = xv0Var.Z0;
-        mv0 mv0Var = xv0Var.f31065t1[this.d];
-        ArrayList arrayList = mv0Var.f27211a;
-        int i11 = b1Var.f44841f;
-        View view = b1Var.f44838a;
-        boolean z12 = false;
-        if (i11 != 7) {
-            if (i11 == 10 && (view instanceof org.telegram.ui.Cells.i7)) {
-                org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) view;
-                MessageObject messageObject = (MessageObject) arrayList.get(i10 - mv0Var.f27220m);
-                if (i10 != arrayList.size() - 1) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                i7Var.f(messageObject, z11);
-                if (xv0Var.C1) {
-                    if (messageObject.getDialogId() == j10) {
-                        c11 = 0;
-                    } else {
-                        c11 = 1;
-                    }
-                    if (sparseArrayArr[c11].indexOfKey(messageObject.getId()) >= 0) {
-                        z12 = true;
-                    }
-                    i7Var.e(z12, !xv0Var.f31024b1);
-                    return;
-                }
-                i7Var.e(false, !xv0Var.f31024b1);
-            }
-        } else if (!(view instanceof org.telegram.ui.Cells.j7)) {
-        } else {
-            org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) view;
-            MessageObject messageObject2 = (MessageObject) arrayList.get(i10 - mv0Var.f27220m);
-            if (i10 != arrayList.size() - 1) {
-                z10 = true;
+        } else if (n2Var instanceof ProfileActivity) {
+            ProfileActivity profileActivity = (ProfileActivity) n2Var;
+            if (profileActivity.f33628i1) {
+                this.f27995r = profileActivity.getUserConfig().getClientUserId();
+                this.f27996s = profileActivity.a();
             } else {
-                z10 = false;
-            }
-            j7Var.c(messageObject2, z10);
-            if (xv0Var.C1) {
-                if (messageObject2.getDialogId() == j10) {
-                    c10 = 0;
-                } else {
-                    c10 = 1;
+                long a10 = profileActivity.a();
+                this.f27995r = a10;
+                this.f27996s = profileActivity.f33621h1;
+                TLRPC.ChatFull chatFull2 = profileActivity.f33718v2;
+                if (chatFull2 != null) {
+                    c(chatFull2);
                 }
-                if (sparseArrayArr[c10].indexOfKey(messageObject2.getId()) >= 0) {
-                    z12 = true;
-                }
-                j7Var.b(z12, !xv0Var.f31024b1);
-                return;
-            }
-            j7Var.b(false, !xv0Var.f31024b1);
-        }
-    }
+                if (a10 != n2Var.getUserConfig().getClientUserId()) {
+                    n2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a10, new Utilities.Callback(this) {
+                        public final kv0 f27605b;
 
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View view;
-        View view2;
-        xv0 xv0Var = this.f26491f;
-        f10 f10Var = xv0Var.f31076y;
-        ArrayList arrayList = xv0Var.G0;
-        org.telegram.ui.ActionBar.c6 c6Var = xv0Var.F1;
-        Context context = this.f26490c;
-        if (i10 != 7) {
-            int i11 = this.d;
-            if (i10 != 8) {
-                if (i10 != 9) {
-                    if (i11 == 4 && !arrayList.isEmpty()) {
-                        View view3 = (View) arrayList.get(0);
-                        arrayList.remove(0);
-                        ViewGroup viewGroup2 = (ViewGroup) view3.getParent();
-                        view2 = view3;
-                        if (viewGroup2 != null) {
-                            viewGroup2.removeView(view3);
-                            view2 = view3;
+                        {
+                            this.f27605b = this;
                         }
-                    } else {
-                        view2 = new su0(this, context, c6Var, 1);
-                    }
-                    org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) view2;
-                    i7Var.setGlobalGradientView(f10Var);
-                    view = view2;
-                    if (i11 == 4) {
-                        xv0Var.H0.add(i7Var);
-                        view = view2;
-                    }
-                } else {
-                    ku0 M = xv0.M(i11, xv0Var.f31044j1, context, c6Var);
-                    M.setLayoutParams(new s4.o0(-1, -1));
-                    return new s4.b1(M);
+
+                        @Override
+                        public final void run(Object obj) {
+                            Boolean bool = (Boolean) obj;
+                            switch (r2) {
+                                case 0:
+                                    kv0 kv0Var = this.f27605b;
+                                    ArrayList arrayList = kv0Var.f27998x;
+                                    boolean booleanValue = bool.booleanValue();
+                                    kv0Var.f27993f = booleanValue;
+                                    kv0Var.h = true;
+                                    if (booleanValue) {
+                                        int size = arrayList.size();
+                                        for (int i11 = 0; i11 < size; i11++) {
+                                            ((lv0) arrayList.get(i11)).M();
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    kv0 kv0Var2 = this.f27605b;
+                                    ArrayList arrayList2 = kv0Var2.f27998x;
+                                    boolean booleanValue2 = bool.booleanValue();
+                                    kv0Var2.f27993f = booleanValue2;
+                                    kv0Var2.h = true;
+                                    if (booleanValue2) {
+                                        int size2 = arrayList2.size();
+                                        for (int i12 = 0; i12 < size2; i12++) {
+                                            ((lv0) arrayList2.get(i12)).M();
+                                        }
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
                 }
-            } else {
-                f10 f10Var2 = new f10(context, c6Var);
-                if (i11 == 2) {
-                    f10Var2.setViewType(4);
-                } else {
-                    f10Var2.setViewType(3);
-                }
-                f10Var2.f24549w = false;
-                f10Var2.setIsSingleCell(true);
-                f10Var2.setGlobalGradientView(f10Var);
-                view = f10Var2;
             }
-        } else {
-            org.telegram.ui.Cells.j7 j7Var = new org.telegram.ui.Cells.j7(context, 0, c6Var);
-            j7Var.setGlobalGradientView(f10Var);
-            view = j7Var;
+        } else if (n2Var instanceof wa0) {
+            this.f27995r = ((wa0) n2Var).e;
+        } else if (n2Var instanceof org.telegram.ui.ey) {
+            this.f27995r = n2Var.getUserConfig().getClientUserId();
         }
-        return com.google.android.gms.internal.play_billing.k3.l(view, view, -1, -2);
+        if (this.v == 0 && DialogObject.isChatDialog(this.f27995r) && (chatFull = n2Var.getMessagesController().getChatFull(-this.f27995r)) != null) {
+            long j10 = chatFull.migrated_from_chat_id;
+            if (j10 != 0) {
+                this.v = -j10;
+            }
+        }
+        this.f27994n = new hv0[9];
+        int i11 = 0;
+        while (true) {
+            hv0[] hv0VarArr = this.f27994n;
+            if (i11 >= hv0VarArr.length) {
+                break;
+            }
+            hv0VarArr[i11] = new hv0();
+            hv0 hv0Var = this.f27994n[i11];
+            if (DialogObject.isEncryptedDialog(this.f27995r)) {
+                i10 = Integer.MIN_VALUE;
+            } else {
+                i10 = Integer.MAX_VALUE;
+            }
+            hv0Var.f26948j[0] = i10;
+            this.f27994n[i11].f26948j[1] = Integer.MAX_VALUE;
+            i11++;
+        }
+        a();
+        org.telegram.ui.ActionBar.n2 n2Var2 = this.f27997w;
+        if (n2Var2 == null) {
+            this.E = null;
+        } else {
+            this.E = n2Var2.getNotificationCenter().createObserversGroup(this).add(NotificationCenter.mediaCountsDidLoad).add(NotificationCenter.mediaCountDidLoad).add(NotificationCenter.didReceiveNewMessages).add(NotificationCenter.messageReceivedByServer).add(NotificationCenter.mediaDidLoad).add(NotificationCenter.messagesDeleted).add(NotificationCenter.replaceMessagesObjects).add(NotificationCenter.chatInfoDidLoad).add(NotificationCenter.fileLoaded).add(NotificationCenter.storiesListUpdated).add(NotificationCenter.savedMessagesDialogsUpdate);
+        }
+    }
+
+    public final void a() {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f27997w;
+        if (n2Var != null) {
+            n2Var.getMediaDataController().getMediaCounts(this.f27995r, this.f27996s, n2Var.getClassGuid());
+            if (this.v != 0) {
+                n2Var.getMediaDataController().getMediaCounts(this.v, this.f27996s, n2Var.getClassGuid());
+            }
+        }
+    }
+
+    public final void b(org.telegram.ui.ActionBar.n2 n2Var) {
+        if (n2Var == this.f27997w) {
+            this.f27998x.clear();
+            NotificationCenter.ObserversGroup observersGroup = this.E;
+            if (observersGroup != null) {
+                observersGroup.removeAllObservers();
+            }
+        }
+    }
+
+    public final void c(TLRPC.ChatFull chatFull) {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f27997w;
+        if (n2Var != null && chatFull != null) {
+            long j10 = chatFull.migrated_from_chat_id;
+            if (j10 != 0 && this.v == 0) {
+                this.v = -j10;
+                n2Var.getMediaDataController().getMediaCounts(this.v, this.f27996s, n2Var.getClassGuid());
+            }
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int r24, int r25, java.lang.Object... r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kv0.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 }

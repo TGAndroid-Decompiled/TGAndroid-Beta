@@ -1,53 +1,88 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class hx extends FragmentContextView {
-    public final int R0;
-    public final yy S0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+public final class hx extends AnimatorListenerAdapter {
+    public final int f37685a;
+    public final float f37686b;
+    public final ey f37687c;
 
-    public hx(yy yyVar, Context context, yy yyVar2, int i10) {
-        super(context, yyVar2, true);
-        this.R0 = i10;
-        switch (i10) {
-            case 1:
-                this.S0 = yyVar;
-                super(context, yyVar2, false);
-                return;
-            default:
-                this.S0 = yyVar;
-                return;
-        }
+    public hx(ey eyVar, float f7, int i10) {
+        this.f37685a = i10;
+        this.f37687c = eyVar;
+        this.f37686b = f7;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.R0) {
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        switch (this.f37685a) {
             case 0:
-                yy yyVar = this.S0;
-                org.telegram.ui.Components.xs xsVar = yyVar.J1;
-                FrameLayout frameLayout = yyVar.G1;
-                if (i10 == 0) {
-                    z10 = true;
+                super.onAnimationEnd(animator);
+                ey eyVar = this.f37687c;
+                eyVar.f36719v3 = null;
+                int i12 = 0;
+                eyVar.O = false;
+                eyVar.Q = true;
+                eyVar.R = true;
+                eyVar.fragmentView.invalidate();
+                if (eyVar.K) {
+                    i10 = 81;
                 } else {
-                    z10 = false;
+                    i10 = 0;
                 }
-                xsVar.i(frameLayout, z10, true);
-                return;
+                eyVar.y3 = -(AndroidUtilities.dp(i10 + 48) - this.f37686b);
+                eyVar.f36630e0[0].setTranslationY(0.0f);
+                while (true) {
+                    dy[] dyVarArr = eyVar.f36630e0;
+                    if (i12 < dyVarArr.length) {
+                        dy dyVar = dyVarArr[i12];
+                        if (dyVar != null) {
+                            dyVar.f36333a.requestLayout();
+                        }
+                        i12++;
+                    } else {
+                        eyVar.fragmentView.requestLayout();
+                        tx txVar = eyVar.X;
+                        if (txVar != null && eyVar.f36613b.f17380f) {
+                            txVar.f27712r.requestFocus();
+                            AndroidUtilities.showKeyboard(eyVar.X.f27712r);
+                            return;
+                        }
+                        return;
+                    }
+                }
+                break;
             default:
-                yy yyVar2 = this.S0;
-                org.telegram.ui.Components.xs xsVar2 = yyVar2.J1;
-                FrameLayout frameLayout2 = yyVar2.I1;
-                if (i10 == 0) {
-                    z11 = true;
+                super.onAnimationEnd(animator);
+                ey eyVar2 = this.f37687c;
+                eyVar2.f36719v3 = null;
+                eyVar2.P = 0;
+                eyVar2.O = true;
+                if (eyVar2.K) {
+                    i11 = 81;
                 } else {
-                    z11 = false;
+                    i11 = 0;
                 }
-                xsVar2.i(frameLayout2, z11, true);
-                return;
+                eyVar2.y3 = AndroidUtilities.dp(i11 + 48) - this.f37686b;
+                eyVar2.f36630e0[0].setTranslationY(0.0f);
+                int i13 = 0;
+                while (true) {
+                    dy[] dyVarArr2 = eyVar2.f36630e0;
+                    if (i13 < dyVarArr2.length) {
+                        dy dyVar2 = dyVarArr2[i13];
+                        if (dyVar2 != null) {
+                            dyVar2.f36333a.requestLayout();
+                        }
+                        i13++;
+                    } else {
+                        eyVar2.E0.l(1.0f, false);
+                        eyVar2.fragmentView.requestLayout();
+                        return;
+                    }
+                }
         }
     }
 }

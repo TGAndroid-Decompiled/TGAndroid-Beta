@@ -1,95 +1,95 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-public final class q10 extends s4.r0 {
-    public final b20 f39044a;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class q10 extends s4.v {
+    public final FiltersSetupActivity d;
 
-    public q10(b20 b20Var) {
-        this.f39044a = b20Var;
+    public q10(FiltersSetupActivity filtersSetupActivity) {
+        this.d = filtersSetupActivity;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 1) {
-            AndroidUtilities.hideKeyboard(this.f39044a.K.getCurrentFocus());
+    public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
+        super.a(recyclerView, b1Var);
+        View view = b1Var.f45938a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
+        if (b1Var.f45941f != 2) {
+            return s4.v.l(0, 0);
+        }
+        return s4.v.l(3, 0);
+    }
+
+    @Override
+    public final boolean k() {
+        return true;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
+        MessagesController.DialogFilter dialogFilter;
+        MessagesController.DialogFilter dialogFilter2;
+        if (b1Var.f45941f != b1Var2.f45941f) {
+            return false;
+        }
+        n10 n10Var = this.d.f33129b;
+        int b10 = b1Var.b();
+        int b11 = b1Var2.b();
+        FiltersSetupActivity filtersSetupActivity = n10Var.e;
+        int i10 = filtersSetupActivity.f33133r;
+        ArrayList arrayList = filtersSetupActivity.f33132n;
+        if (b10 >= i10 && b11 >= i10) {
+            l10 l10Var = (l10) arrayList.get(b10);
+            l10 l10Var2 = (l10) arrayList.get(b11);
+            if (l10Var != null && l10Var2 != null && (dialogFilter = l10Var.d) != null && (dialogFilter2 = l10Var2.d) != null) {
+                int i11 = dialogFilter.order;
+                dialogFilter.order = dialogFilter2.order;
+                dialogFilter2.order = i11;
+                ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
+                try {
+                    arrayList2.set(b10 - filtersSetupActivity.f33133r, l10Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f33133r, l10Var.d);
+                } catch (Exception unused) {
+                }
+                filtersSetupActivity.e = true;
+                filtersSetupActivity.Z(true);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void p(s4.b1 b1Var, int i10) {
+        Boolean bool;
+        if (i10 != 0) {
+            this.d.f33128a.I0(false);
+            b1Var.f45938a.setPressed(true);
+        } else {
+            AndroidUtilities.cancelRunOnUIThread(new fz(this, 5));
+            AndroidUtilities.runOnUIThread(new fz(this, 5), 320L);
+        }
+        if (b1Var != null) {
+            View view = b1Var.f45938a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
         }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        MessageObject messageObject;
-        b20 b20Var = this.f39044a;
-        bi.d4 d4Var = b20Var.m0;
-        s4.b0 b0Var = b20Var.f34174j0;
-        ne.b bVar = b20Var.f34161a;
-        zz zzVar = b20Var.f34178n0;
-        if (recyclerView.getAdapter() != null && b20Var.d != null) {
-            int L0 = b0Var.L0();
-            int N0 = b0Var.N0();
-            int abs = Math.abs(N0 - L0) + 1;
-            int h = recyclerView.getAdapter().h();
-            if (!b20Var.M && abs > 0 && N0 >= h - 10 && !b20Var.N) {
-                AndroidUtilities.runOnUIThread(new zz(this, 2));
-            }
-            if (b20Var.d == b20Var.U) {
-                if (i11 != 0 && !b20Var.f34169f.isEmpty() && TextUtils.isEmpty(b20Var.Q)) {
-                    AndroidUtilities.cancelRunOnUIThread(zzVar);
-                    AndroidUtilities.runOnUIThread(zzVar, 1650L);
-                    bVar.a(true, true);
-                }
-                s4.b1 K = recyclerView.K(L0);
-                if (K != null && K.f44841f == 0) {
-                    View view = K.f44838a;
-                    if (view instanceof org.telegram.ui.Cells.u7) {
-                        org.telegram.ui.Cells.u7 u7Var = (org.telegram.ui.Cells.u7) view;
-                        if (u7Var.e <= 0) {
-                            messageObject = null;
-                        } else {
-                            messageObject = u7Var.f22245b[0];
-                        }
-                        if (messageObject != null) {
-                            int i12 = messageObject.messageOwner.date;
-                            d4Var.getClass();
-                            String formatDateChat = LocaleController.formatDateChat(i12);
-                            if (!TextUtils.equals((String) d4Var.d, formatDateChat)) {
-                                d4Var.d = formatDateChat;
-                                ((org.telegram.ui.Components.r6) d4Var.f2949b).t(formatDateChat, true, true);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            }
-            View pinnedHeader = b20Var.f34163b.getPinnedHeader();
-            if (pinnedHeader instanceof org.telegram.ui.Cells.v3) {
-                org.telegram.ui.Cells.v3 v3Var = (org.telegram.ui.Cells.v3) pinnedHeader;
-                CharSequence text = v3Var.getText();
-                if (!TextUtils.isEmpty(text) && v3Var.getAlpha() > 0.0f) {
-                    String charSequence = text.toString();
-                    if (!TextUtils.equals((String) d4Var.d, charSequence)) {
-                        d4Var.d = charSequence;
-                        ((org.telegram.ui.Components.r6) d4Var.f2949b).t(charSequence, true, true);
-                    }
-                    if (i11 != 0) {
-                        AndroidUtilities.cancelRunOnUIThread(zzVar);
-                        AndroidUtilities.runOnUIThread(zzVar, 1650L);
-                        bVar.a(true, true);
-                        return;
-                    }
-                    return;
-                }
-            }
-            AndroidUtilities.cancelRunOnUIThread(zzVar);
-            bVar.a(false, true);
-        }
+    public final void q(s4.b1 b1Var) {
     }
 }

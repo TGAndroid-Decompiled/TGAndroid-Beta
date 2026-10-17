@@ -1,39 +1,72 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class rf implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39502a;
-    public final fo f39503b;
-    public final View f39504c;
+import java.io.Serializable;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class rf implements View.OnClickListener {
+    public final int f40717a;
+    public final sn f40718b;
+    public final int f40719c;
+    public final ArrayList d;
+    public final String e;
+    public final String f40720f;
+    public final Serializable h;
+    public final TLRPC.InputPeer f40721n;
+    public final int[] f40722r;
+    public final boolean f40723s;
+    public final qf v;
+    public final Object f40724w;
 
-    public rf(fo foVar, org.telegram.ui.Cells.w0 w0Var, int i10) {
-        this.f39502a = i10;
-        this.f39503b = foVar;
-        this.f39504c = w0Var;
+    public rf(sn snVar, int i10, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z10, qf qfVar, int i11) {
+        this.f40717a = i11;
+        this.f40718b = snVar;
+        this.f40719c = i10;
+        this.d = arrayList;
+        this.e = str;
+        this.f40720f = str2;
+        this.h = str3;
+        this.f40721n = inputPeer;
+        this.f40722r = iArr;
+        this.f40724w = obj;
+        this.f40723s = z10;
+        this.v = qfVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39502a) {
+    public final void onClick(View view) {
+        switch (this.f40717a) {
             case 0:
-                fo foVar = this.f39503b;
-                foVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                foVar.A9 = AndroidUtilities.dp(30.0f) * floatValue;
-                foVar.t9();
-                this.f39504c.setAlpha(floatValue);
+                boolean z10 = this.f40723s;
+                qf qfVar = this.v;
+                sn.b0(this.f40718b, this.f40719c, this.d, this.e, this.f40720f, (String) this.h, this.f40721n, this.f40722r, (TL_iv.RichMessage) this.f40724w, z10, qfVar);
+                return;
+            case 1:
+                boolean z11 = this.f40723s;
+                qf qfVar2 = this.v;
+                sn.d0(this.f40718b, this.f40719c, this.d, this.e, this.f40720f, (String) this.h, this.f40721n, this.f40722r, (CharSequence) this.f40724w, z11, qfVar2);
                 return;
             default:
-                fo foVar2 = this.f39503b;
-                foVar2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                foVar2.A9 = AndroidUtilities.dp(30.0f) * floatValue2;
-                foVar2.t9();
-                foVar2.w9();
-                this.f39504c.setAlpha(floatValue2);
+                boolean z12 = this.f40723s;
+                qf qfVar3 = this.v;
+                sn.t0(this.f40718b, this.f40719c, this.d, (String[]) this.h, this.e, this.f40720f, this.f40721n, this.f40722r, (CharSequence) this.f40724w, z12, qfVar3);
                 return;
         }
+    }
+
+    public rf(sn snVar, int i10, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z10, qf qfVar) {
+        this.f40717a = 2;
+        this.f40718b = snVar;
+        this.f40719c = i10;
+        this.d = arrayList;
+        this.h = strArr;
+        this.e = str;
+        this.f40720f = str2;
+        this.f40721n = inputPeer;
+        this.f40722r = iArr;
+        this.f40724w = charSequence;
+        this.f40723s = z10;
+        this.v = qfVar;
     }
 }

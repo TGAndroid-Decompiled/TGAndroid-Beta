@@ -3,21 +3,22 @@ package aa;
 import ab.g0;
 import ab.m;
 import ab.r0;
+import ab.t;
+import ai.k7;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.WindowManager;
-import b2.b0;
-import b2.j1;
-import b2.o;
-import b2.o0;
+import b2.a0;
+import b2.i1;
+import b2.n;
+import b2.n0;
+import b2.p1;
 import b2.q1;
-import b2.r1;
-import b2.t;
-import b2.v1;
+import b2.s;
+import b2.u1;
+import b2.v;
+import b2.v0;
 import b2.w;
-import b2.w0;
-import b2.x;
-import bi.b2;
+import c3.o;
 import cb.h;
 import com.google.android.gms.internal.cast.z5;
 import com.google.firebase.sessions.FirebaseSessionsRegistrar;
@@ -26,22 +27,32 @@ import e2.e;
 import e2.m0;
 import e9.k0;
 import e9.l0;
-import e9.n0;
 import e9.x1;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.fw0;
-import org.telegram.ui.Components.gw0;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.xf1;
 import r9.d;
 import v7.b8;
-public final class a implements d, k, NativeInstance.AudioLevelsCallback, fw0, gw0, z1 {
-    public final int f362a;
+public final class a implements d, a2, k, NativeInstance.AudioLevelsCallback {
+    public final int f361a;
 
     public a(int i10) {
-        this.f362a = i10;
+        this.f361a = i10;
+    }
+
+    public Constructor a() {
+        switch (this.f361a) {
+            case 27:
+                if (!Boolean.TRUE.equals(Class.forName("androidx.media3.decoder.flac.FlacLibrary").getMethod("isAvailable", null).invoke(null, null))) {
+                    return null;
+                }
+                return Class.forName("androidx.media3.decoder.flac.FlacExtractor").asSubclass(o.class).getConstructor(Integer.TYPE);
+            default:
+                return Class.forName("androidx.media3.decoder.midi.MidiExtractor").asSubclass(o.class).getConstructor(null);
+        }
     }
 
     @Override
@@ -49,274 +60,255 @@ public final class a implements d, k, NativeInstance.AudioLevelsCallback, fw0, g
         x1 f7;
         x1 b10;
         int i10 = 0;
-        switch (this.f362a) {
-            case 17:
-                b0 b0Var = (b0) obj;
-                return b0Var.f2081a + ": " + b0Var.f2082b;
-            case 18:
-                j1 j1Var = (j1) obj;
-                j1Var.getClass();
+        switch (this.f361a) {
+            case 19:
+                a0 a0Var = (a0) obj;
+                return a0Var.f3690a + ": " + a0Var.f3691b;
+            case 20:
+                i1 i1Var = (i1) obj;
+                i1Var.getClass();
                 Bundle bundle = new Bundle();
-                int i11 = j1Var.f2180a;
+                int i11 = i1Var.f3788a;
                 if (i11 != 0) {
-                    bundle.putInt(j1.d, i11);
+                    bundle.putInt(i1.d, i11);
                 }
-                int i12 = j1Var.f2181b;
+                int i12 = i1Var.f3789b;
                 if (i12 != 0) {
-                    bundle.putInt(j1.e, i12);
+                    bundle.putInt(i1.e, i12);
                 }
-                int i13 = j1Var.f2182c;
+                int i13 = i1Var.f3790c;
                 if (i13 != 0) {
-                    bundle.putInt(j1.f2179f, i13);
+                    bundle.putInt(i1.f3787f, i13);
                 }
                 return bundle;
-            case 19:
-                o0 o0Var = (o0) obj;
-                o0Var.getClass();
+            case 21:
+                n0 n0Var = (n0) obj;
+                n0Var.getClass();
                 Bundle bundle2 = new Bundle();
-                bundle2.putParcelable(o0.h, o0Var.f2248a);
-                String str = o0Var.f2249b;
+                bundle2.putParcelable(n0.h, n0Var.f3856a);
+                String str = n0Var.f3857b;
                 if (str != null) {
-                    bundle2.putString(o0.f2242i, str);
+                    bundle2.putString(n0.f3850i, str);
                 }
-                String str2 = o0Var.f2250c;
+                String str2 = n0Var.f3858c;
                 if (str2 != null) {
-                    bundle2.putString(o0.f2243j, str2);
+                    bundle2.putString(n0.f3851j, str2);
                 }
-                int i14 = o0Var.d;
+                int i14 = n0Var.d;
                 if (i14 != 0) {
-                    bundle2.putInt(o0.f2244k, i14);
+                    bundle2.putInt(n0.f3852k, i14);
                 }
-                int i15 = o0Var.e;
+                int i15 = n0Var.e;
                 if (i15 != 0) {
-                    bundle2.putInt(o0.f2245l, i15);
+                    bundle2.putInt(n0.f3853l, i15);
                 }
-                String str3 = o0Var.f2251f;
+                String str3 = n0Var.f3859f;
                 if (str3 != null) {
-                    bundle2.putString(o0.f2246m, str3);
+                    bundle2.putString(n0.f3854m, str3);
                 }
-                String str4 = o0Var.f2252g;
+                String str4 = n0Var.f3860g;
                 if (str4 != null) {
-                    bundle2.putString(o0.f2247n, str4);
+                    bundle2.putString(n0.f3855n, str4);
                 }
                 return bundle2;
-            case 20:
+            case 22:
                 Bundle bundle3 = (Bundle) obj;
-                Uri uri = (Uri) bundle3.getParcelable(o0.h);
+                Uri uri = (Uri) bundle3.getParcelable(n0.h);
                 uri.getClass();
-                String string = bundle3.getString(o0.f2242i);
-                String string2 = bundle3.getString(o0.f2243j);
-                int i16 = bundle3.getInt(o0.f2244k, 0);
-                int i17 = bundle3.getInt(o0.f2245l, 0);
-                String string3 = bundle3.getString(o0.f2246m);
-                String string4 = bundle3.getString(o0.f2247n);
+                String string = bundle3.getString(n0.f3850i);
+                String string2 = bundle3.getString(n0.f3851j);
+                int i16 = bundle3.getInt(n0.f3852k, 0);
+                int i17 = bundle3.getInt(n0.f3853l, 0);
+                String string3 = bundle3.getString(n0.f3854m);
+                String string4 = bundle3.getString(n0.f3855n);
                 ?? obj2 = new Object();
-                obj2.f2226c = uri;
-                obj2.d = w0.n(string);
+                obj2.f3834c = uri;
+                obj2.d = v0.n(string);
                 obj2.e = string2;
-                obj2.f2224a = i16;
-                obj2.f2225b = i17;
-                obj2.f2227f = string3;
-                obj2.f2228g = string4;
-                return new o0(obj2);
-            case 21:
+                obj2.f3832a = i16;
+                obj2.f3833b = i17;
+                obj2.f3835f = string3;
+                obj2.f3836g = string4;
+                return new n0(obj2);
+            case 23:
                 Bundle bundle4 = (Bundle) obj;
-                x xVar = x.V;
-                w wVar = new w();
+                w wVar = w.V;
+                v vVar = new v();
                 if (bundle4 != null) {
                     ClassLoader classLoader = e.class.getClassLoader();
-                    String str5 = m0.f8375a;
+                    String str5 = m0.f8254a;
                     bundle4.setClassLoader(classLoader);
                 }
-                String string5 = bundle4.getString(x.W);
-                String str6 = xVar.f2508a;
+                String string5 = bundle4.getString(w.W);
+                String str6 = wVar.f4116a;
                 if (string5 == null) {
                     string5 = str6;
                 }
-                wVar.f2456a = string5;
-                String string6 = bundle4.getString(x.X);
-                String str7 = xVar.f2509b;
+                vVar.f4064a = string5;
+                String string6 = bundle4.getString(w.X);
+                String str7 = wVar.f4117b;
                 if (string6 == null) {
                     string6 = str7;
                 }
-                wVar.f2457b = string6;
-                ArrayList parcelableArrayList = bundle4.getParcelableArrayList(x.B0);
+                vVar.f4065b = string6;
+                ArrayList parcelableArrayList = bundle4.getParcelableArrayList(w.B0);
                 if (parcelableArrayList == null) {
                     f7 = x1.e;
                 } else {
-                    k0 t10 = n0.t();
+                    k0 t10 = e9.n0.t();
                     for (int i18 = 0; i18 < parcelableArrayList.size(); i18++) {
                         Bundle bundle5 = (Bundle) parcelableArrayList.get(i18);
                         bundle5.getClass();
-                        String string7 = bundle5.getString(b0.f2080c);
-                        String string8 = bundle5.getString(b0.d);
+                        String string7 = bundle5.getString(a0.f3689c);
+                        String string8 = bundle5.getString(a0.d);
                         string8.getClass();
-                        t10.c(new b0(string7, string8));
+                        t10.c(new a0(string7, string8));
                     }
                     f7 = t10.f();
                 }
-                wVar.f2458c = n0.u(f7);
-                String string9 = bundle4.getString(x.Y);
-                String str8 = xVar.d;
+                vVar.f4066c = e9.n0.u(f7);
+                String string9 = bundle4.getString(w.Y);
+                String str8 = wVar.d;
                 if (string9 == null) {
                     string9 = str8;
                 }
-                wVar.d = string9;
-                wVar.e = bundle4.getInt(x.Z, xVar.e);
-                wVar.f2459f = bundle4.getInt(x.f2483a0, xVar.f2511f);
-                wVar.f2460g = bundle4.getInt(x.C0, xVar.f2512g);
-                wVar.h = bundle4.getInt(x.f2484b0, xVar.h);
-                wVar.f2461i = bundle4.getInt(x.f2485c0, xVar.f2513i);
-                String string10 = bundle4.getString(x.f2486d0);
-                String str9 = xVar.f2515k;
+                vVar.d = string9;
+                vVar.e = bundle4.getInt(w.Z, wVar.e);
+                vVar.f4067f = bundle4.getInt(w.f4091a0, wVar.f4119f);
+                vVar.f4068g = bundle4.getInt(w.C0, wVar.f4120g);
+                vVar.h = bundle4.getInt(w.f4092b0, wVar.h);
+                vVar.f4069i = bundle4.getInt(w.f4093c0, wVar.f4121i);
+                String string10 = bundle4.getString(w.f4094d0);
+                String str9 = wVar.f4123k;
                 if (string10 == null) {
                     string10 = str9;
                 }
-                wVar.f2462j = string10;
-                String string11 = bundle4.getString(x.G0);
-                String str10 = xVar.f2517m;
+                vVar.f4070j = string10;
+                String string11 = bundle4.getString(w.G0);
+                String str10 = wVar.f4125m;
                 if (string11 == null) {
                     string11 = str10;
                 }
-                wVar.f2464l = string11;
-                String string12 = bundle4.getString(x.f2487e0);
-                String str11 = xVar.f2522r;
+                vVar.f4072l = string11;
+                String string12 = bundle4.getString(w.f4095e0);
+                String str11 = wVar.f4130r;
                 if (string12 == null) {
                     string12 = str11;
                 }
-                wVar.f2469q = w0.n(string12);
-                String string13 = bundle4.getString(x.f2488f0);
-                String str12 = xVar.f2523s;
+                vVar.f4077q = v0.n(string12);
+                String string13 = bundle4.getString(w.f4096f0);
+                String str12 = wVar.f4131s;
                 if (string13 == null) {
                     string13 = str12;
                 }
-                wVar.f2470r = w0.n(string13);
-                wVar.f2471s = bundle4.getInt(x.f2489g0, xVar.f2524t);
+                vVar.f4078r = v0.n(string13);
+                vVar.f4079s = bundle4.getInt(w.f4097g0, wVar.f4132t);
                 ArrayList arrayList = new ArrayList();
                 while (true) {
-                    byte[] byteArray = bundle4.getByteArray(x.f2490h0 + "_" + Integer.toString(i10, 36));
+                    byte[] byteArray = bundle4.getByteArray(w.f4098h0 + "_" + Integer.toString(i10, 36));
                     if (byteArray == null) {
-                        wVar.f2473u = arrayList;
-                        wVar.v = (t) bundle4.getParcelable(x.f2491i0);
-                        wVar.f2474w = bundle4.getLong(x.f2492j0, xVar.f2527x);
-                        wVar.f2476y = bundle4.getInt(x.f2493k0, xVar.f2529z);
-                        wVar.f2477z = bundle4.getInt(x.f2494l0, xVar.A);
-                        wVar.A = bundle4.getInt(x.E0, xVar.B);
-                        wVar.B = bundle4.getInt(x.F0, xVar.C);
-                        wVar.C = bundle4.getFloat(x.m0, xVar.D);
-                        wVar.D = bundle4.getInt(x.f2495n0, xVar.E);
-                        wVar.E = bundle4.getFloat(x.f2496o0, xVar.F);
-                        wVar.F = bundle4.getByteArray(x.f2497p0);
-                        wVar.G = bundle4.getInt(x.f2498q0, xVar.H);
-                        wVar.I = bundle4.getInt(x.D0, xVar.J);
-                        Bundle bundle6 = bundle4.getBundle(x.f2499r0);
+                        vVar.f4081u = arrayList;
+                        vVar.v = (s) bundle4.getParcelable(w.f4099i0);
+                        vVar.f4082w = bundle4.getLong(w.f4100j0, wVar.f4135x);
+                        vVar.f4084y = bundle4.getInt(w.f4101k0, wVar.f4137z);
+                        vVar.f4085z = bundle4.getInt(w.f4102l0, wVar.A);
+                        vVar.A = bundle4.getInt(w.E0, wVar.B);
+                        vVar.B = bundle4.getInt(w.F0, wVar.C);
+                        vVar.C = bundle4.getFloat(w.m0, wVar.D);
+                        vVar.D = bundle4.getInt(w.f4103n0, wVar.E);
+                        vVar.E = bundle4.getFloat(w.f4104o0, wVar.F);
+                        vVar.F = bundle4.getByteArray(w.f4105p0);
+                        vVar.G = bundle4.getInt(w.f4106q0, wVar.H);
+                        vVar.I = bundle4.getInt(w.D0, wVar.J);
+                        Bundle bundle6 = bundle4.getBundle(w.f4107r0);
                         if (bundle6 != null) {
-                            wVar.H = new o(bundle6.getInt(o.f2231i, -1), bundle6.getInt(o.f2232j, -1), bundle6.getInt(o.f2233k, -1), bundle6.getByteArray(o.f2234l), bundle6.getInt(o.f2235m, -1), bundle6.getInt(o.f2236n, -1));
+                            vVar.H = new n(bundle6.getInt(n.f3839i, -1), bundle6.getInt(n.f3840j, -1), bundle6.getInt(n.f3841k, -1), bundle6.getByteArray(n.f3842l), bundle6.getInt(n.f3843m, -1), bundle6.getInt(n.f3844n, -1));
                         }
-                        wVar.J = bundle4.getInt(x.f2500s0, xVar.K);
-                        wVar.K = bundle4.getInt(x.f2501t0, xVar.L);
-                        wVar.L = bundle4.getInt(x.f2502u0, xVar.M);
-                        wVar.M = bundle4.getInt(x.f2503v0, xVar.N);
-                        wVar.N = bundle4.getInt(x.f2504w0, xVar.O);
-                        wVar.O = bundle4.getInt(x.f2505x0, xVar.P);
-                        wVar.Q = bundle4.getInt(x.f2507z0, xVar.R);
-                        wVar.R = bundle4.getInt(x.A0, xVar.S);
-                        wVar.S = bundle4.getInt(x.f2506y0, xVar.T);
-                        return new x(wVar);
+                        vVar.J = bundle4.getInt(w.f4108s0, wVar.K);
+                        vVar.K = bundle4.getInt(w.f4109t0, wVar.L);
+                        vVar.L = bundle4.getInt(w.f4110u0, wVar.M);
+                        vVar.M = bundle4.getInt(w.f4111v0, wVar.N);
+                        vVar.N = bundle4.getInt(w.f4112w0, wVar.O);
+                        vVar.O = bundle4.getInt(w.f4113x0, wVar.P);
+                        vVar.Q = bundle4.getInt(w.f4115z0, wVar.R);
+                        vVar.R = bundle4.getInt(w.A0, wVar.S);
+                        vVar.S = bundle4.getInt(w.f4114y0, wVar.T);
+                        return new w(vVar);
                     }
                     arrayList.add(byteArray);
                     i10++;
                 }
-            case 22:
+            case 24:
                 Bundle bundle7 = (Bundle) obj;
-                Bundle bundle8 = bundle7.getBundle(r1.f2321c);
+                Bundle bundle8 = bundle7.getBundle(q1.f3929c);
                 bundle8.getClass();
-                ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(q1.f2293f);
+                ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(p1.f3901f);
                 if (parcelableArrayList2 == null) {
-                    l0 l0Var = n0.f8595b;
+                    l0 l0Var = e9.n0.f8476b;
                     b10 = x1.e;
                 } else {
-                    b10 = e.b(new a(21), parcelableArrayList2);
+                    b10 = e.b(new a(23), parcelableArrayList2);
                 }
-                q1 q1Var = new q1(bundle8.getString(q1.f2294g, ""), (x[]) b10.toArray(new x[0]));
-                int[] intArray = bundle7.getIntArray(r1.d);
+                p1 p1Var = new p1(bundle8.getString(p1.f3902g, ""), (w[]) b10.toArray(new w[0]));
+                int[] intArray = bundle7.getIntArray(q1.d);
                 intArray.getClass();
-                return new r1(q1Var, b8.a(intArray));
+                return new q1(p1Var, b8.a(intArray));
             default:
-                v1 v1Var = (v1) obj;
-                v1Var.getClass();
+                u1 u1Var = (u1) obj;
+                u1Var.getClass();
                 Bundle bundle9 = new Bundle();
-                bundle9.putBundle(v1.f2450f, v1Var.f2454b.c());
-                bundle9.putIntArray(v1.f2451g, v1Var.d);
-                bundle9.putBooleanArray(v1.h, v1Var.e);
-                bundle9.putBoolean(v1.f2452i, v1Var.f2455c);
+                bundle9.putBundle(u1.f4058f, u1Var.f4062b.c());
+                bundle9.putIntArray(u1.f4059g, u1Var.d);
+                bundle9.putBooleanArray(u1.h, u1Var.e);
+                bundle9.putBoolean(u1.f4060i, u1Var.f4063c);
                 return bundle9;
         }
     }
 
     @Override
-    public void b(Object obj, float f7) {
-        b2 b2Var = (b2) obj;
-        switch (this.f362a) {
-            case 26:
-                WindowManager.LayoutParams layoutParams = b2Var.f2859c;
-                b2Var.N = f7;
-                layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(b2Var.f2858b, b2Var.d, layoutParams);
+    public void g(b2 b2Var, int i10) {
+        switch (this.f361a) {
+            case 13:
+                k7.v2(new xf1(6, null));
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = b2Var.f2859c;
-                b2Var.O = f7;
-                layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(b2Var.f2858b, b2Var.d, layoutParams2);
+                int i11 = k7.A1;
                 return;
         }
     }
 
     @Override
-    public void g(a2 a2Var, int i10) {
-        a2Var.dismiss();
-    }
-
-    @Override
-    public float get(Object obj) {
-        b2 b2Var = (b2) obj;
-        switch (this.f362a) {
-            case 25:
-                return b2Var.N;
-            default:
-                return b2Var.O;
-        }
-    }
-
-    @Override
-    public Object n2(z5 z5Var) {
-        m m9getComponents$lambda0;
-        ab.m0 m10getComponents$lambda1;
-        g0 m11getComponents$lambda2;
-        h m12getComponents$lambda3;
-        ab.t m13getComponents$lambda4;
-        r0 m14getComponents$lambda5;
-        switch (this.f362a) {
+    public Object j2(z5 z5Var) {
+        m m10getComponents$lambda0;
+        ab.m0 m11getComponents$lambda1;
+        g0 m12getComponents$lambda2;
+        h m13getComponents$lambda3;
+        t m14getComponents$lambda4;
+        r0 m15getComponents$lambda5;
+        switch (this.f361a) {
             case 7:
-                m9getComponents$lambda0 = FirebaseSessionsRegistrar.m9getComponents$lambda0(z5Var);
-                return m9getComponents$lambda0;
+                m10getComponents$lambda0 = FirebaseSessionsRegistrar.m10getComponents$lambda0(z5Var);
+                return m10getComponents$lambda0;
             case 8:
-                m10getComponents$lambda1 = FirebaseSessionsRegistrar.m10getComponents$lambda1(z5Var);
-                return m10getComponents$lambda1;
+                m11getComponents$lambda1 = FirebaseSessionsRegistrar.m11getComponents$lambda1(z5Var);
+                return m11getComponents$lambda1;
             case 9:
-                m11getComponents$lambda2 = FirebaseSessionsRegistrar.m11getComponents$lambda2(z5Var);
-                return m11getComponents$lambda2;
+                m12getComponents$lambda2 = FirebaseSessionsRegistrar.m12getComponents$lambda2(z5Var);
+                return m12getComponents$lambda2;
             case 10:
-                m12getComponents$lambda3 = FirebaseSessionsRegistrar.m12getComponents$lambda3(z5Var);
-                return m12getComponents$lambda3;
+                m13getComponents$lambda3 = FirebaseSessionsRegistrar.m13getComponents$lambda3(z5Var);
+                return m13getComponents$lambda3;
             case 11:
-                m13getComponents$lambda4 = FirebaseSessionsRegistrar.m13getComponents$lambda4(z5Var);
-                return m13getComponents$lambda4;
+                m14getComponents$lambda4 = FirebaseSessionsRegistrar.m14getComponents$lambda4(z5Var);
+                return m14getComponents$lambda4;
             default:
-                m14getComponents$lambda5 = FirebaseSessionsRegistrar.m14getComponents$lambda5(z5Var);
-                return m14getComponents$lambda5;
+                m15getComponents$lambda5 = FirebaseSessionsRegistrar.m15getComponents$lambda5(z5Var);
+                return m15getComponents$lambda5;
         }
+    }
+
+    public a(k7 k7Var) {
+        this.f361a = 13;
     }
 
     @Override

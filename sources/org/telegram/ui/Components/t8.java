@@ -1,38 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class t8 implements Runnable {
-    public final int f28994a;
-    public final h9 f28995b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class t8 extends AnimatorListenerAdapter {
+    public final int f30486a;
+    public final e9 f30487b;
 
-    public t8(h9 h9Var, int i10) {
-        this.f28994a = i10;
-        this.f28995b = h9Var;
+    public t8(e9 e9Var, int i10) {
+        this.f30486a = i10;
+        this.f30487b = e9Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28994a) {
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        switch (this.f30486a) {
             case 0:
-                h9 h9Var = this.f28995b;
-                if (!h9Var.U) {
-                    if (h9Var.N > 0.0f) {
-                        if (h9Var.M != null) {
-                            h9Var.E = 1.0f;
-                            h9Var.F = true;
-                        }
-                        AndroidUtilities.hideKeyboard(h9Var.fragmentView);
-                        return;
-                    }
-                    h9Var.g0(!h9Var.f25209a.v, true, false);
-                    return;
-                }
+                super.onAnimationEnd(animator);
+                this.f30487b.f25879f = false;
                 return;
             default:
-                h9 h9Var2 = this.f28995b;
-                h9Var2.getClass();
-                h9Var2.presentFragment(new PremiumPreviewFragment(0, "avatar"));
+                e9 e9Var = this.f30487b;
+                if (e9Var.F) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                e9Var.i0(f7, false);
+                e9Var.F = false;
                 return;
         }
     }

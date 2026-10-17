@@ -8,24 +8,23 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 import android.util.SparseArray;
-import org.telegram.ui.Cells.c1;
 public final class m0 implements IBinder.DeathRecipient {
-    public final Messenger f42767a;
-    public final g.c f42768b;
-    public final Messenger f42769c;
-    public int f42770f;
-    public int f42771g;
-    public final r0 f42772i;
+    public final Messenger f44177a;
+    public final g.c f44178b;
+    public final Messenger f44179c;
+    public int f44180f;
+    public int f44181g;
+    public final r0 f44182i;
     public int d = 1;
     public int e = 1;
     public final SparseArray h = new SparseArray();
 
     public m0(r0 r0Var, Messenger messenger) {
-        this.f42772i = r0Var;
-        this.f42767a = messenger;
+        this.f44182i = r0Var;
+        this.f44177a = messenger;
         g.c cVar = new g.c(this);
-        this.f42768b = cVar;
-        this.f42769c = new Messenger(cVar);
+        this.f44178b = cVar;
+        this.f44179c = new Messenger(cVar);
     }
 
     public final void a(int i10) {
@@ -41,9 +40,9 @@ public final class m0 implements IBinder.DeathRecipient {
         obtain.arg2 = i12;
         obtain.obj = bundle;
         obtain.setData(bundle2);
-        obtain.replyTo = this.f42769c;
+        obtain.replyTo = this.f44179c;
         try {
-            this.f42767a.send(obtain);
+            this.f44177a.send(obtain);
             return true;
         } catch (DeadObjectException unused) {
             return false;
@@ -58,20 +57,20 @@ public final class m0 implements IBinder.DeathRecipient {
 
     @Override
     public final void binderDied() {
-        this.f42772i.f42799s.post(new l0(this, 1));
+        this.f44182i.f44209s.post(new l0(this, 1));
     }
 
     public final void c(int i10, int i11) {
-        Bundle f7 = c1.f(i11, "volume");
+        Bundle j10 = org.telegram.ui.Cells.t0.j(i11, "volume");
         int i12 = this.d;
         this.d = i12 + 1;
-        b(7, i12, i10, null, f7);
+        b(7, i12, i10, null, j10);
     }
 
     public final void d(int i10, int i11) {
-        Bundle f7 = c1.f(i11, "volume");
+        Bundle j10 = org.telegram.ui.Cells.t0.j(i11, "volume");
         int i12 = this.d;
         this.d = i12 + 1;
-        b(8, i12, i10, null, f7);
+        b(8, i12, i10, null, j10);
     }
 }

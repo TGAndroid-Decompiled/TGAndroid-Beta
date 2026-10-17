@@ -1,37 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class i91 extends org.telegram.ui.Components.l61 {
-    public static final int f36762a = 0;
+import org.telegram.tgnet.TLRPC;
+public final class i91 extends dq {
+    public final boolean[] f37833d1;
+    public final r91 f37834e1;
+    public final k91 f37835f1;
 
-    static {
-        org.telegram.ui.Components.l61.setup(new org.telegram.ui.Components.l61());
+    public i91(k91 k91Var, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10, boolean[] zArr, r91 r91Var) {
+        super(j10, j11, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z10, null);
+        this.f37835f1 = k91Var;
+        this.f37833d1 = zArr;
+        this.f37834e1 = r91Var;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.m61 m61Var, boolean z10, org.telegram.ui.Components.a71 a71Var, org.telegram.ui.Components.i71 i71Var) {
-        ((j91) view).set(m61Var.f26959z);
-    }
-
-    @Override
-    public final boolean contentsEquals(org.telegram.ui.Components.m61 m61Var, org.telegram.ui.Components.m61 m61Var2) {
-        if (m61Var.f26959z == m61Var2.f26959z) {
-            return true;
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f37833d1[0]) {
+            r91 r91Var = this.f37834e1;
+            if (org.telegram.ui.Components.xc.a(r91Var)) {
+                org.telegram.ui.Components.xc.C(r91Var, this.f37835f1.f38449a.first_name).j();
+            }
         }
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        return new j91(context, c6Var);
-    }
-
-    @Override
-    public final boolean equals(org.telegram.ui.Components.m61 m61Var, org.telegram.ui.Components.m61 m61Var2) {
-        if (m61Var.d == m61Var2.d) {
-            return true;
-        }
-        return false;
     }
 }

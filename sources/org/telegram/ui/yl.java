@@ -1,28 +1,18 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.VideoEditedInfo;
-public final class yl extends zu0 {
-    public final Bitmap f41845a;
-    public final ArrayList f41846b;
-    public final fo f41847c;
+import android.content.Context;
+public final class yl extends org.telegram.ui.Cells.b0 {
+    public final fm f43421f;
 
-    public yl(fo foVar, Bitmap bitmap, ArrayList arrayList) {
-        this.f41847c = foVar;
-        this.f41845a = bitmap;
-        this.f41846b = arrayList;
+    public yl(fm fmVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i10, d6Var);
+        this.f43421f = fmVar;
     }
 
     @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        return new ImageReceiver.BitmapHolder(this.f41845a, (String) null, 0);
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.f41847c.s((MediaController.PhotoEntry) this.f41846b.get(0), videoEditedInfo, z10, i11, 0, z11, 0L);
+    public final int getSideMenuWidth() {
+        sn snVar = this.f43421f.Q;
+        int i10 = sn.Hc;
+        return snVar.W8();
     }
 }

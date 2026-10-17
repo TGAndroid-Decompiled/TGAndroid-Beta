@@ -1,26 +1,75 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class s8 implements DialogInterface.OnCancelListener {
-    public final int f39715a;
-    public final n9 f39716b;
-    public final int f39717c;
+import android.view.View;
+import j$.util.function.Predicate$CC;
+import java.util.Map;
+import java.util.function.Predicate;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class s8 implements Predicate {
+    public final int f41034a;
+    public final long f41035b;
 
-    public s8(n9 n9Var, int i10, int i11) {
-        this.f39715a = i11;
-        this.f39716b = n9Var;
-        this.f39717c = i10;
+    public s8(long j10, int i10) {
+        this.f41034a = i10;
+        this.f41035b = j10;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f41034a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f41034a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            case 2:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f41034a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f39715a) {
+    public final boolean test(Object obj) {
+        switch (this.f41034a) {
             case 0:
-                this.f39716b.getConnectionsManager().cancelRequest(this.f39717c, true);
-                return;
+                if (((TLRPC.User) obj).f20419id == this.f41035b) {
+                    return true;
+                }
+                return false;
+            case 1:
+                if (((TLRPC.User) obj).f20419id == this.f41035b) {
+                    return true;
+                }
+                return false;
+            case 2:
+                TLObject tLObject = (TLObject) obj;
+                if (tLObject instanceof TLRPC.User) {
+                    if (((TLRPC.User) tLObject).f20419id != this.f41035b) {
+                        return true;
+                    }
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    return true ^ ChatObject.hasAdminRights((TLRPC.Chat) tLObject);
+                }
+                return false;
             default:
-                this.f39716b.getConnectionsManager().cancelRequest(this.f39717c, true);
-                return;
+                Map.Entry entry = (Map.Entry) obj;
+                if (((View) entry.getKey()).isAttachedToWindow() && ((View) entry.getKey()).isShown() && ((View) entry.getKey()).getWindowVisibility() == 0) {
+                    if (this.f41035b - ((Long) entry.getValue()).longValue() <= 300) {
+                        return false;
+                    }
+                }
+                return true;
         }
     }
 }

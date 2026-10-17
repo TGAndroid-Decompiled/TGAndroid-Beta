@@ -1,12 +1,19 @@
 package ug;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class g1 extends yg.c {
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.ui.ActionBar.h6;
+public final class g1 extends View {
+    public final l1 f47701a;
+
+    public g1(l1 l1Var, Context context) {
+        super(context);
+        this.f47701a = l1Var;
+    }
+
     @Override
-    public final int getHeaderHeight() {
-        if (getResources().getConfiguration().orientation == 2) {
-            return AndroidUtilities.dp(48.0f);
-        }
-        return AndroidUtilities.dp(54.0f);
+    public final void onDraw(Canvas canvas) {
+        canvas.drawColor(this.f47701a.getThemedColor(h6.e7));
     }
 }

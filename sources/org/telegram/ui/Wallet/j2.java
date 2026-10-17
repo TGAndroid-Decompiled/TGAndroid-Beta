@@ -1,102 +1,115 @@
 package org.telegram.ui.Wallet;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.ViewGroup;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.db;
-import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.mm0;
-public class j2 extends db implements org.telegram.ui.ActionBar.x5 {
-    public a71 X;
-    public final ViewGroup Y;
-    public final Paint Z;
-    public float f33058a0;
+import org.telegram.ui.no0;
+public final class j2 extends org.telegram.ui.ActionBar.f3 {
+    public final ei.h1 f34347b;
+    public final ArrayList f34348c;
+    public boolean d;
+    public FrameLayout e;
+    public Integer f34349f;
 
-    public j2(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, null, true, false, c6Var);
-        this.Z = new Paint();
-        this.v = 0.1f;
-        this.Y = viewGroup;
-        mm0 mm0Var = this.d;
+    public j2(Context context, org.telegram.ui.ActionBar.d6 d6Var, View... viewArr) {
+        super(1, context, d6Var, true);
+        List asList = Arrays.asList(viewArr);
+        ArrayList arrayList = new ArrayList();
+        this.f34348c = arrayList;
+        if (asList != null) {
+            arrayList.addAll(asList);
+        }
+        g2 g2Var = new g2(this, context);
+        this.containerView = g2Var;
+        ei.h1 h1Var = new ei.h1(this, context, 9);
+        this.f34347b = h1Var;
         int i10 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i10, 0, i10, 0);
-        d();
-        this.X.N(false);
+        h1Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
+        g2Var.addView(h1Var, w7.z5.e(-1, -1, 119));
     }
 
     @Override
-    public final CharSequence B() {
-        return null;
-    }
-
-    @Override
-    public void G(float f7) {
-        this.f33058a0 = f7;
-        if (this.topBulletinContainer != null) {
-            this.topBulletinContainer.setTranslationY(Math.max((this.containerView.getY() + f7) + this.backgroundPaddingTop, this.topBulletinContainer.getHeight() + (AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight)) - this.topBulletinContainer.getBottom());
+    public final boolean canDismissWithSwipe() {
+        if (this.f34347b.getCurrentPosition() == 0) {
+            return true;
         }
-    }
-
-    public int Q() {
-        return getThemedColor(org.telegram.ui.ActionBar.g6.f19543a7);
+        return false;
     }
 
     @Override
-    public final void d() {
-        int Q = Q();
-        this.Z.setColor(Q);
-        setBackgroundColor(Q);
-        fixNavigationBar(Q);
-        ViewGroup viewGroup = this.Y;
-        if (viewGroup != null) {
-            viewGroup.invalidate();
+    public final boolean canSwipeToBack(MotionEvent motionEvent) {
+        if (this.f34347b.getCurrentPosition() == 0) {
+            return true;
         }
+        return false;
     }
 
     @Override
-    public final void mainContainerDispatchDraw(Canvas canvas) {
-        float height = getContainer().getHeight();
-        float max = Math.max(height - AndroidUtilities.navigationBarHeight, this.containerView.getY() + this.f33058a0 + this.backgroundPaddingTop);
-        if (max >= height) {
+    public final void onBackPressed() {
+        View[] viewPages;
+        ei.h1 h1Var = this.f34347b;
+        if (h1Var.getCurrentPosition() <= 0) {
+            super.onBackPressed();
             return;
         }
-        canvas.drawRect(0.0f, max, getContainer().getWidth(), height, this.Z);
+        for (View view : h1Var.getViewPages()) {
+            if (view != null) {
+                AndroidUtilities.hideKeyboard(view);
+            }
+        }
+        h1Var.D(h1Var.getCurrentPosition() - 1);
+    }
+
+    public final void s(i2 i2Var) {
+        this.f34348c.add(i2Var);
+        if (this.d) {
+            ei.h1 h1Var = this.f34347b;
+            h1Var.C(false);
+            h1Var.o(false);
+        }
     }
 
     @Override
-    public final void setOverlayNavBarColor(int i10) {
-        super.setOverlayNavBarColor(i10);
-        AndroidUtilities.setNavigationBarColor((Dialog) this, 0, false);
-    }
-
-    @Override
-    public void show() {
-        boolean z10;
-        if (getWindow() != null) {
-            AndroidUtilities.enableEdgeToEdge(getWindow());
+    public final void show() {
+        if (!this.d) {
+            this.d = true;
+            this.f34347b.setAdapter(new no0(this, 1));
         }
         super.show();
-        int Q = Q();
-        setOverlayNavBarColor(Q);
-        if (AndroidUtilities.computePerceivedBrightness(Q) > 0.721f) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        AndroidUtilities.setLightNavigationBar(this, z10);
-        if (getWindow() != null) {
-            getWindow().getDecorView().requestApplyInsets();
+        Integer num = this.f34349f;
+        if (num != null) {
+            setOverlayNavBarColor(num.intValue());
         }
     }
 
-    @Override
-    public final lm0 x(mm0 mm0Var) {
-        a71 a71Var = new a71(mm0Var, getContext(), this.currentAccount, 0, true, new d(this, 6), this.resourcesProvider);
-        this.X = a71Var;
-        return a71Var;
+    public final void t(int i10) {
+        this.f34349f = Integer.valueOf(i10);
+        setBackgroundColor(i10);
+        fixNavigationBar(i10);
+        ((g2) this.containerView).invalidate();
+    }
+
+    public final void v(LinearLayout linearLayout) {
+        FrameLayout frameLayout = this.e;
+        if (frameLayout == null) {
+            FrameLayout frameLayout2 = new FrameLayout(getContext());
+            this.e = frameLayout2;
+            frameLayout2.setClipChildren(false);
+            this.e.setClipToPadding(false);
+            this.containerView.addView(this.e, w7.z5.e(-1, -2, 80));
+        } else {
+            frameLayout.removeAllViews();
+        }
+        this.e.addView(linearLayout, w7.z5.e(-1, -2, 80));
+        ei.h1 h1Var = this.f34347b;
+        int i10 = this.backgroundPaddingLeft;
+        h1Var.setPadding(i10, 0, i10, 0);
+        ((g2) this.containerView).requestLayout();
     }
 }

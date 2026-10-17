@@ -1,93 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class bs extends Drawable {
-    public final Drawable f23536a;
-    public final RectF f23537b = new RectF();
-    public final Paint f23538c;
-    public final Paint d;
-    public int e;
-    public final int f23539f;
-    public float f23540g;
-    public boolean h;
-    public float f23541i;
-    public float f23542j;
-    public float f23543k;
+import android.graphics.PointF;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
+public final class bs implements Interpolator {
+    public static final bs f25030f = new bs(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final bs f25031g = new bs(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final bs h = new bs(0.23d, 1.0d, 0.32d, 1.0d);
+    public static final bs f25032i = new bs(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final bs f25033j = new bs(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final bs f25034k = new bs(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f25035l;
+    public final PointF f25036a;
+    public final PointF f25037b;
+    public final PointF f25038c;
+    public final PointF d;
+    public final PointF e;
 
-    public bs(Context context, int i10, int i11) {
-        Paint paint = new Paint(1);
-        this.f23538c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.f23536a = context.getDrawable(i10);
-        this.f23539f = i11;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(-16777216);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
+    static {
+        new PathInterpolator(v7.x7.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
+        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+        f25035l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
-    public final void a(boolean z10, boolean z11) {
-        if (this.h != z10) {
-            this.h = z10;
-            float f7 = 0.0f;
-            if (!z11) {
-                if (z10) {
-                    f7 = 1.0f;
-                }
-                this.f23540g = f7;
-            } else {
-                if (!z10) {
-                    f7 = 1.0f;
-                }
-                this.f23540g = f7;
+    public bs(float f7, float f10, float f11, float f12) {
+        PointF pointF = new PointF(f7, f10);
+        PointF pointF2 = new PointF(f11, f12);
+        this.f25038c = new PointF();
+        this.d = new PointF();
+        this.e = new PointF();
+        float f13 = pointF.x;
+        if (f13 >= 0.0f && f13 <= 1.0f) {
+            float f14 = pointF2.x;
+            if (f14 >= 0.0f && f14 <= 1.0f) {
+                this.f25036a = pointF;
+                this.f25037b = pointF2;
+                return;
             }
-            invalidateSelf();
+            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
         }
+        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bs.draw(android.graphics.Canvas):void");
+    public final float getInterpolation(float f7) {
+        PointF pointF;
+        PointF pointF2;
+        PointF pointF3;
+        PointF pointF4;
+        PointF pointF5;
+        int i10 = 1;
+        float f10 = f7;
+        while (true) {
+            pointF = this.f25037b;
+            pointF2 = this.f25036a;
+            pointF3 = this.f25038c;
+            pointF4 = this.d;
+            pointF5 = this.e;
+            if (i10 >= 14) {
+                break;
+            }
+            float f11 = pointF2.x * 3.0f;
+            pointF5.x = f11;
+            float f12 = ((pointF.x - pointF2.x) * 3.0f) - f11;
+            pointF4.x = f12;
+            float f13 = (1.0f - pointF5.x) - f12;
+            pointF3.x = f13;
+            float f14 = (((((f13 * f10) + pointF4.x) * f10) + pointF5.x) * f10) - f7;
+            if (Math.abs(f14) < 0.001d) {
+                break;
+            }
+            f10 -= f14 / (((((pointF3.x * 3.0f) * f10) + (pointF4.x * 2.0f)) * f10) + pointF5.x);
+            i10++;
+        }
+        float f15 = pointF2.y * 3.0f;
+        pointF5.y = f15;
+        float f16 = ((pointF.y - pointF2.y) * 3.0f) - f15;
+        pointF4.y = f16;
+        float f17 = (1.0f - pointF5.y) - f16;
+        pointF3.y = f17;
+        return ((((f17 * f10) + pointF4.y) * f10) + pointF5.y) * f10;
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f23536a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f23536a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        this.f23536a.setBounds(i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public bs(double d, double d10, double d11, double d12) {
+        this((float) d, (float) d10, (float) d11, (float) d12);
     }
 }

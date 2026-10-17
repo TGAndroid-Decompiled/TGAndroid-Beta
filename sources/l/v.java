@@ -11,51 +11,51 @@ import android.widget.PopupWindow;
 import java.util.WeakHashMap;
 import r0.i0;
 public class v {
-    public final Context f14470a;
-    public final k f14471b;
-    public final boolean f14472c;
+    public final Context f15802a;
+    public final k f15803b;
+    public final boolean f15804c;
     public final int d;
     public View e;
-    public boolean f14474g;
+    public boolean f15806g;
     public w h;
-    public s f14475i;
-    public PopupWindow.OnDismissListener f14476j;
-    public int f14473f = 8388611;
-    public final t f14477k = new t(this);
+    public s f15807i;
+    public PopupWindow.OnDismissListener f15808j;
+    public int f15805f = 8388611;
+    public final t f15809k = new t(this);
 
     public v(Context context, k kVar, View view, boolean z10, int i10, int i11) {
-        this.f14470a = context;
-        this.f14471b = kVar;
+        this.f15802a = context;
+        this.f15803b = kVar;
         this.e = view;
-        this.f14472c = z10;
+        this.f15804c = z10;
         this.d = i10;
     }
 
     public final s a() {
         s c0Var;
-        if (this.f14475i == null) {
-            Context context = this.f14470a;
+        if (this.f15807i == null) {
+            Context context = this.f15802a;
             Display defaultDisplay = ((WindowManager) context.getSystemService("window")).getDefaultDisplay();
             Point point = new Point();
             u.a(defaultDisplay, point);
             if (Math.min(point.x, point.y) >= context.getResources().getDimensionPixelSize(2131165206)) {
-                c0Var = new e(context, this.e, this.d, this.f14472c);
+                c0Var = new e(context, this.e, this.d, this.f15804c);
             } else {
-                c0Var = new c0(this.f14470a, this.f14471b, this.e, this.d, this.f14472c);
+                c0Var = new c0(this.f15802a, this.f15803b, this.e, this.d, this.f15804c);
             }
-            c0Var.l(this.f14471b);
-            c0Var.r(this.f14477k);
+            c0Var.l(this.f15803b);
+            c0Var.r(this.f15809k);
             c0Var.n(this.e);
             c0Var.h(this.h);
-            c0Var.o(this.f14474g);
-            c0Var.p(this.f14473f);
-            this.f14475i = c0Var;
+            c0Var.o(this.f15806g);
+            c0Var.p(this.f15805f);
+            this.f15807i = c0Var;
         }
-        return this.f14475i;
+        return this.f15807i;
     }
 
     public final boolean b() {
-        s sVar = this.f14475i;
+        s sVar = this.f15807i;
         if (sVar != null && sVar.a()) {
             return true;
         }
@@ -63,8 +63,8 @@ public class v {
     }
 
     public void c() {
-        this.f14475i = null;
-        PopupWindow.OnDismissListener onDismissListener = this.f14476j;
+        this.f15807i = null;
+        PopupWindow.OnDismissListener onDismissListener = this.f15808j;
         if (onDismissListener != null) {
             onDismissListener.onDismiss();
         }
@@ -74,16 +74,16 @@ public class v {
         s a2 = a();
         a2.s(z11);
         if (z10) {
-            int i12 = this.f14473f;
+            int i12 = this.f15805f;
             View view = this.e;
-            WeakHashMap weakHashMap = i0.f43485a;
+            WeakHashMap weakHashMap = i0.f44844a;
             if ((Gravity.getAbsoluteGravity(i12, view.getLayoutDirection()) & 7) == 5) {
                 i10 -= this.e.getWidth();
             }
             a2.q(i10);
             a2.t(i11);
-            int i13 = (int) ((this.f14470a.getResources().getDisplayMetrics().density * 48.0f) / 2.0f);
-            a2.f14468a = new Rect(i10 - i13, i11 - i13, i10 + i13, i11 + i13);
+            int i13 = (int) ((this.f15802a.getResources().getDisplayMetrics().density * 48.0f) / 2.0f);
+            a2.f15800a = new Rect(i10 - i13, i11 - i13, i10 + i13, i11 + i13);
         }
         a2.g();
     }

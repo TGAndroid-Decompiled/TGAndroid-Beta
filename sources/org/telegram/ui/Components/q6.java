@@ -1,122 +1,249 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
+import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import android.text.TextUtils;
-import j$.util.stream.IntStream;
-import java.util.Arrays;
-import java.util.stream.IntStream;
-public final class q6 implements CharSequence {
-    public final CharSequence[] f28209a;
-    public final int f28210b;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public class q6 extends View {
+    public boolean f29576a;
+    public Drawable f29577b;
+    public final p6 f29578c;
+    public int d;
+    public int e;
+    public CharSequence f29579f;
+    public boolean h;
+    public boolean f29580n;
+    public boolean f29581r;
 
-    public q6(CharSequence charSequence) {
-        int i10;
-        if (charSequence == null) {
-            this.f28209a = new CharSequence[0];
-            this.f28210b = 0;
-            return;
+    public q6(Context context, boolean z10, boolean z11, boolean z12) {
+        this(context, z10, z11, z12, false, false);
+    }
+
+    public final void a() {
+        this.f29578c.a();
+    }
+
+    public final void b(float f7, long j10, TimeInterpolator timeInterpolator) {
+        this.f29578c.n(f7, j10, timeInterpolator);
+    }
+
+    public final void c(CharSequence charSequence, boolean z10, boolean z11) {
+        boolean z12;
+        if (!this.f29581r && z10) {
+            z12 = true;
+        } else {
+            z12 = false;
         }
-        this.f28210b = charSequence.length();
-        int i11 = 0;
-        for (int i12 = 0; i12 < this.f28210b; i12++) {
-            if (charSequence.charAt(i12) == ' ') {
-                i11++;
-            }
-        }
-        this.f28209a = new CharSequence[i11 + 1];
-        int i13 = 0;
-        int i14 = 0;
-        int i15 = 0;
-        while (true) {
-            int i16 = this.f28210b;
-            if (i13 <= i16) {
-                if (i13 == i16 || charSequence.charAt(i13) == ' ') {
-                    CharSequence[] charSequenceArr = this.f28209a;
-                    int i17 = i14 + 1;
-                    if (i13 < this.f28210b) {
-                        i10 = 1;
-                    } else {
-                        i10 = 0;
-                    }
-                    charSequenceArr[i14] = charSequence.subSequence(i15, i10 + i13);
-                    i15 = i13 + 1;
-                    i14 = i17;
+        this.f29581r = false;
+        p6 p6Var = this.f29578c;
+        if (z12 && !TextUtils.equals(charSequence, p6Var.f29198i)) {
+            if (p6Var.J) {
+                ValueAnimator valueAnimator = p6Var.f29209t;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    p6Var.f29209t = null;
                 }
-                i13++;
-            } else {
+            } else if (p6Var.h()) {
+                this.f29579f = charSequence;
+                this.h = z11;
                 return;
             }
         }
-    }
-
-    @Override
-    public final char charAt(int i10) {
-        int i11 = 0;
-        while (true) {
-            CharSequence[] charSequenceArr = this.f28209a;
-            if (i11 >= charSequenceArr.length) {
-                return (char) 0;
-            }
-            if (i10 < charSequenceArr[i11].length()) {
-                return charSequenceArr[i11].charAt(i10);
-            }
-            i10 -= charSequenceArr[i11].length();
-            i11++;
+        p6Var.setBounds(getPaddingLeft(), getPaddingTop(), this.d - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        p6Var.t(charSequence, z12, z11);
+        float e = (int) p6Var.e();
+        if (e >= p6Var.e() && (z12 || e == p6Var.e())) {
+            return;
         }
+        requestLayout();
+    }
+
+    public final int d() {
+        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.f29578c.c()));
+    }
+
+    public p6 getDrawable() {
+        return this.f29578c;
+    }
+
+    public TextPaint getPaint() {
+        return this.f29578c.f29190a;
+    }
+
+    public float getRightPadding() {
+        return this.f29578c.N;
+    }
+
+    public Drawable getSizeableBackground() {
+        return this.f29577b;
+    }
+
+    public CharSequence getText() {
+        return this.f29578c.f29198i;
+    }
+
+    public int getTextColor() {
+        return this.f29578c.f29190a.getColor();
+    }
+
+    public int getTextHeight() {
+        return getPaint().getFontMetricsInt().descent - getPaint().getFontMetricsInt().ascent;
     }
 
     @Override
-    public IntStream chars() {
-        return IntStream.Wrapper.convert(chars());
+    public final void invalidateDrawable(Drawable drawable) {
+        super.invalidateDrawable(drawable);
+        invalidate();
     }
 
     @Override
-    public java.util.stream.IntStream codePoints() {
-        return IntStream.Wrapper.convert(codePoints());
-    }
-
-    @Override
-    public final int length() {
-        return this.f28209a.length;
-    }
-
-    @Override
-    public final CharSequence subSequence(int i10, int i11) {
-        return TextUtils.concat((CharSequence[]) Arrays.copyOfRange(this.f28209a, i10, i11));
-    }
-
-    @Override
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder();
-        int i10 = 0;
-        while (true) {
-            CharSequence[] charSequenceArr = this.f28209a;
-            if (i10 < charSequenceArr.length) {
-                sb2.append(charSequenceArr[i10]);
-                i10++;
+    public void onDraw(Canvas canvas) {
+        int i10;
+        Drawable drawable = this.f29577b;
+        p6 p6Var = this.f29578c;
+        if (drawable != null && (!this.f29576a || p6Var.i() > 0.0f)) {
+            int c10 = (int) (p6Var.c() + getPaddingLeft() + getPaddingRight());
+            int i11 = p6Var.f29192b & 7;
+            if (i11 == 5) {
+                i10 = getWidth() - c10;
+            } else if (i11 == 1) {
+                i10 = (getWidth() - c10) / 2;
             } else {
-                return sb2.toString();
+                i10 = 0;
             }
+            this.f29577b.setBounds(i10, 0, c10 + i10, getHeight());
+            this.f29577b.draw(canvas);
         }
+        p6Var.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        p6Var.draw(canvas);
     }
 
     @Override
-    public final j$.util.stream.IntStream chars() {
-        j$.util.stream.IntStream convert;
-        if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f28209a).chars());
-            return convert;
-        }
-        return null;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setText(getText());
     }
 
     @Override
-    public final j$.util.stream.IntStream codePoints() {
-        j$.util.stream.IntStream convert;
-        if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f28209a).codePoints());
-            return convert;
+    public void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int i12 = this.e;
+        if (i12 > 0) {
+            size = Math.min(size, i12);
         }
-        return null;
+        int i13 = this.d;
+        p6 p6Var = this.f29578c;
+        if (i13 != size && getLayoutParams().width != 0) {
+            p6Var.setBounds(getPaddingLeft(), getPaddingTop(), size - getPaddingRight(), size2 - getPaddingBottom());
+            p6Var.t(p6Var.f29198i, false, true);
+        }
+        this.d = size;
+        if (this.f29580n && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
+            size = getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(p6Var.e()));
+        }
+        setMeasuredDimension(size, size2);
+    }
+
+    public void setAllowCancel(boolean z10) {
+        this.f29578c.J = z10;
+    }
+
+    public void setEllipsizeByGradient(boolean z10) {
+        this.f29578c.q(z10);
+    }
+
+    public void setEmojiCacheType(int i10) {
+        this.f29578c.f29205p = i10;
+    }
+
+    public void setEmojiColor(int i10) {
+        p6 p6Var = this.f29578c;
+        if (p6Var.f29191a0 != i10) {
+            p6Var.f29191a0 = i10;
+            p6Var.f29193b0 = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
+        }
+        invalidate();
+    }
+
+    public void setEmojiColorFilter(ColorFilter colorFilter) {
+        this.f29578c.f29193b0 = colorFilter;
+        invalidate();
+    }
+
+    public void setGravity(int i10) {
+        this.f29578c.f29192b = i10;
+    }
+
+    public void setHideBackgroundIfEmpty(boolean z10) {
+        this.f29576a = z10;
+    }
+
+    public void setIgnoreRTL(boolean z10) {
+        this.f29578c.K = z10;
+    }
+
+    public void setIncludeFontPadding(boolean z10) {
+        this.f29578c.S = z10;
+    }
+
+    public void setMaxWidth(int i10) {
+        this.e = i10;
+    }
+
+    public void setOnWidthUpdatedListener(Runnable runnable) {
+        this.f29578c.f29195c0 = runnable;
+    }
+
+    public void setRightPadding(float f7) {
+        p6 p6Var = this.f29578c;
+        p6Var.N = f7;
+        p6Var.invalidateSelf();
+    }
+
+    public void setScaleProperty(float f7) {
+        this.f29578c.A = f7;
+    }
+
+    public void setSizeableBackground(Drawable drawable) {
+        this.f29577b = drawable;
+        invalidate();
+    }
+
+    public void setText(CharSequence charSequence) {
+        c(charSequence, true, true);
+    }
+
+    public void setTextColor(int i10) {
+        this.f29578c.u(i10);
+        invalidate();
+    }
+
+    public void setTextSize(float f7) {
+        this.f29578c.w(f7);
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.f29578c.x(typeface);
+    }
+
+    public q6(Context context, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
+        super(context);
+        this.f29580n = true;
+        this.f29581r = true;
+        p6 p6Var = new p6(z10, z11, z12, z13, z14);
+        this.f29578c = p6Var;
+        p6Var.setCallback(this);
+        p6Var.I = new pg(this, 8);
     }
 }

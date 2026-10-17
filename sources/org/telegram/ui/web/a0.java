@@ -1,60 +1,65 @@
 package org.telegram.ui.web;
 
-import bi.k8;
-import bi.n9;
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class a0 implements Utilities.Callback {
-    public final int f40956a = 0;
-    public final c1 f40957b;
-    public final String f40958c;
-    public final String d;
+import android.webkit.WebView;
+import ci.z7;
+import java.io.Serializable;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class a0 implements Runnable {
+    public final int f42510a;
+    public final Object f42511b;
+    public final Object f42512c;
+    public final Serializable d;
     public final Object e;
-    public final Object f40959f;
+    public final Object f42513f;
 
-    public a0(c1 c1Var, n9 n9Var, String str, fi.s1 s1Var, String str2) {
-        this.f40957b = c1Var;
-        this.e = n9Var;
-        this.f40958c = str;
-        this.f40959f = s1Var;
-        this.d = str2;
+    public a0(Object obj, WebView webView, Object obj2, String str, Object obj3, int i10) {
+        this.f42510a = i10;
+        this.f42511b = obj;
+        this.e = webView;
+        this.f42513f = obj2;
+        this.d = str;
+        this.f42512c = obj3;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f40956a) {
-            case 0:
-                n9 n9Var = (n9) this.e;
-                fi.s1 s1Var = (fi.s1) this.f40959f;
-                String str = this.d;
-                String str2 = (String) obj;
-                c1 c1Var = this.f40957b;
-                String str3 = this.f40958c;
-                if (str2 == null) {
-                    c1Var.x(n9Var, "secure_storage_failed", c1.B("req_id", str3, "error", "RESTORE_CANCELLED"));
-                    return;
-                }
-                try {
-                    s1Var.j(str2);
-                    c1Var.x(n9Var, "secure_storage_key_restored", c1.B("req_id", str3, "value", (String) s1Var.f(str).first));
-                    return;
-                } catch (Exception e) {
-                    c1Var.x(n9Var, "secure_storage_failed", c1.B("req_id", str3, "error", e.getMessage()));
-                    return;
-                }
-            default:
-                c1 c1Var2 = this.f40957b;
-                AndroidUtilities.runOnUIThread(new k8(c1Var2, (File) obj, (org.telegram.ui.ActionBar.a2) this.e, this.f40958c, this.d, (String) this.f40959f, 19));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.a0.run():void");
     }
 
-    public a0(c1 c1Var, org.telegram.ui.ActionBar.a2 a2Var, String str, String str2, String str3) {
-        this.f40957b = c1Var;
-        this.e = a2Var;
-        this.f40958c = str;
-        this.d = str2;
-        this.f40959f = str3;
+    public a0(Object obj, String str, Serializable serializable, String str2, String str3, int i10) {
+        this.f42510a = i10;
+        this.f42511b = obj;
+        this.d = str;
+        this.e = serializable;
+        this.f42513f = str2;
+        this.f42512c = str3;
+    }
+
+    public a0(a1 a1Var, TLObject tLObject, z7 z7Var, String str, String str2) {
+        this.f42510a = 1;
+        this.f42511b = a1Var;
+        this.f42512c = tLObject;
+        this.e = z7Var;
+        this.d = str;
+        this.f42513f = str2;
+    }
+
+    public a0(a1 a1Var, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.b2 b2Var) {
+        this.f42510a = 3;
+        this.f42511b = a1Var;
+        this.f42512c = tLObject;
+        this.d = strArr;
+        this.e = tL_error;
+        this.f42513f = b2Var;
+    }
+
+    public a0(a1 a1Var, TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
+        this.f42510a = 0;
+        this.f42511b = a1Var;
+        this.e = tL_error;
+        this.d = str;
+        this.f42513f = tL_inputInvoiceSlug;
+        this.f42512c = tLObject;
     }
 }

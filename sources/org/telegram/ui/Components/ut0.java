@@ -1,44 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class ut0 implements org.telegram.ui.Cells.m7 {
-    public final xv0 f29437a;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ut0 implements View.OnClickListener {
+    public final int f31083a;
+    public final org.telegram.ui.ActionBar.e1 f31084b;
+    public final org.telegram.ui.ActionBar.e1 f31085c;
+    public final wt0 d;
 
-    public ut0(xv0 xv0Var) {
-        this.f29437a = xv0Var;
+    public ut0(wt0 wt0Var, org.telegram.ui.ActionBar.e1 e1Var, org.telegram.ui.ActionBar.e1 e1Var2, int i10) {
+        this.f31083a = i10;
+        this.d = wt0Var;
+        this.f31084b = e1Var;
+        this.f31085c = e1Var2;
     }
 
     @Override
-    public final void a(String str, boolean z10) {
-        xv0 xv0Var = this.f29437a;
-        org.telegram.ui.ActionBar.m2 m2Var = xv0Var.f31069v1;
-        if (z10) {
-            org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) m2Var.getParentActivity(), (org.telegram.ui.ActionBar.c6) null, false);
-            e3Var.fixNavigationBar();
-            e3Var.title = str;
-            e3Var.bigTitle = false;
-            CharSequence[] charSequenceArr = {LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)};
-            mg.j jVar = new mg.j(6, this, str);
-            e3Var.items = charSequenceArr;
-            e3Var.onClickListener = jVar;
-            m2Var.showDialog(e3Var);
-            return;
+    public final void onClick(View view) {
+        switch (this.f31083a) {
+            case 0:
+                sv0 sv0Var = this.d.d;
+                if (!sv0Var.H1) {
+                    org.telegram.ui.ActionBar.e1 e1Var = this.f31084b;
+                    boolean z10 = e1Var.getCheckView().f32428a.f24147q;
+                    org.telegram.ui.ActionBar.e1 e1Var2 = this.f31085c;
+                    if (!z10 && e1Var2.getCheckView().f32428a.f24147q) {
+                        float f7 = -sv0Var.f30382s1;
+                        sv0Var.f30382s1 = f7;
+                        AndroidUtilities.shakeViewSpring(e1Var2, f7);
+                        return;
+                    }
+                    e1Var2.setChecked(!e1Var2.getCheckView().f32428a.f24147q);
+                    if (e1Var2.getCheckView().f32428a.f24147q && e1Var.getCheckView().f32428a.f24147q) {
+                        sv0Var.f30384t1[0].f26955q = 0;
+                    } else {
+                        sv0Var.f30384t1[0].f26955q = 2;
+                    }
+                    sv0.t(sv0Var);
+                    return;
+                }
+                return;
+            default:
+                sv0 sv0Var2 = this.d.d;
+                if (!sv0Var2.H1) {
+                    org.telegram.ui.ActionBar.e1 e1Var3 = this.f31084b;
+                    boolean z11 = e1Var3.getCheckView().f32428a.f24147q;
+                    org.telegram.ui.ActionBar.e1 e1Var4 = this.f31085c;
+                    if (!z11 && e1Var4.getCheckView().f32428a.f24147q) {
+                        float f10 = -sv0Var2.f30382s1;
+                        sv0Var2.f30382s1 = f10;
+                        AndroidUtilities.shakeViewSpring(e1Var4, f10);
+                        return;
+                    }
+                    e1Var4.setChecked(!e1Var4.getCheckView().f32428a.f24147q);
+                    if (e1Var3.getCheckView().f32428a.f24147q && e1Var4.getCheckView().f32428a.f24147q) {
+                        sv0Var2.f30384t1[0].f26955q = 0;
+                    } else {
+                        sv0Var2.f30384t1[0].f26955q = 1;
+                    }
+                    sv0.t(sv0Var2);
+                    return;
+                }
+                return;
         }
-        xv0Var.S0(str);
-    }
-
-    @Override
-    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
-        xv0 xv0Var = this.f29437a;
-        hv.J(xv0Var.f31069v1, messageObject, xv0Var.f31060r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
-    }
-
-    @Override
-    public final boolean c() {
-        return !this.f29437a.C1;
     }
 }

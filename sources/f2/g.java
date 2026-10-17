@@ -1,22 +1,26 @@
 package f2;
 
-import b2.r0;
-import b2.t0;
-import b2.x;
-import v7.c8;
-public final class g implements t0 {
-    public final long f8847a;
-    public final long f8848b;
-    public final long f8849c;
+import b2.q0;
+import b2.s0;
+import v7.u6;
+public final class g implements s0 {
+    public final float f10289a;
+    public final float f10290b;
 
-    public g(long j10, long j11, long j12) {
-        this.f8847a = j10;
-        this.f8848b = j11;
-        this.f8849c = j12;
+    public g(float f7, float f10) {
+        boolean z10;
+        if (f7 >= -90.0f && f7 <= 90.0f && f10 >= -180.0f && f10 <= 180.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        u6.f("Invalid latitude or longitude", z10);
+        this.f10289a = f7;
+        this.f10290b = f10;
     }
 
     @Override
-    public final x a() {
+    public final b2.w a() {
         return null;
     }
 
@@ -29,26 +33,24 @@ public final class g implements t0 {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof g)) {
-            return false;
-        }
-        g gVar = (g) obj;
-        if (this.f8847a == gVar.f8847a && this.f8848b == gVar.f8848b && this.f8849c == gVar.f8849c) {
-            return true;
+        if (obj != null && g.class == obj.getClass()) {
+            g gVar = (g) obj;
+            if (this.f10289a == gVar.f10289a && this.f10290b == gVar.f10290b) {
+                return true;
+            }
         }
         return false;
     }
 
     public final int hashCode() {
-        int b10 = c8.b(this.f8848b);
-        return c8.b(this.f8849c) + ((b10 + ((c8.b(this.f8847a) + 527) * 31)) * 31);
+        return Float.valueOf(this.f10290b).hashCode() + ((Float.valueOf(this.f10289a).hashCode() + 527) * 31);
     }
 
     public final String toString() {
-        return "Mp4Timestamp: creation time=" + this.f8847a + ", modification time=" + this.f8848b + ", timescale=" + this.f8849c;
+        return "xyz: latitude=" + this.f10289a + ", longitude=" + this.f10290b;
     }
 
     @Override
-    public final void b(r0 r0Var) {
+    public final void b(q0 q0Var) {
     }
 }

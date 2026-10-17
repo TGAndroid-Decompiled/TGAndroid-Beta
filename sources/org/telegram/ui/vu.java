@@ -1,54 +1,62 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class vu extends pg.a {
-    public final int f40761c;
-    public final int d;
-    public final int e;
-    public final CharSequence f40762f;
-    public final CharSequence f40763g;
-    public final int h;
+import android.graphics.drawable.ColorDrawable;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.R;
+public final class vu extends org.telegram.ui.Components.hm0 {
+    public final xu f42278c;
 
-    public vu(int i10, String str) {
-        super(i10, false);
-        this.f40762f = str;
+    public vu(xu xuVar) {
+        this.f42278c = xuVar;
     }
 
-    public static vu b(CharSequence charSequence, String str) {
-        return new vu(-1, 0, 0, 0, charSequence, str);
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        return false;
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof vu)) {
-            return false;
+    @Override
+    public final int h() {
+        if (this.f42278c.f43255g0.h()) {
+            return 1;
         }
-        vu vuVar = (vu) obj;
-        CharSequence charSequence = vuVar.f40762f;
-        int i10 = vuVar.f42904a;
-        int i11 = this.f42904a;
-        if (i10 != i11) {
-            return false;
-        }
-        CharSequence charSequence2 = this.f40762f;
-        if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
-            if (i11 != 2) {
-                return true;
-            }
-            if (vuVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || vuVar.d != this.d || vuVar.e != this.e || vuVar.f40761c != this.f40761c) {
-                return false;
-            }
-            return true;
-        }
-        return TextUtils.equals(charSequence2, charSequence);
+        return 3;
     }
 
-    public vu(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
-        super(2, false);
-        this.h = i10;
-        this.f40761c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f40762f = charSequence;
-        this.f40763g = charSequence2;
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View view;
+        int i11;
+        int i12;
+        xu xuVar = this.f42278c;
+        if (i10 == 0) {
+            view = xuVar.f43252d0;
+        } else if (i10 == 2) {
+            view = xuVar.f43253e0;
+            s4.o0 o0Var = new s4.o0(-1, -2);
+            i11 = ((org.telegram.ui.ActionBar.f3) xuVar).backgroundPaddingLeft;
+            ((ViewGroup.MarginLayoutParams) o0Var).leftMargin = i11;
+            i12 = ((org.telegram.ui.ActionBar.f3) xuVar).backgroundPaddingLeft;
+            ((ViewGroup.MarginLayoutParams) o0Var).rightMargin = i12;
+            view.setLayoutParams(o0Var);
+        } else {
+            org.telegram.ui.Cells.d9 d9Var = new org.telegram.ui.Cells.d9(viewGroup.getContext());
+            d9Var.setFixedSize(12);
+            org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20928a7, false)), org.telegram.ui.ActionBar.h6.W0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20948b7));
+            zqVar.f32999w = true;
+            d9Var.setBackgroundDrawable(zqVar);
+            view = d9Var;
+        }
+        return new s4.b1(view);
+    }
+
+    @Override
+    public final int j(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
     }
 }

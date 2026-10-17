@@ -1,46 +1,75 @@
 package rg;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.fo;
-public final class x extends fo {
-    public final o0 Qc;
+import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.Components.ti;
+public final class x implements ri {
+    public final ti f45722a;
+    public final m0 f45723b;
 
-    public x(o0 o0Var) {
-        super(null);
-        this.Qc = o0Var;
+    public x(m0 m0Var, ti tiVar) {
+        this.f45723b = m0Var;
+        this.f45722a = tiVar;
     }
 
     @Override
-    public final boolean C9() {
+    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+        ti tiVar = this.f45722a;
+        try {
+            HashMap<Object, Object> selectedPhotos = tiVar.f30586j0.getSelectedPhotos();
+            if (!selectedPhotos.isEmpty()) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
+                String str = photoEntry.imagePath;
+                if (str == null) {
+                    str = photoEntry.path;
+                }
+                m0 m0Var = this.f45723b;
+                m0Var.f0(m0Var.h0(str, true));
+                tiVar.dismiss();
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+        }
+    }
+
+    @Override
+    public final boolean p0() {
+        System.currentTimeMillis();
+        return true;
+    }
+
+    @Override
+    public final void r(gh ghVar) {
+        ghVar.run();
+    }
+
+    @Override
+    public final boolean v() {
         return false;
     }
 
     @Override
-    public final long a() {
-        return 0L;
+    public final void E() {
     }
 
     @Override
-    public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.Qc.getContext());
+    public final void J() {
     }
 
     @Override
-    public final c6 getResourceProvider() {
-        return this.Qc.Q1;
+    public final void O(Object obj) {
     }
 
     @Override
-    public final TLRPC.User i() {
-        return UserConfig.getInstance(this.currentAccount).getCurrentUser();
+    public final void X(TLRPC.User user) {
     }
 
     @Override
-    public final boolean isLightStatusBar() {
-        return false;
+    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
     }
 }

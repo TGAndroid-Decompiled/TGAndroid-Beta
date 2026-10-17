@@ -1,47 +1,338 @@
 package org.telegram.ui;
 
+import android.animation.AnimatorSet;
+import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-public final class h5 {
-    public static final h5 d;
-    public static final h5 e;
-    public static final h5 f36396f;
-    public static final h5 h;
-    public static final h5 f36397n;
-    public static final h5 f36398r;
-    public static final h5[] f36399s;
-    public final String f36400a;
-    public final int f36401b;
-    public final int f36402c;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.Components.RadialProgress2;
+public abstract class h5 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public static final int F = 0;
+    public boolean E;
+    public final OvershootInterpolator f37423a;
+    public final m0 f37424b;
+    public final z4 f37425c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
+    public final a5 e;
+    public final org.telegram.ui.ActionBar.d6 f37426f;
+    public final gh.b h;
+    public AnimatorSet f37427n;
+    public boolean f37428r;
+    public i5[] f37429s;
+    public final View v;
+    public boolean f37430w;
+    public String f37431x;
+    public e5 f37432y;
 
-    static {
-        h5 h5Var = new h5(0, R.string.OpenProfile, R.drawable.msg_openprofile, "OPEN_PROFILE", "OpenProfile");
-        d = h5Var;
-        h5 h5Var2 = new h5(1, R.string.OpenChannel2, R.drawable.msg_channel, "OPEN_CHANNEL", "OpenChannel2");
-        e = h5Var2;
-        int i10 = R.string.OpenGroup2;
-        int i11 = R.drawable.msg_discussion;
-        h5 h5Var3 = new h5(2, i10, i11, "OPEN_GROUP", "OpenGroup2");
-        f36396f = h5Var3;
-        h5 h5Var4 = new h5(3, R.string.SendMessage, i11, "SEND_MESSAGE", "SendMessage");
-        h = h5Var4;
-        h5 h5Var5 = new h5(4, R.string.Mention, R.drawable.msg_mention, "MENTION", "Mention");
-        f36397n = h5Var5;
-        h5 h5Var6 = new h5(5, R.string.AvatarPreviewSearchMessages, R.drawable.msg_search, "SEARCH_MESSAGES", "AvatarPreviewSearchMessages");
-        f36398r = h5Var6;
-        f36399s = new h5[]{h5Var, h5Var2, h5Var3, h5Var4, h5Var5, h5Var6};
+    public h5(Context context, org.telegram.ui.ActionBar.d6 d6Var, a5 a5Var) {
+        super(context);
+        this.f37423a = new OvershootInterpolator(1.02f);
+        gh.b bVar = new gh.b();
+        this.h = bVar;
+        bh.b bVar2 = new bh.b(bVar);
+        new Matrix();
+        this.e = a5Var;
+        this.f37426f = d6Var;
+        bVar2.f4361f = new ih.j(this);
+        bVar2.f4362g = this;
+        View view = new View(context);
+        this.v = view;
+        view.setOnClickListener(new a(this, 4));
+        addView(view, w7.z5.d(-1.0f, -1));
+        m0 m0Var = new m0(this, context, 2);
+        this.f37424b = m0Var;
+        addView(m0Var, w7.z5.d(-1.0f, -1));
+        z4 z4Var = new z4(context, d6Var);
+        this.f37425c = z4Var;
+        ci.o1 o1Var = zf.i0.f51593a;
+        z4Var.setOutlineProvider(new zf.h0(0, AndroidUtilities.dp(12.0f)));
+        z4Var.setElevation(AndroidUtilities.dp(4.0f));
+        z4Var.setClipToOutline(true);
+        m0Var.addView(z4Var, w7.z5.e(0, 0, 1));
+        if (Build.VERSION.SDK_INT >= 28) {
+            z4Var.setOutlineSpotShadowColor(Integer.MIN_VALUE);
+            z4Var.setOutlineAmbientShadowColor(Integer.MIN_VALUE);
+        }
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert, 0, context, d6Var);
+        this.d = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        dh.d c10 = bVar2.c(actionBarPopupWindow$ActionBarPopupWindowLayout, null, false);
+        c10.o(fh.c.k(d6Var));
+        c10.p(AndroidUtilities.dp(8.0f));
+        c10.f8016j.e = true;
+        c10.q(AndroidUtilities.dp(12.0f));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setBackground(c10);
+        m0Var.addView(actionBarPopupWindow$ActionBarPopupWindowLayout, w7.z5.h(-2.0f, -2.0f, 8388611));
     }
 
-    public h5(int i10, int i11, int i12, String str, String str2) {
-        this.f36400a = str2;
-        this.f36401b = i11;
-        this.f36402c = i12;
+    public final void a(c5 c5Var) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        this.f37429s = c5Var.f35819i;
+        if (c5Var.f35816c != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        z4 z4Var = this.f37425c;
+        z4Var.f43557c = z10;
+        z4Var.invalidate();
+        this.f37431x = c5Var.f35817f;
+        e5 e5Var = this.f37432y;
+        if (e5Var != null) {
+            if (e5Var.f36397g) {
+                e5Var.f36397g = false;
+                e5Var.f36394b.removeObserver(e5Var.f36393a, e5Var.e);
+            }
+            this.f37432y = null;
+        }
+        e5 e5Var2 = c5Var.f35820j;
+        if (e5Var2 != null) {
+            this.f37432y = e5Var2;
+            ai.b8 b8Var = new ai.b8(3, this, c5Var);
+            if (!e5Var2.f36397g) {
+                e5Var2.f36397g = true;
+                e5Var2.f36396f = b8Var;
+                e5Var2.f36394b.addObserver(e5Var2.f36393a, e5Var2.e);
+                e5Var2.a();
+            }
+        }
+        int i10 = UserConfig.selectedAccount;
+        ImageLocation imageLocation = c5Var.f35816c;
+        String str = c5Var.e;
+        ImageLocation imageLocation2 = c5Var.f35814a;
+        ImageLocation imageLocation3 = c5Var.f35815b;
+        String str2 = c5Var.d;
+        BitmapDrawable bitmapDrawable = c5Var.f35818g;
+        Object obj = c5Var.h;
+        org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) z4Var.d;
+        w9Var.getImageReceiver().setCurrentAccount(i10);
+        w9Var.getImageReceiver().setImage(imageLocation, str, imageLocation2, null, imageLocation3, str2, bitmapDrawable, 0L, null, obj, 1);
+        w9Var.d();
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.d;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.d();
+        int i11 = 0;
+        while (true) {
+            i5[] i5VarArr = this.f37429s;
+            if (i11 < i5VarArr.length) {
+                i5 i5Var = i5VarArr[i11];
+                String string = LocaleController.getString(i5Var.f37745a, i5Var.f37746b);
+                if (i11 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                if (i11 == this.f37429s.length - 1) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = actionBarPopupWindow$ActionBarPopupWindowLayout;
+                org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(z11, z12, actionBarPopupWindow$ActionBarPopupWindowLayout2, i5Var.f37747c, string, false, this.f37426f);
+                c10.setTag(Integer.valueOf(i11));
+                c10.setOnClickListener(new org.telegram.ui.ActionBar.s1(4, this, i5Var));
+                i11++;
+                actionBarPopupWindow$ActionBarPopupWindowLayout = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            } else {
+                b(true);
+                return;
+            }
+        }
     }
 
-    public static h5 valueOf(String str) {
-        return (h5) Enum.valueOf(h5.class, str);
+    public final void b(final boolean z10) {
+        TimeInterpolator timeInterpolator;
+        long j10;
+        if (this.f37428r == z10) {
+            return;
+        }
+        this.f37428r = z10;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        if (z10) {
+            timeInterpolator = this.f37423a;
+        } else {
+            timeInterpolator = org.telegram.ui.Components.bs.h;
+        }
+        ofFloat.setInterpolator(timeInterpolator);
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+            public final h5 f36797b;
+
+            {
+                this.f36797b = this;
+            }
+
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                switch (r3) {
+                    case 0:
+                        h5 h5Var = this.f36797b;
+                        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = h5Var.d;
+                        m0 m0Var = h5Var.f37424b;
+                        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        if (!z10) {
+                            floatValue = 1.0f - floatValue;
+                        }
+                        float a2 = w7.r.a(floatValue, 0.0f, 1.0f);
+                        float f7 = (0.3f * floatValue) + 0.7f;
+                        m0Var.setScaleX(f7);
+                        m0Var.setScaleY(f7);
+                        m0Var.setAlpha(a2);
+                        float f10 = 1.0f - floatValue;
+                        h5Var.f37425c.setTranslationY(AndroidUtilities.dp(40.0f) * f10);
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((-AndroidUtilities.dp(70.0f)) * f10);
+                        float f11 = (floatValue * 0.05f) + 0.95f;
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleX(f11);
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleY(f11);
+                        return;
+                    default:
+                        float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        if (!z10) {
+                            floatValue2 = 1.0f - floatValue2;
+                        }
+                        h5 h5Var2 = this.f36797b;
+                        h5Var2.v.setAlpha(floatValue2);
+                        h5Var2.invalidate();
+                        return;
+                }
+            }
+        });
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+            public final h5 f36797b;
+
+            {
+                this.f36797b = this;
+            }
+
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                switch (r3) {
+                    case 0:
+                        h5 h5Var = this.f36797b;
+                        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = h5Var.d;
+                        m0 m0Var = h5Var.f37424b;
+                        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        if (!z10) {
+                            floatValue = 1.0f - floatValue;
+                        }
+                        float a2 = w7.r.a(floatValue, 0.0f, 1.0f);
+                        float f7 = (0.3f * floatValue) + 0.7f;
+                        m0Var.setScaleX(f7);
+                        m0Var.setScaleY(f7);
+                        m0Var.setAlpha(a2);
+                        float f10 = 1.0f - floatValue;
+                        h5Var.f37425c.setTranslationY(AndroidUtilities.dp(40.0f) * f10);
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((-AndroidUtilities.dp(70.0f)) * f10);
+                        float f11 = (floatValue * 0.05f) + 0.95f;
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleX(f11);
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleY(f11);
+                        return;
+                    default:
+                        float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                        if (!z10) {
+                            floatValue2 = 1.0f - floatValue2;
+                        }
+                        h5 h5Var2 = this.f36797b;
+                        h5Var2.v.setAlpha(floatValue2);
+                        h5Var2.invalidate();
+                        return;
+                }
+            }
+        });
+        AnimatorSet animatorSet = this.f37427n;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f37427n = animatorSet2;
+        if (z10) {
+            j10 = 190;
+        } else {
+            j10 = 150;
+        }
+        animatorSet2.setDuration(j10);
+        this.f37427n.playTogether(ofFloat, ofFloat2);
+        this.f37427n.addListener(new ah.p0(21, this, z10));
+        this.f37427n.start();
     }
 
-    public static h5[] values() {
-        return (h5[]) f36399s.clone();
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        z4 z4Var = this.f37425c;
+        boolean z10 = z4Var.f43557c;
+        RadialProgress2 radialProgress2 = (RadialProgress2) z4Var.e;
+        if (z10 && !TextUtils.isEmpty(this.f37431x)) {
+            if (i10 == NotificationCenter.fileLoaded) {
+                if (TextUtils.equals((String) objArr[0], this.f37431x)) {
+                    radialProgress2.o(1.0f, true);
+                }
+            } else if (i10 == NotificationCenter.fileLoadProgressChanged && TextUtils.equals((String) objArr[0], this.f37431x)) {
+                radialProgress2.o(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
+            }
+        }
+    }
+
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        KeyEvent.DispatcherState keyDispatcherState;
+        if (keyEvent.getKeyCode() != 4 && keyEvent.getKeyCode() != 111) {
+            return super.dispatchKeyEvent(keyEvent);
+        }
+        if (getKeyDispatcherState() == null) {
+            return super.dispatchKeyEvent(keyEvent);
+        }
+        if (keyEvent.getAction() == 0 && keyEvent.getRepeatCount() == 0) {
+            KeyEvent.DispatcherState keyDispatcherState2 = getKeyDispatcherState();
+            if (keyDispatcherState2 != null) {
+                keyDispatcherState2.startTracking(keyEvent, this);
+            }
+            return true;
+        } else if (keyEvent.getAction() == 1 && (keyDispatcherState = getKeyDispatcherState()) != null && keyDispatcherState.isTracking(keyEvent) && !keyEvent.isCanceled()) {
+            b(false);
+            return true;
+        } else {
+            return super.dispatchKeyEvent(keyEvent);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(UserConfig.selectedAccount).addObserver(this, NotificationCenter.fileLoaded);
+        NotificationCenter.getInstance(UserConfig.selectedAccount).addObserver(this, NotificationCenter.fileLoadProgressChanged);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(UserConfig.selectedAccount).removeObserver(this, NotificationCenter.fileLoaded);
+        NotificationCenter.getInstance(UserConfig.selectedAccount).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        if (i10 != 0 && i11 != 0 && this.f37428r) {
+            this.v.setBackground(null);
+            AndroidUtilities.runOnUIThread(new ut0(this, 12));
+        }
+        hh.d.c(this.h, this);
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.d;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
+            actionBarPopupWindow$ActionBarPopupWindowLayout.invalidate();
+        }
     }
 }

@@ -1,37 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import org.telegram.messenger.Utilities;
-public final class t9 implements x9 {
-    public final y9 f28996a;
-    public final w7.w5[] f28997b;
-    public final Runnable[] f28998c;
-    public final w60[] d;
+import android.graphics.drawable.GradientDrawable;
+public abstract class t9 {
+    public static final int[] f30492a;
 
-    public t9(y9 y9Var, w7.w5[] w5VarArr, Runnable[] runnableArr, w60[] w60VarArr) {
-        this.f28996a = y9Var;
-        this.f28997b = w5VarArr;
-        this.f28998c = runnableArr;
-        this.d = w60VarArr;
-    }
-
-    @Override
-    public final void dispose() {
-        y9 y9Var = this.f28996a;
-        w7.w5[] w5VarArr = this.f28997b;
-        Runnable[] runnableArr = this.f28998c;
-        w60[] w60VarArr = this.d;
-        w5VarArr[0] = null;
-        if (y9Var.e.contains(runnableArr)) {
-            Utilities.globalQueue.cancelRunnables(runnableArr);
-            y9Var.e.remove(runnableArr);
+    static {
+        int[] iArr = new int[GradientDrawable.Orientation.values().length];
+        f30492a = iArr;
+        try {
+            iArr[GradientDrawable.Orientation.TOP_BOTTOM.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        for (w60 w60Var : w60VarArr) {
-            Bitmap bitmap = (Bitmap) y9Var.f31197b.remove(w60Var);
-            y9Var.f31198c.remove(w60Var);
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
+        try {
+            f30492a[GradientDrawable.Orientation.TR_BL.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            f30492a[GradientDrawable.Orientation.RIGHT_LEFT.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            f30492a[GradientDrawable.Orientation.BR_TL.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            f30492a[GradientDrawable.Orientation.BOTTOM_TOP.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            f30492a[GradientDrawable.Orientation.BL_TR.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            f30492a[GradientDrawable.Orientation.LEFT_RIGHT.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
         }
     }
 }

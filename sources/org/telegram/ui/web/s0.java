@@ -1,44 +1,33 @@
 package org.telegram.ui.web;
 
-import android.webkit.JsResult;
-public final class s0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f41174a;
-    public final boolean[] f41175b;
-    public final JsResult f41176c;
+import android.view.KeyEvent;
+import android.webkit.JsPromptResult;
+import android.widget.TextView;
+import org.telegram.ui.Components.iu;
+public final class s0 implements TextView.OnEditorActionListener {
+    public final boolean[] f42724a;
+    public final JsPromptResult f42725b;
+    public final iu f42726c;
+    public final org.telegram.ui.ActionBar.b2 d;
 
-    public s0(boolean[] zArr, JsResult jsResult, int i10) {
-        this.f41174a = i10;
-        this.f41175b = zArr;
-        this.f41176c = jsResult;
+    public s0(boolean[] zArr, JsPromptResult jsPromptResult, iu iuVar, org.telegram.ui.ActionBar.b2 b2Var) {
+        this.f42724a = zArr;
+        this.f42725b = jsPromptResult;
+        this.f42726c = iuVar;
+        this.d = b2Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f41174a) {
-            case 0:
-                boolean[] zArr = this.f41175b;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    this.f41176c.cancel();
-                    return;
-                }
-                return;
-            case 1:
-                boolean[] zArr2 = this.f41175b;
-                if (!zArr2[0]) {
-                    zArr2[0] = true;
-                    this.f41176c.confirm();
-                    return;
-                }
-                return;
-            default:
-                boolean[] zArr3 = this.f41175b;
-                if (!zArr3[0]) {
-                    zArr3[0] = true;
-                    this.f41176c.confirm();
-                    return;
-                }
-                return;
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        if (i10 != 6) {
+            return false;
         }
+        boolean[] zArr = this.f42724a;
+        if (!zArr[0]) {
+            zArr[0] = true;
+            this.f42725b.confirm(this.f42726c.getText().toString());
+            this.d.dismiss();
+        }
+        return true;
     }
 }

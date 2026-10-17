@@ -1,32 +1,20 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
-public final class bs0 implements org.telegram.ui.ActionBar.z1, MessagesStorage.StringCallback {
-    public final xv0 f23544a;
-    public final TL_stories.StoryItem f23545b;
+import org.telegram.messenger.Utilities;
+public final class bs0 implements Utilities.Callback {
+    public final org.telegram.ui.Cells.s7 f25039a;
+    public final float f25040b;
+    public final float f25041c;
 
-    public bs0(xv0 xv0Var, TL_stories.StoryItem storyItem) {
-        this.f23544a = xv0Var;
-        this.f23545b = storyItem;
+    public bs0(org.telegram.ui.Cells.s7 s7Var, float f7, float f10) {
+        this.f25039a = s7Var;
+        this.f25040b = f7;
+        this.f25041c = f10;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        ArrayList arrayList = new ArrayList(1);
-        arrayList.add(this.f23545b);
-        xv0 xv0Var = this.f23544a;
-        org.telegram.ui.ActionBar.m2 m2Var = xv0Var.f31069v1;
-        m2Var.getMessagesController().getStoriesController().s(xv0Var.f31044j1, arrayList);
-        zc.a0(m2Var).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("StoriesDeleted", 1, new Object[0])).j();
-        xv0Var.L(false);
-    }
-
-    @Override
-    public void run(String str) {
-        r0.getStoriesController().r(r0.f31044j1, str, new org.telegram.ui.uc(29, this.f23544a, this.f23545b));
+    public final void run(Object obj) {
+        Boolean bool = (Boolean) obj;
+        this.f25039a.n(this.f25040b, this.f25041c);
     }
 }

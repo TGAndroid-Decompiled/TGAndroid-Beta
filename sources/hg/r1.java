@@ -1,47 +1,47 @@
 package hg;
 
-import fi.q3;
+import ei.p6;
 import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.n51;
-import org.telegram.ui.du;
+import org.telegram.ui.Components.go0;
+import org.telegram.ui.Components.hm0;
+import org.telegram.ui.ot;
 public final class r1 extends TimerTask {
-    public final int f10725a;
-    public final String f10726b;
-    public final lm0 f10727c;
+    public final int f12030a;
+    public final String f12031b;
+    public final hm0 f12032c;
 
-    public r1(lm0 lm0Var, String str, int i10) {
-        this.f10725a = i10;
-        this.f10727c = lm0Var;
-        this.f10726b = str;
+    public r1(hm0 hm0Var, String str, int i10) {
+        this.f12030a = i10;
+        this.f12032c = hm0Var;
+        this.f12031b = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f10725a) {
+        switch (this.f12030a) {
             case 0:
-                t1 t1Var = (t1) this.f10727c;
+                t1 t1Var = (t1) this.f12032c;
                 try {
-                    t1Var.f10753n.cancel();
-                    t1Var.f10753n = null;
+                    t1Var.f12058n.cancel();
+                    t1Var.f12058n = null;
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                String str = this.f10726b;
+                String str = this.f12031b;
                 t1Var.getClass();
-                AndroidUtilities.runOnUIThread(new q3(10, t1Var, str));
+                AndroidUtilities.runOnUIThread(new p6(27, t1Var, str));
                 return;
             default:
                 try {
-                    ((du) this.f10727c).d.cancel();
-                    ((du) this.f10727c).d = null;
+                    ((ot) this.f12032c).d.cancel();
+                    ((ot) this.f12032c).d = null;
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
-                Utilities.searchQueue.postRunnable(new n51(11, (du) this.f10727c, this.f10726b));
+                Utilities.searchQueue.postRunnable(new go0(29, (ot) this.f12032c, this.f12031b));
                 return;
         }
     }

@@ -1,144 +1,121 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Timer;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.FileLog;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class l80 extends org.telegram.ui.Components.lm0 {
-    public final Context f37654c;
-    public ArrayList d = new ArrayList();
-    public ArrayList e = new ArrayList();
-    public Timer f37655f;
-    public boolean h;
-    public final p80 f37656n;
+import org.telegram.tgnet.TLRPC;
+public final class l80 implements Runnable {
+    public final int f38821a;
+    public final LaunchActivity f38822b;
 
-    public l80(p80 p80Var, Context context) {
-        this.f37656n = p80Var;
-        this.f37654c = context;
+    public l80(LaunchActivity launchActivity, int i10) {
+        this.f38821a = i10;
+        this.f38822b = launchActivity;
     }
 
     @Override
-    public final void A(s4.b1 b1Var) {
-        View view = b1Var.f44838a;
-        if (view instanceof org.telegram.ui.Cells.p4) {
-            ((org.telegram.ui.Cells.p4) view).f21394a.getImageReceiver().cancelLoadImage();
+    public final void run() {
+        int i10 = this.f38821a;
+        org.telegram.ui.ActionBar.n2 n2Var = null;
+        LaunchActivity launchActivity = this.f38822b;
+        switch (i10) {
+            case 0:
+                Pattern pattern = LaunchActivity.C1;
+                org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(launchActivity, null);
+                ybVar.d(R.raw.email_check_inbox, new String[0]);
+                ybVar.f32599b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (R != null) {
+                    org.telegram.ui.Components.qc.g(R, ybVar, 1500).j();
+                    try {
+                        R.fragmentView.performHapticFeedback(3, 2);
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                if (launchActivity.W0) {
+                    launchActivity.W0 = false;
+                    launchActivity.H(false, false, true);
+                    return;
+                }
+                return;
+            case 2:
+                Pattern pattern2 = LaunchActivity.C1;
+                launchActivity.H(false, true, false);
+                if (LaunchActivity.R() != null && LaunchActivity.R().getLastStoryViewer() != null) {
+                    LaunchActivity.R().getLastStoryViewer().P();
+                    return;
+                }
+                return;
+            case 3:
+                if (!launchActivity.f33173q0.getFragmentStack().isEmpty()) {
+                    launchActivity.f33173q0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.oy0(launchActivity, launchActivity.f33161j0, launchActivity.f33157h0, launchActivity.f33159i0));
+                    return;
+                }
+                return;
+            case 4:
+                Pattern pattern3 = LaunchActivity.C1;
+                launchActivity.getClass();
+                org.telegram.ui.Components.i30.f27050e0 = false;
+                org.telegram.ui.Components.i30.j(launchActivity);
+                return;
+            case 5:
+                ArrayList arrayList = launchActivity.f33149d0;
+                ArrayList arrayList2 = launchActivity.f33151e0;
+                if (AndroidUtilities.isTablet()) {
+                    if (!arrayList2.isEmpty()) {
+                        n2Var = (org.telegram.ui.ActionBar.n2) i0.a.h(1, arrayList2);
+                    }
+                } else if (!arrayList.isEmpty()) {
+                    n2Var = (org.telegram.ui.ActionBar.n2) i0.a.h(1, arrayList);
+                }
+                if (!(n2Var instanceof ProxyListActivity) && !(n2Var instanceof u11)) {
+                    launchActivity.t0(new ProxyListActivity());
+                    return;
+                }
+                return;
+            case 6:
+                launchActivity.f33182u1 = null;
+                return;
+            case 7:
+                launchActivity.f33184v1 = null;
+                return;
+            case 8:
+                if (launchActivity.T0 != null) {
+                    File file = new File(ApplicationLoader.getFilesDirFixed(), a1.g.r(new StringBuilder("remote"), launchActivity.T0.f20409id, ".attheme"));
+                    TLRPC.TL_theme tL_theme = launchActivity.T0;
+                    org.telegram.ui.ActionBar.g6 u10 = org.telegram.ui.ActionBar.h6.u(file, tL_theme.title, tL_theme, true);
+                    if (u10 != null) {
+                        launchActivity.t0(new mc1(u10, true, 0, false, false));
+                    }
+                    launchActivity.i0();
+                    return;
+                }
+                return;
+            case 9:
+                Pattern pattern4 = LaunchActivity.C1;
+                launchActivity.getClass();
+                launchActivity.t0(new sb0());
+                return;
+            default:
+                if (!launchActivity.f33186w1) {
+                    try {
+                        org.telegram.ui.ActionBar.b2 B = org.telegram.ui.Components.f5.B(launchActivity);
+                        B.setOnDismissListener(new m80(launchActivity, 0));
+                        launchActivity.f33186w1 = true;
+                        B.show();
+                    } catch (Throwable unused2) {
+                        return;
+                    }
+                }
+                return;
         }
-    }
-
-    @Override
-    public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f44841f != 2) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void E(String str) {
-        try {
-            Timer timer = this.f37655f;
-            if (timer != null) {
-                timer.cancel();
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        if (str == null) {
-            this.d.clear();
-            this.e.clear();
-            l();
-            return;
-        }
-        Timer timer2 = new Timer();
-        this.f37655f = timer2;
-        timer2.schedule(new k80(this, str), 200L, 300L);
-    }
-
-    @Override
-    public final int h() {
-        if (this.h) {
-            return this.d.size();
-        }
-        return this.f37656n.f38843w.size() + 2;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (!this.h) {
-            if (i10 == 0) {
-                return 1;
-            }
-            if (i10 == 1) {
-                return 2;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void l() {
-        int i10;
-        super.l();
-        p80 p80Var = this.f37656n;
-        l80 l80Var = p80Var.f38842s;
-        if (l80Var != null && !p80Var.E) {
-            int h = l80Var.h();
-            org.telegram.ui.Components.wx0 wx0Var = p80Var.f38841r;
-            if (h == 2) {
-                i10 = 0;
-            } else {
-                i10 = 4;
-            }
-            wx0Var.setVisibility(i10);
-        }
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        ContactsController.Contact contact;
-        CharSequence charSequence;
-        if (b1Var.f44841f == 0) {
-            org.telegram.ui.Cells.p4 p4Var = (org.telegram.ui.Cells.p4) b1Var.f44838a;
-            boolean z10 = this.h;
-            p80 p80Var = this.f37656n;
-            if (z10) {
-                contact = (ContactsController.Contact) this.d.get(i10);
-                charSequence = (CharSequence) this.e.get(i10);
-            } else {
-                contact = (ContactsController.Contact) p80Var.f38843w.get(i10 - 2);
-                charSequence = null;
-            }
-            p4Var.f21397f = contact;
-            p4Var.h = charSequence;
-            p4Var.a();
-            boolean containsKey = p80Var.F.containsKey(contact.key);
-            org.telegram.ui.Components.aq aqVar = p4Var.e;
-            if (aqVar != null) {
-                aqVar.a(containsKey, false);
-            }
-        }
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.r8 r8Var;
-        Context context = this.f37654c;
-        if (i10 == 1) {
-            org.telegram.ui.Cells.r8 r8Var2 = new org.telegram.ui.Cells.r8(context);
-            int i11 = org.telegram.ui.ActionBar.g6.G6;
-            r8Var2.e(i11, i11);
-            r8Var2.s(LocaleController.getString(R.string.ShareTelegram2), "", false, R.drawable.msg_shareout, false);
-            r8Var = r8Var2;
-        } else if (i10 == 2) {
-            r8Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.c1) null);
-        } else {
-            r8Var = new org.telegram.ui.Cells.p4(context, true);
-        }
-        return new s4.b1(r8Var);
     }
 }

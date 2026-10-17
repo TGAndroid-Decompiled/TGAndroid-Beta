@@ -1,6 +1,55 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public interface ej {
-    void i(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11);
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class ej extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
+    public final org.telegram.ui.ActionBar.d6 f25924a;
+    public final TextView f25925b;
+    public final TextView f25926c;
+
+    public ej(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f25924a = d6Var;
+        setPadding(0, AndroidUtilities.dp(42.0f), 0, AndroidUtilities.dp(42.0f));
+        setTag(-33024);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.z5.q(-1, -2, 17));
+        w9 w9Var = new w9(context);
+        w9Var.setImageDrawable(new uj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+        linearLayout.addView(w9Var, w7.z5.t(120, 120, 17, 0, 0, 0, 0));
+        TextView textView = new TextView(context);
+        this.f25925b = textView;
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        TextView i10 = com.google.android.gms.internal.cast.a6.i(linearLayout, textView, w7.z5.t(-1, -2, 17, 32, 12, 32, 8), context);
+        this.f25926c = i10;
+        i10.setTextSize(1, 14.0f);
+        i10.setGravity(17);
+        linearLayout.addView(i10, w7.z5.t(-1, -2, 17, 32, 0, 32, 0));
+        d();
+    }
+
+    @Override
+    public final void d() {
+        int i10 = org.telegram.ui.ActionBar.h6.G6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f25924a;
+        this.f25925b.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        this.f25926c.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21374y6, d6Var));
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
 }

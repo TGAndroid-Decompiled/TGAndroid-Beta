@@ -2,34 +2,34 @@ package v7;
 
 import java.util.Map;
 public abstract class b7 {
-    public static f4.g a(f4.g gVar, String[] strArr, Map map) {
+    public static f4.f a(f4.f fVar, String[] strArr, Map map) {
         int i10 = 0;
-        if (gVar == null) {
+        if (fVar == null) {
             if (strArr == null) {
                 return null;
             }
             if (strArr.length == 1) {
-                return (f4.g) map.get(strArr[0]);
+                return (f4.f) map.get(strArr[0]);
             }
             if (strArr.length > 1) {
-                f4.g gVar2 = new f4.g();
+                f4.f fVar2 = new f4.f();
                 int length = strArr.length;
                 while (i10 < length) {
-                    gVar2.a((f4.g) map.get(strArr[i10]));
+                    fVar2.a((f4.f) map.get(strArr[i10]));
                     i10++;
                 }
-                return gVar2;
+                return fVar2;
             }
         } else if (strArr != null && strArr.length == 1) {
-            gVar.a((f4.g) map.get(strArr[0]));
-            return gVar;
+            fVar.a((f4.f) map.get(strArr[0]));
+            return fVar;
         } else if (strArr != null && strArr.length > 1) {
             int length2 = strArr.length;
             while (i10 < length2) {
-                gVar.a((f4.g) map.get(strArr[i10]));
+                fVar.a((f4.f) map.get(strArr[i10]));
                 i10++;
             }
         }
-        return gVar;
+        return fVar;
     }
 }

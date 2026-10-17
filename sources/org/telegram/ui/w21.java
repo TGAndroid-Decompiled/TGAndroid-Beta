@@ -1,37 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class w21 implements org.telegram.ui.ActionBar.z1, r0.n {
-    public final l31 f40849a;
+import android.animation.ValueAnimator;
+public final class w21 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f42336a;
+    public final z21 f42337b;
 
-    public w21(l31 l31Var) {
-        this.f40849a = l31Var;
+    public w21(z21 z21Var, int i10) {
+        this.f42336a = i10;
+        this.f42337b = z21Var;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        l31 l31Var = this.f40849a;
-        l31Var.Q = defaultWindowInsets;
-        l31Var.fragmentView.requestLayout();
-        return r0.l1.f43496b;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        l31 l31Var = this.f40849a;
-        l31Var.getClass();
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            l31Var.getParentActivity().startActivity(intent);
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f42336a) {
+            case 0:
+                z21 z21Var = this.f42337b;
+                z21Var.getClass();
+                z21Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z21Var.g();
+                return;
+            case 1:
+                z21 z21Var2 = this.f42337b;
+                z21Var2.getClass();
+                z21Var2.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z21Var2.g();
+                return;
+            default:
+                z21 z21Var3 = this.f42337b;
+                z21Var3.getClass();
+                z21Var3.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z21Var3.g();
+                return;
         }
     }
 }

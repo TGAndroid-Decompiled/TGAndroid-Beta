@@ -1,0 +1,156 @@
+package gi;
+
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.n00;
+public final class q3 extends e61 {
+    public static final int f11399a = 0;
+
+    static {
+        e61.setup(new e61());
+    }
+
+    @Override
+    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+        int i10;
+        int i11;
+        int i12;
+        float f7;
+        Object obj = f61Var.G;
+        int i13 = 0;
+        if (obj instanceof TL_payments.connectedBotStarRef) {
+            r3 r3Var = (r3) view;
+            TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
+            boolean z11 = f61Var.f26146r;
+            View view2 = r3Var.e;
+            ImageView imageView = r3Var.f11430f;
+            TLRPC.User user = MessagesController.getInstance(r3Var.f11427a).getUser(Long.valueOf(connectedbotstarref.bot_id));
+            h9 h9Var = new h9((d6) null);
+            h9Var.r(user);
+            r3Var.f11429c.e(user, h9Var);
+            TextView textView = r3Var.h;
+            textView.setText(Emoji.replaceEmoji(UserObject.getUserName(user), textView.getPaint().getFontMetricsInt(), false));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            if (connectedbotstarref.commission_permille > 0) {
+                spannableStringBuilder.append((CharSequence) " d");
+                n00 n00Var = new n00();
+                n00Var.f39287f = h6.x0(null, h6.uj, false);
+                n00Var.f39288n = l.H0(connectedbotstarref.commission_permille);
+                if (n00Var.f39286c != null) {
+                    n00Var.f39286c = null;
+                    n00Var.a();
+                }
+                spannableStringBuilder.setSpan(n00Var, 1, 2, 33);
+            }
+            int i14 = connectedbotstarref.duration_months;
+            if (i14 == 0) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Lifetime));
+            } else if (i14 >= 12 && i14 % 12 == 0) {
+                spannableStringBuilder.append((CharSequence) LocaleController.formatPluralString("Years", i14 / 12, new Object[0]));
+            } else {
+                spannableStringBuilder.append((CharSequence) LocaleController.formatPluralString("Months", i14, new Object[0]));
+            }
+            r3Var.f11431n.setText(spannableStringBuilder);
+            ImageView imageView2 = r3Var.f11432r;
+            if (z11) {
+                i10 = 0;
+            } else {
+                i10 = 8;
+            }
+            imageView2.setVisibility(i10);
+            r3Var.d.setVisibility(0);
+            imageView.setVisibility(0);
+            view2.setVisibility(0);
+            int dp = AndroidUtilities.dp(9.665f);
+            if (connectedbotstarref.revoked) {
+                i11 = h6.wj;
+            } else {
+                i11 = h6.uj;
+            }
+            view2.setBackground(h6.K(dp, h6.w0(i11, r3Var.f11428b)));
+            if (connectedbotstarref.revoked) {
+                i12 = R.drawable.msg_link_2;
+            } else {
+                i12 = R.drawable.msg_limit_links;
+            }
+            imageView.setImageResource(i12);
+            float f10 = 0.6f;
+            if (connectedbotstarref.revoked) {
+                f7 = 0.8f;
+            } else {
+                f7 = 0.6f;
+            }
+            imageView.setScaleX(f7);
+            if (connectedbotstarref.revoked) {
+                f10 = 0.8f;
+            }
+            imageView.setScaleY(f10);
+            r3Var.f11433s = z10;
+            r3Var.setWillNotDraw(!z10);
+        } else if (obj instanceof TL_payments.starRefProgram) {
+            r3 r3Var2 = (r3) view;
+            TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
+            boolean z12 = f61Var.f26146r;
+            TLRPC.User user2 = MessagesController.getInstance(r3Var2.f11427a).getUser(Long.valueOf(starrefprogram.bot_id));
+            h9 h9Var2 = new h9((d6) null);
+            h9Var2.r(user2);
+            r3Var2.f11429c.e(user2, h9Var2);
+            r3Var2.h.setText(UserObject.getUserName(user2));
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            if (starrefprogram.commission_permille > 0) {
+                spannableStringBuilder2.append((CharSequence) " d");
+                n00 n00Var2 = new n00();
+                n00Var2.f39287f = h6.x0(null, h6.uj, false);
+                n00Var2.f39288n = l.H0(starrefprogram.commission_permille);
+                if (n00Var2.f39286c != null) {
+                    n00Var2.f39286c = null;
+                    n00Var2.a();
+                }
+                spannableStringBuilder2.setSpan(n00Var2, 1, 2, 33);
+            }
+            int i15 = starrefprogram.duration_months;
+            if (i15 == 0) {
+                spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.Lifetime));
+            } else if (i15 >= 12 && i15 % 12 == 0) {
+                spannableStringBuilder2.append((CharSequence) LocaleController.formatPluralString("Years", i15 / 12, new Object[0]));
+            } else {
+                spannableStringBuilder2.append((CharSequence) LocaleController.formatPluralString("Months", i15, new Object[0]));
+            }
+            r3Var2.f11431n.setText(spannableStringBuilder2);
+            ImageView imageView3 = r3Var2.f11432r;
+            if (!z12) {
+                i13 = 8;
+            }
+            imageView3.setVisibility(i13);
+            r3Var2.d.setVisibility(8);
+            r3Var2.f11430f.setVisibility(8);
+            r3Var2.e.setVisibility(8);
+            r3Var2.f11433s = z10;
+            r3Var2.setWillNotDraw(!z10);
+        }
+    }
+
+    @Override
+    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+        return new r3(context, i10, d6Var);
+    }
+}

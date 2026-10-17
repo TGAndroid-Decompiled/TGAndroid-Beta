@@ -1,22 +1,22 @@
 package org.telegram.ui.ActionBar;
 public final class z4 {
-    public final m2 f20542a;
-    public boolean f20543b;
-    public boolean f20544c;
-    public boolean d = true;
-    public boolean e;
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f20545f;
-    public boolean f20546g;
+    public static final z4 f21912a;
+    public static final z4 f21913b;
+    public static final z4[] f21914c;
 
-    public z4(m2 m2Var) {
-        this.f20542a = m2Var;
+    static {
+        ?? r02 = new Enum("BACK", 0);
+        f21912a = r02;
+        ?? r12 = new Enum("MENU", 1);
+        f21913b = r12;
+        f21914c = new z4[]{r02, r12};
     }
 
-    public final void a() {
-        this.f20544c = true;
+    public static z4 valueOf(String str) {
+        return (z4) Enum.valueOf(z4.class, str);
     }
 
-    public final void b(boolean z10) {
-        this.f20543b = z10;
+    public static z4[] values() {
+        return (z4[]) f21914c.clone();
     }
 }

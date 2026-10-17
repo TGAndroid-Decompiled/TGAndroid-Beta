@@ -1,32 +1,65 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class jj extends FrameLayout {
-    public final fo f37077a;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class jj extends org.telegram.ui.Components.oo {
+    public final sn f38219v0;
 
-    public jj(fo foVar, Activity activity) {
-        super(activity);
-        this.f37077a = foVar;
+    public jj(sn snVar, Context context, sn snVar2, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, snVar2, z10, d6Var);
+        this.f38219v0 = snVar;
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            this.f37077a.D7(true);
+    public final boolean a() {
+        boolean z10;
+        sn snVar = this.f38219v0;
+        if (!snVar.Pa && !snVar.isInPreviewMode()) {
+            z10 = ((org.telegram.ui.ActionBar.n2) snVar).inBubbleMode;
+            if (!z10 && snVar.f41256j0 != null && !snVar.f41371s3) {
+                if (!snVar.K9() || snVar.f41237h4) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
-        return super.dispatchKeyEvent(keyEvent);
+        return false;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int min = Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(300.0f));
-        if (min == 0) {
-            min = AndroidUtilities.dp(300.0f);
+    public final boolean d() {
+        sn snVar = this.f38219v0;
+        TLRPC.User user = snVar.f41208f;
+        if (user != null && user.linked_community_id != 0) {
+            snVar.showDialog(new hi.k0(snVar, snVar.f41208f.linked_community_id, null, null));
+            return true;
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
+        TLRPC.Chat chat = snVar.e;
+        if (chat != null && chat.linked_community_id != 0) {
+            snVar.showDialog(new hi.k0(snVar, snVar.e.linked_community_id, null, null));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void f() {
+        String str;
+        sn snVar = this.f38219v0;
+        if (snVar.J9()) {
+            str = "";
+        } else {
+            str = null;
+        }
+        snVar.qa(str);
+    }
+
+    @Override
+    public final boolean o() {
+        if (this.f38219v0.R3 == 3) {
+            return true;
+        }
+        return false;
     }
 }

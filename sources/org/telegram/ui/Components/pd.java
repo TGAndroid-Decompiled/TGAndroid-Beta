@@ -1,68 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Space;
-import android.widget.TextView;
-public abstract class pd extends LinearLayout {
-    public ImageView f27975a;
-    public TextView f27976b;
-    public Space f27977c;
-    public boolean d;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class pd implements ValueAnimator.AnimatorUpdateListener {
+    public final int f29273a;
+    public final ChatActivityEnterView f29274b;
 
-    public final void a(ImageView imageView, LinearLayout.LayoutParams layoutParams) {
-        if (this.f27975a == null) {
-            this.f27975a = imageView;
-            addView(imageView, layoutParams);
-        }
+    public pd(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f29273a = i10;
+        this.f29274b = chatActivityEnterView;
     }
 
-    public final void b(Space space, LinearLayout.LayoutParams layoutParams) {
-        if (this.f27977c == null) {
-            this.f27977c = space;
-            addView(space, layoutParams);
-        }
-    }
-
-    public final void c(TextView textView, LinearLayout.LayoutParams layoutParams) {
-        if (this.f27976b == null) {
-            this.f27976b = textView;
-            addView(textView, layoutParams);
-        }
-    }
-
-    public abstract void d();
-
-    public ImageView getImageView() {
-        return this.f27975a;
-    }
-
-    public TextView getTextView() {
-        return this.f27976b;
-    }
-
-    public void setEditButton(boolean z10) {
-        this.d = z10;
-    }
-
-    public void setOnlyIconMode(boolean z10) {
-        int i10;
-        TextView textView = this.f27976b;
-        int i11 = 0;
-        if (textView != null) {
-            if (z10) {
-                i10 = 8;
-            } else {
-                i10 = 0;
-            }
-            textView.setVisibility(i10);
-        }
-        Space space = this.f27977c;
-        if (space != null) {
-            if (z10) {
-                i11 = 8;
-            }
-            space.setVisibility(i11);
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f29273a;
+        ChatActivityEnterView chatActivityEnterView = this.f29274b;
+        switch (i10) {
+            case 0:
+                ze zeVar = chatActivityEnterView.J1;
+                if (zeVar != null) {
+                    zeVar.setTranslationX(zeVar.f32886a);
+                    return;
+                }
+                return;
+            case 1:
+                ze zeVar2 = chatActivityEnterView.J1;
+                if (zeVar2 != null) {
+                    zeVar2.setTranslationX(zeVar2.f32886a);
+                    return;
+                }
+                return;
+            case 2:
+                chatActivityEnterView.f23978m1.invalidate();
+                return;
+            case 3:
+                chatActivityEnterView.f23978m1.invalidate();
+                return;
+            case 4:
+                int i11 = ChatActivityEnterView.f23904n5;
+                chatActivityEnterView.f24032w0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dg dgVar = chatActivityEnterView.U0;
+                if (dgVar != null) {
+                    dgVar.Y();
+                    return;
+                }
+                return;
+            case 5:
+                chatActivityEnterView.J1.setTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 6:
+                int i12 = ChatActivityEnterView.f23904n5;
+                chatActivityEnterView.N1.setTransformToSeekbar(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                if (!chatActivityEnterView.f23920c1) {
+                    chatActivityEnterView.f23951h1.setAlpha(chatActivityEnterView.N1.getTransformToSeekbarProgressStep3());
+                    chatActivityEnterView.f23951h1.invalidate();
+                }
+                chatActivityEnterView.v0();
+                return;
+            default:
+                int i13 = ChatActivityEnterView.f23904n5;
+                chatActivityEnterView.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                chatActivityEnterView.f24033w1.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
+                chatActivityEnterView.f24033w1.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
+                chatActivityEnterView.f24033w1.setAlpha(floatValue);
+                return;
         }
     }
 }

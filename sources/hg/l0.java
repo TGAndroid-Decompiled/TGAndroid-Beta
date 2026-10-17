@@ -3,10 +3,10 @@ package hg;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class l0 extends s4.o {
-    public final r0 f10660b;
+    public final q0 f11965b;
 
-    public l0(r0 r0Var) {
-        this.f10660b = r0Var;
+    public l0(q0 q0Var) {
+        this.f11965b = q0Var;
     }
 
     @Override
@@ -16,32 +16,32 @@ public final class l0 extends s4.o {
 
     @Override
     public final boolean b(int i10, int i11) {
-        r0 r0Var = this.f10660b;
-        p0 p0Var = (p0) r0Var.W2.get(i10);
-        p0 p0Var2 = (p0) r0Var.V2.get(i11);
-        if (p0Var.b(p0Var2)) {
-            int i12 = p0Var.d;
+        q0 q0Var = this.f11965b;
+        o0 o0Var = (o0) q0Var.W2.get(i10);
+        o0 o0Var2 = (o0) q0Var.V2.get(i11);
+        if (o0Var.b(o0Var2)) {
+            int i12 = o0Var.d;
             if (i12 == 4) {
-                TLObject tLObject = p0Var.f10706f;
+                TLObject tLObject = o0Var.f12005f;
                 if (tLObject instanceof TLRPC.User) {
-                    TLObject tLObject2 = p0Var2.f10706f;
+                    TLObject tLObject2 = o0Var2.f12005f;
                     if (tLObject2 instanceof TLRPC.User) {
-                        if (((TLRPC.User) tLObject).f19063id == ((TLRPC.User) tLObject2).f19063id) {
+                        if (((TLRPC.User) tLObject).f20419id == ((TLRPC.User) tLObject2).f20419id) {
                             return true;
                         }
                         return false;
                     }
                 }
                 if (tLObject instanceof TLRPC.Chat) {
-                    TLObject tLObject3 = p0Var2.f10706f;
-                    if ((tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).f18916id == ((TLRPC.Chat) tLObject3).f18916id) {
+                    TLObject tLObject3 = o0Var2.f12005f;
+                    if ((tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).f20272id == ((TLRPC.Chat) tLObject3).f20272id) {
                         return true;
                     }
                     return false;
                 }
                 return false;
             } else if (i12 == 6) {
-                return p0Var.f10705c.equals(p0Var2.f10705c);
+                return o0Var.f12004c.equals(o0Var2.f12004c);
             } else {
                 if (i12 == 7) {
                     return true;
@@ -54,11 +54,11 @@ public final class l0 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f10660b.V2.size();
+        return this.f11965b.V2.size();
     }
 
     @Override
     public final int e() {
-        return this.f10660b.W2.size();
+        return this.f11965b.W2.size();
     }
 }

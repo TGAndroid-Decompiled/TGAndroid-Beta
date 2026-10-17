@@ -5,8 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import c3.i0;
-import com.google.android.gms.internal.cast.y4;
+import c3.j0;
 import e2.x;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,8 +23,8 @@ public abstract class g {
         return ((f7 * f10) / f11) + f12;
     }
 
-    public static int C(int i10, int i11, int i12) {
-        return y4.o(i10) + i11 + i12;
+    public static int C(int i10, int i11, int i12, int i13) {
+        return ((i10 / i11) * i12) + i13;
     }
 
     public static String D(String str, String str2, String str3) {
@@ -87,14 +86,14 @@ public abstract class g {
         throw new NullPointerException("Name is null");
     }
 
-    public static void a(i0 i0Var, x xVar, int i10) {
-        i0Var.g(xVar, i10, 0);
+    public static void a(j0 j0Var, x xVar, int i10) {
+        j0Var.g(xVar, i10, 0);
     }
 
     public static final void b(int i10, View view, ViewGroup container) {
         i.e(view, "view");
         i.e(container, "container");
-        if (androidx.fragment.app.i0.K(2)) {
+        if (androidx.fragment.app.j0.K(2)) {
             Log.v("FragmentManager", "SpecialEffectsController: Calling apply state");
         }
         int c10 = j.c(i10);
@@ -103,7 +102,7 @@ public abstract class g {
             if (c10 != 1) {
                 if (c10 != 2) {
                     if (c10 == 3) {
-                        if (androidx.fragment.app.i0.K(2)) {
+                        if (androidx.fragment.app.j0.K(2)) {
                             Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to INVISIBLE");
                         }
                         view.setVisibility(4);
@@ -111,13 +110,13 @@ public abstract class g {
                     }
                     return;
                 }
-                if (androidx.fragment.app.i0.K(2)) {
+                if (androidx.fragment.app.j0.K(2)) {
                     Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to GONE");
                 }
                 view.setVisibility(8);
                 return;
             }
-            if (androidx.fragment.app.i0.K(2)) {
+            if (androidx.fragment.app.j0.K(2)) {
                 Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to VISIBLE");
             }
             ViewParent parent = view.getParent();
@@ -125,7 +124,7 @@ public abstract class g {
                 viewGroup = (ViewGroup) parent;
             }
             if (viewGroup == null) {
-                if (androidx.fragment.app.i0.K(2)) {
+                if (androidx.fragment.app.j0.K(2)) {
                     Log.v("FragmentManager", "SpecialEffectsController: Adding view " + view + " to Container " + container);
                 }
                 container.addView(view);
@@ -138,7 +137,7 @@ public abstract class g {
             viewGroup = (ViewGroup) parent2;
         }
         if (viewGroup != null) {
-            if (androidx.fragment.app.i0.K(2)) {
+            if (androidx.fragment.app.j0.K(2)) {
                 Log.v("FragmentManager", "SpecialEffectsController: Removing view " + view + " from container " + viewGroup);
             }
             viewGroup.removeView(view);

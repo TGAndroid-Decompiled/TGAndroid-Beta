@@ -1,47 +1,94 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class mn0 extends a6 {
-    public final g6 d;
-    public final int e;
-    public final ScrollSlidingTextTabStrip f27176f;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class mn0 implements Runnable {
+    public final int f28559a = 1;
+    public final tn0 f28560b;
+    public final String f28561c;
+    public final ArrayList d;
+    public final ArrayList e;
 
-    public mn0(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, Context context, int i10) {
-        super(context);
-        this.f27176f = scrollSlidingTextTabStrip;
-        this.e = i10;
-        this.d = new g6(this, 360L, es.h);
+    public mn0(tn0 tn0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
+        this.f28560b = tn0Var;
+        this.f28561c = str;
+        this.d = arrayList;
+        this.e = arrayList2;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float e = this.d.e(this.f27176f.f23003n0);
-        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
-        if (i10 > 0) {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (AndroidUtilities.lerp(1.0f, 0.5f, e) * 255.0f));
-        } else {
-            canvas2 = canvas;
-        }
-        super.onDraw(canvas2);
-        if (i10 > 0) {
-            canvas2.restore();
+    public final void run() {
+        switch (this.f28559a) {
+            case 0:
+                tn0 tn0Var = this.f28560b;
+                int i10 = tn0Var.d;
+                ArrayList arrayList = new ArrayList();
+                ArrayList arrayList2 = new ArrayList();
+                int i11 = 0;
+                while (true) {
+                    ArrayList arrayList3 = this.d;
+                    int size = arrayList3.size();
+                    String str = this.f28561c;
+                    if (i11 < size) {
+                        String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
+                        if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
+                            MessageObject messageObject = new MessageObject(i10, ((MessageObject) arrayList3.get(i11)).messageOwner, false, false);
+                            messageObject.mediaExists = ((MessageObject) arrayList3.get(i11)).mediaExists;
+                            messageObject.setQuery(tn0Var.K);
+                            arrayList.add(messageObject);
+                        }
+                        i11++;
+                    } else {
+                        int i12 = 0;
+                        while (true) {
+                            ArrayList arrayList4 = this.e;
+                            if (i12 < arrayList4.size()) {
+                                String documentFileName2 = FileLoader.getDocumentFileName(((MessageObject) arrayList4.get(i12)).getDocument());
+                                if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
+                                    MessageObject messageObject2 = new MessageObject(i10, ((MessageObject) arrayList4.get(i12)).messageOwner, false, false);
+                                    messageObject2.mediaExists = ((MessageObject) arrayList4.get(i12)).mediaExists;
+                                    messageObject2.setQuery(tn0Var.K);
+                                    arrayList2.add(messageObject2);
+                                }
+                                i12++;
+                            } else {
+                                AndroidUtilities.runOnUIThread(new mn0(tn0Var, str, arrayList, arrayList2));
+                                return;
+                            }
+                        }
+                    }
+                }
+                break;
+            default:
+                tn0 tn0Var2 = this.f28560b;
+                rx0 rx0Var = tn0Var2.f30668a;
+                if (this.f28561c.equals(tn0Var2.L)) {
+                    if (tn0Var2.f30673r == 0) {
+                        tn0Var2.N.b(0);
+                    }
+                    tn0Var2.e(this.d, this.e, true);
+                    if (tn0Var2.f30673r == 0) {
+                        rx0Var.e(false, true);
+                        x90 x90Var = rx0Var.e;
+                        rx0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
+                        x90Var.setVisibility(0);
+                        x90Var.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f27176f.f23004r == this.e) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        accessibilityNodeInfo.setSelected(z10);
+    public mn0(tn0 tn0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
+        this.f28560b = tn0Var;
+        this.d = arrayList;
+        this.f28561c = str;
+        this.e = arrayList2;
     }
 }

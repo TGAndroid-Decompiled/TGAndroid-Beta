@@ -1,19 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class um0 extends FrameLayout {
-    public View f29408a;
-    public TextView f29409b;
+    public final Paint f31049a;
+    public final p50 f31050b;
+    public final RectF f31051c;
+    public final float d;
+    public float e;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public um0(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f31049a = paint;
+        p50 p50Var = new p50(this, 1);
+        this.f31050b = p50Var;
+        this.f31051c = new RectF();
+        this.d = (AndroidUtilities.dp(3.0f) * 0.5f) + AndroidUtilities.dp(5.0f);
+        a(paint, 0.2f);
+        a(p50Var, 1.0f);
+        setWillNotDraw(false);
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f29409b.setText(charSequence);
+    public static void a(Paint paint, float f7) {
+        paint.setColor(-1);
+        paint.setAlpha(Math.round(f7 * 255.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f7 = this.d;
+        RectF rectF = this.f31051c;
+        rectF.set(f7, f7, getWidth() - f7, getHeight() - f7);
+        canvas.drawOval(rectF, this.f31049a);
+        canvas.drawArc(rectF, -90.0f, this.e * 360.0f, false, this.f31050b);
+    }
+
+    public Paint getPaint() {
+        return this.f31050b;
+    }
+
+    public void setProgress(float f7) {
+        float max = Math.max(0.0f, Math.min(1.0f, f7));
+        if (this.e == max) {
+            return;
+        }
+        this.e = max;
+        invalidate();
     }
 }

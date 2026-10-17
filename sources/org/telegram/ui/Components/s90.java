@@ -1,40 +1,78 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import android.widget.PopupWindow;
-public final class s90 implements PopupWindow.OnDismissListener {
-    public final int f28771a;
-    public final FrameLayout f28772b;
-    public final View f28773c;
-    public final ViewTreeObserver.OnPreDrawListener d;
-    public final ViewGroup e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
+import org.telegram.messenger.AndroidUtilities;
+public class s90 extends org.telegram.ui.ActionBar.j5 {
+    public final u90 M0;
+    public final Paint N0;
+    public y90 O0;
 
-    public s90(ViewGroup viewGroup, View view, FrameLayout frameLayout, ViewTreeObserver.OnPreDrawListener onPreDrawListener, int i10) {
-        this.f28771a = i10;
-        this.e = viewGroup;
-        this.f28773c = view;
-        this.f28772b = frameLayout;
-        this.d = onPreDrawListener;
+    public s90(Context context) {
+        super(context);
+        this.M0 = new u90(this);
+        this.N0 = new Paint(1);
+    }
+
+    private int getLinkColor() {
+        return i0.b.o(getTextColor(), (int) (Color.alpha(getTextColor()) * 0.1175f));
     }
 
     @Override
-    public final void onDismiss() {
-        switch (this.f28771a) {
-            case 0:
-                ((w90) this.e).f30508s = null;
-                di.p6 p6Var = (di.p6) this.f28773c;
-                p6Var.animate().cancel();
-                p6Var.animate().alpha(0.0f).setDuration(150L).setListener(new k90(this, 1));
-                return;
-            default:
-                ((org.telegram.ui.f00) this.e).f33711x = null;
-                di.p6 p6Var2 = (di.p6) this.f28773c;
-                p6Var2.animate().cancel();
-                p6Var2.animate().alpha(0.0f).setDuration(150L).setListener(new v61(this, 24));
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (isClickable()) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight());
+            int linkColor = getLinkColor();
+            Paint paint = this.N0;
+            paint.setColor(linkColor);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
         }
+        super.onDraw(canvas);
+        if (isClickable() && this.M0.f(canvas)) {
+            invalidate();
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!isClickable()) {
+            return super.onTouchEvent(motionEvent);
+        }
+        u90 u90Var = this.M0;
+        if (u90Var != null) {
+            if (motionEvent.getAction() == 0) {
+                y90 y90Var = new y90(null, null, motionEvent.getX(), motionEvent.getY(), 0);
+                y90Var.d(getLinkColor());
+                this.O0 = y90Var;
+                u90Var.a(y90Var, null);
+                r90 b10 = this.O0.b();
+                b10.e(null, 0, 0.0f, 0.0f);
+                b10.addRect(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight(), Path.Direction.CW);
+                AndroidUtilities.runOnUIThread(new yt(20, this, y90Var), ViewConfiguration.getLongPressTimeout());
+                return true;
+            } else if (motionEvent.getAction() == 1) {
+                u90Var.d(true);
+                if (this.O0 != null) {
+                    performClick();
+                }
+                this.O0 = null;
+                return true;
+            } else if (motionEvent.getAction() == 3) {
+                u90Var.d(true);
+                this.O0 = null;
+                return true;
+            }
+        }
+        if (this.O0 == null && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
     }
 }

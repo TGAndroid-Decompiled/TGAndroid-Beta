@@ -1,24 +1,90 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.ChatObject;
+import android.app.Dialog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class sf1 extends org.telegram.ui.Components.z70 {
-    public final long A0;
-    public final uf1 B0;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class sf1 implements Runnable {
+    public final int f41095a;
+    public final xf1 f41096b;
+    public final TLRPC.TL_error f41097c;
 
-    public sf1(uf1 uf1Var, Context context, int i10, a0.h hVar, long j10, org.telegram.ui.ActionBar.m2 m2Var, long j11) {
-        super(context, i10, hVar, j10, m2Var, null);
-        this.B0 = uf1Var;
-        this.A0 = j11;
+    public sf1(xf1 xf1Var, TLRPC.TL_error tL_error, int i10) {
+        this.f41095a = i10;
+        this.f41096b = xf1Var;
+        this.f41097c = tL_error;
     }
 
     @Override
-    public final boolean Y() {
-        TLRPC.Chat chat = this.B0.f40392b.getMessagesController().getChat(Long.valueOf(this.A0));
-        if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
-            return true;
+    public final void run() {
+        String formatPluralString;
+        String formatPluralString2;
+        int i10 = this.f41095a;
+        TLRPC.TL_error tL_error = this.f41097c;
+        xf1 xf1Var = this.f41096b;
+        switch (i10) {
+            case 0:
+                xf1Var.w0();
+                if (tL_error == null) {
+                    xf1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xf1Var.getParentActivity());
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new nf1(xf1Var, 3));
+                    String string = LocaleController.getString(R.string.PasswordReset);
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                    b2Var.T = string;
+                    b2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
+                    Dialog showDialog = xf1Var.showDialog(b2Var);
+                    if (showDialog != null) {
+                        showDialog.setCanceledOnTouchOutside(false);
+                        showDialog.setCancelable(false);
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+                    if (intValue < 60) {
+                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
+                    } else {
+                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
+                    }
+                    xf1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
+                    return;
+                } else {
+                    xf1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), tL_error.text);
+                    return;
+                }
+            case 1:
+                xf1Var.w0();
+                if (tL_error == null) {
+                    if (xf1Var.getParentActivity() != null) {
+                        xf1Var.u0(new of1(xf1Var, 5));
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("CODE_INVALID")) {
+                    xf1Var.y0();
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue2 = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+                    if (intValue2 < 60) {
+                        formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
+                    } else {
+                        formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
+                    }
+                    xf1Var.G0(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
+                    return;
+                } else {
+                    xf1Var.G0(LocaleController.getString(R.string.AppName), tL_error.text);
+                    return;
+                }
+            case 2:
+                xf1.e0(xf1Var, tL_error);
+                return;
+            default:
+                xf1.Z(xf1Var, tL_error);
+                return;
         }
-        return false;
     }
 }

@@ -1,67 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class wz0 extends org.telegram.ui.Components.y90 {
-    public final ProfileActivity P0;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_fragment;
+public final class wz0 extends ClickableSpan {
+    public final TLRPC.TL_username f42959a;
+    public final String f42960b;
+    public final d01 f42961c;
 
-    public wz0(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.P0 = profileActivity;
+    public wz0(d01 d01Var, TLRPC.TL_username tL_username, String str) {
+        this.f42961c = d01Var;
+        this.f42959a = tL_username;
+        this.f42960b = str;
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        super.setAlpha(f7);
-        this.P0.B3();
+    public final void onClick(View view) {
+        ProfileActivity profileActivity = this.f42961c.e;
+        TLRPC.TL_username tL_username = this.f42959a;
+        if (!tL_username.editable) {
+            if (profileActivity.f33646k5 != this) {
+                profileActivity.M4(this);
+                TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
+                TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
+                tL_inputCollectibleUsername.username = tL_username.username;
+                tL_getCollectibleInfo.collectible = tL_inputCollectibleUsername;
+                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new z40(25, this, tL_username)), profileActivity.getClassGuid());
+                return;
+            }
+            return;
+        }
+        profileActivity.M4(null);
+        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f42960b;
+        TLRPC.Chat chat = profileActivity.F2;
+        if (chat != null && chat.noforwards) {
+            return;
+        }
+        AndroidUtilities.addToClipboard(str);
+        profileActivity.M.j(56, 0L, null);
     }
 
     @Override
-    public final void setTextColor(int i10) {
-        int m12;
-        super.setTextColor(i10);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f32348r;
-        org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[2];
-        if (h5Var != null) {
-            h5Var.setTextColor(i10);
-            h5VarArr[3].setTextColor(i10);
-        }
-        q11 q11Var = profileActivity.f32244b6;
-        if (q11Var != null && q11Var.f39047c != (m12 = org.telegram.ui.ActionBar.g6.m1(1.4f, org.telegram.ui.ActionBar.g6.b(-0.02f, 0.15f, i10)))) {
-            q11Var.f39047c = m12;
-            q11Var.invalidateSelf();
-        }
-    }
-
-    @Override
-    public final void setTranslationX(float f7) {
-        super.setTranslationX(f7);
-        ProfileActivity profileActivity = this.P0;
-        profileActivity.Z3();
-        profileActivity.getClass();
-        profileActivity.f32348r[2].setTranslationX(f7);
-        profileActivity.f32348r[3].setTranslationX(f7);
-        org.telegram.ui.Components.hx0 hx0Var = profileActivity.T;
-        if (hx0Var != null) {
-            hx0Var.setTranslationX(f7 - profileActivity.Z3());
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f32348r;
-        if (profileActivity.T != null) {
-            AndroidUtilities.dp(3.0f);
-            profileActivity.T.getVisibilityFactor();
-        }
-        h5VarArr[2].setTranslationY(f7);
-        h5VarArr[3].setTranslationY(f7);
-        org.telegram.ui.Components.hx0 hx0Var = profileActivity.T;
-        if (hx0Var != null) {
-            hx0Var.setTranslationY(f7 - AndroidUtilities.dp(5.0f));
-        }
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
+        textPaint.setColor(textPaint.linkColor);
     }
 }

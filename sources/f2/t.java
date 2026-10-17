@@ -1,201 +1,186 @@
 package f2;
 
+import java.nio.ByteBuffer;
 import v7.u6;
 public final class t {
-    public int f8909a;
-    public int f8910b;
-    public int f8911c;
-    public int d = 0;
-    public byte[] e;
+    public final boolean f10341a;
+    public final boolean f10342b;
+    public final boolean f10343c;
+    public final boolean d;
+    public final boolean e;
+    public final int f10344f;
+    public final int f10345g;
+    public final boolean h;
+    public final boolean f10346i;
+    public final boolean f10347j;
+    public final boolean f10348k;
+    public final boolean f10349l;
+    public final byte f10350m;
+    public final byte f10351n;
+    public final byte f10352o;
 
-    public t(byte[] bArr, int i10, int i11) {
-        this.e = bArr;
-        this.f8910b = i10;
-        this.f8911c = i10;
-        this.f8909a = i11;
-        a();
-    }
-
-    public void a() {
+    public t(s sVar) {
         boolean z10;
-        int i10;
-        int i11 = this.f8911c;
-        if (i11 >= 0 && (i11 < (i10 = this.f8909a) || (i11 == i10 && this.d == 0))) {
+        int i10 = sVar.f10339a;
+        ByteBuffer byteBuffer = sVar.f10340b;
+        if (i10 == 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        u6.p(z10);
-    }
-
-    public boolean b(int i10) {
-        int i11 = this.f8911c;
-        int i12 = i10 / 8;
-        int i13 = i11 + i12;
-        int i14 = (this.d + i10) - (i12 * 8);
-        if (i14 > 7) {
-            i13++;
-            i14 -= 8;
-        }
-        while (true) {
-            i11++;
-            if (i11 > i13 || i13 > this.f8909a) {
-                break;
-            } else if (h(i11)) {
-                i13++;
-                i11 += 2;
-            }
-        }
-        int i15 = this.f8909a;
-        if (i13 < i15) {
-            return true;
-        }
-        if (i13 == i15 && i14 == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean c() {
-        boolean z10;
-        int i10 = this.f8911c;
-        int i11 = this.d;
-        int i12 = 0;
-        while (this.f8911c < this.f8909a && !d()) {
-            i12++;
-        }
-        if (this.f8911c == this.f8909a) {
-            z10 = true;
+        u6.g(z10);
+        int remaining = byteBuffer.remaining();
+        byte[] bArr = new byte[remaining];
+        byteBuffer.asReadOnlyBuffer().get(bArr);
+        a4.g gVar = new a4.g(bArr, remaining);
+        this.f10345g = gVar.g(3);
+        gVar.n();
+        boolean f7 = gVar.f();
+        this.f10341a = f7;
+        if (f7) {
+            gVar.g(5);
+            this.f10342b = false;
+            this.h = false;
         } else {
-            z10 = false;
-        }
-        this.f8911c = i10;
-        this.d = i11;
-        if (z10 || !b((i12 * 2) + 1)) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean d() {
-        boolean z10;
-        if ((this.e[this.f8911c] & (128 >> this.d)) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        i();
-        return z10;
-    }
-
-    public int e(int i10) {
-        int i11;
-        int i12;
-        this.d += i10;
-        int i13 = 0;
-        while (true) {
-            i11 = this.d;
-            i12 = 2;
-            if (i11 <= 8) {
-                break;
-            }
-            int i14 = i11 - 8;
-            this.d = i14;
-            byte[] bArr = this.e;
-            int i15 = this.f8911c;
-            i13 |= (bArr[i15] & 255) << i14;
-            if (!h(i15 + 1)) {
-                i12 = 1;
-            }
-            this.f8911c = i15 + i12;
-        }
-        byte[] bArr2 = this.e;
-        int i16 = this.f8911c;
-        int i17 = ((-1) >>> (32 - i10)) & (i13 | ((bArr2[i16] & 255) >> (8 - i11)));
-        if (i11 == 8) {
-            this.d = 0;
-            if (!h(i16 + 1)) {
-                i12 = 1;
-            }
-            this.f8911c = i16 + i12;
-        }
-        a();
-        return i17;
-    }
-
-    public int f() {
-        int i10 = 0;
-        int i11 = 0;
-        while (!d()) {
-            i11++;
-        }
-        int i12 = (1 << i11) - 1;
-        if (i11 > 0) {
-            i10 = e(i11);
-        }
-        return i12 + i10;
-    }
-
-    public int g() {
-        int i10;
-        int f7 = f();
-        if (f7 % 2 == 0) {
-            i10 = -1;
-        } else {
-            i10 = 1;
-        }
-        return ((f7 + 1) / 2) * i10;
-    }
-
-    public boolean h(int i10) {
-        int i11 = i10 - 2;
-        if (this.f8910b <= i11 && i10 < this.f8909a) {
-            byte[] bArr = this.e;
-            if (bArr[i10] == 3 && bArr[i11] == 0 && bArr[i10 - 1] == 0) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public void i() {
-        int i10 = 1;
-        int i11 = this.d + 1;
-        this.d = i11;
-        if (i11 == 8) {
-            this.d = 0;
-            int i12 = this.f8911c;
-            if (h(i12 + 1)) {
-                i10 = 2;
-            }
-            this.f8911c = i12 + i10;
-        }
-        a();
-    }
-
-    public void j(int i10) {
-        int i11 = this.f8911c;
-        int i12 = i10 / 8;
-        int i13 = i11 + i12;
-        this.f8911c = i13;
-        int i14 = (i10 - (i12 * 8)) + this.d;
-        this.d = i14;
-        if (i14 > 7) {
-            this.f8911c = i13 + 1;
-            this.d = i14 - 8;
-        }
-        while (true) {
-            i11++;
-            if (i11 <= this.f8911c) {
-                if (h(i11)) {
-                    this.f8911c++;
-                    i11 += 2;
+            if (gVar.f()) {
+                gVar.o(64);
+                if (gVar.f()) {
+                    int i11 = 0;
+                    while (!gVar.f()) {
+                        i11++;
+                    }
+                    if (i11 < 32) {
+                        gVar.o(i11);
+                    }
+                }
+                boolean f10 = gVar.f();
+                this.f10342b = f10;
+                if (f10) {
+                    gVar.o(47);
                 }
             } else {
-                a();
-                return;
+                this.f10342b = false;
+            }
+            this.h = gVar.f();
+            int g10 = gVar.g(5);
+            for (int i12 = 0; i12 <= g10; i12++) {
+                gVar.o(12);
+                if (i12 == 0) {
+                    if (gVar.g(5) > 7) {
+                        gVar.f();
+                    }
+                } else if (gVar.g(5) > 7) {
+                    gVar.n();
+                }
+                if (this.f10342b) {
+                    gVar.n();
+                }
+                if (this.h && gVar.f()) {
+                    if (i12 == 0) {
+                        gVar.g(4);
+                    } else {
+                        gVar.o(4);
+                    }
+                }
             }
         }
+        int g11 = gVar.g(4);
+        int g12 = gVar.g(4);
+        gVar.o(g11 + 1);
+        gVar.o(g12 + 1);
+        if (!this.f10341a) {
+            this.f10343c = gVar.f();
+        } else {
+            this.f10343c = false;
+        }
+        if (this.f10343c) {
+            gVar.o(4);
+            gVar.o(3);
+        }
+        gVar.o(3);
+        if (this.f10341a) {
+            this.e = true;
+            this.d = true;
+            this.f10344f = 0;
+        } else {
+            gVar.o(4);
+            boolean f11 = gVar.f();
+            if (f11) {
+                gVar.o(2);
+            }
+            if (gVar.f()) {
+                this.d = true;
+            } else {
+                this.d = gVar.f();
+            }
+            if (this.d) {
+                if (gVar.f()) {
+                    this.e = true;
+                } else {
+                    this.e = gVar.f();
+                }
+            } else {
+                this.e = true;
+            }
+            if (f11) {
+                this.f10344f = gVar.g(3) + 1;
+            } else {
+                this.f10344f = 0;
+            }
+        }
+        gVar.o(3);
+        boolean f12 = gVar.f();
+        if (this.f10345g == 2 && f12) {
+            this.f10346i = gVar.f();
+        } else {
+            this.f10346i = false;
+        }
+        if (this.f10345g != 1) {
+            this.f10347j = gVar.f();
+        } else {
+            this.f10347j = false;
+        }
+        if (gVar.f()) {
+            this.f10350m = (byte) gVar.g(8);
+            this.f10351n = (byte) gVar.g(8);
+            this.f10352o = (byte) gVar.g(8);
+        } else {
+            this.f10350m = (byte) 0;
+            this.f10351n = (byte) 0;
+            this.f10352o = (byte) 0;
+        }
+        if (this.f10347j) {
+            gVar.n();
+            this.f10348k = false;
+            this.f10349l = false;
+        } else if (this.f10350m == 1 && this.f10351n == 13 && this.f10352o == 0) {
+            this.f10348k = false;
+            this.f10349l = false;
+        } else {
+            gVar.n();
+            int i13 = this.f10345g;
+            if (i13 == 0) {
+                this.f10348k = true;
+                this.f10349l = true;
+            } else if (i13 == 1) {
+                this.f10348k = false;
+                this.f10349l = false;
+            } else if (this.f10346i) {
+                boolean f13 = gVar.f();
+                this.f10348k = f13;
+                if (f13) {
+                    this.f10349l = gVar.f();
+                } else {
+                    this.f10349l = false;
+                }
+            } else {
+                this.f10348k = true;
+                this.f10349l = false;
+            }
+            if (this.f10348k && this.f10349l) {
+                gVar.g(2);
+            }
+        }
+        gVar.n();
     }
 }

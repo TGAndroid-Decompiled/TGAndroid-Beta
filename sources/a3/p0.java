@@ -9,7 +9,7 @@ public interface p0 {
 
     Surface c();
 
-    boolean d(b2.x xVar);
+    boolean d(b2.w wVar);
 
     void e();
 
@@ -25,7 +25,7 @@ public interface p0 {
 
     void k();
 
-    void l(b2.x xVar, long j10, int i10, List list);
+    void l(b2.w wVar, long j10, int i10, List list);
 
     void m(boolean z10);
 

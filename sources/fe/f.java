@@ -2,7 +2,7 @@ package fe;
 
 import td.p;
 public final class f extends kotlin.jvm.internal.j implements p {
-    public static final f f9147b = new kotlin.jvm.internal.j(2);
+    public static final f f10588b = new kotlin.jvm.internal.j(2);
 
     @Override
     public final Object invoke(Object obj, Object obj2) {

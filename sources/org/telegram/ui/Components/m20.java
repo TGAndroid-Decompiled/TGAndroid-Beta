@@ -1,33 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.transition.Transition;
-public final class m20 implements Transition.TransitionListener {
-    public final o20 f26890a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+public final class m20 extends AnimatorListenerAdapter {
+    public final int f28373a;
+    public final n20 f28374b;
 
-    public m20(o20 o20Var) {
-        this.f26890a = o20Var;
+    public m20(n20 n20Var, int i10) {
+        this.f28373a = i10;
+        this.f28374b = n20Var;
     }
 
     @Override
-    public final void onTransitionCancel(Transition transition) {
-        this.f26890a.E.unlock();
-    }
-
-    @Override
-    public final void onTransitionEnd(Transition transition) {
-        this.f26890a.E.unlock();
-    }
-
-    @Override
-    public final void onTransitionStart(Transition transition) {
-        this.f26890a.E.lock();
-    }
-
-    @Override
-    public final void onTransitionPause(Transition transition) {
-    }
-
-    @Override
-    public final void onTransitionResume(Transition transition) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28373a) {
+            case 0:
+                n20 n20Var = this.f28374b;
+                NotificationCenter.getInstance(n20Var.f28638r.f28864a).onAnimationFinish(n20Var.f28636f);
+                n20Var.requestLayout();
+                return;
+            default:
+                n20 n20Var2 = this.f28374b;
+                n20Var2.d = null;
+                n20Var2.f28633a = null;
+                n20Var2.f28634b = false;
+                return;
+        }
     }
 }

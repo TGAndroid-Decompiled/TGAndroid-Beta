@@ -1,24 +1,10 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
-public final class r11 extends TextView implements org.telegram.ui.ActionBar.x5 {
-    public final ProfileActivity f39264a;
-
-    public r11(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.f39264a = profileActivity;
-        d();
-    }
-
+import android.graphics.Canvas;
+public final class r11 extends org.telegram.ui.Components.wo0 {
     @Override
-    public final void d() {
-        setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.G6, this.f39264a.f32405z0));
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        invalidate();
     }
 }

@@ -1,262 +1,179 @@
 package ah;
 
-import android.util.LongSparseArray;
+import ai.a2;
+import ai.ad;
+import ai.cd;
+import ai.g7;
+import ai.k6;
+import ai.ka;
+import ai.ld;
+import ai.x3;
+import ai.zc;
 import android.view.View;
-import bi.bb;
-import bi.h3;
-import bi.j7;
-import bi.la;
-import bi.lb;
-import bi.sb;
-import bi.wa;
-import di.ac;
-import di.i9;
-import di.l9;
-import di.r6;
-import di.s6;
-import hg.e2;
-import ji.e3;
-import ji.h2;
-import ji.x3;
+import ci.aa;
+import ci.e9;
+import ci.g6;
+import ci.j9;
+import ci.t9;
+import ei.a9;
+import ei.j6;
+import ei.lb;
+import ei.x8;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Cells.s3;
+import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.be;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.zc;
+import org.telegram.ui.Components.zd;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.gj0;
-import org.telegram.ui.wf;
+import org.telegram.ui.mf;
 public final class g0 implements View.OnClickListener {
-    public final int f738a;
-    public final Object f739b;
+    public final int f740a;
+    public final Object f741b;
 
     public g0(Object obj, int i10) {
-        this.f738a = i10;
-        this.f739b = obj;
+        this.f740a = i10;
+        this.f741b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        h3 h3Var;
+        n2 R;
         Utilities.Callback callback;
-        int i10;
-        int i11;
-        ji.a aVar;
-        switch (this.f738a) {
+        switch (this.f740a) {
             case 0:
-                t0 t0Var = (t0) this.f739b;
-                if (t0Var.f875k) {
+                t0 t0Var = (t0) this.f741b;
+                if (t0Var.f877k) {
                     t0Var.d();
                     return;
                 }
                 return;
             case 1:
-                ((androidx.mediarouter.app.g) this.f739b).dismiss();
+                ((ai.o0) this.f741b).dismiss();
                 return;
             case 2:
-                ((h3) this.f739b).q(!h3Var.f3063f0, true);
+                ((ai.h1) this.f741b).dismiss();
                 return;
             case 3:
-                ((sb) this.f739b).N();
+                ai.l1 l1Var = (ai.l1) this.f741b;
+                ag.c cVar = l1Var.E.f631a;
+                ag.c cVar2 = ag.c.f636b;
+                if (cVar == cVar2) {
+                    cVar2 = ag.c.f635a;
+                }
+                l1Var.o(ag.a.i(0L, cVar2), true, false, true);
+                l1Var.f1750c.setText("");
                 return;
             case 4:
-                ((j7) this.f739b).dismiss();
-                m2 R = LaunchActivity.R();
-                if (R != null) {
-                    R.showDialog(new sg.y0(R, 14, false));
+                ((a2) this.f741b).dismiss();
+                return;
+            case 5:
+                ((x3) this.f741b).run();
+                return;
+            case 6:
+                ((x3) this.f741b).run();
+                return;
+            case 7:
+                k6 k6Var = (k6) this.f741b;
+                k6Var.getClass();
+                new cd(k6Var.f1651b, k6Var.f1654g).show();
+                return;
+            case 8:
+                ((g7) this.f741b).dismiss();
+                return;
+            case 9:
+                ((ka) this.f741b).run();
+                return;
+            case 10:
+                if (((zc) ((ad) this.f741b).d).f2554f > 0 && (R = LaunchActivity.R()) != 0) {
+                    ?? obj = new Object();
+                    obj.f21552a = true;
+                    R.showAsSheet(new ld(), obj);
                     return;
                 }
                 return;
-            case 5:
-                wa waVar = (wa) this.f739b;
-                waVar.onClick(waVar.f3931b);
+            case 11:
+                ((androidx.mediarouter.app.g) this.f741b).dismiss();
                 return;
-            case 6:
-                bb bbVar = (bb) this.f739b;
-                bbVar.f2884b.f3710u1.animate().alpha(0.0f).setDuration(150L).setListener(new lb(bbVar, 0)).start();
+            case 12:
+                ci.n2 n2Var = (ci.n2) this.f741b;
+                n2Var.q(!n2Var.f6140f0, true);
                 return;
-            case 7:
-                ((la) this.f739b).run();
+            case 13:
+                ((aa) this.f741b).N();
                 return;
-            case 8:
-                di.m mVar = (di.m) this.f739b;
-                di.g gVar = mVar.f7385f;
+            case 14:
+                ((g6) this.f741b).dismiss();
+                n2 R2 = LaunchActivity.R();
+                if (R2 != null) {
+                    R2.showDialog(new sg.x0(R2, 14, false));
+                    return;
+                }
+                return;
+            case 15:
+                e9 e9Var = (e9) this.f741b;
+                e9Var.onClick(e9Var.f5363b);
+                return;
+            case 16:
+                j9 j9Var = (j9) this.f741b;
+                j9Var.f5554b.f5222u1.animate().alpha(0.0f).setDuration(150L).setListener(new t9(j9Var, 0)).start();
+                return;
+            case 17:
+                ((com.google.firebase.messaging.s) this.f741b).run();
+                return;
+            case 18:
+                ei.m mVar = (ei.m) this.f741b;
+                ei.g gVar = mVar.f9401f;
                 gVar.d();
                 gVar.k(true);
-                di.e eVar = mVar.f7382c0;
+                ei.e eVar = mVar.f9398c0;
                 AndroidUtilities.cancelRunOnUIThread(eVar);
                 eVar.run();
                 return;
-            case 9:
-                ((ac) this.f739b).B();
+            case 19:
+                ((lb) this.f741b).B();
                 return;
-            case 10:
-                di.t0.a((di.t0) this.f739b);
+            case 20:
+                ei.u0.a((ei.u0) this.f741b);
                 return;
-            case 11:
-                ((o) this.f739b).run();
+            case 21:
+                ((o) this.f741b).run();
                 return;
-            case 12:
-                s6 s6Var = ((r6) this.f739b).f7721x;
-                if (s6Var.f7773r && (callback = s6Var.f7771f) != null) {
+            case 22:
+                ei.k6 k6Var2 = ((j6) this.f741b).f9258x;
+                if (k6Var2.f9321r && (callback = k6Var2.f9319f) != null) {
                     callback.run(5);
                     return;
                 }
                 return;
-            case 13:
-                l9 l9Var = (l9) ((i9) this.f739b).h;
-                if (l9Var != null) {
-                    l9Var.run();
+            case 23:
+                a9 a9Var = (a9) ((x8) this.f741b).h;
+                if (a9Var != null) {
+                    a9Var.run();
                     return;
                 }
                 return;
-            case 14:
-                ((wf) this.f739b).run();
+            case 24:
+                ((mf) this.f741b).run();
                 return;
-            case 15:
-                ((wf) this.f739b).run();
+            case 25:
+                ((mf) this.f741b).run();
                 return;
-            case 16:
-                ChatActivityEnterView.g(((be) ((fi.o0) this.f739b).d).f23441a, (TL_keyboard.KeyboardButton) view.getTag());
+            case 26:
+                ChatActivityEnterView.g(((zd) ((gi.n0) this.f741b).d).f32882a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
-            case 17:
-                ((androidx.car.app.utils.b) this.f739b).run();
+            case 27:
+                ((ai.y0) this.f741b).run();
                 return;
-            case 18:
-                gi.p pVar = (gi.p) this.f739b;
-                TLRPC.Chat chat = pVar.H;
-                if (chat != null && !chat.title.equals(((gi.o) pVar.f10235n.f899b).getText().toString())) {
-                    pVar.getMessagesController().changeChatTitle(pVar.H.f18916id, ((gi.o) pVar.f10235n.f899b).getText().toString(), new gi.h(pVar, 1));
-                }
-                TLRPC.Chat chat2 = pVar.H;
-                if (chat2 != null && pVar.h != pVar.f10234f) {
-                    if (chat2.default_banned_rights == null) {
-                        chat2.default_banned_rights = new TLRPC.TL_chatBannedRights();
-                    }
-                    pVar.H.default_banned_rights.manage_linked_peers = !pVar.h;
-                    pVar.getMessagesController().setDefaultBannedRole(pVar.f10232b, pVar.H.default_banned_rights, false, pVar);
-                }
-                pVar.finishFragment();
-                return;
-            case 19:
-                ((gi.e0) this.f739b).h.d.D(0);
-                return;
-            case 20:
-                gi.k0.z(((gi.f0) this.f739b).f10183r);
-                return;
-            case 21:
-                hg.m mVar2 = (hg.m) this.f739b;
+            case 28:
+                hg.m mVar2 = (hg.m) this.f741b;
                 MessagesController.getInstance(mVar2.F).hintDialogs.clear();
                 MessagesController.getGlobalMainSettings().edit().remove("installReferer").commit();
                 mVar2.l();
                 return;
-            case 22:
-                ((hg.v) this.f739b).run();
-                return;
-            case 23:
-                ((hg.s0) this.f739b).K();
-                return;
-            case 24:
-                e2 e2Var = (e2) this.f739b;
-                LongSparseArray longSparseArray = e2Var.f10547n;
-                s3 s3Var = (s3) view.getParent();
-                TLRPC.StickerSetCovered stickerSet = s3Var.getStickerSet();
-                if (stickerSet != null && e2Var.h.indexOfKey(stickerSet.set.f18943id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f18943id) < 0) {
-                    if (s3Var.f21637r) {
-                        longSparseArray.put(stickerSet.set.f18943id, stickerSet);
-                        e2Var.e.f30480a.h(s3Var.getStickerSet());
-                        return;
-                    }
-                    e2Var.F(stickerSet, s3Var);
-                    return;
-                }
-                return;
-            case 25:
-                ig.e eVar2 = (ig.e) this.f739b;
-                org.telegram.ui.Components.s6 s6Var2 = eVar2.f11476f;
-                int i12 = eVar2.f11473a;
-                boolean z10 = eVar2.f11478r;
-                eVar2.f11478r = !z10;
-                qq qqVar = eVar2.h;
-                if (!z10) {
-                    i10 = R.string.BizBotStart;
-                } else {
-                    i10 = R.string.BizBotStop;
-                }
-                qqVar.c(LocaleController.getString(i10), true, true);
-                s6Var2.a();
-                if (eVar2.f11478r) {
-                    i11 = R.string.BizBotStatusStopped;
-                } else {
-                    i11 = R.string.BizBotStatusManages;
-                }
-                s6Var2.c(LocaleController.getString(i11), true, true);
-                if (eVar2.f11478r) {
-                    eVar2.f11480w |= 1;
-                } else {
-                    eVar2.f11480w &= -2;
-                }
-                MessagesController.getNotificationsSettings(i12).edit().putInt("dialog_botflags" + eVar2.f11479s, eVar2.f11480w).apply();
-                TL_account.toggleConnectedBotPaused toggleconnectedbotpaused = new TL_account.toggleConnectedBotPaused();
-                toggleconnectedbotpaused.peer = MessagesController.getInstance(i12).getInputPeer(eVar2.f11479s);
-                toggleconnectedbotpaused.paused = eVar2.f11478r;
-                ConnectionsManager.getInstance(i12).sendRequest(toggleconnectedbotpaused, null);
-                return;
-            case 26:
-                TL_account.TL_businessChatLink tL_businessChatLink = ((ig.t) this.f739b).f11631f;
-                if (tL_businessChatLink != null) {
-                    AndroidUtilities.addToClipboard(tL_businessChatLink.link);
-                    zc.a0(LaunchActivity.R()).k(false).j();
-                    return;
-                }
-                return;
-            case 27:
-                ((ii.c) this.f739b).dismiss();
-                return;
-            case 28:
-                ji.r rVar = (ji.r) this.f739b;
-                rVar.K(0, true, 0, false, 0L);
-                gj0 gj0Var = rVar.O;
-                if (gj0Var != null) {
-                    gj0Var.h(true);
-                    rVar.O = null;
-                    return;
-                }
-                return;
             default:
-                ji.t0 t0Var2 = (ji.t0) this.f739b;
-                e3 e3Var = t0Var2.h;
-                if (e3Var != null && (aVar = t0Var2.f13524f) != null) {
-                    x3 x3Var = e3Var.f13244a;
-                    x3Var.getClass();
-                    if (x3.y3(aVar)) {
-                        TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f13107b;
-                        h2 h2Var = x3Var.H3;
-                        if (h2Var != null) {
-                            h2Var.d();
-                        }
-                        pageblockdetails.open = !pageblockdetails.open;
-                        x3Var.W2.N(true);
-                        h2 h2Var2 = x3Var.H3;
-                        if (h2Var2 != null) {
-                            h2Var2.h();
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+                ((hg.v) this.f741b).run();
                 return;
         }
     }

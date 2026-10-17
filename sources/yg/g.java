@@ -1,39 +1,59 @@
 package yg;
 
-import android.view.KeyEvent;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
+import ei.n9;
 import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.ui.Components.z30;
-public final class g implements View.OnKeyListener {
-    public boolean f48760a;
-    public final HashSet f48761b;
-    public final Runnable f48762c;
-    public final i d;
+public final class g extends AnimatorListenerAdapter {
+    public final int f50165a;
+    public final ArrayList f50166b;
+    public final n9 f50167c;
 
-    public g(i iVar, HashSet hashSet, Runnable runnable) {
-        this.d = iVar;
-        this.f48761b = hashSet;
-        this.f48762c = runnable;
+    public g(n9 n9Var, ArrayList arrayList, int i10) {
+        this.f50165a = i10;
+        this.f50167c = n9Var;
+        this.f50166b = arrayList;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        i iVar = this.d;
-        ArrayList arrayList = iVar.e;
-        if (i10 == 67) {
-            boolean z10 = true;
-            if (keyEvent.getAction() == 0) {
-                if (iVar.f48767b.length() != 0) {
-                    z10 = false;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f50165a) {
+            case 0:
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f50166b;
+                    int size = arrayList.size();
+                    n9 n9Var = this.f50167c;
+                    if (i10 < size) {
+                        n9Var.removeView((View) arrayList.get(i10));
+                        i10++;
+                    } else {
+                        n9Var.getClass();
+                        n9Var.h.clear();
+                        n9Var.f9526b = null;
+                        n9Var.f9527c = false;
+                        ((h) n9Var.f9529n).f50169b.setAllowDrawCursor(true);
+                        return;
+                    }
                 }
-                this.f48760a = z10;
-                return false;
-            } else if (keyEvent.getAction() == 1 && this.f48760a && !arrayList.isEmpty()) {
-                iVar.a((z30) i2.d.h(1, arrayList), this.f48761b, this.f48762c);
-                return true;
-            }
+            default:
+                int i11 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f50166b;
+                    int size2 = arrayList2.size();
+                    n9 n9Var2 = this.f50167c;
+                    if (i11 < size2) {
+                        n9Var2.removeView((View) arrayList2.get(i11));
+                        i11++;
+                    } else {
+                        n9Var2.h.clear();
+                        n9Var2.f9526b = null;
+                        n9Var2.f9527c = false;
+                        ((h) n9Var2.f9529n).f50169b.setAllowDrawCursor(true);
+                        return;
+                    }
+                }
         }
-        return false;
     }
 }

@@ -1,18 +1,46 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
-import android.view.View;
-public final class py0 extends org.telegram.ui.Cells.f8 {
-    public final qy0 O;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class py0 extends hm0 {
+    public final Context f29469c;
+    public final qy0 d;
 
-    public py0(qy0 qy0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var, false);
-        this.O = qy0Var;
+    public py0(qy0 qy0Var, Activity activity) {
+        this.d = qy0Var;
+        this.f29469c = activity;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        qy0 qy0Var = this.O;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(qy0Var.f28381r.O, 1073741824), View.MeasureSpec.makeMeasureSpec(qy0Var.f28381r.O, 1073741824));
+    public final boolean D(s4.b1 b1Var) {
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f29780c.size();
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) b1Var.f45938a;
+        ArrayList arrayList = this.d.f29780c;
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
+        boolean z10 = true;
+        if (i10 == arrayList.size() - 1) {
+            z10 = false;
+        }
+        wVar.b(stickerSetCovered, z10);
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.w wVar = new org.telegram.ui.Cells.w(this.f29469c, false);
+        wVar.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(82.0f)));
+        return new s4.b1(wVar);
     }
 }

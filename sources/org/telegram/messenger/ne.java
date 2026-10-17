@@ -1,30 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
+import java.util.ArrayList;
 public final class ne implements Runnable {
-    public final int f17653a;
-    public final int f17654b;
-    public final Utilities.Callback2 f17655c;
+    public final int f19092a = 0;
+    public final MessagesStorage f19093b;
+    public final boolean f19094c;
+    public final ArrayList d;
 
-    public ne(int i10, int i11, Utilities.Callback2 callback2) {
-        this.f17653a = i11;
-        this.f17654b = i10;
-        this.f17655c = callback2;
+    public ne(MessagesStorage messagesStorage, ArrayList arrayList, boolean z10) {
+        this.f19093b = messagesStorage;
+        this.d = arrayList;
+        this.f19094c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17653a) {
+        switch (this.f19092a) {
             case 0:
-                MessagesController.AnonymousClass1.lambda$getLocal$1(this.f17654b, this.f17655c);
-                return;
-            case 1:
-                MessagesController.AnonymousClass4.lambda$getLocal$1(this.f17654b, this.f17655c);
+                this.f19093b.lambda$putEphemeralMessages$204(this.d, this.f19094c);
                 return;
             default:
-                MessagesController.AnonymousClass5.lambda$getLocal$2(this.f17654b, this.f17655c);
+                this.f19093b.lambda$putContacts$146(this.f19094c, this.d);
                 return;
         }
+    }
+
+    public ne(MessagesStorage messagesStorage, boolean z10, ArrayList arrayList) {
+        this.f19093b = messagesStorage;
+        this.f19094c = z10;
+        this.d = arrayList;
     }
 }

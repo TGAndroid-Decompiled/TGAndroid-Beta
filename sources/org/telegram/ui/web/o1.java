@@ -1,52 +1,41 @@
 package org.telegram.ui.web;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-public final class o1 {
-    public static ArrayList d;
-    public final String f41144a;
-    public final String f41145b;
-    public final String f41146c;
+import org.telegram.messenger.AndroidUtilities;
+public final class o1 implements Runnable {
+    public final int f42698a;
+    public final org.telegram.ui.n0 f42699b;
 
-    public o1(String str, String str2, String str3) {
-        this.f41144a = str;
-        this.f41145b = str2;
-        this.f41146c = str3;
+    public o1(org.telegram.ui.n0 n0Var, int i10) {
+        this.f42698a = i10;
+        this.f42699b = n0Var;
     }
 
-    public static o1 a() {
-        ArrayList b10 = b();
-        if (b10.isEmpty()) {
-            return new o1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
-        }
-        return (o1) b10.get(Utilities.clamp(SharedConfig.searchEngineType, b10.size() - 1, 0));
-    }
-
-    public static ArrayList b() {
-        if (d == null) {
-            d = new ArrayList();
-            int i10 = 1;
-            while (true) {
-                String c10 = c(LocaleController.getString("SearchEngine" + i10 + "Name"));
-                if (c10 == null) {
-                    break;
+    @Override
+    public final void run() {
+        switch (this.f42698a) {
+            case 0:
+                org.telegram.ui.n0 n0Var = this.f42699b;
+                n0Var.A0 = true;
+                if (n0Var.getParent() != null) {
+                    n0Var.getParent().requestDisallowInterceptTouchEvent(true);
                 }
-                String c11 = c(LocaleController.getString("SearchEngine" + i10 + "SearchURL"));
-                String c12 = c(LocaleController.getString("SearchEngine" + i10 + "AutocompleteURL"));
-                c(LocaleController.getString("SearchEngine" + i10 + "PrivacyPolicyURL"));
-                d.add(new o1(c10, c11, c12));
-                i10++;
-            }
+                try {
+                    n0Var.performHapticFeedback(0, 1);
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            default:
+                org.telegram.ui.n0 n0Var2 = this.f42699b;
+                ai.t tVar = n0Var2.f42740b0;
+                if (n0Var2.W) {
+                    tVar.requestFocus();
+                    AndroidUtilities.showKeyboard(tVar);
+                    return;
+                }
+                tVar.clearFocus();
+                AndroidUtilities.hideKeyboard(tVar);
+                return;
         }
-        return d;
-    }
-
-    public static String c(String str) {
-        if (str != null && !str.startsWith("LOC_ERR") && !"reserved".equals(str)) {
-            return str;
-        }
-        return null;
     }
 }

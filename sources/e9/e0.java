@@ -1,7 +1,7 @@
 package e9;
 public final class e0 extends a5.a {
-    public final void I(b2.q1 q1Var, String str) {
-        super.x(q1Var, str);
+    public final void I(b2.p1 p1Var, String str) {
+        super.x(p1Var, str);
     }
 
     @Override

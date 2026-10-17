@@ -8,18 +8,18 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class y1 implements RequestDelegate {
-    public final int f31107a;
-    public final Object f31108b;
+    public final int f32507a;
+    public final Object f32508b;
 
     public y1(Object obj, int i10) {
-        this.f31107a = i10;
-        this.f31108b = obj;
+        this.f32507a = i10;
+        this.f32508b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f31107a;
-        Object obj = this.f31108b;
+        int i10 = this.f32507a;
+        Object obj = this.f32508b;
         switch (i10) {
             case 0:
                 AccountInstance accountInstance = (AccountInstance) obj;
@@ -29,85 +29,85 @@ public final class y1 implements RequestDelegate {
                 }
                 return;
             case 1:
-                fa faVar = (fa) obj;
-                faVar.getClass();
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.vp(6, faVar, tLObject));
+                da daVar = (da) obj;
+                daVar.getClass();
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.gh(25, daVar, tLObject));
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new vm(7, (as) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new ee(26, (xr) obj, tLObject));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new vm(8, (dt) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new ee(27, (zs) obj, tLObject));
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new vm(14, (px) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new yt(3, (lx) obj, tLObject));
                 return;
             case 5:
-                az azVar = (az) obj;
+                yy yyVar = (yy) obj;
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new vm(19, azVar, tLObject));
+                    AndroidUtilities.runOnUIThread(new yt(8, yyVar, tLObject));
                     return;
                 }
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new vm(27, (p70) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new yt(16, (l70) obj, tLObject));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f((z70) obj, tL_error, tLObject, 26));
+                AndroidUtilities.runOnUIThread(new lg((v70) obj, tL_error, tLObject, 11));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f((ad0) obj, tL_error, tLObject, 29));
+                AndroidUtilities.runOnUIThread(new lg((tc0) obj, tL_error, tLObject, 14));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new g90(6, (zh0) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new yt(25, (th0) obj, tLObject));
                 return;
             case 10:
-                gk0 gk0Var = (gk0) obj;
+                ck0 ck0Var = (ck0) obj;
                 if (tLObject instanceof TLRPC.TL_messages_messageReactionsList) {
                     TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList = (TLRPC.TL_messages_messageReactionsList) tLObject;
                     int i11 = tL_messages_messageReactionsList.count;
                     tL_messages_messageReactionsList.users.size();
-                    gk0Var.post(new org.telegram.ui.gm(gk0Var, i11, tL_messages_messageReactionsList, 10));
+                    ck0Var.post(new org.telegram.ui.i4(ck0Var, i11, tL_messages_messageReactionsList, 14));
                     return;
                 }
                 return;
             case 11:
-                AndroidUtilities.runOnUIThread(new hk0((qk0) obj, tLObject, 0));
+                AndroidUtilities.runOnUIThread(new dk0((mk0) obj, tLObject, 0));
                 return;
             case 12:
-                iu0 iu0Var = (iu0) obj;
-                iu0Var.getClass();
-                AndroidUtilities.runOnUIThread(new ze0(iu0Var, tL_error, tLObject, 8));
+                du0 du0Var = (du0) obj;
+                du0Var.getClass();
+                AndroidUtilities.runOnUIThread(new lg(du0Var, tL_error, tLObject, 23));
                 return;
             case 13:
-                AndroidUtilities.runOnUIThread(new ze0((uy0) obj, tL_error, tLObject, 14));
+                AndroidUtilities.runOnUIThread(new lg((oy0) obj, tL_error, tLObject, 29));
                 return;
             case 14:
-                AndroidUtilities.runOnUIThread(new gy0(tLObject, (Utilities.Callback) obj, 0));
+                AndroidUtilities.runOnUIThread(new ai.m9(tLObject, (Utilities.Callback) obj, 1));
                 return;
             case 15:
-                y31 y31Var = (y31) obj;
+                q31 q31Var = (q31) obj;
                 if (tLObject != null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    MessagesController.getInstance(y31Var.f31134b).lambda$processUpdates$377(updates, false);
+                    MessagesController.getInstance(q31Var.f29559b).lambda$processUpdates$377(updates, false);
                     if (!updates.chats.isEmpty()) {
-                        AndroidUtilities.runOnUIThread(new g90(26, y31Var, updates), 1000L);
+                        AndroidUtilities.runOnUIThread(new go0(14, q31Var, updates), 1000L);
                         return;
                     }
                     return;
                 }
                 return;
             case 16:
-                AndroidUtilities.runOnUIThread(new g90(28, (x41) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new go0(16, (r41) obj, tLObject));
                 return;
             case 17:
-                h61 h61Var = (h61) obj;
-                h61Var.getClass();
-                AndroidUtilities.runOnUIThread(new ze0(h61Var, tL_error, tLObject, 17));
+                a61 a61Var = (a61) obj;
+                a61Var.getClass();
+                AndroidUtilities.runOnUIThread(new ay0(a61Var, tL_error, tLObject, 2));
                 return;
             default:
-                int i12 = UndoView.f23047e0;
-                AndroidUtilities.runOnUIThread(new n51(1, (UndoView) obj, tLObject));
+                int i12 = UndoView.f24402e0;
+                AndroidUtilities.runOnUIThread(new go0(19, (UndoView) obj, tLObject));
                 return;
         }
     }

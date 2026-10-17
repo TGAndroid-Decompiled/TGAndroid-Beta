@@ -1,87 +1,30 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class t7 implements Runnable {
-    public final int f28983a;
-    public final u7 f28984b;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class t7 extends xj0 {
+    public float f30479r;
+    public float f30480s;
+    public boolean v;
+    public final org.telegram.ui.Cells.k7 f30481w;
+    public final float f30482x;
+    public final k8 f30483y;
 
-    public t7(u7 u7Var, int i10) {
-        this.f28983a = i10;
-        this.f28984b = u7Var;
+    public t7(k8 k8Var, Context context, float f7) {
+        super(context);
+        this.f30483y = k8Var;
+        this.f30482x = f7;
+        this.f30481w = new org.telegram.ui.Cells.k7(this, 2);
     }
 
     @Override
-    public final void run() {
-        long j10;
-        float f7;
-        switch (this.f28983a) {
-            case 0:
-                u7 u7Var = this.f28984b;
-                int i10 = u7Var.v + 1;
-                u7Var.v = i10;
-                if (i10 == 1) {
-                    m8 m8Var = u7Var.H;
-                    m8Var.H0 = -1;
-                    m8Var.I0 = MediaController.getInstance().getPlayingMessageObject().audioProgress;
-                    u7Var.f29265w = System.currentTimeMillis();
-                    AndroidUtilities.runOnUIThread(this, 2000L);
-                    AndroidUtilities.runOnUIThread(u7Var.E);
-                    return;
-                } else if (i10 == 2) {
-                    AndroidUtilities.runOnUIThread(this, 2000L);
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                u7 u7Var2 = this.f28984b;
-                m8 m8Var2 = u7Var2.H;
-                long duration = MediaController.getInstance().getDuration();
-                if (duration != 0 && duration != -9223372036854775807L) {
-                    float f10 = m8Var2.I0;
-                    long currentTimeMillis = System.currentTimeMillis();
-                    long j11 = currentTimeMillis - u7Var2.f29265w;
-                    u7Var2.f29265w = currentTimeMillis;
-                    long j12 = currentTimeMillis - u7Var2.f29266x;
-                    int i11 = u7Var2.v;
-                    if (i11 == 1) {
-                        j10 = 3;
-                    } else if (i11 == 2) {
-                        j10 = 6;
-                    } else {
-                        j10 = 12;
-                    }
-                    float f11 = ((f10 * f7) - ((float) (j11 * j10))) / ((float) duration);
-                    if (f11 < 0.0f) {
-                        f11 = 0.0f;
-                    }
-                    m8Var2.I0 = f11;
-                    MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                    if (playingMessageObject != null && playingMessageObject.isMusic()) {
-                        m8Var2.G0(playingMessageObject, false);
-                    }
-                    if (m8Var2.H0 == -1 && u7Var2.v > 0) {
-                        if (j12 > 200 || m8Var2.I0 == 0.0f) {
-                            u7Var2.f29266x = currentTimeMillis;
-                            if (m8Var2.I0 == 0.0f) {
-                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), 0.0f);
-                                MediaController.getInstance().pauseByRewind();
-                            } else {
-                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f11);
-                            }
-                        }
-                        if (u7Var2.v > 0 && m8Var2.I0 > 0.0f) {
-                            AndroidUtilities.runOnUIThread(u7Var2.E, 16L);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                u7Var2.f29265w = System.currentTimeMillis();
-                return;
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.addAction(16);
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t7.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

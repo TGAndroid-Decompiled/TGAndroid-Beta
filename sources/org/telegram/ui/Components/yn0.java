@@ -1,83 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public abstract class yn0 extends FrameLayout {
-    public final View f31336a;
-    public final ImageView f31337b;
-    public final ImageView f31338c;
-    public final di.i2 d;
-    public final di.g2 e;
-    public final org.telegram.ui.ActionBar.c6 f31339f;
-
-    public yn0(Context context, float f7, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.f31339f = c6Var;
-        View view = new View(context);
-        this.f31336a = view;
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.O5, c6Var)));
-        addView(view, w7.z5.i(-1.0f, 36.0f, 8388659, f7, 11.0f, f7, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f31337b = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.smiles_inputsearch);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Q5, c6Var), PorterDuff.Mode.MULTIPLY));
-        addView(imageView, w7.z5.i(36.0f, 36.0f, 8388659, f7 + 2.0f, 11.0f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f31338c = imageView2;
-        imageView2.setScaleType(scaleType);
-        di.i2 i2Var = new di.i2(3, this);
-        this.d = i2Var;
-        imageView2.setImageDrawable(i2Var);
-        i2Var.f28880f = AndroidUtilities.dp(7.0f);
-        imageView2.setScaleX(0.1f);
-        imageView2.setScaleY(0.1f);
-        imageView2.setAlpha(0.0f);
-        addView(imageView2, w7.z5.i(36.0f, 36.0f, 8388661, f7, 11.0f, f7, 0.0f));
-        imageView2.setOnClickListener(new y80(this, 11));
-        di.g2 g2Var = new di.g2(this, context, 6);
-        this.e = g2Var;
-        g2Var.setTextSize(1, 16.0f);
-        g2Var.setHintTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.P5, c6Var));
-        g2Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.R5, c6Var));
-        g2Var.setBackgroundDrawable(null);
-        g2Var.setPadding(0, 0, 0, 0);
-        g2Var.setMaxLines(1);
-        g2Var.setLines(1);
-        g2Var.setSingleLine(true);
-        g2Var.setGravity(w7.z5.y() | 16);
-        g2Var.setImeOptions(268435459);
-        g2Var.setCursorColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Mh, c6Var));
-        g2Var.setCursorSize(AndroidUtilities.dp(20.0f));
-        g2Var.setCursorWidth(1.5f);
-        float f10 = f7 + 2.0f;
-        addView(g2Var, w7.z5.i(-1.0f, 40.0f, 8388659, f10 + 38.0f, 9.0f, f10 + 30.0f, 0.0f));
-        g2Var.addTextChangedListener(new di.h2(this, 11));
-        g2Var.setOnEditorActionListener(new e1(this, 6));
+public final class yn0 extends s4.k {
+    @Override
+    public final boolean r(s4.b1 b1Var, b2.u0 u0Var, int i10, int i11, int i12, int i13) {
+        eo0 eo0Var;
+        do0 do0Var;
+        View view = b1Var.f45938a;
+        if ((view instanceof eo0) && (do0Var = (eo0Var = (eo0) view).f25963a) != null) {
+            do0Var.f754i = do0Var.N;
+            do0Var.f752g = do0Var.O;
+            do0Var.h = do0Var.P;
+            eo0Var.f25964b.d(0.0f, true);
+            eo0Var.invalidate();
+        }
+        int translationX = i10 + ((int) view.getTranslationX());
+        int translationY = i11 + ((int) view.getTranslationY());
+        R(b1Var);
+        int i14 = i12 - translationX;
+        int i15 = i13 - translationY;
+        if (i14 == 0 && i15 == 0) {
+            v(b1Var);
+            return false;
+        }
+        if (i14 != 0) {
+            view.setTranslationX(-i14);
+        }
+        if (i15 != 0) {
+            view.setTranslationY(-i15);
+        }
+        this.f46004r.add(new s4.j(b1Var, translationX, translationY, i12, i13));
+        return true;
     }
 
-    public abstract void a(String str);
-
-    public sq getProgressDrawable() {
-        return this.d;
-    }
-
-    public View getSearchBackground() {
-        return this.f31336a;
-    }
-
-    public EditTextBoldCursor getSearchEditText() {
-        return this.e;
-    }
-
-    public void setHint(String str) {
-        this.e.setHint(str);
+    @Override
+    public final boolean t(s4.b1 b1Var) {
+        return true;
     }
 }

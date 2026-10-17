@@ -1,186 +1,81 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public final class rs {
-    public final int f28632a;
-    public String f28633b;
-    public final ArrayList f28634c;
-    public final boolean[] d;
-    public boolean[] e;
-    public boolean f28635f;
-    public final int f28636g;
-    public int h;
-    public int f28637i;
-    public final ss f28638j;
+    public final org.telegram.ui.Cells.r2 f30031a;
+    public final ArrayList f30032b = new ArrayList();
+    public final ArrayList f30033c = new ArrayList();
+    public qs d = null;
 
-    public rs(ss ssVar, int i10, ArrayList arrayList) {
-        this.f28638j = ssVar;
-        this.f28632a = i10;
-        int size = arrayList.size();
-        this.f28636g = size;
-        this.f28637i = 0;
-        if (size > 0) {
-            this.f28634c = arrayList;
-            this.d = new boolean[size];
-            this.f28635f = true;
-            g();
-        }
+    public rs(org.telegram.ui.Cells.r2 r2Var) {
+        this.f30031a = r2Var;
     }
 
-    public final boolean a() {
-        boolean[] zArr;
-        for (int i10 = 0; i10 < this.f28636g; i10++) {
-            if (!this.d[i10] || ((zArr = this.e) != null && !zArr[i10])) {
-                return false;
+    public final void a(Canvas canvas, int i10) {
+        ArrayList arrayList;
+        canvas.clipRect(0, 0, i10, AndroidUtilities.dp(14.66f));
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f7 = i10;
+        rectF.set(0.0f, 0.0f, f7, AndroidUtilities.dp(14.66f));
+        canvas.saveLayerAlpha(rectF, 255, 31);
+        if (LocaleController.isRTL) {
+            canvas.translate(f7, 0.0f);
+        }
+        int dp = i10 - AndroidUtilities.dp(25.0f);
+        int i11 = 0;
+        while (true) {
+            arrayList = this.f30033c;
+            if (i11 >= arrayList.size()) {
+                break;
+            }
+            qs qsVar = (qs) arrayList.get(i11);
+            dp = org.telegram.messenger.wh.z(4.0f, qsVar.e, dp);
+            if (dp < 0) {
+                break;
+            }
+            if (LocaleController.isRTL) {
+                canvas.translate(-qsVar.e, 0.0f);
+                qsVar.a(canvas);
+                canvas.translate(-AndroidUtilities.dp(4.0f), 0.0f);
+            } else {
+                qsVar.a(canvas);
+                canvas.translate(AndroidUtilities.dp(4.0f) + qsVar.e, 0.0f);
+            }
+            i11++;
+        }
+        if (i11 < arrayList.size()) {
+            int size = arrayList.size() - i11;
+            qs qsVar2 = this.d;
+            if (qsVar2 == null || qsVar2.f29728a != size) {
+                ?? obj = new Object();
+                obj.f29728a = size;
+                d11 d11Var = new d11(i0.a.j(size, "+"), 10.0f, AndroidUtilities.bold());
+                d11Var.s(this.f30031a);
+                obj.f29730c = d11Var;
+                int dp2 = AndroidUtilities.dp(9.32f);
+                d11 d11Var2 = obj.f29730c;
+                obj.e = dp2 + ((int) d11Var2.f25437c);
+                d11Var2.j();
+                obj.d = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21171n8, false);
+                this.d = obj;
+            }
+            if (LocaleController.isRTL) {
+                canvas.translate(-this.d.e, 0.0f);
+                this.d.a(canvas);
+                canvas.translate(-AndroidUtilities.dp(4.0f), 0.0f);
+            } else {
+                this.d.a(canvas);
+                canvas.translate(AndroidUtilities.dp(4.0f) + this.d.e, 0.0f);
             }
         }
-        return true;
+        canvas.restore();
     }
 
     public final boolean b() {
-        int i10;
-        if (this.e != null) {
-            i10 = this.h;
-        } else {
-            i10 = this.f28636g;
-        }
-        if (i10 > 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean c() {
-        int i10;
-        if (this.e != null) {
-            i10 = this.h;
-        } else {
-            i10 = this.f28636g;
-        }
-        if (i10 > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        boolean[] zArr;
-        boolean[] zArr2;
-        boolean z10 = false;
-        int i10 = 0;
-        while (true) {
-            int i11 = this.f28636g;
-            zArr = this.d;
-            if (i10 >= i11) {
-                break;
-            } else if (!zArr[i10] || ((zArr2 = this.e) != null && !zArr2[i10])) {
-                i10++;
-            }
-        }
-        z10 = true;
-        Arrays.fill(zArr, !z10);
-        f();
-        this.f28638j.X.N(true);
-    }
-
-    public final void e(int i10) {
-        boolean[] zArr = this.e;
-        if (zArr != null && !zArr[i10]) {
-            return;
-        }
-        boolean[] zArr2 = this.d;
-        boolean z10 = zArr2[i10];
-        zArr2[i10] = !z10;
-        if (!z10) {
-            this.f28637i++;
-        } else {
-            this.f28637i--;
-        }
-        this.f28638j.X.N(true);
-    }
-
-    public final void f() {
-        this.f28637i = 0;
-        this.h = 0;
-        for (int i10 = 0; i10 < this.f28636g; i10++) {
-            boolean[] zArr = this.e;
-            boolean[] zArr2 = this.d;
-            if (zArr == null) {
-                if (zArr2[i10]) {
-                    this.f28637i++;
-                }
-            } else if (zArr[i10]) {
-                this.h++;
-                if (zArr2[i10]) {
-                    this.f28637i++;
-                }
-            }
-        }
-    }
-
-    public final void g() {
-        TLObject tLObject;
-        String formatName;
-        String formatString;
-        String formatString2;
-        String formatString3;
-        String formatString4;
-        int i10 = this.f28636g;
-        if (i10 != 0) {
-            for (int i11 = 0; i11 < i10; i11++) {
-                boolean[] zArr = this.e;
-                if (zArr == null || zArr[i11]) {
-                    tLObject = (TLObject) this.f28634c.get(i11);
-                    break;
-                }
-            }
-            tLObject = null;
-            if (tLObject instanceof TLRPC.User) {
-                formatName = UserObject.getForcedFirstName((TLRPC.User) tLObject);
-            } else {
-                formatName = ContactsController.formatName(tLObject);
-            }
-            int i12 = this.f28632a;
-            if (i12 == 0) {
-                this.f28633b = LocaleController.getString(R.string.DeleteReportSpam);
-            } else if (i12 == 1) {
-                if (b()) {
-                    formatString4 = LocaleController.getString(R.string.DeleteAllMessagesFromUsers);
-                } else {
-                    formatString4 = LocaleController.formatString(R.string.DeleteAllFrom, formatName);
-                }
-                this.f28633b = formatString4;
-            } else if (i12 == 3) {
-                if (b()) {
-                    formatString3 = LocaleController.getString(R.string.DeleteAllReactionsFromUsers);
-                } else {
-                    formatString3 = LocaleController.formatString(R.string.DeleteAllReactionsFrom, formatName);
-                }
-                this.f28633b = formatString3;
-            } else if (i12 == 2) {
-                if (this.f28638j.f28891g0) {
-                    if (b()) {
-                        formatString2 = LocaleController.getString(R.string.DeleteRestrictUsers);
-                    } else {
-                        formatString2 = LocaleController.formatString(R.string.DeleteRestrict, formatName);
-                    }
-                    this.f28633b = formatString2;
-                    return;
-                }
-                if (b()) {
-                    formatString = LocaleController.getString(R.string.DeleteBanUsers);
-                } else {
-                    formatString = LocaleController.formatString(R.string.DeleteBan, formatName);
-                }
-                this.f28633b = formatString;
-            }
-        }
+        return this.f30033c.isEmpty();
     }
 }

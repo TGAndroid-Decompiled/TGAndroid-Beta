@@ -8,20 +8,20 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class q3 implements dv0 {
-    public final TLRPC.WebPage f39053a;
-    public final List f39054b;
-    public final k4 f39055c;
+public final class q3 implements fu0 {
+    public final TLRPC.WebPage f40302a;
+    public final List f40303b;
+    public final l4 f40304c;
 
-    public q3(k4 k4Var, TLRPC.WebPage webPage, List list) {
-        this.f39055c = k4Var;
-        this.f39053a = webPage;
-        this.f39054b = list;
+    public q3(l4 l4Var, TLRPC.WebPage webPage, List list) {
+        this.f40304c = l4Var;
+        this.f40302a = webPage;
+        this.f40303b = list;
     }
 
     @Override
     public final boolean a(int i10) {
-        if (i10 < this.f39054b.size() && i10 >= 0 && h4.g(this.f39053a, get(i10))) {
+        if (i10 < this.f40303b.size() && i10 >= 0 && h4.g(this.f40302a, get(i10))) {
             return true;
         }
         return false;
@@ -31,10 +31,10 @@ public final class q3 implements dv0 {
     public final File b(int i10) {
         TLRPC.Document a2;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
-        if (i10 < this.f39054b.size() && i10 >= 0) {
+        if (i10 < this.f40303b.size() && i10 >= 0) {
             TL_iv.PageBlock pageBlock = get(i10);
             boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-            TLRPC.WebPage webPage = this.f39053a;
+            TLRPC.WebPage webPage = this.f40302a;
             if (z10) {
                 TLRPC.Photo e = h4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 if (e != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(e.sizes, AndroidUtilities.getPhotoSize())) != null) {
@@ -58,10 +58,10 @@ public final class q3 implements dv0 {
 
     @Override
     public final TLObject d(int i10) {
-        if (i10 < this.f39054b.size() && i10 >= 0) {
+        if (i10 < this.f40303b.size() && i10 >= 0) {
             TL_iv.PageBlock pageBlock = get(i10);
             boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-            TLRPC.WebPage webPage = this.f39053a;
+            TLRPC.WebPage webPage = this.f40302a;
             if (z10) {
                 return h4.e(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
             }
@@ -74,11 +74,11 @@ public final class q3 implements dv0 {
 
     @Override
     public final boolean e(int i10) {
-        if (i10 < this.f39054b.size() && i10 >= 0 && !h4.g(this.f39053a, get(i10))) {
-            i4 i4Var = this.f39055c.f37278u0[0].f38530c;
+        if (i10 < this.f40303b.size() && i10 >= 0 && !h4.g(this.f40302a, get(i10))) {
+            j4 j4Var = this.f40304c.f38779u0[0].f39634c;
             TL_iv.PageBlock pageBlock = get(i10);
-            i4Var.getClass();
-            if (i4.I(pageBlock) == 5) {
+            j4Var.getClass();
+            if (j4.I(pageBlock) == 5) {
                 return true;
             }
         }
@@ -114,30 +114,30 @@ public final class q3 implements dv0 {
 
     @Override
     public final Object g() {
-        return this.f39053a;
+        return this.f40302a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i10) {
-        return (TL_iv.PageBlock) this.f39054b.get(i10);
+        return (TL_iv.PageBlock) this.f40303b.get(i10);
     }
 
     @Override
     public final List getAll() {
-        return this.f39054b;
+        return this.f40303b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
-        k4 k4Var = this.f39055c;
-        int childCount = k4Var.f37278u0[0].f38529b.getChildCount();
+        l4 l4Var = this.f40304c;
+        int childCount = l4Var.f38779u0[0].f39633b.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = k4Var.f37278u0[0].f38529b.getChildAt(i10);
+            View childAt = l4Var.f38779u0[0].f39633b.getChildAt(i10);
             if (childAt instanceof s2) {
                 s2 s2Var = (s2) childAt;
                 int indexOf = s2Var.d.items.indexOf(pageBlock);
                 if (indexOf != -1) {
-                    s2Var.f39655a.x(indexOf, false);
+                    s2Var.f40863a.x(indexOf, false);
                     return;
                 }
             }
@@ -151,6 +151,6 @@ public final class q3 implements dv0 {
 
     @Override
     public final int j() {
-        return this.f39054b.size();
+        return this.f40303b.size();
     }
 }

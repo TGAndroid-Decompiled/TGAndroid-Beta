@@ -1,36 +1,59 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class o81 extends org.telegram.ui.ActionBar.e3 {
-    public static final int e = 0;
-    public TLRPC.TL_authorization f38569b;
-    public SessionsActivity f38570c;
-    public org.telegram.ui.Components.bk0 d;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class o81 implements ch.a {
+    public final RectF f39687a = new RectF();
+    public final y8 f39688b;
+    public final r91 f39689c;
 
-    public static void n(o81 o81Var, String str) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o81Var.getContext());
-        alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new mg.j(12, o81Var, str));
-        alertDialog$Builder.o();
-    }
-
-    public static void o(o81 o81Var) {
-        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-        TLRPC.TL_authorization tL_authorization = o81Var.f38569b;
-        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
-        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
-        changeauthorizationsettings.flags = 3;
-        changeauthorizationsettings.hash = tL_authorization.hash;
-        ConnectionsManager.getInstance(o81Var.currentAccount).sendRequest(changeauthorizationsettings, new bi.g7(21));
+    public o81(r91 r91Var, y8 y8Var) {
+        this.f39689c = r91Var;
+        this.f39688b = y8Var;
     }
 
     @Override
-    public final void show() {
-        super.show();
-        this.d.d();
+    public final void e(bh.a aVar, RectF rectF) {
+        aVar.f4356a = true;
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        bh.l lVar;
+        ec ecVar;
+        ec ecVar2;
+        r91 r91Var = this.f39689c;
+        r91Var.fragmentView.getMeasuredWidth();
+        r91Var.fragmentView.getMeasuredHeight();
+        canvas.drawColor(r91Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6));
+        for (int i10 = 0; i10 < 3; i10++) {
+            if (i10 == 0) {
+                lVar = r91Var.T;
+                ecVar = r91Var.S;
+            } else if (i10 == 1 && (ecVar2 = r91Var.f40650j0) != null) {
+                lVar = ecVar2.G;
+                ecVar = ecVar2;
+            } else {
+                ke keVar = r91Var.f40651k0;
+                if (keVar != null) {
+                    lVar = keVar.f38479b1;
+                    ecVar = keVar;
+                } else {
+                    lVar = null;
+                    ecVar = null;
+                }
+            }
+            if (lVar != null && ecVar != null) {
+                y8 y8Var = this.f39688b;
+                RectF rectF2 = this.f39687a;
+                ih.j.c(ecVar, y8Var, rectF2);
+                if (rectF2.right > 0.0f) {
+                    r91Var.fragmentView.getMeasuredWidth();
+                }
+                canvas.save();
+                lVar.f(canvas, rectF);
+                canvas.restore();
+            }
+        }
     }
 }

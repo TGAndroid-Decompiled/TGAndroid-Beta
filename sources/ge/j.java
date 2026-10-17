@@ -2,7 +2,7 @@ package ge;
 public final class j extends kotlin.jvm.internal.m implements td.a {
     @Override
     public final xd.b computeReflected() {
-        kotlin.jvm.internal.q.f14366a.getClass();
+        kotlin.jvm.internal.q.f15698a.getClass();
         return this;
     }
 

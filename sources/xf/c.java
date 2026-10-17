@@ -1,50 +1,40 @@
 package xf;
 
-import android.os.IBinder;
-import android.os.Parcel;
-public final class c implements e {
-    public IBinder f48390a;
+import android.graphics.Rect;
+import android.view.View;
+import r0.i0;
+import r0.k1;
+import r0.n;
+import z4.g;
+public final class c implements n {
+    public Object f49797a;
+    public Object f49798b;
 
-    public final boolean F0(b bVar) {
-        Parcel obtain = Parcel.obtain();
-        Parcel obtain2 = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
-            obtain.writeStrongBinder(bVar);
-            boolean z10 = false;
-            this.f48390a.transact(3, obtain, obtain2, 0);
-            obtain2.readException();
-            if (obtain2.readInt() != 0) {
-                z10 = true;
-            }
-            return z10;
-        } finally {
-            obtain2.recycle();
-            obtain.recycle();
-        }
-    }
-
-    public final boolean G0() {
-        Parcel obtain = Parcel.obtain();
-        Parcel obtain2 = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("android.support.customtabs.ICustomTabsService");
-            obtain.writeLong(0L);
-            boolean z10 = false;
-            this.f48390a.transact(2, obtain, obtain2, 0);
-            obtain2.readException();
-            if (obtain2.readInt() != 0) {
-                z10 = true;
-            }
-            return z10;
-        } finally {
-            obtain2.recycle();
-            obtain.recycle();
-        }
+    public c(Object obj, Cloneable cloneable) {
+        this.f49797a = obj;
+        this.f49798b = cloneable;
     }
 
     @Override
-    public final IBinder asBinder() {
-        return this.f48390a;
+    public k1 B0(View view, k1 k1Var) {
+        g gVar = (g) this.f49798b;
+        k1 g10 = i0.g(view, k1Var);
+        if (g10.f44853a.n()) {
+            return g10;
+        }
+        Rect rect = (Rect) this.f49797a;
+        rect.left = g10.b();
+        rect.top = g10.d();
+        rect.right = g10.c();
+        rect.bottom = g10.a();
+        int childCount = gVar.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            k1 b10 = i0.b(gVar.getChildAt(i10), g10);
+            rect.left = Math.min(b10.b(), rect.left);
+            rect.top = Math.min(b10.d(), rect.top);
+            rect.right = Math.min(b10.c(), rect.right);
+            rect.bottom = Math.min(b10.a(), rect.bottom);
+        }
+        return g10.f(rect.left, rect.top, rect.right, rect.bottom);
     }
 }

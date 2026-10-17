@@ -1,24 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-public final class lc implements Runnable {
-    public final int f37677a;
-    public final gd f37678b;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class lc extends z51 {
+    public final gc f38846d2;
+    public final q51[] f38847e2;
+    public final dd f38848f2;
 
-    public lc(gd gdVar, int i10) {
-        this.f37677a = i10;
-        this.f37678b = gdVar;
+    public lc(dd ddVar, dd ddVar2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12, gc gcVar, q51[] q51VarArr) {
+        super(ddVar2, activity, true, num, i10, true, d6Var, i11, i12);
+        this.f38848f2 = ddVar;
+        this.f38846d2 = gcVar;
+        this.f38847e2 = q51VarArr;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37677a) {
-            case 0:
-                gd.U(this.f37678b);
-                return;
-            default:
-                org.telegram.messenger.g0.q(R.string.ChannelWallpaperUpdated, org.telegram.ui.Components.zc.a0(this.f37678b), R.raw.done, 36);
-                return;
+    public final long getDialogId() {
+        return this.f38848f2.f36136a;
+    }
+
+    @Override
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        long longValue;
+        if (l4 == null) {
+            longValue = 0;
+        } else {
+            longValue = l4.longValue();
+        }
+        this.f38846d2.run(Long.valueOf(longValue), num, tL_starGiftUnique);
+        q51 q51Var = this.f38847e2[0];
+        if (q51Var != null) {
+            this.f38848f2.Q = null;
+            q51Var.dismiss();
         }
     }
 }

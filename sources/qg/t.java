@@ -2,223 +2,128 @@ package qg;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.LongSparseArray;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
-import java.util.HashMap;
-import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.sk;
-import org.telegram.ui.Components.es;
+import org.telegram.messenger.R;
 public final class t extends View {
-    public final Paint f43316a;
-    public final int[] f43317b;
-    public final Paint f43318c;
-    public final LongSparseArray d;
-    public long e;
-    public final Path f43319f;
+    public final Paint f44670a;
+    public final Paint f44671b;
+    public final Paint f44672c;
+    public float d;
+    public float e;
+    public final Drawable f44673f;
     public final float[] h;
-    public final HashMap f43320n;
-    public final x f43321r;
+    public final y f44674n;
 
-    public t(x xVar, Context context) {
+    public t(y yVar, Context context) {
         super(context);
-        int d;
-        this.f43321r = xVar;
-        this.f43316a = new Paint(1);
-        this.f43317b = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
+        this.f44674n = yVar;
+        this.f44670a = new Paint(1);
+        this.f44671b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f43318c = paint;
-        this.d = new LongSparseArray();
-        this.e = Long.MIN_VALUE;
-        this.f43319f = new Path();
-        this.h = new float[8];
-        this.f43320n = new HashMap();
+        this.f44672c = paint;
+        this.h = new float[3];
         setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f));
         paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        for (int i10 = 0; i10 < 12; i10++) {
-            for (int i11 = 0; i11 < 10; i11++) {
-                if (i11 == 0) {
-                    this.f43320n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(i0.a.d(i10 / 11.0f, -1, -16777216)));
-                } else {
-                    if (i11 < 6) {
-                        d = i0.a.d(((5 - i11) / 4.0f) * 0.5f, this.f43317b[i10], -16777216);
-                    } else {
-                        d = i0.a.d(sk.b(9 - i11, 5.0f, 0.5f, 0.5f), this.f43317b[i10], -1);
-                    }
-                    this.f43320n.put(Long.valueOf((i10 << 16) + i11), Integer.valueOf(d));
-                }
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        this.f44673f = context.getDrawable(R.drawable.knob_shadow);
+    }
+
+    public final void a(MotionEvent motionEvent) {
+        float f7;
+        this.d = (motionEvent.getX() - getPaddingLeft()) / ((getWidth() - getPaddingLeft()) - getPaddingRight());
+        float y3 = (motionEvent.getY() - getPaddingTop()) / ((getHeight() - getPaddingTop()) - getPaddingBottom());
+        this.e = y3;
+        float[] fArr = this.h;
+        fArr[0] = y3 * 360.0f;
+        float f10 = this.d;
+        int i10 = (f10 > 0.22f ? 1 : (f10 == 0.22f ? 0 : -1));
+        float f11 = 1.0f;
+        if (i10 > 0 && f10 < 0.78f) {
+            fArr[1] = 1.0f;
+            fArr[2] = 1.0f;
+        } else {
+            if (i10 <= 0) {
+                f7 = 1.0f - (f10 / 0.22f);
+            } else {
+                f7 = (f10 - 0.78f) / 0.22000003f;
             }
-        }
-    }
-
-    public final void a(int i10) {
-        for (Map.Entry entry : this.f43320n.entrySet()) {
-            if (((Integer) entry.getValue()).intValue() == i10) {
-                long longValue = ((Long) entry.getKey()).longValue();
-                int i11 = (int) (longValue >> 16);
-                b(i11, (int) (longValue - (i11 << 16)));
-                return;
+            fArr[1] = AndroidUtilities.lerp(1.0f, 0.0f, f7);
+            float f12 = this.d;
+            if (f12 > 0.22f) {
+                f11 = AndroidUtilities.lerp(1.0f, 0.0f, (f12 - 0.78f) / 0.22000003f);
             }
+            fArr[2] = f11;
         }
-        this.e = Long.MIN_VALUE;
+        int HSVToColor = Color.HSVToColor(fArr);
+        y yVar = this.f44674n;
+        yVar.f44730f = HSVToColor;
+        yVar.n(HSVToColor, 0);
         invalidate();
-    }
-
-    public final void b(int i10, int i11) {
-        long j10 = (i10 << 16) + i11;
-        this.e = j10;
-        LongSparseArray longSparseArray = this.d;
-        if (longSparseArray.get(j10) == null) {
-            longSparseArray.put(this.e, Float.valueOf(0.0f));
-        }
-        invalidate();
-    }
-
-    public final void c(MotionEvent motionEvent) {
-        int x10 = (int) ((motionEvent.getX() - getPaddingLeft()) / (((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12));
-        int y3 = (int) (motionEvent.getY() / (((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10));
-        Integer num = (Integer) this.f43320n.get(Long.valueOf((x10 << 16) + y3));
-        if (num != null) {
-            int intValue = num.intValue();
-            int i10 = x.f43350s;
-            this.f43321r.n(intValue, 3);
-            b(x10, y3);
-        }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        HashMap hashMap;
-        float max;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        int i10;
         super.onDraw(canvas);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-        canvas.save();
-        Path path = this.f43321r.e;
-        path.rewind();
-        float f13 = 10.0f;
-        path.addRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Path.Direction.CW);
-        canvas.clipPath(path);
-        float width = ((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12.0f;
-        float height = ((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10.0f;
-        int i11 = 0;
-        while (true) {
-            hashMap = this.f43320n;
-            if (i11 >= 12) {
-                break;
-            }
-            for (int i12 = 0; i12 < 10; i12++) {
-                Integer num = (Integer) hashMap.get(Long.valueOf((i11 << 16) + i12));
-                if (num != null) {
-                    int intValue = num.intValue();
-                    Paint paint = this.f43316a;
-                    paint.setColor(intValue);
-                    RectF rectF2 = AndroidUtilities.rectTmp;
-                    rectF2.set((i11 * width) + getPaddingLeft(), (i12 * height) + getPaddingTop(), ((i11 + 1) * width) + getPaddingLeft(), ((i12 + 1) * height) + getPaddingTop());
-                    canvas.drawRect(rectF2, paint);
-                }
-            }
-            i11++;
-        }
-        canvas.restore();
-        int i13 = 0;
-        while (true) {
-            LongSparseArray longSparseArray = this.d;
-            if (i13 < longSparseArray.size()) {
-                long keyAt = longSparseArray.keyAt(i13);
-                float floatValue = ((Float) longSparseArray.valueAt(i13)).floatValue();
-                if (this.e == keyAt) {
-                    max = Math.min(1.0f, floatValue + 0.045714285f);
-                } else {
-                    max = Math.max(0.0f, floatValue - 0.10666667f);
-                }
-                float f14 = f13;
-                int i14 = (int) (keyAt >> 16);
-                int i15 = (int) (keyAt - (i14 << 16));
-                Integer num2 = (Integer) hashMap.get(Long.valueOf(keyAt));
-                Paint paint2 = this.f43318c;
-                if (num2 != null) {
-                    if (AndroidUtilities.computePerceivedBrightness(num2.intValue()) > 0.721f) {
-                        i10 = -15658735;
-                    } else {
-                        i10 = -1;
-                    }
-                    paint2.setColor(i10);
-                }
-                paint2.setStrokeWidth(es.h.getInterpolation(max) * AndroidUtilities.dp(3.0f));
-                Path path2 = this.f43319f;
-                path2.rewind();
-                RectF rectF3 = AndroidUtilities.rectTmp;
-                float f15 = width;
-                float f16 = height;
-                HashMap hashMap2 = hashMap;
-                rectF3.set((i14 * f15) + getPaddingLeft(), (i15 * f16) + getPaddingTop(), ((i14 + 1) * f15) + getPaddingLeft(), ((i15 + 1) * f16) + getPaddingTop());
-                if (i14 == 0 && i15 == 0) {
-                    f7 = AndroidUtilities.dp(f14);
-                } else {
-                    f7 = 0.0f;
-                }
-                float[] fArr = this.h;
-                fArr[1] = f7;
-                fArr[0] = f7;
-                if (i14 == 11 && i15 == 0) {
-                    f10 = AndroidUtilities.dp(f14);
-                } else {
-                    f10 = 0.0f;
-                }
-                fArr[3] = f10;
-                fArr[2] = f10;
-                if (i14 == 11 && i15 == 9) {
-                    f11 = AndroidUtilities.dp(f14);
-                } else {
-                    f11 = 0.0f;
-                }
-                fArr[5] = f11;
-                fArr[4] = f11;
-                if (i14 == 0 && i15 == 9) {
-                    f12 = AndroidUtilities.dp(f14);
-                } else {
-                    f12 = 0.0f;
-                }
-                fArr[7] = f12;
-                fArr[6] = f12;
-                path2.addRoundRect(rectF3, fArr, Path.Direction.CW);
-                canvas.drawPath(path2, paint2);
-                if (max <= 0.0f && this.e != keyAt) {
-                    longSparseArray.removeAt(i13);
-                    i13--;
-                    invalidate();
-                } else {
-                    if (max < 1.0f) {
-                        invalidate();
-                    }
-                    longSparseArray.setValueAt(i13, Float.valueOf(max));
-                }
-                i13++;
-                f13 = f14;
-                width = f15;
-                height = f16;
-                hashMap = hashMap2;
-            } else {
-                return;
-            }
-        }
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f44670a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f44671b);
+        float dp = AndroidUtilities.dp(13.0f);
+        Paint paint = this.f44672c;
+        float dp2 = AndroidUtilities.dp(16.0f);
+        int width = (getWidth() - getPaddingLeft()) - getPaddingRight();
+        int height = (getHeight() - getPaddingTop()) - getPaddingBottom();
+        float f7 = width;
+        float a2 = w7.r.a(this.d * f7, dp2, f7 - dp2) + getPaddingLeft();
+        float f10 = height;
+        float a10 = w7.r.a(this.e * f10, dp2, f10 - dp2) + getPaddingTop();
+        Rect rect = AndroidUtilities.rectTmp2;
+        Drawable drawable = this.f44673f;
+        drawable.getPadding(rect);
+        int i10 = rect.bottom;
+        drawable.setBounds((int) ((a2 - dp) - rect.left), (int) ((a10 - dp) - rect.top), (int) (a2 + dp + i10), (int) (a10 + dp + i10));
+        drawable.draw(canvas);
+        canvas.drawCircle(a2, a10, dp, paint);
+        rg.i1.y1(a2, a10, dp - (paint.getStrokeWidth() / 2.0f), i0.b.o(this.f44674n.f44730f, 255), canvas);
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r4) {
-        throw new UnsupportedOperationException("Method not decompiled: qg.t.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        this.f44670a.setShader(new LinearGradient(0.0f, getPaddingTop(), 0.0f, i11 - getPaddingBottom(), new int[]{-65536, -256, -16711936, -16711681, -16776961, -65281, -65536}, (float[]) null, Shader.TileMode.CLAMP));
+        this.f44671b.setShader(new LinearGradient(getPaddingLeft(), 0.0f, i10 - getPaddingRight(), 0.0f, new int[]{-1, 0, 0, -16777216}, new float[]{0.06f, 0.22f, 0.78f, 0.94f}, Shader.TileMode.MIRROR));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked == 3) {
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    }
+                } else {
+                    a(motionEvent);
+                }
+            } else {
+                getParent().requestDisallowInterceptTouchEvent(false);
+                a(motionEvent);
+            }
+        } else {
+            getParent().requestDisallowInterceptTouchEvent(true);
+            a(motionEvent);
+        }
+        return true;
     }
 }

@@ -1,70 +1,101 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f90;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.ic0;
 public final class ba implements RequestDelegate {
-    public final int f16561a;
-    public final Object f16562b;
-    public final boolean f16563c;
-    public final long d;
-    public final Object e;
+    public final int f17934a;
+    public final MessagesController f17935b;
 
-    public ba(MessagesController messagesController, boolean z10, TLRPC.User user, long j10) {
-        this.f16561a = 0;
-        this.f16562b = messagesController;
-        this.f16563c = z10;
-        this.e = user;
-        this.d = j10;
+    public ba(MessagesController messagesController, int i10) {
+        this.f17934a = i10;
+        this.f17935b = messagesController;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16561a) {
+        switch (this.f17934a) {
             case 0:
-                long j10 = this.d;
-                ((MessagesController) this.f16562b).lambda$deleteParticipantFromChat$315(this.f16563c, (TLRPC.User) this.e, j10, tLObject, tL_error);
+                this.f17935b.lambda$updateTimerProc$151(tLObject, tL_error);
                 return;
             case 1:
-                ((MessagesController) this.f16562b).lambda$checkChatInviter$374((TLRPC.Chat) this.e, this.f16563c, this.d, tLObject, tL_error);
+                this.f17935b.lambda$updateTimerProc$152(tLObject, tL_error);
                 return;
             case 2:
-                f90.u((f90) this.f16562b, this.d, this.f16563c, (TLRPC.TL_messages_importChatInvite) this.e, tLObject, tL_error);
+                this.f17935b.lambda$processUpdateArray$417(tLObject, tL_error);
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new bi.x2((ic0) this.f16562b, tLObject, this.d, (String) this.e, this.f16563c, tL_error));
+                this.f17935b.lambda$loadCurrentState$324(tLObject, tL_error);
+                return;
+            case 4:
+                this.f17935b.lambda$getContentSettings$505(tLObject, tL_error);
+                return;
+            case 5:
+                this.f17935b.lambda$loadSignUpNotificationsSettings$206(tLObject, tL_error);
+                return;
+            case 6:
+                this.f17935b.lambda$sendBotStart$292(tLObject, tL_error);
+                return;
+            case 7:
+                this.f17935b.lambda$reloadDialogsReadValue$63(tLObject, tL_error);
+                return;
+            case 8:
+                this.f17935b.lambda$completeReadTask$237(tLObject, tL_error);
+                return;
+            case 9:
+                this.f17935b.lambda$markMentionMessageAsRead$233(tLObject, tL_error);
+                return;
+            case 10:
+                this.f17935b.lambda$toggleChannelForum$285(tLObject, tL_error);
+                return;
+            case 11:
+                this.f17935b.lambda$setDialogHistoryTTL$136(tLObject, tL_error);
+                return;
+            case 12:
+                this.f17935b.lambda$loadUnreadDialogs$361(tLObject, tL_error);
+                return;
+            case 13:
+                this.f17935b.lambda$checkTosUpdate$162(tLObject, tL_error);
+                return;
+            case 14:
+                this.f17935b.lambda$reloadReactionsNotifySettings$204(tLObject, tL_error);
+                return;
+            case 15:
+                this.f17935b.lambda$reloadUser$55(tLObject, tL_error);
+                return;
+            case 16:
+                this.f17935b.lambda$loadHintDialogs$195(tLObject, tL_error);
+                return;
+            case 17:
+                this.f17935b.lambda$markMessageContentAsRead$231(tLObject, tL_error);
+                return;
+            case 18:
+                this.f17935b.lambda$loadRemoteFilters$30(tLObject, tL_error);
+                return;
+            case 19:
+                this.f17935b.lambda$didReceivedNotification$42(tLObject, tL_error);
+                return;
+            case 20:
+                this.f17935b.lambda$loadGlobalNotificationsSettings$202(tLObject, tL_error);
+                return;
+            case 21:
+                this.f17935b.lambda$performLogout$321(tLObject, tL_error);
+                return;
+            case 22:
+                this.f17935b.lambda$checkPeerColors$494(tLObject, tL_error);
+                return;
+            case 23:
+                this.f17935b.lambda$checkPeerColors$496(tLObject, tL_error);
+                return;
+            case 24:
+                this.f17935b.lambda$loadSuggestedFilters$25(tLObject, tL_error);
+                return;
+            case 25:
+                this.f17935b.lambda$toggleChannelInvitesHistory$287(tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new bi.x2((zh.g) this.f16562b, tL_error, tLObject, (TwoStepVerificationActivity) this.e, this.f16563c, this.d));
+                this.f17935b.lambda$toggleChannelSignatures$283(tLObject, tL_error);
                 return;
         }
-    }
-
-    public ba(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, boolean z10, long j10, int i10) {
-        this.f16561a = i10;
-        this.f16562b = notificationCenterDelegate;
-        this.e = obj;
-        this.f16563c = z10;
-        this.d = j10;
-    }
-
-    public ba(f90 f90Var, long j10, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
-        this.f16561a = 2;
-        this.f16562b = f90Var;
-        this.d = j10;
-        this.f16563c = z10;
-        this.e = tL_messages_importChatInvite;
-    }
-
-    public ba(ic0 ic0Var, long j10, String str, boolean z10) {
-        this.f16561a = 3;
-        this.f16562b = ic0Var;
-        this.d = j10;
-        this.e = str;
-        this.f16563c = z10;
     }
 }

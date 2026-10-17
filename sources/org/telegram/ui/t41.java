@@ -1,55 +1,69 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.widget.FrameLayout;
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class t41 extends org.telegram.ui.ActionBar.m2 {
-    public static final int[] f40005c = {750000, 1000000, 1200000, 2000000};
-    public org.telegram.ui.Components.mm0 f40006a;
-    public s41 f40007b;
+import org.telegram.messenger.AndroidUtilities;
+public final class t41 extends FrameLayout {
+    public final Path f41587a;
+    public final Paint f41588b;
+    public final boolean f41589c;
+    public final boolean d;
+    public final org.telegram.ui.ActionBar.d6 e;
+    public final Integer f41590f;
+    public final z51 h;
 
-    public static String U(int i10) {
-        if (i10 % 1000000 == 0) {
-            return (i10 / 1000000) + " Mbps";
-        } else if (i10 > 1000000) {
-            return String.format(Locale.US, "%.1f Mbps", Float.valueOf(i10 / 1000000.0f));
-        } else {
-            return (i10 / 1000) + " kbps";
-        }
-    }
-
-    public final void V(int i10, CharSequence[] charSequenceArr, ps0 ps0Var) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-        alertDialog$Builder.f19248a.R = LocaleController.getString(i10);
-        alertDialog$Builder.f(charSequenceArr, new mg.j(11, this, ps0Var));
-        showDialog(alertDialog$Builder.f19248a);
+    public t41(z51 z51Var, Context context, boolean z10, boolean z11, org.telegram.ui.ActionBar.d6 d6Var, Integer num) {
+        super(context);
+        this.h = z51Var;
+        this.f41589c = z10;
+        this.d = z11;
+        this.e = d6Var;
+        this.f41590f = num;
+        this.f41587a = new Path();
+        this.f41588b = new Paint(1);
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.RoundVideoSettings));
-        this.actionBar.setActionBarMenuOnItemClick(new q70(this, 29));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19543a7, false));
-        this.fragmentView = frameLayout;
-        org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
-        this.f40006a = mm0Var;
-        mm0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f40006a);
-        this.f40006a.setLayoutManager(new s4.b0());
-        this.f40006a.setVerticalScrollBarEnabled(false);
-        org.telegram.ui.Components.mm0 mm0Var2 = this.f40006a;
-        s41 s41Var = new s41(context);
-        this.f40007b = s41Var;
-        mm0Var2.setAdapter(s41Var);
-        this.f40006a.setOnItemClickListener(new i21(this, 4));
-        frameLayout.addView(this.f40006a, w7.z5.d(-1.0f, -1));
-        return this.fragmentView;
+    public final void dispatchDraw(Canvas canvas) {
+        float intValue;
+        z51 z51Var = this.h;
+        if (!z51Var.Q0) {
+            super.dispatchDraw(canvas);
+        } else if (this.f41589c) {
+            canvas.save();
+            boolean z10 = this.d;
+            Paint paint = this.f41588b;
+            if (z10) {
+                org.telegram.ui.ActionBar.h6.m(paint);
+            }
+            paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, this.e));
+            paint.setAlpha((int) (getAlpha() * 255.0f));
+            Integer num = this.f41590f;
+            if (num == null) {
+                intValue = getWidth() / 2.0f;
+            } else {
+                intValue = num.intValue();
+            }
+            float dp = intValue + AndroidUtilities.dp(20.0f);
+            float width = (getWidth() - getPaddingLeft()) - getPaddingRight();
+            float height = (getHeight() - getPaddingBottom()) - getPaddingTop();
+            if (z51Var.n()) {
+                AndroidUtilities.rectTmp.set((dp - (z51Var.f43580a1 * dp)) + getPaddingLeft(), com.google.android.gms.internal.cast.a6.x(1.0f, z51Var.f43583b1, height, getPaddingTop()), ((width - dp) * z51Var.f43580a1) + getPaddingLeft() + dp, getPaddingTop() + height);
+            } else {
+                AndroidUtilities.rectTmp.set((dp - (z51Var.f43580a1 * dp)) + getPaddingLeft(), getPaddingTop(), ((width - dp) * z51Var.f43580a1) + getPaddingLeft() + dp, (height * z51Var.f43583b1) + getPaddingTop());
+            }
+            Path path = this.f41587a;
+            path.rewind();
+            path.addRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
+            canvas.drawPath(path, paint);
+            canvas.clipPath(path);
+            super.dispatchDraw(canvas);
+            canvas.restore();
+        } else {
+            super.dispatchDraw(canvas);
+        }
     }
 }

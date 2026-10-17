@@ -1,9 +1,9 @@
 package u2;
-public final class a0 extends b2.p1 {
-    public final b2.p0 e;
+public final class a0 extends b2.o1 {
+    public final b2.o0 e;
 
-    public a0(b2.p0 p0Var) {
-        this.e = p0Var;
+    public a0(b2.o0 o0Var) {
+        this.e = o0Var;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class a0 extends b2.p1 {
     }
 
     @Override
-    public final b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
+    public final b2.l1 f(int i10, b2.l1 l1Var, boolean z10) {
         Integer num;
         Object obj = null;
         if (z10) {
@@ -26,8 +26,8 @@ public final class a0 extends b2.p1 {
         if (z10) {
             obj = z.h;
         }
-        m1Var.h(num, obj, 0, -9223372036854775807L, 0L, b2.c.f2090c, true);
-        return m1Var;
+        l1Var.h(num, obj, 0, -9223372036854775807L, 0L, b2.c.f3704c, true);
+        return l1Var;
     }
 
     @Override
@@ -41,10 +41,10 @@ public final class a0 extends b2.p1 {
     }
 
     @Override
-    public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
-        o1Var.b(b2.o1.f2253q, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
-        o1Var.f2269k = true;
-        return o1Var;
+    public final b2.n1 m(int i10, b2.n1 n1Var, long j10) {
+        n1Var.b(b2.n1.f3861q, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+        n1Var.f3877k = true;
+        return n1Var;
     }
 
     @Override

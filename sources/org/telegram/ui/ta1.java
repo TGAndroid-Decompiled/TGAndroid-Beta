@@ -1,36 +1,107 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public final class ta1 {
-    public boolean f40049a;
-    public String f40050b;
-    public long f40051c;
-    public kg.b d;
-    public kg.b e;
-    public String f40052f;
-    public String f40053g;
-    public boolean h;
-    public final int f40054i;
-    public final String f40055j;
-    public boolean f40056k;
-    public boolean f40057l;
-    public boolean f40058m;
-    public boolean f40059n;
-    public boolean f40060o;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ta1 extends org.telegram.ui.Cells.ma {
+    public final int f41638h3 = 1;
+    public final Object f41639i3;
 
-    public ta1(String str, int i10) {
-        this.f40055j = str;
-        this.f40054i = i10;
+    public ta1(Context context, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, ArrayList arrayList2, org.telegram.ui.ActionBar.a3 a3Var) {
+        super(context, n2Var, 2, arrayList, arrayList2);
+        this.f41639i3 = a3Var;
     }
 
-    public final void a(int i10, int i11, int i12, Utilities.Callback0Return callback0Return) {
-        if (!this.f40056k) {
-            this.f40056k = true;
-            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-            tL_loadAsyncGraph.token = this.f40052f;
-            ConnectionsManager.getInstance(i10).bindRequestToGuid(ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new ec0(24, this, callback0Return), null, null, 0, i12, 1, true), i11);
+    @Override
+    public void A1(org.telegram.ui.ActionBar.g6 g6Var) {
+        boolean z10;
+        String string;
+        String str;
+        String str2;
+        CharSequence[] charSequenceArr;
+        boolean z11;
+        int[] iArr;
+        switch (this.f41638h3) {
+            case 0:
+                wa1 wa1Var = ((wa1) this.f41639i3).e.f33882a;
+                ThemeActivity themeActivity = wa1Var.e;
+                if (themeActivity.getParentActivity() != null) {
+                    if ((g6Var.F == null || g6Var.U) && themeActivity.f33890f != 1) {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
+                        if (g6Var.f20879b == null) {
+                            charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", R.string.ExportTheme)};
+                            iArr = new int[]{0, R.drawable.msg_shareout};
+                            z11 = false;
+                        } else {
+                            TLRPC.TL_theme tL_theme = g6Var.F;
+                            if (tL_theme != null && tL_theme.isDefault) {
+                                z10 = false;
+                            } else {
+                                z10 = true;
+                            }
+                            String string2 = LocaleController.getString("ShareFile", R.string.ShareFile);
+                            String string3 = LocaleController.getString("ExportTheme", R.string.ExportTheme);
+                            TLRPC.TL_theme tL_theme2 = g6Var.F;
+                            if (tL_theme2 != null && (tL_theme2.isDefault || !tL_theme2.creator)) {
+                                string = null;
+                            } else {
+                                string = LocaleController.getString("Edit", R.string.Edit);
+                            }
+                            TLRPC.TL_theme tL_theme3 = g6Var.F;
+                            if (tL_theme3 != null && tL_theme3.creator) {
+                                str = LocaleController.getString("ThemeSetUrl", R.string.ThemeSetUrl);
+                            } else {
+                                str = null;
+                            }
+                            if (z10) {
+                                str2 = LocaleController.getString("Delete", R.string.Delete);
+                            } else {
+                                str2 = null;
+                            }
+                            boolean z12 = z10;
+                            charSequenceArr = new CharSequence[]{string2, string3, string, str, str2};
+                            z11 = z12;
+                            iArr = new int[]{R.drawable.msg_share, R.drawable.msg_shareout, R.drawable.msg_edit, R.drawable.msg_link, R.drawable.msg_delete};
+                        }
+                        mg.j jVar = new mg.j(13, wa1Var, g6Var);
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                        b2Var.P = charSequenceArr;
+                        b2Var.Q = iArr;
+                        b2Var.M = jVar;
+                        themeActivity.showDialog(b2Var);
+                        if (z11) {
+                            b2Var.l(b2Var.N0.size() - 1, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21224q7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21207p7, false));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                return;
         }
+    }
+
+    @Override
+    public final void B1() {
+        Runnable runnable;
+        switch (this.f41638h3) {
+            case 0:
+                ((wa1) this.f41639i3).e.A0(false);
+                return;
+            default:
+                runnable = ((org.telegram.ui.ActionBar.a3) this.f41639i3).f20609a.dismissRunnable;
+                runnable.run();
+                return;
+        }
+    }
+
+    public ta1(wa1 wa1Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, ArrayList arrayList, ArrayList arrayList2) {
+        super(context, n2Var, i10, arrayList, arrayList2);
+        this.f41639i3 = wa1Var;
     }
 }

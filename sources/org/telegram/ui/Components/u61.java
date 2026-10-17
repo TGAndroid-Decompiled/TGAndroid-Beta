@@ -1,31 +1,15 @@
 package org.telegram.ui.Components;
+public final class u61 extends a71 {
+    public final v61 f30899d3;
 
-import android.view.View;
-public final class u61 implements View.OnClickListener {
-    public final int f29261a;
-    public final UndoView f29262b;
-
-    public u61(UndoView undoView, int i10) {
-        this.f29261a = i10;
-        this.f29262b = undoView;
+    public u61(v61 v61Var, v61 v61Var2, d dVar, t61 t61Var, t61 t61Var2) {
+        super(v61Var2, dVar, t61Var, t61Var2);
+        this.f30899d3 = v61Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f29261a;
-        UndoView undoView = this.f29262b;
-        switch (i10) {
-            case 0:
-                int i11 = UndoView.f23047e0;
-                if (undoView.a()) {
-                    undoView.e(1, false);
-                    return;
-                }
-                return;
-            default:
-                int i12 = UndoView.f23047e0;
-                undoView.e(1, false);
-                return;
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f30899d3.f31191b = -1;
     }
 }

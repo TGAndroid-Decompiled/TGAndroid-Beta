@@ -9,9 +9,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import w7.y;
 public final class c extends y {
-    public final Object f15609a = new Object();
-    public final ExecutorService f15610b = Executors.newFixedThreadPool(4, new b());
-    public volatile Handler f15611c;
+    public final Object f16985a = new Object();
+    public final ExecutorService f16986b = Executors.newFixedThreadPool(4, new b());
+    public volatile Handler f16987c;
 
     public static Handler a(Looper looper) {
         if (Build.VERSION.SDK_INT >= 28) {

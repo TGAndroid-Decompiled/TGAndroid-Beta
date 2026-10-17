@@ -1,42 +1,104 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
-import android.graphics.Rect;
 import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class m61 extends ViewOutlineProvider {
-    public final Rect f37922a = new Rect();
-    public final Integer f37923b;
-    public final r71 f37924c;
+import java.util.HashMap;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+public final class m61 extends org.telegram.ui.Components.bb implements NotificationCenter.NotificationCenterDelegate {
+    public final org.telegram.ui.Components.wz X;
+    public final ei.d Y;
+    public final ci.a7 Z;
+    public final HashMap f39015a0;
+    public final int f39016b0;
+    public int f39017c0;
+    public org.telegram.ui.Components.s61 f39018d0;
 
-    public m61(r71 r71Var, Integer num) {
-        this.f37924c = r71Var;
-        this.f37923b = num;
+    public m61(org.telegram.ui.ActionBar.n2 r17, long r18, int r20, ai.e4 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.m61.<init>(org.telegram.ui.ActionBar.n2, long, int, ai.e4):void");
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        float intValue;
-        Integer num = this.f37923b;
-        if (num == null) {
-            intValue = view.getWidth() / 2.0f;
+    public final CharSequence A() {
+        return LocaleController.getString(R.string.StoriesAlbumMenuAddStories);
+    }
+
+    public final void Q() {
+        int abs;
+        org.telegram.ui.Components.wz wzVar = this.X;
+        int L0 = wzVar.L0();
+        if (L0 == -1) {
+            abs = 0;
         } else {
-            intValue = num.intValue();
+            abs = Math.abs(wzVar.N0() - L0) + 1;
         }
-        float dp = intValue + AndroidUtilities.dp(20.0f);
-        float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
-        float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
-        r71 r71Var = this.f37924c;
-        boolean n10 = r71Var.n();
-        Rect rect = this.f37922a;
-        if (n10) {
-            int paddingLeft = (int) ((dp - (r71Var.f39314a1 * dp)) + view.getPaddingLeft());
-            float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, r71Var.f39317b1, height, view.getPaddingTop());
-            rect.set(paddingLeft, (int) com.google.android.gms.internal.play_billing.k3.y(1.0f, r71Var.f39317b1, AndroidUtilities.dp(r71Var.f39322d1), y3), (int) (((width - dp) * r71Var.f39314a1) + view.getPaddingLeft() + dp), (int) com.google.android.gms.internal.play_billing.k3.y(1.0f, r71Var.f39317b1, AndroidUtilities.dp(r71Var.f39322d1), view.getPaddingTop() + height));
-        } else {
-            rect.set((int) ((dp - (r71Var.f39314a1 * dp)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - dp) * r71Var.f39314a1) + view.getPaddingLeft() + dp), (int) ((height * r71Var.f39317b1) + view.getPaddingTop()));
+        ci.a7 a7Var = this.Z;
+        if (a7Var != null) {
+            int i10 = L0 + abs;
+            int i11 = a7Var.i();
+            int i12 = this.f39016b0;
+            if (i10 > i11 - i12) {
+                a7Var.p(Math.min(100, Math.max(1, i12 / 2) * i12 * i12), false);
+            }
         }
-        outline.setRoundRect(rect, AndroidUtilities.dp(12.0f));
+    }
+
+    public final boolean R(int i10, View view) {
+        org.telegram.ui.Components.f61 G;
+        org.telegram.ui.Components.s61 s61Var = this.f39018d0;
+        if (s61Var == null || i10 == 0 || (G = s61Var.G(i10 - 1)) == null) {
+            return false;
+        }
+        Object obj = G.G;
+        if (obj instanceof MessageObject) {
+            MessageObject messageObject = (MessageObject) obj;
+            int id2 = messageObject.getId();
+            Integer valueOf = Integer.valueOf(id2);
+            HashMap hashMap = this.f39015a0;
+            if (hashMap.containsKey(valueOf)) {
+                hashMap.remove(Integer.valueOf(id2));
+                G.e = false;
+                ((org.telegram.ui.Cells.s7) view).i(false, true);
+            } else {
+                hashMap.put(Integer.valueOf(id2), messageObject.storyItem);
+                G.e = true;
+                ((org.telegram.ui.Cells.s7) view).i(true, true);
+            }
+            ei.d dVar = this.Y;
+            dVar.setEnabled(!hashMap.isEmpty());
+            dVar.b(hashMap.size(), true);
+        }
+        return true;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.storiesListUpdated && ((ci.a7) objArr[0]) == this.Z) {
+            this.f39018d0.N(false);
+            Q();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f39017c0 = this.Z.o();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.Z.z(this.f39017c0);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public final org.telegram.ui.Components.hm0 x(org.telegram.ui.Components.im0 im0Var) {
+        org.telegram.ui.Components.s61 s61Var = new org.telegram.ui.Components.s61(im0Var, getContext(), this.currentAccount, 0, false, new g5(this, 25), this.resourcesProvider);
+        this.f39018d0 = s61Var;
+        s61Var.f30200r = false;
+        return s61Var;
     }
 }

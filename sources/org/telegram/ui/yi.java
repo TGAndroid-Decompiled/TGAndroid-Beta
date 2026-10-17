@@ -1,19 +1,32 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-public final class yi extends org.telegram.ui.Cells.w0 {
-    public final fo f41836t2;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class yi extends FrameLayout {
+    public final sn f43414a;
 
-    public yi(Activity activity, org.telegram.ui.ActionBar.c6 c6Var, fo foVar) {
-        super(activity, c6Var, false);
-        this.f41836t2 = foVar;
+    public yi(sn snVar, Activity activity) {
+        super(activity);
+        this.f43414a = snVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        float y3 = getY();
-        fo foVar = this.f41836t2;
-        a0(foVar.R0.getY() + y3, foVar.X0.getBackgroundSizeY());
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
+            this.f43414a.D7(true);
+        }
+        return super.dispatchKeyEvent(keyEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int min = Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(300.0f));
+        if (min == 0) {
+            min = AndroidUtilities.dp(300.0f);
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
     }
 }

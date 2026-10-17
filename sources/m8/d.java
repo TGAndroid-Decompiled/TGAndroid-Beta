@@ -1,3 +1,5 @@
 package m8;
-public final class d extends b2.h {
+
+import ai.c1;
+public final class d extends c1 {
 }

@@ -1,50 +1,43 @@
 package org.telegram.ui.web;
 
-import android.webkit.PermissionRequest;
-public final class q0 implements q0.a {
-    public final int f41159a;
-    public final w0 f41160b;
-    public final PermissionRequest f41161c;
-    public final String[] d;
+import android.webkit.JsResult;
+public final class q0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f42711a;
+    public final boolean[] f42712b;
+    public final JsResult f42713c;
 
-    public q0(w0 w0Var, PermissionRequest permissionRequest, String[] strArr, int i10) {
-        this.f41159a = i10;
-        this.f41160b = w0Var;
-        this.f41161c = permissionRequest;
-        this.d = strArr;
+    public q0(boolean[] zArr, JsResult jsResult, int i10) {
+        this.f42711a = i10;
+        this.f42712b = zArr;
+        this.f42713c = jsResult;
     }
 
     @Override
-    public final void accept(Object obj) {
-        Boolean bool = (Boolean) obj;
-        switch (this.f41159a) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f42711a) {
             case 0:
-                w0 w0Var = this.f41160b;
-                if (w0Var.f41240a != null) {
-                    w0Var.f41240a = null;
-                    boolean booleanValue = bool.booleanValue();
-                    PermissionRequest permissionRequest = this.f41161c;
-                    if (booleanValue) {
-                        c1.a(w0Var.e.Q, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new q0(w0Var, permissionRequest, this.d, 1));
-                        return;
-                    } else {
-                        permissionRequest.deny();
-                        return;
-                    }
+                boolean[] zArr = this.f42712b;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    this.f42713c.cancel();
+                    return;
+                }
+                return;
+            case 1:
+                boolean[] zArr2 = this.f42712b;
+                if (!zArr2[0]) {
+                    zArr2[0] = true;
+                    this.f42713c.confirm();
+                    return;
                 }
                 return;
             default:
-                w0 w0Var2 = this.f41160b;
-                w0Var2.getClass();
-                boolean booleanValue2 = bool.booleanValue();
-                PermissionRequest permissionRequest2 = this.f41161c;
-                if (booleanValue2) {
-                    String[] strArr = this.d;
-                    permissionRequest2.grant(new String[]{strArr[0], strArr[1]});
-                    w0Var2.e.Q.T = true;
+                boolean[] zArr3 = this.f42712b;
+                if (!zArr3[0]) {
+                    zArr3[0] = true;
+                    this.f42713c.confirm();
                     return;
                 }
-                permissionRequest2.deny();
                 return;
         }
     }

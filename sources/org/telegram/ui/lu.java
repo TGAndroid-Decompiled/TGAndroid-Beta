@@ -1,67 +1,49 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.app.Activity;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-public final class lu extends org.telegram.ui.Cells.d5 {
-    public final int e;
-    public final org.telegram.ui.Cells.e9 f37828f;
-    public final org.telegram.ui.Cells.w8[] h;
-    public final AnimatorSet[] f37829n;
-    public final DataAutoDownloadActivity f37830r;
+import android.content.res.Configuration;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class lu extends View {
+    public Path f38934a;
+    public Paint f38935b;
+    public boolean f38936c;
 
-    public lu(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
-        super(activity);
-        int i11;
-        int i12;
-        int i13;
-        this.f37830r = dataAutoDownloadActivity;
-        this.e = i10;
-        this.f37828f = e9Var;
-        this.h = w8VarArr;
-        this.f37829n = animatorSetArr;
-        setWillNotDraw(false);
-        TextView textView = new TextView(activity);
-        this.f20761a = textView;
-        org.telegram.messenger.sk.u(textView, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19707j5, false), 1, 16.0f, 1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
+    @Override
+    public final void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        requestLayout();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawPath(this.f38934a, this.f38935b);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(13.0f), 1073741824));
+        setTop(this.f38936c);
+    }
+
+    public void setTop(boolean z10) {
+        Path path = this.f38934a;
+        path.rewind();
+        this.f38936c = z10;
+        if (z10) {
+            float dp = AndroidUtilities.dp(14.0f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, AndroidUtilities.dp(4.0f), getMeasuredWidth(), (getMeasuredHeight() * 2) + AndroidUtilities.dp(4.0f));
+            path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
+            return;
         }
-        textView.setGravity(i11 | 48);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setImportantForAccessibility(2);
-        if (LocaleController.isRTL) {
-            i12 = 5;
-        } else {
-            i12 = 3;
-        }
-        addView(textView, w7.z5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -1, i12 | 48));
-        TextView textView2 = new TextView(activity);
-        this.f20762b = textView2;
-        org.telegram.messenger.sk.u(textView2, org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19783n5, false), 1, 16.0f, 1);
-        textView2.setMaxLines(1);
-        textView2.setSingleLine(true);
-        if (LocaleController.isRTL) {
-            i13 = 3;
-        } else {
-            i13 = 5;
-        }
-        textView2.setGravity(i13 | 48);
-        textView2.setImportantForAccessibility(2);
-        addView(textView2, w7.z5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, (LocaleController.isRTL ? 3 : 5) | 48));
-        org.telegram.ui.Cells.j0 j0Var = new org.telegram.ui.Cells.j0(activity);
-        this.f20763c = j0Var;
-        j0Var.setReportChanges(true);
-        j0Var.setDelegate(new org.telegram.ui.Cells.c5(this));
-        j0Var.setImportantForAccessibility(2);
-        addView(j0Var, w7.z5.a(38.0f, 6.0f, 36.0f, 6.0f, 0.0f, -1, 51));
-        setImportantForAccessibility(1);
-        setAccessibilityDelegate(j0Var.getSeekBarAccessibilityDelegate());
+        float dp2 = AndroidUtilities.dp(8.0f);
+        RectF rectF2 = AndroidUtilities.rectTmp;
+        rectF2.set(0.0f, ((-getMeasuredHeight()) * 2) - AndroidUtilities.dp(4.0f), getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(4.0f));
+        path.addRoundRect(rectF2, dp2, dp2, Path.Direction.CW);
     }
 }

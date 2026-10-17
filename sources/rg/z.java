@@ -1,34 +1,28 @@
 package rg;
 
-import android.content.Context;
-import android.graphics.PointF;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i81;
-import org.telegram.ui.Components.iw0;
-import org.telegram.ui.Components.yj0;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.gu0;
-public final class z extends q2 {
-    public final o0 f44391y0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class z extends AnimatorListenerAdapter {
+    public final int f45748a;
+    public final m0 f45749b;
 
-    public z(o0 o0Var, Context context, PointF pointF, float f7, float f10, iw0 iw0Var, TLRPC.Document document, Object obj) {
-        super(context, pointF, f7, f10, iw0Var, document, obj);
-        this.f44391y0 = o0Var;
+    public z(m0 m0Var, int i10) {
+        this.f45748a = i10;
+        this.f45749b = m0Var;
     }
 
     @Override
-    public final void q(yj0 yj0Var) {
-        PhotoViewer photoViewer = ((gu0) this.f44391y0).f36310o2;
-        i81 i81Var = photoViewer.F2;
-        if (i81Var == null) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f45748a) {
+            case 0:
+                this.f45749b.f45502f2.setTranslationY(0.0f);
+                return;
+            default:
+                m0 m0Var = this.f45749b;
+                m0Var.f45508i2 = false;
+                m0Var.f45502f2.setTranslationY(0.0f);
+                m0Var.n0();
+                return;
         }
-        long n10 = i81Var.n();
-        long j10 = photoViewer.f32004m8;
-        long j11 = 0;
-        if (j10 > 0) {
-            j11 = j10 / 1000;
-        }
-        yj0Var.U(n10 - j11);
     }
 }

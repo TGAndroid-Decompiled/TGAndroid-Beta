@@ -1,44 +1,67 @@
 package e0;
 
 import android.app.Activity;
-import android.os.Build;
-import android.text.TextUtils;
-import java.util.Arrays;
-import java.util.HashSet;
-public abstract class c extends f0.c {
-    public static void e(Activity activity, String[] strArr, int i10) {
-        String[] strArr2;
-        HashSet hashSet = new HashSet();
-        for (int i11 = 0; i11 < strArr.length; i11++) {
-            if (!TextUtils.isEmpty(strArr[i11])) {
-                if (Build.VERSION.SDK_INT < 33 && TextUtils.equals(strArr[i11], "android.permission.POST_NOTIFICATIONS")) {
-                    hashSet.add(Integer.valueOf(i11));
+import android.app.Application;
+import android.os.Bundle;
+import android.util.Log;
+public final class c implements Application.ActivityLifecycleCallbacks {
+    public Object f8080a;
+    public Activity f8081b;
+    public final int f8082c;
+    public boolean d = false;
+    public boolean e = false;
+    public boolean f8083f = false;
+
+    public c(Activity activity) {
+        this.f8081b = activity;
+        this.f8082c = activity.hashCode();
+    }
+
+    @Override
+    public final void onActivityDestroyed(Activity activity) {
+        if (this.f8081b == activity) {
+            this.f8081b = null;
+            this.e = true;
+        }
+    }
+
+    @Override
+    public final void onActivityPaused(Activity activity) {
+        if (this.e && !this.f8083f && !this.d) {
+            Object obj = this.f8080a;
+            try {
+                Object obj2 = d.f8086c.get(activity);
+                if (obj2 == obj && activity.hashCode() == this.f8082c) {
+                    d.f8088g.postAtFrontOfQueue(new j9.u(13, d.f8085b.get(activity), obj2));
+                    this.f8083f = true;
+                    this.f8080a = null;
                 }
-            } else {
-                throw new IllegalArgumentException(a1.g.s(new StringBuilder("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
+            } catch (Throwable th2) {
+                Log.e("ActivityRecreator", "Exception while fetching field values", th2);
             }
         }
-        int size = hashSet.size();
-        if (size > 0) {
-            strArr2 = new String[strArr.length - size];
-        } else {
-            strArr2 = strArr;
+    }
+
+    @Override
+    public final void onActivityStarted(Activity activity) {
+        if (this.f8081b == activity) {
+            this.d = true;
         }
-        if (size > 0) {
-            if (size == strArr.length) {
-                return;
-            }
-            int i12 = 0;
-            for (int i13 = 0; i13 < strArr.length; i13++) {
-                if (!hashSet.contains(Integer.valueOf(i13))) {
-                    strArr2[i12] = strArr[i13];
-                    i12++;
-                }
-            }
-        }
-        if (activity instanceof b) {
-            b bVar = (b) activity;
-        }
-        activity.requestPermissions(strArr, i10);
+    }
+
+    @Override
+    public final void onActivityResumed(Activity activity) {
+    }
+
+    @Override
+    public final void onActivityStopped(Activity activity) {
+    }
+
+    @Override
+    public final void onActivityCreated(Activity activity, Bundle bundle) {
+    }
+
+    @Override
+    public final void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
     }
 }

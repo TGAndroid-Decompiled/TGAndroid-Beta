@@ -6,38 +6,38 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.fo;
+import org.telegram.ui.sn;
 public final class b implements Runnable {
-    public final int f48414a;
-    public final c f48415b;
-    public final MessageObject f48416c;
+    public final int f49823a;
+    public final c f49824b;
+    public final MessageObject f49825c;
     public final TLRPC.TL_messageMediaGiveawayResults d;
 
     public b(c cVar, MessageObject messageObject, TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults, int i10) {
-        this.f48414a = i10;
-        this.f48415b = cVar;
-        this.f48416c = messageObject;
+        this.f49823a = i10;
+        this.f49824b = cVar;
+        this.f49825c = messageObject;
         this.d = tL_messageMediaGiveawayResults;
     }
 
     @Override
     public final void run() {
-        switch (this.f48414a) {
+        switch (this.f49823a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new b(this.f48415b, this.f48416c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new b(this.f49824b, this.f49825c, this.d, 1));
                 return;
             default:
-                u1 u1Var = this.f48415b.f48419c;
-                long dialogId = this.f48416c.getDialogId();
+                u1 u1Var = this.f49824b.f49828c;
+                long dialogId = this.f49825c.getDialogId();
                 TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = this.d;
                 if (dialogId == (-tL_messageMediaGiveawayResults.channel_id)) {
-                    u1Var.getDelegate().U1(u1Var, tL_messageMediaGiveawayResults.launch_msg_id, 0.0f, 0.0f, false);
+                    u1Var.getDelegate().R1(u1Var, tL_messageMediaGiveawayResults.launch_msg_id, 0.0f, 0.0f, false);
                     return;
                 }
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", tL_messageMediaGiveawayResults.channel_id);
                 bundle.putInt("message_id", tL_messageMediaGiveawayResults.launch_msg_id);
-                LaunchActivity.R().presentFragment(new fo(bundle));
+                LaunchActivity.R().presentFragment(new sn(bundle));
                 return;
         }
     }

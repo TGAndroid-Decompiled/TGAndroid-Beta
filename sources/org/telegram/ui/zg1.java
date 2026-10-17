@@ -1,16 +1,26 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_account;
-public final class zg1 extends oh1 {
-    public final TwoStepVerificationActivity f42319k0;
+import org.telegram.messenger.AndroidUtilities;
+import org.webrtc.RendererCommon;
+public final class zg1 implements RendererCommon.RendererEvents {
+    public final jh1 f43747a;
 
-    public zg1(TwoStepVerificationActivity twoStepVerificationActivity, int i10, TL_account.Password password) {
-        super(i10, 4, password);
-        this.f42319k0 = twoStepVerificationActivity;
+    public zg1(jh1 jh1Var) {
+        this.f43747a = jh1Var;
     }
 
     @Override
-    public final void B0() {
-        this.f42319k0.N = true;
+    public final void onFirstFrameRendered() {
+        jh1 jh1Var = this.f43747a;
+        com.google.android.gms.internal.cast.p pVar = jh1Var.l1;
+        if (pVar != null) {
+            pVar.run();
+            jh1Var.l1 = null;
+        }
+        AndroidUtilities.runOnUIThread(new sy0(this, 23));
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

@@ -1,12 +1,12 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class k6 extends org.telegram.ui.Components.md0 {
-    public final d7 D0;
+public final class k6 extends org.telegram.ui.Components.gd0 {
+    public final c7 D0;
 
-    public k6(d7 d7Var, Context context) {
+    public k6(c7 c7Var, Context context) {
         super(context);
-        this.D0 = d7Var;
+        this.D0 = c7Var;
     }
 
     @Override

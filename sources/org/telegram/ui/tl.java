@@ -1,31 +1,21 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-public final class tl extends ViewOutlineProvider {
-    public final fo f40135a;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class tl extends bu0 {
+    public final sn f41772a;
 
-    public tl(fo foVar) {
-        this.f40135a = foVar;
+    public tl(sn snVar) {
+        this.f41772a = snVar;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
-        if (imageReceiver != null) {
-            int[] roundRadius = imageReceiver.getRoundRadius();
-            int i10 = 0;
-            for (int i11 = 0; i11 < 4; i11++) {
-                i10 = Math.max(i10, roundRadius[i11]);
-            }
-            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
-            return;
-        }
-        fo foVar = this.f40135a;
-        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(foVar.H9()), AndroidUtilities.roundPlayingMessageSize(foVar.H9()));
+    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return sn.E1(this.f41772a, messageObject, fileLocation, i10, z10, false);
+    }
+
+    @Override
+    public final boolean L() {
+        return true;
     }
 }

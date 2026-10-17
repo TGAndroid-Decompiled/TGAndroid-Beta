@@ -1,42 +1,69 @@
 package m;
 
-import android.os.SystemClock;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewParent;
-public final class v1 implements Runnable {
-    public final int f14996a;
-    public final w1 f14997b;
+import android.view.ViewConfiguration;
+public abstract class v1 implements View.OnTouchListener, View.OnAttachStateChangeListener {
+    public final float f16346a;
+    public final int f16347b;
+    public final int f16348c;
+    public final View d;
+    public u1 e;
+    public u1 f16349f;
+    public boolean h;
+    public int f16350n;
+    public final int[] f16351r = new int[2];
 
-    public v1(w1 w1Var, int i10) {
-        this.f14996a = i10;
-        this.f14997b = w1Var;
+    public v1(View view) {
+        this.d = view;
+        view.setLongClickable(true);
+        view.addOnAttachStateChangeListener(this);
+        this.f16346a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+        int tapTimeout = ViewConfiguration.getTapTimeout();
+        this.f16347b = tapTimeout;
+        this.f16348c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
+    }
+
+    public final void a() {
+        u1 u1Var = this.f16349f;
+        View view = this.d;
+        if (u1Var != null) {
+            view.removeCallbacks(u1Var);
+        }
+        u1 u1Var2 = this.e;
+        if (u1Var2 != null) {
+            view.removeCallbacks(u1Var2);
+        }
+    }
+
+    public abstract l.b0 b();
+
+    public abstract boolean c();
+
+    public boolean d() {
+        l.b0 b10 = b();
+        if (b10 != null && b10.a()) {
+            b10.dismiss();
+            return true;
+        }
+        return true;
     }
 
     @Override
-    public final void run() {
-        switch (this.f14996a) {
-            case 0:
-                ViewParent parent = this.f14997b.d.getParent();
-                if (parent != null) {
-                    parent.requestDisallowInterceptTouchEvent(true);
-                    return;
-                }
-                return;
-            default:
-                w1 w1Var = this.f14997b;
-                w1Var.a();
-                View view = w1Var.d;
-                if (view.isEnabled() && !view.isLongClickable() && w1Var.c()) {
-                    view.getParent().requestDisallowInterceptTouchEvent(true);
-                    long uptimeMillis = SystemClock.uptimeMillis();
-                    MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
-                    view.onTouchEvent(obtain);
-                    obtain.recycle();
-                    w1Var.h = true;
-                    return;
-                }
-                return;
+    public final boolean onTouch(android.view.View r13, android.view.MotionEvent r14) {
+        throw new UnsupportedOperationException("Method not decompiled: m.v1.onTouch(android.view.View, android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        this.h = false;
+        this.f16350n = -1;
+        u1 u1Var = this.e;
+        if (u1Var != null) {
+            this.d.removeCallbacks(u1Var);
         }
+    }
+
+    @Override
+    public final void onViewAttachedToWindow(View view) {
     }
 }

@@ -3,28 +3,28 @@ package s4;
 import android.view.View;
 import java.util.List;
 public final class z {
-    public boolean f45005a;
-    public int f45006b;
-    public int f45007c;
+    public boolean f46105a;
+    public int f46106b;
+    public int f46107c;
     public int d;
     public int e;
-    public int f45008f;
-    public int f45009g;
+    public int f46108f;
+    public int f46109g;
     public int h;
-    public int f45010i;
-    public int f45011j;
-    public List f45012k;
-    public boolean f45013l;
+    public int f46110i;
+    public int f46111j;
+    public List f46112k;
+    public boolean f46113l;
 
     public final void a(View view) {
         int b10;
-        int size = this.f45012k.size();
+        int size = this.f46112k.size();
         View view2 = null;
         int i10 = Integer.MAX_VALUE;
         for (int i11 = 0; i11 < size; i11++) {
-            View view3 = ((b1) this.f45012k.get(i11)).f44838a;
+            View view3 = ((b1) this.f46112k.get(i11)).f45938a;
             o0 o0Var = (o0) view3.getLayoutParams();
-            if (view3 != view && !o0Var.f44942a.j() && (b10 = (o0Var.b() - this.d) * this.e) >= 0 && b10 < i10) {
+            if (view3 != view && !o0Var.f46042a.j() && (b10 = (o0Var.b() - this.d) * this.e) >= 0 && b10 < i10) {
                 view2 = view3;
                 if (b10 == 0) {
                     break;
@@ -48,20 +48,20 @@ public final class z {
     }
 
     public final View c(qf.e eVar) {
-        List list = this.f45012k;
+        List list = this.f46112k;
         if (list != null) {
             int size = list.size();
             for (int i10 = 0; i10 < size; i10++) {
-                View view = ((b1) this.f45012k.get(i10)).f44838a;
+                View view = ((b1) this.f46112k.get(i10)).f45938a;
                 o0 o0Var = (o0) view.getLayoutParams();
-                if (!o0Var.f44942a.j() && this.d == o0Var.b()) {
+                if (!o0Var.f46042a.j() && this.d == o0Var.b()) {
                     a(view);
                     return view;
                 }
             }
             return null;
         }
-        View view2 = eVar.j(this.d, Long.MAX_VALUE).f44838a;
+        View view2 = eVar.j(this.d, Long.MAX_VALUE).f45938a;
         this.d += this.e;
         return view2;
     }

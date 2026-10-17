@@ -1,11 +1,11 @@
 package w7;
 public abstract class s {
     public static m1.c a(String name) {
-        ie.d dVar = be.n0.f2694b;
+        ie.d dVar = be.n0.f4306b;
         be.j1 j1Var = new be.j1();
         dVar.getClass();
-        ge.e b10 = be.f0.b(k.c(dVar, j1Var));
+        ge.e b10 = be.f0.b(h.c(dVar, j1Var));
         kotlin.jvm.internal.i.e(name, "name");
-        return new m1.c(name, m1.a.f15041b, b10);
+        return new m1.c(name, m1.a.f16394b, b10);
     }
 }

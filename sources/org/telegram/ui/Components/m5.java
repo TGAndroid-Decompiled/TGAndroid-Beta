@@ -3,36 +3,51 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
 public final class m5 implements Runnable {
-    public final int f26923a;
-    public final o5 f26924b;
-    public final ArrayList f26925c;
-    public final HashSet d;
+    public final int f28394a;
+    public final n5 f28395b;
+    public final ArrayList f28396c;
+    public final TLObject d;
 
-    public m5(o5 o5Var, ArrayList arrayList, HashSet hashSet, int i10) {
-        this.f26923a = i10;
-        this.f26924b = o5Var;
-        this.f26925c = arrayList;
-        this.d = hashSet;
+    public m5(n5 n5Var, ArrayList arrayList, TLObject tLObject, int i10) {
+        this.f28394a = i10;
+        this.f28395b = n5Var;
+        this.f28396c = arrayList;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f26923a) {
+        switch (this.f28394a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new m5(this.f26924b, this.f26925c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new m5(this.f28395b, this.f28396c, this.d, 1));
                 return;
             default:
-                o5 o5Var = this.f26924b;
-                o5Var.d(this.f26925c);
-                HashSet hashSet = this.d;
-                if (!hashSet.isEmpty()) {
-                    ArrayList<Long> arrayList = new ArrayList<>(hashSet);
-                    TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
-                    tL_messages_getCustomEmojiDocuments.document_id = arrayList;
-                    ConnectionsManager.getInstance(o5Var.e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.to(3, o5Var, arrayList));
+                n5 n5Var = this.f28395b;
+                int i10 = n5Var.e;
+                HashSet hashSet = new HashSet(this.f28396c);
+                TLObject tLObject = this.d;
+                if (tLObject instanceof Vector) {
+                    ArrayList arrayList = ((Vector) tLObject).objects;
+                    MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new k5(n5Var, arrayList, 1));
+                    n5Var.d(arrayList);
+                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                        if (arrayList.get(i11) instanceof TLRPC.Document) {
+                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i11)).f20278id));
+                        }
+                    }
+                    if (!hashSet.isEmpty()) {
+                        ArrayList<Long> arrayList2 = new ArrayList<>(hashSet);
+                        TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
+                        tL_messages_getCustomEmojiDocuments.document_id = arrayList2;
+                        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.xc(10, n5Var, arrayList2));
+                        return;
+                    }
                     return;
                 }
                 return;

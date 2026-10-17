@@ -1,29 +1,77 @@
 package qg;
 
-import ji.w4;
-public final class n0 implements Runnable {
-    public final int f43234a;
-    public final q0 f43235b;
+import android.animation.ValueAnimator;
+public final class n0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f44603a;
+    public final s0 f44604b;
 
-    public n0(q0 q0Var, int i10) {
-        this.f43234a = i10;
-        this.f43235b = q0Var;
+    public n0(s0 s0Var, int i10) {
+        this.f44603a = i10;
+        this.f44604b = s0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43234a) {
+    public final void onAnimationUpdate(final ValueAnimator valueAnimator) {
+        switch (this.f44603a) {
             case 0:
-                q0 q0Var = this.f43235b;
-                q0Var.f43265c = null;
-                w4 w4Var = q0Var.f43263a;
-                if (w4Var != null) {
-                    w4Var.Y0();
-                    return;
-                }
+                final s0 s0Var = this.f44604b;
+                s0Var.f44648f.f(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                s0 s0Var2 = s0Var;
+                                s0Var2.getClass();
+                                s0Var2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                le.b bVar = s0Var2.f44645a;
+                                if (bVar != null) {
+                                    bVar.a0();
+                                    return;
+                                }
+                                return;
+                            default:
+                                s0 s0Var3 = s0Var;
+                                s0Var3.getClass();
+                                s0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                le.b bVar2 = s0Var3.f44645a;
+                                if (bVar2 != null) {
+                                    bVar2.a0();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             default:
-                this.f43235b.b();
+                final s0 s0Var2 = this.f44604b;
+                s0Var2.f44648f.f(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                s0 s0Var22 = s0Var2;
+                                s0Var22.getClass();
+                                s0Var22.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                le.b bVar = s0Var22.f44645a;
+                                if (bVar != null) {
+                                    bVar.a0();
+                                    return;
+                                }
+                                return;
+                            default:
+                                s0 s0Var3 = s0Var2;
+                                s0Var3.getClass();
+                                s0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                le.b bVar2 = s0Var3.f44645a;
+                                if (bVar2 != null) {
+                                    bVar2.a0();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

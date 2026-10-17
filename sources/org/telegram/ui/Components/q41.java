@@ -1,19 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class q41 extends x41 {
-    public final org.telegram.ui.wf T;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class q41 extends s4.g0 {
+    public Context f29572c;
+    public View d;
+    public int e;
 
-    public q41(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i10, TL_iv.RichMessage richMessage, org.telegram.ui.wf wfVar) {
-        super(activity, str, str2, null, inputPeer, i10, false, richMessage);
-        this.T = wfVar;
+    public final void D(View view) {
+        if (this.d == view) {
+            return;
+        }
+        this.e++;
+        this.d = view;
+        m(1);
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.T.run();
+    public final int h() {
+        return 2;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        return this.e;
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        if (i10 == 0) {
+            return new s4.b1(new un(this.f29572c, 13));
+        }
+        return new s4.b1(this.d);
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
     }
 }

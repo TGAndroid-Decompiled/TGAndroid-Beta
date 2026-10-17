@@ -1,22 +1,14 @@
 package ug;
-public final class k implements Runnable {
-    public final int f46325a;
-    public final n f46326b;
 
-    public k(n nVar, int i10) {
-        this.f46325a = i10;
-        this.f46326b = nVar;
-    }
+import org.telegram.ui.ActionBar.d6;
+public final class k {
+    public final y f47713a;
+    public final d6 f47714b;
+    public final l f47715c;
 
-    @Override
-    public final void run() {
-        switch (this.f46325a) {
-            case 0:
-                this.f46326b.dismiss();
-                return;
-            default:
-                this.f46326b.onBackPressed();
-                return;
-        }
+    public k(l lVar, y yVar, d6 d6Var) {
+        this.f47715c = lVar;
+        this.f47713a = yVar;
+        this.f47714b = d6Var;
     }
 }

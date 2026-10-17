@@ -1,24 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class hg extends u51 {
-    public final ig h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class hg extends AnimatorListenerAdapter {
+    public final int f26879a;
+    public final int f26880b;
+    public final ChatActivityEnterView f26881c;
 
-    public hg(ig igVar, Context context, org.telegram.ui.ActionBar.m2 m2Var, i61 i61Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, m2Var, i61Var, c6Var);
-        this.h = igVar;
+    public hg(ChatActivityEnterView chatActivityEnterView, int i10, int i11) {
+        this.f26879a = i11;
+        this.f26881c = chatActivityEnterView;
+        this.f26880b = i10;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        ChatActivityEnterView chatActivityEnterView = this.h.f25637a;
-        if (chatActivityEnterView.f22553a3 == this) {
-            chatActivityEnterView.f22553a3 = null;
-        }
-        pg pgVar = chatActivityEnterView.Z2;
-        if (pgVar != null) {
-            pgVar.D(false);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f26879a) {
+            case 0:
+                int i10 = this.f26880b;
+                ChatActivityEnterView chatActivityEnterView = this.f26881c;
+                if (i10 == 0) {
+                    chatActivityEnterView.A2 = 0;
+                }
+                chatActivityEnterView.V0 = null;
+                chatActivityEnterView.H1.setTranslationY(0.0f);
+                chatActivityEnterView.H1.setVisibility(8);
+                chatActivityEnterView.L3.unlock();
+                og ogVar = chatActivityEnterView.Z2;
+                if (ogVar != null) {
+                    ogVar.z(0.0f);
+                }
+                chatActivityEnterView.requestLayout();
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView2 = this.f26881c;
+                jw0 jw0Var = chatActivityEnterView2.f23978m1;
+                chatActivityEnterView2.A3 = false;
+                chatActivityEnterView2.B3 = null;
+                dg dgVar = chatActivityEnterView2.U0;
+                if (dgVar != null) {
+                    if (chatActivityEnterView2.f23930d5 == null) {
+                        dgVar.getLayoutParams().height = this.f26880b;
+                    }
+                    chatActivityEnterView2.U0.setLayerType(0, null);
+                }
+                if (jw0Var != null) {
+                    jw0Var.requestLayout();
+                    jw0Var.setForeground(null);
+                    jw0Var.setWillNotDraw(false);
+                }
+                if (chatActivityEnterView2.f24050z2 && chatActivityEnterView2.r0()) {
+                    chatActivityEnterView2.r1(0, chatActivityEnterView2.f23940f2, true, true);
+                }
+                ie ieVar = chatActivityEnterView2.f24005r0;
+                if (ieVar != null) {
+                    ieVar.run();
+                    chatActivityEnterView2.f24005r0 = null;
+                }
+                chatActivityEnterView2.L3.unlock();
+                return;
         }
     }
 }

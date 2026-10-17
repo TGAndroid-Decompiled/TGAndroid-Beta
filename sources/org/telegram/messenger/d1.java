@@ -5,27 +5,27 @@ import java.util.List;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class d1 implements Utilities.Callback {
-    public final int f16733a;
-    public final Object f16734b;
+    public final int f18139a;
+    public final Object f18140b;
 
     public d1(Object obj, int i10) {
-        this.f16733a = i10;
-        this.f16734b = obj;
+        this.f18139a = i10;
+        this.f18140b = obj;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f16733a) {
+        switch (this.f18139a) {
             case 0:
-                ChatThemeController.q((ChatThemeController) this.f16734b, (List) obj);
+                ChatThemeController.q((ChatThemeController) this.f18140b, (List) obj);
                 return;
             case 1:
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                ((Runnable) this.f16734b).run();
+                ((Runnable) this.f18140b).run();
                 return;
             default:
                 Object[] objArr = (Object[]) obj;
-                ((View) this.f16734b).invalidate();
+                ((View) this.f18140b).invalidate();
                 return;
         }
     }

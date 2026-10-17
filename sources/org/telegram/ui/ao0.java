@@ -1,33 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ao0 implements RequestDelegate {
-    public final int f34001a;
-    public final ap0 f34002b;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class ao0 implements TextWatcher {
+    public int f35474a = -1;
+    public boolean f35475b;
+    public int f35476c;
+    public final fo0 d;
 
-    public ao0(ap0 ap0Var, int i10) {
-        this.f34001a = i10;
-        this.f34002b = ap0Var;
+    public ao0(fo0 fo0Var) {
+        this.d = fo0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f34001a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new se0(27, this.f34002b, tL_error));
+    public final void afterTextChanged(android.text.Editable r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ao0.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        boolean z10 = false;
+        if (i11 == 0 && i12 == 1) {
+            if (TextUtils.indexOf((CharSequence) this.d.f36983f[1].getText(), '/') != -1) {
+                z10 = true;
+            }
+            this.f35475b = z10;
+            this.f35474a = 1;
+        } else if (i11 == 1 && i12 == 0) {
+            if (charSequence.charAt(i10) == '/' && i10 > 0) {
+                this.f35475b = false;
+                this.f35474a = 3;
+                this.f35476c = i10 - 1;
                 return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new zn0(this.f34002b, tL_error, tLObject, 0));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new tn0(this.f34002b, tLObject, 2));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new tn0(this.f34002b, tLObject, 0));
-                return;
+            }
+            this.f35474a = 2;
+        } else {
+            this.f35474a = -1;
         }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

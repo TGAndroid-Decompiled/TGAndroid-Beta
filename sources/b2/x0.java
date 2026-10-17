@@ -1,42 +1,53 @@
 package b2;
 
-import java.io.IOException;
-public class x0 extends IOException {
-    public final boolean f2530a;
-    public final int f2531b;
+import android.os.Bundle;
+import j$.util.Objects;
+import v7.u6;
+public final class x0 extends g1 {
+    public static final String f4143c;
+    public final float f4144b;
 
-    public x0(String str, Throwable th2, boolean z10, int i10) {
-        super(str, th2);
-        this.f2530a = z10;
-        this.f2531b = i10;
+    static {
+        String str = e2.m0.f8254a;
+        f4143c = Integer.toString(1, 36);
     }
 
-    public static x0 a(RuntimeException runtimeException, String str) {
-        return new x0(str, runtimeException, true, 1);
-    }
-
-    public static x0 b(String str, Exception exc) {
-        return new x0(str, exc, true, 4);
-    }
-
-    public static x0 c(String str) {
-        return new x0(str, null, false, 1);
+    public x0() {
+        this.f4144b = -1.0f;
     }
 
     @Override
-    public String getMessage() {
-        String str;
-        String message = super.getMessage();
-        StringBuilder sb2 = new StringBuilder();
-        if (message != null) {
-            str = message.concat(" ");
-        } else {
-            str = "";
+    public final boolean b() {
+        if (this.f4144b != -1.0f) {
+            return true;
         }
-        sb2.append(str);
-        sb2.append("{contentIsMalformed=");
-        sb2.append(this.f2530a);
-        sb2.append(", dataType=");
-        return a1.g.n(this.f2531b, "}", sb2);
+        return false;
+    }
+
+    @Override
+    public final Bundle c() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(g1.f3771a, 1);
+        bundle.putFloat(f4143c, this.f4144b);
+        return bundle;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof x0)) {
+            return false;
+        }
+        if (this.f4144b != ((x0) obj).f4144b) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Float.valueOf(this.f4144b));
+    }
+
+    public x0(float f7) {
+        u6.f("percent must be in the range of [0, 100]", f7 >= 0.0f && f7 <= 100.0f);
+        this.f4144b = f7;
     }
 }

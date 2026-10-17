@@ -5,25 +5,25 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.bs;
 public final class b extends View {
-    public final ne.b f44408a;
-    public final Drawable f44409b;
-    public final Drawable f44410c;
+    public final ne.b f45757a;
+    public final Drawable f45758b;
+    public final Drawable f45759c;
 
     public b(Context context) {
         super(context);
-        this.f44408a = new ne.b(this, es.h, 320L);
-        this.f44409b = context.getResources().getDrawable(R.drawable.outline_poll_emoji_24).mutate();
-        this.f44410c = context.getResources().getDrawable(R.drawable.input_keyboard).mutate();
+        this.f45757a = new ne.b(this, bs.h, 320L);
+        this.f45758b = context.getResources().getDrawable(R.drawable.outline_poll_emoji_24).mutate();
+        this.f45759c = context.getResources().getDrawable(R.drawable.input_keyboard).mutate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float f7 = this.f44408a.e;
-        zf.q.b(canvas, this.f44409b, 1.0f - f7);
-        zf.q.b(canvas, this.f44410c, f7);
+        float f7 = this.f45757a.e;
+        zf.p.b(canvas, this.f45758b, 1.0f - f7);
+        zf.p.b(canvas, this.f45759c, f7);
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class b extends View {
         super.onSizeChanged(i10, i11, i12, i13);
         float f7 = i10 / 2.0f;
         float f10 = i11 / 2.0f;
-        zf.q.d(this.f44409b, f7, f10, 17);
-        zf.q.d(this.f44410c, f7, f10, 17);
+        zf.p.d(this.f45758b, f7, f10, 17);
+        zf.p.d(this.f45759c, f7, f10, 17);
     }
 }

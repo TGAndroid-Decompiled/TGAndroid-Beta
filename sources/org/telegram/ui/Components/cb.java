@@ -1,25 +1,44 @@
 package org.telegram.ui.Components;
-public final class cb {
-    public boolean f23665a;
-    public int f23666b;
-    public boolean f23667c;
-    public boolean d;
-    public boolean e;
-    public int f23668f;
-    public org.telegram.ui.ActionBar.c6 f23669g;
 
-    public cb(cb cbVar) {
-        this.f23665a = cbVar.f23665a;
-        this.f23666b = cbVar.f23666b;
-        this.f23667c = cbVar.f23667c;
-        this.d = cbVar.d;
-        this.e = cbVar.e;
-        this.f23668f = cbVar.f23668f;
-        this.f23669g = cbVar.f23669g;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.style.LeadingMarginSpan;
+public final class cb implements LeadingMarginSpan {
+    public final int f25185a;
+    public final int f25186b;
+
+    public cb(int i10, int i11) {
+        this.f25185a = i10;
+        this.f25186b = i11;
     }
 
-    public cb() {
-        this.f23666b = 1;
-        this.f23668f = 1;
+    @Override
+    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i10, int i11, int i12, int i13, int i14, CharSequence charSequence, int i15, int i16, boolean z10, Layout layout) {
+        int i17;
+        if (((Spanned) charSequence).getSpanStart(this) == i15) {
+            Paint.Style style = paint.getStyle();
+            int color = paint.getColor();
+            paint.setColor(-11491093);
+            paint.setStyle(Paint.Style.FILL);
+            if (layout != null) {
+                if (layout.getLineForOffset(i15) != layout.getLineCount() - 1) {
+                    i17 = (int) layout.getSpacingAdd();
+                } else {
+                    i17 = 0;
+                }
+                i14 -= i17;
+            }
+            int i18 = this.f25186b;
+            canvas.drawCircle((i11 * i18) + i10, (i12 + i14) / 2.0f, i18, paint);
+            paint.setColor(color);
+            paint.setStyle(style);
+        }
+    }
+
+    @Override
+    public final int getLeadingMargin(boolean z10) {
+        return (this.f25186b * 2) + this.f25185a;
     }
 }

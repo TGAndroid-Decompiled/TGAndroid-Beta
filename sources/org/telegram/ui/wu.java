@@ -1,67 +1,58 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.StatsController;
-public final class wu implements org.telegram.ui.Components.xl0, org.telegram.ui.ActionBar.z1 {
-    public final av f41361a;
+import android.content.Context;
+import android.graphics.RectF;
+import android.os.Bundle;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+public final class wu extends org.telegram.ui.Components.vy0 {
+    public final n2.e I;
 
-    public wu(av avVar) {
-        this.f41361a = avVar;
+    public wu(Context context, long j10, n2.e eVar) {
+        super(context);
+        this.I = eVar;
+        this.f31927a = new RectF();
+        this.f31930f = 0.0f;
+        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
+        this.f31932r = p6Var;
+        org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(false, true, false);
+        this.f31933s = p6Var2;
+        p6Var.setCallback(this);
+        p6Var2.setCallback(this);
+        this.f31931n = Long.valueOf(j10);
+        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        h9Var.f26822p = 1.5f;
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.h = imageReceiver;
+        imageReceiver.setParentView(this);
+        if (j10 == Long.MAX_VALUE) {
+            this.v = LocaleController.getString(R.string.CacheOtherChats);
+            h9Var.g(14);
+            imageReceiver.setForUserOrChat(null, h9Var);
+            return;
+        }
+        String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(imageReceiver, h9Var, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j10));
+        this.v = dialogPhotoTitle;
+        this.v = Emoji.replaceEmoji(dialogPhotoTitle, null, false);
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        int i11;
-        int i12;
-        int i13;
-        av avVar = this.f41361a;
-        ev evVar = avVar.f34102m3;
-        ArrayList arrayList = avVar.f34093d3;
-        arrayList.clear();
-        int i14 = 0;
-        while (true) {
-            zu[] zuVarArr = avVar.f34094e3;
-            if (i14 >= zuVarArr.length) {
-                i11 = ((org.telegram.ui.ActionBar.m2) evVar).currentAccount;
-                StatsController.getInstance(i11).resetStats(0);
-                i12 = ((org.telegram.ui.ActionBar.m2) evVar).currentAccount;
-                StatsController.getInstance(i12).resetStats(1);
-                i13 = ((org.telegram.ui.ActionBar.m2) evVar).currentAccount;
-                StatsController.getInstance(i13).resetStats(2);
-                avVar.V2 = true;
-                avVar.A1();
-                avVar.B1(true);
-                return;
-            }
-            zu zuVar = zuVarArr[i14];
-            if (zuVar.f24373c > 0) {
-                arrayList.add(Integer.valueOf(zuVar.d));
-            }
-            i14++;
+    public final void b() {
+        n2.e eVar = this.I;
+        c7 c7Var = (c7) eVar.f17036c;
+        c7Var.T.dismiss();
+        Bundle bundle = new Bundle();
+        long j10 = ((v6) eVar.f17035b).f42133a;
+        if (j10 > 0) {
+            bundle.putLong("user_id", j10);
+        } else {
+            bundle.putLong("chat_id", -j10);
         }
-    }
-
-    @Override
-    public int run() {
-        av avVar = this.f41361a;
-        ArrayList arrayList = avVar.f34090a3;
-        int i10 = 0;
-        while (true) {
-            if (i10 < arrayList.size()) {
-                if (((vu) arrayList.get(i10)).f42904a == 5) {
-                    break;
-                }
-                i10++;
-            } else {
-                i10 = -1;
-                break;
-            }
-        }
-        if (i10 < 0) {
-            return -1;
-        }
-        avVar.X2.h1(i10, AndroidUtilities.dp(60.0f));
-        return i10;
+        c7Var.presentFragment(new ProfileActivity(bundle, null));
     }
 }

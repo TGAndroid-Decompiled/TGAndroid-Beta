@@ -4,61 +4,61 @@ import android.app.PictureInPictureParams;
 import android.graphics.Rect;
 import android.os.Build;
 import android.view.View;
-import com.google.firebase.messaging.m;
-import com.google.firebase.messaging.s;
-import di.f4;
-import i2.h0;
+import com.google.firebase.messaging.l;
+import com.google.firebase.messaging.r;
+import ei.z3;
+import i2.g0;
 import java.util.HashMap;
-import k2.m0;
+import k2.n0;
 public final class d {
-    public static int f43931n;
-    public static final Rect f43932o = new Rect();
-    public final m f43933a;
-    public final tf.e f43934b;
-    public final String f43935c;
+    public static int f45287n;
+    public static final Rect f45288o = new Rect();
+    public final l f45289a;
+    public final tf.e f45290b;
+    public final String f45291c;
     public final int d;
     public final int e;
-    public final boolean f43936f;
-    public final tf.a f43937g;
-    public final m0 h;
-    public final s f43938i;
-    public View f43939j;
-    public View f43940k;
-    public h0 f43941l;
-    public boolean f43942m;
+    public final boolean f45292f;
+    public final tf.a f45293g;
+    public final n0 h;
+    public final r f45294i;
+    public View f45295j;
+    public View f45296k;
+    public g0 f45297l;
+    public boolean f45298m;
 
-    public d(m mVar, c cVar) {
-        int i10 = f43931n;
-        f43931n = i10 + 1;
-        m0 m0Var = new m0();
-        this.h = m0Var;
-        s sVar = new s(new f4(this, 1));
-        this.f43938i = sVar;
+    public d(l lVar, c cVar) {
+        int i10 = f45287n;
+        f45287n = i10 + 1;
+        n0 n0Var = new n0();
+        this.h = n0Var;
+        r rVar = new r(new z3(this, 1));
+        this.f45294i = rVar;
         StringBuilder sb2 = new StringBuilder();
-        String str = cVar.f43925c;
+        String str = cVar.f45281c;
         sb2.append(str == null ? "pip-source" : str);
         sb2.append("-");
         sb2.append(i10);
         String sb3 = sb2.toString();
-        this.f43935c = sb3;
-        this.f43937g = cVar.f43924b;
+        this.f45291c = sb3;
+        this.f45293g = cVar.f45280b;
         this.d = cVar.e;
         this.e = cVar.d;
-        this.f43936f = cVar.f43926f;
-        this.f43933a = mVar;
-        m0Var.d(cVar.h, cVar.f43928i);
-        this.f43941l = cVar.f43927g;
-        this.f43940k = cVar.f43930k;
-        this.f43934b = new tf.e(this);
-        View view = cVar.f43929j;
-        sVar.t(view);
-        this.f43939j = view;
+        this.f45292f = cVar.f45282f;
+        this.f45289a = lVar;
+        n0Var.d(cVar.h, cVar.f45284i);
+        this.f45297l = cVar.f45283g;
+        this.f45296k = cVar.f45286k;
+        this.f45290b = new tf.e(this);
+        View view = cVar.f45285j;
+        rVar.t(view);
+        this.f45295j = view;
         if (view != null) {
             e(view);
         }
         b(false);
-        ((HashMap) mVar.f6194a).put(sb3, this);
-        mVar.I();
+        ((HashMap) lVar.f7647a).put(sb3, this);
+        lVar.N();
     }
 
     public final PictureInPictureParams a() {
@@ -79,33 +79,33 @@ public final class d {
 
     public final void b(boolean z10) {
         boolean z11;
-        if (this.h.c() && this.f43937g.g()) {
+        if (this.h.c() && this.f45293g.g()) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (this.f43942m != z11) {
-            this.f43942m = z11;
+        if (this.f45298m != z11) {
+            this.f45298m = z11;
             if (z10) {
-                m mVar = this.f43933a;
-                mVar.I();
-                ((a) mVar.f6196c).invalidate();
+                l lVar = this.f45289a;
+                lVar.N();
+                ((a) lVar.f7649c).invalidate();
             }
         }
     }
 
     public final void c() {
-        this.f43938i.t(null);
-        m mVar = this.f43933a;
-        if (((HashMap) mVar.f6194a).remove(this.f43935c) != null) {
-            mVar.I();
+        this.f45294i.t(null);
+        l lVar = this.f45289a;
+        if (((HashMap) lVar.f7647a).remove(this.f45291c) != null) {
+            lVar.N();
         }
     }
 
     public final void d(int i10, int i11) {
         if (this.h.d(i10, i11)) {
             b(true);
-            this.f43933a.n(this);
+            this.f45289a.p(this);
         }
     }
 

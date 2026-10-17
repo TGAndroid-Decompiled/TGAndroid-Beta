@@ -5,8 +5,8 @@ import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
-import di.j8;
-import di.t;
+import ei.t;
+import ei.z7;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class MediaCodecVideoConvertor {
         int framerate;
         Integer gradientBottomColor;
         Integer gradientTopColor;
-        j8 hdrInfo;
+        z7 hdrInfo;
         boolean isDark;
         boolean isPhoto;
         boolean isRound;
@@ -147,8 +147,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i10);
                 try {
                     bg.c cVar = new bg.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f2738b;
-                    cVar.f2735a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f4350b;
+                    cVar.f4347a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j10 = mixedSoundInfo.startTime;
                     int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
                     if (i11 > 0) {
@@ -246,8 +246,8 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder m10 = i2.d.m("source size ", i10, "x", i11, "    dest size ");
-        i2.d.w(m10, i12, "x", i13, "   rotated ");
+        StringBuilder m10 = i0.a.m("source size ", i10, "x", i11, "    dest size ");
+        i0.a.w(m10, i12, "x", i13, "   rotated ");
         m10.append(z11);
         m10.append("   ratio ");
         m10.append(f10);
@@ -369,7 +369,7 @@ public class MediaCodecVideoConvertor {
         return sb2.toString();
     }
 
-    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, j8 j8Var, int i14, boolean z11) {
+    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, z7 z7Var, int i14, boolean z11) {
         int i15;
         int i16;
         String readRes;
@@ -408,8 +408,8 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder m10 = i2.d.m("HDR source size ", i10, "x", i11, "    dest size ");
-        i2.d.w(m10, i12, "x", i13, "   rotated ");
+        StringBuilder m10 = i0.a.m("HDR source size ", i10, "x", i11, "    dest size ");
+        i0.a.w(m10, i12, "x", i13, "   rotated ");
         m10.append(z11);
         m10.append("   ratio ");
         m10.append(f10);
@@ -431,7 +431,7 @@ public class MediaCodecVideoConvertor {
         String glslFloat5 = glslFloat(min * min2);
         String glslFloat6 = glslFloat(1.0f / f7);
         String glslFloat7 = glslFloat(1.0f / f11);
-        if (j8Var.a() == 1) {
+        if (z7Var.a() == 1) {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
         } else {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);

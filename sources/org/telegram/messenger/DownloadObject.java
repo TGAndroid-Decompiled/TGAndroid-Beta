@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLObject;
 public class DownloadObject {
     public boolean forceCache;
-    public long f16389id;
+    public long f17784id;
     public TLObject object;
     public String parent;
     public boolean secret;

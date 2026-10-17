@@ -5,103 +5,101 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
 public final class s extends View {
-    public final Paint f43296a;
-    public final Paint f43297b;
-    public final Paint f43298c;
-    public float d;
-    public float e;
-    public final Drawable f43299f;
-    public final float[] h;
-    public final x f43300n;
+    public final Paint f44642a;
+    public final Paint f44643b;
+    public int f44644c;
+    public int d;
+    public final y e;
 
-    public s(x xVar, Context context) {
+    public s(y yVar, Context context) {
         super(context);
-        this.f43300n = xVar;
-        this.f43296a = new Paint(1);
-        this.f43297b = new Paint(1);
+        this.e = yVar;
+        this.f44642a = new Paint(1);
         Paint paint = new Paint(1);
-        this.f43298c = paint;
-        this.h = new float[3];
-        setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f));
+        this.f44643b = paint;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        this.f43299f = context.getDrawable(R.drawable.knob_shadow);
     }
 
-    public final void a(MotionEvent motionEvent) {
-        float f7;
-        this.d = (motionEvent.getX() - getPaddingLeft()) / ((getWidth() - getPaddingLeft()) - getPaddingRight());
-        float y3 = (motionEvent.getY() - getPaddingTop()) / ((getHeight() - getPaddingTop()) - getPaddingBottom());
-        this.e = y3;
-        float[] fArr = this.h;
-        fArr[0] = y3 * 360.0f;
-        float f10 = this.d;
-        int i10 = (f10 > 0.22f ? 1 : (f10 == 0.22f ? 0 : -1));
-        float f11 = 1.0f;
-        if (i10 > 0 && f10 < 0.78f) {
-            fArr[1] = 1.0f;
-            fArr[2] = 1.0f;
-        } else {
-            if (i10 <= 0) {
-                f7 = 1.0f - (f10 / 0.22f);
+    public final void a() {
+        int argb;
+        int argb2;
+        int i10 = this.f44644c;
+        y yVar = this.e;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                argb = Color.argb(255, 0, Color.green(yVar.f44730f), Color.blue(yVar.f44730f));
+                argb2 = Color.argb(255, 255, Color.green(yVar.f44730f), Color.blue(yVar.f44730f));
             } else {
-                f7 = (f10 - 0.78f) / 0.22000003f;
+                argb = Color.argb(255, Color.red(yVar.f44730f), Color.green(yVar.f44730f), 0);
+                argb2 = Color.argb(255, Color.red(yVar.f44730f), Color.green(yVar.f44730f), 255);
             }
-            fArr[1] = AndroidUtilities.lerp(1.0f, 0.0f, f7);
-            float f12 = this.d;
-            if (f12 > 0.22f) {
-                f11 = AndroidUtilities.lerp(1.0f, 0.0f, (f12 - 0.78f) / 0.22000003f);
-            }
-            fArr[2] = f11;
+        } else {
+            argb = Color.argb(255, Color.red(yVar.f44730f), 0, Color.blue(yVar.f44730f));
+            argb2 = Color.argb(255, Color.red(yVar.f44730f), 255, Color.blue(yVar.f44730f));
         }
-        int HSVToColor = Color.HSVToColor(fArr);
-        x xVar = this.f43300n;
-        xVar.f43353f = HSVToColor;
-        xVar.n(HSVToColor, 0);
+        this.f44642a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{argb, argb2}, (float[]) null, Shader.TileMode.CLAMP));
+    }
+
+    public final void b(float f7) {
+        int argb;
+        float dp = AndroidUtilities.dp(6.0f);
+        float a2 = w7.r.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f44643b.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
+        int i10 = this.f44644c;
+        y yVar = this.e;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                argb = Color.argb(255, (int) (a2 * 255.0f), Color.green(yVar.f44730f), Color.blue(yVar.f44730f));
+            } else {
+                argb = Color.argb(255, Color.red(yVar.f44730f), Color.green(yVar.f44730f), (int) (a2 * 255.0f));
+            }
+        } else {
+            argb = Color.argb(255, Color.red(yVar.f44730f), (int) (a2 * 255.0f), Color.blue(yVar.f44730f));
+        }
+        yVar.n(i0.b.o(argb, Color.alpha(yVar.f44730f)), 4);
         invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
+        int green;
         super.onDraw(canvas);
+        float height = getHeight() / 2.0f;
+        float dp = AndroidUtilities.dp(6.0f);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f43296a);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f43297b);
-        float dp = AndroidUtilities.dp(13.0f);
-        Paint paint = this.f43298c;
-        float dp2 = AndroidUtilities.dp(16.0f);
-        int width = (getWidth() - getPaddingLeft()) - getPaddingRight();
-        int height = (getHeight() - getPaddingTop()) - getPaddingBottom();
-        float f7 = width;
-        float a2 = w7.r.a(this.d * f7, dp2, f7 - dp2) + getPaddingLeft();
-        float f10 = height;
-        float a10 = w7.r.a(this.e * f10, dp2, f10 - dp2) + getPaddingTop();
-        Rect rect = AndroidUtilities.rectTmp2;
-        Drawable drawable = this.f43299f;
-        drawable.getPadding(rect);
-        int i10 = rect.bottom;
-        drawable.setBounds((int) ((a2 - dp) - rect.left), (int) ((a10 - dp) - rect.top), (int) (a2 + dp + i10), (int) (a10 + dp + i10));
-        drawable.draw(canvas);
-        canvas.drawCircle(a2, a10, dp, paint);
-        rg.k1.y1(a2, a10, dp - (paint.getStrokeWidth() / 2.0f), i0.a.k(this.f43300n.f43353f, 255), canvas);
+        rectF.set(dp, height - dp, getWidth() - dp, height + dp);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f44642a);
+        int i10 = this.f44644c;
+        y yVar = this.e;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                green = Color.red(yVar.f44730f);
+            } else {
+                green = Color.blue(yVar.f44730f);
+            }
+        } else {
+            green = Color.green(yVar.f44730f);
+        }
+        float f7 = green / 255.0f;
+        float dp2 = AndroidUtilities.dp(13.0f);
+        Paint paint = this.f44643b;
+        float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
+        float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * f7) + dp) - strokeWidth);
+        canvas.drawCircle(max, height, dp2, paint);
+        rg.i1.y1(max, height, strokeWidth, this.d, canvas);
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        this.f43296a.setShader(new LinearGradient(0.0f, getPaddingTop(), 0.0f, i11 - getPaddingBottom(), new int[]{-65536, -256, -16711936, -16711681, -16776961, -65281, -65536}, (float[]) null, Shader.TileMode.CLAMP));
-        this.f43297b.setShader(new LinearGradient(getPaddingLeft(), 0.0f, i10 - getPaddingRight(), 0.0f, new int[]{-1, 0, 0, -16777216}, new float[]{0.06f, 0.22f, 0.78f, 0.94f}, Shader.TileMode.MIRROR));
+        a();
     }
 
     @Override
@@ -113,17 +111,15 @@ public final class s extends View {
                     if (actionMasked == 3) {
                         getParent().requestDisallowInterceptTouchEvent(false);
                     }
-                } else {
-                    a(motionEvent);
                 }
             } else {
+                b(motionEvent.getX());
                 getParent().requestDisallowInterceptTouchEvent(false);
-                a(motionEvent);
             }
-        } else {
-            getParent().requestDisallowInterceptTouchEvent(true);
-            a(motionEvent);
+            return true;
         }
+        getParent().requestDisallowInterceptTouchEvent(true);
+        b(motionEvent.getX());
         return true;
     }
 }

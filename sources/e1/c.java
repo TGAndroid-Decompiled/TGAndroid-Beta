@@ -1,41 +1,747 @@
 package e1;
 
-import v0.i;
-public final class c implements Runnable {
-    public final int f8303a;
-    public final d f8304b;
-    public final w0.d f8305c;
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.ImageView;
+import android.widget.TextView;
+import b2.d1;
+import b2.f;
+import b2.t0;
+import b2.t1;
+import b2.y0;
+import c3.g;
+import c3.u;
+import ci.e6;
+import com.google.android.gms.tasks.OnSuccessListener;
+import e2.m0;
+import e2.o;
+import e2.x;
+import e9.l1;
+import e9.q1;
+import e9.s;
+import ei.a8;
+import ei.bc;
+import ei.jb;
+import ei.lb;
+import ei.m3;
+import ei.ma;
+import ei.o1;
+import ei.oa;
+import ei.q3;
+import ei.qa;
+import ei.r;
+import ei.s9;
+import ei.u5;
+import ei.v6;
+import ei.vb;
+import ei.w0;
+import ei.w9;
+import ei.xa;
+import ei.z6;
+import f2.w;
+import gi.l;
+import gi.s4;
+import hi.t;
+import i2.a0;
+import ig.c1;
+import ig.f1;
+import ig.m1;
+import ig.v1;
+import ig.x1;
+import ig.y1;
+import j4.c0;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.a2;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Cells.i5;
+import org.telegram.ui.Cells.q8;
+import org.telegram.ui.Cells.v8;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.yl0;
+import qg.u1;
+public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.Callback5, u1, CameraController.VideoTakeCallback, g, o, w {
+    public final int f8180a;
+    public final Object f8181b;
 
-    public c(d dVar, w0.d dVar2, int i10) {
-        this.f8303a = i10;
-        this.f8304b = dVar;
-        this.f8305c = dVar2;
+    public c(j2.a aVar, Object obj, int i10) {
+        this.f8180a = i10;
+        this.f8181b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f8303a) {
+    public boolean a(int i10, View view) {
+        q3 q3Var = (q3) this.f8181b;
+        ArrayList arrayList = q3Var.f9626b0;
+        ArrayList arrayList2 = q3Var.f9634h0;
+        if (i10 >= 2 && q3Var.W != null && (view instanceof m3)) {
+            int i11 = i10 - 2;
+            if (q3Var.f9628c0) {
+                if (i11 != 0) {
+                    i11 = i10 - 3;
+                } else {
+                    return false;
+                }
+            } else if (q3Var.f9629d0) {
+                if (i11 < 0 || i11 >= arrayList.size()) {
+                    i11 -= arrayList.size();
+                } else {
+                    return false;
+                }
+            }
+            if (i11 >= 0 && i11 < q3Var.f9632f0.size()) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) q3Var.f9632f0.get(i11);
+                if (arrayList2.isEmpty() && !q3Var.Q) {
+                    if (arrayList2.contains(photoEntry)) {
+                        arrayList2.remove(photoEntry);
+                    } else if (arrayList2.size() + 1 > q3Var.R) {
+                        int i12 = -q3Var.N;
+                        q3Var.N = i12;
+                        AndroidUtilities.shakeViewSpring(view, i12);
+                        BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                        return true;
+                    } else {
+                        arrayList2.add(photoEntry);
+                    }
+                    AndroidUtilities.updateVisibleRows(q3Var.d);
+                    q3Var.j();
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public void b() {
+        ((o1) this.f8181b).invalidate();
+    }
+
+    @Override
+    public void c(long j10, x xVar) {
+        switch (this.f8180a) {
+            case 28:
+                c3.b.c(j10, xVar, ((c0) this.f8181b).f13999c);
+                return;
+            default:
+                c3.b.d(j10, xVar, ((c0) this.f8181b).f13999c);
+                return;
+        }
+    }
+
+    @Override
+    public void e() {
+        float f7;
+        xa xaVar = (xa) this.f8181b;
+        TextView textView = xaVar.f9027o1;
+        boolean a2 = xaVar.D0.a();
+        ImageView imageView = xaVar.f9025n1;
+        imageView.animate().cancel();
+        ViewPropertyAnimator animate = imageView.animate();
+        float f10 = 0.6f;
+        if (a2) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.6f;
+        }
+        animate.alpha(f7).translationY(0.0f).setDuration(150L).start();
+        imageView.setClickable(a2);
+        textView.animate().cancel();
+        ViewPropertyAnimator animate2 = textView.animate();
+        if (a2) {
+            f10 = 1.0f;
+        }
+        animate2.alpha(f10).translationY(0.0f).setDuration(150L).start();
+        textView.setClickable(a2);
+    }
+
+    @Override
+    public void g(b2 b2Var, int i10) {
+        switch (this.f8180a) {
+            case 2:
+                vb vbVar = ((lb) ((r) this.f8181b)).S1;
+                jb jbVar = vbVar.X0;
+                if (jbVar != null) {
+                    jbVar.s(null, null, true);
+                }
+                xa xaVar = vbVar.f10016v1;
+                if (xaVar != null) {
+                    xaVar.p0();
+                }
+                lb lbVar = vbVar.f9957c1;
+                if (lbVar != null) {
+                    lbVar.setHasRoundVideo(false);
+                }
+                a8 a8Var = vbVar.K1;
+                if (a8Var != null) {
+                    File file = a8Var.f8726o0;
+                    if (file != null) {
+                        try {
+                            file.delete();
+                        } catch (Exception unused) {
+                        }
+                        vbVar.K1.f8726o0 = null;
+                    }
+                    if (vbVar.K1.f8728p0 != null) {
+                        try {
+                            new File(vbVar.K1.f8728p0).delete();
+                        } catch (Exception unused2) {
+                        }
+                        vbVar.K1.f8728p0 = null;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 7:
+                ((u5) this.f8181b).f9892a.f9030p2.r();
+                return;
+            case 10:
+                ((gi.e) this.f8181b).run();
+                return;
+            case 11:
+                l lVar = (l) this.f8181b;
+                TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
+                updatestarrefprogram.bot = lVar.getMessagesController().getInputUser(lVar.P);
+                updatestarrefprogram.commission_permille = 0;
+                b2 b2Var2 = new b2(lVar.getParentActivity(), 3, null);
+                b2Var2.q(150L);
+                lVar.getConnectionsManager().sendRequest(updatestarrefprogram, new gi.b(lVar, b2Var2, 0));
+                return;
+            default:
+                v1 v1Var = ((m1) this.f8181b).f12967a;
+                y1 f7 = y1.f(v1.b0(v1Var));
+                ArrayList arrayList = v1Var.f13065b;
+                int i11 = f7.f13093a;
+                int i12 = 0;
+                while (i12 < arrayList.size()) {
+                    if (f7.c(((Integer) arrayList.get(i12)).intValue()) == null) {
+                        arrayList.remove(i12);
+                        i12--;
+                    }
+                    i12++;
+                }
+                if (!arrayList.isEmpty()) {
+                    for (int i13 = 0; i13 < arrayList.size(); i13++) {
+                        x1 c10 = f7.c(((Integer) arrayList.get(i13)).intValue());
+                        f7.f13094b.remove(c10);
+                        f7.a(c10.f13081b);
+                        TLRPC.TL_messages_deleteQuickReplyShortcut tL_messages_deleteQuickReplyShortcut = new TLRPC.TL_messages_deleteQuickReplyShortcut();
+                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c10.f13080a;
+                        ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteQuickReplyShortcut, new e6(6));
+                        if ("hello".equals(c10.f13081b)) {
+                            ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessGreetingMessage(), null);
+                            TLRPC.UserFull userFull = MessagesController.getInstance(i11).getUserFull(UserConfig.getInstance(i11).getClientUserId());
+                            if (userFull != null) {
+                                userFull.flags2 &= -5;
+                                userFull.business_greeting_message = null;
+                                MessagesStorage.getInstance(i11).updateUserInfo(userFull, true);
+                            }
+                        } else if ("away".equals(c10.f13081b)) {
+                            ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessAwayMessage(), null);
+                            TLRPC.UserFull userFull2 = MessagesController.getInstance(i11).getUserFull(UserConfig.getInstance(i11).getClientUserId());
+                            if (userFull2 != null) {
+                                userFull2.flags2 &= -9;
+                                userFull2.business_away_message = null;
+                                MessagesStorage.getInstance(i11).updateUserInfo(userFull2, true);
+                            }
+                        }
+                    }
+                    f7.l();
+                    MessagesStorage messagesStorage = MessagesStorage.getInstance(i11);
+                    messagesStorage.getStorageQueue().postRunnable(new w0(2, arrayList, messagesStorage));
+                    NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
+                }
+                v1.X(v1Var);
+                return;
+        }
+    }
+
+    @Override
+    public void invoke(Object obj) {
+        switch (this.f8180a) {
+            case 14:
+                ((d1) obj).onAudioAttributesChanged((f) this.f8181b);
+                return;
+            case 15:
+                ((d1) obj).onTrackSelectionParametersChanged((t1) this.f8181b);
+                return;
+            case 16:
+                ((d1) obj).onCues((d2.c) this.f8181b);
+                return;
+            case 17:
+                ((d1) obj).onMediaMetadataChanged(((a0) this.f8181b).f12309a.Q);
+                return;
+            case 18:
+                ((d1) obj).onMetadata((t0) this.f8181b);
+                return;
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            default:
+                ((j2.b) obj).b((u2.c0) this.f8181b);
+                return;
+            case 24:
+                ((j2.b) obj).h((y0) this.f8181b);
+                return;
+            case 25:
+                ((j2.b) obj).onSeekStarted((j2.a) this.f8181b);
+                return;
+            case 26:
+                ((j2.b) obj).a((i2.d) this.f8181b);
+                return;
+        }
+    }
+
+    @Override
+    public long k(long j10) {
+        u uVar = (u) this.f8181b;
+        return m0.j((j10 * uVar.e) / 1000000, 0L, uVar.f4668j - 1);
+    }
+
+    @Override
+    public void onFinishVideoRecording(String str, long j10) {
+        qa qaVar = (qa) this.f8181b;
+        vb vbVar = qaVar.f9664a;
+        z6 z6Var = vbVar.O0;
+        int i10 = vbVar.f9955c;
+        if (z6Var != null) {
+            z6Var.g(true);
+        }
+        if (vbVar.p0()) {
+            vbVar.f10005s.d();
+        }
+        if (vbVar.G1 != null && vbVar.B0 != null) {
+            vbVar.Q1 = false;
+            vbVar.R1 = false;
+            v6 v6Var = vbVar.C0;
+            if (v6Var != null) {
+                v6Var.c(false);
+            }
+            if (j10 <= 800) {
+                vbVar.g(false, true);
+                vbVar.c0(false);
+                vbVar.J0.b(false, true);
+                z6 z6Var2 = vbVar.O0;
+                if (z6Var2 != null) {
+                    z6Var2.g(true);
+                }
+                try {
+                    vbVar.G1.delete();
+                    vbVar.G1 = null;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                if (str != null) {
+                    try {
+                        new File(str).delete();
+                        return;
+                    } catch (Exception e7) {
+                        FileLog.e(e7);
+                        return;
+                    }
+                }
+                return;
+            }
+            vbVar.h0(false, true);
+            a8 o10 = a8.o(vbVar.G1, str, j10);
+            o10.J0 = vbVar.f10015v0;
+            o10.K0 = vbVar.f10019w0;
+            o10.B();
+            vbVar.g(false, true);
+            vbVar.c0(false);
+            vbVar.J0.b(false, true);
+            z6 z6Var3 = vbVar.O0;
+            if (z6Var3 != null) {
+                z6Var3.g(true);
+            }
+            if (vbVar.A0.j()) {
+                vbVar.G1 = null;
+                o10.P = 1.0f;
+                if (vbVar.A0.l(o10)) {
+                    a8 a2 = a8.a(vbVar.A0.getLayout(), vbVar.A0.getContent());
+                    vbVar.K1 = a2;
+                    s9.a(i10, a2);
+                    vbVar.L1 = false;
+                    int videoWidth = vbVar.B0.getVideoWidth();
+                    int videoHeight = vbVar.B0.getVideoHeight();
+                    if (videoWidth > 0 && videoHeight > 0) {
+                        a8 a8Var = vbVar.K1;
+                        a8Var.f8719k0 = videoWidth;
+                        a8Var.f8721l0 = videoHeight;
+                        a8Var.A();
+                    }
+                }
+                vbVar.l0(true);
+                return;
+            }
+            vbVar.K1 = o10;
+            s9.a(i10, o10);
+            vbVar.L1 = false;
+            int videoWidth2 = vbVar.B0.getVideoWidth();
+            int videoHeight2 = vbVar.B0.getVideoHeight();
+            if (videoWidth2 > 0 && videoHeight2 > 0) {
+                a8 a8Var2 = vbVar.K1;
+                a8Var2.f8719k0 = videoWidth2;
+                a8Var2.f8721l0 = videoHeight2;
+                a8Var2.A();
+            }
+            vbVar.K(new oa(qaVar, 3), 0L);
+        }
+    }
+
+    @Override
+    public void onSuccess(Object obj) {
+        switch (this.f8180a) {
             case 0:
-                i iVar = this.f8304b.f8306f;
-                if (iVar != null) {
-                    iVar.onError(this.f8305c);
+                ((b) this.f8181b).invoke(obj);
+                return;
+            default:
+                ((b) this.f8181b).invoke(obj);
+                return;
+        }
+    }
+
+    @Override
+    public Object p(Object obj, Object obj2) {
+        return s.x((List) ((Collection) obj2), new n4.s(16, ((q1) this.f8181b).f8491f, obj));
+    }
+
+    @Override
+    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        int i10;
+        c1 c1Var;
+        c1 c1Var2;
+        int i11;
+        switch (this.f8180a) {
+            case 5:
+                ma maVar = (ma) this.f8181b;
+                f61 f61Var = (f61) obj;
+                View view = (View) obj2;
+                ((Integer) obj3).getClass();
+                ((Float) obj4).getClass();
+                ((Float) obj5).getClass();
+                int i12 = f61Var.d;
+                a8 a8Var = (a8) f61Var.G;
+                maVar.c(false, true);
+                vb vbVar = maVar.O;
+                if (a8Var != vbVar.K1 && !vbVar.X1) {
+                    vbVar.f9960d1.setSelected(i12);
+                    vbVar.X1 = true;
+                    ah.g gVar = new ah.g(vbVar, i12, 9);
+                    xa xaVar = vbVar.f10016v1;
+                    a8 a8Var2 = vbVar.K1;
+                    if (xaVar != null && a8Var2 != null) {
+                        if (!xaVar.t0()) {
+                            gVar.run();
+                            return;
+                        }
+                        a8Var2.f();
+                        Utilities.searchQueue.postRunnable(new w9(vbVar, xaVar, a8Var2.f8715i0, a8Var2.f8717j0, a8Var2, xaVar.O0.getPainting().E, xaVar.t0(), gVar, 0));
+                        return;
+                    }
+                    gVar.run();
+                    return;
+                }
+                return;
+            case 12:
+                View view2 = (View) obj2;
+                ((Integer) obj3).getClass();
+                ((Float) obj4).getClass();
+                ((Float) obj5).getClass();
+                ((s4) this.f8181b).V((f61) obj);
+                return;
+            case 20:
+                ig.d1 d1Var = (ig.d1) this.f8181b;
+                f61 f61Var2 = (f61) obj;
+                View view3 = (View) obj2;
+                ((Integer) obj3).getClass();
+                float floatValue = ((Float) obj4).floatValue();
+                ((Float) obj5).getClass();
+                int i13 = f61Var2.d;
+                if (i13 == -1) {
+                    boolean z10 = !d1Var.e;
+                    d1Var.e = z10;
+                    ((v8) view3).setChecked(z10);
+                    d1Var.f12867a.W2.N(true);
+                    d1Var.Y(true);
+                    return;
+                } else if (i13 == -2) {
+                    ?? n2Var = new n2(null);
+                    n2Var.f12847n = d1Var.f12872r;
+                    n2Var.f12845c = new ai.n2(24, d1Var, view3);
+                    d1Var.presentFragment((n2) n2Var);
+                    return;
+                } else if (f61Var2.f44314a == 5 && i13 >= 0 && i13 < d1Var.h.length) {
+                    if (!LocaleController.isRTL ? floatValue >= view3.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
+                        if (d1Var.h[f61Var2.d].isEmpty()) {
+                            ((i5) view3).setChecked(true);
+                            d1Var.h[f61Var2.d].add(new c1(0, 1439));
+                            d1Var.X(f61Var2.d);
+                        } else {
+                            d1Var.h[f61Var2.d].clear();
+                            ((i5) view3).setChecked(false);
+                        }
+                        ((i5) view3).setValue(ig.d1.a0(d1Var.h[f61Var2.d]));
+                        d1Var.Y(true);
+                        return;
+                    }
+                    int i14 = (f61Var2.d + 6) % 7;
+                    int i15 = 0;
+                    for (int i16 = 0; i16 < d1Var.h[i14].size(); i16++) {
+                        if (((c1) d1Var.h[i14].get(i16)).f12860b > i15) {
+                            i15 = ((c1) d1Var.h[i14].get(i16)).f12860b;
+                        }
+                    }
+                    int max = Math.max(0, i15 - 1439);
+                    int i17 = (f61Var2.d + 1) % 7;
+                    int i18 = 1440;
+                    for (int i19 = 0; i19 < d1Var.h[i17].size(); i19++) {
+                        if (((c1) d1Var.h[i17].get(i19)).f12859a < i18) {
+                            i18 = ((c1) d1Var.h[i17].get(i19)).f12859a;
+                        }
+                    }
+                    int i20 = i18 + 1439;
+                    CharSequence charSequence = f61Var2.f26140l;
+                    ArrayList arrayList = d1Var.h[f61Var2.d];
+                    int i21 = 0;
+                    for (int i22 = 0; i22 < 7; i22++) {
+                        ArrayList arrayList2 = d1Var.h[i22];
+                        if (arrayList2 != null) {
+                            i21 = Math.max(1, arrayList2.size()) + i21;
+                        }
+                    }
+                    f1 f1Var = new f1(charSequence, arrayList, max, i20, 28 - i21);
+                    f1Var.f12901f = new bc(d1Var, 22);
+                    f1Var.h = new t(6, d1Var, f61Var2);
+                    d1Var.presentFragment(f1Var);
                     return;
                 } else {
-                    kotlin.jvm.internal.i.h("callback");
-                    throw null;
-                }
-            default:
-                i iVar2 = this.f8304b.f8306f;
-                if (iVar2 != null) {
-                    Object obj = this.f8305c;
-                    if (obj == null) {
-                        obj = new w0.c("No provider data returned", 2);
-                    }
-                    iVar2.onError(obj);
                     return;
                 }
-                kotlin.jvm.internal.i.h("callback");
-                throw null;
+            case 21:
+                final f1 f1Var2 = (f1) this.f8181b;
+                f61 f61Var3 = (f61) obj;
+                final View view4 = (View) obj2;
+                ((Integer) obj3).getClass();
+                ((Float) obj4).getClass();
+                ((Float) obj5).getClass();
+                int i23 = f1Var2.f12900c;
+                int i24 = f1Var2.d;
+                ArrayList arrayList3 = f1Var2.f12899b;
+                int i25 = f61Var3.d;
+                if (i25 == -1) {
+                    f1Var2.f12903r = !f1Var2.f12903r;
+                    arrayList3.clear();
+                    if (f1Var2.f12903r) {
+                        arrayList3.add(new c1(0, 1439));
+                    }
+                    v8 v8Var = (v8) view4;
+                    boolean z11 = f1Var2.f12903r;
+                    f61Var3.e = z11;
+                    v8Var.setChecked(z11);
+                    boolean z12 = f1Var2.f12903r;
+                    if (z12) {
+                        i11 = h6.f21022f6;
+                    } else {
+                        i11 = h6.f21003e6;
+                    }
+                    v8Var.b(h6.x0(null, i11, false), z12);
+                    f1Var2.f12902n.W2.N(true);
+                    bc bcVar = f1Var2.f12901f;
+                    if (bcVar != null) {
+                        bcVar.run();
+                        return;
+                    }
+                    return;
+                } else if (i25 == -2) {
+                    if (!arrayList3.isEmpty() && !f1Var2.U()) {
+                        int i26 = ((c1) i0.a.h(1, arrayList3)).f12860b;
+                        int clamp = Utilities.clamp(i26 + 30, i24 - 1, i23);
+                        arrayList3.add(new c1(clamp, Utilities.clamp((i26 + 1560) / 2, i24, clamp + 1)));
+                    } else {
+                        if (f1Var2.U()) {
+                            arrayList3.clear();
+                        }
+                        int clamp2 = Utilities.clamp(480, i24 - 1, i23);
+                        arrayList3.add(new c1(clamp2, Utilities.clamp(1200, i24, clamp2 + 1)));
+                    }
+                    bc bcVar2 = f1Var2.f12901f;
+                    if (bcVar2 != null) {
+                        bcVar2.run();
+                    }
+                    f1Var2.f12902n.W2.N(true);
+                    return;
+                } else if (f61Var3.f44314a == 3 && (i10 = i25 / 3) >= 0 && i10 < arrayList3.size()) {
+                    int i27 = i10 - 1;
+                    if (i27 >= 0) {
+                        c1Var = (c1) arrayList3.get(i27);
+                    } else {
+                        c1Var = null;
+                    }
+                    final c1 c1Var3 = (c1) arrayList3.get(i10);
+                    int i28 = i10 + 1;
+                    if (i28 < arrayList3.size()) {
+                        c1Var2 = (c1) arrayList3.get(i28);
+                    } else {
+                        c1Var2 = null;
+                    }
+                    int i29 = f61Var3.d % 3;
+                    if (i29 == 0) {
+                        Activity parentActivity = f1Var2.getParentActivity();
+                        String string = LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker);
+                        int i30 = c1Var3.f12859a;
+                        if (c1Var != null) {
+                            i23 = c1Var.f12860b + 1;
+                        }
+                        f5.W(parentActivity, string, i30, i23, c1Var3.f12860b - 1, new Utilities.Callback() {
+                            @Override
+                            public final void run(Object obj6) {
+                                Integer num = (Integer) obj6;
+                                switch (r4) {
+                                    case 0:
+                                        f1 f1Var3 = f1Var2;
+                                        boolean V = f1Var3.V();
+                                        int intValue = num.intValue();
+                                        c1Var3.f12859a = intValue;
+                                        ((q8) view4).u(c1.a(intValue), true);
+                                        if (V != f1Var3.V()) {
+                                            f1Var3.f12902n.W2.N(true);
+                                        }
+                                        bc bcVar3 = f1Var3.f12901f;
+                                        if (bcVar3 != null) {
+                                            bcVar3.run();
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        f1 f1Var4 = f1Var2;
+                                        boolean V2 = f1Var4.V();
+                                        int intValue2 = num.intValue();
+                                        c1Var3.f12860b = intValue2;
+                                        ((q8) view4).u(c1.a(intValue2), true);
+                                        if (V2 != f1Var4.V()) {
+                                            f1Var4.f12902n.W2.N(true);
+                                        }
+                                        bc bcVar4 = f1Var4.f12901f;
+                                        if (bcVar4 != null) {
+                                            bcVar4.run();
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        });
+                        return;
+                    } else if (i29 == 1) {
+                        Activity parentActivity2 = f1Var2.getParentActivity();
+                        String string2 = LocaleController.getString(R.string.BusinessHoursDayCloseHourPicker);
+                        int i31 = c1Var3.f12860b;
+                        int i32 = c1Var3.f12859a + 1;
+                        if (c1Var2 != null) {
+                            i24 = c1Var2.f12859a - 1;
+                        }
+                        f5.W(parentActivity2, string2, i31, i32, i24, new Utilities.Callback() {
+                            @Override
+                            public final void run(Object obj6) {
+                                Integer num = (Integer) obj6;
+                                switch (r4) {
+                                    case 0:
+                                        f1 f1Var3 = f1Var2;
+                                        boolean V = f1Var3.V();
+                                        int intValue = num.intValue();
+                                        c1Var3.f12859a = intValue;
+                                        ((q8) view4).u(c1.a(intValue), true);
+                                        if (V != f1Var3.V()) {
+                                            f1Var3.f12902n.W2.N(true);
+                                        }
+                                        bc bcVar3 = f1Var3.f12901f;
+                                        if (bcVar3 != null) {
+                                            bcVar3.run();
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        f1 f1Var4 = f1Var2;
+                                        boolean V2 = f1Var4.V();
+                                        int intValue2 = num.intValue();
+                                        c1Var3.f12860b = intValue2;
+                                        ((q8) view4).u(c1.a(intValue2), true);
+                                        if (V2 != f1Var4.V()) {
+                                            f1Var4.f12902n.W2.N(true);
+                                        }
+                                        bc bcVar4 = f1Var4.f12901f;
+                                        if (bcVar4 != null) {
+                                            bcVar4.run();
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        });
+                        return;
+                    } else if (i29 == 2) {
+                        arrayList3.remove(i10);
+                        if (arrayList3.isEmpty()) {
+                            arrayList3.add(new c1(0, 1439));
+                        }
+                        f1Var2.f12902n.W2.N(true);
+                        bc bcVar3 = f1Var2.f12901f;
+                        if (bcVar3 != null) {
+                            bcVar3.run();
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            default:
+                ((Integer) obj3).getClass();
+                ((Float) obj4).getClass();
+                ((Float) obj5).getClass();
+                ig.b2.U((ig.b2) this.f8181b, (f61) obj, (View) obj2);
+                return;
         }
+    }
+
+    public c(j2.a aVar, u2.u uVar, u2.c0 c0Var, IOException iOException, boolean z10) {
+        this.f8180a = 27;
+        this.f8181b = c0Var;
+    }
+
+    public c(Object obj, int i10) {
+        this.f8180a = i10;
+        this.f8181b = obj;
     }
 }

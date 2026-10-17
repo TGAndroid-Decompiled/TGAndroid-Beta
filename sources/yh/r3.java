@@ -1,28 +1,29 @@
 package yh;
 
+import ai.m6;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 public final class r3 extends org.telegram.ui.ActionBar.e1 {
     public final int L;
     public long M;
     public p3 N;
 
-    public r3(Context context, int i10, c6 c6Var) {
-        super(0, context, c6Var, false, false);
+    public r3(Context context, int i10, d6 d6Var) {
+        super(0, context, d6Var, false, false);
         this.L = i10;
         setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        int w02 = g6.w0(g6.E8, c6Var);
-        int i11 = g6.F8;
-        c(w02, g6.w0(i11, c6Var));
-        e(g6.w0(i11, c6Var), PorterDuff.Mode.SRC_IN);
-        this.f19421c.setTranslationX(AndroidUtilities.dp(2.0f));
+        int w02 = h6.w0(h6.E8, d6Var);
+        int i11 = h6.F8;
+        c(w02, h6.w0(i11, d6Var));
+        e(h6.w0(i11, d6Var), PorterDuff.Mode.SRC_IN);
+        this.f20759c.setTranslationX(AndroidUtilities.dp(2.0f));
         a(2);
         setBackground(null);
-        this.f19421c.addOnAttachStateChangeListener(new bi.j2(this, 14));
+        this.f20759c.addOnAttachStateChangeListener(new m6(this, 15));
     }
 
     @Override

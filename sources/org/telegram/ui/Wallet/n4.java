@@ -1,24 +1,9 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.view.View;
-public final class n4 extends i5 {
-    public final a5 f33242a0;
-
-    public n4(a5 a5Var, Context context, boolean z10) {
-        super(context, z10);
-        this.f33242a0 = a5Var;
-    }
-
+import android.widget.TextView;
+public final class n4 extends TextView {
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-        super.onMeasure(i10, makeMeasureSpec);
-        a5 a5Var = this.f33242a0;
-        if (a5Var.f32649n > 0 && getMeasuredHeight() > a5Var.f32649n) {
-            int paddingRight = getPaddingRight() + getPaddingLeft();
-            int paddingBottom = getPaddingBottom() + getPaddingTop();
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(paddingRight + ((int) ((getMeasuredWidth() - paddingRight) * (Math.max(0, a5Var.f32649n - paddingBottom) / Math.max(1, getMeasuredHeight() - paddingBottom)))), 1073741824), makeMeasureSpec);
-        }
+    public final boolean canScrollHorizontally(int i10) {
+        return false;
     }
 }

@@ -1,56 +1,73 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-public final class vc implements Utilities.Callback {
-    public final int f18368a = 2;
-    public final MessagesController f18369b;
-    public final Object f18370c;
+public final class vc implements Runnable {
+    public final int f19741a;
+    public final Object f19742b;
+    public final long f19743c;
     public final int d;
-    public final Object e;
-    public final Object f18371f;
-    public final Object f18372g;
+    public final long e;
+    public final Object f19744f;
+    public final Object h;
+    public final Object f19745n;
+    public final Object f19746r;
 
-    public vc(MessagesController messagesController, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i10, TLRPC.Chat chat, Runnable runnable) {
-        this.f18369b = messagesController;
-        this.e = tL_messages_invitedUsers;
-        this.f18371f = iArr;
+    public vc(MessagesController messagesController, ArrayList arrayList, long j10, TLRPC.updates_ChannelDifference updates_channeldifference, TLRPC.Chat chat, a0.h hVar, int i10, long j11) {
+        this.f19741a = 1;
+        this.f19742b = messagesController;
+        this.f19744f = arrayList;
+        this.f19743c = j10;
+        this.h = updates_channeldifference;
+        this.f19745n = chat;
+        this.f19746r = hVar;
         this.d = i10;
-        this.f18372g = chat;
-        this.f18370c = runnable;
+        this.e = j11;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18368a) {
+    public final void run() {
+        switch (this.f19741a) {
             case 0:
-                this.f18369b.lambda$openByUserName$458((pf.c) this.e, (org.telegram.ui.ActionBar.a2[]) this.f18371f, (org.telegram.ui.ActionBar.m2) this.f18372g, (boolean[]) this.f18370c, this.d, (Long) obj);
+                ((MessagesController) this.f19742b).lambda$ensureMessagesLoaded$463((boolean[]) this.f19744f, (MessagesStorage) this.h, this.f19743c, (Runnable[]) this.f19745n, this.e, this.d, (MessagesController.MessagesLoadedCallback) this.f19746r);
                 return;
             case 1:
-                this.f18369b.lambda$openApp$503((boolean[]) this.f18370c, (TL_bots.BotInfo[]) this.e, (TLRPC.User) this.f18371f, this.d, (f3) this.f18372g, (TL_bots.BotInfo) obj);
+                int i10 = this.d;
+                long j10 = this.e;
+                ((MessagesController) this.f19742b).lambda$getChannelDifference$346((ArrayList) this.f19744f, this.f19743c, (TLRPC.updates_ChannelDifference) this.h, (TLRPC.Chat) this.f19745n, (a0.h) this.f19746r, i10, j10);
+                return;
+            case 2:
+                ((WearReplyReceiver) this.f19742b).lambda$onReceive$0((AccountInstance) this.f19744f, (TLRPC.User) this.h, (CharSequence) this.f19745n, this.f19743c, this.e, this.d, (int[]) this.f19746r);
                 return;
             default:
-                this.f18369b.lambda$addUsersToChat$296((TLRPC.TL_messages_invitedUsers) this.e, (int[]) this.f18371f, this.d, (TLRPC.Chat) this.f18372g, (Runnable) this.f18370c, (TLRPC.TL_messages_invitedUsers) obj);
+                ((WearReplyReceiver) this.f19742b).lambda$onReceive$2((AccountInstance) this.f19744f, (TLRPC.Chat) this.h, (CharSequence) this.f19745n, this.f19743c, this.e, this.d, (int[]) this.f19746r);
                 return;
         }
     }
 
-    public vc(MessagesController messagesController, pf.c cVar, org.telegram.ui.ActionBar.a2[] a2VarArr, org.telegram.ui.ActionBar.m2 m2Var, boolean[] zArr, int i10) {
-        this.f18369b = messagesController;
-        this.e = cVar;
-        this.f18371f = a2VarArr;
-        this.f18372g = m2Var;
-        this.f18370c = zArr;
+    public vc(MessagesController messagesController, boolean[] zArr, MessagesStorage messagesStorage, long j10, Runnable[] runnableArr, long j11, int i10, MessagesController.MessagesLoadedCallback messagesLoadedCallback) {
+        this.f19741a = 0;
+        this.f19742b = messagesController;
+        this.f19744f = zArr;
+        this.h = messagesStorage;
+        this.f19743c = j10;
+        this.f19745n = runnableArr;
+        this.e = j11;
         this.d = i10;
+        this.f19746r = messagesLoadedCallback;
     }
 
-    public vc(MessagesController messagesController, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i10, f3 f3Var) {
-        this.f18369b = messagesController;
-        this.f18370c = zArr;
-        this.e = botInfoArr;
-        this.f18371f = user;
+    public vc(WearReplyReceiver wearReplyReceiver, AccountInstance accountInstance, TLObject tLObject, CharSequence charSequence, long j10, long j11, int i10, int[] iArr, int i11) {
+        this.f19741a = i11;
+        this.f19742b = wearReplyReceiver;
+        this.f19744f = accountInstance;
+        this.h = tLObject;
+        this.f19745n = charSequence;
+        this.f19743c = j10;
+        this.e = j11;
         this.d = i10;
-        this.f18372g = f3Var;
+        this.f19746r = iArr;
     }
 }

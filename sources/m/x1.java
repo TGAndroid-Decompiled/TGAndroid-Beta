@@ -1,5 +1,374 @@
 package m;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.LinearLayout;
-public class x1 extends LinearLayout.LayoutParams {
+public abstract class x1 extends ViewGroup {
+    public int E;
+    public boolean f16370a;
+    public int f16371b;
+    public int f16372c;
+    public int d;
+    public int e;
+    public int f16373f;
+    public float h;
+    public boolean f16374n;
+    public int[] f16375r;
+    public int[] f16376s;
+    public Drawable v;
+    public int f16377w;
+    public int f16378x;
+    public int f16379y;
+
+    public x1(Context context, AttributeSet attributeSet, int i10) {
+        super(context, attributeSet, i10);
+        this.f16370a = true;
+        this.f16371b = -1;
+        this.f16372c = 0;
+        this.e = 8388659;
+        int[] iArr = f.a.f10260n;
+        g3 P = g3.P(context, attributeSet, iArr, i10);
+        r0.i0.i(this, context, iArr, attributeSet, (TypedArray) P.f16197c, i10);
+        TypedArray typedArray = (TypedArray) P.f16197c;
+        int i11 = typedArray.getInt(1, -1);
+        if (i11 >= 0) {
+            setOrientation(i11);
+        }
+        int i12 = typedArray.getInt(0, -1);
+        if (i12 >= 0) {
+            setGravity(i12);
+        }
+        boolean z10 = typedArray.getBoolean(2, true);
+        if (!z10) {
+            setBaselineAligned(z10);
+        }
+        this.h = typedArray.getFloat(4, -1.0f);
+        this.f16371b = typedArray.getInt(3, -1);
+        this.f16374n = typedArray.getBoolean(7, false);
+        setDividerDrawable(P.F(5));
+        this.f16379y = typedArray.getInt(8, 0);
+        this.E = typedArray.getDimensionPixelSize(6, 0);
+        P.Q();
+    }
+
+    public final void c(Canvas canvas, int i10) {
+        this.v.setBounds(getPaddingLeft() + this.E, i10, (getWidth() - getPaddingRight()) - this.E, this.f16378x + i10);
+        this.v.draw(canvas);
+    }
+
+    @Override
+    public boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        return layoutParams instanceof w1;
+    }
+
+    public final void d(Canvas canvas, int i10) {
+        this.v.setBounds(i10, getPaddingTop() + this.E, this.f16377w + i10, (getHeight() - getPaddingBottom()) - this.E);
+        this.v.draw(canvas);
+    }
+
+    @Override
+    public w1 generateDefaultLayoutParams() {
+        int i10 = this.d;
+        if (i10 == 0) {
+            return new LinearLayout.LayoutParams(-2, -2);
+        }
+        if (i10 == 1) {
+            return new LinearLayout.LayoutParams(-1, -2);
+        }
+        return null;
+    }
+
+    @Override
+    public w1 generateLayoutParams(AttributeSet attributeSet) {
+        return new LinearLayout.LayoutParams(getContext(), attributeSet);
+    }
+
+    @Override
+    public w1 generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        return new LinearLayout.LayoutParams(layoutParams);
+    }
+
+    @Override
+    public int getBaseline() {
+        int i10;
+        if (this.f16371b < 0) {
+            return super.getBaseline();
+        }
+        int childCount = getChildCount();
+        int i11 = this.f16371b;
+        if (childCount > i11) {
+            View childAt = getChildAt(i11);
+            int baseline = childAt.getBaseline();
+            if (baseline == -1) {
+                if (this.f16371b == 0) {
+                    return -1;
+                }
+                throw new RuntimeException("mBaselineAlignedChildIndex of LinearLayout points to a View that doesn't know how to get its baseline.");
+            }
+            int i12 = this.f16372c;
+            if (this.d == 1 && (i10 = this.e & 112) != 48) {
+                if (i10 != 16) {
+                    if (i10 == 80) {
+                        i12 = ((getBottom() - getTop()) - getPaddingBottom()) - this.f16373f;
+                    }
+                } else {
+                    i12 = i0.a.C(((getBottom() - getTop()) - getPaddingTop()) - getPaddingBottom(), this.f16373f, 2, i12);
+                }
+            }
+            return i12 + ((LinearLayout.LayoutParams) ((w1) childAt.getLayoutParams())).topMargin + baseline;
+        }
+        throw new RuntimeException("mBaselineAlignedChildIndex of LinearLayout set to an index that is out of bounds.");
+    }
+
+    public int getBaselineAlignedChildIndex() {
+        return this.f16371b;
+    }
+
+    public Drawable getDividerDrawable() {
+        return this.v;
+    }
+
+    public int getDividerPadding() {
+        return this.E;
+    }
+
+    public int getDividerWidth() {
+        return this.f16377w;
+    }
+
+    public int getGravity() {
+        return this.e;
+    }
+
+    public int getOrientation() {
+        return this.d;
+    }
+
+    public int getShowDividers() {
+        return this.f16379y;
+    }
+
+    public int getVirtualChildCount() {
+        return getChildCount();
+    }
+
+    public float getWeightSum() {
+        return this.h;
+    }
+
+    public final boolean h(int i10) {
+        if (i10 == 0) {
+            if ((this.f16379y & 1) == 0) {
+                return false;
+            }
+            return true;
+        } else if (i10 == getChildCount()) {
+            if ((this.f16379y & 4) == 0) {
+                return false;
+            }
+            return true;
+        } else {
+            if ((this.f16379y & 2) != 0) {
+                for (int i11 = i10 - 1; i11 >= 0; i11--) {
+                    if (getChildAt(i11).getVisibility() != 8) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int right;
+        int left;
+        int i10;
+        int left2;
+        int bottom;
+        if (this.v != null) {
+            int i11 = 0;
+            if (this.d == 1) {
+                int virtualChildCount = getVirtualChildCount();
+                while (i11 < virtualChildCount) {
+                    View childAt = getChildAt(i11);
+                    if (childAt != null && childAt.getVisibility() != 8 && h(i11)) {
+                        c(canvas, (childAt.getTop() - ((LinearLayout.LayoutParams) ((w1) childAt.getLayoutParams())).topMargin) - this.f16378x);
+                    }
+                    i11++;
+                }
+                if (h(virtualChildCount)) {
+                    View childAt2 = getChildAt(virtualChildCount - 1);
+                    if (childAt2 == null) {
+                        bottom = (getHeight() - getPaddingBottom()) - this.f16378x;
+                    } else {
+                        bottom = childAt2.getBottom() + ((LinearLayout.LayoutParams) ((w1) childAt2.getLayoutParams())).bottomMargin;
+                    }
+                    c(canvas, bottom);
+                    return;
+                }
+                return;
+            }
+            int virtualChildCount2 = getVirtualChildCount();
+            boolean a2 = v3.a(this);
+            while (i11 < virtualChildCount2) {
+                View childAt3 = getChildAt(i11);
+                if (childAt3 != null && childAt3.getVisibility() != 8 && h(i11)) {
+                    w1 w1Var = (w1) childAt3.getLayoutParams();
+                    if (a2) {
+                        left2 = childAt3.getRight() + ((LinearLayout.LayoutParams) w1Var).rightMargin;
+                    } else {
+                        left2 = (childAt3.getLeft() - ((LinearLayout.LayoutParams) w1Var).leftMargin) - this.f16377w;
+                    }
+                    d(canvas, left2);
+                }
+                i11++;
+            }
+            if (h(virtualChildCount2)) {
+                View childAt4 = getChildAt(virtualChildCount2 - 1);
+                if (childAt4 == null) {
+                    if (a2) {
+                        right = getPaddingLeft();
+                    } else {
+                        left = getWidth() - getPaddingRight();
+                        i10 = this.f16377w;
+                        right = left - i10;
+                    }
+                } else {
+                    w1 w1Var2 = (w1) childAt4.getLayoutParams();
+                    if (a2) {
+                        left = childAt4.getLeft() - ((LinearLayout.LayoutParams) w1Var2).leftMargin;
+                        i10 = this.f16377w;
+                        right = left - i10;
+                    } else {
+                        right = childAt4.getRight() + ((LinearLayout.LayoutParams) w1Var2).rightMargin;
+                    }
+                }
+                d(canvas, right);
+            }
+        }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        super.onInitializeAccessibilityEvent(accessibilityEvent);
+        accessibilityEvent.setClassName("androidx.appcompat.widget.LinearLayoutCompat");
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("androidx.appcompat.widget.LinearLayoutCompat");
+    }
+
+    @Override
+    public void onLayout(boolean r23, int r24, int r25, int r26, int r27) {
+        throw new UnsupportedOperationException("Method not decompiled: m.x1.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public void onMeasure(int r39, int r40) {
+        throw new UnsupportedOperationException("Method not decompiled: m.x1.onMeasure(int, int):void");
+    }
+
+    public void setBaselineAligned(boolean z10) {
+        this.f16370a = z10;
+    }
+
+    public void setBaselineAlignedChildIndex(int i10) {
+        if (i10 >= 0 && i10 < getChildCount()) {
+            this.f16371b = i10;
+            return;
+        }
+        throw new IllegalArgumentException("base aligned child index out of range (0, " + getChildCount() + ")");
+    }
+
+    public void setDividerDrawable(Drawable drawable) {
+        if (drawable == this.v) {
+            return;
+        }
+        this.v = drawable;
+        boolean z10 = false;
+        if (drawable != null) {
+            this.f16377w = drawable.getIntrinsicWidth();
+            this.f16378x = drawable.getIntrinsicHeight();
+        } else {
+            this.f16377w = 0;
+            this.f16378x = 0;
+        }
+        if (drawable == null) {
+            z10 = true;
+        }
+        setWillNotDraw(z10);
+        requestLayout();
+    }
+
+    public void setDividerPadding(int i10) {
+        this.E = i10;
+    }
+
+    public void setGravity(int i10) {
+        if (this.e != i10) {
+            if ((8388615 & i10) == 0) {
+                i10 |= 8388611;
+            }
+            if ((i10 & 112) == 0) {
+                i10 |= 48;
+            }
+            this.e = i10;
+            requestLayout();
+        }
+    }
+
+    public void setHorizontalGravity(int i10) {
+        int i11 = i10 & 8388615;
+        int i12 = this.e;
+        if ((8388615 & i12) != i11) {
+            this.e = i11 | ((-8388616) & i12);
+            requestLayout();
+        }
+    }
+
+    public void setMeasureWithLargestChildEnabled(boolean z10) {
+        this.f16374n = z10;
+    }
+
+    public void setOrientation(int i10) {
+        if (this.d != i10) {
+            this.d = i10;
+            requestLayout();
+        }
+    }
+
+    public void setShowDividers(int i10) {
+        if (i10 != this.f16379y) {
+            requestLayout();
+        }
+        this.f16379y = i10;
+    }
+
+    public void setVerticalGravity(int i10) {
+        int i11 = i10 & 112;
+        int i12 = this.e;
+        if ((i12 & 112) != i11) {
+            this.e = i11 | (i12 & (-113));
+            requestLayout();
+        }
+    }
+
+    public void setWeightSum(float f7) {
+        this.h = Math.max(0.0f, f7);
+    }
+
+    @Override
+    public final boolean shouldDelayChildPressedState() {
+        return false;
+    }
 }

@@ -1,64 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.RectF;
 import android.view.View;
-public final class z81 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31505a;
-    public final l91 f31506b;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.AndroidUtilities;
+public final class z81 extends View {
+    public y81 f32861a;
+    public int f32862b;
+    public final RectF f32863c;
+    public CharSequence d;
+    public d11 e;
+    public boolean f32864f;
+    public up0 h;
+    public final f6 f32865n;
+    public final b91 f32866r;
 
-    public z81(l91 l91Var, int i10) {
-        this.f31505a = i10;
-        this.f31506b = l91Var;
+    public z81(b91 b91Var, Context context) {
+        super(context);
+        this.f32866r = b91Var;
+        this.f32863c = new RectF();
+        this.f32865n = new f6(this, 360L, bs.h);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f31505a) {
-            case 0:
-                l91 l91Var = this.f31506b;
-                l91Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View[] viewArr = l91Var.e;
-                View view = viewArr[1];
-                if (view != null) {
-                    if (l91Var.f26700y) {
-                        l91Var.E(view, (1.0f - floatValue) * viewArr[0].getMeasuredWidth());
-                        View view2 = viewArr[0];
-                        l91Var.E(view2, (-view2.getMeasuredWidth()) * floatValue);
-                    } else {
-                        l91Var.E(view, (1.0f - floatValue) * (-viewArr[0].getMeasuredWidth()));
-                        View view3 = viewArr[0];
-                        l91Var.E(view3, view3.getMeasuredWidth() * floatValue);
-                    }
-                    l91Var.f26693c = floatValue;
-                    l91Var.w(true);
-                    b91 b91Var = l91Var.M;
-                    if (b91Var != null) {
-                        b91Var.v.invalidate();
-                        l91Var.M.v.f1();
-                        l91Var.M.invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                l91 l91Var2 = this.f31506b;
-                l91Var2.getClass();
-                l91Var2.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 2:
-                l91 l91Var3 = this.f31506b;
-                l91Var3.N.onAnimationUpdate(valueAnimator);
-                l91Var3.M.f26305a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l91Var3.M.v.f1();
-                l91Var3.M.invalidate();
-                return;
-            default:
-                l91 l91Var4 = this.f31506b;
-                l91Var4.getClass();
-                l91Var4.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
+    public int getId() {
+        return this.f32861a.f32571a;
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.z81.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        int i10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        y81 y81Var = this.f32861a;
+        if (y81Var != null && (i10 = this.f32866r.G) != -1 && y81Var.f32571a == i10) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        accessibilityNodeInfo.setSelected(z10);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        y81 y81Var = this.f32861a;
+        b91 b91Var = this.f32866r;
+        setMeasuredDimension(AndroidUtilities.dp(b91Var.f24866r * 2) + y81Var.a(b91Var.f24849c) + b91Var.I, View.MeasureSpec.getSize(i11));
+    }
+
+    public void setReordering(boolean z10) {
+        if (this.f32864f == z10) {
+            return;
+        }
+        this.f32864f = z10;
+        invalidate();
     }
 }

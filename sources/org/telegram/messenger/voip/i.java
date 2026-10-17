@@ -1,32 +1,22 @@
 package org.telegram.messenger.voip;
 public final class i implements Runnable {
-    public final int f18509a = 0;
-    public final VideoCapturerDevice f18510b;
-    public final long f18511c;
-    public final int d;
+    public final int f19864a;
+    public final VideoCapturerDevice f19865b;
 
-    public i(VideoCapturerDevice videoCapturerDevice, int i10, long j10) {
-        this.f18510b = videoCapturerDevice;
-        this.d = i10;
-        this.f18511c = j10;
+    public i(VideoCapturerDevice videoCapturerDevice, int i10) {
+        this.f19864a = i10;
+        this.f19865b = videoCapturerDevice;
     }
 
     @Override
     public final void run() {
-        switch (this.f18509a) {
+        switch (this.f19864a) {
             case 0:
-                VideoCapturerDevice.b(this.f18510b, this.d, this.f18511c);
+                this.f19865b.lambda$onDestroy$8();
                 return;
             default:
-                long j10 = this.f18511c;
-                VideoCapturerDevice.h(this.f18510b, this.d, j10);
+                this.f19865b.lambda$onDestroy$9();
                 return;
         }
-    }
-
-    public i(VideoCapturerDevice videoCapturerDevice, long j10, int i10) {
-        this.f18510b = videoCapturerDevice;
-        this.f18511c = j10;
-        this.d = i10;
     }
 }

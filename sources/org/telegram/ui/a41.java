@@ -1,34 +1,64 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class a41 implements e41 {
-    public final fo f33740a;
-    public final Activity f33741b;
-    public final org.telegram.ui.ActionBar.c6 f33742c;
-    public final MessageObject d;
+public final class a41 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35294a;
+    public final z51 f35295b;
 
-    public a41(fo foVar, Activity activity, org.telegram.ui.ActionBar.c6 c6Var, MessageObject messageObject) {
-        this.f33740a = foVar;
-        this.f33741b = activity;
-        this.f33742c = c6Var;
-        this.d = messageObject;
+    public a41(z51 z51Var, int i10) {
+        this.f35294a = i10;
+        this.f35295b = z51Var;
     }
 
     @Override
-    public final void a() {
-        AndroidUtilities.runOnUIThread(new u31(this.f33740a, this.f33741b, this.f33742c, this.d, 2), 200L);
-    }
-
-    @Override
-    public final void b() {
-        AndroidUtilities.runOnUIThread(new bf(this.f33740a, this.d, 8), 200L);
-    }
-
-    @Override
-    public final void c() {
-        fo foVar = this.f33740a;
-        foVar.showDialog(new sg.y0((org.telegram.ui.ActionBar.m2) foVar, 3, true));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35294a) {
+            case 0:
+                z51 z51Var = this.f35295b;
+                z51Var.getClass();
+                z51Var.E(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                this.f35295b.m();
+                return;
+            case 2:
+                z51 z51Var2 = this.f35295b;
+                View view = z51Var2.f43621t0;
+                if (view != null) {
+                    view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                }
+                int v = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, z51Var2.Z0), i0.b.o(-16777216, (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f)));
+                View view2 = z51Var2.m0;
+                if (view2 != null) {
+                    view2.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
+                }
+                org.telegram.ui.Components.un unVar = z51Var2.f43607n0;
+                if (unVar != null) {
+                    unVar.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
+                    return;
+                }
+                return;
+            default:
+                z51 z51Var3 = this.f35295b;
+                t41 t41Var = z51Var3.f43579a0;
+                float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z51Var3.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(8.0f));
+                View view3 = z51Var3.m0;
+                if (view3 != null) {
+                    view3.setAlpha(floatValue);
+                }
+                org.telegram.ui.Components.un unVar2 = z51Var3.f43607n0;
+                if (unVar2 != null) {
+                    unVar2.setAlpha(floatValue * floatValue);
+                }
+                t41Var.setAlpha(floatValue);
+                t41Var.invalidate();
+                z51Var3.invalidate();
+                return;
+        }
     }
 }

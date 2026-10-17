@@ -1,53 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class j51 implements Runnable {
-    public final int f25889a;
-    public final org.telegram.ui.ActionBar.e3[] f25890b;
-    public final Context f25891c;
+public final class j51 extends s4.r0 {
+    public final int f27413a = 0;
+    public int f27414b;
+    public final Object f27415c;
 
-    public j51(Context context, org.telegram.ui.ActionBar.e3[] e3VarArr) {
-        this.f25889a = 3;
-        this.f25891c = context;
-        this.f25890b = e3VarArr;
+    public j51(n51 n51Var) {
+        this.f27415c = n51Var;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.e3 e3Var;
-        org.telegram.ui.ActionBar.m2 m2Var;
-        switch (this.f25889a) {
+    public final void a(RecyclerView recyclerView, int i10) {
+        org.telegram.ui.Wallet.q8 q8Var;
+        switch (this.f27413a) {
             case 0:
-                this.f25890b[0].dismiss();
-                pf.d.r(this.f25891c, LocaleController.getString(R.string.CocoonFeature1TextLink));
-                return;
-            case 1:
-                this.f25890b[0].dismiss();
-                pf.d.t(this.f25891c, LocaleController.getString(R.string.CocoonFeature3TextLink));
-                return;
-            case 2:
-                this.f25890b[0].dismiss();
-                pf.d.r(this.f25891c, LocaleController.getString(R.string.CocoonFooterLink));
+                if (i10 == 0) {
+                    this.f27414b = 0;
+                    return;
+                }
                 return;
             default:
-                dx0 dx0Var = new dx0(this.f25891c);
-                if (!AndroidUtilities.isTablet()) {
-                    org.telegram.ui.ActionBar.e3[] e3VarArr = this.f25890b;
-                    if (!AndroidUtilities.hasDialogOnTop(e3VarArr[0].attachedFragment) && (e3Var = e3VarArr[0]) != null && (m2Var = e3Var.attachedFragment) != null) {
-                        dx0Var.makeAttached(m2Var);
-                    }
+                if (i10 == 1 && (q8Var = ((org.telegram.ui.Wallet.h4) this.f27415c).f34259b.f34490j0) != null) {
+                    q8Var.a();
+                    return;
                 }
-                dx0Var.show();
                 return;
         }
     }
 
-    public j51(org.telegram.ui.ActionBar.e3[] e3VarArr, Context context, int i10) {
-        this.f25889a = i10;
-        this.f25890b = e3VarArr;
-        this.f25891c = context;
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f27413a) {
+            case 0:
+                n51 n51Var = (n51) this.f27415c;
+                this.f27414b += i11;
+                if (recyclerView.getScrollState() == 1 && Math.abs(this.f27414b) > AndroidUtilities.dp(96.0f)) {
+                    View findFocus = n51Var.e.findFocus();
+                    if (findFocus == null) {
+                        findFocus = n51Var.e;
+                    }
+                    AndroidUtilities.hideKeyboard(findFocus);
+                }
+                if (i11 != 0) {
+                    n51.n(n51Var);
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Wallet.l5 l5Var = ((org.telegram.ui.Wallet.h4) this.f27415c).f34259b;
+                if (this.f27414b == 0) {
+                    l5Var.x0();
+                    return;
+                } else {
+                    recyclerView.post(new org.telegram.ui.Wallet.m3(l5Var, 14));
+                    return;
+                }
+        }
+    }
+
+    public j51(org.telegram.ui.Wallet.h4 h4Var, int i10) {
+        this.f27415c = h4Var;
+        this.f27414b = i10;
     }
 }

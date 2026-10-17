@@ -1,33 +1,33 @@
 package vg;
 
-import org.telegram.messenger.sk;
-import org.telegram.ui.web.o0;
-import org.telegram.ui.yy;
-import ug.b0;
+import org.telegram.messenger.wh;
+import org.telegram.ui.ey;
+import org.telegram.ui.web.c0;
+import ug.z;
 public final class c implements Runnable {
-    public final int f46967a;
-    public final e f46968b;
+    public final int f48374a;
+    public final e f48375b;
 
     public c(e eVar, int i10) {
-        this.f46967a = i10;
-        this.f46968b = eVar;
+        this.f48374a = i10;
+        this.f48375b = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f46967a) {
+        switch (this.f48374a) {
             case 0:
-                this.f46968b.E();
+                this.f48375b.E();
                 return;
             default:
                 StringBuilder sb2 = new StringBuilder("https://t.me/giftcode/");
-                e eVar = this.f46968b;
+                e eVar = this.f48375b;
                 sb2.append(eVar.h);
                 String sb3 = sb2.toString();
-                yy yyVar = new yy(sk.d(3, "onlySelect", "dialogsType", true));
-                yyVar.C2 = new o0(17, eVar, sb3);
-                eVar.e.presentFragment(yyVar);
-                ((b0) eVar).f46282r.dismiss();
+                ey eyVar = new ey(wh.d(3, "onlySelect", "dialogsType", true));
+                eyVar.C2 = new c0(18, eVar, sb3);
+                eVar.e.presentFragment(eyVar);
+                ((z) eVar).f47841r.dismiss();
                 return;
         }
     }

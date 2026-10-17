@@ -396,10 +396,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f16403id;
+        private int f17798id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f16403id = i10;
+            this.f17798id = i10;
             this.args = objArr;
         }
     }
@@ -477,7 +477,7 @@ public class NotificationCenter {
                 } else {
                     kVar.getClass();
                 }
-                StringBuilder l4 = i2.d.l(i11, "Index ", " must be in 0..");
+                StringBuilder l4 = i0.a.l(i11, "Index ", " must be in 0..");
                 l4.append(kVar.f24b - 1);
                 throw new IndexOutOfBoundsException(l4.toString());
             }
@@ -915,7 +915,7 @@ public class NotificationCenter {
             arrayList2.add(notificationCenterDelegate);
             if (BuildVars.DEBUG_VERSION && !alreadyLogged && arrayList2.size() > 1000) {
                 alreadyLogged = true;
-                FileLog.e((Throwable) new RuntimeException(i2.d.j(i10, "Total observers more than 1000, need check for memory leak. ")), true);
+                FileLog.e((Throwable) new RuntimeException(i0.a.j(i10, "Total observers more than 1000, need check for memory leak. ")), true);
             }
         }
     }
@@ -943,7 +943,7 @@ public class NotificationCenter {
                 }
             }
             if (j10 != Long.MAX_VALUE) {
-                AndroidUtilities.runOnUIThread(new yg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
+                AndroidUtilities.runOnUIThread(new qg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
             }
         }
     }
@@ -963,7 +963,7 @@ public class NotificationCenter {
             if (intValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + keyAt + " REMOVED (was " + intValue + ")");
             } else if (intValue != intValue2) {
-                StringBuilder m10 = i2.d.m("key=", keyAt, " CHANGED: ", intValue, " -> ");
+                StringBuilder m10 = i0.a.m("key=", keyAt, " CHANGED: ", intValue, " -> ");
                 m10.append(intValue2);
                 Log.i("ObserverDiff", m10.toString());
             }
@@ -971,7 +971,7 @@ public class NotificationCenter {
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder l4 = i2.d.l(keyAt2, "key=", " ADDED (size=");
+                StringBuilder l4 = i0.a.l(keyAt2, "key=", " ADDED (size=");
                 l4.append(sparseArray2.valueAt(i11));
                 l4.append(")");
                 Log.i("ObserverDiff", l4.toString());
@@ -1035,7 +1035,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new yg(this, 1);
+        this.checkForExpiredNotifications = new qg(this, 1);
     }
 
     public static void lambda$listen$4(int i10, Utilities.Callback callback, int i11, int i12, Object[] objArr) {
@@ -1063,9 +1063,9 @@ public class NotificationCenter {
         if (this.alreadyPostedRunnubles.indexOfKey(hashCode) >= 0) {
             return;
         }
-        b5 b5Var = new b5(this, i10, objArr, hashCode);
-        this.alreadyPostedRunnubles.put(hashCode, b5Var);
-        AndroidUtilities.runOnUIThread(b5Var, 250L);
+        a5 a5Var = new a5(this, i10, objArr, hashCode);
+        this.alreadyPostedRunnubles.put(hashCode, a5Var);
+        AndroidUtilities.runOnUIThread(a5Var, 250L);
     }
 
     public static void sanitize() {
@@ -1093,12 +1093,12 @@ public class NotificationCenter {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with View with destroyed Context");
                                 valueAt.remove(size);
                             }
-                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.m2) {
-                            if (((org.telegram.ui.ActionBar.m2) notificationCenterDelegate).isFinished) {
+                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.n2) {
+                            if (((org.telegram.ui.ActionBar.n2) notificationCenterDelegate).isFinished) {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BaseFragment");
                                 valueAt.remove(size);
                             }
-                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.e3) && ((org.telegram.ui.ActionBar.e3) notificationCenterDelegate).isDismissed()) {
+                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.f3) && ((org.telegram.ui.ActionBar.f3) notificationCenterDelegate).isDismissed()) {
                             FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BottomSheet");
                             valueAt.remove(size);
                         }
@@ -1218,7 +1218,7 @@ public class NotificationCenter {
                 }
             };
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
-            return new fi.l3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 11);
+            return new ai.tb(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 12);
         }
         return new y1(17);
     }
@@ -1353,7 +1353,7 @@ public class NotificationCenter {
     }
 
     public void postNotificationNameOnUIThread(int i10, Object... objArr) {
-        AndroidUtilities.runOnUIThread(new u4(this, i10, objArr, 19));
+        AndroidUtilities.runOnUIThread(new t4(this, i10, objArr, 19));
     }
 
     public void removeDelayed(Runnable runnable) {
@@ -1395,7 +1395,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f16403id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f17798id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }
@@ -1517,9 +1517,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            yg ygVar = new yg(this, 1);
-            this.checkForExpiredNotifications = ygVar;
-            AndroidUtilities.runOnUIThread(ygVar, 5017L);
+            qg qgVar = new qg(this, 1);
+            this.checkForExpiredNotifications = qgVar;
+            AndroidUtilities.runOnUIThread(qgVar, 5017L);
         }
         return this.animationInProgressPointer;
     }

@@ -96,7 +96,7 @@ public class FileLog {
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.n("_", name == null ? eb.k.f8694a : new eb.m(name));
+            lVar.n("_", name == null ? eb.k.f8575a : new eb.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -107,7 +107,7 @@ public class FileLog {
                                 if (obj != null) {
                                     Class<?> cls = obj.getClass();
                                     if (!cls.isInstance(DispatchQueue.class)) {
-                                        if (!cls.isInstance(org.telegram.ui.Components.f6.class)) {
+                                        if (!cls.isInstance(org.telegram.ui.Components.e6.class)) {
                                             if (!cls.isInstance(ColorStateList.class)) {
                                                 if (cls.isInstance(Context.class)) {
                                                 }
@@ -115,7 +115,7 @@ public class FileLog {
                                         }
                                     }
                                 }
-                                lVar.n(field.getName(), ((a6.i) nVar).n(obj));
+                                lVar.n(field.getName(), ((ya.c) nVar).d0(obj));
                             }
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
@@ -160,7 +160,7 @@ public class FileLog {
             exclusionStrategy = new eb.a() {
                 @Override
                 public boolean shouldSkipClass(Class<?> cls) {
-                    if (!NativeByteBuffer.class.isAssignableFrom(cls) && !cls.isInstance(DispatchQueue.class) && !cls.isInstance(org.telegram.ui.Components.f6.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
+                    if (!NativeByteBuffer.class.isAssignableFrom(cls) && !cls.isInstance(DispatchQueue.class) && !cls.isInstance(org.telegram.ui.Components.e6.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
                         return false;
                     }
                     return true;
@@ -169,8 +169,8 @@ public class FileLog {
                 @Override
                 public boolean shouldSkipField(eb.b bVar) {
                     HashSet hashSet3 = FileLog.privateFields;
-                    Field field = bVar.f8678a;
-                    Field field2 = bVar.f8678a;
+                    Field field = bVar.f8559a;
+                    Field field2 = bVar.f8559a;
                     if (!hashSet3.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -180,26 +180,26 @@ public class FileLog {
                     return true;
                 }
             };
-            gb.h hVar = gb.h.f10053c;
+            gb.f fVar = gb.f.f10957c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             eb.c cVar = eb.g.h;
-            eb.p pVar = eb.g.f8686i;
-            eb.q qVar = eb.g.f8687j;
+            eb.p pVar = eb.g.f8567i;
+            eb.q qVar = eb.g.f8568j;
             ArrayDeque arrayDeque = new ArrayDeque();
             eb.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
-            gb.h clone = hVar.clone();
-            ArrayList arrayList3 = new ArrayList(hVar.f10054a);
-            clone.f10054a = arrayList3;
+            gb.f clone = fVar.clone();
+            ArrayList arrayList3 = new ArrayList(fVar.f10958a);
+            clone.f10958a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
             boolean z11 = byteArrayHexAdapter instanceof eb.o;
             if (!eb.i.class.isAssignableFrom(byte[].class)) {
                 if (z11) {
                     lb.a aVar2 = new lb.a(byte[].class);
-                    if (aVar2.f14654b == aVar2.f14653a) {
+                    if (aVar2.f15989b == aVar2.f15988a) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -207,7 +207,7 @@ public class FileLog {
                     arrayList.add(new hb.z(byteArrayHexAdapter, aVar2, z10, null));
                 }
                 lb.a aVar3 = new lb.a(byte[].class);
-                hb.x0 x0Var = hb.h1.f10418a;
+                hb.x0 x0Var = hb.h1.f11723a;
                 arrayList.add(new hb.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);
@@ -221,7 +221,7 @@ public class FileLog {
                     ArrayList arrayList5 = new ArrayList(arrayList2);
                     Collections.reverse(arrayList5);
                     arrayList4.addAll(arrayList5);
-                    boolean z12 = kb.f.f14204a;
+                    boolean z12 = kb.f.f14999a;
                     gson = new eb.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
                     return;
                 }
@@ -297,7 +297,7 @@ public class FileLog {
 
     public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i10) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
-            postProtocolDump(new z4(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
+            postProtocolDump(new y4(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
         }
     }
 

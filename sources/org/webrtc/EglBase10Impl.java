@@ -104,6 +104,10 @@ public class EglBase10Impl implements EglBase10 {
         }
 
         @Override
+        public void setSizeFromLayout() {
+        }
+
+        @Override
         public void addCallback(SurfaceHolder.Callback callback) {
         }
 
@@ -126,10 +130,6 @@ public class EglBase10Impl implements EglBase10 {
 
         @Override
         public void unlockCanvasAndPost(Canvas canvas) {
-        }
-
-        @Override
-        public void setSizeFromLayout() {
         }
 
         @Override
@@ -258,7 +258,7 @@ public class EglBase10Impl implements EglBase10 {
             if (eglCreatePbufferSurface != eGLSurface2) {
                 return;
             }
-            StringBuilder m10 = i2.d.m("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+            StringBuilder m10 = i0.a.m("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
             m10.append(Integer.toHexString(this.egl.eglGetError()));
             throw new RuntimeException(m10.toString());
         }

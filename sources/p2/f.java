@@ -1,31 +1,47 @@
 package p2;
 
-import android.net.Uri;
-import java.util.ArrayList;
-import java.util.HashMap;
+import j$.util.Objects;
+import v7.u6;
 public final class f {
-    public final String f42559a;
-    public Uri f42561c;
-    public Uri d;
-    public boolean f42565j;
-    public Boolean f42570o;
-    public String f42571p;
-    public String f42572q;
-    public String f42575t;
-    public final HashMap f42560b = new HashMap();
-    public long e = -9223372036854775807L;
-    public long f42562f = -9223372036854775807L;
-    public long f42563g = -9223372036854775807L;
-    public long h = -9223372036854775807L;
-    public ArrayList f42564i = new ArrayList();
-    public long f42566k = -9223372036854775807L;
-    public long f42567l = -9223372036854775807L;
-    public ArrayList f42568m = new ArrayList();
-    public ArrayList f42569n = new ArrayList();
-    public long f42573r = -9223372036854775807L;
-    public long f42574s = -9223372036854775807L;
+    public final String f43966a;
+    public final int f43967b;
+    public final double f43968c;
+    public final String d;
 
-    public f(String str) {
-        this.f42559a = str;
+    public f(String str, double d) {
+        this.f43966a = str;
+        this.f43967b = 2;
+        this.f43968c = d;
+        this.d = null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof f) {
+                f fVar = (f) obj;
+                if (this.f43967b == fVar.f43967b && Double.compare(this.f43968c, fVar.f43968c) == 0 && Objects.equals(this.f43966a, fVar.f43966a) && Objects.equals(this.d, fVar.d)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.f43966a, Integer.valueOf(this.f43967b), Double.valueOf(this.f43968c), this.d);
+    }
+
+    public f(int i10, String str, String str2) {
+        boolean z10 = true;
+        if (i10 == 1 && !str2.startsWith("0x") && !str2.startsWith("0X")) {
+            z10 = false;
+        }
+        u6.p(z10);
+        this.f43966a = str;
+        this.f43967b = i10;
+        this.d = str2;
+        this.f43968c = 0.0d;
     }
 }

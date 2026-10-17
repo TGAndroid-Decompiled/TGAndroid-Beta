@@ -1,5 +1,6 @@
 package c2;
 
+import ai.oa;
 import android.app.Notification;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,18 +12,17 @@ import android.os.Build;
 import android.os.Looper;
 import android.view.Display;
 import android.view.ViewConfiguration;
-import bi.u8;
 public abstract class i {
-    public static AudioManager f4142a;
+    public static AudioManager f4512a;
 
     public static void a(AudioManager audioManager, h hVar) {
         if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = hVar.f4141f;
+            Object obj = hVar.f4511f;
             obj.getClass();
             audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
             return;
         }
-        audioManager.abandonAudioFocus(hVar.f4139b);
+        audioManager.abandonAudioFocus(hVar.f4509b);
     }
 
     public static Notification.Builder b(Context context, String str) {
@@ -58,23 +58,23 @@ public abstract class i {
             synchronized (i.class) {
                 Context applicationContext = context.getApplicationContext();
                 if (applicationContext != null) {
-                    f4142a = null;
+                    f4512a = null;
                 }
-                AudioManager audioManager = f4142a;
+                AudioManager audioManager = f4512a;
                 if (audioManager != null) {
                     return audioManager;
                 }
                 Looper myLooper = Looper.myLooper();
                 if (myLooper != null && myLooper != Looper.getMainLooper()) {
                     e2.i iVar = new e2.i();
-                    e2.a.e().execute(new u8(18, applicationContext, iVar));
+                    e2.a.e().execute(new oa(8, applicationContext, iVar));
                     iVar.b();
-                    AudioManager audioManager2 = f4142a;
+                    AudioManager audioManager2 = f4512a;
                     audioManager2.getClass();
                     return audioManager2;
                 }
                 AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
-                f4142a = audioManager3;
+                f4512a = audioManager3;
                 audioManager3.getClass();
                 return audioManager3;
             }

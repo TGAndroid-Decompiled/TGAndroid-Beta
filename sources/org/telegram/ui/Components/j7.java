@@ -1,44 +1,31 @@
 package org.telegram.ui.Components;
-public final class j7 implements Runnable {
-    public final int f25902a;
-    public final m8 f25903b;
-    public final l80 f25904c;
 
-    public j7(m8 m8Var, l80 l80Var, int i10) {
-        this.f25902a = i10;
-        this.f25903b = m8Var;
-        this.f25904c = l80Var;
+import org.telegram.tgnet.TLRPC;
+public final class j7 implements Runnable {
+    public final int f27424a;
+    public final k8 f27425b;
+    public final TLRPC.TL_error f27426c;
+
+    public j7(k8 k8Var, TLRPC.TL_error tL_error, int i10) {
+        this.f27424a = i10;
+        this.f27425b = k8Var;
+        this.f27426c = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f25902a) {
+        switch (this.f27424a) {
             case 0:
-                m8 m8Var = this.f25903b;
-                m8Var.getClass();
-                this.f25904c.u();
-                m8Var.u0(1);
+                k8.t(this.f27425b, this.f27426c);
                 return;
             case 1:
-                m8 m8Var2 = this.f25903b;
-                m8Var2.getClass();
-                this.f25904c.u();
-                m8Var2.u0(2);
+                k8.y(this.f27425b, this.f27426c);
                 return;
             case 2:
-                m8 m8Var3 = this.f25903b;
-                m8Var3.getClass();
-                this.f25904c.u();
-                m8Var3.u0(4);
-                return;
-            case 3:
-                m8 m8Var4 = this.f25903b;
-                m8Var4.getClass();
-                this.f25904c.u();
-                m8Var4.u0(7);
+                k8.I(this.f27425b, this.f27426c);
                 return;
             default:
-                m8.s(this.f25903b, this.f25904c);
+                k8.J(this.f27425b, this.f27426c);
                 return;
         }
     }

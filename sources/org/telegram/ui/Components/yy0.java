@@ -1,27 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class yy0 implements TextWatcher {
-    public final NumberTextView f31380a;
-    public final xy0 f31381b;
+import android.animation.ValueAnimator;
+import android.text.StaticLayout;
+public final class yy0 {
+    public final EditTextBoldCursor f32780a;
+    public StaticLayout f32781b;
+    public StaticLayout f32782c;
+    public StaticLayout d;
+    public boolean e;
+    public boolean f32783f;
+    public boolean f32784g;
+    public float h;
+    public float f32785i;
+    public ValueAnimator f32786j;
 
-    public yy0(NumberTextView numberTextView, xy0 xy0Var) {
-        this.f31380a = numberTextView;
-        this.f31381b = xy0Var;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f31380a.a(50 - Character.codePointCount(editable, 0, editable.length()), true);
-        this.f31381b.setErrorText(null);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public yy0(EditTextBoldCursor editTextBoldCursor) {
+        this.f32780a = editTextBoldCursor;
     }
 }

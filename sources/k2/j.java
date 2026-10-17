@@ -2,31 +2,31 @@ package k2;
 
 import android.media.AudioDeviceInfo;
 public final class j {
-    public final b2.x f13912a;
-    public b2.f f13913b;
-    public AudioDeviceInfo f13914c;
+    public final b2.w f14705a;
+    public b2.f f14706b;
+    public AudioDeviceInfo f14707c;
     public boolean d;
     public int e;
-    public int f13915f;
-    public boolean f13916g;
+    public int f14708f;
+    public boolean f14709g;
     public int h;
 
     public j(j jVar) {
-        this.f13912a = jVar.f13912a;
-        this.f13913b = jVar.f13913b;
-        this.f13914c = jVar.f13914c;
+        this.f14705a = jVar.f14705a;
+        this.f14706b = jVar.f14706b;
+        this.f14707c = jVar.f14707c;
         this.d = jVar.d;
         this.e = jVar.e;
-        this.f13915f = jVar.f13915f;
-        this.f13916g = jVar.f13916g;
+        this.f14708f = jVar.f14708f;
+        this.f14709g = jVar.f14709g;
         this.h = jVar.h;
     }
 
-    public j(b2.x xVar) {
-        this.f13912a = xVar;
-        this.f13913b = b2.f.f2117i;
+    public j(b2.w wVar) {
+        this.f14705a = wVar;
+        this.f14706b = b2.f.f3740i;
         this.e = 0;
-        this.f13915f = -1;
+        this.f14708f = -1;
         this.h = -1;
     }
 }

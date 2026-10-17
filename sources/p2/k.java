@@ -1,42 +1,21 @@
 package p2;
-public abstract class k implements Comparable {
-    public final String f42600a;
-    public final j f42601b;
-    public final long f42602c;
-    public final int d;
-    public final long e;
-    public final b2.t f42603f;
-    public final String h;
-    public final String f42604n;
-    public final long f42605r;
-    public final long f42606s;
-    public final boolean v;
 
-    public k(String str, j jVar, long j10, int i10, long j11, b2.t tVar, String str2, String str3, long j12, long j13, boolean z10) {
-        this.f42600a = str;
-        this.f42601b = jVar;
-        this.f42602c = j10;
-        this.d = i10;
-        this.e = j11;
-        this.f42603f = tVar;
-        this.h = str2;
-        this.f42604n = str3;
-        this.f42605r = j12;
-        this.f42606s = j13;
-        this.v = z10;
+import e9.l0;
+import e9.n0;
+import e9.x1;
+import java.util.List;
+public final class k extends l {
+    public final String f44008w;
+    public final n0 f44009x;
+
+    public k(String str, long j10, long j11, String str2, String str3) {
+        this(str, null, "", 0L, -1, -9223372036854775807L, null, str2, str3, j10, j11, false, x1.e);
+        l0 l0Var = n0.f8476b;
     }
 
-    @Override
-    public final int compareTo(Object obj) {
-        Long l4 = (Long) obj;
-        long longValue = l4.longValue();
-        long j10 = this.e;
-        if (j10 > longValue) {
-            return 1;
-        }
-        if (j10 < l4.longValue()) {
-            return -1;
-        }
-        return 0;
+    public k(String str, k kVar, String str2, long j10, int i10, long j11, b2.s sVar, String str3, String str4, long j12, long j13, boolean z10, List list) {
+        super(str, kVar, j10, i10, j11, sVar, str3, str4, j12, j13, z10);
+        this.f44008w = str2;
+        this.f44009x = n0.u(list);
     }
 }

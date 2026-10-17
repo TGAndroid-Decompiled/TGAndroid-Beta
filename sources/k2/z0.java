@@ -11,8 +11,9 @@ import j$.util.List;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
+import v7.c9;
 public abstract class z0 {
-    public static final x1 f14063a = e9.n0.y(12);
+    public static final x1 f14858a = e9.n0.y(12);
 
     public static e9.n0 a(AudioDeviceInfo audioDeviceInfo) {
         List<AudioProfile> audioProfiles = audioDeviceInfo.getAudioProfiles();
@@ -31,8 +32,8 @@ public abstract class z0 {
         int type;
         e9.n0 n0Var;
         int speakerLayoutChannelMask;
-        boolean a2 = w7.i.a(audioDeviceInfo.getType());
-        x1 x1Var = f14063a;
+        boolean a2 = c9.a(audioDeviceInfo.getType());
+        x1 x1Var = f14858a;
         if (!a2) {
             if (audioDeviceInfo.getType() == 1) {
                 return e9.n0.y(4);
@@ -50,7 +51,7 @@ public abstract class z0 {
                 if (!a10.isEmpty()) {
                     return a10;
                 }
-                e9.n0 b10 = e0.f0.b(audioDeviceInfo.getAudioDescriptors());
+                e9.n0 b10 = e0.e0.b(audioDeviceInfo.getAudioDescriptors());
                 if (!b10.isEmpty()) {
                     return b10;
                 }
@@ -137,17 +138,17 @@ public abstract class z0 {
                                         }
                                     }
                                 }
-                                List.EL.sort(arrayList, new a4.d(22));
+                                List.EL.sort(arrayList, new a4.d(25));
                                 n0Var = e9.n0.u(arrayList);
                             } else {
-                                e9.l0 l0Var = e9.n0.f8595b;
+                                e9.l0 l0Var = e9.n0.f8476b;
                                 n0Var = x1.e;
                             }
                             if (!n0Var.isEmpty()) {
                                 return n0Var;
                             }
                         }
-                        e9.n0 b15 = e0.f0.b(audioDescriptors);
+                        e9.n0 b15 = e0.e0.b(audioDescriptors);
                         if (!b15.isEmpty()) {
                             return b15;
                         }

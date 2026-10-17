@@ -16,31 +16,31 @@ public final class d {
         this.d = context;
     }
 
-    public t8.c a() {
+    public t8.b a() {
         boolean z10;
         ?? obj = new Object();
         int i10 = this.f556c;
-        obj.f46227a = i10;
+        obj.f47635a = i10;
         int i11 = this.f554a;
-        obj.f46228b = i11;
+        obj.f47636b = i11;
         boolean z11 = false;
-        obj.f46229c = 0;
+        obj.f47637c = 0;
         obj.d = false;
         obj.e = this.f555b;
-        obj.f46230f = -1.0f;
+        obj.f47638f = -1.0f;
         if (i10 != 2 && i11 == 2) {
             Log.e("FaceDetector", "Contour is not supported for non-SELFIE mode.");
             z10 = false;
         } else {
             z10 = true;
         }
-        if (obj.f46228b == 2 && obj.f46229c == 1) {
+        if (obj.f47636b == 2 && obj.f47637c == 1) {
             Log.e("FaceDetector", "Classification is not supported with contour.");
         } else {
             z11 = z10;
         }
         if (z11) {
-            return new t8.c(new t2((Context) this.d, (u8.b) obj));
+            return new t8.b(new t2((Context) this.d, (u8.b) obj));
         }
         throw new IllegalArgumentException("Invalid build options");
     }

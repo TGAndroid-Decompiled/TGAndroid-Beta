@@ -3,22 +3,22 @@ package ah;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import bi.b2;
+import ci.p1;
 import org.telegram.messenger.NotificationCenter;
 public final class z extends AnimatorListenerAdapter {
-    public final int f915a;
+    public final int f917a;
 
     public z(int i10) {
-        this.f915a = i10;
+        this.f917a = i10;
     }
 
     @Override
     public void onAnimationEnd(Animator animator, boolean z10) {
         View view;
-        switch (this.f915a) {
+        switch (this.f917a) {
             case 1:
-                rf.d dVar = b2.Z.L;
-                if (dVar == null || (view = dVar.f43939j) == null) {
+                rf.d dVar = p1.Z.L;
+                if (dVar == null || (view = dVar.f45295j) == null) {
                     return;
                 }
                 dVar.e(view);
@@ -31,7 +31,7 @@ public final class z extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationEnd(Animator animator) {
-        switch (this.f915a) {
+        switch (this.f917a) {
             case 0:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;

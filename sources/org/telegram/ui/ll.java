@@ -1,15 +1,33 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-public final class ll implements MessagesStorage.IntCallback {
-    public final fo f37778a;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+public final class ll implements sp0 {
+    public final sn f38895a;
 
-    public ll(fo foVar) {
-        this.f37778a = foVar;
+    public ll(sn snVar) {
+        this.f38895a = snVar;
     }
 
     @Override
-    public final void run(int i10) {
-        this.f37778a.L9(i10);
+    public final void b() {
+        try {
+            Intent intent = new Intent();
+            intent.setType("video/*");
+            intent.setAction("android.intent.action.GET_CONTENT");
+            intent.putExtra("android.intent.extra.sizeLimit", 2097152000L);
+            Intent intent2 = new Intent("android.intent.action.PICK");
+            intent2.setType("image/*");
+            Intent createChooser = Intent.createChooser(intent2, null);
+            createChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent});
+            this.f38895a.startActivityForResult(createChooser, 1);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void a(ArrayList arrayList) {
     }
 }

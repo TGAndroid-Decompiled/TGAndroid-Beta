@@ -149,12 +149,12 @@ public final class TelegramQRCodeWriter {
             }
         }
         int i14 = this.sideQuadSize;
-        if ((i10 < i14 || i10 >= this.input.f14210b - i14) && i11 < i14) {
+        if ((i10 < i14 || i10 >= this.input.f15005b - i14) && i11 < i14) {
             return false;
         }
-        if ((i10 >= i14 || i11 < this.input.f14211c - i14) && i10 >= 0 && i11 >= 0) {
+        if ((i10 >= i14 || i11 < this.input.f15006c - i14) && i10 >= 0 && i11 >= 0) {
             kc.b bVar = this.input;
-            if (i10 < bVar.f14210b && i11 < bVar.f14211c && bVar.a(i10, i11) == 1) {
+            if (i10 < bVar.f15005b && i11 < bVar.f15006c && bVar.a(i10, i11) == 1) {
                 return true;
             }
         }
@@ -177,7 +177,7 @@ public final class TelegramQRCodeWriter {
         this.centerDrawable = drawable;
     }
 
-    public android.graphics.Bitmap encode(java.lang.String r37, int r38, int r39, java.util.Map<dc.b, ?> r40, android.graphics.Bitmap r41, float r42, int r43, int r44) {
+    public android.graphics.Bitmap encode(java.lang.String r28, int r29, int r30, java.util.Map<dc.b, ?> r31, android.graphics.Bitmap r32, float r33, int r34, int r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TelegramQRCodeWriter.encode(java.lang.String, int, int, java.util.Map, android.graphics.Bitmap, float, int, int):android.graphics.Bitmap");
     }
 }

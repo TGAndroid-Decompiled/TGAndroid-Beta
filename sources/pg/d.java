@@ -3,9 +3,9 @@ package pg;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Cells.f8;
-import org.telegram.ui.Components.mm0;
-public abstract class d extends mm0 {
+import org.telegram.ui.Cells.e8;
+import org.telegram.ui.Components.im0;
+public abstract class d extends im0 {
     public boolean V2;
 
     @Override
@@ -20,9 +20,9 @@ public abstract class d extends mm0 {
                 if (rectF.intersects(x10, y3, childAt.getWidth() + x10, childAt.getHeight() + y3)) {
                     canvas.save();
                     canvas.translate(x10, y3);
-                    f8 f8Var = (f8) ((c) childAt);
-                    if (f8Var.L) {
-                        f8Var.b(canvas, this);
+                    e8 e8Var = (e8) ((c) childAt);
+                    if (e8Var.L) {
+                        e8Var.b(canvas, this);
                     }
                     canvas.restore();
                 }
@@ -38,9 +38,9 @@ public abstract class d extends mm0 {
                 c cVar = (c) getChildAt(i10);
                 canvas.save();
                 canvas.translate(cVar.getX(), cVar.getY());
-                f8 f8Var = (f8) cVar;
-                if (f8Var.L) {
-                    f8Var.b(canvas, this);
+                e8 e8Var = (e8) cVar;
+                if (e8Var.L) {
+                    e8Var.b(canvas, this);
                 }
                 canvas.restore();
             }

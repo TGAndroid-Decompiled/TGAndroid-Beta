@@ -38,27 +38,27 @@ public class SvgHelper {
 
     public static class Circle {
         float rad;
-        float f16413x1;
-        float f16414y1;
+        float f17808x1;
+        float f17809y1;
 
         public Circle(float f7, float f10, float f11) {
-            this.f16413x1 = f7;
-            this.f16414y1 = f10;
+            this.f17808x1 = f7;
+            this.f17809y1 = f10;
             this.rad = f11;
         }
     }
 
     public static class Line {
-        float f16415x1;
-        float f16416x2;
-        float f16417y1;
-        float f16418y2;
+        float f17810x1;
+        float f17811x2;
+        float f17812y1;
+        float f17813y2;
 
         public Line(float f7, float f10, float f11, float f12) {
-            this.f16415x1 = f7;
-            this.f16417y1 = f10;
-            this.f16416x2 = f11;
-            this.f16418y2 = f12;
+            this.f17810x1 = f7;
+            this.f17812y1 = f10;
+            this.f17811x2 = f11;
+            this.f17813y2 = f12;
         }
     }
 
@@ -90,20 +90,20 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-        private int f16419n;
+        private int f17814n;
         public int pos;
-        private CharSequence f16420s;
+        private CharSequence f17815s;
 
         public ParserHelper(CharSequence charSequence, int i10) {
-            this.f16420s = charSequence;
+            this.f17815s = charSequence;
             this.pos = i10;
-            this.f16419n = charSequence.length();
+            this.f17814n = charSequence.length();
             this.current = charSequence.charAt(i10);
         }
 
         private char read() {
             int i10 = this.pos;
-            int i11 = this.f16419n;
+            int i11 = this.f17814n;
             if (i10 < i11) {
                 this.pos = i10 + 1;
             }
@@ -111,7 +111,7 @@ public class SvgHelper {
             if (i12 == i11) {
                 return (char) 0;
             }
-            return this.f16420s.charAt(i12);
+            return this.f17815s.charAt(i12);
         }
 
         private void reportUnexpectedCharacterError(char c10) {
@@ -163,8 +163,8 @@ public class SvgHelper {
         public void skipNumberSeparator() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f16419n) {
-                    char charAt = this.f16420s.charAt(i10);
+                if (i10 < this.f17814n) {
+                    char charAt = this.f17815s.charAt(i10);
                     if (charAt == '\t' || charAt == '\n' || charAt == ' ' || charAt == ',') {
                         advance();
                     } else {
@@ -179,7 +179,7 @@ public class SvgHelper {
         public void skipWhitespace() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f16419n && Character.isWhitespace(this.f16420s.charAt(i10))) {
+                if (i10 < this.f17814n && Character.isWhitespace(this.f17815s.charAt(i10))) {
                     advance();
                 } else {
                     return;
@@ -314,7 +314,7 @@ public class SvgHelper {
         private Paint backgroundPaint;
         private float colorAlpha;
         private int currentColorKey;
-        private org.telegram.ui.ActionBar.c6 currentResourcesProvider;
+        private org.telegram.ui.ActionBar.d6 currentResourcesProvider;
         protected int height;
         private Integer overrideColor;
         private Paint overridePaint;
@@ -444,7 +444,7 @@ public class SvgHelper {
             canvas.save();
             canvas.translate(f7, f10);
             if (!this.aspectFill || this.aspectCenter) {
-                canvas.translate(com.google.android.gms.internal.play_billing.k3.c(this.width, scale, f11, 2.0f), com.google.android.gms.internal.play_billing.k3.c(this.height, scale, f12, 2.0f));
+                canvas.translate(com.google.android.gms.internal.cast.a6.c(this.width, scale, f11, 2.0f), com.google.android.gms.internal.cast.a6.c(this.height, scale, f12, 2.0f));
             }
             canvas.scale(scale, scale);
             int size = this.commands.size();
@@ -475,10 +475,10 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.f16415x1, line.f16417y1, line.f16416x2, line.f16418y2, paint);
+                        canvas.drawLine(line.f17810x1, line.f17812y1, line.f17811x2, line.f17813y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.f16413x1, circle.f16414y1, circle.rad, paint);
+                        canvas.drawCircle(circle.f17808x1, circle.f17809y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
@@ -575,20 +575,20 @@ public class SvgHelper {
             return svgDrawable;
         }
 
-        public void setColorKey(int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        public void setColorKey(int i10, org.telegram.ui.ActionBar.d6 d6Var) {
             this.currentColorKey = i10;
-            this.currentResourcesProvider = c6Var;
+            this.currentResourcesProvider = d6Var;
         }
 
         public void setPaint(Paint paint, int i10) {
             this.overridePaintByPosition.put(i10, paint);
         }
 
-        public void setupGradient(int i10, org.telegram.ui.ActionBar.c6 c6Var, float f7, boolean z10) {
+        public void setupGradient(int i10, org.telegram.ui.ActionBar.d6 d6Var, float f7, boolean z10) {
             BitmapShader bitmapShader;
             Integer num = this.overrideColor;
-            int w02 = num == null ? org.telegram.ui.ActionBar.g6.w0(i10, c6Var) : num.intValue();
-            this.currentResourcesProvider = c6Var;
+            int w02 = num == null ? org.telegram.ui.ActionBar.h6.w0(i10, d6Var) : num.intValue();
+            this.currentResourcesProvider = d6Var;
             int[] iArr = this.currentColor;
             if (iArr[z10 ? 1 : 0] != w02) {
                 this.colorAlpha = f7;
@@ -596,18 +596,18 @@ public class SvgHelper {
                 iArr[z10 ? 1 : 0] = w02;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
                 if (!lite) {
-                    int k10 = i0.a.k(w02, 70);
+                    int o10 = i0.b.o(w02, 70);
                     if (z10) {
                         if (this.backgroundPaint == null) {
                             this.backgroundPaint = new Paint(1);
                         }
                         this.backgroundPaint.setShader(null);
-                        this.backgroundPaint.setColor(k10);
+                        this.backgroundPaint.setColor(o10);
                         return;
                     }
                     for (Paint paint : this.paints.values()) {
                         paint.setShader(null);
-                        paint.setColor(k10);
+                        paint.setColor(o10);
                     }
                     return;
                 }
@@ -2134,7 +2134,7 @@ public class SvgHelper {
             return f7;
         }
         if (stringAttr.endsWith("px")) {
-            stringAttr = com.google.android.gms.internal.play_billing.k3.j(2, 0, stringAttr);
+            stringAttr = com.google.android.gms.internal.cast.a6.j(2, 0, stringAttr);
         } else if (stringAttr.endsWith("mm")) {
             return null;
         }

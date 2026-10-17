@@ -1,72 +1,69 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class cm0 implements Runnable {
-    public final int f34730a;
-    public final sn0 f34731b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class cm0 extends AnimatorListenerAdapter {
+    public final int f35957a;
+    public final boolean f35958b;
+    public final xm0 f35959c;
 
-    public cm0(sn0 sn0Var, int i10) {
-        this.f34730a = i10;
-        this.f34731b = sn0Var;
+    public cm0(xm0 xm0Var, boolean z10, int i10) {
+        this.f35957a = i10;
+        this.f35959c = xm0Var;
+        this.f35958b = z10;
     }
 
     @Override
-    public final void run() {
-        ViewGroup viewGroup;
-        switch (this.f34730a) {
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f35957a) {
             case 0:
-                sn0 sn0Var = this.f34731b;
-                ViewGroup[] viewGroupArr = sn0Var.Z;
-                if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
-                    sn0Var.Y[0].requestFocus();
-                    AndroidUtilities.showKeyboard(sn0Var.Y[0]);
+                xm0 xm0Var = this.f35959c;
+                AnimatorSet animatorSet = xm0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    xm0Var.M = null;
                     return;
                 }
                 return;
-            case 1:
-                sn0 sn0Var2 = this.f34731b;
-                sn0Var2.presentFragment(sn0Var2.f39873h1, true);
-                sn0Var2.f39873h1 = null;
-                return;
-            case 2:
-                sn0 sn0Var3 = this.f34731b;
-                EditTextBoldCursor[] editTextBoldCursorArr = sn0Var3.f39855a0;
-                if (editTextBoldCursorArr != null) {
-                    sn0Var3.H1(editTextBoldCursorArr[0]);
+            default:
+                xm0 xm0Var2 = this.f35959c;
+                AnimatorSet animatorSet2 = xm0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    xm0Var2.M = null;
                     return;
                 }
                 return;
-            case 3:
-                AndroidUtilities.showKeyboard(this.f34731b.Y[2]);
-                return;
-            case 4:
-                this.f34731b.w1();
-                return;
-            case 5:
-                int i10 = 0;
-                while (true) {
-                    sn0 sn0Var4 = this.f34731b;
-                    if (i10 < sn0Var4.f39861c0.getChildCount()) {
-                        View childAt = sn0Var4.f39861c0.getChildAt(i10);
-                        if (childAt instanceof rn0) {
-                            sn0Var4.f39861c0.removeView(childAt);
-                            i10--;
-                        }
-                        i10++;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f35957a) {
+            case 0:
+                xm0 xm0Var = this.f35959c;
+                AnimatorSet animatorSet = xm0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f35958b) {
+                        xm0Var.N.setVisibility(4);
+                        return;
                     } else {
-                        sn0Var4.w1();
-                        sn0Var4.f39890q1.clear();
-                        sn0Var4.f39888p1.clear();
-                        sn0Var4.f39909y.values.clear();
-                        sn0Var4.P1();
+                        xm0Var.L.getContentView().setVisibility(4);
                         return;
                     }
                 }
+                return;
             default:
-                this.f34731b.finishFragment();
+                xm0 xm0Var2 = this.f35959c;
+                AnimatorSet animatorSet2 = xm0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f35958b) {
+                        xm0Var2.P.setVisibility(4);
+                        return;
+                    } else {
+                        xm0Var2.O.setVisibility(4);
+                        return;
+                    }
+                }
                 return;
         }
     }

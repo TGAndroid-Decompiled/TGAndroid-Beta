@@ -2,11 +2,11 @@ package xd;
 
 import w7.c0;
 public final class i {
-    public static final i[] f48385a;
+    public static final i[] f49792a;
 
     static {
         i[] iVarArr = {new Enum("PUBLIC", 0), new Enum("PROTECTED", 1), new Enum("INTERNAL", 2), new Enum("PRIVATE", 3)};
-        f48385a = iVarArr;
+        f49792a = iVarArr;
         c0.a(iVarArr);
     }
 
@@ -15,6 +15,6 @@ public final class i {
     }
 
     public static i[] values() {
-        return (i[]) f48385a.clone();
+        return (i[]) f49792a.clone();
     }
 }

@@ -1,39 +1,43 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class ug implements DialogInterface.OnCancelListener {
-    public final int f40393a;
-    public final Object f40394b;
+import org.telegram.messenger.MessagesStorage;
+public final class ug implements MessagesStorage.IntCallback {
+    public final int f41979a;
+    public final sn f41980b;
 
-    public ug(Object obj, int i10) {
-        this.f40393a = i10;
-        this.f40394b = obj;
+    public ug(sn snVar, int i10) {
+        this.f41979a = i10;
+        this.f41980b = snVar;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f40393a) {
+    public final void run(int i10) {
+        switch (this.f41979a) {
             case 0:
-                fo foVar = (fo) this.f40394b;
-                foVar.f35594b9 = true;
-                foVar.Z8 = 0;
-                foVar.f35779qb = 0;
-                foVar.N4 = 0;
-                foVar.w9();
-                foVar.Rb(false);
+                sn snVar = this.f41980b;
+                if (snVar.getParentActivity() != null && snVar.fragmentView != null && i10 > 0) {
+                    org.telegram.ui.Components.xc.a0(snVar).m(org.telegram.ui.Components.wc.f32070r, i10, 0, 0, snVar.f41205ea).j();
+                    return;
+                }
                 return;
             case 1:
-                zo zoVar = (zo) this.f40394b;
-                zoVar.M0 = false;
-                zoVar.f42365b = null;
-                zoVar.N0 = false;
-                return;
-            case 2:
-                ((aq) this.f40394b).f34052n = null;
+                sn snVar2 = this.f41980b;
+                if (i10 == 0) {
+                    snVar2.f41298m6 = false;
+                    snVar2.M9();
+                    return;
+                }
+                snVar2.j(i10, 0, false, 0, true, 0);
                 return;
             default:
-                ((ic0) this.f40394b).b();
-                return;
+                sn snVar3 = this.f41980b;
+                if (i10 == 0) {
+                    snVar3.Uc(true);
+                    return;
+                } else {
+                    snVar3.finishFragment();
+                    return;
+                }
         }
     }
 }

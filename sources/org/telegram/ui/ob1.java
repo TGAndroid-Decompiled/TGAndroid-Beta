@@ -1,52 +1,82 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.MessageObject;
-public final class ob1 extends org.telegram.ui.Components.l61 {
-    public static final int f38600b = 0;
-    public org.telegram.ui.Cells.s7 f38601a;
+import android.view.MotionEvent;
+import android.widget.Scroller;
+import org.telegram.messenger.Utilities;
+public final class ob1 implements org.telegram.ui.Components.bp0, org.telegram.ui.Components.r20 {
+    public final mc1 f39704a;
 
-    static {
-        org.telegram.ui.Components.l61.setup(new org.telegram.ui.Components.l61());
+    public ob1(mc1 mc1Var) {
+        this.f39704a = mc1Var;
     }
 
     @Override
-    public final void attachedView(org.telegram.ui.Components.mm0 mm0Var, View view, org.telegram.ui.Components.m61 m61Var) {
-        boolean z10;
-        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-        if (m61Var != null && m61Var.h) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        t7Var.l(z10, false);
+    public void L(float f7, boolean z10) {
+        mc1 mc1Var = this.f39704a;
+        mc1Var.l1 = f7;
+        mc1Var.k1();
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.m61 m61Var, boolean z10, org.telegram.ui.Components.a71 a71Var, org.telegram.ui.Components.i71 i71Var) {
-        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-        t7Var.k((MessageObject) m61Var.G, m61Var.v, false);
-        t7Var.i(m61Var.e, false);
-        t7Var.l(m61Var.h, false);
+    public int Y() {
+        return 0;
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        if (this.f38601a == null) {
-            this.f38601a = new org.telegram.ui.Cells.s7(context, c6Var);
-        }
-        org.telegram.ui.Cells.t7 t7Var = new org.telegram.ui.Cells.t7(context, this.f38601a, i10);
-        t7Var.f21829w0 = true;
-        t7Var.f21806d0 = true;
-        return t7Var;
+    public CharSequence getContentDescription() {
+        return null;
     }
 
     @Override
-    public final boolean equals(org.telegram.ui.Components.m61 m61Var, org.telegram.ui.Components.m61 m61Var2) {
-        if (m61Var.f26951q == m61Var2.f26951q && m61Var.e == m61Var2.e && m61Var.B == m61Var2.B) {
+    public boolean onDown(MotionEvent motionEvent) {
+        Scroller scroller = this.f39704a.f39104c;
+        if (scroller != null) {
+            scroller.abortAnimation();
             return true;
         }
+        return true;
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        mc1 mc1Var = this.f39704a;
+        Scroller scroller = mc1Var.f39104c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+            mc1Var.f39104c.fling((int) mc1Var.X1, 0, Math.round(-f7), Math.round(f10), 0, (int) mc1Var.W1, 0, Integer.MAX_VALUE);
+            mc1Var.f39159x0.postInvalidate();
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        mc1 mc1Var = this.f39704a;
+        Scroller scroller = mc1Var.f39104c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+        }
+        mc1Var.X1 = Utilities.clamp(mc1Var.X1 + f7, mc1Var.W1, 0.0f);
+        mc1Var.V0();
+        mc1Var.f39159x0.invalidate();
+        return true;
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
         return false;
+    }
+
+    @Override
+    public void N0() {
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+    }
+
+    @Override
+    public void v() {
     }
 }

@@ -1,33 +1,35 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class se implements Runnable {
-    public final int f18112a = 0;
-    public final MessagesStorage f18113b;
-    public final boolean f18114c;
-    public final ArrayList d;
+    public final int f19497a;
+    public final MessagesStorage f19498b;
+    public final long f19499c;
+    public final long d;
 
-    public se(MessagesStorage messagesStorage, ArrayList arrayList, boolean z10) {
-        this.f18113b = messagesStorage;
-        this.d = arrayList;
-        this.f18114c = z10;
+    public se(int i10, long j10, long j11, MessagesStorage messagesStorage) {
+        this.f19497a = i10;
+        this.f19498b = messagesStorage;
+        this.f19499c = j10;
+        this.d = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18112a) {
+        switch (this.f19497a) {
             case 0:
-                this.f18113b.lambda$putEphemeralMessages$204(this.d, this.f18114c);
+                this.f19498b.lambda$clearUserPhoto$93(this.f19499c, this.d);
+                return;
+            case 1:
+                this.f19498b.lambda$saveChatInviter$132(this.f19499c, this.d);
+                return;
+            case 2:
+                this.f19498b.lambda$setDialogFlags$37(this.f19499c, this.d);
+                return;
+            case 3:
+                this.f19498b.lambda$removeTopic$57(this.f19499c, this.d);
                 return;
             default:
-                this.f18113b.lambda$putContacts$146(this.f18114c, this.d);
+                this.f19498b.lambda$deleteUserChatHistory$87(this.f19499c, this.d);
                 return;
         }
-    }
-
-    public se(MessagesStorage messagesStorage, boolean z10, ArrayList arrayList) {
-        this.f18113b = messagesStorage;
-        this.f18114c = z10;
-        this.d = arrayList;
     }
 }

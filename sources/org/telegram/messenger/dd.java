@@ -1,31 +1,29 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class dd implements Utilities.Callback2 {
-    public final int f16773a;
-    public final MessagesController f16774b;
-    public final long f16775c;
-    public final Utilities.Callback2 d;
+import org.telegram.tgnet.TLObject;
+public final class dd implements Runnable {
+    public final int f18180a;
+    public final MessagesController f18181b;
+    public final TLObject f18182c;
+    public final org.telegram.ui.ActionBar.g6 d;
+    public final org.telegram.ui.ActionBar.f6 e;
 
-    public dd(MessagesController messagesController, long j10, Utilities.Callback2 callback2, int i10) {
-        this.f16773a = i10;
-        this.f16774b = messagesController;
-        this.f16775c = j10;
-        this.d = callback2;
+    public dd(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        this.f18180a = i10;
+        this.f18181b = messagesController;
+        this.f18182c = tLObject;
+        this.d = g6Var;
+        this.e = f6Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f16773a) {
+    public final void run() {
+        switch (this.f18180a) {
             case 0:
-                this.f16774b.lambda$resolveCommunityAllJoinPendingRequests$249(this.f16775c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                this.f16774b.lambda$resolveCommunityJoinPendingRequest$248(this.f16775c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                this.f18181b.lambda$didReceivedNotification$47(this.f18182c, this.d, this.e);
                 return;
             default:
-                this.f16774b.lambda$toggleCommunityParticipantBanned$247(this.f16775c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                this.f18181b.lambda$didReceivedNotification$45(this.f18182c, this.d, this.e);
                 return;
         }
     }

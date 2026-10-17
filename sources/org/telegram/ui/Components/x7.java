@@ -1,50 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class x7 extends mm0 {
-    public boolean V2;
-    public final m8 W2;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class x7 extends AnimatorListenerAdapter {
+    public final int f32334a;
+    public final k8 f32335b;
 
-    public x7(m8 m8Var, Context context) {
-        super(context, null);
-        this.W2 = m8Var;
+    public x7(k8 k8Var, int i10) {
+        this.f32334a = i10;
+        this.f32335b = k8Var;
     }
 
     @Override
-    public final boolean E0(float f7) {
-        m8 m8Var = this.W2;
-        if (f7 < m8Var.E.getY() - m8Var.f26982n.getTop()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        m8 m8Var = this.W2;
-        int i14 = m8Var.f26990s0;
-        if (i14 != -1 && !m8Var.f26970c.f20142n0) {
-            this.V2 = true;
-            m8Var.f26987r.h1(i14, m8Var.f26991t0 - m8Var.f26982n.getPaddingTop());
-            super.onLayout(false, i10, i11, i12, i13);
-            this.V2 = false;
-            m8Var.f26990s0 = -1;
-        } else if (m8Var.f26988r0) {
-            m8Var.f26988r0 = false;
-            this.V2 = true;
-            if (m8Var.x0(true)) {
-                super.onLayout(false, i10, i11, i12, i13);
-            }
-            this.V2 = false;
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f32334a) {
+            case 2:
+                this.f32335b.C0 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.V2) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32334a) {
+            case 0:
+                this.f32335b.m0 = false;
+                return;
+            case 1:
+                k8 k8Var = this.f32335b;
+                k8Var.f27775i0.setVisibility(4);
+                k8Var.f27776j0.setImageBitmap(null);
+                k8Var.m0 = false;
+                return;
+            default:
+                return;
         }
-        super.requestLayout();
+    }
+
+    private final void a(Animator animator) {
     }
 }

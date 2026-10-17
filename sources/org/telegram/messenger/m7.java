@@ -1,49 +1,72 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class m7 implements RequestDelegate {
-    public final int f17543a;
-    public final MediaDataController f17544b;
+public final class m7 implements Runnable {
+    public final int f18942a;
+    public final MediaDataController f18943b;
 
     public m7(MediaDataController mediaDataController, int i10) {
-        this.f17543a = i10;
-        this.f17544b = mediaDataController;
+        this.f18942a = i10;
+        this.f18943b = mediaDataController;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17543a) {
+    public final void run() {
+        switch (this.f18942a) {
             case 0:
-                this.f17544b.lambda$checkGenericAnimations$80(tLObject, tL_error);
+                this.f18943b.lambda$processLoadedMenuBots$5();
                 return;
             case 1:
-                this.f17544b.lambda$preloadPremiumPreviewStickers$207(tLObject, tL_error);
+                this.f18943b.lambda$addRecentSticker$20();
                 return;
             case 2:
-                this.f17544b.lambda$clearRecentStickers$19(tLObject, tL_error);
+                this.f18943b.lambda$processLoadedReactions$15();
                 return;
             case 3:
-                this.f17544b.lambda$loadPremiumPromo$8(tLObject, tL_error);
+                this.f18943b.lambda$fetchNewEmojiKeywords$211();
                 return;
             case 4:
-                this.f17544b.lambda$loadReactions$14(tLObject, tL_error);
+                this.f18943b.lambda$clearRecentEmojiStatuses$230();
                 return;
             case 5:
-                this.f17544b.lambda$checkPremiumGiftStickers$76(tLObject, tL_error);
+                this.f18943b.lambda$clearRecentStickers$17();
                 return;
             case 6:
-                this.f17544b.lambda$loadDraftsIfNeed$188(tLObject, tL_error);
+                this.f18943b.lambda$loadReactions$12();
                 return;
             case 7:
-                this.f17544b.lambda$checkDefaultTopicIcons$82(tLObject, tL_error);
+                this.f18943b.lambda$loadPremiumPromo$7();
                 return;
             case 8:
-                this.f17544b.lambda$loadGroupStickerSet$46(tLObject, tL_error);
+                this.f18943b.lambda$processLoadedPremiumPromo$9();
+                return;
+            case 9:
+                this.f18943b.lambda$cleanupStickerSetCache$39();
+                return;
+            case 10:
+                this.f18943b.lambda$cleanup$2();
+                return;
+            case 11:
+                this.f18943b.lambda$fetchEmojiStatuses$231();
+                return;
+            case 12:
+                this.f18943b.lambda$loadDraftsIfNeed$186();
+                return;
+            case 13:
+                this.f18943b.lambda$loadHints$145();
+                return;
+            case 14:
+                this.f18943b.lambda$loadDraftsIfNeed$187();
+                return;
+            case 15:
+                this.f18943b.lambda$loadAttachMenuBots$3();
+                return;
+            case 16:
+                this.f18943b.lambda$loadHints$146();
+                return;
+            case 17:
+                this.f18943b.lambda$clearTopPeers$149();
                 return;
             default:
-                this.f17544b.lambda$checkTonGiftStickers$78(tLObject, tL_error);
+                this.f18943b.lambda$fetchEmojiStatuses$233();
                 return;
         }
     }

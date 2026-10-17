@@ -1,6 +1,6 @@
 package qg;
 
-import android.graphics.Typeface;
-public interface h0 {
-    Typeface a();
+import java.util.ArrayList;
+public final class h0 {
+    public ArrayList f44552a;
 }

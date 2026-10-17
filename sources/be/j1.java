@@ -2,7 +2,7 @@ package be;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public class j1 extends v1 {
-    public final boolean f2687c;
+    public final boolean f4299c;
 
     public j1() {
         super(true);
@@ -10,7 +10,7 @@ public class j1 extends v1 {
         q qVar2;
         boolean z10 = true;
         x(null);
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = v1.f2722b;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = v1.f4334b;
         p pVar = (p) atomicReferenceFieldUpdater.get(this);
         if (pVar instanceof q) {
             qVar = (q) pVar;
@@ -30,15 +30,15 @@ public class j1 extends v1 {
                     i10 = qVar2.i();
                 }
             }
-            this.f2687c = z10;
+            this.f4299c = z10;
         }
         z10 = false;
-        this.f2687c = z10;
+        this.f4299c = z10;
     }
 
     @Override
     public final boolean r() {
-        return this.f2687c;
+        return this.f4299c;
     }
 
     @Override

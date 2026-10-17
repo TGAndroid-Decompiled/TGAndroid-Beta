@@ -1,42 +1,144 @@
 package org.telegram.ui.Components;
-public final class f00 implements Runnable {
-    public final int f24534a;
-    public final boolean f24535b;
-    public final boolean f24536c;
-    public final boolean d;
-    public final Object e;
 
-    public f00(Object obj, boolean z10, boolean z11, boolean z12, int i10) {
-        this.f24534a = i10;
-        this.e = obj;
-        this.f24535b = z10;
-        this.f24536c = z11;
-        this.d = z12;
+import android.graphics.PointF;
+import java.nio.ByteBuffer;
+import org.telegram.messenger.MediaController;
+public final class f00 implements h00 {
+    public final MediaController.SavedFilterState f26023a;
+
+    public f00(MediaController.SavedFilterState savedFilterState) {
+        this.f26023a = savedFilterState;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24534a) {
-            case 0:
-                h00 h00Var = (h00) this.e;
-                if (this.f24535b) {
-                    l00 l00Var = h00Var.J;
-                    l00Var.f26516a = true;
-                    l00Var.f26519b = true;
-                }
-                if (this.f24536c) {
-                    h00Var.f25145x = true;
-                }
-                long currentTimeMillis = System.currentTimeMillis();
-                if (this.d || Math.abs(h00Var.f25134a0 - currentTimeMillis) > 30) {
-                    h00Var.f25134a0 = currentTimeMillis;
-                    h00Var.f25139d0.run();
-                    return;
-                }
-                return;
-            default:
-                ((org.telegram.ui.ah0) this.e).w1(this.f24535b, this.f24536c, this.d);
-                return;
+    public final ByteBuffer a() {
+        MediaController.SavedFilterState savedFilterState = this.f26023a;
+        savedFilterState.curvesToolValue.a();
+        return savedFilterState.curvesToolValue.e;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return !this.f26023a.curvesToolValue.b();
+    }
+
+    @Override
+    public final float getBlurAngle() {
+        return this.f26023a.blurAngle;
+    }
+
+    @Override
+    public final float getBlurExcludeBlurSize() {
+        return this.f26023a.blurExcludeBlurSize;
+    }
+
+    @Override
+    public final PointF getBlurExcludePoint() {
+        return this.f26023a.blurExcludePoint;
+    }
+
+    @Override
+    public final float getBlurExcludeSize() {
+        return this.f26023a.blurExcludeSize;
+    }
+
+    @Override
+    public final int getBlurType() {
+        return this.f26023a.blurType;
+    }
+
+    @Override
+    public final float getContrastValue() {
+        return a1.g.d(this.f26023a.contrastValue, 100.0f, 0.3f, 1.0f);
+    }
+
+    @Override
+    public final float getEnhanceValue() {
+        return this.f26023a.enhanceValue / 100.0f;
+    }
+
+    @Override
+    public final float getExposureValue() {
+        return this.f26023a.exposureValue / 100.0f;
+    }
+
+    @Override
+    public final float getFadeValue() {
+        return this.f26023a.fadeValue / 100.0f;
+    }
+
+    @Override
+    public final float getGrainValue() {
+        return (this.f26023a.grainValue / 100.0f) * 0.04f;
+    }
+
+    @Override
+    public final float getHighlightsValue() {
+        return com.google.android.gms.internal.cast.a6.v(this.f26023a.highlightsValue, 0.75f, 100.0f, 100.0f);
+    }
+
+    @Override
+    public final float getSaturationValue() {
+        float f7 = this.f26023a.saturationValue / 100.0f;
+        if (f7 > 0.0f) {
+            f7 *= 1.05f;
         }
+        return f7 + 1.0f;
+    }
+
+    @Override
+    public final float getShadowsValue() {
+        return com.google.android.gms.internal.cast.a6.v(this.f26023a.shadowsValue, 0.55f, 100.0f, 100.0f);
+    }
+
+    @Override
+    public final float getSharpenValue() {
+        return a1.g.d(this.f26023a.sharpenValue, 100.0f, 0.6f, 0.11f);
+    }
+
+    @Override
+    public final float getSoftenSkinValue() {
+        return this.f26023a.softenSkinValue / 100.0f;
+    }
+
+    @Override
+    public final int getTintHighlightsColor() {
+        return this.f26023a.tintHighlightsColor;
+    }
+
+    @Override
+    public final float getTintHighlightsIntensityValue() {
+        if (this.f26023a.tintHighlightsColor == 0) {
+            return 0.0f;
+        }
+        return 0.5f;
+    }
+
+    @Override
+    public final int getTintShadowsColor() {
+        return this.f26023a.tintShadowsColor;
+    }
+
+    @Override
+    public final float getTintShadowsIntensityValue() {
+        if (this.f26023a.tintShadowsColor == 0) {
+            return 0.0f;
+        }
+        return 0.5f;
+    }
+
+    @Override
+    public final float getVignetteValue() {
+        return this.f26023a.vignetteValue / 100.0f;
+    }
+
+    @Override
+    public final float getWarmthValue() {
+        return this.f26023a.warmthValue / 100.0f;
     }
 }

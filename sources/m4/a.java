@@ -2,27 +2,27 @@ package m4;
 
 import android.net.Uri;
 public final class a implements Runnable {
-    public final int f15115a;
-    public final b f15116b;
+    public final int f16468a;
+    public final b f16469b;
 
     public a(b bVar, int i10) {
-        this.f15115a = i10;
-        this.f15116b = bVar;
+        this.f16468a = i10;
+        this.f16469b = bVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f15115a;
-        b bVar = this.f15116b;
+        int i10 = this.f16468a;
+        b bVar = this.f16469b;
         switch (i10) {
             case 0:
-                bVar.f15120a.unregisterReceiver(bVar.d);
+                bVar.f16474a.unregisterReceiver(bVar.d);
                 return;
             case 1:
                 b.a(bVar);
                 return;
             default:
-                Uri uri = b.f15119g;
+                Uri uri = b.f16473g;
                 bVar.b();
                 return;
         }

@@ -8,14 +8,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import qg.q1;
+import qg.s1;
 import rg.a;
 public class ColorPicker extends FrameLayout {
     public static final int[] d = {-1431751, -2409774, -13610525, -11942419, -8337308, -205211, -223667, -16777216, -1};
     public static final float[] e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
-    public float f22897a;
-    public float f22898b;
-    public float f22899c;
+    public float f24252a;
+    public float f24253b;
+    public float f24254c;
 
     public static int a(float f7) {
         float[] fArr;
@@ -57,20 +57,20 @@ public class ColorPicker extends FrameLayout {
     }
 
     private void setDraggingFactor(float f7) {
-        this.f22899c = f7;
+        this.f24254c = f7;
         invalidate();
     }
 
     public float getDraggingFactor() {
-        return this.f22899c;
+        return this.f24254c;
     }
 
     public View getSettingsButton() {
         return null;
     }
 
-    public q1 getSwatch() {
-        return new q1(this.f22897a, this.f22898b, a(this.f22897a));
+    public s1 getSwatch() {
+        return new s1(this.f24252a, this.f24253b, a(this.f24252a));
     }
 
     @Override
@@ -96,7 +96,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setLocation(float f7) {
-        this.f22897a = f7;
+        this.f24252a = f7;
         a(f7);
         throw null;
     }
@@ -105,9 +105,9 @@ public class ColorPicker extends FrameLayout {
         throw null;
     }
 
-    public void setSwatch(q1 q1Var) {
-        setLocation(q1Var.f43286b);
-        setWeight(q1Var.f43287c);
+    public void setSwatch(s1 s1Var) {
+        setLocation(s1Var.f44668b);
+        setWeight(s1Var.f44669c);
     }
 
     public void setUndoEnabled(boolean z10) {
@@ -115,7 +115,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setWeight(float f7) {
-        this.f22898b = f7;
+        this.f24253b = f7;
         invalidate();
     }
 

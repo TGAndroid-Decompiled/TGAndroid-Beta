@@ -1,33 +1,23 @@
 package c3;
+public final class h0 extends v {
+    public final c0 f4626b;
+    public final ad.d f4627c;
 
-import java.util.Arrays;
-public final class h0 {
-    public final int f4253a;
-    public final byte[] f4254b;
-    public final int f4255c;
-    public final int d;
-
-    public h0(int i10, int i11, int i12, byte[] bArr) {
-        this.f4253a = i10;
-        this.f4254b = bArr;
-        this.f4255c = i11;
-        this.d = i12;
+    public h0(ad.d dVar, c0 c0Var, c0 c0Var2) {
+        super(c0Var);
+        this.f4627c = dVar;
+        this.f4626b = c0Var2;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && h0.class == obj.getClass()) {
-            h0 h0Var = (h0) obj;
-            if (this.f4253a == h0Var.f4253a && this.f4255c == h0Var.f4255c && this.d == h0Var.d && Arrays.equals(this.f4254b, h0Var.f4254b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((((Arrays.hashCode(this.f4254b) + (this.f4253a * 31)) * 31) + this.f4255c) * 31) + this.d;
+    @Override
+    public final b0 f(long j10) {
+        b0 f7 = this.f4626b.f(j10);
+        d0 d0Var = f7.f4590a;
+        long j11 = d0Var.f4607a;
+        long j12 = d0Var.f4608b;
+        long j13 = this.f4627c.f505b;
+        d0 d0Var2 = new d0(j11, j12 + j13);
+        d0 d0Var3 = f7.f4591b;
+        return new b0(d0Var2, new d0(d0Var3.f4607a, d0Var3.f4608b + j13));
     }
 }

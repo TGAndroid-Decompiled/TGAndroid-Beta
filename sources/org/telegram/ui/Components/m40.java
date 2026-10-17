@@ -1,41 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class m40 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f26918a;
-    public final o40 f26919b;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class m40 extends FrameLayout {
+    public final int f28387a;
+    public final org.telegram.ui.ActionBar.d6 f28388b;
+    public ArrayList f28389c;
+    public final FrameLayout d;
+    public final a71 e;
+    public final s61 f28390f;
+    public Utilities.Callback h;
 
-    public m40(o40 o40Var, int i10) {
-        this.f26918a = i10;
-        this.f26919b = o40Var;
+    public m40(int i10, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(activity);
+        this.f28387a = i10;
+        this.f28388b = d6Var;
+        a71 a71Var = new a71(activity, i10, 0, false, new d(this, 15), new l40(this), new l40(this), d6Var);
+        this.e = a71Var;
+        a71Var.setClipToPadding(false);
+        s61 s61Var = (s61) a71Var.getAdapter();
+        this.f28390f = s61Var;
+        s61Var.f30200r = false;
+        addView(a71Var, -1, -1);
+        FrameLayout frameLayout = new FrameLayout(activity);
+        this.d = frameLayout;
+        ImageView imageView = new ImageView(activity);
+        int i11 = org.telegram.ui.ActionBar.h6.f21149m6;
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.large_hashtags);
+        frameLayout.addView(imageView, w7.z5.e(56, 56, 49));
+        TextView textView = new TextView(activity);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
+        org.telegram.messenger.wh.m(R.string.HashtagSearchPlaceholder, textView, 17);
+        frameLayout.addView(textView, w7.z5.a(-2.0f, 0.0f, 56.0f, 0.0f, 0.0f, -2, 81));
+        addView(frameLayout, w7.z5.e(210, -2, 17));
+        a71Var.setEmptyView(frameLayout);
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.go goVar;
-        bi.o0 o0Var;
-        switch (this.f26918a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o40 o40Var = this.f26919b;
-                o40Var.f27535w = floatValue;
-                o40Var.e.setTranslationY(floatValue * AndroidUtilities.dp(48.0f));
-                o40Var.e.setPadding(0, 0, 0, (int) (o40Var.f27535w * AndroidUtilities.dp(48.0f)));
-                return;
-            default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o40 o40Var2 = this.f26919b;
-                o40Var2.E = floatValue2;
-                o40Var2.f27532n.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, floatValue2));
-                o40Var2.f27532n.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, o40Var2.E));
-                org.telegram.ui.nk nkVar = o40Var2.f27531f;
-                if (nkVar != null && (goVar = nkVar.f36617a) != null && (o0Var = goVar.L3) != null) {
-                    o0Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, o40Var2.E));
-                    o40Var2.f27531f.f36617a.L3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, o40Var2.E));
-                }
-                o40Var2.h.setAlpha(o40Var2.E);
-                return;
-        }
+    public void setOnHashtagClickListener(Utilities.Callback<String> callback) {
+        this.h = callback;
+    }
+
+    public void setOnScrollListener(s4.r0 r0Var) {
+        this.e.j(r0Var);
     }
 }

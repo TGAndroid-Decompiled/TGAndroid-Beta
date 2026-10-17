@@ -1,38 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class md0 implements Runnable {
-    public final int f37968a;
-    public final ah0 f37969b;
+import android.content.Context;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class md0 extends TextView {
+    public final int f39166a;
 
-    public md0(ah0 ah0Var, int i10) {
-        this.f37968a = i10;
-        this.f37969b = ah0Var;
+    public md0(Context context, int i10) {
+        super(context);
+        this.f39166a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37968a) {
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f39166a) {
+            case 4:
+                return Button.class.getName();
+            default:
+                return super.getAccessibilityClassName();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f39166a) {
             case 0:
-                this.f37969b.f33910c0 = false;
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(100.0f)), Integer.MIN_VALUE));
                 return;
             case 1:
-                ah0 ah0Var = this.f37969b;
-                ah0Var.f33927r0 = false;
-                ah0Var.x1(true, true);
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 3:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
                 return;
             default:
-                ah0 ah0Var2 = this.f37969b;
-                if (ah0Var2.getParentActivity() != null && !ah0Var2.getParentActivity().isFinishing() && ah0Var2.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ah0Var2.getParentActivity());
-                    alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
-                    alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.SafetyNetErrorOccurred);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new sd0(ah0Var2, 1));
-                    alertDialog$Builder.o();
-                    return;
-                }
+                super.onMeasure(i10, i11);
                 return;
         }
     }

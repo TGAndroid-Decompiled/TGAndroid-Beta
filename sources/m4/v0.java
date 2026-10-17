@@ -1,29 +1,66 @@
 package m4;
 
+import android.graphics.BlendMode;
 import android.graphics.RectF;
 import android.view.View;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.fw0;
-import org.telegram.ui.Components.gw0;
-import org.telegram.ui.Components.rw0;
-import org.telegram.ui.Components.zl0;
-import org.telegram.ui.ks;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.vl0;
+import org.telegram.ui.vr;
+import org.telegram.utils.code.highlight.PrismaHighlighter;
 import v7.q8;
-public final class v0 implements e2.j, g1, n2.l, d9.k, z1, rw0, Utilities.Callback2Return, ih.h, zl0, fw0, gw0 {
-    public final int f15403a;
+public final class v0 implements e2.j, g1, n2.m, d9.k, a2, mw0, Utilities.Callback2Return, ih.h, vl0, aw0, bw0 {
+    public final int f16755a;
 
     public v0(int i10) {
-        this.f15403a = i10;
+        this.f16755a = i10;
+    }
+
+    public static mi.b a() {
+        InputStream open = ApplicationLoader.applicationContext.getAssets().open("grammars.dat");
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            byte[] bArr = new byte[8192];
+            while (true) {
+                int read = open.read(bArr);
+                if (read != -1) {
+                    byteArrayOutputStream.write(bArr, 0, read);
+                } else {
+                    byte[] byteArray = byteArrayOutputStream.toByteArray();
+                    byteArrayOutputStream.close();
+                    open.close();
+                    return new mi.b(new PrismaHighlighter(byteArray));
+                }
+            }
+        } catch (Throwable th2) {
+            if (open != null) {
+                try {
+                    open.close();
+                } catch (Throwable th3) {
+                    th2.addSuppressed(th3);
+                }
+            }
+            throw th2;
+        }
+    }
+
+    public static BlendMode c() {
+        return BlendMode.SOFT_LIGHT;
     }
 
     @Override
     public void accept(Object obj) {
         m1 m1Var = (m1) obj;
-        switch (this.f15403a) {
+        switch (this.f16755a) {
             case 0:
                 m1Var.stop();
                 return;
@@ -47,32 +84,24 @@ public final class v0 implements e2.j, g1, n2.l, d9.k, z1, rw0, Utilities.Callba
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.e();
-        return e9.n0.u(e9.s.x(qVar.Y.f46034b, new t0.a(6)));
+        return e9.n0.u(e9.s.x(qVar.Y.f47441b, new si.a(9)));
     }
 
     @Override
     public void b(Object obj, float f7) {
-        ks ksVar = (ks) obj;
-        switch (this.f15403a) {
-            case 25:
-                ksVar.f37500b = f7;
-                if (ksVar.getParent() != null) {
-                    ((View) ksVar.getParent()).invalidate();
-                    return;
-                }
-                return;
-            case 26:
-            default:
-                ksVar.d = f7;
-                if (ksVar.getParent() != null) {
-                    ((View) ksVar.getParent()).invalidate();
-                    return;
-                }
-                return;
+        vr vrVar = (vr) obj;
+        switch (this.f16755a) {
             case 27:
-                ksVar.f37501c = f7;
-                if (ksVar.getParent() != null) {
-                    ((View) ksVar.getParent()).invalidate();
+                vrVar.f42256b = f7;
+                if (vrVar.getParent() != null) {
+                    ((View) vrVar.getParent()).invalidate();
+                    return;
+                }
+                return;
+            default:
+                vrVar.f42257c = f7;
+                if (vrVar.getParent() != null) {
+                    ((View) vrVar.getParent()).invalidate();
                     return;
                 }
                 return;
@@ -80,58 +109,50 @@ public final class v0 implements e2.j, g1, n2.l, d9.k, z1, rw0, Utilities.Callba
     }
 
     @Override
-    public Object c(e0 e0Var, v vVar, int i10) {
-        switch (this.f15403a) {
+    public Object e(f0 f0Var, v vVar, int i10) {
+        switch (this.f16755a) {
             case 3:
-                e0Var.getClass();
+                f0Var.getClass();
                 throw new ClassCastException();
             case 4:
             case 6:
             default:
-                pb.a aVar = e0Var.e;
-                e0Var.s(vVar);
+                pb.a aVar = f0Var.e;
+                f0Var.s(vVar);
                 aVar.getClass();
                 return q8.b(new s1(-6));
             case 5:
-                e0Var.getClass();
+                f0Var.getClass();
                 throw new ClassCastException();
             case 7:
-                e0Var.getClass();
+                f0Var.getClass();
                 throw new ClassCastException();
         }
     }
 
     @Override
-    public void f(RectF rectF, View view) {
-        view.invalidate();
-    }
-
-    @Override
-    public void g(a2 a2Var, int i10) {
-        switch (this.f15403a) {
-            case 15:
-                a2Var.dismiss();
+    public void g(b2 b2Var, int i10) {
+        switch (this.f16755a) {
+            case 17:
+                b2Var.dismiss();
                 return;
-            case 19:
-                a2Var.dismiss();
+            case 21:
+                b2Var.dismiss();
                 return;
             default:
-                a2Var.dismiss();
+                b2Var.dismiss();
                 return;
         }
     }
 
     @Override
     public float get(Object obj) {
-        ks ksVar = (ks) obj;
-        switch (this.f15403a) {
-            case 24:
-                return ksVar.f37500b;
-            case 25:
-            default:
-                return ksVar.d;
+        vr vrVar = (vr) obj;
+        switch (this.f16755a) {
             case 26:
-                return ksVar.f37501c;
+                return vrVar.f42256b;
+            default:
+                return vrVar.f42257c;
         }
     }
 
@@ -149,11 +170,16 @@ public final class v0 implements e2.j, g1, n2.l, d9.k, z1, rw0, Utilities.Callba
     }
 
     @Override
+    public void i(RectF rectF, View view) {
+        view.invalidate();
+    }
+
+    @Override
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
-        switch (this.f15403a) {
-            case 18:
+        switch (this.f16755a) {
+            case 20:
                 if (num.intValue() == 0) {
                     return LocaleController.formatPluralString("MaximumReactionsValue", num2.intValue(), new Object[0]);
                 }
@@ -164,14 +190,6 @@ public final class v0 implements e2.j, g1, n2.l, d9.k, z1, rw0, Utilities.Callba
                 }
                 return "" + num2;
         }
-    }
-
-    public v0(Object obj, int i10) {
-        this.f15403a = i10;
-    }
-
-    public v0(String str, q qVar, int i10) {
-        this.f15403a = i10;
     }
 
     @Override

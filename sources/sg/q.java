@@ -3,26 +3,26 @@ package sg;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class q extends AnimatorListenerAdapter {
-    public final int f45306a;
-    public final r f45307b;
-    public final s f45308c;
+    public final int f46399a;
+    public final r f46400b;
+    public final s f46401c;
 
     public q(s sVar, r rVar, int i10) {
-        this.f45306a = i10;
-        this.f45308c = sVar;
-        this.f45307b = rVar;
+        this.f46399a = i10;
+        this.f46401c = sVar;
+        this.f46400b = rVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f45306a) {
+        switch (this.f46399a) {
             case 0:
-                this.f45307b.f45334f = null;
-                s.a(this.f45308c);
+                this.f46400b.f46417f = null;
+                s.a(this.f46401c);
                 return;
             default:
-                this.f45307b.f45334f = null;
-                s.a(this.f45308c);
+                this.f46400b.f46417f = null;
+                s.a(this.f46401c);
                 return;
         }
     }

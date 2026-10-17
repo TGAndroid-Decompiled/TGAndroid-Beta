@@ -1,92 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.os.Build;
-import android.widget.EdgeEffect;
-import androidx.recyclerview.widget.RecyclerView;
-public final class au extends EdgeEffect {
-    public final int f23304a;
-    public final yt f23305b;
-    public final RecyclerView f23306c;
-    public final kq d;
-    public boolean e;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class au implements ViewTreeObserver.OnPreDrawListener {
+    public final int f24716a;
+    public final View f24717b;
 
-    public au(RecyclerView recyclerView, int i10, yt ytVar) {
-        super(recyclerView.getContext());
-        this.d = new kq(this, 7);
-        this.f23306c = recyclerView;
-        this.f23304a = i10;
-        this.f23305b = ytVar;
+    public au(int i10, View view) {
+        this.f24716a = i10;
+        this.f24717b = view;
     }
 
-    public final void a() {
-        boolean b10 = b();
-        if (this.e != b10) {
-            this.e = b10;
-            yt ytVar = this.f23305b;
-            if (ytVar != null) {
-                ytVar.a(this.f23304a, b10);
-            }
-        }
-    }
-
-    public final boolean b() {
-        if (!isFinished()) {
-            if (Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f) {
+    @Override
+    public final boolean onPreDraw() {
+        switch (this.f24716a) {
+            case 0:
+                org.telegram.ui.ActionBar.h4 h4Var = ((EditTextBoldCursor) this.f24717b).floatingActionMode;
+                if (h4Var != null) {
+                    h4Var.c();
+                    return true;
+                }
                 return true;
-            }
-            return false;
+            default:
+                ((g80) this.f24717b).invalidate();
+                return true;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean draw(Canvas canvas) {
-        boolean draw = super.draw(canvas);
-        this.f23306c.postOnAnimation(this.d);
-        return draw;
-    }
-
-    @Override
-    public final void finish() {
-        super.finish();
-        a();
-    }
-
-    @Override
-    public final void onAbsorb(int i10) {
-        super.onAbsorb(i10);
-        a();
-    }
-
-    @Override
-    public final void onPull(float f7) {
-        super.onPull(f7);
-        a();
-    }
-
-    @Override
-    public final float onPullDistance(float f7, float f10) {
-        float onPullDistance = super.onPullDistance(f7, f10);
-        a();
-        return onPullDistance;
-    }
-
-    @Override
-    public final void onRelease() {
-        super.onRelease();
-        a();
-    }
-
-    @Override
-    public final void setSize(int i10, int i11) {
-        super.setSize(i10, i11);
-        a();
-    }
-
-    @Override
-    public final void onPull(float f7, float f10) {
-        super.onPull(f7, f10);
-        a();
     }
 }

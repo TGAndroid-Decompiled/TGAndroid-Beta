@@ -1,5 +1,6 @@
 package lg;
 
+import ai.ld;
 import android.graphics.Canvas;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -9,17 +10,16 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.g0;
-import org.telegram.ui.qe;
-import zh.p7;
+import org.telegram.messenger.q;
+import org.telegram.ui.ke;
 public final class d {
-    public final long[] f14695a;
-    public final CharSequence[] f14696b;
-    public final CharSequence[] f14697c;
+    public final long[] f16032a;
+    public final CharSequence[] f16033b;
+    public final CharSequence[] f16034c;
     public final StaticLayout[] d;
     public final StaticLayout[] e;
-    public int f14698f;
-    public int f14699g;
+    public int f16035f;
+    public int f16036g;
     public DecimalFormat h;
 
     public d(long r24, long r26, boolean r28, float r29, int r30, android.text.TextPaint r31, android.text.TextPaint r32) {
@@ -39,9 +39,9 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i11];
         if (staticLayout == null) {
             if (i10 == 0) {
-                charSequenceArr = this.f14696b;
+                charSequenceArr = this.f16033b;
             } else {
-                charSequenceArr = this.f14697c;
+                charSequenceArr = this.f16034c;
             }
             CharSequence charSequence = charSequenceArr[i11];
             if (i10 == 0) {
@@ -77,12 +77,12 @@ public final class d {
                 i12 = 6;
             }
             decimalFormat2.setMaximumFractionDigits(i12);
-            return qe.f0("TON " + this.h.format(j10 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
+            return ke.f0("TON " + this.h.format(j10 / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
         } else if (i11 == 2) {
             if (i10 == 1) {
                 return "≈" + BillingController.getInstance().formatCurrency(j10, "USD");
             }
-            return p7.Y0(false, g0.h(j10, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return ld.Y0(false, q.h(j10, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return AndroidUtilities.formatWholeNumber((int) j10, 0);
         }

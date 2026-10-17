@@ -4,7 +4,7 @@ public interface u {
 
     void b(int i10);
 
-    void c(int i10, b2.c1 c1Var);
+    void c(int i10, b2.b1 b1Var);
 
     void d(int i10, int i11, int i12);
 
@@ -14,7 +14,7 @@ public interface u {
 
     void g();
 
-    void h(int i10, k1 k1Var, b2.c1 c1Var, boolean z10, boolean z11);
+    void h(int i10, k1 k1Var, b2.b1 b1Var, boolean z10, boolean z11);
 
     void j(int i10, s1 s1Var);
 }

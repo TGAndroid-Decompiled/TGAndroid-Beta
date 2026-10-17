@@ -8,9 +8,9 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.util.Arrays;
 public abstract class b {
-    public static final Object f49243a = new Object();
-    public static final Object f49244b = new Object();
-    public static boolean f49245c;
+    public static final Object f50649a = new Object();
+    public static final Object f50650b = new Object();
+    public static boolean f50651c;
     public static long d;
 
     public static long a() {
@@ -19,7 +19,7 @@ public abstract class b {
         byte[] bArr;
         DatagramSocket datagramSocket = new DatagramSocket();
         try {
-            synchronized (f49244b) {
+            synchronized (f50650b) {
             }
             datagramSocket.setSoTimeout(1000);
             c();
@@ -104,7 +104,7 @@ public abstract class b {
     public static void b(byte b10, byte b11, int i10, long j10) {
         if (b10 != 3) {
             if (b11 != 4 && b11 != 5) {
-                throw new IOException(i2.d.j(b11, "SNTP: Untrusted mode: "));
+                throw new IOException(i0.a.j(b11, "SNTP: Untrusted mode: "));
             }
             if (i10 != 0 && i10 <= 15) {
                 if (j10 != 0) {
@@ -112,13 +112,13 @@ public abstract class b {
                 }
                 throw new IOException("SNTP: Zero transmitTime");
             }
-            throw new IOException(i2.d.j(i10, "SNTP: Untrusted stratum: "));
+            throw new IOException(i0.a.j(i10, "SNTP: Untrusted stratum: "));
         }
         throw new IOException("SNTP: Unsynchronized server");
     }
 
     public static void c() {
-        synchronized (f49244b) {
+        synchronized (f50650b) {
         }
     }
 

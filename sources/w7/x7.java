@@ -1,45 +1,116 @@
 package w7;
+
+import android.graphics.Paint;
+import android.os.Build;
+import android.text.TextDirectionHeuristic;
+import android.text.TextDirectionHeuristics;
+import android.text.TextPaint;
+import android.text.method.PasswordTransformationMethod;
+import android.view.ActionMode;
+import android.widget.TextView;
 public abstract class x7 {
-    public static void a(int i10, int i11) {
-        String a2;
-        if (i10 >= 0 && i10 < i11) {
-            return;
+    public static p0.c a(m.a1 a1Var) {
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 28) {
+            return new p0.c(b5.d.p(a1Var));
         }
-        if (i10 >= 0) {
-            if (i11 < 0) {
-                throw new IllegalArgumentException(i2.d.j(i11, "negative size: "));
-            }
-            a2 = y7.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        TextPaint textPaint = new TextPaint(a1Var.getPaint());
+        TextDirectionHeuristic textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR;
+        int breakStrategy = a1Var.getBreakStrategy();
+        int hyphenationFrequency = a1Var.getHyphenationFrequency();
+        if (a1Var.getTransformationMethod() instanceof PasswordTransformationMethod) {
+            textDirectionHeuristic = TextDirectionHeuristics.LTR;
         } else {
-            a2 = y7.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
-        }
-        throw new IndexOutOfBoundsException(a2);
-    }
-
-    public static void b(int i10, int i11, int i12) {
-        String c10;
-        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
-            return;
-        }
-        if (i10 >= 0 && i10 <= i12) {
-            if (i11 >= 0 && i11 <= i12) {
-                c10 = y7.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            boolean z10 = true;
+            if (i10 >= 28 && (a1Var.getInputType() & 15) == 3) {
+                byte directionality = Character.getDirectionality(b5.d.h(androidx.emoji2.text.w.e(a1Var.getTextLocale()))[0].codePointAt(0));
+                textDirectionHeuristic = (directionality == 1 || directionality == 2) ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR;
             } else {
-                c10 = c(i11, i12, "end index");
+                if (a1Var.getLayoutDirection() != 1) {
+                    z10 = false;
+                }
+                switch (a1Var.getTextDirection()) {
+                    case 2:
+                        textDirectionHeuristic = TextDirectionHeuristics.ANYRTL_LTR;
+                        break;
+                    case 3:
+                        textDirectionHeuristic = TextDirectionHeuristics.LTR;
+                        break;
+                    case 4:
+                        textDirectionHeuristic = TextDirectionHeuristics.RTL;
+                        break;
+                    case 5:
+                        textDirectionHeuristic = TextDirectionHeuristics.LOCALE;
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_RTL;
+                        break;
+                    default:
+                        if (z10) {
+                            textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_RTL;
+                            break;
+                        }
+                        break;
+                }
             }
-        } else {
-            c10 = c(i10, i12, "start index");
         }
-        throw new IndexOutOfBoundsException(c10);
+        return new p0.c(textPaint, textDirectionHeuristic, breakStrategy, hyphenationFrequency);
     }
 
-    public static String c(int i10, int i11, String str) {
-        if (i10 < 0) {
-            return y7.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+    public static void b(int i10, TextView textView) {
+        int i11;
+        if (i10 >= 0) {
+            if (Build.VERSION.SDK_INT >= 28) {
+                b5.d.w(i10, textView);
+                return;
+            }
+            Paint.FontMetricsInt fontMetricsInt = textView.getPaint().getFontMetricsInt();
+            if (textView.getIncludeFontPadding()) {
+                i11 = fontMetricsInt.top;
+            } else {
+                i11 = fontMetricsInt.ascent;
+            }
+            if (i10 > Math.abs(i11)) {
+                textView.setPadding(textView.getPaddingLeft(), i10 + i11, textView.getPaddingRight(), textView.getPaddingBottom());
+                return;
+            }
+            return;
         }
-        if (i11 >= 0) {
-            return y7.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        throw new IllegalArgumentException();
+    }
+
+    public static void c(int i10, TextView textView) {
+        int i11;
+        if (i10 >= 0) {
+            Paint.FontMetricsInt fontMetricsInt = textView.getPaint().getFontMetricsInt();
+            if (textView.getIncludeFontPadding()) {
+                i11 = fontMetricsInt.bottom;
+            } else {
+                i11 = fontMetricsInt.descent;
+            }
+            if (i10 > Math.abs(i11)) {
+                textView.setPadding(textView.getPaddingLeft(), textView.getPaddingTop(), textView.getPaddingRight(), i10 - i11);
+                return;
+            }
+            return;
         }
-        throw new IllegalArgumentException(i2.d.j(i11, "negative size: "));
+        throw new IllegalArgumentException();
+    }
+
+    public static ActionMode.Callback d(ActionMode.Callback callback) {
+        if ((callback instanceof u0.i) && Build.VERSION.SDK_INT >= 26) {
+            return ((u0.i) callback).f47259a;
+        }
+        return callback;
+    }
+
+    public static ActionMode.Callback e(ActionMode.Callback callback, TextView textView) {
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 26 && i10 <= 27 && !(callback instanceof u0.i) && callback != null) {
+            return new u0.i(callback, textView);
+        }
+        return callback;
     }
 }

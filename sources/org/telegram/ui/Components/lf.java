@@ -1,22 +1,17 @@
 package org.telegram.ui.Components;
-public final class lf implements o1.g {
-    public boolean f26734a = false;
-    public final float f26735b;
-    public final ew0 f26736c;
 
-    public lf(float f7, ew0 ew0Var) {
-        this.f26735b = f7;
-        this.f26736c = ew0Var;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class lf extends org.telegram.ui.ActionBar.m1 {
+    public final ChatActivityEnterView f28222o;
+
+    public lf(ChatActivityEnterView chatActivityEnterView, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f28222o = chatActivityEnterView;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        if (!this.f26734a && f7 >= this.f26735b) {
-            this.f26734a = true;
-            try {
-                this.f26736c.performHapticFeedback(3, 2);
-            } catch (Exception unused) {
-            }
-        }
+    public final void dismiss() {
+        d(true);
+        this.f28222o.J0.invalidate();
     }
 }

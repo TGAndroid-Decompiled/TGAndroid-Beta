@@ -1,50 +1,91 @@
 package org.telegram.ui;
 
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class wo extends zu0 {
-    public final zo f41330a;
+public final class wo extends org.telegram.ui.Components.hm0 {
+    public final xo f42901c;
 
-    public wo(zo zoVar) {
-        this.f41330a = zoVar;
+    public wo(xo xoVar) {
+        this.f42901c = xoVar;
     }
 
     @Override
-    public final org.telegram.ui.jv0 E(org.telegram.messenger.MessageObject r8, org.telegram.tgnet.TLRPC.FileLocation r9, int r10, boolean r11, boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wo.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.jv0");
-    }
-
-    @Override
-    public final void G() {
-        this.f41330a.e.getImageReceiver().setVisible(true, true);
-    }
-
-    @Override
-    public final boolean N() {
-        zo zoVar = this.f41330a;
-        long j10 = zoVar.C0;
-        if (j10 == 0) {
+    public final boolean D(s4.b1 b1Var) {
+        if (b1Var.f45941f == 1) {
             return true;
         }
-        TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
-        tL_photos_updateProfilePhoto.bot = zoVar.getMessagesController().getInputUser(j10);
-        tL_photos_updateProfilePhoto.flags |= 2;
-        tL_photos_updateProfilePhoto.f19048id = new TLRPC.TL_inputPhotoEmpty();
-        zoVar.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new m(this, 2));
         return false;
     }
 
     @Override
-    public final void f(String str, String str2, boolean z10) {
-        this.f41330a.f42386s.p(str, str2, z10);
+    public final int h() {
+        return this.f42901c.Y2.N.size() + 2;
     }
 
     @Override
-    public final boolean t() {
-        return false;
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 <= this.f42901c.Y2.N.size()) {
+            return 1;
+        }
+        return 2;
     }
 
     @Override
-    public final int y() {
-        return 1;
+    public final void v(s4.b1 b1Var, int i10) {
+        xo xoVar = this.f42901c;
+        yo yoVar = xoVar.Y2;
+        int i11 = b1Var.f45941f;
+        View view = b1Var.f45938a;
+        if (i11 != 0) {
+            boolean z10 = true;
+            if (i11 != 1) {
+                if (i11 == 2) {
+                    org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
+                    d9Var.setText(LocaleController.getString(R.string.UsernamesChannelHelp));
+                    d9Var.setBackground(org.telegram.ui.ActionBar.h6.W0(xoVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20948b7));
+                    return;
+                }
+                return;
+            }
+            TLRPC.TL_username tL_username = (TLRPC.TL_username) yoVar.N.get(i10 - 1);
+            ra raVar = (ra) view;
+            if (raVar.H) {
+                yoVar.O = null;
+            }
+            if (i10 >= yoVar.N.size()) {
+                z10 = false;
+            }
+            raVar.a(tL_username, z10, false, 0L);
+            if (tL_username != null && tL_username.editable) {
+                yoVar.O = raVar;
+                return;
+            }
+            return;
+        }
+        org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
+        l4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, xoVar.f27284n2));
+        l4Var.setText(LocaleController.getString(R.string.UsernamesChannelHeader));
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        xo xoVar = this.f42901c;
+        org.telegram.ui.ActionBar.d6 d6Var = xoVar.f27284n2;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    return null;
+                }
+                return new s4.b1(new org.telegram.ui.Cells.d9(xoVar.getContext(), 12, d6Var));
+            }
+            return new s4.b1(new ka(this, xoVar.getContext(), d6Var));
+        }
+        return new s4.b1(new org.telegram.ui.Cells.l4(xoVar.getContext(), d6Var));
     }
 }

@@ -1,19 +1,74 @@
 package org.telegram.ui.Components;
-public final class c10 {
-    public byte f23605a;
-    public byte f23606b;
-    public byte f23607c;
-    public byte d;
-    public byte e;
-    public byte f23608f;
-    public float f23609g;
-    public float h;
-    public short f23610i;
-    public float f23611j;
-    public float f23612k;
-    public final d10 f23613l;
 
-    public c10(d10 d10Var) {
-        this.f23613l = d10Var;
+import android.os.Bundle;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public abstract class c10 extends zo0 {
+    public final boolean d;
+
+    public c10(boolean z10) {
+        this.d = z10;
     }
+
+    @Override
+    public final boolean a() {
+        if (k() > j()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean b() {
+        if (k() < i()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        float h = h();
+        if (z10) {
+            h *= -1.0f;
+        }
+        l(Math.min(i(), Math.max(j(), k() + h)));
+    }
+
+    @Override
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        if (this.d) {
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.b.h.f45892a);
+            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
+        }
+    }
+
+    @Override
+    public final boolean g(View view, int i10, Bundle bundle) {
+        if (super.g(view, i10, bundle)) {
+            return true;
+        }
+        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.b.h.f45892a).getId()) {
+            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
+            return true;
+        }
+        return false;
+    }
+
+    public float h() {
+        return 0.05f;
+    }
+
+    public float i() {
+        return 1.0f;
+    }
+
+    public float j() {
+        return 0.0f;
+    }
+
+    public abstract float k();
+
+    public abstract void l(float f7);
 }

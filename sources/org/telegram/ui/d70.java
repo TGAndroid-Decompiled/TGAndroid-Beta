@@ -1,23 +1,36 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.messenger.ContactsController;
-import org.telegram.tgnet.TLObject;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC;
-public final class d70 implements Comparator {
-    public static String a(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) tLObject;
-            return ContactsController.formatName(user.first_name, user.last_name);
-        } else if (tLObject instanceof TLRPC.Chat) {
-            return ((TLRPC.Chat) tLObject).title;
-        } else {
-            return "";
-        }
-    }
+import org.telegram.tgnet.tl.TL_iv;
+public abstract class d70 {
+    public String F;
+    public int G;
+    public org.telegram.ui.ActionBar.m1 H;
+    public org.telegram.ui.ActionBar.f3 I;
+    public org.telegram.ui.Components.y90 f36085b;
+    public d3 d;
+    public int e;
+    public View f36087f;
+    public boolean h;
+    public TLRPC.Chat f36088n;
+    public boolean f36089r;
+    public View f36090s;
+    public org.telegram.ui.Components.ba0 v;
+    public VideoPlayerHolderBase f36091w;
+    public z2 f36092x;
+    public int f36084a = 0;
+    public final org.telegram.ui.Components.u90 f36086c = new org.telegram.ui.Components.u90();
+    public final a0.h f36093y = new a0.h();
+    public ArrayList E = new ArrayList();
 
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        return a((TLObject) obj).compareTo(a((TLObject) obj2));
-    }
+    public abstract int a();
+
+    public abstract int b();
+
+    public abstract void c(j4 j4Var, org.telegram.ui.Components.h11 h11Var);
+
+    public abstract boolean d(TL_iv.PageBlock pageBlock, j4 j4Var);
 }

@@ -1,19 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.graphics.Canvas;
 import android.view.MotionEvent;
-public final class ww extends org.telegram.ui.Components.w00 {
-    public final yy B0;
-
-    public ww(yy yyVar, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        this.B0 = yyVar;
+import org.telegram.messenger.AndroidUtilities;
+public final class ww extends org.telegram.ui.Components.ia {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        getParent().requestDisallowInterceptTouchEvent(true);
-        this.B0.f42051n3 = false;
-        return super.onInterceptTouchEvent(motionEvent);
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final int x1() {
+        return AndroidUtilities.dp(48.0f);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
     }
 }

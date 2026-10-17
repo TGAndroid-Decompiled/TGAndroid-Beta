@@ -1,34 +1,61 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class ul0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.e1 f40427a;
-    public final PasscodeActivity f40428b;
+import android.text.TextWatcher;
+import java.util.regex.Pattern;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ul0 implements TextWatcher {
+    public final int f42010a;
+    public final Object f42011b;
+    public String f42012c;
+    public final Object d;
 
-    public ul0(PasscodeActivity passcodeActivity, org.telegram.ui.ActionBar.e1 e1Var) {
-        this.f40428b = passcodeActivity;
-        this.f40427a = e1Var;
+    public ul0(xm0 xm0Var, EditTextBoldCursor editTextBoldCursor, String str, int i10) {
+        this.f42010a = i10;
+        this.d = xm0Var;
+        this.f42011b = editTextBoldCursor;
+        this.f42012c = str;
     }
 
     @Override
-    public final void b(int i10) {
-        PasscodeActivity passcodeActivity = this.f40428b;
-        if (i10 == -1) {
-            passcodeActivity.finishFragment();
-            return;
+    public final void afterTextChanged(android.text.Editable r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ul0.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f42010a) {
+            case 0:
+            case 1:
+                return;
+            default:
+                this.f42012c = charSequence.toString();
+                return;
         }
-        int i11 = 1;
-        if (i10 == 1) {
-            if (passcodeActivity.f31884y != 0) {
-                i11 = 0;
-            }
-            passcodeActivity.f31884y = i11;
-            AndroidUtilities.runOnUIThread(new se0(20, this, this.f40427a), 150L);
-            passcodeActivity.h.setText("");
-            for (ks ksVar : passcodeActivity.f31879n.f36645f) {
-                ksVar.setText("");
-            }
-            passcodeActivity.o0();
-        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f42010a;
+    }
+
+    public ul0(qg.x xVar) {
+        this.f42010a = 2;
+        this.d = xVar;
+        this.f42011b = Pattern.compile("^[0-9a-fA-F]*$");
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

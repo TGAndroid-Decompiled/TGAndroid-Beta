@@ -1,72 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class ri implements View.OnTouchListener {
-    public final int f39524a;
-    public final int[] f39525b;
-    public final Rect f39526c;
-    public final Object d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class ri implements NotificationCenter.NotificationCenterDelegate {
+    public final int f40749a;
+    public final ai.bb f40750b;
+    public final sn f40751c;
+    public final sn d;
 
-    public ri(n60 n60Var, Rect rect) {
-        this.f39524a = 1;
-        this.d = n60Var;
-        this.f39526c = rect;
-        this.f39525b = new int[2];
+    public ri(sn snVar, int i10, ai.bb bbVar, sn snVar2) {
+        this.d = snVar;
+        this.f40749a = i10;
+        this.f40750b = bbVar;
+        this.f40751c = snVar2;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        n50 n50Var;
-        switch (this.f39524a) {
-            case 0:
-                fo foVar = (fo) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    org.telegram.ui.ActionBar.m1 m1Var = foVar.Q8;
-                    if (m1Var != null && m1Var.isShowing()) {
-                        View contentView = foVar.Q8.getContentView();
-                        int[] iArr = this.f39525b;
-                        contentView.getLocationInWindow(iArr);
-                        int i10 = iArr[0];
-                        int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
-                        Rect rect = this.f39526c;
-                        rect.set(i10, iArr[1], contentView.getMeasuredWidth() + i10, measuredHeight);
-                        if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            foVar.D7(true);
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4) {
-                    foVar.D7(true);
-                }
-                return false;
-            default:
-                n60 n60Var = (n60) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    n50 n50Var2 = n60Var.f38181f3;
-                    if (n50Var2 != null && n50Var2.isShowing()) {
-                        View contentView2 = n60Var.f38181f3.getContentView();
-                        int[] iArr2 = this.f39525b;
-                        contentView2.getLocationInWindow(iArr2);
-                        int i11 = iArr2[0];
-                        int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
-                        Rect rect2 = this.f39526c;
-                        rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
-                        if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            n60Var.f38181f3.dismiss();
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4 && (n50Var = n60Var.f38181f3) != null && n50Var.isShowing()) {
-                    n60Var.f38181f3.dismiss();
-                }
-                return false;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12;
+        int i13 = NotificationCenter.messagesDidLoad;
+        if (i10 == i13 && ((Integer) objArr[10]).intValue() == this.f40749a) {
+            this.f40750b.run();
+            AndroidUtilities.runOnUIThread(new i2.y(this.f40751c, i10, i11, objArr), 50L);
+            i12 = ((org.telegram.ui.ActionBar.n2) this.d).currentAccount;
+            NotificationCenter.getInstance(i12).removeObserver(this, i13);
         }
-    }
-
-    public ri(fo foVar, Rect rect) {
-        this.f39524a = 0;
-        this.d = foVar;
-        this.f39526c = rect;
-        this.f39525b = new int[2];
     }
 }

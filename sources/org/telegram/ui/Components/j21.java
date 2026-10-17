@@ -1,26 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class j21 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f25872a;
+public final class j21 extends EditTextBoldCursor {
+    public final l21 f27400b;
 
-    public j21(ThemeEditorView.EditorAlert editorAlert) {
-        this.f25872a = editorAlert;
+    public j21(l21 l21Var, Context context) {
+        super(context);
+        this.f27400b = l21Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f25872a;
-        if (editorAlert.f23039c.getAdapter() == editorAlert.f23042r) {
-            q21 q21Var = editorAlert.f23040f.f28709b;
-            q21Var.requestFocus();
-            AndroidUtilities.showKeyboard(q21Var);
-        }
-        editorAlert.f23038b.setVisibility(8);
-        editorAlert.v.setVisibility(8);
-        editorAlert.H = false;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        ViewGroup viewGroup;
+        MotionEvent obtain = MotionEvent.obtain(motionEvent);
+        float rawX = obtain.getRawX();
+        float rawY = obtain.getRawY();
+        ThemeEditorView.EditorAlert editorAlert = this.f27400b.f28056c;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) editorAlert).containerView;
+        obtain.setLocation(rawX, rawY - viewGroup.getTranslationY());
+        editorAlert.f24394c.dispatchTouchEvent(obtain);
+        obtain.recycle();
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

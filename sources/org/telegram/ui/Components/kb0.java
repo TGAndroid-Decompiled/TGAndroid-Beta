@@ -1,26 +1,64 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class kb0 extends org.telegram.ui.zu0 {
-    public final ob0 f26346a;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class kb0 extends Drawable {
+    public Paint f27823a;
+    public Paint f27824b;
+    public long f27825c;
+    public float d;
+    public boolean e;
+    public boolean f27826f;
+    public float f27827g;
+    public float h;
+    public float f27828i;
+    public float f27829j;
+    public float f27830k;
+    public long f27831l;
+    public org.telegram.ui.Cells.u1 f27832m;
 
-    public kb0(ob0 ob0Var) {
-        this.f26346a = ob0Var;
+    public final void a() {
+        int i10;
+        int i11;
+        Rect bounds = getBounds();
+        float centerX = bounds.centerX();
+        float centerY = bounds.centerY();
+        float f7 = bounds.left - centerX;
+        float f10 = bounds.top - centerY;
+        this.f27827g = (float) Math.ceil(Math.sqrt(com.google.android.gms.internal.cast.a6.x(i11, centerY, f10, f7 * (i10 - centerX))));
     }
 
     @Override
-    public final org.telegram.ui.jv0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kb0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.jv0");
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kb0.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        if (i10 >= 0) {
-            ob0 ob0Var = this.f26346a;
-            if (i10 < ob0Var.P.size()) {
-                ob0Var.f27632x.g((TLRPC.BotInlineResult) ob0Var.P.get(i10), z10, i11);
-            }
-        }
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f27823a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        a();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f27823a.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setBounds(Rect rect) {
+        super.setBounds(rect);
+        a();
     }
 }

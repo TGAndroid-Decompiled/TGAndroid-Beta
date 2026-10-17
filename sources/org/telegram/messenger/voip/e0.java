@@ -1,25 +1,25 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.tgnet.TLRPC;
+import android.media.AudioManager;
 public final class e0 implements Runnable {
-    public final int f18487a;
-    public final VoIPService f18488b;
-    public final TLRPC.GroupCallParticipant f18489c;
+    public final int f19845a;
+    public final VoIPService f19846b;
+    public final AudioManager f19847c;
 
-    public e0(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant, int i10) {
-        this.f18487a = i10;
-        this.f18488b = voIPService;
-        this.f18489c = groupCallParticipant;
+    public e0(VoIPService voIPService, AudioManager audioManager, int i10) {
+        this.f19845a = i10;
+        this.f19846b = voIPService;
+        this.f19847c = audioManager;
     }
 
     @Override
     public final void run() {
-        switch (this.f18487a) {
+        switch (this.f19845a) {
             case 0:
-                this.f18488b.lambda$startConferenceGroupCall$37(this.f18489c);
+                VoIPService.C(this.f19846b, this.f19847c);
                 return;
             default:
-                this.f18488b.lambda$startGroupCall$26(this.f18489c);
+                VoIPService.g1(this.f19846b, this.f19847c);
                 return;
         }
     }

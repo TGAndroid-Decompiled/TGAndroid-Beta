@@ -1,19 +1,79 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class bi implements Utilities.Callback0Return {
-    public final int f34333a;
-    public final Object f34334b;
-    public final Object f34335c;
+import android.util.SparseIntArray;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class bi implements z4.e {
+    public final AtomicBoolean f35689a;
+    public final LinearLayout f35690b;
+    public final int f35691c;
+    public final HorizontalScrollView d;
+    public final SparseIntArray e;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f35692f;
+    public final int[] f35693g;
 
-    public bi(int i10, Object obj, Object obj2) {
-        this.f34333a = i10;
-        this.f34334b = obj;
-        this.f34335c = obj2;
+    public bi(AtomicBoolean atomicBoolean, LinearLayout linearLayout, int i10, HorizontalScrollView horizontalScrollView, SparseIntArray sparseIntArray, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
+        this.f35689a = atomicBoolean;
+        this.f35690b = linearLayout;
+        this.f35691c = i10;
+        this.d = horizontalScrollView;
+        this.e = sparseIntArray;
+        this.f35692f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f35693g = iArr;
     }
 
     @Override
-    public final java.lang.Object run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bi.run():java.lang.Object");
+    public final void a(float f7, int i10, int i11) {
+        HorizontalScrollView horizontalScrollView;
+        SparseIntArray sparseIntArray;
+        float f10;
+        if (!this.f35689a.get()) {
+            float f11 = -1.0f;
+            float f12 = -1.0f;
+            int i12 = 0;
+            while (true) {
+                LinearLayout linearLayout = this.f35690b;
+                int childCount = linearLayout.getChildCount();
+                horizontalScrollView = this.d;
+                if (i12 >= childCount) {
+                    break;
+                }
+                org.telegram.ui.Components.nk0 nk0Var = (org.telegram.ui.Components.nk0) linearLayout.getChildAt(i12);
+                if (i12 == i10) {
+                    f10 = 1.0f - f7;
+                } else if (i12 == (i10 + 1) % this.f35691c) {
+                    f10 = f7;
+                } else {
+                    f10 = 0.0f;
+                }
+                nk0Var.setOutlineProgress(f10);
+                if (i12 == i10) {
+                    f11 = nk0Var.getX() - ((horizontalScrollView.getWidth() - nk0Var.getWidth()) / 2.0f);
+                }
+                if (i12 == i10 + 1) {
+                    f12 = nk0Var.getX() - ((horizontalScrollView.getWidth() - nk0Var.getWidth()) / 2.0f);
+                }
+                i12++;
+            }
+            if (f11 != -1.0f && f12 != -1.0f) {
+                horizontalScrollView.setScrollX((int) com.google.android.gms.internal.cast.a6.x(f12, f11, f7, f11));
+            }
+            int i13 = this.e.get(i10, 0);
+            this.f35692f.getSwipeBack().f(this.f35693g[0], (int) ((sparseIntArray.get(i10 + 1, 0) * f7) + ((1.0f - f7) * i13)), false);
+        }
+    }
+
+    @Override
+    public final void b(int i10) {
+        this.f35692f.getSwipeBack().f(this.f35693g[0], this.e.get(i10), true);
+    }
+
+    @Override
+    public final void c(int i10) {
+        if (i10 == 0) {
+            this.f35689a.set(false);
+        }
     }
 }

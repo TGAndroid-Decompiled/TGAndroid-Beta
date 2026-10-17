@@ -1,51 +1,93 @@
 package org.telegram.ui.Components;
 
+import android.animation.TimeInterpolator;
+import android.os.SystemClock;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class i5 extends FrameLayout {
-    public boolean f25495a;
-    public int f25496b;
-    public s6 f25497c;
-    public s6 d;
+public final class i5 {
+    public final View f27068a;
+    public final Runnable f27069b;
+    public int f27070c;
+    public int d;
+    public boolean e;
+    public final long f27071f;
+    public final TimeInterpolator f27072g;
+    public boolean h;
+    public long f27073i;
+    public int f27074j;
 
-    public s6 getSubtitleTextView() {
-        return this.d;
+    public i5(View view) {
+        this.f27071f = 200L;
+        this.f27072g = bs.f25030f;
+        this.f27068a = view;
+        this.e = true;
     }
 
-    public s6 getTitle() {
-        return this.f25497c;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        s6 s6Var = this.d;
-        s6 s6Var2 = this.f25497c;
-        int A = org.telegram.messenger.sk.A(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
-        if (this.f25495a) {
-            i14 = AndroidUtilities.statusBarHeight;
+    public final int a(int i10, boolean z10) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j10 = this.f27071f;
+        if (!z10 && j10 > 0 && !this.e) {
+            if (this.d != i10) {
+                this.h = true;
+                this.d = i10;
+                this.f27074j = this.f27070c;
+                this.f27073i = elapsedRealtime;
+            }
         } else {
-            i14 = 0;
+            this.d = i10;
+            this.f27070c = i10;
+            this.h = false;
+            this.e = false;
         }
-        int i15 = A + i14;
-        int i16 = this.f25496b;
-        if (s6Var.getVisibility() != 8) {
-            s6Var2.layout(i16, (AndroidUtilities.dp(1.0f) + i15) - s6Var2.getPaddingTop(), s6Var2.getMeasuredWidth() + i16, s6Var2.getPaddingBottom() + ((AndroidUtilities.dp(1.3f) + (s6Var2.getTextHeight() + i15)) - s6Var2.getPaddingTop()));
-        } else {
-            s6Var2.layout(i16, (AndroidUtilities.dp(11.0f) + i15) - s6Var2.getPaddingTop(), s6Var2.getMeasuredWidth() + i16, s6Var2.getPaddingBottom() + ((AndroidUtilities.dp(11.0f) + (s6Var2.getTextHeight() + i15)) - s6Var2.getPaddingTop()));
+        if (this.h) {
+            float a2 = w7.r.a(((float) (elapsedRealtime - this.f27073i)) / ((float) j10), 0.0f, 1.0f);
+            if (elapsedRealtime - this.f27073i >= 0) {
+                TimeInterpolator timeInterpolator = this.f27072g;
+                if (timeInterpolator == null) {
+                    this.f27070c = i0.b.f(a2, this.f27074j, this.d);
+                } else {
+                    this.f27070c = i0.b.f(timeInterpolator.getInterpolation(a2), this.f27074j, this.d);
+                }
+            }
+            if (a2 >= 1.0f) {
+                this.h = false;
+            } else {
+                View view = this.f27068a;
+                if (view != null) {
+                    view.invalidate();
+                }
+                Runnable runnable = this.f27069b;
+                if (runnable != null) {
+                    runnable.run();
+                }
+            }
         }
-        s6Var.layout(i16, AndroidUtilities.dp(20.0f) + i15, s6Var.getMeasuredWidth() + i16, AndroidUtilities.dp(24.0f) + s6Var.getTextHeight() + i15);
+        return this.f27070c;
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        s6 s6Var = this.f25497c;
-        int paddingRight = s6Var.getPaddingRight() + size;
-        int dp = paddingRight - AndroidUtilities.dp(16.0f);
-        s6Var.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(s6Var.getPaddingRight() + AndroidUtilities.dp(32.0f), Integer.MIN_VALUE));
-        this.d.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
-        setMeasuredDimension(paddingRight, View.MeasureSpec.getSize(i11));
+    public i5(View view, long j10, TimeInterpolator timeInterpolator) {
+        this.f27071f = 200L;
+        bs bsVar = bs.f25030f;
+        this.f27068a = view;
+        this.f27071f = j10;
+        this.f27072g = timeInterpolator;
+        this.e = true;
+    }
+
+    public i5(View view, long j10, TimeInterpolator timeInterpolator, int i10) {
+        this.f27071f = 200L;
+        bs bsVar = bs.f25030f;
+        this.f27068a = view;
+        this.f27071f = j10;
+        this.f27072g = timeInterpolator;
+        this.e = true;
+    }
+
+    public i5(Runnable runnable, long j10, TimeInterpolator timeInterpolator) {
+        this.f27071f = 200L;
+        bs bsVar = bs.f25030f;
+        this.f27069b = runnable;
+        this.f27071f = j10;
+        this.f27072g = timeInterpolator;
+        this.e = true;
     }
 }

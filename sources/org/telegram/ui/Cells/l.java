@@ -13,36 +13,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 public final class l extends FrameLayout {
-    public final org.telegram.ui.Components.r6 f21169a;
-    public final Paint f21170b;
-    public final zf.o f21171c;
+    public final org.telegram.ui.Components.p6 f22518a;
+    public final Paint f22519b;
+    public final zf.n f22520c;
     public final Drawable d;
     public final int e;
-    public int f21172f;
+    public int f22521f;
 
     public l(Context context, int i10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f21170b = paint;
-        this.f21171c = new zf.o(new ja(this, 1));
+        this.f22519b = paint;
+        this.f22520c = new zf.n(new ia(this, 1));
         this.e = i10;
         this.d = context.getResources().getDrawable(R.drawable.filled_gift_sell_24).mutate();
-        org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(false, false, false);
-        this.f21169a = r6Var;
-        r6Var.M = AndroidUtilities.displaySize.x;
-        r6Var.setCallback(this);
-        r6Var.x(AndroidUtilities.bold());
-        r6Var.w(AndroidUtilities.dp(14.0f));
-        r6Var.u(-1);
-        r6Var.f28435b = 3;
+        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, false, false);
+        this.f22518a = p6Var;
+        p6Var.M = AndroidUtilities.displaySize.x;
+        p6Var.setCallback(this);
+        p6Var.x(AndroidUtilities.bold());
+        p6Var.w(AndroidUtilities.dp(14.0f));
+        p6Var.u(-1);
+        p6Var.f29192b = 3;
         paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(72.0f), 0.0f, new int[]{-13460514, -10042885}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     public final void a(int i10) {
-        this.f21172f = i10;
+        this.f22521f = i10;
         if (isAttachedToWindow()) {
             long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.e).getCurrentTime());
-            this.f21171c.a(max);
+            this.f22520c.a(max);
             b(max);
         }
     }
@@ -50,9 +50,9 @@ public final class l extends FrameLayout {
     public final void b(long j10) {
         String formatDurationNoHours;
         int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        org.telegram.ui.Components.r6 r6Var = this.f21169a;
+        org.telegram.ui.Components.p6 p6Var = this.f22518a;
         if (i10 == 0) {
-            r6Var.t(LocaleController.getString(R.string.Gift2AuctionPriceView), true, true);
+            p6Var.t(LocaleController.getString(R.string.Gift2AuctionPriceView), true, true);
             return;
         }
         if (j10 > 3600) {
@@ -60,21 +60,21 @@ public final class l extends FrameLayout {
         } else {
             formatDurationNoHours = AndroidUtilities.formatDurationNoHours((int) j10, false);
         }
-        r6Var.t(formatDurationNoHours, isAttachedToWindow(), true);
+        p6Var.t(formatDurationNoHours, isAttachedToWindow(), true);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(14.0f);
-        org.telegram.ui.Components.r6 r6Var = this.f21169a;
-        int c10 = measuredWidth - ((int) r6Var.c());
+        org.telegram.ui.Components.p6 p6Var = this.f22518a;
+        int c10 = measuredWidth - ((int) p6Var.c());
         int dp = c10 - AndroidUtilities.dp(30.0f);
         canvas.save();
         canvas.translate(dp, 0.0f);
-        canvas.drawRoundRect(0.0f, 0.0f, getWidth() - dp, getHeight(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f21170b);
+        canvas.drawRoundRect(0.0f, 0.0f, getWidth() - dp, getHeight(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f22519b);
         canvas.restore();
-        r6Var.setBounds(c10, 0, getMeasuredWidth() - AndroidUtilities.dp(8.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
-        r6Var.draw(canvas);
+        p6Var.setBounds(c10, 0, getMeasuredWidth() - AndroidUtilities.dp(8.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
+        p6Var.draw(canvas);
         int dp2 = AndroidUtilities.dp(-22.0f) + c10;
         int dp3 = AndroidUtilities.dp(5.0f);
         int dp4 = AndroidUtilities.dp(-4.0f) + c10;
@@ -88,13 +88,13 @@ public final class l extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        a(this.f21172f);
+        a(this.f22521f);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f21171c.b();
+        this.f22520c.b();
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class l extends FrameLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f21169a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f22518a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

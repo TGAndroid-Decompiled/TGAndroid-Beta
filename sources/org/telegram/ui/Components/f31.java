@@ -1,43 +1,88 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class f31 implements MessagesController.IsInChatCheckedCallback, org.telegram.ui.ActionBar.z1 {
-    public final long f24572a;
-    public final Object f24573b;
-    public final Object f24574c;
-    public final Object d;
-    public final TLObject e;
-    public final Object f24575f;
+import org.telegram.messenger.R;
+public final class f31 extends a71 {
+    public final org.telegram.ui.u10 f26072d3;
+    public final f6 f26073e3;
+    public Drawable f26074f3;
+    public int f26075g3;
+    public final Paint f26076h3;
 
-    public f31(y31 y31Var, org.telegram.ui.ActionBar.e1 e1Var, l80 l80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
-        this.f24573b = y31Var;
-        this.f24574c = e1Var;
-        this.d = l80Var;
-        this.f24572a = j10;
-        this.e = user;
-        this.f24575f = chat;
+    public f31(Context context, int i10, c31 c31Var, x21 x21Var, x21 x21Var2, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i10, 0, false, c31Var, x21Var, x21Var2, d6Var);
+        this.f26072d3 = new org.telegram.ui.u10();
+        this.f26073e3 = new f6(this, 320L, bs.h);
+        this.f26076h3 = new Paint(1);
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        zh.r3.M0((zh.r3) this.f24573b, (TL_stars.TL_starGiftUnique) this.f24574c, (TLRPC.PaymentForm) this.d, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) this.e, this.f24572a, (CharSequence) this.f24575f, a2Var);
-    }
-
-    @Override
-    public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new j31((y31) this.f24573b, z10, (org.telegram.ui.ActionBar.e1) this.f24574c, (l80) this.d, this.f24572a, (TLRPC.User) this.e, (TLRPC.Chat) this.f24575f));
-    }
-
-    public f31(zh.r3 r3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.PaymentForm paymentForm, TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails tL_inputInvoiceStarGiftDropOriginalDetails, long j10, CharSequence charSequence) {
-        this.f24573b = r3Var;
-        this.f24574c = tL_starGiftUnique;
-        this.d = paymentForm;
-        this.e = tL_inputInvoiceStarGiftDropOriginalDetails;
-        this.f24572a = j10;
-        this.f24575f = charSequence;
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e = this.f26073e3.e(canScrollVertically(-1));
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+        } else {
+            canvas2 = canvas;
+        }
+        float height = getHeight();
+        float f7 = 0.0f;
+        for (int i11 = 0; i11 < getChildCount(); i11++) {
+            View childAt = getChildAt(i11);
+            if (childAt instanceof p31) {
+                p31 p31Var = (p31) childAt;
+                if (p31Var.f29164y) {
+                    if (height > p31Var.getY()) {
+                        height = p31Var.getY();
+                        RecyclerView.R(p31Var);
+                    }
+                    if (f7 < p31Var.getY() + p31Var.getHeight()) {
+                        f7 = p31Var.getY() + p31Var.getHeight();
+                        RecyclerView.R(p31Var);
+                    }
+                }
+            }
+        }
+        if (f7 > height) {
+            int i12 = org.telegram.ui.ActionBar.h6.f21266s9;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f27284n2;
+            int w02 = org.telegram.ui.ActionBar.h6.w0(i12, d6Var);
+            Paint paint = this.f26076h3;
+            paint.setColor(w02);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((getWidth() - AndroidUtilities.dp(56.0f)) / 2.0f, height, (AndroidUtilities.dp(56.0f) + getWidth()) / 2.0f, f7);
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
+            if (this.f26074f3 == null) {
+                this.f26074f3 = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
+            }
+            int w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20950b9, d6Var);
+            if (this.f26075g3 != w03) {
+                Drawable drawable = this.f26074f3;
+                this.f26075g3 = w03;
+                drawable.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
+            }
+            this.f26074f3.setBounds((int) (rectF.left + AndroidUtilities.dp(4.0f)), (int) (rectF.top + AndroidUtilities.dp(2.66f)), (int) (rectF.left + AndroidUtilities.dp(13.66f)), (int) (rectF.top + AndroidUtilities.dp(12.32f)));
+            this.f26074f3.draw(canvas2);
+        }
+        super.dispatchDraw(canvas2);
+        if (i10 > 0) {
+            canvas2.save();
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f));
+            this.f26072d3.b(canvas2, rectF2, 1, e);
+            canvas2.restore();
+            canvas2.restore();
+        }
     }
 }

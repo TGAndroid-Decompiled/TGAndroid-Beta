@@ -1,9 +1,32 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public interface qj {
-    void b(TLRPC.User user, boolean z10, int i10, long j10);
+public final class qj implements vj {
+    public final int f29697a;
+    public final TLRPC.User f29698b;
 
-    void c(ArrayList arrayList, String str, boolean z10, int i10, long j10, boolean z11);
+    public qj(int i10, TLRPC.User user) {
+        this.f29697a = i10;
+        this.f29698b = user;
+    }
+
+    @Override
+    public final String run() {
+        jf.b c10;
+        StringBuilder sb2;
+        String str;
+        switch (this.f29697a) {
+            case 0:
+                c10 = jf.b.c();
+                sb2 = new StringBuilder("+");
+                str = this.f29698b.phone;
+                break;
+            default:
+                c10 = jf.b.c();
+                sb2 = new StringBuilder("+");
+                str = this.f29698b.phone;
+                break;
+        }
+        return org.telegram.messenger.wh.g(sb2, str, c10);
+    }
 }

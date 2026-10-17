@@ -1,26 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.tl.TL_stories;
-public final class ol implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final TranslateController f17750a;
-    public final TL_stories.StoryItem f17751b;
-    public final TranslateController.StoryKey f17752c;
+import org.telegram.messenger.UnconfirmedAuthController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ol implements RequestDelegate {
+    public final int f19223a;
+    public final UnconfirmedAuthController.UnconfirmedAuth f19224b;
+    public final Utilities.Callback f19225c;
 
-    public ol(TranslateController translateController, TL_stories.StoryItem storyItem, TranslateController.StoryKey storyKey) {
-        this.f17750a = translateController;
-        this.f17751b = storyItem;
-        this.f17752c = storyKey;
+    public ol(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, int i10) {
+        this.f19223a = i10;
+        this.f19224b = unconfirmedAuth;
+        this.f19225c = callback;
     }
 
     @Override
-    public void run(Exception exc) {
-        this.f17750a.lambda$detectStoryLanguage$34(this.f17751b, this.f17752c, exc);
-    }
-
-    @Override
-    public void run(String str) {
-        this.f17750a.lambda$detectStoryLanguage$32(this.f17751b, this.f17752c, str);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19223a) {
+            case 0:
+                this.f19224b.lambda$deny$4(this.f19225c, tLObject, tL_error);
+                return;
+            case 1:
+                this.f19224b.lambda$deny$6(this.f19225c, tLObject, tL_error);
+                return;
+            default:
+                this.f19224b.lambda$confirm$2(this.f19225c, tLObject, tL_error);
+                return;
+        }
     }
 }

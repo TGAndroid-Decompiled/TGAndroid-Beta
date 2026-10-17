@@ -3,23 +3,23 @@ package hg;
 import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fy;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.r71;
+import org.telegram.ui.Components.ay;
+import org.telegram.ui.Components.em0;
+import org.telegram.ui.z51;
 public final class g extends s4.o {
-    public final int f10560b;
-    public ArrayList f10561c;
+    public final int f11865b;
+    public ArrayList f11866c;
     public Object d;
 
     public g() {
-        this.f10560b = 4;
+        this.f11865b = 4;
     }
 
     @Override
     public final boolean a(int i10, int i11) {
-        switch (this.f10560b) {
+        switch (this.f11865b) {
             case 0:
-                if (((k) ((m) this.d).N.get(i10)).f42904a == ((k) this.f10561c.get(i11)).f42904a) {
+                if (((k) ((m) this.d).N.get(i10)).f44314a == ((k) this.f11866c.get(i11)).f44314a) {
                     return true;
                 }
                 return false;
@@ -30,9 +30,9 @@ public final class g extends s4.o {
             case 3:
                 return true;
             default:
-                pg.a aVar = (pg.a) this.f10561c.get(i10);
+                pg.a aVar = (pg.a) this.f11866c.get(i10);
                 pg.a aVar2 = (pg.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f42904a != aVar2.f42904a) {
+                if (aVar.f44314a != aVar2.f44314a) {
                     return false;
                 }
                 return aVar.a(aVar2);
@@ -45,28 +45,28 @@ public final class g extends s4.o {
         TLRPC.TL_contact tL_contact2;
         TLRPC.RecentMeUrl recentMeUrl;
         String str;
-        switch (this.f10560b) {
+        switch (this.f11865b) {
             case 0:
                 k kVar = (k) ((m) this.d).N.get(i10);
-                k kVar2 = (k) this.f10561c.get(i11);
-                TLRPC.Dialog dialog = kVar.f10648c;
-                int i12 = kVar.f42904a;
-                int i13 = kVar2.f42904a;
-                TLRPC.Dialog dialog2 = kVar2.f10648c;
-                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f10652j == kVar2.f10652j : (tL_contact = kVar.e) != null && (tL_contact2 = kVar2.e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f18920id == dialog2.f18920id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f18920id == dialog2.f18920id && kVar.h == kVar2.h && kVar.f10649f == kVar2.f10649f && kVar.f10650g == kVar2.f10650g))) {
+                k kVar2 = (k) this.f11866c.get(i11);
+                TLRPC.Dialog dialog = kVar.f11953c;
+                int i12 = kVar.f44314a;
+                int i13 = kVar2.f44314a;
+                TLRPC.Dialog dialog2 = kVar2.f11953c;
+                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f11957j == kVar2.f11957j : (tL_contact = kVar.e) != null && (tL_contact2 = kVar2.e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f20276id == dialog2.f20276id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f20276id == dialog2.f20276id && kVar.h == kVar2.h && kVar.f11954f == kVar2.f11954f && kVar.f11955g == kVar2.f11955g))) {
                     return false;
                 }
                 return true;
             case 1:
-                return ((Integer) this.f10561c.get(i10)).equals(((fy) this.d).f24826n.get(i11));
+                return ((Integer) this.f11866c.get(i10)).equals(((ay) this.d).f24733n.get(i11));
             case 2:
-                return Objects.equals(this.f10561c.get(i10), ((im0) this.d).f25660n.get(i11));
+                return Objects.equals(this.f11866c.get(i10), ((em0) this.d).f25961n.get(i11));
             case 3:
-                return ((Long) this.f10561c.get(i10)).equals(((r71) this.d).f39359v0.get(i11));
+                return ((Long) this.f11866c.get(i10)).equals(((z51) this.d).f43625v0.get(i11));
             default:
-                pg.a aVar = (pg.a) this.f10561c.get(i10);
+                pg.a aVar = (pg.a) this.f11866c.get(i10);
                 pg.a aVar2 = (pg.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f42904a != aVar2.f42904a) {
+                if (aVar.f44314a != aVar2.f44314a) {
                     return false;
                 }
                 return aVar.equals(aVar2);
@@ -75,15 +75,15 @@ public final class g extends s4.o {
 
     @Override
     public final int d() {
-        switch (this.f10560b) {
+        switch (this.f11865b) {
             case 0:
-                return this.f10561c.size();
+                return this.f11866c.size();
             case 1:
-                return ((fy) this.d).f24826n.size();
+                return ((ay) this.d).f24733n.size();
             case 2:
-                return ((im0) this.d).f25660n.size();
+                return ((em0) this.d).f25961n.size();
             case 3:
-                return ((r71) this.d).f39359v0.size();
+                return ((z51) this.d).f43625v0.size();
             default:
                 return ((ArrayList) this.d).size();
         }
@@ -91,23 +91,23 @@ public final class g extends s4.o {
 
     @Override
     public final int e() {
-        switch (this.f10560b) {
+        switch (this.f11865b) {
             case 0:
                 return ((m) this.d).N.size();
             case 1:
-                return this.f10561c.size();
+                return this.f11866c.size();
             case 2:
-                return this.f10561c.size();
+                return this.f11866c.size();
             case 3:
-                return this.f10561c.size();
+                return this.f11866c.size();
             default:
-                return this.f10561c.size();
+                return this.f11866c.size();
         }
     }
 
     public g(Object obj, ArrayList arrayList, int i10) {
-        this.f10560b = i10;
+        this.f11865b = i10;
         this.d = obj;
-        this.f10561c = arrayList;
+        this.f11866c = arrayList;
     }
 }

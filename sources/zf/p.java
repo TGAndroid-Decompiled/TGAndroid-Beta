@@ -1,370 +1,106 @@
 package zf;
 
-import android.text.Spanned;
-import android.text.TextUtils;
-import org.telegram.ui.Components.b6;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.q11;
-import org.telegram.ui.Components.r11;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.tj0;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
 public abstract class p {
-    public static void a(q11 q11Var, StringBuilder sb2) {
-        if (q11Var != null) {
-            if ((q11Var.f28163a & 768) > 0) {
-                sb2.append("<spoiler>");
+    public static final Rect f51607a = new Rect();
+
+    static {
+        new Rect();
+        new RectF();
+    }
+
+    public static void a(Canvas canvas, Drawable drawable, float f7, float f10, float f11) {
+        float dpf2 = f11 / AndroidUtilities.dpf2(72.0f);
+        d(drawable, AndroidUtilities.dpf2(9.66f) + (f7 - AndroidUtilities.dpf2(36.0f)), AndroidUtilities.dpf2(4.66f) + (f10 - AndroidUtilities.dpf2(36.0f)), 53);
+        canvas.save();
+        canvas.scale(dpf2, dpf2, f7, f10);
+        drawable.draw(canvas);
+        canvas.restore();
+    }
+
+    public static void b(Canvas canvas, Drawable drawable, float f7) {
+        if (drawable != null && f7 != 0.0f) {
+            if (f7 == 1.0f) {
+                drawable.draw(canvas);
+                return;
             }
-            if ((q11Var.f28163a & 1) > 0) {
-                sb2.append("<b>");
-            }
-            if ((q11Var.f28163a & 2) > 0) {
-                sb2.append("<i>");
-            }
-            if ((q11Var.f28163a & 16) > 0) {
-                sb2.append("<u>");
-            }
-            if ((q11Var.f28163a & 8) > 0) {
-                sb2.append("<s>");
-            }
-            if ((q11Var.f28163a & 4) > 0) {
-                sb2.append("<code>");
-            }
-            if ((q11Var.f28163a & 128) > 0 && q11Var.d != null) {
-                sb2.append("<a href=\"");
-                sb2.append(q11Var.d.url);
-                sb2.append("\">");
-            }
+            canvas.save();
+            canvas.scale(f7, f7, drawable.getBounds().exactCenterX(), drawable.getBounds().exactCenterY());
+            drawable.draw(canvas);
+            canvas.restore();
         }
     }
 
-    public static void b(q11 q11Var, StringBuilder sb2) {
-        if (q11Var != null) {
-            if ((q11Var.f28163a & 128) > 0 && q11Var.d != null) {
-                sb2.append("</a>");
+    public static void c(Rect rect, float f7, float f10, int i10, int i11, int i12) {
+        int round;
+        int round2;
+        int i13 = i12 & 7;
+        if (i13 != 3) {
+            if (i13 != 5) {
+                round = Math.round(f7 - (i10 / 2.0f));
+            } else {
+                round = Math.round(f7 - i10);
             }
-            if ((q11Var.f28163a & 4) > 0) {
-                sb2.append("</code>");
+        } else {
+            round = Math.round(f7);
+        }
+        int i14 = i12 & 112;
+        if (i14 != 48) {
+            if (i14 != 80) {
+                round2 = Math.round(f10 - (i11 / 2.0f));
+            } else {
+                round2 = Math.round(f10 - i11);
             }
-            if ((q11Var.f28163a & 8) > 0) {
-                sb2.append("</s>");
-            }
-            if ((q11Var.f28163a & 16) > 0) {
-                sb2.append("</u>");
-            }
-            if ((q11Var.f28163a & 2) > 0) {
-                sb2.append("</i>");
-            }
-            if ((q11Var.f28163a & 1) > 0) {
-                sb2.append("</b>");
-            }
-            if ((q11Var.f28163a & 768) > 0) {
-                sb2.append("</spoiler>");
-            }
+        } else {
+            round2 = Math.round(f10);
+        }
+        rect.set(round, round2, i10 + round, i11 + round2);
+    }
+
+    public static void d(Drawable drawable, float f7, float f10, int i10) {
+        if (drawable == null) {
+            return;
+        }
+        e(drawable, f7, f10, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), i10);
+    }
+
+    public static void e(Drawable drawable, float f7, float f10, int i10, int i11, int i12) {
+        if (drawable != null) {
+            Rect rect = f51607a;
+            c(rect, f7, f10, i10, i11, i12);
+            drawable.setBounds(rect);
         }
     }
 
-    public static String c(Spanned spanned) {
-        int i10;
-        int i11;
-        int i12;
-        String str;
-        int i13;
-        int i14;
-        String str2;
-        int i15;
-        String str3;
-        StringBuilder sb2 = new StringBuilder();
-        int length = spanned.length();
-        int i16 = 0;
-        while (i16 < length) {
-            int nextSpanTransition = spanned.nextSpanTransition(i16, length, tj0.class);
-            if (nextSpanTransition < 0) {
-                nextSpanTransition = length;
-            }
-            tj0[] tj0VarArr = (tj0[]) spanned.getSpans(i16, nextSpanTransition, tj0.class);
-            if (tj0VarArr != null) {
-                for (tj0 tj0Var : tj0VarArr) {
-                    if (tj0Var.e) {
-                        str3 = "<blockquote collapsed>";
-                    } else {
-                        str3 = "<blockquote>";
-                    }
-                    sb2.append(str3);
-                }
-            }
-            while (i16 < nextSpanTransition) {
-                int nextSpanTransition2 = spanned.nextSpanTransition(i16, nextSpanTransition, r11.class);
-                if (nextSpanTransition2 < 0) {
-                    nextSpanTransition2 = nextSpanTransition;
-                }
-                r11[] r11VarArr = (r11[]) spanned.getSpans(i16, nextSpanTransition2, r11.class);
-                String str4 = "<pre>";
-                if (r11VarArr != null) {
-                    for (r11 r11Var : r11VarArr) {
-                        if (r11Var != null) {
-                            a(r11Var.f28400b, sb2);
-                        }
-                    }
-                }
-                while (i16 < nextSpanTransition2) {
-                    int nextSpanTransition3 = spanned.nextSpanTransition(i16, nextSpanTransition2, s61.class);
-                    if (nextSpanTransition3 < 0) {
-                        nextSpanTransition3 = nextSpanTransition2;
-                    }
-                    s61[] s61VarArr = (s61[]) spanned.getSpans(i16, nextSpanTransition3, s61.class);
-                    String str5 = "\">";
-                    if (s61VarArr != null) {
-                        for (s61 s61Var : s61VarArr) {
-                            a(s61Var.f28756a, sb2);
-                            sb2.append("<a href=\"");
-                            sb2.append(s61Var.getURL());
-                            sb2.append("\">");
-                        }
-                    }
-                    while (i16 < nextSpanTransition3) {
-                        int nextSpanTransition4 = spanned.nextSpanTransition(i16, nextSpanTransition3, p61.class);
-                        if (nextSpanTransition4 < 0) {
-                            nextSpanTransition4 = nextSpanTransition3;
-                        }
-                        p61[] p61VarArr = (p61[]) spanned.getSpans(i16, nextSpanTransition4, p61.class);
-                        if (p61VarArr != null) {
-                            for (p61 p61Var : p61VarArr) {
-                                if (p61Var != null) {
-                                    sb2.append(str4);
-                                }
-                            }
-                        }
-                        while (i16 < nextSpanTransition4) {
-                            int nextSpanTransition5 = spanned.nextSpanTransition(i16, nextSpanTransition4, li.h.class);
-                            int i17 = length;
-                            if (nextSpanTransition5 < 0) {
-                                i10 = nextSpanTransition4;
-                            } else {
-                                i10 = nextSpanTransition5;
-                            }
-                            li.h[] hVarArr = (li.h[]) spanned.getSpans(i16, i10, li.h.class);
-                            int i18 = i16;
-                            int i19 = nextSpanTransition;
-                            if (hVarArr != null) {
-                                int i20 = 0;
-                                while (i20 < hVarArr.length) {
-                                    li.h hVar = hVarArr[i20];
-                                    if (hVar != null) {
-                                        String str6 = hVar.f14753a;
-                                        if (TextUtils.isEmpty(str6)) {
-                                            sb2.append(str4);
-                                        } else {
-                                            i15 = i20;
-                                            sb2.append("<pre lang=\"");
-                                            sb2.append(str6);
-                                            sb2.append(str5);
-                                            i20 = i15 + 1;
-                                        }
-                                    }
-                                    i15 = i20;
-                                    i20 = i15 + 1;
-                                }
-                            }
-                            int i21 = i18;
-                            while (i21 < i10) {
-                                int nextSpanTransition6 = spanned.nextSpanTransition(i21, i10, b6.class);
-                                int i22 = i10;
-                                if (nextSpanTransition6 >= 0) {
-                                    i10 = nextSpanTransition6;
-                                }
-                                b6[] b6VarArr = (b6[]) spanned.getSpans(i21, i10, b6.class);
-                                int i23 = i21;
-                                int i24 = nextSpanTransition2;
-                                if (b6VarArr != null) {
-                                    int i25 = 0;
-                                    while (i25 < b6VarArr.length) {
-                                        b6 b6Var = b6VarArr[i25];
-                                        int i26 = i25;
-                                        if (b6Var != null && !b6Var.standard) {
-                                            str2 = str4;
-                                            sb2.append("<animated-emoji data-document-id=\"" + b6Var.documentId + str5);
-                                        } else {
-                                            str2 = str4;
-                                        }
-                                        i25 = i26 + 1;
-                                        str4 = str2;
-                                    }
-                                }
-                                String str7 = str4;
-                                int i27 = i23;
-                                while (i27 < i10) {
-                                    char charAt = spanned.charAt(i27);
-                                    if (charAt == '\n') {
-                                        sb2.append("<br>");
-                                    } else if (charAt == '<') {
-                                        sb2.append("&lt;");
-                                    } else if (charAt == '>') {
-                                        sb2.append("&gt;");
-                                    } else if (charAt == '&') {
-                                        sb2.append("&amp;");
-                                    } else {
-                                        i11 = i27;
-                                        i12 = nextSpanTransition3;
-                                        if (charAt >= 55296 && charAt <= 57343) {
-                                            if (charAt < 56320 && (i14 = i11 + 1) < i10) {
-                                                str = str5;
-                                                char charAt2 = spanned.charAt(i14);
-                                                if (charAt2 >= 56320 && charAt2 <= 57343) {
-                                                    sb2.append("&#");
-                                                    sb2.append(((charAt - 55296) << 10) | 65536 | (charAt2 - 56320));
-                                                    sb2.append(";");
-                                                    i13 = i14;
-                                                    i27 = i13 + 1;
-                                                    nextSpanTransition3 = i12;
-                                                    str5 = str;
-                                                }
-                                                i13 = i11;
-                                                i27 = i13 + 1;
-                                                nextSpanTransition3 = i12;
-                                                str5 = str;
-                                            }
-                                            str = str5;
-                                            i13 = i11;
-                                            i27 = i13 + 1;
-                                            nextSpanTransition3 = i12;
-                                            str5 = str;
-                                        } else {
-                                            str = str5;
-                                            if (charAt <= '~' && charAt >= ' ') {
-                                                if (charAt == ' ') {
-                                                    i13 = i11;
-                                                    while (true) {
-                                                        int i28 = i13 + 1;
-                                                        if (i28 >= i10 || spanned.charAt(i28) != ' ') {
-                                                            break;
-                                                        }
-                                                        sb2.append("&nbsp;");
-                                                        i13 = i28;
-                                                    }
-                                                    sb2.append(' ');
-                                                    i27 = i13 + 1;
-                                                    nextSpanTransition3 = i12;
-                                                    str5 = str;
-                                                } else {
-                                                    sb2.append(charAt);
-                                                }
-                                            } else {
-                                                sb2.append("&#");
-                                                sb2.append((int) charAt);
-                                                sb2.append(";");
-                                            }
-                                            i13 = i11;
-                                            i27 = i13 + 1;
-                                            nextSpanTransition3 = i12;
-                                            str5 = str;
-                                        }
-                                    }
-                                    i11 = i27;
-                                    i12 = nextSpanTransition3;
-                                    str = str5;
-                                    i13 = i11;
-                                    i27 = i13 + 1;
-                                    nextSpanTransition3 = i12;
-                                    str5 = str;
-                                }
-                                int i29 = nextSpanTransition3;
-                                String str8 = str5;
-                                if (b6VarArr != null) {
-                                    for (b6 b6Var2 : b6VarArr) {
-                                        if (b6Var2 != null && !b6Var2.standard) {
-                                            sb2.append("</animated-emoji>");
-                                        }
-                                    }
-                                }
-                                i21 = i10;
-                                i10 = i22;
-                                nextSpanTransition2 = i24;
-                                str4 = str7;
-                                nextSpanTransition3 = i29;
-                                str5 = str8;
-                            }
-                            int i30 = i10;
-                            int i31 = nextSpanTransition2;
-                            String str9 = str4;
-                            int i32 = nextSpanTransition3;
-                            String str10 = str5;
-                            if (hVarArr != null) {
-                                for (li.h hVar2 : hVarArr) {
-                                    if (hVar2 != null) {
-                                        sb2.append("</pre>");
-                                    }
-                                }
-                            }
-                            length = i17;
-                            nextSpanTransition = i19;
-                            i16 = i30;
-                            nextSpanTransition2 = i31;
-                            str4 = str9;
-                            nextSpanTransition3 = i32;
-                            str5 = str10;
-                        }
-                        int i33 = length;
-                        int i34 = nextSpanTransition;
-                        int i35 = nextSpanTransition2;
-                        String str11 = str4;
-                        int i36 = nextSpanTransition3;
-                        String str12 = str5;
-                        if (p61VarArr != null) {
-                            for (p61 p61Var2 : p61VarArr) {
-                                if (p61Var2 != null) {
-                                    sb2.append("</pre>");
-                                }
-                            }
-                        }
-                        i16 = nextSpanTransition4;
-                        length = i33;
-                        nextSpanTransition = i34;
-                        nextSpanTransition2 = i35;
-                        str4 = str11;
-                        nextSpanTransition3 = i36;
-                        str5 = str12;
-                    }
-                    int i37 = length;
-                    int i38 = nextSpanTransition;
-                    int i39 = nextSpanTransition2;
-                    String str13 = str4;
-                    int i40 = nextSpanTransition3;
-                    if (s61VarArr != null) {
-                        for (s61 s61Var2 : s61VarArr) {
-                            sb2.append("</a>");
-                            b(s61Var2.f28756a, sb2);
-                        }
-                    }
-                    length = i37;
-                    nextSpanTransition = i38;
-                    nextSpanTransition2 = i39;
-                    str4 = str13;
-                    i16 = i40;
-                }
-                int i41 = length;
-                int i42 = nextSpanTransition;
-                int i43 = nextSpanTransition2;
-                if (r11VarArr != null) {
-                    for (r11 r11Var2 : r11VarArr) {
-                        if (r11Var2 != null) {
-                            b(r11Var2.f28400b, sb2);
-                        }
-                    }
-                }
-                length = i41;
-                nextSpanTransition = i42;
-                i16 = i43;
-            }
-            int i44 = length;
-            int i45 = nextSpanTransition;
-            if (tj0VarArr != null) {
-                for (int length2 = tj0VarArr.length - 1; length2 >= 0; length2--) {
-                    sb2.append("</blockquote>");
-                }
-            }
-            length = i44;
-            i16 = i45;
+    public static void f(ImageReceiver imageReceiver, float f7, float f10, int i10, int i11) {
+        if (imageReceiver != null) {
+            Rect rect = f51607a;
+            c(rect, f7, f10, i10, i11, 17);
+            imageReceiver.setImageCoords(rect);
         }
-        return sb2.toString();
+    }
+
+    public static void g(Drawable drawable, int i10, int i11, int i12, int i13) {
+        Rect rect = f51607a;
+        if (drawable.getPadding(rect)) {
+            drawable.setBounds(i10 - rect.left, i11 - rect.top, i12 + rect.right, i13 + rect.bottom);
+        } else {
+            drawable.setBounds(i10, i11, i12, i13);
+        }
+    }
+
+    public static void h(NinePatchDrawable ninePatchDrawable, Rect rect) {
+        Rect rect2 = f51607a;
+        if (ninePatchDrawable.getPadding(rect2)) {
+            ninePatchDrawable.setBounds(rect.left - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
+        } else {
+            ninePatchDrawable.setBounds(rect);
+        }
     }
 }

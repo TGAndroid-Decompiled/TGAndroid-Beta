@@ -1,14 +1,14 @@
 package c3;
-public interface p extends b2.p {
+public interface p extends b2.o {
     void b(int i10, int i11, byte[] bArr);
 
-    boolean d(byte[] bArr, int i10, int i11, boolean z10);
-
-    int g(int i10, int i11, byte[] bArr);
+    boolean c(byte[] bArr, int i10, int i11, boolean z10);
 
     long getLength();
 
     long getPosition();
+
+    int h(int i10, int i11, byte[] bArr);
 
     boolean i(int i10, boolean z10);
 

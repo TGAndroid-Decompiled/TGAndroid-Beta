@@ -1,42 +1,393 @@
 package org.telegram.ui;
 
 import android.os.Bundle;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import java.util.Locale;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.PushListenerController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class od0 implements OnSuccessListener {
-    public final int f38620a = 0;
-    public final ah0 f38621b;
-    public final String f38622c;
-    public final TLRPC.auth_SentCode d;
-    public final Bundle e;
-    public final boolean f38623f;
+import org.telegram.tgnet.tl.TL_account;
+public final class od0 extends org.telegram.ui.Components.ow0 {
+    public boolean E;
+    public GoogleSignInAccount F;
+    public int G;
+    public int H;
+    public String I;
+    public String J;
+    public String K;
+    public String L;
+    public String M;
+    public boolean N;
+    public int O;
+    public final boolean P;
+    public final nd0 Q;
+    public boolean R;
+    public final gd0 S;
+    public final gd0 T;
+    public final gd0 U;
+    public boolean V;
+    public final fg0 W;
+    public final kd0 f39742a;
+    public final TextView f39743b;
+    public final wh.n f39744c;
+    public final TextView d;
+    public final FrameLayout e;
+    public final TextView f39745f;
+    public final FrameLayout h;
+    public final ai.ud f39746n;
+    public final md0 f39747r;
+    public final TextView f39748s;
+    public final org.telegram.ui.Components.ea0 v;
+    public final org.telegram.ui.Components.xj0 f39749w;
+    public boolean f39750x;
+    public Bundle f39751y;
 
-    public od0(ah0 ah0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z10) {
-        this.f38621b = ah0Var;
-        this.e = bundle;
-        this.d = auth_sentcode;
-        this.f38622c = str;
-        this.f38623f = z10;
+    public od0(org.telegram.ui.fg0 r30, android.content.Context r31, boolean r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.od0.<init>(org.telegram.ui.fg0, android.content.Context, boolean):void");
     }
 
     @Override
-    public final void onSuccess(Object obj) {
-        switch (this.f38620a) {
-            case 0:
-                ah0.X(this.f38621b, this.e, this.d, this.f38622c, this.f38623f, (IntegrityTokenResponse) obj);
-                return;
-            default:
-                ah0.V(this.f38621b, this.f38622c, this.d, this.e, this.f38623f, (m8.d) obj);
-                return;
+    public final void g() {
+        if (this.H != 0) {
+            AndroidUtilities.cancelRunOnUIThread(this.U);
         }
     }
 
-    public od0(ah0 ah0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z10) {
-        this.f38621b = ah0Var;
-        this.f38622c = str;
-        this.d = auth_sentcode;
-        this.e = bundle;
-        this.f38623f = z10;
+    @Override
+    public String getHeaderName() {
+        return LocaleController.getString(R.string.VerificationCode);
+    }
+
+    @Override
+    public final void h(String str) {
+        TLRPC.TL_auth_signIn tL_auth_signIn;
+        int i10;
+        if (!this.E) {
+            AndroidUtilities.cancelRunOnUIThread(this.T);
+            kd0 kd0Var = this.f39742a;
+            kd0Var.e = true;
+            vr[] vrVarArr = kd0Var.f41486f;
+            if (vrVarArr != null) {
+                for (vr vrVar : vrVarArr) {
+                    vrVar.j(0.0f);
+                }
+            }
+            String code = kd0Var.getCode();
+            int length = code.length();
+            fg0 fg0Var = this.W;
+            if (length == 0 && this.F == null) {
+                if (fg0Var.getParentActivity() == null) {
+                    return;
+                }
+                try {
+                    kd0Var.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                for (vr vrVar2 : kd0Var.f41486f) {
+                    vrVar2.i(1.0f);
+                }
+                kd0Var.f41486f[0].requestFocus();
+                AndroidUtilities.shakeViewSpring(kd0Var, new gd0(this, 1));
+                return;
+            }
+            this.E = true;
+            fg0Var.n1(0, true);
+            if (fg0Var.F == 3) {
+                TL_account.verifyEmail verifyemail = new TL_account.verifyEmail();
+                verifyemail.purpose = new TLRPC.TL_emailVerifyPurposeLoginChange();
+                TLRPC.TL_emailVerificationCode tL_emailVerificationCode = new TLRPC.TL_emailVerificationCode();
+                tL_emailVerificationCode.code = code;
+                verifyemail.verification = tL_emailVerificationCode;
+                tL_auth_signIn = verifyemail;
+            } else if (this.N) {
+                TL_account.verifyEmail verifyemail2 = new TL_account.verifyEmail();
+                TLRPC.TL_emailVerifyPurposeLoginSetup tL_emailVerifyPurposeLoginSetup = new TLRPC.TL_emailVerifyPurposeLoginSetup();
+                tL_emailVerifyPurposeLoginSetup.phone_number = this.L;
+                tL_emailVerifyPurposeLoginSetup.phone_code_hash = this.M;
+                verifyemail2.purpose = tL_emailVerifyPurposeLoginSetup;
+                TLRPC.TL_emailVerificationCode tL_emailVerificationCode2 = new TLRPC.TL_emailVerificationCode();
+                tL_emailVerificationCode2.code = code;
+                verifyemail2.verification = tL_emailVerificationCode2;
+                tL_auth_signIn = verifyemail2;
+            } else {
+                TLRPC.TL_auth_signIn tL_auth_signIn2 = new TLRPC.TL_auth_signIn();
+                tL_auth_signIn2.phone_number = this.L;
+                tL_auth_signIn2.phone_code_hash = this.M;
+                if (this.F != null) {
+                    TLRPC.TL_emailVerificationGoogle tL_emailVerificationGoogle = new TLRPC.TL_emailVerificationGoogle();
+                    tL_emailVerificationGoogle.token = this.F.f6278c;
+                    tL_auth_signIn2.email_verification = tL_emailVerificationGoogle;
+                } else {
+                    TLRPC.TL_emailVerificationCode tL_emailVerificationCode3 = new TLRPC.TL_emailVerificationCode();
+                    tL_emailVerificationCode3.code = code;
+                    tL_auth_signIn2.email_verification = tL_emailVerificationCode3;
+                }
+                tL_auth_signIn2.flags = 2 | tL_auth_signIn2.flags;
+                tL_auth_signIn = tL_auth_signIn2;
+            }
+            kd0Var.e = true;
+            vr[] vrVarArr2 = kd0Var.f41486f;
+            if (vrVarArr2 != null) {
+                for (vr vrVar3 : vrVarArr2) {
+                    vrVar3.j(0.0f);
+                }
+            }
+            i10 = ((org.telegram.ui.ActionBar.n2) fg0Var).currentAccount;
+            ConnectionsManager.getInstance(i10).sendRequest(tL_auth_signIn, new dd0(this, code, 0), 10);
+        }
+    }
+
+    @Override
+    public final void j() {
+        if (this.f39750x) {
+            this.f39750x = false;
+        } else {
+            AndroidUtilities.runOnUIThread(new gd0(this, 8), fg0.f36902t0);
+        }
+    }
+
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("emailcode_params");
+        this.f39751y = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
+        }
+        String string = bundle.getString("emailcode_code");
+        if (string != null) {
+            this.f39742a.setText(string);
+        }
+    }
+
+    @Override
+    public final void l(Bundle bundle) {
+        String code = this.f39742a.getCode();
+        if (code != null && code.length() != 0) {
+            bundle.putString("emailcode_code", code);
+        }
+        Bundle bundle2 = this.f39751y;
+        if (bundle2 != null) {
+            bundle.putBundle("emailcode_params", bundle2);
+        }
+    }
+
+    @Override
+    public final void m(Bundle bundle, boolean z10) {
+        int i10;
+        int i11;
+        vr[] vrVarArr;
+        if (bundle != null) {
+            this.f39751y = bundle;
+            this.L = bundle.getString("phoneFormated");
+            this.M = this.f39751y.getString("phoneHash");
+            this.I = this.f39751y.getString("phone");
+            this.J = this.f39751y.getString("ephone");
+            this.N = this.f39751y.getBoolean("setup");
+            this.O = this.f39751y.getInt("length");
+            this.K = this.f39751y.getString("email");
+            this.G = this.f39751y.getInt("resetAvailablePeriod");
+            this.H = this.f39751y.getInt("resetPendingDate");
+            fg0 fg0Var = this.W;
+            int i12 = fg0Var.F;
+            int i13 = 8;
+            FrameLayout frameLayout = this.h;
+            wh.n nVar = this.f39744c;
+            if (i12 == 3) {
+                nVar.setText(LocaleController.formatString(R.string.CheckYourNewEmailSubtitle, this.K));
+                AndroidUtilities.updateViewVisibilityAnimated(frameLayout, false, 1.0f, false);
+            } else if (this.P) {
+                nVar.setText(LocaleController.formatString(R.string.VerificationCodeSubtitle, this.K));
+                AndroidUtilities.updateViewVisibilityAnimated(frameLayout, false, 1.0f, false);
+            } else {
+                AndroidUtilities.updateViewVisibilityAnimated(frameLayout, true, 1.0f, false);
+                if (this.H == 0) {
+                    i10 = 0;
+                } else {
+                    i10 = 8;
+                }
+                this.f39746n.setVisibility(i10);
+                if (this.H != 0) {
+                    i11 = 0;
+                } else {
+                    i11 = 8;
+                }
+                this.f39747r.setVisibility(i11);
+                if (this.H != 0) {
+                    r();
+                }
+            }
+            int i14 = this.O;
+            kd0 kd0Var = this.f39742a;
+            kd0Var.b(i14, 1);
+            for (vr vrVar : kd0Var.f41486f) {
+                vrVar.setShowSoftInputOnFocusCompat(AndroidUtilities.isAccessibilityTouchExplorationEnabled());
+                vrVar.addTextChangedListener(new o0(this, 7));
+                vrVar.setOnFocusChangeListener(new rd(this, 2));
+            }
+            kd0Var.setText("");
+            if (!this.N && fg0Var.F != 3) {
+                String string = this.f39751y.getString("emailPattern");
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
+                int indexOf = string.indexOf(42);
+                int lastIndexOf = string.lastIndexOf(42);
+                if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                    ?? obj = new Object();
+                    obj.f28049a |= 256;
+                    obj.f28050b = indexOf;
+                    int i15 = lastIndexOf + 1;
+                    obj.f28051c = i15;
+                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.m11(obj, 0), indexOf, i15, 0);
+                }
+                nVar.setText(AndroidUtilities.formatSpannable(LocaleController.getString(R.string.CheckYourEmailSubtitle), spannableStringBuilder));
+            }
+            if (bundle.getBoolean("googleSignInAllowed") && PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices()) {
+                i13 = 0;
+            }
+            this.v.setVisibility(i13);
+            this.d.setVisibility(i13);
+            fg0.T0(fg0Var, kd0Var.f41486f[0]);
+            kd0Var.requestFocus();
+            if (!z10 && bundle.containsKey("nextType")) {
+                AndroidUtilities.runOnUIThread(this.T, bundle.getInt("timeout"));
+            }
+            if (this.H != 0) {
+                AndroidUtilities.runOnUIThread(this.U, 1000L);
+            }
+        }
+    }
+
+    @Override
+    public final void n() {
+        this.f39743b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        int i10 = org.telegram.ui.ActionBar.h6.D6;
+        this.f39744c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+        int i11 = org.telegram.ui.ActionBar.h6.q6;
+        this.d.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
+        this.v.a();
+        this.f39745f.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
+        this.f39746n.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
+        this.f39747r.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+        this.f39748s.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21224q7, false));
+        this.f39742a.invalidate();
+    }
+
+    public final void o(Runnable runnable) {
+        if (this.F != null) {
+            runnable.run();
+            return;
+        }
+        int i10 = 0;
+        while (true) {
+            kd0 kd0Var = this.f39742a;
+            vr[] vrVarArr = kd0Var.f41486f;
+            if (i10 < vrVarArr.length) {
+                kd0Var.postDelayed(new org.telegram.ui.Components.e2(this, i10, 20), i10 * 75);
+                i10++;
+            } else {
+                kd0Var.postDelayed(new b80(16, this, runnable), (vrVarArr.length * 75) + 400);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        removeCallbacks(this.S);
+        removeCallbacks(this.T);
+    }
+
+    public final void p() {
+        if (this.V) {
+            return;
+        }
+        this.V = true;
+        Bundle bundle = new Bundle();
+        bundle.putString("phone", this.I);
+        bundle.putString("ephone", this.J);
+        bundle.putString("phoneFormated", this.L);
+        TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail = new TLRPC.TL_auth_resetLoginEmail();
+        tL_auth_resetLoginEmail.phone_number = this.L;
+        tL_auth_resetLoginEmail.phone_code_hash = this.M;
+        this.W.getConnectionsManager().sendRequest(tL_auth_resetLoginEmail, new ed0(this, bundle, tL_auth_resetLoginEmail, 0), 10);
+    }
+
+    public final void q(boolean z10) {
+        boolean z11;
+        float f7;
+        AndroidUtilities.updateViewVisibilityAnimated(this.f39745f, z10);
+        if (!z10 && this.W.F != 3 && !this.P) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        AndroidUtilities.updateViewVisibilityAnimated(this.h, z11);
+        org.telegram.ui.Components.ea0 ea0Var = this.v;
+        if (ea0Var.getVisibility() != 8) {
+            if (z10) {
+                f7 = 8.0f;
+            } else {
+                f7 = 16.0f;
+            }
+            ea0Var.setLayoutParams(w7.z5.a(16.0f, 0.0f, 0.0f, 0.0f, f7, -1, 17));
+            ea0Var.requestLayout();
+        }
+    }
+
+    public final void r() {
+        String str;
+        String formatString;
+        int currentTimeMillis = (int) (this.H - (System.currentTimeMillis() / 1000));
+        int i10 = this.H;
+        md0 md0Var = this.f39747r;
+        if (i10 > 0 && currentTimeMillis > 0) {
+            int i11 = R.string.LoginEmailResetInTime;
+            int i12 = currentTimeMillis / 86400;
+            int i13 = currentTimeMillis % 86400;
+            int i14 = i13 / 3600;
+            int i15 = i13 % 3600;
+            int i16 = i15 / 60;
+            int i17 = i15 % 60;
+            if (i14 >= 16) {
+                i12++;
+            }
+            if (i12 != 0) {
+                formatString = LocaleController.formatString(R.string.LoginEmailResetInSinglePattern, LocaleController.formatPluralString("Days", i12, new Object[0]));
+            } else {
+                StringBuilder sb2 = new StringBuilder();
+                if (i14 == 0) {
+                    str = "";
+                } else {
+                    str = String.format(Locale.ROOT, "%02d:", Integer.valueOf(i14));
+                }
+                sb2.append(str);
+                Locale locale = Locale.ROOT;
+                sb2.append(String.format(locale, "%02d:", Integer.valueOf(i16)));
+                sb2.append(String.format(locale, "%02d", Integer.valueOf(i17)));
+                formatString = LocaleController.formatString(R.string.LoginEmailResetInSinglePattern, sb2.toString());
+            }
+            String formatString2 = LocaleController.formatString(i11, formatString);
+            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(formatString2);
+            int indexOf = formatString2.indexOf(42);
+            int lastIndexOf = formatString2.lastIndexOf(42);
+            if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                valueOf.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
+                valueOf.replace(indexOf, indexOf + 1, (CharSequence) "");
+                valueOf.setSpan(new ForegroundColorSpan(this.W.getThemedColor(org.telegram.ui.ActionBar.h6.q6)), indexOf, lastIndexOf - 1, 33);
+            }
+            md0Var.setText(valueOf);
+            AndroidUtilities.runOnUIThread(this.U, 1000L);
+            return;
+        }
+        md0Var.setVisibility(0);
+        md0Var.setText(LocaleController.getString(R.string.LoginEmailResetPleaseWait));
+        AndroidUtilities.runOnUIThread(new gd0(this, 0), 1000L);
     }
 }

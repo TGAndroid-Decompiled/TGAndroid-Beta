@@ -14,9 +14,9 @@ public final class l extends b {
                 if (!super.b() || !a.a.a("MULTI_PROCESS")) {
                     return false;
                 }
-                boolean z10 = a5.b.f283a;
-                if (m.f2597b.b()) {
-                    return n.f2599a.getStatics().isMultiProcessEnabled();
+                boolean z10 = a5.c.f282a;
+                if (m.f4209b.b()) {
+                    return n.f4211a.getStatics().isMultiProcessEnabled();
                 }
                 throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
             default:

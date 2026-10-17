@@ -1,89 +1,38 @@
 package org.telegram.ui;
-public final class n20 implements org.telegram.ui.Components.fp0 {
-    public final int f38119a;
-    public final tg.g f38120b;
 
-    public n20(tg.g gVar, int i10) {
-        this.f38119a = i10;
-        this.f38120b = gVar;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class n20 implements Utilities.Callback2 {
+    public final int f39296a;
+    public final s50 f39297b;
+
+    public n20(s50 s50Var, int i10) {
+        this.f39296a = i10;
+        this.f39297b = s50Var;
     }
 
     @Override
-    public final void X(float f7, boolean z10) {
-        switch (this.f38119a) {
+    public final void run(Object obj, Object obj2) {
+        TLRPC.Updates updates = (TLRPC.Updates) obj;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+        switch (this.f39296a) {
             case 0:
-                tg.o oVar = this.f38120b.f45705c;
-                if (oVar != null) {
-                    oVar.B = f7 * 2.0f;
-                    return;
+                s50 s50Var = this.f39297b;
+                if (updates != null) {
+                    s50Var.d.getMessagesController().lambda$processUpdates$377(updates, false);
                 }
-                return;
-            case 1:
-                tg.o oVar2 = this.f38120b.f45705c;
-                if (oVar2 != null) {
-                    oVar2.C = f7 * 2.0f;
-                    return;
-                }
-                return;
-            case 2:
-                tg.o oVar3 = this.f38120b.f45705c;
-                if (oVar3 != null) {
-                    oVar3.D = f7;
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new e20(s50Var, 10));
                 return;
             default:
-                tg.o oVar4 = this.f38120b.f45705c;
-                if (oVar4 != null) {
-                    oVar4.G = f7 * 2.0f;
+                s50 s50Var2 = this.f39297b;
+                if (updates != null) {
+                    s50Var2.d.getMessagesController().lambda$processUpdates$377(updates, false);
+                    return;
+                } else {
+                    s50Var2.getClass();
                     return;
                 }
-                return;
         }
-    }
-
-    @Override
-    public final CharSequence getContentDescription() {
-        switch (this.f38119a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            case 2:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public final int k0() {
-        switch (this.f38119a) {
-            case 0:
-                return 0;
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public final void z() {
-        int i10 = this.f38119a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
     }
 }

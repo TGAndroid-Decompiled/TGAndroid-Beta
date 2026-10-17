@@ -1,89 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PointF;
-import android.view.animation.Interpolator;
-import android.view.animation.PathInterpolator;
-public final class es implements Interpolator {
-    public static final es f24465f = new es(0.25d, 0.1d, 0.25d, 1.0d);
-    public static final es f24466g = new es(0.0d, 0.0d, 0.58d, 1.0d);
-    public static final es h = new es(0.23d, 1.0d, 0.32d, 1.0d);
-    public static final es f24467i = new es(0.42d, 0.0d, 1.0d, 1.0d);
-    public static final es f24468j = new es(0.42d, 0.0d, 0.58d, 1.0d);
-    public static final es f24469k = new es(0.34d, 1.56d, 0.64d, 1.0d);
-    public static final PathInterpolator f24470l;
-    public final PointF f24471a;
-    public final PointF f24472b;
-    public final PointF f24473c;
-    public final PointF d;
-    public final PointF e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class es extends View {
+    public final TextPaint f25990a;
+    public final TextPaint f25991b;
+    public final String f25992c;
+    public final String d;
+    public final Rect e;
 
-    static {
-        new PathInterpolator(v7.x7.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
-        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
-        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-        f24470l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
-    }
-
-    public es(float f7, float f10, float f11, float f12) {
-        PointF pointF = new PointF(f7, f10);
-        PointF pointF2 = new PointF(f11, f12);
-        this.f24473c = new PointF();
-        this.d = new PointF();
-        this.e = new PointF();
-        float f13 = pointF.x;
-        if (f13 >= 0.0f && f13 <= 1.0f) {
-            float f14 = pointF2.x;
-            if (f14 >= 0.0f && f14 <= 1.0f) {
-                this.f24471a = pointF;
-                this.f24472b = pointF2;
-                return;
-            }
-            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
-        }
-        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
+    public es(Context context, String str, String str2) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f25990a = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f25991b = textPaint2;
+        this.e = new Rect();
+        this.f25992c = str;
+        this.d = str2;
+        textPaint.setTextSize(AndroidUtilities.dp(24.0f));
+        textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        textPaint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
     }
 
     @Override
-    public final float getInterpolation(float f7) {
-        PointF pointF;
-        PointF pointF2;
-        PointF pointF3;
-        PointF pointF4;
-        PointF pointF5;
-        int i10 = 1;
-        float f10 = f7;
-        while (true) {
-            pointF = this.f24472b;
-            pointF2 = this.f24471a;
-            pointF3 = this.f24473c;
-            pointF4 = this.d;
-            pointF5 = this.e;
-            if (i10 >= 14) {
-                break;
-            }
-            float f11 = pointF2.x * 3.0f;
-            pointF5.x = f11;
-            float f12 = ((pointF.x - pointF2.x) * 3.0f) - f11;
-            pointF4.x = f12;
-            float f13 = (1.0f - pointF5.x) - f12;
-            pointF3.x = f13;
-            float f14 = (((((f13 * f10) + pointF4.x) * f10) + pointF5.x) * f10) - f7;
-            if (Math.abs(f14) < 0.001d) {
-                break;
-            }
-            f10 -= f14 / (((((pointF3.x * 3.0f) * f10) + (pointF4.x * 2.0f)) * f10) + pointF5.x);
-            i10++;
-        }
-        float f15 = pointF2.y * 3.0f;
-        pointF5.y = f15;
-        float f16 = ((pointF.y - pointF2.y) * 3.0f) - f15;
-        pointF4.y = f16;
-        float f17 = (1.0f - pointF5.y) - f16;
-        pointF3.y = f17;
-        return ((((f17 * f10) + pointF4.y) * f10) + pointF5.y) * f10;
-    }
-
-    public es(double d, double d10, double d11, double d12) {
-        this((float) d, (float) d10, (float) d11, (float) d12);
+    public final void onDraw(Canvas canvas) {
+        TextPaint textPaint = this.f25991b;
+        String str = this.d;
+        float measureText = textPaint.measureText(str);
+        TextPaint textPaint2 = this.f25990a;
+        String str2 = this.f25992c;
+        float measureText2 = textPaint2.measureText(str2);
+        int length = str2.length();
+        Rect rect = this.e;
+        textPaint2.getTextBounds(str2, 0, length, rect);
+        textPaint.getTextBounds(str, 0, str.length(), rect);
+        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
+        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
     }
 }

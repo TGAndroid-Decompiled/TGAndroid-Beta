@@ -1,33 +1,61 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class ob0 implements Runnable {
-    public final int f38598a;
-    public final zb0 f38599b;
+public final class ob0 extends org.telegram.ui.Components.s60 {
+    public final qb0 d;
 
-    public ob0(zb0 zb0Var, int i10) {
-        this.f38598a = i10;
-        this.f38599b = zb0Var;
+    public ob0(qb0 qb0Var) {
+        this.d = qb0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38598a) {
-            case 0:
-                zb0 zb0Var = this.f38599b;
-                zb0Var.f42266r.f21083b.requestFocus();
-                AndroidUtilities.showKeyboard(zb0Var.f42266r.f21083b);
-                return;
-            case 1:
-                zb0 zb0Var2 = this.f38599b;
-                zb0Var2.f42266r.f21083b.clearFocus();
-                AndroidUtilities.hideKeyboard(zb0Var2.f42266r.f21083b);
-                return;
-            default:
-                pf.d.r(this.f38599b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
-                return;
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final int h() {
+        return 5;
+    }
+
+    @Override
+    public final int i() {
+        return 100;
+    }
+
+    @Override
+    public final int j() {
+        return LiteMode.getPowerSaverLevel();
+    }
+
+    @Override
+    public final void k(int i10) {
+        qb0 qb0Var = this.d;
+        float f7 = i10 / 100.0f;
+        qb0Var.h.f25340w.L(f7, true);
+        qb0Var.h.setProgress(f7);
+    }
+
+    @Override
+    public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+        super.onPopulateAccessibilityEvent(view, accessibilityEvent);
+        StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
+        sb2.append(", ");
+        int powerSaverLevel = LiteMode.getPowerSaverLevel();
+        if (powerSaverLevel <= 0) {
+            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled));
+        } else if (powerSaverLevel >= 100) {
+            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled));
+        } else {
+            sb2.append(LocaleController.formatString(R.string.AccDescrLiteBatteryWhenBelow, Integer.valueOf(Math.round(powerSaverLevel))));
         }
+        accessibilityEvent.setContentDescription(sb2);
+        this.d.setContentDescription(sb2);
     }
 }

@@ -1,46 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class si0 extends kz {
-    public final int[] N;
-    public final gj0 O;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public final class si0 extends org.telegram.ui.Components.oo {
+    public final wi0 f41119v0;
 
-    public si0(gj0 gj0Var, ri0 ri0Var, int i10) {
-        super(i10, ri0Var);
-        this.O = gj0Var;
-        this.N = new int[2];
+    public si0(wi0 wi0Var, Context context) {
+        super(context, null, false, null);
+        this.f41119v0 = wi0Var;
     }
 
     @Override
-    public final void g(jz jzVar) {
-        gj0 gj0Var = this.O;
-        zi0 zi0Var = gj0Var.K;
-        if (jzVar != null) {
-            if (gj0Var.f36247l0 != null) {
-                jzVar.f37175c = true;
-                float f7 = (kz.f() * AndroidUtilities.density) / 1.3f;
-                float f10 = f7 / 3.0f;
-                jzVar.d = f10;
-                jzVar.e = f10;
-                jzVar.f37173a = Utilities.clamp(gj0Var.f36247l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
-                jzVar.f37174b = gj0Var.f36247l0.bottom - (f7 / 2.0f);
-                return;
-            }
-            org.telegram.ui.Cells.u1 u1Var = gj0Var.Q;
-            if (u1Var != null && u1Var.isAttachedToWindow() && gj0Var.Q.getMessageObject() != null && gj0Var.Q.getMessageObject().getId() == gj0Var.R) {
-                org.telegram.ui.Cells.u1 u1Var2 = gj0Var.Q;
-                int[] iArr = this.N;
-                u1Var2.getLocationOnScreen(iArr);
-                jzVar.f37175c = true;
-                float f11 = (kz.f() * AndroidUtilities.density) / 1.3f;
-                float f12 = f11 / 3.0f;
-                jzVar.d = f12;
-                jzVar.e = f12;
-                float f13 = f11 / 2.0f;
-                jzVar.f37173a = Utilities.clamp(((zi0Var.getScaleX() * gj0Var.Q.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
-                jzVar.f37174b = ((zi0Var.getScaleY() * gj0Var.Q.getTimeY()) + iArr[1]) - f13;
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        wi0 wi0Var = this.f41119v0;
+        wi0Var.W.setImageCoords(wi0Var.f42866b0.getAvatarImageView().getX(), wi0Var.f42866b0.getAvatarImageView().getY(), wi0Var.f42866b0.getAvatarImageView().getWidth(), wi0Var.f42866b0.getAvatarImageView().getHeight());
+        if (wi0Var.Y) {
+            canvas.save();
+            canvas.scale(0.9f, 0.9f, wi0Var.W.getCenterX(), wi0Var.W.getCenterY());
+            wi0Var.W.draw(canvas);
+            canvas.restore();
         }
+        if (wi0Var.X) {
+            int centerX = (int) (wi0Var.W.getCenterX() - (org.telegram.ui.ActionBar.h6.U0.getIntrinsicWidth() / 2));
+            int centerY = (int) (wi0Var.W.getCenterY() - (org.telegram.ui.ActionBar.h6.U0.getIntrinsicHeight() / 2));
+            Drawable drawable = org.telegram.ui.ActionBar.h6.U0;
+            drawable.setBounds(centerX, centerY, drawable.getIntrinsicWidth() + centerX, org.telegram.ui.ActionBar.h6.U0.getIntrinsicHeight() + centerY);
+            org.telegram.ui.ActionBar.h6.U0.draw(canvas);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f41119v0.W.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f41119v0.W.onDetachedFromWindow();
     }
 }

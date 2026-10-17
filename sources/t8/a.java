@@ -2,14 +2,15 @@ package t8;
 
 import java.util.Arrays;
 import java.util.List;
+import oa.d;
 public final class a {
-    public final int f45539a;
-    public final List f45540b;
-    public final List f45541c;
+    public final int f46928a;
+    public final List f46929b;
+    public final List f46930c;
 
-    public a(int i10, d[] dVarArr, oa.d[] dVarArr2) {
-        this.f45539a = i10;
-        this.f45540b = Arrays.asList(dVarArr);
-        this.f45541c = Arrays.asList(dVarArr2);
+    public a(int i10, c[] cVarArr, d[] dVarArr) {
+        this.f46928a = i10;
+        this.f46929b = Arrays.asList(cVarArr);
+        this.f46930c = Arrays.asList(dVarArr);
     }
 }

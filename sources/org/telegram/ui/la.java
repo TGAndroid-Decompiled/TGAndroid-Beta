@@ -1,33 +1,151 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-public final class la extends sa {
-    public final int J = 1;
-    public final org.telegram.ui.Components.lm0 K;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class la extends org.telegram.ui.Components.hm0 {
+    public final ua f38839c;
 
-    public la(ma maVar, Activity activity, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(activity, c6Var);
-        this.K = maVar;
-        this.f39736a = true;
+    public la(ua uaVar) {
+        this.f38839c = uaVar;
     }
 
     @Override
-    public final String getUsernameEditable() {
-        switch (this.J) {
-            case 0:
-                return ((ma) this.K).f37942c.f40627r;
-            default:
-                di.g2 g2Var = ((lp) this.K).f37801c.Y2.f38432a;
-                if (g2Var == null) {
-                    return null;
-                }
-                return g2Var.getText().toString();
+    public final boolean D(s4.b1 b1Var) {
+        if (b1Var.f45941f == 4) {
+            return true;
         }
+        return false;
     }
 
-    public la(lp lpVar, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        this.K = lpVar;
+    @Override
+    public final int h() {
+        int i10;
+        ua uaVar = this.f38839c;
+        org.telegram.ui.Components.im0 im0Var = uaVar.f41932b;
+        ArrayList arrayList = uaVar.v;
+        if (im0Var != null) {
+            ArrayList arrayList2 = im0Var.I2;
+            if (arrayList2 != null) {
+                arrayList2.clear();
+            } else {
+                im0Var.I2 = new ArrayList();
+            }
+            if (arrayList.size() > 0) {
+                uaVar.f41932b.I2.add(Long.valueOf(AndroidUtilities.pack(3, arrayList.size() + 3)));
+            }
+        }
+        if (uaVar.v.size() > 0) {
+            i10 = uaVar.v.size() + 2;
+        } else {
+            i10 = 0;
+        }
+        return i10 + 3;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 == 1) {
+            return 3;
+        }
+        if (i10 == 2) {
+            return 1;
+        }
+        if (i10 == 3) {
+            return 0;
+        }
+        if (i10 == h() - 1) {
+            return 2;
+        }
+        return 4;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int i11;
+        int i12;
+        boolean z10;
+        ua uaVar = this.f38839c;
+        long j10 = uaVar.f41939x;
+        int i13 = b1Var.f45941f;
+        View view = b1Var.f45938a;
+        if (i13 != 0) {
+            if (i13 != 2) {
+                if (i13 != 3) {
+                    if (i13 != 4) {
+                        return;
+                    }
+                    TLRPC.TL_username tL_username = (TLRPC.TL_username) uaVar.v.get(i10 - 4);
+                    ra raVar = (ra) view;
+                    if (tL_username.editable) {
+                        uaVar.E = raVar;
+                    } else if (uaVar.E == raVar) {
+                        uaVar.E = null;
+                    }
+                    if (i10 < h() - 2) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    raVar.a(tL_username, z10, false, uaVar.f41939x);
+                    return;
+                }
+                uaVar.f41935n = true;
+                oa oaVar = (oa) view;
+                uaVar.f41940y = oaVar;
+                oaVar.f39696a.setText(uaVar.f41936r);
+                uaVar.f41935n = false;
+                return;
+            }
+            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
+            if (j10 != 0) {
+                i12 = R.string.BotUsernamesHelp;
+            } else {
+                i12 = R.string.UsernamesProfileHelp;
+            }
+            d9Var.setText(LocaleController.getString(i12));
+            return;
+        }
+        org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
+        if (i10 == 0) {
+            if (j10 != 0) {
+                i11 = R.string.BotSetPublicLinkHeader;
+            } else {
+                i11 = R.string.SetUsernameHeader;
+            }
+        } else {
+            i11 = R.string.UsernamesProfileHeader;
+        }
+        l4Var.setText(LocaleController.getString(i11));
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        ua uaVar = this.f38839c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            return null;
+                        }
+                        return new s4.b1(new ka(this, uaVar.getParentActivity(), uaVar.getResourceProvider()));
+                    }
+                    return new s4.b1(new oa(uaVar, uaVar.getParentActivity()));
+                }
+                return new s4.b1(new org.telegram.ui.Cells.d9(uaVar.getParentActivity()));
+            }
+            ta taVar = new ta(uaVar, uaVar.getParentActivity());
+            taVar.setTag(-33024);
+            return new s4.b1(taVar);
+        }
+        return new s4.b1(new org.telegram.ui.Cells.l4(uaVar.getParentActivity()));
     }
 }

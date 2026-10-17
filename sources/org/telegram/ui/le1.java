@@ -1,16 +1,9 @@
 package org.telegram.ui;
+public final class le1 {
+    public final int f38861a;
+    public int f38862b;
 
-import android.view.View;
-public final class le1 implements View.OnClickListener {
-    public final org.telegram.ui.Components.l80 f37726a;
-
-    public le1(org.telegram.ui.Components.l80 l80Var) {
-        this.f37726a = l80Var;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Components.sc.e();
-        this.f37726a.s();
+    public le1(int i10) {
+        this.f38861a = i10;
     }
 }

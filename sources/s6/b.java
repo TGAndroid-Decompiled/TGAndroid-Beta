@@ -2,14 +2,14 @@ package s6;
 
 import java.util.Comparator;
 public final class b implements Comparator {
-    public static final b f45034a = new Object();
+    public static final b f46134a = new Object();
 
     @Override
     public final int compare(Object obj, Object obj2) {
         k6.c cVar = (k6.c) obj;
         k6.c cVar2 = (k6.c) obj2;
-        if (!cVar.f14167a.equals(cVar2.f14167a)) {
-            return cVar.f14167a.compareTo(cVar2.f14167a);
+        if (!cVar.f14962a.equals(cVar2.f14962a)) {
+            return cVar.f14962a.compareTo(cVar2.f14962a);
         }
         return (cVar.b() > cVar2.b() ? 1 : (cVar.b() == cVar2.b() ? 0 : -1));
     }

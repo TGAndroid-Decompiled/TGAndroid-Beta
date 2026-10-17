@@ -1,40 +1,22 @@
 package sg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.n4;
-public final class y1 extends n4 {
-    public final Path h;
-    public final a2 f45444n;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.zq;
+public final class y1 extends zq {
+    public final z1 f46520y;
 
-    public y1(a2 a2Var, Context context) {
-        super(context);
-        this.f45444n = a2Var;
-        this.h = new Path();
+    public y1(z1 z1Var, j0.a aVar, Drawable drawable) {
+        super(aVar, drawable);
+        this.f46520y = z1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.h);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        Path path = this.h;
-        path.reset();
-        a2 a2Var = this.f45444n;
-        if (a2Var.d) {
-            AndroidUtilities.rectTmp.set(0.0f, -a2Var.M, getMeasuredWidth(), getMeasuredHeight());
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        z1 z1Var = this.f46520y;
+        if (z1Var.d) {
+            super.setBounds(i10, (int) (i11 - z1Var.M), i12, i13);
         } else {
-            AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), (int) (getMeasuredHeight() + a2Var.M));
+            super.setBounds(i10, i11, i12, (int) (i13 + z1Var.M));
         }
-        float dp = a2Var.M - AndroidUtilities.dp(3.0f);
-        path.addRoundRect(AndroidUtilities.rectTmp, dp, dp, Path.Direction.CW);
     }
 }

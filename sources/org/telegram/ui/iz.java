@@ -1,42 +1,33 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-public final class iz implements ImageReceiver.ImageReceiverDelegate {
-    public final jz f36890a;
-    public final boolean f36891b;
-    public final MessageObject f36892c;
-    public final kz d;
+import android.view.KeyEvent;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class iz implements TextView.OnEditorActionListener {
+    public final int f37998a;
+    public final AlertDialog$Builder f37999b;
 
-    public iz(kz kzVar, jz jzVar, boolean z10, MessageObject messageObject) {
-        this.d = kzVar;
-        this.f36890a = jzVar;
-        this.f36891b = z10;
-        this.f36892c = messageObject;
+    public iz(AlertDialog$Builder alertDialog$Builder, int i10) {
+        this.f37998a = i10;
+        this.f37999b = alertDialog$Builder;
     }
 
     @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        jz jzVar = this.f36890a;
-        if (jzVar.f37187r.getLottieAnimation() != null) {
-            jzVar.f37187r.getLottieAnimation().N(0, false, true);
-        }
-    }
-
-    @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.l5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        MessageObject messageObject;
-        if (this.f36891b && (messageObject = this.f36892c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f31314x == null) {
-            try {
-                this.d.G.performHapticFeedback(3, 1);
-            } catch (Exception unused) {
-            }
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f37998a) {
+            case 0:
+                AndroidUtilities.hideKeyboard(textView);
+                this.f37999b.f20601a.d(-1).callOnClick();
+                return false;
+            case 1:
+                AndroidUtilities.hideKeyboard(textView);
+                this.f37999b.f20601a.d(-1).callOnClick();
+                return false;
+            default:
+                AndroidUtilities.hideKeyboard(textView);
+                this.f37999b.f20601a.d(-1).callOnClick();
+                return false;
         }
     }
 }

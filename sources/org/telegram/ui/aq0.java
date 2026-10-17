@@ -1,73 +1,36 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.MessagesController;
-public final class aq0 {
-    public boolean f34061f;
-    public boolean f34062g;
-    public boolean h;
-    public Path f34063i;
-    public Paint f34064j;
-    public Drawable f34065k;
-    public final org.telegram.ui.Components.ad f34066l;
-    public boolean f34067m;
-    public final org.telegram.ui.Components.g6 f34068n;
-    public int f34069o;
-    public final bq0 f34072r;
-    public final Paint f34058a = new Paint(1);
-    public final Paint f34059b = new Paint(1);
-    public final Paint f34060c = new Paint(1);
-    public final Path d = new Path();
-    public final Path e = new Path();
-    public final RectF f34070p = new RectF();
-    public final RectF f34071q = new RectF();
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class aq0 implements org.telegram.ui.ActionBar.r0 {
+    public final kq0 f35480a;
 
-    public aq0(bq0 bq0Var) {
-        this.f34072r = bq0Var;
-        this.f34066l = new org.telegram.ui.Components.ad(bq0Var);
-        this.f34068n = new org.telegram.ui.Components.g6(bq0Var, 0L, 320L, org.telegram.ui.Components.es.h);
+    public aq0(kq0 kq0Var) {
+        this.f35480a = kq0Var;
     }
 
-    public final void a(MessagesController.PeerColor peerColor) {
-        boolean a2;
-        int color;
-        bq0 bq0Var = this.f34072r;
-        org.telegram.ui.ActionBar.c6 c6Var = bq0Var.f34367a;
-        if (peerColor == null) {
-            return;
-        }
-        if (c6Var == null) {
-            a2 = org.telegram.ui.ActionBar.g6.I.q();
+    @Override
+    public final void f() {
+        int i10;
+        int i11;
+        kq0 kq0Var = this.f35480a;
+        org.telegram.ui.ActionBar.e1 e1Var = kq0Var.Q;
+        if (kq0Var.Y) {
+            i10 = R.string.ShowAsGrid;
         } else {
-            a2 = c6Var.a();
+            i10 = R.string.ShowAsList;
         }
-        int i10 = bq0Var.f34369c;
-        Paint paint = this.f34059b;
-        Paint paint2 = this.f34058a;
-        if (i10 == 1) {
-            if (a2 && peerColor.hasColor2() && !peerColor.hasColor3()) {
-                paint2.setColor(peerColor.getColor(1, c6Var));
-                paint.setColor(peerColor.getColor(0, c6Var));
-            } else {
-                paint2.setColor(peerColor.getColor(0, c6Var));
-                paint.setColor(peerColor.getColor(1, c6Var));
-            }
-            this.f34060c.setColor(peerColor.getColor(2, c6Var));
-            this.f34061f = peerColor.hasColor2(a2);
-            this.f34062g = peerColor.hasColor3(a2);
-            return;
-        }
-        paint2.setColor(peerColor.getColor(0, c6Var));
-        if (peerColor.hasColor6(a2)) {
-            color = peerColor.getColor(1, c6Var);
+        e1Var.setText(LocaleController.getString(i10));
+        org.telegram.ui.ActionBar.e1 e1Var2 = kq0Var.Q;
+        if (kq0Var.Y) {
+            i11 = R.drawable.msg_media;
         } else {
-            color = peerColor.getColor(0, c6Var);
+            i11 = R.drawable.msg_list;
         }
-        paint.setColor(color);
-        this.f34061f = peerColor.hasColor6(a2);
-        this.f34062g = false;
+        e1Var2.setIcon(i11);
+    }
+
+    @Override
+    public final void e() {
     }
 }

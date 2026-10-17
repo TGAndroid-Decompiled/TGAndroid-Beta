@@ -1,105 +1,102 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class hw implements View.OnLongClickListener {
-    public final int f36659a;
-    public final yy f36660b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class hw extends s4.b0 {
+    public boolean I;
+    public boolean J;
+    public ValueAnimator K;
+    public final dy L;
+    public final ey M;
 
-    public hw(yy yyVar, int i10) {
-        this.f36659a = i10;
-        this.f36660b = yyVar;
+    public hw(ey eyVar, dy dyVar) {
+        this.M = eyVar;
+        this.L = dyVar;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        boolean z10;
-        boolean z11;
-        int i10;
-        int i11;
-        switch (this.f36659a) {
-            case 0:
-                yy yyVar = this.f36660b;
-                ArrayList arrayList = yyVar.I2;
-                if (yyVar.getParentActivity() == null) {
-                    return false;
-                }
-                boolean z12 = !arrayList.isEmpty();
-                boolean z13 = true;
-                for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    long longValue = ((Long) arrayList.get(i12)).longValue();
-                    if (z12 && longValue != yyVar.getUserConfig().getClientUserId()) {
-                        z12 = false;
-                    }
-                    if (DialogObject.isEncryptedDialog(longValue)) {
-                        z13 = false;
-                    }
-                    TLRPC.Chat chat = yyVar.getMessagesController().getChat(Long.valueOf(-longValue));
-                    if (chat != null && !ChatObject.canWriteToChat(chat)) {
-                        z13 = false;
-                    }
-                }
-                if (yyVar.Y3() && yyVar.l3()) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (z10) {
-                    ArrayList arrayList2 = yyVar.D2;
-                    int size = arrayList2.size();
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 < size) {
-                            Object obj = arrayList2.get(i13);
-                            i13++;
-                            if (((MediaController.PhotoEntry) obj).hasVideoEditsLostAsDocument()) {
-                                z10 = false;
-                            }
-                        }
-                    }
-                }
-                ArrayList arrayList3 = yyVar.D2;
-                if (arrayList3 != null && arrayList3.size() > 1) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                org.telegram.ui.Components.l80 H = org.telegram.ui.Components.l80.H(yyVar, view);
-                int i14 = R.drawable.msg_sendfile;
-                if (z11) {
-                    i10 = R.string.SendAsFiles;
-                } else {
-                    i10 = R.string.SendAsFile;
-                }
-                H.l(i14, LocaleController.getString(i10), new uv(yyVar, 20), z10);
-                H.c(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new uv(yyVar, 21), false);
-                int i15 = R.drawable.msg_calendar2;
-                if (z12) {
-                    i11 = R.string.SetReminder;
-                } else {
-                    i11 = R.string.ScheduleMessage;
-                }
-                H.l(i15, LocaleController.getString(i11), new org.telegram.ui.Components.zr0(7, yyVar, z12), z13);
-                H.Z();
-                return true;
-            case 1:
-                yy yyVar2 = this.f36660b;
-                yyVar2.p4(yyVar2.I2, 104, true, true, null);
-                return true;
-            case 2:
-                this.f36660b.n4(view);
-                return true;
-            default:
-                yy yyVar3 = this.f36660b;
-                yyVar3.getContactsController().loadGlobalPrivacySetting();
-                yyVar3.I4();
-                return true;
+    public final int R0() {
+        dy dyVar = this.L;
+        if (dyVar.f36339s == 0 && this.M.X3() && dyVar.v == 2) {
+            return 1;
         }
+        return 0;
+    }
+
+    @Override
+    public final void b0(qf.e eVar, s4.y0 y0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            try {
+                super.b0(eVar, y0Var);
+                return;
+            } catch (IndexOutOfBoundsException unused) {
+                StringBuilder sb2 = new StringBuilder("Inconsistency detected. dialogsListIsFrozen=");
+                ey eyVar = this.M;
+                sb2.append(eyVar.S1);
+                sb2.append(" lastUpdateAction=");
+                sb2.append(eyVar.f36739z3);
+                throw new RuntimeException(sb2.toString());
+            }
+        }
+        try {
+            super.b0(eVar, y0Var);
+        } catch (IndexOutOfBoundsException e) {
+            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new gw(this.L, 0));
+        }
+    }
+
+    @Override
+    public final void b1(View view, View view2, int i10, int i11) {
+        this.I = true;
+        super.b1(view, view2, i10, i11);
+        this.I = false;
+    }
+
+    @Override
+    public final void f0() {
+        ValueAnimator valueAnimator = this.K;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.K.cancel();
+        }
+        dy dyVar = this.L;
+        if (dyVar.f36333a.getScrollState() != 1) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.T, 0.0f);
+            this.K = ofFloat;
+            ofFloat.addUpdateListener(new ah.l0(23, this, dyVar));
+            this.K.addListener(new org.telegram.ui.Components.n31(this, 22));
+            this.K.setDuration(200L);
+            this.K.setInterpolator(org.telegram.ui.Components.bs.f25030f);
+            this.K.start();
+        }
+    }
+
+    @Override
+    public final void h1(int i10, int i11) {
+        if (this.I) {
+            i11 -= this.L.f36333a.getPaddingTop();
+        }
+        super.h1(i10, i11);
+    }
+
+    @Override
+    public final int o0(int r23, qf.e r24, s4.y0 r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hw.o0(int, qf.e, s4.y0):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
+        if (this.M.X3() && i10 == 1) {
+            super.v0(recyclerView, y0Var, i10);
+            return;
+        }
+        li.n nVar = new li.n(recyclerView.getContext(), 0);
+        nVar.f46079a = i10;
+        w0(nVar);
     }
 }

@@ -1,11 +1,10 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public interface ry0 {
-    void a(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, boolean z11, int i10, int i11);
-
-    boolean b();
-
-    boolean c();
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ry0 extends EditTextBoldCursor {
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+    }
 }

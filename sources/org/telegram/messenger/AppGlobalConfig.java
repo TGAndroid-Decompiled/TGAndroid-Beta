@@ -70,6 +70,7 @@ public class AppGlobalConfig {
     public final ConfigInt tonStarGiftResaleCommissionPermille;
     public final ConfigDouble tonUsdRate;
     public final ConfigBoolean walletAvailable;
+    public final ConfigStringSet walletCardBgGifts;
     public final ConfigLong walletGaslessMinNanos;
     public final ConfigBoolean walletPaidMessageRecipientMessageAmountCheck;
     public final ConfigLong walletTransferMinNanos;
@@ -438,6 +439,7 @@ public class AppGlobalConfig {
         this.walletPaidMessageRecipientMessageAmountCheck = ofBoolean("wallet_paid_message_recipient_message_amount_check", true);
         this.walletTransferMinNanos = ofLong("wallet_transfer_min_nanos", 100000000L);
         this.walletGaslessMinNanos = ofLong("wallet_gasless_min_nanos", 100000000L);
+        this.walletCardBgGifts = ofStringSet("wallet_card_bg_gifts", Collections.EMPTY_SET);
     }
 
     public static AppGlobalConfig getInstance(int i10) {

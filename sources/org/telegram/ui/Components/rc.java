@@ -1,76 +1,154 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import java.util.regex.Pattern;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.CallReceiver;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-public final class rc extends pb {
-    public final n9 f28493a;
-    public final da0 f28494b;
-    public final da0 f28495c;
-    public final LinearLayout d;
+import org.telegram.messenger.SavedMessagesController;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class rc implements Runnable {
+    public final int f29914a;
 
-    public rc(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
-        super(context, c6Var);
-        n9 n9Var = new n9(context, false);
-        this.f28493a = n9Var;
-        n9Var.setStyle(11);
-        n9Var.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
-        addView(n9Var, w7.z5.i(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
-        if (!z10) {
-            zb zbVar = new zb(context, 1, null);
-            this.f28494b = zbVar;
-            NotificationCenter.listenEmojiLoading(zbVar);
-            zbVar.setTypeface(Typeface.SANS_SERIF);
-            zbVar.setTextSize(1, 15.0f);
-            zbVar.setEllipsize(TextUtils.TruncateAt.END);
-            zbVar.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-            zbVar.setGravity(LocaleController.isRTL ? 5 : 3);
-            addView(zbVar, w7.z5.i(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 12.0f, 0.0f));
-        } else {
-            LinearLayout linearLayout = new LinearLayout(getContext());
-            this.d = linearLayout;
-            linearLayout.setOrientation(1);
-            addView(linearLayout, w7.z5.i(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
-            zb zbVar2 = new zb(context, 2, null);
-            this.f28494b = zbVar2;
-            NotificationCenter.listenEmojiLoading(zbVar2);
-            Typeface typeface = Typeface.SANS_SERIF;
-            zbVar2.setTypeface(typeface);
-            zbVar2.setTextSize(1, 14.0f);
-            zbVar2.setTypeface(AndroidUtilities.bold());
-            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            zbVar2.setEllipsize(truncateAt);
-            zbVar2.setMaxLines(1);
-            linearLayout.addView(zbVar2);
-            da0 da0Var = new da0(context, null);
-            this.f28495c = da0Var;
-            da0Var.setTypeface(typeface);
-            da0Var.setTextSize(1, 12.0f);
-            da0Var.setEllipsize(truncateAt);
-            da0Var.setSingleLine(false);
-            da0Var.setMaxLines(3);
-            da0Var.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.Gi));
-            linearLayout.addView(da0Var, w7.z5.t(-2, -2, 0, 0, 0, 0, 0));
-        }
-        this.f28494b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.Gi));
-        setTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.Hi));
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.g6.Fi));
+    public rc(int i10) {
+        this.f29914a = i10;
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.f28494b.getText();
+    public final void run() {
+        switch (this.f29914a) {
+            case 0:
+                SavedMessagesController.openSavedMessages();
+                return;
+            case 1:
+                LaunchActivity launchActivity = LaunchActivity.H1;
+                if (launchActivity != null && !launchActivity.isFinishing()) {
+                    Intent intent = new Intent("android.intent.action.VIEW_DOWNLOADS");
+                    intent.setFlags(268468224);
+                    LaunchActivity.H1.startActivity(intent);
+                    return;
+                }
+                return;
+            case 2:
+                SavedMessagesController.openSavedMessagesReminders();
+                return;
+            case 3:
+                MediaController.getInstance().stopRecording(0, false, 0, false, 0L);
+                return;
+            case 4:
+                MediaController.getInstance().stopRecording(0, false, 0, false, 0L);
+                return;
+            case 5:
+                return;
+            case 6:
+                int i10 = fo.f26277m1;
+                return;
+            case 7:
+                PhotoViewer.t1().G0(false, false);
+                return;
+            case 8:
+                PhotoViewer.t1().G0(false, false);
+                return;
+            case 9:
+                int i11 = iu.f27351b;
+                return;
+            case 10:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+                return;
+            case 11:
+                if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
+                    VoIPService.getSharedInstance().setMicMute(false, true, false);
+                    return;
+                }
+                return;
+            case 12:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+                return;
+            case 13:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            case 14:
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (R != 0) {
+                    ?? obj = new Object();
+                    obj.f21552a = true;
+                    R.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
+                    return;
+                }
+                return;
+            case 15:
+                int i12 = e11.f25777f;
+                return;
+            case 16:
+                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+                t11.f30429f = Boolean.TRUE;
+                edit.putBoolean("nothanos", true).apply();
+                return;
+            case 17:
+                SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
+                t11.f30429f = Boolean.TRUE;
+                edit2.putBoolean("nothanos", true).apply();
+                return;
+            case 18:
+                int i13 = q31.f29556f0;
+                return;
+            case 19:
+                SavedMessagesController.openSavedMessages();
+                return;
+            case 20:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+                return;
+            case 21:
+                org.telegram.ui.Components.voip.k2.i();
+                return;
+            case 22:
+                ci.g6.q();
+                return;
+            case 23:
+                org.telegram.ui.s50 s50Var = org.telegram.ui.s50.D3;
+                if (s50Var != null) {
+                    s50Var.show();
+                    return;
+                }
+                return;
+            case 24:
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().setMicMute(false, true, false);
+                    return;
+                }
+                return;
+            case 25:
+                Pattern pattern = LaunchActivity.C1;
+                return;
+            case 26:
+                Pattern pattern2 = LaunchActivity.C1;
+                return;
+            case 27:
+                Pattern pattern3 = LaunchActivity.C1;
+                ApplicationLoader.mainInterfacePausedStageQueue = false;
+                ApplicationLoader.mainInterfacePausedStageQueueTime = System.currentTimeMillis();
+                return;
+            case 28:
+                return;
+            default:
+                CallReceiver.checkLastReceivedCall();
+                return;
+        }
     }
 
-    public void setTextColor(int i10) {
-        this.f28494b.setTextColor(i10);
-        da0 da0Var = this.f28495c;
-        if (da0Var != null) {
-            da0Var.setTextColor(i10);
-        }
+    public rc(Object obj, int i10) {
+        this.f29914a = i10;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

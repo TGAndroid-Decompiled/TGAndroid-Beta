@@ -2,11 +2,11 @@ package ah;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import org.telegram.ui.Components.s5;
-import org.telegram.ui.Components.z9;
-public final class b1 extends z9 {
+import org.telegram.ui.Components.r5;
+import org.telegram.ui.Components.w9;
+public final class b1 extends w9 {
     public boolean G;
-    public s5 H;
+    public r5 H;
     public e I;
     public boolean J;
     public final d1 K;
@@ -21,9 +21,9 @@ public final class b1 extends z9 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.J = true;
-        s5 s5Var = this.H;
-        if (s5Var != null) {
-            s5Var.a(this);
+        r5 r5Var = this.H;
+        if (r5Var != null) {
+            r5Var.a(this);
         }
         e eVar = this.I;
         if (eVar != null) {
@@ -35,9 +35,9 @@ public final class b1 extends z9 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.J = false;
-        s5 s5Var = this.H;
-        if (s5Var != null) {
-            s5Var.o(this);
+        r5 r5Var = this.H;
+        if (r5Var != null) {
+            r5Var.o(this);
         }
         e eVar = this.I;
         if (eVar != null) {
@@ -47,9 +47,9 @@ public final class b1 extends z9 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        s5 s5Var = this.H;
-        if (s5Var != null) {
-            s5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        r5 r5Var = this.H;
+        if (r5Var != null) {
+            r5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.H.setAlpha(255);
             this.H.draw(canvas);
             this.G = true;
@@ -62,12 +62,12 @@ public final class b1 extends z9 {
             this.G = true;
             return;
         }
-        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f31298k0) {
+        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f31014k0) {
             this.G = true;
         }
-        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f31298k0) {
+        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f31014k0) {
             d1 d1Var = this.K;
-            if (d1Var.f688a == 2 && !d1Var.f709z) {
+            if (d1Var.f690a == 2 && !d1Var.f711z) {
                 getImageReceiver().getLottieAnimation().N(getImageReceiver().getLottieAnimation().e[0] - 1, false, false);
             } else {
                 getImageReceiver().getLottieAnimation().N(0, false, false);

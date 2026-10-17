@@ -1,49 +1,27 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class kd1 extends w7.w5 {
-    public final int f37353a;
-    public final NotificationCenter.NotificationCenterDelegate f37354b;
+public final class kd1 implements Runnable {
+    public final int f38474a;
+    public final pd1 f38475b;
 
-    public kd1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f37353a = i10;
-        this.f37354b = notificationCenterDelegate;
+    public kd1(pd1 pd1Var, int i10) {
+        this.f38474a = i10;
+        this.f38475b = pd1Var;
     }
 
     @Override
-    public void a() {
-        switch (this.f37353a) {
-            case 1:
-                ((cj1) this.f37354b).v.invalidate();
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void b(int i10, int i11) {
-        boolean z10;
-        switch (this.f37353a) {
+    public final void run() {
+        switch (this.f38474a) {
             case 0:
-                Point point = AndroidUtilities.displaySize;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((ce1) this.f37354b).f34639x0.invalidate();
-                    return;
-                }
+                pd1 pd1Var = this.f38475b;
+                pd1Var.getClass();
+                new sg.x0((org.telegram.ui.ActionBar.n2) pd1Var, 11, false).show();
                 return;
             default:
+                pd1 pd1Var2 = this.f38475b;
+                pd1Var2.e.requestFocus();
+                AndroidUtilities.showKeyboard(pd1Var2.e);
                 return;
         }
     }

@@ -1,29 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-public final class zc0 extends org.telegram.ui.ActionBar.h5 {
-    public final Paint M0;
-    public final org.telegram.ui.ActionBar.c6 N0;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import org.telegram.messenger.R;
+public final class zc0 {
+    public final Paint f32876a;
+    public final ad0 f32877b;
+    public final ad0 f32878c;
+    public final ad0 d;
+    public final yc0 e;
+    public final yc0 f32879f;
+    public final float[] f32880g;
+    public int h;
+    public float f32881i;
 
-    public zc0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.N0 = c6Var;
-        this.M0 = new Paint(1);
+    public zc0() {
+        Paint paint = new Paint();
+        this.f32876a = paint;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.f32877b = new ad0(tileMode);
+        this.f32878c = new ad0(tileMode);
+        this.d = new ad0(Shader.TileMode.REPEAT);
+        this.e = new yc0(R.raw.wallpaper_pos_intensity);
+        this.f32879f = new yc0(R.raw.wallpaper_neg_intensity);
+        this.f32880g = new float[4];
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.K5, this.N0);
-        Paint paint = this.M0;
-        paint.setColor(w02);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.0f);
-        float height = getHeight() / 2.0f;
-        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - (getTextWidth() / 2.0f)) - AndroidUtilities.dp(8.0f), height, paint);
-        canvas.drawLine((getTextWidth() / 2.0f) + (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
-        super.dispatchDraw(canvas);
+    public final Paint a(Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i10, int i11) {
+        ad0 ad0Var = this.f32877b;
+        boolean b10 = ad0Var.b(bitmap);
+        ad0 ad0Var2 = this.d;
+        boolean b11 = b10 | ad0Var2.b(bitmap2);
+        Paint paint = this.f32876a;
+        if (i11 >= 0) {
+            ad0 ad0Var3 = this.f32878c;
+            if ((b11 | ad0Var3.b(bitmap3)) || this.h != 1) {
+                this.h = 1;
+                yc0 yc0Var = this.e;
+                yc0Var.f32608a.setInputBuffer("shaderPattern", ad0Var2.d);
+                yc0Var.f32608a.setInputBuffer("shaderGradient", ad0Var.d);
+                yc0Var.f32608a.setInputBuffer("shaderGradientSoftLight", ad0Var3.d);
+                yc0Var.f32608a.setFloatUniform("transformGradient", yc0Var.f32609b);
+                yc0Var.f32608a.setFloatUniform("transformPattern", yc0Var.f32610c);
+                paint.setShader(yc0Var.f32608a);
+                return paint;
+            }
+        } else {
+            float a2 = w7.r.a((i10 * (-i11)) / 25500.0f, 0.0f, 1.0f);
+            if (b11 || this.f32881i != a2 || this.h != 2) {
+                this.h = 2;
+                this.f32881i = a2;
+                yc0 yc0Var2 = this.f32879f;
+                yc0Var2.f32608a.setInputBuffer("shaderPattern", ad0Var2.d);
+                yc0Var2.f32608a.setInputBuffer("shaderGradient", ad0Var.d);
+                yc0Var2.f32608a.setFloatUniform("intensity", a2);
+                yc0Var2.f32608a.setFloatUniform("transformGradient", yc0Var2.f32609b);
+                yc0Var2.f32608a.setFloatUniform("transformPattern", yc0Var2.f32610c);
+                paint.setShader(yc0Var2.f32608a);
+                return paint;
+            }
+        }
+        return paint;
     }
 }

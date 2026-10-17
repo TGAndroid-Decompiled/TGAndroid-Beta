@@ -1,64 +1,35 @@
 package li;
 
-import android.text.SpannableString;
-import java.lang.reflect.Array;
-public class e extends SpannableString {
-    public volatile boolean f14749a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Cells.u1;
+import org.telegram.ui.Components.to;
+public final class e extends AnimatorListenerAdapter {
+    public final u1 f16096a;
+    public final float f16097b;
+    public final float f16098c;
+    public final float d;
+    public final float e;
+    public final m f16099f;
 
-    public e(CharSequence charSequence) {
-        super(charSequence);
-        this.f14749a = false;
-    }
-
-    public static Object[] a(e eVar, int i10, Class cls) {
-        return super.getSpans(0, i10, cls);
-    }
-
-    public static int b(e eVar, Object obj) {
-        return super.getSpanStart(obj);
-    }
-
-    public static int c(e eVar, Object obj) {
-        return super.getSpanEnd(obj);
-    }
-
-    @Override
-    public int getSpanEnd(Object obj) {
-        if (!this.f14749a) {
-            return -1;
-        }
-        return super.getSpanEnd(obj);
+    public e(m mVar, u1 u1Var, float f7, float f10, float f11, float f12) {
+        this.f16099f = mVar;
+        this.f16096a = u1Var;
+        this.f16097b = f7;
+        this.f16098c = f10;
+        this.d = f11;
+        this.e = f12;
     }
 
     @Override
-    public int getSpanFlags(Object obj) {
-        if (!this.f14749a) {
-            return 0;
+    public final void onAnimationEnd(Animator animator) {
+        u1 u1Var = this.f16096a;
+        u1Var.getTransitionParams().j();
+        u1Var.getPhotoImage().setImageCoords(this.f16097b, this.f16098c, this.d, this.e);
+        to toVar = this.f16099f.P;
+        if (toVar != null) {
+            toVar.h.setAlpha(1.0f);
         }
-        return super.getSpanFlags(obj);
-    }
-
-    @Override
-    public int getSpanStart(Object obj) {
-        if (!this.f14749a) {
-            return -1;
-        }
-        return super.getSpanStart(obj);
-    }
-
-    @Override
-    public Object[] getSpans(int i10, int i11, Class cls) {
-        if (!this.f14749a) {
-            return (Object[]) Array.newInstance(cls, 0);
-        }
-        return super.getSpans(i10, i11, cls);
-    }
-
-    @Override
-    public int nextSpanTransition(int i10, int i11, Class cls) {
-        if (!this.f14749a) {
-            return i11;
-        }
-        return super.nextSpanTransition(i10, i11, cls);
+        u1Var.invalidate();
     }
 }

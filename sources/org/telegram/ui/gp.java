@@ -2,34 +2,45 @@ package org.telegram.ui;
 
 import android.content.Context;
 import org.telegram.messenger.ChatObject;
-public final class gp implements org.telegram.ui.Components.v90 {
-    public final Context f36284a;
-    public final np f36285b;
+import org.telegram.tgnet.TLRPC;
+public final class gp extends org.telegram.ui.Components.e90 {
+    public final TLRPC.Chat f37283w;
+    public final hp f37284x;
 
-    public gp(np npVar, Context context) {
-        this.f36285b = npVar;
-        this.f36284a = context;
+    public gp(hp hpVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
+        super(context, chat);
+        this.f37284x = hpVar;
+        this.f37283w = chat2;
     }
 
     @Override
-    public final void d() {
-        this.f36285b.X(true);
+    public final boolean a(boolean z10, org.telegram.ui.Components.c90 c90Var) {
+        kp kpVar = this.f37284x.d;
+        if (kpVar.P) {
+            return false;
+        }
+        kpVar.P = true;
+        e(new gh(18, this, c90Var), new ai.y3(this, this.f37283w, z10, c90Var, 16));
+        return true;
     }
 
     @Override
-    public final void i() {
-        np npVar = this.f36285b;
-        org.telegram.ui.Components.p70 p70Var = new org.telegram.ui.Components.p70(this.f36284a, npVar.f38447l0, npVar.Y, npVar.f38450o0, npVar, npVar.Z, true, ChatObject.isChannel(npVar.X));
-        np npVar2 = this.f36285b;
-        npVar2.f38451p0 = p70Var;
-        npVar2.f38451p0.show();
+    public final boolean b(boolean z10, org.telegram.ui.Components.d90 d90Var) {
+        kp kpVar = this.f37284x.d;
+        if (kpVar.O) {
+            return false;
+        }
+        kpVar.O = true;
+        e(new gh(18, this, d90Var), new ai.y3(this, this.f37283w, z10, d90Var, 15));
+        return true;
     }
 
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void j() {
+    public final void e(gh ghVar, Runnable runnable) {
+        kp kpVar = this.f37284x.d;
+        if (!ChatObject.isChannel(kpVar.f38625f)) {
+            kpVar.getMessagesController().convertToMegaGroup(kpVar.getParentActivity(), this.f37283w.f20272id, kpVar, new m4.y0(21, this, runnable), ghVar);
+        } else {
+            runnable.run();
+        }
     }
 }

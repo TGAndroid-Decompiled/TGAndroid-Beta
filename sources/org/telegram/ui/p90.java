@@ -1,48 +1,50 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
-public final class p90 implements Runnable {
-    public final int f38851a = 1;
-    public final LaunchActivity f38852b;
-    public final byte[] f38853c;
-    public final int d;
-    public final Integer e;
-    public final String f38854f;
-    public final int h;
-    public final long f38855n;
-    public final Object f38856r;
-    public final Object f38857s;
-    public final Object v;
+import android.graphics.Point;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+public final class p90 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final int f40021a;
+    public final Object f40022b;
 
-    public p90(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i10, Integer num, String str, int i11, long j10, k0 k0Var, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f38852b = launchActivity;
-        this.f38856r = bundle;
-        this.f38853c = bArr;
-        this.d = i10;
-        this.e = num;
-        this.f38854f = str;
-        this.h = i11;
-        this.f38855n = j10;
-        this.f38857s = k0Var;
-        this.v = m2Var;
+    public p90(Object obj, int i10) {
+        this.f40021a = i10;
+        this.f40022b = obj;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p90.run():void");
-    }
-
-    public p90(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j10, Runnable runnable, String str, int i10, int i11) {
-        this.f38852b = launchActivity;
-        this.f38856r = tLObject;
-        this.e = num;
-        this.f38857s = num2;
-        this.f38853c = bArr;
-        this.f38855n = j10;
-        this.v = runnable;
-        this.f38854f = str;
-        this.d = i10;
-        this.h = i11;
+    public final void onGlobalLayout() {
+        int i10 = this.f40021a;
+        Object obj = this.f40022b;
+        switch (i10) {
+            case 0:
+                Pattern pattern = LaunchActivity.C1;
+                int measuredHeight = ((View) obj).getMeasuredHeight();
+                org.telegram.messenger.q.o(AndroidUtilities.displaySize.y, i0.a.l(measuredHeight, "height = ", " displayHeight = "));
+                int i11 = (measuredHeight - AndroidUtilities.navigationBarHeight) - AndroidUtilities.statusBarHeight;
+                if (i11 > AndroidUtilities.dp(100.0f) && i11 < AndroidUtilities.displaySize.y) {
+                    int dp = AndroidUtilities.dp(100.0f) + i11;
+                    Point point = AndroidUtilities.displaySize;
+                    if (dp > point.y) {
+                        point.y = i11;
+                        if (BuildVars.LOGS_ENABLED) {
+                            org.telegram.messenger.q.o(AndroidUtilities.displaySize.y, new StringBuilder("fix display size y to "));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                mc1 mc1Var = (mc1) obj;
+                mc1Var.P = SystemClock.elapsedRealtime() + 1500;
+                mc1Var.f39130k0.invalidate();
+                return;
+        }
     }
 }

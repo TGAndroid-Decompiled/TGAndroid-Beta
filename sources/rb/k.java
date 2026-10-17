@@ -1,31 +1,31 @@
 package rb;
 
 import android.content.Context;
-import b2.n0;
+import b2.m0;
 import java.util.UUID;
 public final class k {
-    public static final r9.a f43865b;
-    public final Context f43866a;
+    public static final r9.a f45221b;
+    public final Context f45222a;
 
     static {
-        n0 a2 = r9.a.a(k.class);
+        m0 a2 = r9.a.a(k.class);
         a2.a(r9.j.a(g.class));
         a2.a(r9.j.a(Context.class));
-        a2.f2227f = new pb.a(22);
-        f43865b = a2.b();
+        a2.f3835f = new oa.d(22);
+        f45221b = a2.b();
     }
 
     public k(Context context) {
-        this.f43866a = context;
+        this.f45222a = context;
     }
 
     public final synchronized String a() {
-        String string = this.f43866a.getSharedPreferences("com.google.mlkit.internal", 0).getString("ml_sdk_instance_id", null);
+        String string = this.f45222a.getSharedPreferences("com.google.mlkit.internal", 0).getString("ml_sdk_instance_id", null);
         if (string != null) {
             return string;
         }
         String uuid = UUID.randomUUID().toString();
-        this.f43866a.getSharedPreferences("com.google.mlkit.internal", 0).edit().putString("ml_sdk_instance_id", uuid).apply();
+        this.f45222a.getSharedPreferences("com.google.mlkit.internal", 0).edit().putString("ml_sdk_instance_id", uuid).apply();
         return uuid;
     }
 }

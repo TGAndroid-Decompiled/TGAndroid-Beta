@@ -1,69 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.style.ReplacementSpan;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class j11 extends ReplacementSpan {
-    public static final int f25847f = 0;
-    public ImageReceiver f25848a;
-    public int f25849b;
-    public int f25850c;
-    public final boolean d;
-    public final int e;
+import android.animation.ValueAnimator;
+public final class j11 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27396a;
+    public final k11 f27397b;
 
-    public j11(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f25849b = i10;
-        this.f25850c = i11;
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f25848a = imageReceiver;
-        imageReceiver.setInvalidateAll(true);
-        imageReceiver.setImageBitmap(bitmap);
-        imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
-        this.e = i13;
-        this.d = true;
+    public j11(k11 k11Var, int i10) {
+        this.f27396a = i10;
+        this.f27397b = k11Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f25849b;
-        int i16 = this.f25850c;
-        ImageReceiver imageReceiver = this.f25848a;
-        canvas.save();
-        if (this.d) {
-            imageReceiver.setImageCoords((int) f7, i13 - (i16 - this.e), i15, i16);
-        } else {
-            imageReceiver.setImageCoords((int) f7, i2.d.C(org.telegram.messenger.g0.B(4.0f, i14, i12), i16, 2, i12), i15, i16);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f27396a) {
+            case 0:
+                k11 k11Var = this.f27397b;
+                k11Var.getClass();
+                k11Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k11Var.invalidate();
+                return;
+            case 1:
+                k11 k11Var2 = this.f27397b;
+                k11Var2.getClass();
+                k11Var2.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k11Var2.invalidate();
+                return;
+            case 2:
+                k11 k11Var3 = this.f27397b;
+                k11Var3.getClass();
+                k11Var3.f27699f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k11Var3.invalidate();
+                return;
+            case 3:
+                k11 k11Var4 = this.f27397b;
+                k11Var4.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k11Var4.f27702s = floatValue;
+                k11Var4.f27703w = (int) ((k11Var4.h * floatValue) + 0);
+                k11Var4.invalidate();
+                return;
+            default:
+                k11 k11Var5 = this.f27397b;
+                k11Var5.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k11Var5.v = floatValue2;
+                int i10 = k11Var5.f27701r;
+                k11Var5.f27704x = i10 + ((int) Math.ceil((k11Var5.f27700n - i10) * floatValue2));
+                k11Var5.invalidate();
+                return;
         }
-        imageReceiver.draw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        int i12 = this.f25850c;
-        if (fontMetricsInt != null) {
-            if (this.d) {
-                int i13 = this.e;
-                int i14 = -(i12 - i13);
-                fontMetricsInt.ascent = i14;
-                fontMetricsInt.top = i14;
-                fontMetricsInt.descent = i13;
-                fontMetricsInt.bottom = i13;
-            } else {
-                int dp = ((-i12) / 2) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.ascent = dp;
-                fontMetricsInt.top = dp;
-                int dp2 = (i12 - (i12 / 2)) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.descent = dp2;
-                fontMetricsInt.bottom = dp2;
-            }
-        }
-        return this.f25849b;
     }
 }

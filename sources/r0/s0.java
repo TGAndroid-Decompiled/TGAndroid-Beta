@@ -1,91 +1,82 @@
 package r0;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Base64;
-import com.google.android.gms.internal.cast.z5;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.concurrent.ExecutorsRegistrar;
-import com.google.firebase.installations.FirebaseInstallationsRegistrar;
+import android.os.Build;
+import android.view.WindowInsets;
+import android.view.WindowInsetsAnimation;
+import android.view.WindowInsetsAnimation$Callback;
+import j$.util.DesugarCollections;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.z1;
-import rg.p2;
-public final class s0 implements r9.e, qa.a, r9.d, OnFailureListener, s5.e, z1 {
-    public final int f43510a;
+public final class s0 extends WindowInsetsAnimation$Callback {
+    public final qh.e f44867a;
+    public List f44868b;
+    public ArrayList f44869c;
+    public final HashMap d;
 
-    public s0(int i10) {
-        this.f43510a = i10;
+    public s0(qh.e eVar) {
+        super(0);
+        this.d = new HashMap();
+        this.f44867a = eVar;
     }
 
-    @Override
-    public Object apply(Object obj) {
-        byte[] decode;
-        Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
-        try {
-            ArrayList arrayList = new ArrayList();
-            while (rawQuery.moveToNext()) {
-                androidx.biometric.e a2 = l5.i.a();
-                a2.v(rawQuery.getString(1));
-                a2.d = v5.a.b(rawQuery.getInt(2));
-                String string = rawQuery.getString(3);
-                if (string == null) {
-                    decode = null;
-                } else {
-                    decode = Base64.decode(string, 0);
-                }
-                a2.f1201c = decode;
-                arrayList.add(a2.e());
+    public final v0 a(WindowInsetsAnimation windowInsetsAnimation) {
+        v0 v0Var = (v0) this.d.get(windowInsetsAnimation);
+        if (v0Var == null) {
+            v0Var = new v0(0, 0L, null);
+            if (Build.VERSION.SDK_INT >= 30) {
+                v0Var.f44877a = new t0(windowInsetsAnimation);
             }
-            return arrayList;
-        } finally {
-            rawQuery.close();
+            this.d.put(windowInsetsAnimation, v0Var);
         }
+        return v0Var;
     }
 
-    @Override
-    public void g(a2 a2Var, int i10) {
-        switch (this.f43510a) {
-            case 27:
-                a2Var.dismiss();
-                return;
-            default:
-                a2Var.dismiss();
-                return;
+    public final void onEnd(WindowInsetsAnimation windowInsetsAnimation) {
+        a(windowInsetsAnimation);
+        this.f44867a.V0();
+        this.d.remove(windowInsetsAnimation);
+    }
+
+    public final void onPrepare(WindowInsetsAnimation windowInsetsAnimation) {
+        a(windowInsetsAnimation);
+        this.f44867a.getClass();
+    }
+
+    public final WindowInsets onProgress(WindowInsets windowInsets, List list) {
+        ArrayList arrayList = this.f44869c;
+        if (arrayList == null) {
+            ArrayList arrayList2 = new ArrayList(list.size());
+            this.f44869c = arrayList2;
+            this.f44868b = DesugarCollections.unmodifiableList(arrayList2);
+        } else {
+            arrayList.clear();
         }
-    }
-
-    @Override
-    public Object n2(z5 z5Var) {
-        switch (this.f43510a) {
-            case 4:
-                return FirebaseInstallationsRegistrar.a(z5Var);
-            case 23:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f6130a.get();
-            case 24:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f6132c.get();
-            case 25:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f6131b.get();
-            default:
-                r9.n nVar = ExecutorsRegistrar.f6130a;
-                return s9.l.f45074a;
+        for (int size = list.size() - 1; size >= 0; size--) {
+            WindowInsetsAnimation windowInsetsAnimation = (WindowInsetsAnimation) list.get(size);
+            v0 a2 = a(windowInsetsAnimation);
+            a2.f44877a.d(windowInsetsAnimation.getFraction());
+            this.f44869c.add(a2);
         }
+        k1 h = k1.h(null, windowInsets);
+        this.f44867a.W0(h, this.f44868b);
+        return h.g();
     }
 
-    @Override
-    public void onFailure(Exception exc) {
-        int i10 = p2.f44211r0;
-    }
-
-    @Override
-    public List w(ComponentRegistrar componentRegistrar) {
-        return componentRegistrar.getComponents();
-    }
-
-    @Override
-    public void h(qa.b bVar) {
+    public final WindowInsetsAnimation.Bounds onStart(WindowInsetsAnimation windowInsetsAnimation, WindowInsetsAnimation.Bounds bounds) {
+        a(windowInsetsAnimation);
+        i0.c f7 = t0.f(bounds);
+        i0.c e = t0.e(bounds);
+        qh.e eVar = this.f44867a;
+        if (eVar.f44750c == 0) {
+            Iterator it = eVar.d.iterator();
+            while (it.hasNext()) {
+                ((qh.d) it.next()).t();
+            }
+        }
+        eVar.f44750c++;
+        r0.c();
+        return r0.a(f7.d(), e.d());
     }
 }

@@ -1,55 +1,79 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
-public final class sp extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public org.telegram.ui.Components.z9 f39918a;
-    public org.telegram.ui.Components.ja0 f39919b;
-    public int f39920c;
+public final class sp implements org.telegram.ui.ActionBar.a2, MessagesController.ErrorDelegate, MessagesStorage.LongCallback {
+    public final int f41475a;
+    public final dq f41476b;
 
-    public final void a() {
-        boolean z10;
-        org.telegram.ui.Components.z9 z9Var = this.f39918a;
-        int i10 = this.f39920c;
-        TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
-        if (stickerSetByName == null) {
-            stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
-        }
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
-        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 3) {
-            z9Var.i(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.f39919b, tL_messages_stickerSet);
-            return;
-        }
-        MediaDataController mediaDataController = MediaDataController.getInstance(i10);
-        if (tL_messages_stickerSet == null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        mediaDataController.loadStickersByEmojiOrName("tg_placeholders_android", false, z10);
-        z9Var.setImageDrawable(this.f39919b);
+    public sp(dq dqVar, int i10) {
+        this.f41475a = i10;
+        this.f41476b = dqVar;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0])) {
-            a();
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        TLRPC.TL_chatAdminRights o02;
+        switch (this.f41475a) {
+            case 0:
+                this.f41476b.r0(true);
+                return;
+            case 1:
+                dq dqVar = this.f41476b;
+                dqVar.t0(true);
+                vp vpVar = new vp(dqVar, 0);
+                if (!dqVar.K && !dqVar.L) {
+                    dqVar.getMessagesController().addUserToChat(dqVar.f36298w.f20272id, dqVar.v, 0, dqVar.Y0, dqVar, true, vpVar, new sp(dqVar, 3));
+                    return;
+                }
+                MessagesController messagesController = dqVar.getMessagesController();
+                long j10 = dqVar.f36298w.f20272id;
+                TLRPC.User user = dqVar.v;
+                if (dqVar.K) {
+                    o02 = dqVar.M;
+                } else {
+                    o02 = dq.o0(false);
+                }
+                messagesController.setUserAdminRole(j10, user, o02, dqVar.S, false, dqVar, dqVar.Z0, dqVar.K, dqVar.Y0, vpVar, new sp(dqVar, 2));
+                return;
+            case 2:
+            case 3:
+            default:
+                dq dqVar2 = this.f41476b;
+                dqVar2.getClass();
+                dqVar2.presentFragment(new xf1(6, null));
+                return;
+            case 4:
+                this.f41476b.finishFragment();
+                return;
+            case 5:
+                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+                dq dqVar3 = this.f41476b;
+                m4.y0 y0Var = new m4.y0(22, dqVar3, twoStepVerificationActivity);
+                twoStepVerificationActivity.Z = 0;
+                twoStepVerificationActivity.f33924b0 = y0Var;
+                dqVar3.presentFragment(twoStepVerificationActivity);
+                return;
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
-        NotificationCenter.getInstance(this.f39920c).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    public void run(long j10) {
+        dq.U(this.f41476b, j10);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f39920c).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+    public boolean run(TLRPC.TL_error tL_error) {
+        switch (this.f41475a) {
+            case 2:
+                this.f41476b.t0(false);
+                return true;
+            case 3:
+                this.f41476b.t0(false);
+                return true;
+            default:
+                return dq.W(this.f41476b, tL_error);
+        }
     }
 }

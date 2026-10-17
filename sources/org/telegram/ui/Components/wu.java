@@ -2,131 +2,84 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-import android.widget.TextView;
+import android.webkit.WebView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-public final class wu extends wh.n {
-    public final aa0 U;
-    public ea0 V;
-    public boolean W;
-    public boolean f30668a0;
-    public boolean f30669b0;
+public final class wu extends WebView {
+    public final int f32216a;
+    public final Context f32217b;
+    public final KeyEvent.Callback f32218c;
 
-    public wu(Context context) {
-        super(context, null, true);
-        this.U = new aa0(this);
+    public wu(KeyEvent.Callback callback, Context context, Context context2, int i10) {
+        super(context);
+        this.f32216a = i10;
+        this.f32218c = callback;
+        this.f32217b = context2;
     }
 
     @Override
-    public final ClickableSpan a(int i10, int i11) {
-        Layout layout = getLayout();
-        if (layout == null) {
-            return null;
-        }
-        int paddingLeft = i10 - getPaddingLeft();
-        int paddingTop = i11 - getPaddingTop();
-        int lineForVertical = layout.getLineForVertical(paddingTop);
-        float f7 = paddingLeft;
-        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f7);
-        float lineLeft = getLayout().getLineLeft(lineForVertical);
-        if (lineLeft <= f7 && layout.getLineWidth(lineForVertical) + lineLeft >= f7 && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
-            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-            if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                return clickableSpanArr[0];
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float paddingLeft;
-        canvas.save();
-        if (!this.W) {
-            float f7 = 0.0f;
-            if (this.f30668a0) {
-                paddingLeft = 0.0f;
-            } else {
-                paddingLeft = getPaddingLeft();
-            }
-            if (!this.f30669b0) {
-                f7 = getPaddingTop();
-            }
-            canvas.translate(paddingLeft, f7);
-        }
-        if (this.U.f(canvas)) {
-            invalidate();
-        }
-        canvas.restore();
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        CharacterStyle characterStyle;
-        aa0 aa0Var = this.U;
-        if (aa0Var != null) {
-            Layout layout = getLayout();
-            ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
-            if (a2 != null && motionEvent.getAction() == 0) {
-                ea0 ea0Var = new ea0(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
-                this.V = ea0Var;
-                aa0Var.a(ea0Var, null);
-                SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.V.f24357i);
-                int spanEnd = spannableString.getSpanEnd(this.V.f24357i);
-                x90 b10 = this.V.b();
-                b10.d(layout, spanStart, getPaddingTop());
-                layout.getSelectionPath(spanStart, spanEnd, b10);
-                AndroidUtilities.runOnUIThread(new kq(this, ea0Var, a2), ViewConfiguration.getLongPressTimeout());
-                return true;
-            }
-            if (motionEvent.getAction() == 1) {
-                aa0Var.d(true);
-                ea0 ea0Var2 = this.V;
-                if (ea0Var2 != null && (characterStyle = ea0Var2.f24357i) == a2) {
-                    if (characterStyle != null) {
-                        ((ClickableSpan) characterStyle).onClick(this);
-                    }
-                    this.V = null;
-                    return true;
+    public void draw(Canvas canvas) {
+        switch (this.f32216a) {
+            case 1:
+                org.telegram.ui.qt0 qt0Var = (org.telegram.ui.qt0) this.f32218c;
+                super.draw(canvas);
+                if (zg0.f32905p0.f32914f == this && qt0Var.h.getVisibility() == 0) {
+                    canvas.drawColor(-16777216);
+                    qt0Var.j(canvas, getWidth(), getHeight());
+                    return;
                 }
-                this.V = null;
-            }
-            if (motionEvent.getAction() == 3) {
-                aa0Var.d(true);
-                this.V = null;
-            }
+                return;
+            default:
+                super.draw(canvas);
+                return;
         }
-        if (this.V != null || super.onTouchEvent(motionEvent)) {
-            return true;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        switch (this.f32216a) {
+            case 0:
+                AndroidUtilities.checkAndroidTheme(this.f32217b, true);
+                super.onAttachedToWindow();
+                return;
+            default:
+                AndroidUtilities.checkAndroidTheme(this.f32217b, true);
+                super.onAttachedToWindow();
+                return;
         }
-        return false;
     }
 
     @Override
-    public void setDisablePaddingsOffset(boolean z10) {
-        this.W = z10;
+    public final void onDetachedFromWindow() {
+        switch (this.f32216a) {
+            case 0:
+                AndroidUtilities.checkAndroidTheme(this.f32217b, false);
+                super.onDetachedFromWindow();
+                return;
+            default:
+                AndroidUtilities.checkAndroidTheme(this.f32217b, false);
+                super.onDetachedFromWindow();
+                return;
+        }
     }
 
     @Override
-    public void setDisablePaddingsOffsetX(boolean z10) {
-        this.f30668a0 = z10;
-    }
-
-    @Override
-    public void setDisablePaddingsOffsetY(boolean z10) {
-        this.f30669b0 = z10;
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f32216a) {
+            case 0:
+                cv cvVar = (cv) this.f32218c;
+                boolean onTouchEvent = super.onTouchEvent(motionEvent);
+                if (onTouchEvent) {
+                    if (motionEvent.getAction() == 1) {
+                        cvVar.setDisableScroll(false);
+                    } else {
+                        cvVar.setDisableScroll(true);
+                    }
+                }
+                return onTouchEvent;
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
     }
 }

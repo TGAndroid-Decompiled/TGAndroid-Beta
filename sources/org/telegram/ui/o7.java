@@ -1,60 +1,98 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.view.ViewGroup;
+import java.io.File;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-public final class o7 extends FrameLayout {
-    public final org.telegram.ui.Components.aq f38559a;
-    public final FrameLayout f38560b;
-    public final TextView f38561c;
-    public boolean d;
-    public int e;
-    public final int f38562f;
-    public final k7 h;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class o7 extends j7 {
+    public final ArrayList f39675n;
+    public final v7 f39676r;
 
-    public o7(k7 k7Var, Context context, int i10) {
-        super(context);
-        this.f38562f = i10;
-        this.h = k7Var;
-        org.telegram.ui.Components.aq aqVar = new org.telegram.ui.Components.aq(context, 21, null);
-        this.f38559a = aqVar;
-        aqVar.setDrawBackgroundAsArc(14);
-        aqVar.b(org.telegram.ui.ActionBar.g6.f19691i7, org.telegram.ui.ActionBar.g6.f19655g7, org.telegram.ui.ActionBar.g6.f19729k7);
-        View view = new View(getContext());
-        view.setOnClickListener(new a(this, 8));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f38560b = frameLayout;
-        TextView textView = new TextView(context);
-        this.f38561c = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setGravity(5);
-        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19784n6, false));
-        if (LocaleController.isRTL) {
-            addView(aqVar, w7.z5.a(24.0f, 0.0f, 0.0f, 18.0f, 0.0f, 24, 21));
-            addView(view, w7.z5.a(40.0f, 0.0f, 0.0f, 0.0f, 0.0f, 40, 21));
-            addView(frameLayout, w7.z5.a(-2.0f, 90.0f, 0.0f, 40.0f, 0.0f, -1, 0));
-            addView(textView, w7.z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 69, 19));
-            return;
-        }
-        addView(aqVar, w7.z5.a(24.0f, 18.0f, 0.0f, 0.0f, 0.0f, 24, 19));
-        addView(view, w7.z5.a(40.0f, 0.0f, 0.0f, 0.0f, 0.0f, 40, 19));
-        addView(frameLayout, w7.z5.a(-2.0f, 48.0f, 0.0f, 90.0f, 0.0f, -1, 0));
-        addView(textView, w7.z5.a(-2.0f, 0.0f, 0.0f, 21.0f, 0.0f, 69, 21));
+    public o7(v7 v7Var) {
+        super(v7Var, 2);
+        this.f39676r = v7Var;
+        this.f39675n = new ArrayList();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.d) {
-            if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(48.0f), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f19722k0);
+    public final void F() {
+        boolean z10;
+        super.F();
+        ArrayList arrayList = this.f39675n;
+        arrayList.clear();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList2 = this.e;
+            if (i10 < arrayList2.size()) {
+                String path = ((p7) arrayList2.get(i10)).d.f4427a.getPath();
+                if (((p7) arrayList2.get(i10)).d.d == 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z10, 0, 0, 0L));
+                i10++;
             } else {
-                canvas.drawLine(getMeasuredWidth() - AndroidUtilities.dp(90.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f19722k0);
+                return;
             }
         }
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        boolean z10;
+        boolean z11;
+        String name;
+        float f7;
+        View view = b1Var.f45938a;
+        n7 n7Var = (n7) view;
+        org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) n7Var.f39360b.getChildAt(0);
+        ArrayList arrayList = this.e;
+        bi.b bVar = ((p7) arrayList.get(i10)).d;
+        if (bVar == view.getTag()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i10 != arrayList.size() - 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        view.setTag(bVar);
+        File file = bVar.f4427a;
+        long lastModified = file.lastModified();
+        if (bVar.h == 5) {
+            name = LocaleController.getString(R.string.AttachRound);
+        } else {
+            name = file.getName();
+        }
+        i7Var.d(name, LocaleController.formatDateAudio(lastModified / 1000, true), Utilities.getExtension(file.getName()), null, 0, z11);
+        if (!z10) {
+            i7Var.setPhoto(file.getPath());
+        }
+        org.telegram.ui.Components.w9 imageView = i7Var.getImageView();
+        if (bVar.h == 5) {
+            f7 = 20.0f;
+        } else {
+            f7 = 4.0f;
+        }
+        imageView.setRoundRadius(AndroidUtilities.dp(f7));
+        n7Var.d = z11;
+        n7Var.f39361c.setText(AndroidUtilities.formatFileSize(bVar.f4429c));
+        n7Var.f39359a.a(this.f39676r.f42143f.f4438j.contains(bVar), z10);
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        n7 n7Var = new n7(this, viewGroup.getContext(), 0);
+        n7Var.e = 2;
+        n7Var.f39360b.addView(new org.telegram.ui.Cells.i7(viewGroup.getContext(), 3, null));
+        return new s4.b1(n7Var);
     }
 }

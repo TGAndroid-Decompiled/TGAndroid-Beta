@@ -1,63 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class wc extends ClickableSpan {
-    public final int f30517a;
-    public final Runnable f30518b;
+import org.telegram.messenger.R;
+public final class wc {
+    public static final wc E;
+    public static final wc F;
+    public static final wc G;
+    public static final wc H;
+    public static final wc I;
+    public static final wc[] J;
+    public static final wc e;
+    public static final wc f32068f;
+    public static final wc h;
+    public static final wc f32069n;
+    public static final wc f32070r;
+    public static final wc f32071s;
+    public static final wc v;
+    public static final wc f32072w;
+    public static final wc f32073x;
+    public static final wc f32074y;
+    public final String f32075a;
+    public final int f32076b;
+    public final boolean f32077c;
+    public final vc d;
 
-    public wc(int i10, Runnable runnable) {
-        this.f30517a = i10;
-        this.f30518b = runnable;
+    static {
+        int i10 = R.string.PhotoSavedHint;
+        vc vcVar = vc.SAVED_TO_GALLERY;
+        wc wcVar = new wc("PHOTO", 0, "PhotoSavedHint", i10, vcVar);
+        e = wcVar;
+        wc wcVar2 = new wc("PHOTOS", 1, "PhotosSavedHint", vcVar);
+        f32068f = wcVar2;
+        wc wcVar3 = new wc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, vcVar);
+        h = wcVar3;
+        wc wcVar4 = new wc("VIDEOS", 3, "VideosSavedHint", vcVar);
+        f32069n = wcVar4;
+        wc wcVar5 = new wc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, vcVar);
+        f32070r = wcVar5;
+        wc wcVar6 = new wc("LIVEPHOTOS", 5, "LivePhotosSavedHint", vcVar);
+        f32071s = wcVar6;
+        wc wcVar7 = new wc("MEDIA", 6, "MediaSavedHint", vcVar);
+        v = wcVar7;
+        int i11 = R.string.PhotoSavedToDownloadsHintLinked;
+        vc vcVar2 = vc.SAVED_TO_DOWNLOADS;
+        wc wcVar8 = new wc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, vcVar2);
+        f32072w = wcVar8;
+        wc wcVar9 = new wc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, vcVar2);
+        f32073x = wcVar9;
+        wc wcVar10 = new wc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, vc.SAVED_TO_GIFS);
+        f32074y = wcVar10;
+        wc wcVar11 = new wc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, vcVar2);
+        E = wcVar11;
+        int i12 = R.string.AudioSavedHint;
+        vc vcVar3 = vc.SAVED_TO_MUSIC;
+        wc wcVar12 = new wc("AUDIO", 11, "AudioSavedHint", i12, vcVar3);
+        F = wcVar12;
+        wc wcVar13 = new wc("AUDIOS", 12, "AudiosSavedHint", vcVar3);
+        G = wcVar13;
+        wc wcVar14 = new wc("UNKNOWN", 13, "FileSavedHintLinked", R.string.FileSavedHintLinked, vcVar2);
+        H = wcVar14;
+        wc wcVar15 = new wc("UNKNOWNS", 14, "FilesSavedHintLinked", vcVar2);
+        I = wcVar15;
+        J = new wc[]{wcVar, wcVar2, wcVar3, wcVar4, wcVar5, wcVar6, wcVar7, wcVar8, wcVar9, wcVar10, wcVar11, wcVar12, wcVar13, wcVar14, wcVar15};
     }
 
-    @Override
-    public final void onClick(View view) {
-        switch (this.f30517a) {
-            case 0:
-                this.f30518b.run();
-                return;
-            case 1:
-                Runnable runnable = this.f30518b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 2:
-                Runnable runnable2 = this.f30518b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-            default:
-                Runnable runnable3 = this.f30518b;
-                if (runnable3 != null) {
-                    runnable3.run();
-                    return;
-                }
-                return;
-        }
+    public wc(String str, int i10, String str2, int i11, vc vcVar) {
+        this.f32075a = str2;
+        this.f32076b = i11;
+        this.d = vcVar;
+        this.f32077c = false;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f30517a) {
-            case 0:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 1:
-                textPaint.setUnderlineText(false);
-                return;
-            case 2:
-                textPaint.setUnderlineText(false);
-                return;
-            default:
-                textPaint.setUnderlineText(false);
-                return;
-        }
+    public static wc valueOf(String str) {
+        return (wc) Enum.valueOf(wc.class, str);
+    }
+
+    public static wc[] values() {
+        return (wc[]) J.clone();
+    }
+
+    public wc(String str, int i10, String str2, vc vcVar) {
+        this.f32075a = str2;
+        this.d = vcVar;
+        this.f32076b = 0;
+        this.f32077c = true;
     }
 }

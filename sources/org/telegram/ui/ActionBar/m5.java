@@ -1,36 +1,25 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class m5 extends Drawable {
-    public final int f20239a;
-    public final int f20240b;
+import org.telegram.tgnet.TLObject;
+public final class m5 implements Runnable {
+    public final int f21602a;
+    public final TLObject f21603b;
+    public final int f21604c;
 
-    public m5(int i10, int i11) {
-        this.f20239a = i10;
-        this.f20240b = i11;
+    public m5(int i10, TLObject tLObject) {
+        this.f21602a = 0;
+        this.f21604c = i10;
+        this.f21603b = tLObject;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        int i10 = this.f20239a;
-        int i11 = this.f20240b;
-        canvas.drawCircle((bounds.centerX() - i10) + i11, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i10 + i11, g6.f19998z);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.m5.run():void");
     }
 
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public m5(int i10, TLObject tLObject, int i11) {
+        this.f21602a = i11;
+        this.f21603b = tLObject;
+        this.f21604c = i10;
     }
 }

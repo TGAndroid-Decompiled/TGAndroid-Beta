@@ -4,30 +4,30 @@ import java.util.Arrays;
 import java.util.Iterator;
 public final class c implements Iterable, Cloneable {
     public static final String[] d = new String[0];
-    public int f8730a = 0;
-    public String[] f8731b;
-    public String[] f8732c;
+    public int f8611a = 0;
+    public String[] f8612b;
+    public String[] f8613c;
 
     public c() {
         String[] strArr = d;
-        this.f8731b = strArr;
-        this.f8732c = strArr;
+        this.f8612b = strArr;
+        this.f8613c = strArr;
     }
 
     public final Object clone() {
         try {
             c cVar = (c) super.clone();
-            cVar.f8730a = this.f8730a;
-            String[] strArr = this.f8731b;
-            int i10 = this.f8730a;
+            cVar.f8611a = this.f8611a;
+            String[] strArr = this.f8612b;
+            int i10 = this.f8611a;
             String[] strArr2 = new String[i10];
             System.arraycopy(strArr, 0, strArr2, 0, Math.min(strArr.length, i10));
-            this.f8731b = strArr2;
-            String[] strArr3 = this.f8732c;
-            int i11 = this.f8730a;
+            this.f8612b = strArr2;
+            String[] strArr3 = this.f8613c;
+            int i11 = this.f8611a;
             String[] strArr4 = new String[i11];
             System.arraycopy(strArr3, 0, strArr4, 0, Math.min(strArr3.length, i11));
-            this.f8732c = strArr4;
+            this.f8613c = strArr4;
             return cVar;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
@@ -42,16 +42,16 @@ public final class c implements Iterable, Cloneable {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f8730a != cVar.f8730a || !Arrays.equals(this.f8731b, cVar.f8731b)) {
+        if (this.f8611a != cVar.f8611a || !Arrays.equals(this.f8612b, cVar.f8612b)) {
             return false;
         }
-        return Arrays.equals(this.f8732c, cVar.f8732c);
+        return Arrays.equals(this.f8613c, cVar.f8613c);
     }
 
     public final int h(String str) {
         if (str != null) {
-            for (int i10 = 0; i10 < this.f8730a; i10++) {
-                if (str.equals(this.f8731b[i10])) {
+            for (int i10 = 0; i10 < this.f8611a; i10++) {
+                if (str.equals(this.f8612b[i10])) {
                     return i10;
                 }
             }
@@ -61,7 +61,7 @@ public final class c implements Iterable, Cloneable {
     }
 
     public final int hashCode() {
-        return (((this.f8730a * 31) + Arrays.hashCode(this.f8731b)) * 31) + Arrays.hashCode(this.f8732c);
+        return (((this.f8611a * 31) + Arrays.hashCode(this.f8612b)) * 31) + Arrays.hashCode(this.f8613c);
     }
 
     @Override

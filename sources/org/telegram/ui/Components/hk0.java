@@ -1,28 +1,22 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
-public final class hk0 implements Runnable {
-    public final int f25345a;
-    public final qk0 f25346b;
-    public final TLObject f25347c;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+public final class hk0 extends b10 {
+    public final mk0 U;
 
-    public hk0(qk0 qk0Var, TLObject tLObject, int i10) {
-        this.f25345a = i10;
-        this.f25346b = qk0Var;
-        this.f25347c = tLObject;
+    public hk0(mk0 mk0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.U = mk0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25345a) {
-            case 0:
-                qk0 qk0Var = this.f25346b;
-                NotificationCenter.getInstance(qk0Var.f28311b).doOnIdle(new hk0(qk0Var, this.f25347c, 1));
-                return;
-            default:
-                qk0.a(this.f25346b, this.f25347c);
-                return;
+    public final int getAdditionalHeight() {
+        ob0 ob0Var;
+        mk0 mk0Var = this.U;
+        if (!mk0Var.H.isEmpty() && (ob0Var = mk0Var.J) != null) {
+            return AndroidUtilities.dp(8.0f) + ob0Var.getMeasuredHeight();
         }
+        return 0;
     }
 }

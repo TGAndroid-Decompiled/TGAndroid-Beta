@@ -1,155 +1,463 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
 import android.app.Activity;
-import android.net.Uri;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ImageSpan;
+import android.text.style.MetricAffectingSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
-import org.json.JSONObject;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class ju implements View.OnClickListener {
-    public final int f37137a = 1;
-    public final int f37138b;
-    public final Object f37139c;
-    public final Object d;
-    public final Object e;
-    public final Object f37140f;
-    public final Object h;
-    public final Object f37141n;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.StatsController;
+public final class ju extends org.telegram.ui.Components.im0 {
+    public static final int f38335n3 = 0;
+    public boolean V2;
+    public int W2;
+    public final s4.b0 X2;
+    public final hu Y2;
+    public final ArrayList Z2;
+    public final ArrayList f38336a3;
+    public final float[] f38337b3;
+    public final int[] f38338c3;
+    public final ArrayList f38339d3;
+    public iu[] f38340e3;
+    public iu[] f38341f3;
+    public final boolean[] f38342g3;
+    public long f38343h3;
+    public long f38344i3;
+    public long f38345j3;
+    public boolean f38346k3;
+    public gu f38347l3;
+    public final nu f38348m3;
 
-    public ju(di.d dVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, boolean[] zArr, org.telegram.ui.ActionBar.e3 e3Var, di.d dVar2, org.telegram.ui.web.c1 c1Var, int i10) {
-        this.f37139c = dVar;
-        this.d = tL_messages_requestUrlAuth;
-        this.e = zArr;
-        this.f37140f = e3Var;
-        this.h = dVar2;
-        this.f37141n = c1Var;
-        this.f37138b = i10;
+    public ju(nu nuVar, Activity activity) {
+        super(activity, null);
+        this.f38348m3 = nuVar;
+        this.V2 = false;
+        this.W2 = 0;
+        this.Z2 = new ArrayList();
+        this.f38336a3 = new ArrayList();
+        this.f38337b3 = new float[7];
+        this.f38338c3 = new int[7];
+        this.f38339d3 = new ArrayList();
+        this.f38342g3 = new boolean[7];
+        s4.b0 b0Var = new s4.b0();
+        this.X2 = b0Var;
+        setLayoutManager(b0Var);
+        hu huVar = new hu(this, 0);
+        this.Y2 = huVar;
+        setAdapter(huVar);
+        p1();
+        setOnItemClickListener(new i(this, 8));
+        s4.k kVar = new s4.k();
+        kVar.n(220L);
+        kVar.o(org.telegram.ui.Components.bs.h);
+        kVar.C = false;
+        kVar.f45972m = false;
+        setItemAnimator(kVar);
     }
 
-    @Override
-    public final void onClick(View view) {
-        int i10 = this.f37137a;
-        JSONObject jSONObject = null;
-        int i11 = this.f37138b;
-        Object obj = this.f37141n;
-        Object obj2 = this.h;
-        Object obj3 = this.f37140f;
-        Object obj4 = this.e;
-        Object obj5 = this.d;
-        Object obj6 = this.f37139c;
-        switch (i10) {
-            case 0:
-                DataAutoDownloadActivity.U((DataAutoDownloadActivity) obj6, (org.telegram.ui.Cells.s8) obj5, (org.telegram.ui.Cells.s8[]) obj4, this.f37138b, (org.telegram.ui.Cells.d5[]) obj3, (org.telegram.ui.Cells.w8[]) obj2, (AnimatorSet[]) obj, view);
-                return;
-            case 1:
-                TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) obj5;
-                boolean[] zArr = (boolean[]) obj4;
-                org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) obj3;
-                di.d dVar = (di.d) obj2;
-                org.telegram.ui.web.c1 c1Var = (org.telegram.ui.web.c1) obj;
-                if (!((di.d) obj6).N) {
-                    if (tL_messages_requestUrlAuth != null && !TextUtils.isEmpty(tL_messages_requestUrlAuth.url)) {
-                        if (!dVar.N) {
-                            dVar.setLoading(true);
-                            if (c1Var != null) {
-                                boolean z10 = org.telegram.ui.web.c1.P0;
-                                try {
-                                    jSONObject = new JSONObject();
-                                } catch (Exception unused) {
-                                }
-                                c1Var.y("oauth_result_failed", jSONObject);
-                            }
-                            TLRPC.TL_messages_declineUrlAuth tL_messages_declineUrlAuth = new TLRPC.TL_messages_declineUrlAuth();
-                            tL_messages_declineUrlAuth.url = tL_messages_requestUrlAuth.url;
-                            ConnectionsManager.getInstance(i11).sendRequestTyped(tL_messages_declineUrlAuth, new Object(), new bi.f0(16, zArr, e3Var));
-                            return;
-                        }
-                        return;
-                    }
-                    zArr[0] = true;
-                    e3Var.dismiss();
-                    return;
+    public final void A1() {
+        int i10;
+        int i11;
+        int recivedItemsCount;
+        int i12;
+        boolean z10;
+        int sentItemsCount;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        this.f38343h3 = x1(6) + z1(6);
+        this.f38344i3 = x1(6);
+        this.f38345j3 = z1(6);
+        if (this.f38340e3 == null) {
+            this.f38340e3 = new iu[7];
+        }
+        if (this.f38341f3 == null) {
+            this.f38341f3 = new iu[7];
+        }
+        int i19 = 0;
+        while (true) {
+            int[] iArr = nu.f39553n;
+            int length = iArr.length;
+            float[] fArr = this.f38337b3;
+            if (i19 < length) {
+                int i20 = iArr[i19];
+                long x12 = x1(i20) + z1(i20);
+                iu[] iuVarArr = this.f38341f3;
+                iu[] iuVarArr2 = this.f38340e3;
+                long x13 = x1(iArr[i19]);
+                long z12 = z1(iArr[i19]);
+                int i21 = iArr[i19];
+                int i22 = this.W2;
+                nu nuVar = this.f38348m3;
+                if (i22 == 1 || i22 == 2 || i22 == 3) {
+                    i10 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+                    i11 = 1;
+                    recivedItemsCount = StatsController.getInstance(i10).getRecivedItemsCount(this.W2 - 1, i21);
+                } else {
+                    i16 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+                    int recivedItemsCount2 = StatsController.getInstance(i16).getRecivedItemsCount(0, i21);
+                    i17 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+                    int recivedItemsCount3 = StatsController.getInstance(i17).getRecivedItemsCount(1, i21) + recivedItemsCount2;
+                    i18 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+                    recivedItemsCount = StatsController.getInstance(i18).getRecivedItemsCount(2, i21) + recivedItemsCount3;
+                    i11 = 1;
                 }
-                return;
-            case 2:
-                boolean[] zArr2 = (boolean[]) obj6;
-                org.telegram.ui.Wallet.j2[] j2VarArr = (org.telegram.ui.Wallet.j2[]) obj5;
-                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) obj4;
-                wh.n nVar = (wh.n) obj3;
-                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj2;
-                String str = (String) obj;
-                if (!zArr2[0]) {
-                    zArr2[0] = true;
-                    org.telegram.ui.Wallet.o oVar = new org.telegram.ui.Wallet.o(zArr2, j2VarArr, c6Var, nVar, 9);
-                    if (wallettransaction.comment_encrypted_preparing) {
-                        oVar.run(wallettransaction.comment, null);
-                        return;
-                    }
-                    org.telegram.ui.Wallet.k0 v = org.telegram.ui.Wallet.k0.v(i11);
-                    String str2 = wallettransaction.comment;
-                    org.telegram.ui.Wallet.k0.E("decrypting transaction comment");
-                    v.x(new org.telegram.ui.Wallet.j(v, oVar, str, str2), true, false);
-                    return;
+                int i23 = iArr[i19];
+                int i24 = this.W2;
+                if (i24 == i11 || i24 == 2 || i24 == 3) {
+                    i12 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+                    z10 = true;
+                    sentItemsCount = StatsController.getInstance(i12).getSentItemsCount(this.W2 - 1, i23);
+                } else {
+                    i13 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+                    int sentItemsCount2 = StatsController.getInstance(i13).getSentItemsCount(0, i23);
+                    i14 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+                    int sentItemsCount3 = StatsController.getInstance(i14).getSentItemsCount(1, i23) + sentItemsCount2;
+                    i15 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+                    sentItemsCount = StatsController.getInstance(i15).getSentItemsCount(2, i23) + sentItemsCount3;
+                    z10 = true;
                 }
+                ?? obj = new Object();
+                obj.d = i19;
+                obj.f25194c = x12;
+                obj.f25193b = z10;
+                obj.e = x13;
+                obj.f37978g = recivedItemsCount;
+                obj.f37977f = z12;
+                obj.h = sentItemsCount;
+                iuVarArr2[i19] = obj;
+                iuVarArr[i19] = obj;
+                fArr[i19] = ((float) x12) / ((float) this.f38343h3);
+                i19++;
+            } else {
+                Arrays.sort(this.f38340e3, new org.telegram.ui.ActionBar.i4(27));
+                AndroidUtilities.roundPercents(fArr, this.f38338c3);
+                Arrays.fill(this.f38342g3, true);
                 return;
-            default:
-                di.d dVar2 = (di.d) obj6;
-                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) obj5;
-                org.telegram.ui.ActionBar.e3[] e3VarArr = (org.telegram.ui.ActionBar.e3[]) obj4;
-                org.telegram.ui.ActionBar.c6 c6Var2 = (org.telegram.ui.ActionBar.c6) obj3;
-                boolean[] zArr3 = (boolean[]) obj2;
-                Activity activity = (Activity) obj;
-                if (!dVar2.N) {
-                    dVar2.setLoading(true);
-                    if (starsSubscription.chat_invite_hash != null) {
-                        TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite = new TLRPC.TL_messages_checkChatInvite();
-                        tL_messages_checkChatInvite.hash = starsSubscription.chat_invite_hash;
-                        int i12 = this.f37138b;
-                        ConnectionsManager.getInstance(i12).sendRequest(tL_messages_checkChatInvite, new bi.ia(dVar2, e3VarArr, c6Var2, i12, tL_messages_checkChatInvite, 14));
-                        return;
-                    } else if (starsSubscription.invoice_slug != null) {
-                        zArr3[0] = true;
-                        pf.d.q(activity, Uri.parse("https://t.me/$" + starsSubscription.invoice_slug), true, false, false, new zh.o6(dVar2), null, false, true, false);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
+            }
         }
     }
 
-    public ju(di.d dVar, TL_stars.StarsSubscription starsSubscription, int i10, org.telegram.ui.ActionBar.e3[] e3VarArr, org.telegram.ui.ActionBar.c6 c6Var, boolean[] zArr, Activity activity) {
-        this.f37139c = dVar;
-        this.d = starsSubscription;
-        this.f37138b = i10;
-        this.e = e3VarArr;
-        this.f37140f = c6Var;
-        this.h = zArr;
-        this.f37141n = activity;
+    public final void B1(boolean z10) {
+        String formatString;
+        boolean z11;
+        ArrayList arrayList;
+        int i10;
+        int i11;
+        String string;
+        boolean z12;
+        ArrayList arrayList2;
+        int i12;
+        String format;
+        int i13;
+        CharSequence concat;
+        ArrayList arrayList3;
+        ArrayList arrayList4 = this.Z2;
+        arrayList4.clear();
+        ArrayList arrayList5 = this.f38336a3;
+        arrayList4.addAll(arrayList5);
+        arrayList5.clear();
+        boolean z13 = false;
+        arrayList5.add(new pg.a(0, false));
+        long j10 = 0;
+        int i14 = 1;
+        if (this.f38343h3 > 0) {
+            formatString = LocaleController.formatString(R.string.YourNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(y1()));
+        } else {
+            formatString = LocaleController.formatString(R.string.NoNetworkUsageSince, LocaleController.getInstance().getFormatterStats().format(y1()));
+        }
+        arrayList5.add(new eu(1, formatString));
+        ArrayList arrayList6 = new ArrayList();
+        int i15 = 0;
+        while (true) {
+            iu[] iuVarArr = this.f38340e3;
+            if (i15 >= iuVarArr.length) {
+                break;
+            }
+            iu iuVar = iuVarArr[i15];
+            long j11 = j10;
+            long j12 = iuVar.f25194c;
+            int i16 = iuVar.d;
+            if (!this.f38346k3 && !this.f38339d3.contains(Integer.valueOf(i16))) {
+                i12 = 0;
+            } else {
+                i12 = i14;
+            }
+            int i17 = (j12 > j11 ? 1 : (j12 == j11 ? 0 : -1));
+            if (i17 <= 0 && i12 == 0) {
+                i13 = i14;
+                arrayList3 = arrayList6;
+            } else {
+                int i18 = this.f38338c3[i16];
+                if (i18 <= 0) {
+                    Object[] objArr = new Object[i14];
+                    objArr[0] = Integer.valueOf(i14);
+                    format = String.format("<%d%%", objArr);
+                } else {
+                    Integer valueOf = Integer.valueOf(i18);
+                    Object[] objArr2 = new Object[i14];
+                    objArr2[0] = valueOf;
+                    format = String.format("%d%%", objArr2);
+                }
+                SpannableString spannableString = new SpannableString(format);
+                spannableString.setSpan(new org.telegram.ui.Components.c61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                spannableString.setSpan(new RelativeSizeSpan(0.8f), 0, spannableString.length(), 33);
+                ?? metricAffectingSpan = new MetricAffectingSpan();
+                i13 = i14;
+                ArrayList arrayList7 = arrayList6;
+                metricAffectingSpan.f36322a = 0.1d;
+                spannableString.setSpan(metricAffectingSpan, 0, spannableString.length(), 33);
+                int i19 = nu.f39552f[i16];
+                int[] iArr = nu.d[i16];
+                int i20 = iArr[0];
+                int i21 = iArr[i13];
+                if (i17 == 0) {
+                    concat = LocaleController.getString(nu.h[i16]);
+                } else {
+                    CharSequence[] charSequenceArr = new CharSequence[3];
+                    charSequenceArr[0] = LocaleController.getString(nu.h[i16]);
+                    charSequenceArr[i13] = "  ";
+                    charSequenceArr[2] = spannableString;
+                    concat = TextUtils.concat(charSequenceArr);
+                }
+                eu euVar = new eu(i15, i19, i20, i21, concat, AndroidUtilities.formatFileSize(j12));
+                arrayList3 = arrayList7;
+                arrayList3.add(euVar);
+            }
+            i15++;
+            arrayList6 = arrayList3;
+            j10 = j11;
+            i14 = i13;
+        }
+        int i22 = i14;
+        ArrayList arrayList8 = arrayList6;
+        long j13 = j10;
+        if (!arrayList8.isEmpty()) {
+            SpannableString spannableString2 = new SpannableString("^");
+            Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_upload).mutate();
+            int i23 = org.telegram.ui.ActionBar.h6.G6;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f27284n2;
+            int w02 = org.telegram.ui.ActionBar.h6.w0(i23, d6Var);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            mutate.setColorFilter(new PorterDuffColorFilter(w02, mode));
+            mutate.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
+            spannableString2.setSpan(new ImageSpan(mutate, 2), 0, i22, 33);
+            SpannableString spannableString3 = new SpannableString("v");
+            Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.msg_mini_download).mutate();
+            mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i23, d6Var), mode));
+            mutate2.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
+            spannableString3.setSpan(new ImageSpan(mutate2, 2), 0, 1, 33);
+            int i24 = 0;
+            while (i24 < arrayList8.size()) {
+                int i25 = ((eu) arrayList8.get(i24)).h;
+                if (i25 >= 0 && !this.f38342g3[i25]) {
+                    iu iuVar2 = this.f38340e3[i25];
+                    int[] iArr2 = nu.f39553n;
+                    int i26 = iuVar2.d;
+                    int i27 = iuVar2.f37978g;
+                    int i28 = iuVar2.h;
+                    long j14 = iuVar2.e;
+                    z12 = z13;
+                    ArrayList arrayList9 = arrayList8;
+                    long j15 = iuVar2.f37977f;
+                    int i29 = iArr2[i26];
+                    if (i29 == 0) {
+                        if (j15 <= j13 && i28 <= 0) {
+                            arrayList2 = arrayList9;
+                        } else {
+                            i24++;
+                            arrayList2 = arrayList9;
+                            arrayList2.add(i24, eu.b(LocaleController.formatPluralStringComma("OutgoingCallsCount", i28), AndroidUtilities.formatFileSize(j15)));
+                        }
+                        if (j14 > j13 || i27 > 0) {
+                            i24++;
+                            arrayList2.add(i24, eu.b(LocaleController.formatPluralStringComma("IncomingCallsCount", i27), AndroidUtilities.formatFileSize(j14)));
+                        }
+                    } else {
+                        arrayList2 = arrayList9;
+                        if (i29 != 1) {
+                            if (j15 > j13 || i28 > 0) {
+                                i24++;
+                                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesSentCount", i28));
+                                CharSequence[] charSequenceArr2 = new CharSequence[3];
+                                charSequenceArr2[z12 ? 1 : 0] = spannableString2;
+                                charSequenceArr2[1] = " ";
+                                charSequenceArr2[2] = replaceTags;
+                                arrayList2.add(i24, eu.b(TextUtils.concat(charSequenceArr2), AndroidUtilities.formatFileSize(j15)));
+                            }
+                            if (j14 > j13 || i27 > 0) {
+                                i24++;
+                                SpannableStringBuilder replaceTags2 = AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("FilesReceivedCount", i27));
+                                CharSequence[] charSequenceArr3 = new CharSequence[3];
+                                charSequenceArr3[z12 ? 1 : 0] = spannableString3;
+                                charSequenceArr3[1] = " ";
+                                charSequenceArr3[2] = replaceTags2;
+                                arrayList2.add(i24, eu.b(TextUtils.concat(charSequenceArr3), AndroidUtilities.formatFileSize(j14)));
+                            }
+                        } else {
+                            if (j15 > j13 || i28 > 0) {
+                                i24++;
+                                String string2 = LocaleController.getString(R.string.BytesSent);
+                                CharSequence[] charSequenceArr4 = new CharSequence[3];
+                                charSequenceArr4[z12 ? 1 : 0] = spannableString2;
+                                charSequenceArr4[1] = " ";
+                                charSequenceArr4[2] = string2;
+                                arrayList2.add(i24, eu.b(TextUtils.concat(charSequenceArr4), AndroidUtilities.formatFileSize(j15)));
+                            }
+                            if (j14 > j13 || i27 > 0) {
+                                i24++;
+                                String string3 = LocaleController.getString(R.string.BytesReceived);
+                                CharSequence[] charSequenceArr5 = new CharSequence[3];
+                                charSequenceArr5[z12 ? 1 : 0] = spannableString3;
+                                charSequenceArr5[1] = " ";
+                                charSequenceArr5[2] = string3;
+                                arrayList2.add(i24, eu.b(TextUtils.concat(charSequenceArr5), AndroidUtilities.formatFileSize(j14)));
+                                i24++;
+                                arrayList8 = arrayList2;
+                                z13 = z12;
+                            }
+                        }
+                    }
+                } else {
+                    z12 = z13;
+                    arrayList2 = arrayList8;
+                }
+                i24++;
+                arrayList8 = arrayList2;
+                z13 = z12;
+            }
+            z11 = z13;
+            arrayList = arrayList8;
+            arrayList5.addAll(arrayList);
+            if (!this.f38346k3) {
+                arrayList5.add(new eu(3, LocaleController.getString(R.string.DataUsageSectionsInfo) + "\n"));
+            }
+        } else {
+            z11 = false;
+            arrayList = arrayList8;
+        }
+        if (!this.f38346k3) {
+            arrayList5.add(new eu(4, LocaleController.getString(R.string.TotalNetworkUsage)));
+            arrayList5.add(new eu(-1, R.drawable.msg_filled_data_sent, -11565578, -13276952, LocaleController.getString(R.string.BytesSent), AndroidUtilities.formatFileSize(this.f38345j3)));
+            arrayList5.add(new eu(-1, R.drawable.msg_filled_data_received, -11154873, -14175180, LocaleController.getString(R.string.BytesReceived), AndroidUtilities.formatFileSize(this.f38344i3)));
+        }
+        if (!arrayList.isEmpty()) {
+            i10 = 3;
+            arrayList5.add(new eu(3, formatString));
+        } else {
+            i10 = 3;
+        }
+        if (this.W2 != 0) {
+            if (arrayList.isEmpty()) {
+                arrayList5.add(new pg.a(i10, z11));
+            }
+            arrayList5.add(new eu(-2, R.drawable.msg_download_settings, -11565578, -13276952, LocaleController.getString(R.string.AutomaticDownloadSettings), null));
+            int i30 = this.W2;
+            if (i30 != 1) {
+                i11 = 3;
+                if (i30 != 3) {
+                    string = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoWiFi);
+                } else {
+                    string = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoRoaming);
+                }
+            } else {
+                i11 = 3;
+                string = LocaleController.getString(R.string.AutomaticDownloadSettingsInfoMobile);
+            }
+            arrayList5.add(new eu(i11, string));
+        }
+        if (!arrayList.isEmpty()) {
+            arrayList5.add(new eu(5, LocaleController.getString(R.string.ResetStatistics)));
+        }
+        arrayList5.add(new pg.a(3, false));
+        hu huVar = this.Y2;
+        if (huVar != null) {
+            if (z10) {
+                huVar.E(arrayList4, arrayList5);
+            } else {
+                huVar.l();
+            }
+        }
     }
 
-    public ju(DataAutoDownloadActivity dataAutoDownloadActivity, org.telegram.ui.Cells.s8 s8Var, org.telegram.ui.Cells.s8[] s8VarArr, int i10, org.telegram.ui.Cells.d5[] d5VarArr, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
-        this.f37139c = dataAutoDownloadActivity;
-        this.d = s8Var;
-        this.e = s8VarArr;
-        this.f37138b = i10;
-        this.f37140f = d5VarArr;
-        this.h = w8VarArr;
-        this.f37141n = animatorSetArr;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
     }
 
-    public ju(boolean[] zArr, org.telegram.ui.Wallet.j2[] j2VarArr, org.telegram.ui.ActionBar.c6 c6Var, wh.n nVar, TL_wallet.walletTransaction wallettransaction, int i10, String str) {
-        this.f37139c = zArr;
-        this.d = j2VarArr;
-        this.e = c6Var;
-        this.f37140f = nVar;
-        this.h = wallettransaction;
-        this.f37138b = i10;
-        this.f37141n = str;
+    public final long x1(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15 = this.W2;
+        nu nuVar = this.f38348m3;
+        if (i15 == 1 || i15 == 2 || i15 == 3) {
+            i11 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+            return StatsController.getInstance(i11).getReceivedBytesCount(this.W2 - 1, i10);
+        }
+        i12 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+        long receivedBytesCount = StatsController.getInstance(i12).getReceivedBytesCount(0, i10);
+        i13 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+        i14 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+        return StatsController.getInstance(i14).getReceivedBytesCount(2, i10) + StatsController.getInstance(i13).getReceivedBytesCount(1, i10) + receivedBytesCount;
+    }
+
+    public final long y1() {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14 = this.W2;
+        nu nuVar = this.f38348m3;
+        if (i14 == 1 || i14 == 2 || i14 == 3) {
+            i10 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+            return StatsController.getInstance(i10).getResetStatsDate(this.W2 - 1);
+        }
+        i11 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+        long resetStatsDate = StatsController.getInstance(i11).getResetStatsDate(0);
+        i12 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+        long resetStatsDate2 = StatsController.getInstance(i12).getResetStatsDate(1);
+        i13 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+        long[] jArr = {resetStatsDate, resetStatsDate2, StatsController.getInstance(i13).getResetStatsDate(2)};
+        long j10 = Long.MAX_VALUE;
+        for (int i15 = 0; i15 < 3; i15++) {
+            long j11 = jArr[i15];
+            if (j10 > j11) {
+                j10 = j11;
+            }
+        }
+        return j10;
+    }
+
+    public final long z1(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15 = this.W2;
+        nu nuVar = this.f38348m3;
+        if (i15 == 1 || i15 == 2 || i15 == 3) {
+            i11 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+            return StatsController.getInstance(i11).getSentBytesCount(this.W2 - 1, i10);
+        }
+        i12 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+        long sentBytesCount = StatsController.getInstance(i12).getSentBytesCount(0, i10);
+        i13 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+        i14 = ((org.telegram.ui.ActionBar.n2) nuVar).currentAccount;
+        return StatsController.getInstance(i14).getSentBytesCount(2, i10) + StatsController.getInstance(i13).getSentBytesCount(1, i10) + sentBytesCount;
     }
 }

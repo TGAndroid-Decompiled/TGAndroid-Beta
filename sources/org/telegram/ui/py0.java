@@ -1,147 +1,439 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.FlagSecureReason;
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ConfigurationInfo;
+import android.os.Build;
+import android.text.SpannableStringBuilder;
+import android.webkit.CookieManager;
+import android.webkit.WebStorage;
+import android.webkit.WebView;
+import android.widget.Toast;
+import java.util.Set;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.AuthTokensHelper;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class py0 implements org.telegram.ui.ActionBar.z1, MessagesStorage.BooleanCallback, r0.n, org.telegram.ui.Components.di0, org.telegram.ui.Components.cm0, FlagSecureReason.FlagSecureCondition, ne.d, e70, org.telegram.ui.Components.gx0 {
-    public final int f39028a;
-    public final ProfileActivity f39029b;
+public final class py0 implements org.telegram.ui.Components.yl0 {
+    public int f40272a = 0;
+    public final Context f40273b;
+    public final ProfileActivity f40274c;
 
-    public py0(ProfileActivity profileActivity, int i10) {
-        this.f39028a = i10;
-        this.f39029b = profileActivity;
+    public py0(ProfileActivity profileActivity, Context context) {
+        this.f40274c = profileActivity;
+        this.f40273b = context;
     }
 
-    @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        int i10 = l1Var.f43497a.f(519).d;
-        ProfileActivity profileActivity = this.f39029b;
-        profileActivity.f32314l6 = i10;
-        FrameLayout frameLayout = profileActivity.f32362s5;
-        if (frameLayout != null) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) frameLayout.getLayoutParams();
-            int i11 = profileActivity.f32314l6 + profileActivity.f32309k6;
-            if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i11) {
-                marginLayoutParams.bottomMargin = i11;
-                profileActivity.f32362s5.setLayoutParams(marginLayoutParams);
-            }
+    public static void b(py0 py0Var, Context context, int i10) {
+        int i11;
+        int i12;
+        int i13;
+        String str;
+        String str2;
+        String str3;
+        String str4;
+        String str5;
+        long j10;
+        Long l4;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        int i20 = 0;
+        if (i10 == 0) {
+            py0Var.f40274c.getUserConfig().syncContacts = true;
+            py0Var.f40274c.getUserConfig().saveConfig(false);
+            py0Var.f40274c.getContactsController().forceImportContacts();
+            return;
         }
-        q01 q01Var = profileActivity.O;
-        if (q01Var != null) {
-            q01Var.setPagesPaddingBottom(profileActivity.f32314l6 + profileActivity.f32302j6);
-            org.telegram.ui.Components.ns0 ns0Var = profileActivity.O.V;
-            if (ns0Var != null) {
-                ns0Var.setButtonOffset(profileActivity.f32314l6 + profileActivity.f32309k6);
-            }
-        }
-        return r0.l1.f43496b;
-    }
-
-    @Override
-    public boolean a(int i10, View view) {
-        ProfileActivity profileActivity = this.f39029b;
-        p11 p11Var = profileActivity.e;
-        if (p11Var.f38795w || p11Var.v.isEmpty()) {
-            return false;
-        }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity.getParentActivity(), 0, profileActivity.f32405z0);
-        alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.ClearSearchAlertTitle);
-        alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.ClearSearchAlert);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new py0(profileActivity, 5));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
-        profileActivity.showDialog(a2Var);
-        TextView textView = (TextView) a2Var.d(-1);
-        if (textView != null) {
-            textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19839q7, false));
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f39028a) {
-            case 0:
-                ProfileActivity profileActivity = this.f39029b;
-                profileActivity.getMessagesController().blockPeer(profileActivity.f32261e1);
-                if (org.telegram.ui.Components.zc.a(profileActivity)) {
-                    org.telegram.ui.Components.zc.d(profileActivity, true).j();
-                    return;
+        long j11 = 0;
+        if (i10 == 1) {
+            py0Var.f40274c.getContactsController().loadContacts(false, 0L);
+        } else if (i10 == 2) {
+            py0Var.f40274c.getContactsController().resetImportedContacts();
+        } else if (i10 == 3) {
+            py0Var.f40274c.getMessagesController().forceResetDialogs();
+        } else if (i10 == 4) {
+            BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
+            ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
+            py0Var.f40274c.j5();
+            py0Var.f40274c.d.l();
+            if (BuildVars.LOGS_ENABLED) {
+                org.telegram.messenger.q.r(new StringBuilder("app start time = "), ApplicationLoader.startTime);
+                try {
+                    FileLog.d("buildVersion = " + ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
-                return;
-            case 5:
-                p11 p11Var = this.f39029b.e;
-                p11Var.v.clear();
-                MessagesController.getGlobalMainSettings().edit().remove("settingsSearchRecent2").commit();
-                p11Var.l();
-                return;
-            default:
-                ProfileActivity profileActivity2 = this.f39029b;
-                profileActivity2.getClass();
-                SharedConfig.pushAuthKey = null;
-                SharedConfig.pushAuthKeyId = null;
-                SharedConfig.saveConfig();
-                profileActivity2.getConnectionsManager().switchBackend(true);
-                return;
-        }
-    }
-
-    @Override
-    public void i(int i10, ArrayList arrayList) {
-        TLRPC.ChatParticipants chatParticipants;
-        HashSet hashSet = new HashSet();
-        ArrayList arrayList2 = new ArrayList();
-        ProfileActivity profileActivity = this.f39029b;
-        TLRPC.ChatFull chatFull = profileActivity.f32373u2;
-        if (chatFull != null && (chatParticipants = chatFull.participants) != null && chatParticipants.participants != null) {
-            for (int i11 = 0; i11 < profileActivity.f32373u2.participants.participants.size(); i11++) {
-                hashSet.add(Long.valueOf(profileActivity.f32373u2.participants.participants.get(i11).user_id));
+            }
+        } else if (i10 == 5) {
+            SharedConfig.toggleInappCamera();
+        } else if (i10 == 6) {
+            py0Var.f40274c.getMessagesStorage().clearSentMedia();
+            SharedConfig.setNoSoundHintShowed(false);
+            org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(org.telegram.messenger.q.d(MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l"), "searchpostsnew", "speedhint", "gifhint", "reminderhint"), "soundHint", "themehint", "bganimationhint", "filterhint"), "n_0", "storyprvhint", "storyhint", "storyhint2"), "storydualhint", "storysvddualhint", "stories_camera", "dualcam"), "dualmatrix", "dual_available", "archivehint", "askNotificationsAfter"), "askNotificationsDuration", "viewoncehint", "voicepausehint", "taptostorysoundhint"), "nothanos", "voiceoncehint", "savedhint", "savedsearchhint"), "savedsearchtaghint", "newppsms", "monetizationadshint", "seekSpeedHintShowed"), "unsupport_video/av01", "statusgiftpage", "multistorieshint", "trimvoicehint").remove("taptostoryhighlighthint").apply();
+            w7.y5.a();
+            i15 = ((org.telegram.ui.ActionBar.n2) py0Var.f40274c).currentAccount;
+            MessagesController.getEmojiSettings(i15).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
+            SharedConfig.textSelectionHintShows = 0;
+            SharedConfig.lockRecordAudioVideoHint = 0;
+            SharedConfig.stickersReorderingHintUsed = false;
+            SharedConfig.forwardingOptionsHintShown = false;
+            SharedConfig.replyingOptionsHintShown = false;
+            SharedConfig.messageSeenHintCount = 3;
+            SharedConfig.emojiInteractionsHintCount = 3;
+            SharedConfig.dayNightThemeSwitchHintCount = 3;
+            SharedConfig.fastScrollHintCount = 3;
+            SharedConfig.stealthModeSendMessageConfirm = 2;
+            SharedConfig.updateStealthModeSendMessageConfirm(2);
+            SharedConfig.setStoriesReactionsLongPressHintUsed(false);
+            SharedConfig.setStoriesIntroShown(false);
+            SharedConfig.setMultipleReactionsPromoShowed(false);
+            i16 = ((org.telegram.ui.ActionBar.n2) py0Var.f40274c).currentAccount;
+            ChatThemeController.getInstance(i16).clearCache();
+            py0Var.f40274c.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+            t21.W();
+            i17 = ((org.telegram.ui.ActionBar.n2) py0Var.f40274c).currentAccount;
+            qg.u0.e(i17).a();
+            SharedPreferences mainSettings = py0Var.f40274c.getMessagesController().getMainSettings();
+            SharedPreferences.Editor edit = mainSettings.edit();
+            org.telegram.messenger.q.d(edit, "peerColors", "profilePeerColors", "boostingappearance", "bizbothint").remove("movecaptionhint");
+            for (String str6 : mainSettings.getAll().keySet()) {
+                if (str6.contains("show_gift_for_") || str6.contains("bdayhint_") || str6.contains("bdayanim_") || str6.startsWith("ask_paid_message_") || str6.startsWith("topicssidetabs")) {
+                    edit.remove(str6);
+                }
+            }
+            edit.apply();
+            i18 = ((org.telegram.ui.ActionBar.n2) py0Var.f40274c).currentAccount;
+            SharedPreferences.Editor edit2 = MessagesController.getNotificationsSettings(i18).edit();
+            i19 = ((org.telegram.ui.ActionBar.n2) py0Var.f40274c).currentAccount;
+            for (String str7 : MessagesController.getNotificationsSettings(i19).getAll().keySet()) {
+                if (str7.startsWith("dialog_bar_botver")) {
+                    edit2.remove(str7);
+                }
+            }
+            edit2.apply();
+        } else if (i10 == 7) {
+            org.telegram.ui.Components.voip.d2.i(py0Var.f40274c.getParentActivity());
+        } else if (i10 == 8) {
+            SharedConfig.toggleRoundCamera16to9();
+        } else if (i10 == 9) {
+            ((LaunchActivity) py0Var.f40274c.getParentActivity()).z(true);
+        } else if (i10 == 10) {
+            py0Var.f40274c.getMessagesStorage().readAllDialogs(-1);
+        } else if (i10 == 11) {
+            SharedConfig.toggleDisableVoiceAudioEffects();
+        } else if (i10 == 12) {
+            SharedConfig.pendingAppUpdate = null;
+            SharedConfig.saveConfig();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+        } else if (i10 == 13) {
+            Set<String> set = py0Var.f40274c.getMessagesController().pendingSuggestions;
+            set.add("VALIDATE_PHONE_NUMBER");
+            set.add("VALIDATE_PASSWORD");
+            py0Var.f40274c.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+        } else {
+            try {
+                if (i10 == 14) {
+                    ApplicationLoader.applicationContext.deleteDatabase("webview.db");
+                    ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
+                    WebStorage.getInstance().deleteAllData();
+                    WebView webView = new WebView(ApplicationLoader.applicationContext);
+                    webView.clearHistory();
+                    webView.destroy();
+                } else if (i10 == 15) {
+                    CookieManager cookieManager = CookieManager.getInstance();
+                    cookieManager.removeAllCookies(null);
+                    cookieManager.flush();
+                } else if (i10 == 16) {
+                    SharedConfig.toggleDebugWebView();
+                    Activity parentActivity = py0Var.f40274c.getParentActivity();
+                    if (SharedConfig.debugWebView) {
+                        i14 = R.string.DebugMenuWebViewDebugEnabled;
+                    } else {
+                        i14 = R.string.DebugMenuWebViewDebugDisabled;
+                    }
+                    Toast.makeText(parentActivity, LocaleController.getString(i14), 0).show();
+                } else if (i10 == 17) {
+                    SharedConfig.toggleForceDisableTabletMode();
+                    Activity findActivity = AndroidUtilities.findActivity(context);
+                    Intent launchIntentForPackage = findActivity.getPackageManager().getLaunchIntentForPackage(findActivity.getPackageName());
+                    findActivity.finishAffinity();
+                    findActivity.startActivity(launchIntentForPackage);
+                    System.exit(0);
+                } else if (i10 == 18) {
+                    w7.d0.a((LaunchActivity) py0Var.f40274c.getParentActivity(), !SharedConfig.isFloatingDebugActive, true);
+                } else if (i10 == 19) {
+                    py0Var.f40274c.getMessagesController().loadAppConfig();
+                    TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                    tL_help_dismissSuggestion.suggestion = "VALIDATE_PHONE_NUMBER";
+                    tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                    py0Var.f40274c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new my0(py0Var, 0));
+                } else if (i10 == 20) {
+                    int i21 = ConnectionsManager.CPU_COUNT;
+                    int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryClass();
+                    StringBuilder sb2 = new StringBuilder();
+                    long j12 = 0;
+                    long j13 = 0;
+                    long j14 = 0;
+                    long j15 = 0;
+                    long j16 = 0;
+                    long j17 = 0;
+                    long j18 = 0;
+                    long j19 = 0;
+                    while (i20 < i21) {
+                        long j20 = j11;
+                        Long sysInfoLong = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i20 + "/cpufreq/cpuinfo_min_freq");
+                        Long sysInfoLong2 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i20 + "/cpufreq/cpuinfo_cur_freq");
+                        Long sysInfoLong3 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i20 + "/cpufreq/cpuinfo_max_freq");
+                        Long sysInfoLong4 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i20 + "/cpu_capacity");
+                        sb2.append("#");
+                        sb2.append(i20);
+                        sb2.append(" ");
+                        int i22 = i20;
+                        if (sysInfoLong != null) {
+                            sb2.append("min=");
+                            l4 = sysInfoLong3;
+                            sb2.append(sysInfoLong.longValue() / 1000);
+                            sb2.append(" ");
+                            j12 += sysInfoLong.longValue() / 1000;
+                            j13++;
+                        } else {
+                            l4 = sysInfoLong3;
+                        }
+                        if (sysInfoLong2 != null) {
+                            sb2.append("cur=");
+                            sb2.append(sysInfoLong2.longValue() / 1000);
+                            sb2.append(" ");
+                            j14 += sysInfoLong2.longValue() / 1000;
+                            j15++;
+                        }
+                        if (l4 != null) {
+                            sb2.append("max=");
+                            sb2.append(l4.longValue() / 1000);
+                            sb2.append(" ");
+                            j16 = (l4.longValue() / 1000) + j16;
+                            j17++;
+                        }
+                        if (sysInfoLong4 != null) {
+                            sb2.append("cpc=");
+                            sb2.append(sysInfoLong4);
+                            sb2.append(" ");
+                            j18 = sysInfoLong4.longValue() + j18;
+                            j19++;
+                        }
+                        sb2.append("\n");
+                        i20 = i22 + 1;
+                        j11 = j20;
+                    }
+                    long j21 = j11;
+                    StringBuilder sb3 = new StringBuilder();
+                    sb3.append(Build.MANUFACTURER);
+                    sb3.append(", ");
+                    sb3.append(Build.MODEL);
+                    sb3.append(" (");
+                    sb3.append(Build.PRODUCT);
+                    sb3.append(", ");
+                    sb3.append(Build.DEVICE);
+                    sb3.append(")  (android ");
+                    int i23 = Build.VERSION.SDK_INT;
+                    sb3.append(i23);
+                    sb3.append(")\n");
+                    if (i23 >= 31) {
+                        sb3.append("SoC: ");
+                        sb3.append(Build.SOC_MANUFACTURER);
+                        sb3.append(", ");
+                        sb3.append(Build.SOC_MODEL);
+                        sb3.append("\n");
+                    }
+                    String sysInfoString = AndroidUtilities.getSysInfoString("/sys/kernel/gpu/gpu_model");
+                    if (sysInfoString != null) {
+                        sb3.append("GPU: ");
+                        sb3.append(sysInfoString);
+                        Long sysInfoLong5 = AndroidUtilities.getSysInfoLong("/sys/kernel/gpu/gpu_min_clock");
+                        Long sysInfoLong6 = AndroidUtilities.getSysInfoLong("/sys/kernel/gpu/gpu_mm_min_clock");
+                        Long sysInfoLong7 = AndroidUtilities.getSysInfoLong("/sys/kernel/gpu/gpu_max_clock");
+                        if (sysInfoLong5 != null) {
+                            sb3.append(", min=");
+                            j10 = j12;
+                            sb3.append(sysInfoLong5.longValue() / 1000);
+                        } else {
+                            j10 = j12;
+                        }
+                        if (sysInfoLong6 != null) {
+                            sb3.append(", mmin=");
+                            sb3.append(sysInfoLong6.longValue() / 1000);
+                        }
+                        if (sysInfoLong7 != null) {
+                            sb3.append(", max=");
+                            sb3.append(sysInfoLong7.longValue() / 1000);
+                        }
+                        sb3.append("\n");
+                    } else {
+                        j10 = j12;
+                    }
+                    ConfigurationInfo deviceConfigurationInfo = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getDeviceConfigurationInfo();
+                    sb3.append("GLES Version: ");
+                    sb3.append(deviceConfigurationInfo.getGlEsVersion());
+                    sb3.append("\nMemory: class=");
+                    sb3.append(AndroidUtilities.formatFileSize(memoryClass * 1048576));
+                    ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+                    ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryInfo(memoryInfo);
+                    sb3.append(", total=");
+                    sb3.append(AndroidUtilities.formatFileSize(memoryInfo.totalMem));
+                    sb3.append(", avail=");
+                    sb3.append(AndroidUtilities.formatFileSize(memoryInfo.availMem));
+                    sb3.append(", low?=");
+                    sb3.append(memoryInfo.lowMemory);
+                    sb3.append(" (threshold=");
+                    sb3.append(AndroidUtilities.formatFileSize(memoryInfo.threshold));
+                    sb3.append(")\nCurrent class: ");
+                    sb3.append(SharedConfig.performanceClassName(SharedConfig.getDevicePerformanceClass()));
+                    sb3.append(", measured: ");
+                    sb3.append(SharedConfig.performanceClassName(SharedConfig.measureDevicePerformanceClass()));
+                    if (i23 >= 31) {
+                        sb3.append(", suggest=");
+                        sb3.append(Build.VERSION.MEDIA_PERFORMANCE_CLASS);
+                    }
+                    sb3.append("\n");
+                    sb3.append(i21);
+                    sb3.append(" CPUs");
+                    if (j13 > j21) {
+                        sb3.append(", avgMinFreq=");
+                        sb3.append(j10 / j13);
+                    }
+                    if (j15 > j21) {
+                        sb3.append(", avgCurFreq=");
+                        sb3.append(j14 / j15);
+                    }
+                    if (j17 > j21) {
+                        sb3.append(", avgMaxFreq=");
+                        sb3.append(j16 / j17);
+                    }
+                    if (j19 > j21) {
+                        sb3.append(", avgCapacity=");
+                        sb3.append(j18 / j19);
+                    }
+                    sb3.append("\n");
+                    sb3.append((CharSequence) sb2);
+                    ProfileActivity.S0(py0Var.f40274c, "video/avc", sb3);
+                    ProfileActivity.S0(py0Var.f40274c, "video/hevc", sb3);
+                    ProfileActivity.S0(py0Var.f40274c, "video/x-vnd.on2.vp8", sb3);
+                    ProfileActivity.S0(py0Var.f40274c, "video/x-vnd.on2.vp9", sb3);
+                    py0Var.f40274c.showDialog(new oy0(py0Var, py0Var.f40274c.getParentActivity(), sb3.toString()));
+                } else if (i10 == 21) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(py0Var.f40274c.getParentActivity(), 0, py0Var.f40274c.A0);
+                    alertDialog$Builder.f20601a.R = "Force performance class";
+                    int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+                    int measureDevicePerformanceClass = SharedConfig.measureDevicePerformanceClass();
+                    if (devicePerformanceClass == 2) {
+                        str = "**HIGH**";
+                    } else {
+                        str = "HIGH";
+                    }
+                    String str8 = "";
+                    if (measureDevicePerformanceClass != 2) {
+                        str2 = "";
+                    } else {
+                        str2 = " (measured)";
+                    }
+                    SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(str.concat(str2));
+                    if (devicePerformanceClass == 1) {
+                        str3 = "**AVERAGE**";
+                    } else {
+                        str3 = "AVERAGE";
+                    }
+                    if (measureDevicePerformanceClass != 1) {
+                        str4 = "";
+                    } else {
+                        str4 = " (measured)";
+                    }
+                    SpannableStringBuilder replaceTags2 = AndroidUtilities.replaceTags(str3.concat(str4));
+                    if (devicePerformanceClass == 0) {
+                        str5 = "**LOW**";
+                    } else {
+                        str5 = "LOW";
+                    }
+                    if (measureDevicePerformanceClass == 0) {
+                        str8 = " (measured)";
+                    }
+                    alertDialog$Builder.f(new CharSequence[]{replaceTags, replaceTags2, AndroidUtilities.replaceTags(str5.concat(str8))}, new ny0(measureDevicePerformanceClass, 0));
+                    alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
+                    alertDialog$Builder.o();
+                } else if (i10 == 22) {
+                    SharedConfig.toggleRoundCamera();
+                } else if (i10 == 23) {
+                    boolean q6 = ei.c1.q(py0Var.f40274c.getParentActivity());
+                    MessagesController.getGlobalMainSettings().edit().putBoolean("dual_available", !q6).apply();
+                    Activity parentActivity2 = py0Var.f40274c.getParentActivity();
+                    if (!q6) {
+                        i13 = R.string.DebugMenuDualOnToast;
+                    } else {
+                        i13 = R.string.DebugMenuDualOffToast;
+                    }
+                    Toast.makeText(parentActivity2, LocaleController.getString(i13), 0).show();
+                } else if (i10 == 24) {
+                    SharedConfig.toggleSurfaceInStories();
+                    while (i20 < py0Var.f40274c.getParentLayout().getFragmentStack().size()) {
+                        ((org.telegram.ui.ActionBar.n2) py0Var.f40274c.getParentLayout().getFragmentStack().get(i20)).clearSheets();
+                        i20++;
+                    }
+                } else if (i10 == 25) {
+                    SharedConfig.togglePhotoViewerBlur();
+                } else if (i10 == 26) {
+                    SharedConfig.togglePaymentByInvoice();
+                } else if (i10 == 27) {
+                    py0Var.f40274c.getMediaDataController().loadAttachMenuBots(false, true);
+                } else if (i10 == 28) {
+                    i12 = ((org.telegram.ui.ActionBar.n2) py0Var.f40274c).currentAccount;
+                    SharedConfig.toggleUseCamera2(i12);
+                } else if (i10 == 29) {
+                    gi.r.b();
+                    gi.u0.c();
+                    gi.j0.a();
+                    gi.r4.c();
+                } else if (i10 == 30) {
+                    AuthTokensHelper.clearLogInTokens();
+                } else if (i10 == 31) {
+                    SharedConfig.toggleUseNewBlur();
+                } else if (i10 == 32) {
+                    SharedConfig.toggleBrowserAdaptableColors();
+                } else if (i10 == 33) {
+                    SharedConfig.toggleDebugVideoQualities();
+                } else if (i10 == 34) {
+                    SharedConfig.toggleUseSystemBoldFont();
+                } else if (i10 == 35) {
+                    i11 = ((org.telegram.ui.ActionBar.n2) py0Var.f40274c).currentAccount;
+                    MessagesController.getInstance(i11).loadAppConfig(true);
+                } else if (i10 == 36) {
+                    SharedConfig.toggleForceForumTabs();
+                } else if (i10 == 37) {
+                    FileLog.getInstance().dumpMemory(true);
+                } else if (i10 == 38) {
+                    SharedConfig.toggleFastWallpaperDisabled();
+                }
+            } catch (Exception unused) {
             }
         }
-        profileActivity.getMessagesController().addUsersToChat(profileActivity.E2, profileActivity, arrayList, i10, new j3(arrayList2, 5), new j3(profileActivity, 6), new tf0(profileActivity, arrayList2, hashSet, 23));
     }
 
     @Override
-    public void p(int i10, float f7, float f10, ne.e eVar) {
-        this.f39029b.U4();
-    }
-
-    @Override
-    public boolean run() {
-        ProfileActivity profileActivity = this.f39029b;
-        return profileActivity.D2 != null || profileActivity.g4();
-    }
-
-    @Override
-    public void run(boolean z10) {
-        ProfileActivity profileActivity = this.f39029b;
-        profileActivity.J1 = 0;
-        NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
-        int i10 = NotificationCenter.closeChats;
-        notificationCenter.removeObserver(profileActivity, i10);
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i10, new Object[0]);
-        profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-profileActivity.E2.f18916id), null, profileActivity.E2, Boolean.valueOf(z10));
-    }
-
-    @Override
-    public void h(TLRPC.User user) {
-    }
-
-    @Override
-    public void A(float f7, int i10) {
+    public final boolean a(int r46, android.view.View r47) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.py0.a(int, android.view.View):boolean");
     }
 }

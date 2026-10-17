@@ -2,11 +2,11 @@ package n6;
 
 import java.util.Arrays;
 public final class p implements com.google.android.gms.common.api.b {
-    public static final p f15844b = new p(null);
-    public final String f15845a;
+    public static final p f17220b = new p(null);
+    public final String f17221a;
 
     public p(String str) {
-        this.f15845a = str;
+        this.f17221a = str;
     }
 
     public final boolean equals(Object obj) {
@@ -16,10 +16,10 @@ public final class p implements com.google.android.gms.common.api.b {
         if (!(obj instanceof p)) {
             return false;
         }
-        return l.l(this.f15845a, ((p) obj).f15845a);
+        return l.l(this.f17221a, ((p) obj).f17221a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f15845a});
+        return Arrays.hashCode(new Object[]{this.f17221a});
     }
 }

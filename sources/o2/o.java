@@ -1,106 +1,107 @@
 package o2;
 
+import b2.v;
+import b2.v0;
 import b2.w;
-import b2.w0;
-import b2.x;
-import c3.h0;
 import c3.i0;
+import c3.j0;
+import e2.x;
 import j$.util.Objects;
 import java.io.EOFException;
 import java.util.Arrays;
-public final class o implements i0 {
-    public static final x f16234f;
-    public static final x f16235g;
-    public final i0 f16236a;
-    public final x f16237b;
-    public x f16238c;
+public final class o implements j0 {
+    public static final w f17628f;
+    public static final w f17629g;
+    public final j0 f17630a;
+    public final w f17631b;
+    public w f17632c;
     public byte[] d;
     public int e;
 
     static {
-        w wVar = new w();
-        wVar.f2470r = w0.n("application/id3");
-        f16234f = new x(wVar);
-        w wVar2 = new w();
-        wVar2.f2470r = w0.n("application/x-emsg");
-        f16235g = new x(wVar2);
+        v vVar = new v();
+        vVar.f4078r = v0.n("application/id3");
+        f17628f = new w(vVar);
+        v vVar2 = new v();
+        vVar2.f4078r = v0.n("application/x-emsg");
+        f17629g = new w(vVar2);
     }
 
-    public o(i0 i0Var, int i10) {
-        this.f16236a = i0Var;
+    public o(j0 j0Var, int i10) {
+        this.f17630a = j0Var;
         if (i10 != 1) {
             if (i10 == 3) {
-                this.f16237b = f16235g;
+                this.f17631b = f17629g;
             } else {
-                throw new IllegalArgumentException(i2.d.j(i10, "Unknown metadataType: "));
+                throw new IllegalArgumentException(i0.a.j(i10, "Unknown metadataType: "));
             }
         } else {
-            this.f16237b = f16234f;
+            this.f17631b = f17628f;
         }
         this.d = new byte[0];
         this.e = 0;
     }
 
     @Override
-    public final int a(b2.p pVar, int i10, boolean z10) {
-        return f(pVar, i10, z10);
+    public final int a(b2.o oVar, int i10, boolean z10) {
+        return f(oVar, i10, z10);
     }
 
     @Override
-    public final void b(x xVar) {
-        this.f16238c = xVar;
-        this.f16236a.b(this.f16237b);
+    public final void b(w wVar) {
+        this.f17632c = wVar;
+        this.f17630a.b(this.f17631b);
     }
 
     @Override
-    public final void c(long j10, int i10, int i11, int i12, h0 h0Var) {
-        this.f16238c.getClass();
+    public final void c(long j10, int i10, int i11, int i12, i0 i0Var) {
+        this.f17632c.getClass();
         int i13 = this.e - i12;
-        e2.x xVar = new e2.x(Arrays.copyOfRange(this.d, i13 - i11, i13));
+        x xVar = new x(Arrays.copyOfRange(this.d, i13 - i11, i13));
         byte[] bArr = this.d;
         System.arraycopy(bArr, i13, bArr, 0, i12);
         this.e = i12;
-        String str = this.f16238c.f2523s;
-        x xVar2 = this.f16237b;
-        String str2 = xVar2.f2523s;
-        String str3 = xVar2.f2523s;
+        String str = this.f17632c.f4131s;
+        w wVar = this.f17631b;
+        String str2 = wVar.f4131s;
+        String str3 = wVar.f4131s;
         if (!Objects.equals(str, str2)) {
-            if ("application/x-emsg".equals(this.f16238c.f2523s)) {
+            if ("application/x-emsg".equals(this.f17632c.f4131s)) {
                 n3.a c10 = m3.b.c(xVar);
-                x a2 = c10.a();
-                if (a2 != null && Objects.equals(str3, a2.f2523s)) {
+                w a2 = c10.a();
+                if (a2 != null && Objects.equals(str3, a2.f4131s)) {
                     byte[] c11 = c10.c();
                     c11.getClass();
-                    xVar = new e2.x(c11);
+                    xVar = new x(c11);
                 } else {
-                    x a10 = c10.a();
+                    w a10 = c10.a();
                     e2.a.l("HlsSampleStreamWrapper", "Ignoring EMSG. Expected it to contain wrapped " + str3 + " but actual wrapped format: " + a10);
                     return;
                 }
             } else {
-                e2.a.l("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.f16238c.f2523s);
+                e2.a.l("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.f17632c.f4131s);
                 return;
             }
         }
         int a11 = xVar.a();
-        i0 i0Var = this.f16236a;
-        i0Var.d(a11, xVar);
-        i0Var.c(j10, i10, a11, 0, h0Var);
+        j0 j0Var = this.f17630a;
+        j0Var.d(a11, xVar);
+        j0Var.c(j10, i10, a11, 0, i0Var);
     }
 
     @Override
-    public final void d(int i10, e2.x xVar) {
+    public final void d(int i10, x xVar) {
         a1.g.a(this, xVar, i10);
     }
 
     @Override
-    public final int f(b2.p pVar, int i10, boolean z10) {
+    public final int f(b2.o oVar, int i10, boolean z10) {
         int i11 = this.e + i10;
         byte[] bArr = this.d;
         if (bArr.length < i11) {
             this.d = Arrays.copyOf(bArr, (i11 / 2) + i11);
         }
-        int read = pVar.read(this.d, this.e, i10);
+        int read = oVar.read(this.d, this.e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
@@ -112,7 +113,7 @@ public final class o implements i0 {
     }
 
     @Override
-    public final void g(e2.x xVar, int i10, int i11) {
+    public final void g(x xVar, int i10, int i11) {
         int i12 = this.e + i10;
         byte[] bArr = this.d;
         if (bArr.length < i12) {

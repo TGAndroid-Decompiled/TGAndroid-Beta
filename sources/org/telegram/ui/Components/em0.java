@@ -1,86 +1,172 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
+import android.util.SparseIntArray;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.fi1;
-public final class em0 implements Runnable {
-    public final int f24429a;
-    public final float f24430b;
-    public final float f24431c;
-    public final Object d;
+import j$.util.Objects;
+import java.util.ArrayList;
+public abstract class em0 extends ql0 {
+    public SparseIntArray f25959c;
+    public SparseIntArray d;
+    public SparseIntArray e;
+    public int f25960f;
+    public int h;
+    public final ArrayList f25961n = new ArrayList();
 
-    public em0(Object obj, float f7, float f10, int i10) {
-        this.f24429a = i10;
-        this.d = obj;
-        this.f24430b = f7;
-        this.f24431c = f10;
+    public em0() {
+        L();
     }
 
     @Override
-    public final void run() {
-        View view;
-        int i10 = this.f24429a;
-        float f7 = this.f24431c;
-        float f10 = this.f24430b;
-        Object obj = this.d;
-        switch (i10) {
-            case 0:
-                mm0 mm0Var = (mm0) ((hm0) obj).f25362b;
-                if (mm0Var.f27126c1 != null && (view = mm0Var.L1) != null) {
-                    mm0Var.h1(view, f10, f7, true);
-                    mm0Var.f27126c1 = null;
-                    return;
-                }
-                return;
-            default:
-                tg.i iVar = (tg.i) obj;
-                tg.n nVar = iVar.f45728b;
-                ValueAnimator valueAnimator = nVar.W;
-                tg.h hVar = nVar.f45745e0;
-                tg.h hVar2 = nVar.f45744d0;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    nVar.W.cancel();
-                    nVar.W = null;
-                }
-                AnimatorSet animatorSet = nVar.f45739a0;
-                if (animatorSet != null) {
-                    animatorSet.removeAllListeners();
-                    nVar.f45739a0.cancel();
-                    nVar.f45739a0 = null;
-                }
-                if (Math.abs(nVar.f45740b.d) > 10.0f) {
-                    nVar.l();
-                    return;
-                }
-                AndroidUtilities.cancelRunOnUIThread(nVar.f45741b0);
-                nVar.f45739a0 = new AnimatorSet();
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(nVar.f45740b.d, f10);
-                ofFloat.addUpdateListener(hVar2);
-                long j10 = 220;
-                ofFloat.setDuration(j10);
-                es esVar = es.h;
-                ofFloat.setInterpolator(esVar);
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f10, 0.0f);
-                ofFloat2.addUpdateListener(hVar2);
-                ofFloat2.setStartDelay(j10);
-                ofFloat2.setDuration(600L);
-                ofFloat2.setInterpolator(AndroidUtilities.overshootInterpolator);
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(nVar.f45740b.f45708i, f7);
-                ofFloat3.addUpdateListener(hVar);
-                ofFloat3.setDuration(j10);
-                ofFloat3.setInterpolator(esVar);
-                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f7, 0.0f);
-                ofFloat4.addUpdateListener(hVar);
-                ofFloat4.setStartDelay(j10);
-                ofFloat4.setDuration(600L);
-                ofFloat4.setInterpolator(AndroidUtilities.overshootInterpolator);
-                nVar.f45739a0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-                nVar.f45739a0.addListener(new fi1(iVar, 17));
-                nVar.f45739a0.start();
-                return;
+    public final boolean D(s4.b1 b1Var) {
+        int b10 = b1Var.b();
+        return V(S(b10), Q(b10), b1Var);
+    }
+
+    public final void L() {
+        SparseIntArray sparseIntArray = this.d;
+        if (sparseIntArray == null) {
+            this.d = new SparseIntArray();
+            this.f25959c = new SparseIntArray();
+            this.e = new SparseIntArray();
+        } else {
+            sparseIntArray.clear();
+            this.f25959c.clear();
+            this.e.clear();
         }
+        this.h = -1;
+        this.f25960f = -1;
+    }
+
+    public abstract int M(int i10);
+
+    public int N(int i10, int i11) {
+        return Objects.hash(Integer.valueOf((-49612) * i10), O(i10, i11));
+    }
+
+    public abstract Object O(int i10, int i11);
+
+    public abstract int P(int i10, int i11);
+
+    public final int Q(int i10) {
+        int i11 = this.f25959c.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int i12 = this.f25960f;
+        if (i12 < 0) {
+            i12 = R();
+            this.f25960f = i12;
+        }
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i12) {
+            int U = U(i13) + i14;
+            if (i10 >= i14 && i10 < U) {
+                int i15 = i10 - i14;
+                this.f25959c.put(i10, i15);
+                return i15;
+            }
+            i13++;
+            i14 = U;
+        }
+        return -1;
+    }
+
+    public abstract int R();
+
+    public final int S(int i10) {
+        int i11 = this.d.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int i12 = this.f25960f;
+        if (i12 < 0) {
+            i12 = R();
+            this.f25960f = i12;
+        }
+        int i13 = 0;
+        int i14 = 0;
+        while (i13 < i12) {
+            int U = U(i13) + i14;
+            if (i10 >= i14 && i10 < U) {
+                this.d.put(i10, i13);
+                return i13;
+            }
+            i13++;
+            i14 = U;
+        }
+        return -1;
+    }
+
+    public abstract View T(int i10, View view);
+
+    public final int U(int i10) {
+        int i11 = this.e.get(i10, Integer.MAX_VALUE);
+        if (i11 != Integer.MAX_VALUE) {
+            return i11;
+        }
+        int M = M(i10);
+        this.e.put(i10, M);
+        return M;
+    }
+
+    public abstract boolean V(int i10, int i11, s4.b1 b1Var);
+
+    public abstract void W(int i10, int i11, s4.b1 b1Var);
+
+    public final void X(boolean z10) {
+        ArrayList arrayList = this.f25961n;
+        ArrayList arrayList2 = new ArrayList(arrayList);
+        L();
+        arrayList.clear();
+        int i10 = this.f25960f;
+        if (i10 < 0) {
+            i10 = R();
+            this.f25960f = i10;
+        }
+        for (int i11 = 0; i11 < i10; i11++) {
+            int U = U(i11);
+            for (int i12 = 0; i12 < U; i12++) {
+                arrayList.add(Integer.valueOf(N(i11, i12)));
+            }
+        }
+        if (z10) {
+            s4.o.c(new hg.g(this, arrayList2, 2), true).c(this);
+        } else {
+            super.l();
+        }
+    }
+
+    @Override
+    public final int h() {
+        int i10 = this.h;
+        if (i10 >= 0) {
+            return i10;
+        }
+        this.h = 0;
+        int i11 = this.f25960f;
+        if (i11 < 0) {
+            i11 = R();
+            this.f25960f = i11;
+        }
+        for (int i12 = 0; i12 < i11; i12++) {
+            this.h = U(i12) + this.h;
+        }
+        return this.h;
+    }
+
+    @Override
+    public final int j(int i10) {
+        return P(S(i10), Q(i10));
+    }
+
+    @Override
+    public void l() {
+        X(false);
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        W(S(i10), Q(i10), b1Var);
     }
 }

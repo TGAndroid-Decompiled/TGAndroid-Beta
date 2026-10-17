@@ -1,27 +1,30 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-public final class fi implements Runnable {
-    public final int f16956a;
-    public final SecretChatHelper f16957b;
-    public final Context f16958c;
-    public final org.telegram.ui.ActionBar.a2 d;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class fi implements RequestDelegate {
+    public final int f18383a;
+    public final SendMessagesHelper f18384b;
+    public final TLRPC.InputMedia f18385c;
+    public final SendMessagesHelper.DelayedMessage d;
 
-    public fi(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        this.f16956a = i10;
-        this.f16957b = secretChatHelper;
-        this.f16958c = context;
-        this.d = a2Var;
+    public fi(SendMessagesHelper sendMessagesHelper, TLRPC.InputMedia inputMedia, SendMessagesHelper.DelayedMessage delayedMessage, int i10) {
+        this.f18383a = i10;
+        this.f18384b = sendMessagesHelper;
+        this.f18385c = inputMedia;
+        this.d = delayedMessage;
     }
 
     @Override
-    public final void run() {
-        switch (this.f16956a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18383a) {
             case 0:
-                this.f16957b.lambda$startSecretChat$27(this.f16958c, this.d);
+                this.f18384b.lambda$performSendDelayedMessage$55(this.f18385c, this.d, tLObject, tL_error);
                 return;
             default:
-                this.f16957b.lambda$startSecretChat$29(this.f16958c, this.d);
+                this.f18384b.lambda$uploadMultiMedia$63(this.f18385c, this.d, tLObject, tL_error);
                 return;
         }
     }

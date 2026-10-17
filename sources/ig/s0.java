@@ -1,59 +1,70 @@
 package ig;
 
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class s0 implements TextView.OnEditorActionListener {
-    public final int f11626a;
-    public final Object f11627b;
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.sn;
+public final class s0 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5 {
+    public final int f13027a;
+    public final t0 f13028b;
 
-    public s0(Object obj, int i10) {
-        this.f11626a = i10;
-        this.f11627b = obj;
+    public s0(t0 t0Var, int i10) {
+        this.f13027a = i10;
+        this.f13028b = t0Var;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        ji.g1 g1Var;
-        switch (this.f11626a) {
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f13027a) {
             case 0:
-                u0 u0Var = (u0) this.f11627b;
-                m0 m0Var = u0Var.F;
-                boolean z10 = false;
-                if (i10 == 6) {
-                    u0Var.f11659x = false;
-                    AndroidUtilities.cancelRunOnUIThread(m0Var);
-                    z10 = true;
-                    if (TextUtils.isEmpty(u0Var.f11654f.getText())) {
-                        u0Var.f11660y = null;
-                        u0Var.d.b();
-                        u0Var.f11653c.W2.N(true);
-                    } else {
-                        AndroidUtilities.runOnUIThread(m0Var);
-                    }
-                    u0Var.b0();
-                }
-                return z10;
-            case 1:
-                ji.h1 h1Var = (ji.h1) this.f11627b;
-                if (i10 == 5 && (g1Var = h1Var.f13295c) != null && !h1Var.f13300w) {
-                    if (h1Var.f13298r) {
-                        h1Var.p();
-                    } else {
-                        g1Var.z(h1Var);
-                    }
-                    return true;
-                }
-                return false;
+                this.f13028b.X();
+                return;
             default:
-                zh.g gVar = (zh.g) this.f11627b;
-                if (i10 == 5) {
-                    gVar.k0();
-                    return true;
+                this.f13028b.finishFragment();
+                return;
+        }
+    }
+
+    @Override
+    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        f61 f61Var = (f61) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        t0 t0Var = this.f13028b;
+        if (!t0Var.d.h(f61Var)) {
+            int i10 = f61Var.d;
+            if (i10 != 2 && f61Var.f44314a != 17) {
+                if (i10 == 1) {
+                    t0Var.f13046s = !t0Var.f13046s;
+                    t0Var.f13042c.W2.N(true);
+                    t0Var.V(true);
+                    return;
+                } else if (i10 == 3) {
+                    a0 a0Var = t0Var.d;
+                    t0Var.v = true;
+                    a0Var.h = true;
+                    t0Var.f13042c.W2.N(true);
+                    t0Var.V(true);
+                    return;
+                } else if (i10 == 4) {
+                    a0 a0Var2 = t0Var.d;
+                    t0Var.v = false;
+                    a0Var2.h = false;
+                    t0Var.f13042c.W2.N(true);
+                    t0Var.V(true);
+                    return;
+                } else {
+                    return;
                 }
-                gVar.getClass();
-                return false;
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", t0Var.getUserConfig().getClientUserId());
+            bundle.putInt("chatMode", 5);
+            bundle.putString("quick_reply", "hello");
+            t0Var.presentFragment(new sn(bundle));
         }
     }
 }

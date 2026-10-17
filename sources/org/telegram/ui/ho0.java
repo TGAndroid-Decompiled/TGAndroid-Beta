@@ -1,31 +1,37 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ho0 implements yo0 {
-    public final ap0 f36620a;
+import org.telegram.messenger.Utilities;
+public final class ho0 implements Utilities.Callback {
+    public final int f37597a;
+    public final jp0 f37598b;
 
-    public ho0(ap0 ap0Var) {
-        this.f36620a = ap0Var;
+    public ho0(jp0 jp0Var, int i10) {
+        this.f37597a = i10;
+        this.f37598b = jp0Var;
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        return false;
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        ap0 ap0Var = this.f36620a;
-        ap0Var.I0 = tL_payments_validateRequestedInfo;
-        ap0Var.B0(tL_payments_validateRequestedInfo.info);
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void b() {
+    public final void run(Object obj) {
+        switch (this.f37597a) {
+            case 0:
+                jp0 jp0Var = this.f37598b;
+                jp0Var.f38255r = false;
+                jp0Var.Q.setLoading(false);
+                if (((Boolean) obj).booleanValue()) {
+                    jp0Var.x0();
+                    jp0Var.finishFragment();
+                    jp0Var.E0();
+                    return;
+                }
+                return;
+            default:
+                Integer num = (Integer) obj;
+                ei.h1 h1Var = this.f37598b.I;
+                if (h1Var != null) {
+                    h1Var.D(num.intValue());
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,16 +1,18 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class xl extends zu0 {
-    public final fo f41594a;
+import android.content.Context;
+public final class xl extends org.telegram.ui.Cells.h0 {
+    public final fm L;
 
-    public xl(fo foVar) {
-        this.f41594a = foVar;
+    public xl(fm fmVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i10, d6Var);
+        this.L = fmVar;
     }
 
     @Override
-    public final jv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return fo.E1(this.f41594a, messageObject, fileLocation, i10, z10, false);
+    public final int getSideMenuWidth() {
+        sn snVar = this.L.Q;
+        int i10 = sn.Hc;
+        return snVar.W8();
     }
 }

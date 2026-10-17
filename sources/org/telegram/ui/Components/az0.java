@@ -1,10 +1,82 @@
 package org.telegram.ui.Components;
 
-import java.util.LinkedHashMap;
-public final class az0 {
-    public long f23326a;
-    public int f23327b;
-    public boolean f23328c;
-    public boolean d;
-    public Object e = new LinkedHashMap();
+import android.view.KeyEvent;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class az0 implements Runnable {
+    public final int f24745a;
+    public final int f24746b;
+    public final Object f24747c;
+    public final Object d;
+    public final Object e;
+
+    public az0(int i10, int i11, KeyEvent.Callback callback, Object obj, Object obj2) {
+        this.f24745a = i11;
+        this.d = callback;
+        this.f24746b = i10;
+        this.e = obj;
+        this.f24747c = obj2;
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.az0.run():void");
+    }
+
+    public az0(int i10, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
+        this.f24745a = 12;
+        this.f24746b = i10;
+        this.d = tL_error;
+        this.e = n2Var;
+        this.f24747c = tL_payments_assignPlayMarketTransaction;
+    }
+
+    public az0(Object obj, FrameLayout frameLayout, Object obj2, int i10, int i11) {
+        this.f24745a = i11;
+        this.d = obj;
+        this.e = frameLayout;
+        this.f24747c = obj2;
+        this.f24746b = i10;
+    }
+
+    public az0(Object obj, Object obj2, int i10, Object obj3, int i11) {
+        this.f24745a = i11;
+        this.d = obj;
+        this.e = obj2;
+        this.f24746b = i10;
+        this.f24747c = obj3;
+    }
+
+    public az0(Object obj, Object obj2, int i10, Object obj3, int i11, boolean z10) {
+        this.f24745a = i11;
+        this.d = obj;
+        this.f24747c = obj2;
+        this.f24746b = i10;
+        this.e = obj3;
+    }
+
+    public az0(String str, int i10, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f24745a = 4;
+        this.e = str;
+        this.f24746b = i10;
+        this.d = f3Var;
+        this.f24747c = d6Var;
+    }
+
+    public az0(org.telegram.ui.ActionBar.n2 n2Var, Object obj, String str, int i10, int i11) {
+        this.f24745a = i11;
+        this.d = n2Var;
+        this.f24747c = obj;
+        this.e = str;
+        this.f24746b = i10;
+    }
+
+    public az0(hm0 hm0Var, int i10, ArrayList arrayList, ArrayList arrayList2, int i11) {
+        this.f24745a = i11;
+        this.d = hm0Var;
+        this.f24746b = i10;
+        this.f24747c = arrayList;
+        this.e = arrayList2;
+    }
 }

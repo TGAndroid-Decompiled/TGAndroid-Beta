@@ -1,51 +1,28 @@
 package org.telegram.ui.Wallet;
 
-import android.app.AlertDialog;
-import android.hardware.fingerprint.FingerprintManager;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class u0 extends FingerprintManager.AuthenticationCallback {
-    public final v0 f33467a;
+import android.hardware.biometrics.BiometricPrompt;
+import android.hardware.biometrics.BiometricPrompt$AuthenticationCallback;
+public final class u0 extends BiometricPrompt$AuthenticationCallback {
+    public final w0 f34918a;
 
-    public u0(v0 v0Var) {
-        this.f33467a = v0Var;
+    public u0(w0 w0Var) {
+        this.f34918a = w0Var;
     }
 
-    @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        v0 v0Var = this.f33467a;
-        if (v0Var.f() && !v0Var.f33493f) {
-            if (i10 == 5) {
-                v0Var.c("AUTH_CANCELED");
-            } else {
-                v0Var.a();
+        if (this.f34918a.f()) {
+            w0 w0Var = this.f34918a;
+            if (!w0Var.f35027f) {
+                if (i10 != 10 && i10 != 5) {
+                    w0Var.a();
+                } else {
+                    w0Var.c("AUTH_CANCELED");
+                }
             }
         }
     }
 
-    @Override
-    public final void onAuthenticationFailed() {
-        AlertDialog alertDialog;
-        v0 v0Var = this.f33467a;
-        if (v0Var.f() && (alertDialog = v0Var.f33495i) != null) {
-            alertDialog.setMessage(LocaleController.getString(R.string.WalletFingerprintRetry));
-        }
-    }
-
-    @Override
-    public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
-        AlertDialog alertDialog;
-        v0 v0Var = this.f33467a;
-        if (v0Var.f() && (alertDialog = v0Var.f33495i) != null) {
-            alertDialog.setMessage(charSequence);
-        }
-    }
-
-    @Override
-    public final void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult authenticationResult) {
-        v0 v0Var = this.f33467a;
-        if (!v0Var.f33493f) {
-            v0Var.c(null);
-        }
+    public final void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult authenticationResult) {
+        this.f34918a.c(null);
     }
 }

@@ -1,32 +1,60 @@
 package org.telegram.messenger.voip;
 
-import java.util.ArrayList;
-public final class y implements Runnable {
-    public final int f18573a;
-    public final VoIPService f18574b;
-    public final ArrayList f18575c;
-    public final ArrayList d;
-    public final ArrayList e;
-    public final String f18576f;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class y implements RequestDelegate {
+    public final int f19925a;
+    public final NotificationCenter.NotificationCenterDelegate f19926b;
+    public final long f19927c;
+    public final Object d;
+    public final Object e;
+    public final int f19928f;
+    public final String f19929g;
 
-    public y(VoIPService voIPService, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str, int i10) {
-        this.f18573a = i10;
-        this.f18574b = voIPService;
-        this.f18575c = arrayList;
-        this.d = arrayList2;
-        this.e = arrayList3;
-        this.f18576f = str;
+    public y(MessagesController messagesController, HashMap hashMap, String str, a0.h hVar, long j10, int i10) {
+        this.f19925a = 2;
+        this.f19926b = messagesController;
+        this.d = hashMap;
+        this.f19929g = str;
+        this.e = hVar;
+        this.f19927c = j10;
+        this.f19928f = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18573a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19925a) {
             case 0:
-                this.f18574b.lambda$startConferenceGroupCall$47(this.f18575c, this.d, this.e, this.f18576f);
+                int i10 = this.f19928f;
+                String str = this.f19929g;
+                ((VoIPService) this.f19926b).lambda$startConferenceGroupCall$51(this.f19927c, (HashSet) this.d, (AtomicInteger) this.e, i10, str, tLObject, tL_error);
+                return;
+            case 1:
+                int i11 = this.f19928f;
+                String str2 = this.f19929g;
+                ((VoIPService) this.f19926b).lambda$startConferenceGroupCall$43(this.f19927c, (HashSet) this.d, (AtomicInteger) this.e, i11, str2, tLObject, tL_error);
                 return;
             default:
-                this.f18574b.lambda$startConferenceGroupCall$39(this.f18575c, this.d, this.e, this.f18576f);
+                long j10 = this.f19927c;
+                int i12 = this.f19928f;
+                ((MessagesController) this.f19926b).lambda$reloadWebPages$186((HashMap) this.d, this.f19929g, (a0.h) this.e, j10, i12, tLObject, tL_error);
                 return;
         }
+    }
+
+    public y(VoIPService voIPService, long j10, HashSet hashSet, AtomicInteger atomicInteger, int i10, String str, int i11) {
+        this.f19925a = i11;
+        this.f19926b = voIPService;
+        this.f19927c = j10;
+        this.d = hashSet;
+        this.e = atomicInteger;
+        this.f19928f = i10;
+        this.f19929g = str;
     }
 }

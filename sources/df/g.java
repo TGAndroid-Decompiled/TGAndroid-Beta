@@ -2,11 +2,11 @@ package df;
 
 import v7.x6;
 public final class g extends p {
-    public final int f6518g;
+    public final int f7973g;
 
     @Override
     public final void a(x6 x6Var) {
-        switch (this.f6518g) {
+        switch (this.f7973g) {
             case 0:
                 x6Var.e(this);
                 return;

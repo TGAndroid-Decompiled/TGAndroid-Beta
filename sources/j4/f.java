@@ -1,17 +1,17 @@
 package j4;
 
-import b2.w0;
+import b2.v0;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class f {
-    public final int f12643a;
-    public final List f12644b;
+    public final int f14048a;
+    public final List f14049b;
 
     public f(int i10, List list) {
-        this.f12643a = i10;
-        this.f12644b = list;
+        this.f14048a = i10;
+        this.f14049b = list;
     }
 
     public j4.g0 a(int r6, j6.l r7) {
@@ -25,14 +25,14 @@ public final class f {
         List list;
         boolean z11;
         boolean c10 = c(32);
-        List list2 = this.f12644b;
+        List list2 = this.f14049b;
         if (c10) {
             return list2;
         }
         e2.x xVar = new e2.x((byte[]) lVar.d);
         while (xVar.a() > 0) {
             int A = xVar.A();
-            int A2 = xVar.f8415b + xVar.A();
+            int A2 = xVar.f8294b + xVar.A();
             if (A == 134) {
                 ArrayList arrayList = new ArrayList();
                 int A3 = xVar.A() & 31;
@@ -59,17 +59,17 @@ public final class f {
                         } else {
                             z11 = false;
                         }
-                        byte[] bArr = e2.g.f8349a;
+                        byte[] bArr = e2.g.f8228a;
                         list = Collections.singletonList(z11 ? new byte[]{1} : new byte[]{0});
                     } else {
                         list = null;
                     }
-                    b2.w wVar = new b2.w();
-                    wVar.f2470r = w0.n(str);
-                    wVar.d = y3;
-                    wVar.O = i10;
-                    wVar.f2473u = list;
-                    arrayList.add(new b2.x(wVar));
+                    b2.v vVar = new b2.v();
+                    vVar.f4078r = v0.n(str);
+                    vVar.d = y3;
+                    vVar.O = i10;
+                    vVar.f4081u = list;
+                    arrayList.add(new b2.w(vVar));
                 }
                 list2 = arrayList;
             }
@@ -79,19 +79,19 @@ public final class f {
     }
 
     public boolean c(int i10) {
-        if ((i10 & this.f12643a) != 0) {
+        if ((i10 & this.f14048a) != 0) {
             return true;
         }
         return false;
     }
 
     public f() {
-        this.f12643a = 1;
-        this.f12644b = Collections.singletonList(null);
+        this.f14048a = 1;
+        this.f14049b = Collections.singletonList(null);
     }
 
     public f(ArrayList arrayList) {
-        this.f12643a = 0;
-        this.f12644b = arrayList;
+        this.f14048a = 0;
+        this.f14049b = arrayList;
     }
 }

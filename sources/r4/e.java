@@ -4,75 +4,75 @@ import android.graphics.Rect;
 import android.view.Choreographer;
 import java.util.ArrayList;
 import w7.r;
-import zf.y;
+import zf.x;
 public final class e implements Choreographer.FrameCallback {
-    public final int f43670a;
-    public final Object f43671b;
+    public final int f45026a;
+    public final Object f45027b;
 
     public e(Object obj, int i10) {
-        this.f43670a = i10;
-        this.f43671b = obj;
+        this.f45026a = i10;
+        this.f45027b = obj;
     }
 
     @Override
     public final void doFrame(long j10) {
-        switch (this.f43670a) {
+        switch (this.f45026a) {
             case 0:
-                ((Runnable) this.f43671b).run();
+                ((Runnable) this.f45027b).run();
                 return;
             case 1:
-                rf.b bVar = (rf.b) this.f43671b;
-                uf.a aVar = bVar.f43918k;
-                uf.a aVar2 = bVar.f43917j;
-                if (bVar.f43921n) {
-                    ArrayList arrayList = bVar.f43912b;
+                rf.b bVar = (rf.b) this.f45027b;
+                uf.a aVar = bVar.f45274k;
+                uf.a aVar2 = bVar.f45273j;
+                if (bVar.f45277n) {
+                    ArrayList arrayList = bVar.f45268b;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        rf.e eVar = ((tf.e) ((sf.b) obj)).f45649f;
+                        rf.e eVar = ((tf.e) ((sf.b) obj)).f47036f;
                         if (eVar != null) {
                             eVar.invalidate();
                         }
                     }
-                    if (aVar2.f46247c != 0) {
+                    if (aVar2.f47656c != 0) {
                         bVar.d(r.a(aVar2.b() / 0.95f, 0.0f, 1.0f));
-                    } else if (aVar.f46247c != 0) {
+                    } else if (aVar.f47656c != 0) {
                         bVar.d(r.a(1.0f - (aVar.b() / 0.95f), 0.0f, 1.0f));
                     }
-                    bVar.f43919l.postFrameCallback(bVar.f43920m);
+                    bVar.f45275l.postFrameCallback(bVar.f45276m);
                     return;
                 }
                 return;
             case 2:
-                wh.i iVar = (wh.i) this.f43671b;
-                Rect rect = iVar.f47694m;
+                wh.i iVar = (wh.i) this.f45027b;
+                Rect rect = iVar.f49103m;
                 long currentTimeMillis = System.currentTimeMillis();
-                if (currentTimeMillis - iVar.h > 32 && !iVar.f47691j && !rect.isEmpty()) {
+                if (currentTimeMillis - iVar.h > 32 && !iVar.f49100j && !rect.isEmpty()) {
                     iVar.h = currentTimeMillis;
-                    iVar.f47691j = true;
-                    iVar.f47696o.set(rect);
-                    iVar.f47685a.postRunnable(new wh.h(iVar, (iVar.d + 1) % 2, 0));
+                    iVar.f49100j = true;
+                    iVar.f49105o.set(rect);
+                    iVar.f49094a.postRunnable(new wh.h(iVar, (iVar.d + 1) % 2, 0));
                 }
                 rect.set(0, 0, 0, 0);
-                iVar.f47693l = false;
+                iVar.f49102l = false;
                 return;
             default:
-                y yVar = (y) this.f43671b;
-                if (yVar.F.get()) {
-                    long j11 = yVar.f50220b;
+                x xVar = (x) this.f45027b;
+                if (xVar.F.get()) {
+                    long j11 = xVar.f51621b;
                     if (j11 == 0) {
-                        yVar.f50220b = j10;
+                        xVar.f51621b = j10;
                     } else if (j10 - j11 >= 1000000000) {
-                        yVar.f50221c = yVar.f50219a;
-                        yVar.f50222f = yVar.e.getAndSet(0);
-                        yVar.f50219a = 0;
-                        yVar.f50220b = j10;
+                        xVar.f51622c = xVar.f51620a;
+                        xVar.f51623f = xVar.e.getAndSet(0);
+                        xVar.f51620a = 0;
+                        xVar.f51621b = j10;
                     } else {
-                        yVar.f50219a++;
+                        xVar.f51620a++;
                     }
-                    Choreographer.getInstance().postFrameCallback(yVar.d);
+                    Choreographer.getInstance().postFrameCallback(xVar.d);
                     return;
                 }
                 return;

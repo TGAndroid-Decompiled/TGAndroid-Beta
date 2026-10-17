@@ -1,15 +1,17 @@
 package org.telegram.ui;
-public final class b01 extends i71 {
-    public final ProfileActivity e;
 
-    public b01(ProfileActivity profileActivity, a01 a01Var) {
-        super(a01Var);
-        this.e = profileActivity;
+import android.content.Context;
+public final class b01 extends ig.g1 {
+    public final d01 G;
+
+    public b01(d01 d01Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.G = d01Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.e.B5 = null;
+    public final int a(int i10) {
+        this.G.e.getClass();
+        return i10;
     }
 }

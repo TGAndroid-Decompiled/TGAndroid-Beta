@@ -6,6 +6,6 @@ public enum q extends t {
 
     @Override
     public final Number a(mb.a aVar) {
-        return new gb.j(aVar.v());
+        return new gb.h(aVar.v());
     }
 }

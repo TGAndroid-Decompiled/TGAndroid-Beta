@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.lw0;
-public abstract class a0 extends ViewGroup implements lw0 {
-    public boolean f20590a;
-    public androidx.emoji2.text.j f20591b;
-    public int f20592c;
+import org.telegram.ui.Components.gw0;
+public abstract class a0 extends ViewGroup implements gw0 {
+    public boolean f21949a;
+    public androidx.emoji2.text.j f21950b;
+    public int f21951c;
     public androidx.activity.i d;
     public Runnable e;
 
     public a0(Context context) {
         super(context);
-        this.f20590a = false;
-        this.f20591b = null;
-        this.f20592c = 0;
+        this.f21949a = false;
+        this.f21950b = null;
+        this.f21951c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -35,7 +35,7 @@ public abstract class a0 extends ViewGroup implements lw0 {
         drawable.setBounds(i10, i11, drawable.getIntrinsicWidth() + i10, drawable.getIntrinsicHeight() + i11);
     }
 
-    public static void q(Drawable drawable, float f7, float f10) {
+    public static void p(Drawable drawable, float f7, float f10) {
         int i10 = (int) f7;
         int i11 = (int) f10;
         drawable.setBounds(i10, i11, drawable.getIntrinsicWidth() + i10, drawable.getIntrinsicHeight() + i11);
@@ -69,8 +69,8 @@ public abstract class a0 extends ViewGroup implements lw0 {
     }
 
     public final void k() {
-        this.f20590a = false;
-        androidx.emoji2.text.j jVar = this.f20591b;
+        this.f21949a = false;
+        androidx.emoji2.text.j jVar = this.f21950b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -88,11 +88,11 @@ public abstract class a0 extends ViewGroup implements lw0 {
         return true;
     }
 
-    public final void r() {
-        if (this.f20590a) {
+    public final void q() {
+        if (this.f21949a) {
             return;
         }
-        this.f20590a = true;
+        this.f21949a = true;
         if (this.d == null) {
             this.d = new androidx.activity.i(this, 27);
         }

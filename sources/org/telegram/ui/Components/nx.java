@@ -1,189 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
-public final class nx implements z4.e {
-    public final boolean f27433a;
-    public final wz f27434b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class nx extends AnimatorListenerAdapter {
+    public final int f28835a;
+    public final boolean f28836b;
+    public final tz f28837c;
 
-    public nx(wz wzVar, boolean z10) {
-        this.f27434b = wzVar;
-        this.f27433a = z10;
+    public nx(tz tzVar, boolean z10, int i10) {
+        this.f28835a = i10;
+        this.f28837c = tzVar;
+        this.f28836b = z10;
     }
 
     @Override
-    public final void a(float f7, int i10, int i11) {
-        float f10;
-        iz izVar;
-        iz izVar2;
-        int i12;
-        int i13;
-        int i14;
-        wz wzVar = this.f27434b;
-        iz izVar3 = wzVar.G0;
-        iz izVar4 = wzVar.f30742o0;
-        iz izVar5 = wzVar.V;
-        jx jxVar = wzVar.C0;
-        ex exVar = wzVar.D0;
-        dy dyVar = wzVar.f30745p0;
-        yw ywVar = wzVar.f30722h0;
-        iy iyVar = wzVar.P;
-        int i15 = 2;
-        boolean z10 = true;
-        if (wzVar.f30773x0 == null || wzVar.f30719g0 == null) {
-            f10 = 0.0f;
-        } else {
-            int i16 = 8;
-            if (i10 == 0) {
-                iyVar.setVisibility(0);
-                int i17 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-                f10 = 0.0f;
-                if (i17 == 0) {
-                    i13 = 8;
-                } else {
-                    i13 = 0;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28835a) {
+            case 0:
+                if (!this.f28836b) {
+                    this.f28837c.f30812x.setVisibility(4);
+                    return;
                 }
-                ywVar.setVisibility(i13);
-                if (i17 == 0) {
-                    i14 = 8;
-                } else {
-                    i14 = 0;
+                return;
+            default:
+                if (!this.f28836b) {
+                    this.f28837c.f30816y.setVisibility(4);
+                    return;
                 }
-                dyVar.setVisibility(i14);
-                exVar.setVisibility(8);
-                if (jxVar != null) {
-                    jxVar.setVisibility(8);
-                }
-            } else {
-                f10 = 0.0f;
-                if (i10 == 1) {
-                    iyVar.setVisibility(8);
-                    ywVar.setVisibility(0);
-                    dyVar.setVisibility(0);
-                    int i18 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-                    if (i18 == 0) {
-                        i12 = 8;
-                    } else {
-                        i12 = 0;
-                    }
-                    exVar.setVisibility(i12);
-                    if (jxVar != null) {
-                        if (i18 != 0) {
-                            i16 = 0;
-                        }
-                        jxVar.setVisibility(i16);
-                    }
-                } else if (i10 == 2) {
-                    iyVar.setVisibility(8);
-                    ywVar.setVisibility(8);
-                    dyVar.setVisibility(8);
-                    exVar.setVisibility(0);
-                    if (jxVar != null) {
-                        jxVar.setVisibility(0);
-                    }
-                }
-            }
+                return;
         }
-        wzVar.getMeasuredWidth();
-        wzVar.getPaddingLeft();
-        wzVar.getPaddingRight();
-        wy wyVar = wzVar.f30760t1;
-        if (wyVar != null) {
-            if (i10 == 1) {
-                if (i11 == 0) {
-                    i15 = 0;
-                }
-                wyVar.s(i15);
-            } else if (i10 == 2) {
-                wyVar.s(3);
-            } else {
-                wyVar.s(0);
-            }
-        }
-        wzVar.M(true);
-        int currentItem = wzVar.h.getCurrentItem();
-        if (currentItem == 0) {
-            izVar = izVar5;
-        } else if (currentItem == 1) {
-            izVar = izVar4;
-        } else {
-            izVar = izVar3;
-        }
-        String obj = izVar.d.getText().toString();
-        for (int i19 = 0; i19 < 3; i19++) {
-            if (i19 == 0) {
-                izVar2 = izVar5;
-            } else if (i19 == 1) {
-                izVar2 = izVar4;
-            } else {
-                izVar2 = izVar3;
-            }
-            if (izVar2 != null) {
-                vq vqVar = izVar2.d;
-                if (izVar2 != izVar && vqVar != null && !vqVar.getText().toString().equals(obj)) {
-                    vqVar.setText(obj);
-                    vqVar.setSelection(obj.length());
-                }
-            }
-        }
-        if ((i10 != 0 || f7 <= f10) && i10 != 1) {
-            z10 = false;
-        }
-        wz.c(wzVar, z10);
-        wzVar.Y();
-    }
-
-    @Override
-    public final void b(int i10) {
-        boolean z10;
-        int i11;
-        wz wzVar = this.f27434b;
-        kx kxVar = wzVar.h;
-        boolean z11 = false;
-        if (kxVar != null) {
-            int currentItem = kxVar.getCurrentItem();
-            if (currentItem == 2) {
-                i11 = 1;
-            } else if (currentItem == 1) {
-                i11 = 2;
-            } else {
-                i11 = 0;
-            }
-            if (wzVar.A1 != i11) {
-                wzVar.A1 = i11;
-                MessagesController.getGlobalEmojiSettings().edit().putInt("selected_page", i11).commit();
-            }
-        }
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        wzVar.L(z10, true);
-        if (i10 == 2 && (this.f27433a || wzVar.f30765v0)) {
-            z11 = true;
-        }
-        wzVar.Q(z11, true);
-        if (wzVar.f30760t1.z()) {
-            if (i10 == 0) {
-                vw vwVar = wzVar.V;
-                if (vwVar != null) {
-                    vwVar.d.requestFocus();
-                }
-            } else if (i10 == 1) {
-                bx bxVar = wzVar.f30742o0;
-                if (bxVar != null) {
-                    bxVar.d.requestFocus();
-                }
-            } else {
-                hx hxVar = wzVar.G0;
-                if (hxVar != null) {
-                    hxVar.d.requestFocus();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void c(int i10) {
     }
 }

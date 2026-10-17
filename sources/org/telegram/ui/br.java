@@ -1,19 +1,21 @@
 package org.telegram.ui;
-public final class br implements Runnable {
-    public final int f34375a;
-    public final Object f34376b;
-    public final Object f34377c;
-    public final Object d;
 
-    public br(Object obj, Object obj2, Object obj3, int i10) {
-        this.f34375a = i10;
-        this.f34376b = obj;
-        this.f34377c = obj2;
-        this.d = obj3;
+import android.app.Activity;
+public final class br extends org.telegram.ui.Components.w20 {
+    public final jr f35730b;
+
+    public br(jr jrVar, Activity activity, jr jrVar2) {
+        super(activity, jrVar2);
+        this.f35730b = jrVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.br.run():void");
+    public final void o() {
+        jr jrVar = this.f35730b;
+        jrVar.getMessagesController().convertToGigaGroup(jrVar.getParentActivity(), jrVar.f38301r, jrVar, new b1(this, 24));
+    }
+
+    @Override
+    public final void n() {
     }
 }

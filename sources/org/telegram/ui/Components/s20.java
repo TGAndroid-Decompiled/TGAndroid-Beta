@@ -1,152 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Rect;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ScrollView;
-import java.util.ArrayList;
-public class s20 extends ScrollView {
-    public final int f28703a;
-    public final a0.h f28704b;
-    public final ArrayList f28705c;
-    public final r20 d;
-    public int e;
-    public p20 f28706f;
-    public boolean h;
-    public int f28707n;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
+import org.telegram.ui.PhotoViewer;
+public final class s20 {
+    public static final int f30148x;
+    public static final int f30149y;
+    public final int f30150a;
+    public final int f30151b;
+    public final int f30152c;
+    public final int d;
+    public final int e;
+    public final ab.o0 f30153f;
+    public final r20 f30154g;
+    public q20 h;
+    public boolean f30155i;
+    public boolean f30156j;
+    public boolean f30157k;
+    public boolean f30158l;
+    public boolean f30159m;
+    public MotionEvent f30160n;
+    public MotionEvent f30161o;
+    public MotionEvent f30162p;
+    public boolean f30163q;
+    public float f30164r;
+    public float f30165s;
+    public float f30166t;
+    public float f30167u;
+    public boolean v;
+    public VelocityTracker f30168w;
 
-    public s20(Context context, int i10) {
-        super(context);
-        this.f28704b = new a0.h();
-        this.f28705c = new ArrayList();
-        this.f28703a = i10;
-        r20 r20Var = new r20(this, context);
-        this.d = r20Var;
-        setVerticalScrollBarEnabled(false);
-        addView(r20Var, w7.z5.d(-2.0f, -1));
+    static {
+        ViewConfiguration.getLongPressTimeout();
+        f30148x = ViewConfiguration.getTapTimeout();
+        f30149y = ViewConfiguration.getDoubleTapTimeout();
     }
 
-    public void a(z30 z30Var) {
-        r20 r20Var = this.d;
-        ArrayList arrayList = r20Var.f28407c;
-        s20 s20Var = r20Var.f28410r;
-        s20Var.f28705c.add(z30Var);
-        if (!z30Var.d) {
-            s20Var.f28704b.k(z30Var, z30Var.getUid());
-        }
-        AnimatorSet animatorSet = r20Var.f28405a;
-        if (animatorSet != null && animatorSet.isRunning()) {
-            r20Var.f28405a.setupEndValues();
-            r20Var.f28405a.cancel();
-        }
-        r20Var.f28406b = false;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        r20Var.f28405a = animatorSet2;
-        animatorSet2.addListener(new q20(r20Var, 1));
-        r20Var.f28405a.setDuration(150L);
-        r20Var.d = z30Var;
-        arrayList.clear();
-        arrayList.add(ObjectAnimator.ofFloat(r20Var.d, View.SCALE_X, 0.01f, 1.0f));
-        arrayList.add(ObjectAnimator.ofFloat(r20Var.d, View.SCALE_Y, 0.01f, 1.0f));
-        arrayList.add(ObjectAnimator.ofFloat(r20Var.d, View.ALPHA, 0.0f, 1.0f));
-        r20Var.addView(z30Var);
+    public s20(Context context, PhotoViewer photoViewer) {
+        this(context, (r20) photoViewer);
     }
 
-    public void b() {
-        r20 r20Var = this.d;
-        ArrayList arrayList = r20Var.f28407c;
-        s20 s20Var = r20Var.f28410r;
-        s20Var.h = true;
-        ArrayList arrayList2 = s20Var.f28705c;
-        ArrayList arrayList3 = new ArrayList(arrayList2);
-        arrayList2.clear();
-        ArrayList arrayList4 = r20Var.e;
-        arrayList4.clear();
-        arrayList4.addAll(arrayList3);
-        for (int i10 = 0; i10 < arrayList3.size(); i10++) {
-            ((z30) arrayList3.get(i10)).setOnClickListener(null);
-        }
-        AnimatorSet animatorSet = r20Var.f28405a;
-        if (animatorSet != null && animatorSet.isRunning()) {
-            r20Var.f28405a.setupEndValues();
-            r20Var.f28405a.cancel();
-        }
-        r20Var.f28406b = false;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        r20Var.f28405a = animatorSet2;
-        animatorSet2.addListener(new bi.t(26, r20Var, arrayList3));
-        arrayList.clear();
-        for (int i11 = 0; i11 < arrayList3.size(); i11++) {
-            z30 z30Var = (z30) arrayList3.get(i11);
-            arrayList.add(ObjectAnimator.ofFloat(z30Var, View.SCALE_X, 1.0f, 0.01f));
-            arrayList.add(ObjectAnimator.ofFloat(z30Var, View.SCALE_Y, 1.0f, 0.01f));
-            arrayList.add(ObjectAnimator.ofFloat(z30Var, View.ALPHA, 1.0f, 0.0f));
-        }
-        r20Var.requestLayout();
+    public final boolean a(android.view.MotionEvent r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s20.a(android.view.MotionEvent):boolean");
     }
 
-    public void c(z30 z30Var) {
-        r20 r20Var = this.d;
-        ArrayList arrayList = r20Var.e;
-        ArrayList arrayList2 = r20Var.f28407c;
-        s20 s20Var = r20Var.f28410r;
-        s20Var.h = true;
-        if (!z30Var.d) {
-            s20Var.f28704b.l(z30Var.getUid());
-        }
-        s20Var.f28705c.remove(z30Var);
-        z30Var.setOnClickListener(null);
-        AnimatorSet animatorSet = r20Var.f28405a;
-        if (animatorSet != null) {
-            animatorSet.setupEndValues();
-            r20Var.f28405a.cancel();
-        }
-        r20Var.f28406b = false;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        r20Var.f28405a = animatorSet2;
-        animatorSet2.addListener(new bi.t(25, r20Var, z30Var));
-        r20Var.f28405a.setDuration(150L);
-        arrayList.clear();
-        arrayList.add(z30Var);
-        arrayList2.clear();
-        arrayList2.add(ObjectAnimator.ofFloat(z30Var, View.SCALE_X, 1.0f, 0.01f));
-        arrayList2.add(ObjectAnimator.ofFloat(z30Var, View.SCALE_Y, 1.0f, 0.01f));
-        arrayList2.add(ObjectAnimator.ofFloat(z30Var, View.ALPHA, 1.0f, 0.0f));
-        r20Var.requestLayout();
+    public final void b() {
+        this.v = false;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        float f7 = this.e;
-        float y3 = motionEvent.getY();
-        if (action == 0 && y3 > f7) {
-            return false;
+    public s20(Context context, r20 r20Var) {
+        int scaledTouchSlop;
+        int i10;
+        int i11;
+        this.f30153f = new ab.o0(this, 8);
+        this.f30154g = r20Var;
+        if (r20Var instanceof q20) {
+            this.h = (q20) r20Var;
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public ViewGroup getSpansContainer() {
-        return this.d;
-    }
-
-    @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        if (this.h) {
-            this.h = false;
-            return false;
+        this.v = true;
+        if (context == null) {
+            i10 = ViewConfiguration.getTouchSlop();
+            this.d = ViewConfiguration.getMinimumFlingVelocity();
+            this.e = ViewConfiguration.getMaximumFlingVelocity();
+            i11 = 100;
+            scaledTouchSlop = i10;
+        } else {
+            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
+            int scaledTouchSlop2 = viewConfiguration.getScaledTouchSlop();
+            scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
+            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
+            this.d = viewConfiguration.getScaledMinimumFlingVelocity();
+            this.e = viewConfiguration.getScaledMaximumFlingVelocity();
+            i10 = scaledTouchSlop2;
+            i11 = scaledDoubleTapSlop;
         }
-        rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-        rect.top = org.telegram.messenger.g0.C(20.0f, this.f28707n, rect.top);
-        rect.bottom = org.telegram.messenger.g0.C(50.0f, this.f28707n, rect.bottom);
-        return super.requestChildRectangleOnScreen(view, rect, z10);
-    }
-
-    public void setDelegate(p20 p20Var) {
-        this.f28706f = p20Var;
+        this.f30150a = i10 * i10;
+        this.f30151b = scaledTouchSlop * scaledTouchSlop;
+        this.f30152c = i11 * i11;
     }
 }

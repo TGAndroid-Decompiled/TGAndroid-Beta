@@ -1,41 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class dj extends i71 {
-    public final hj f24127d3;
+import android.view.View;
+public final class dj extends e61 {
+    public static final int f25598a = 0;
 
-    public dj(hj hjVar, Context context, int i10, d dVar, zi ziVar, zi ziVar2, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, i10, 0, false, dVar, ziVar, ziVar2, c6Var);
-        this.f24127d3 = hjVar;
+    static {
+        e61.setup(new e61());
     }
 
     @Override
-    public final void D1() {
-        hj hjVar = this.f24127d3;
-        hjVar.f27360b.b2(hjVar, 0);
+    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+        ej ejVar = (ej) view;
+        CharSequence charSequence = f61Var.f26140l;
+        CharSequence charSequence2 = f61Var.f26141m;
+        ejVar.f25925b.setText(charSequence);
+        ejVar.f25926c.setText(charSequence2);
     }
 
     @Override
-    public final boolean E0(float f7) {
-        int i10;
-        vi viVar = this.f24127d3.f27360b;
-        int dp = AndroidUtilities.dp(30.0f) + viVar.f29670e2[0];
-        if (!viVar.f29675g0) {
-            i10 = AndroidUtilities.statusBarHeight;
-        } else {
-            i10 = 0;
-        }
-        if (f7 < dp + i10) {
-            return false;
-        }
+    public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new ej(context, d6Var);
+    }
+
+    @Override
+    public final boolean isShadow() {
         return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        hj hjVar = this.f24127d3;
-        hjVar.f27360b.b2(hjVar, 0);
     }
 }

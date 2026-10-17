@@ -1,150 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class qc0 extends Drawable {
-    public final int f28269a;
-    public boolean f28270b;
-    public Object f28271c;
-    public Object d;
-    public Object e;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class qc0 implements View.OnClickListener {
+    public final int f29651a = 1;
+    public final boolean f29652b;
+    public final Object f29653c;
+    public final Object d;
 
-    public qc0(int i10) {
-        this.f28269a = i10;
-        switch (i10) {
-            case 1:
-                this.f28271c = new Paint(1);
-                Paint paint = new Paint(1);
-                this.d = paint;
-                this.e = new Matrix();
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{1308622847, 0, 452984831}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
-                return;
-            default:
-                return;
-        }
-    }
-
-    public void b(int i10, int i11) {
-        ((Paint) this.f28271c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+    public qc0(org.telegram.ui.ct ctVar, ArrayList arrayList, boolean z10) {
+        this.f29653c = ctVar;
+        this.d = arrayList;
+        this.f29652b = z10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        yj0 yj0Var;
-        switch (this.f28269a) {
+    public final void onClick(View view) {
+        String str;
+        switch (this.f29651a) {
             case 0:
-                yj0 yj0Var2 = (yj0) this.d;
-                yj0 yj0Var3 = (yj0) this.f28271c;
-                Rect rect = AndroidUtilities.rectTmp2;
-                rect.set(getBounds().centerX() - AndroidUtilities.dp(12.0f), getBounds().centerY() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + getBounds().centerX(), AndroidUtilities.dp(12.0f) + getBounds().centerY());
-                if (((yj0) this.e).A()) {
-                    yj0 yj0Var4 = (yj0) this.e;
-                    boolean z10 = this.f28270b;
-                    if (z10) {
-                        yj0Var = yj0Var3;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f29653c;
+                Runnable runnable = (Runnable) this.d;
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (R != null) {
+                    if (this.f29652b) {
+                        str = "lastseen";
                     } else {
-                        yj0Var = yj0Var2;
+                        str = "readtime";
                     }
-                    if (yj0Var4 != yj0Var) {
-                        if (z10) {
-                            yj0Var2 = yj0Var3;
-                        }
-                        this.e = yj0Var2;
-                        yj0Var2.M(yj0Var2.e[0] - 1);
+                    R.presentFragment(new PremiumPreviewFragment(0, str));
+                    f3Var.dismiss();
+                    if (runnable != null) {
+                        runnable.run();
+                        return;
                     }
+                    return;
                 }
-                ((yj0) this.e).setBounds(rect);
-                ((yj0) this.e).draw(canvas);
                 return;
             default:
-                Paint paint = (Paint) this.d;
-                float dp = AndroidUtilities.dp(10.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(getBounds());
-                Matrix matrix = (Matrix) this.e;
-                matrix.reset();
-                matrix.postTranslate(rectF.left, rectF.top);
-                canvas.drawRoundRect(rectF, dp, dp, (Paint) this.f28271c);
-                if (this.f28270b) {
-                    float dp2 = AndroidUtilities.dp(1.0f);
-                    paint.setStrokeWidth(dp2);
-                    matrix.reset();
-                    matrix.postTranslate(rectF.left, rectF.top);
-                    float f7 = dp2 / 2.0f;
-                    rectF.inset(f7, f7);
-                    canvas.drawRoundRect(rectF, dp, dp, paint);
+                ArrayList arrayList = (ArrayList) this.d;
+                org.telegram.ui.gt gtVar = ((org.telegram.ui.ct) this.f29653c).f35984a;
+                if (gtVar.f37332w != null && gtVar.f37322l != null) {
+                    int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
+                    if (intValue == 0) {
+                        gtVar.f37322l.C(gtVar.W);
+                    } else if (intValue == 1) {
+                        gtVar.f37322l.v(gtVar.W);
+                    } else if (intValue == 2) {
+                        gtVar.f37322l.v(null);
+                    } else if (intValue == 3) {
+                        gtVar.f37322l.H(gtVar.W);
+                    } else if (intValue == 4) {
+                        gtVar.f37322l.p(gtVar.W);
+                    } else if (intValue == 5) {
+                        MediaDataController.getInstance(gtVar.f37328r).addRecentSticker(2, gtVar.f37312b0, gtVar.W, (int) (System.currentTimeMillis() / 1000), this.f29652b);
+                    }
+                    gtVar.p();
                     return;
                 }
                 return;
         }
     }
 
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f28269a) {
-            case 0:
-                return AndroidUtilities.dp(24.0f);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f28269a) {
-            case 0:
-                return AndroidUtilities.dp(24.0f);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f28269a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f28269a) {
-            case 0:
-                ((yj0) this.f28271c).setAlpha(i10);
-                ((yj0) this.d).setAlpha(i10);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f28269a) {
-            case 0:
-                ((yj0) this.f28271c).setColorFilter(colorFilter);
-                ((yj0) this.d).setColorFilter(colorFilter);
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void a(int i10) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
+    public qc0(boolean z10, org.telegram.ui.ActionBar.f3 f3Var, Runnable runnable) {
+        this.f29652b = z10;
+        this.f29653c = f3Var;
+        this.d = runnable;
     }
 }

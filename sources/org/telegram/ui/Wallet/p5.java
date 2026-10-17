@@ -1,176 +1,85 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-import di.xa;
-import org.telegram.messenger.sk;
-import org.telegram.ui.fi1;
-public final class p5 extends tg.n {
-    public final l5 f33336f0;
-    public final q5 f33337g0;
-    public final int f33338h0;
-    public final n f33339i0;
-    public float f33340j0;
-    public float f33341k0;
-    public float f33342l0;
-    public float m0;
-    public boolean f33343n0;
-    public ValueAnimator f33344o0;
+import android.opengl.GLES20;
+public final class p5 {
+    public float f34708a = 1.0f;
+    public final int f34709b;
+    public final int f34710c;
+    public final int d;
+    public final int e;
+    public final int f34711f;
+    public final int f34712g;
+    public final int h;
+    public final int f34713i;
+    public final int f34714j;
+    public final int f34715k;
+    public final int f34716l;
+    public final int f34717m;
+    public final int f34718n;
+    public final int f34719o;
+    public final int f34720p;
+    public final int f34721q;
+    public final int f34722r;
+    public final int f34723s;
+    public final int f34724t;
+    public final int f34725u;
+    public final int v;
+    public final int f34726w;
 
-    public p5(Context context, q5 q5Var, int i10, int i11) {
-        super(context, 0, 0);
-        this.f33337g0 = q5Var;
-        this.f33339i0 = new n(q5Var, 9);
-        l5 l5Var = new l5(context, i10, i11);
-        this.f33336f0 = l5Var;
-        setRenderer(l5Var);
-        setOpaque(false);
-        this.f33338h0 = ViewConfiguration.get(context).getScaledTouchSlop();
+    public p5(Context context, String str, String str2, String str3, String str4) {
+        this.f34709b = -1;
+        int b10 = w7.v7.b(context, "wallet-card-".concat(str3), b(str, str4), b(str2, str4), "aPosition", "aNormal");
+        this.f34710c = b10;
+        this.d = GLES20.glGetUniformLocation(b10, "uStickerPaletteFrom[0]");
+        this.e = GLES20.glGetUniformLocation(b10, "uStickerPaletteTo[0]");
+        this.f34711f = GLES20.glGetUniformLocation(b10, "uStickerReveal");
+        this.f34712g = GLES20.glGetUniformLocation(b10, "uStickerToneScale");
+        this.h = GLES20.glGetUniformLocation(b10, "uDiamondTint[0]");
+        this.f34713i = GLES20.glGetUniformLocation(b10, "uEngravingInk[0]");
+        this.f34714j = GLES20.glGetAttribLocation(b10, "aPosition");
+        this.f34715k = GLES20.glGetAttribLocation(b10, "aNormal");
+        this.f34716l = GLES20.glGetUniformLocation(b10, "uMVPMatrix");
+        this.f34717m = GLES20.glGetUniformLocation(b10, "uModelViewMatrix");
+        this.f34719o = GLES20.glGetUniformLocation(b10, "uFinishPixelScale");
+        this.f34709b = GLES20.glGetUniformLocation(b10, "uEngravingAlpha");
+        this.f34718n = GLES20.glGetUniformLocation(b10, "uCardGradientRotation");
+        int glGetUniformLocation = GLES20.glGetUniformLocation(b10, "uCardDetailTexture");
+        int glGetUniformLocation2 = GLES20.glGetUniformLocation(b10, "uEngravingTexture");
+        this.f34720p = GLES20.glGetUniformLocation(b10, "uEngravingTexel");
+        this.f34721q = GLES20.glGetAttribLocation(b10, "aFlecksRegion");
+        this.f34722r = GLES20.glGetAttribLocation(b10, "aFlecksCorner");
+        this.f34723s = GLES20.glGetUniformLocation(b10, "uFlecksPadding");
+        this.f34724t = GLES20.glGetUniformLocation(b10, "uMainLightDirection");
+        this.f34725u = GLES20.glGetUniformLocation(b10, "uQrCenter");
+        this.v = GLES20.glGetUniformLocation(b10, "uDiamondBounds");
+        this.f34726w = GLES20.glGetUniformLocation(b10, "uDiamondAlpha");
+        GLES20.glUseProgram(b10);
+        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uFinishLut"), 4);
+        GLES20.glUniform1i(glGetUniformLocation, 0);
+        GLES20.glUniform1i(glGetUniformLocation2, 1);
+        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uEngravingNormalTexture"), 5);
+        GLES20.glUniform4f(GLES20.glGetUniformLocation(b10, "uEngravingFieldBounds"), 0.875f, 0.0f, 0.125f, 1.0f);
+        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uFlecksTiles"), 2);
+        GLES20.glUniform1i(GLES20.glGetUniformLocation(b10, "uFlecksTail"), 3);
     }
 
-    @Override
-    public final int getMaxFrameRate() {
-        return 60;
+    public static String b(String str, String str2) {
+        int indexOf = str.indexOf(10) + 1;
+        return str.substring(0, indexOf) + str2 + str.substring(indexOf);
     }
 
-    @Override
-    public final boolean j() {
-        return true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        removeCallbacks(this.f33339i0);
-        this.f33337g0.setPressed(false);
-        ValueAnimator valueAnimator = this.f33344o0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f33344o0.cancel();
-            this.f33344o0 = null;
+    public final void a(float[] fArr, float[] fArr2, float f7, float f10, float f11, float f12, float f13) {
+        GLES20.glUseProgram(this.f34710c);
+        GLES20.glUniform1f(this.f34718n, f11);
+        GLES20.glUniform1f(this.f34719o, f13);
+        int i10 = this.f34709b;
+        if (i10 >= 0) {
+            GLES20.glUniform1f(i10, this.f34708a);
         }
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        this.f33336f0.getClass();
-        this.f33337g0.d();
-        super.onSurfaceTextureAvailable(surfaceTexture, i10, i11);
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        this.f33337g0.d();
-        super.onSurfaceTextureDestroyed(surfaceTexture);
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(android.graphics.SurfaceTexture r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.p5.onSurfaceTextureUpdated(android.graphics.SurfaceTexture):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        l5 l5Var = this.f33336f0;
-        q5 q5Var = this.f33337g0;
-        if (actionMasked != 0) {
-            if (actionMasked != 1) {
-                if (actionMasked != 2) {
-                    if (actionMasked == 3) {
-                        getParent().requestDisallowInterceptTouchEvent(false);
-                        q5Var.setPressed(false);
-                        if (this.f33343n0) {
-                            p();
-                        }
-                        this.f33343n0 = true;
-                        return true;
-                    }
-                } else {
-                    float abs = Math.abs(motionEvent.getX() - this.f33340j0);
-                    float f7 = this.f33338h0;
-                    if (abs > f7 || Math.abs(motionEvent.getY() - this.f33341k0) > f7) {
-                        this.f33343n0 = true;
-                        q5Var.setPressed(false);
-                    }
-                    if (this.f33343n0) {
-                        float D = com.google.android.gms.internal.play_billing.k3.D(motionEvent.getX(), this.f33340j0, 0.03f, this.f33342l0);
-                        float f10 = this.f33342l0;
-                        l5Var.d = q5.b(D, f10 - 32.0f, f10 + 32.0f);
-                        float D2 = com.google.android.gms.internal.play_billing.k3.D(motionEvent.getY(), this.f33341k0, 0.03f, this.m0);
-                        float f11 = this.m0;
-                        l5Var.f45708i = q5.b(D2, f11 - 22.0f, f11 + 22.0f);
-                    }
-                }
-                return true;
-            }
-            getParent().requestDisallowInterceptTouchEvent(false);
-            q5Var.setPressed(false);
-            if (this.f33343n0) {
-                p();
-                return true;
-            }
-            postDelayed(this.f33339i0, Math.max(0L, 80 - (motionEvent.getEventTime() - motionEvent.getDownTime())));
-            return true;
-        }
-        ValueAnimator valueAnimator = this.f33344o0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f33344o0.cancel();
-            this.f33344o0 = null;
-        }
-        getParent().requestDisallowInterceptTouchEvent(true);
-        this.f33340j0 = motionEvent.getX();
-        this.f33341k0 = motionEvent.getY();
-        this.f33342l0 = l5Var.d;
-        this.m0 = l5Var.f45708i;
-        this.f33343n0 = false;
-        q5Var.setPressed(true);
-        return true;
-    }
-
-    public final void p() {
-        ValueAnimator valueAnimator = this.f33344o0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f33344o0.cancel();
-            this.f33344o0 = null;
-        }
-        l5 l5Var = this.f33336f0;
-        float f7 = l5Var.d;
-        float f10 = l5Var.f45708i;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f33344o0 = ofFloat;
-        ofFloat.setDuration(600L);
-        sk.l(1.2f, this.f33344o0);
-        this.f33344o0.addUpdateListener(new xa(this, f7, f10, 7));
-        this.f33344o0.addListener(new fi1(this, 5));
-        this.f33344o0.start();
-    }
-
-    @Override
-    public final boolean performClick() {
-        super.performClick();
-        return true;
-    }
-
-    @Override
-    public final void setPaused(boolean z10) {
-        l5 l5Var = this.f33336f0;
-        synchronized (l5Var) {
-            if (l5Var.f33165e0 != z10) {
-                l5Var.f33165e0 = z10;
-                l5Var.f33167g0 = 0L;
-            }
-        }
-        super.setPaused(z10);
-    }
-
-    @Override
-    public final void n() {
+        GLES20.glUniformMatrix4fv(this.f34716l, 1, false, fArr, 0);
+        GLES20.glUniformMatrix4fv(this.f34717m, 1, false, fArr2, 0);
+        GLES20.glUniform3f(this.f34724t, f7, f10, 0.83f);
+        GLES20.glUniform2f(this.f34725u, ((336.0f - f12) - 24.0f) / 336.0f, 0.44878048f);
     }
 }

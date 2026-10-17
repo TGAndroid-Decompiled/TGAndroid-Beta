@@ -1,12 +1,11 @@
 package kd;
 
 import td.p;
-import w7.k;
 public abstract class a implements f {
-    public final g f14224a;
+    public final g f15019a;
 
     public a(g gVar) {
-        this.f14224a = gVar;
+        this.f15019a = gVar;
     }
 
     @Override
@@ -16,21 +15,21 @@ public abstract class a implements f {
 
     @Override
     public f get(g gVar) {
-        return k.a(this, gVar);
+        return w7.h.a(this, gVar);
     }
 
     @Override
     public final g getKey() {
-        return this.f14224a;
+        return this.f15019a;
     }
 
     @Override
     public h minusKey(g gVar) {
-        return k.b(this, gVar);
+        return w7.h.b(this, gVar);
     }
 
     @Override
     public final h plus(h hVar) {
-        return k.c(this, hVar);
+        return w7.h.c(this, hVar);
     }
 }

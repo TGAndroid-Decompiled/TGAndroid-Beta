@@ -1,155 +1,99 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.os.Bundle;
-import android.util.SparseArray;
-import org.telegram.messenger.ChatObject;
+import android.app.Activity;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class ym extends org.telegram.ui.Cells.p9 {
-    public fo f41850w0;
+public final class ym extends org.telegram.ui.Components.dr0 {
+    public final MessageObject f43425b1;
+    public final en f43426c1;
 
-    @Override
-    public final void I(int i10, int i11, MessageObject messageObject) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        MessageObject.GroupedMessages D8;
-        fo foVar = this.f41850w0;
-        if (foVar != null) {
-            int min = Math.min(i11, foVar.getMessagesController().quoteLengthMax + i10);
-            if (messageObject.getGroupId() != 0 && (D8 = this.f41850w0.D8(messageObject.getGroupId())) != null && !D8.isDocuments) {
-                messageObject = D8.captionMessage;
-            }
-            if (messageObject != null) {
-                un b10 = un.b(i10, min, messageObject);
-                if (b10.f40450i != null) {
-                    sk skVar = this.f41850w0.Y;
-                    boolean z10 = false;
-                    if (skVar != null && skVar.getVisibility() == 0) {
-                        kVar = ((org.telegram.ui.ActionBar.m2) this.f41850w0).actionBar;
-                        if (kVar != null) {
-                            kVar2 = ((org.telegram.ui.ActionBar.m2) this.f41850w0).actionBar;
-                            if (kVar2.t()) {
-                                this.f41850w0.C7(false);
-                            }
-                        }
-                        this.f41850w0.Gb(messageObject, b10);
-                        sk skVar2 = this.f41850w0.Y;
-                        if (skVar2 != null) {
-                            skVar2.F0();
-                            return;
-                        }
-                        return;
-                    }
-                    fo foVar2 = this.f41850w0;
-                    foVar2.f35713l5 = b10;
-                    foVar2.f35739n5 = messageObject;
-                    if (foVar2.h != null) {
-                        z10 = true;
-                    }
-                    foVar2.f35642f5 = new MessagePreviewParams(z10, foVar2.D9(), ChatObject.isMonoForum(this.f41850w0.e));
-                    fo foVar3 = this.f41850w0;
-                    foVar3.f35642f5.updateReply(foVar3.f35739n5, foVar3.D8(messageObject.getGroupId()), this.f41850w0.a(), this.f41850w0.f35713l5);
-                    Bundle d = org.telegram.messenger.sk.d(3, "onlySelect", "dialogsType", true);
-                    d.putBoolean("quote", true);
-                    d.putInt("messagesCount", 1);
-                    d.putBoolean("canSelectTopics", true);
-                    yy yyVar = new yy(d);
-                    fo foVar4 = this.f41850w0;
-                    yyVar.C2 = foVar4;
-                    foVar4.presentFragment(yyVar);
-                }
-            }
-        }
+    public ym(en enVar, Activity activity, sn snVar, ArrayList arrayList, boolean z10, boolean z11, org.telegram.ui.ActionBar.d6 d6Var, boolean z12, MessageObject messageObject) {
+        super(activity, snVar, arrayList, null, null, z10, null, null, false, false, z11, null, d6Var);
+        this.f43426c1 = enVar;
+        this.f43425b1 = messageObject;
+        this.f25652a0 = z12;
     }
 
     @Override
-    public final boolean b() {
-        fo foVar;
-        fo foVar2 = this.f41850w0;
-        if ((foVar2 == null || foVar2.a() != 489000) && (foVar = this.f41850w0) != null) {
-            if (foVar.a() >= 0 || !this.f41850w0.getMessagesController().isPeerNoForwards(this.f41850w0.a())) {
-                org.telegram.ui.Cells.w9 w9Var = this.W;
-                if (w9Var != null && ((org.telegram.ui.Cells.u1) w9Var).getMessageObject() != null && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().messageOwner != null && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().messageOwner.noforwards) {
-                    return false;
+    public final void S0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        en enVar = this.f43426c1;
+        sn snVar = enVar.f36569a;
+        int i11 = sn.Hc;
+        snVar.T7();
+        if (enVar.f36569a.y3 != null && z10) {
+            if (hVar.m() == 1) {
+                if (((TLRPC.Dialog) hVar.n(0)).f20276id != enVar.f36569a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.xc.a0(enVar.f36569a).g0(i10, ((TLRPC.Dialog) hVar.n(0)).f20276id)) {
+                    enVar.f36569a.y3.k(((TLRPC.Dialog) hVar.n(0)).f20276id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
+                    return;
                 }
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final void c0(fo foVar) {
-        int i10 = 0;
-        while (true) {
-            SparseArray sparseArray = this.f21403p0;
-            if (i10 < sparseArray.size()) {
-                ((Animator) sparseArray.get(sparseArray.keyAt(i10))).cancel();
-                i10++;
-            } else {
-                sparseArray.clear();
-                f(false);
-                this.C = null;
-                this.f41850w0 = foVar;
                 return;
             }
+            enVar.f36569a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
         }
     }
 
     @Override
-    public final boolean e() {
-        org.telegram.ui.Cells.w9 w9Var;
-        boolean z10;
-        fo foVar;
-        org.telegram.ui.Cells.w9 w9Var2;
-        TLRPC.Chat chat;
-        fo foVar2 = this.f41850w0;
-        if (foVar2 == null || foVar2.a() != 489000) {
-            fo foVar3 = this.f41850w0;
-            if ((foVar3 != null && foVar3.D9()) || ((w9Var = this.W) != null && ((org.telegram.ui.Cells.u1) w9Var).getMessageObject() != null && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().messageOwner != null && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().messageOwner.noforwards)) {
-                z10 = true;
-            } else {
-                z10 = false;
+    public final void T0(final View view) {
+        ei.ob obVar;
+        sn snVar = this.f43426c1.f36569a;
+        MessageObject.GroupedMessages groupedMessages = null;
+        if (view instanceof org.telegram.ui.Cells.e7) {
+            obVar = ei.qb.b((org.telegram.ui.Cells.e7) view);
+        } else {
+            obVar = null;
+        }
+        ArrayList arrayList = new ArrayList();
+        MessageObject messageObject = this.f43425b1;
+        if (messageObject.getGroupId() != 0) {
+            groupedMessages = (MessageObject.GroupedMessages) snVar.f41439x6.f(messageObject.getGroupId());
+        }
+        if (groupedMessages != null) {
+            arrayList.addAll(groupedMessages.messages);
+        } else {
+            arrayList.add(messageObject);
+        }
+        final ei.vb D = ei.vb.D(snVar.getParentActivity(), this.currentAccount);
+        D.R = new Utilities.Callback4() {
+            @Override
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+                Long l4 = (Long) obj;
+                Runnable runnable = (Runnable) obj2;
+                Long l10 = (Long) obj4;
+                boolean booleanValue = ((Boolean) obj3).booleanValue();
+                ei.vb vbVar = D;
+                ei.ob obVar2 = null;
+                if (booleanValue) {
+                    ym ymVar = ym.this;
+                    AndroidUtilities.runOnUIThread(new gh(10, ymVar, l10));
+                    ymVar.dismiss();
+                    vbVar.X(null);
+                } else {
+                    View view2 = view;
+                    if ((view2 instanceof org.telegram.ui.Cells.e7) && view2.isAttachedToWindow()) {
+                        obVar2 = ei.qb.b((org.telegram.ui.Cells.e7) view2);
+                    }
+                    vbVar.X(obVar2);
+                }
+                AndroidUtilities.runOnUIThread(runnable);
             }
-            if (!this.f21406s0 && (foVar = this.f41850w0) != null && foVar.h == null && (((w9Var2 = this.W) == null || (((org.telegram.ui.Cells.u1) w9Var2).getMessageObject() != null && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().type != 23 && !((org.telegram.ui.Cells.u1) this.W).getMessageObject().isVoiceTranscriptionOpen() && !((org.telegram.ui.Cells.u1) this.W).getMessageObject().isInvoice() && ((org.telegram.ui.Cells.u1) this.W).getMessageObject().richLayout == null && !this.f41850w0.f35608c9.f21404q0)) && !this.f41850w0.getMessagesController().getTranslateController().isTranslatingDialog(this.f41850w0.T5) && !UserObject.isService(this.f41850w0.T5) && (!z10 || (chat = this.f41850w0.e) == null || ChatObject.canWriteToChat(chat)))) {
-                return true;
-            }
-        }
-        return false;
+        };
+        D.T(obVar, ei.a8.y(arrayList));
     }
 
     @Override
-    public final int o() {
-        fo foVar = this.f41850w0;
-        if (foVar == null) {
-            return 0;
+    public final void dismissInternal() {
+        int i10;
+        sn snVar = this.f43426c1.f36569a;
+        Activity parentActivity = snVar.getParentActivity();
+        i10 = ((org.telegram.ui.ActionBar.n2) snVar).classGuid;
+        AndroidUtilities.requestAdjustResize(parentActivity, i10);
+        super.dismissInternal();
+        if (snVar.Y.getVisibility() == 0) {
+            snVar.fragmentView.requestLayout();
         }
-        return foVar.Ba;
-    }
-
-    @Override
-    public final int p() {
-        fo foVar = this.f41850w0;
-        if (foVar == null) {
-            return 0;
-        }
-        return (int) foVar.f35805s9;
-    }
-
-    @Override
-    public final org.telegram.ui.ActionBar.c6 q() {
-        fo foVar = this.f41850w0;
-        if (foVar != null) {
-            return foVar.f35633ea;
-        }
-        return null;
-    }
-
-    @Override
-    public final int t(int i10) {
-        return org.telegram.ui.ActionBar.g6.w0(i10, this.f41850w0.f35633ea);
     }
 }

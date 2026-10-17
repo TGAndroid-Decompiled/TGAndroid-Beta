@@ -1,42 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-public class s11 extends ViewSwitcher {
-    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
-        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
-            if (z10) {
-                getNextView().setText(charSequence);
-                showNext();
-                return;
-            }
-            getCurrentView().setText(charSequence);
-        }
+import java.util.ArrayList;
+public final class s11 {
+    public final View f30140a;
+    public final ArrayList f30141b;
+    public final Runnable f30142c;
+    public Runnable d;
+    public final Bitmap e;
+    public final Matrix f30143f;
+    public float f30144g;
+
+    public s11(View view, Runnable runnable) {
+        this.f30144g = 1.0f;
+        this.f30140a = view;
+        this.f30141b = null;
+        this.f30142c = null;
+        this.d = runnable;
+        this.e = null;
+        this.f30143f = null;
     }
 
-    @Override
-    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
-        if (view instanceof TextView) {
-            super.addView(view, i10, layoutParams);
-            return;
-        }
-        throw new IllegalArgumentException();
+    public s11(ArrayList arrayList, ig.c2 c2Var) {
+        this.f30144g = 1.0f;
+        this.f30140a = null;
+        this.f30141b = arrayList;
+        this.f30142c = null;
+        this.d = c2Var;
+        this.e = null;
+        this.f30143f = null;
     }
 
-    public void setText(CharSequence charSequence) {
-        a(charSequence, true, false);
-    }
-
-    @Override
-    public TextView getCurrentView() {
-        return (TextView) super.getCurrentView();
-    }
-
-    @Override
-    public TextView getNextView() {
-        return (TextView) super.getNextView();
+    public s11(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.f30144g = 1.0f;
+        this.f30140a = null;
+        this.f30141b = null;
+        this.f30142c = runnable;
+        this.d = runnable2;
+        this.f30143f = matrix;
+        this.e = bitmap;
     }
 }

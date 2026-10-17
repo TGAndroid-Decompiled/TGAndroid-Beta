@@ -11,7 +11,6 @@ import android.os.Looper;
 import android.os.SystemClock;
 import e2.m0;
 import e9.n0;
-import ig.t0;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,199 +18,197 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import ji.h5;
-import ji.w4;
+import ki.t1;
 import v7.u6;
 import w7.a0;
-import z7.xf;
-public final class b implements g {
-    public final List f15633a;
-    public final q f15634b;
-    public final xf f15635c;
-    public final w4 d;
+public final class b implements h {
+    public final List f17009a;
+    public final r f17010b;
+    public final e f17011c;
+    public final t1 d;
     public final boolean e;
-    public final boolean f15636f;
-    public final HashMap f15637g;
+    public final boolean f17012f;
+    public final HashMap f17013g;
     public final e2.k h;
-    public final oa.d f15638i;
-    public final j2.k f15639j;
-    public final c2.b f15640k;
-    public final UUID f15641l;
-    public final Looper f15642m;
-    public final o0 f15643n;
-    public final Object f15644o;
-    public int f15645p;
-    public int f15646q;
-    public HandlerThread f15647r;
-    public android.support.v4.media.session.f f15648s;
-    public h2.b f15649t;
-    public f f15650u;
+    public final oa.d f17014i;
+    public final j2.k f17015j;
+    public final c2.b f17016k;
+    public final UUID f17017l;
+    public final Looper f17018m;
+    public final o0 f17019n;
+    public final Object f17020o;
+    public int f17021p;
+    public int f17022q;
+    public HandlerThread f17023r;
+    public android.support.v4.media.session.f f17024s;
+    public h2.b f17025t;
+    public g f17026u;
     public byte[] v;
-    public byte[] f15651w;
-    public o f15652x;
-    public h5 f15653y;
-    public p f15654z;
+    public byte[] f17027w;
+    public p f17028x;
+    public le.b f17029y;
+    public q f17030z;
 
-    public b(UUID uuid, q qVar, xf xfVar, w4 w4Var, List list, boolean z10, boolean z11, byte[] bArr, HashMap hashMap, c2.b bVar, Looper looper, oa.d dVar, j2.k kVar) {
-        this.f15641l = uuid;
-        this.f15635c = xfVar;
-        this.d = w4Var;
-        this.f15634b = qVar;
+    public b(UUID uuid, r rVar, e eVar, t1 t1Var, List list, boolean z10, boolean z11, byte[] bArr, HashMap hashMap, c2.b bVar, Looper looper, oa.d dVar, j2.k kVar) {
+        this.f17017l = uuid;
+        this.f17011c = eVar;
+        this.d = t1Var;
+        this.f17010b = rVar;
         this.e = z10;
-        this.f15636f = z11;
+        this.f17012f = z11;
         if (bArr != null) {
-            this.f15651w = bArr;
-            this.f15633a = null;
+            this.f17027w = bArr;
+            this.f17009a = null;
         } else {
             list.getClass();
-            this.f15633a = DesugarCollections.unmodifiableList(list);
+            this.f17009a = DesugarCollections.unmodifiableList(list);
         }
-        this.f15637g = hashMap;
-        this.f15640k = bVar;
+        this.f17013g = hashMap;
+        this.f17016k = bVar;
         this.h = new e2.k();
-        this.f15638i = dVar;
-        this.f15639j = kVar;
-        this.f15645p = 2;
-        this.f15642m = looper;
-        this.f15643n = new o0(this, looper, 5);
-        this.f15644o = new Object();
+        this.f17014i = dVar;
+        this.f17015j = kVar;
+        this.f17021p = 2;
+        this.f17018m = looper;
+        this.f17019n = new o0(this, looper, 5);
+        this.f17020o = new Object();
     }
 
     @Override
-    public final void a(j jVar) {
+    public final void a(k kVar) {
         p();
-        int i10 = this.f15646q;
+        int i10 = this.f17022q;
         if (i10 <= 0) {
             e2.a.c("DefaultDrmSession", "release() called on a session that's already fully released.");
             return;
         }
         int i11 = i10 - 1;
-        this.f15646q = i11;
+        this.f17022q = i11;
         if (i11 == 0) {
-            this.f15645p = 0;
-            o0 o0Var = this.f15643n;
-            String str = m0.f8375a;
+            this.f17021p = 0;
+            o0 o0Var = this.f17019n;
+            String str = m0.f8254a;
             o0Var.removeCallbacksAndMessages(null);
-            this.f15648s.b();
-            this.f15648s = null;
-            this.f15647r.quit();
-            this.f15647r = null;
-            this.f15649t = null;
-            this.f15650u = null;
-            this.f15652x = null;
-            synchronized (this.f15644o) {
-                this.f15653y = null;
+            this.f17024s.b();
+            this.f17024s = null;
+            this.f17023r.quit();
+            this.f17023r = null;
+            this.f17025t = null;
+            this.f17026u = null;
+            this.f17028x = null;
+            synchronized (this.f17020o) {
+                this.f17029y = null;
             }
-            this.f15654z = null;
+            this.f17030z = null;
             byte[] bArr = this.v;
             if (bArr != null) {
-                this.f15634b.W(bArr);
+                this.f17010b.Y(bArr);
                 this.v = null;
             }
         }
-        if (jVar != null) {
-            this.h.m(jVar);
-            if (this.h.h(jVar) == 0) {
-                jVar.e();
+        if (kVar != null) {
+            this.h.m(kVar);
+            if (this.h.h(kVar) == 0) {
+                kVar.e();
             }
         }
-        w4 w4Var = this.d;
-        int i12 = this.f15646q;
-        e eVar = (e) w4Var.f13595b;
-        if (i12 == 1 && eVar.E > 0 && eVar.v != -9223372036854775807L) {
-            eVar.f15667y.add(this);
-            Handler handler = eVar.J;
+        t1 t1Var = this.d;
+        int i12 = this.f17022q;
+        f fVar = (f) t1Var.f15519b;
+        if (i12 == 1 && fVar.E > 0 && fVar.v != -9223372036854775807L) {
+            fVar.f17046y.add(this);
+            Handler handler = fVar.J;
             handler.getClass();
-            handler.postAtTime(new t0(this, 18), this, SystemClock.uptimeMillis() + eVar.v);
+            handler.postAtTime(new ki.u(this, 8), this, SystemClock.uptimeMillis() + fVar.v);
         } else if (i12 == 0) {
-            eVar.f15665w.remove(this);
-            if (eVar.G == this) {
-                eVar.G = null;
+            fVar.f17044w.remove(this);
+            if (fVar.G == this) {
+                fVar.G = null;
             }
-            if (eVar.H == this) {
-                eVar.H = null;
+            if (fVar.H == this) {
+                fVar.H = null;
             }
-            xf xfVar = eVar.f15662n;
-            HashSet hashSet = (HashSet) xfVar.f49868a;
+            e eVar = fVar.f17041n;
+            HashSet hashSet = (HashSet) eVar.f17035b;
             hashSet.remove(this);
-            if (((b) xfVar.f49869b) == this) {
-                xfVar.f49869b = null;
+            if (((b) eVar.f17036c) == this) {
+                eVar.f17036c = null;
                 if (!hashSet.isEmpty()) {
                     b bVar = (b) hashSet.iterator().next();
-                    xfVar.f49869b = bVar;
-                    p p5 = bVar.f15634b.p();
-                    bVar.f15654z = p5;
-                    android.support.v4.media.session.f fVar = bVar.f15648s;
-                    String str2 = m0.f8375a;
-                    p5.getClass();
-                    fVar.getClass();
-                    fVar.obtainMessage(1, new a(u2.u.f46053g.getAndIncrement(), true, SystemClock.elapsedRealtime(), p5)).sendToTarget();
+                    eVar.f17036c = bVar;
+                    q o10 = bVar.f17010b.o();
+                    bVar.f17030z = o10;
+                    android.support.v4.media.session.f fVar2 = bVar.f17024s;
+                    String str2 = m0.f8254a;
+                    o10.getClass();
+                    fVar2.getClass();
+                    fVar2.obtainMessage(1, new a(u2.u.f47460g.getAndIncrement(), true, SystemClock.elapsedRealtime(), o10)).sendToTarget();
                 }
             }
-            if (eVar.v != -9223372036854775807L) {
-                Handler handler2 = eVar.J;
+            if (fVar.v != -9223372036854775807L) {
+                Handler handler2 = fVar.J;
                 handler2.getClass();
                 handler2.removeCallbacksAndMessages(this);
-                eVar.f15667y.remove(this);
+                fVar.f17046y.remove(this);
             }
         }
-        eVar.g();
+        fVar.g();
     }
 
     @Override
-    public final void b(j jVar) {
+    public final void b(k kVar) {
         int i10;
         p();
         boolean z10 = false;
-        if (this.f15646q < 0) {
-            e2.a.c("DefaultDrmSession", "Session reference count less than zero: " + this.f15646q);
-            this.f15646q = 0;
+        if (this.f17022q < 0) {
+            e2.a.c("DefaultDrmSession", "Session reference count less than zero: " + this.f17022q);
+            this.f17022q = 0;
         }
-        if (jVar != null) {
-            e2.k kVar = this.h;
-            synchronized (kVar.f8364a) {
+        if (kVar != null) {
+            e2.k kVar2 = this.h;
+            synchronized (kVar2.f8243a) {
                 try {
-                    ArrayList arrayList = new ArrayList(kVar.d);
-                    arrayList.add(jVar);
-                    kVar.d = DesugarCollections.unmodifiableList(arrayList);
-                    Integer num = (Integer) kVar.f8365b.get(jVar);
+                    ArrayList arrayList = new ArrayList(kVar2.d);
+                    arrayList.add(kVar);
+                    kVar2.d = DesugarCollections.unmodifiableList(arrayList);
+                    Integer num = (Integer) kVar2.f8244b.get(kVar);
                     if (num == null) {
-                        HashSet hashSet = new HashSet(kVar.f8366c);
-                        hashSet.add(jVar);
-                        kVar.f8366c = DesugarCollections.unmodifiableSet(hashSet);
+                        HashSet hashSet = new HashSet(kVar2.f8245c);
+                        hashSet.add(kVar);
+                        kVar2.f8245c = DesugarCollections.unmodifiableSet(hashSet);
                     }
-                    HashMap hashMap = kVar.f8365b;
+                    HashMap hashMap = kVar2.f8244b;
                     if (num != null) {
                         i10 = num.intValue() + 1;
                     } else {
                         i10 = 1;
                     }
-                    hashMap.put(jVar, Integer.valueOf(i10));
+                    hashMap.put(kVar, Integer.valueOf(i10));
                 } finally {
                 }
             }
         }
-        int i11 = this.f15646q + 1;
-        this.f15646q = i11;
+        int i11 = this.f17022q + 1;
+        this.f17022q = i11;
         if (i11 == 1) {
-            if (this.f15645p == 2) {
+            if (this.f17021p == 2) {
                 z10 = true;
             }
             u6.p(z10);
             HandlerThread handlerThread = new HandlerThread("ExoPlayer:DrmRequestHandler");
-            this.f15647r = handlerThread;
+            this.f17023r = handlerThread;
             handlerThread.start();
-            this.f15648s = new android.support.v4.media.session.f(this, this.f15647r.getLooper());
+            this.f17024s = new android.support.v4.media.session.f(this, this.f17023r.getLooper());
             if (n()) {
                 j(true);
             }
-        } else if (jVar != null && k() && this.h.h(jVar) == 1) {
-            jVar.c(this.f15645p);
+        } else if (kVar != null && k() && this.h.h(kVar) == 1) {
+            kVar.c(this.f17021p);
         }
-        e eVar = (e) this.d.f13595b;
-        if (eVar.v != -9223372036854775807L) {
-            eVar.f15667y.remove(this);
-            Handler handler = eVar.J;
+        f fVar = (f) this.d.f15519b;
+        if (fVar.v != -9223372036854775807L) {
+            fVar.f17046y.remove(this);
+            Handler handler = fVar.J;
             handler.getClass();
             handler.removeCallbacksAndMessages(this);
         }
@@ -220,7 +217,7 @@ public final class b implements g {
     @Override
     public final UUID c() {
         p();
-        return this.f15641l;
+        return this.f17017l;
     }
 
     @Override
@@ -232,7 +229,7 @@ public final class b implements g {
     @Override
     public final int e() {
         p();
-        return this.f15645p;
+        return this.f17021p;
     }
 
     @Override
@@ -240,14 +237,14 @@ public final class b implements g {
         p();
         byte[] bArr = this.v;
         bArr.getClass();
-        return this.f15634b.w0(str, bArr);
+        return this.f17010b.B0(str, bArr);
     }
 
     @Override
-    public final f g() {
+    public final g g() {
         p();
-        if (this.f15645p == 1) {
-            return this.f15650u;
+        if (this.f17021p == 1) {
+            return this.f17026u;
         }
         return null;
     }
@@ -255,17 +252,17 @@ public final class b implements g {
     @Override
     public final h2.b h() {
         p();
-        return this.f15649t;
+        return this.f17025t;
     }
 
     public final void i(e2.j jVar) {
-        Set<j> set;
+        Set<k> set;
         e2.k kVar = this.h;
-        synchronized (kVar.f8364a) {
-            set = kVar.f8366c;
+        synchronized (kVar.f8243a) {
+            set = kVar.f8245c;
         }
-        for (j jVar2 : set) {
-            jVar.accept(jVar2);
+        for (k kVar2 : set) {
+            jVar.accept(kVar2);
         }
     }
 
@@ -274,7 +271,7 @@ public final class b implements g {
     }
 
     public final boolean k() {
-        int i10 = this.f15645p;
+        int i10 = this.f17021p;
         if (i10 != 3 && i10 != 4) {
             return false;
         }
@@ -283,7 +280,7 @@ public final class b implements g {
 
     public final void l(int i10, Throwable th2) {
         int i11;
-        Set<j> set;
+        Set<k> set;
         if (th2 instanceof MediaDrm.MediaDrmStateException) {
             i11 = m0.z(m0.A(((MediaDrm.MediaDrmStateException) th2).getDiagnosticInfo()));
         } else {
@@ -291,11 +288,11 @@ public final class b implements g {
                 if (!(th2 instanceof NotProvisionedException) && !a0.b(th2)) {
                     if (th2 instanceof DeniedByServerException) {
                         i11 = 6007;
-                    } else if (th2 instanceof x) {
+                    } else if (th2 instanceof y) {
                         i11 = 6001;
                     } else if (th2 instanceof c) {
                         i11 = 6003;
-                    } else if (th2 instanceof u) {
+                    } else if (th2 instanceof v) {
                         i11 = 6008;
                     } else if (i10 != 1) {
                         if (i10 == 2) {
@@ -309,15 +306,15 @@ public final class b implements g {
             }
             i11 = 6006;
         }
-        this.f15650u = new f(i11, th2);
+        this.f17026u = new g(i11, th2);
         e2.a.d("DefaultDrmSession", "DRM session error", th2);
         if (th2 instanceof Exception) {
             e2.k kVar = this.h;
-            synchronized (kVar.f8364a) {
-                set = kVar.f8366c;
+            synchronized (kVar.f8243a) {
+                set = kVar.f8245c;
             }
-            for (j jVar : set) {
-                jVar.d((Exception) th2);
+            for (k kVar2 : set) {
+                kVar2.d((Exception) th2);
             }
         } else if (th2 instanceof Error) {
             if (!a0.c(th2) && !a0.b(th2)) {
@@ -326,8 +323,8 @@ public final class b implements g {
         } else {
             throw new IllegalStateException("Unexpected Throwable subclass", th2);
         }
-        if (this.f15645p != 4) {
-            this.f15645p = 1;
+        if (this.f17021p != 4) {
+            this.f17021p = 1;
         }
     }
 
@@ -342,7 +339,7 @@ public final class b implements g {
             l(i10, th2);
             return;
         }
-        this.f15635c.b(this);
+        this.f17011c.g0(this);
     }
 
     public final boolean n() {
@@ -351,20 +348,20 @@ public final class b implements g {
 
     public final void o(int i10, boolean z10, byte[] bArr) {
         try {
-            synchronized (this.f15644o) {
-                this.f15653y = new h5(7);
-                List list = this.f15633a;
+            synchronized (this.f17020o) {
+                this.f17029y = new le.b(3);
+                List list = this.f17009a;
                 if (list != null) {
                     n0.u(list);
                 }
             }
-            o k02 = this.f15634b.k0(bArr, this.f15633a, i10, this.f15637g);
-            this.f15652x = k02;
-            android.support.v4.media.session.f fVar = this.f15648s;
-            String str = m0.f8375a;
+            p k02 = this.f17010b.k0(bArr, this.f17009a, i10, this.f17013g);
+            this.f17028x = k02;
+            android.support.v4.media.session.f fVar = this.f17024s;
+            String str = m0.f8254a;
             k02.getClass();
             fVar.getClass();
-            fVar.obtainMessage(2, new a(u2.u.f46053g.getAndIncrement(), z10, SystemClock.elapsedRealtime(), k02)).sendToTarget();
+            fVar.obtainMessage(2, new a(u2.u.f47460g.getAndIncrement(), z10, SystemClock.elapsedRealtime(), k02)).sendToTarget();
         } catch (Exception | NoSuchMethodError e) {
             m(e, true);
         }
@@ -372,7 +369,7 @@ public final class b implements g {
 
     public final void p() {
         Thread currentThread = Thread.currentThread();
-        Looper looper = this.f15642m;
+        Looper looper = this.f17018m;
         if (currentThread != looper.getThread()) {
             e2.a.m("DefaultDrmSession", "DefaultDrmSession accessed on the wrong thread.\nCurrent thread: " + Thread.currentThread().getName() + "\nExpected thread: " + looper.getThread().getName(), new IllegalStateException());
         }

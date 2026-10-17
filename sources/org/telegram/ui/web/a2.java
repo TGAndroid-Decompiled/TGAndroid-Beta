@@ -1,127 +1,90 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
+import android.webkit.ValueCallback;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
-import java.io.InputStream;
-import org.json.JSONObject;
+import java.io.File;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Timer;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import w7.z5;
-public final class a2 implements Utilities.Callback {
-    public final int f40963a;
-    public final Timer.Task f40964b;
-    public final boolean[] f40965c;
-    public final Timer d;
-    public final i2 e;
-    public final Utilities.Callback f40966f;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ay0;
+public final class a2 implements ValueCallback {
+    public final int f42549a;
+    public final Object f42550b;
+    public final WebView f42551c;
+    public final Object d;
+    public final Object e;
 
-    public a2(Timer.Task task, boolean[] zArr, Timer timer, i2 i2Var, Utilities.Callback callback, int i10) {
-        this.f40963a = i10;
-        this.f40964b = task;
-        this.f40965c = zArr;
-        this.d = timer;
-        this.e = i2Var;
-        this.f40966f = callback;
+    public a2(h2 h2Var, WebView webView, File file, y1 y1Var, int i10) {
+        this.f42549a = i10;
+        this.f42550b = h2Var;
+        this.f42551c = webView;
+        this.d = file;
+        this.e = y1Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f40963a) {
+    public final void onReceiveValue(Object obj) {
+        switch (this.f42549a) {
             case 0:
-                Timer.Task task = this.f40964b;
-                boolean[] zArr = this.f40965c;
-                Timer timer = this.d;
-                i2 i2Var = this.e;
-                Utilities.Callback callback = this.f40966f;
-                InputStream inputStream = (InputStream) obj;
-                Timer.done(task);
-                if (!zArr[0]) {
-                    Timer.Task start = Timer.start(timer, "readHTML");
-                    String str = i2Var.f41078a;
-                    final a2 a2Var = new a2(start, zArr, timer, i2Var, callback, 1);
-                    if (inputStream == null) {
-                        a2Var.run(null);
+                h2 h2Var = (h2) this.f42550b;
+                WebView webView = this.f42551c;
+                File file = (File) this.d;
+                String str = (String) obj;
+                webView.saveWebArchive(file.getAbsolutePath(), false, new a2(h2Var, webView, file, (y1) this.e, 1));
+                return;
+            case 1:
+                h2 h2Var2 = (h2) this.f42550b;
+                WebView webView2 = this.f42551c;
+                File file2 = (File) this.d;
+                y1 y1Var = (y1) this.e;
+                String str2 = (String) obj;
+                webView2.evaluateJavascript(AndroidUtilities.readRes(R.raw.open_collapsed).replace("$OPEN$", "false"), new h0(1));
+                try {
+                    qi.e eVar = new qi.e(file2);
+                    h2Var2.f42621b = eVar;
+                    if (!((ArrayList) eVar.f44778b).isEmpty()) {
+                        y1Var.run(((j1) ((ArrayList) h2Var2.f42621b.f44778b).get(0)).a());
                         return;
                     }
-                    Context context = LaunchActivity.G1;
-                    if (context == null) {
-                        context = ApplicationLoader.applicationContext;
-                    }
-                    Activity findActivity = AndroidUtilities.findActivity(context);
-                    if (findActivity == null) {
-                        a2Var.run(null);
-                        return;
-                    }
-                    View rootView = findActivity.findViewById(16908290).getRootView();
-                    if (!(rootView instanceof ViewGroup)) {
-                        a2Var.run(null);
-                        return;
-                    }
-                    final ?? frameLayout = new FrameLayout(context);
-                    ((ViewGroup) rootView).addView(frameLayout);
-                    final WebView webView = new WebView(context);
-                    WebSettings settings = webView.getSettings();
-                    settings.setAllowContentAccess(false);
-                    settings.setDatabaseEnabled(false);
-                    settings.setAllowFileAccess(false);
-                    settings.setJavaScriptEnabled(true);
-                    settings.setSaveFormData(false);
-                    settings.setGeolocationEnabled(false);
-                    settings.setDomStorageEnabled(false);
-                    settings.setAllowFileAccessFromFileURLs(false);
-                    settings.setAllowUniversalAccessFromFileURLs(false);
-                    webView.setWebViewClient(new d2(i2Var, inputStream));
-                    webView.setWebChromeClient(new WebChromeClient());
-                    frameLayout.addView(webView, z5.d(-1.0f, -1));
-                    final boolean[] zArr2 = {false};
-                    webView.addJavascriptInterface(new Object() {
-                        @JavascriptInterface
-                        public void done(String str2) {
-                            AndroidUtilities.runOnUIThread(new b0(zArr2, webView, frameLayout, str2, a2Var, 6));
-                        }
-                    }, "Instant");
-                    webView.loadUrl(str);
-                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
+                y1Var.run(null);
                 return;
             default:
-                Timer.Task task2 = this.f40964b;
-                boolean[] zArr3 = this.f40965c;
-                Timer timer2 = this.d;
-                i2 i2Var2 = this.e;
-                Utilities.Callback callback2 = this.f40966f;
-                JSONObject jSONObject = (JSONObject) obj;
-                Timer.done(task2);
-                if (!zArr3[0]) {
-                    Timer.Task start2 = Timer.start(timer2, "parseJSON");
-                    try {
-                        i2Var2.f41080c = i2Var2.i(i2Var2.f41078a, jSONObject);
-                    } catch (Exception e) {
-                        Timer.log(timer2, "error: " + e);
-                        FileLog.e(e);
+                qi.i iVar = (qi.i) this.f42550b;
+                WebView webView3 = this.f42551c;
+                b5.h hVar = (b5.h) this.e;
+                String str3 = (String) obj;
+                AndroidUtilities.cancelRunOnUIThread((ay0) this.d);
+                synchronized (iVar.f44787a) {
+                    if (!iVar.f44804u && iVar.f44798o == webView3 && iVar.f44799p == hVar && !iVar.f44801r) {
+                        if (!"true".equals(str3)) {
+                            FileLog.e("WEB proxy: Base64 bridge installation failed; transport stopped");
+                            iVar.o();
+                            return;
+                        } else if (!iVar.h(webView3)) {
+                            iVar.f();
+                            return;
+                        } else {
+                            iVar.f44802s = false;
+                            iVar.f44801r = true;
+                            FileLog.d("WEB proxy: Base64 bridge ready");
+                            iVar.l(16, 0, new byte[]{1});
+                            return;
+                        }
                     }
-                    Timer.done(start2);
-                    callback2.run(i2Var2);
-                    TLRPC.TL_webPage tL_webPage = i2Var2.f41080c;
-                    if (tL_webPage != null) {
-                        i2.e.put(tL_webPage, i2Var2);
-                    }
-                    Timer.finish(timer2);
                     return;
                 }
-                return;
         }
+    }
+
+    public a2(qi.i iVar, ay0 ay0Var, WebView webView, b5.h hVar) {
+        this.f42549a = 2;
+        this.f42550b = iVar;
+        this.d = ay0Var;
+        this.f42551c = webView;
+        this.e = hVar;
     }
 }

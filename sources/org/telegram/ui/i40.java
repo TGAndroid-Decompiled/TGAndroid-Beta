@@ -1,28 +1,28 @@
 package org.telegram.ui;
-public final class i40 implements z4.e {
-    public final n60 f36717a;
 
-    public i40(n60 n60Var) {
-        this.f36717a = n60Var;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+public final class i40 implements ViewTreeObserver.OnPreDrawListener {
+    public final ChatObject.VideoParticipant f37736a;
+    public final s50 f37737b;
+
+    public i40(s50 s50Var, ChatObject.VideoParticipant videoParticipant) {
+        this.f37737b = s50Var;
+        this.f37736a = videoParticipant;
     }
 
     @Override
-    public final void b(int i10) {
-        n60 n60Var = this.f36717a;
-        n60Var.f38159b.D0.k(i10);
-        f40 f40Var = n60Var.D2;
-        f40Var.J = f40Var.L;
-        f40Var.K = f40Var.M;
-        f40Var.N = 0.0f;
-        f40Var.O = 1;
-        f40Var.invalidate();
-    }
-
-    @Override
-    public final void c(int i10) {
-    }
-
-    @Override
-    public final void a(float f7, int i10, int i11) {
+    public final boolean onPreDraw() {
+        ViewGroup viewGroup;
+        s50 s50Var = this.f37737b;
+        s50Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
+        s50Var.f40979q2 = null;
+        s50Var.a2.j(this.f37736a);
+        AndroidUtilities.updateVisibleRows(s50Var.f40962m2);
+        viewGroup = ((org.telegram.ui.ActionBar.f3) s50Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

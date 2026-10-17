@@ -1,30 +1,33 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class qk implements Runnable {
-    public final fo f39183a;
-
-    public qk(fo foVar) {
-        this.f39183a = foVar;
+public final class qk extends xu0 {
+    public qk(ViewGroup viewGroup, ViewGroup viewGroup2) {
+        super(viewGroup, viewGroup2);
     }
 
     @Override
-    public final void run() {
-        String formatPluralString;
-        fo foVar = this.f39183a;
-        MessageObject messageObject = foVar.f35617d5;
-        if (messageObject != null && foVar.T8 != null) {
-            int max = Math.max(0, messageObject.messageOwner.ttl_period - (foVar.getConnectionsManager().getCurrentTime() - foVar.f35617d5.messageOwner.date));
-            if (max < 86400) {
-                formatPluralString = AndroidUtilities.formatDuration(max, false, true);
-            } else {
-                formatPluralString = LocaleController.formatPluralString("Days", Math.round(max / 86400.0f), new Object[0]);
+    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
+        if (f7 > 0.0f) {
+            View view = this.e;
+            if (view instanceof org.telegram.ui.Cells.u1) {
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(f10, (int) Math.max(f12, f11), u1Var.getMeasuredWidth() + f10, (int) Math.min(f13, u1Var.getMeasuredHeight() + f11));
+                canvas.saveLayerAlpha(rectF, (int) (f7 * 255.0f), 31);
+                canvas.translate(f10, f11 + u1Var.getPaddingTop());
+                u1Var.Ed = true;
+                u1Var.Y1(canvas);
+                if (u1Var.f4() && u1Var.getCurrentMessagesGroup() == null) {
+                    u1Var.m2(1.0f, canvas, false);
+                }
+                u1Var.Ed = false;
+                canvas.restore();
             }
-            foVar.T8.setSubtext(LocaleController.formatString(R.string.AutoDeleteIn, formatPluralString));
-            AndroidUtilities.runOnUIThread(foVar.U8, 1000L);
         }
     }
 }

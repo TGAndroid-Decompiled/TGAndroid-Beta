@@ -1,26 +1,17 @@
 package org.telegram.ui;
-public final class gm0 implements Runnable {
-    public final int f36280a;
-    public final boolean f36281b;
-    public final Object f36282c;
-    public final Object d;
+public final class gm0 extends org.telegram.ui.ActionBar.j {
+    public final xm0 f37271a;
 
-    public gm0(Object obj, Object obj2, boolean z10, int i10) {
-        this.f36280a = i10;
-        this.f36282c = obj;
-        this.d = obj2;
-        this.f36281b = z10;
+    public gm0(xm0 xm0Var) {
+        this.f37271a = xm0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gm0.run():void");
+    public final void b(int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gm0.b(int):void");
     }
 
-    public gm0(Object obj, boolean z10, Object obj2, int i10) {
-        this.f36280a = i10;
-        this.f36282c = obj;
-        this.f36281b = z10;
-        this.d = obj2;
+    public final boolean c(org.telegram.ui.ek0 r33, mi.q r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gm0.c(org.telegram.ui.ek0, mi.q):boolean");
     }
 }

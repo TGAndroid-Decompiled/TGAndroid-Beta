@@ -1,39 +1,39 @@
 package hg;
 
 import java.util.ArrayList;
-import org.telegram.ui.dt;
+import org.telegram.ui.os;
 public final class q1 implements z1 {
-    public final dt f10714a;
+    public final os f12023a;
 
-    public q1(dt dtVar) {
-        this.f10714a = dtVar;
+    public q1(os osVar) {
+        this.f12023a = osVar;
     }
 
     @Override
-    public final boolean E0(int i10) {
+    public final a0.h J() {
+        return null;
+    }
+
+    @Override
+    public final boolean O(int i10) {
         return true;
     }
 
     @Override
-    public final a0.h K() {
-        return null;
-    }
-
-    @Override
     public final void f(int i10) {
-        dt dtVar = this.f10714a;
-        dtVar.l();
+        os osVar = this.f12023a;
+        osVar.l();
         if (i10 != 0) {
-            dtVar.F();
+            osVar.F();
         }
     }
 
     @Override
-    public final a0.h k0() {
+    public final a0.h y() {
         return null;
     }
 
     @Override
-    public final void O0(ArrayList arrayList) {
+    public final void Y(ArrayList arrayList) {
     }
 }

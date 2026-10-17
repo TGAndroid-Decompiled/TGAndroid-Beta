@@ -11,7 +11,7 @@ public abstract class a {
                 bundle2.setClassLoader(a.class.getClassLoader());
                 Parcelable parcelable = bundle2.getParcelable("a");
                 if (parcelable instanceof ParcelImpl) {
-                    return ((ParcelImpl) parcelable).f2033a;
+                    return ((ParcelImpl) parcelable).f3646a;
                 }
                 throw new IllegalArgumentException("Invalid parcel");
             }

@@ -1,8 +1,12 @@
 package org.telegram.ui;
-public final class za0 implements org.telegram.ui.Components.g11 {
-    public final LaunchActivity f42253a;
 
-    public za0(LaunchActivity launchActivity) {
-        this.f42253a = launchActivity;
+import android.graphics.Canvas;
+public final class za0 extends org.telegram.ui.Cells.v8 {
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(0, 0, getWidth(), getHeight());
+        super.onDraw(canvas);
+        canvas.restore();
     }
 }

@@ -1,83 +1,33 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.TextUtils;
+import android.app.Activity;
+import android.text.style.CharacterStyle;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class dl extends org.telegram.ui.Components.ko0 {
-    public final fo I;
+import org.telegram.ui.Components.UndoView;
+public final class dl extends UndoView {
+    public final sn f36232f0;
 
-    public dl(fo foVar, Context context, fo foVar2, int i10, long j10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(i10, j10, context, foVar2, c6Var);
-        this.I = foVar;
+    public dl(sn snVar, Activity activity, sn snVar2, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(activity, snVar2, true, d6Var);
+        this.f36232f0 = snVar;
     }
 
     @Override
-    public final void b(boolean z10) {
-        fo foVar = this.I;
-        foVar.w7();
-        foVar.u7();
-        il ilVar = foVar.f35596bb;
-        if (ilVar != null) {
-            ilVar.setTranslationY(foVar.w9 + getCurrentHeight());
-        }
-        if (z10) {
-            foVar.D9 = true;
-            foVar.nc();
-        }
+    public final void b(CharacterStyle characterStyle) {
+        this.f36232f0.X7(characterStyle, false, null, null);
     }
 
     @Override
-    public final boolean f(ah.i1 i1Var) {
-        boolean z10;
-        int i10;
-        boolean z11;
-        fo foVar = this.I;
-        foVar.f35772q3 = i1Var;
-        if (i1Var != null) {
-            z10 = true;
+    public final void k(long j10, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
+        float f7;
+        int i11;
+        bk bkVar = this.f36232f0.X1;
+        if (bkVar != null && (((i11 = bkVar.U) == 1 || i11 == 3) && bkVar.T)) {
+            f7 = AndroidUtilities.dp(bkVar.getStyleHeight());
         } else {
-            z10 = false;
+            f7 = 0.0f;
         }
-        foVar.f35785r3 = z10;
-        if (i1Var == null) {
-            foVar.getMediaDataController().clearFoundMessageObjects();
-            foVar.ob(false);
-            foVar.Jc(0, 0, -1);
-        }
-        foVar.Mc();
-        foVar.zc();
-        foVar.f35812t3 = foVar.f35684j0.getSearchField().getText().toString();
-        MediaDataController mediaDataController = foVar.getMediaDataController();
-        String str = foVar.f35812t3;
-        long j10 = foVar.T5;
-        long j11 = foVar.L6;
-        i10 = ((org.telegram.ui.ActionBar.m2) foVar).classGuid;
-        long j12 = foVar.f35616d4;
-        TLRPC.User user = foVar.f35750o3;
-        TLRPC.Chat chat = foVar.f35761p3;
-        if (TextUtils.isEmpty(foVar.f35812t3) && foVar.f35772q3 == null) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        mediaDataController.searchMessagesInChat(str, j10, j11, i10, 0, j12, false, user, chat, z11, foVar.f35772q3);
-        AndroidUtilities.hideKeyboard(foVar.f35684j0.getSearchField());
-        return true;
-    }
-
-    @Override
-    public final void h(boolean z10) {
-        boolean z11;
-        super.h(z10);
-        fo foVar = this.I;
-        org.telegram.ui.ActionBar.u0 u0Var = foVar.f35684j0;
-        if (u0Var != null && u0Var.s() && a() && foVar.f35825u3 == null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        g(z11);
+        setAdditionalTranslationY(f7);
+        super.k(j10, i10, obj, obj2, runnable, runnable2);
     }
 }

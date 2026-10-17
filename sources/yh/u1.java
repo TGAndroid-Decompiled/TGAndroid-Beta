@@ -1,32 +1,32 @@
 package yh;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ns0;
+import org.telegram.ui.Components.is0;
 public final class u1 implements ne.d, Utilities.Callback2Return {
-    public final ns0 f49146a;
+    public final is0 f50553a;
 
-    public u1(ns0 ns0Var) {
-        this.f49146a = ns0Var;
-    }
-
-    @Override
-    public void p(int i10, float f7, float f10, ne.e eVar) {
-        this.f49146a.l();
+    public u1(is0 is0Var) {
+        this.f50553a = is0Var;
     }
 
     @Override
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj2;
-        ns0 ns0Var = this.f49146a;
-        ns0Var.i();
+        is0 is0Var = this.f50553a;
+        is0Var.i();
         if (((Integer) obj).intValue() == -1) {
-            ns0Var.h(null, new r1(ns0Var, 0));
+            is0Var.h(null, new q1(is0Var, 0));
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
     }
 
     @Override
-    public void A(float f7, int i10) {
+    public void u(int i10, float f7, float f10, ne.e eVar) {
+        this.f50553a.l();
+    }
+
+    @Override
+    public void E(float f7, int i10) {
     }
 }

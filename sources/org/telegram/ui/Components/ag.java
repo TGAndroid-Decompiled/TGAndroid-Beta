@@ -1,14 +1,20 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-public final class ag extends MessageObject {
-    @Override
-    public final boolean isOutOwner() {
-        return true;
+import android.content.Context;
+public final class ag extends gi.n0 {
+    public final ChatActivityEnterView f24578y;
+
+    public ag(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.f24578y = chatActivityEnterView;
     }
 
     @Override
-    public final boolean needDrawShareButton() {
-        return false;
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        ChatActivityEnterView chatActivityEnterView = this.f24578y;
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23992o3 == 1) {
+            chatActivityEnterView.Z2.z(f7);
+        }
     }
 }

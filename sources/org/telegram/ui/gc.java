@@ -1,56 +1,68 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-import org.telegram.tgnet.tl.TL_stories;
-public final class gc extends pg.a {
-    public final String f36131c;
-    public final TL_stories.Boost d;
-    public TL_stories.PrepaidGiveaway e;
-    public boolean f36132f;
-    public final int f36133g;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class gc implements Utilities.Callback3 {
+    public final dd f37213a;
+    public final int f37214b;
+    public final View f37215c;
 
-    public gc(int i10, String str) {
-        super(i10, false);
-        this.f36131c = str;
+    public gc(dd ddVar, int i10, View view) {
+        this.f37213a = ddVar;
+        this.f37214b = i10;
+        this.f37215c = view;
     }
 
-    public final boolean equals(Object obj) {
-        TL_stories.PrepaidGiveaway prepaidGiveaway;
-        boolean z10 = this.f36132f;
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || gc.class != obj.getClass()) {
-            return false;
-        }
-        gc gcVar = (gc) obj;
-        TL_stories.Boost boost = gcVar.d;
-        boolean z11 = gcVar.f36132f;
-        TL_stories.PrepaidGiveaway prepaidGiveaway2 = this.e;
-        if (prepaidGiveaway2 != null && (prepaidGiveaway = gcVar.e) != null) {
-            if (prepaidGiveaway2.f19150id == prepaidGiveaway.f19150id && z10 == z11) {
-                return true;
+    @Override
+    public final void run(Object obj, Object obj2, Object obj3) {
+        boolean z10;
+        Long l4 = (Long) obj;
+        Integer num = (Integer) obj2;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj3;
+        dd ddVar = this.f37213a;
+        int i10 = ddVar.U;
+        int i11 = this.f37214b;
+        if (i11 == i10) {
+            ddVar.f36152n = l4.longValue();
+            ddVar.a1(true);
+        } else if (i11 == ddVar.f36141c0) {
+            ddVar.f36164w = l4.longValue();
+            ddVar.b1();
+        } else if (i11 == ddVar.f36145f0) {
+            if (l4.longValue() == 0) {
+                ddVar.f36168y = null;
+            } else if (tL_starGiftUnique != null) {
+                TLRPC.TL_emojiStatusCollectible emojiStatusCollectibleFromGift = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
+                if (num != null) {
+                    emojiStatusCollectibleFromGift.flags |= 1;
+                    emojiStatusCollectibleFromGift.until = num.intValue();
+                }
+                ddVar.f36168y = emojiStatusCollectibleFromGift;
+                ddVar.f36159s = -1;
+                ddVar.f36164w = 0L;
+            } else {
+                TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
+                tL_emojiStatus.document_id = l4.longValue();
+                if (num != null) {
+                    tL_emojiStatus.flags |= 1;
+                    tL_emojiStatus.until = num.intValue();
+                }
+                ddVar.f36168y = tL_emojiStatus;
             }
-            return false;
+            ddVar.b1();
         }
-        TL_stories.Boost boost2 = this.d;
-        if (boost2 == null || boost == null) {
-            return true;
+        ddVar.X0(true);
+        qc qcVar = (qc) this.f37215c;
+        long longValue = l4.longValue();
+        if (tL_starGiftUnique != null) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        if (boost2.f19146id.hashCode() == boost.f19146id.hashCode() && z10 == z11 && this.f36133g == gcVar.f36133g) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.f36131c, this.d, this.e, Boolean.valueOf(this.f36132f), Integer.valueOf(this.f36133g));
-    }
-
-    public gc(TL_stories.Boost boost, boolean z10, int i10) {
-        super(5, true);
-        this.d = boost;
-        this.f36132f = z10;
-        this.f36133g = i10;
+        qcVar.c(longValue, z10, true);
+        ddVar.Z0(true);
     }
 }

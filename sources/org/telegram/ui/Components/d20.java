@@ -1,63 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
 import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class d20 extends g8 {
-    public final Context E;
-    public final FragmentContextView F;
-    public final int f23950y;
+import android.view.ViewGroup;
+import org.telegram.messenger.voip.GroupCallMessage;
+public final class d20 implements qe.a {
+    public final ViewGroup f25457a;
+    public final mh.c f25458b;
 
-    public d20(FragmentContextView fragmentContextView, Context context, Context context2, int i10) {
-        super(context);
-        this.f23950y = i10;
-        this.F = fragmentContextView;
-        this.E = context2;
+    public d20(ci.i4 i4Var, GroupCallMessage groupCallMessage) {
+        mh.c cVar = new mh.c(i4Var.getContext());
+        this.f25458b = cVar;
+        cVar.setBackgroundColor(i0.b.o(-16777216, 34));
+        wh.n nVar = cVar.v;
+        nVar.setMaxLines(1);
+        nVar.setSingleLine(true);
+        nVar.setEllipsize(TextUtils.TruncateAt.END);
+        cVar.set(groupCallMessage);
+        cVar.setAlpha(0.0f);
+        this.f25457a = i4Var;
+        i4Var.addView(cVar);
     }
 
     @Override
-    public final TextView a() {
-        switch (this.f23950y) {
-            case 0:
-                TextView textView = new TextView(this.E);
-                textView.setMaxLines(1);
-                textView.setLines(1);
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                textView.setTextSize(1, 15.0f);
-                textView.setGravity(19);
-                FragmentContextView fragmentContextView = this.F;
-                int i10 = fragmentContextView.U;
-                if (i10 != 0 && i10 != 2) {
-                    if (i10 == 4) {
-                        textView.setGravity(51);
-                        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19898t7, fragmentContextView.f22873q0));
-                        textView.setTypeface(AndroidUtilities.bold());
-                        textView.setTextSize(1, 15.0f);
-                    } else if (i10 == 1 || i10 == 3) {
-                        textView.setGravity(19);
-                        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.A7, fragmentContextView.f22873q0));
-                        textView.setTypeface(AndroidUtilities.bold());
-                        textView.setTextSize(1, 14.0f);
-                    }
-                } else {
-                    textView.setGravity(19);
-                    textView.setTypeface(Typeface.DEFAULT);
-                    textView.setTextSize(1, 15.0f);
-                }
-                return textView;
-            default:
-                TextView textView2 = new TextView(this.E);
-                textView2.setMaxLines(1);
-                textView2.setLines(1);
-                textView2.setSingleLine(true);
-                textView2.setEllipsize(TextUtils.TruncateAt.END);
-                textView2.setGravity(3);
-                textView2.setTextSize(1, 13.0f);
-                textView2.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19971x7, this.F.f22873q0));
-                return textView2;
-        }
+    public final void a() {
+        this.f25457a.removeView(this.f25458b);
     }
 }

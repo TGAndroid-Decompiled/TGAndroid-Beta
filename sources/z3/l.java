@@ -1,12 +1,11 @@
 package z3;
+public final class l {
+    public static final l f50675c = new l(-9223372036854775807L, false);
+    public final long f50676a;
+    public final boolean f50677b;
 
-import b2.x;
-public interface l {
-    public static final oa.d D = new oa.d(29);
-
-    int H(x xVar);
-
-    boolean a0(x xVar);
-
-    n y(x xVar);
+    public l(long j10, boolean z10) {
+        this.f50676a = j10;
+        this.f50677b = z10;
+    }
 }

@@ -1,14 +1,14 @@
 package m4;
 public final class n1 extends j9.o {
-    public final int f15289n;
-    public final Object f15290r;
+    public final int f16641n;
+    public final Object f16642r;
 
     public n1(int i10, Object obj) {
-        this.f15289n = i10;
-        this.f15290r = obj;
+        this.f16641n = i10;
+        this.f16642r = obj;
     }
 
     public final void p() {
-        super.m(this.f15290r);
+        super.m(this.f16642r);
     }
 }

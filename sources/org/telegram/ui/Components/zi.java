@@ -1,24 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class zi implements Utilities.Callback5, Utilities.Callback5Return {
-    public final hj f31572a;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class zi implements TextWatcher {
+    public final fj f32933a;
 
-    @Override
-    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f31572a.P((m61) obj, (View) obj2);
+    public zi(fj fjVar) {
+        this.f32933a = fjVar;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f31572a.P((m61) obj, (View) obj2);
-        return Boolean.TRUE;
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        fj fjVar = this.f32933a;
+        ui uiVar = fjVar.f26246f0;
+        TextUtils.isEmpty(fjVar.f26258y);
+        fjVar.f26258y = editable.toString().trim();
+        ui uiVar2 = fjVar.f26241a0;
+        AndroidUtilities.cancelRunOnUIThread(uiVar2);
+        boolean z11 = true;
+        if (!TextUtils.isEmpty(fjVar.f26258y)) {
+            String str = fjVar.f26258y;
+            if (str != null && str.length() >= 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            fjVar.W = z10;
+            if (!TextUtils.equals(fjVar.V, fjVar.f26258y)) {
+                fjVar.L.clear();
+                fjVar.f26242b0 = 0;
+                fjVar.f26243c0 = false;
+            }
+            AndroidUtilities.runOnUIThread(uiVar2, 1500L);
+        }
+        AndroidUtilities.cancelRunOnUIThread(uiVar);
+        if (!TextUtils.isEmpty(fjVar.f26258y)) {
+            String str2 = fjVar.f26258y;
+            if (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(fjVar.f28238b.M1).config.musicSearchUsername.get())) {
+                z11 = false;
+            }
+            fjVar.m0 = z11;
+            if (!TextUtils.equals(fjVar.f26245e0, fjVar.f26258y)) {
+                fjVar.M.clear();
+                fjVar.f26247g0 = false;
+            }
+            AndroidUtilities.runOnUIThread(uiVar, 1500L);
+        }
+        fjVar.S();
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

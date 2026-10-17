@@ -1,57 +1,101 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class cd extends org.telegram.ui.Components.lm0 {
-    public final int f34561c;
-    public final org.telegram.ui.ActionBar.c6 d;
-    public final ed e;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+public final class cd implements org.telegram.ui.ActionBar.d6 {
+    public final dd f35917a;
 
-    public cd(ed edVar, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.e = edVar;
-        this.f34561c = i10;
-        this.d = c6Var;
+    public cd(dd ddVar) {
+        this.f35917a = ddVar;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
+    public final int I(int i10) {
+        return u(i10);
     }
 
     @Override
-    public final int h() {
-        return this.e.f35258c.size();
+    public final boolean a() {
+        return this.f35917a.J;
     }
 
     @Override
-    public final void v(s4.b1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cd.v(s4.b1, int):void");
+    public final void d(float f7, float f10, int i10, int i11) {
+        org.telegram.ui.ActionBar.h6.q(f7, f10, i10, i11);
     }
 
     @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new org.telegram.ui.Components.w21(this.f34561c, 3, viewGroup.getContext(), this.d));
-    }
-
-    @Override
-    public final void y(s4.b1 b1Var) {
-        TLRPC.WallPaper wallPaper;
-        ed edVar = this.e;
-        ArrayList arrayList = edVar.f35258c;
-        int b10 = b1Var.b();
-        View view = b1Var.f44838a;
-        if (b10 >= 0 && b10 < arrayList.size()) {
-            org.telegram.ui.Components.yp ypVar = (org.telegram.ui.Components.yp) arrayList.get(b10);
-            org.telegram.ui.Components.w21 w21Var = (org.telegram.ui.Components.w21) view;
-            w21Var.g(ypVar.d, false);
-            if (ypVar.f31345a.f19343b) {
-                wallPaper = null;
-            } else {
-                wallPaper = edVar.v;
-            }
-            w21Var.setFallbackWallpaper(wallPaper);
+    public final Drawable getDrawable(String str) {
+        dd ddVar = this.f35917a;
+        Drawable drawable = ddVar.f36167x0;
+        Drawable drawable2 = ddVar.f36165w0;
+        if (str.equals("drawableMsgIn")) {
+            return ddVar.f36160s0;
         }
+        if (str.equals("drawableMsgInSelected")) {
+            return ddVar.f36161t0;
+        }
+        if (str.equals("drawableMsgOut")) {
+            return ddVar.f36162u0;
+        }
+        if (str.equals("drawableMsgOutSelected")) {
+            return ddVar.f36163v0;
+        }
+        if (str.equals("drawableMsgOutCheckRead")) {
+            drawable2.setColorFilter(u(org.telegram.ui.ActionBar.h6.La), PorterDuff.Mode.MULTIPLY);
+            return drawable2;
+        } else if (str.equals("drawableMsgOutHalfCheck")) {
+            drawable.setColorFilter(u(org.telegram.ui.ActionBar.h6.La), PorterDuff.Mode.MULTIPLY);
+            return drawable;
+        } else {
+            org.telegram.ui.ActionBar.d6 d6Var = ddVar.f36156q0;
+            if (d6Var != null) {
+                return d6Var.getDrawable(str);
+            }
+            return org.telegram.ui.ActionBar.h6.P0(str);
+        }
+    }
+
+    @Override
+    public final ColorFilter j() {
+        return org.telegram.ui.ActionBar.h6.f21316v3;
+    }
+
+    @Override
+    public final Paint n(String str) {
+        if (str.equals("paintDivider")) {
+            return this.f35917a.f36169y0;
+        }
+        return org.telegram.ui.ActionBar.h6.T0(str);
+    }
+
+    @Override
+    public final int r(int i10) {
+        return u(i10);
+    }
+
+    @Override
+    public final boolean s() {
+        return false;
+    }
+
+    @Override
+    public final int u(int i10) {
+        dd ddVar = this.f35917a;
+        int indexOfKey = ddVar.f36158r0.indexOfKey(i10);
+        if (indexOfKey >= 0) {
+            return ddVar.f36158r0.valueAt(indexOfKey);
+        }
+        org.telegram.ui.ActionBar.d6 d6Var = ddVar.f36156q0;
+        if (d6Var != null) {
+            return d6Var.u(i10);
+        }
+        return org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+    }
+
+    @Override
+    public final void B(int i10, int i11) {
     }
 }

@@ -1,71 +1,265 @@
 package gi;
 
 import android.content.Context;
+import android.util.Pair;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import com.google.android.gms.internal.cast.a6;
+import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.i71;
-import org.telegram.ui.Components.m61;
-import s4.b1;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.f6;
+import org.telegram.ui.Components.mb;
+import org.telegram.ui.Components.nb;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.LaunchActivity;
 import w7.z5;
-public abstract class h0 extends FrameLayout {
-    public org.telegram.ui.ActionBar.k f10189a;
-    public final kh.f f10190b;
-    public final FrameLayout f10191c;
-    public i71 d;
-    public boolean e;
-    public final k0 f10192f;
+public final class h0 extends nb {
+    public final d6 f11234a;
+    public final f0 f11235b;
+    public final g0 f11236c;
+    public final TextView d;
+    public final TextView e;
+    public i0 f11237f;
+    public int h;
 
-    public h0(k0 k0Var, Context context) {
-        super(context);
-        this.f10192f = k0Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f10191c = frameLayout;
-        frameLayout.setPadding(0, 0, 0, 0);
-        frameLayout.setClipToPadding(true);
-        addView(frameLayout, z5.e(-1, -1, 119));
-        ?? view = new View(getContext());
-        this.f10190b = view;
-        view.setupColorKey(g6.f19543a7);
-        view.setFadeZoneBottom(AndroidUtilities.dp(72.0f) + AndroidUtilities.navigationBarHeight);
-        view.setFadeHeightBottom(AndroidUtilities.dp(24.0f));
-        view.setFadeZoneTop(AndroidUtilities.dp(64.0f) + AndroidUtilities.statusBarHeight);
-        view.f14278a.b(-AndroidUtilities.dp(20.0f), false);
-        frameLayout.addView((View) view, z5.g());
+    public h0(Context context, d6 d6Var) {
+        super(context, d6Var);
+        this.h = 0;
+        this.f11234a = d6Var;
+        f0 f0Var = new f0(AndroidUtilities.dp(10.0f));
+        f0Var.f11194a.setColor(h6.w0(h6.Fi, d6Var));
+        this.f11235b = f0Var;
+        setBackground(f0Var);
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        g0 g0Var = new g0(context, imageView);
+        this.f11236c = g0Var;
+        imageView.setImageDrawable(g0Var);
+        addView(imageView, z5.a(40.0f, 7.0f, 0.0f, 0.0f, 0.0f, 40, 23));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, z5.a(-2.0f, 54.0f, 0.0f, 0.0f, 0.0f, -1, 23));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 14.0f);
+        int i10 = h6.Hi;
+        textView.setTextColor(h6.w0(i10, d6Var));
+        textView.setTypeface(AndroidUtilities.bold());
+        TextView i11 = a6.i(linearLayout, textView, z5.t(-1, -2, 55, 0, 0, 0, 2), context);
+        this.e = i11;
+        i11.setTextSize(1, 13.0f);
+        i11.setTextColor(h6.w0(i10, d6Var));
+        linearLayout.addView(i11, z5.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
-    public final void a() {
-        this.d.j(new ah.d0(this, 7));
-        g0 g0Var = new g0(this);
-        g0Var.n(350L);
-        g0Var.o(es.h);
-        g0Var.C = false;
-        g0Var.f44872m = false;
-        this.d.setItemAnimator(g0Var);
-    }
+    private void setButton(int i10) {
+        if (this.h != i10) {
+            this.h = i10;
+            if (i10 == 0) {
+                setButton((mb) null);
+                return;
+            }
+            d6 d6Var = this.f11234a;
+            if (i10 == 1) {
+                oc ocVar = new oc(getContext(), d6Var, true);
+                ocVar.e(LocaleController.getString(R.string.BotFileDownloadCancel));
+                ocVar.f28918a = new Runnable(this) {
+                    public final h0 f11173b;
 
-    public float b() {
-        float f7 = AndroidUtilities.displaySize.y;
-        for (int i10 = 0; i10 < this.d.getChildCount(); i10++) {
-            View childAt = this.d.getChildAt(i10);
-            b1 T = this.d.T(childAt);
-            if (T != null) {
-                m61 G = this.d.W2.G(T.b());
-                if (G != null && G.d != 99) {
-                    f7 = Math.min(childAt.getY() + this.f10191c.getPaddingTop(), f7);
+                    {
+                        this.f11173b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        File file;
+                        switch (r2) {
+                            case 0:
+                                h0 h0Var = this.f11173b;
+                                qc bulletin = h0Var.getBulletin();
+                                if (bulletin != null) {
+                                    bulletin.f29639j = 2750;
+                                    bulletin.i(true);
+                                }
+                                i0 i0Var = h0Var.f11237f;
+                                if (i0Var != null) {
+                                    i0Var.a();
+                                    return;
+                                }
+                                return;
+                            default:
+                                h0 h0Var2 = this.f11173b;
+                                qc bulletin2 = h0Var2.getBulletin();
+                                if (bulletin2 != null) {
+                                    bulletin2.b();
+                                }
+                                i0 i0Var2 = h0Var2.f11237f;
+                                if (i0Var2 != null && (file = i0Var2.d) != null && file.exists()) {
+                                    File file2 = i0Var2.d;
+                                    AndroidUtilities.openForView(file2, file2.getName(), null, LaunchActivity.H1, null, true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                };
+                if (getBulletin() != null) {
+                    ocVar.f28920c = getBulletin();
                 }
+                setButton(ocVar);
+            } else if (i10 == 2) {
+                oc ocVar2 = new oc(getContext(), d6Var, true);
+                ocVar2.e(LocaleController.getString(R.string.BotFileDownloadOpen));
+                ocVar2.f28918a = new Runnable(this) {
+                    public final h0 f11173b;
+
+                    {
+                        this.f11173b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        File file;
+                        switch (r2) {
+                            case 0:
+                                h0 h0Var = this.f11173b;
+                                qc bulletin = h0Var.getBulletin();
+                                if (bulletin != null) {
+                                    bulletin.f29639j = 2750;
+                                    bulletin.i(true);
+                                }
+                                i0 i0Var = h0Var.f11237f;
+                                if (i0Var != null) {
+                                    i0Var.a();
+                                    return;
+                                }
+                                return;
+                            default:
+                                h0 h0Var2 = this.f11173b;
+                                qc bulletin2 = h0Var2.getBulletin();
+                                if (bulletin2 != null) {
+                                    bulletin2.b();
+                                }
+                                i0 i0Var2 = h0Var2.f11237f;
+                                if (i0Var2 != null && (file = i0Var2.d) != null && file.exists()) {
+                                    File file2 = i0Var2.d;
+                                    AndroidUtilities.openForView(file2, file2.getName(), null, LaunchActivity.H1, null, true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                };
+                if (getBulletin() != null) {
+                    ocVar2.f28920c = getBulletin();
+                }
+                setButton(ocVar2);
             }
         }
-        return f7;
     }
 
-    public void c() {
-        float b10 = b();
-        org.telegram.ui.ActionBar.k kVar = this.f10189a;
-        if (kVar != null) {
-            kVar.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, b10));
+    public final boolean c(i0 i0Var) {
+        boolean z10;
+        i0 i0Var2 = this.f11237f;
+        g0 g0Var = this.f11236c;
+        if (i0Var2 != i0Var) {
+            f6 f6Var = g0Var.f11222k;
+            g0Var.h = false;
+            f6Var.getClass();
+            f6Var.d(0.0f, true);
+            uj0 uj0Var = g0Var.f11223l;
+            if (uj0Var != null) {
+                uj0Var.C(true);
+                g0Var.f11223l = null;
+            }
+            f6 f6Var2 = g0Var.f11220i;
+            g0Var.f11218f = false;
+            f6Var2.getClass();
+            f6Var2.d(0.0f, true);
         }
+        this.f11237f = i0Var;
+        this.d.setText(i0Var.f11253c);
+        boolean c10 = i0Var.c();
+        TextView textView = this.e;
+        if (c10) {
+            Pair b10 = i0Var.b();
+            g0Var.getClass();
+            if (((Long) b10.second).longValue() > 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            g0Var.f11218f = z10;
+            if (z10) {
+                g0Var.f11219g = Utilities.clamp(((float) ((Long) b10.first).longValue()) / ((float) ((Long) b10.second).longValue()), 1.0f, 0.0f);
+            }
+            g0Var.invalidateSelf();
+            if (((Long) b10.first).longValue() <= 0) {
+                textView.setText(LocaleController.getString(R.string.BotFileDownloading));
+            } else if (((Long) b10.second).longValue() <= 0) {
+                textView.setText(AndroidUtilities.formatFileSize(((Long) b10.first).longValue()));
+            } else {
+                textView.setText(AndroidUtilities.formatFileSize(((Long) b10.first).longValue()) + " / " + AndroidUtilities.formatFileSize(((Long) b10.second).longValue()));
+            }
+            setButton(1);
+            return false;
+        } else if (i0Var.f11256i) {
+            qc bulletin = getBulletin();
+            if (bulletin != null) {
+                bulletin.b();
+            }
+            return true;
+        } else {
+            if (i0Var.h) {
+                textView.setText(LocaleController.getString(R.string.BotFileDownloaded));
+                setButton(2);
+                if (!g0Var.h) {
+                    g0Var.h = true;
+                    uj0 uj0Var2 = new uj0(R.raw.contact_check, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+                    g0Var.f11223l = uj0Var2;
+                    uj0Var2.R(g0Var.f11215a);
+                    g0Var.f11223l.J(true);
+                    g0Var.f11223l.start();
+                    g0Var.f11219g = 1.0f;
+                }
+                qc bulletin2 = getBulletin();
+                if (bulletin2 != null) {
+                    bulletin2.i(false);
+                    bulletin2.f29639j = 5000;
+                    bulletin2.i(true);
+                }
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
+    }
+
+    public void setArrow(int i10) {
+        boolean z10;
+        f0 f0Var = this.f11235b;
+        f0Var.getClass();
+        if (i10 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        f0Var.e = z10;
+        if (z10) {
+            f0Var.f11197f = i10;
+        }
+        f0Var.invalidateSelf();
     }
 }

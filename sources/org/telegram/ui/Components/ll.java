@@ -1,24 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-public final class ll extends s4.c0 {
-    public final ig.e0 f26764r;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ll extends hg.t0 {
+    public final rl N;
 
-    public ll(ig.e0 e0Var, Context context) {
-        super(context);
-        this.f26764r = e0Var;
+    public ll(rl rlVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        super(context, d6Var, z10, false);
+        this.N = rlVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int k10 = super.k(i10, view);
-        tl tlVar = (tl) this.f26764r.V;
-        return k10 - (tlVar.P.getPaddingTop() - (tlVar.A0 - tlVar.f29122z0));
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 4;
+    public final void l() {
+        rl rlVar = this.N;
+        ll llVar = rlVar.R;
+        org.telegram.ui.ActionBar.u0 u0Var = rlVar.E;
+        if (u0Var != null) {
+            u0Var.setShowSearchProgress(llVar.J);
+        }
+        TextView textView = rlVar.f29989y;
+        if (textView != null) {
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, llVar.f11821x)));
+        }
+        super.l();
     }
 }

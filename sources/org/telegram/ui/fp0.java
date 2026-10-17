@@ -1,41 +1,73 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class fp0 implements Utilities.Callback {
-    public final int f35900a = 0;
-    public final ag.b f35901b;
-    public final TL_stars.TL_starGiftUnique f35902c;
-    public final long d;
-    public final Object e;
-    public final Object f35903f;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.MessagesController;
+public final class fp0 {
+    public boolean f37016f;
+    public boolean f37017g;
+    public boolean h;
+    public Path f37018i;
+    public Paint f37019j;
+    public Drawable f37020k;
+    public final org.telegram.ui.Components.yc f37021l;
+    public boolean f37022m;
+    public final org.telegram.ui.Components.f6 f37023n;
+    public int f37024o;
+    public final gp0 f37027r;
+    public final Paint f37013a = new Paint(1);
+    public final Paint f37014b = new Paint(1);
+    public final Paint f37015c = new Paint(1);
+    public final Path d = new Path();
+    public final Path e = new Path();
+    public final RectF f37025p = new RectF();
+    public final RectF f37026q = new RectF();
 
-    public fp0(eq0 eq0Var, ag.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, cp0 cp0Var) {
-        this.e = eq0Var;
-        this.f35901b = bVar;
-        this.f35902c = tL_starGiftUnique;
-        this.d = j10;
-        this.f35903f = cp0Var;
+    public fp0(gp0 gp0Var) {
+        this.f37027r = gp0Var;
+        this.f37021l = new org.telegram.ui.Components.yc(gp0Var);
+        this.f37023n = new org.telegram.ui.Components.f6(gp0Var, 0L, 320L, org.telegram.ui.Components.bs.h);
     }
 
-    @Override
-    public final void run(Object obj) {
-        switch (this.f35900a) {
-            case 0:
-                eq0.V((eq0) this.e, this.f35901b, this.f35902c, this.d, (cp0) this.f35903f, (TLRPC.TL_payments_paymentFormStarGift) obj);
-                return;
-            default:
-                yh.f4.V((yh.f4) this.e, (org.telegram.ui.ActionBar.a2) this.f35903f, this.f35901b, this.f35902c, this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
-                return;
+    public final void a(MessagesController.PeerColor peerColor) {
+        boolean a2;
+        int color;
+        gp0 gp0Var = this.f37027r;
+        org.telegram.ui.ActionBar.d6 d6Var = gp0Var.f37285a;
+        if (peerColor == null) {
+            return;
         }
-    }
-
-    public fp0(yh.f4 f4Var, org.telegram.ui.ActionBar.a2 a2Var, ag.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10) {
-        this.e = f4Var;
-        this.f35903f = a2Var;
-        this.f35901b = bVar;
-        this.f35902c = tL_starGiftUnique;
-        this.d = j10;
+        if (d6Var == null) {
+            a2 = org.telegram.ui.ActionBar.h6.I.q();
+        } else {
+            a2 = d6Var.a();
+        }
+        int i10 = gp0Var.f37287c;
+        Paint paint = this.f37014b;
+        Paint paint2 = this.f37013a;
+        if (i10 == 1) {
+            if (a2 && peerColor.hasColor2() && !peerColor.hasColor3()) {
+                paint2.setColor(peerColor.getColor(1, d6Var));
+                paint.setColor(peerColor.getColor(0, d6Var));
+            } else {
+                paint2.setColor(peerColor.getColor(0, d6Var));
+                paint.setColor(peerColor.getColor(1, d6Var));
+            }
+            this.f37015c.setColor(peerColor.getColor(2, d6Var));
+            this.f37016f = peerColor.hasColor2(a2);
+            this.f37017g = peerColor.hasColor3(a2);
+            return;
+        }
+        paint2.setColor(peerColor.getColor(0, d6Var));
+        if (peerColor.hasColor6(a2)) {
+            color = peerColor.getColor(1, d6Var);
+        } else {
+            color = peerColor.getColor(0, d6Var);
+        }
+        paint.setColor(color);
+        this.f37016f = peerColor.hasColor6(a2);
+        this.f37017g = false;
     }
 }

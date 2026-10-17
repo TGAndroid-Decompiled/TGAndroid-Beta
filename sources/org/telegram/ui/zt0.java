@@ -1,122 +1,84 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class zt0 extends AnimatorListenerAdapter {
-    public final int f42419a;
-    public final boolean f42420b;
-    public final PhotoViewer f42421c;
+import android.content.Context;
+import android.widget.FrameLayout;
+import androidx.core.widget.NestedScrollView;
+public final class zt0 extends org.telegram.ui.Components.n11 {
+    public boolean f43802a;
+    public float f43803b;
+    public NestedScrollView f43804c;
+    public FrameLayout d;
 
-    public zt0(PhotoViewer photoViewer, boolean z10, int i10) {
-        this.f42419a = i10;
-        this.f42421c = photoViewer;
-        this.f42420b = z10;
+    public zt0(Context context) {
+        super(context);
+        this.f43802a = false;
+        this.f43803b = 1.0f;
     }
 
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f42419a) {
-            case 1:
-                PhotoViewer photoViewer = this.f42421c;
-                if (animator.equals(photoViewer.f32087w)) {
-                    photoViewer.f32087w = null;
-                    return;
-                }
-                return;
-            case 2:
-                PhotoViewer photoViewer2 = this.f42421c;
-                if (animator.equals(photoViewer2.L)) {
-                    photoViewer2.L = null;
-                    return;
-                }
-                return;
-            case 3:
-                this.f42421c.U7 = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void b(int i10, boolean z10) {
+        super.setVisibility(i10);
+        if (this.f43802a && z10) {
+            this.f43804c.setVisibility(i10);
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11 = this.f42419a;
-        boolean z10 = this.f42420b;
-        PhotoViewer photoViewer = this.f42421c;
-        switch (i11) {
-            case 0:
-                if (!z10) {
-                    photoViewer.f31966i3.setVisibility(8);
-                    return;
-                }
-                return;
-            case 1:
-                if (animator.equals(photoViewer.f32087w)) {
-                    if (!z10) {
-                        photoViewer.X0.setVisibility(4);
-                    }
-                    photoViewer.f32087w = null;
-                    return;
-                }
-                return;
-            case 2:
-                if (animator.equals(photoViewer.L)) {
-                    if (!z10) {
-                        photoViewer.F.setVisibility(4);
-                        if (photoViewer.f31963i0.getTag() != null) {
-                            photoViewer.f31963i0.setVisibility(4);
-                        }
-                        if (photoViewer.Q1.getTag() != null) {
-                            photoViewer.Q1.setVisibility(4);
-                        }
-                    }
-                    photoViewer.L = null;
-                    return;
-                }
-                return;
-            default:
-                if (animator.equals(photoViewer.U7)) {
-                    photoViewer.U7 = new AnimatorSet();
-                    if (z10) {
-                        photoViewer.O7.setVisibility(0);
-                        photoViewer.P7.setVisibility(0);
-                        AnimatorSet animatorSet = photoViewer.U7;
-                        lv0 lv0Var = photoViewer.O7;
-                        Property property = View.TRANSLATION_Y;
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(lv0Var, property, 0.0f), ObjectAnimator.ofFloat(photoViewer.P7, property, 0.0f));
-                    } else {
-                        if (photoViewer.S4) {
-                            photoViewer.f31972j0.setVisibility(8);
-                            photoViewer.f31972j0.setAlpha(0.0f);
-                            View view = photoViewer.f31972j0;
-                            if (photoViewer.f31912c2 == 11) {
-                                i10 = -16777216;
-                            } else {
-                                i10 = 2130706432;
-                            }
-                            view.setBackgroundColor(i10);
-                        }
-                        photoViewer.O7.setVisibility(4);
-                        photoViewer.P7.setVisibility(4);
-                        AnimatorSet animatorSet2 = photoViewer.U7;
-                        x5 x5Var = photoViewer.P0;
-                        Property property2 = View.TRANSLATION_Y;
-                        animatorSet2.playTogether(ObjectAnimator.ofFloat(x5Var, property2, 0.0f), ObjectAnimator.ofFloat(photoViewer.P0, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(photoViewer.S0, property2, 0.0f));
-                    }
-                    photoViewer.U7.addListener(new kj0(this, 12));
-                    photoViewer.U7.setDuration(200L);
-                    photoViewer.U7.setInterpolator(AndroidUtilities.decelerateInterpolator);
-                    photoViewer.U7.start();
-                    return;
-                }
-                return;
+    public float getAlpha() {
+        if (this.f43802a) {
+            return this.f43803b;
         }
+        return super.getAlpha();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.d != null && getParent() == this.d) {
+            this.f43802a = true;
+            this.f43804c.setVisibility(getVisibility());
+            this.f43804c.setAlpha(this.f43803b);
+            super.setAlpha(1.0f);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f43802a) {
+            this.f43802a = false;
+            this.f43804c.setVisibility(8);
+            super.setAlpha(this.f43803b);
+        }
+    }
+
+    @Override
+    public void setAlpha(float f7) {
+        this.f43803b = f7;
+        if (this.f43802a) {
+            this.f43804c.setAlpha(f7);
+        } else {
+            super.setAlpha(f7);
+        }
+    }
+
+    public void setContainer(FrameLayout frameLayout) {
+        this.d = frameLayout;
+    }
+
+    public void setScrollView(NestedScrollView nestedScrollView) {
+        this.f43804c = nestedScrollView;
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        if (this.f43802a) {
+            this.f43804c.invalidate();
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        b(i10, true);
     }
 }

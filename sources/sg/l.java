@@ -10,59 +10,59 @@ import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class l {
-    public boolean f45239a;
-    public float f45240b;
-    public float f45241c;
+    public boolean f46313a;
+    public float f46314b;
+    public float f46315c;
     public int d;
     public StaticLayout e;
-    public Bitmap f45242f;
-    public int f45243g;
+    public Bitmap f46316f;
+    public int f46317g;
     public int h;
-    public int f45244i;
-    public long f45245j;
-    public float f45246k;
-    public float f45247l;
-    public final org.telegram.ui.Cells.u0 f45248m;
+    public int f46318i;
+    public long f46319j;
+    public float f46320k;
+    public float f46321l;
+    public final org.telegram.ui.Cells.v0 f46322m;
 
-    public l(org.telegram.ui.Cells.u0 u0Var) {
-        this.f45248m = u0Var;
+    public l(org.telegram.ui.Cells.v0 v0Var) {
+        this.f46322m = v0Var;
     }
 
     public final void a(int i10, boolean z10) {
         float f7;
         ArrayList arrayList;
-        org.telegram.ui.Cells.u0 u0Var = this.f45248m;
-        ArrayList arrayList2 = u0Var.f21842c;
-        HashMap hashMap = (HashMap) u0Var.f21843f;
-        RectF rectF = (RectF) u0Var.f21844g;
-        this.f45245j = Math.abs(Utilities.fastRandom.nextLong() % 2250) + 2250;
-        this.f45246k = (Math.abs(Utilities.fastRandom.nextFloat()) * 0.45f) + 0.6f;
-        String str = m.f45250a[org.telegram.ui.Cells.c1.d(Utilities.fastRandom, 49)];
+        org.telegram.ui.Cells.v0 v0Var = this.f46322m;
+        ArrayList arrayList2 = v0Var.f23614c;
+        HashMap hashMap = (HashMap) v0Var.f23615f;
+        RectF rectF = (RectF) v0Var.f23616g;
+        this.f46319j = Math.abs(Utilities.fastRandom.nextLong() % 2250) + 2250;
+        this.f46320k = (Math.abs(Utilities.fastRandom.nextFloat()) * 0.45f) + 0.6f;
+        String str = m.f46348a[org.telegram.ui.Cells.t0.h(Utilities.fastRandom, 49)];
         if (str.length() > 7) {
-            this.f45246k *= 0.6f;
+            this.f46320k *= 0.6f;
         } else if (str.length() > 5) {
-            this.f45246k *= 0.75f;
+            this.f46320k *= 0.75f;
         }
-        StaticLayout staticLayout = new StaticLayout(str, u0Var.f21840a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(str, v0Var.f23612a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.e = staticLayout;
         int i11 = 0;
         if (staticLayout.getLineCount() <= 0) {
-            this.f45244i = 0;
+            this.f46318i = 0;
             this.h = 0;
-            this.f45243g = 0;
+            this.f46317g = 0;
         } else {
-            this.f45243g = (int) this.e.getLineLeft(0);
+            this.f46317g = (int) this.e.getLineLeft(0);
             this.h = (int) this.e.getLineWidth(0);
-            this.f45244i = this.e.getHeight();
+            this.f46318i = this.e.getHeight();
         }
         Bitmap bitmap = (Bitmap) hashMap.get(str);
-        this.f45242f = bitmap;
+        this.f46316f = bitmap;
         if (bitmap == null) {
-            this.f45242f = Bitmap.createBitmap(Math.max(1, this.h - Math.max(0, this.f45243g)), Math.max(1, this.f45244i), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(this.f45242f);
-            canvas.translate(-this.f45243g, 0.0f);
+            this.f46316f = Bitmap.createBitmap(Math.max(1, this.h - Math.max(0, this.f46317g)), Math.max(1, this.f46318i), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(this.f46316f);
+            canvas.translate(-this.f46317g, 0.0f);
             this.e.draw(canvas);
-            hashMap.put(str, this.f45242f);
+            hashMap.put(str, this.f46316f);
         }
         float f10 = this.h / 4.0f;
         float f11 = rectF.left + f10;
@@ -83,12 +83,12 @@ public final class l {
             float f15 = 2.1474836E9f;
             while (i11 < arrayList2.size()) {
                 l lVar = (l) arrayList2.get(i11);
-                if (!lVar.f45239a) {
+                if (!lVar.f46313a) {
                     arrayList = arrayList2;
                 } else {
                     arrayList = arrayList2;
-                    float min = Math.min(Math.abs(((((this.f45246k / u0Var.f21841b) * lVar.h) * 1.1f) + lVar.f45240b) - abs3), Math.abs(lVar.f45240b - abs3));
-                    float f16 = lVar.f45241c - abs4;
+                    float min = Math.min(Math.abs(((((this.f46320k / v0Var.f23613b) * lVar.h) * 1.1f) + lVar.f46314b) - abs3), Math.abs(lVar.f46314b - abs3));
+                    float f16 = lVar.f46315c - abs4;
                     float f17 = (f16 * f16) + (min * min);
                     if (f17 < f15) {
                         f15 = f17;
@@ -107,9 +107,9 @@ public final class l {
             arrayList2 = arrayList3;
             i11 = 0;
         }
-        this.f45240b = abs;
-        this.f45241c = abs2;
-        double atan2 = Math.atan2(abs - rectF.centerX(), this.f45241c - rectF.centerY());
+        this.f46314b = abs;
+        this.f46315c = abs2;
+        double atan2 = Math.atan2(abs - rectF.centerX(), this.f46315c - rectF.centerY());
         Math.sin(atan2);
         Math.cos(atan2);
         this.d = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
@@ -118,7 +118,7 @@ public final class l {
         } else {
             f7 = 0.0f;
         }
-        this.f45247l = f7;
-        this.f45239a = true;
+        this.f46321l = f7;
+        this.f46313a = true;
     }
 }

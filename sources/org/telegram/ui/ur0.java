@@ -1,31 +1,27 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import android.text.style.ClickableSpan;
-import android.widget.TextView;
+import android.net.Uri;
 import org.telegram.messenger.Utilities;
-public final class ur0 implements Utilities.Callback2 {
-    public final int f40472a;
-    public final PhotoViewer f40473b;
+public final class ur0 implements Utilities.Callback {
+    public final int f42040a;
+    public final as0 f42041b;
+    public final boolean f42042c;
 
-    public ur0(PhotoViewer photoViewer, int i10) {
-        this.f40472a = i10;
-        this.f40473b = photoViewer;
+    public ur0(as0 as0Var, boolean z10, int i10) {
+        this.f42040a = i10;
+        this.f42041b = as0Var;
+        this.f42042c = z10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        int i10 = this.f40472a;
-        PhotoViewer photoViewer = this.f40473b;
-        switch (i10) {
+    public final void run(Object obj) {
+        Uri uri = (Uri) obj;
+        switch (this.f42040a) {
             case 0:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                photoViewer.X1((ClickableSpan) obj, (TextView) obj2);
+                org.telegram.ui.Components.xc.F(this.f42041b.f35490b.f33266e0, this.f42042c).j();
                 return;
             default:
-                Drawable[] drawableArr2 = PhotoViewer.U8;
-                photoViewer.getClass();
-                photoViewer.D0(((Boolean) obj2).booleanValue(), false, (((Float) obj).floatValue() * 2.8f) + 0.2f);
+                org.telegram.ui.Components.xc.F(this.f42041b.f35490b.f33266e0, this.f42042c).j();
                 return;
         }
     }

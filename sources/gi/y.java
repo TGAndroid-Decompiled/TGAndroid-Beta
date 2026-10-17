@@ -1,19 +1,16 @@
 package gi;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class y extends s4.r0 {
-    public final k0 f10279a;
+import org.telegram.ui.ActionBar.e5;
+public final class y extends e5 {
+    public final b0 f11548p;
 
-    public y(k0 k0Var) {
-        this.f10279a = k0Var;
+    public y(b0 b0Var) {
+        this.f11548p = b0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        k0 k0Var = this.f10279a;
-        if (k0Var.G.I1) {
-            AndroidUtilities.hideKeyboard(k0Var.E.f27510r);
-        }
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        this.f11548p.invalidate();
     }
 }

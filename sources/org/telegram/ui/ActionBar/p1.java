@@ -1,24 +1,24 @@
 package org.telegram.ui.ActionBar;
 public final class p1 implements Runnable {
-    public final int f20284a;
-    public final a2 f20285b;
+    public final int f21659a;
+    public final b2 f21660b;
 
-    public p1(a2 a2Var, int i10) {
-        this.f20284a = i10;
-        this.f20285b = a2Var;
+    public p1(b2 b2Var, int i10) {
+        this.f21659a = i10;
+        this.f21660b = b2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f20284a) {
+        switch (this.f21659a) {
             case 0:
-                this.f20285b.dismiss();
+                this.f21660b.dismiss();
                 return;
             default:
-                a2 a2Var = this.f20285b;
-                if (!a2Var.isShowing()) {
+                b2 b2Var = this.f21660b;
+                if (!b2Var.isShowing()) {
                     try {
-                        a2Var.show();
+                        b2Var.show();
                     } catch (Exception unused) {
                         return;
                     }

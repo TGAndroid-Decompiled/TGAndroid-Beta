@@ -4,43 +4,43 @@ import android.content.Context;
 import android.os.Build;
 import ne.e;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.es;
-import zf.j0;
-public final class b extends di.d implements ne.d {
-    public final ne.b f16346h0;
-    public final c6 f16347i0;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.bs;
+import zf.i0;
+public final class b extends ei.d implements ne.d {
+    public final ne.b f17740h0;
+    public final d6 f17741i0;
 
-    public b(Context context, c6 c6Var) {
-        super(context, c6Var, true);
-        this.f16346h0 = new ne.b(0, this, es.h, 320L, true);
-        this.f16347i0 = c6Var;
+    public b(Context context, d6 d6Var) {
+        super(context, d6Var, true);
+        this.f17740h0 = new ne.b(0, this, bs.h, 320L, true);
+        this.f17741i0 = d6Var;
         e();
-        setOutlineProvider(j0.f50193b);
+        setOutlineProvider(i0.f51594b);
     }
 
     public final int m(int i10) {
-        c6 c6Var = this.f16347i0;
-        if (c6Var != null) {
-            return c6Var.E0(i10);
+        d6 d6Var = this.f17741i0;
+        if (d6Var != null) {
+            return d6Var.u(i10);
         }
-        return g6.x0(null, i10, false);
+        return h6.x0(null, i10, false);
     }
 
     @Override
-    public final void p(int i10, float f7, float f10, e eVar) {
+    public final void u(int i10, float f7, float f10, e eVar) {
         boolean q6;
-        c6 c6Var = this.f16347i0;
-        if (c6Var != null) {
-            q6 = c6Var.a();
+        d6 d6Var = this.f17741i0;
+        if (d6Var != null) {
+            q6 = d6Var.a();
         } else {
-            q6 = g6.I.q();
+            q6 = h6.I.q();
         }
-        float f11 = this.f16346h0.e;
+        float f11 = this.f17740h0.e;
         setElevation((1.0f - f11) * AndroidUtilities.dp(1.0f));
-        setColor(i0.a.d(f11, m(g6.f19601d6), m(g6.Oh)));
-        setTextColor(i0.a.d(f11, m(g6.f19839q7), m(g6.Sh)));
+        setColor(i0.b.f(f11, m(h6.f20986d6), m(h6.Oh)));
+        setTextColor(i0.b.f(f11, m(h6.f21224q7), m(h6.Sh)));
         if (Build.VERSION.SDK_INT >= 28) {
             if (q6) {
                 setOutlineAmbientShadowColor(553648127);
@@ -53,6 +53,6 @@ public final class b extends di.d implements ne.d {
     }
 
     @Override
-    public final void A(float f7, int i10) {
+    public final void E(float f7, int i10) {
     }
 }

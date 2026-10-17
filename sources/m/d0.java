@@ -1,52 +1,44 @@
 package m;
 
-import android.app.Activity;
-import android.content.ClipData;
-import android.os.Build;
-import android.text.Selection;
-import android.text.Spannable;
-import android.view.DragEvent;
-import android.view.View;
-import android.widget.TextView;
-public abstract class d0 {
-    public static boolean a(DragEvent dragEvent, TextView textView, Activity activity) {
-        r0.d dVar;
-        activity.requestDragAndDropPermissions(dragEvent);
-        int offsetForPosition = textView.getOffsetForPosition(dragEvent.getX(), dragEvent.getY());
-        textView.beginBatchEdit();
-        try {
-            Selection.setSelection((Spannable) textView.getText(), offsetForPosition);
-            ClipData clipData = dragEvent.getClipData();
-            if (Build.VERSION.SDK_INT >= 31) {
-                dVar = new j2.j(clipData, 3);
-            } else {
-                r0.e eVar = new r0.e();
-                eVar.f43467b = clipData;
-                eVar.f43468c = 3;
-                dVar = eVar;
-            }
-            r0.i0.h(textView, dVar.build());
-            textView.endBatchEdit();
-            return true;
-        } catch (Throwable th2) {
-            textView.endBatchEdit();
-            throw th2;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.widget.SeekBar;
+public class d0 extends SeekBar {
+    public final e0 f16168a;
+
+    public d0(Context context, AttributeSet attributeSet, int i10) {
+        super(context, attributeSet, i10);
+        c3.a(this, getContext());
+        e0 e0Var = new e0(this);
+        this.f16168a = e0Var;
+        e0Var.b(attributeSet, i10);
+    }
+
+    @Override
+    public void drawableStateChanged() {
+        super.drawableStateChanged();
+        e0 e0Var = this.f16168a;
+        d0 d0Var = e0Var.e;
+        Drawable drawable = e0Var.f16174f;
+        if (drawable != null && drawable.isStateful() && drawable.setState(d0Var.getDrawableState())) {
+            d0Var.invalidateDrawable(drawable);
         }
     }
 
-    public static boolean b(DragEvent dragEvent, View view, Activity activity) {
-        r0.d dVar;
-        activity.requestDragAndDropPermissions(dragEvent);
-        ClipData clipData = dragEvent.getClipData();
-        if (Build.VERSION.SDK_INT >= 31) {
-            dVar = new j2.j(clipData, 3);
-        } else {
-            r0.e eVar = new r0.e();
-            eVar.f43467b = clipData;
-            eVar.f43468c = 3;
-            dVar = eVar;
+    @Override
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        Drawable drawable = this.f16168a.f16174f;
+        if (drawable != null) {
+            drawable.jumpToCurrentState();
         }
-        r0.i0.h(view, dVar.build());
-        return true;
+    }
+
+    @Override
+    public final synchronized void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        this.f16168a.g(canvas);
     }
 }

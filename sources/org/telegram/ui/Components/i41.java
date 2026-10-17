@@ -1,10 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class i41 extends FrameLayout {
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class i41 extends r41 {
+    public final Runnable T;
+
+    public i41(Context context, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i10, boolean z10, Runnable runnable) {
+        super(context, str, str2, charSequence, inputPeer, i10, z10, null);
+        this.T = runnable;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void dismiss() {
+        super.dismiss();
+        Runnable runnable = this.T;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 }

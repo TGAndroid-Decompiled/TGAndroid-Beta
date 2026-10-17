@@ -1,20 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.graphics.Paint;
 public final class ui0 {
-    public Canvas f29386a;
-    public Bitmap f29387b;
-    public boolean f29388c;
-    public boolean d;
-    public boolean e;
-    public boolean f29389f;
+    public Paint f30994a;
+    public Paint f30995b;
+    public float f30996c;
+    public int d;
+    public int e;
+    public float f30997f;
 
-    public final void a() {
-        this.f29388c = true;
-        if (!this.e) {
-            this.d = true;
-            this.f29387b.recycle();
+    public final void a(float f7) {
+        this.f30996c = f7;
+        if (f7 < 0.0f) {
+            this.f30996c = 0.0f;
+        } else if (f7 > 1.0f) {
+            this.f30996c = 1.0f;
         }
     }
 }

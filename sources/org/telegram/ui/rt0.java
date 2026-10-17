@@ -1,44 +1,89 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class rt0 extends org.telegram.ui.Components.g10 {
-    public final zs0 e;
-    public final PhotoViewer f39584f;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.camera.Size;
+import org.telegram.ui.Components.AnimatedFileNative;
+public final class rt0 implements Runnable {
+    public final String f40809a;
+    public final long f40810b;
+    public final int f40811c;
+    public final PhotoViewer d;
 
-    public rt0(PhotoViewer photoViewer, zs0 zs0Var) {
-        super(false);
-        this.f39584f = photoViewer;
-        this.e = zs0Var;
+    public rt0(PhotoViewer photoViewer, String str, long j10, int i10) {
+        this.d = photoViewer;
+        this.f40809a = str;
+        this.f40810b = j10;
+        this.f40811c = i10;
     }
 
     @Override
-    public final CharSequence d() {
-        StringBuilder sb2 = new StringBuilder();
-        PhotoViewer photoViewer = this.f39584f;
-        int[] iArr = photoViewer.f31999m3;
-        sb2.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
-        sb2.append(' ');
-        sb2.append(LocaleController.formatPluralString("Seconds", iArr[1], new Object[0]));
-        String sb3 = sb2.toString();
-        StringBuilder sb4 = new StringBuilder();
-        int[] iArr2 = photoViewer.f32009n3;
-        sb4.append(LocaleController.formatPluralString("Minutes", iArr2[0], new Object[0]));
-        sb4.append(' ');
-        sb4.append(LocaleController.formatPluralString("Seconds", iArr2[1], new Object[0]));
-        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, sb4.toString());
-    }
-
-    @Override
-    public final float k() {
-        return this.f39584f.f32035q3.c();
-    }
-
-    @Override
-    public final void l(float f7) {
-        this.e.b(f7);
-        PhotoViewer photoViewer = this.f39584f;
-        photoViewer.f32035q3.h(f7, false);
-        photoViewer.f32044r3.invalidate();
+    public final void run() {
+        boolean z10;
+        boolean z11;
+        if (this.d.f33444x8 == this) {
+            int videoBitrate = MediaController.getVideoBitrate(this.f40809a);
+            int[] iArr = new int[11];
+            AnimatedFileNative.d(this.f40809a, iArr, this.f40810b);
+            if (iArr[10] != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            PhotoViewer photoViewer = this.d;
+            if (iArr[0] != 0 && (!z10 || iArr[9] != 0)) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            photoViewer.f33327k8 = z11;
+            PhotoViewer photoViewer2 = this.d;
+            if (videoBitrate == -1) {
+                videoBitrate = iArr[3];
+            }
+            photoViewer2.f33291g8 = videoBitrate;
+            photoViewer2.f33300h8 = videoBitrate;
+            if (this.d.f33327k8) {
+                PhotoViewer photoViewer3 = this.d;
+                int i10 = iArr[1];
+                photoViewer3.f33256c8 = i10;
+                photoViewer3.f33273e8 = i10;
+                PhotoViewer photoViewer4 = this.d;
+                int i11 = iArr[2];
+                photoViewer4.f33265d8 = i11;
+                photoViewer4.f33282f8 = i11;
+                PhotoViewer photoViewer5 = this.d;
+                int max = Math.max(photoViewer5.f33256c8, this.d.f33265d8);
+                if (max > 1280) {
+                    photoViewer5.Z7 = 4;
+                } else if (max > 854) {
+                    photoViewer5.Z7 = 3;
+                } else if (max > 640) {
+                    photoViewer5.Z7 = 2;
+                } else {
+                    photoViewer5.Z7 = 1;
+                }
+                PhotoViewer photoViewer6 = this.d;
+                int i12 = this.f40811c;
+                if (i12 == -1) {
+                    i12 = photoViewer6.v2();
+                }
+                photoViewer6.Y7 = i12;
+                PhotoViewer photoViewer7 = this.d;
+                if (photoViewer7.f33291g8 != 0 && photoViewer7.f33250c2 != 1) {
+                    Size p02 = photoViewer7.p0();
+                    if (p02.getWidth() == photoViewer7.f33256c8 && p02.getHeight() == photoViewer7.f33265d8) {
+                        MediaController.extractRealEncoderBitrate(p02.getWidth(), p02.getHeight(), photoViewer7.f33300h8, false);
+                    } else {
+                        MediaController.extractRealEncoderBitrate(p02.getWidth(), p02.getHeight(), MediaController.makeVideoBitrate(photoViewer7.f33265d8, photoViewer7.f33256c8, photoViewer7.f33300h8, p02.getHeight(), p02.getWidth()), false);
+                    }
+                }
+                this.d.f33334l8 = MediaController.isH264Video(this.f40809a);
+            }
+            if (this.d.f33444x8 != this) {
+                return;
+            }
+            AndroidUtilities.runOnUIThread(new xe0(this, this, iArr, 21));
+        }
     }
 }

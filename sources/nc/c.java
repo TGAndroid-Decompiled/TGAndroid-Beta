@@ -2,42 +2,42 @@ package nc;
 
 import java.nio.ByteBuffer;
 public final class c {
-    public final ByteBuffer f15977a;
-    public final int f15978b;
-    public int f15979c;
+    public final ByteBuffer f17353a;
+    public final int f17354b;
+    public int f17355c;
 
     public c(int i10, ByteBuffer byteBuffer) {
         switch (i10) {
             case 1:
-                this.f15979c = 0;
-                this.f15977a = byteBuffer;
-                this.f15978b = byteBuffer.position();
+                this.f17355c = 0;
+                this.f17353a = byteBuffer;
+                this.f17354b = byteBuffer.position();
                 return;
             default:
-                this.f15977a = byteBuffer;
-                this.f15978b = byteBuffer.position();
+                this.f17353a = byteBuffer;
+                this.f17354b = byteBuffer.position();
                 return;
         }
     }
 
     public int a(int i10) {
         int a2;
-        int i11 = this.f15978b;
-        ByteBuffer byteBuffer = this.f15977a;
-        int i12 = byteBuffer.get((this.f15979c / 8) + i11);
+        int i11 = this.f17354b;
+        ByteBuffer byteBuffer = this.f17353a;
+        int i12 = byteBuffer.get((this.f17355c / 8) + i11);
         if (i12 < 0) {
             i12 += 256;
         }
-        int i13 = this.f15979c;
+        int i13 = this.f17355c;
         int i14 = 8 - (i13 % 8);
         if (i10 <= i14) {
             a2 = ((i12 << (i13 % 8)) & 255) >> ((i14 - i10) + (i13 % 8));
-            this.f15979c = i13 + i10;
+            this.f17355c = i13 + i10;
         } else {
             int i15 = i10 - i14;
             a2 = (a(i14) << i15) + a(i15);
         }
-        byteBuffer.position(i11 + ((int) Math.ceil(this.f15979c / 8.0d)));
+        byteBuffer.position(i11 + ((int) Math.ceil(this.f17355c / 8.0d)));
         return a2;
     }
 
@@ -49,29 +49,29 @@ public final class c {
     }
 
     public void c(int i10, int i11) {
-        int i12 = this.f15979c;
+        int i12 = this.f17355c;
         int i13 = 8 - (i12 % 8);
         int i14 = 1;
-        int i15 = this.f15978b;
-        ByteBuffer byteBuffer = this.f15977a;
+        int i15 = this.f17354b;
+        ByteBuffer byteBuffer = this.f17353a;
         if (i11 <= i13) {
             int i16 = byteBuffer.get((i12 / 8) + i15);
             if (i16 < 0) {
                 i16 += 256;
             }
             int i17 = i16 + (i10 << (i13 - i11));
-            int i18 = (this.f15979c / 8) + i15;
+            int i18 = (this.f17355c / 8) + i15;
             if (i17 > 127) {
                 i17 -= 256;
             }
             byteBuffer.put(i18, (byte) i17);
-            this.f15979c += i11;
+            this.f17355c += i11;
         } else {
             int i19 = i11 - i13;
             c(i10 >> i19, i13);
             c(i10 & ((1 << i19) - 1), i19);
         }
-        int i20 = this.f15979c;
+        int i20 = this.f17355c;
         int i21 = (i20 / 8) + i15;
         if (i20 % 8 <= 0) {
             i14 = 0;

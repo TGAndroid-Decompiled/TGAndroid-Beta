@@ -1,93 +1,247 @@
 package i2;
 
-import java.util.HashMap;
-public final class p1 extends a {
-    public final int h;
-    public final int f11137i;
-    public final int[] f11138j;
-    public final int[] f11139k;
-    public final b2.p1[] f11140l;
-    public final Object[] f11141m;
-    public final HashMap f11142n;
+import v7.u6;
+public final class p1 {
+    public final b f12567a;
+    public final int f12568b;
+    public final b f12569c;
+    public int d = 0;
+    public boolean e = false;
+    public boolean f12570f = false;
 
-    public p1(b2.p1[] p1VarArr, Object[] objArr, u2.i1 i1Var) {
-        super(i1Var);
-        int length = p1VarArr.length;
-        this.f11140l = p1VarArr;
-        this.f11138j = new int[length];
-        this.f11139k = new int[length];
-        this.f11141m = objArr;
-        this.f11142n = new HashMap();
-        int length2 = p1VarArr.length;
-        int i10 = 0;
-        int i11 = 0;
-        int i12 = 0;
-        int i13 = 0;
-        while (i10 < length2) {
-            b2.p1 p1Var = p1VarArr[i10];
-            this.f11140l[i13] = p1Var;
-            this.f11139k[i13] = i11;
-            this.f11138j[i13] = i12;
-            i11 += p1Var.o();
-            i12 += this.f11140l[i13].h();
-            this.f11142n.put(objArr[i13], Integer.valueOf(i13));
-            i10++;
-            i13++;
+    public p1(b bVar, b bVar2, int i10) {
+        this.f12567a = bVar;
+        this.f12568b = i10;
+        this.f12569c = bVar2;
+    }
+
+    public static void b(b bVar) {
+        boolean z10;
+        int i10 = bVar.f12317n;
+        if (i10 == 2) {
+            if (i10 == 2) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            u6.p(z10);
+            bVar.f12317n = 1;
+            bVar.t();
         }
-        this.h = i11;
-        this.f11137i = i12;
     }
 
-    @Override
-    public final int h() {
-        return this.f11137i;
-    }
-
-    @Override
-    public final int o() {
-        return this.h;
-    }
-
-    @Override
-    public final int q(Object obj) {
-        Integer num = (Integer) this.f11142n.get(obj);
-        if (num == null) {
-            return -1;
+    public static boolean h(b bVar) {
+        if (bVar.f12317n != 0) {
+            return true;
         }
-        return num.intValue();
+        return false;
     }
 
-    @Override
-    public final int r(int i10) {
-        return e2.m0.e(this.f11138j, i10 + 1, false, false);
+    public static void l(b bVar, long j10) {
+        bVar.f12322y = true;
+        if (bVar instanceof w2.e) {
+            w2.e eVar = (w2.e) bVar;
+            u6.p(eVar.f12322y);
+            eVar.f48483a0 = j10;
+        }
     }
 
-    @Override
-    public final int s(int i10) {
-        return e2.m0.e(this.f11139k, i10 + 1, false, false);
+    public final void a(b bVar, i iVar) {
+        boolean z10;
+        boolean z11 = true;
+        if (this.f12567a != bVar && this.f12569c != bVar) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        u6.p(z10);
+        if (!h(bVar)) {
+            return;
+        }
+        if (bVar == iVar.f12448c) {
+            iVar.d = null;
+            iVar.f12448c = null;
+            iVar.e = true;
+        }
+        b(bVar);
+        if (bVar.f12317n != 1) {
+            z11 = false;
+        }
+        u6.p(z11);
+        bVar.f12315c.z();
+        bVar.f12317n = 0;
+        bVar.f12318r = null;
+        bVar.f12319s = null;
+        bVar.f12322y = false;
+        bVar.n();
+        bVar.G = null;
     }
 
-    @Override
-    public final Object t(int i10) {
-        return this.f11141m[i10];
+    public final int c() {
+        int i10;
+        boolean h = h(this.f12567a);
+        b bVar = this.f12569c;
+        if (bVar != null && h(bVar)) {
+            i10 = 1;
+        } else {
+            i10 = 0;
+        }
+        return (h ? 1 : 0) + i10;
     }
 
-    @Override
-    public final int u(int i10) {
-        return this.f11138j[i10];
+    public final b d(v0 v0Var) {
+        u2.d1 d1Var;
+        if (v0Var != null && (d1Var = v0Var.f12603c[this.f12568b]) != null) {
+            b bVar = this.f12567a;
+            if (bVar.f12318r == d1Var) {
+                return bVar;
+            }
+            b bVar2 = this.f12569c;
+            if (bVar2 != null && bVar2.f12318r == d1Var) {
+                return bVar2;
+            }
+        }
+        return null;
     }
 
-    @Override
-    public final int v(int i10) {
-        return this.f11139k[i10];
+    public final boolean e(i2.v0 r8, i2.b r9) {
+        throw new UnsupportedOperationException("Method not decompiled: i2.p1.e(i2.v0, i2.b):boolean");
     }
 
-    @Override
-    public final b2.p1 x(int i10) {
-        return this.f11140l[i10];
+    public final boolean f() {
+        int i10 = this.d;
+        if (i10 != 2 && i10 != 4 && i10 != 3) {
+            return false;
+        }
+        return true;
     }
 
-    public p1(java.util.ArrayList r8, u2.i1 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.p1.<init>(java.util.ArrayList, u2.i1):void");
+    public final boolean g() {
+        int i10 = this.d;
+        if (i10 != 0 && i10 != 2 && i10 != 4) {
+            b bVar = this.f12569c;
+            bVar.getClass();
+            if (bVar.f12317n != 0) {
+                return true;
+            }
+            return false;
+        }
+        return h(this.f12567a);
+    }
+
+    public final void i(boolean z10) {
+        boolean z11 = true;
+        if (z10) {
+            if (this.e) {
+                b bVar = this.f12567a;
+                if (bVar.f12317n != 0) {
+                    z11 = false;
+                }
+                u6.p(z11);
+                bVar.f12315c.z();
+                bVar.r();
+                this.e = false;
+            }
+        } else if (this.f12570f) {
+            b bVar2 = this.f12569c;
+            bVar2.getClass();
+            if (bVar2.f12317n != 0) {
+                z11 = false;
+            }
+            u6.p(z11);
+            bVar2.f12315c.z();
+            bVar2.r();
+            this.f12570f = false;
+        }
+    }
+
+    public final int j(b bVar, v0 v0Var, x2.t tVar, i iVar) {
+        b bVar2;
+        Object[] objArr;
+        int i10;
+        int i11;
+        if (bVar == null || bVar.f12317n == 0 || (bVar == (bVar2 = this.f12567a) && ((i11 = this.d) == 2 || i11 == 4))) {
+            return 1;
+        }
+        if (bVar == this.f12569c && this.d == 3) {
+            return 1;
+        }
+        u2.d1 d1Var = bVar.f12318r;
+        u2.d1[] d1VarArr = v0Var.f12603c;
+        int i12 = this.f12568b;
+        boolean z10 = false;
+        if (d1Var != d1VarArr[i12]) {
+            objArr = 1;
+        } else {
+            objArr = null;
+        }
+        boolean b10 = tVar.b(i12);
+        if (!b10 || objArr != null) {
+            if (!bVar.f12322y) {
+                x2.p pVar = tVar.f49202c[i12];
+                if (pVar != null) {
+                    i10 = pVar.length();
+                } else {
+                    i10 = 0;
+                }
+                b2.w[] wVarArr = new b2.w[i10];
+                for (int i13 = 0; i13 < i10; i13++) {
+                    pVar.getClass();
+                    wVarArr[i13] = pVar.f(i13);
+                }
+                u2.d1 d1Var2 = v0Var.f12603c[i12];
+                d1Var2.getClass();
+                bVar.y(wVarArr, d1Var2, v0Var.e(), v0Var.f12613p, v0Var.f12605g.f12616a);
+                return 3;
+            } else if (!bVar.l()) {
+                return 0;
+            } else {
+                a(bVar, iVar);
+                if (!b10 || f()) {
+                    if (bVar == bVar2) {
+                        z10 = true;
+                    }
+                    i(z10);
+                    return 1;
+                }
+            }
+        }
+        return 1;
+    }
+
+    public final void k() {
+        if (!h(this.f12567a)) {
+            i(true);
+        }
+        b bVar = this.f12569c;
+        if (bVar == null || bVar.f12317n != 0) {
+            return;
+        }
+        i(false);
+    }
+
+    public final void m() {
+        int i10;
+        b bVar = this.f12567a;
+        int i11 = bVar.f12317n;
+        boolean z10 = false;
+        if (i11 == 1 && this.d != 4) {
+            if (i11 == 1) {
+                z10 = true;
+            }
+            u6.p(z10);
+            bVar.f12317n = 2;
+            bVar.s();
+            return;
+        }
+        b bVar2 = this.f12569c;
+        if (bVar2 != null && (i10 = bVar2.f12317n) == 1 && this.d != 3) {
+            if (i10 == 1) {
+                z10 = true;
+            }
+            u6.p(z10);
+            bVar2.f12317n = 2;
+            bVar2.s();
+        }
     }
 }

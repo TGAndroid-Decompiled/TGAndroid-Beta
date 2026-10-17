@@ -3,110 +3,95 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.os.Build;
-import android.widget.FrameLayout;
+import android.graphics.RectF;
+import android.widget.Button;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotchInfoUtils;
-import org.telegram.messenger.SharedConfig;
-public final class ti0 extends FrameLayout {
-    public final Paint f29071a;
-    public final Path f29072b;
-    public final si0 f29073c;
+public final class ti0 extends Button {
+    public final RectF f30641a;
+    public final Paint f30642b;
+    public boolean f30643c;
     public float d;
-    public float e;
-    public float f29074f;
-    public boolean h;
-    public NotchInfoUtils.NotchInfo f29075n;
+    public long e;
+    public int f30644f;
 
     public ti0(Context context) {
         super(context);
-        float f7;
+        setAllCaps(false);
+        setTextSize(1, 14.0f);
+        setTypeface(AndroidUtilities.bold());
+        setOutlineProvider(null);
+        w7.f6.a(this, 8.0f, 0.0f, 8.0f, 0.0f);
+        int dp = AndroidUtilities.dp(60.0f);
+        setMinWidth(dp);
+        setMinimumWidth(dp);
+        this.f30641a = new RectF();
         Paint paint = new Paint(1);
-        this.f29071a = paint;
-        this.f29072b = new Path();
-        paint.setColor(-16777216);
-        if (Build.VERSION.SDK_INT >= 31 && SharedConfig.getDevicePerformanceClass() >= 1) {
-            if (SharedConfig.getDevicePerformanceClass() == 2) {
-                f7 = 1.0f;
-            } else {
-                f7 = 1.5f;
+        this.f30642b = paint;
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        float f7;
+        if (this.f30643c != z10) {
+            this.f30643c = z10;
+            if (!z11) {
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                this.d = f7;
             }
-            this.f29073c = new ri0(this, f7);
-        } else {
-            this.f29073c = new qi0(this);
+            this.e = System.currentTimeMillis();
+            invalidate();
         }
-        setIntensity(15.0f);
-        setBlurIntensity(0.0f);
-        setWillNotDraw(false);
-    }
-
-    public static void a(ti0 ti0Var, Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, AndroidUtilities.dp(32.0f));
-        super.draw(canvas);
-        canvas.restore();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (!this.h) {
-            super.draw(canvas);
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (!this.f30643c && this.d == 0.0f) {
             return;
         }
-        this.f29073c.c(new xv(this, 13), canvas);
-    }
-
-    public float getAvatarEndScale() {
-        float min;
-        int dp;
-        NotchInfoUtils.NotchInfo notchInfo = this.f29075n;
-        if (notchInfo == null) {
-            return 0.8f;
+        int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(11.0f);
+        RectF rectF = this.f30641a;
+        rectF.set(measuredWidth, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(8.0f) + measuredWidth, AndroidUtilities.dp(11.0f));
+        int min = Math.min(255, (int) (this.d * 255.0f));
+        Paint paint = this.f30642b;
+        paint.setAlpha(min);
+        canvas.drawArc(rectF, this.f30644f, 220.0f, false, paint);
+        long currentTimeMillis = System.currentTimeMillis();
+        if (Math.abs(this.e - System.currentTimeMillis()) < 1000) {
+            long j10 = currentTimeMillis - this.e;
+            int i10 = (int) (this.f30644f + (((float) (360 * j10)) / 2000.0f));
+            this.f30644f = i10 - ((i10 / 360) * 360);
+            if (this.f30643c) {
+                float f7 = this.d;
+                if (f7 < 1.0f) {
+                    float f10 = (((float) j10) / 200.0f) + f7;
+                    this.d = f10;
+                    if (f10 > 1.0f) {
+                        this.d = 1.0f;
+                    }
+                }
+            } else {
+                float f11 = this.d;
+                if (f11 > 0.0f) {
+                    float f12 = f11 - (((float) j10) / 200.0f);
+                    this.d = f12;
+                    if (f12 < 0.0f) {
+                        this.d = 0.0f;
+                    }
+                }
+            }
         }
-        if (notchInfo.isLikelyCircle) {
-            min = notchInfo.bounds.width() - AndroidUtilities.dp(2.0f);
-            dp = AndroidUtilities.dp(100.0f);
-        } else {
-            min = Math.min(notchInfo.bounds.width(), this.f29075n.bounds.height());
-            dp = AndroidUtilities.dp(100.0f);
-        }
-        return Math.min(0.8f, min / dp);
+        this.e = currentTimeMillis;
+        postInvalidateOnAnimation();
     }
 
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        NotchInfoUtils.NotchInfo info = NotchInfoUtils.getInfo(getContext());
-        this.f29075n = info;
-        if ((info != null && info.gravity != 17) || getWidth() > getHeight()) {
-            this.f29075n = null;
-        }
-        this.f29073c.d(i10, i11);
-    }
-
-    public void setBlurIntensity(float f7) {
-        this.f29074f = f7;
-        this.f29073c.b(f7);
-        invalidate();
-    }
-
-    public void setGooeyEnabled(boolean z10) {
-        if (this.h == z10) {
-            return;
-        }
-        this.h = z10;
-        invalidate();
-    }
-
-    public void setIntensity(float f7) {
-        this.d = f7;
-        this.f29073c.a(f7);
-        invalidate();
-    }
-
-    public void setPullProgress(float f7) {
-        this.e = f7;
-        invalidate();
+    public void setProgressColor(int i10) {
+        this.f30642b.setColor(i10);
     }
 }

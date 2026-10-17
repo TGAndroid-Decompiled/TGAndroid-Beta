@@ -1,36 +1,12 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class v81 implements org.telegram.ui.ActionBar.z1 {
-    public final int f40609a;
-    public final SessionsActivity f40610b;
-
-    public v81(SessionsActivity sessionsActivity, int i10) {
-        this.f40609a = i10;
-        this.f40610b = sessionsActivity;
-    }
-
+import android.graphics.Canvas;
+public final class v81 extends lg.c {
     @Override
-    public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f40609a) {
-            case 0:
-                SessionsActivity sessionsActivity = this.f40610b;
-                sessionsActivity.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    sessionsActivity.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            default:
-                SessionsActivity.W(this.f40610b);
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (getTranslationY() != 0.0f) {
+            canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
         }
+        super.onDraw(canvas);
     }
 }

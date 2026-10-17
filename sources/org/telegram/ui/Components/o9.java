@@ -1,56 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class o9 implements ne.h, qe.a {
-    public final ImageReceiver f27605a;
-    public final k9 f27606b;
-    public long f27607c;
-    public boolean d;
-    public final p9 e;
-
-    public o9(p9 p9Var, ViewGroup viewGroup) {
-        this.e = p9Var;
-        ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
-        this.f27605a = imageReceiver;
-        imageReceiver.setRoundRadius(p9Var.e / 2);
-        k9 k9Var = new k9((org.telegram.ui.ActionBar.c6) null);
-        this.f27606b = k9Var;
-        k9Var.u(AndroidUtilities.dp(22.0f));
-    }
-
-    @Override
-    public final void a() {
-        if (this.d) {
-            this.d = false;
-            this.f27605a.onDetachedFromWindow();
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public abstract class o9 {
+    public static void a(org.telegram.ui.sn snVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j10, int i11, int i12) {
+        org.telegram.ui.ActionBar.d5 parentLayout;
+        TLRPC.TL_forumTopic tL_forumTopic2;
+        if ((chat != null || user != null) && (parentLayout = snVar.getParentLayout()) != null) {
+            if (parentLayout.getPulledDialogs() == null) {
+                parentLayout.setPulledDialogs(new ArrayList());
+            }
+            for (n9 n9Var : parentLayout.getPulledDialogs()) {
+                if (tL_forumTopic != null || n9Var.f28683f != j10) {
+                    if (tL_forumTopic != null && (tL_forumTopic2 = n9Var.e) != null && tL_forumTopic2.f20324id == tL_forumTopic.f20324id) {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            }
+            ?? obj = new Object();
+            obj.f28680a = org.telegram.ui.sn.class;
+            obj.f28681b = i10;
+            obj.f28683f = j10;
+            obj.h = i12;
+            obj.f28684g = i11;
+            obj.f28682c = chat;
+            obj.d = user;
+            obj.e = tL_forumTopic;
+            parentLayout.getPulledDialogs().add(obj);
         }
-        this.f27607c = 0L;
     }
 
-    @Override
-    public final int b(boolean z10) {
-        if (z10) {
-            return 0;
-        }
-        return -this.e.f27932f;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof o9) || this.f27607c != ((o9) obj).f27607c) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int getHeight() {
-        return this.e.e;
-    }
-
-    @Override
-    public final int getWidth() {
-        return this.e.e;
+    public static org.telegram.ui.ActionBar.m1 b(org.telegram.ui.ActionBar.n2 r37, android.view.View r38, long r39, long r41, org.telegram.ui.ActionBar.d6 r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o9.b(org.telegram.ui.ActionBar.n2, android.view.View, long, long, org.telegram.ui.ActionBar.d6):org.telegram.ui.ActionBar.m1");
     }
 }

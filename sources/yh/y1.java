@@ -4,28 +4,28 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.j5;
-import org.telegram.ui.Components.nu;
-import org.telegram.ui.Components.r6;
-public final class y1 extends nu {
-    public final j5 f49222c;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.i5;
+import org.telegram.ui.Components.iu;
+import org.telegram.ui.Components.p6;
+public final class y1 extends iu {
+    public final i5 f50607c;
     public int d;
-    public final r6 e;
-    public final q2 f49223f;
+    public final p6 e;
+    public final q2 f50608f;
 
-    public y1(q2 q2Var, Context context, c6 c6Var) {
-        super(context, c6Var);
-        this.f49223f = q2Var;
-        this.f49222c = new j5(this);
-        r6 r6Var = new r6(false, true, true);
-        this.e = r6Var;
-        r6Var.n(0.2f, 160L, es.h);
-        r6Var.w(AndroidUtilities.dp(15.33f));
-        r6Var.setCallback(this);
-        r6Var.f28435b = 5;
+    public y1(q2 q2Var, Context context, d6 d6Var) {
+        super(context, d6Var);
+        this.f50608f = q2Var;
+        this.f50607c = new i5(this);
+        p6 p6Var = new p6(false, true, true);
+        this.e = p6Var;
+        p6Var.n(0.2f, 160L, bs.h);
+        p6Var.w(AndroidUtilities.dp(15.33f));
+        p6Var.setCallback(this);
+        p6Var.f29192b = 5;
     }
 
     @Override
@@ -33,29 +33,29 @@ public final class y1 extends nu {
         int i10;
         super.dispatchDraw(canvas);
         if (this.d < 0) {
-            i10 = g6.f19822p7;
+            i10 = h6.f21207p7;
         } else {
-            i10 = g6.P5;
+            i10 = h6.P5;
         }
-        int a2 = this.f49222c.a(g6.w0(i10, this.f49223f.f49091f), false);
-        r6 r6Var = this.e;
-        r6Var.u(a2);
-        r6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        r6Var.draw(canvas);
+        int a2 = this.f50607c.a(h6.w0(i10, this.f50608f.f50495f), false);
+        p6 p6Var = this.e;
+        p6Var.u(a2);
+        p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        p6Var.draw(canvas);
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        r6 r6Var = this.e;
-        if (r6Var != null) {
+        p6 p6Var = this.e;
+        if (p6Var != null) {
             this.d = 12 - charSequence.length();
-            r6Var.a();
+            p6Var.a();
             String str = "";
             if (this.d <= 4) {
                 str = "" + this.d;
             }
-            r6Var.t(str, true, true);
+            p6Var.t(str, true, true);
         }
     }
 

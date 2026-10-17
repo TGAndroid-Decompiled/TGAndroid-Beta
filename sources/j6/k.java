@@ -3,18 +3,18 @@ package j6;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.messaging.r;
+import com.google.firebase.messaging.q;
 public final class k {
-    public final int f12873a;
-    public final TaskCompletionSource f12874b = new TaskCompletionSource();
-    public final int f12875c;
+    public final int f14280a;
+    public final TaskCompletionSource f14281b = new TaskCompletionSource();
+    public final int f14282c;
     public final Bundle d;
     public final int e;
 
     public k(int i10, int i11, Bundle bundle, int i12) {
         this.e = i12;
-        this.f12873a = i10;
-        this.f12875c = i11;
+        this.f14280a = i10;
+        this.f14282c = i11;
         this.d = bundle;
     }
 
@@ -27,13 +27,13 @@ public final class k {
         }
     }
 
-    public final void b(r rVar) {
+    public final void b(q qVar) {
         if (Log.isLoggable("MessengerIpcClient", 3)) {
             String kVar = toString();
-            String obj = rVar.toString();
+            String obj = qVar.toString();
             Log.d("MessengerIpcClient", "Failing " + kVar + " with " + obj);
         }
-        this.f12874b.setException(rVar);
+        this.f14281b.setException(qVar);
     }
 
     public final void c(Bundle bundle) {
@@ -42,10 +42,10 @@ public final class k {
             String valueOf = String.valueOf(bundle);
             Log.d("MessengerIpcClient", "Finishing " + kVar + " with " + valueOf);
         }
-        this.f12874b.setResult(bundle);
+        this.f14281b.setResult(bundle);
     }
 
     public final String toString() {
-        return "Request { what=" + this.f12875c + " id=" + this.f12873a + " oneWay=" + a() + "}";
+        return "Request { what=" + this.f14282c + " id=" + this.f14280a + " oneWay=" + a() + "}";
     }
 }

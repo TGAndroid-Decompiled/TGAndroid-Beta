@@ -1,4 +1,4 @@
 package we;
 public final class b implements ve.a {
-    public final int f47539a;
+    public final int f48948a;
 }

@@ -1,34 +1,46 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class cd0 extends s4.r0 {
-    public final ld0 f34562a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class cd0 extends AnimatorListenerAdapter {
+    public final int f35918a;
+    public final fg0 f35919b;
 
-    public cd0(ld0 ld0Var) {
-        this.f34562a = ld0Var;
+    public cd0(fg0 fg0Var, int i10) {
+        this.f35918a = i10;
+        this.f35919b = fg0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        ld0 ld0Var = this.f34562a;
-        ld0Var.Q = z10;
-        if (!z10 && ld0Var.L != null) {
-            ld0Var.L = null;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f35918a) {
+            case 0:
+                fg0 fg0Var = this.f35919b;
+                if (fg0Var.d == animator) {
+                    fg0Var.d = null;
+                    return;
+                }
+                return;
+            default:
+                fg0 fg0Var2 = this.f35919b;
+                fg0Var2.f36907c.setVisibility(8);
+                if (fg0Var2.d == animator) {
+                    fg0Var2.d = null;
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ld0 ld0Var = this.f34562a;
-        ld0Var.z0(false);
-        if (ld0Var.L != null) {
-            ld0Var.N += i11;
+    public void onAnimationStart(Animator animator) {
+        switch (this.f35918a) {
+            case 0:
+                this.f35919b.f36907c.setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

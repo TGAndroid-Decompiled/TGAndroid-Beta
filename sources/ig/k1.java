@@ -1,151 +1,142 @@
 package ig;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.TextView;
+import ci.z2;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.WebFile;
-import org.telegram.messenger.sk;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.ha0;
-import w7.z5;
-public final class k1 extends LinearLayout {
-    public final c6 f11564a;
-    public final ha0 f11565b;
-    public final ImageReceiver f11566c;
-    public final TextView d;
-    public boolean e;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ey;
+import org.telegram.ui.te1;
+import org.telegram.ui.xx;
+public final class k1 implements org.telegram.ui.ActionBar.a2, xx {
+    public final int f12947a;
+    public final KeyEvent.Callback f12948b;
+    public final Object f12949c;
+    public final Object d;
+    public final Object e;
+    public final Object f12950f;
 
-    public k1(Context context, c6 c6Var) {
-        super(context);
-        int i10;
+    public k1(o1 o1Var, z2 z2Var, int i10, x1 x1Var, TextView textView, Utilities.Callback callback) {
+        this.f12948b = o1Var;
+        this.f12949c = z2Var;
+        this.f12947a = i10;
+        this.d = x1Var;
+        this.e = textView;
+        this.f12950f = callback;
+    }
+
+    @Override
+    public boolean D() {
+        return false;
+    }
+
+    @Override
+    public boolean K(ey eyVar) {
+        return false;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         int i11;
-        int i12;
-        int i13;
-        int i14;
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f11566c = imageReceiver;
-        this.f11564a = c6Var;
-        setOrientation(1);
-        ha0 ha0Var = new ha0();
-        this.f11565b = ha0Var;
-        int i15 = g6.G6;
-        int w02 = g6.w0(i15, c6Var);
-        ha0Var.g(g6.m1(0.05f, w02), g6.m1(0.15f, w02), g6.m1(0.1f, w02), g6.m1(0.3f, w02));
-        ha0Var.k(4.0f);
-        ha0Var.f25266x.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
-        TextView textView = new TextView(context);
-        this.d = textView;
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        textView.setGravity(i10);
-        textView.setTextColor(g6.w0(i15, c6Var));
-        textView.setTextSize(1, 16.0f);
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i11 = 70;
-        } else {
-            i11 = 18;
-        }
-        if (z10) {
-            i12 = 18;
-        } else {
-            i12 = 70;
-        }
-        addView(textView, z5.t(-1, -2, 55, i11, 10, i12, 4));
-        TextView textView2 = new TextView(context);
-        textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(g6.w0(g6.f20005z6, c6Var));
-        sk.j(13.0f, R.string.BusinessProfileLocation, 1, textView2);
-        boolean z11 = LocaleController.isRTL;
-        if (z11) {
-            i13 = 70;
-        } else {
-            i13 = 18;
-        }
-        if (z11) {
-            i14 = 18;
-        } else {
-            i14 = 70;
-        }
-        addView(textView2, z5.t(-1, -2, 55, i13, 0, i14, 8));
-        setWillNotDraw(false);
-    }
-
-    public final void a(TLRPC.TL_businessLocation tL_businessLocation, boolean z10) {
-        if (tL_businessLocation != null) {
-            this.d.setText(tL_businessLocation.address);
-            if (tL_businessLocation.geo_point != null) {
-                this.f11566c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f11565b, 0L, (String) null, (Object) null, 0);
+        o1 o1Var = (o1) this.f12948b;
+        z2 z2Var = (z2) this.f12949c;
+        x1 x1Var = (x1) this.d;
+        TextView textView = (TextView) this.e;
+        Utilities.Callback callback = (Utilities.Callback) this.f12950f;
+        String obj = o1Var.getText().toString();
+        if (obj.length() > 0 && obj.length() <= 32) {
+            y1 f7 = y1.f(this.f12947a);
+            if (x1Var == null) {
+                i11 = -1;
             } else {
-                this.f11566c.setImageBitmap((Drawable) null);
+                i11 = x1Var.f13080a;
             }
+            x1 d = f7.d(obj);
+            if (d != null && d.f13080a != i11) {
+                AndroidUtilities.shakeView(o1Var);
+                textView.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
+                z2Var.run(Boolean.TRUE);
+                return;
+            }
+            callback.run(obj);
+            b2Var.dismiss();
+            return;
         }
-        this.e = z10;
-        setPadding(0, 0, 0, z10 ? 1 : 0);
-        invalidate();
+        AndroidUtilities.shakeView(o1Var);
+        z2Var.run(Boolean.FALSE);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int width;
-        float f7;
-        if (LocaleController.isRTL) {
-            width = AndroidUtilities.dp(16.0f);
+    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, te1 te1Var) {
+        String str;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        final LaunchActivity launchActivity = (LaunchActivity) this.f12948b;
+        final TLRPC.User user = (TLRPC.User) this.f12949c;
+        final String str2 = (String) this.d;
+        final String str3 = (String) this.e;
+        final ey eyVar2 = (ey) this.f12950f;
+        Pattern pattern = LaunchActivity.C1;
+        final long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+        final TLRPC.Chat chat = MessagesController.getInstance(launchActivity.O).getChat(Long.valueOf(-j10));
+        final int i12 = this.f12947a;
+        if (chat != null && (chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.add_admins))) {
+            MessagesController.getInstance(i12).checkIsInChat(false, chat, user, new MessagesController.IsInChatCheckedCallback() {
+                @Override
+                public final void run(boolean z12, TLRPC.TL_chatAdminRights tL_chatAdminRights2, String str4) {
+                    Pattern pattern2 = LaunchActivity.C1;
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.i8(LaunchActivity.this, str2, tL_chatAdminRights2, z12, str3, i12, chat, eyVar2, user, j10, str4));
+                }
+            });
         } else {
-            width = getWidth() - AndroidUtilities.dp(60.0f);
-        }
-        float f10 = width;
-        ImageReceiver imageReceiver = this.f11566c;
-        imageReceiver.setImageCoords(f10, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
-        imageReceiver.draw(canvas);
-        super.onDraw(canvas);
-        if (this.e) {
-            Paint U0 = g6.U0("paintDivider", this.f11564a);
-            if (U0 == null) {
-                U0 = g6.f19722k0;
-            }
-            Paint paint = U0;
-            float f11 = 21.33f;
-            if (LocaleController.isRTL) {
-                f7 = 0.0f;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
+            String string = LocaleController.getString(R.string.AddBot);
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+            b2Var.R = string;
+            if (chat == null) {
+                str = "";
             } else {
-                f7 = 21.33f;
+                str = chat.title;
             }
-            float dp = AndroidUtilities.dp(f7);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width2 = getWidth();
-            if (!LocaleController.isRTL) {
-                f11 = 0.0f;
-            }
-            canvas.drawRect(dp, measuredHeight, width2 - AndroidUtilities.dp(f11), getMeasuredHeight(), paint);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f11565b && !super.verifyDrawable(drawable)) {
-            return false;
+            b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(user), str));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            alertDialog$Builder.k(LocaleController.getString(R.string.AddBot), new org.telegram.ui.ActionBar.a2() {
+                @Override
+                public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i13) {
+                    Pattern pattern2 = LaunchActivity.C1;
+                    Bundle h = a1.g.h("scrollToTopOnResume", true);
+                    long j11 = -j10;
+                    h.putLong("chat_id", j11);
+                    sn snVar = new sn(h);
+                    int i14 = i12;
+                    NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+                    MessagesController.getInstance(i14).addUserToChat(j11, user, 0, str3, snVar, null);
+                    ((ActionBarLayout) LaunchActivity.this.O()).S(snVar, true, false);
+                }
+            });
+            alertDialog$Builder.o();
         }
         return true;
+    }
+
+    public k1(LaunchActivity launchActivity, int i10, TLRPC.User user, String str, String str2, ey eyVar) {
+        this.f12948b = launchActivity;
+        this.f12947a = i10;
+        this.f12949c = user;
+        this.d = str;
+        this.e = str2;
+        this.f12950f = eyVar;
     }
 }

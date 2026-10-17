@@ -2,13 +2,13 @@ package r2;
 
 import android.media.MediaCodecInfo;
 public interface u {
-    boolean G1(String str, MediaCodecInfo.CodecCapabilities codecCapabilities);
+    MediaCodecInfo a(int i10);
 
-    int I1();
+    boolean f(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
 
-    MediaCodecInfo l(int i10);
+    boolean h(String str, MediaCodecInfo.CodecCapabilities codecCapabilities);
 
-    boolean m2();
+    int k();
 
-    boolean w0(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
+    boolean u();
 }

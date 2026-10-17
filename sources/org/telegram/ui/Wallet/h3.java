@@ -1,26 +1,15 @@
 package org.telegram.ui.Wallet;
+public final class h3 extends yh.k1 {
+    public final org.telegram.ui.Cells.x0 f34257y;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class h3 implements Runnable {
-    public final int f32973a;
-    public final Context f32974b;
-
-    public h3(Context context, int i10) {
-        this.f32973a = i10;
-        this.f32974b = context;
+    public h3(org.telegram.ui.Cells.x0 x0Var, org.telegram.ui.Cells.x0 x0Var2) {
+        super(x0Var);
+        this.f34257y = x0Var2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32973a) {
-            case 0:
-                pf.d.t(this.f32974b, LocaleController.getString(R.string.TermsOfServiceUrl));
-                return;
-            default:
-                pf.d.t(this.f32974b, LocaleController.getString(R.string.TermsOfServiceUrl));
-                return;
-        }
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        this.f34257y.invalidate();
     }
 }

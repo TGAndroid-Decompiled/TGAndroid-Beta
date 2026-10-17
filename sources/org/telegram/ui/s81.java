@@ -1,24 +1,22 @@
 package org.telegram.ui;
-public final class s81 implements Runnable {
-    public final int f39720a;
-    public final SessionsActivity f39721b;
-    public final boolean f39722c;
 
-    public s81(SessionsActivity sessionsActivity, boolean z10, int i10) {
-        this.f39720a = i10;
-        this.f39721b = sessionsActivity;
-        this.f39722c = z10;
+import android.content.Context;
+public final class s81 extends org.telegram.ui.Components.im0 {
+    public int V2;
+    public final r91 W2;
+
+    public s81(r91 r91Var, Context context) {
+        super(context, null);
+        this.W2 = r91Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39720a) {
-            case 0:
-                this.f39721b.k0(this.f39722c);
-                return;
-            default:
-                this.f39721b.k0(this.f39722c);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        w81 w81Var;
+        super.onMeasure(i10, i11);
+        if (this.V2 != getMeasuredHeight() && (w81Var = this.W2.X) != null) {
+            w81Var.l();
         }
+        this.V2 = getMeasuredHeight();
     }
 }

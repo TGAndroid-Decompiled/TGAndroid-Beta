@@ -7,40 +7,40 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.play_billing.k3;
-import di.e4;
+import com.google.android.gms.internal.cast.a6;
+import ei.y3;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import w7.z5;
 public class c extends FrameLayout {
-    public final TextView f14689a;
-    public final TextView f14690b;
-    public final TextView f14691c;
+    public final TextView f16026a;
+    public final TextView f16027b;
+    public final TextView f16028c;
     public final TextView d;
     public boolean e;
-    public boolean f14692f;
+    public boolean f16029f;
     public final Drawable h;
-    public final int f14693n;
-    public final c6 f14694r;
+    public final int f16030n;
+    public final d6 f16031r;
 
-    public c(Context context, c6 c6Var) {
+    public c(Context context, d6 d6Var) {
         super(context);
         this.e = true;
         new SimpleDateFormat("d MMM yyyy");
-        this.f14694r = c6Var;
+        this.f16031r = d6Var;
         TextPaint textPaint = new TextPaint();
         textPaint.setTextSize(14.0f);
         textPaint.setTypeface(AndroidUtilities.bold());
         int measureText = (int) textPaint.measureText("00 MMM 0000 - 00 MMM 000");
-        this.f14693n = measureText;
+        this.f16030n = measureText;
         TextView textView = new TextView(context);
-        this.f14689a = textView;
-        k3.m(15.0f, 1, textView);
+        this.f16026a = textView;
+        a6.m(15.0f, 1, textView);
         addView(textView, z5.a(-2.0f, 16.0f, 0.0f, measureText, 0.0f, -2, 8388627));
         TextView textView2 = new TextView(context);
         this.d = textView2;
@@ -49,13 +49,13 @@ public class c extends FrameLayout {
         textView2.setGravity(8388627);
         addView(textView2, z5.a(-2.0f, 8.0f, 0.0f, 8.0f, 0.0f, -2, 8388627));
         TextView textView3 = new TextView(context);
-        this.f14690b = textView3;
+        this.f16027b = textView3;
         textView3.setTextSize(1, 13.0f);
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setGravity(8388629);
         addView(textView3, z5.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 8388629));
         TextView textView4 = new TextView(context);
-        this.f14691c = textView4;
+        this.f16028c = textView4;
         textView4.setTextSize(1, 13.0f);
         textView4.setTypeface(AndroidUtilities.bold());
         textView4.setGravity(8388629);
@@ -68,32 +68,32 @@ public class c extends FrameLayout {
         textView2.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);
         textView2.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
         textView2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f));
-        textView2.setBackground(g6.H0(AndroidUtilities.dp(3.0f), g6.w0(g6.Rh, c6Var)));
-        textView4.addOnLayoutChangeListener(new e4(this, 1));
+        textView2.setBackground(h6.H0(AndroidUtilities.dp(3.0f), h6.w0(h6.Rh, d6Var)));
+        textView4.addOnLayoutChangeListener(new y3(this, 1));
         a();
     }
 
     public final void a() {
-        int i10 = g6.f19707j5;
-        c6 c6Var = this.f14694r;
-        this.f14689a.setTextColor(g6.w0(i10, c6Var));
-        this.f14690b.setTextColor(g6.w0(i10, c6Var));
-        this.f14691c.setTextColor(g6.w0(i10, c6Var));
-        int i11 = g6.fj;
-        this.d.setTextColor(g6.w0(i11, c6Var));
-        this.h.setColorFilter(g6.w0(i11, c6Var), PorterDuff.Mode.SRC_IN);
+        int i10 = h6.f21092j5;
+        d6 d6Var = this.f16031r;
+        this.f16026a.setTextColor(h6.w0(i10, d6Var));
+        this.f16027b.setTextColor(h6.w0(i10, d6Var));
+        this.f16028c.setTextColor(h6.w0(i10, d6Var));
+        int i11 = h6.fj;
+        this.d.setTextColor(h6.w0(i11, d6Var));
+        this.h.setColorFilter(h6.w0(i11, d6Var), PorterDuff.Mode.SRC_IN);
     }
 
     public final void b(long j10, long j11) {
         String format;
         boolean z10 = this.e;
-        TextView textView = this.f14690b;
+        TextView textView = this.f16027b;
         if (!z10) {
             textView.setVisibility(8);
-            this.f14691c.setVisibility(8);
+            this.f16028c.setVisibility(8);
             return;
         }
-        if (this.f14692f) {
+        if (this.f16029f) {
             j11 += 604800000;
         }
         if (j11 - j10 >= 86400000) {
@@ -107,22 +107,22 @@ public class c extends FrameLayout {
 
     public final void c(boolean z10) {
         this.e = z10;
-        TextView textView = this.f14689a;
+        TextView textView = this.f16026a;
         if (!z10) {
-            this.f14691c.setVisibility(8);
-            this.f14690b.setVisibility(8);
+            this.f16028c.setVisibility(8);
+            this.f16027b.setVisibility(8);
             textView.setLayoutParams(z5.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 8388627));
             textView.requestLayout();
             return;
         }
-        textView.setLayoutParams(z5.a(-2.0f, 16.0f, 0.0f, this.f14693n, 0.0f, -2, 8388627));
+        textView.setLayoutParams(z5.a(-2.0f, 16.0f, 0.0f, this.f16030n, 0.0f, -2, 8388627));
     }
 
     public final void d(long j10, boolean z10) {
         b(j10, j10);
         TextView textView = this.d;
         textView.setVisibility(0);
-        TextView textView2 = this.f14689a;
+        TextView textView2 = this.f16026a;
         if (z10) {
             textView.setAlpha(0.0f);
             textView.setScaleX(0.3f);
@@ -149,10 +149,10 @@ public class c extends FrameLayout {
     }
 
     public void setTitle(String str) {
-        this.f14689a.setText(str);
+        this.f16026a.setText(str);
     }
 
     public void setUseWeekInterval(boolean z10) {
-        this.f14692f = z10;
+        this.f16029f = z10;
     }
 }

@@ -1,147 +1,164 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.content.Intent;
-import android.text.TextUtils;
-import android.util.Base64;
-import android.widget.TextView;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class l21 extends org.telegram.ui.ActionBar.j {
-    public final Context f37587a;
-    public final ProxyListActivity f37588b;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class l21 extends FrameLayout {
+    public final org.telegram.ui.Components.f6 f38727a;
+    public float f38728b;
+    public final Path f38729c;
+    public Boolean d;
+    public final q21 e;
 
-    public l21(ProxyListActivity proxyListActivity, Context context) {
-        this.f37588b = proxyListActivity;
-        this.f37587a = context;
+    public l21(q21 q21Var, Context context) {
+        super(context);
+        this.e = q21Var;
+        this.f38727a = new org.telegram.ui.Components.f6(this, 250L, org.telegram.ui.Components.bs.h);
+        this.f38729c = new Path();
     }
 
     @Override
-    public final void b(int i10) {
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        int i10;
         int i11;
-        int i12;
-        StringBuilder sb2;
         boolean z10;
-        ProxyListActivity proxyListActivity = this.f37588b;
-        ArrayList arrayList = proxyListActivity.F;
-        if (i10 != -1) {
-            int i13 = 1;
-            if (i10 != 0) {
-                if (i10 == 1) {
-                    StringBuilder sb3 = new StringBuilder();
-                    int size = arrayList.size();
-                    int i14 = 0;
-                    while (i14 < size) {
-                        Object obj = arrayList.get(i14);
-                        i14++;
-                        SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) obj;
-                        if (sb3.length() > 0) {
-                            sb3.append("\n\n");
-                        }
-                        pi.a aVar = proxyInfo.settings;
-                        String str = aVar.e;
-                        String str2 = aVar.d;
-                        String str3 = aVar.f42933b;
-                        String str4 = aVar.f42935f;
-                        int i15 = aVar.f42932a;
-                        int c10 = m1.j.c(i15);
-                        if (c10 != i13) {
-                            if (c10 != 2) {
-                                sb2 = new StringBuilder("https://t.me/socks?");
-                            } else {
-                                sb2 = new StringBuilder("https://t.me/webproxy?");
-                            }
-                        } else {
-                            sb2 = new StringBuilder("https://t.me/proxy?");
-                        }
-                        try {
-                            sb2.append("server=");
-                            sb2.append(URLEncoder.encode(str3, "UTF-8"));
-                            if (i15 != 3) {
-                                sb2.append("&port=");
-                                sb2.append(aVar.f42934c);
-                            }
-                            if (!TextUtils.isEmpty(str2)) {
-                                sb2.append("&user=");
-                                sb2.append(URLEncoder.encode(str2, "UTF-8"));
-                            }
-                            if (!TextUtils.isEmpty(str)) {
-                                sb2.append("&pass=");
-                                sb2.append(URLEncoder.encode(str, "UTF-8"));
-                            }
-                            if (!TextUtils.isEmpty(str4)) {
-                                if (i15 == 3) {
-                                    if (str3 != null && str3.indexOf(47) >= 0) {
-                                        z10 = true;
-                                    } else {
-                                        z10 = false;
-                                    }
-                                    if (z10 && pi.a.g(str4)) {
-                                        int length = str4.length() / 2;
-                                        byte[] bArr = new byte[length];
-                                        for (int i16 = 0; i16 < length; i16++) {
-                                            int i17 = i16 * 2;
-                                            bArr[i16] = (byte) (Character.digit(str4.charAt(i17 + 1), 16) | (Character.digit(str4.charAt(i17), 16) << 4));
-                                        }
-                                        byte[] bArr2 = new byte[length + 1];
-                                        bArr2[0] = 112;
-                                        System.arraycopy(bArr, 0, bArr2, 1, length);
-                                        str4 = Base64.encodeToString(bArr2, 11);
-                                    }
-                                }
-                                sb2.append("&secret=");
-                                sb2.append(URLEncoder.encode(str4, "UTF-8"));
-                            }
-                        } catch (UnsupportedEncodingException unused) {
-                        }
-                        sb3.append(sb2.toString());
-                        i13 = 1;
-                    }
-                    Intent intent = new Intent("android.intent.action.SEND");
-                    intent.setType("text/plain");
-                    intent.putExtra("android.intent.extra.TEXT", sb3.toString());
-                    if (arrayList.size() > 1) {
-                        i12 = R.string.ShareLinks;
-                    } else {
-                        i12 = R.string.ShareLink;
-                    }
-                    Intent createChooser = Intent.createChooser(intent, LocaleController.getString(i12));
-                    createChooser.setFlags(268435456);
-                    this.f37587a.startActivity(createChooser);
-                    m21 m21Var = proxyListActivity.f32411a;
-                    if (m21Var != null) {
-                        m21Var.F();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(proxyListActivity.getParentActivity());
-            if (arrayList.size() > 1) {
-                i11 = R.string.DeleteProxyMultiConfirm;
+        boolean z11;
+        boolean z12;
+        org.telegram.ui.Components.s61 s61Var;
+        View[] viewArr;
+        org.telegram.ui.Components.f61 G;
+        q21 q21Var = this.e;
+        View[] viewPages = q21Var.f40296b.getViewPages();
+        float f10 = 0.0f;
+        this.f38728b = 0.0f;
+        int length = viewPages.length;
+        int i12 = 0;
+        while (i12 < length) {
+            View view = viewPages[i12];
+            if (view == null) {
+                viewArr = viewPages;
             } else {
-                i11 = R.string.DeleteProxyConfirm;
+                p21 p21Var = (p21) view;
+                FrameLayout frameLayout = p21Var.e;
+                org.telegram.ui.Components.a71 a71Var = p21Var.f39944f;
+                float clamp = Utilities.clamp(1.0f - Math.abs(p21Var.getTranslationX() / p21Var.getMeasuredWidth()), 1.0f, f10);
+                float f11 = this.f38728b;
+                float paddingTop = frameLayout.getPaddingTop();
+                int i13 = 0;
+                while (true) {
+                    int childCount = a71Var.getChildCount();
+                    s61Var = a71Var.W2;
+                    if (i13 >= childCount) {
+                        break;
+                    }
+                    View childAt = a71Var.getChildAt(i13);
+                    a71Var.V2.getClass();
+                    int H = s4.n0.H(childAt);
+                    View[] viewArr2 = viewPages;
+                    if (H >= 0 && H < s61Var.f30203x.size() && (G = s61Var.G(H)) != null && G.f44314a == 28) {
+                        paddingTop = childAt.getY() + frameLayout.getPaddingTop();
+                    }
+                    i13++;
+                    viewPages = viewArr2;
+                }
+                viewArr = viewPages;
+                this.f38728b = (paddingTop * clamp) + f11;
+                if (p21Var.getVisibility() == 0) {
+                    ai.n5 n5Var = p21Var.h;
+                    float f12 = -n5Var.getHeight();
+                    int i14 = 0;
+                    while (true) {
+                        if (i14 >= a71Var.getChildCount()) {
+                            break;
+                        }
+                        View childAt2 = a71Var.getChildAt(i14);
+                        a71Var.V2.getClass();
+                        if (s61Var.G(s4.n0.H(childAt2)).f44314a == 28) {
+                            f12 = childAt2.getY() + frameLayout.getPaddingTop();
+                            break;
+                        }
+                        i14++;
+                    }
+                    n5Var.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, f12));
+                }
             }
-            alertDialog$Builder.f19248a.T = LocaleController.getString(i11);
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.DeleteProxyTitle);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new lq0(this, 13));
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
-            proxyListActivity.showDialog(a2Var);
-            TextView textView = (TextView) a2Var.d(-1);
-            if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19839q7, false));
-            }
-        } else if (arrayList.isEmpty()) {
-            proxyListActivity.finishFragment();
-        } else {
-            proxyListActivity.f32411a.F();
+            i12++;
+            viewPages = viewArr;
+            f10 = 0.0f;
         }
+        if (this.f38728b <= AndroidUtilities.statusBarHeight) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        float d = this.f38727a.d(f7, false);
+        float f13 = AndroidUtilities.statusBarHeight;
+        float f14 = f13 * d;
+        this.f38728b = Math.max(f13, this.f38728b) - (AndroidUtilities.statusBarHeight * d);
+        RectF rectF = AndroidUtilities.rectTmp;
+        i10 = ((org.telegram.ui.ActionBar.f3) q21Var).backgroundPaddingLeft;
+        float f15 = this.f38728b;
+        int width = getWidth();
+        i11 = ((org.telegram.ui.ActionBar.f3) q21Var).backgroundPaddingLeft;
+        rectF.set(i10, f15, width - i11, AndroidUtilities.dp(8.0f) + getHeight());
+        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), 0, d);
+        canvas.drawRoundRect(rectF, lerp, lerp, q21Var.f40297c);
+        canvas.save();
+        Path path = this.f38729c;
+        path.rewind();
+        path.addRoundRect(rectF, lerp, lerp, Path.Direction.CW);
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+        if (f14 > AndroidUtilities.statusBarHeight / 2.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        Boolean bool = this.d;
+        if (bool != null && bool.booleanValue() == z10) {
+            return;
+        }
+        if (AndroidUtilities.computePerceivedBrightness(q21Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21057h5)) > 0.721f) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(q21Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21265s8), 855638016)) > 0.721f) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        this.d = Boolean.valueOf(z10);
+        if (!z10) {
+            z11 = z12;
+        }
+        AndroidUtilities.setLightStatusBar(q21Var.getWindow(), z11);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f38728b) {
+            this.e.dismiss();
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
     }
 }

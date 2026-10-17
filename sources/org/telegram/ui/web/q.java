@@ -1,64 +1,64 @@
 package org.telegram.ui.web;
 
-import bi.n9;
+import ci.z7;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class q implements Utilities.Callback2 {
-    public final int f41156a;
-    public final c1 f41157b;
-    public final n9 f41158c;
+    public final int f42708a;
+    public final a1 f42709b;
+    public final z7 f42710c;
 
-    public q(c1 c1Var, n9 n9Var, int i10) {
-        this.f41156a = i10;
-        this.f41157b = c1Var;
-        this.f41158c = n9Var;
+    public q(a1 a1Var, z7 z7Var, int i10) {
+        this.f42708a = i10;
+        this.f42709b = a1Var;
+        this.f42710c = z7Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        h0 h0Var;
+        g0 g0Var;
         String str;
-        switch (this.f41156a) {
+        switch (this.f42708a) {
             case 0:
                 String str2 = (String) obj2;
-                JSONObject A = c1.A(str2, "status");
-                c1 c1Var = this.f41157b;
-                c1Var.x(this.f41158c, "emoji_status_access_requested", A);
-                if (((Boolean) obj).booleanValue() && "allowed".equalsIgnoreCase(str2) && (h0Var = c1Var.f40985c) != null) {
-                    h0Var.a();
+                JSONObject A = a1.A(str2, "status");
+                a1 a1Var = this.f42709b;
+                a1Var.x(this.f42710c, "emoji_status_access_requested", A);
+                if (((Boolean) obj).booleanValue() && "allowed".equalsIgnoreCase(str2) && (g0Var = a1Var.f42518c) != null) {
+                    g0Var.a();
                     return;
                 }
                 return;
             case 1:
                 Boolean bool = (Boolean) obj;
                 Boolean bool2 = (Boolean) obj2;
-                c1 c1Var2 = this.f41157b;
-                if (c1Var2.f40985c != null && bool.booleanValue()) {
-                    c1Var2.f40985c.w(bool2.booleanValue());
+                a1 a1Var2 = this.f42709b;
+                if (a1Var2.f42518c != null && bool.booleanValue()) {
+                    a1Var2.f42518c.w(bool2.booleanValue());
                 }
-                c1Var2.f40995k0.j(new r(c1Var2, this.f41158c, 1));
+                a1Var2.f42528k0.j(new r(a1Var2, this.f42710c, 1));
                 return;
             case 2:
                 String str3 = (String) obj2;
-                c1 c1Var3 = this.f41157b;
-                c1Var3.getClass();
+                a1 a1Var3 = this.f42709b;
+                a1Var3.getClass();
                 if (((Boolean) obj).booleanValue()) {
-                    fi.r rVar = c1Var3.f40994j0;
+                    gi.r rVar = a1Var3.f42527j0;
                     rVar.e = true;
                     rVar.k();
                 }
-                c1Var3.v(this.f41158c);
+                a1Var3.v(this.f42710c);
                 return;
             case 3:
-                n9 n9Var = this.f41158c;
+                z7 z7Var = this.f42710c;
                 Boolean bool3 = (Boolean) obj;
                 String str4 = (String) obj2;
-                c1 c1Var4 = this.f41157b;
-                c1Var4.getClass();
+                a1 a1Var4 = this.f42709b;
+                a1Var4.getClass();
                 if (bool3.booleanValue()) {
-                    c1Var4.f40994j0.e = true;
+                    a1Var4.f42527j0.e = true;
                 }
                 try {
                     JSONObject jSONObject = new JSONObject();
@@ -69,7 +69,7 @@ public final class q implements Utilities.Callback2 {
                     }
                     jSONObject.put("status", str);
                     jSONObject.put("token", str4);
-                    c1Var4.x(n9Var, "biometry_auth_requested", jSONObject);
+                    a1Var4.x(z7Var, "biometry_auth_requested", jSONObject);
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -78,18 +78,18 @@ public final class q implements Utilities.Callback2 {
             default:
                 String str5 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                c1 c1Var5 = this.f41157b;
-                n9 n9Var2 = this.f41158c;
+                a1 a1Var5 = this.f42709b;
+                z7 z7Var2 = this.f42710c;
                 if (str5 == null) {
-                    c1Var5.x(n9Var2, "emoji_status_set", null);
-                    h0 h0Var2 = c1Var5.f40985c;
-                    if (h0Var2 != null) {
-                        h0Var2.d(document);
+                    a1Var5.x(z7Var2, "emoji_status_set", null);
+                    g0 g0Var2 = a1Var5.f42518c;
+                    if (g0Var2 != null) {
+                        g0Var2.d(document);
                         return;
                     }
                     return;
                 }
-                c1Var5.x(n9Var2, "emoji_status_failed", c1.A(str5, "error"));
+                a1Var5.x(z7Var2, "emoji_status_failed", a1.A(str5, "error"));
                 return;
         }
     }

@@ -1,25 +1,46 @@
 package org.telegram.ui;
 
 import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.ToIntFunction;
-public final class pf implements ToIntFunction {
-    public final int f38904a;
-    public final Object f38905b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class pf implements View.OnLongClickListener {
+    public final int f40121a;
+    public final sn f40122b;
 
-    public pf(Object obj, int i10) {
-        this.f38904a = i10;
-        this.f38905b = obj;
+    public pf(sn snVar, int i10) {
+        this.f40121a = i10;
+        this.f40122b = snVar;
     }
 
     @Override
-    public final int applyAsInt(Object obj) {
-        switch (this.f38904a) {
+    public final boolean onLongClick(View view) {
+        MessageObject messageObject;
+        MessageObject messageObject2;
+        switch (this.f40121a) {
             case 0:
-                return ((Integer) ((HashMap) this.f38905b).get((View) obj)).intValue();
+                sn snVar = this.f40122b;
+                MessageObject messageObject3 = snVar.f41189d5;
+                if (messageObject3 == null) {
+                    return false;
+                }
+                if (AndroidUtilities.addToClipboard(messageObject3.sponsoredUrl)) {
+                    new org.telegram.ui.Components.xc(org.telegram.ui.Components.lb.a(snVar.getParentActivity()), snVar.f41205ea).k(false).j();
+                }
+                return true;
+            case 1:
+                return sn.W(this.f40122b);
             default:
-                return ((Integer) ((ArrayList) this.f38905b).get(((Integer) obj).intValue())).intValue();
+                sn snVar2 = this.f40122b;
+                int i10 = snVar2.ob;
+                if (i10 == 1 && (messageObject2 = snVar2.p5) != null) {
+                    snVar2.j(messageObject2.getId(), 0, true, 0, true, 0);
+                    return true;
+                } else if (snVar2.f41214f5 != null && i10 == 2 && (messageObject = snVar2.f41311n5) != null) {
+                    snVar2.j(messageObject.getId(), 0, true, 0, true, 0);
+                    return true;
+                } else {
+                    return false;
+                }
         }
     }
 }

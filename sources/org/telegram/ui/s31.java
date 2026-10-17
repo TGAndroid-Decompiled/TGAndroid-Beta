@@ -1,176 +1,116 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import java.util.List;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class s31 extends org.telegram.ui.ActionBar.m2 implements NotificationCenter.NotificationCenterDelegate {
-    public LinearLayout f39690a;
-    public org.telegram.ui.Components.mm0 f39691b;
-    public o31 f39692c;
-    public int d;
-    public int e;
-    public int f39693f;
-    public int h;
-    public q31 f39694n;
+public final class s31 extends FrameLayout {
+    public final Paint f40897a;
+    public final Paint f40898b;
+    public final RectF f40899c;
+    public final org.telegram.ui.Components.s21 d;
+    public boolean e;
+    public long f40900f;
+    public long h;
+    public final org.telegram.ui.Components.uj0 f40901n;
+    public final TextPaint f40902r;
+    public StaticLayout f40903s;
+    public float v;
+    public float f40904w;
+    public final SecretMediaViewer f40905x;
 
-    public s31() {
-        super(null);
-        this.e = -1;
+    public s31(SecretMediaViewer secretMediaViewer, Activity activity) {
+        super(activity);
+        this.f40905x = secretMediaViewer;
+        this.f40899c = new RectF();
+        this.d = new org.telegram.ui.Components.s21();
+        this.f40902r = new TextPaint(1);
+        setWillNotDraw(false);
+        Paint paint = new Paint(1);
+        this.f40898b = paint;
+        paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
+        paint.setColor(-1644826);
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        Paint paint2 = new Paint(1);
+        this.f40897a = paint2;
+        paint2.setStyle(style);
+        paint2.setStrokeCap(cap);
+        paint2.setColor(-1644826);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        new Paint(1).setColor(2130706432);
+        org.telegram.ui.Components.uj0 uj0Var = new org.telegram.ui.Components.uj0(R.raw.fire_on, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        this.f40901n = uj0Var;
+        uj0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        uj0Var.R(this);
+        uj0Var.start();
     }
 
-    public static void U(s31 s31Var, View view) {
-        int i10;
-        int i11;
-        if (view instanceof org.telegram.ui.Cells.y) {
-            org.telegram.ui.Cells.y yVar = (org.telegram.ui.Cells.y) view;
-            if (yVar.f22461n && !s31Var.getUserConfig().isPremium()) {
-                s31Var.showDialog(new sg.y0((org.telegram.ui.ActionBar.m2) s31Var, 4, true));
-                return;
-            }
-            MediaDataController.getInstance(s31Var.currentAccount).setDoubleTapReaction(yVar.f22460f.reaction);
-            s31Var.f39691b.getAdapter().q(0, s31Var.f39691b.getAdapter().h());
-        } else if (view instanceof r31) {
-            r31 r31Var = (r31) view;
-            if (s31Var.f39694n == null) {
-                i71[] i71VarArr = new i71[1];
-                org.telegram.ui.Components.q5 q5Var = r31Var.f39271a;
-                if (q5Var != null) {
-                    q5Var.f();
-                    r31Var.b();
-                    Rect rect = AndroidUtilities.rectTmp2;
-                    rect.set(q5Var.getBounds());
-                    i11 = (-(r31Var.getHeight() - rect.centerY())) - AndroidUtilities.dp(16.0f);
-                    i10 = rect.centerX() - ((AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) - ((int) Math.min(AndroidUtilities.dp(324.0f), AndroidUtilities.displaySize.x * 0.95f)));
+    @Override
+    public final void onDraw(Canvas canvas) {
+        SecretMediaViewer secretMediaViewer;
+        float max;
+        MessageObject messageObject = this.f40905x.f33787h0;
+        if (messageObject != null) {
+            TLRPC.Message message = messageObject.messageOwner;
+            if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
+                if (this.f40900f == 0) {
+                    max = 1.0f;
                 } else {
-                    i10 = 0;
-                    i11 = 0;
+                    max = ((float) Math.max(0L, this.f40900f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f33769a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
                 }
-                p31 p31Var = new p31(s31Var, s31Var, s31Var.getParentActivity(), Integer.valueOf(i10), r31Var, i71VarArr);
-                String doubleTapReaction = s31Var.getMediaDataController().getDoubleTapReaction();
-                if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
-                    try {
-                        p31Var.setSelected(Long.valueOf(Long.parseLong(doubleTapReaction.substring(9))));
-                    } catch (Exception unused) {
+                boolean z10 = this.e;
+                Paint paint = this.f40898b;
+                Paint paint2 = this.f40897a;
+                RectF rectF = this.f40899c;
+                if (z10) {
+                    canvas.save();
+                    canvas.translate(rectF.centerX() - (this.v / 2.0f), rectF.centerY() - (this.f40904w / 2.0f));
+                    this.f40903s.draw(canvas);
+                    canvas.restore();
+                    canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
+                    float f7 = 19.285715f;
+                    for (int i10 = 0; i10 < 5; i10++) {
+                        canvas.drawArc(rectF, f7 + 270.0f, 12.857143f, false, paint2);
+                        f7 += 32.14286f;
                     }
+                    this.d.a(0.0f, 1.0f, canvas, paint, rectF);
+                } else {
+                    float centerX = rectF.centerX();
+                    float centerY = rectF.centerY() - AndroidUtilities.dp(1.0f);
+                    float dp = AndroidUtilities.dp(8.0f);
+                    org.telegram.ui.Components.uj0 uj0Var = this.f40901n;
+                    uj0Var.setBounds((int) (centerX - dp), (int) (centerY - dp), (int) (centerX + dp), (int) (centerY + dp));
+                    uj0Var.draw(canvas);
+                    float f10 = max * (-360.0f);
+                    canvas.drawArc(rectF, -90.0f, f10, false, paint2);
+                    this.d.a(f10, 1.0f, canvas, paint, rectF);
                 }
-                List<TLRPC.TL_availableReaction> reactionsList = s31Var.getMediaDataController().getReactionsList();
-                ArrayList arrayList = new ArrayList(20);
-                for (int i12 = 0; i12 < reactionsList.size(); i12++) {
-                    ?? obj = new Object();
-                    obj.f783f = reactionsList.get(i12).reaction;
-                    arrayList.add(obj);
-                }
-                p31Var.setRecentReactions(arrayList);
-                p31Var.setSaveState(3);
-                p31Var.y(q5Var, r31Var);
-                q31 q31Var = new q31(s31Var, p31Var);
-                s31Var.f39694n = q31Var;
-                i71VarArr[0] = q31Var;
-                q31Var.showAsDropDown(r31Var, 0, i11, 53);
-                i71VarArr[0].b();
-            }
-        }
-    }
-
-    public static int Y(s31 s31Var) {
-        return s31Var.currentAccount;
-    }
-
-    public static int Z(s31 s31Var) {
-        return s31Var.currentAccount;
-    }
-
-    public final void c0() {
-        this.h = 2;
-        this.d = 1;
-        if (UserConfig.getInstance(this.currentAccount).isPremium()) {
-            this.e = -1;
-            int i10 = this.h;
-            this.h = i10 + 1;
-            this.f39693f = i10;
-            return;
-        }
-        this.f39693f = -1;
-        this.e = this.h;
-    }
-
-    @Override
-    public final View createView(Context context) {
-        this.actionBar.setTitle(LocaleController.getString(R.string.Reactions));
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new q70(this, 27));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
-        this.f39691b = mm0Var;
-        mm0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f39691b);
-        ((s4.k) this.f39691b.getItemAnimator()).f44872m = false;
-        this.f39691b.setLayoutManager(new s4.b0());
-        org.telegram.ui.Components.mm0 mm0Var2 = this.f39691b;
-        o31 o31Var = new o31(this, context);
-        this.f39692c = o31Var;
-        mm0Var2.setAdapter(o31Var);
-        this.f39691b.setOnItemClickListener(new i21(this, 2));
-        linearLayout.addView(this.f39691b, w7.z5.n(-1, -1));
-        this.f39690a = linearLayout;
-        this.fragmentView = linearLayout;
-        linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19543a7, false));
-        this.f39692c.l();
-        c0();
-        return this.f39690a;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i11 == this.currentAccount) {
-            if (i10 == NotificationCenter.reactionsDidLoad) {
-                this.f39692c.l();
-            } else if (i10 == NotificationCenter.currentUserPremiumStatusChanged) {
-                c0();
-                this.f39692c.l();
+                invalidate();
             }
         }
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        return w7.c6.a(new cz0(4, this), org.telegram.ui.ActionBar.g6.f19601d6, org.telegram.ui.ActionBar.g6.G6, org.telegram.ui.ActionBar.g6.f20005z6, org.telegram.ui.ActionBar.g6.f19690i6, org.telegram.ui.ActionBar.g6.f19543a7, org.telegram.ui.ActionBar.g6.B6, org.telegram.ui.ActionBar.g6.f19822p7, org.telegram.ui.ActionBar.g6.f19637f6, org.telegram.ui.ActionBar.g6.f19654g6, org.telegram.ui.ActionBar.g6.O6, org.telegram.ui.ActionBar.g6.P6, org.telegram.ui.ActionBar.g6.Q6, org.telegram.ui.ActionBar.g6.R6);
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.reactionsDidLoad);
-        getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        getNotificationCenter().removeObserver(this, NotificationCenter.reactionsDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-    }
-
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f39691b.setPadding(0, 0, 0, i13);
-        this.f39691b.setClipToPadding(false);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(35.0f);
+        float measuredHeight = getMeasuredHeight() / 2.0f;
+        float dpf2 = AndroidUtilities.dpf2(10.5f);
+        this.f40899c.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
+        setPivotX(measuredWidth);
+        setPivotY(measuredHeight);
     }
 }

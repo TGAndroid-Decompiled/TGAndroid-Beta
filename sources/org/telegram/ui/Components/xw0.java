@@ -1,58 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.View;
+import android.animation.TimeAnimator;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public class xw0 extends s4.c0 {
-    public final es f31082r;
-    public int f31083s;
-    public float f31084t;
+public final class xw0 extends TimeAnimator {
+    public int f32460a;
+    public int f32461b;
+    public ValueAnimator.AnimatorUpdateListener f32462c;
+    public Float d;
+    public float[] e;
 
-    public xw0(Context context) {
-        super(context);
-        this.f31082r = es.f24465f;
-        this.f31084t = 1.0f;
+    @Override
+    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
+        this.f32462c = animatorUpdateListener;
     }
 
     @Override
-    public final void g(View view, s4.w0 w0Var) {
-        int j10 = j(o(), view);
-        int k10 = k(p(), view);
-        int m10 = m((int) Math.sqrt((k10 * k10) + (j10 * j10)));
-        if (m10 > 0) {
-            w0Var.b(-j10, -k10, m10, this.f31082r);
-        }
-        AndroidUtilities.runOnUIThread(new kr0(this, 9), Math.max(0, m10));
+    public final void end() {
+        this.f32462c = null;
+        super.end();
     }
 
     @Override
-    public final int k(int i10, View view) {
-        return super.k(i10, view) - this.f31083s;
+    public final Object getAnimatedValue() {
+        return this.d;
     }
 
     @Override
-    public final int m(int i10) {
-        return Math.round(Math.min(super.m(i10), 500) * this.f31084t);
+    public final void setFloatValues(float[] fArr) {
+        super.setFloatValues(fArr);
+        this.e = fArr;
     }
 
     @Override
-    public final int n(int i10) {
-        return Math.round(Math.min(super.n(i10), 150) * this.f31084t);
-    }
-
-    @Override
-    public final void q(s4.w0 w0Var) {
-        PointF a2 = a(this.f44979a);
-        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
-            s4.x0.b(a2);
-            this.f44861k = a2;
-            this.f44865o = (int) (a2.x * 10000.0f);
-            this.f44866p = (int) (a2.y * 10000.0f);
-            w0Var.b((int) (this.f44865o * 1.2f), (int) (this.f44866p * 1.2f), (int) (n(10000) * 1.2f), this.f31082r);
-            return;
-        }
-        w0Var.d = this.f44979a;
-        h();
+    public final void start() {
+        setTimeListener(new TimeAnimator.TimeListener() {
+            @Override
+            public final void onTimeUpdate(TimeAnimator timeAnimator, long j10, long j11) {
+                int i10;
+                xw0 xw0Var = xw0.this;
+                int i11 = xw0Var.f32460a;
+                if (i11 > 0 && (i10 = xw0Var.f32461b) > 0) {
+                    int i12 = i11 - 1;
+                    xw0Var.f32460a = i12;
+                    if (xw0Var.f32462c != null) {
+                        float[] fArr = xw0Var.e;
+                        if (fArr != null && fArr.length == 2) {
+                            float interpolation = xw0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
+                            float[] fArr2 = xw0Var.e;
+                            float f7 = fArr2[0];
+                            xw0Var.d = Float.valueOf(((fArr2[1] - f7) * interpolation) + f7);
+                            xw0Var.f32462c.onAnimationUpdate(xw0Var);
+                            return;
+                        }
+                        xw0Var.end();
+                        return;
+                    }
+                    return;
+                }
+                xw0Var.end();
+            }
+        });
+        int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
+        this.f32460a = duration;
+        this.f32461b = duration;
+        super.start();
     }
 }

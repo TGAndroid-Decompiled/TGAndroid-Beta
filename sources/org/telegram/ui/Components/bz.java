@@ -1,116 +1,46 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class bz extends zz {
-    public final iw0 X;
-    public final wz Y;
+public final class bz {
+    public final ArrayList f25054a = new ArrayList();
+    public final tz f25055b;
 
-    public bz(wz wzVar) {
-        super(100, true);
-        this.Y = wzVar;
-        this.X = new Object();
-        this.O = new di.w1(this, 4);
+    public bz(tz tzVar) {
+        this.f25055b = tzVar;
     }
 
-    @Override
-    public final int A() {
-        wz wzVar = this.Y;
-        s4.g0 adapter = wzVar.f30722h0.getAdapter();
-        az azVar = wzVar.f30728j0;
-        if (adapter == azVar && azVar.f23324x.isEmpty()) {
-            return 0;
-        }
-        return B() - 1;
-    }
-
-    @Override
-    public final iw0 D1(int i10) {
-        ArrayList<TLRPC.DocumentAttribute> arrayList;
-        TLRPC.Document document;
-        wz wzVar = this.Y;
-        az azVar = wzVar.f30728j0;
-        s4.g0 adapter = wzVar.f30722h0.getAdapter();
-        az azVar2 = wzVar.f30739n0;
-        TLRPC.Document document2 = null;
-        r4 = null;
-        ArrayList<TLRPC.DocumentAttribute> arrayList2 = null;
-        if (adapter == azVar2) {
-            int i11 = azVar2.H;
-            if (i10 > i11) {
-                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) azVar2.f23324x.get((i10 - i11) - 1);
-                document = botInlineResult.document;
-                if (document != null) {
-                    arrayList2 = document.attributes;
-                } else {
-                    TLRPC.WebDocument webDocument = botInlineResult.content;
-                    if (webDocument != null) {
-                        arrayList2 = webDocument.attributes;
-                    } else {
-                        TLRPC.WebDocument webDocument2 = botInlineResult.thumb;
-                        if (webDocument2 != null) {
-                            arrayList2 = webDocument2.attributes;
-                        }
-                    }
-                }
-                arrayList = arrayList2;
-                document2 = document;
-                return F1(document2, arrayList);
-            } else if (i10 == i11) {
-                return null;
-            } else {
-                document2 = (TLRPC.Document) wzVar.f30726i1.get(i10);
-                arrayList = document2.attributes;
-                return F1(document2, arrayList);
+    public final void a(String str, boolean z10) {
+        tz tzVar = this.f25055b;
+        int i10 = tzVar.f30747c1;
+        String p5 = a1.g.p("gif_search_", str, "_");
+        if (!z10 || !tzVar.f30774l0.containsKey(p5)) {
+            ei.s1 s1Var = new ei.s1(this, str, z10, p5);
+            ArrayList arrayList = this.f25054a;
+            if (z10) {
+                arrayList.add(p5);
+                MessagesStorage.getInstance(i10).getBotCache(p5, s1Var);
+                return;
             }
-        } else if (!azVar.f23324x.isEmpty()) {
-            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) azVar.f23324x.get(i10);
-            document = botInlineResult2.document;
-            if (document != null) {
-                arrayList2 = document.attributes;
-            } else {
-                TLRPC.WebDocument webDocument3 = botInlineResult2.content;
-                if (webDocument3 != null) {
-                    arrayList2 = webDocument3.attributes;
-                } else {
-                    TLRPC.WebDocument webDocument4 = botInlineResult2.thumb;
-                    if (webDocument4 != null) {
-                        arrayList2 = webDocument4.attributes;
-                    }
-                }
+            MessagesController messagesController = MessagesController.getInstance(i10);
+            TLObject userOrChat = messagesController.getUserOrChat(messagesController.gifSearchBot);
+            if (!(userOrChat instanceof TLRPC.User)) {
+                return;
             }
-            arrayList = arrayList2;
-            document2 = document;
-            return F1(document2, arrayList);
-        } else {
-            arrayList = null;
-            return F1(document2, arrayList);
-        }
-    }
-
-    public final iw0 F1(TLRPC.Document document, List list) {
-        TLRPC.PhotoSize closestPhotoSizeWithSize;
-        int i10;
-        int i11;
-        iw0 iw0Var = this.X;
-        iw0Var.f25810b = 100.0f;
-        iw0Var.f25809a = 100.0f;
-        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i10 = closestPhotoSizeWithSize.f18941w) != 0 && (i11 = closestPhotoSizeWithSize.h) != 0) {
-            iw0Var.f25809a = i10;
-            iw0Var.f25810b = i11;
-        }
-        if (list != null) {
-            for (int i12 = 0; i12 < list.size(); i12++) {
-                TLRPC.DocumentAttribute documentAttribute = (TLRPC.DocumentAttribute) list.get(i12);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    iw0Var.f25809a = documentAttribute.f18923w;
-                    iw0Var.f25810b = documentAttribute.h;
-                    break;
-                }
+            arrayList.add(p5);
+            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+            if (str == null) {
+                str = "";
             }
+            tL_messages_getInlineBotResults.query = str;
+            tL_messages_getInlineBotResults.bot = messagesController.getInputUser((TLRPC.User) userOrChat);
+            tL_messages_getInlineBotResults.offset = "";
+            tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
+            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, s1Var, 2);
         }
-        return iw0Var;
     }
 }

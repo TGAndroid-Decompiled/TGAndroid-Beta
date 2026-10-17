@@ -1,24 +1,27 @@
 package org.telegram.ui;
-public final class jv extends g.o {
-    public final int f37144c;
 
-    @Override
-    public int h(int i10, int i11) {
-        switch (this.f37144c) {
-            case 1:
-                return i10 % i11;
-            default:
-                return super.h(i10, i11);
-        }
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_account;
+public final class jv implements Utilities.Callback {
+    public final int f38349a;
+    public final ey f38350b;
+
+    public jv(ey eyVar, int i10) {
+        this.f38349a = i10;
+        this.f38350b = eyVar;
     }
 
     @Override
-    public final int i(int i10) {
-        switch (this.f37144c) {
+    public final void run(Object obj) {
+        switch (this.f38349a) {
             case 0:
-                return 1;
+                ey eyVar = this.f38350b;
+                eyVar.O1 = (Long) obj;
+                eyVar.S4();
+                return;
             default:
-                return 1;
+                ey.a0(this.f38350b, (TL_account.TL_birthday) obj);
+                return;
         }
     }
 }

@@ -2,18 +2,18 @@ package t7;
 
 import j$.util.Objects;
 import java.util.AbstractMap;
-import w7.q7;
+import w7.r7;
 public final class h extends d {
-    public final i f45523c;
+    public final i f46912c;
 
     public h(i iVar) {
-        this.f45523c = iVar;
+        this.f46912c = iVar;
     }
 
     @Override
     public final Object get(int i10) {
-        i iVar = this.f45523c;
-        q7.a(i10, iVar.e);
+        i iVar = this.f46912c;
+        r7.a(i10, iVar.e);
         Object[] objArr = iVar.d;
         int i11 = i10 + i10;
         Object obj = objArr[i11];
@@ -25,6 +25,6 @@ public final class h extends d {
 
     @Override
     public final int size() {
-        return this.f45523c.e;
+        return this.f46912c.e;
     }
 }

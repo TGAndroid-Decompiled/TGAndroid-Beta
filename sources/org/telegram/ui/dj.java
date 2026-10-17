@@ -1,59 +1,39 @@
 package org.telegram.ui;
+public final class dj extends eh.b {
+    public final int f36207n;
+    public final sn f36208r;
 
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-public final class dj extends pf.c {
-    public final int d;
-    public final int e;
-    public final org.telegram.ui.Cells.u1 f35062f;
-    public final fo f35063g;
-    public final Object h;
-
-    public dj(fo foVar, int i10, Object obj, org.telegram.ui.Cells.u1 u1Var, int i11) {
-        this.d = i11;
-        this.f35063g = foVar;
-        this.e = i10;
-        this.h = obj;
-        this.f35062f = u1Var;
+    public dj(sn snVar, org.telegram.ui.ActionBar.d6 d6Var, int i10, int i11) {
+        super(i10, d6Var);
+        this.f36207n = i11;
+        this.f36208r = snVar;
     }
 
     @Override
-    public final void c(boolean z10) {
-        switch (this.d) {
+    public final int a0() {
+        int i10;
+        int i11;
+        switch (this.f36207n) {
             case 0:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ah.g(this, this.e, 20), 240L);
-                    return;
+                sn snVar = this.f36208r;
+                i10 = ((org.telegram.ui.ActionBar.n2) snVar).currentAccount;
+                if (!fh.c.c(i10, snVar.f41205ea)) {
+                    return i0.b.o(snVar.getThemedColor(org.telegram.ui.ActionBar.h6.Sd), 255);
                 }
-                return;
-            default:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ah.g(this, this.e, 23), 240L);
-                    return;
+                if (snVar.f41205ea != null && !org.telegram.ui.ActionBar.h6.I.q()) {
+                    return i0.b.o(this.d, 216);
                 }
-                return;
-        }
-    }
-
-    @Override
-    public final void d() {
-        switch (this.d) {
-            case 0:
-                int i10 = this.e;
-                fo foVar = this.f35063g;
-                foVar.f35858wb = i10;
-                foVar.f35872xb = 1;
-                foVar.f35885yb = (CharacterStyle) this.h;
-                this.f35062f.invalidate();
-                return;
+                return this.d;
             default:
-                int i11 = this.e;
-                fo foVar2 = this.f35063g;
-                foVar2.f35858wb = i11;
-                foVar2.f35872xb = 3;
-                foVar2.f35897zb = (String) this.h;
-                this.f35062f.invalidate();
-                return;
+                sn snVar2 = this.f36208r;
+                i11 = ((org.telegram.ui.ActionBar.n2) snVar2).currentAccount;
+                if (!fh.c.c(i11, snVar2.f41205ea)) {
+                    return i0.b.o(snVar2.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6), 255);
+                }
+                if (snVar2.f41205ea != null && !org.telegram.ui.ActionBar.h6.I.q()) {
+                    return i0.b.o(this.d, 216);
+                }
+                return this.d;
         }
     }
 }

@@ -15,40 +15,40 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.hr;
+import org.telegram.ui.Components.er;
 public class b extends EditTextBoldCursor {
-    public final Canvas f43958b;
-    public final TextPaint f43959c;
+    public final Canvas f45313b;
+    public final TextPaint f45314c;
     public final Paint d;
     public Bitmap e;
-    public boolean f43960f;
+    public boolean f45315f;
     public int h;
-    public float f43961n;
-    public int f43962r;
-    public final hr f43963s;
+    public float f45316n;
+    public int f45317r;
+    public final er f45318s;
     public RectF[] v;
-    public RectF f43964w;
-    public boolean f43965x;
-    public float f43966y;
+    public RectF f45319w;
+    public boolean f45320x;
+    public float f45321y;
 
     public b(Context context) {
         super(context);
-        this.f43958b = new Canvas();
+        this.f45313b = new Canvas();
         TextPaint textPaint = new TextPaint(1);
-        this.f43959c = textPaint;
+        this.f45314c = textPaint;
         this.d = new Paint(1);
-        this.f43963s = new hr();
+        this.f45318s = new er();
         this.h = 0;
         setInputType(getInputType() | 655360);
-        this.f43960f = true;
-        this.f43965x = true;
+        this.f45315f = true;
+        this.f45320x = true;
         setFrameRoundRadius(AndroidUtilities.dp(16.0f));
         textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
     private void setFrameRoundRadius(float f7) {
-        if (Math.abs(this.f43966y - f7) > 0.1f) {
-            this.f43966y = f7;
+        if (Math.abs(this.f45321y - f7) > 0.1f) {
+            this.f45321y = f7;
             this.d.setPathEffect(new CornerPathEffect(f7));
         }
     }
@@ -58,17 +58,17 @@ public class b extends EditTextBoldCursor {
         boolean z10;
         int i10 = 0;
         if (this.e != null && this.h != 0) {
-            boolean z11 = this.f43960f;
-            TextPaint textPaint = this.f43959c;
+            boolean z11 = this.f45315f;
+            TextPaint textPaint = this.f45314c;
             if (z11) {
                 int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
                 int measuredHeight = getMeasuredHeight();
                 Editable text = getText();
                 Bitmap bitmap = this.e;
-                Canvas canvas2 = this.f43958b;
+                Canvas canvas2 = this.f45313b;
                 canvas2.setBitmap(bitmap);
                 canvas2.drawColor(0, PorterDuff.Mode.CLEAR);
-                float f7 = this.f43961n;
+                float f7 = this.f45316n;
                 if (f7 <= 0.0f) {
                     f7 = (float) Math.ceil(getTextSize() / 11.5f);
                 }
@@ -86,14 +86,14 @@ public class b extends EditTextBoldCursor {
                 canvas2.translate(getPaddingLeft(), ((((measuredHeight - getPaddingTop()) - getPaddingBottom()) - staticLayout.getHeight()) / 2.0f) + getPaddingTop());
                 staticLayout.draw(canvas2);
                 canvas2.restore();
-                this.f43960f = false;
+                this.f45315f = false;
             }
             canvas.drawBitmap(this.e, 0.0f, 0.0f, textPaint);
         }
-        if (this.f43962r != 0) {
+        if (this.f45317r != 0) {
             canvas.save();
             canvas.translate(getPaddingLeft(), getPaddingTop());
-            int i11 = this.f43962r;
+            int i11 = this.f45317r;
             Paint paint = this.d;
             paint.setColor(i11);
             Layout layout = getLayout();
@@ -104,10 +104,10 @@ public class b extends EditTextBoldCursor {
             RectF[] rectFArr = this.v;
             if (rectFArr == null || rectFArr.length != layout.getLineCount()) {
                 this.v = new RectF[layout.getLineCount()];
-                this.f43965x = true;
+                this.f45320x = true;
             }
-            if (this.f43965x) {
-                this.f43965x = false;
+            if (this.f45320x) {
+                this.f45320x = false;
                 for (int i12 = 0; i12 < layout.getLineCount(); i12++) {
                     RectF[] rectFArr2 = this.v;
                     if (rectFArr2[i12] == null) {
@@ -134,31 +134,31 @@ public class b extends EditTextBoldCursor {
                         }
                     }
                 }
-                if (this.f43964w == null) {
-                    this.f43964w = new RectF();
+                if (this.f45319w == null) {
+                    this.f45319w = new RectF();
                 }
-                this.f43964w.left = getMeasuredWidth();
-                this.f43964w.top = getMeasuredHeight();
-                RectF rectF4 = this.f43964w;
+                this.f45319w.left = getMeasuredWidth();
+                this.f45319w.top = getMeasuredHeight();
+                RectF rectF4 = this.f45319w;
                 rectF4.bottom = 0.0f;
                 rectF4.right = 0.0f;
                 for (int i14 = 0; i14 < this.v.length; i14++) {
-                    RectF rectF5 = this.f43964w;
+                    RectF rectF5 = this.f45319w;
                     rectF5.left = Math.min(rectF5.left, getPaddingLeft() + this.v[i14].left);
-                    RectF rectF6 = this.f43964w;
+                    RectF rectF6 = this.f45319w;
                     rectF6.top = Math.min(rectF6.top, getPaddingTop() + this.v[i14].top);
-                    RectF rectF7 = this.f43964w;
+                    RectF rectF7 = this.f45319w;
                     rectF7.right = Math.max(rectF7.right, getPaddingLeft() + this.v[i14].right);
-                    RectF rectF8 = this.f43964w;
+                    RectF rectF8 = this.f45319w;
                     rectF8.bottom = Math.max(rectF8.bottom, getPaddingTop() + this.v[i14].bottom);
                 }
-                RectF rectF9 = this.f43964w;
-                RectF rectF10 = this.f43964w;
+                RectF rectF9 = this.f45319w;
+                RectF rectF10 = this.f45319w;
                 rectF9.right = getMeasuredWidth() - rectF10.right;
-                rectF10.bottom = getMeasuredHeight() - this.f43964w.bottom;
+                rectF10.bottom = getMeasuredHeight() - this.f45319w.bottom;
             }
-            hr hrVar = this.f43963s;
-            hrVar.rewind();
+            er erVar = this.f45318s;
+            erVar.rewind();
             float textSize = getTextSize() / 3.0f;
             float f10 = 1.5f * textSize;
             int i15 = 1;
@@ -212,16 +212,16 @@ public class b extends EditTextBoldCursor {
                     break;
                 }
                 if (rectFArr6[i10].width() != 0.0f) {
-                    hrVar.addRect(this.v[i10], Path.Direction.CW);
+                    erVar.addRect(this.v[i10], Path.Direction.CW);
                 }
                 i10++;
             }
-            hrVar.a();
+            erVar.a();
             setFrameRoundRadius(textSize);
-            canvas.drawPath(hrVar, paint);
+            canvas.drawPath(erVar, paint);
             canvas.restore();
         } else {
-            this.f43964w = null;
+            this.f45319w = null;
         }
         super.onDraw(canvas);
     }
@@ -230,8 +230,8 @@ public class b extends EditTextBoldCursor {
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         if (i10 > 0 && i11 > 0) {
-            this.f43960f = true;
-            this.f43965x = true;
+            this.f45315f = true;
+            this.f45320x = true;
             Bitmap bitmap = this.e;
             if (bitmap != null) {
                 bitmap.recycle();
@@ -245,12 +245,12 @@ public class b extends EditTextBoldCursor {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        this.f43960f = true;
-        this.f43965x = true;
+        this.f45315f = true;
+        this.f45320x = true;
     }
 
     public void setFrameColor(int i10) {
-        int i11 = this.f43962r;
+        int i11 = this.f45317r;
         if (i11 == 0 && i10 != 0) {
             setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(7.0f));
             setCursorColor(-1);
@@ -258,40 +258,40 @@ public class b extends EditTextBoldCursor {
             setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
             setCursorColor(-1);
         }
-        this.f43962r = i10;
+        this.f45317r = i10;
         if (i10 != 0) {
             float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(i10);
             if (computePerceivedBrightness == 0.0f) {
-                computePerceivedBrightness = Color.red(this.f43962r) / 255.0f;
+                computePerceivedBrightness = Color.red(this.f45317r) / 255.0f;
             }
             if (computePerceivedBrightness > 0.87d) {
                 setTextColor(-16777216);
             } else {
                 setTextColor(-1);
             }
-            this.f43965x = true;
+            this.f45320x = true;
         }
-        this.f43960f = true;
+        this.f45315f = true;
         invalidate();
     }
 
     @Override
     public void setGravity(int i10) {
         super.setGravity(i10);
-        this.f43960f = true;
-        this.f43965x = true;
+        this.f45315f = true;
+        this.f45320x = true;
         invalidate();
     }
 
     public void setStrokeColor(int i10) {
         this.h = i10;
-        this.f43960f = true;
+        this.f45315f = true;
         invalidate();
     }
 
     public void setStrokeWidth(float f7) {
-        this.f43961n = f7;
-        this.f43960f = true;
+        this.f45316n = f7;
+        this.f45315f = true;
         invalidate();
     }
 }

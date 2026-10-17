@@ -1,6 +1,6 @@
 package q3;
 
-import b2.r0;
+import b2.q0;
 import e2.m0;
 import e9.n0;
 import e9.x1;
@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import v7.b8;
 import v7.u6;
 public final class n extends i {
-    public final String f43035b;
-    public final n0 f43036c;
+    public final String f44403b;
+    public final n0 f44404c;
 
     public n(String str, String str2, x1 x1Var) {
         super(str);
         u6.g(!x1Var.isEmpty());
-        this.f43035b = str2;
+        this.f44403b = str2;
         n0 u10 = n0.u(x1Var);
-        this.f43036c = u10;
+        this.f44404c = u10;
         String str3 = (String) u10.get(0);
     }
 
@@ -45,10 +45,10 @@ public final class n extends i {
     }
 
     @Override
-    public final void b(r0 r0Var) {
+    public final void b(q0 q0Var) {
         char c10;
         Integer num;
-        String str = this.f43026a;
+        String str = this.f44394a;
         switch (str.hashCode()) {
             case 82815:
                 if (str.equals("TAL")) {
@@ -215,40 +215,40 @@ public final class n extends i {
                 c10 = 65535;
                 break;
         }
-        n0 n0Var = this.f43036c;
+        n0 n0Var = this.f44404c;
         try {
             switch (c10) {
                 case 0:
                 case '\n':
-                    r0Var.f2301c = (CharSequence) n0Var.get(0);
+                    q0Var.f3909c = (CharSequence) n0Var.get(0);
                     return;
                 case 1:
                 case 11:
-                    r0Var.A = (CharSequence) n0Var.get(0);
+                    q0Var.A = (CharSequence) n0Var.get(0);
                     return;
                 case 2:
                 case '\r':
                     String str2 = (String) n0Var.get(0);
                     int parseInt = Integer.parseInt(str2.substring(2, 4));
                     int parseInt2 = Integer.parseInt(str2.substring(0, 2));
-                    r0Var.f2316u = Integer.valueOf(parseInt);
-                    r0Var.v = Integer.valueOf(parseInt2);
+                    q0Var.f3924u = Integer.valueOf(parseInt);
+                    q0Var.v = Integer.valueOf(parseInt2);
                     return;
                 case 3:
                 case 18:
-                    r0Var.f2300b = (CharSequence) n0Var.get(0);
+                    q0Var.f3908b = (CharSequence) n0Var.get(0);
                     return;
                 case 4:
                 case 19:
-                    r0Var.d = (CharSequence) n0Var.get(0);
+                    q0Var.d = (CharSequence) n0Var.get(0);
                     return;
                 case 5:
                 case 20:
-                    r0Var.B = (CharSequence) n0Var.get(0);
+                    q0Var.B = (CharSequence) n0Var.get(0);
                     return;
                 case 6:
                 case 21:
-                    String str3 = m0.f8375a;
+                    String str3 = m0.f8254a;
                     String[] split = ((String) n0Var.get(0)).split("/", -1);
                     int parseInt3 = Integer.parseInt(split[0]);
                     if (split.length > 1) {
@@ -256,30 +256,30 @@ public final class n extends i {
                     } else {
                         num = null;
                     }
-                    r0Var.f2310o = Integer.valueOf(parseInt3);
-                    r0Var.f2311p = num;
+                    q0Var.f3918o = Integer.valueOf(parseInt3);
+                    q0Var.f3919p = num;
                     return;
                 case 7:
                 case 17:
-                    r0Var.f2299a = (CharSequence) n0Var.get(0);
+                    q0Var.f3907a = (CharSequence) n0Var.get(0);
                     return;
                 case '\b':
                 case 16:
-                    r0Var.f2320z = (CharSequence) n0Var.get(0);
+                    q0Var.f3928z = (CharSequence) n0Var.get(0);
                     return;
                 case '\t':
                 case 22:
-                    r0Var.f2315t = Integer.valueOf(Integer.parseInt((String) n0Var.get(0)));
+                    q0Var.f3923t = Integer.valueOf(Integer.parseInt((String) n0Var.get(0)));
                     return;
                 case '\f':
                     Integer g10 = b8.g((String) n0Var.get(0));
                     if (g10 == null) {
-                        r0Var.E = (CharSequence) n0Var.get(0);
+                        q0Var.E = (CharSequence) n0Var.get(0);
                         return;
                     }
                     String a2 = j.a(g10.intValue());
                     if (a2 != null) {
-                        r0Var.E = a2;
+                        q0Var.E = a2;
                         return;
                     }
                     return;
@@ -289,14 +289,14 @@ public final class n extends i {
                     if (size != 1) {
                         if (size != 2) {
                             if (size == 3) {
-                                r0Var.v = (Integer) d.get(2);
+                                q0Var.v = (Integer) d.get(2);
                             } else {
                                 return;
                             }
                         }
-                        r0Var.f2316u = (Integer) d.get(1);
+                        q0Var.f3924u = (Integer) d.get(1);
                     }
-                    r0Var.f2315t = (Integer) d.get(0);
+                    q0Var.f3923t = (Integer) d.get(0);
                     return;
                 case 15:
                     ArrayList d10 = d((String) n0Var.get(0));
@@ -304,14 +304,14 @@ public final class n extends i {
                     if (size2 != 1) {
                         if (size2 != 2) {
                             if (size2 == 3) {
-                                r0Var.f2319y = (Integer) d10.get(2);
+                                q0Var.f3927y = (Integer) d10.get(2);
                             } else {
                                 return;
                             }
                         }
-                        r0Var.f2318x = (Integer) d10.get(1);
+                        q0Var.f3926x = (Integer) d10.get(1);
                     }
-                    r0Var.f2317w = (Integer) d10.get(0);
+                    q0Var.f3925w = (Integer) d10.get(0);
                     return;
                 default:
                     return;
@@ -326,7 +326,7 @@ public final class n extends i {
         }
         if (obj != null && n.class == obj.getClass()) {
             n nVar = (n) obj;
-            if (Objects.equals(this.f43026a, nVar.f43026a) && Objects.equals(this.f43035b, nVar.f43035b) && this.f43036c.equals(nVar.f43036c)) {
+            if (Objects.equals(this.f44394a, nVar.f44394a) && Objects.equals(this.f44403b, nVar.f44403b) && this.f44404c.equals(nVar.f44404c)) {
                 return true;
             }
         }
@@ -335,18 +335,18 @@ public final class n extends i {
 
     public final int hashCode() {
         int i10;
-        int g10 = a1.g.g(527, 31, this.f43026a);
-        String str = this.f43035b;
+        int g10 = a1.g.g(527, 31, this.f44394a);
+        String str = this.f44403b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        return this.f43036c.hashCode() + ((g10 + i10) * 31);
+        return this.f44404c.hashCode() + ((g10 + i10) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f43026a + ": description=" + this.f43035b + ": values=" + this.f43036c;
+        return this.f44394a + ": description=" + this.f44403b + ": values=" + this.f44404c;
     }
 }

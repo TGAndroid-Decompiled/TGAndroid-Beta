@@ -1,7 +1,8 @@
 package si;
+public final class d {
+    public final l2.f f46587a;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.ApplicationLoader;
-public abstract class d {
-    public static final SharedPreferences f45483a = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
+    public d(l2.f fVar) {
+        this.f46587a = fVar;
+    }
 }

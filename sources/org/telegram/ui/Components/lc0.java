@@ -1,31 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class lc0 implements am0 {
-    public final pc0 f26726a;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class lc0 {
+    public final int f28196a;
+    public final d11 f28197b;
+    public final RectF f28198c = new RectF();
+    public final RectF d = new RectF();
 
-    public lc0(pc0 pc0Var) {
-        this.f26726a = pc0Var;
-    }
-
-    @Override
-    public final void a(int i10, View view) {
-        pc0 pc0Var = this.f26726a;
-        if (pc0Var.f27962a == 1 && pc0Var.f27970r.previewMessages.size() > 1) {
-            int id2 = pc0Var.f27970r.previewMessages.get(i10).getId();
-            boolean z10 = pc0Var.f27970r.selectedIds.get(id2, false);
-            boolean z11 = !z10;
-            if (pc0Var.f27970r.selectedIds.size() != 1 || !z10) {
-                if (z10) {
-                    pc0Var.f27970r.selectedIds.delete(id2);
-                } else {
-                    pc0Var.f27970r.selectedIds.put(id2, z11);
-                }
-                if (view instanceof org.telegram.ui.Cells.u1) {
-                    ((org.telegram.ui.Cells.u1) view).L3(z11, z11, true);
-                }
-                pc0Var.k(true);
-            }
-        }
+    public lc0(int i10, String str) {
+        this.f28196a = i10;
+        this.f28197b = new d11(str, 14.0f, AndroidUtilities.bold());
     }
 }

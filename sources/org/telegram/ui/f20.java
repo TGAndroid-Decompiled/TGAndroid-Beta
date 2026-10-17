@@ -1,12 +1,32 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.FrameLayout;
-public final class f20 extends FrameLayout {
-    public org.telegram.ui.Components.bk0 f35444a;
+public final class f20 implements View.OnClickListener {
+    public final int f36775a;
+    public final org.telegram.ui.Cells.a2[] f36776b;
+
+    public f20(org.telegram.ui.Cells.a2[] a2VarArr, int i10) {
+        this.f36775a = i10;
+        this.f36776b = a2VarArr;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void onClick(View view) {
+        switch (this.f36775a) {
+            case 0:
+                Integer num = (Integer) view.getTag();
+                int intValue = num.intValue();
+                org.telegram.ui.Cells.a2[] a2VarArr = this.f36776b;
+                a2VarArr[intValue].c(!a2VarArr[num.intValue()].b(), true);
+                return;
+            case 1:
+                org.telegram.ui.Cells.a2 a2Var = this.f36776b[0];
+                a2Var.c(!a2Var.b(), true);
+                return;
+            default:
+                org.telegram.ui.Cells.a2 a2Var2 = this.f36776b[0];
+                a2Var2.c(!a2Var2.b(), true);
+                return;
+        }
     }
 }

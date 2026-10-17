@@ -1,40 +1,36 @@
 package org.telegram.ui;
+public final class ag1 implements Runnable {
+    public final int f35431a;
+    public final UserInfoActivity f35432b;
 
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class ag1 extends FrameLayout {
-    public TextView f33899a;
-    public float f33900b;
-    public boolean f33901c;
+    public ag1(UserInfoActivity userInfoActivity, int i10) {
+        this.f35431a = i10;
+        this.f35432b = userInfoActivity;
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i10 = 1;
-        if (this.f33901c) {
-            float f7 = this.f33900b + 0.013333334f;
-            this.f33900b = f7;
-            if (f7 > 1.0f) {
-                this.f33901c = false;
-                this.f33900b = 1.0f;
-            }
-        } else {
-            float f10 = this.f33900b - 0.013333334f;
-            this.f33900b = f10;
-            if (f10 < 0.0f) {
-                this.f33901c = true;
-                this.f33900b = 0.0f;
-            }
+    public final void run() {
+        switch (this.f35431a) {
+            case 0:
+                this.f35432b.presentFragment(new PrivacyControlActivity(9, true));
+                return;
+            case 1:
+                org.telegram.ui.Components.u61 u61Var = this.f35432b.f33939x;
+                if (u61Var != null) {
+                    u61Var.W2.N(true);
+                    return;
+                }
+                return;
+            case 2:
+                UserInfoActivity userInfoActivity = this.f35432b;
+                userInfoActivity.getClass();
+                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
+                return;
+            default:
+                UserInfoActivity userInfoActivity2 = this.f35432b;
+                userInfoActivity2.getClass();
+                userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
+                return;
         }
-        TextView textView = this.f33899a;
-        float interpolation = org.telegram.ui.Components.es.f24465f.getInterpolation(this.f33900b) * AndroidUtilities.dp(8.0f);
-        if (LocaleController.isRTL) {
-            i10 = -1;
-        }
-        textView.setTranslationX(interpolation * i10);
-        invalidate();
     }
 }

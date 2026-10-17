@@ -1,16 +1,15 @@
 package f5;
 
-import com.google.android.gms.internal.play_billing.k3;
+import com.google.android.gms.internal.cast.a6;
 import java.nio.ByteBuffer;
-import ji.w4;
 public final class s extends a {
-    public static final w4 f9003f;
-    public static final w4 h;
+    public static final le.b f10444f;
+    public static final le.b h;
     public float e;
 
     static {
         te.a aVar = new te.a(s.class, "SoundMediaHeaderBox.java");
-        f9003f = aVar.e(aVar.d("getBalance", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "float"));
+        f10444f = aVar.e(aVar.d("getBalance", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "float"));
         h = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "java.lang.String"));
     }
 
@@ -34,11 +33,11 @@ public final class s extends a {
     }
 
     public final String toString() {
-        com.google.firebase.messaging.s b10 = te.a.b(h, this, this);
+        com.google.firebase.messaging.r b10 = te.a.b(h, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("SoundMediaHeaderBox[balance=");
-        k3.p(te.a.b(f9003f, this, this));
+        a6.p(te.a.b(f10444f, this, this));
         sb2.append(this.e);
         sb2.append("]");
         return sb2.toString();

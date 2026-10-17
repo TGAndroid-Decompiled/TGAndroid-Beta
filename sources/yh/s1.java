@@ -1,45 +1,27 @@
 package yh;
-
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ns0;
-import zh.e5;
 public final class s1 implements Runnable {
-    public final int f49112a;
-    public final ns0 f49113b;
+    public final int f50516a;
+    public final m2 f50517b;
+    public final int f50518c;
 
-    public s1(ns0 ns0Var, int i10) {
-        this.f49112a = i10;
-        this.f49113b = ns0Var;
+    public s1(m2 m2Var, int i10, int i11) {
+        this.f50516a = i11;
+        this.f50517b = m2Var;
+        this.f50518c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f49112a) {
+        switch (this.f50516a) {
             case 0:
-                this.f49113b.a();
-                return;
-            case 1:
-                this.f49113b.setReorderingCollections(true);
+                this.f50517b.f50397f.scrollBy(0, this.f50518c);
                 return;
             default:
-                e5 e5Var = this.f49113b.e;
-                e5Var.getClass();
-                TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
-                int i10 = e5Var.f50441a;
-                reorderstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(e5Var.f50442b);
-                ArrayList arrayList = e5Var.e;
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    reorderstargiftcollections.order.add(Integer.valueOf(((TL_stars.TL_starGiftCollection) obj).collection_id));
+                h2 h2Var = this.f50517b.f50397f;
+                if (h2Var != null) {
+                    h2Var.setSpanCount(this.f50518c);
+                    return;
                 }
-                ConnectionsManager.getInstance(i10).sendRequest(reorderstargiftcollections, null);
-                e5Var.j();
                 return;
         }
     }

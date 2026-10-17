@@ -1,80 +1,71 @@
 package c3;
 
-import java.io.Serializable;
-public final class z {
-    public int f4315a;
-    public int f4316b;
-    public int f4317c;
-    public int d;
-    public int e;
-    public int f4318f;
-    public Serializable f4319g;
+import e2.m0;
+import v7.u6;
+public final class z implements c0 {
+    public final c5.b0 f4688a;
+    public final c5.b0 f4689b;
+    public long f4690c;
 
-    public boolean a(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        if ((i10 & (-2097152)) != -2097152 || (i11 = (i10 >>> 19) & 3) == 1 || (i12 = (i10 >>> 17) & 3) == 0 || (i13 = (i10 >>> 12) & 15) == 0 || i13 == 15 || (i14 = (i10 >>> 10) & 3) == 3) {
-            return false;
-        }
-        this.f4315a = i11;
-        this.f4319g = b.f4211s[3 - i12];
-        int i17 = b.f4212t[i14];
-        this.f4317c = i17;
-        int i18 = 2;
-        if (i11 == 2) {
-            this.f4317c = i17 / 2;
-        } else if (i11 == 0) {
-            this.f4317c = i17 / 4;
-        }
-        int i19 = (i10 >>> 9) & 1;
-        int i20 = 1152;
-        if (i12 != 1) {
-            if (i12 != 2) {
-                if (i12 == 3) {
-                    i20 = 384;
-                } else {
-                    throw new IllegalArgumentException();
-                }
-            }
-        } else if (i11 != 3) {
-            i20 = 576;
-        }
-        this.f4318f = i20;
-        if (i12 == 3) {
-            if (i11 == 3) {
-                i16 = b.f4213u[i13 - 1];
-            } else {
-                i16 = b.v[i13 - 1];
-            }
-            this.e = i16;
-            this.f4316b = (((i16 * 12) / this.f4317c) + i19) * 4;
+    public z(long j10, long[] jArr, long[] jArr2) {
+        boolean z10;
+        if (jArr.length == jArr2.length) {
+            z10 = true;
         } else {
-            int i21 = 144;
-            if (i11 == 3) {
-                if (i12 == 2) {
-                    i15 = b.f4214w[i13 - 1];
-                } else {
-                    i15 = b.f4215x[i13 - 1];
-                }
-                this.e = i15;
-                this.f4316b = ((i15 * 144) / this.f4317c) + i19;
-            } else {
-                int i22 = b.f4216y[i13 - 1];
-                this.e = i22;
-                if (i12 == 1) {
-                    i21 = 72;
-                }
-                this.f4316b = ((i21 * i22) / this.f4317c) + i19;
-            }
+            z10 = false;
         }
-        if (((i10 >> 6) & 3) == 3) {
-            i18 = 1;
+        u6.g(z10);
+        int length = jArr2.length;
+        if (length > 0 && jArr2[0] > 0) {
+            int i10 = length + 1;
+            c5.b0 b0Var = new c5.b0(i10, 3);
+            this.f4688a = b0Var;
+            c5.b0 b0Var2 = new c5.b0(i10, 3);
+            this.f4689b = b0Var2;
+            b0Var.c(0L);
+            b0Var2.c(0L);
+        } else {
+            this.f4688a = new c5.b0(length, 3);
+            this.f4689b = new c5.b0(length, 3);
         }
-        this.d = i18;
-        return true;
+        this.f4688a.d(jArr);
+        this.f4689b.d(jArr2);
+        this.f4690c = j10;
+    }
+
+    @Override
+    public final boolean d() {
+        if (this.f4689b.f4702b > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean e() {
+        return false;
+    }
+
+    @Override
+    public final b0 f(long j10) {
+        c5.b0 b0Var = this.f4689b;
+        if (b0Var.f4702b == 0) {
+            d0 d0Var = d0.f4606c;
+            return new b0(d0Var, d0Var);
+        }
+        int c10 = m0.c(b0Var, j10);
+        long m10 = b0Var.m(c10);
+        c5.b0 b0Var2 = this.f4688a;
+        d0 d0Var2 = new d0(m10, b0Var2.m(c10));
+        if (m10 != j10 && c10 != b0Var.f4702b - 1) {
+            int i10 = c10 + 1;
+            return new b0(d0Var2, new d0(b0Var.m(i10), b0Var2.m(i10)));
+        }
+        return new b0(d0Var2, d0Var2);
+    }
+
+    @Override
+    public final long h() {
+        return this.f4690c;
     }
 }

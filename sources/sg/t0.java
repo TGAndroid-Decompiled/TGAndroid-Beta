@@ -1,14 +1,23 @@
 package sg;
-public final class t0 extends q1 {
+
+import android.content.Context;
+import android.widget.Scroller;
+public final class t0 extends Scroller {
+    public final u0 f46435a;
+
+    public t0(u0 u0Var, Context context) {
+        super(context);
+        this.f46435a = u0Var;
+    }
+
     @Override
-    public final void setOffset(float f7) {
-        boolean z10;
-        if (f7 == 0.0f) {
-            z10 = true;
+    public final void startScroll(int i10, int i11, int i12, int i13, int i14) {
+        int i15;
+        if (this.f46435a.f46446x0) {
+            i15 = 3;
         } else {
-            z10 = false;
+            i15 = 1;
         }
-        setAutoPlayEnabled(z10);
-        super.setOffset(f7);
+        super.startScroll(i10, i11, i12, i13, i15 * i14);
     }
 }

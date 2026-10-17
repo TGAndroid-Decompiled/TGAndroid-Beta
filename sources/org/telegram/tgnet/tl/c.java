@@ -12,16 +12,16 @@ import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class c implements Vector.TLDeserializer {
-    public final int f19178a;
+    public final int f20533a;
 
     public c(int i10) {
-        this.f19178a = i10;
+        this.f20533a = i10;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
         TLObject access$400;
-        switch (this.f19178a) {
+        switch (this.f20533a) {
             case 0:
                 access$400 = TL_keyboard.access$400(inputSerializedData, i10, z10);
                 return access$400;
@@ -76,13 +76,13 @@ public final class c implements Vector.TLDeserializer {
             case 25:
                 return TL_iv.PageListItem.TLdeserialize(inputSerializedData, i10, z10);
             case 26:
-                return TL_iv.RichText.TLdeserialize(inputSerializedData, i10, z10);
-            case 27:
                 return TL_iv.PageListOrderedItem.TLdeserialize(inputSerializedData, i10, z10);
-            case 28:
+            case 27:
                 return TL_iv.pageRelatedArticle.TLdeserialize(inputSerializedData, i10, z10);
-            default:
+            case 28:
                 return TL_iv.pageTableRow.TLdeserialize(inputSerializedData, i10, z10);
+            default:
+                return TL_iv.pageTableCell.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 }

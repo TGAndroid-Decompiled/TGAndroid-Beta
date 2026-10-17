@@ -1,59 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class y01 extends ow0 {
-    public final org.telegram.ui.p20 f31104w0;
-    public final org.telegram.ui.ActionBar.c6 f31105x0;
-    public final w01 f31106y0;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.NotificationCenter;
+public final class y01 implements si.q0, NotificationCenter.NotificationCenterDelegate {
+    public final int f32504a;
+    public final boolean f32505b;
+    public final HashMap f32506c = new HashMap();
+    public boolean d;
 
-    public y01(Context context, org.telegram.ui.ActionBar.c6 c6Var, w01 w01Var) {
-        super(context, null);
-        this.f31105x0 = c6Var;
-        this.f31106y0 = w01Var;
-        this.f31104w0 = new org.telegram.ui.p20();
+    public y01(int i10, boolean z10) {
+        this.f32504a = i10;
+        this.f32505b = z10;
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
     }
 
-    @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final boolean Q() {
-        return false;
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f31106y0) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.save();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, AndroidUtilities.dp(45.0f), getHeight());
-            this.f31104w0.b(canvas, rectF, 0, 1.0f);
-            canvas.restore();
-            canvas.restore();
-            return drawChild;
+    public final synchronized void a(long j10, File file, long j11, long j12) {
+        w01 w01Var = (w01) this.f32506c.get(Long.valueOf(j10));
+        if (!this.d && w01Var != null && !w01Var.e) {
+            e(w01Var);
+            w01Var.f31959b = Math.max(w01Var.f31959b, j11 + j12);
+            FileLoader.getInstance(this.f32504a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f32505b, w01Var.f31959b, 0L);
         }
-        return super.drawChild(canvas, view, j10);
+    }
+
+    public final synchronized void b(long j10, long j11, File file) {
+        w01 w01Var = (w01) this.f32506c.get(Long.valueOf(j10));
+        if (!this.d && w01Var != null && !w01Var.e) {
+            e(w01Var);
+            w01Var.f31959b = Math.max(w01Var.f31959b, j11);
+            w01Var.f31960c = j11;
+            FileLoader.getInstance(this.f32504a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f32505b, w01Var.f31959b, j11);
+        }
+    }
+
+    public final synchronized void c(long j10) {
+        w01 w01Var = (w01) this.f32506c.remove(Long.valueOf(j10));
+        if (w01Var == null) {
+            return;
+        }
+        w01Var.e = true;
+        if (w01Var.d) {
+            FileLoader.getInstance(this.f32504a).cancelFileUpload(w01Var.f31958a.getAbsolutePath(), this.f32505b);
+        }
+    }
+
+    public final synchronized void d(boolean z10) {
+        try {
+            if (this.d) {
+                return;
+            }
+            this.d = true;
+            NotificationCenter.getInstance(this.f32504a).removeObserver(this, NotificationCenter.fileUploaded);
+            if (z10) {
+                Iterator it = this.f32506c.values().iterator();
+                while (it.hasNext()) {
+                    w01 w01Var = (w01) it.next();
+                    if (w01Var.d && !w01Var.e) {
+                        FileLoader.getInstance(this.f32504a).cancelFileUpload(w01Var.f31958a.getAbsolutePath(), this.f32505b);
+                    }
+                    it.remove();
+                }
+            }
+        } catch (Throwable th2) {
+            throw th2;
+        }
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.c6 getResourceProvider() {
-        return this.f31105x0;
+    public final synchronized void didReceivedNotification(int r4, int r5, java.lang.Object... r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y01.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824);
-        w01 w01Var = this.f31106y0;
-        w01Var.measure(makeMeasureSpec, i11);
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), w01Var.getMeasuredHeight() + AndroidUtilities.dp(24.0f));
+    public final void e(w01 w01Var) {
+        if (w01Var.d) {
+            return;
+        }
+        w01Var.d = true;
+        FileLoader.getInstance(this.f32504a).uploadFile(w01Var.f31958a.getAbsolutePath(), this.f32505b, false, 1L, 33554432, false);
     }
 }

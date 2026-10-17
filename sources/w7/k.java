@@ -1,26 +1,9 @@
 package w7;
 public abstract class k {
-    public static kd.f a(kd.f fVar, kd.g key) {
-        kotlin.jvm.internal.i.e(key, "key");
-        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
-            return fVar;
+    public static boolean a(char c10) {
+        if (c10 != ' ' && c10 != '\t' && c10 != '\n' && c10 != '\r' && c10 != '\f') {
+            return false;
         }
-        return null;
-    }
-
-    public static kd.h b(kd.f fVar, kd.g key) {
-        kotlin.jvm.internal.i.e(key, "key");
-        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
-            return kd.i.f14228a;
-        }
-        return fVar;
-    }
-
-    public static kd.h c(kd.f fVar, kd.h context) {
-        kotlin.jvm.internal.i.e(context, "context");
-        if (context == kd.i.f14228a) {
-            return fVar;
-        }
-        return (kd.h) context.fold(fVar, new b1.e(5));
+        return true;
     }
 }

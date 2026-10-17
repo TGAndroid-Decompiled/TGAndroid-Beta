@@ -1,18 +1,123 @@
 package org.telegram.ui;
 
+import android.graphics.drawable.BitmapDrawable;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.NotificationCenter;
-public final class c5 implements NotificationCenter.NotificationCenterDelegate {
-    public final d5 f34456a;
+import org.telegram.tgnet.TLRPC;
+public final class c5 {
+    public final ImageLocation f35814a;
+    public final ImageLocation f35815b;
+    public final ImageLocation f35816c;
+    public final String d;
+    public final String e;
+    public final String f35817f;
+    public final BitmapDrawable f35818g;
+    public final Object h;
+    public final i5[] f35819i;
+    public final e5 f35820j;
 
-    public c5(d5 d5Var) {
-        this.f34456a = d5Var;
+    public c5(ImageLocation imageLocation, ImageLocation imageLocation2, ImageLocation imageLocation3, String str, String str2, String str3, BitmapDrawable bitmapDrawable, Object obj, i5[] i5VarArr, e5 e5Var) {
+        this.f35814a = imageLocation;
+        this.f35815b = imageLocation2;
+        this.f35816c = imageLocation3;
+        this.d = str;
+        this.e = str2;
+        this.f35817f = str3;
+        this.f35818g = bitmapDrawable;
+        this.h = obj;
+        this.f35819i = i5VarArr;
+        this.f35820j = e5Var;
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        d5 d5Var = this.f34456a;
-        if (d5Var.f34879g && i10 == d5Var.e) {
-            d5Var.b(objArr);
+    public static c5 a(TLRPC.Chat chat, TLRPC.ChatFull chatFull, i5... i5VarArr) {
+        String str;
+        BitmapDrawable bitmapDrawable;
+        ImageLocation imageLocation;
+        String str2;
+        TLRPC.ChatPhoto chatPhoto;
+        ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(chat, 0);
+        ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(chat, 1);
+        String str3 = null;
+        if (forUserOrChat2 != null && (forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) {
+            str = "b";
+        } else {
+            str = null;
         }
+        if (chat != null && (chatPhoto = chat.photo) != null) {
+            bitmapDrawable = chatPhoto.strippedBitmap;
+        } else {
+            bitmapDrawable = null;
+        }
+        TLRPC.Photo photo = chatFull.chat_photo;
+        if (photo != null && !photo.video_sizes.isEmpty()) {
+            TLRPC.VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(chatFull.chat_photo.video_sizes, 1000);
+            imageLocation = ImageLocation.getForPhoto(closestVideoSizeWithSize, chatFull.chat_photo);
+            str2 = FileLoader.getAttachFileName(closestVideoSizeWithSize);
+        } else {
+            imageLocation = null;
+            str2 = null;
+        }
+        if (imageLocation != null && imageLocation.imageType == 2) {
+            str3 = "g";
+        }
+        return new c5(forUserOrChat, forUserOrChat2, imageLocation, str, str3, str2, bitmapDrawable, chat, i5VarArr, null);
+    }
+
+    public static c5 b(TLRPC.User user, int i10, i5... i5VarArr) {
+        String str;
+        TLRPC.UserProfilePhoto userProfilePhoto;
+        ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(user, 0);
+        ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(user, 1);
+        BitmapDrawable bitmapDrawable = null;
+        if (forUserOrChat2 != null && (forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) {
+            str = "b";
+        } else {
+            str = null;
+        }
+        if (user != null && (userProfilePhoto = user.photo) != null) {
+            bitmapDrawable = userProfilePhoto.strippedBitmap;
+        }
+        return new c5(forUserOrChat, forUserOrChat2, null, str, null, null, bitmapDrawable, user, i5VarArr, new e5(i10, user, NotificationCenter.userInfoDidLoad));
+    }
+
+    public static c5 c(TLRPC.User user, TLRPC.UserFull userFull, i5... i5VarArr) {
+        String str;
+        BitmapDrawable bitmapDrawable;
+        ImageLocation imageLocation;
+        String str2;
+        TLRPC.UserProfilePhoto userProfilePhoto;
+        TLRPC.Photo photo;
+        ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(userFull.user, 0);
+        if (forUserOrChat == null && (photo = userFull.profile_photo) != null) {
+            forUserOrChat = ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 500), userFull.profile_photo);
+        }
+        ImageLocation imageLocation2 = forUserOrChat;
+        ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(userFull.user, 1);
+        String str3 = null;
+        if (forUserOrChat2 != null && (forUserOrChat2.photoSize instanceof TLRPC.TL_photoStrippedSize)) {
+            str = "b";
+        } else {
+            str = null;
+        }
+        if (user != null && (userProfilePhoto = user.photo) != null) {
+            bitmapDrawable = userProfilePhoto.strippedBitmap;
+        } else {
+            bitmapDrawable = null;
+        }
+        TLRPC.Photo photo2 = userFull.profile_photo;
+        if (photo2 != null && !photo2.video_sizes.isEmpty()) {
+            TLRPC.VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(userFull.profile_photo.video_sizes, 1000);
+            ImageLocation forPhoto = ImageLocation.getForPhoto(closestVideoSizeWithSize, userFull.profile_photo);
+            str2 = FileLoader.getAttachFileName(closestVideoSizeWithSize);
+            imageLocation = forPhoto;
+        } else {
+            imageLocation = null;
+            str2 = null;
+        }
+        if (imageLocation != null && imageLocation.imageType == 2) {
+            str3 = "g";
+        }
+        return new c5(imageLocation2, forUserOrChat2, imageLocation, str, str3, str2, bitmapDrawable, userFull.user, i5VarArr, null);
     }
 }

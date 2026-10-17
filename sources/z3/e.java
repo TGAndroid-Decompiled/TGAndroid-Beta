@@ -1,12 +1,4 @@
 package z3;
-
-import java.util.List;
-public interface e {
-    int c(long j10);
-
-    long h(int i10);
-
-    List o(long j10);
-
-    int u();
+public interface e extends h2.e {
+    void b(long j10);
 }

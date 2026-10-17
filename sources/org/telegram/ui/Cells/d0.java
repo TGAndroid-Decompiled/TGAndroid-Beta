@@ -2,21 +2,21 @@ package org.telegram.ui.Cells;
 
 import org.telegram.messenger.BotInlineKeyboard;
 public abstract class d0 {
-    public static final int[] f20753a;
+    public static final int[] f22115a;
 
     static {
         int[] iArr = new int[BotInlineKeyboard.BackgroundColor.values().length];
-        f20753a = iArr;
+        f22115a = iArr;
         try {
             iArr[BotInlineKeyboard.BackgroundColor.DANGER.ordinal()] = 1;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            f20753a[BotInlineKeyboard.BackgroundColor.SUCCESS.ordinal()] = 2;
+            f22115a[BotInlineKeyboard.BackgroundColor.SUCCESS.ordinal()] = 2;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            f20753a[BotInlineKeyboard.BackgroundColor.PRIMARY.ordinal()] = 3;
+            f22115a[BotInlineKeyboard.BackgroundColor.PRIMARY.ordinal()] = 3;
         } catch (NoSuchFieldError unused3) {
         }
     }

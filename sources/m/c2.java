@@ -1,40 +1,25 @@
 package m;
 
-import java.util.WeakHashMap;
-public final class c2 implements Runnable {
-    public final int f14806a;
-    public final f2 f14807b;
+import android.widget.AbsListView;
+public final class c2 implements AbsListView.OnScrollListener {
+    public final e2 f16162a;
 
-    public c2(f2 f2Var, int i10) {
-        this.f14806a = i10;
-        this.f14807b = f2Var;
+    public c2(e2 e2Var) {
+        this.f16162a = e2Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f14806a;
-        f2 f2Var = this.f14807b;
-        switch (i10) {
-            case 0:
-                t1 t1Var = f2Var.f14835c;
-                if (t1Var != null) {
-                    t1Var.setListSelectionHidden(true);
-                    t1Var.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                t1 t1Var2 = f2Var.f14835c;
-                if (t1Var2 != null) {
-                    WeakHashMap weakHashMap = r0.i0.f43485a;
-                    if (t1Var2.isAttachedToWindow() && f2Var.f14835c.getCount() > f2Var.f14835c.getChildCount() && f2Var.f14835c.getChildCount() <= f2Var.f14841x) {
-                        f2Var.O.setInputMethodMode(2);
-                        f2Var.g();
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void onScrollStateChanged(AbsListView absListView, int i10) {
+        e2 e2Var = this.f16162a;
+        b2 b2Var = e2Var.G;
+        y yVar = e2Var.O;
+        if (i10 == 1 && yVar.getInputMethodMode() != 2 && yVar.getContentView() != null) {
+            e2Var.K.removeCallbacks(b2Var);
+            b2Var.run();
         }
+    }
+
+    @Override
+    public final void onScroll(AbsListView absListView, int i10, int i11, int i12) {
     }
 }

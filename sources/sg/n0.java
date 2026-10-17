@@ -8,66 +8,66 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.nb0;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.qa0;
 import w7.z5;
 public final class n0 extends FrameLayout implements l0 {
-    public final c6 f45284a;
-    public final ArrayList f45285b;
-    public final m0 f45286c;
+    public final d6 f46358a;
+    public final ArrayList f46359b;
+    public final m0 f46360c;
     public final m0 d;
     public final m0 e;
-    public final boolean f45287f;
+    public final boolean f46361f;
 
-    public n0(Context context, c6 c6Var) {
+    public n0(Context context, d6 d6Var) {
         super(context);
-        nb0[] values;
-        this.f45285b = new ArrayList();
-        this.f45284a = c6Var;
-        for (nb0 nb0Var : nb0.values()) {
-            if (nb0Var.e) {
-                this.f45285b.add(nb0Var);
+        qa0[] values;
+        this.f46359b = new ArrayList();
+        this.f46358a = d6Var;
+        for (qa0 qa0Var : qa0.values()) {
+            if (qa0Var.e) {
+                this.f46359b.add(qa0Var);
             }
-            if (this.f45285b.size() == 3) {
+            if (this.f46359b.size() == 3) {
                 break;
             }
         }
-        if (this.f45285b.size() < 3) {
+        if (this.f46359b.size() < 3) {
             FileLog.e(new IllegalArgumentException("There should be at least 3 premium icons!"));
-            this.f45287f = true;
+            this.f46361f = true;
             return;
         }
-        this.f45286c = a(context, 0);
+        this.f46360c = a(context, 0);
         this.d = a(context, 1);
         this.e = a(context, 2);
         setClipChildren(false);
     }
 
     public final m0 a(Context context, int i10) {
-        nb0 nb0Var = (nb0) this.f45285b.get(i10);
+        qa0 qa0Var = (qa0) this.f46359b.get(i10);
         ?? qVar = new org.telegram.ui.Cells.q(context);
-        w1 w1Var = new w1(20);
-        qVar.e = w1Var;
+        v1 v1Var = new v1(20);
+        qVar.e = v1Var;
         Paint paint = new Paint(1);
-        qVar.f45251f = paint;
-        w1Var.f45413r = 12;
-        w1Var.f45414s = 8;
-        w1Var.f45415t = 6;
+        qVar.f46349f = paint;
+        v1Var.f46484r = 12;
+        v1Var.f46485s = 8;
+        v1Var.f46486t = 6;
         if (i10 == 1) {
-            w1Var.N = 1001;
+            v1Var.O = 1001;
         }
         if (i10 == 0) {
-            w1Var.N = 1002;
+            v1Var.O = 1002;
         }
-        w1Var.O = this.f45284a;
-        w1Var.P = g6.Zj;
-        w1Var.c();
+        v1Var.P = this.f46358a;
+        v1Var.Q = h6.Zj;
+        v1Var.c();
         paint.setColor(-1);
         qVar.setLayoutParams(z5.a(-2.0f, 0.0f, 52.0f, 0.0f, 0.0f, -2, 17));
-        qVar.setForeground(nb0Var.f38355c);
-        qVar.setBackgroundResource(nb0Var.f38354b);
+        qVar.setForeground(qa0Var.f40349c);
+        qVar.setBackgroundResource(qa0Var.f40348b);
         qVar.setPadding(AndroidUtilities.dp(8.0f));
         qVar.setBackgroundOuterPadding(AndroidUtilities.dp(32.0f));
         addView(qVar);
@@ -77,12 +77,12 @@ public final class n0 extends FrameLayout implements l0 {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        if (this.f45287f) {
+        if (this.f46361f) {
             return;
         }
         int min = Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
         int dp = AndroidUtilities.dp(76.0f);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f45286c.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f46360c.getLayoutParams();
         layoutParams.height = dp;
         layoutParams.width = dp;
         float f7 = dp;
@@ -100,11 +100,11 @@ public final class n0 extends FrameLayout implements l0 {
 
     @Override
     public void setOffset(float f7) {
-        if (this.f45287f) {
+        if (this.f46361f) {
             return;
         }
         float abs = Math.abs(f7 / getMeasuredWidth());
-        float interpolation = es.f24467i.getInterpolation(abs);
+        float interpolation = bs.f25032i.getInterpolation(abs);
         int right = getRight();
         m0 m0Var = this.e;
         m0Var.setTranslationX(((m0Var.getWidth() * 1.5f) + (right - m0Var.getRight()) + AndroidUtilities.dp(32.0f)) * interpolation);
@@ -114,13 +114,13 @@ public final class n0 extends FrameLayout implements l0 {
         m0Var.setScaleX(clamp);
         m0Var.setScaleY(clamp);
         int top = getTop();
-        m0 m0Var2 = this.f45286c;
+        m0 m0Var2 = this.f46360c;
         m0Var2.setTranslationY((((top - m0Var2.getTop()) - (m0Var2.getHeight() * 1.8f)) - AndroidUtilities.dp(32.0f)) * abs);
         m0Var2.setTranslationX(AndroidUtilities.dp(16.0f) * abs);
         float clamp2 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.8f, abs), 1.0f, 0.0f);
         m0Var2.setScaleX(clamp2);
         m0Var2.setScaleY(clamp2);
-        float interpolation2 = es.f24466g.getInterpolation(abs);
+        float interpolation2 = bs.f25031g.getInterpolation(abs);
         int left = getLeft();
         m0 m0Var3 = this.d;
         m0Var3.setTranslationX((((left - m0Var3.getLeft()) - (m0Var3.getWidth() * 2.5f)) + AndroidUtilities.dp(32.0f)) * interpolation2);

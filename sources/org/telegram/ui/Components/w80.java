@@ -1,19 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class w80 extends FrameLayout {
-    public View f30494a;
-    public TextView f30495b;
+import android.content.DialogInterface;
+public final class w80 implements DialogInterface.OnDismissListener {
+    public final int f32029a;
+    public final Object f32030b;
+    public final boolean f32031c;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public w80(int i10, Object obj, boolean z10) {
+        this.f32029a = i10;
+        this.f32030b = obj;
+        this.f32031c = z10;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f30495b.setText(charSequence);
+    @Override
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f32029a) {
+            case 0:
+                a90 a90Var = (a90) this.f32030b;
+                a90.y(a90Var.getContext(), a90Var.f24547c, a90Var.f24549n, this.f32031c);
+                return;
+            case 1:
+                a90 a90Var2 = (a90) this.f32030b;
+                a90.y(a90Var2.getContext(), a90Var2.f24547c, a90Var2.f24549n, this.f32031c);
+                return;
+            default:
+                ei.vb vbVar = (ei.vb) this.f32030b;
+                vbVar.f10032z2 = false;
+                vbVar.X0.x(7, true);
+                if (this.f32031c) {
+                    vbVar.p(true);
+                    return;
+                }
+                return;
+        }
     }
 }

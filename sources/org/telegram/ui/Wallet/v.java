@@ -1,91 +1,73 @@
 package org.telegram.ui.Wallet;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.mt;
-public final class v implements Utilities.Callback2 {
-    public final int f33487a;
-    public final boolean f33488b;
-    public final Object f33489c;
+public final class v implements Utilities.Callback3 {
+    public final int f34944a = 0;
+    public final m0 f34945b;
+    public final Object f34946c;
     public final Object d;
     public final Object e;
 
-    public v(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f33487a = i10;
-        this.f33489c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f33488b = z10;
+    public v(m0 m0Var, Utilities.Callback callback, byte[] bArr, j0 j0Var) {
+        this.f34945b = m0Var;
+        this.f34946c = callback;
+        this.d = bArr;
+        this.e = j0Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        String str;
-        switch (this.f33487a) {
+    public final void run(Object obj, Object obj2, Object obj3) {
+        switch (this.f34944a) {
             case 0:
-                k0 k0Var = (k0) this.f33489c;
-                h0 h0Var = (h0) this.d;
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.e;
-                boolean z10 = this.f33488b;
-                TL_wallet.proofChallenge proofchallenge = (TL_wallet.proofChallenge) obj;
+                Utilities.Callback callback = (Utilities.Callback) this.f34946c;
+                byte[] bArr = (byte[]) this.d;
+                j0 j0Var = (j0) this.e;
+                TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (proofchallenge == null) {
-                    h0Var.close();
-                    if (tL_error == null) {
-                        str = "NULL_ERROR";
-                    } else {
-                        str = tL_error.text;
-                    }
-                    callback2.run(null, str);
-                    return;
-                }
-                int currentTime = ConnectionsManager.getInstance(k0Var.f33092a).getCurrentTime();
-                StringBuilder sb2 = new StringBuilder("received proof challenge, expires at ");
-                i2.d.w(sb2, proofchallenge.expires, ", now = ", currentTime, ", expires in ");
-                sb2.append(proofchallenge.expires - currentTime);
-                sb2.append("s");
-                k0.E(sb2.toString());
-                Utilities.stageQueue.postRunnable(new ji.r2(k0Var, z10, h0Var, proofchallenge, currentTime, callback2));
-                return;
-            default:
-                e2 e2Var = (e2) this.f33489c;
-                p pVar = (p) this.d;
-                a2 a2Var = (a2) this.e;
-                boolean z11 = this.f33488b;
-                h0 h0Var2 = (h0) obj;
-                String str2 = (String) obj2;
-                if (h0Var2 != null && str2 == null) {
-                    h0 b10 = h0Var2.b();
-                    mt mtVar = new mt(26, b10, pVar);
-                    String str3 = a2Var.e;
-                    TL_wallet.tonConnectSession tonconnectsession = a2Var.f32617a;
-                    if ("sendTransaction".equals(str3)) {
-                        SharedPreferences mainSettings = MessagesController.getMainSettings(e2Var.f32817a);
-                        if (mainSettings.contains(e2.j(tonconnectsession.f19175id, a2Var.f32618b) + ".transfer")) {
-                            e2Var.z(a2Var, b10, mtVar);
-                            return;
+                TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
+                m0 m0Var = this.f34945b;
+                int i10 = m0Var.f34551a;
+                if (tL_error == null || !"WALLET_PROOF_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    if (tL_error != null) {
+                        String str = tL_error.text;
+                        if (str == null) {
+                            str = "NULL_ERROR";
                         }
-                    }
-                    t1 t1Var = new t1(e2Var, a2Var, mtVar, z11, b10);
-                    if (tonconnectsession.closed) {
-                        t1Var.run(null);
+                        callback.run(str);
                         return;
                     }
-                    TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
-                    tonconnectregisterkey.session_id = tonconnectsession.f19175id;
-                    tonconnectregisterkey.client_id = tonconnectsession.client_id;
-                    e2Var.f32820f.sendRequestTyped(tonconnectregisterkey, new Object(), new o(mtVar, b10, a2Var, t1Var, 6));
+                    m0Var.i0(walletState);
+                    new q0(m0.v(), m0Var.s(), i10).p(UserConfig.getInstance(i10).getClientUserId(), bArr, j0Var, callback);
+                    m0Var.P();
                     return;
                 }
-                if (str2 == null) {
-                    str2 = "Recovery phrase is unavailable";
-                }
-                pVar.run(str2);
                 return;
+            default:
+                t9 t9Var = (t9) this.f34946c;
+                TLRPC.User user = (TLRPC.User) this.d;
+                String str2 = (String) this.e;
+                String str3 = (String) obj;
+                Boolean bool = (Boolean) obj2;
+                Utilities.Callback callback2 = (Utilities.Callback) obj3;
+                String str4 = t9Var.e;
+                m0 m0Var2 = this.f34945b;
+                if (!m0.a(str4, m0Var2.s())) {
+                    callback2.run("WALLET_CHANGED");
+                    return;
+                } else {
+                    m0Var2.b0(user, str2, 0L, str3, null, t9Var.d, null, new x(11, t9Var, callback2), null, null);
+                    return;
+                }
         }
+    }
+
+    public v(t9 t9Var, m0 m0Var, TLRPC.User user, String str) {
+        this.f34946c = t9Var;
+        this.f34945b = m0Var;
+        this.d = user;
+        this.e = str;
     }
 }

@@ -1,18 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class av implements DialogInterface.OnShowListener {
-    public final hv f23308a;
+import android.app.Activity;
+import android.content.Context;
+import android.view.OrientationEventListener;
+public final class av extends OrientationEventListener {
+    public final cv f24718a;
 
-    public av(hv hvVar) {
-        this.f23308a = hvVar;
+    public av(cv cvVar, Context context) {
+        super(context);
+        this.f24718a = cvVar;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        da1 da1Var = this.f23308a.f25406c;
-        if (fh0.f24733p0.P && da1Var.f()) {
-            da1Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Cells.da(this, 1));
+    public final void onOrientationChanged(int i10) {
+        Activity activity;
+        cv cvVar = this.f24718a;
+        u91 u91Var = cvVar.f25372c;
+        if (cvVar.F != null && u91Var.getVisibility() == 0 && (activity = cvVar.f25375r) != null && u91Var.T && cvVar.M) {
+            if (i10 >= 240 && i10 <= 300) {
+                cvVar.N = true;
+            } else if (cvVar.N && i10 > 0) {
+                if (i10 >= 330 || i10 <= 30) {
+                    activity.setRequestedOrientation(cvVar.L);
+                    cvVar.M = false;
+                    cvVar.N = false;
+                }
+            }
         }
     }
 }

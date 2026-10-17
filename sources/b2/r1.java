@@ -1,21 +1,24 @@
 package b2;
-
-import java.util.Collections;
-import java.util.List;
 public final class r1 {
-    public static final String f2321c;
-    public static final String d;
-    public final q1 f2322a;
-    public final e9.n0 f2323b;
+    public static final r1 d = new r1(new af.l(1));
+    public static final String e;
+    public static final String f3977f;
+    public static final String f3978g;
+    public final int f3979a;
+    public final boolean f3980b;
+    public final boolean f3981c;
 
     static {
-        String str = e2.m0.f8375a;
-        f2321c = Integer.toString(0, 36);
-        d = Integer.toString(1, 36);
+        String str = e2.m0.f8254a;
+        e = Integer.toString(1, 36);
+        f3977f = Integer.toString(2, 36);
+        f3978g = Integer.toString(3, 36);
     }
 
-    public r1(q1 q1Var, int i10) {
-        this(q1Var, e9.n0.y(Integer.valueOf(i10)));
+    public r1(af.l lVar) {
+        this.f3979a = lVar.f592a;
+        this.f3980b = lVar.f593b;
+        this.f3981c = lVar.f594c;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +27,7 @@ public final class r1 {
         }
         if (obj != null && r1.class == obj.getClass()) {
             r1 r1Var = (r1) obj;
-            if (this.f2322a.equals(r1Var.f2322a) && this.f2323b.equals(r1Var.f2323b)) {
+            if (this.f3979a == r1Var.f3979a && this.f3980b == r1Var.f3980b && this.f3981c == r1Var.f3981c) {
                 return true;
             }
         }
@@ -32,14 +35,6 @@ public final class r1 {
     }
 
     public final int hashCode() {
-        return (this.f2323b.hashCode() * 31) + this.f2322a.hashCode();
-    }
-
-    public r1(q1 q1Var, List list) {
-        if (!list.isEmpty() && (((Integer) Collections.min(list)).intValue() < 0 || ((Integer) Collections.max(list)).intValue() >= q1Var.f2295a)) {
-            throw new IndexOutOfBoundsException();
-        }
-        this.f2322a = q1Var;
-        this.f2323b = e9.n0.u(list);
+        return ((((this.f3979a + 31) * 31) + (this.f3980b ? 1 : 0)) * 31) + (this.f3981c ? 1 : 0);
     }
 }

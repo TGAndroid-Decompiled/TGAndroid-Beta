@@ -1,14 +1,14 @@
 package ud;
 
-import com.google.android.gms.common.api.internal.n1;
+import com.google.android.gms.common.api.internal.m1;
 import java.util.Random;
 import kotlin.jvm.internal.i;
 public final class b extends a {
-    public final n1 f46242b = new n1(2);
+    public final m1 f47651b = new m1(2);
 
     @Override
     public final Random a() {
-        Object obj = this.f46242b.get();
+        Object obj = this.f47651b.get();
         i.d(obj, "get(...)");
         return (Random) obj;
     }

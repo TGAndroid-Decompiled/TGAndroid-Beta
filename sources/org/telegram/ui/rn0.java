@@ -1,70 +1,60 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-public final class rn0 extends FrameLayout {
-    public TextView f39558a;
-    public TextView f39559b;
-    public ImageView f39560c;
-    public boolean d;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class rn0 implements do0 {
+    public final Runnable f40773a;
+    public final fo0 f40774b;
 
-    public final void a(String str, boolean z10) {
-        this.f39558a.setText(str);
-        this.f39559b.setText("");
-        this.d = z10;
-        setWillNotDraw(!z10);
+    public rn0(fo0 fo0Var, Runnable runnable) {
+        this.f40774b = fo0Var;
+        this.f40773a = runnable;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.d) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        String str3;
+        fo0 fo0Var = this.f40774b;
+        fo0Var.f37009y0 = tL_paymentSavedCredentialsCard;
+        fo0Var.f37005w0 = str;
+        fo0Var.U0 = z10;
+        fo0Var.f37007x0 = str2;
+        fo0Var.J0 = tL_inputPaymentCredentialsGooglePay;
+        org.telegram.ui.Cells.c9[] c9VarArr = fo0Var.Y;
+        org.telegram.ui.Cells.c9 c9Var = c9VarArr[0];
+        if (c9Var != null) {
+            c9Var.setVisibility(0);
+            org.telegram.ui.Cells.c9 c9Var2 = c9VarArr[0];
+            String str4 = fo0Var.f37007x0;
+            if (str4 != null && str4.length() > 1) {
+                str3 = fo0Var.f37007x0.substring(0, 1).toUpperCase() + fo0Var.f37007x0.substring(1);
             } else {
-                dp = AndroidUtilities.dp(20.0f);
+                str3 = fo0Var.f37007x0;
             }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
+            c9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
+            org.telegram.ui.Cells.c9 c9Var3 = c9VarArr[1];
+            if (c9Var3 != null) {
+                c9Var3.setVisibility(0);
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f19722k0);
         }
+        Runnable runnable = this.f40773a;
+        if (runnable != null) {
+            runnable.run();
+        }
+        return false;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
+    public final void a(TL_account.Password password) {
     }
 
-    public void setChecked(boolean z10) {
-        int i10;
-        ImageView imageView = this.f39560c;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView.setVisibility(i10);
+    @Override
+    public final void b() {
     }
 
-    public void setNeedDivider(boolean z10) {
-        this.d = z10;
-        setWillNotDraw(!z10);
-        invalidate();
-    }
-
-    public void setValue(CharSequence charSequence) {
-        this.f39559b.setText(charSequence);
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

@@ -1,90 +1,103 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.os.Build;
-import android.view.MotionEvent;
-import j$.util.Objects;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-public final class ex extends pg.d {
-    public boolean W2;
-    public final wz X2;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class ex extends yx {
+    public static final int H0 = 0;
+    public final org.telegram.ui.ActionBar.n2 E0;
+    public final boolean F0;
+    public final tz G0;
 
-    public ex(wz wzVar, Context context) {
-        super(context, null);
-        this.X2 = wzVar;
+    public ex(tz tzVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.ActionBar.n2 n2Var, boolean z10) {
+        super(tzVar, context, d6Var);
+        this.G0 = tzVar;
+        this.E0 = n2Var;
+        this.F0 = z10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.X2.f30737m2.h++;
-    }
-
-    @Override
-    public final void k0(int i10, int i11) {
-        int i12;
-        bh.f fVar;
-        wz wzVar = this.X2;
-        rz rzVar = wzVar.f30780z0;
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = wzVar.f30730j2) != null) {
-            fVar.f(i10, i11);
+    public final void j() {
+        fx fxVar = this.G0.C0;
+        if (fxVar != null) {
+            fxVar.invalidate();
         }
-        if (wzVar.C0 != null) {
-            ix ixVar = wzVar.B0;
-            if (wzVar.D0.canScrollVertically(-1)) {
-                i12 = AndroidUtilities.getShadowHeight();
-            } else {
-                i12 = 0;
+    }
+
+    @Override
+    public final void o(int i10, int i11) {
+        tz tzVar = this.G0;
+        org.telegram.ui.Cells.k7 k7Var = tzVar.f30758f2;
+        int i12 = tzVar.E1;
+        int i13 = i10 - i12;
+        int i14 = i11 - i12;
+        int i15 = tzVar.f30747c1;
+        MediaDataController mediaDataController = MediaDataController.getInstance(i15);
+        ArrayList arrayList = tzVar.f30750d1;
+        arrayList.add(i14, (TLRPC.TL_messages_stickerSet) arrayList.remove(i13));
+        Collections.sort(mediaDataController.getStickerSets(0), new zl(this, 1));
+        ArrayList arrayList2 = tzVar.G2;
+        if (arrayList2 != null) {
+            arrayList2.clear();
+            tzVar.G2.addAll(arrayList);
+        }
+        tzVar.D();
+        AndroidUtilities.cancelRunOnUIThread(k7Var);
+        AndroidUtilities.runOnUIThread(k7Var, 1500L);
+        MediaDataController.getInstance(i15).calcNewHash(0);
+        TLRPC.TL_messages_reorderStickerSets tL_messages_reorderStickerSets = new TLRPC.TL_messages_reorderStickerSets();
+        tL_messages_reorderStickerSets.masks = false;
+        tL_messages_reorderStickerSets.emojis = false;
+        for (int i16 = tzVar.f30752e0; i16 < arrayList.size(); i16 = com.google.android.gms.internal.cast.a6.h(((TLRPC.TL_messages_stickerSet) arrayList.get(i16)).set.f20299id, tL_messages_reorderStickerSets.order, i16, 1)) {
+        }
+        ConnectionsManager.getInstance(i15).sendRequest(tL_messages_reorderStickerSets, new ci.e6(13));
+        NotificationCenter.getInstance(i15).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, 0, Boolean.TRUE);
+        tzVar.X(true);
+        if (SharedConfig.updateStickersOrderOnSend) {
+            SharedConfig.toggleUpdateStickersOrderOnSend();
+            org.telegram.ui.ActionBar.n2 n2Var = this.E0;
+            if (n2Var != null) {
+                xc.a0(n2Var).K(R.raw.filter_reorder, LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), LocaleController.getString("Settings"), new sd(1, n2Var)).j();
+                return;
             }
-            ixVar.setUnderlineHeight(i12);
-        }
-        if (rzVar != null && getAdapter() == rzVar && rzVar.d == 0) {
-            rz rzVar2 = rzVar.O.f28140w;
-            if (!rzVar2.Q.G0.F && !rzVar2.f28671y) {
-                if (wzVar.E0.N0() + 50 > rzVar.h()) {
-                    pz pzVar = rzVar.O;
-                    Objects.requireNonNull(pzVar);
-                    AndroidUtilities.runOnUIThread(new dx(pzVar, 0));
-                }
+            FrameLayout frameLayout = tzVar.f30791r;
+            if (frameLayout != null) {
+                new xc(frameLayout, tzVar.Z1).M(LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), R.raw.filter_reorder).j();
             }
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        wz wzVar = this.X2;
-        if (!wzVar.f30715f) {
-            org.telegram.ui.xt q6 = org.telegram.ui.xt.q();
-            ex exVar = wzVar.D0;
-            wzVar.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, exVar, wzVar.f30721g2, this.f27148n2);
-            if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-                return false;
+    public final void p() {
+        tz tzVar = this.G0;
+        tzVar.Y();
+        fx fxVar = tzVar.C0;
+        if (fxVar != null) {
+            fxVar.invalidate();
+        }
+        invalidate();
+        uy uyVar = tzVar.f30800t1;
+        if (uyVar != null) {
+            uyVar.u();
+        }
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            super.setTranslationY(f7);
+            if (!this.F0) {
+                this.G0.f30813x0.invalidate();
             }
-            return true;
         }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        wz wzVar = this.X2;
-        if (wzVar.I0 && wzVar.f30777y0.h() > 0) {
-            this.W2 = true;
-            wzVar.E0.h1(0, 0);
-            wzVar.I0 = false;
-            this.W2 = false;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        wzVar.r(true);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W2) {
-            return;
-        }
-        super.requestLayout();
     }
 }

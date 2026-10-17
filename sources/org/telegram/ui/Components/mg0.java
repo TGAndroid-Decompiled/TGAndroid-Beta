@@ -1,22 +1,61 @@
 package org.telegram.ui.Components;
-public final class mg0 implements Runnable {
-    public final int f27102a;
-    public final rg0 f27103b;
 
-    public mg0(rg0 rg0Var, int i10) {
-        this.f27102a = i10;
-        this.f27103b = rg0Var;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mg0 extends FrameLayout {
+    public final TextView f28510a;
+    public final TextView f28511b;
+    public final TextView f28512c;
+    public final boolean d;
+
+    public mg0(Context context) {
+        super(context);
+        this.d = true;
+        setBackgroundColor(-15066598);
+        TextView textView = new TextView(context);
+        this.f28510a = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setTextColor(-1);
+        textView.setGravity(17);
+        textView.setBackground(org.telegram.ui.ActionBar.h6.g0(-12763843, 0, -1));
+        textView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
+        textView.setTypeface(AndroidUtilities.bold());
+        addView(textView, w7.z5.e(-2, -1, 51));
+        TextView textView2 = new TextView(context);
+        this.f28511b = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTextColor(-1);
+        textView2.setGravity(17);
+        textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.g0(-12763843, 0, -1));
+        textView2.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        textView2.setText(LocaleController.getString(R.string.Send).toUpperCase());
+        textView2.setTypeface(AndroidUtilities.bold());
+        addView(textView2, w7.z5.e(-2, -1, 53));
+        TextView textView3 = new TextView(context);
+        this.f28512c = textView3;
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setTextSize(1, 13.0f);
+        textView3.setTextColor(-1);
+        textView3.setGravity(17);
+        textView3.setBackgroundResource(R.drawable.photobadge);
+        textView3.setMinWidth(AndroidUtilities.dp(23.0f));
+        textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
+        addView(textView3, w7.z5.a(23.0f, 0.0f, 0.0f, 7.0f, 0.0f, -2, 53));
     }
 
-    @Override
-    public final void run() {
-        switch (this.f27102a) {
-            case 0:
-                this.f27103b.e();
-                return;
-            default:
-                this.f27103b.g();
-                return;
+    public final void a() {
+        int i10;
+        this.f28512c.setVisibility(8);
+        if (this.d) {
+            i10 = -1;
+        } else {
+            i10 = -15095832;
         }
+        this.f28511b.setTextColor(i10);
     }
 }

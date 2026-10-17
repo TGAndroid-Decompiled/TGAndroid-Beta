@@ -1,6 +1,6 @@
 package s4;
 public abstract class o {
-    public static final gb.k f44941a = new gb.k(4);
+    public static final gb.i f46041a = new gb.i(4);
 
     public static m4.c c(s4.o r27, boolean r28) {
         throw new UnsupportedOperationException("Method not decompiled: s4.o.c(s4.o, boolean):m4.c");

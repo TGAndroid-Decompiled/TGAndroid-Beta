@@ -1,24 +1,24 @@
 package da;
 
+import ai.w3;
+import ai.y3;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
-import b2.q1;
-import bi.h4;
-import bi.q4;
-import bi.u8;
+import b2.p1;
+import ci.v7;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import e9.k0;
 import e9.n0;
 import e9.x1;
-import gi.f;
+import hi.f;
 import i5.g;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import ji.u3;
+import ki.t3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
@@ -30,62 +30,62 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.xy0;
+import org.telegram.ui.Components.ry0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.fo;
+import org.telegram.ui.sn;
 import x2.d;
 import x2.e;
 import x2.i;
 import x2.k;
 import x2.n;
-import x9.x;
-public final class b implements g, MessagesStorage.LongCallback, z1, MessagesController.ErrorDelegate, k {
-    public final int f6456a;
-    public final boolean f6457b;
-    public final Object f6458c;
+import x9.w;
+public final class b implements g, MessagesStorage.LongCallback, a2, MessagesController.ErrorDelegate, k {
+    public final int f7911a;
+    public final boolean f7912b;
+    public final Object f7913c;
     public final Object d;
     public final Object e;
 
     public b(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f6456a = i10;
-        this.f6458c = obj;
+        this.f7911a = i10;
+        this.f7913c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f6457b = z10;
+        this.f7912b = z10;
     }
 
     @Override
-    public x1 a(int i10, q1 q1Var, int[] iArr) {
-        n nVar = (n) this.f6458c;
+    public x1 b(int i10, p1 p1Var, int[] iArr) {
+        n nVar = (n) this.f7913c;
         i iVar = (i) this.d;
         nVar.getClass();
         d dVar = new d(nVar, iVar);
         int i11 = ((int[]) this.e)[i10];
         k0 t10 = n0.t();
-        for (int i12 = 0; i12 < q1Var.f2295a; i12++) {
-            t10.c(new e(i10, q1Var, i12, iVar, iArr[i12], this.f6457b, dVar, i11));
+        for (int i12 = 0; i12 < p1Var.f3903a; i12++) {
+            t10.c(new e(i10, p1Var, i12, iVar, iArr[i12], this.f7912b, dVar, i11));
         }
         return t10.f();
     }
 
     @Override
-    public void b(Exception exc) {
-        c cVar = (c) this.f6458c;
+    public void c(Exception exc) {
+        c cVar = (c) this.f7913c;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.d;
         x9.b bVar = (x9.b) this.e;
         if (exc != null) {
             taskCompletionSource.trySetException(exc);
             return;
         }
-        if (this.f6457b) {
+        if (this.f7912b) {
             boolean z10 = true;
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            new Thread(new u8(23, cVar, countDownLatch)).start();
+            new Thread(new v7(11, cVar, countDownLatch)).start();
             TimeUnit timeUnit = TimeUnit.SECONDS;
-            ExecutorService executorService = x.f48355a;
+            ExecutorService executorService = w.f49762a;
             boolean z11 = false;
             try {
                 long nanos = timeUnit.toNanos(2L);
@@ -119,26 +119,26 @@ public final class b implements g, MessagesStorage.LongCallback, z1, MessagesCon
     }
 
     @Override
-    public void g(a2 a2Var, int i10) {
+    public void g(b2 b2Var, int i10) {
         TL_keyboard.PageButton pageButton;
         TL_keyboard.InlineButtonType inlineButtonType;
         long j10;
         TL_keyboard.PageButton pageButton2;
-        bi.b bVar;
-        switch (this.f6456a) {
+        ci.b bVar;
+        switch (this.f7911a) {
             case 2:
-                boolean z10 = this.f6457b;
-                h4 h4Var = (h4) this.f6458c;
+                boolean z10 = this.f7912b;
+                y3 y3Var = (y3) this.f7913c;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                u3 u3Var = (u3) this.e;
-                int i11 = u3Var.f13559b;
+                t3 t3Var = (t3) this.e;
+                int i11 = t3Var.f15522b;
                 if (!z10) {
-                    h4Var.run();
+                    y3Var.run();
                     return;
                 }
                 String trim = editTextBoldCursor.getText().toString().trim();
                 if (!TextUtils.isEmpty(trim)) {
-                    TL_iv.pageBlockButtonRow d = u3Var.d();
+                    TL_iv.pageBlockButtonRow d = t3Var.d();
                     TL_keyboard.InlineButtonType inlineButtonType2 = null;
                     if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
                         pageButton = d.buttons.get(i11);
@@ -158,7 +158,7 @@ public final class b implements g, MessagesStorage.LongCallback, z1, MessagesCon
                     }
                     if (j10 > 0) {
                         TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
-                        TL_iv.pageBlockButtonRow d10 = u3Var.d();
+                        TL_iv.pageBlockButtonRow d10 = t3Var.d();
                         if (d10 != null && i11 >= 0 && i11 < d10.buttons.size()) {
                             pageButton2 = d10.buttons.get(i11);
                         } else {
@@ -171,23 +171,23 @@ public final class b implements g, MessagesStorage.LongCallback, z1, MessagesCon
                             j11 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType2).user_id;
                         }
                         tL_inlineButtonTypeUserProfile.user_id = j11;
-                        u3Var.a(trim, tL_inlineButtonTypeUserProfile);
+                        t3Var.a(trim, tL_inlineButtonTypeUserProfile);
                         return;
                     }
                     return;
                 }
                 return;
             case 3:
-                fo foVar = (fo) this.f6458c;
-                boolean z11 = this.f6457b;
+                sn snVar = (sn) this.f7913c;
+                boolean z11 = this.f7912b;
                 ((MessagesController) this.d).secretWebpagePreview = 1;
-                MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", foVar.getMessagesController().secretWebpagePreview).commit();
-                foVar.H5 = null;
-                foVar.cb((CharSequence) this.e, z11);
+                MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", snVar.getMessagesController().secretWebpagePreview).commit();
+                snVar.H5 = null;
+                snVar.cb((CharSequence) this.e, z11);
                 return;
             case 4:
-                boolean z12 = this.f6457b;
-                Context context = (Context) this.f6458c;
+                boolean z12 = this.f7912b;
+                Context context = (Context) this.f7913c;
                 AtomicBoolean atomicBoolean = (AtomicBoolean) this.d;
                 q0.a aVar = (q0.a) this.e;
                 if (z12) {
@@ -205,62 +205,62 @@ public final class b implements g, MessagesStorage.LongCallback, z1, MessagesCon
                 aVar.accept(Boolean.TRUE);
                 return;
             default:
-                xy0 xy0Var = (xy0) this.f6458c;
+                ry0 ry0Var = (ry0) this.f7913c;
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.d;
                 Context context2 = (Context) this.e;
-                boolean z13 = this.f6457b;
-                String trim2 = xy0Var.getText().toString().trim();
+                boolean z13 = this.f7912b;
+                String trim2 = ry0Var.getText().toString().trim();
                 if (!TextUtils.isEmpty(trim2) && !TextUtils.isEmpty(AndroidUtilities.translitSafe(trim2.toString()))) {
-                    AndroidUtilities.hideKeyboard(xy0Var);
+                    AndroidUtilities.hideKeyboard(ry0Var);
                     if (z13) {
                         bVar = null;
                     } else {
-                        bVar = new bi.b();
+                        bVar = new ci.b();
                     }
-                    a2 a2Var2 = new a2(context2, 3, bVar);
-                    a2Var2.q(250L);
-                    callback2.run(trim2, new q4(a2Var2, a2Var, xy0Var, 8));
+                    b2 b2Var2 = new b2(context2, 3, bVar);
+                    b2Var2.q(250L);
+                    callback2.run(trim2, new w3(b2Var2, b2Var, ry0Var, 10));
                     return;
                 }
-                xy0Var.setErrorText(".");
-                AndroidUtilities.shakeViewSpring(xy0Var, -6.0f);
+                ry0Var.setErrorText(".");
+                AndroidUtilities.shakeViewSpring(ry0Var, -6.0f);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AndroidUtilities.showKeyboard(xy0Var);
+                AndroidUtilities.showKeyboard(ry0Var);
                 return;
         }
     }
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        return ProfileActivity.Z((ProfileActivity) this.f6458c, (boolean[]) this.d, this.f6457b, (m2) this.e, tL_error);
+        return ProfileActivity.j0((ProfileActivity) this.f7913c, (boolean[]) this.d, this.f7912b, (n2) this.e, tL_error);
     }
 
     public b(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
-        this.f6456a = i10;
-        this.f6458c = obj;
+        this.f7911a = i10;
+        this.f7913c = obj;
         this.d = obj2;
-        this.f6457b = z10;
+        this.f7912b = z10;
         this.e = obj3;
     }
 
     @Override
     public void run(long j10) {
-        f fVar = (f) this.f6458c;
+        f fVar = (f) this.f7913c;
         String str = (String) this.e;
         fVar.getClass();
-        ((a2) this.d).dismiss();
+        ((b2) this.d).dismiss();
         if (j10 == 0) {
             return;
         }
-        fVar.f10177a = -j10;
-        fVar.f10178b = fVar.getMessagesController().getChat(Long.valueOf(j10));
-        fVar.V(str, this.f6457b);
+        fVar.f12142a = -j10;
+        fVar.f12143b = fVar.getMessagesController().getChat(Long.valueOf(j10));
+        fVar.V(str, this.f7912b);
     }
 
     public b(boolean z10, Object obj, Object obj2, Object obj3, int i10) {
-        this.f6456a = i10;
-        this.f6457b = z10;
-        this.f6458c = obj;
+        this.f7911a = i10;
+        this.f7912b = z10;
+        this.f7913c = obj;
         this.d = obj2;
         this.e = obj3;
     }

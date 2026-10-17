@@ -7,7 +7,7 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 import android.util.Log;
-import c5.w;
+import c5.v;
 import com.google.android.gms.common.data.DataHolder;
 import y8.b1;
 import y8.e0;
@@ -16,24 +16,24 @@ import y8.l0;
 import y8.v0;
 import y8.z0;
 public final class m extends b8.b {
-    public volatile int f48263b;
-    public final k f48264c;
+    public volatile int f49672b;
+    public final k f49673c;
 
     public m(k kVar) {
         super("com.google.android.gms.wearable.internal.IWearableListener", 4);
-        this.f48264c = kVar;
-        this.f48263b = -1;
+        this.f49673c = kVar;
+        this.f49672b = -1;
     }
 
     public static final void L0(e0 e0Var, boolean z10, byte[] bArr) {
         try {
             e0Var.getClass();
             Parcel obtain = Parcel.obtain();
-            obtain.writeInterfaceToken(e0Var.f320c);
-            int i10 = f8.a.f9064a;
+            obtain.writeInterfaceToken(e0Var.f319c);
+            int i10 = f8.a.f10505a;
             obtain.writeInt(z10 ? 1 : 0);
             obtain.writeByteArray(bArr);
-            e0Var.f319b.transact(1, obtain, null, 1);
+            e0Var.f318b.transact(1, obtain, null, 1);
             obtain.recycle();
         } catch (RemoteException e) {
             Log.e("WearableLS", "Failed to send a response back", e);
@@ -49,22 +49,22 @@ public final class m extends b8.b {
                     case 1:
                         DataHolder dataHolder = (DataHolder) f8.a.a(parcel, DataHolder.CREATOR);
                         f8.a.b(parcel);
-                        Runnable jVar = new s9.j(7, this, dataHolder);
+                        Runnable iVar = new s9.i(7, this, dataHolder);
                         try {
                             String valueOf = String.valueOf(dataHolder);
-                            int i11 = dataHolder.f5091n;
+                            int i11 = dataHolder.f6545n;
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append(valueOf);
                             sb2.append(", rows=");
                             sb2.append(i11);
-                            return !K0(jVar, "onDataItemChanged", sb2.toString()) ? true : true;
+                            return !K0(iVar, "onDataItemChanged", sb2.toString()) ? true : true;
                         } finally {
                             dataHolder.close();
                         }
                     case 2:
                         Object obj = (k0) f8.a.a(parcel, k0.CREATOR);
                         f8.a.b(parcel);
-                        K0(new s9.j(8, this, obj), "onMessageReceived", obj);
+                        K0(new s9.i(8, this, obj), "onMessageReceived", obj);
                         return true;
                     case 3:
                         l0 l0Var = (l0) f8.a.a(parcel, l0.CREATOR);
@@ -79,33 +79,33 @@ public final class m extends b8.b {
                     case 5:
                         Object createTypedArrayList = parcel.createTypedArrayList(l0.CREATOR);
                         f8.a.b(parcel);
-                        K0(new s9.j(9, this, createTypedArrayList), "onConnectedNodes", createTypedArrayList);
+                        K0(new s9.i(9, this, createTypedArrayList), "onConnectedNodes", createTypedArrayList);
                         return true;
                     case 6:
                         Object obj2 = (b1) f8.a.a(parcel, b1.CREATOR);
                         f8.a.b(parcel);
-                        K0(new s9.j(11, this, obj2), "onNotificationReceived", obj2);
+                        K0(new s9.i(11, this, obj2), "onNotificationReceived", obj2);
                         return true;
                     case 7:
                         Object obj3 = (y8.e) f8.a.a(parcel, y8.e.CREATOR);
                         f8.a.b(parcel);
-                        K0(new s9.j(13, this, obj3), "onChannelEvent", obj3);
+                        K0(new s9.i(13, this, obj3), "onChannelEvent", obj3);
                         return true;
                     case 8:
                         Object obj4 = (y8.b) f8.a.a(parcel, y8.b.CREATOR);
                         f8.a.b(parcel);
-                        K0(new s9.j(10, this, obj4), "onConnectedCapabilityChanged", obj4);
+                        K0(new s9.i(10, this, obj4), "onConnectedCapabilityChanged", obj4);
                         return true;
                     case 9:
                         Object obj5 = (v0) f8.a.a(parcel, v0.CREATOR);
                         f8.a.b(parcel);
-                        K0(new s9.j(12, this, obj5), "onEntityUpdate", obj5);
+                        K0(new s9.i(12, this, obj5), "onEntityUpdate", obj5);
                         return true;
                     default:
                         return false;
                 }
             }
-            y8.j jVar2 = (y8.j) f8.a.a(parcel, y8.j.CREATOR);
+            y8.j jVar = (y8.j) f8.a.a(parcel, y8.j.CREATOR);
             f8.a.b(parcel);
             return true;
         }
@@ -122,7 +122,7 @@ public final class m extends b8.b {
             }
         }
         f8.a.b(parcel);
-        K0(new w(this, obj6, aVar, 12), "onRequestReceived", obj6);
+        K0(new v(this, obj6, aVar, 12), "onRequestReceived", obj6);
         return true;
     }
 
@@ -132,24 +132,24 @@ public final class m extends b8.b {
         q qVar;
         ComponentName componentName;
         if (Log.isLoggable("WearableLS", 3)) {
-            componentName = this.f48264c.zza;
+            componentName = this.f49673c.zza;
             Log.d("WearableLS", String.format("%s: %s %s", str, componentName.toString(), obj));
         }
         int callingUid = Binder.getCallingUid();
-        if (callingUid != this.f48263b) {
-            if (z0.a(this.f48264c).b() && u6.b.g(this.f48264c, "com.google.android.wearable.app.cn", callingUid)) {
-                this.f48263b = callingUid;
-            } else if (u6.b.e(this.f48264c, callingUid)) {
-                this.f48263b = callingUid;
+        if (callingUid != this.f49672b) {
+            if (z0.a(this.f49673c).b() && u6.b.g(this.f49673c, "com.google.android.wearable.app.cn", callingUid)) {
+                this.f49672b = callingUid;
+            } else if (u6.b.e(this.f49673c, callingUid)) {
+                this.f49672b = callingUid;
             } else {
                 Log.e("WearableLS", "Caller is not GooglePlayServices; caller UID: " + callingUid);
                 return false;
             }
         }
-        obj2 = this.f48264c.zzf;
+        obj2 = this.f49673c.zzf;
         synchronized (obj2) {
             try {
-                k kVar = this.f48264c;
+                k kVar = this.f49673c;
                 z10 = kVar.zzg;
                 if (!z10) {
                     qVar = kVar.zzb;

@@ -1,6 +1,6 @@
 package qd;
 public abstract class a {
-    public static final Integer f43090a;
+    public static final Integer f44458a;
 
     static {
         Integer num;
@@ -15,12 +15,12 @@ public abstract class a {
             if (num != null && num.intValue() > 0) {
                 num2 = num;
             }
-            f43090a = num2;
+            f44458a = num2;
         }
         num = null;
         if (num != null) {
             num2 = num;
         }
-        f43090a = num2;
+        f44458a = num2;
     }
 }

@@ -1,30 +1,44 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ne0 implements RequestDelegate {
-    public final int f38375a;
-    public final pe0 f38376b;
-    public final String f38377c;
-    public final String d;
+public final class ne0 implements Runnable {
+    public final int f39433a;
+    public final oe0 f39434b;
 
-    public ne0(pe0 pe0Var, String str, String str2, int i10) {
-        this.f38375a = i10;
-        this.f38376b = pe0Var;
-        this.f38377c = str;
-        this.d = str2;
+    public ne0(oe0 oe0Var, int i10) {
+        this.f39433a = i10;
+        this.f39434b = oe0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38375a) {
+    public final void run() {
+        switch (this.f39433a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ke0(this.f38376b, tL_error, this.f38377c, this.d, tLObject));
+                oe0 oe0Var = this.f39434b;
+                pe0 pe0Var = oe0Var.d;
+                if (oe0Var.f39757b) {
+                    boolean z10 = pe0Var.K;
+                    org.telegram.ui.Components.uj0 uj0Var = pe0Var.J;
+                    ld ldVar = pe0Var.f40096n;
+                    if (z10 && System.currentTimeMillis() - oe0Var.f39756a >= 10000) {
+                        ldVar.setAnimation(uj0Var);
+                        uj0Var.N(0, false, false);
+                        uj0Var.f31025t0 = new ne0(oe0Var, 1);
+                        ldVar.d();
+                        oe0Var.f39756a = System.currentTimeMillis();
+                    }
+                    ldVar.postDelayed(oe0Var.f39758c, 1000L);
+                    return;
+                }
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new ne0(this.f39434b, 2));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ke0(this.f38376b, tL_error, tLObject, this.f38377c, this.d));
+                pe0 pe0Var2 = this.f39434b.d;
+                org.telegram.ui.Components.uj0 uj0Var2 = pe0Var2.I;
+                uj0Var2.N(0, false, false);
+                pe0Var2.f40096n.setAnimation(uj0Var2);
                 return;
         }
     }

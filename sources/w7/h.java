@@ -1,6 +1,26 @@
 package w7;
 public abstract class h {
-    public static final java.lang.Object a(java.util.List r6, k1.s r7, md.c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: w7.h.a(java.util.List, k1.s, md.c):java.lang.Object");
+    public static kd.f a(kd.f fVar, kd.g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
+            return fVar;
+        }
+        return null;
+    }
+
+    public static kd.h b(kd.f fVar, kd.g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
+            return kd.i.f15023a;
+        }
+        return fVar;
+    }
+
+    public static kd.h c(kd.f fVar, kd.h context) {
+        kotlin.jvm.internal.i.e(context, "context");
+        if (context == kd.i.f15023a) {
+            return fVar;
+        }
+        return (kd.h) context.fold(fVar, new b1.e(5));
     }
 }

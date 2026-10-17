@@ -4,26 +4,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class d implements Runnable {
-    public final int f47636a;
-    public final f f47637b;
+    public final int f49045a;
+    public final f f49046b;
 
     public d(f fVar, int i10) {
-        this.f47636a = i10;
-        this.f47637b = fVar;
+        this.f49045a = i10;
+        this.f49046b = fVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f47636a) {
+        switch (this.f49045a) {
             case 0:
-                f fVar = this.f47637b;
-                if (fVar.f47655j.isEmpty()) {
-                    fVar.f47654i = true;
-                    f.f47648n = null;
-                    e eVar = fVar.f47652f;
+                f fVar = this.f49046b;
+                if (fVar.f49064j.isEmpty()) {
+                    fVar.f49063i = true;
+                    f.f49057n = null;
+                    e eVar = fVar.f49061f;
                     if (eVar != null) {
-                        eVar.f47638a = false;
-                        fVar.f47652f = null;
+                        eVar.f49047a = false;
+                        fVar.f49061f = null;
                     }
                     fVar.d.removeView(fVar.e);
                     if (fVar.d.getParent() instanceof ViewGroup) {
@@ -34,7 +34,7 @@ public final class d implements Runnable {
                 }
                 return;
             default:
-                ArrayList arrayList = this.f47637b.f47655j;
+                ArrayList arrayList = this.f49046b.f49064j;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     ((View) arrayList.get(i10)).invalidate();
                 }

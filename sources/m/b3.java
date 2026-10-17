@@ -1,20 +1,251 @@
 package m;
 
+import android.app.SearchableInfo;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.database.Cursor;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-public final class b3 {
-    public final TextView f14802a;
-    public final TextView f14803b;
-    public final ImageView f14804c;
-    public final ImageView d;
-    public final ImageView e;
+import androidx.appcompat.widget.SearchView;
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.WeakHashMap;
+public final class b3 extends h1.b implements View.OnClickListener {
+    public static final int N = 0;
+    public final int E;
+    public int F;
+    public ColorStateList G;
+    public int H;
+    public int I;
+    public int J;
+    public int K;
+    public int L;
+    public int M;
+    public final int f16156n;
+    public final int f16157r;
+    public final LayoutInflater f16158s;
+    public final SearchView v;
+    public final SearchableInfo f16159w;
+    public final Context f16160x;
+    public final WeakHashMap f16161y;
 
-    public b3(View view) {
-        this.f14802a = (TextView) view.findViewById(16908308);
-        this.f14803b = (TextView) view.findViewById(16908309);
-        this.f14804c = (ImageView) view.findViewById(16908295);
-        this.d = (ImageView) view.findViewById(16908296);
-        this.e = (ImageView) view.findViewById(2131296420);
+    public b3(Context context, SearchView searchView, SearchableInfo searchableInfo, WeakHashMap weakHashMap) {
+        int suggestionRowLayout = searchView.getSuggestionRowLayout();
+        this.f11620b = true;
+        this.f11621c = null;
+        this.f11619a = false;
+        this.d = -1;
+        this.e = new com.google.android.gms.internal.clearcut.c(this);
+        this.f11622f = new h1.a(this, 0);
+        this.f16157r = suggestionRowLayout;
+        this.f16156n = suggestionRowLayout;
+        this.f16158s = (LayoutInflater) context.getSystemService("layout_inflater");
+        this.F = 1;
+        this.H = -1;
+        this.I = -1;
+        this.J = -1;
+        this.K = -1;
+        this.L = -1;
+        this.M = -1;
+        this.v = searchView;
+        this.f16159w = searchableInfo;
+        this.E = searchView.getSuggestionCommitIconResId();
+        this.f16160x = context;
+        this.f16161y = weakHashMap;
+    }
+
+    public static String g(Cursor cursor, int i10) {
+        if (i10 == -1) {
+            return null;
+        }
+        try {
+            return cursor.getString(i10);
+        } catch (Exception e) {
+            Log.e("SuggestionsAdapter", "unexpected error retrieving valid column from cursor, did the remote process die?", e);
+            return null;
+        }
+    }
+
+    @Override
+    public final void a(android.view.View r21, android.database.Cursor r22) {
+        throw new UnsupportedOperationException("Method not decompiled: m.b3.a(android.view.View, android.database.Cursor):void");
+    }
+
+    @Override
+    public final void b(Cursor cursor) {
+        try {
+            super.b(cursor);
+            if (cursor != null) {
+                this.H = cursor.getColumnIndex("suggest_text_1");
+                this.I = cursor.getColumnIndex("suggest_text_2");
+                this.J = cursor.getColumnIndex("suggest_text_2_url");
+                this.K = cursor.getColumnIndex("suggest_icon_1");
+                this.L = cursor.getColumnIndex("suggest_icon_2");
+                this.M = cursor.getColumnIndex("suggest_flags");
+            }
+        } catch (Exception e) {
+            Log.e("SuggestionsAdapter", "error changing cursor and caching columns", e);
+        }
+    }
+
+    @Override
+    public final String c(Cursor cursor) {
+        String g10;
+        String g11;
+        if (cursor != null) {
+            String g12 = g(cursor, cursor.getColumnIndex("suggest_intent_query"));
+            if (g12 != null) {
+                return g12;
+            }
+            SearchableInfo searchableInfo = this.f16159w;
+            if (searchableInfo.shouldRewriteQueryFromData() && (g11 = g(cursor, cursor.getColumnIndex("suggest_intent_data"))) != null) {
+                return g11;
+            }
+            if (searchableInfo.shouldRewriteQueryFromText() && (g10 = g(cursor, cursor.getColumnIndex("suggest_text_1"))) != null) {
+                return g10;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public final Drawable d(Uri uri) {
+        int parseInt;
+        String authority = uri.getAuthority();
+        if (!TextUtils.isEmpty(authority)) {
+            try {
+                Resources resourcesForApplication = this.f16160x.getPackageManager().getResourcesForApplication(authority);
+                List<String> pathSegments = uri.getPathSegments();
+                if (pathSegments != null) {
+                    int size = pathSegments.size();
+                    if (size == 1) {
+                        try {
+                            parseInt = Integer.parseInt(pathSegments.get(0));
+                        } catch (NumberFormatException unused) {
+                            throw new FileNotFoundException("Single path segment is not a resource ID: " + uri);
+                        }
+                    } else if (size == 2) {
+                        parseInt = resourcesForApplication.getIdentifier(pathSegments.get(1), pathSegments.get(0), authority);
+                    } else {
+                        throw new FileNotFoundException("More than two path segments: " + uri);
+                    }
+                    if (parseInt != 0) {
+                        return resourcesForApplication.getDrawable(parseInt);
+                    }
+                    throw new FileNotFoundException("No resource found for: " + uri);
+                }
+                throw new FileNotFoundException("No path: " + uri);
+            } catch (PackageManager.NameNotFoundException unused2) {
+                throw new FileNotFoundException("No package found for authority: " + uri);
+            }
+        }
+        throw new FileNotFoundException("No authority: " + uri);
+    }
+
+    public final android.graphics.drawable.Drawable e(java.lang.String r11) {
+        throw new UnsupportedOperationException("Method not decompiled: m.b3.e(java.lang.String):android.graphics.drawable.Drawable");
+    }
+
+    public final Cursor f(SearchableInfo searchableInfo, String str) {
+        String suggestAuthority;
+        String[] strArr = null;
+        if (searchableInfo == null || (suggestAuthority = searchableInfo.getSuggestAuthority()) == null) {
+            return null;
+        }
+        Uri.Builder fragment = new Uri.Builder().scheme("content").authority(suggestAuthority).query("").fragment("");
+        String suggestPath = searchableInfo.getSuggestPath();
+        if (suggestPath != null) {
+            fragment.appendEncodedPath(suggestPath);
+        }
+        fragment.appendPath("search_suggest_query");
+        String suggestSelection = searchableInfo.getSuggestSelection();
+        if (suggestSelection != null) {
+            strArr = new String[]{str};
+        } else {
+            fragment.appendPath(str);
+        }
+        String[] strArr2 = strArr;
+        fragment.appendQueryParameter("limit", String.valueOf(50));
+        return this.f16160x.getContentResolver().query(fragment.build(), null, suggestSelection, strArr2, null);
+    }
+
+    @Override
+    public final View getDropDownView(int i10, View view, ViewGroup viewGroup) {
+        try {
+            return super.getDropDownView(i10, view, viewGroup);
+        } catch (RuntimeException e) {
+            Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e);
+            View inflate = this.f16158s.inflate(this.f16157r, viewGroup, false);
+            if (inflate != null) {
+                ((a3) inflate.getTag()).f16148a.setText(e.toString());
+            }
+            return inflate;
+        }
+    }
+
+    @Override
+    public final View getView(int i10, View view, ViewGroup viewGroup) {
+        try {
+            return super.getView(i10, view, viewGroup);
+        } catch (RuntimeException e) {
+            Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e);
+            View inflate = this.f16158s.inflate(this.f16156n, viewGroup, false);
+            inflate.setTag(new a3(inflate));
+            ((ImageView) inflate.findViewById(2131296420)).setImageResource(this.E);
+            ((a3) inflate.getTag()).f16148a.setText(e.toString());
+            return inflate;
+        }
+    }
+
+    @Override
+    public final boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public final void notifyDataSetChanged() {
+        Bundle bundle;
+        super.notifyDataSetChanged();
+        Cursor cursor = this.f11621c;
+        if (cursor != null) {
+            bundle = cursor.getExtras();
+        } else {
+            bundle = null;
+        }
+        if (bundle != null) {
+            bundle.getBoolean("in_progress");
+        }
+    }
+
+    @Override
+    public final void notifyDataSetInvalidated() {
+        Bundle bundle;
+        super.notifyDataSetInvalidated();
+        Cursor cursor = this.f11621c;
+        if (cursor != null) {
+            bundle = cursor.getExtras();
+        } else {
+            bundle = null;
+        }
+        if (bundle != null) {
+            bundle.getBoolean("in_progress");
+        }
+    }
+
+    @Override
+    public final void onClick(View view) {
+        Object tag = view.getTag();
+        if (tag instanceof CharSequence) {
+            this.v.o((CharSequence) tag);
+        }
     }
 }

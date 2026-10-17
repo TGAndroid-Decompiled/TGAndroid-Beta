@@ -1,108 +1,83 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.StaticLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class xm0 extends Drawable {
-    public long f30953a;
-    public boolean f30954b;
-    public Paint f30955c;
-    public float d;
-    public float e;
-    public float f30956f;
-    public int f30957g;
-    public int h;
-    public int f30958i;
-    public org.telegram.ui.Cells.u1 f30959j;
-    public float f30960k;
-    public int f30961l;
-    public int f30962m;
-    public org.telegram.ui.ActionBar.c6 f30963n;
+    public int f32418a = 255;
+    public final r90 f32419b;
+    public final int[] f32420c;
+    public final org.telegram.ui.Cells.u1 d;
+    public final int[] e;
+    public final Bitmap f32421f;
+    public final RectF f32422g;
+    public final Paint h;
+    public final Paint f32423i;
+    public final StaticLayout f32424j;
 
-    public final void a() {
-        if (this.f30954b) {
-            return;
-        }
-        this.f30953a = System.currentTimeMillis();
-        this.f30954b = true;
-        this.f30959j.invalidate();
-    }
-
-    public final void b() {
-        if (!this.f30954b) {
-            return;
-        }
-        this.f30954b = false;
+    public xm0(r90 r90Var, int[] iArr, org.telegram.ui.Cells.u1 u1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
+        this.f32419b = r90Var;
+        this.f32420c = iArr;
+        this.d = u1Var;
+        this.e = iArr2;
+        this.f32421f = bitmap;
+        this.f32422g = rectF;
+        this.h = paint;
+        this.f32423i = paint2;
+        this.f32424j = staticLayout;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f30955c;
-        paint.setColor(i0.a.d(this.f30960k, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19695ic, this.f30963n), this.f30961l));
-        int i10 = this.f30962m;
-        if (i10 != 255) {
-            paint.setAlpha((int) ((paint.getAlpha() / 255.0f) * i10));
+        if (this.f32418a <= 0) {
+            return;
         }
-        int i11 = getBounds().left;
-        int i12 = getBounds().top;
-        int i13 = 0;
-        while (i13 < 3) {
-            Canvas canvas2 = canvas;
-            canvas2.drawRect(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp((this.d * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(4.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
-            canvas2.drawRect(AndroidUtilities.dp(5.0f) + i11, AndroidUtilities.dp((this.e * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(7.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
-            canvas2.drawRect(AndroidUtilities.dp(8.0f) + i11, AndroidUtilities.dp((this.f30956f * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(10.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
-            i13++;
-            canvas = canvas2;
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getBounds());
+        float f7 = rectF.left;
+        CornerPathEffect cornerPathEffect = r90.f29891w;
+        rectF.left = f7 - (AndroidUtilities.dp(5.0f) / 2.0f);
+        canvas.save();
+        canvas.saveLayerAlpha(rectF, this.f32418a, 31);
+        int[] iArr = this.f32420c;
+        canvas.translate(iArr[0], iArr[1]);
+        r90 r90Var = this.f32419b;
+        org.telegram.ui.Cells.u1 u1Var = this.d;
+        if (u1Var != null && u1Var.C1()) {
+            org.telegram.ui.ActionBar.f5 f5Var = u1Var.f23487t8;
+            if (f5Var != null && f5Var.f20808c != null) {
+                canvas.save();
+                u1Var.setBackgroundTopY(true);
+                canvas.translate(0.0f, -u1Var.f23487t8.f20820r);
+                canvas.drawPaint(u1Var.f23487t8.f20808c);
+                canvas.restore();
+            } else {
+                canvas.translate(-iArr[0], -iArr[1]);
+                int[] iArr2 = this.e;
+                canvas.translate(iArr2[0], u1Var.getPaddingTop() + iArr2[1]);
+                u1Var.D1(canvas, true, false);
+                canvas.translate(-iArr2[0], (-iArr2[1]) - u1Var.getPaddingTop());
+                canvas.translate(iArr[0], iArr[1]);
+            }
+            Bitmap bitmap = this.f32421f;
+            if (bitmap != null) {
+                canvas.save();
+                RectF rectF2 = this.f32422g;
+                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
+                canvas.restore();
+            }
+        } else {
+            canvas.drawPath(r90Var, this.f32423i);
         }
-        if (this.f30954b) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j10 = currentTimeMillis - this.f30953a;
-            this.f30953a = currentTimeMillis;
-            if (j10 > 50) {
-                j10 = 50;
-            }
-            float f7 = (float) j10;
-            float f10 = ((f7 / 300.0f) * this.f30957g) + this.d;
-            this.d = f10;
-            if (f10 > 1.0f) {
-                this.f30957g = -1;
-                this.d = 1.0f;
-            } else if (f10 < 0.0f) {
-                this.f30957g = 1;
-                this.d = 0.0f;
-            }
-            float f11 = ((f7 / 310.0f) * this.h) + this.e;
-            this.e = f11;
-            if (f11 > 1.0f) {
-                this.h = -1;
-                this.e = 1.0f;
-            } else if (f11 < 0.0f) {
-                this.h = 1;
-                this.e = 0.0f;
-            }
-            float f12 = ((f7 / 320.0f) * this.f30958i) + this.f30956f;
-            this.f30956f = f12;
-            if (f12 > 1.0f) {
-                this.f30958i = -1;
-                this.f30956f = 1.0f;
-            } else if (f12 < 0.0f) {
-                this.f30958i = 1;
-                this.f30956f = 0.0f;
-            }
-            this.f30959j.invalidate();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(12.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(12.0f);
+        canvas.clipPath(r90Var);
+        this.f32424j.draw(canvas);
+        canvas.restore();
     }
 
     @Override
@@ -112,7 +87,7 @@ public final class xm0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f30962m = i10;
+        this.f32418a = i10;
     }
 
     @Override

@@ -1,255 +1,66 @@
 package yh;
 
+import ai.ld;
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.ck;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.ud0;
-import org.telegram.ui.Wallet.z6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.a6;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.c61;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.j01;
+import org.telegram.ui.Components.s61;
 import w7.z5;
-import zh.d7;
-import zh.f5;
-import zh.p7;
-public final class a implements View.OnClickListener {
-    public final int f48783a;
-    public final Object f48784b;
-    public final Object f48785c;
+public final class a extends e61 {
+    public static final int f50185a = 0;
 
-    public a(int i10, Object obj, Object obj2) {
-        this.f48783a = i10;
-        this.f48784b = obj;
-        this.f48785c = obj2;
+    static {
+        e61.setup(new e61());
     }
 
     @Override
-    public final void onClick(View view) {
-        TL_stars.SavedStarGift savedStarGift;
-        int i10 = this.f48783a;
-        zh.n0 n0Var = null;
-        Object obj = this.f48785c;
-        Object obj2 = this.f48784b;
-        switch (i10) {
-            case 0:
-                d.Q((d) obj2, (TL_stars.TL_StarGiftAuctionAcquiredGift) obj);
-                return;
-            case 1:
-                g4 g4Var = (g4) obj2;
-                g4Var.getClass();
-                if (((d7) obj).f50391f > 0) {
-                    g4Var.presentFragment(new p7());
-                    return;
-                }
-                return;
-            case 2:
-                f4.Q((f4) obj2, (e4) obj);
-                return;
-            case 3:
-                k4 k4Var = (k4) obj2;
-                fi.r4 r4Var = (fi.r4) obj;
-                HashSet hashSet = k4Var.Z;
-                if (!hashSet.isEmpty()) {
-                    ArrayList arrayList = new ArrayList();
-                    Iterator it = hashSet.iterator();
-                    while (it.hasNext()) {
-                        long longValue = ((Long) it.next()).longValue();
-                        ArrayList arrayList2 = k4Var.Y.f50510l;
-                        int size = arrayList2.size();
-                        int i11 = 0;
-                        while (true) {
-                            if (i11 < size) {
-                                Object obj3 = arrayList2.get(i11);
-                                i11++;
-                                savedStarGift = (TL_stars.SavedStarGift) obj3;
-                                int i12 = savedStarGift.msg_id;
-                                if (i12 != 0) {
-                                    if (i12 == longValue) {
-                                    }
-                                }
-                                if (savedStarGift.saved_id == longValue) {
-                                }
-                            } else {
-                                savedStarGift = null;
-                            }
-                        }
-                        if (savedStarGift != null) {
-                            arrayList.add(savedStarGift);
-                        }
-                    }
-                    r4Var.run(arrayList);
-                    k4Var.dismiss();
-                    return;
-                }
-                return;
-            case 4:
-                f5 f5Var = ((h4) obj2).f48915c.Y;
-                f5Var.e = !f5Var.e;
-                ((ck) obj).run();
-                f5Var.i(true);
-                return;
-            case 5:
-                zh.g.X((zh.g) obj2, (Context) obj, view);
-                return;
-            case 6:
-                zh.z zVar = (zh.z) obj2;
-                Context context = (Context) obj;
-                String[] strArr = new String[6];
-                int i13 = 0;
-                int i14 = 0;
-                while (true) {
-                    int[] iArr = zh.z.f51343w0;
-                    if (i13 < 6) {
-                        strArr[i13] = LocaleController.formatPluralString("GiftOfferHours", iArr[i13] / 3600, new Object[0]);
-                        if (iArr[i13] == zVar.f51356n0) {
-                            i14 = i13;
-                        }
-                        i13++;
-                    } else {
-                        String string = LocaleController.getString(R.string.GiftOfferDuration);
-                        ji.p1 p1Var = new ji.p1(zVar, 24);
-                        Pattern pattern = g5.f24879a;
-                        ig.f2 b10 = ig.f2.b(UserConfig.selectedAccount);
-                        b10.g();
-                        if (!b10.d.isEmpty()) {
-                            int x02 = g6.x0(null, g6.f19707j5, false);
-                            int x03 = g6.x0(null, g6.f19672h5, false);
-                            g6.x0(null, g6.Ji, false);
-                            g6.x0(null, g6.Ni, false);
-                            g6.x0(null, g6.E8, false);
-                            g6.x0(null, g6.G8, false);
-                            g6.x0(null, g6.f19690i6, false);
-                            g6.x0(null, g6.Sh, false);
-                            g6.x0(null, g6.Oh, false);
-                            g6.x0(null, g6.Qh, false);
-                            org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, context, (c6) null, false);
-                            e3Var.fixNavigationBar();
-                            e3Var.applyBottomPadding = false;
-                            LinearLayout linearLayout = new LinearLayout(context);
-                            linearLayout.setOrientation(0);
-                            linearLayout.setWeightSum(1.0f);
-                            ud0 ud0Var = new ud0(context, null);
-                            ud0Var.setAllItemsCount(6);
-                            ud0Var.setItemCount(Math.min(6, 8));
-                            ud0Var.setTextColor(x02);
-                            ud0Var.setGravity(17);
-                            ud0Var.setMinValue(0);
-                            ud0Var.setMaxValue(5);
-                            ud0Var.setValue(i14);
-                            linearLayout.addView(ud0Var, z5.l(1.0f, 0, 432));
-                            ud0Var.setFormatter(new org.telegram.ui.Components.s(strArr, 7));
-                            org.telegram.ui.Components.y4 y4Var = new org.telegram.ui.Components.y4(context, ud0Var);
-                            y4Var.setOrientation(1);
-                            FrameLayout frameLayout = new FrameLayout(context);
-                            TextView textView = new TextView(context);
-                            textView.setText(string);
-                            textView.setTextColor(x02);
-                            textView.setTextSize(1, 20.0f);
-                            textView.setTypeface(AndroidUtilities.bold());
-                            frameLayout.addView(textView, z5.a(-2.0f, 0.0f, 12.0f, 0.0f, 0.0f, -2, 51));
-                            textView.setOnTouchListener(new ci.d(10));
-                            y4Var.addView(frameLayout, z5.t(-1, -2, 51, 22, 0, 0, 4));
-                            y4Var.addView(linearLayout, z5.p(-1, -2, 1.0f, 0, 0, 12, 0, 12));
-                            di.d dVar = new di.d(context, null, true);
-                            dVar.g(LocaleController.getString(R.string.Select), false, true);
-                            dVar.setOnClickListener(new org.telegram.ui.Components.l2(r3, 1));
-                            y4Var.addView(dVar, z5.t(-1, 48, 0, 16, 12, 16, 12));
-                            e3Var.customView = y4Var;
-                            e3Var.show();
-                            e3Var.setOnDismissListener(new fi.d0(7, p1Var, ud0Var));
-                            e3Var.setBackgroundColor(x03);
-                            e3Var.fixNavigationBar(x03);
-                            org.telegram.ui.ActionBar.e3[] e3VarArr = {e3Var};
-                            return;
-                        }
-                        return;
-                    }
-                }
-            case 7:
-                zh.h0 h0Var = (zh.h0) obj2;
-                z6 z6Var = (z6) obj;
-                di.d dVar2 = h0Var.f50598f;
-                if (dVar2.W && !dVar2.N) {
-                    AndroidUtilities.hideKeyboard(h0Var.f50597c);
-                    dVar2.setLoading(true);
-                    z6Var.run(h0Var.E);
-                    return;
-                }
-                return;
-            case 8:
-                zh.r0 r0Var = (zh.r0) obj2;
-                ArrayList<TL_stars.StarGiftAttribute> arrayList3 = (ArrayList) obj;
-                zh.l0 l0Var = r0Var.f51047o0;
-                int i15 = r0Var.C0;
-                if (i15 == 2) {
-                    l0Var.setPreviewingAttributes(arrayList3);
-                    r0Var.T(1);
-                    return;
-                } else if (i15 == 1) {
-                    zh.n0 n0Var2 = new zh.n0(l0Var.getUpgradeBackdropAttribute(), l0Var.getUpgradePatternAttribute(), l0Var.getUpgradeImageViewAttribute());
-                    r0Var.f51054v0 = n0Var2;
-                    l0Var.setPreviewAttributes(n0Var2);
-                    r0Var.T(2);
-                    return;
-                } else {
-                    return;
-                }
-            case 9:
-                zh.n0 n0Var3 = (zh.n0) obj;
-                zh.r0 r0Var2 = ((zh.m0) obj2).N;
-                int i16 = r0Var2.C0;
-                zh.l0 l0Var2 = r0Var2.f51047o0;
-                if (i16 == 1) {
-                    r0Var2.f51054v0 = new zh.n0(l0Var2.getUpgradeBackdropAttribute(), l0Var2.getUpgradePatternAttribute(), l0Var2.getUpgradeImageViewAttribute());
-                    r0Var2.T(2);
-                }
-                int i17 = r0Var2.f51043j0.f51003r;
-                zh.n0 n0Var4 = r0Var2.f51054v0;
-                if (n0Var4 != null) {
-                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = n0Var4.f50851a;
-                    TL_stars.starGiftAttributeModel stargiftattributemodel = n0Var4.f50853c;
-                    TL_stars.starGiftAttributePattern stargiftattributepattern = n0Var4.f50852b;
-                    if (i17 == 1) {
-                        n0Var = new zh.n0(n0Var3.f50851a, stargiftattributepattern, stargiftattributemodel);
-                    } else if (i17 == 2) {
-                        n0Var = new zh.n0(stargiftattributebackdrop, n0Var3.f50852b, stargiftattributemodel);
-                    } else if (i17 == 0) {
-                        n0Var = new zh.n0(stargiftattributebackdrop, stargiftattributepattern, n0Var3.f50853c);
-                    }
-                }
-                r0Var2.f51054v0 = n0Var;
-                l0Var2.setPreviewAttributes(n0Var);
-                r0Var2.V();
-                return;
-            case 10:
-                pf.d.t(((zh.r3) obj2).getContext(), ((TL_stars.UniqueStarGiftValueInfo) obj).fragment_listed_url);
-                return;
-            case 11:
-                ((zh.r3) obj2).p2((CharSequence) obj);
-                return;
-            case 12:
-                zh.s2 s2Var = (zh.s2) obj2;
-                c6 c6Var = (c6) obj;
-                if (s2Var.E.getAlpha() >= 1.0f && !s2Var.f51145h0 && !s2Var.f51147j0 && s2Var.f51140d0 != null) {
-                    new zh.r0(s2Var.getContext(), c6Var, s2Var.W, s2Var.f51139c0, s2Var.f51140d0, true).show();
-                    return;
-                }
-                return;
-            default:
-                pf.d.r((Context) obj2, ((TL_stars.StarsTransaction) obj).transaction_url);
-                return;
-        }
+    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+        b bVar = (b) view;
+        GiftAuctionController.Auction auction = (GiftAuctionController.Auction) f61Var.H;
+        TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift = (TL_stars.TL_StarGiftAuctionAcquiredGift) f61Var.G;
+        View.OnClickListener onClickListener = f61Var.D;
+        int i10 = b.f50199c;
+        bVar.removeAllViews();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
+        spannableStringBuilder.setSpan(new a6(auction.giftDocumentId, h6.f21259s2.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.append(' ');
+        spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.Gift2AuctionsAcquiredRound2, auction.gift.title, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.gift_num), Integer.valueOf(tL_StarGiftAuctionAcquiredGift.round)));
+        spannableStringBuilder.setSpan(new c61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+        spannableStringBuilder2.append((CharSequence) ld.Y0(false, org.telegram.messenger.q.h(tL_StarGiftAuctionAcquiredGift.bid_amount, ',', new StringBuilder("⭐️")), 0.75f, null));
+        String formatString = LocaleController.formatString(R.string.Gift2AuctionsAcquiredTop, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.pos));
+        j01 j01Var = new j01(bVar.getContext(), bVar.f50200a);
+        j01Var.a(spannableStringBuilder).setFilled(true);
+        j01Var.n(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), bVar.f50201b, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new uf.c(15, bVar, onClickListener));
+        j01Var.g(tL_StarGiftAuctionAcquiredGift.date, LocaleController.getString(R.string.Gift2AuctionsAcquiredDate));
+        j01Var.e(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, formatString, null, null);
+        bVar.addView(j01Var, z5.d(-2.0f, -1));
+    }
+
+    @Override
+    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+        b bVar = new b(context, i10, d6Var);
+        bVar.setLayoutParams(z5.d(-2.0f, -1));
+        return bVar;
+    }
+
+    @Override
+    public final boolean isClickable() {
+        return false;
     }
 }

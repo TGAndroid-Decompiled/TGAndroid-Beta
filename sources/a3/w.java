@@ -16,7 +16,7 @@ public final class w {
     public final CopyOnWriteArraySet f197g;
     public final long h;
     public final b0 f198i;
-    public e2.j0 f199j = new e2.j0(0, (byte) 0);
+    public e2.j0 f199j = new e2.j0();
     public e2.i0 f200k;
     public Pair f201l;
     public int f202m;
@@ -31,7 +31,7 @@ public final class w {
         uVar.getClass();
         this.f194b = uVar;
         this.f195c = new SparseArray();
-        e9.l0 l0Var = e9.n0.f8595b;
+        e9.l0 l0Var = e9.n0.f8476b;
         x1 x1Var = x1.e;
         this.d = qVar.d;
         e2.g0 g0Var = qVar.e;
@@ -47,7 +47,7 @@ public final class w {
         this.f198i = b0Var;
         this.e = new f(qVar.f181b, b0Var, g0Var);
         this.f197g = new CopyOnWriteArraySet();
-        new b2.w().a();
+        new b2.v().a();
         this.f204o = -9223372036854775807L;
         this.f205p = -1;
         this.f203n = 0;

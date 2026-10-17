@@ -6,16 +6,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.firebase.messaging.s;
+import com.google.firebase.messaging.r;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.z;
 import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.cr;
+import org.telegram.ui.Components.zq;
 import w7.z5;
 public class e extends FrameLayout {
     public boolean E;
@@ -23,37 +23,37 @@ public class e extends FrameLayout {
     public boolean G;
     public Drawable H;
     public z I;
-    public final c6 J;
+    public final d6 J;
     public final androidx.activity.i K;
     public DecimalFormat L;
-    public boolean f14700a;
-    public final LinearLayout f14701b;
-    public s[] f14702c;
+    public boolean f16037a;
+    public final LinearLayout f16038b;
+    public r[] f16039c;
     public final TextView d;
     public final TextView e;
-    public final ImageView f14703f;
+    public final ImageView f16040f;
     public final RadialProgressView h;
-    public final SimpleDateFormat f14704n;
-    public final SimpleDateFormat f14705r;
-    public final SimpleDateFormat f14706s;
+    public final SimpleDateFormat f16041n;
+    public final SimpleDateFormat f16042r;
+    public final SimpleDateFormat f16043s;
     public final SimpleDateFormat v;
-    public final SimpleDateFormat f14707w;
-    public boolean f14708x;
-    public boolean f14709y;
+    public final SimpleDateFormat f16044w;
+    public boolean f16045x;
+    public boolean f16046y;
 
-    public e(Context context, c6 c6Var) {
+    public e(Context context, d6 d6Var) {
         super(context);
-        this.f14704n = new SimpleDateFormat("E, ");
-        this.f14705r = new SimpleDateFormat("MMM dd");
-        this.f14706s = new SimpleDateFormat("d MMM yyyy");
+        this.f16041n = new SimpleDateFormat("E, ");
+        this.f16042r = new SimpleDateFormat("MMM dd");
+        this.f16043s = new SimpleDateFormat("d MMM yyyy");
         this.v = new SimpleDateFormat("d MMM");
-        this.f14707w = new SimpleDateFormat(" HH:mm");
+        this.f16044w = new SimpleDateFormat(" HH:mm");
         this.G = true;
         this.K = new androidx.activity.i(this, 23);
-        this.J = c6Var;
+        this.J = d6Var;
         setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         LinearLayout linearLayout = new LinearLayout(getContext());
-        this.f14701b = linearLayout;
+        this.f16038b = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
         this.d = textView;
@@ -64,7 +64,7 @@ public class e extends FrameLayout {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
-        this.f14703f = imageView;
+        this.f16040f = imageView;
         imageView.setImageResource(R.drawable.ic_chevron_right_black_18dp);
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
         this.h = radialProgressView;
@@ -87,19 +87,19 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i10 = g6.f19707j5;
-        c6 c6Var = this.J;
-        this.d.setTextColor(g6.w0(i10, c6Var));
-        this.e.setTextColor(g6.w0(i10, c6Var));
-        int i11 = g6.gj;
-        this.f14703f.setColorFilter(g6.w0(i11, c6Var));
-        this.h.setProgressColor(g6.w0(i11, c6Var));
+        int i10 = h6.f21092j5;
+        d6 d6Var = this.J;
+        this.d.setTextColor(h6.w0(i10, d6Var));
+        this.e.setTextColor(h6.w0(i10, d6Var));
+        int i11 = h6.gj;
+        this.f16040f.setColorFilter(h6.w0(i11, d6Var));
+        this.h.setProgressColor(h6.w0(i11, d6Var));
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
-        this.I = g6.j0(dp, dp, dp, dp, g6.w0(g6.f19672h5, c6Var), g6.w0(g6.f19690i6, c6Var), -16777216);
-        cr crVar = new cr(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        crVar.f23883w = true;
-        setBackground(crVar);
+        this.I = h6.j0(dp, dp, dp, dp, h6.w0(h6.f21057h5, d6Var), h6.w0(h6.f21075i6, d6Var), -16777216);
+        zq zqVar = new zq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        zqVar.f32999w = true;
+        setBackground(zqVar);
     }
 
     public final void c(int r22, long r23, java.util.ArrayList r25, boolean r26, int r27, float r28) {
@@ -118,23 +118,23 @@ public class e extends FrameLayout {
             radialProgressView.setVisibility(8);
             return;
         }
-        this.f14703f.animate().setDuration(80L).alpha(1.0f).start();
+        this.f16040f.animate().setDuration(80L).alpha(1.0f).start();
         if (radialProgressView.getVisibility() == 0) {
-            radialProgressView.animate().setDuration(80L).alpha(0.0f).setListener(new ah.b(this, 27)).start();
+            radialProgressView.animate().setDuration(80L).alpha(0.0f).setListener(new ah.b(this, 29)).start();
         }
     }
 
     public void setSize(int i10) {
-        LinearLayout linearLayout = this.f14701b;
+        LinearLayout linearLayout = this.f16038b;
         linearLayout.removeAllViews();
-        this.f14702c = new s[i10];
+        this.f16039c = new r[i10];
         for (int i11 = 0; i11 < i10; i11++) {
-            this.f14702c[i11] = new s(this);
-            linearLayout.addView((LinearLayout) this.f14702c[i11].e);
+            this.f16039c[i11] = new r(this);
+            linearLayout.addView((LinearLayout) this.f16039c[i11].e);
         }
     }
 
     public void setUseWeek(boolean z10) {
-        this.f14708x = z10;
+        this.f16045x = z10;
     }
 }

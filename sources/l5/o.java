@@ -1,43 +1,27 @@
 package l5;
 
-import android.os.Process;
-import w7.k6;
-public final class o implements Runnable {
-    public final int f14591a;
-    public final Runnable f14592b;
+import java.util.HashMap;
+import m.g3;
+public abstract class o {
+    public static final g3 f15925a;
 
-    public o(int i10, Runnable runnable) {
-        this.f14591a = i10;
-        this.f14592b = runnable;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f14591a) {
-            case 0:
-                try {
-                    this.f14592b.run();
-                    return;
-                } catch (Exception e) {
-                    k6.b("Executor", "Background execution failure.", e);
-                    return;
-                }
-            case 1:
-                this.f14592b.run();
-                return;
-            default:
-                Process.setThreadPriority(0);
-                this.f14592b.run();
-                return;
-        }
-    }
-
-    public String toString() {
-        switch (this.f14591a) {
-            case 1:
-                return this.f14592b.toString();
-            default:
-                return super.toString();
-        }
+    static {
+        HashMap hashMap = new HashMap();
+        HashMap hashMap2 = new HashMap();
+        hashMap.put(o.class, e.f15903a);
+        hashMap2.remove(o.class);
+        hashMap.put(o5.a.class, a.f15892a);
+        hashMap2.remove(o5.a.class);
+        hashMap.put(o5.g.class, g.f15907a);
+        hashMap2.remove(o5.g.class);
+        hashMap.put(o5.e.class, d.f15900a);
+        hashMap2.remove(o5.e.class);
+        hashMap.put(o5.d.class, c.f15897a);
+        hashMap2.remove(o5.d.class);
+        hashMap.put(o5.b.class, b.f15895a);
+        hashMap2.remove(o5.b.class);
+        hashMap.put(o5.f.class, f.f15904a);
+        hashMap2.remove(o5.f.class);
+        f15925a = new g3(new HashMap(hashMap), new HashMap(hashMap2), ma.g.f16816a, 4);
     }
 }

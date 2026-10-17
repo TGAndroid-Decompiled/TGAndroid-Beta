@@ -1,6 +1,6 @@
 package p3;
 
-import b2.u0;
+import b2.t0;
 import java.nio.ByteBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.CharsetDecoder;
@@ -10,15 +10,15 @@ import java.util.regex.Pattern;
 import v7.s6;
 import w7.m;
 public final class a extends m {
-    public static final Pattern f42687c = Pattern.compile("(.+?)='(.*?)';", 32);
-    public final CharsetDecoder f42688a = StandardCharsets.UTF_8.newDecoder();
-    public final CharsetDecoder f42689b = StandardCharsets.ISO_8859_1.newDecoder();
+    public static final Pattern f44097c = Pattern.compile("(.+?)='(.*?)';", 32);
+    public final CharsetDecoder f44098a = StandardCharsets.UTF_8.newDecoder();
+    public final CharsetDecoder f44099b = StandardCharsets.ISO_8859_1.newDecoder();
 
     @Override
-    public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
+    public final t0 b(l3.a aVar, ByteBuffer byteBuffer) {
         String str;
-        CharsetDecoder charsetDecoder = this.f42689b;
-        CharsetDecoder charsetDecoder2 = this.f42688a;
+        CharsetDecoder charsetDecoder = this.f44099b;
+        CharsetDecoder charsetDecoder2 = this.f44098a;
         String str2 = null;
         try {
             str = charsetDecoder2.decode(byteBuffer).toString();
@@ -44,9 +44,9 @@ public final class a extends m {
         byte[] bArr = new byte[byteBuffer.limit()];
         byteBuffer.get(bArr);
         if (str == null) {
-            return new u0(new c(null, null, bArr));
+            return new t0(new c(null, null, bArr));
         }
-        Matcher matcher = f42687c.matcher(str);
+        Matcher matcher = f44097c.matcher(str);
         String str3 = null;
         for (int i10 = 0; matcher.find(i10); i10 = matcher.end()) {
             String group = matcher.group(1);
@@ -63,6 +63,6 @@ public final class a extends m {
                 }
             }
         }
-        return new u0(new c(str2, str3, bArr));
+        return new t0(new c(str2, str3, bArr));
     }
 }

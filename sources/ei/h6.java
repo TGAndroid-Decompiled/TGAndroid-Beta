@@ -1,0 +1,34 @@
+package ei;
+
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class h6 extends ImageView {
+    public final int f9160a;
+    public final k6 f9161b;
+
+    public h6(k6 k6Var, Context context, int i10, int i11) {
+        super(context);
+        this.f9161b = k6Var;
+        this.f9160a = i10;
+        setBackground(org.telegram.ui.ActionBar.h6.g0(1090519039, 1, -1));
+        setScaleType(ImageView.ScaleType.CENTER);
+        setImageResource(i11);
+        setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        setOnClickListener(new ai.n1(this, i10, 3));
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+    }
+}

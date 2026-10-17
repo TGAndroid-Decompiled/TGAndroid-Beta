@@ -8,10 +8,10 @@ import com.google.android.gms.auth.api.signin.internal.SignInConfiguration;
 import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
 import java.util.Set;
 public abstract class h {
-    public static final a5.a f304a = new a5.a("GoogleSignInCommon", new String[0]);
+    public static final a5.a f303a = new a5.a("GoogleSignInCommon", new String[0]);
 
     public static Intent a(Context context, GoogleSignInOptions googleSignInOptions) {
-        f304a.k("getSignInIntent()", new Object[0]);
+        f303a.k("getSignInIntent()", new Object[0]);
         SignInConfiguration signInConfiguration = new SignInConfiguration(context.getPackageName(), googleSignInOptions);
         Intent intent = new Intent("com.google.android.gms.auth.GOOGLE_SIGN_IN");
         intent.setPackage(context.getPackageName());
@@ -23,8 +23,8 @@ public abstract class h {
     }
 
     public static void b(Context context) {
-        i.o(context).s();
-        Set<com.google.android.gms.common.api.m> set = com.google.android.gms.common.api.m.f5082a;
+        i.F(context).I();
+        Set<com.google.android.gms.common.api.m> set = com.google.android.gms.common.api.m.f6536a;
         synchronized (set) {
         }
         for (com.google.android.gms.common.api.m mVar : set) {

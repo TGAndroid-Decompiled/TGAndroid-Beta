@@ -6,12 +6,12 @@ import java.security.PrivilegedExceptionAction;
 import sun.misc.Unsafe;
 import v7.p8;
 public final class m extends p8 {
-    public static final Unsafe f12931a;
-    public static final long f12932b;
-    public static final long f12933c;
+    public static final Unsafe f14338a;
+    public static final long f14339b;
+    public static final long f14340c;
     public static final long d;
     public static final long e;
-    public static final long f12934f;
+    public static final long f14341f;
 
     static {
         Unsafe unsafe;
@@ -25,12 +25,12 @@ public final class m extends p8 {
             unsafe = (Unsafe) AccessController.doPrivileged((PrivilegedExceptionAction<Object>) new Object());
         }
         try {
-            f12933c = unsafe.objectFieldOffset(o.class.getDeclaredField("c"));
-            f12932b = unsafe.objectFieldOffset(o.class.getDeclaredField("b"));
+            f14340c = unsafe.objectFieldOffset(o.class.getDeclaredField("c"));
+            f14339b = unsafe.objectFieldOffset(o.class.getDeclaredField("b"));
             d = unsafe.objectFieldOffset(o.class.getDeclaredField("a"));
             e = unsafe.objectFieldOffset(n.class.getDeclaredField("a"));
-            f12934f = unsafe.objectFieldOffset(n.class.getDeclaredField("b"));
-            f12931a = unsafe;
+            f14341f = unsafe.objectFieldOffset(n.class.getDeclaredField("b"));
+            f14338a = unsafe;
         } catch (NoSuchFieldException e10) {
             throw new RuntimeException(e10);
         }
@@ -38,17 +38,17 @@ public final class m extends p8 {
 
     @Override
     public final boolean a(o oVar, c cVar, c cVar2) {
-        return j.a(f12931a, oVar, f12932b, cVar, cVar2);
+        return j.a(f14338a, oVar, f14339b, cVar, cVar2);
     }
 
     @Override
     public final boolean b(o oVar, Object obj, Object obj2) {
-        return k.a(f12931a, oVar, d, obj, obj2);
+        return k.a(f14338a, oVar, d, obj, obj2);
     }
 
     @Override
     public final boolean c(o oVar, n nVar, n nVar2) {
-        return i.a(f12931a, oVar, f12933c, nVar, nVar2);
+        return i.a(f14338a, oVar, f14340c, nVar, nVar2);
     }
 
     @Override
@@ -56,7 +56,7 @@ public final class m extends p8 {
         c cVar;
         c cVar2 = c.d;
         do {
-            cVar = oVar.f12940b;
+            cVar = oVar.f14347b;
             if (cVar2 == cVar) {
                 break;
             }
@@ -67,9 +67,9 @@ public final class m extends p8 {
     @Override
     public final n e(o oVar) {
         n nVar;
-        n nVar2 = n.f12935c;
+        n nVar2 = n.f14342c;
         do {
-            nVar = oVar.f12941c;
+            nVar = oVar.f14348c;
             if (nVar2 == nVar) {
                 break;
             }
@@ -79,11 +79,11 @@ public final class m extends p8 {
 
     @Override
     public final void f(n nVar, n nVar2) {
-        f12931a.putObject(nVar, f12934f, nVar2);
+        f14338a.putObject(nVar, f14341f, nVar2);
     }
 
     @Override
     public final void g(n nVar, Thread thread) {
-        f12931a.putObject(nVar, e, thread);
+        f14338a.putObject(nVar, e, thread);
     }
 }

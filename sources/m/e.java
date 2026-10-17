@@ -1,8 +1,56 @@
 package m;
-public final class e extends l.c {
-    public final i f14822a;
 
-    public e(i iVar) {
-        this.f14822a = iVar;
+import android.content.Context;
+import android.view.View;
+public final class e extends l.v {
+    public final int f16172l = 0;
+    public final i f16173m;
+
+    public e(i iVar, Context context, l.k kVar, View view) {
+        super(context, kVar, view, true, 2130968608, 0);
+        this.f16173m = iVar;
+        this.f15805f = 8388613;
+        k0.b bVar = iVar.M;
+        this.h = bVar;
+        l.s sVar = this.f15807i;
+        if (sVar != null) {
+            sVar.h(bVar);
+        }
+    }
+
+    @Override
+    public final void c() {
+        switch (this.f16172l) {
+            case 0:
+                i iVar = this.f16173m;
+                iVar.J = null;
+                iVar.getClass();
+                super.c();
+                return;
+            default:
+                i iVar2 = this.f16173m;
+                l.k kVar = iVar2.f16212c;
+                if (kVar != null) {
+                    kVar.c(true);
+                }
+                iVar2.I = null;
+                super.c();
+                return;
+        }
+    }
+
+    public e(i iVar, Context context, l.d0 d0Var, View view) {
+        super(context, d0Var, view, false, 2130968608, 0);
+        this.f16173m = iVar;
+        if ((d0Var.A.f15789x & 32) != 32) {
+            View view2 = iVar.f16215r;
+            this.e = view2 == null ? (View) iVar.f16214n : view2;
+        }
+        k0.b bVar = iVar.M;
+        this.h = bVar;
+        l.s sVar = this.f15807i;
+        if (sVar != null) {
+            sVar.h(bVar);
+        }
     }
 }

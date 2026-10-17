@@ -1,5 +1,6 @@
 package org.telegram.ui.ActionBar;
 
+import ai.bb;
 import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -7,20 +8,20 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
-import bi.n8;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.sk;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.l8;
 public final class p implements Runnable {
-    public final int f20279a;
-    public final Object f20280b;
+    public final int f21654a;
+    public final Object f21655b;
 
     public p(Object obj, int i10) {
-        this.f20279a = i10;
-        this.f20280b = obj;
+        this.f21654a = i10;
+        this.f21655b = obj;
     }
 
     @Override
@@ -28,12 +29,12 @@ public final class p implements Runnable {
         int dp;
         DialogInterface.OnDismissListener onDismissListener;
         DialogInterface.OnDismissListener onDismissListener2;
-        int i10 = this.f20279a;
-        Object obj = this.f20280b;
+        int i10 = this.f21654a;
+        Object obj = this.f21655b;
         switch (i10) {
             case 0:
-                Drawable drawable = ActionBarLayout.f19186p1;
-                AndroidUtilities.runOnUIThread((n8) obj);
+                Drawable drawable = ActionBarLayout.f20539p1;
+                AndroidUtilities.runOnUIThread((bb) obj);
                 return;
             case 1:
                 u0 u0Var = (u0) obj;
@@ -55,20 +56,20 @@ public final class p implements Runnable {
                 return;
             case 5:
                 View view = (View) obj;
-                if (view instanceof i5) {
-                    i5 i5Var = (i5) view;
-                    if (!i5Var.f20069a) {
-                        i5Var.f20069a = true;
-                        i5Var.invalidate();
+                if (view instanceof k5) {
+                    k5 k5Var = (k5) view;
+                    if (!k5Var.f21545a) {
+                        k5Var.f21545a = true;
+                        k5Var.invalidate();
                         return;
                     }
                     return;
                 }
                 return;
             case 6:
-                a2 a2Var = ((y1) obj).d;
+                b2 b2Var = ((z1) obj).d;
                 int i11 = AndroidUtilities.displaySize.x;
-                a2Var.L = i11;
+                b2Var.L = i11;
                 int dp2 = i11 - AndroidUtilities.dp(56.0f);
                 if (AndroidUtilities.isTablet()) {
                     if (AndroidUtilities.isSmallTablet()) {
@@ -79,11 +80,11 @@ public final class p implements Runnable {
                 } else {
                     dp = AndroidUtilities.dp(356.0f);
                 }
-                Window window = a2Var.getWindow();
+                Window window = b2Var.getWindow();
                 WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
                 layoutParams.copyFrom(window.getAttributes());
                 int min = Math.min(dp, dp2);
-                Rect rect = a2Var.A0;
+                Rect rect = b2Var.A0;
                 layoutParams.width = min + rect.left + rect.right;
                 try {
                     window.setAttributes(layoutParams);
@@ -93,66 +94,66 @@ public final class p implements Runnable {
                     return;
                 }
             case 7:
-                e2 e2Var = (e2) obj;
-                e2Var.f19432f1.setVisibility(0);
-                e2Var.f19434h1.setAlpha(0.0f);
-                e2Var.f19433g1.startAnimation(AnimationUtils.loadAnimation(e2Var.getContext(), e2Var.f19430d1));
-                e2Var.f19434h1.animate().setDuration(300L).alpha(1.0f).setListener(new b2(e2Var, 0)).start();
+                f2 f2Var = (f2) obj;
+                f2Var.f20796f1.setVisibility(0);
+                f2Var.f20798h1.setAlpha(0.0f);
+                f2Var.f20797g1.startAnimation(AnimationUtils.loadAnimation(f2Var.getContext(), f2Var.f20794d1));
+                f2Var.f20798h1.animate().setDuration(300L).alpha(1.0f).setListener(new c2(f2Var, 0)).start();
                 return;
             case 8:
-                e3 e3Var = (e3) ((w2) obj).f20486c;
-                onDismissListener = e3Var.onHideListener;
+                f3 f3Var = (f3) ((x2) obj).f21870c;
+                onDismissListener = f3Var.onHideListener;
                 if (onDismissListener != null) {
-                    onDismissListener2 = e3Var.onHideListener;
-                    onDismissListener2.onDismiss(e3Var);
+                    onDismissListener2 = f3Var.onHideListener;
+                    onDismissListener2.onDismiss(f3Var);
                 }
                 try {
-                    e3Var.dismissInternal();
+                    f3Var.dismissInternal();
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
                     return;
                 }
             case 9:
-                v2 v2Var = (v2) obj;
-                v2Var.getClass();
+                w2 w2Var = (w2) obj;
+                w2Var.getClass();
                 try {
-                    v2Var.f20439b.dismissInternal();
+                    w2Var.f21828b.dismissInternal();
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
                     return;
                 }
             case 10:
-                s3 s3Var = (s3) obj;
-                if (s3Var.mo36getWindowView() != null) {
-                    s3Var.mo36getWindowView().setDrawingFromOverlay(true);
+                t3 t3Var = (t3) obj;
+                if (t3Var.mo36getWindowView() != null) {
+                    t3Var.mo36getWindowView().setDrawingFromOverlay(true);
                     return;
                 }
                 return;
             case 11:
-                ((v3) obj).f();
+                ((w3) obj).f();
                 return;
             case 12:
-                t4 t4Var = (t4) ((c2) obj).f19359b;
-                t4Var.k();
-                t4Var.j();
+                v4 v4Var = (v4) ((d2) obj).f20742b;
+                v4Var.k();
+                v4Var.j();
                 return;
             case 13:
-                t4 t4Var2 = ((q4) obj).f20302b;
-                t4Var2.f20347c.dismiss();
-                t4Var2.f20348f.removeAllViews();
+                v4 v4Var2 = ((s4) obj).f21707b;
+                v4Var2.f21799c.dismiss();
+                v4Var2.f21800f.removeAllViews();
                 return;
             case 14:
-                ((q4) obj).f20302b.f20347c.dismiss();
+                ((s4) obj).f21707b.f21799c.dismiss();
                 return;
             case 15:
                 Drawable drawable2 = (Drawable) obj;
-                g6.d = null;
-                g6.O();
-                if (!g6.f19555b) {
-                    g6.i(drawable2);
-                    g6.h(drawable2);
+                h6.d = null;
+                h6.O();
+                if (!h6.f20940b) {
+                    h6.i(drawable2);
+                    h6.h(drawable2);
                 }
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
                 return;
@@ -160,17 +161,17 @@ public final class p implements Runnable {
                 ((CountDownLatch) obj).countDown();
                 return;
             case 17:
-                sk.n(1, (m2) obj);
+                wh.n(1, (n2) obj);
                 return;
             case 18:
-                org.telegram.ui.Components.n8 n8Var = (org.telegram.ui.Components.n8) g6.f19617e5.remove((MessageObject) obj);
-                if (n8Var != null) {
-                    n8Var.f27304i = null;
+                l8 l8Var = (l8) h6.f21002e5.remove((MessageObject) obj);
+                if (l8Var != null) {
+                    l8Var.f28150i = null;
                     return;
                 }
                 return;
             default:
-                ((f6) obj).s();
+                ((g6) obj).s();
                 return;
         }
     }

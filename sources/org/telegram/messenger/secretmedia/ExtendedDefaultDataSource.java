@@ -191,15 +191,15 @@ public final class ExtendedDefaultDataSource implements h {
             z10 = false;
         }
         u6.p(z10);
-        Uri uri = mVar.f9886a;
+        Uri uri = mVar.f10792a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f9886a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(mVar.f10792a.toString().substring(8)));
             l a2 = mVar.a();
             a2.e = uri;
             mVar = a2.d();
         }
         String scheme = uri.getScheme();
-        String str = m0.f8375a;
+        String str = m0.f8254a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {
@@ -238,7 +238,7 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     public ExtendedDefaultDataSource(Context context, String str, int i10, int i11, boolean z10) {
-        this(context, new r(str, i10, i11, z10, new s(17)), (LongSparseArray<Uri>) null);
+        this(context, new r(str, i10, i11, z10, new s(19)), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, h hVar, LongSparseArray<Uri> longSparseArray) {

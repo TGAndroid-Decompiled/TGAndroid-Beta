@@ -5,11 +5,11 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.d10;
-import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.zc;
-import org.telegram.ui.fo;
-public final class b3 extends fo {
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.z00;
+import org.telegram.ui.sn;
+public final class b3 extends sn {
     public boolean Qc;
     public final TL_stars.TL_starGiftUnique Rc;
     public final long Sc;
@@ -26,12 +26,12 @@ public final class b3 extends fo {
         super.onBecomeFullyVisible();
         if (!this.Qc) {
             this.Qc = true;
-            sc O = zc.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
-            O.f28813r = false;
+            qc O = xc.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
+            O.f29647r = false;
             O.j();
-            d10 d10Var = this.f35729m9;
-            if (d10Var != null) {
-                d10Var.c(true);
+            z00 z00Var = this.f41301m9;
+            if (z00Var != null) {
+                z00Var.c(true);
             }
         }
     }

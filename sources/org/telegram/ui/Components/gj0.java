@@ -1,88 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.ColorFilter;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
+import android.text.TextPaint;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class gj0 extends Drawable {
-    public final Drawable f24988a;
-    public final Drawable f24989b;
-    public final Paint f24990c;
-    public final RectF d;
-    public int e;
-    public long f24991f;
-    public float f24992g;
+public final class gj0 {
+    public final f6 f26573a;
+    public final p6 f26574b;
+    public final int f26575c;
+    public boolean d;
+    public final mj0 e;
+    public final yc f26576f;
+    public final Paint f26577g = new Paint(1);
     public boolean h;
-    public boolean f24993i;
 
-    public gj0(Context context) {
-        Paint paint = new Paint(1);
-        this.f24990c = paint;
-        this.d = new RectF();
-        this.e = 0;
-        this.f24988a = context.getResources().getDrawable(R.drawable.outline_shield_plain_24).mutate();
-        this.f24989b = context.getResources().getDrawable(R.drawable.outline_shield_check).mutate();
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        this.f24991f = SystemClock.elapsedRealtime();
+    public gj0(View view) {
+        this.f26573a = new f6(view, 350L, bs.h);
+        this.e = new mj0(view);
+        this.f26576f = new yc(view);
+        p6 p6Var = new p6(false, false, false);
+        this.f26574b = p6Var;
+        p6Var.w(AndroidUtilities.dp(11.0f));
+        p6Var.r(true, true);
+        p6Var.setCallback(view);
+        p6Var.M = (int) (AndroidUtilities.displaySize.x * 0.3f);
+        this.d = false;
+        p6Var.t(LocaleController.getString(R.string.QuoteCollapse), false, true);
+        String string = LocaleController.getString(R.string.QuoteExpand);
+        TextPaint textPaint = p6Var.f29190a;
+        this.f26575c = (int) Math.ceil(Math.max(textPaint.measureText(string), textPaint.measureText(LocaleController.getString(R.string.QuoteCollapse))));
     }
 
-    public final void a(Drawable drawable) {
-        Rect bounds = getBounds();
-        drawable.setBounds(org.telegram.ui.Cells.c1.r(2, bounds.centerX(), drawable), org.telegram.ui.Cells.c1.c(2, bounds.centerY(), drawable), org.telegram.ui.Cells.c1.v(2, bounds.centerX(), drawable), org.telegram.ui.Cells.c1.u(2, bounds.centerY(), drawable));
-    }
-
-    public final void b(boolean z10, boolean z11, boolean z12) {
-        float f7;
-        this.f24993i = z10;
-        this.h = z11;
-        this.f24991f = SystemClock.elapsedRealtime();
-        if (!z12) {
-            if (this.h) {
-                f7 = 1.0f;
+    public final void a(Canvas canvas, RectF rectF, float f7, float f10, int i10, boolean z10, boolean z11) {
+        int i11;
+        boolean z12 = this.d;
+        p6 p6Var = this.f26574b;
+        if (z10 != z12) {
+            this.d = z10;
+            if (z10) {
+                i11 = R.string.QuoteExpand;
             } else {
-                f7 = 0.0f;
+                i11 = R.string.QuoteCollapse;
             }
-            this.f24992g = f7;
+            p6Var.t(LocaleController.getString(i11), true, true);
         }
-        invalidateSelf();
+        float c10 = p6Var.c();
+        float dp = AndroidUtilities.dp(17.66f);
+        rectF.set(f7 - ((int) (c10 + AndroidUtilities.dp(23.66f))), f10 - dp, f7, f10);
+        float a2 = this.f26576f.a(0.02f) * this.f26573a.e(z11);
+        if (a2 > 0.0f) {
+            int o10 = i0.b.o(i10, 30);
+            Paint paint = this.f26577g;
+            paint.setColor(o10);
+            canvas.save();
+            canvas.scale(a2, a2, f7, f10);
+            float f11 = dp / 2.0f;
+            canvas.drawRoundRect(rectF, f11, f11, paint);
+            p6Var.setBounds((int) (rectF.left + AndroidUtilities.dp(6.0f)), (int) rectF.top, (int) (rectF.right - AndroidUtilities.dp(17.66f)), (int) rectF.bottom);
+            p6Var.u(i10);
+            p6Var.draw(canvas);
+            float dp2 = AndroidUtilities.dp(14.0f);
+            float f12 = dp2 / 2.0f;
+            mj0 mj0Var = this.e;
+            mj0Var.setBounds((int) ((rectF.right - AndroidUtilities.dp(3.33f)) - dp2), (int) ((rectF.centerY() - f12) + AndroidUtilities.dp(0.33f)), (int) (rectF.right - AndroidUtilities.dp(3.33f)), (int) (rectF.centerY() + f12 + AndroidUtilities.dp(0.33f)));
+            Paint paint2 = mj0Var.f28529b;
+            paint2.setColor(i10);
+            paint2.setAlpha(mj0Var.d);
+            boolean z13 = !z10;
+            if (mj0Var.e != z13) {
+                mj0Var.e = z13;
+                mj0Var.f28528a.invalidate();
+            }
+            mj0Var.draw(canvas);
+            canvas.restore();
+        }
     }
 
-    @Override
-    public final void draw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gj0.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f24988a.setColorFilter(colorFilter);
-        this.f24989b.setColorFilter(colorFilter);
-        this.f24990c.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
+    public final void b(boolean z10) {
+        this.h = z10;
+        this.f26576f.c(z10);
     }
 }

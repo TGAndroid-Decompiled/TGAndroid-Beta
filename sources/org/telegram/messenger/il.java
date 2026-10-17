@@ -1,50 +1,61 @@
 package org.telegram.messenger;
 
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 public final class il implements Runnable {
-    public final int f17222a;
-    public final BaseController f17223b;
-    public final Object f17224c;
+    public final int f18648a;
+    public final BaseController f18649b;
+    public final Object f18650c;
     public final Object d;
     public final Object e;
-    public final Runnable f17225f;
-    public final long h;
+    public final Object f18651f;
+    public final Object h;
+    public final Object f18652n;
 
-    public il(TopicsController topicsController, TLObject tLObject, long j10, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, a0.h hVar, Runnable runnable) {
-        this.f17222a = 2;
-        this.f17223b = topicsController;
-        this.f17224c = tLObject;
-        this.h = j10;
-        this.d = tL_messages_forumTopics;
-        this.e = hVar;
-        this.f17225f = runnable;
+    public il(BaseController baseController, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f18648a = i10;
+        this.f18649b = baseController;
+        this.f18650c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f18651f = obj4;
+        this.h = obj5;
+        this.f18652n = obj6;
     }
 
     @Override
     public final void run() {
-        switch (this.f17222a) {
+        switch (this.f18648a) {
             case 0:
-                ((TranslateController) this.f17223b).lambda$translatePhoto$43((MessageObject) this.f17224c, (String) this.d, (TranslateController.MessageKey) this.e, this.f17225f, this.h);
+                ((TranslateController) this.f18649b).lambda$translateStory$36((TL_stories.StoryItem) this.f18650c, (String) this.d, (TLRPC.TL_textWithEntities) this.e, (TLRPC.TL_textWithEntities) this.f18651f, (TranslateController.StoryKey) this.h, (Runnable) this.f18652n);
                 return;
             case 1:
-                ((TranslateController) this.f17223b).lambda$translatePhoto$45((MessageObject) this.f17224c, (String) this.d, (TranslateController.MessageKey) this.e, this.f17225f, this.h);
+                ((MediaDataController) this.f18649b).lambda$loadHints$144((ArrayList) this.f18650c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f18651f, (ArrayList) this.h, (ArrayList) this.f18652n);
+                return;
+            case 2:
+                ((MessagesController) this.f18649b).lambda$convertToMegaGroup$263((MessagesStorage.LongCallback) this.f18650c, (Context) this.d, (org.telegram.ui.ActionBar.b2) this.e, (TLRPC.TL_error) this.f18651f, (org.telegram.ui.ActionBar.n2) this.h, (TLRPC.TL_messages_migrateChat) this.f18652n);
+                return;
+            case 3:
+                ((MessagesController) this.f18649b).lambda$convertToGigaGroup$268((MessagesStorage.BooleanCallback) this.f18650c, (Context) this.d, (org.telegram.ui.ActionBar.b2) this.e, (TLRPC.TL_error) this.f18651f, (org.telegram.ui.ActionBar.n2) this.h, (TLRPC.TL_channels_convertToGigagroup) this.f18652n);
                 return;
             default:
-                Runnable runnable = this.f17225f;
-                ((TopicsController) this.f17223b).lambda$reloadTopics$14((TLObject) this.f17224c, this.h, (TLRPC.TL_messages_forumTopics) this.d, (a0.h) this.e, runnable);
+                ((SecretChatHelper) this.f18649b).lambda$performSendEncryptedRequest$8((TLRPC.EncryptedChat) this.f18650c, (TLRPC.DecryptedMessage) this.e, (TLRPC.Message) this.f18651f, (TLRPC.InputEncryptedFile) this.h, (MessageObject) this.f18652n, (String) this.d);
                 return;
         }
     }
 
-    public il(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j10, int i10) {
-        this.f17222a = i10;
-        this.f17223b = translateController;
-        this.f17224c = messageObject;
+    public il(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, TLRPC.DecryptedMessage decryptedMessage, TLRPC.Message message, TLRPC.InputEncryptedFile inputEncryptedFile, MessageObject messageObject, String str) {
+        this.f18648a = 4;
+        this.f18649b = secretChatHelper;
+        this.f18650c = encryptedChat;
+        this.e = decryptedMessage;
+        this.f18651f = message;
+        this.h = inputEncryptedFile;
+        this.f18652n = messageObject;
         this.d = str;
-        this.e = messageKey;
-        this.f17225f = runnable;
-        this.h = j10;
     }
 }

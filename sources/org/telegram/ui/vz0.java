@@ -1,18 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class vz0 extends org.telegram.ui.Components.pi0 {
-    public final ProfileActivity f40808s1;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class vz0 extends URLSpan {
+    public final String f42300a;
+    public final d01 f42301b;
 
-    public vz0(ProfileActivity profileActivity, Context context, long j10, org.telegram.ui.ActionBar.k kVar, kz0 kz0Var, uz0 uz0Var, org.telegram.ui.Components.ki0 ki0Var, org.telegram.ui.Components.gi0 gi0Var) {
-        super(context, j10, kVar, kz0Var, uz0Var, ki0Var, gi0Var);
-        this.f40808s1 = profileActivity;
+    public vz0(d01 d01Var, String str, String str2) {
+        super(str);
+        this.f42301b = d01Var;
+        this.f42300a = str2;
     }
 
     @Override
-    public final void setCustomAvatarProgress(float f7) {
-        ProfileActivity profileActivity = this.f40808s1;
-        profileActivity.f32327n5 = f7;
-        profileActivity.B3();
+    public final void onClick(View view) {
+        pf.d.r(this.f42301b.e.getParentActivity(), this.f42300a);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(true);
     }
 }

@@ -1,26 +1,21 @@
 package li;
-public final class l implements Runnable {
-    public final int f14764a;
-    public final q f14765b;
-
-    public l(q qVar, int i10) {
-        this.f14764a = i10;
-        this.f14765b = qVar;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f14764a) {
-            case 0:
-                b bVar = this.f14765b.v;
-                if (bVar != null) {
-                    bVar.close();
-                    return;
-                }
-                return;
-            default:
-                this.f14765b.a();
-                return;
-        }
-    }
+public final class l extends s4.j {
+    public int f16115f;
+    public int f16116g;
+    public int h;
+    public int f16117i;
+    public boolean f16118j;
+    public boolean f16119k;
+    public boolean f16120l;
+    public boolean f16121m;
+    public boolean f16122n;
+    public float f16123o;
+    public float f16124p;
+    public float f16125q;
+    public float f16126r;
+    public int f16127s;
+    public int f16128t;
+    public int f16129u;
+    public int v;
+    public boolean f16130w;
 }

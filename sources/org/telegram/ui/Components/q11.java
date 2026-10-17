@@ -1,82 +1,163 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.opengl.GLES20;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.FileLog;
 public final class q11 {
-    public int f28163a;
-    public int f28164b;
-    public int f28165c;
-    public TLRPC.MessageEntity d;
-    public boolean e;
+    public final int[] A;
+    public final int[] B;
+    public Bitmap C;
+    public final boolean D;
+    public final r11 E;
+    public final ArrayList f29518a;
+    public long f29519b;
+    public float f29520c;
+    public boolean d;
+    public final Runnable e;
+    public Runnable f29521f;
+    public float f29522g;
+    public float h;
+    public final float f29523i;
+    public final float f29524j;
+    public final float f29525k;
+    public final float f29526l;
+    public final float f29527m;
+    public boolean f29528n;
+    public final boolean f29529o;
+    public final float[] f29530p;
+    public final float[] f29531q;
+    public final Matrix f29532r;
+    public int f29533s;
+    public final int f29534t;
+    public final int f29535u;
+    public int v;
+    public int f29536w;
+    public float f29537x;
+    public final float f29538y;
+    public int f29539z;
 
-    public q11() {
+    public q11(r11 r11Var, Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.E = r11Var;
+        this.f29518a = new ArrayList();
+        this.f29519b = -1L;
+        this.f29520c = 0.0f;
+        this.d = true;
+        this.f29522g = 0.0f;
+        this.h = 0.0f;
+        this.f29523i = 0.0f;
+        this.f29524j = 0.0f;
+        this.f29525k = AndroidUtilities.density;
+        this.f29526l = 1.5f;
+        this.f29527m = 1.15f;
+        this.f29528n = true;
+        this.f29529o = false;
+        this.f29530p = new float[9];
+        this.f29531q = new float[9];
+        Matrix matrix2 = new Matrix();
+        this.f29532r = matrix2;
+        this.f29538y = (float) (Math.random() * 2.0d);
+        this.A = new int[1];
+        this.B = new int[2];
+        this.D = true;
+        float[] fArr = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f};
+        matrix.mapPoints(fArr);
+        this.f29523i = fArr[0];
+        this.f29524j = fArr[1];
+        this.f29534t = (int) v7.f7.a(fArr[2], fArr[3], fArr[6], fArr[7]);
+        this.f29535u = (int) v7.f7.a(fArr[4], fArr[5], fArr[6], fArr[7]);
+        this.f29529o = true;
+        matrix2.set(matrix);
+        c();
+        this.e = runnable;
+        this.f29521f = runnable2;
+        this.f29526l = 4.0f;
+        this.f29520c = -0.1f;
+        this.C = bitmap;
     }
 
-    public final void a(TextPaint textPaint) {
-        Typeface typeface;
-        if (this.e) {
-            if ((this.f28163a & 2) != 0) {
-                typeface = AndroidUtilities.getTypeface("fonts/mw_bolditalic.ttf");
-            } else {
-                typeface = AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
+    public static void b(Canvas canvas, org.telegram.ui.Cells.u1 u1Var, int i10, float f7, float f10) {
+        float f11;
+        canvas.save();
+        if (u1Var.a()) {
+            f11 = u1Var.getAlpha();
+        } else {
+            f11 = 1.0f;
+        }
+        canvas.translate(f7, f10);
+        boolean z10 = true;
+        u1Var.setInvalidatesParent(true);
+        if (i10 == 0) {
+            u1Var.m2(f11, canvas, true);
+        } else if (i10 == 1) {
+            u1Var.W1(canvas, f11);
+        } else if (i10 == 2) {
+            if (u1Var.getCurrentPosition() == null || (u1Var.getCurrentPosition().flags & 1) != 0) {
+                z10 = false;
             }
-        } else {
-            int i10 = this.f28163a;
-            if ((i10 & 4) == 0 && (i10 & 2048) == 0) {
-                int i11 = i10 & 1;
-                if (i11 != 0 && (i10 & 2) != 0) {
-                    typeface = AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-                } else if (i11 != 0) {
-                    typeface = AndroidUtilities.bold();
-                } else if ((i10 & 2) != 0) {
-                    typeface = AndroidUtilities.getTypeface("fonts/ritalic.ttf");
-                } else {
-                    typeface = null;
-                }
-            } else {
-                typeface = Typeface.MONOSPACE;
+            u1Var.I1(f11, canvas, z10);
+        } else if (u1Var.getCurrentPosition() == null || (u1Var.getCurrentPosition().flags & 1) != 0) {
+            u1Var.d2(canvas, f11, null);
+            u1Var.N1(canvas, f11);
+        }
+        u1Var.setInvalidatesParent(false);
+        canvas.restore();
+    }
+
+    public final void a() {
+        try {
+            GLES20.glDeleteBuffers(2, this.B, 0);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        r11 r11Var = this.E;
+        int i10 = r11Var.f29797w;
+        if (i10 != 0) {
+            try {
+                GLES20.glDeleteProgram(i10);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
+            r11Var.f29797w = 0;
         }
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
+        try {
+            GLES20.glDeleteTextures(1, this.A, 0);
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
-        if ((this.f28163a & 16) != 0) {
-            textPaint.setFlags(textPaint.getFlags() | 8);
-        } else {
-            textPaint.setFlags(textPaint.getFlags() & (-9));
-        }
-        int i12 = this.f28163a;
-        if ((i12 & 8) == 0 && (i12 & 8192) == 0) {
-            textPaint.setFlags(textPaint.getFlags() & (-17));
-        } else {
-            textPaint.setFlags(textPaint.getFlags() | 16);
-        }
-        if ((this.f28163a & 512) != 0) {
-            textPaint.bgColor = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.R9, false);
-        }
-        int i13 = this.f28163a;
-        if ((i13 & 8192) != 0) {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19839q7, false));
-        } else if ((i13 & 4096) != 0) {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Oh, false));
+        Runnable runnable = this.f29521f;
+        if (runnable != null) {
+            t11.b(runnable);
+            this.f29521f = null;
         }
     }
 
-    public final void b(q11 q11Var) {
-        TLRPC.MessageEntity messageEntity;
-        this.f28163a |= q11Var.f28163a;
-        if (this.d == null && (messageEntity = q11Var.d) != null) {
-            this.d = messageEntity;
-        }
+    public final void c() {
+        Matrix matrix = this.f29532r;
+        float[] fArr = this.f29531q;
+        matrix.getValues(fArr);
+        float f7 = fArr[0];
+        float[] fArr2 = this.f29530p;
+        fArr2[0] = f7;
+        fArr2[1] = fArr[3];
+        fArr2[2] = fArr[6];
+        fArr2[3] = fArr[1];
+        fArr2[4] = fArr[4];
+        fArr2[5] = fArr[7];
+        fArr2[6] = fArr[2];
+        fArr2[7] = fArr[5];
+        fArr2[8] = fArr[8];
+        this.f29528n = false;
     }
 
-    public q11(q11 q11Var) {
-        this.f28163a = q11Var.f28163a;
-        this.f28164b = q11Var.f28164b;
-        this.f28165c = q11Var.f28165c;
-        this.d = q11Var.d;
-        this.e = q11Var.e;
+    public q11(org.telegram.ui.Components.r11 r31, java.util.ArrayList r32, java.lang.Runnable r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q11.<init>(org.telegram.ui.Components.r11, java.util.ArrayList, java.lang.Runnable):void");
+    }
+
+    public q11(org.telegram.ui.Components.r11 r10, android.view.View r11, float r12, java.lang.Runnable r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q11.<init>(org.telegram.ui.Components.r11, android.view.View, float, java.lang.Runnable):void");
     }
 }

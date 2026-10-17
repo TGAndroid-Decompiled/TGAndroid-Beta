@@ -1,176 +1,50 @@
 package f2;
 
-import b2.r0;
-import b2.t0;
-import b2.x;
-import com.google.android.gms.internal.play_billing.k3;
-import e2.m0;
-import java.util.ArrayList;
-import java.util.Arrays;
-import v7.b8;
-import v7.u6;
-public final class a implements t0 {
-    public final String f8837a;
-    public final byte[] f8838b;
-    public final int f8839c;
-    public final int d;
+import e2.x;
+public final class a implements gb.n {
+    public final String f10280a;
 
-    public a(String str, byte[] bArr, int i10, int i11) {
-        byte b10;
-        str.getClass();
-        char c10 = 65535;
-        switch (str.hashCode()) {
-            case -1949883051:
-                if (str.equals("com.android.capture.fps")) {
-                    c10 = 0;
-                    break;
-                }
-                break;
-            case -269399509:
-                if (str.equals("auxiliary.tracks.interleaved")) {
-                    c10 = 1;
-                    break;
-                }
-                break;
-            case 1011693540:
-                if (str.equals("auxiliary.tracks.length")) {
-                    c10 = 2;
-                    break;
-                }
-                break;
-            case 1098277265:
-                if (str.equals("auxiliary.tracks.offset")) {
-                    c10 = 3;
-                    break;
-                }
-                break;
-            case 2002123038:
-                if (str.equals("auxiliary.tracks.map")) {
-                    c10 = 4;
-                    break;
-                }
-                break;
-        }
-        switch (c10) {
-            case 0:
-                if (i11 == 23 && bArr.length == 4) {
-                    r2 = true;
-                }
-                u6.g(r2);
-                break;
-            case 1:
-                if (i11 == 75 && bArr.length == 1 && ((b10 = bArr[0]) == 0 || b10 == 1)) {
-                    r2 = true;
-                }
-                u6.g(r2);
-                break;
-            case 2:
-            case 3:
-                if (i11 == 78 && bArr.length == 8) {
-                    r2 = true;
-                }
-                u6.g(r2);
-                break;
-            case 4:
-                u6.g(i11 == 0);
-                break;
-        }
-        this.f8837a = str;
-        this.f8838b = bArr;
-        this.f8839c = i10;
-        this.d = i11;
+    public a(String str) {
+        this.f10280a = str;
     }
 
-    @Override
-    public final x a() {
-        return null;
-    }
-
-    @Override
-    public final byte[] c() {
-        return null;
-    }
-
-    public final ArrayList d() {
-        u6.o("Metadata is not an auxiliary tracks map", this.f8837a.equals("auxiliary.tracks.map"));
-        byte[] bArr = this.f8838b;
-        byte b10 = bArr[1];
-        ArrayList arrayList = new ArrayList();
-        for (int i10 = 0; i10 < b10; i10 = k3.f(bArr[i10 + 2], i10, 1, arrayList)) {
-        }
-        return arrayList;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && a.class == obj.getClass()) {
-            a aVar = (a) obj;
-            if (this.f8837a.equals(aVar.f8837a) && Arrays.equals(this.f8838b, aVar.f8838b) && this.f8839c == aVar.f8839c && this.d == aVar.d) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((((Arrays.hashCode(this.f8838b) + a1.g.g(527, 31, this.f8837a)) * 31) + this.f8839c) * 31) + this.d;
-    }
-
-    public final String toString() {
-        String sb2;
-        boolean z10;
-        boolean z11;
-        String str = this.f8837a;
-        byte[] bArr = this.f8838b;
-        int i10 = this.d;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 23) {
-                    if (i10 != 67) {
-                        if (i10 != 75) {
-                            if (i10 == 78) {
-                                sb2 = String.valueOf(new e2.x(bArr).G());
-                            }
-                            sb2 = m0.f0(bArr);
-                        } else {
-                            sb2 = String.valueOf(bArr[0] & 255);
-                        }
-                    } else {
-                        if (bArr.length >= 4) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        u6.d("array too small: %s < %s", bArr.length, 4, z11);
-                        sb2 = String.valueOf(b8.c(bArr[0], bArr[1], bArr[2], bArr[3]));
-                    }
-                } else {
-                    if (bArr.length >= 4) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    u6.d("array too small: %s < %s", bArr.length, 4, z10);
-                    sb2 = String.valueOf(Float.intBitsToFloat(b8.c(bArr[0], bArr[1], bArr[2], bArr[3])));
-                }
+    public static a a(x xVar) {
+        String str;
+        String str2;
+        xVar.O(2);
+        int A = xVar.A();
+        int i10 = A >> 1;
+        int A2 = ((xVar.A() >> 3) & 31) | ((A & 1) << 5);
+        if (i10 != 4 && i10 != 5 && i10 != 7 && i10 != 8) {
+            if (i10 == 9) {
+                str = "dvav";
+            } else if (i10 == 10) {
+                str = "dav1";
             } else {
-                sb2 = m0.r(bArr);
+                return null;
             }
         } else {
-            if (str.equals("auxiliary.tracks.map")) {
-                ArrayList d = d();
-                StringBuilder u10 = a1.g.u("track types = ");
-                new d9.l(String.valueOf(',')).a(u10, d.iterator());
-                sb2 = u10.toString();
-            }
-            sb2 = m0.f0(bArr);
+            str = "dvhe";
         }
-        return k3.k("mdta: key=", str, ", value=", sb2);
+        StringBuilder u10 = a1.g.u(str);
+        String str3 = ".";
+        if (i10 >= 10) {
+            str2 = ".";
+        } else {
+            str2 = ".0";
+        }
+        u10.append(str2);
+        u10.append(i10);
+        if (A2 < 10) {
+            str3 = ".0";
+        }
+        u10.append(str3);
+        u10.append(A2);
+        return new a(u10.toString());
     }
 
     @Override
-    public final void b(r0 r0Var) {
+    public Object f2() {
+        throw new RuntimeException(this.f10280a);
     }
 }

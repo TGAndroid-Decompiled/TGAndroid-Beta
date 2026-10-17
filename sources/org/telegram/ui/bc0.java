@@ -1,169 +1,358 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class bc0 implements Runnable {
-    public final int f34295a;
-    public final ProfileActivity f34296b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class bc0 extends AnimatorListenerAdapter {
+    public final int f35644a;
+    public final Object f35645b;
 
-    public bc0(ProfileActivity profileActivity, int i10) {
-        this.f34295a = i10;
-        this.f34296b = profileActivity;
+    public bc0(Object obj, int i10) {
+        this.f35644a = i10;
+        this.f35645b = obj;
     }
 
     @Override
-    public final void run() {
-        e11 e11Var;
-        switch (this.f34295a) {
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f35644a) {
+            case 1:
+                ((pe0) this.f35645b).f40098s = null;
+                return;
+            case 7:
+                ((PhotoViewer) ((org.telegram.ui.Components.ml0) this.f35645b).f28549c).A2 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        boolean z10;
+        org.telegram.ui.ActionBar.k kVar;
+        boolean z11;
+        boolean z12;
+        int i10 = this.f35644a;
+        boolean z13 = false;
+        boolean z14 = false;
+        Object obj = this.f35645b;
+        switch (i10) {
             case 0:
-                ProfileActivity profileActivity = this.f34296b;
-                q01 q01Var = profileActivity.O;
-                if (q01Var != null) {
-                    q01Var.Z0(14);
-                    profileActivity.G4(false);
-                    return;
-                }
+                pc0 pc0Var = (pc0) obj;
+                pc0Var.H = false;
+                pc0Var.n0();
                 return;
             case 1:
-                ProfileActivity profileActivity2 = this.f34296b;
-                q01 q01Var2 = profileActivity2.O;
-                if (q01Var2 != null) {
-                    q01Var2.Z0(14);
-                    profileActivity2.G4(false);
+                pe0 pe0Var = (pe0) obj;
+                if (pe0Var.f40098s != null && pe0Var.f40096n != null) {
+                    pe0Var.f40097r.setVisibility(4);
+                    pe0Var.f40098s = null;
                     return;
                 }
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new bc0(this.f34296b, 0), 200L);
+                ((wi0) obj).T.setVisibility(8);
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new bc0(this.f34296b, 1), 200L);
+                qj0 qj0Var = (qj0) obj;
+                qj0Var.f40449f = 1.0f;
+                qj0Var.invalidate();
                 return;
             case 4:
-                ProfileActivity profileActivity3 = this.f34296b;
-                profileActivity3.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", profileActivity3.f32261e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) obj;
+                if (animator.equals(notificationsCustomSettingsActivity.e)) {
+                    notificationsCustomSettingsActivity.e = null;
+                    return;
+                }
                 return;
             case 5:
-                this.f34296b.z4(false);
+                jp0 jp0Var = (jp0) obj;
+                nc ncVar = jp0Var.X;
+                if (ncVar != null) {
+                    if (ncVar.getParent() != null) {
+                        ((ViewGroup) jp0Var.X.getParent()).removeView(jp0Var.X);
+                    }
+                    jp0Var.X = null;
+                }
+                jp0Var.Z = null;
+                super.onAnimationEnd(animator);
                 return;
             case 6:
-                ProfileActivity profileActivity4 = this.f34296b;
-                profileActivity4.getClass();
-                profileActivity4.presentFragment(new UserInfoActivity());
+                mq0 mq0Var = (mq0) obj;
+                pq0 pq0Var = mq0Var.D0;
+                nq0[] nq0VarArr = pq0Var.f40223n;
+                pq0Var.f40224r = null;
+                if (pq0Var.f40226w) {
+                    nq0VarArr[1].setVisibility(8);
+                } else {
+                    nq0 nq0Var = nq0VarArr[0];
+                    nq0VarArr[0] = nq0VarArr[1];
+                    nq0VarArr[1] = nq0Var;
+                    nq0Var.setVisibility(8);
+                    if (pq0Var.f40223n[0].e == pq0Var.h.getFirstTabId()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    pq0Var.e = z10;
+                    pq0Var.h.j(1.0f, pq0Var.f40223n[0].e);
+                }
+                pq0Var.f40225s = false;
+                mq0Var.f39233y0 = false;
+                mq0Var.f39232x0 = false;
+                kVar = ((org.telegram.ui.ActionBar.n2) pq0Var).actionBar;
+                kVar.setEnabled(true);
+                pq0Var.h.setEnabled(true);
                 return;
             case 7:
-                this.f34296b.z4(true);
+                PhotoViewer photoViewer = (PhotoViewer) ((org.telegram.ui.Components.ml0) obj).f28549c;
+                if (photoViewer.A2 != null) {
+                    ek0 ek0Var = new ek0(this, 18);
+                    photoViewer.I2 = ek0Var;
+                    AndroidUtilities.runOnUIThread(ek0Var, 860L);
+                    return;
+                }
                 return;
             case 8:
-                ProfileActivity profileActivity5 = this.f34296b;
-                profileActivity5.getClass();
-                profileActivity5.presentFragment(new ig.g1());
+                et0 et0Var = (et0) obj;
+                PhotoViewer photoViewer2 = et0Var.f36590b;
+                mg.p pVar = photoViewer2.C1.f28747b;
+                pVar.q();
+                CropAreaView cropAreaView = pVar.f16911a;
+                cropAreaView.setDimVisibility(true);
+                cropAreaView.f(true, true);
+                cropAreaView.invalidate();
+                photoViewer2.C1.f28747b.J = true;
+                photoViewer2.f33367p6 = null;
+                photoViewer2.f33411u4 = et0Var.f36589a;
+                ei.b4 b4Var = photoViewer2.f1().L;
+                if (photoViewer2.f33411u4 != 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                b4Var.b(z11);
+                ei.b4 b4Var2 = photoViewer2.K1;
+                if (b4Var2 != null) {
+                    if (photoViewer2.f33411u4 != 3) {
+                        z13 = true;
+                    }
+                    b4Var2.b(z13);
+                }
+                if (photoViewer2.f33411u4 != 3) {
+                    photoViewer2.Z5 = 0.0f;
+                }
+                photoViewer2.f33359o6 = -1;
+                photoViewer2.f33272e6 = 1.0f;
+                photoViewer2.f33234a6 = 1.0f;
+                photoViewer2.f33254c6 = 0.0f;
+                photoViewer2.f33263d6 = 0.0f;
+                photoViewer2.w3(1.0f);
+                photoViewer2.f33400t2 = true;
+                photoViewer2.f33266e0.invalidate();
                 return;
             case 9:
-                ProfileActivity profileActivity6 = this.f34296b;
-                profileActivity6.getClass();
-                profileActivity6.presentFragment(new ig.e1());
+                ft0 ft0Var = (ft0) obj;
+                PhotoViewer photoViewer3 = ft0Var.f37041b;
+                photoViewer3.I1.f25216i0.setVisibility(0);
+                photoViewer3.f33367p6 = null;
+                photoViewer3.f33411u4 = ft0Var.f37040a;
+                ei.b4 b4Var3 = photoViewer3.f1().L;
+                if (photoViewer3.f33411u4 != 0) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                b4Var3.b(z12);
+                ei.b4 b4Var4 = photoViewer3.K1;
+                if (b4Var4 != null) {
+                    if (photoViewer3.f33411u4 != 3) {
+                        z14 = true;
+                    }
+                    b4Var4.b(z14);
+                }
+                if (photoViewer3.f33411u4 != 3) {
+                    photoViewer3.Z5 = 0.0f;
+                }
+                photoViewer3.f33359o6 = -1;
+                photoViewer3.f33272e6 = 1.0f;
+                photoViewer3.f33234a6 = 1.0f;
+                photoViewer3.f33254c6 = 0.0f;
+                photoViewer3.f33263d6 = 0.0f;
+                photoViewer3.w3(1.0f);
+                photoViewer3.f33400t2 = true;
+                photoViewer3.f33266e0.invalidate();
                 return;
             case 10:
-                ProfileActivity profileActivity7 = this.f34296b;
-                profileActivity7.getClass();
-                profileActivity7.presentFragment(new va(null));
+                ((PhotoViewer) ((jt0) obj).f38334q0).y3[0].setTag(null);
                 return;
             case 11:
-                ProfileActivity profileActivity8 = this.f34296b;
-                profileActivity8.getClass();
-                profileActivity8.presentFragment(new UserInfoActivity());
+                ((kt0) obj).d.T1.f42932k0 = 1.0f;
                 return;
             case 12:
-                ProfileActivity profileActivity9 = this.f34296b;
-                profileActivity9.getClass();
-                profileActivity9.presentFragment(new h(3));
+                PhotoViewer photoViewer4 = ((kt0) obj).d;
+                photoViewer4.T1.setVisibility(4);
+                photoViewer4.T1.f42932k0 = 1.0f;
                 return;
             case 13:
-                ?? obj = new Object();
-                obj.f20169a = true;
-                this.f34296b.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                AndroidUtilities.runOnUIThread(new ek0(this, 20));
                 return;
             case 14:
-                ProfileActivity profileActivity10 = this.f34296b;
-                profileActivity10.k4(true);
-                if (profileActivity10.f32298j2.isRunning()) {
-                    profileActivity10.f32298j2.cancel();
+                bt0 bt0Var = (bt0) obj;
+                if (animator.equals(bt0Var.f35741c.U7)) {
+                    bt0Var.f35741c.U7 = null;
+                    return;
                 }
-                profileActivity10.J4(1.0f);
                 return;
             case 15:
-                this.f34296b.e5(false, false);
+                iu0 iu0Var = (iu0) obj;
+                if (iu0Var.e == animator) {
+                    iu0Var.f37981c[1].setVisibility(8);
+                    iu0Var.e = null;
+                    return;
+                }
                 return;
             case 16:
-                this.f34296b.F3();
+                xu0 xu0Var = (xu0) obj;
+                if (xu0Var.C != null) {
+                    xu0Var.C = null;
+                    xu0Var.b();
+                    return;
+                }
                 return;
             case 17:
-                ProfileActivity profileActivity11 = this.f34296b;
-                q01 q01Var3 = profileActivity11.O;
-                if (q01Var3 != null) {
-                    q01Var3.w1(true);
-                    profileActivity11.O.o1();
+                PopupNotificationActivity popupNotificationActivity = (PopupNotificationActivity) obj;
+                Runnable runnable = popupNotificationActivity.Y;
+                if (runnable != null) {
+                    runnable.run();
+                    popupNotificationActivity.Y = null;
                     return;
                 }
                 return;
             case 18:
-                ProfileActivity profileActivity12 = this.f34296b;
-                profileActivity12.getMessagesController().reloadUser(profileActivity12.a());
+                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) obj;
+                premiumPreviewFragment.f33491d0.removeView(premiumPreviewFragment.f33507r0);
+                premiumPreviewFragment.f33507r0 = null;
+                super.onAnimationEnd(animator);
                 return;
             case 19:
-                ProfileActivity profileActivity13 = this.f34296b;
-                if (!profileActivity13.f32230a.b0() && (e11Var = profileActivity13.d) != null) {
-                    e11Var.l();
-                    return;
-                }
+                ((ProfileActivity) ((org.telegram.ui.Components.ml0) obj).f28549c).F5 = null;
                 return;
             case 20:
-                this.f34296b.e5(false, false);
-                return;
-            case 21:
-                this.f34296b.f32404y5.setVisibility(8);
-                return;
-            case 22:
-                ProfileActivity profileActivity14 = this.f34296b;
-                profileActivity14.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity14.f32269f1);
-                bundle.putLong("user_id", profileActivity14.f32261e1);
-                profileActivity14.presentFragment(new l31(bundle));
-                return;
-            case 23:
-                ProfileActivity profileActivity15 = this.f34296b;
-                profileActivity15.getClass();
-                profileActivity15.presentFragment(new va(null));
-                return;
-            case 24:
-                ProfileActivity.W(this.f34296b);
-                return;
-            case 25:
-                ProfileActivity profileActivity16 = this.f34296b;
-                TLRPC.UserFull userFull = profileActivity16.f32380v2;
-                if (userFull != null) {
-                    AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(userFull.note, false));
-                    org.telegram.messenger.sk.p(R.string.TextCopied, org.telegram.ui.Components.zc.a0(profileActivity16));
+                e01 e01Var = (e01) obj;
+                if (!e01Var.E) {
+                    e01Var.setVisibility(8);
                     return;
                 }
                 return;
+            case 21:
+                b11 b11Var = (b11) obj;
+                if (animator.equals(b11Var.f35533c)) {
+                    b11Var.f35533c = null;
+                    return;
+                }
+                return;
+            case 22:
+                ((o31) obj).d.f33770a0.f42932k0 = 1.0f;
+                return;
+            case 23:
+                SecretMediaViewer secretMediaViewer = ((o31) obj).d;
+                secretMediaViewer.f33770a0.setVisibility(4);
+                secretMediaViewer.f33770a0.f42932k0 = 1.0f;
+                return;
+            case 24:
+                z51 z51Var = ((p41) obj).e;
+                z51Var.S0.G = 0.0f;
+                z51Var.S0 = null;
+                z51Var.f43596h0.invalidate();
+                return;
+            case 25:
+                ah.x0.a();
+                z51 z51Var2 = (z51) obj;
+                w41 w41Var = z51Var2.f43596h0;
+                w41 w41Var2 = z51Var2.f43596h0;
+                w41Var.setLayerType(0, null);
+                q41 q41Var = z51Var2.f43592f0;
+                q41Var.setLayerType(0, null);
+                z51Var2.f43589e0.setLayerType(0, null);
+                z51Var2.f43582b0.setLayerType(0, null);
+                org.telegram.ui.Components.un unVar = z51Var2.f43607n0;
+                if (unVar != null) {
+                    unVar.setLayerType(0, null);
+                }
+                View view = z51Var2.m0;
+                if (view != null) {
+                    view.setLayerType(0, null);
+                }
+                q41Var.b();
+                z51Var2.f43587d0.m(false);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                z51Var2.W1.unlock();
+                NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
+                Objects.requireNonNull(globalInstance);
+                AndroidUtilities.runOnUIThread(new sy0(globalInstance, 14));
+                z51Var2.h();
+                z51Var2.E(1.0f);
+                for (int i11 = 0; i11 < w41Var2.getChildCount(); i11++) {
+                    View childAt = w41Var2.getChildAt(i11);
+                    childAt.setScaleX(1.0f);
+                    childAt.setScaleY(1.0f);
+                }
+                for (int i12 = 0; i12 < z51Var2.f43587d0.f27944b.getChildCount(); i12++) {
+                    View childAt2 = z51Var2.f43587d0.f27944b.getChildAt(i12);
+                    childAt2.setScaleX(1.0f);
+                    childAt2.setScaleY(1.0f);
+                }
+                z51Var2.f43587d0.f27944b.invalidate();
+                z51Var2.f43602k0.invalidate();
+                w41Var2.invalidate();
+                return;
             case 26:
-                ProfileActivity profileActivity17 = this.f34296b;
-                profileActivity17.getClass();
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("user_id", profileActivity17.f32261e1);
-                bundle2.putBoolean("focus_notes", true);
-                profileActivity17.presentFragment(new ws(bundle2, profileActivity17.f32405z0));
+                ((r91) obj).f40640b0.setVisibility(8);
+                return;
+            case 27:
+                mc1 mc1Var = ((ac1) obj).f35391a;
+                if (!mc1Var.f39140p1.a()) {
+                    mc1Var.R1.setVisibility(8);
+                    return;
+                }
+                return;
+            case 28:
+                super.onAnimationEnd(animator);
+                ((nd1) obj).f39427a = null;
                 return;
             default:
-                this.f34296b.G4(true);
+                super.onAnimationEnd(animator);
+                ((re1) obj).setScrollEnabled(true);
                 return;
         }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f35644a) {
+            case 8:
+                et0 et0Var = (et0) this.f35645b;
+                et0Var.f36590b.U0.setVisibility(0);
+                et0Var.f36590b.C1.setVisibility(0);
+                return;
+            case 9:
+                return;
+            case 20:
+                ((e01) this.f35645b).setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
+    }
+
+    private final void a(Animator animator) {
     }
 }

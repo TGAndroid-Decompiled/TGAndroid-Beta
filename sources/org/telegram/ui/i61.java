@@ -1,53 +1,84 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class i61 extends g71 {
-    public final r71 E;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class i61 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f37761a;
+    public final TLRPC.Chat f37762b;
+    public TLRPC.ChannelParticipantsFilter f37763c;
+    public boolean f37764f;
+    public boolean h;
+    public boolean f37766r;
+    public boolean f37767s;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public int f37765n = -1;
 
-    public i61(r71 r71Var, Context context, boolean z10) {
-        super(r71Var, context, z10);
-        this.E = r71Var;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float y3;
-        r71 r71Var = this.E;
-        d61 d61Var = r71Var.f39328g0;
-        i61 i61Var = r71Var.f39326f0;
-        r61 r61Var = r71Var.U;
-        if (r61Var != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            float x10 = d61Var.getX() + i61Var.getX();
-            float y10 = d61Var.getY() + i61Var.getY();
-            ah.h0 h0Var = (ah.h0) r61Var;
-            ah.t0 t0Var = (ah.t0) h0Var.f772b;
-            ah.s0 s0Var = t0Var.f868a;
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f7 = 0;
-            rectF.set(f7, f7, measuredWidth, measuredHeight);
-            org.telegram.ui.Components.fl0 delegate = ((org.telegram.ui.Components.gl0) h0Var.f773c).getDelegate();
-            float x11 = s0Var.getX() + x10;
-            if (t0Var.f888y == 1) {
-                y3 = s0Var.getY() - AndroidUtilities.statusBarHeight;
-            } else {
-                y3 = s0Var.getY() + t0Var.f870c.getY();
+    public i61(int i10, long j10, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
+        this.f37761a = i10;
+        this.f37762b = MessagesController.getInstance(i10).getChat(Long.valueOf(j10));
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(j10);
+        this.f37763c = channelParticipantsFilter;
+        if (chatFull == null) {
+            if (!this.f37767s) {
+                this.f37767s = true;
+                NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.chatInfoDidLoad);
             }
-            delegate.r(canvas, rectF, 0.0f, x11, y3 + y10, 255, true);
+            MessagesController.getInstance(i10).loadFullChat(j10, 0, false);
         }
-        super.dispatchDraw(canvas);
+    }
+
+    public final void a() {
+        if (this.f37767s) {
+            return;
+        }
+        this.f37767s = false;
+        int i10 = this.f37761a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.chatInfoDidLoad);
+        if (this.f37765n >= 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f37765n, true);
+            this.f37765n = -1;
+        }
+        this.f37764f = false;
+    }
+
+    public final void b() {
+        int size;
+        if (!this.f37764f && !this.h) {
+            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f37763c;
+            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f20271q)) {
+                this.f37764f = true;
+                TLRPC.Chat chat = this.f37762b;
+                if (ChatObject.isChannel(chat)) {
+                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+                    tL_channels_getParticipants.channel = MessagesController.getInputChannel(chat);
+                    tL_channels_getParticipants.filter = this.f37763c;
+                    tL_channels_getParticipants.limit = 30;
+                    if (this.f37766r) {
+                        size = 0;
+                    } else {
+                        size = this.d.size();
+                    }
+                    tL_channels_getParticipants.offset = size;
+                    ConnectionsManager.getInstance(this.f37761a).sendRequestTyped(tL_channels_getParticipants, new Object(), new g5(this, 24));
+                }
+            }
+        }
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        if (f7 != getTranslationY()) {
-            super.setTranslationY(f7);
-            if (this.E.U != null) {
-                invalidate();
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.chatInfoDidLoad) {
+            long j10 = ((TLRPC.ChatFull) objArr[0]).f20273id;
+            TLRPC.Chat chat = this.f37762b;
+            if (j10 == chat.f20272id && !ChatObject.isChannel(chat) && this.f37764f) {
+                this.f37764f = false;
+                b();
             }
         }
     }

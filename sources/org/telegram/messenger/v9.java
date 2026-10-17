@@ -1,83 +1,33 @@
 package org.telegram.messenger;
-public final class v9 implements Runnable {
-    public final int f18357a;
-    public final MessagesController f18358b;
-    public final long f18359c;
 
-    public v9(MessagesController messagesController, long j10, int i10) {
-        this.f18357a = i10;
-        this.f18358b = messagesController;
-        this.f18359c = j10;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_communities;
+public final class v9 implements Utilities.Callback2 {
+    public final int f19731a;
+    public final MessagesController f19732b;
+    public final Utilities.Callback2 f19733c;
+
+    public v9(MessagesController messagesController, Utilities.Callback2 callback2, int i10) {
+        this.f19731a = i10;
+        this.f19732b = messagesController;
+        this.f19733c = callback2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18357a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f19731a) {
             case 0:
-                this.f18358b.lambda$setDefaultBannedRole$96(this.f18359c);
+                this.f19732b.lambda$toggleChatNoForwards$277(this.f19733c, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                this.f18358b.lambda$setChatReactions$473(this.f18359c);
+                this.f19732b.lambda$fetchCommunityPendingJoinRequests$245(this.f19733c, (TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                this.f18358b.lambda$deleteParticipantFromChat$311(this.f18359c);
-                return;
-            case 3:
-                this.f18358b.lambda$setBoostsToUnblockRestrictions$94(this.f18359c);
-                return;
-            case 4:
-                this.f18358b.lambda$deleteDialog$139(this.f18359c);
-                return;
-            case 5:
-                this.f18358b.lambda$addUserToChat$297(this.f18359c);
-                return;
-            case 6:
-                this.f18358b.lambda$addUserToChat$308(this.f18359c);
-                return;
-            case 7:
-                this.f18358b.lambda$addUserToChat$306(this.f18359c);
-                return;
-            case 8:
-                this.f18358b.lambda$processUpdateArray$386(this.f18359c);
-                return;
-            case 9:
-                this.f18358b.lambda$getSavedReactionTags$491(this.f18359c);
-                return;
-            case 10:
-                this.f18358b.lambda$getChannelDifference$333(this.f18359c);
-                return;
-            case 11:
-                this.f18358b.lambda$getChannelDifference$334(this.f18359c);
-                return;
-            case 12:
-                this.f18358b.lambda$getChannelDifference$335(this.f18359c);
-                return;
-            case 13:
-                this.f18358b.lambda$getChannelDifference$336(this.f18359c);
-                return;
-            case 14:
-                this.f18358b.lambda$setChannelSlowMode$92(this.f18359c);
-                return;
-            case 15:
-                this.f18358b.lambda$deleteParticipantFromChat$314(this.f18359c);
-                return;
-            case 16:
-                this.f18358b.lambda$deleteDialog$138(this.f18359c);
-                return;
-            case 17:
-                this.f18358b.lambda$removeDialog$133(this.f18359c);
-                return;
-            case 18:
-                this.f18358b.lambda$setParticipantBannedRole$89(this.f18359c);
-                return;
-            case 19:
-                this.f18358b.lambda$getChannelDifference$343(this.f18359c);
-                return;
-            case 20:
-                this.f18358b.lambda$getChannelDifference$344(this.f18359c);
+                this.f19732b.lambda$fetchCommunityJoinedChats$246(this.f19733c, (TL_communities.ParticipantJoinedChats) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                this.f18358b.lambda$getChannelDifference$342(this.f18359c);
+                this.f19732b.lambda$fetchChatsToAddToCommunity$251(this.f19733c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

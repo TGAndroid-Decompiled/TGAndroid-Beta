@@ -5,43 +5,43 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
 import com.google.android.gms.common.api.e;
-import com.google.android.gms.common.api.internal.t;
+import com.google.android.gms.common.api.internal.s;
 import com.google.android.gms.common.api.j;
-import com.google.android.gms.internal.clearcut.b2;
-import com.google.android.gms.internal.clearcut.p1;
-import com.google.android.gms.internal.clearcut.u0;
+import com.google.android.gms.internal.clearcut.c2;
+import com.google.android.gms.internal.clearcut.q1;
+import com.google.android.gms.internal.clearcut.v0;
 public final class a {
-    public static final e f11326j = new e("ClearcutLogger.API", new d(5), new Object());
-    public final Context f11327a;
-    public final String f11328b;
-    public final int f11329c;
+    public static final e f12715j = new e("ClearcutLogger.API", new d(5), new Object());
+    public final Context f12716a;
+    public final String f12717b;
+    public final int f12718c;
     public final String d;
     public final int e;
-    public final p1 f11330f;
-    public final u0 f11331g;
+    public final q1 f12719f;
+    public final v0 f12720g;
     public final u6.a h;
-    public final b2 f11332i;
+    public final c2 f12721i;
 
     public a(Context context) {
-        ?? jVar = new j(context, f11326j, (com.google.android.gms.common.api.a) null, (t) new Object());
-        b2 b2Var = new b2(context);
+        ?? jVar = new j(context, f12715j, (com.google.android.gms.common.api.a) null, (s) new Object());
+        c2 c2Var = new c2(context);
         this.e = -1;
-        p1 p1Var = p1.DEFAULT;
-        this.f11330f = p1Var;
-        this.f11327a = context;
-        this.f11328b = context.getPackageName();
+        q1 q1Var = q1.DEFAULT;
+        this.f12719f = q1Var;
+        this.f12716a = context;
+        this.f12717b = context.getPackageName();
         int i10 = 0;
         try {
             i10 = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             Log.wtf("ClearcutLogger", "This can't happen.", e);
         }
-        this.f11329c = i10;
+        this.f12718c = i10;
         this.e = -1;
         this.d = "VISION";
-        this.f11331g = jVar;
-        this.h = u6.a.f46208a;
-        this.f11330f = p1Var;
-        this.f11332i = b2Var;
+        this.f12720g = jVar;
+        this.h = u6.a.f47616a;
+        this.f12719f = q1Var;
+        this.f12721i = c2Var;
     }
 }

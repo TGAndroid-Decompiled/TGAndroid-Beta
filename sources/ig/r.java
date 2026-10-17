@@ -2,38 +2,38 @@ package ig;
 
 import android.content.DialogInterface;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.c6;
+import org.telegram.ui.Cells.b6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class r implements DialogInterface.OnShowListener {
-    public final int f11617a;
-    public final EditTextBoldCursor f11618b;
+    public final int f12994a;
+    public final EditTextBoldCursor f12995b;
 
     public r(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f11617a = i10;
-        this.f11618b = editTextBoldCursor;
+        this.f12994a = i10;
+        this.f12995b = editTextBoldCursor;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f11617a) {
+        switch (this.f12994a) {
             case 0:
-                s sVar = (s) this.f11618b;
+                s sVar = (s) this.f12995b;
                 sVar.requestFocus();
                 AndroidUtilities.showKeyboard(sVar);
                 return;
             case 1:
-                EditTextBoldCursor editTextBoldCursor = this.f11618b;
+                EditTextBoldCursor editTextBoldCursor = this.f12995b;
                 editTextBoldCursor.requestFocus();
                 AndroidUtilities.showKeyboard(editTextBoldCursor);
                 editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
                 return;
             case 2:
-                c6 c6Var = (c6) this.f11618b;
-                c6Var.requestFocus();
-                AndroidUtilities.showKeyboard(c6Var);
+                b6 b6Var = (b6) this.f12995b;
+                b6Var.requestFocus();
+                AndroidUtilities.showKeyboard(b6Var);
                 return;
             default:
-                yh.y1 y1Var = (yh.y1) this.f11618b;
+                yh.y1 y1Var = (yh.y1) this.f12995b;
                 y1Var.requestFocus();
                 AndroidUtilities.showKeyboard(y1Var);
                 return;

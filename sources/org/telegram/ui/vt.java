@@ -1,93 +1,67 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public interface vt {
-    MessageObject A();
+import android.animation.AnimatorSet;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+public final class vt extends org.telegram.ui.Cells.c5 {
+    public final int e;
+    public final org.telegram.ui.Cells.d9 f42271f;
+    public final org.telegram.ui.Cells.v8[] h;
+    public final AnimatorSet[] f42272n;
+    public final DataAutoDownloadActivity f42273r;
 
-    boolean B();
-
-    void C(TLRPC.Document document);
-
-    boolean D();
-
-    boolean E(TLRPC.Document document);
-
-    void F(TLRPC.Document document);
-
-    String G(boolean z10);
-
-    void H(TLRPC.Document document);
-
-    boolean I();
-
-    boolean J();
-
-    void K();
-
-    void L();
-
-    void M(TLRPC.InputStickerSet inputStickerSet, boolean z10);
-
-    boolean N(TLRPC.Document document);
-
-    void O(String str);
-
-    Boolean P(TLRPC.Document document);
-
-    boolean Q();
-
-    long a();
-
-    boolean b();
-
-    boolean c();
-
-    TLRPC.TL_messageMediaPoll d();
-
-    boolean e(TLRPC.Document document);
-
-    void f(CharSequence charSequence, String str, mt mtVar);
-
-    boolean g();
-
-    TLRPC.PollAnswer h();
-
-    boolean i();
-
-    void j(SendMessagesHelper.ImportingSticker importingSticker);
-
-    boolean k();
-
-    boolean l(int i10);
-
-    void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11);
-
-    void n(String str);
-
-    void o(TLRPC.Document document);
-
-    boolean p();
-
-    void q(TLRPC.Document document);
-
-    void r();
-
-    void s(int i10, int i11, Object obj, TLObject tLObject, boolean z10);
-
-    void t();
-
-    org.telegram.ui.Components.l80 u(ah.v vVar);
-
-    void v(TLRPC.Document document);
-
-    void w(TLRPC.StickerSet stickerSet, String str);
-
-    void x(TLObject tLObject, Object obj);
-
-    boolean y();
-
-    void z(String str);
+    public vt(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.d9 d9Var, org.telegram.ui.Cells.v8[] v8VarArr, AnimatorSet[] animatorSetArr) {
+        super(activity);
+        int i11;
+        int i12;
+        int i13;
+        this.f42273r = dataAutoDownloadActivity;
+        this.e = i10;
+        this.f42271f = d9Var;
+        this.h = v8VarArr;
+        this.f42272n = animatorSetArr;
+        setWillNotDraw(false);
+        TextView textView = new TextView(activity);
+        this.f22087a = textView;
+        org.telegram.messenger.wh.u(textView, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21092j5, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        textView.setGravity(i11 | 48);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setImportantForAccessibility(2);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        addView(textView, w7.z5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -1, i12 | 48));
+        TextView textView2 = new TextView(activity);
+        this.f22088b = textView2;
+        org.telegram.messenger.wh.u(textView2, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21168n5, false), 1, 16.0f, 1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i13 = 3;
+        } else {
+            i13 = 5;
+        }
+        textView2.setGravity(i13 | 48);
+        textView2.setImportantForAccessibility(2);
+        addView(textView2, w7.z5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, (LocaleController.isRTL ? 3 : 5) | 48));
+        org.telegram.ui.Cells.j0 j0Var = new org.telegram.ui.Cells.j0(activity);
+        this.f22089c = j0Var;
+        j0Var.setReportChanges(true);
+        j0Var.setDelegate(new org.telegram.ui.Cells.b5(this));
+        j0Var.setImportantForAccessibility(2);
+        addView(j0Var, w7.z5.a(38.0f, 6.0f, 36.0f, 6.0f, 0.0f, -1, 51));
+        setImportantForAccessibility(1);
+        setAccessibilityDelegate(j0Var.getSeekBarAccessibilityDelegate());
+    }
 }

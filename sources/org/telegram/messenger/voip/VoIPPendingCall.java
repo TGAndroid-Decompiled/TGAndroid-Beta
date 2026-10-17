@@ -29,8 +29,8 @@ public final class VoIPPendingCall {
             }
         };
         this.observer = notificationCenterDelegate;
-        t0 t0Var = new t0(this, 2);
-        this.releaseRunnable = t0Var;
+        r0 r0Var = new r0(this, 2);
+        this.releaseRunnable = r0Var;
         this.activity = activity;
         this.userId = j10;
         this.video = z10;
@@ -41,7 +41,7 @@ public final class VoIPPendingCall {
             notificationCenter.addObserver(notificationCenterDelegate, NotificationCenter.didUpdateConnectionState);
             Handler handler = new Handler(Looper.myLooper());
             this.handler = handler;
-            handler.postDelayed(t0Var, j11);
+            handler.postDelayed(r0Var, j11);
         }
     }
 
@@ -77,7 +77,7 @@ public final class VoIPPendingCall {
         MessagesController messagesController = this.accountInstance.getMessagesController();
         TLRPC.User user = messagesController.getUser(Long.valueOf(this.userId));
         if (user != null) {
-            TLRPC.UserFull userFull = messagesController.getUserFull(user.f19063id);
+            TLRPC.UserFull userFull = messagesController.getUserFull(user.f20419id);
             boolean z12 = this.video;
             if (userFull != null && userFull.video_calls_available) {
                 z11 = true;

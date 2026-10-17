@@ -1,42 +1,26 @@
 package ug;
-public final class t0 implements Runnable {
-    public final int f46392a;
-    public final z0 f46393b;
 
-    public t0(z0 z0Var, int i10) {
-        this.f46392a = i10;
-        this.f46393b = z0Var;
+import android.view.View;
+public final class t0 implements View.OnClickListener {
+    public final int f47780a;
+    public final x0 f47781b;
+
+    public t0(x0 x0Var, int i10) {
+        this.f47780a = i10;
+        this.f47781b = x0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46392a) {
+    public final void onClick(View view) {
+        switch (this.f47780a) {
             case 0:
-                this.f46393b.X(true);
-                return;
-            case 1:
-                this.f46393b.c0(true, false);
-                return;
-            case 2:
-                this.f46393b.S();
-                return;
-            case 3:
-                this.f46393b.c0(true, false);
-                return;
-            case 4:
-                this.f46393b.c0(true, false);
-                return;
-            case 5:
-                this.f46393b.c0(true, false);
-                return;
-            case 6:
-                z0 z0Var = this.f46393b;
-                z0Var.f46417e0.clear();
-                z0Var.f46418f0.clear();
-                z0Var.dismiss();
+                x0 x0Var = this.f47781b;
+                x0Var.f47798e0.clear();
+                x0Var.Y.d.b(true);
+                x0Var.c0(true, false);
                 return;
             default:
-                this.f46393b.dismiss();
+                this.f47781b.X(false);
                 return;
         }
     }

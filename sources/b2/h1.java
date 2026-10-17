@@ -1,71 +1,66 @@
 package b2;
 
 import android.os.Bundle;
+import j$.util.Objects;
 import v7.u6;
-public abstract class h1 {
-    public static final String f2163a;
+public final class h1 extends g1 {
+    public static final String d;
+    public static final String e;
+    public final int f3776b;
+    public final float f3777c;
 
     static {
-        String str = e2.m0.f8375a;
-        f2163a = Integer.toString(0, 36);
+        String str = e2.m0.f8254a;
+        d = Integer.toString(1, 36);
+        e = Integer.toString(2, 36);
     }
 
-    public static h1 a(Bundle bundle) {
-        String str = f2163a;
-        int i10 = bundle.getInt(str, -1);
+    public h1(int i10) {
+        u6.f("maxStars must be a positive integer", i10 > 0);
+        this.f3776b = i10;
+        this.f3777c = -1.0f;
+    }
+
+    @Override
+    public final boolean b() {
+        if (this.f3777c != -1.0f) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Bundle c() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(g1.f3771a, 2);
+        bundle.putInt(d, this.f3776b);
+        bundle.putFloat(e, this.f3777c);
+        return bundle;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof h1)) {
+            return false;
+        }
+        h1 h1Var = (h1) obj;
+        if (this.f3776b != h1Var.f3776b || this.f3777c != h1Var.f3777c) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f3776b), Float.valueOf(this.f3777c));
+    }
+
+    public h1(int i10, float f7) {
         boolean z10 = false;
-        boolean z11 = true;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 == 3) {
-                        String str2 = k1.d;
-                        if (bundle.getInt(str, -1) != 3) {
-                            z11 = false;
-                        }
-                        u6.g(z11);
-                        if (bundle.getBoolean(k1.d, false)) {
-                            return new k1(bundle.getBoolean(k1.e, false));
-                        }
-                        return new k1();
-                    }
-                    throw new IllegalArgumentException(i2.d.j(i10, "Unknown RatingType: "));
-                }
-                String str3 = i1.d;
-                if (bundle.getInt(str, -1) == 2) {
-                    z10 = true;
-                }
-                u6.g(z10);
-                int i11 = bundle.getInt(i1.d, 5);
-                float f7 = bundle.getFloat(i1.e, -1.0f);
-                if (f7 == -1.0f) {
-                    return new i1(i11);
-                }
-                return new i1(i11, f7);
-            }
-            String str4 = y0.f2535c;
-            if (bundle.getInt(str, -1) == 1) {
-                z10 = true;
-            }
-            u6.g(z10);
-            float f10 = bundle.getFloat(y0.f2535c, -1.0f);
-            if (f10 == -1.0f) {
-                return new y0();
-            }
-            return new y0(f10);
+        u6.f("maxStars must be a positive integer", i10 > 0);
+        if (f7 >= 0.0f && f7 <= i10) {
+            z10 = true;
         }
-        String str5 = z.d;
-        if (bundle.getInt(str, -1) != 0) {
-            z11 = false;
-        }
-        u6.g(z11);
-        if (bundle.getBoolean(z.d, false)) {
-            return new z(bundle.getBoolean(z.e, false));
-        }
-        return new z();
+        u6.f("starRating is out of range [0, maxStars]", z10);
+        this.f3776b = i10;
+        this.f3777c = f7;
     }
-
-    public abstract boolean b();
-
-    public abstract Bundle c();
 }

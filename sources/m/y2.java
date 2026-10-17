@@ -1,22 +1,23 @@
 package m;
 
-import android.os.Build;
-import java.lang.reflect.Method;
-public final class y2 {
-    public Method f15035a;
-    public Method f15036b;
-    public Method f15037c;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class y2 extends i1.c {
+    public static final Parcelable.Creator<y2> CREATOR = new i1.b(1);
+    public boolean f16385c;
 
-    public y2(Method method, Method method2, Method method3) {
-        this.f15035a = method;
-        this.f15036b = method2;
-        this.f15037c = method3;
+    public y2(Parcel parcel, ClassLoader classLoader) {
+        super(parcel, classLoader);
+        this.f16385c = ((Boolean) parcel.readValue(null)).booleanValue();
     }
 
-    public static void a() {
-        if (Build.VERSION.SDK_INT < 29) {
-            return;
-        }
-        throw new UnsupportedClassVersionError("This function can only be used for API Level < 29.");
+    public final String toString() {
+        return "SearchView.SavedState{" + Integer.toHexString(System.identityHashCode(this)) + " isIconified=" + this.f16385c + "}";
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        super.writeToParcel(parcel, i10);
+        parcel.writeValue(Boolean.valueOf(this.f16385c));
     }
 }

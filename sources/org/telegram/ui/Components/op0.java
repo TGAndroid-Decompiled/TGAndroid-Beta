@@ -1,34 +1,34 @@
 package org.telegram.ui.Components;
-public final class op0 implements o1.f {
-    public final int f27703a;
-    public final wp0 f27704b;
-    public final o1.k f27705c;
 
-    public op0(wp0 wp0Var, o1.k kVar, int i10) {
-        this.f27703a = i10;
-        this.f27704b = wp0Var;
-        this.f27705c = kVar;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class op0 extends FrameLayout {
+    public final ef f29043a;
+
+    public op0(ef efVar, Context context) {
+        super(context);
+        this.f29043a = efVar;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f27703a) {
-            case 0:
-                if (!z10) {
-                    this.f27704b.f30631z.remove(this.f27705c);
-                    hVar.c();
-                    return;
-                }
-                return;
-            default:
-                wp0 wp0Var = this.f27704b;
-                if (!z10) {
-                    wp0Var.f30631z.remove(this.f27705c);
-                    hVar.c();
-                    return;
-                }
-                wp0Var.getClass();
-                return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ef efVar = this.f29043a;
+        View contentView = efVar.getContentView();
+        contentView.getLocationInWindow(r3);
+        int[] iArr = {iArr[0] + efVar.E, iArr[1] + efVar.F};
+        int[] iArr2 = new int[2];
+        getLocationInWindow(iArr2);
+        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
+            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
+            return contentView.dispatchTouchEvent(motionEvent);
         }
+        if (!efVar.A && !efVar.D) {
+            efVar.D = true;
+            efVar.l(new o1.k[0]);
+        }
+        return true;
     }
 }

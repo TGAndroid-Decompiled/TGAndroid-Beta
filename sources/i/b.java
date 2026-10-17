@@ -22,70 +22,70 @@ public final class b extends Drawable.ConstantState {
     public int[][] H;
     public h I;
     public m J;
-    public final e f10854a;
-    public Resources f10855b;
-    public int f10856c;
+    public final e f12246a;
+    public Resources f12247b;
+    public int f12248c;
     public int d;
     public int e;
-    public SparseArray f10857f;
-    public Drawable[] f10858g;
+    public SparseArray f12249f;
+    public Drawable[] f12250g;
     public int h;
-    public boolean f10859i;
-    public boolean f10860j;
-    public Rect f10861k;
-    public boolean f10862l;
-    public boolean f10863m;
-    public int f10864n;
-    public int f10865o;
-    public int f10866p;
-    public int f10867q;
-    public boolean f10868r;
-    public int f10869s;
-    public boolean f10870t;
-    public boolean f10871u;
+    public boolean f12251i;
+    public boolean f12252j;
+    public Rect f12253k;
+    public boolean f12254l;
+    public boolean f12255m;
+    public int f12256n;
+    public int f12257o;
+    public int f12258p;
+    public int f12259q;
+    public boolean f12260r;
+    public int f12261s;
+    public boolean f12262t;
+    public boolean f12263u;
     public boolean v;
-    public boolean f10872w;
-    public int f10873x;
-    public int f10874y;
-    public int f10875z;
+    public boolean f12264w;
+    public int f12265x;
+    public int f12266y;
+    public int f12267z;
 
     public b(b bVar, e eVar, Resources resources) {
         Resources resources2;
         int i10;
-        this.f10859i = false;
-        this.f10862l = false;
-        this.f10872w = true;
-        this.f10874y = 0;
-        this.f10875z = 0;
-        this.f10854a = eVar;
+        this.f12251i = false;
+        this.f12254l = false;
+        this.f12264w = true;
+        this.f12266y = 0;
+        this.f12267z = 0;
+        this.f12246a = eVar;
         if (resources != null) {
             resources2 = resources;
         } else if (bVar != null) {
-            resources2 = bVar.f10855b;
+            resources2 = bVar.f12247b;
         } else {
             resources2 = null;
         }
-        this.f10855b = resources2;
+        this.f12247b = resources2;
         if (bVar != null) {
-            i10 = bVar.f10856c;
+            i10 = bVar.f12248c;
         } else {
             i10 = 0;
         }
         int i11 = e.J;
         i10 = resources != null ? resources.getDisplayMetrics().densityDpi : i10;
         i10 = i10 == 0 ? 160 : i10;
-        this.f10856c = i10;
+        this.f12248c = i10;
         if (bVar != null) {
             this.d = bVar.d;
             this.e = bVar.e;
-            this.f10871u = true;
+            this.f12263u = true;
             this.v = true;
-            this.f10859i = bVar.f10859i;
-            this.f10862l = bVar.f10862l;
-            this.f10872w = bVar.f10872w;
-            this.f10873x = bVar.f10873x;
-            this.f10874y = bVar.f10874y;
-            this.f10875z = bVar.f10875z;
+            this.f12251i = bVar.f12251i;
+            this.f12254l = bVar.f12254l;
+            this.f12264w = bVar.f12264w;
+            this.f12265x = bVar.f12265x;
+            this.f12266y = bVar.f12266y;
+            this.f12267z = bVar.f12267z;
             this.A = bVar.A;
             this.B = bVar.B;
             this.C = bVar.C;
@@ -93,34 +93,34 @@ public final class b extends Drawable.ConstantState {
             this.E = bVar.E;
             this.F = bVar.F;
             this.G = bVar.G;
-            if (bVar.f10856c == i10) {
-                if (bVar.f10860j) {
-                    this.f10861k = bVar.f10861k != null ? new Rect(bVar.f10861k) : null;
-                    this.f10860j = true;
+            if (bVar.f12248c == i10) {
+                if (bVar.f12252j) {
+                    this.f12253k = bVar.f12253k != null ? new Rect(bVar.f12253k) : null;
+                    this.f12252j = true;
                 }
-                if (bVar.f10863m) {
-                    this.f10864n = bVar.f10864n;
-                    this.f10865o = bVar.f10865o;
-                    this.f10866p = bVar.f10866p;
-                    this.f10867q = bVar.f10867q;
-                    this.f10863m = true;
+                if (bVar.f12255m) {
+                    this.f12256n = bVar.f12256n;
+                    this.f12257o = bVar.f12257o;
+                    this.f12258p = bVar.f12258p;
+                    this.f12259q = bVar.f12259q;
+                    this.f12255m = true;
                 }
             }
-            if (bVar.f10868r) {
-                this.f10869s = bVar.f10869s;
-                this.f10868r = true;
+            if (bVar.f12260r) {
+                this.f12261s = bVar.f12261s;
+                this.f12260r = true;
             }
-            if (bVar.f10870t) {
-                this.f10870t = true;
+            if (bVar.f12262t) {
+                this.f12262t = true;
             }
-            Drawable[] drawableArr = bVar.f10858g;
-            this.f10858g = new Drawable[drawableArr.length];
+            Drawable[] drawableArr = bVar.f12250g;
+            this.f12250g = new Drawable[drawableArr.length];
             this.h = bVar.h;
-            SparseArray sparseArray = bVar.f10857f;
+            SparseArray sparseArray = bVar.f12249f;
             if (sparseArray != null) {
-                this.f10857f = sparseArray.clone();
+                this.f12249f = sparseArray.clone();
             } else {
-                this.f10857f = new SparseArray(this.h);
+                this.f12249f = new SparseArray(this.h);
             }
             int i12 = this.h;
             for (int i13 = 0; i13 < i12; i13++) {
@@ -128,20 +128,20 @@ public final class b extends Drawable.ConstantState {
                 if (drawable != null) {
                     Drawable.ConstantState constantState = drawable.getConstantState();
                     if (constantState != null) {
-                        this.f10857f.put(i13, constantState);
+                        this.f12249f.put(i13, constantState);
                     } else {
-                        this.f10858g[i13] = drawableArr[i13];
+                        this.f12250g[i13] = drawableArr[i13];
                     }
                 }
             }
         } else {
-            this.f10858g = new Drawable[10];
+            this.f12250g = new Drawable[10];
             this.h = 0;
         }
         if (bVar != null) {
             this.H = bVar.H;
         } else {
-            this.H = new int[this.f10858g.length];
+            this.H = new int[this.f12250g.length];
         }
         if (bVar != null) {
             this.I = bVar.I;
@@ -154,84 +154,84 @@ public final class b extends Drawable.ConstantState {
 
     public final int a(Drawable drawable) {
         int i10 = this.h;
-        if (i10 >= this.f10858g.length) {
+        if (i10 >= this.f12250g.length) {
             int i11 = i10 + 10;
             Drawable[] drawableArr = new Drawable[i11];
-            Drawable[] drawableArr2 = this.f10858g;
+            Drawable[] drawableArr2 = this.f12250g;
             if (drawableArr2 != null) {
                 System.arraycopy(drawableArr2, 0, drawableArr, 0, i10);
             }
-            this.f10858g = drawableArr;
+            this.f12250g = drawableArr;
             int[][] iArr = new int[i11];
             System.arraycopy(this.H, 0, iArr, 0, i10);
             this.H = iArr;
         }
         drawable.mutate();
         drawable.setVisible(false, true);
-        drawable.setCallback(this.f10854a);
-        this.f10858g[i10] = drawable;
+        drawable.setCallback(this.f12246a);
+        this.f12250g[i10] = drawable;
         this.h++;
         this.e = drawable.getChangingConfigurations() | this.e;
-        this.f10868r = false;
-        this.f10870t = false;
-        this.f10861k = null;
-        this.f10860j = false;
-        this.f10863m = false;
-        this.f10871u = false;
+        this.f12260r = false;
+        this.f12262t = false;
+        this.f12253k = null;
+        this.f12252j = false;
+        this.f12255m = false;
+        this.f12263u = false;
         return i10;
     }
 
     public final void b() {
-        this.f10863m = true;
+        this.f12255m = true;
         c();
         int i10 = this.h;
-        Drawable[] drawableArr = this.f10858g;
-        this.f10865o = -1;
-        this.f10864n = -1;
-        this.f10867q = 0;
-        this.f10866p = 0;
+        Drawable[] drawableArr = this.f12250g;
+        this.f12257o = -1;
+        this.f12256n = -1;
+        this.f12259q = 0;
+        this.f12258p = 0;
         for (int i11 = 0; i11 < i10; i11++) {
             Drawable drawable = drawableArr[i11];
             int intrinsicWidth = drawable.getIntrinsicWidth();
-            if (intrinsicWidth > this.f10864n) {
-                this.f10864n = intrinsicWidth;
+            if (intrinsicWidth > this.f12256n) {
+                this.f12256n = intrinsicWidth;
             }
             int intrinsicHeight = drawable.getIntrinsicHeight();
-            if (intrinsicHeight > this.f10865o) {
-                this.f10865o = intrinsicHeight;
+            if (intrinsicHeight > this.f12257o) {
+                this.f12257o = intrinsicHeight;
             }
             int minimumWidth = drawable.getMinimumWidth();
-            if (minimumWidth > this.f10866p) {
-                this.f10866p = minimumWidth;
+            if (minimumWidth > this.f12258p) {
+                this.f12258p = minimumWidth;
             }
             int minimumHeight = drawable.getMinimumHeight();
-            if (minimumHeight > this.f10867q) {
-                this.f10867q = minimumHeight;
+            if (minimumHeight > this.f12259q) {
+                this.f12259q = minimumHeight;
             }
         }
     }
 
     public final void c() {
-        SparseArray sparseArray = this.f10857f;
+        SparseArray sparseArray = this.f12249f;
         if (sparseArray != null) {
             int size = sparseArray.size();
             for (int i10 = 0; i10 < size; i10++) {
-                int keyAt = this.f10857f.keyAt(i10);
-                Drawable[] drawableArr = this.f10858g;
-                Drawable newDrawable = ((Drawable.ConstantState) this.f10857f.valueAt(i10)).newDrawable(this.f10855b);
-                newDrawable.setLayoutDirection(this.f10873x);
+                int keyAt = this.f12249f.keyAt(i10);
+                Drawable[] drawableArr = this.f12250g;
+                Drawable newDrawable = ((Drawable.ConstantState) this.f12249f.valueAt(i10)).newDrawable(this.f12247b);
+                newDrawable.setLayoutDirection(this.f12265x);
                 Drawable mutate = newDrawable.mutate();
-                mutate.setCallback(this.f10854a);
+                mutate.setCallback(this.f12246a);
                 drawableArr[keyAt] = mutate;
             }
-            this.f10857f = null;
+            this.f12249f = null;
         }
     }
 
     @Override
     public final boolean canApplyTheme() {
         int i10 = this.h;
-        Drawable[] drawableArr = this.f10858g;
+        Drawable[] drawableArr = this.f12250g;
         for (int i11 = 0; i11 < i10; i11++) {
             Drawable drawable = drawableArr[i11];
             if (drawable != null) {
@@ -239,7 +239,7 @@ public final class b extends Drawable.ConstantState {
                     return true;
                 }
             } else {
-                Drawable.ConstantState constantState = (Drawable.ConstantState) this.f10857f.get(i11);
+                Drawable.ConstantState constantState = (Drawable.ConstantState) this.f12249f.get(i11);
                 if (constantState != null && constantState.canApplyTheme()) {
                     return true;
                 }
@@ -250,22 +250,22 @@ public final class b extends Drawable.ConstantState {
 
     public final Drawable d(int i10) {
         int indexOfKey;
-        Drawable drawable = this.f10858g[i10];
+        Drawable drawable = this.f12250g[i10];
         if (drawable != null) {
             return drawable;
         }
-        SparseArray sparseArray = this.f10857f;
+        SparseArray sparseArray = this.f12249f;
         if (sparseArray == null || (indexOfKey = sparseArray.indexOfKey(i10)) < 0) {
             return null;
         }
-        Drawable newDrawable = ((Drawable.ConstantState) this.f10857f.valueAt(indexOfKey)).newDrawable(this.f10855b);
-        newDrawable.setLayoutDirection(this.f10873x);
+        Drawable newDrawable = ((Drawable.ConstantState) this.f12249f.valueAt(indexOfKey)).newDrawable(this.f12247b);
+        newDrawable.setLayoutDirection(this.f12265x);
         Drawable mutate = newDrawable.mutate();
-        mutate.setCallback(this.f10854a);
-        this.f10858g[i10] = mutate;
-        this.f10857f.removeAt(indexOfKey);
-        if (this.f10857f.size() == 0) {
-            this.f10857f = null;
+        mutate.setCallback(this.f12246a);
+        this.f12250g[i10] = mutate;
+        this.f12249f.removeAt(indexOfKey);
+        if (this.f12249f.size() == 0) {
+            this.f12249f = null;
         }
         return mutate;
     }

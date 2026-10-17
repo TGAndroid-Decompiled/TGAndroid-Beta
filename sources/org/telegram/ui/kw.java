@@ -1,40 +1,27 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.Utilities;
-public final class kw implements Utilities.Callback {
-    public final int f37535a;
-    public final Activity f37536b;
+import android.text.SpannableStringBuilder;
+public final class kw extends org.telegram.ui.Components.ej0 {
+    public final int f38692f0 = 0;
+    public final Object f38693g0;
 
-    public kw(Activity activity, int i10) {
-        this.f37535a = i10;
-        this.f37536b = activity;
+    public kw(te1 te1Var, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
+        super(spannableStringBuilder, spannableStringBuilder2);
+        this.f38693g0 = te1Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        Boolean bool = (Boolean) obj;
-        switch (this.f37535a) {
+    public final float d() {
+        switch (this.f38692f0) {
             case 0:
-                if (bool.booleanValue()) {
-                    if (!org.telegram.ui.Components.df0.a()) {
-                        org.telegram.ui.Components.df0.f();
-                        return;
-                    }
-                    this.f37536b.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
-                    return;
-                }
-                return;
+                return ((dy) this.f38693g0).f36333a.getViewOffset();
             default:
-                if (bool.booleanValue()) {
-                    if (!org.telegram.ui.Components.df0.a()) {
-                        org.telegram.ui.Components.df0.f();
-                        return;
-                    }
-                    this.f37536b.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
-                    return;
-                }
-                return;
+                return ((te1) this.f38693g0).N.f40715d3;
         }
+    }
+
+    public kw(String str, String str2, dy dyVar) {
+        super(str, str2);
+        this.f38693g0 = dyVar;
     }
 }

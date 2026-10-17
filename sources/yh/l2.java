@@ -1,46 +1,47 @@
 package yh;
 
+import ai.k7;
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.zc;
-public final class l2 extends zh.r3 {
-    public final int f48979s1;
-    public final Object f48980t1;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.Components.xc;
+public final class l2 extends k7 {
+    public final int B1;
+    public final Object C1;
 
-    public l2(m2 m2Var, Context context, int i10, long j10, c6 c6Var, int i11) {
-        super(context, i10, j10, c6Var, null);
-        this.f48979s1 = i11;
-        this.f48980t1 = m2Var;
+    public l2(m2 m2Var, Context context, int i10, long j10, d6 d6Var, int i11) {
+        super(context, i10, j10, d6Var, null);
+        this.B1 = i11;
+        this.C1 = m2Var;
     }
 
     @Override
     public int getBottomInset() {
-        switch (this.f48979s1) {
+        switch (this.B1) {
             case 3:
-                return ((zh.r3) this.f48980t1).getBottomInset();
+                return ((k7) this.C1).getBottomInset();
             default:
                 return super.getBottomInset();
         }
     }
 
     @Override
-    public zc getBulletinFactory() {
-        switch (this.f48979s1) {
+    public xc getBulletinFactory() {
+        switch (this.B1) {
             case 0:
-                return zc.a0(((m2) this.f48980t1).f48993a.f49088a);
+                return xc.a0(((m2) this.C1).f50394a.f50492a);
             case 1:
-                return zc.a0(((m2) this.f48980t1).f48993a.f49088a);
+                return xc.a0(((m2) this.C1).f50394a.f50492a);
             case 2:
-                return zc.a0(((m2) this.f48980t1).f48993a.f49088a);
+                return xc.a0(((m2) this.C1).f50394a.f50492a);
             default:
                 return super.getBulletinFactory();
         }
     }
 
-    public l2(zh.r3 r3Var, Context context, int i10, long j10, c6 c6Var, View view) {
-        super(context, i10, j10, c6Var, view);
-        this.f48979s1 = 3;
-        this.f48980t1 = r3Var;
+    public l2(k7 k7Var, Context context, int i10, long j10, d6 d6Var, View view) {
+        super(context, i10, j10, d6Var, view);
+        this.B1 = 3;
+        this.C1 = k7Var;
     }
 }

@@ -1,10 +1,11 @@
 package org.telegram.ui;
-
-import org.telegram.tgnet.TLRPC;
-public final class ty extends TLRPC.Dialog {
-    public final int f40227a;
-
-    public ty(int i10) {
-        this.f40227a = i10;
+public final class ty extends org.telegram.ui.Components.a71 {
+    @Override
+    public final Integer W0(int i10) {
+        org.telegram.ui.Components.f61 G = this.W2.G(i10);
+        if (G != null && G.d == 2) {
+            return 0;
+        }
+        return super.W0(i10);
     }
 }

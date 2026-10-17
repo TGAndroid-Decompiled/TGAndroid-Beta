@@ -1,36 +1,13 @@
 package org.telegram.ui;
-
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class la0 implements RequestDelegate {
-    public final int f37671a;
-    public final LaunchActivity f37672b;
-
-    public la0(LaunchActivity launchActivity, int i10) {
-        this.f37671a = i10;
-        this.f37672b = launchActivity;
+public final class la0 extends org.telegram.ui.Components.z00 {
+    @Override
+    public final void b() {
+        setVisibility(8);
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f37671a;
-        LaunchActivity launchActivity = this.f37672b;
-        switch (i10) {
-            case 0:
-                Pattern pattern = LaunchActivity.B1;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new d20(17, launchActivity, (TL_account.Password) tLObject));
-                    return;
-                }
-                return;
-            default:
-                Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new d20(13, launchActivity, tLObject));
-                return;
-        }
+    public final void c(boolean z10) {
+        setVisibility(0);
+        super.c(z10);
     }
 }

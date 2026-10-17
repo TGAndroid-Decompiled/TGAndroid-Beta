@@ -1,16 +1,21 @@
 package f2;
-public final class k {
-    public final int f8858a;
-    public final int f8859b;
-    public final int f8860c;
-    public final int d;
-    public final int e;
 
-    public k(int i10, int i11, int i12, int i13, int i14) {
-        this.f8858a = i10;
-        this.f8859b = i11;
-        this.f8860c = i12;
-        this.d = i13;
-        this.e = i14;
+import e9.n0;
+import e9.x1;
+public final class k {
+    public final n0 f10300a;
+    public final int[] f10301b;
+
+    public k(x1 x1Var, int[] iArr, int i10) {
+        switch (i10) {
+            case 1:
+                this.f10300a = n0.u(x1Var);
+                this.f10301b = iArr;
+                return;
+            default:
+                this.f10300a = n0.u(x1Var);
+                this.f10301b = iArr;
+                return;
+        }
     }
 }

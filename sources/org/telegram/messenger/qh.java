@@ -1,35 +1,34 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class qh implements Utilities.Callback2 {
-    public final int f17931a = 0;
-    public final int f17932b;
-    public final Object f17933c;
-    public final Object d;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.Window;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.RichMessageLayout;
+import org.telegram.ui.Components.a81;
+public final class qh implements ValueAnimator.AnimatorUpdateListener {
+    public final int f19363a;
+    public final Object f19364b;
+    public final Object f19365c;
 
-    public qh(Context context, int i10, Utilities.Callback2 callback2) {
-        this.f17933c = callback2;
-        this.d = context;
-        this.f17932b = i10;
+    public qh(int i10, Object obj, Object obj2) {
+        this.f19363a = i10;
+        this.f19364b = obj;
+        this.f19365c = obj2;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f17931a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f19363a) {
             case 0:
-                PasskeysController.lambda$create$7((Utilities.Callback2) this.f17933c, (Context) this.d, this.f17932b, (v0.c) obj, (Throwable) obj2);
+                ((RichMessageLayout.SpoilerReveal) this.f19364b).lambda$start$0((View) this.f19365c, valueAnimator);
+                return;
+            case 1:
+                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f19364b, (Window) this.f19365c, valueAnimator);
                 return;
             default:
-                ((TranslateController) this.f17933c).lambda$pushToSummarize$19(this.f17932b, (Utilities.Callback) this.d, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                ((MediaController) this.f19364b).lambda$cleanupPlayer$10((a81) this.f19365c, valueAnimator);
                 return;
         }
-    }
-
-    public qh(TranslateController translateController, int i10, Utilities.Callback callback) {
-        this.f17933c = translateController;
-        this.f17932b = i10;
-        this.d = callback;
     }
 }

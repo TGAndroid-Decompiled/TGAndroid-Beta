@@ -3,14 +3,14 @@ package j7;
 import android.os.IBinder;
 import android.os.IInterface;
 public final class d implements IInterface {
-    public final IBinder f12883a;
+    public final IBinder f14290a;
 
     public d(IBinder iBinder) {
-        this.f12883a = iBinder;
+        this.f14290a = iBinder;
     }
 
     @Override
     public final IBinder asBinder() {
-        return this.f12883a;
+        return this.f14290a;
     }
 }

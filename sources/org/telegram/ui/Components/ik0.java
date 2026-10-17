@@ -2,22 +2,57 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class ik0 extends mm0 {
-    public final qk0 V2;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class ik0 extends LinearLayout {
+    public boolean f27252a;
 
-    public ik0(qk0 qk0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        this.V2 = qk0Var;
+    public ik0(Context context) {
+        super(context);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        qk0 qk0Var = this.V2;
-        ub0 ub0Var = qk0Var.J;
-        if (ub0Var != null) {
-            ub0Var.measure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 0));
+        int i12;
+        ek0 ek0Var = null;
+        if (!this.f27252a) {
+            i12 = 0;
+            for (int i13 = 0; i13 < getChildCount(); i13++) {
+                if (getChildAt(i13) instanceof mk0) {
+                    ek0Var = ((mk0) getChildAt(i13)).e;
+                    if (ek0Var.getAdapter().h() == ek0Var.getChildCount()) {
+                        int childCount = ek0Var.getChildCount();
+                        for (int i14 = 0; i14 < childCount; i14++) {
+                            ek0Var.getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), 0), i11);
+                            if (ek0Var.getChildAt(i14).getMeasuredWidth() > i12) {
+                                i12 = ek0Var.getChildAt(i14).getMeasuredWidth();
+                            }
+                        }
+                        i12 += AndroidUtilities.dp(16.0f);
+                    }
+                }
+            }
+        } else {
+            i12 = 0;
         }
-        super.onMeasure(i10, i11);
-        qk0Var.j();
+        int size = View.MeasureSpec.getSize(i10);
+        if (size < AndroidUtilities.dp(240.0f)) {
+            size = AndroidUtilities.dp(240.0f);
+        }
+        if (size > AndroidUtilities.dp(280.0f)) {
+            size = AndroidUtilities.dp(280.0f);
+        }
+        if (size < 0) {
+            size = 0;
+        }
+        if (i12 == 0 || i12 >= size) {
+            i12 = size;
+        }
+        if (ek0Var != null) {
+            for (int i15 = 0; i15 < ek0Var.getChildCount(); i15++) {
+                ek0Var.getChildAt(i15).measure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
+            }
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
     }
 }

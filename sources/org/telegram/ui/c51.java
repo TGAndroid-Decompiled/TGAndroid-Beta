@@ -1,49 +1,22 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Path;
+import android.animation.ValueAnimator;
+import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class c51 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final Path f34460a;
-    public dh.d f34461b;
-
-    public c51(Activity activity) {
-        super(activity);
-        this.f34460a = new Path();
-    }
-
-    @Override
-    public final void d() {
-        dh.d dVar = this.f34461b;
-        if (dVar != null) {
-            dVar.v();
-        }
-    }
+public final class c51 extends FrameLayout {
+    public FrameLayout f35827a;
+    public org.telegram.ui.Cells.t3 f35828b;
+    public sg.p0 f35829c;
+    public String d;
+    public ValueAnimator e;
+    public float f35830f;
+    public Boolean h;
+    public ValueAnimator f35831n;
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.f34460a);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        Path path = this.f34460a;
-        path.rewind();
-        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-    }
-
-    public void setBlurredBackground(dh.d dVar) {
-        this.f34461b = dVar;
-        setBackground(dVar);
+    public final void onMeasure(int i10, int i11) {
+        setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + AndroidUtilities.dp(44.0f), 1073741824));
     }
 }

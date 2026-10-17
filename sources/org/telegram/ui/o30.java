@@ -1,20 +1,19 @@
 package org.telegram.ui;
-public final class o30 extends g.o {
-    public final n60 f38538c;
 
-    public o30(n60 n60Var) {
-        this.f38538c = n60Var;
+import android.view.View;
+public final class o30 extends View {
+    public final s50 f39642a;
+
+    public o30(s50 s50Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f39642a = s50Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int size = this.f38538c.f38215o2.e.size();
-        if (size > 1 && size != 2) {
-            if (size != 3 || i10 == 0 || i10 == 1) {
-                return 3;
-            }
-            return 6;
+    public final void setAlpha(float f7) {
+        if (getAlpha() != f7) {
+            super.setAlpha(f7);
+            this.f39642a.T0();
         }
-        return 6;
     }
 }

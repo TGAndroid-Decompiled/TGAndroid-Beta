@@ -1,6 +1,20 @@
 package org.telegram.ui;
-public final class tn {
-    public int f40150a;
-    public int f40151b;
-    public int f40152c;
+
+import android.os.Bundle;
+public final class tn extends sn {
+    public final un Qc;
+
+    public tn(un unVar, Bundle bundle) {
+        super(bundle);
+        this.Qc = unVar;
+    }
+
+    @Override
+    public final void aa(boolean z10) {
+        this.Qc.b(z10);
+    }
+
+    @Override
+    public final void setNavigationBarColor(int i10) {
+    }
 }

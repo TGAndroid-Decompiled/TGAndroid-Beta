@@ -1,67 +1,64 @@
 package fi;
 
-import android.view.View;
-import j$.util.Objects;
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Cells.a7;
-import org.telegram.ui.Cells.e9;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.f20;
-public final class c implements Utilities.CallbackReturn {
-    public final int f9201a;
+import ai.ic;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.h6;
+import sg.v1;
+import sg.w1;
+public final class c extends w1 {
+    public Paint[] f10603n;
+    public final int f10604r;
+    public final int f10605s;
 
-    public c(int i10) {
-        this.f9201a = i10;
+    public c(Context context, int i10, int i11) {
+        super(context);
+        this.f10604r = i10;
+        this.f10605s = i11;
+        c();
     }
 
     @Override
-    public final Object run(Object obj) {
-        boolean z10 = true;
-        switch (this.f9201a) {
-            case 0:
-                return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
-            case 1:
-                MessageObject messageObject = (MessageObject) obj;
-                if (messageObject == null || messageObject.getFactCheck() == null) {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            case 2:
-                MessageObject messageObject2 = (MessageObject) obj;
-                if (messageObject2 == null || messageObject2.getEffect() == null) {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            case 3:
-                return LocaleController.formatPluralString("Hours", ((Integer) obj).intValue(), new Object[0]);
-            case 4:
-                return LocaleController.formatPluralString("Minutes", ((Integer) obj).intValue(), new Object[0]);
-            case 5:
-                View view = (View) obj;
-                if ((view instanceof e9) || (view instanceof a7) || (view instanceof f20) || (view instanceof org.telegram.ui.Cells.v3) || (view instanceof org.telegram.ui.Cells.b2) || Objects.equals(view.getTag(), -33024)) {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            case 6:
-                return Boolean.valueOf(a71.K(((Integer) obj).intValue()));
-            case 7:
-                TL_wallet.exportSecretPhrase exportsecretphrase = new TL_wallet.exportSecretPhrase();
-                exportsecretphrase.password = (TLRPC.InputCheckPasswordSRP) obj;
-                return exportsecretphrase;
-            case 8:
-                TL_wallet.replaceWallet replacewallet = new TL_wallet.replaceWallet();
-                replacewallet.wallet = new TL_wallet.inputWalletNew();
-                replacewallet.password = (TLRPC.InputCheckPasswordSRP) obj;
-                return replacewallet;
-            default:
-                TL_wallet.disableBackup disablebackup = new TL_wallet.disableBackup();
-                disablebackup.password = (TLRPC.InputCheckPasswordSRP) obj;
-                return disablebackup;
+    public final void a() {
+        v1 v1Var = new v1(this.f10604r);
+        this.f46499a = v1Var;
+        v1Var.O = 106;
+        int i10 = 0;
+        v1Var.M = false;
+        v1Var.G = false;
+        v1Var.K = true;
+        v1Var.H = true;
+        v1Var.J = false;
+        v1Var.f46479m = true;
+        v1Var.h = true;
+        if (this.f10605s == 1) {
+            v1Var.f46477k = AndroidUtilities.dp(24.0f);
         }
+        this.f10603n = new Paint[20];
+        while (true) {
+            Paint[] paintArr = this.f10603n;
+            if (i10 < paintArr.length) {
+                paintArr[i10] = new Paint(1);
+                this.f10603n[i10].setColorFilter(new PorterDuffColorFilter(i0.b.f(i10 / (this.f10603n.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
+                i10++;
+            } else {
+                v1 v1Var2 = this.f46499a;
+                v1Var2.f46478l = new ic(this, 2);
+                v1Var2.f46484r = 17;
+                v1Var2.f46485s = 18;
+                v1Var2.f46486t = 19;
+                v1Var2.Q = h6.G6;
+                v1Var2.c();
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final int getStarsRectWidth() {
+        return getMeasuredWidth();
     }
 }

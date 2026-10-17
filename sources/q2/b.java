@@ -1,91 +1,58 @@
 package q2;
 
 import android.content.Context;
-import android.graphics.Point;
-import b2.x;
-import b2.x0;
-import e0.f0;
-import e2.m0;
-import h2.h;
-import h2.j;
-import h2.l;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import v7.u6;
-public final class b extends l {
-    public final Context f43001o;
-    public final int f43002p;
+import android.content.pm.PackageInfo;
+import android.os.CancellationSignal;
+import be.m;
+import kotlin.jvm.internal.i;
+import v0.h;
+import v0.j;
+import w7.n;
+public final class b implements h {
+    public final Context f44368a;
 
-    public b(Context context) {
-        super(new h[1], new a[1]);
-        this.f43001o = context;
-        this.f43002p = -1;
+    public b(Context context, int i10) {
+        switch (i10) {
+            case 1:
+                i.e(context, "context");
+                this.f44368a = context;
+                return;
+            case 2:
+                this.f44368a = context;
+                return;
+            default:
+                context.getClass();
+                this.f44368a = context;
+                return;
+        }
     }
 
-    @Override
-    public final h f() {
-        return new h(1, 0);
+    public static int c(b2.w r5) {
+        throw new UnsupportedOperationException("Method not decompiled: q2.b.c(b2.w):int");
     }
 
-    @Override
-    public final j g() {
-        return new a(this);
-    }
-
-    @Override
-    public final String getName() {
-        return "BitmapFactoryImageDecoder";
-    }
-
-    @Override
-    public final h2.f h(Throwable th2) {
-        return new Exception("Unexpected decode error", th2);
-    }
-
-    @Override
-    public final h2.f i(h hVar, j jVar, boolean z10) {
-        boolean z11;
-        a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f10330c;
-        byteBuffer.getClass();
-        u6.p(byteBuffer.hasArray());
-        if (byteBuffer.arrayOffset() == 0) {
-            z11 = true;
+    public Object a(Context context, v0.e eVar, kd.c cVar) {
+        m mVar = new m(1, n.b(cVar));
+        mVar.s();
+        CancellationSignal cancellationSignal = new CancellationSignal();
+        mVar.u(new v0.g(cancellationSignal));
+        l2.f fVar = new l2.f(mVar, 22);
+        a3.b bVar = new a3.b(2);
+        i.e(context, "context");
+        j b10 = k6.h.b(new k6.h(this.f44368a, 3), eVar);
+        if (b10 == null) {
+            fVar.onError(new w0.c("createCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
+        } else if (context.getPackageManager().hasSystemFeature("android.hardware.type.watch")) {
+            fVar.onError(new w0.c("createCredential is not supported on this device", 3));
         } else {
-            z11 = false;
+            b10.onCreateCredential(context, eVar, cancellationSignal, bVar, fVar);
         }
-        u6.g(z11);
-        try {
-            int i10 = this.f43002p;
-            if (i10 == -1) {
-                Context context = this.f43001o;
-                if (context != null) {
-                    Point y3 = m0.y(context);
-                    int i11 = y3.x;
-                    int i12 = y3.y;
-                    x xVar = hVar.f10328a;
-                    if (xVar != null) {
-                        int i13 = xVar.R;
-                        if (i13 != -1) {
-                            i11 *= i13;
-                        }
-                        int i14 = xVar.S;
-                        if (i14 != -1) {
-                            i12 *= i14;
-                        }
-                    }
-                    i10 = (Math.max(i11, i12) * 2) - 1;
-                } else {
-                    i10 = 4096;
-                }
-            }
-            aVar.f42999a = f0.a(byteBuffer.remaining(), i10, byteBuffer.array());
-            aVar.timeUs = hVar.e;
-            return null;
-        } catch (x0 e) {
-            return new Exception("Could not decode image data with BitmapFactory.", e);
-        } catch (IOException e7) {
-            return new Exception(e7);
-        }
+        Object r10 = mVar.r();
+        ld.a aVar = ld.a.f15993a;
+        return r10;
+    }
+
+    public PackageInfo b(int i10, String str) {
+        return this.f44368a.getPackageManager().getPackageInfo(str, i10);
     }
 }

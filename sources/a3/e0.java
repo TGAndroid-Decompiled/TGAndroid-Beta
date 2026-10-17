@@ -12,6 +12,10 @@ public final class e0 extends c0 implements Choreographer$VsyncCallback {
         this.e = e2.m0.q(null);
     }
 
+    public static void c(e0 e0Var) {
+        e0Var.f72a.postVsyncCallback(e0Var);
+    }
+
     @Override
     public final void a() {
         this.f73b.registerDisplayListener(this, e2.m0.q(null));

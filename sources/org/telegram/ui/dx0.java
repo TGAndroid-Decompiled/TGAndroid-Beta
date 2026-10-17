@@ -1,34 +1,38 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
-public final class dx0 implements Comparator {
-    public final int f35149a;
-    public final MessagesController f35150b;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class dx0 extends ClickableSpan {
+    public final String f36331a;
+    public final ex0 f36332b;
 
-    public dx0(MessagesController messagesController, int i10) {
-        this.f35149a = i10;
-        this.f35150b = messagesController;
+    public dx0(ex0 ex0Var, String str) {
+        this.f36332b = ex0Var;
+        this.f36331a = str;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int i10;
-        int i11;
-        qx0 qx0Var = (qx0) obj;
-        qx0 qx0Var2 = (qx0) obj2;
-        switch (this.f35149a) {
-            case 0:
-                MessagesController messagesController = this.f35150b;
-                i10 = messagesController.businessFeaturesTypesToPosition.get(qx0Var.f39234a, Integer.MAX_VALUE);
-                i11 = messagesController.businessFeaturesTypesToPosition.get(qx0Var2.f39234a, Integer.MAX_VALUE);
-                break;
-            default:
-                MessagesController messagesController2 = this.f35150b;
-                i10 = messagesController2.premiumFeaturesTypesToPosition.get(qx0Var.f39234a, Integer.MAX_VALUE);
-                i11 = messagesController2.premiumFeaturesTypesToPosition.get(qx0Var2.f39234a, Integer.MAX_VALUE);
-                break;
+    public final void onClick(View view) {
+        org.telegram.ui.Components.qc b10;
+        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.f36331a));
+        org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(this.f36332b.d);
+        String string = LocaleController.getString(R.string.LinkCopied);
+        org.telegram.ui.ActionBar.d6 resourceProvider = this.f36332b.d.getResourceProvider();
+        a02.getClass();
+        if (!AndroidUtilities.shouldShowClipboardToast()) {
+            b10 = new org.telegram.ui.Components.qc();
+        } else {
+            org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(a02.W(), resourceProvider);
+            ybVar.c(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
+            ybVar.f32599b.setText(string);
+            b10 = a02.b(ybVar, 1500);
         }
-        return i10 - i11;
+        b10.j();
     }
 }

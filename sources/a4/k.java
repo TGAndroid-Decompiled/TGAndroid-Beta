@@ -3,7 +3,7 @@ package a4;
 import e2.m0;
 import java.util.ArrayDeque;
 import v7.u6;
-public abstract class k implements z3.f {
+public abstract class k implements z3.e {
     public final ArrayDeque f273a = new ArrayDeque();
     public final ArrayDeque f274b;
     public final ArrayDeque f275c;
@@ -14,7 +14,7 @@ public abstract class k implements z3.f {
 
     public k() {
         for (int i10 = 0; i10 < 10; i10++) {
-            this.f273a.add(new z3.j());
+            this.f273a.add(new z3.i());
         }
         this.f274b = new ArrayDeque();
         for (int i11 = 0; i11 < 2; i11++) {
@@ -59,29 +59,29 @@ public abstract class k implements z3.f {
     @Override
     public final void e(Object obj) {
         boolean z10;
-        z3.j jVar = (z3.j) obj;
-        if (jVar == this.d) {
+        z3.i iVar = (z3.i) obj;
+        if (iVar == this.d) {
             z10 = true;
         } else {
             z10 = false;
         }
         u6.g(z10);
-        i iVar = (i) jVar;
-        if (!iVar.isEndOfStream()) {
-            long j10 = iVar.e;
+        i iVar2 = (i) iVar;
+        if (!iVar2.isEndOfStream()) {
+            long j10 = iVar2.e;
             if (j10 != Long.MIN_VALUE) {
                 long j11 = this.f277g;
                 if (j11 != -9223372036854775807L && j10 < j11) {
-                    iVar.clear();
-                    this.f273a.add(iVar);
+                    iVar2.clear();
+                    this.f273a.add(iVar2);
                     this.d = null;
                 }
             }
         }
         long j12 = this.f276f;
         this.f276f = 1 + j12;
-        iVar.f271s = j12;
-        this.f275c.add(iVar);
+        iVar2.f271s = j12;
+        this.f275c.add(iVar2);
         this.d = null;
     }
 
@@ -100,7 +100,7 @@ public abstract class k implements z3.f {
                 break;
             }
             i iVar = (i) arrayDeque2.poll();
-            String str = m0.f8375a;
+            String str = m0.f8254a;
             iVar.clear();
             arrayDeque.add(iVar);
         }
@@ -115,7 +115,7 @@ public abstract class k implements z3.f {
     public abstract void g(i iVar);
 
     @Override
-    public z3.k c() {
+    public z3.j c() {
         ArrayDeque arrayDeque = this.f274b;
         if (arrayDeque.isEmpty()) {
             return null;
@@ -123,29 +123,29 @@ public abstract class k implements z3.f {
         while (true) {
             ArrayDeque arrayDeque2 = this.f275c;
             if (!arrayDeque2.isEmpty()) {
-                String str = m0.f8375a;
+                String str = m0.f8254a;
                 if (((i) arrayDeque2.peek()).e <= this.e) {
                     i iVar = (i) arrayDeque2.poll();
                     boolean isEndOfStream = iVar.isEndOfStream();
                     ArrayDeque arrayDeque3 = this.f273a;
                     if (isEndOfStream) {
-                        z3.k kVar = (z3.k) arrayDeque.pollFirst();
-                        kVar.addFlag(4);
+                        z3.j jVar = (z3.j) arrayDeque.pollFirst();
+                        jVar.addFlag(4);
                         iVar.clear();
                         arrayDeque3.add(iVar);
-                        return kVar;
+                        return jVar;
                     }
                     g(iVar);
                     if (i()) {
                         l f7 = f();
-                        z3.k kVar2 = (z3.k) arrayDeque.pollFirst();
+                        z3.j jVar2 = (z3.j) arrayDeque.pollFirst();
                         long j10 = iVar.e;
-                        kVar2.timeUs = j10;
-                        kVar2.f49268a = f7;
-                        kVar2.f49269b = j10;
+                        jVar2.timeUs = j10;
+                        jVar2.f50673a = f7;
+                        jVar2.f50674b = j10;
                         iVar.clear();
                         arrayDeque3.add(iVar);
-                        return kVar2;
+                        return jVar2;
                     }
                     iVar.clear();
                     arrayDeque3.add(iVar);

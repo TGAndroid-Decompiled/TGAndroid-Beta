@@ -1,47 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.ui.Components.RadialProgressView;
-public final class dm extends AnimatorListenerAdapter {
-    public final boolean f35078a;
-    public final boolean f35079b;
-    public final boolean f35080c;
-    public final fo d;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+public final class dm extends org.telegram.ui.Components.s6 {
+    public final em f36234b;
 
-    public dm(fo foVar, boolean z10, boolean z11, boolean z12) {
-        this.d = foVar;
-        this.f35078a = z10;
-        this.f35079b = z11;
-        this.f35080c = z12;
+    public dm(em emVar) {
+        super("alpha", 0);
+        this.f36234b = emVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        fo foVar = this.d;
-        foVar.M2 = null;
-        ImageView imageView = foVar.J2;
-        int i12 = 4;
-        if (this.f35078a) {
-            i10 = 0;
-        } else {
-            i10 = 4;
+    public final void c(Object obj, float f7) {
+        ((MessageObject.SendAnimationData) obj).timeAlpha = f7;
+        View view = this.f36234b.f36567b.Q.fragmentView;
+        if (view != null) {
+            view.invalidate();
         }
-        imageView.setVisibility(i10);
-        ImageView imageView2 = foVar.L2;
-        if (this.f35079b) {
-            i11 = 0;
-        } else {
-            i11 = 4;
-        }
-        imageView2.setVisibility(i11);
-        RadialProgressView radialProgressView = foVar.K2;
-        if (this.f35080c) {
-            i12 = 0;
-        }
-        radialProgressView.setVisibility(i12);
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        return Float.valueOf(((MessageObject.SendAnimationData) obj).timeAlpha);
     }
 }

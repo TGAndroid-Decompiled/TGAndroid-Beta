@@ -2,13 +2,13 @@ package j9;
 
 import java.util.concurrent.Executor;
 public final class r implements Executor {
-    public static final r f12944a;
-    public static final r[] f12945b;
+    public static final r f14351a;
+    public static final r[] f14352b;
 
     static {
         ?? r02 = new Enum("INSTANCE", 0);
-        f12944a = r02;
-        f12945b = new r[]{r02};
+        f14351a = r02;
+        f14352b = new r[]{r02};
     }
 
     public static r valueOf(String str) {
@@ -16,7 +16,7 @@ public final class r implements Executor {
     }
 
     public static r[] values() {
-        return (r[]) f12945b.clone();
+        return (r[]) f14352b.clone();
     }
 
     @Override

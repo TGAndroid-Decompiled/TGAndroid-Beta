@@ -7,37 +7,37 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.PersistableBundle;
 import android.text.TextUtils;
-import e0.n0;
+import e0.m0;
 import java.util.Arrays;
-import w7.m6;
+import w7.n6;
 public final class b {
-    public final c f9836a;
+    public final c f10742a;
 
     public b(Context context, ShortcutInfo shortcutInfo) {
-        n0[] n0VarArr;
+        m0[] m0VarArr;
         String string;
         ?? obj = new Object();
-        this.f9836a = obj;
-        obj.f9837a = context;
-        obj.f9838b = shortcutInfo.getId();
+        this.f10742a = obj;
+        obj.f10743a = context;
+        obj.f10744b = shortcutInfo.getId();
         shortcutInfo.getPackage();
         Intent[] intents = shortcutInfo.getIntents();
-        obj.f9839c = (Intent[]) Arrays.copyOf(intents, intents.length);
+        obj.f10745c = (Intent[]) Arrays.copyOf(intents, intents.length);
         obj.d = shortcutInfo.getActivity();
         obj.e = shortcutInfo.getShortLabel();
-        obj.f9840f = shortcutInfo.getLongLabel();
-        obj.f9841g = shortcutInfo.getDisabledMessage();
+        obj.f10746f = shortcutInfo.getLongLabel();
+        obj.f10747g = shortcutInfo.getDisabledMessage();
         if (Build.VERSION.SDK_INT >= 28) {
             shortcutInfo.getDisabledReason();
         } else {
             shortcutInfo.isEnabled();
         }
-        obj.f9843j = shortcutInfo.getCategories();
+        obj.f10749j = shortcutInfo.getCategories();
         PersistableBundle extras = shortcutInfo.getExtras();
         f0.f fVar = null;
         if (extras != null && extras.containsKey("extraPersonCount")) {
             int i10 = extras.getInt("extraPersonCount");
-            n0VarArr = new n0[i10];
+            m0VarArr = new m0[i10];
             int i11 = 0;
             while (i11 < i10) {
                 StringBuilder sb2 = new StringBuilder("extraPerson_");
@@ -50,19 +50,19 @@ public final class b {
                 boolean z10 = persistableBundle.getBoolean("isBot");
                 boolean z11 = persistableBundle.getBoolean("isImportant");
                 ?? obj2 = new Object();
-                obj2.f8255a = string2;
-                obj2.f8256b = null;
-                obj2.f8257c = string3;
+                obj2.f8132a = string2;
+                obj2.f8133b = null;
+                obj2.f8134c = string3;
                 obj2.d = string4;
                 obj2.e = z10;
-                obj2.f8258f = z11;
-                n0VarArr[i11] = obj2;
+                obj2.f8135f = z11;
+                m0VarArr[i11] = obj2;
                 i11 = i12;
             }
         } else {
-            n0VarArr = 0;
+            m0VarArr = 0;
         }
-        obj.f9842i = n0VarArr;
+        obj.f10748i = m0VarArr;
         shortcutInfo.getUserHandle();
         shortcutInfo.getLastChangedTimestamp();
         int i13 = Build.VERSION.SDK_INT;
@@ -75,11 +75,11 @@ public final class b {
         shortcutInfo.isImmutable();
         shortcutInfo.isEnabled();
         shortcutInfo.hasKeyFieldsOnly();
-        c cVar = this.f9836a;
+        c cVar = this.f10742a;
         if (i13 >= 29) {
             if (shortcutInfo.getLocusId() != null) {
                 LocusId locusId = shortcutInfo.getLocusId();
-                m6.a(locusId, "locusId cannot be null");
+                n6.a(locusId, "locusId cannot be null");
                 String id2 = locusId.getId();
                 if (!TextUtils.isEmpty(id2)) {
                     fVar = new f0.f(id2);
@@ -93,15 +93,15 @@ public final class b {
                 fVar = new f0.f(string);
             }
         }
-        cVar.f9844k = fVar;
-        this.f9836a.f9846m = shortcutInfo.getRank();
-        this.f9836a.f9847n = shortcutInfo.getExtras();
+        cVar.f10750k = fVar;
+        this.f10742a.f10752m = shortcutInfo.getRank();
+        this.f10742a.f10753n = shortcutInfo.getExtras();
     }
 
     public final c a() {
-        c cVar = this.f9836a;
+        c cVar = this.f10742a;
         if (!TextUtils.isEmpty(cVar.e)) {
-            Intent[] intentArr = cVar.f9839c;
+            Intent[] intentArr = cVar.f10745c;
             if (intentArr != null && intentArr.length != 0) {
                 return cVar;
             }

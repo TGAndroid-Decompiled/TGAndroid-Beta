@@ -1,23 +1,22 @@
 package m4;
-public final class g0 implements o0 {
-    public final int f15180a;
-    public final p0 f15181b;
-    public final long f15182c;
+public final class g0 implements Runnable {
+    public final int f16534a;
+    public final p0 f16535b;
 
-    public g0(p0 p0Var, long j10, int i10) {
-        this.f15180a = i10;
-        this.f15181b = p0Var;
-        this.f15182c = j10;
+    public g0(p0 p0Var, int i10) {
+        this.f16534a = i10;
+        this.f16535b = p0Var;
     }
 
     @Override
-    public final void e(v vVar) {
-        switch (this.f15180a) {
+    public final void run() {
+        switch (this.f16534a) {
             case 0:
-                this.f15181b.f15303g.f15170t.Y((int) this.f15182c);
+                p0 p0Var = this.f16535b;
+                e2.m0.W(p0Var.f16655g.f16520l, new g0(p0Var, 1));
                 return;
             default:
-                this.f15181b.f15303g.f15170t.g(this.f15182c);
+                this.f16535b.N();
                 return;
         }
     }

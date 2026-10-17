@@ -1,52 +1,35 @@
 package m4;
-public final class j0 implements o0 {
-    public final int f15230a;
-    public final p0 f15231b;
-    public final int f15232c;
+public final class j0 implements Runnable {
+    public final int f16583a;
+    public final p0 f16584b;
+    public final m1 f16585c;
 
-    public j0(p0 p0Var, int i10, int i11) {
-        this.f15230a = i11;
-        this.f15231b = p0Var;
-        this.f15232c = i10;
+    public j0(p0 p0Var, m1 m1Var, int i10) {
+        this.f16583a = i10;
+        this.f16584b = p0Var;
+        this.f16585c = m1Var;
     }
 
     @Override
-    public final void e(v vVar) {
-        int i10 = this.f15230a;
-        int i11 = 0;
-        r0 = false;
-        boolean z10 = false;
-        i11 = 0;
-        i11 = 0;
-        int i12 = this.f15232c;
-        p0 p0Var = this.f15231b;
-        switch (i10) {
+    public final void run() {
+        b2.o1 o1Var;
+        switch (this.f16583a) {
             case 0:
-                m1 m1Var = p0Var.f15303g.f15170t;
-                int i13 = n.f15285a;
-                if (i12 != -1 && i12 != 0) {
-                    if (i12 != 1) {
-                        if (i12 != 2 && i12 != 3) {
-                            e2.a.l("LegacyConversions", "Unrecognized PlaybackStateCompat.RepeatMode: " + i12 + " was converted to `Player.REPEAT_MODE_OFF`");
-                        } else {
-                            i11 = 2;
-                        }
-                    } else {
-                        i11 = 1;
-                    }
+                p0 p0Var = this.f16584b;
+                n4.s sVar = p0Var.f16660m;
+                m1 m1Var = this.f16585c;
+                sVar.J(p0Var.G(m1Var));
+                n0 n0Var = p0Var.f16656i;
+                if (m1Var.s().a(17)) {
+                    o1Var = m1Var.y0();
+                } else {
+                    o1Var = b2.o1.f3893a;
                 }
-                m1Var.j(i11);
+                n0Var.s(o1Var);
                 return;
             default:
-                m1 m1Var2 = p0Var.f15303g.f15170t;
-                int i14 = n.f15285a;
-                if (i12 != -1 && i12 != 0) {
-                    if (i12 != 1 && i12 != 2) {
-                        throw new IllegalArgumentException(i2.d.j(i12, "Unrecognized ShuffleMode: "));
-                    }
-                    z10 = true;
-                }
-                m1Var2.w(z10);
+                p0 p0Var2 = this.f16584b;
+                p0Var2.f16660m.J(p0Var2.G(this.f16585c));
                 return;
         }
     }

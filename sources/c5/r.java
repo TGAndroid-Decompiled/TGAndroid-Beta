@@ -1,6 +1,10 @@
 package c5;
+public final class r {
+    public final String f4779a;
+    public final String f4780b;
 
-import java.util.List;
-public interface r {
-    void onPurchasesUpdated(i iVar, List list);
+    public r(a aVar) {
+        this.f4779a = aVar.f4697a;
+        this.f4780b = aVar.f4698b;
+    }
 }

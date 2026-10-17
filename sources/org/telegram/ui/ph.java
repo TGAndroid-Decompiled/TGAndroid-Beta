@@ -1,38 +1,82 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class ph implements Utilities.Callback {
-    public final int f38923a;
-    public final long f38924b;
-    public final long f38925c;
-    public final Long d;
-    public final Object e;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FlagSecureReason;
+public final class ph implements FlagSecureReason.FlagSecureCondition, uu0, r0.n, zf.a0, org.telegram.ui.ActionBar.a2 {
+    public final sn f40132a;
 
-    public ph(Object obj, long j10, long j11, Long l4, int i10) {
-        this.f38923a = i10;
-        this.e = obj;
-        this.f38924b = j10;
-        this.f38925c = j11;
-        this.d = l4;
+    public ph(sn snVar) {
+        this.f40132a = snVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10;
-        switch (this.f38923a) {
-            case 0:
-                fo.e0((fo) this.e, this.f38924b, this.f38925c, this.d, (Boolean) obj);
-                return;
-            default:
-                Boolean bool = (Boolean) obj;
-                i10 = ((org.telegram.ui.ActionBar.m2) ((sj) this.e).f39833b).currentAccount;
-                boolean z10 = false;
-                zh.n5 y3 = zh.n5.y(i10, false);
-                if (this.d.longValue() > 0 && bool.booleanValue()) {
-                    z10 = true;
-                }
-                y3.i0(this.f38924b, this.f38925c, z10, true);
-                return;
+    public r0.k1 B0(View view, r0.k1 k1Var) {
+        sn snVar = this.f40132a;
+        r0.k1 z82 = snVar.z8(k1Var);
+        i0.c defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(z82, false);
+        int i10 = defaultWindowInsets.f12284a;
+        int i11 = defaultWindowInsets.f12286c;
+        if (snVar.Ua != i10 || snVar.Va != i11) {
+            snVar.Ua = i10;
+            snVar.Va = i11;
+            snVar.X0.requestLayout();
         }
+        snVar.v.j(z82);
+        ah.x xVar = snVar.K3;
+        if (xVar != null) {
+            xVar.setPadding(i10, 0, i11, 0);
+        }
+        snVar.q7();
+        snVar.u7();
+        snVar.u9();
+        boolean p5 = z82.f44853a.p(8);
+        if (snVar.Ta != p5) {
+            snVar.Ta = p5;
+            snVar.X0.S();
+        }
+        ei.h1 h1Var = snVar.f41342q1;
+        if (h1Var != null) {
+            r0.i0.b(h1Var, z82);
+        }
+        return r0.k1.f44852b;
+    }
+
+    @Override
+    public void a(int i10) {
+        sn.X0(this.f40132a, i10);
+    }
+
+    @Override
+    public void b(float[] fArr) {
+        sn snVar = this.f40132a;
+        fArr[1] = snVar.f41433x0.getBottom() - snVar.Ba;
+        fArr[0] = (snVar.f41433x0.getTop() + snVar.f41377s9) - AndroidUtilities.dp(4.0f);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        sn snVar = this.f40132a;
+        snVar.getClass();
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+            snVar.getParentActivity().startActivity(intent);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public boolean run() {
+        sn snVar = this.f40132a;
+        if (snVar.h == null && !snVar.D9()) {
+            return false;
+        }
+        return true;
     }
 }

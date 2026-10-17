@@ -1,198 +1,180 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.os.Build;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class dx extends s4.r0 {
-    public boolean f35146a;
-    public final xy f35147b;
-    public final ry f35148c;
-    public final yy d;
+import android.os.Bundle;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class dx implements t60 {
+    public final org.telegram.ui.ActionBar.b2 f36329a;
+    public final ey f36330b;
 
-    public dx(yy yyVar, xy xyVar, ry ryVar) {
-        this.d = yyVar;
-        this.f35147b = xyVar;
-        this.f35148c = ryVar;
+    public dx(ey eyVar, org.telegram.ui.ActionBar.b2 b2Var) {
+        this.f36330b = eyVar;
+        this.f36329a = b2Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        yy yyVar = this.d;
-        if (i10 == 1) {
-            this.f35146a = true;
-            yyVar.f42007e3 = true;
-            a5.a aVar = yyVar.f42004e0[0].f41680b;
-            ValueAnimator valueAnimator = (ValueAnimator) aVar.f282c;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                ((ValueAnimator) aVar.f282c).cancel();
-                aVar.f282c = null;
-            }
-            if (yyVar.X.f27510r.getText().length() == 0 && yyVar.X.f27510r.hasFocus()) {
-                AndroidUtilities.hideKeyboard(yyVar.X.f27510r);
-                yyVar.X.f27510r.clearFocus();
-            }
-        } else {
-            yyVar.f42007e3 = false;
-        }
-        if (i10 == 0) {
-            this.f35146a = false;
-            yyVar.f42006e2 = false;
-            boolean z10 = yyVar.f41989b1;
-            xy xyVar = this.f35147b;
-            if (z10) {
-                yyVar.f41989b1 = false;
-                if (yyVar.f42000d1) {
-                    uy uyVar = xyVar.f41679a;
-                    int i11 = uy.f40506t3;
-                    uyVar.B1();
-                    yyVar.f42000d1 = false;
-                }
-                xyVar.d.l();
-            }
-            yy.o1(yyVar, xyVar);
-        }
-    }
+    public final void a(u60 u60Var, final long j10) {
+        final org.telegram.ui.ActionBar.n2[] n2VarArr = {u60Var, null};
+        Utilities.Callback callback = new Utilities.Callback(this) {
+            public final dx f35759b;
 
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        bh.f fVar;
-        uy uyVar;
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        View childAt;
-        int i13;
-        boolean z10;
-        Object[] objArr;
-        this.f35148c.X();
-        xy xyVar = this.f35147b;
-        zw zwVar = xyVar.f41687x;
-        int i14 = -i11;
-        ArrayList arrayList = zwVar.f27737x;
-        ArrayList arrayList2 = zwVar.f27729o;
-        boolean z11 = false;
-        if (!arrayList2.isEmpty()) {
-            int size = arrayList2.size();
-            for (int i15 = 0; i15 < size; i15++) {
-                View view = ((s4.b1) arrayList2.get(i15)).f44838a;
-                view.setTranslationY(view.getTranslationY() + i14);
+            {
+                this.f35759b = this;
             }
-        }
-        if (!arrayList.isEmpty()) {
-            int size2 = arrayList.size();
-            for (int i16 = 0; i16 < size2; i16++) {
-                View view2 = ((s4.b1) arrayList.get(i16)).f44838a;
-                view2.setTranslationY(view2.getTranslationY() + i14);
-            }
-        }
-        int i17 = -1;
-        int i18 = -1;
-        for (int i19 = 0; i19 < recyclerView.getChildCount(); i19++) {
-            int R = RecyclerView.R(recyclerView.getChildAt(i19));
-            if (R >= 0) {
-                if (i17 == -1 || R > i17) {
-                    i17 = R;
-                }
-                if (i18 == -1 || R < i18) {
-                    i18 = R;
-                }
-            }
-        }
-        yy yyVar = this.d;
-        yyVar.p3(xyVar);
-        yyVar.Q = true;
-        View view3 = yyVar.fragmentView;
-        if (view3 != null) {
-            view3.invalidate();
-        }
-        if (yyVar.R0 != 10 && this.f35146a && recyclerView.getChildCount() > 0 && i18 != -1) {
-            s4.b1 K = recyclerView.K(i18);
-            if (!yyVar.X3() || (K != null && K.b() >= 0)) {
-                if (K != null) {
-                    i13 = K.f44838a.getTop();
-                } else {
-                    i13 = 0;
-                }
-                int i20 = yyVar.Y1;
-                if (i20 == i18) {
-                    int i21 = yyVar.Z1;
-                    int i22 = i21 - i13;
-                    if (i13 < i21) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (Math.abs(i22) <= 1) {
-                        objArr = null;
-                        if (objArr != null && yyVar.a2 && (z10 || yyVar.f42007e3)) {
-                            yyVar.a4(z10);
+
+            @Override
+            public final void run(Object obj) {
+                Runnable runnable = (Runnable) obj;
+                switch (r5) {
+                    case 0:
+                        ey eyVar = this.f35759b.f36330b;
+                        Boolean bool = eyVar.G.has_username;
+                        if (bool != null && bool.booleanValue()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("step", 1);
+                            bundle.putLong("chat_id", j10);
+                            bundle.putBoolean("forcePublic", eyVar.G.has_username.booleanValue());
+                            od odVar = new od(bundle);
+                            odVar.f39735t0 = new g5(runnable, 12);
+                            eyVar.presentFragment(odVar);
+                            n2VarArr[1] = odVar;
+                            return;
                         }
-                        yyVar.Y1 = i18;
-                        yyVar.Z1 = i13;
-                        yyVar.a2 = true;
-                    }
-                } else if (i18 > i20) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                        runnable.run();
+                        return;
+                    default:
+                        dx dxVar = this.f35759b;
+                        ey eyVar2 = dxVar.f36330b;
+                        eyVar2.O4(eyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new nt(10, dxVar, n2VarArr));
+                        return;
                 }
-                objArr = 1;
-                if (objArr != null) {
-                    yyVar.a4(z10);
-                }
-                yyVar.Y1 = i18;
-                yyVar.Z1 = i13;
-                yyVar.a2 = true;
             }
-        }
-        if (!yyVar.K && recyclerView == yyVar.f42004e0[0].f41679a && !yyVar.f42032j2) {
-            kVar = ((org.telegram.ui.ActionBar.m2) yyVar).actionBar;
-            if (kVar != null) {
-                kVar2 = ((org.telegram.ui.ActionBar.m2) yyVar).actionBar;
-                if (!kVar2.t() && !yyVar.f42006e2 && !yyVar.G3.c()) {
-                    if (i11 > 0 && yyVar.X3() && yyVar.f42004e0[0].f41685s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
-                        int top = (childAt.getTop() - recyclerView.getPaddingTop()) + childAt.getMeasuredHeight();
-                        if (top + i11 > 0) {
-                            if (top < 0) {
-                                i11 = -top;
+        };
+        Utilities.Callback callback2 = new Utilities.Callback(this) {
+            public final dx f35759b;
+
+            {
+                this.f35759b = this;
+            }
+
+            @Override
+            public final void run(Object obj) {
+                Runnable runnable = (Runnable) obj;
+                switch (r5) {
+                    case 0:
+                        ey eyVar = this.f35759b.f36330b;
+                        Boolean bool = eyVar.G.has_username;
+                        if (bool != null && bool.booleanValue()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("step", 1);
+                            bundle.putLong("chat_id", j10);
+                            bundle.putBoolean("forcePublic", eyVar.G.has_username.booleanValue());
+                            od odVar = new od(bundle);
+                            odVar.f39735t0 = new g5(runnable, 12);
+                            eyVar.presentFragment(odVar);
+                            n2VarArr[1] = odVar;
+                            return;
+                        }
+                        runnable.run();
+                        return;
+                    default:
+                        dx dxVar = this.f35759b;
+                        ey eyVar2 = dxVar.f36330b;
+                        eyVar2.O4(eyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new nt(10, dxVar, n2VarArr));
+                        return;
+                }
+            }
+        };
+        org.telegram.ui.ActionBar.b2 b2Var = this.f36329a;
+        Utilities.doCallbacks(callback, callback2, new ai.f2(this, b2Var, j10, 2), new Utilities.Callback(this) {
+            public final dx f36000b;
+
+            {
+                this.f36000b = this;
+            }
+
+            @Override
+            public final void run(Object obj) {
+                boolean z10;
+                switch (r4) {
+                    case 0:
+                        Runnable runnable = (Runnable) obj;
+                        ey eyVar = this.f36000b.f36330b;
+                        if (eyVar.G.bot_admin_rights != null) {
+                            TLRPC.User user = eyVar.getMessagesController().getUser(Long.valueOf(eyVar.H));
+                            MessagesController messagesController = eyVar.getMessagesController();
+                            TLRPC.RequestPeerType requestPeerType = eyVar.G;
+                            TLRPC.TL_chatAdminRights tL_chatAdminRights = requestPeerType.bot_admin_rights;
+                            Boolean bool = requestPeerType.bot_participant;
+                            if (bool != null && bool.booleanValue()) {
+                                z10 = false;
                             } else {
-                                return;
+                                z10 = true;
                             }
+                            boolean z11 = z10;
+                            messagesController.setUserAdminRole(j10, user, tL_chatAdminRights, null, false, eyVar, z11, true, null, runnable, new jf(6, runnable));
+                            return;
                         }
-                    }
-                    yyVar.Q = true;
-                    View view4 = yyVar.fragmentView;
-                    if (view4 != null) {
-                        view4.invalidate();
-                    }
+                        runnable.run();
+                        return;
+                    default:
+                        Runnable runnable2 = (Runnable) obj;
+                        ey eyVar2 = this.f36000b.f36330b;
+                        if (eyVar2.G.user_admin_rights != null) {
+                            MessagesController messagesController2 = eyVar2.getMessagesController();
+                            long j11 = j10;
+                            eyVar2.getMessagesController().setUserAdminRole(j11, eyVar2.getAccountInstance().getUserConfig().getCurrentUser(), dq.s0(messagesController2.getChat(Long.valueOf(j11)).admin_rights, eyVar2.G.user_admin_rights), null, false, eyVar2, false, true, null, runnable2, new jf(7, runnable2));
+                            return;
+                        }
+                        runnable2.run();
+                        return;
                 }
             }
-        }
-        if (yyVar.fragmentView != null) {
-            yyVar.j3();
-        }
-        sx sxVar = yyVar.G3;
-        if (sxVar != null && sxVar.c() && (uyVar = xyVar.f41679a) != null) {
-            uyVar.invalidate();
-        }
-        px pxVar = yyVar.E0;
-        if (pxVar != null && pxVar.getPremiumHint() != null && yyVar.E0.getPremiumHint().V) {
-            yyVar.E0.getPremiumHint().e(true);
-        }
-        ?? X3 = yyVar.X3();
-        View childAt2 = xyVar.f41679a.getChildAt(X3 == true ? 1 : 0);
-        if (childAt2 != null) {
-            i12 = childAt2.getTop();
-        } else {
-            i12 = 0;
-        }
-        yyVar.e.a((i18 > X3 || (i12 - yyVar.N) + AndroidUtilities.dp(5.0f) < xyVar.f41679a.getPaddingTop()) ? true : true, true);
-        if (i11 != 0 && (fVar = yyVar.l4) != null && Build.VERSION.SDK_INT >= 31) {
-            fVar.f(i10, i11);
-        }
+        }, new Utilities.Callback(this) {
+            public final dx f36000b;
+
+            {
+                this.f36000b = this;
+            }
+
+            @Override
+            public final void run(Object obj) {
+                boolean z10;
+                switch (r4) {
+                    case 0:
+                        Runnable runnable = (Runnable) obj;
+                        ey eyVar = this.f36000b.f36330b;
+                        if (eyVar.G.bot_admin_rights != null) {
+                            TLRPC.User user = eyVar.getMessagesController().getUser(Long.valueOf(eyVar.H));
+                            MessagesController messagesController = eyVar.getMessagesController();
+                            TLRPC.RequestPeerType requestPeerType = eyVar.G;
+                            TLRPC.TL_chatAdminRights tL_chatAdminRights = requestPeerType.bot_admin_rights;
+                            Boolean bool = requestPeerType.bot_participant;
+                            if (bool != null && bool.booleanValue()) {
+                                z10 = false;
+                            } else {
+                                z10 = true;
+                            }
+                            boolean z11 = z10;
+                            messagesController.setUserAdminRole(j10, user, tL_chatAdminRights, null, false, eyVar, z11, true, null, runnable, new jf(6, runnable));
+                            return;
+                        }
+                        runnable.run();
+                        return;
+                    default:
+                        Runnable runnable2 = (Runnable) obj;
+                        ey eyVar2 = this.f36000b.f36330b;
+                        if (eyVar2.G.user_admin_rights != null) {
+                            MessagesController messagesController2 = eyVar2.getMessagesController();
+                            long j11 = j10;
+                            eyVar2.getMessagesController().setUserAdminRole(j11, eyVar2.getAccountInstance().getUserConfig().getCurrentUser(), dq.s0(messagesController2.getChat(Long.valueOf(j11)).admin_rights, eyVar2.G.user_admin_rights), null, false, eyVar2, false, true, null, runnable2, new jf(7, runnable2));
+                            return;
+                        }
+                        runnable2.run();
+                        return;
+                }
+            }
+        }, new ai.v2(this, b2Var, j10, n2VarArr, 5));
     }
 }

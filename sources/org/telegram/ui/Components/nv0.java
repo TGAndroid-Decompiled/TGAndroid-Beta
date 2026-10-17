@@ -1,89 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.util.SparseArray;
 import android.view.View;
 import java.util.ArrayList;
-import java.util.HashSet;
-public abstract class nv0 extends pu0 {
-    public final HashSet f27419d3;
-    public final ArrayList f27420e3;
-    public final ArrayList f27421f3;
-    public final ArrayList f27422g3;
-    public TextPaint f27423h3;
-    public StaticLayout f27424i3;
-    public float f27425j3;
-    public float f27426k3;
-    public bi.ac f27427l3;
-    public int f27428m3;
-    public final ArrayList f27429n3;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.tl.TL_stories;
+public final class nv0 extends ci.ja {
+    public final pv0 h;
 
-    public nv0(Context context) {
-        super(context, null);
-        this.f27419d3 = new HashSet();
-        this.f27420e3 = new ArrayList();
-        this.f27421f3 = new ArrayList();
-        this.f27422g3 = new ArrayList();
-        this.f27429n3 = new ArrayList();
-    }
-
-    public abstract boolean A1();
-
-    public abstract boolean B1();
-
-    public boolean C1() {
-        return true;
+    public nv0(pv0 pv0Var, ci.i7 i7Var, long j10, int i10) {
+        super(i10, j10, i7Var);
+        this.h = pv0Var;
     }
 
     @Override
-    public void dispatchDraw(android.graphics.Canvas r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.nv0.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        ul0 movingAdapter = getMovingAdapter();
-        if (C1() && getAdapter() == movingAdapter && A1() && (view instanceof org.telegram.ui.Cells.t7)) {
-            return true;
+    public final void a(ArrayList arrayList) {
+        rs0 rs0Var;
+        MessageObject messageObject;
+        pv0 pv0Var = this.h;
+        sv0 sv0Var = pv0Var.F;
+        int i10 = 0;
+        while (true) {
+            lu0[] lu0VarArr = sv0Var.f30364k0;
+            if (i10 < lu0VarArr.length) {
+                rs0 rs0Var2 = lu0VarArr[i10].h;
+                if (rs0Var2 != null && rs0Var2.getAdapter() == pv0Var) {
+                    rs0Var = sv0Var.f30364k0[i10].h;
+                    break;
+                }
+                i10++;
+            } else {
+                rs0Var = null;
+                break;
+            }
         }
-        return super.drawChild(canvas, view, j10);
+        if (rs0Var != null) {
+            for (int i11 = 0; i11 < rs0Var.getChildCount(); i11++) {
+                View childAt = rs0Var.getChildAt(i11);
+                if ((childAt instanceof org.telegram.ui.Cells.s7) && (messageObject = ((org.telegram.ui.Cells.s7) childAt).getMessageObject()) != null && messageObject.isStory()) {
+                    arrayList.add(Integer.valueOf(messageObject.storyItem.f20506id));
+                }
+            }
+        }
     }
 
-    public int getAnimateToColumnsCount() {
-        return 3;
-    }
-
-    public float getChangeColumnsProgress() {
-        return 0.0f;
-    }
-
-    public int getColumnsCount() {
-        return 3;
-    }
-
-    public SparseArray<Float> getMessageAlphaEnter() {
-        return null;
-    }
-
-    public ul0 getMovingAdapter() {
-        return null;
-    }
-
-    public int getPinchCenterPosition() {
-        return 0;
-    }
-
-    public ul0 getSupportingAdapter() {
-        return null;
-    }
-
-    public pu0 getSupportingListView() {
-        return null;
-    }
-
-    public void z1(org.telegram.ui.Cells.t7 t7Var) {
+    @Override
+    public final boolean d(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
+        TL_stories.StoryItem storyItem;
+        ci.a7 a7Var = this.h.f29435s;
+        ArrayList<TL_stories.StoryViews> arrayList2 = tL_stories_storyViews.views;
+        a7Var.getClass();
+        if (arrayList != null && arrayList2 != null) {
+            boolean z10 = false;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                Integer num = (Integer) arrayList.get(i10);
+                num.intValue();
+                if (i10 >= arrayList2.size()) {
+                    break;
+                }
+                TL_stories.StoryViews storyViews = arrayList2.get(i10);
+                MessageObject messageObject = (MessageObject) a7Var.f5152j.get(num);
+                if (messageObject != null && (storyItem = messageObject.storyItem) != null) {
+                    storyItem.views = storyViews;
+                    z10 = true;
+                }
+            }
+            if (z10) {
+                a7Var.x();
+            }
+        }
+        return true;
     }
 }

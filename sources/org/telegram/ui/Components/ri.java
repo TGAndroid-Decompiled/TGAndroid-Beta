@@ -1,23 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class ri extends o20 {
-    public final vi J;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public interface ri {
+    void E();
 
-    public ri(Context context, org.telegram.ui.ActionBar.c6 c6Var, vi viVar) {
-        super(context, c6Var);
-        this.J = viVar;
-    }
+    void J();
 
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
+    void O(Object obj);
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.w1(this.f27510r, true);
-        return super.onInterceptTouchEvent(motionEvent);
-    }
+    void X(TLRPC.User user);
+
+    void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11);
+
+    boolean p0();
+
+    void r(gh ghVar);
+
+    void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11);
+
+    boolean v();
 }

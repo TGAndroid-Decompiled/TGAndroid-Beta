@@ -1,40 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class he0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25298a;
-    public final re0 f25299b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class he0 extends AnimatorListenerAdapter {
+    public final int f26874a;
+    public final ei.x8 f26875b;
 
-    public he0(re0 re0Var, int i10) {
-        this.f25298a = i10;
-        this.f25299b = re0Var;
+    public he0(ei.x8 x8Var, int i10) {
+        this.f26874a = i10;
+        this.f26875b = x8Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25298a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f26874a) {
             case 0:
-                re0 re0Var = this.f25299b;
-                re0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                re0Var.T = floatValue;
-                re0Var.g(floatValue);
-                re0Var.setAlpha(re0Var.T);
+                ei.x8 x8Var = this.f26875b;
+                AnimatorSet animatorSet = (AnimatorSet) x8Var.e;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    x8Var.e = null;
+                    return;
+                }
+                return;
+            case 1:
+                ei.x8 x8Var2 = this.f26875b;
+                AnimatorSet animatorSet2 = (AnimatorSet) x8Var2.e;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    x8Var2.e = null;
+                    return;
+                }
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                re0 re0Var2 = this.f25299b;
-                bi.i5 i5Var = re0Var2.e;
-                i5Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
-                i5Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
-                i5Var.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
-                TextView textView = re0Var2.f28512w;
-                textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
-                textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
-                textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, floatValue2));
-                re0Var2.f28511s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
+                ei.x8 x8Var3 = this.f26875b;
+                AnimatorSet animatorSet3 = (AnimatorSet) x8Var3.e;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    x8Var3.e = null;
+                    return;
+                }
                 return;
         }
     }

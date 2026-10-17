@@ -1,18 +1,17 @@
 package org.telegram.ui.web;
 
 import android.app.Activity;
-import bi.n9;
-import ji.h5;
+import ci.z7;
 import org.json.JSONObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.z9;
+import org.telegram.ui.y9;
 public final class d0 implements NotificationCenter.NotificationCenterDelegate {
-    public final n9 f41017a;
-    public final c1 f41018b;
+    public final z7 f42572a;
+    public final a1 f42573b;
 
-    public d0(c1 c1Var, n9 n9Var) {
-        this.f41018b = c1Var;
-        this.f41017a = n9Var;
+    public d0(a1 a1Var, z7 z7Var) {
+        this.f42573b = a1Var;
+        this.f42572a = z7Var;
     }
 
     @Override
@@ -24,16 +23,16 @@ public final class d0 implements NotificationCenter.NotificationCenterDelegate {
             if (intValue == 5000) {
                 NotificationCenter.getGlobalInstance().removeObserver(this, i12);
                 int i13 = iArr[0];
-                c1 c1Var = this.f41018b;
+                a1 a1Var = this.f42573b;
                 if (i13 == 0) {
-                    Activity activity = c1Var.W;
+                    Activity activity = a1Var.W;
                     if (activity != null) {
-                        c1Var.f40991g0 = z9.e0(activity, false, 3, new h5(c1Var, 17));
+                        a1Var.f42524g0 = y9.e0(activity, false, 3, new k0.b(a1Var, 18));
                         return;
                     }
                     return;
                 }
-                c1Var.x(this.f41017a, "scan_qr_popup_closed", new JSONObject());
+                a1Var.x(this.f42572a, "scan_qr_popup_closed", new JSONObject());
             }
         }
     }

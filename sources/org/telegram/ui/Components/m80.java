@@ -1,76 +1,92 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AccountInstance;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class m80 implements RequestDelegate {
-    public final int f27001a = 1;
-    public final Context f27002b;
-    public final long f27003c;
-    public final int d;
-    public final Object e;
-    public final Object f27004f;
-    public final Object f27005g;
-    public final Object h;
-    public final Object f27006i;
+public final class m80 extends FrameLayout {
+    public final r80 f28465a;
 
-    public m80(Context context, bi.s0 s0Var, long j10, byte[] bArr, org.telegram.messenger.video.a aVar, zc zcVar, org.telegram.messenger.video.d dVar, int i10) {
-        this.f27002b = context;
-        this.e = s0Var;
-        this.f27003c = j10;
-        this.f27004f = bArr;
-        this.f27005g = aVar;
-        this.h = zcVar;
-        this.f27006i = dVar;
-        this.d = i10;
+    public m80(r80 r80Var, Context context) {
+        super(context);
+        this.f28465a = r80Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27001a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new fi.f1((org.telegram.ui.ActionBar.a2) this.e, tLObject, (AccountInstance) this.f27004f, (t80) this.f27005g, this.f27003c, this.f27002b, (org.telegram.ui.ActionBar.m2) this.h, this.d, (TLRPC.Peer) this.f27006i));
-                return;
-            default:
-                bi.s0 s0Var = (bi.s0) this.e;
-                byte[] bArr = (byte[]) this.f27004f;
-                org.telegram.messenger.video.a aVar = (org.telegram.messenger.video.a) this.f27005g;
-                zc zcVar = (zc) this.h;
-                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f27006i;
-                Context context = this.f27002b;
-                if (tLObject != null) {
-                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.iw(tLObject, context, s0Var, this.f27003c, bArr, aVar, zcVar, dVar));
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.x31(aVar, zcVar, context, s0Var, 0), 200L);
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.c90(aVar, zcVar, this.d, 10), 200L);
-                        return;
-                    } else {
-                        return;
-                    }
-                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.x31(aVar, zcVar, context, s0Var, 1), 200L);
-                    return;
-                } else {
-                    return;
-                }
-        }
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        r80 r80Var = this.f28465a;
+        Drawable drawable = r80Var.f29877b;
+        int i11 = r80Var.f29881r;
+        i10 = ((org.telegram.ui.ActionBar.f3) r80Var).backgroundPaddingTop;
+        drawable.setBounds(0, i11 - i10, getMeasuredWidth(), getMeasuredHeight());
+        drawable.draw(canvas);
     }
 
-    public m80(org.telegram.ui.ActionBar.a2 a2Var, AccountInstance accountInstance, t80 t80Var, long j10, Context context, org.telegram.ui.ActionBar.m2 m2Var, int i10, TLRPC.Peer peer) {
-        this.e = a2Var;
-        this.f27004f = accountInstance;
-        this.f27005g = t80Var;
-        this.f27003c = j10;
-        this.f27002b = context;
-        this.h = m2Var;
-        this.d = i10;
-        this.f27006i = peer;
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            r80 r80Var = this.f28465a;
+            if (r80Var.f29881r != 0 && motionEvent.getY() < r80Var.f29881r) {
+                r80Var.dismiss();
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        r80.p(this.f28465a);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        int size = View.MeasureSpec.getSize(i11) - AndroidUtilities.statusBarHeight;
+        r80 r80Var = this.f28465a;
+        TextView textView = r80Var.f29879f;
+        measureChildWithMargins(textView, i10, 0, i11, 0);
+        int measuredHeight = textView.getMeasuredHeight();
+        n80 n80Var = r80Var.d;
+        ((FrameLayout.LayoutParams) n80Var.getLayoutParams()).topMargin = AndroidUtilities.dp(65.0f) + measuredHeight;
+        getMeasuredWidth();
+        int D = org.telegram.messenger.q.D(58.0f, r80Var.h.size(), AndroidUtilities.dp(80.0f));
+        i12 = ((org.telegram.ui.ActionBar.f3) r80Var).backgroundPaddingTop;
+        int C = org.telegram.messenger.q.C(55.0f, i12 + D, measuredHeight);
+        int i14 = size / 5;
+        if (C < i14 * 3) {
+            i13 = size - C;
+        } else {
+            i13 = i14 * 2;
+        }
+        if (n80Var.getPaddingTop() != i13) {
+            r80Var.f29880n = true;
+            n80Var.setPadding(0, i13, 0, 0);
+            r80Var.f29880n = false;
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f28465a.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f28465a.f29880n) {
+            return;
+        }
+        super.requestLayout();
     }
 }

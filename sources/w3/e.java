@@ -1,19 +1,19 @@
 package w3;
 
 import e2.x;
-import f2.v;
-public final class e implements d9.k, v {
-    public final h f47087a;
-
-    @Override
-    public void a(long j10, x xVar) {
-        c3.b.c(j10, xVar, this.f47087a.K);
-    }
+import f2.w;
+public final class e implements d9.k, w {
+    public final h f48494a;
 
     @Override
     public Object apply(Object obj) {
         q qVar = (q) obj;
-        this.f47087a.getClass();
+        this.f48494a.getClass();
         return qVar;
+    }
+
+    @Override
+    public void c(long j10, x xVar) {
+        c3.b.c(j10, xVar, this.f48494a.K);
     }
 }

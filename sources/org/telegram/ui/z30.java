@@ -1,19 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.UndoView;
-public final class z30 extends UndoView {
-    public final n60 f42146f0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class z30 extends AnimatorListenerAdapter {
+    public final s50 f43539a;
 
-    public z30(n60 n60Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f42146f0 = n60Var;
+    public z30(s50 s50Var) {
+        this.f43539a = s50Var;
     }
 
     @Override
-    public final void k(long j10, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        if (this.f42146f0.f38261z0 != null) {
-            return;
-        }
-        super.k(j10, i10, obj, obj2, runnable, runnable2);
+    public final void onAnimationEnd(Animator animator) {
+        this.f43539a.X0 = null;
     }
 }

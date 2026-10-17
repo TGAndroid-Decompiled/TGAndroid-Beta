@@ -1,19 +1,24 @@
 package org.telegram.ui;
 
+import android.graphics.Paint;
 import android.view.ViewGroup;
-public final class g40 extends org.telegram.ui.Components.pi0 {
-    public final n60 f36059s1;
+public final class g40 extends Paint {
+    public final s50 f37129a;
 
-    public g40(n60 n60Var, LaunchActivity launchActivity, j50 j50Var, t50 t50Var, f40 f40Var) {
-        super(launchActivity, j50Var, t50Var, f40Var);
-        this.f36059s1 = n60Var;
+    public g40(s50 s50Var) {
+        this.f37129a = s50Var;
     }
 
     @Override
-    public final void invalidate() {
+    public final void setAlpha(int i10) {
         ViewGroup viewGroup;
-        super.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.e3) this.f36059s1).containerView;
-        viewGroup.invalidate();
+        ViewGroup viewGroup2;
+        super.setAlpha(i10);
+        s50 s50Var = this.f37129a;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) s50Var).containerView;
+        if (viewGroup != null) {
+            viewGroup2 = ((org.telegram.ui.ActionBar.f3) s50Var).containerView;
+            viewGroup2.invalidate();
+        }
     }
 }

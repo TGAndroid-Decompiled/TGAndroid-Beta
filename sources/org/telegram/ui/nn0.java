@@ -1,23 +1,31 @@
 package org.telegram.ui;
 
-import java.util.TimerTask;
-import org.telegram.messenger.AndroidUtilities;
-public final class nn0 extends TimerTask {
-    public final on0 f38428a;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class nn0 implements do0 {
+    public final fo0 f39485a;
 
-    public nn0(on0 on0Var) {
-        this.f38428a = on0Var;
+    public nn0(fo0 fo0Var) {
+        this.f39485a = fo0Var;
     }
 
     @Override
-    public final void run() {
-        on0 on0Var = this.f38428a;
-        if (on0Var.v == null) {
-            return;
-        }
-        double currentTimeMillis = System.currentTimeMillis();
-        on0Var.f38718y = (int) (on0Var.f38718y - (currentTimeMillis - on0Var.F));
-        on0Var.F = currentTimeMillis;
-        AndroidUtilities.runOnUIThread(new xk0(this, 7));
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        fo0 fo0Var = this.f39485a;
+        fo0Var.I0 = tL_payments_validateRequestedInfo;
+        fo0Var.B0(tL_payments_validateRequestedInfo.info);
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

@@ -1,63 +1,164 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class zn0 implements Runnable {
-    public final int f42360a;
-    public final ap0 f42361b;
-    public final TLRPC.TL_error f42362c;
-    public final TLObject d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class zn0 implements TextWatcher {
+    public final String[] f43781a = {"34", "37"};
+    public final String[] f43782b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+    public final String[] f43783c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
+    public int d = -1;
+    public int e;
+    public final fo0 f43784f;
 
-    public zn0(ap0 ap0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f42360a = i10;
-        this.f42361b = ap0Var;
-        this.f42362c = tL_error;
-        this.d = tLObject;
+    public zn0(fo0 fo0Var) {
+        this.f43784f = fo0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42360a) {
-            case 0:
-                ap0 ap0Var = this.f42361b;
-                ap0Var.f34018e0 = false;
-                if (this.f42362c == null) {
-                    TL_account.Password password = (TL_account.Password) this.d;
-                    ap0Var.f34008a0 = password;
-                    if (!TwoStepVerificationActivity.i0(password, false)) {
-                        org.telegram.ui.Components.g5.w0(ap0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
-                        return;
-                    }
-                    TLRPC.PaymentForm paymentForm = ap0Var.C0;
-                    if (paymentForm != null && ap0Var.f34008a0.has_password) {
-                        paymentForm.password_missing = false;
-                        paymentForm.can_save_credentials = true;
-                        ap0Var.K0();
-                    }
-                    TwoStepVerificationActivity.m0(ap0Var.f34008a0);
-                    ap0 ap0Var2 = ap0Var.f34021f0;
-                    if (ap0Var2 != null) {
-                        ap0Var2.C0(ap0Var.f34008a0);
-                    }
-                    if (!ap0Var.f34008a0.has_password && ap0Var.f34016d0 == null) {
-                        xn0 xn0Var = new xn0(ap0Var, 3);
-                        ap0Var.f34016d0 = xn0Var;
-                        AndroidUtilities.runOnUIThread(xn0Var, 5000L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                ap0.V(this.f42361b, this.f42362c, this.d);
-                return;
-            default:
-                ap0.X(this.f42361b, this.f42362c, this.d);
-                return;
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        boolean z10;
+        int i11;
+        int i12;
+        String[] strArr;
+        int i13;
+        String str;
+        fo0 fo0Var = this.f43784f;
+        if (fo0Var.f36994o0) {
+            return;
         }
+        int i14 = 0;
+        EditTextBoldCursor editTextBoldCursor = fo0Var.f36983f[0];
+        int selectionStart = editTextBoldCursor.getSelectionStart();
+        String obj = editTextBoldCursor.getText().toString();
+        int i15 = 3;
+        int i16 = 1;
+        if (this.d == 3) {
+            obj = obj.substring(0, this.e) + obj.substring(this.e + 1);
+            selectionStart--;
+        }
+        StringBuilder sb2 = new StringBuilder(obj.length());
+        int i17 = 0;
+        while (i17 < obj.length()) {
+            int i18 = i17 + 1;
+            String substring = obj.substring(i17, i18);
+            if ("0123456789".contains(substring)) {
+                sb2.append(substring);
+            }
+            i17 = i18;
+        }
+        fo0Var.f36994o0 = true;
+        String str2 = null;
+        int i19 = 100;
+        if (sb2.length() > 0) {
+            String sb3 = sb2.toString();
+            int i20 = 0;
+            while (true) {
+                if (i20 < i15) {
+                    if (i20 != 0) {
+                        if (i20 != i16) {
+                            strArr = this.f43782b;
+                            i13 = 14;
+                            str = "xxxx xxxx xxxx xx";
+                        } else {
+                            strArr = this.f43781a;
+                            i13 = 15;
+                            str = "xxxx xxxx xxxx xxx";
+                        }
+                    } else {
+                        strArr = this.f43783c;
+                        i13 = 16;
+                        str = "xxxx xxxx xxxx xxxx";
+                    }
+                    i10 = i16;
+                    for (int i21 = i14; i21 < strArr.length; i21++) {
+                        String str3 = strArr[i21];
+                        if (sb3.length() <= str3.length()) {
+                            if (str3.startsWith(sb3)) {
+                                i19 = i13;
+                                str2 = str;
+                                break;
+                            }
+                        } else if (sb3.startsWith(str3)) {
+                            i19 = i13;
+                            str2 = str;
+                            break;
+                        }
+                    }
+                    if (str2 != null) {
+                        break;
+                    }
+                    i20++;
+                    i16 = i10;
+                    i14 = 0;
+                    i15 = 3;
+                } else {
+                    i10 = i16;
+                    break;
+                }
+            }
+            if (sb2.length() > i19) {
+                sb2.setLength(i19);
+            }
+        } else {
+            i10 = 1;
+        }
+        if (str2 != null) {
+            if (sb2.length() == i19) {
+                fo0Var.f36983f[i10].requestFocus();
+            }
+            editTextBoldCursor.setTextColor(fo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
+            int i22 = 0;
+            while (true) {
+                if (i22 >= sb2.length()) {
+                    break;
+                } else if (i22 < str2.length()) {
+                    if (str2.charAt(i22) == ' ') {
+                        sb2.insert(i22, ' ');
+                        i22++;
+                        if (selectionStart == i22 && (i12 = this.d) != 2 && i12 != 3) {
+                            selectionStart++;
+                        }
+                    }
+                    i22++;
+                } else {
+                    sb2.insert(i22, ' ');
+                    if (selectionStart == i22 + 1 && (i11 = this.d) != 2 && i11 != 3) {
+                        selectionStart++;
+                    }
+                }
+            }
+        }
+        if (!sb2.toString().equals(editable.toString())) {
+            z10 = false;
+            editable.replace(0, editable.length(), sb2);
+        } else {
+            z10 = false;
+        }
+        if (selectionStart >= 0) {
+            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+        }
+        fo0Var.f36994o0 = z10;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        if (i11 == 0 && i12 == 1) {
+            this.d = 1;
+        } else if (i11 == 1 && i12 == 0) {
+            if (charSequence.charAt(i10) == ' ' && i10 > 0) {
+                this.d = 3;
+                this.e = i10 - 1;
+                return;
+            }
+            this.d = 2;
+        } else {
+            this.d = -1;
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

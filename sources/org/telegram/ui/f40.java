@@ -1,25 +1,24 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.tgnet.TLRPC;
-public final class f40 extends v4 {
-    public final n60 U;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+public final class f40 extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.voip.t f36786a;
+    public final s50 f36787b;
 
-    public f40(n60 n60Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.U = n60Var;
+    public f40(s50 s50Var, org.telegram.ui.Components.voip.t tVar) {
+        this.f36787b = s50Var;
+        this.f36786a = tVar;
     }
 
     @Override
-    public final void c() {
-        n60 n60Var = this.U;
-        AccountInstance accountInstance = n60Var.d;
-        g40 g40Var = n60Var.f38159b;
-        long dialogId = g40Var.getDialogId();
-        if (dialogId > 0) {
-            TLRPC.User user = accountInstance.getMessagesController().getUser(Long.valueOf(dialogId));
-            g40Var.H(null, ImageLocation.getForUserOrChat(accountInstance.getCurrentAccount(), user, 0), ImageLocation.getForUserOrChat(accountInstance.getCurrentAccount(), user, 1), false);
+    public final void onAnimationEnd(Animator animator) {
+        ViewGroup viewGroup;
+        org.telegram.ui.Components.voip.t tVar = this.f36786a;
+        if (tVar.getParent() != null) {
+            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f36787b).containerView;
+            viewGroup.removeView(tVar);
         }
     }
 }

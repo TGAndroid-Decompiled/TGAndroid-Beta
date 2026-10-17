@@ -1,57 +1,133 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.TextPaint;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.ViewTreeObserver;
 import org.telegram.messenger.AndroidUtilities;
-public final class nu0 implements ViewTreeObserver.OnPreDrawListener {
-    public final hv0 f38476a;
-    public final Integer f38477b;
-    public final PhotoViewer f38478c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class nu0 extends View {
+    public final Paint f39557a;
+    public final TextPaint f39558b;
+    public int f39559c;
+    public int d;
+    public int e;
+    public int f39560f;
+    public final String h;
+    public final String f39561n;
+    public int f39562r;
+    public final PhotoViewer f39563s;
 
-    public nu0(PhotoViewer photoViewer, hv0 hv0Var, Integer num) {
-        this.f38478c = photoViewer;
-        this.f38476a = hv0Var;
-        this.f38477b = num;
+    public nu0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f39563s = photoViewer;
+        this.f39557a = new Paint(1);
+        TextPaint textPaint = new TextPaint(1);
+        this.f39558b = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setColor(-3289651);
+        this.h = LocaleController.getString("AccDescrVideoCompressLow", R.string.AccDescrVideoCompressLow);
+        this.f39561n = LocaleController.getString("AccDescrVideoCompressHigh", R.string.AccDescrVideoCompressHigh);
+        setImportantForAccessibility(1);
+        setFocusable(true);
+        setAccessibilityDelegate(new mu0(this));
     }
 
     @Override
-    public final boolean onPreDraw() {
-        PhotoViewer photoViewer = this.f38478c;
-        photoViewer.f31945g0.getViewTreeObserver().removeOnPreDrawListener(this);
-        photoViewer.F.setTranslationY(-AndroidUtilities.dp(32.0f));
-        ViewPropertyAnimator duration = photoViewer.F.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
-        org.telegram.ui.Components.es esVar = org.telegram.ui.Components.es.f24465f;
-        duration.setInterpolator(esVar).start();
-        photoViewer.N0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.N0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(esVar).start();
-        photoViewer.O0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(esVar).start();
-        photoViewer.P0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.P0.animate().alpha(1.0f).setDuration(150L).setInterpolator(esVar).start();
-        photoViewer.S0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.S0.setAlpha(0.0f);
-        photoViewer.S0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(esVar).start();
-        photoViewer.f32054s3.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.f32054s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(esVar).start();
-        photoViewer.f31928e0.setAlpha(0.0f);
-        photoViewer.L0.setAlpha(0);
-        photoViewer.f32010n4 = 4;
-        photoViewer.f31928e0.invalidate();
-        AnimatorSet animatorSet = new AnimatorSet();
-        x5 x5Var = photoViewer.P0;
-        ObjectAnimator duration2 = ObjectAnimator.ofFloat(x5Var, View.TRANSLATION_Y, x5Var.getTranslationY(), 0.0f).setDuration(220L);
-        duration2.setInterpolator(esVar);
-        x5 x5Var2 = photoViewer.P0;
-        Property property = View.ALPHA;
-        ObjectAnimator duration3 = ObjectAnimator.ofFloat(x5Var2, property, 1.0f).setDuration(220L);
-        duration3.setInterpolator(esVar);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f31928e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f31972j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
-        animatorSet.addListener(new mu0(this));
-        animatorSet.start();
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        float f7;
+        if (this.f39563s.Z7 != 1) {
+            this.f39560f = (((getMeasuredWidth() - (this.f39559c * this.f39563s.Z7)) - (((this.f39563s.Z7 * 2) - 2) * this.d)) - (this.e * 2)) / (this.f39563s.Z7 - 1);
+        } else {
+            this.f39560f = ((getMeasuredWidth() - (this.f39559c * this.f39563s.Z7)) - (this.d * 2)) - (this.e * 2);
+        }
+        int dp = AndroidUtilities.dp(6.0f) + (getMeasuredHeight() / 2);
+        for (int i11 = 0; i11 < this.f39563s.Z7; i11++) {
+            int i12 = this.e;
+            int i13 = (this.d * 2) + this.f39560f;
+            int i14 = this.f39559c;
+            int i15 = (i14 / 2) + ((i13 + i14) * i11) + i12;
+            if (i11 <= this.f39563s.Y7) {
+                this.f39557a.setColor(-11292945);
+            } else {
+                this.f39557a.setColor(1728053247);
+            }
+            float f10 = i15;
+            float f11 = dp;
+            if (i11 == this.f39563s.Y7) {
+                i10 = AndroidUtilities.dp(6.0f);
+            } else {
+                i10 = this.f39559c / 2;
+            }
+            canvas.drawCircle(f10, f11, i10, this.f39557a);
+            if (i11 != 0) {
+                int i16 = ((i15 - (this.f39559c / 2)) - this.d) - this.f39560f;
+                float f12 = 0.0f;
+                if (i11 == this.f39563s.Y7 + 1) {
+                    f7 = AndroidUtilities.dpf2(2.0f);
+                } else {
+                    f7 = 0.0f;
+                }
+                if (i11 == this.f39563s.Y7) {
+                    f12 = AndroidUtilities.dpf2(2.0f);
+                }
+                canvas.drawRect(f7 + i16, dp - AndroidUtilities.dp(1.0f), (i16 + this.f39560f) - f12, AndroidUtilities.dp(2.0f) + dp, this.f39557a);
+            }
+        }
+        canvas.drawText(this.h, this.e, dp - AndroidUtilities.dp(16.0f), this.f39558b);
+        canvas.drawText(this.f39561n, (getMeasuredWidth() - this.e) - this.f39558b.measureText(this.f39561n), dp - AndroidUtilities.dp(16.0f), this.f39558b);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.f39559c = AndroidUtilities.dp(8.0f);
+        this.d = AndroidUtilities.dp(2.0f);
+        this.e = AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        float x10 = motionEvent.getX();
+        if (motionEvent.getAction() == 0) {
+            this.f39562r = this.f39563s.Y7;
+            getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        int i10 = 0;
+        if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+            while (true) {
+                if (i10 >= this.f39563s.Z7) {
+                    break;
+                }
+                int i11 = this.e;
+                int i12 = this.f39560f;
+                int i13 = this.d;
+                int i14 = this.f39559c;
+                int i15 = i14 / 2;
+                int i16 = (((i13 * 2) + i12 + i14) * i10) + i11 + i15;
+                int i17 = (i12 / 2) + i15 + i13;
+                if (x10 > i16 - i17 && x10 < i16 + i17) {
+                    if (this.f39563s.Y7 != i10) {
+                        this.f39563s.Y7 = i10;
+                        this.f39563s.S0();
+                        invalidate();
+                        return true;
+                    }
+                } else {
+                    i10++;
+                }
+            }
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (this.f39563s.Y7 != this.f39562r) {
+                this.f39563s.p2(1);
+            }
+            this.f39563s.L6 = false;
+            return true;
+        }
         return true;
     }
 }

@@ -1,36 +1,91 @@
 package m4;
-public final class i0 implements Runnable {
-    public final int f15201a;
-    public final p0 f15202b;
-    public final m1 f15203c;
 
-    public i0(p0 p0Var, m1 m1Var, int i10) {
-        this.f15201a = i10;
-        this.f15202b = p0Var;
-        this.f15203c = m1Var;
+import android.os.Bundle;
+import v7.q8;
+public final class i0 implements o0 {
+    public final int f16555a;
+    public final p0 f16556b;
+
+    public i0(p0 p0Var, int i10) {
+        this.f16555a = i10;
+        this.f16556b = p0Var;
     }
 
     @Override
-    public final void run() {
-        b2.p1 p1Var;
-        switch (this.f15201a) {
+    public final void f(v vVar) {
+        int i10 = this.f16555a;
+        p0 p0Var = this.f16556b;
+        switch (i10) {
             case 0:
-                p0 p0Var = this.f15202b;
-                n4.s sVar = p0Var.f15308m;
-                m1 m1Var = this.f15203c;
-                sVar.D(p0Var.G(m1Var));
-                n0 n0Var = p0Var.f15304i;
-                if (m1Var.s().a(17)) {
-                    p1Var = m1Var.y0();
-                } else {
-                    p1Var = b2.p1.f2285a;
+                p0Var.f16655g.n(vVar);
+                return;
+            case 1:
+                f0 f0Var = p0Var.f16655g;
+                if (f0Var.f16528t.S0() != null) {
+                    pb.a aVar = f0Var.e;
+                    f0Var.s(vVar);
+                    aVar.getClass();
+                    q8.b(new s1(-6));
+                    return;
                 }
-                n0Var.s(p1Var);
+                return;
+            case 2:
+                p0Var.f16655g.f16528t.V();
+                return;
+            case 3:
+                p0Var.f16655g.f16528t.E();
+                return;
+            case 4:
+                p0Var.f16655g.f16528t.I0();
+                return;
+            case 5:
+                p0Var.f16655g.f16528t.J0();
+                return;
+            case 6:
+                p0Var.f16655g.g(vVar, true);
+                return;
+            case 7:
+                p0Var.f16655g.f16528t.b();
+                return;
+            case 8:
+                p0Var.f16655g.f16528t.stop();
+                return;
+            case 9:
+                f0 f0Var2 = p0Var.f16655g;
+                m1 m1Var = f0Var2.f16528t;
+                if (e2.m0.c0(m1Var, f0Var2.f16524p)) {
+                    e2.m0.J(m1Var);
+                    return;
+                } else if (m1Var != null && m1Var.o0(1)) {
+                    m1Var.e();
+                    return;
+                } else {
+                    return;
+                }
+            case 10:
+                p0Var.f16655g.f16528t.H0();
+                return;
+            case 11:
+                p0Var.f16655g.f16528t.f0();
                 return;
             default:
-                p0 p0Var2 = this.f15202b;
-                p0Var2.f15308m.D(p0Var2.G(this.f15203c));
+                m1 m1Var2 = p0Var.f16655g.f16528t;
+                String str = e2.m0.f8254a;
+                if (m1Var2 != null && m1Var2.o0(1)) {
+                    m1Var2.e();
+                    return;
+                }
                 return;
         }
+    }
+
+    public i0(p0 p0Var, b2.g1 g1Var) {
+        this.f16555a = 1;
+        this.f16556b = p0Var;
+    }
+
+    public i0(p0 p0Var, o1 o1Var, Bundle bundle) {
+        this.f16555a = 0;
+        this.f16556b = p0Var;
     }
 }

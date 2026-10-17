@@ -1,23 +1,27 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class d70 extends s4.r0 {
-    public final s4.b0 f24001a;
-    public final p70 f24002b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class d70 implements RequestDelegate {
+    public final int f25503a;
+    public final f70 f25504b;
 
-    public d70(p70 p70Var, s4.b0 b0Var) {
-        this.f24002b = p70Var;
-        this.f24001a = b0Var;
+    public d70(f70 f70Var, int i10) {
+        this.f25503a = i10;
+        this.f25504b = f70Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        p70 p70Var = this.f24002b;
-        p70.P(p70Var);
-        if (p70Var.R && !p70Var.Q) {
-            if (p70Var.S - this.f24001a.N0() < 10) {
-                p70Var.Y();
-            }
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f25503a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new lg(this.f25504b, tL_error, tLObject, 10));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new yt(17, this.f25504b, tL_error));
+                return;
         }
     }
 }

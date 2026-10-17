@@ -2,68 +2,141 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class eo0 extends EditTextBoldCursor {
-    public final j5 f24444b;
-    public int f24445c;
-    public final r6 d;
-    public final org.telegram.ui.ActionBar.c6 e;
+public final class eo0 extends View {
+    public do0 f25963a;
+    public final f6 f25964b;
+    public final dh.d f25965c;
+    public ah.i1 d;
+    public boolean e;
+    public final Path f25966f;
+    public final RectF h;
+    public final RectF f25967n;
+    public boolean f25968r;
+    public final fo0 f25969s;
 
-    public eo0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+    public eo0(fo0 fo0Var, Context context) {
         super(context);
-        this.e = c6Var;
-        this.f24444b = new j5(this);
-        r6 r6Var = new r6(false, true, true);
-        this.d = r6Var;
-        r6Var.n(0.2f, 160L, es.h);
-        r6Var.w(AndroidUtilities.dp(15.33f));
-        r6Var.setCallback(this);
-        r6Var.f28435b = 5;
+        this.f25969s = fo0Var;
+        this.f25964b = new f6(this, 0L, 260L, bs.h);
+        this.f25966f = new Path();
+        this.h = new RectF();
+        this.f25967n = new RectF();
+        w7.b6.a(this);
+        bh.b bVar = fo0Var.v;
+        if (bVar != null) {
+            dh.d c10 = bVar.c(this, null, false);
+            c10.o(fo0Var.f26327w);
+            c10.u(AndroidUtilities.dp(5.0f));
+            dh.d n10 = c10.n();
+            n10.q(AndroidUtilities.dp(6.0f));
+            n10.p(AndroidUtilities.dp(4.0f));
+            this.f25965c = n10;
+        }
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        if (this.e == z10) {
+            return;
+        }
+        this.e = z10;
+        do0 do0Var = this.f25963a;
+        if (do0Var != null) {
+            do0Var.f761p = z10;
+            f6 f6Var = this.f25964b;
+            if (z11) {
+                do0Var.f754i = do0Var.N;
+                do0Var.f752g = do0Var.O;
+                do0Var.h = do0Var.P;
+                f6Var.d(0.0f, true);
+            } else {
+                f6Var.d(1.0f, true);
+            }
+            invalidate();
+        }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f24445c < 0) {
-            i10 = org.telegram.ui.ActionBar.g6.f19822p7;
-        } else {
-            i10 = org.telegram.ui.ActionBar.g6.P5;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (!this.f25968r) {
+            do0 do0Var = this.f25963a;
+            if (do0Var != null) {
+                do0Var.a();
+            }
+            this.f25968r = true;
         }
-        int a2 = this.f24444b.a(org.telegram.ui.ActionBar.g6.w0(i10, this.e), false);
-        r6 r6Var = this.d;
-        r6Var.u(a2);
-        r6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        r6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f25968r) {
+            do0 do0Var = this.f25963a;
+            if (do0Var != null) {
+                do0Var.b();
+            }
+            this.f25968r = false;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        fo0 fo0Var = this.f25969s;
+        Paint paint = fo0Var.f26328x;
+        int width = (getWidth() - this.f25963a.A) / 2;
+        int height = getHeight();
+        do0 do0Var = this.f25963a;
+        int i11 = do0Var.B;
+        int i12 = (height - i11) / 2;
+        dh.d dVar = this.f25965c;
+        if (dVar != null) {
+            Rect rect = AndroidUtilities.rectTmp2;
+            rect.set(width, i12, do0Var.A + width, i11 + i12);
+            RectF rectF = this.f25967n;
+            rectF.set(rect);
+            RectF rectF2 = this.h;
+            boolean equals = rectF.equals(rectF2);
+            Path path = this.f25966f;
+            if (!equals) {
+                rectF2.set(rectF);
+                ah.j1.h(rectF2, rectF, path);
+            }
+            rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+            rect.right = AndroidUtilities.dp(1.0f) + rect.right;
+            dVar.setBounds(rect);
+            canvas.save();
+            canvas.clipPath(path);
+            dVar.draw(canvas);
+            org.telegram.ui.ActionBar.d6 d6Var = fo0Var.f26322c;
+            if (d6Var == null ? org.telegram.ui.ActionBar.h6.I.q() : d6Var.a()) {
+                i10 = 687865855;
+            } else {
+                i10 = -1;
+            }
+            paint.setColor(i10);
+            canvas.drawPath(path, paint);
+            canvas.restore();
+        }
+        this.f25963a.d(canvas, width, i12, this.f25964b.d(1.0f, false), 1.0f, false, false, 0.0f);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        r6 r6Var = this.d;
-        if (r6Var != null) {
-            this.f24445c = 12 - charSequence.length();
-            r6Var.a();
-            String str = "";
-            if (this.f24445c <= 4) {
-                str = "" + this.f24445c;
-            }
-            r6Var.t(str, true, true);
+        int dp;
+        int dp2 = AndroidUtilities.dp(8.67f);
+        do0 do0Var = this.f25963a;
+        if (do0Var != null) {
+            dp = do0Var.A;
+        } else {
+            dp = AndroidUtilities.dp(44.33f);
         }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(dp2 + dp, 1073741824), i11);
     }
 }

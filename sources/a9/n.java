@@ -2,14 +2,14 @@ package a9;
 
 import java.util.Iterator;
 public final class n extends l {
-    public static final Object[] f352f;
+    public static final Object[] f351f;
     public static final n h;
     public final transient Object[] d;
     public final transient Object[] e;
 
     static {
         Object[] objArr = new Object[0];
-        f352f = objArr;
+        f351f = objArr;
         h = new n(objArr, objArr);
     }
 
@@ -40,11 +40,11 @@ public final class n extends l {
 
     @Override
     public final Iterator iterator() {
-        m mVar = this.f347b;
+        m mVar = this.f346b;
         if (mVar == null) {
-            i iVar = k.f344b;
+            i iVar = k.f343b;
             mVar = m.d;
-            this.f347b = mVar;
+            this.f346b = mVar;
         }
         return mVar.listIterator(0);
     }

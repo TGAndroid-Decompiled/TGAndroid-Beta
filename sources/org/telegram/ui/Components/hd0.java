@@ -1,168 +1,591 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Color;
-import android.graphics.ComposeShader;
+import android.graphics.BlendMode;
+import android.graphics.Canvas;
+import android.graphics.DrawFilter;
 import android.graphics.Matrix;
+import android.graphics.NinePatch;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Picture;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Region;
+import android.graphics.RenderNode;
+import android.graphics.fonts.Font;
+import android.graphics.text.MeasuredText;
 import android.os.Build;
-import org.telegram.messenger.Utilities;
-public final class hd0 {
-    public static final float[] f25286k = new float[4];
-    public static final Matrix f25287l = new Matrix();
-    public final fd0 d;
-    public int e;
-    public int f25291f;
-    public int f25292g;
-    public int h;
-    public final androidx.biometric.e f25288a = new androidx.biometric.e(new n2(16));
-    public final a5.a f25289b = new a5.a(14, (byte) 0);
-    public final u10 f25290c = new u10();
-    public final Matrix f25293i = new Matrix();
-    public final RectF f25294j = new RectF();
+public final class hd0 extends Canvas {
+    public Canvas f26870a;
 
-    public hd0() {
-        if (Build.VERSION.SDK_INT >= 33) {
-            this.d = new fd0();
-        } else {
-            this.d = null;
-        }
-    }
-
-    public static void a(Matrix matrix, float[] fArr) {
-        Matrix matrix2 = f25287l;
-        matrix.invert(matrix2);
-        float[] fArr2 = f25286k;
-        fArr2[0] = 0.0f;
-        fArr2[1] = 0.0f;
-        fArr2[2] = 1.0f;
-        fArr2[3] = 1.0f;
-        matrix2.mapPoints(fArr2);
-        fArr[0] = fArr2[2] - fArr2[0];
-        fArr[1] = fArr2[3] - fArr2[1];
-        fArr[2] = fArr2[0];
-        fArr[3] = fArr2[1];
-    }
-
-    public static boolean b(float f7) {
-        if (Math.abs(f7 - 1.0f) <= 1.0E-4f) {
-            return true;
+    @Override
+    public final boolean clipOutPath(Path path) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.f26870a.clipOutPath(path);
         }
         return false;
     }
 
-    public final void c(RectF rectF) {
-        RectF rectF2 = this.f25294j;
-        rectF2.set(0.0f, 0.0f, this.e, this.f25291f);
-        Matrix.ScaleToFit scaleToFit = Matrix.ScaleToFit.FILL;
-        Matrix matrix = this.f25293i;
-        matrix.setRectToRect(rectF2, rectF, scaleToFit);
-        u10 u10Var = this.f25290c;
-        gd0 gd0Var = (gd0) u10Var.f29237c;
-        gd0Var.f24943b.set(matrix);
-        BitmapShader bitmapShader = gd0Var.d;
-        if (bitmapShader != null) {
-            bitmapShader.setLocalMatrix(matrix);
+    @Override
+    public final boolean clipOutRect(float f7, float f10, float f11, float f12) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.f26870a.clipOutRect(f7, f10, f11, f12);
         }
-        gd0 gd0Var2 = (gd0) u10Var.d;
-        gd0Var2.f24943b.set(matrix);
-        BitmapShader bitmapShader2 = gd0Var2.d;
-        if (bitmapShader2 != null) {
-            bitmapShader2.setLocalMatrix(matrix);
-        }
-        fd0 fd0Var = this.d;
-        if (fd0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr = fd0Var.f24713g;
-            a(matrix, fArr);
-            fd0Var.e.a(fArr);
-            fd0Var.f24712f.a(fArr);
+        return false;
+    }
+
+    @Override
+    public final boolean clipPath(Path path) {
+        return this.f26870a.clipPath(path);
+    }
+
+    @Override
+    public final boolean clipRect(float f7, float f10, float f11, float f12) {
+        return false;
+    }
+
+    @Override
+    public final void concat(Matrix matrix) {
+        this.f26870a.concat(matrix);
+    }
+
+    @Override
+    public final void disableZ() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f26870a.disableZ();
         }
     }
 
-    public final void d(Matrix matrix) {
-        boolean z10;
-        u10 u10Var = this.f25290c;
-        float[] fArr = (float[]) u10Var.h;
-        a(matrix, fArr);
-        gd0 gd0Var = (gd0) u10Var.e;
-        gd0Var.f24943b.set(matrix);
-        BitmapShader bitmapShader = gd0Var.d;
-        if (bitmapShader != null) {
-            bitmapShader.setLocalMatrix(matrix);
-        }
-        boolean z11 = false;
-        if (b(fArr[0]) && b(fArr[1])) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        gd0Var.a(z10);
-        fd0 fd0Var = this.d;
-        if (fd0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr2 = fd0Var.f24713g;
-            a(matrix, fArr2);
-            gd0 gd0Var2 = fd0Var.d;
-            if (b(fArr2[0]) && b(fArr2[1])) {
-                z11 = true;
-            }
-            gd0Var2.a(z11);
-            fd0Var.e.b(fArr2);
-            fd0Var.f24712f.b(fArr2);
+    @Override
+    public final void drawARGB(int i10, int i11, int i12, int i13) {
+        this.f26870a.drawARGB(i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void drawArc(RectF rectF, float f7, float f10, boolean z10, Paint paint) {
+        this.f26870a.drawArc(rectF, f7, f10, z10, paint);
+    }
+
+    @Override
+    public final void drawBitmap(Bitmap bitmap, Matrix matrix, Paint paint) {
+        this.f26870a.drawBitmap(bitmap, matrix, paint);
+    }
+
+    @Override
+    public final void drawBitmapMesh(Bitmap bitmap, int i10, int i11, float[] fArr, int i12, int[] iArr, int i13, Paint paint) {
+        this.f26870a.drawBitmapMesh(bitmap, i10, i11, fArr, i12, iArr, i13, paint);
+    }
+
+    @Override
+    public final void drawCircle(float f7, float f10, float f11, Paint paint) {
+        this.f26870a.drawCircle(f7, f10, f11, paint);
+    }
+
+    @Override
+    public final void drawColor(long j10, BlendMode blendMode) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f26870a.drawColor(j10, blendMode);
         }
     }
 
-    public final Paint e(Bitmap bitmap, Bitmap bitmap2, int i10, int i11, int i12, boolean z10) {
-        Bitmap bitmap3;
-        Bitmap bitmap4 = (Bitmap) this.f25288a.m(bitmap2);
-        if (i12 >= 0) {
-            int k10 = i0.a.k(i10, ((Color.alpha(i10) * i11) * i12) / 25500);
-            a5.a aVar = this.f25289b;
-            hh.a aVar2 = (hh.a) aVar.f282c;
-            if (aVar2.a(bitmap) || k10 != aVar.f281b || ((Bitmap) aVar.d) == null) {
-                Bitmap bitmap5 = (Bitmap) aVar.d;
-                if (bitmap5 == null || bitmap5.getWidth() != bitmap.getWidth() || ((Bitmap) aVar.d).getHeight() != bitmap.getHeight()) {
-                    aVar.d = Bitmap.createBitmap(bitmap);
-                }
-                Utilities.applySoftLight(bitmap, (Bitmap) aVar.d, k10);
-                aVar2.b(bitmap);
-                aVar.f281b = k10;
-            }
-            bitmap3 = (Bitmap) aVar.d;
-        } else {
-            bitmap3 = null;
+    @Override
+    public final void drawDoubleRoundRect(RectF rectF, float[] fArr, RectF rectF2, float[] fArr2, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f26870a.drawDoubleRoundRect(rectF, fArr, rectF2, fArr2, paint);
         }
-        Bitmap bitmap6 = bitmap3;
-        this.e = bitmap.getWidth();
-        this.f25291f = bitmap.getHeight();
-        this.f25292g = bitmap4.getWidth();
-        this.h = bitmap4.getHeight();
-        fd0 fd0Var = this.d;
-        if (fd0Var != null && z10 && Build.VERSION.SDK_INT >= 33) {
-            return fd0Var.a(bitmap, bitmap4, bitmap6, i11, i12);
+    }
+
+    @Override
+    public final void drawGlyphs(int[] iArr, int i10, float[] fArr, int i11, int i12, Font font, Paint paint) {
+        this.f26870a.drawGlyphs(iArr, i10, fArr, i11, i12, font, paint);
+    }
+
+    @Override
+    public final void drawLine(float f7, float f10, float f11, float f12, Paint paint) {
+        this.f26870a.drawLine(f7, f10, f11, f12, paint);
+    }
+
+    @Override
+    public final void drawLines(float[] fArr, int i10, int i11, Paint paint) {
+        this.f26870a.drawLines(fArr, i10, i11, paint);
+    }
+
+    @Override
+    public final void drawOval(RectF rectF, Paint paint) {
+        this.f26870a.drawOval(rectF, paint);
+    }
+
+    @Override
+    public final void drawPaint(Paint paint) {
+        this.f26870a.drawPaint(paint);
+    }
+
+    @Override
+    public final void drawPatch(NinePatch ninePatch, RectF rectF, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 31) {
+            this.f26870a.drawPatch(ninePatch, rectF, paint);
         }
-        u10 u10Var = this.f25290c;
-        ut utVar = (ut) u10Var.f29238f;
-        ut utVar2 = (ut) u10Var.f29239g;
-        gd0 gd0Var = (gd0) u10Var.d;
-        Paint paint = (Paint) u10Var.f29236b;
-        gd0 gd0Var2 = (gd0) u10Var.f29237c;
-        boolean b10 = gd0Var2.b(bitmap);
-        gd0 gd0Var3 = (gd0) u10Var.e;
-        boolean b11 = b10 | gd0Var3.b(bitmap4);
-        if (i12 >= 0) {
-            if ((gd0Var.b(bitmap6) | b11) || u10Var.f29235a != 1) {
-                u10Var.f29235a = 1;
-                paint.setShader(new ComposeShader(gd0Var2.d, new ComposeShader(gd0Var.d, gd0Var3.d, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
-                return paint;
-            }
-        } else if ((utVar2.a(i0.a.k(-1, ((-i12) * i11) / 100)) | b11 | utVar.a(-16777216)) || u10Var.f29235a != 2) {
-            u10Var.f29235a = 2;
-            paint.setShader(new ComposeShader((zf.j) utVar.f29436b, new ComposeShader(new ComposeShader(gd0Var2.d, gd0Var3.d, PorterDuff.Mode.DST_IN), (zf.j) utVar2.f29436b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
-            return paint;
+    }
+
+    @Override
+    public final void drawPath(Path path, Paint paint) {
+        this.f26870a.drawPath(path, paint);
+    }
+
+    @Override
+    public final void drawPicture(Picture picture, RectF rectF) {
+        this.f26870a.drawPicture(picture, rectF);
+    }
+
+    @Override
+    public final void drawPoint(float f7, float f10, Paint paint) {
+        this.f26870a.drawPoint(f7, f10, paint);
+    }
+
+    @Override
+    public final void drawPoints(float[] fArr, int i10, int i11, Paint paint) {
+        this.f26870a.drawPoints(fArr, i10, i11, paint);
+    }
+
+    @Override
+    public final void drawPosText(String str, float[] fArr, Paint paint) {
+        this.f26870a.drawPosText(str, fArr, paint);
+    }
+
+    @Override
+    public final void drawRGB(int i10, int i11, int i12) {
+        this.f26870a.drawRGB(i10, i11, i12);
+    }
+
+    @Override
+    public final void drawRect(Rect rect, Paint paint) {
+        this.f26870a.drawRect(rect, paint);
+    }
+
+    @Override
+    public final void drawRenderNode(RenderNode renderNode) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f26870a.drawRenderNode(renderNode);
         }
-        return paint;
+    }
+
+    @Override
+    public final void drawRoundRect(RectF rectF, float f7, float f10, Paint paint) {
+        this.f26870a.drawRoundRect(rectF, f7, f10, paint);
+    }
+
+    @Override
+    public final void drawText(String str, float f7, float f10, Paint paint) {
+        this.f26870a.drawText(str, f7, f10, paint);
+    }
+
+    @Override
+    public final void drawTextOnPath(char[] cArr, int i10, int i11, Path path, float f7, float f10, Paint paint) {
+        this.f26870a.drawTextOnPath(cArr, i10, i11, path, f7, f10, paint);
+    }
+
+    @Override
+    public final void drawTextRun(char[] cArr, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
+        this.f26870a.drawTextRun(cArr, i10, i11, i12, i13, f7, f10, z10, paint);
+    }
+
+    @Override
+    public final void drawVertices(Canvas.VertexMode vertexMode, int i10, float[] fArr, int i11, float[] fArr2, int i12, int[] iArr, int i13, short[] sArr, int i14, int i15, Paint paint) {
+        this.f26870a.drawVertices(vertexMode, i10, fArr, i11, fArr2, i12, iArr, i13, sArr, i14, i15, paint);
+    }
+
+    @Override
+    public final void enableZ() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f26870a.enableZ();
+        }
+    }
+
+    @Override
+    public final boolean getClipBounds(Rect rect) {
+        return this.f26870a.getClipBounds(rect);
+    }
+
+    @Override
+    public final int getDensity() {
+        return this.f26870a.getDensity();
+    }
+
+    @Override
+    public final DrawFilter getDrawFilter() {
+        return this.f26870a.getDrawFilter();
+    }
+
+    @Override
+    public final int getHeight() {
+        return this.f26870a.getHeight();
+    }
+
+    @Override
+    public final void getMatrix(Matrix matrix) {
+        this.f26870a.getMatrix(matrix);
+    }
+
+    @Override
+    public final int getMaximumBitmapHeight() {
+        return this.f26870a.getMaximumBitmapHeight();
+    }
+
+    @Override
+    public final int getMaximumBitmapWidth() {
+        return this.f26870a.getMaximumBitmapWidth();
+    }
+
+    @Override
+    public final int getSaveCount() {
+        return this.f26870a.getSaveCount();
+    }
+
+    @Override
+    public final int getWidth() {
+        return this.f26870a.getWidth();
+    }
+
+    @Override
+    public final boolean isOpaque() {
+        return this.f26870a.isOpaque();
+    }
+
+    @Override
+    public final boolean quickReject(float f7, float f10, float f11, float f12) {
+        if (Build.VERSION.SDK_INT >= 30) {
+            return this.f26870a.quickReject(f7, f10, f11, f12);
+        }
+        return false;
+    }
+
+    @Override
+    public final void restore() {
+        this.f26870a.restore();
+    }
+
+    @Override
+    public final void restoreToCount(int i10) {
+        this.f26870a.restoreToCount(i10);
+    }
+
+    @Override
+    public final void rotate(float f7) {
+        this.f26870a.rotate(f7);
+    }
+
+    @Override
+    public final int save() {
+        return this.f26870a.save();
+    }
+
+    @Override
+    public final int saveLayer(float f7, float f10, float f11, float f12, Paint paint) {
+        return this.f26870a.saveLayer(f7, f10, f11, f12, paint);
+    }
+
+    @Override
+    public final int saveLayerAlpha(RectF rectF, int i10, int i11) {
+        return this.f26870a.saveLayerAlpha(rectF, i10, i11);
+    }
+
+    @Override
+    public final void scale(float f7, float f10) {
+        this.f26870a.scale(f7, f10);
+    }
+
+    @Override
+    public final void setBitmap(Bitmap bitmap) {
+        this.f26870a.setBitmap(bitmap);
+    }
+
+    @Override
+    public final void setDensity(int i10) {
+        this.f26870a.setDensity(i10);
+    }
+
+    @Override
+    public final void setDrawFilter(DrawFilter drawFilter) {
+        this.f26870a.setDrawFilter(drawFilter);
+    }
+
+    @Override
+    public final void setMatrix(Matrix matrix) {
+        this.f26870a.setMatrix(matrix);
+    }
+
+    @Override
+    public final void skew(float f7, float f10) {
+        this.f26870a.skew(f7, f10);
+    }
+
+    @Override
+    public final void translate(float f7, float f10) {
+        this.f26870a.translate(f7, f10);
+    }
+
+    @Override
+    public final boolean clipPath(Path path, Region.Op op) {
+        return this.f26870a.clipPath(path, op);
+    }
+
+    @Override
+    public final boolean clipRect(float f7, float f10, float f11, float f12, Region.Op op) {
+        return false;
+    }
+
+    @Override
+    public final void drawArc(float f7, float f10, float f11, float f12, float f13, float f14, boolean z10, Paint paint) {
+        this.f26870a.drawArc(f7, f10, f11, f12, f13, f14, z10, paint);
+    }
+
+    @Override
+    public final void drawBitmap(Bitmap bitmap, Rect rect, Rect rect2, Paint paint) {
+        this.f26870a.drawBitmap(bitmap, rect, rect2, paint);
+    }
+
+    @Override
+    public final void drawLines(float[] fArr, Paint paint) {
+        this.f26870a.drawLines(fArr, paint);
+    }
+
+    @Override
+    public final void drawOval(float f7, float f10, float f11, float f12, Paint paint) {
+        this.f26870a.drawOval(f7, f10, f11, f12, paint);
+    }
+
+    @Override
+    public final void drawPicture(Picture picture) {
+        this.f26870a.drawPicture(picture);
+    }
+
+    @Override
+    public final void drawPoints(float[] fArr, Paint paint) {
+        this.f26870a.drawPoints(fArr, paint);
+    }
+
+    @Override
+    public final void drawPosText(char[] cArr, int i10, int i11, float[] fArr, Paint paint) {
+        this.f26870a.drawPosText(cArr, i10, i11, fArr, paint);
+    }
+
+    @Override
+    public final void drawRect(RectF rectF, Paint paint) {
+        this.f26870a.drawRect(rectF, paint);
+    }
+
+    @Override
+    public final void drawRoundRect(float f7, float f10, float f11, float f12, float f13, float f14, Paint paint) {
+        this.f26870a.drawRoundRect(f7, f10, f11, f12, f13, f14, paint);
+    }
+
+    @Override
+    public final void drawText(String str, int i10, int i11, float f7, float f10, Paint paint) {
+        this.f26870a.drawText(str, i10, i11, f7, f10, paint);
+    }
+
+    @Override
+    public final void drawTextOnPath(String str, Path path, float f7, float f10, Paint paint) {
+        this.f26870a.drawTextOnPath(str, path, f7, f10, paint);
+    }
+
+    @Override
+    public final void drawTextRun(MeasuredText measuredText, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
+        this.f26870a.drawTextRun(measuredText, i10, i11, i12, i13, f7, f10, z10, paint);
+    }
+
+    @Override
+    public final int saveLayer(RectF rectF, Paint paint) {
+        return this.f26870a.saveLayer(rectF, paint);
+    }
+
+    @Override
+    public final int saveLayerAlpha(float f7, float f10, float f11, float f12, int i10) {
+        return this.f26870a.saveLayerAlpha(f7, f10, f11, f12, i10);
+    }
+
+    @Override
+    public final boolean clipOutRect(int i10, int i11, int i12, int i13) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.f26870a.clipOutRect(i10, i11, i12, i13);
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean clipRect(int i10, int i11, int i12, int i13) {
+        return false;
+    }
+
+    @Override
+    public final void drawBitmap(int[] iArr, int i10, int i11, float f7, float f10, int i12, int i13, boolean z10, Paint paint) {
+        this.f26870a.drawBitmap(iArr, i10, i11, f7, f10, i12, i13, z10, paint);
+    }
+
+    @Override
+    public final void drawColor(int i10, BlendMode blendMode) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f26870a.drawColor(i10, blendMode);
+        }
+    }
+
+    @Override
+    public final void drawDoubleRoundRect(RectF rectF, float f7, float f10, RectF rectF2, float f11, float f12, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f26870a.drawDoubleRoundRect(rectF, f7, f10, rectF2, f11, f12, paint);
+        }
+    }
+
+    @Override
+    public final void drawPatch(NinePatch ninePatch, Rect rect, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 31) {
+            this.f26870a.drawPatch(ninePatch, rect, paint);
+        }
+    }
+
+    @Override
+    public final void drawPicture(Picture picture, Rect rect) {
+        this.f26870a.drawPicture(picture, rect);
+    }
+
+    @Override
+    public final void drawRect(float f7, float f10, float f11, float f12, Paint paint) {
+        this.f26870a.drawRect(f7, f10, f11, f12, paint);
+    }
+
+    @Override
+    public final void drawText(char[] cArr, int i10, int i11, float f7, float f10, Paint paint) {
+        this.f26870a.drawText(cArr, i10, i11, f7, f10, paint);
+    }
+
+    @Override
+    public final void drawTextRun(CharSequence charSequence, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
+        this.f26870a.drawTextRun(charSequence, i10, i11, i12, i13, f7, f10, z10, paint);
+    }
+
+    @Override
+    public final boolean quickReject(RectF rectF) {
+        if (Build.VERSION.SDK_INT >= 30) {
+            return this.f26870a.quickReject(rectF);
+        }
+        return false;
+    }
+
+    @Override
+    public final int saveLayer(float f7, float f10, float f11, float f12, Paint paint, int i10) {
+        return this.f26870a.saveLayer(f7, f10, f11, f12, paint, i10);
+    }
+
+    @Override
+    public final int saveLayerAlpha(RectF rectF, int i10) {
+        return this.f26870a.saveLayerAlpha(rectF, i10);
+    }
+
+    @Override
+    public final boolean clipRect(Rect rect) {
+        return false;
+    }
+
+    @Override
+    public final void drawBitmap(int[] iArr, int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, Paint paint) {
+        this.f26870a.drawBitmap(iArr, i10, i11, i12, i13, i14, i15, z10, paint);
+    }
+
+    @Override
+    public final void drawText(CharSequence charSequence, int i10, int i11, float f7, float f10, Paint paint) {
+        this.f26870a.drawText(charSequence, i10, i11, f7, f10, paint);
+    }
+
+    @Override
+    public final int saveLayer(RectF rectF, Paint paint, int i10) {
+        return this.f26870a.saveLayer(rectF, paint, i10);
+    }
+
+    @Override
+    public final int saveLayerAlpha(float f7, float f10, float f11, float f12, int i10, int i11) {
+        return this.f26870a.saveLayerAlpha(f7, f10, f11, f12, i10, i11);
+    }
+
+    @Override
+    public final boolean clipOutRect(RectF rectF) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.f26870a.clipOutRect(rectF);
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean clipRect(Rect rect, Region.Op op) {
+        return false;
+    }
+
+    @Override
+    public final void drawBitmap(Bitmap bitmap, Rect rect, RectF rectF, Paint paint) {
+        this.f26870a.drawBitmap(bitmap, rect, rectF, paint);
+    }
+
+    @Override
+    public final void drawColor(int i10) {
+        this.f26870a.drawColor(i10);
+    }
+
+    @Override
+    public final boolean quickReject(Path path) {
+        if (Build.VERSION.SDK_INT >= 30) {
+            return this.f26870a.quickReject(path);
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean clipRect(RectF rectF) {
+        return false;
+    }
+
+    @Override
+    public final void drawBitmap(Bitmap bitmap, float f7, float f10, Paint paint) {
+        this.f26870a.drawBitmap(bitmap, f7, f10, paint);
+    }
+
+    @Override
+    public final void drawColor(int i10, PorterDuff.Mode mode) {
+        this.f26870a.drawColor(i10, mode);
+    }
+
+    @Override
+    public final boolean clipOutRect(Rect rect) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            return this.f26870a.clipOutRect(rect);
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean clipRect(RectF rectF, Region.Op op) {
+        return false;
+    }
+
+    @Override
+    public final void drawColor(long j10) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f26870a.drawColor(j10);
+        }
+    }
+
+    @Override
+    public final boolean quickReject(RectF rectF, Canvas.EdgeType edgeType) {
+        return this.f26870a.quickReject(rectF, edgeType);
+    }
+
+    @Override
+    public final boolean quickReject(Path path, Canvas.EdgeType edgeType) {
+        return this.f26870a.quickReject(path, edgeType);
+    }
+
+    @Override
+    public final boolean quickReject(float f7, float f10, float f11, float f12, Canvas.EdgeType edgeType) {
+        return this.f26870a.quickReject(f7, f10, f11, f12, edgeType);
     }
 }

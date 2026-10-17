@@ -1,28 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class of extends org.telegram.ui.gj0 {
-    public final int A0;
-    public final Object B0;
+import android.text.TextUtils;
+import android.view.View;
+public final class of implements wl0 {
+    public final ChatActivityEnterView f28972a;
 
-    public of(Object obj, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
-        super(context, c6Var);
-        this.A0 = i10;
-        this.B0 = obj;
+    public of(ChatActivityEnterView chatActivityEnterView) {
+        this.f28972a = chatActivityEnterView;
     }
 
     @Override
-    public final void m(long j10) {
-        switch (this.A0) {
-            case 0:
-                ((ChatActivityEnterView) this.B0).setEffectId(j10);
-                return;
-            default:
-                vi viVar = (vi) this.B0;
-                fi fiVar = viVar.L0;
-                viVar.Q0 = j10;
-                fiVar.setEffect(j10);
-                return;
+    public final void a(int i10, View view) {
+        if (view instanceof gi.z) {
+            String command = ((gi.z) view).getCommand();
+            if (!TextUtils.isEmpty(command)) {
+                ChatActivityEnterView chatActivityEnterView = this.f28972a;
+                if (chatActivityEnterView.c()) {
+                    f5.L(chatActivityEnterView.O2, chatActivityEnterView.Q2, new s2(5, this, command), chatActivityEnterView.W3);
+                    return;
+                }
+                org.telegram.ui.sn snVar = chatActivityEnterView.P2;
+                if (snVar == null || !snVar.h7(view)) {
+                    f5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.ui.ActionBar.j3(21, this, command));
+                }
+            }
         }
     }
 }

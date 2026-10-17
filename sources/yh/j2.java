@@ -1,33 +1,33 @@
 package yh;
 
+import ai.x9;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ns0;
+import org.telegram.ui.Components.is0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import zh.f5;
 public final class j2 extends s4.v {
-    public final ns0 d;
+    public final is0 d;
     public final m2 e;
 
-    public j2(m2 m2Var, ns0 ns0Var) {
+    public j2(m2 m2Var, is0 is0Var) {
         this.e = m2Var;
-        this.d = ns0Var;
+        this.d = is0Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
         super.a(recyclerView, b1Var);
-        b1Var.f44838a.setPressed(false);
+        b1Var.f45938a.setPressed(false);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
         TL_stars.SavedStarGift savedStarGift;
-        View view = b1Var.f44838a;
+        View view = b1Var.f45938a;
         if (view instanceof h1) {
             savedStarGift = ((h1) view).getSavedGift();
         } else {
@@ -41,22 +41,22 @@ public final class j2 extends s4.v {
 
     @Override
     public final boolean j() {
-        return this.e.f48997n;
+        return this.e.f50398n;
     }
 
     @Override
     public final boolean k() {
-        return this.e.f48997n;
+        return this.e.f50398n;
     }
 
     @Override
     public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
         TL_stars.SavedStarGift savedStarGift;
-        zh.f0 f0Var;
+        ai.j1 j1Var;
         m2 m2Var = this.e;
-        h2 h2Var = m2Var.f48996f;
-        if (m2Var.e != null && m2Var.f48997n) {
-            View view = b1Var.f44838a;
+        h2 h2Var = m2Var.f50397f;
+        if (m2Var.e != null && m2Var.f50398n) {
+            View view = b1Var.f45938a;
             TL_stars.SavedStarGift savedStarGift2 = null;
             if (view instanceof h1) {
                 savedStarGift = ((h1) view).getSavedGift();
@@ -64,7 +64,7 @@ public final class j2 extends s4.v {
                 savedStarGift = null;
             }
             if (r(savedStarGift)) {
-                View view2 = b1Var2.f44838a;
+                View view2 = b1Var2.f45938a;
                 if (view2 instanceof h1) {
                     savedStarGift2 = ((h1) view2).getSavedGift();
                 }
@@ -72,26 +72,26 @@ public final class j2 extends s4.v {
                     int b10 = b1Var.b();
                     int b11 = b1Var2.b();
                     boolean z10 = m2Var.d;
-                    ns0 ns0Var = this.d;
+                    is0 is0Var = this.d;
                     if (z10) {
-                        m2Var.e.k(b10, b11);
-                        ns0Var.e.n(m2Var.e.d);
+                        m2Var.e.l(b10, b11);
+                        is0Var.e.n(m2Var.e.d);
                     } else {
-                        f5 f5Var = m2Var.e;
-                        if (f5Var.f50515q == null) {
-                            f5Var.f50515q = f5Var.h();
+                        x9 x9Var = m2Var.e;
+                        if (x9Var.f2453q == null) {
+                            x9Var.f2453q = x9Var.i();
                         }
-                        f5Var.k(b10, b11);
+                        x9Var.l(b10, b11);
                     }
                     h2Var.W2.p(b10, b11);
                     h2Var.W2.S();
                     if (m2Var.d) {
                         HashMap hashMap = q2.T;
-                        ns0Var.f(true);
+                        is0Var.f(true);
                     }
-                    org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-                    if ((U instanceof ProfileActivity) && (f0Var = ((ProfileActivity) U).f32378v0) != null) {
-                        f0Var.a();
+                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                    if ((U instanceof ProfileActivity) && (j1Var = ((ProfileActivity) U).f33724w0) != null) {
+                        j1Var.a();
                     }
                     return true;
                 }
@@ -106,38 +106,38 @@ public final class j2 extends s4.v {
     public final void p(s4.b1 b1Var, int i10) {
         m2 m2Var = this.e;
         if (i10 == 0) {
-            f5 f5Var = m2Var.e;
-            if (f5Var != null) {
-                ArrayList arrayList = f5Var.f50515q;
+            x9 x9Var = m2Var.e;
+            if (x9Var != null) {
+                ArrayList arrayList = x9Var.f2453q;
                 if (arrayList != null) {
-                    ArrayList h = f5Var.h();
-                    if (arrayList.size() == h.size()) {
-                        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                            if (arrayList.get(i11) == h.get(i11)) {
+                    ArrayList i11 = x9Var.i();
+                    if (arrayList.size() == i11.size()) {
+                        for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                            if (arrayList.get(i12) == i11.get(i12)) {
                             }
                         }
                     }
-                    f5Var.l();
-                    f5Var.f50515q = null;
+                    x9Var.m();
+                    x9Var.f2453q = null;
                     return;
                 }
-                f5Var.f50515q = null;
+                x9Var.f2453q = null;
                 return;
             }
             return;
         }
-        h2 h2Var = m2Var.f48996f;
+        h2 h2Var = m2Var.f50397f;
         if (h2Var != null) {
             h2Var.I0(false);
         }
         if (b1Var != null) {
-            b1Var.f44838a.setPressed(true);
+            b1Var.f45938a.setPressed(true);
         }
     }
 
     public final boolean r(TL_stars.SavedStarGift savedStarGift) {
         m2 m2Var = this.e;
-        if (m2Var.f48997n) {
+        if (m2Var.f50398n) {
             if (m2Var.e == this.d.d) {
                 if (savedStarGift == null || !savedStarGift.pinned_to_top) {
                     return false;

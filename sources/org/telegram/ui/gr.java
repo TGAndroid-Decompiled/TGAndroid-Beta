@@ -1,37 +1,69 @@
 package org.telegram.ui;
 
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
-public final class gr extends tq {
-    public final boolean[] f36294d1;
-    public final long f36295e1;
-    public final yr f36296f1;
+public final class gr implements Runnable {
+    public final int f37295a;
+    public final ir f37296b;
+    public final String f37297c;
 
-    public gr(yr yrVar, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, long j12) {
-        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
-        this.f36296f1 = yrVar;
-        this.f36294d1 = zArr;
-        this.f36295e1 = j12;
+    public gr(ir irVar, String str, int i10) {
+        this.f37295a = i10;
+        this.f37296b = irVar;
+        this.f37297c = str;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f36294d1[0]) {
-            yr yrVar = this.f36296f1;
-            if (org.telegram.ui.Components.zc.a(yrVar)) {
-                long j10 = this.f36295e1;
-                if (j10 > 0) {
-                    TLRPC.User user = getMessagesController().getUser(Long.valueOf(j10));
-                    if (user != null) {
-                        org.telegram.ui.Components.zc.C(yrVar, user.first_name).j();
-                        return;
-                    }
-                    return;
+    public final void run() {
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        org.telegram.messenger.camera.i iVar;
+        boolean z10;
+        long j10;
+        switch (this.f37295a) {
+            case 0:
+                ir irVar = this.f37296b;
+                irVar.getClass();
+                AndroidUtilities.runOnUIThread(new gr(irVar, this.f37297c, 1));
+                return;
+            default:
+                ir irVar2 = this.f37296b;
+                irVar2.f37960n = null;
+                jr jrVar = irVar2.f37965y;
+                TLRPC.Chat chat = jrVar.f38301r;
+                int i10 = jrVar.f38276e1;
+                if (!ChatObject.isChannel(chat) && jrVar.f38304s != null) {
+                    arrayList = new ArrayList(jrVar.f38304s.participants.participants);
+                } else {
+                    arrayList = null;
                 }
-                TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-j10));
-                if (chat != null) {
-                    org.telegram.ui.Components.zc.C(yrVar, chat.title).j();
+                if (i10 == 1) {
+                    arrayList2 = new ArrayList(jrVar.getContactsController().contacts);
+                } else {
+                    arrayList2 = null;
                 }
-            }
+                String str = this.f37297c;
+                if (arrayList == null && arrayList2 == null) {
+                    irVar2.f37962s = false;
+                    iVar = null;
+                } else {
+                    iVar = new org.telegram.messenger.camera.i(irVar2, str, arrayList, arrayList2, 18);
+                }
+                hg.a2 a2Var = irVar2.h;
+                if (i10 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (ChatObject.isChannel(jrVar.f38301r)) {
+                    j10 = jrVar.N;
+                } else {
+                    j10 = 0;
+                }
+                a2Var.h(str, z10, false, true, false, false, j10, false, jrVar.O, 1, 0L, iVar);
+                return;
         }
     }
 }

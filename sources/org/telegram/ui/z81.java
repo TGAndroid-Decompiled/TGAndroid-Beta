@@ -1,58 +1,64 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class z81 implements y9 {
-    public TLObject f42218a = null;
-    public TLRPC.TL_error f42219b = null;
-    public final SessionsActivity f42220c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.Window;
+public final class z81 extends AnimatorListenerAdapter {
+    public final int f43698a;
+    public final b91 f43699b;
 
-    public z81(SessionsActivity sessionsActivity) {
-        this.f42220c = sessionsActivity;
+    public z81(b91 b91Var, int i10) {
+        this.f43698a = i10;
+        this.f43699b = b91Var;
     }
 
     @Override
-    public final String I0() {
-        return null;
-    }
-
-    @Override
-    public final void K(String str) {
-        TLObject tLObject = this.f42218a;
-        if (tLObject instanceof TLRPC.TL_authorization) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
-            boolean z10 = tL_authorization.password_pending;
-            SessionsActivity sessionsActivity = this.f42220c;
-            if (z10) {
-                sessionsActivity.f32492f.add(0, tL_authorization);
-                sessionsActivity.V = 4;
-                sessionsActivity.k0(false);
-            } else {
-                sessionsActivity.e.add(0, tL_authorization);
-            }
-            sessionsActivity.m0();
-            sessionsActivity.f32489a.l();
-            sessionsActivity.f32495s.m(0L, this.f42218a, 11);
-        } else if (this.f42219b != null) {
-            AndroidUtilities.runOnUIThread(new y81(this, 0));
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f43698a) {
+            case 0:
+                b91 b91Var = this.f43699b;
+                b91Var.f35605b.setVisibility(4);
+                jg.g gVar = b91Var.f35605b;
+                gVar.J = false;
+                jg.g gVar2 = b91Var.f35606c;
+                gVar2.J = true;
+                gVar.f14483y0 = 0;
+                gVar2.f14483y0 = 0;
+                Window window = b91Var.f35604a;
+                if (window != null) {
+                    window.clearFlags(16);
+                    return;
+                }
+                return;
+            case 1:
+                b91 b91Var2 = this.f43699b;
+                jg.g gVar3 = b91Var2.f35606c;
+                gVar3.setVisibility(4);
+                jg.g gVar4 = b91Var2.f35605b;
+                gVar4.f14483y0 = 0;
+                gVar3.f14483y0 = 0;
+                gVar4.J = true;
+                gVar3.J = false;
+                if (!(gVar4 instanceof jg.q)) {
+                    gVar4.f14476u0 = true;
+                    gVar4.x((gVar4.G0 * gVar4.f14456g0.f14497k) - jg.g.f14425k1);
+                    gVar4.c(true);
+                    gVar4.invalidate();
+                } else {
+                    gVar4.f14476u0 = false;
+                    gVar4.d();
+                }
+                Window window2 = b91Var2.f35604a;
+                if (window2 != null) {
+                    window2.clearFlags(16);
+                    return;
+                }
+                return;
+            default:
+                b91 b91Var3 = this.f43699b;
+                b91Var3.f35605b.f14483y0 = 0;
+                b91Var3.e.setVisibility(8);
+                return;
         }
-    }
-
-    @Override
-    public final boolean d1(String str, o9 o9Var) {
-        this.f42218a = null;
-        this.f42219b = null;
-        AndroidUtilities.runOnUIThread(new tf0(this, str, o9Var, 29), 750L);
-        return true;
-    }
-
-    @Override
-    public final void V0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

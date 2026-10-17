@@ -1,48 +1,60 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Rect;
 import android.view.View;
-public final class gx extends org.telegram.ui.Components.u6 {
-    public final int f36324b;
-    public final yy f36325c;
+import android.widget.ScrollView;
+import org.telegram.messenger.AndroidUtilities;
+public final class gx extends ScrollView {
+    public final int f37353a;
 
-    public gx(yy yyVar, int i10) {
-        super("animationValue", 0);
-        this.f36324b = i10;
-        switch (i10) {
+    public gx(Context context, int i10) {
+        super(context);
+        this.f37353a = i10;
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f37353a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i11), Math.min(AndroidUtilities.displaySize.y * 0.35f, AndroidUtilities.dp(400.0f))), View.MeasureSpec.getMode(i11)));
+                return;
             case 1:
-                this.f36325c = yyVar;
-                super("viewPagerTranslation", 0);
-                return;
             default:
-                this.f36325c = yyVar;
+                super.onMeasure(i10, i11);
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(320.0f)), Integer.MIN_VALUE));
+                return;
+            case 3:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(360.0f)), Integer.MIN_VALUE));
+                return;
+            case 4:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
                 return;
         }
     }
 
     @Override
-    public final void c(Object obj, float f7) {
-        switch (this.f36324b) {
-            case 0:
-                ((yy) obj).A4(f7);
-                return;
+    public boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        switch (this.f37353a) {
+            case 1:
+                return false;
             default:
-                yy yyVar = this.f36325c;
-                yyVar.I0 = f7;
-                ((View) obj).setTranslationY(yyVar.J0 + f7);
-                yyVar.D3();
-                return;
+                return super.onRequestFocusInDescendants(i10, rect);
         }
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f36324b) {
-            case 0:
-                yy yyVar = (yy) obj;
-                return Float.valueOf(this.f36325c.N);
+    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        switch (this.f37353a) {
+            case 1:
+                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+                rect.top = AndroidUtilities.dp(20.0f) + rect.top;
+                rect.bottom = AndroidUtilities.dp(50.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z10);
             default:
-                View view = (View) obj;
-                return Float.valueOf(this.f36325c.I0);
+                return super.requestChildRectangleOnScreen(view, rect, z10);
         }
     }
 }

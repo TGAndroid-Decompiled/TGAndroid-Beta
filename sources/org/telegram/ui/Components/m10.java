@@ -1,145 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class m10 extends View {
-    public TextPaint f26874a;
-    public Paint f26875b;
-    public Path f26876c;
-    public float[] d;
-    public i11 e;
-    public i11 f26877f;
-    public i11 h;
-    public LinearGradient f26878n;
-    public LinearGradient f26879r;
-    public Paint f26880s;
-    public Paint v;
-    public Matrix f26881w;
-    public Matrix f26882x;
-    public r6 f26883y;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public final class m10 extends CharacterStyle implements UpdateAppearance {
+    public int f28364a;
+    public int f28365b;
+    public float f28366c;
+    public final org.telegram.ui.ActionBar.d6 d;
 
-    public static CharSequence a(CharSequence charSequence) {
-        if ("ALL_CHATS".equals(charSequence.toString())) {
-            return LocaleController.getString(R.string.FilterAllChats);
-        }
-        return charSequence;
+    public m10(int i10) {
+        this(i10, null);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        i11 i11Var;
-        float f13;
-        float f14;
-        Paint paint = this.f26875b;
-        Matrix matrix = this.f26882x;
-        Matrix matrix2 = this.f26881w;
-        Path path = this.f26876c;
-        i11 i11Var2 = this.e;
-        r6 r6Var = this.f26883y;
-        i11 i11Var3 = this.h;
-        super.onDraw(canvas);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
-        float measuredWidth = getMeasuredWidth() / 2.0f;
-        float measuredHeight = getMeasuredHeight() / 2.0f;
-        i11 i11Var4 = this.f26877f;
-        if (i11Var4 != null) {
-            canvas.save();
-            float f15 = i11Var4.f25455c;
-            f7 = 15.32f;
-            CharSequence charSequence = r6Var.f28440i;
-            if (charSequence != null && charSequence.length() != 0) {
-                f14 = r6Var.c() + AndroidUtilities.dp(15.32f);
-            } else {
-                f14 = 0.0f;
-            }
-            float f16 = f15 + f14;
-            f10 = measuredWidth - (f16 / 2.0f);
-            canvas.translate(f10, measuredHeight - (i11Var4.j() / 2.0f));
-            i11Var4.d(canvas);
-            canvas.restore();
-            f11 = f16;
-        } else {
-            f7 = 15.32f;
-            f10 = measuredWidth;
-            f11 = 0.0f;
+    public final void updateDrawState(TextPaint textPaint) {
+        this.f28364a = org.telegram.ui.ActionBar.h6.m1(this.f28366c, org.telegram.ui.ActionBar.h6.w0(this.f28365b, this.d));
+        int color = textPaint.getColor();
+        int i10 = this.f28364a;
+        if (color != i10) {
+            textPaint.setColor(i10);
         }
-        CharSequence charSequence2 = r6Var.f28440i;
-        if (charSequence2 == null || charSequence2.length() == 0) {
-            f12 = measuredHeight;
-            i11Var = i11Var4;
-            f13 = 2.0f;
-        } else {
-            Rect rect = AndroidUtilities.rectTmp2;
-            f13 = 2.0f;
-            f12 = measuredHeight;
-            i11Var = i11Var4;
-            rect.set((int) (i11Var4.f25455c + f10 + AndroidUtilities.dp(4.66f)), (int) (measuredHeight - AndroidUtilities.dp(9.0f)), (int) (r6Var.c() + i11Var4.f25455c + f10 + AndroidUtilities.dp(f7)), (int) (f12 + AndroidUtilities.dp(9.0f)));
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(rect);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint);
-            rect.offset(-AndroidUtilities.dp(0.33f), -AndroidUtilities.dp(0.66f));
-            r6Var.setBounds(rect);
-            r6Var.draw(canvas);
-        }
-        float dp = AndroidUtilities.dp(30.0f);
-        float f17 = (f10 - dp) - i11Var2.f25455c;
-        canvas.save();
-        canvas.translate(f17, (f12 - (i11Var2.j() / f13)) + AndroidUtilities.dp(1.0f));
-        i11Var2.d(canvas);
-        canvas.restore();
-        float f18 = f10 + f11;
-        if (i11Var3 != null) {
-            canvas.save();
-            canvas.translate(f18 + dp, (f12 - (i11Var3.j() / f13)) + AndroidUtilities.dp(1.0f));
-            i11Var3.d(canvas);
-            canvas.restore();
-            f18 += dp + i11Var3.f25455c;
-        }
-        float f19 = f18;
-        float dp2 = AndroidUtilities.dp(12.0f) + (i11Var.j() / f13) + f12;
-        canvas.drawRect(0.0f, dp2, getMeasuredWidth(), 1.0f + dp2, this.f26874a);
-        path.rewind();
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        float f20 = f11 / f13;
-        float f21 = measuredWidth + f20;
-        rectF2.set((measuredWidth - f20) - AndroidUtilities.dp(4.0f), dp2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + f21, dp2);
-        path.addRoundRect(rectF2, this.d, Path.Direction.CW);
-        canvas.drawPath(path, paint);
-        canvas.save();
-        float max = Math.max(AndroidUtilities.dp(8.0f), f17);
-        matrix2.reset();
-        matrix2.postTranslate(Math.min(f10, max + AndroidUtilities.dp(8.0f)), 0.0f);
-        this.f26878n.setLocalMatrix(matrix2);
-        float min = Math.min(getMeasuredWidth() - AndroidUtilities.dp(8.0f), f19);
-        matrix.reset();
-        matrix.postTranslate(Math.max(f21, min - AndroidUtilities.dp(88.0f)), 0.0f);
-        this.f26879r.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f26880s);
-        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.v);
-        canvas.restore();
-        canvas.restore();
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f26883y && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public m10(int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f28366c = 1.0f;
+        this.f28365b = i10;
+        this.d = d6Var;
     }
 }

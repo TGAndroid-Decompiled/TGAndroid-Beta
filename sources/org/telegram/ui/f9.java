@@ -1,45 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import android.os.Bundle;
+import java.util.HashSet;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class f9 extends org.telegram.ui.Components.ir0 {
-    public final org.telegram.ui.ActionBar.e3 f35484b1;
+import org.telegram.tgnet.tl.TL_phone;
+public final class f9 extends n60 {
+    public final int f36834v0;
+    public final org.telegram.ui.ActionBar.n2 f36835w0;
 
-    public f9(Context context, String str, String str2, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.ActionBar.e3 e3Var) {
-        super(context, null, str, false, str2, false, c6Var);
-        this.f35484b1 = e3Var;
+    public f9(Bundle bundle, int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(bundle);
+        this.f36834v0 = i10;
+        this.f36835w0 = n2Var;
     }
 
     @Override
-    public final void S0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        int m10;
-        String formatString;
-        if (!z10) {
-            return;
-        }
-        if (hVar != null && hVar.m() == 1) {
-            long j10 = ((TLRPC.Dialog) hVar.n(0)).f18920id;
-            if (j10 != 0 && j10 != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j10, true));
-            } else {
-                formatString = LocaleController.getString(R.string.InvLinkToSavedMessages);
+    public final void n0(HashSet hashSet) {
+        int size = hashSet.size();
+        int i10 = this.f36834v0;
+        if (size == 1) {
+            TLRPC.User user = MessagesController.getInstance(i10).getUser((Long) hashSet.iterator().next());
+            TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(user.f20419id);
+            if (userFull == null) {
+                TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
+                tL_users_getFullUser.f20412id = MessagesController.getInstance(i10).getInputUser(user.f20419id);
+                ConnectionsManager.getInstance(i10).sendRequest(tL_users_getFullUser, new hg.u(this, i10, user, 3));
+                return;
             }
+            org.telegram.ui.Components.voip.d2.m(user, false, userFull.video_calls_available, getParentActivity(), userFull, AccountInstance.getInstance(i10));
         } else {
-            int i11 = R.string.InvLinkToChats;
-            if (hVar == null) {
-                m10 = 1;
-            } else {
-                m10 = hVar.m();
-            }
-            formatString = LocaleController.formatString(i11, LocaleController.formatPluralString("Chats", m10, new Object[0]));
+            TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
+            createconferencecall.random_id = Utilities.random.nextInt();
+            ConnectionsManager.getInstance(i10).sendRequest(createconferencecall, new hg.u(i10, hashSet, this.f36835w0));
         }
-        org.telegram.ui.Components.sc Q = new org.telegram.ui.Components.zc(this.f35484b1.topBulletinContainer, this.resourcesProvider).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
-        Q.f28813r = false;
-        Q.j();
+        finishFragment();
     }
 }

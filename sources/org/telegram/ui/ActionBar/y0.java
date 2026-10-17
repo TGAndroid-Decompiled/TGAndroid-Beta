@@ -5,81 +5,87 @@ import android.animation.AnimatorListenerAdapter;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.o6;
-import org.telegram.ui.Cells.z7;
-import org.telegram.ui.Components.ba;
-import org.telegram.ui.Components.vh0;
+import org.telegram.ui.Cells.n6;
+import org.telegram.ui.Cells.y7;
+import org.telegram.ui.Components.ph0;
+import org.telegram.ui.Components.y9;
 public final class y0 extends AnimatorListenerAdapter {
-    public final int f20520a;
-    public final float f20521b;
-    public final Object f20522c;
+    public final int f21892a;
+    public final float f21893b;
+    public final Object f21894c;
 
     public y0(Object obj, float f7, int i10) {
-        this.f20520a = i10;
-        this.f20522c = obj;
-        this.f20521b = f7;
+        this.f21892a = i10;
+        this.f21894c = obj;
+        this.f21893b = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f20520a) {
+        switch (this.f21892a) {
             case 0:
-                b1 b1Var = (b1) this.f20522c;
+                b1 b1Var = (b1) this.f21894c;
                 b1Var.T = null;
-                b1Var.f19324a = this.f20521b;
+                b1Var.f20634a = this.f21893b;
                 b1Var.invalidate();
                 return;
             case 1:
-                u3 u3Var = (u3) this.f20522c;
-                u3Var.f20412i = this.f20521b;
-                v3 v3Var = u3Var.f20408b;
-                if (v3Var != null) {
-                    v3Var.invalidate();
+                v3 v3Var = (v3) this.f21894c;
+                v3Var.f21787i = this.f21893b;
+                w3 w3Var = v3Var.f21783b;
+                if (w3Var != null) {
+                    w3Var.invalidate();
                     return;
                 }
                 return;
             case 2:
-                o6 o6Var = (o6) this.f20522c;
-                o6Var.F = this.f20521b;
-                o6Var.invalidate();
+                n6 n6Var = (n6) this.f21894c;
+                n6Var.F = this.f21893b;
+                n6Var.invalidate();
                 return;
             case 3:
                 ColorMatrix colorMatrix = new ColorMatrix();
-                z7 z7Var = (z7) this.f20522c;
-                float f7 = this.f20521b;
-                z7Var.v = f7;
+                y7 y7Var = (y7) this.f21894c;
+                float f7 = this.f21893b;
+                y7Var.v = f7;
                 colorMatrix.setSaturation(f7);
-                if (g6.I.q()) {
-                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - z7Var.v) * (-0.3f));
+                if (h6.I.q()) {
+                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - y7Var.v) * (-0.3f));
                 }
-                z7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                y7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 return;
             case 4:
-                ba baVar = (ba) this.f20522c;
-                baVar.f23425g = this.f20521b;
-                baVar.invalidateSelf();
+                y9 y9Var = (y9) this.f21894c;
+                y9Var.f32578g = this.f21893b;
+                y9Var.invalidateSelf();
                 return;
             case 5:
-                vh0 vh0Var = (vh0) this.f20522c;
-                vh0Var.H.unlock();
-                float f10 = this.f20521b;
-                vh0Var.f29646b = f10;
+                ph0 ph0Var = (ph0) this.f21894c;
+                ph0Var.H.unlock();
+                float f10 = this.f21893b;
+                ph0Var.f29303b = f10;
                 if (f10 <= 0.0f) {
-                    vh0Var.G = -1;
+                    ph0Var.G = -1;
                 }
-                vh0Var.c(true);
-                vh0Var.f29648f = false;
-                if (vh0Var.O != null && Math.abs(f10 - 1.0f) < 0.01f) {
-                    vh0Var.O.run();
+                ph0Var.c(true);
+                ph0Var.f29305f = false;
+                if (ph0Var.O != null && Math.abs(f10 - 1.0f) < 0.01f) {
+                    ph0Var.O.run();
+                    return;
+                }
+                return;
+            case 6:
+                if (this.f21893b == 0.0f) {
+                    ((org.telegram.ui.Wallet.x2) this.f21894c).b();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.a5 a5Var = (org.telegram.ui.Wallet.a5) this.f20522c;
-                if (a5Var.f32647k0 == animator) {
-                    a5Var.f32647k0 = null;
-                    a5Var.x0(this.f20521b);
-                    a5Var.f32650n0.o(false);
+                org.telegram.ui.Wallet.l5 l5Var = (org.telegram.ui.Wallet.l5) this.f21894c;
+                if (l5Var.f34494n0 == animator) {
+                    l5Var.f34494n0 = null;
+                    l5Var.F0(this.f21893b);
+                    l5Var.f34497q0.o(false);
                     return;
                 }
                 return;
@@ -88,11 +94,11 @@ public final class y0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f20520a) {
+        switch (this.f21892a) {
             case 5:
-                vh0 vh0Var = (vh0) this.f20522c;
-                vh0Var.f29648f = true;
-                vh0Var.f29647c = this.f20521b;
+                ph0 ph0Var = (ph0) this.f21894c;
+                ph0Var.f29305f = true;
+                ph0Var.f29304c = this.f21893b;
                 return;
             default:
                 super.onAnimationStart(animator);

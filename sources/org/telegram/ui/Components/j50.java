@@ -1,30 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class j50 extends FrameLayout {
-    public View f25886a;
-    public TextView f25887b;
-    public bk0 f25888c;
-    public LinearLayout d;
+import android.opengl.GLES20;
+import org.telegram.messenger.R;
+public final class j50 extends k50 {
+    public final int f27412g;
+    public final int h;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
-    }
-
-    public void setGravity(int i10) {
-        this.f25887b.setGravity(i10);
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f25887b.setText(charSequence);
-    }
-
-    public void setTextColor(int i10) {
-        this.f25887b.setTextColor(i10);
+    public j50() {
+        super(R.raw.round_blur_stage_2_frag);
+        this.f27412g = GLES20.glGetUniformLocation(this.f27746a, "bTexture");
+        this.h = GLES20.glGetUniformLocation(this.f27746a, "center");
     }
 }

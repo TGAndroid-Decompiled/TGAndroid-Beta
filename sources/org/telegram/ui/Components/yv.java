@@ -1,25 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-public final class yv extends q61 {
-    public final zv e;
-
-    public yv(zv zvVar, String str) {
-        super(str, (q11) null);
-        this.e = zvVar;
-    }
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class yv extends LinkMovementMethod {
+    public final int f32759a;
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        zv zvVar = this.e;
-        i10 = ((org.telegram.ui.ActionBar.e3) zvVar.f31697x).currentAccount;
-        MessagesController messagesController = MessagesController.getInstance(i10);
-        String url = getURL();
-        ew ewVar = zvVar.f31697x;
-        messagesController.openByUserName(url, ewVar.f24497c, 1);
-        ewVar.Z();
-        ewVar.dismiss();
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        switch (this.f32759a) {
+            case 0:
+                try {
+                    boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return false;
+                }
+            case 1:
+                try {
+                    return super.onTouchEvent(textView, spannable, motionEvent);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return false;
+                }
+            default:
+                try {
+                    boolean onTouchEvent2 = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent2;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent2;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return false;
+                }
+        }
     }
 }

@@ -1,13 +1,13 @@
 package x2;
 
-import b2.u1;
-import i2.r0;
+import b2.t1;
+import i2.p0;
 public abstract class s {
-    public r0 f47788a;
-    public y2.c f47789b;
-    public r f47790c;
+    public p0 f49197a;
+    public y2.c f49198b;
+    public r f49199c;
 
     public abstract void a();
 
-    public abstract void b(u1 u1Var);
+    public abstract void b(t1 t1Var);
 }

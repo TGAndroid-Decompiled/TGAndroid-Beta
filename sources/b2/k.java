@@ -1,77 +1,54 @@
 package b2;
 
 import android.os.Bundle;
-import android.os.SharedMemory;
-import android.system.OsConstants;
-import java.nio.ByteBuffer;
+import android.os.IBinder;
+import java.util.Arrays;
 public final class k {
-    public final SharedMemory f2183a;
+    public static final int f3807b = m.f3828a;
+    public final h f3808a;
 
-    public k(SharedMemory sharedMemory) {
-        this.f2183a = sharedMemory;
+    public k(byte[] bArr) {
+        e9.k0 t10 = e9.n0.t();
+        int length = bArr.length;
+        int i10 = f3807b;
+        int g10 = e2.m0.g(length, i10);
+        for (int i11 = 0; i11 < g10; i11++) {
+            Bundle bundle = new Bundle();
+            int i12 = i11 * i10;
+            bundle.putByteArray("bytes", Arrays.copyOfRange(bArr, i12, Math.min(i12 + i10, bArr.length)));
+            t10.c(bundle);
+        }
+        this.f3808a = new h(t10.f());
     }
 
-    public static k a(byte[] bArr) {
-        SharedMemory sharedMemory;
-        try {
-            sharedMemory = SharedMemory.create("BundleableByteArray", bArr.length);
-        } catch (Exception e) {
-            e = e;
-            sharedMemory = null;
-        }
-        try {
-            ByteBuffer mapReadWrite = sharedMemory.mapReadWrite();
-            mapReadWrite.put(bArr);
-            SharedMemory.unmap(mapReadWrite);
-            sharedMemory.setProtect(OsConstants.PROT_READ);
-            return new k(sharedMemory);
-        } catch (Exception e7) {
-            e = e7;
-            e2.a.m("BundleableByteArray", "Failed to allocate shared memory for byte array, size=" + bArr.length, e);
-            if (sharedMemory != null) {
-                sharedMemory.close();
-            }
-            return null;
-        }
-    }
-
-    public static byte[] b(Bundle bundle) {
-        ByteBuffer byteBuffer;
-        SharedMemory sharedMemory = (SharedMemory) bundle.getParcelable(m.f2206f);
-        try {
-            if (sharedMemory == null) {
+    public static byte[] a(Bundle bundle) {
+        IBinder binder = bundle.getBinder(l.f3815g);
+        if (binder != null) {
+            try {
+                e9.n0 a2 = h.a(binder);
+                if (a2.isEmpty()) {
+                    return e2.m0.f8255b;
+                }
+                byte[] byteArray = ((Bundle) e9.s.m(a2)).getByteArray("bytes");
+                if (byteArray != null) {
+                    int size = a2.size() - 1;
+                    int i10 = f3807b;
+                    int i11 = size * i10;
+                    byte[] bArr = new byte[byteArray.length + i11];
+                    System.arraycopy(byteArray, 0, bArr, i11, byteArray.length);
+                    for (int i12 = 0; i12 < size; i12++) {
+                        byte[] byteArray2 = ((Bundle) a2.get(i12)).getByteArray("bytes");
+                        if (byteArray2 != null && byteArray2.length == i10) {
+                            System.arraycopy(byteArray2, 0, bArr, i12 * i10, i10);
+                        }
+                    }
+                    return bArr;
+                }
+            } catch (RuntimeException e) {
+                e2.a.m("BundleableByteArray", "Failed to read byte array from bundle list retriever", e);
                 return null;
             }
-            try {
-                byteBuffer = sharedMemory.mapReadOnly();
-                try {
-                    byte[] bArr = new byte[sharedMemory.getSize()];
-                    byteBuffer.get(bArr);
-                    SharedMemory.unmap(byteBuffer);
-                    sharedMemory.close();
-                    return bArr;
-                } catch (Exception e) {
-                    e = e;
-                    e2.a.m("BundleableByteArray", "Failed to read byte array from shared memory", e);
-                    if (byteBuffer != null) {
-                        SharedMemory.unmap(byteBuffer);
-                    }
-                    sharedMemory.close();
-                    return null;
-                }
-            } catch (Exception e7) {
-                e = e7;
-                byteBuffer = null;
-            } catch (Throwable th2) {
-                th = th2;
-                if (0 != 0) {
-                    SharedMemory.unmap(null);
-                }
-                sharedMemory.close();
-                throw th;
-            }
-        } catch (Throwable th3) {
-            th = th3;
         }
+        return null;
     }
 }

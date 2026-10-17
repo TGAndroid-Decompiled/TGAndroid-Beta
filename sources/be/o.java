@@ -17,13 +17,13 @@ public final class o extends i1 {
             kd.c cVar = mVar.d;
             kotlin.jvm.internal.i.c(cVar, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<*>");
             ge.h hVar = (ge.h) cVar;
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ge.h.f10119n;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ge.h.f11023n;
             loop0: while (true) {
                 Object obj = atomicReferenceFieldUpdater.get(hVar);
-                a6.i iVar = ge.a.d;
-                if (kotlin.jvm.internal.i.a(obj, iVar)) {
-                    while (!atomicReferenceFieldUpdater.compareAndSet(hVar, iVar, q6)) {
-                        if (atomicReferenceFieldUpdater.get(hVar) != iVar) {
+                com.google.android.gms.internal.clearcut.e eVar = ge.a.d;
+                if (kotlin.jvm.internal.i.a(obj, eVar)) {
+                    while (!atomicReferenceFieldUpdater.compareAndSet(hVar, eVar, q6)) {
+                        if (atomicReferenceFieldUpdater.get(hVar) != eVar) {
                             break;
                         }
                     }

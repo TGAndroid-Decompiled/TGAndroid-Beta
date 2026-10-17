@@ -1,44 +1,30 @@
 package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
 public final class a0 implements Runnable {
-    public volatile boolean f32611a;
-    public Runnable f32612b;
-    public final String f32613c;
-    public final TL_wallet.nftItem d;
+    public volatile boolean f33951a;
+    public Runnable f33952b;
+    public final String f33953c;
+    public final long d;
     public final String e;
-    public final Utilities.Callback2 f32614f;
-    public final k0 h;
+    public final byte[] f33954f;
+    public final Utilities.Callback2 h;
+    public final m0 f33955n;
 
-    public a0(k0 k0Var, String str, TL_wallet.nftItem nftitem, String str2, Utilities.Callback2 callback2) {
-        this.h = k0Var;
-        this.f32613c = str;
-        this.d = nftitem;
+    public a0(m0 m0Var, String str, long j10, String str2, byte[] bArr, Utilities.Callback2 callback2) {
+        this.f33955n = m0Var;
+        this.f33953c = str;
+        this.d = j10;
         this.e = str2;
-        this.f32614f = callback2;
+        this.f33954f = bArr;
+        this.h = callback2;
     }
 
     @Override
     public final synchronized void run() {
-        try {
-            try {
-                if (this.f32611a) {
-                    return;
-                }
-                WalletEngine2 walletEngine2 = this.h.f33093b;
-                String str = this.f32613c;
-                TL_wallet.nftItem nftitem = this.d;
-                String str2 = nftitem.address;
-                String str3 = this.e;
-                this.f32612b = walletEngine2.emulateSendNFT(str, str2, str3, new o(this, nftitem, str3, this.f32614f, 4));
-            } catch (Throwable th2) {
-                th = th2;
-                throw th;
-            }
-        } catch (Throwable th3) {
-            th = th3;
-            throw th;
+        if (this.f33951a) {
+            return;
         }
+        this.f33952b = this.f33955n.f34552b.emulateSend(this.f33953c, this.d, this.e, this.f33954f, new ai.q5(28, this, this.h));
     }
 }

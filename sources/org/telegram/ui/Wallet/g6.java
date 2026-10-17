@@ -1,42 +1,34 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.Utilities;
-public final class g6 implements Runnable {
-    public final int f32954a;
-    public final Utilities.Callback2 f32955b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ti;
+public final class g6 extends AnimatorListenerAdapter {
+    public final ti f34230a;
+    public final p6 f34231b;
+    public final h6 f34232c;
 
-    public g6(int i10, Utilities.Callback2 callback2) {
-        this.f32954a = i10;
-        this.f32955b = callback2;
+    public g6(h6 h6Var, ti tiVar, p6 p6Var) {
+        this.f34232c = h6Var;
+        this.f34230a = tiVar;
+        this.f34231b = p6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32954a) {
-            case 0:
-                this.f32955b.run(null, "Wallet engine is closed");
-                return;
-            case 1:
-                this.f32955b.run(null, "NO_WALLET_ENGINE");
-                return;
-            case 2:
-                this.f32955b.run(null, "NO_WALLET_ENGINE");
-                return;
-            case 3:
-                this.f32955b.run(null, "Recovery phrase is required");
-                return;
-            case 4:
-                this.f32955b.run(null, "Transaction hash is required");
-                return;
-            case 5:
-                this.f32955b.run(null, "NO_WALLET_ENGINE");
-                return;
-            case 6:
-                this.f32955b.run(null, "NO_WALLET_ENGINE");
-                return;
-            default:
-                this.f32955b.run(null, "NO_WALLET_ENGINE");
-                return;
+    public final void onAnimationCancel(Animator animator) {
+        this.f34232c.a(false);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        this.f34232c.a(true);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        if (this.f34230a != null) {
+            AndroidUtilities.hideKeyboard(this.f34231b);
         }
     }
 }

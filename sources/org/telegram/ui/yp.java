@@ -1,33 +1,35 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import android.content.DialogInterface;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.DatePicker;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class yp implements Runnable {
-    public final int f41857a;
-    public final zp f41858b;
-    public final String f41859c;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class yp implements DialogInterface.OnShowListener {
+    public final int f43464a;
+    public final View f43465b;
 
-    public yp(zp zpVar, String str, int i10) {
-        this.f41857a = i10;
-        this.f41858b = zpVar;
-        this.f41859c = str;
+    public yp(int i10, View view) {
+        this.f43464a = i10;
+        this.f43465b = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41857a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f43464a) {
             case 0:
-                zp zpVar = this.f41858b;
-                String str = this.f41859c;
-                zpVar.getClass();
-                AndroidUtilities.runOnUIThread(new yp(zpVar, str, 1));
+                DatePicker datePicker = (DatePicker) this.f43465b;
+                int childCount = datePicker.getChildCount();
+                for (int i10 = 0; i10 < childCount; i10++) {
+                    View childAt = datePicker.getChildAt(i10);
+                    ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
+                    layoutParams.width = -1;
+                    childAt.setLayoutParams(layoutParams);
+                }
                 return;
             default:
-                zp zpVar2 = this.f41858b;
-                String str2 = this.f41859c;
-                zpVar2.f42399f = null;
-                Utilities.searchQueue.postRunnable(new t1(zpVar2, str2, new ArrayList(zpVar2.h.v), 28));
+                AndroidUtilities.runOnUIThread(new ch(1, (EditTextBoldCursor) this.f43465b));
                 return;
         }
     }

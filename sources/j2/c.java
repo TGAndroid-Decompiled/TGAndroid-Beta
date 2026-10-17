@@ -2,12 +2,16 @@ package j2;
 
 import e2.o;
 public final class c implements o {
-    public final int f12524a;
+    public final int f13929a;
+
+    public c(a aVar) {
+        this.f13929a = 20;
+    }
 
     @Override
     public final void invoke(Object obj) {
         b bVar = (b) obj;
-        switch (this.f12524a) {
+        switch (this.f13929a) {
             case 0:
                 bVar.getClass();
                 return;
@@ -102,10 +106,10 @@ public final class c implements o {
     }
 
     public c(a aVar, int i10, int i11, char c10) {
-        this.f12524a = i11;
+        this.f13929a = i11;
     }
 
     public c(a aVar, String str, long j10, long j11, int i10) {
-        this.f12524a = i10;
+        this.f13929a = i10;
     }
 }

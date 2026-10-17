@@ -1,166 +1,341 @@
 package k2;
 
-import android.os.Bundle;
-import b2.h1;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.util.List;
-import m4.f1;
-import m4.g1;
-import m4.m1;
-import m4.o1;
-import m4.s1;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.utils.code.highlight.PrismaHighlighter;
-import v7.q8;
-public final class y0 implements d9.k, i5.g, m4.d0, g1, e2.j, f1 {
-    public final int f14062a;
+import java.nio.ByteBuffer;
+import v7.u6;
+import v7.v6;
+public final class y0 extends c2.o {
+    public int f14850n;
+    public boolean f14851o;
+    public int f14852p;
+    public long f14853q;
+    public byte[] f14855s;
+    public byte[] v;
+    public int f14854r = 0;
+    public int f14856t = 0;
+    public int f14857u = 0;
+    public final long f14848l = 100000;
+    public final float f14845i = 0.2f;
+    public final long f14849m = 2000000;
+    public final int f14847k = 10;
+    public final short f14846j = 1024;
 
-    public y0(int i10) {
-        this.f14062a = i10;
+    public y0() {
+        byte[] bArr = e2.m0.f8255b;
+        this.f14855s = bArr;
+        this.v = bArr;
     }
 
-    public static li.b e() {
-        InputStream open = ApplicationLoader.applicationContext.getAssets().open("grammars.dat");
-        try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            byte[] bArr = new byte[8192];
-            while (true) {
-                int read = open.read(bArr);
-                if (read != -1) {
-                    byteArrayOutputStream.write(bArr, 0, read);
+    @Override
+    public final void c(ByteBuffer byteBuffer) {
+        boolean z10;
+        int limit;
+        boolean z11;
+        boolean z12;
+        int position;
+        while (byteBuffer.hasRemaining() && !this.f4525g.hasRemaining()) {
+            int i10 = this.f14852p;
+            short s10 = this.f14846j;
+            boolean z13 = true;
+            if (i10 != 0) {
+                if (i10 == 1) {
+                    if (this.f14856t < this.f14855s.length) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    u6.p(z10);
+                    int limit2 = byteBuffer.limit();
+                    int position2 = byteBuffer.position() + 1;
+                    while (true) {
+                        if (position2 < byteBuffer.limit()) {
+                            if (Math.abs((byteBuffer.get(position2) << 8) | (byteBuffer.get(position2 - 1) & 255)) > s10) {
+                                int i11 = this.f14850n;
+                                limit = (position2 / i11) * i11;
+                                break;
+                            }
+                            position2 += 2;
+                        } else {
+                            limit = byteBuffer.limit();
+                            break;
+                        }
+                    }
+                    int position3 = limit - byteBuffer.position();
+                    int i12 = this.f14856t;
+                    int i13 = this.f14857u;
+                    int i14 = i12 + i13;
+                    byte[] bArr = this.f14855s;
+                    if (i14 < bArr.length) {
+                        i12 = bArr.length;
+                    } else {
+                        i14 = i13 - (bArr.length - i12);
+                    }
+                    int i15 = i12 - i14;
+                    if (limit < limit2) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    int min = Math.min(position3, i15);
+                    byteBuffer.limit(byteBuffer.position() + min);
+                    byteBuffer.get(this.f14855s, i14, min);
+                    int i16 = this.f14857u + min;
+                    this.f14857u = i16;
+                    if (i16 <= this.f14855s.length) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    u6.p(z12);
+                    if (!z11 || position3 >= i15) {
+                        z13 = false;
+                    }
+                    n(z13);
+                    if (z13) {
+                        this.f14852p = 0;
+                        this.f14854r = 0;
+                    }
+                    byteBuffer.limit(limit2);
                 } else {
-                    byte[] byteArray = byteArrayOutputStream.toByteArray();
-                    byteArrayOutputStream.close();
-                    open.close();
-                    return new li.b(new PrismaHighlighter(byteArray));
+                    throw new IllegalStateException();
+                }
+            } else {
+                int limit3 = byteBuffer.limit();
+                byteBuffer.limit(Math.min(limit3, byteBuffer.position() + this.f14855s.length));
+                int limit4 = byteBuffer.limit() - 1;
+                while (true) {
+                    if (limit4 >= byteBuffer.position()) {
+                        if (Math.abs((byteBuffer.get(limit4) << 8) | (byteBuffer.get(limit4 - 1) & 255)) > s10) {
+                            int i17 = this.f14850n;
+                            position = a1.g.C(limit4, i17, i17, i17);
+                            break;
+                        }
+                        limit4 -= 2;
+                    } else {
+                        position = byteBuffer.position();
+                        break;
+                    }
+                }
+                if (position == byteBuffer.position()) {
+                    this.f14852p = 1;
+                } else {
+                    byteBuffer.limit(Math.min(position, byteBuffer.capacity()));
+                    l(byteBuffer.remaining()).put(byteBuffer).flip();
+                }
+                byteBuffer.limit(limit3);
+            }
+        }
+    }
+
+    @Override
+    public final c2.k h(c2.k kVar) {
+        if (kVar.f4518c == 2) {
+            if (kVar.f4516a == -1) {
+                return c2.k.e;
+            }
+            return kVar;
+        }
+        throw new c2.m(kVar);
+    }
+
+    @Override
+    public final void i() {
+        if (isActive()) {
+            c2.k kVar = this.f4522b;
+            int i10 = kVar.f4517b * 2;
+            this.f14850n = i10;
+            int i11 = ((((int) ((this.f14848l * kVar.f4516a) / 1000000)) / 2) / i10) * i10 * 2;
+            if (this.f14855s.length != i11) {
+                this.f14855s = new byte[i11];
+                this.v = new byte[i11];
+            }
+        }
+        this.f14852p = 0;
+        this.f14853q = 0L;
+        this.f14854r = 0;
+        this.f14856t = 0;
+        this.f14857u = 0;
+    }
+
+    @Override
+    public final boolean isActive() {
+        if (super.isActive() && this.f14851o) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void j() {
+        if (this.f14857u > 0) {
+            n(true);
+            this.f14854r = 0;
+        }
+    }
+
+    @Override
+    public final void k() {
+        this.f14851o = false;
+        byte[] bArr = e2.m0.f8255b;
+        this.f14855s = bArr;
+        this.v = bArr;
+    }
+
+    public final int m(int i10) {
+        boolean z10;
+        int length = ((((int) ((this.f14849m * this.f4522b.f4516a) / 1000000)) - this.f14854r) * this.f14850n) - (this.f14855s.length / 2);
+        if (length >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        u6.p(z10);
+        int i11 = this.f14850n;
+        return (((int) Math.min((i10 * this.f14845i) + 0.5f, length)) / i11) * i11;
+    }
+
+    public final void n(boolean z10) {
+        int length;
+        int m10;
+        boolean z11;
+        int i10;
+        boolean z12;
+        int i11 = this.f14857u;
+        byte[] bArr = this.f14855s;
+        if (i11 != bArr.length && !z10) {
+            return;
+        }
+        boolean z13 = false;
+        if (this.f14854r == 0) {
+            if (z10) {
+                o(i11, 3);
+                length = i11;
+            } else {
+                if (i11 >= bArr.length / 2) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                u6.p(z12);
+                length = this.f14855s.length / 2;
+                o(length, 0);
+            }
+            m10 = length;
+        } else if (z10) {
+            int length2 = i11 - (bArr.length / 2);
+            int length3 = (bArr.length / 2) + length2;
+            int m11 = m(length2) + (this.f14855s.length / 2);
+            o(m11, 2);
+            m10 = m11;
+            length = length3;
+        } else {
+            length = i11 - (bArr.length / 2);
+            m10 = m(length);
+            o(m10, 1);
+        }
+        if (length % this.f14850n == 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z11) {
+            if (i11 >= m10) {
+                z13 = true;
+            }
+            u6.p(z13);
+            this.f14857u -= length;
+            int i12 = this.f14856t + length;
+            this.f14856t = i12;
+            this.f14856t = i12 % this.f14855s.length;
+            this.f14854r = (m10 / this.f14850n) + this.f14854r;
+            this.f14853q += (length - m10) / i10;
+            return;
+        }
+        throw new IllegalStateException(v6.a("bytesConsumed is not aligned to frame size: %s", Integer.valueOf(length)));
+    }
+
+    public final void o(int i10, int i11) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        if (i10 == 0) {
+            return;
+        }
+        boolean z13 = true;
+        if (this.f14857u >= i10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        u6.g(z10);
+        if (i11 == 2) {
+            int i12 = this.f14856t;
+            int i13 = this.f14857u;
+            int i14 = i12 + i13;
+            byte[] bArr = this.f14855s;
+            if (i14 <= bArr.length) {
+                System.arraycopy(bArr, i14 - i10, this.v, 0, i10);
+            } else {
+                int length = i13 - (bArr.length - i12);
+                if (length >= i10) {
+                    System.arraycopy(bArr, length - i10, this.v, 0, i10);
+                } else {
+                    int i15 = i10 - length;
+                    System.arraycopy(bArr, bArr.length - i15, this.v, 0, i15);
+                    System.arraycopy(this.f14855s, 0, this.v, i15, length);
                 }
             }
-        } catch (Throwable th2) {
-            if (open != null) {
-                try {
-                    open.close();
-                } catch (Throwable th3) {
-                    th2.addSuppressed(th3);
+        } else {
+            int i16 = this.f14856t;
+            int i17 = i16 + i10;
+            byte[] bArr2 = this.f14855s;
+            if (i17 <= bArr2.length) {
+                System.arraycopy(bArr2, i16, this.v, 0, i10);
+            } else {
+                int length2 = bArr2.length - i16;
+                System.arraycopy(bArr2, i16, this.v, 0, length2);
+                System.arraycopy(this.f14855s, 0, this.v, length2, i10 - length2);
+            }
+        }
+        if (i10 % this.f14850n == 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        u6.b(i10, "sizeToOutput is not aligned to frame size: %s", z11);
+        if (this.f14856t < this.f14855s.length) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        u6.p(z12);
+        byte[] bArr3 = this.v;
+        if (i10 % this.f14850n != 0) {
+            z13 = false;
+        }
+        u6.b(i10, "byteOutput size is not aligned to frame size %s", z13);
+        if (i11 != 3) {
+            for (int i18 = 0; i18 < i10; i18 += 2) {
+                int i19 = i18 + 1;
+                int i20 = (bArr3[i19] << 8) | (bArr3[i18] & 255);
+                int i21 = this.f14847k;
+                if (i11 == 0) {
+                    i21 = ((((i18 * 1000) / (i10 - 1)) * (i21 - 100)) / 1000) + 100;
+                } else if (i11 == 2) {
+                    i21 += (((i18 * 1000) * (100 - i21)) / (i10 - 1)) / 1000;
+                }
+                int i22 = (i20 * i21) / 100;
+                if (i22 >= 32767) {
+                    bArr3[i18] = -1;
+                    bArr3[i19] = Byte.MAX_VALUE;
+                } else if (i22 <= -32768) {
+                    bArr3[i18] = 0;
+                    bArr3[i19] = Byte.MIN_VALUE;
+                } else {
+                    bArr3[i18] = (byte) (i22 & 255);
+                    bArr3[i19] = (byte) (i22 >> 8);
                 }
             }
-            throw th2;
         }
-    }
-
-    @Override
-    public void a(m1 m1Var, m4.v vVar, List list) {
-        switch (this.f14062a) {
-            case 27:
-                m1Var.x0(list);
-                return;
-            default:
-                m1Var.x0(list);
-                return;
-        }
-    }
-
-    @Override
-    public void accept(Object obj) {
-        m1 m1Var = (m1) obj;
-        switch (this.f14062a) {
-            case 14:
-                m1Var.B0();
-                return;
-            case 15:
-                m1Var.e();
-                return;
-            case 16:
-                m1Var.f0();
-                return;
-            case 17:
-            case 22:
-            default:
-                m1Var.K();
-                return;
-            case 18:
-                m1Var.C0();
-                return;
-            case 19:
-                m1Var.J0();
-                return;
-            case 20:
-                m1Var.V();
-                return;
-            case 21:
-                m1Var.E();
-                return;
-            case 23:
-                m1Var.I0();
-                return;
-            case 24:
-                m1Var.H0();
-                return;
-        }
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        return e9.n0.y(Integer.valueOf(((v2.i) obj).f46507a));
-    }
-
-    @Override
-    public Object c(m4.e0 e0Var, m4.v vVar, int i10) {
-        switch (this.f14062a) {
-            case 12:
-                e0Var.getClass();
-                throw new ClassCastException();
-            case 13:
-                e0Var.getClass();
-                throw new ClassCastException();
-            case 17:
-                return e0Var.n(vVar);
-            case 22:
-                e0Var.getClass();
-                throw new ClassCastException();
-            case 25:
-                pb.a aVar = e0Var.e;
-                e0Var.s(vVar);
-                aVar.getClass();
-                return q8.b(new s1(-6));
-            default:
-                e0Var.getClass();
-                throw new ClassCastException();
-        }
-    }
-
-    @Override
-    public void d(m4.u uVar, int i10) {
-        switch (this.f14062a) {
-            case 9:
-                uVar.getClass();
-                return;
-            case 10:
-                uVar.b(i10);
-                return;
-            default:
-                uVar.getClass();
-                return;
-        }
-    }
-
-    public y0(Object obj, int i10) {
-        this.f14062a = i10;
-    }
-
-    public y0(String str, int i10, int i11, m4.q qVar, int i12) {
-        this.f14062a = i12;
-    }
-
-    public y0(String str, h1 h1Var) {
-        this.f14062a = 25;
-    }
-
-    public y0(boolean z10, o1 o1Var, Bundle bundle) {
-        this.f14062a = 17;
-    }
-
-    @Override
-    public void b(Exception exc) {
+        l(i10).put(bArr3, 0, i10).flip();
     }
 }

@@ -1,88 +1,157 @@
 package org.telegram.ui.Cells;
 
-import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.fp0;
-import org.telegram.ui.Components.v61;
-import org.telegram.ui.lu;
-public final class c5 implements fp0 {
-    public final lu f20716a;
+import org.telegram.messenger.wh;
+public abstract class c5 extends FrameLayout {
+    public TextView f22087a;
+    public TextView f22088b;
+    public j0 f22089c;
+    public long d;
 
-    public c5(lu luVar) {
-        this.f20716a = luVar;
-    }
-
-    @Override
-    public final void X(float f7, boolean z10) {
-        float d;
-        int i10;
-        if (f7 <= 0.25f) {
-            d = a1.g.d(f7, 0.25f, 536576.0f, 512000);
-        } else {
-            float f10 = f7 - 0.25f;
-            if (f10 < 0.25f) {
-                d = a1.g.d(f10, 0.25f, 9437184.0f, 1048576);
+    public final void a(ArrayList arrayList, boolean z10) {
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        TextView textView = this.f22088b;
+        j0 j0Var = this.f22089c;
+        TextView textView2 = this.f22087a;
+        super.setEnabled(z10);
+        float f13 = 0.5f;
+        if (arrayList != null) {
+            if (z10) {
+                f11 = 1.0f;
             } else {
-                float f11 = f10 - 0.25f;
-                if (f11 <= 0.25f) {
-                    d = a1.g.d(f11, 0.25f, 9.437184E7f, 10485760);
+                f11 = 0.5f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(textView2, "alpha", f11));
+            if (z10) {
+                f12 = 1.0f;
+            } else {
+                f12 = 0.5f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(j0Var, "alpha", f12));
+            if (z10) {
+                f13 = 1.0f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", f13));
+            return;
+        }
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.5f;
+        }
+        textView2.setAlpha(f7);
+        if (z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.5f;
+        }
+        j0Var.setAlpha(f10);
+        if (z10) {
+            f13 = 1.0f;
+        }
+        textView.setAlpha(f13);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public long getSize() {
+        return this.d;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (LocaleController.isRTL) {
+            dp = 0.0f;
+        } else {
+            dp = AndroidUtilities.dp(20.0f);
+        }
+        float f7 = dp;
+        float measuredHeight = getMeasuredHeight() - 1;
+        int measuredWidth = getMeasuredWidth();
+        if (LocaleController.isRTL) {
+            i10 = AndroidUtilities.dp(20.0f);
+        } else {
+            i10 = 0;
+        }
+        canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21107k0);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return true;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(80.0f));
+        int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(42.0f);
+        TextView textView = this.f22088b;
+        textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+        this.f22087a.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.q.b(8.0f, measuredWidth - textView.getMeasuredWidth(), AndroidUtilities.dp(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+        this.f22089c.measure(wh.c(20.0f, getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public void setSize(long j10) {
+        float max;
+        float f7;
+        float f10;
+        this.d = j10;
+        this.f22088b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        long j11 = j10 - 512000;
+        if (j11 < 536576) {
+            f10 = Math.max(0.0f, ((float) j11) / 536576.0f) * 0.25f;
+        } else {
+            long j12 = j10 - 1048576;
+            if (j12 < 9437184) {
+                f10 = (Math.max(0.0f, ((float) j12) / 9437184.0f) * 0.25f) + 0.25f;
+            } else {
+                long j13 = j10 - 10485760;
+                if (j13 < 94371840) {
+                    max = Math.max(0.0f, ((float) j13) / 9.437184E7f) * 0.25f;
+                    f7 = 0.5f;
                 } else {
-                    d = a1.g.d(f11 - 0.25f, 0.25f, (float) (2097152000 - 104857600), 104857600);
+                    max = Math.max(0.0f, ((float) (j10 - 104857600)) / 1.9922944E9f) * 0.25f;
+                    f7 = 0.75f;
                 }
+                f10 = max + f7;
             }
         }
-        int i11 = (int) d;
-        lu luVar = this.f20716a;
-        long j10 = i11;
-        boolean z11 = true;
-        luVar.f20762b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
-        luVar.d = j10;
-        w8[] w8VarArr = luVar.h;
-        AnimatorSet[] animatorSetArr = luVar.f37829n;
-        int i12 = luVar.e;
-        i10 = luVar.f37830r.videosRow;
-        if (i12 == i10) {
-            luVar.f37828f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
-            if (i11 <= 2097152) {
-                z11 = false;
-            }
-            if (z11 != w8VarArr[0].isEnabled()) {
-                ArrayList arrayList = new ArrayList();
-                w8VarArr[0].e(arrayList, z11);
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    animatorSetArr[0] = null;
-                }
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                animatorSetArr[0] = animatorSet2;
-                animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new v61(luVar, 18));
-                animatorSetArr[0].setDuration(150L);
-                animatorSetArr[0].start();
-            }
-        }
+        this.f22089c.setProgress(Math.min(1.0f, f10));
     }
 
-    @Override
-    public final CharSequence getContentDescription() {
-        StringBuilder sb2 = new StringBuilder();
-        lu luVar = this.f20716a;
-        sb2.append((Object) luVar.f20761a.getText());
-        sb2.append(" ");
-        sb2.append((Object) luVar.f20762b.getText());
-        return sb2.toString();
-    }
-
-    @Override
-    public final int k0() {
-        return 0;
-    }
-
-    @Override
-    public final void z() {
+    public void setText(String str) {
+        this.f22087a.setText(str);
     }
 }

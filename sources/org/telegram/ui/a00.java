@@ -1,56 +1,132 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class a00 extends FrameLayout {
-    public FrameLayout f33703a;
-    public org.telegram.ui.ActionBar.h5 f33704b;
-    public org.telegram.ui.ActionBar.h5 f33705c;
-    public ImageView d;
-    public di.f9 e;
-    public bi.f4 f33706f;
-    public bi.f4 h;
-    public TextView f33707n;
-    public org.telegram.ui.ActionBar.m2 f33708r;
-    public String f33709s;
-    public float v;
-    public ValueAnimator f33710w;
-    public org.telegram.ui.ActionBar.m1 f33711x;
-    public float[] f33712y;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class a00 extends pg.b {
+    public final c00 d;
 
-    public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
-        float f7 = 0.0f;
-        float f10 = 0.0f;
-        FrameLayout frameLayout3 = frameLayout;
-        while (frameLayout3 != frameLayout2) {
-            float y3 = frameLayout3.getY() + f7;
-            f10 += frameLayout3.getX();
-            if (frameLayout3 instanceof ScrollView) {
-                y3 -= frameLayout3.getScrollY();
-            }
-            f7 = y3;
-            if (!(frameLayout3.getParent() instanceof View)) {
-                break;
-            }
-            ?? r32 = (View) frameLayout3.getParent();
-            boolean z10 = r32 instanceof ViewGroup;
-            frameLayout3 = r32;
-            if (!z10) {
-                return;
-            }
-        }
-        fArr[0] = f10 - frameLayout2.getPaddingLeft();
-        fArr[1] = f7 - frameLayout2.getPaddingTop();
+    public a00(c00 c00Var) {
+        this.d = c00Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(127.0f), 1073741824));
+    public final boolean D(s4.b1 b1Var) {
+        int i10 = b1Var.f45941f;
+        if (i10 != 8 && i10 != 7) {
+            return false;
+        }
+        return true;
+    }
+
+    public final s4.g0 F() {
+        return this.d.d.getAdapter();
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f35778d0.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return ((g00) this.d.f35778d0.get(i10)).f44314a;
+    }
+
+    @Override
+    public final void l() {
+        F().l();
+    }
+
+    @Override
+    public final void m(int i10) {
+        F().m(i10 + 1);
+    }
+
+    @Override
+    public final void p(int i10, int i11) {
+        F().p(i10 + 1, i11);
+    }
+
+    @Override
+    public final void q(int i10, int i11) {
+        F().q(i10 + 1, i11);
+    }
+
+    @Override
+    public final void r(int i10, int i11, Object obj) {
+        F().r(i10 + 1, i11, obj);
+    }
+
+    @Override
+    public final void s(int i10, int i11) {
+        F().s(i10 + 1, i11);
+    }
+
+    @Override
+    public final void t(int i10, int i11) {
+        F().t(i10 + 1, i11);
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        boolean z10;
+        int i11;
+        int i12 = b1Var.f45941f;
+        View view = b1Var.f45938a;
+        ArrayList arrayList = this.d.f35778d0;
+        g00 g00Var = (g00) arrayList.get(i10);
+        int i13 = i10 + 1;
+        if (i13 < arrayList.size() && (i11 = ((g00) arrayList.get(i13)).f44314a) != 3 && i11 != 6) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i12 == 7) {
+            ((i00) view).e(g00Var.f37073m, z10);
+        } else if (i12 != 6 && i12 != 3) {
+            if (i12 != 0 && i12 == 8) {
+                xz xzVar = (xz) view;
+                xzVar.f43293a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
+                if (xzVar.f43295c != z10) {
+                    xzVar.f43295c = z10;
+                    xzVar.setWillNotDraw(!z10);
+                }
+            }
+        } else {
+            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
+            if (i12 == 6) {
+                d9Var.setFixedSize(0);
+                d9Var.setText(g00Var.d);
+                return;
+            }
+            d9Var.setFixedSize(12);
+            d9Var.setText("");
+        }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View d9Var;
+        int i11;
+        c00 c00Var = this.d;
+        if (i10 == 8) {
+            d9Var = new xz(c00Var.getContext());
+            d9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21057h5, false));
+        } else if (i10 == 7) {
+            Context context = c00Var.getContext();
+            i11 = ((org.telegram.ui.ActionBar.f3) c00Var).currentAccount;
+            d9Var = new zz(this, context, i11, c00Var.X.f17795id);
+            d9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21057h5, false));
+        } else if (i10 != 6 && i10 != 3) {
+            d9Var = new b00(c00Var, c00Var.getContext());
+        } else {
+            d9Var = new org.telegram.ui.Cells.d9(c00Var.getContext());
+            d9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20928a7, false));
+        }
+        return new s4.b1(d9Var);
     }
 }

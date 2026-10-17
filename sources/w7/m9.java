@@ -1,9 +1,11 @@
 package w7;
+
+import java.util.Locale;
 public abstract class m9 {
-    public static String a(String str) {
-        if (!"null".equals(str) && !"".equals(str)) {
-            return str;
+    public static int a(int i10) {
+        if (i10 < 100 && i10 >= 0) {
+            return Integer.parseInt(String.format(Locale.US, "%s%02d", com.google.android.gms.internal.cast.a6.j(2, 0, String.valueOf(oa.d.w3().get(1))), Integer.valueOf(i10)));
         }
-        return null;
+        return i10;
     }
 }

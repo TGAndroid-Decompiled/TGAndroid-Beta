@@ -1,47 +1,34 @@
 package org.telegram.ui.Cells;
 
-import android.view.View;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.no;
-import org.telegram.ui.LaunchActivity;
-public final class m6 extends bi.m9 {
-    public final int S = 0;
-    public final View T;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import org.telegram.ui.Components.uc0;
+public final class m6 extends org.telegram.ui.Components.w9 {
+    public final int G;
+    public final n6 H;
 
-    public m6(o6 o6Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(c6Var, false);
-        this.T = o6Var;
+    public m6(n6 n6Var, Context context, int i10) {
+        super(context);
+        this.H = n6Var;
+        this.G = i10;
     }
 
     @Override
-    public final void f(long j10) {
-        switch (this.S) {
-            case 0:
-                ((o6) this.T).b(j10);
-                return;
-            case 1:
-                xa xaVar = (xa) this.T;
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
-                if (R != null) {
-                    R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(xaVar.getContext(), j10, bi.g9.a((mm0) xaVar.getParent()));
-                    return;
-                }
-                return;
-            default:
-                no noVar = (no) this.T;
-                noVar.H.getOrCreateStoryViewer().D(noVar.getContext(), j10, new org.telegram.ui.Components.s(this, 25));
-                return;
+    public final void onDraw(Canvas canvas) {
+        n6 n6Var = this.H;
+        l6 l6Var = n6Var.E;
+        uc0 uc0Var = n6.H;
+        if (this.G == 1) {
+            l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            ci.d8.h(n6Var.f22648y, canvas, getImageReceiver(), l6Var);
+            return;
         }
+        super.onDraw(canvas);
     }
 
-    public m6(xa xaVar) {
-        super(null, false);
-        this.T = xaVar;
-    }
-
-    public m6(no noVar) {
-        super(null, true);
-        this.T = noVar;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return this.H.E.a(motionEvent, this);
     }
 }

@@ -1,36 +1,16 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class it0 extends org.telegram.ui.Cells.i7 {
-    public final xv0 f25784l0;
+public final class it0 extends ev0 {
+    public final sv0 f27350t0;
 
-    public it0(xv0 xv0Var, Context context) {
-        super(context);
-        this.f25784l0 = xv0Var;
+    public it0(sv0 sv0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(sv0Var, context, d6Var);
+        this.f27350t0 = sv0Var;
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        boolean isVoice = messageObject.isVoice();
-        xv0 xv0Var = this.f25784l0;
-        if (!isVoice && !messageObject.isRoundVideo()) {
-            if (!messageObject.isMusic()) {
-                return false;
-            }
-            return MediaController.getInstance().setPlaylist(xv0Var.f31065t1[4].f27211a, messageObject, xv0Var.f31028c1);
-        }
-        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-        MediaController mediaController = MediaController.getInstance();
-        if (playMessage) {
-            arrayList = xv0Var.f31065t1[4].f27211a;
-        } else {
-            arrayList = null;
-        }
-        mediaController.setVoiceMessagesPlaylist(arrayList, false);
-        return playMessage;
+    public final int f(int i10) {
+        return this.f27350t0.X0(i10);
     }
 }

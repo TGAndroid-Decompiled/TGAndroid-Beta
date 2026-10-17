@@ -3,33 +3,34 @@ package k8;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
-import com.google.android.gms.internal.play_billing.k3;
+import com.google.android.gms.internal.cast.a6;
 import g8.j;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import w7.f0;
+import w7.g;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(19);
-    public final String f14192a;
-    public final byte[] f14193b;
-    public final byte[][] f14194c;
+    public final String f14987a;
+    public final byte[] f14988b;
+    public final byte[][] f14989c;
     public final byte[][] d;
     public final byte[][] e;
-    public final byte[][] f14195f;
+    public final byte[][] f14990f;
     public final int[] h;
-    public final byte[][] f14196n;
+    public final byte[][] f14991n;
 
     public a(String str, byte[] bArr, byte[][] bArr2, byte[][] bArr3, byte[][] bArr4, byte[][] bArr5, int[] iArr, byte[][] bArr6) {
-        this.f14192a = str;
-        this.f14193b = bArr;
-        this.f14194c = bArr2;
+        this.f14987a = str;
+        this.f14988b = bArr;
+        this.f14989c = bArr2;
         this.d = bArr3;
         this.e = bArr4;
-        this.f14195f = bArr5;
+        this.f14990f = bArr5;
         this.h = iArr;
-        this.f14196n = bArr6;
+        this.f14991n = bArr6;
     }
 
     public static List b(int[] iArr) {
@@ -40,7 +41,7 @@ public final class a extends o6.a {
         int length = iArr.length;
         int i10 = 0;
         while (i10 < length) {
-            i10 = k3.f(iArr[i10], i10, 1, arrayList);
+            i10 = a6.f(iArr[i10], i10, 1, arrayList);
         }
         Collections.sort(arrayList);
         return arrayList;
@@ -88,7 +89,7 @@ public final class a extends o6.a {
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (w7.j.a(this.f14192a, aVar.f14192a) && Arrays.equals(this.f14193b, aVar.f14193b) && w7.j.a(c(this.f14194c), c(aVar.f14194c)) && w7.j.a(c(this.d), c(aVar.d)) && w7.j.a(c(this.e), c(aVar.e)) && w7.j.a(c(this.f14195f), c(aVar.f14195f)) && w7.j.a(b(this.h), b(aVar.h)) && w7.j.a(c(this.f14196n), c(aVar.f14196n))) {
+            if (g.a(this.f14987a, aVar.f14987a) && Arrays.equals(this.f14988b, aVar.f14988b) && g.a(c(this.f14989c), c(aVar.f14989c)) && g.a(c(this.d), c(aVar.d)) && g.a(c(this.e), c(aVar.e)) && g.a(c(this.f14990f), c(aVar.f14990f)) && g.a(b(this.h), b(aVar.h)) && g.a(c(this.f14991n), c(aVar.f14991n))) {
                 return true;
             }
         }
@@ -99,7 +100,7 @@ public final class a extends o6.a {
         String sb2;
         StringBuilder sb3 = new StringBuilder("ExperimentTokens");
         sb3.append("(");
-        String str = this.f14192a;
+        String str = this.f14987a;
         if (str == null) {
             sb2 = "null";
         } else {
@@ -111,7 +112,7 @@ public final class a extends o6.a {
         }
         sb3.append(sb2);
         sb3.append(", direct=");
-        byte[] bArr = this.f14193b;
+        byte[] bArr = this.f14988b;
         if (bArr == null) {
             sb3.append("null");
         } else {
@@ -120,13 +121,13 @@ public final class a extends o6.a {
             sb3.append("'");
         }
         sb3.append(", ");
-        d(sb3, "GAIA", this.f14194c);
+        d(sb3, "GAIA", this.f14989c);
         sb3.append(", ");
         d(sb3, "PSEUDO", this.d);
         sb3.append(", ");
         d(sb3, "ALWAYS", this.e);
         sb3.append(", ");
-        d(sb3, "OTHER", this.f14195f);
+        d(sb3, "OTHER", this.f14990f);
         sb3.append(", ");
         sb3.append("weak");
         sb3.append("=");
@@ -150,7 +151,7 @@ public final class a extends o6.a {
             sb3.append(")");
         }
         sb3.append(", ");
-        d(sb3, "directs", this.f14196n);
+        d(sb3, "directs", this.f14991n);
         sb3.append(")");
         return sb3.toString();
     }
@@ -158,14 +159,14 @@ public final class a extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 2, this.f14192a);
-        f0.c(parcel, 3, this.f14193b);
-        f0.d(parcel, 4, this.f14194c);
+        f0.l(parcel, 2, this.f14987a);
+        f0.c(parcel, 3, this.f14988b);
+        f0.d(parcel, 4, this.f14989c);
         f0.d(parcel, 5, this.d);
         f0.d(parcel, 6, this.e);
-        f0.d(parcel, 7, this.f14195f);
+        f0.d(parcel, 7, this.f14990f);
         f0.g(parcel, 8, this.h);
-        f0.d(parcel, 9, this.f14196n);
+        f0.d(parcel, 9, this.f14991n);
         f0.r(parcel, q6);
     }
 }

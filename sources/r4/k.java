@@ -1,12 +1,12 @@
 package r4;
 public final class k {
-    public final int f43678a;
-    public final byte[] f43679b;
-    public final boolean f43680c;
+    public final int f45034a;
+    public final byte[] f45035b;
+    public final boolean f45036c;
 
     public k(int i10, boolean z10, byte[] bArr) {
-        this.f43678a = i10;
-        this.f43679b = bArr;
-        this.f43680c = z10;
+        this.f45034a = i10;
+        this.f45035b = bArr;
+        this.f45036c = z10;
     }
 }

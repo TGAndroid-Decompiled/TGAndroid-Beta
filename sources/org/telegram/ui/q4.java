@@ -1,35 +1,90 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class q4 extends org.telegram.ui.ActionBar.m2 {
-    public org.telegram.ui.Components.mm0 f39057a;
-    public p4 f39058b;
+public final class q4 extends org.telegram.ui.Components.hm0 {
+    public final Context f40308c;
+
+    public q4(Context context) {
+        this.f40308c = context;
+    }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.AudioRecorderSettings));
-        this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 21));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19543a7, false));
-        this.fragmentView = frameLayout;
-        org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
-        this.f39057a = mm0Var;
-        mm0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f39057a);
-        this.f39057a.setLayoutManager(new s4.b0());
-        this.f39057a.setVerticalScrollBarEnabled(false);
-        org.telegram.ui.Components.mm0 mm0Var2 = this.f39057a;
-        p4 p4Var = new p4(context);
-        this.f39058b = p4Var;
-        mm0Var2.setAdapter(p4Var);
-        this.f39057a.setOnItemClickListener(new i(this, 2));
-        frameLayout.addView(this.f39057a, w7.z5.d(-1.0f, -1));
-        return this.fragmentView;
+    public final boolean D(s4.b1 b1Var) {
+        int b10 = b1Var.b();
+        if (b10 != 1) {
+            ti.a aVar = ti.e.f47236b;
+            aVar.a();
+            if (!aVar.d || b10 != 2) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return 4;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 == 1) {
+            return 1;
+        }
+        if (i10 == 2) {
+            return 2;
+        }
+        return 3;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int i11;
+        ti.a aVar = ti.e.f47236b;
+        aVar.a();
+        boolean z10 = aVar.d;
+        int i12 = b1Var.f45941f;
+        if (i12 == 0) {
+            ((org.telegram.ui.Cells.l4) b1Var.f45938a).setText(LocaleController.getString(R.string.AudioRecorderGeneral));
+        } else if (i12 == 1) {
+            ((org.telegram.ui.Cells.v8) b1Var.f45938a).f(LocaleController.getString(R.string.AudioRecorderUseNewRecorder), z10, false);
+        } else if (i12 == 2) {
+            org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45938a;
+            baVar.setEnabled(z10);
+            String string = LocaleController.getString(R.string.AudioRecorderNoiseSuppression);
+            if (((ri.i) ti.e.f47237c.a()) == ri.i.f45834b) {
+                i11 = R.string.AudioRecorderNoiseSuppressionRNNoise;
+            } else {
+                i11 = R.string.AudioRecorderNoiseSuppressionOff;
+            }
+            baVar.c(string, LocaleController.getString(i11), false, false);
+        } else {
+            ((org.telegram.ui.Cells.d9) b1Var.f45938a).setText(LocaleController.getString(R.string.AudioRecorderGeneralInfo));
+        }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.ba baVar;
+        Context context = this.f40308c;
+        if (i10 == 0) {
+            baVar = new org.telegram.ui.Cells.l4(context);
+        } else if (i10 == 1) {
+            baVar = new org.telegram.ui.Cells.v8(context);
+        } else if (i10 == 2) {
+            org.telegram.ui.Cells.ba baVar2 = new org.telegram.ui.Cells.ba(context);
+            baVar2.setCanDisable(true);
+            baVar = baVar2;
+        } else {
+            baVar = new org.telegram.ui.Cells.d9(context);
+        }
+        baVar.setLayoutParams(new s4.o0(-1, -2));
+        return new s4.b1(baVar);
     }
 }

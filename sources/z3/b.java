@@ -1,21 +1,55 @@
 package z3;
 
+import e2.m0;
+import e9.l0;
 import e9.n0;
+import e9.r;
+import e9.s1;
+import e9.x1;
 import java.util.List;
-public final class b {
-    public final n0 f49251a;
-    public final long f49252b;
-    public final long f49253c;
-    public final long d;
+import v7.u6;
+public final class b implements d {
+    public static final r f50659c = new r(new yh.g(4), s1.f8499b);
+    public final n0 f50660a;
+    public final long[] f50661b;
 
-    public b(long j10, long j11, List list) {
-        this.f49251a = n0.u(list);
-        this.f49252b = j10;
-        this.f49253c = j11;
-        long j12 = -9223372036854775807L;
-        if (j10 != -9223372036854775807L && j11 != -9223372036854775807L) {
-            j12 = j10 + j11;
+    public b(e9.x1 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: z3.b.<init>(e9.x1):void");
+    }
+
+    @Override
+    public final int c(long j10) {
+        int b10 = m0.b(this.f50661b, j10, false);
+        if (b10 < this.f50660a.size()) {
+            return b10;
         }
-        this.d = j12;
+        return -1;
+    }
+
+    @Override
+    public final long d(int i10) {
+        boolean z10;
+        if (i10 < this.f50660a.size()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        u6.g(z10);
+        return this.f50661b[i10];
+    }
+
+    @Override
+    public final List e(long j10) {
+        int f7 = m0.f(this.f50661b, j10, false);
+        if (f7 == -1) {
+            l0 l0Var = n0.f8476b;
+            return x1.e;
+        }
+        return (n0) this.f50660a.get(f7);
+    }
+
+    @Override
+    public final int h() {
+        return this.f50660a.size();
     }
 }

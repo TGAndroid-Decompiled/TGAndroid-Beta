@@ -1,105 +1,110 @@
 package x9;
 
 import android.content.Context;
-import android.util.Log;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.android.gms.tasks.Tasks;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import java.util.concurrent.atomic.AtomicReference;
-import ji.w4;
+import com.google.android.gms.internal.cast.a6;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import z9.o0;
+import z9.p0;
 public final class p {
-    public final Context f48320a;
-    public final s f48321b;
-    public final n3.b f48322c;
-    public l d;
-    public l e;
-    public n f48323f;
-    public final v f48324g;
-    public final ca.c h;
-    public final t9.a f48325i;
-    public final t9.a f48326j;
-    public final ExecutorService f48327k;
-    public final com.google.firebase.messaging.s f48328l;
-    public final j f48329m;
-    public final u9.a f48330n;
-    public final w4 f48331o;
+    public static final HashMap f49739f;
+    public static final String f49740g;
+    public final Context f49741a;
+    public final u f49742b;
+    public final a f49743c;
+    public final qf.b d;
+    public final ea.b e;
 
-    public p(l9.h hVar, v vVar, u9.a aVar, s sVar, t9.a aVar2, t9.a aVar3, ca.c cVar, ExecutorService executorService, j jVar, w4 w4Var) {
-        this.f48321b = sVar;
-        hVar.a();
-        this.f48320a = hVar.f14626a;
-        this.f48324g = vVar;
-        this.f48330n = aVar;
-        this.f48325i = aVar2;
-        this.f48326j = aVar3;
-        this.f48327k = executorService;
-        this.h = cVar;
-        this.f48328l = new com.google.firebase.messaging.s(executorService);
-        this.f48329m = jVar;
-        this.f48331o = w4Var;
-        System.currentTimeMillis();
-        this.f48322c = new n3.b(27);
+    static {
+        HashMap hashMap = new HashMap();
+        f49739f = hashMap;
+        a6.n(5, hashMap, "armeabi", 6, "armeabi-v7a");
+        a6.n(9, hashMap, "arm64-v8a", 0, "x86");
+        hashMap.put("x86_64", 1);
+        Locale locale = Locale.US;
+        f49740g = "Crashlytics Android SDK/18.6.0";
     }
 
-    public static Task a(p pVar, ea.b bVar) {
-        Task forException;
-        o oVar;
-        com.google.firebase.messaging.s sVar = pVar.f48328l;
-        if (Boolean.TRUE.equals(((ThreadLocal) sVar.e).get())) {
-            pVar.d.a();
-            if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                Log.v("FirebaseCrashlytics", "Initialization marker file was created.", null);
-            }
-            try {
-                try {
-                    pVar.f48325i.a(new t0.a(23));
-                    pVar.f48323f.g();
-                    if (!bVar.d().f8663b.f2637a) {
-                        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                            Log.d("FirebaseCrashlytics", "Collection of crash reports disabled in Crashlytics settings.", null);
-                        }
-                        forException = Tasks.forException(new RuntimeException("Collection of crash reports disabled in Crashlytics settings."));
-                        oVar = new o(pVar, 0);
-                    } else {
-                        if (!pVar.f48323f.d(bVar)) {
-                            Log.w("FirebaseCrashlytics", "Previous sessions could not be finalized.", null);
-                        }
-                        forException = pVar.f48323f.h(((TaskCompletionSource) ((AtomicReference) bVar.f8671i).get()).getTask());
-                        oVar = new o(pVar, 0);
-                    }
-                } catch (Exception e) {
-                    Log.e("FirebaseCrashlytics", "Crashlytics encountered a problem during asynchronous initialization.", e);
-                    forException = Tasks.forException(e);
-                    oVar = new o(pVar, 0);
-                }
-                sVar.v(oVar);
-                return forException;
-            } catch (Throwable th2) {
-                sVar.v(new o(pVar, 0));
-                throw th2;
-            }
-        }
-        throw new IllegalStateException("Not running on background worker thread as intended.");
+    public p(Context context, u uVar, a aVar, qf.b bVar, ea.b bVar2) {
+        this.f49741a = context;
+        this.f49742b = uVar;
+        this.f49743c = aVar;
+        this.d = bVar;
+        this.e = bVar2;
     }
 
-    public final void b(ea.b bVar) {
-        Future<?> submit = this.f48327k.submit(new s9.j(14, this, bVar));
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Crashlytics detected incomplete initialization on previous app launch. Will initialize synchronously.", null);
+    public static p0 c(com.google.firebase.messaging.r rVar, int i10) {
+        String str = (String) rVar.f7663c;
+        String str2 = (String) rVar.f7662b;
+        StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) rVar.d;
+        int i11 = 0;
+        if (stackTraceElementArr == null) {
+            stackTraceElementArr = new StackTraceElement[0];
         }
-        try {
-            submit.get(3L, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            Log.e("FirebaseCrashlytics", "Crashlytics was interrupted during initialization.", e);
-        } catch (ExecutionException e7) {
-            Log.e("FirebaseCrashlytics", "Crashlytics encountered a problem during initialization.", e7);
-        } catch (TimeoutException e10) {
-            Log.e("FirebaseCrashlytics", "Crashlytics timed out during initialization.", e10);
+        com.google.firebase.messaging.r rVar2 = (com.google.firebase.messaging.r) rVar.e;
+        if (i10 >= 8) {
+            com.google.firebase.messaging.r rVar3 = rVar2;
+            while (rVar3 != null) {
+                rVar3 = (com.google.firebase.messaging.r) rVar3.e;
+                i11++;
+            }
         }
+        int i12 = i11;
+        List d = d(stackTraceElementArr, 4);
+        if (d != null) {
+            p0 p0Var = null;
+            if (rVar2 != null && i12 == 0) {
+                p0Var = c(rVar2, i10 + 1);
+            }
+            return new p0(str, str2, d, p0Var, i12);
+        }
+        throw new NullPointerException("Null frames");
+    }
+
+    public static List d(StackTraceElement[] stackTraceElementArr, int i10) {
+        long j10;
+        ArrayList arrayList = new ArrayList();
+        for (StackTraceElement stackTraceElement : stackTraceElementArr) {
+            ?? obj = new Object();
+            obj.e = Integer.valueOf(i10);
+            long j11 = 0;
+            if (stackTraceElement.isNativeMethod()) {
+                j10 = Math.max(stackTraceElement.getLineNumber(), 0L);
+            } else {
+                j10 = 0;
+            }
+            String str = stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName();
+            String fileName = stackTraceElement.getFileName();
+            if (!stackTraceElement.isNativeMethod() && stackTraceElement.getLineNumber() > 0) {
+                j11 = stackTraceElement.getLineNumber();
+            }
+            obj.f6883b = Long.valueOf(j10);
+            if (str != null) {
+                obj.f6882a = str;
+                obj.f6884c = fileName;
+                obj.d = Long.valueOf(j11);
+                arrayList.add(obj.p());
+            } else {
+                throw new NullPointerException("Null symbol");
+            }
+        }
+        return DesugarCollections.unmodifiableList(arrayList);
+    }
+
+    public final List a() {
+        a aVar = this.f49743c;
+        String str = aVar.e;
+        if (str != null) {
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f49682b));
+        }
+        throw new NullPointerException("Null name");
+    }
+
+    public final z9.u0 b(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: x9.p.b(int):z9.u0");
     }
 }

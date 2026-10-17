@@ -1,29 +1,39 @@
 package yg;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Utilities;
-public final class f implements TextWatcher {
-    public final i f48759a;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.ui.Components.v30;
+public final class f implements View.OnKeyListener {
+    public boolean f50162a;
+    public final HashSet f50163b;
+    public final Runnable f50164c;
+    public final h d;
 
-    public f(i iVar) {
-        this.f48759a = iVar;
+    public f(h hVar, HashSet hashSet, Runnable runnable) {
+        this.d = hVar;
+        this.f50163b = hashSet;
+        this.f50164c = runnable;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        Utilities.Callback callback;
-        i iVar = this.f48759a;
-        if (!iVar.h && (callback = iVar.f48770n) != null && editable != null) {
-            callback.run(editable.toString());
+    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
+        h hVar = this.d;
+        ArrayList arrayList = hVar.e;
+        if (i10 == 67) {
+            boolean z10 = true;
+            if (keyEvent.getAction() == 0) {
+                if (hVar.f50169b.length() != 0) {
+                    z10 = false;
+                }
+                this.f50162a = z10;
+                return false;
+            } else if (keyEvent.getAction() == 1 && this.f50162a && !arrayList.isEmpty()) {
+                hVar.a((v30) i0.a.h(1, arrayList), this.f50163b, this.f50164c);
+                return true;
+            }
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        return false;
     }
 }

@@ -1,10 +1,10 @@
 package tc;
 
-import c5.c0;
+import c5.b0;
 import e2.j0;
 public abstract class d {
-    public static final int[] f45571a = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
-    public static final byte[] f45572b = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47};
+    public static final int[] f46960a = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
+    public static final byte[] f46961b = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47};
 
     public static String a(byte[] bArr) {
         int i10;
@@ -54,7 +54,7 @@ public abstract class d {
             if (i12 < 0) {
                 break;
             }
-            sb2.append((char) f45572b[i12]);
+            sb2.append((char) f46961b[i12]);
             i15 += 6;
         }
         for (int length2 = sb2.length(); length2 < length; length2++) {
@@ -95,183 +95,183 @@ public abstract class d {
         return true;
     }
 
-    public static void c(c0 c0Var, int[] iArr, int[] iArr2, j0 j0Var) {
+    public static void c(b0 b0Var, int[] iArr, int[] iArr2, j0 j0Var) {
         int i10;
-        int n10;
-        int n11;
+        int r10;
+        int r11;
         int i11 = 0;
         while (i11 < iArr2.length) {
-            int k10 = j0Var.k(c0Var, iArr);
-            if (k10 >= 0 && k10 <= 15) {
-                iArr2[i11] = k10;
+            int i12 = j0Var.i(b0Var, iArr);
+            if (i12 >= 0 && i12 <= 15) {
+                iArr2[i11] = i12;
             } else {
-                switch (k10) {
+                switch (i12) {
                     case 16:
                         i10 = iArr2[i11 - 1];
-                        n10 = c0Var.n(2, iArr) + 3;
+                        r10 = b0Var.r(2, iArr) + 3;
                         break;
                     case 17:
-                        n11 = c0Var.n(3, iArr) + 3;
-                        n10 = n11;
+                        r11 = b0Var.r(3, iArr) + 3;
+                        r10 = r11;
                         i10 = 0;
                         break;
                     case 18:
-                        n11 = c0Var.n(7, iArr) + 11;
-                        n10 = n11;
+                        r11 = b0Var.r(7, iArr) + 11;
+                        r10 = r11;
                         i10 = 0;
                         break;
                     default:
-                        throw new Exception(String.format("[%s] Bad code length '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(k10), iArr));
+                        throw new Exception(String.format("[%s] Bad code length '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(i12), iArr));
                 }
-                for (int i12 = 0; i12 < n10; i12++) {
-                    iArr2[i11 + i12] = i10;
+                for (int i13 = 0; i13 < r10; i13++) {
+                    iArr2[i11 + i13] = i10;
                 }
-                i11 += n10 - 1;
+                i11 += r10 - 1;
             }
             i11++;
         }
     }
 
-    public static int d(c0 c0Var, int[] iArr, j0 j0Var) {
+    public static int d(b0 b0Var, int[] iArr, j0 j0Var) {
         int i10;
-        int k10 = j0Var.k(c0Var, iArr);
-        int i11 = 2;
-        int i12 = 5;
-        switch (k10) {
+        int i11 = j0Var.i(b0Var, iArr);
+        int i12 = 2;
+        int i13 = 5;
+        switch (i11) {
             case 0:
             case 1:
             case 2:
             case 3:
-                return k10 + 1;
+                return i11 + 1;
             case 4:
-                i11 = 1;
+                i12 = 1;
                 break;
             case 5:
-                i11 = 1;
-                i12 = 7;
+                i12 = 1;
+                i13 = 7;
                 break;
             case 6:
-                i12 = 9;
+                i13 = 9;
                 break;
             case 7:
-                i12 = 13;
+                i13 = 13;
                 break;
             case 8:
-                i12 = 17;
-                i11 = 3;
+                i13 = 17;
+                i12 = 3;
                 break;
             case 9:
-                i12 = 25;
-                i11 = 3;
+                i13 = 25;
+                i12 = 3;
                 break;
             case 10:
-                i12 = 33;
-                i11 = 4;
+                i13 = 33;
+                i12 = 4;
                 break;
             case 11:
-                i12 = 49;
-                i11 = 4;
+                i13 = 49;
+                i12 = 4;
                 break;
             case 12:
                 i10 = 65;
-                i11 = 5;
-                i12 = i10;
+                i12 = 5;
+                i13 = i10;
                 break;
             case 13:
                 i10 = 97;
-                i11 = 5;
-                i12 = i10;
+                i12 = 5;
+                i13 = i10;
                 break;
             case 14:
-                i12 = 129;
-                i11 = 6;
+                i13 = 129;
+                i12 = 6;
                 break;
             case 15:
-                i12 = 193;
-                i11 = 6;
+                i13 = 193;
+                i12 = 6;
                 break;
             case 16:
-                i12 = 257;
-                i11 = 7;
+                i13 = 257;
+                i12 = 7;
                 break;
             case 17:
-                i12 = 385;
-                i11 = 7;
+                i13 = 385;
+                i12 = 7;
                 break;
             case 18:
-                i12 = 513;
-                i11 = 8;
+                i13 = 513;
+                i12 = 8;
                 break;
             case 19:
-                i12 = 769;
-                i11 = 8;
+                i13 = 769;
+                i12 = 8;
                 break;
             case 20:
-                i12 = 1025;
-                i11 = 9;
+                i13 = 1025;
+                i12 = 9;
                 break;
             case 21:
-                i12 = 1537;
-                i11 = 9;
+                i13 = 1537;
+                i12 = 9;
                 break;
             case 22:
-                i12 = 2049;
-                i11 = 10;
+                i13 = 2049;
+                i12 = 10;
                 break;
             case 23:
-                i12 = 3073;
-                i11 = 10;
+                i13 = 3073;
+                i12 = 10;
                 break;
             case 24:
-                i12 = 4097;
-                i11 = 11;
+                i13 = 4097;
+                i12 = 11;
                 break;
             case 25:
-                i12 = 6145;
-                i11 = 11;
+                i13 = 6145;
+                i12 = 11;
                 break;
             case 26:
-                i12 = 8193;
-                i11 = 12;
+                i13 = 8193;
+                i12 = 12;
                 break;
             case 27:
-                i12 = 12289;
-                i11 = 12;
+                i13 = 12289;
+                i12 = 12;
                 break;
             case 28:
-                i12 = 16385;
-                i11 = 13;
+                i13 = 16385;
+                i12 = 13;
                 break;
             case 29:
-                i12 = 24577;
-                i11 = 13;
+                i13 = 24577;
+                i12 = 13;
                 break;
             default:
-                throw new Exception(String.format("[%s] Bad distance code '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(k10), Integer.valueOf(iArr[0])));
+                throw new Exception(String.format("[%s] Bad distance code '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(i11), Integer.valueOf(iArr[0])));
         }
-        return c0Var.n(i11, iArr) + i12;
+        return b0Var.r(i12, iArr) + i13;
     }
 
-    public static void e(c0 c0Var, int[] iArr, j0[] j0VarArr) {
-        int n10 = c0Var.n(5, iArr) + 257;
-        int n11 = c0Var.n(5, iArr) + 1;
-        int n12 = c0Var.n(4, iArr) + 4;
+    public static void e(b0 b0Var, int[] iArr, j0[] j0VarArr) {
+        int r10 = b0Var.r(5, iArr) + 257;
+        int r11 = b0Var.r(5, iArr) + 1;
+        int r12 = b0Var.r(4, iArr) + 4;
         int[] iArr2 = new int[19];
-        for (int i10 = 0; i10 < n12; i10++) {
-            iArr2[f45571a[i10]] = (byte) c0Var.n(3, iArr);
+        for (int i10 = 0; i10 < r12; i10++) {
+            iArr2[f46960a[i10]] = (byte) b0Var.r(3, iArr);
         }
         j0 j0Var = new j0(iArr2);
-        int[] iArr3 = new int[n10];
-        c(c0Var, iArr, iArr3, j0Var);
+        int[] iArr3 = new int[r10];
+        c(b0Var, iArr, iArr3, j0Var);
         j0 j0Var2 = new j0(iArr3);
-        int[] iArr4 = new int[n11];
-        c(c0Var, iArr, iArr4, j0Var);
+        int[] iArr4 = new int[r11];
+        c(b0Var, iArr, iArr4, j0Var);
         j0 j0Var3 = new j0(iArr4);
         j0VarArr[0] = j0Var2;
         j0VarArr[1] = j0Var3;
     }
 
-    public static int f(c0 c0Var, int[] iArr, int i10) {
+    public static int f(b0 b0Var, int[] iArr, int i10) {
         int i11;
         int i12 = 1;
         switch (i10) {
@@ -365,6 +365,6 @@ public abstract class d {
             default:
                 throw new Exception(String.format("[%s] Bad literal/length code '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(i10), Integer.valueOf(iArr[0])));
         }
-        return c0Var.n(i12, iArr) + i11;
+        return b0Var.r(i12, iArr) + i11;
     }
 }

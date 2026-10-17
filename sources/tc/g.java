@@ -2,7 +2,7 @@ package tc;
 
 import e2.j0;
 public final class g extends j0 {
-    public static final g f45579f;
+    public static final g e;
 
     static {
         int[] iArr = new int[288];
@@ -23,6 +23,6 @@ public final class g extends j0 {
             iArr[i10] = 8;
             i10++;
         }
-        f45579f = new j0(iArr);
+        e = new j0(iArr);
     }
 }

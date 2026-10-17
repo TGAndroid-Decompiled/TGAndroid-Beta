@@ -4,18 +4,18 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Wallet.w4;
+import org.telegram.ui.Wallet.h5;
 public final class f1 extends c0 {
-    public final w4 f44879r;
+    public final h5 f45979r;
 
-    public f1(w4 w4Var, Context context) {
+    public f1(h5 h5Var, Context context) {
         super(context);
-        this.f44879r = w4Var;
+        this.f45979r = h5Var;
     }
 
     @Override
     public final void g(View view, w0 w0Var) {
-        RecyclerView recyclerView = this.f44879r.f33546a;
+        RecyclerView recyclerView = this.f45979r.f34260a;
         if (recyclerView != null) {
             n0 layoutManager = recyclerView.getLayoutManager();
             layoutManager.getClass();
@@ -24,7 +24,7 @@ public final class f1 extends c0 {
             int i11 = iArr[1];
             int m10 = m(Math.max(Math.abs(i10), Math.abs(i11)));
             if (m10 > 0) {
-                w0Var.b(i10, i11, m10, this.f44860j);
+                w0Var.b(i10, i11, m10, this.f45960j);
             }
         }
     }

@@ -1,45 +1,56 @@
 package org.telegram.ui;
 
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.AndroidUtilities;
-public final class dc implements Runnable {
-    public final int f34954a;
-    public final hc f34955b;
+import j$.util.Objects;
+import org.telegram.tgnet.tl.TL_stories;
+public final class dc extends pg.a {
+    public final String f36132c;
+    public final TL_stories.Boost d;
+    public TL_stories.PrepaidGiveaway e;
+    public boolean f36133f;
+    public final int f36134g;
 
-    public dc(hc hcVar, int i10) {
-        this.f34954a = i10;
-        this.f34955b = hcVar;
+    public dc(int i10, String str) {
+        super(i10, false);
+        this.f36132c = str;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f34954a) {
-            case 0:
-                CountDownLatch countDownLatch = new CountDownLatch(2);
-                hc hcVar = this.f34955b;
-                hcVar.a(countDownLatch, null);
-                hcVar.b(countDownLatch, null);
-                try {
-                    countDownLatch.await();
-                } catch (InterruptedException unused) {
-                }
-                AndroidUtilities.runOnUIThread(new dc(hcVar, 3));
-                return;
-            case 1:
-                hc hcVar2 = this.f34955b;
-                hcVar2.H = false;
-                hcVar2.d(true);
-                return;
-            case 2:
-                hc hcVar3 = this.f34955b;
-                hcVar3.H = false;
-                hcVar3.d(true);
-                return;
-            default:
-                hc hcVar4 = this.f34955b;
-                hcVar4.H = false;
-                hcVar4.d(true);
-                return;
+    public final boolean equals(Object obj) {
+        TL_stories.PrepaidGiveaway prepaidGiveaway;
+        boolean z10 = this.f36133f;
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || dc.class != obj.getClass()) {
+            return false;
+        }
+        dc dcVar = (dc) obj;
+        TL_stories.Boost boost = dcVar.d;
+        boolean z11 = dcVar.f36133f;
+        TL_stories.PrepaidGiveaway prepaidGiveaway2 = this.e;
+        if (prepaidGiveaway2 != null && (prepaidGiveaway = dcVar.e) != null) {
+            if (prepaidGiveaway2.f20505id == prepaidGiveaway.f20505id && z10 == z11) {
+                return true;
+            }
+            return false;
+        }
+        TL_stories.Boost boost2 = this.d;
+        if (boost2 == null || boost == null) {
+            return true;
+        }
+        if (boost2.f20501id.hashCode() == boost.f20501id.hashCode() && z10 == z11 && this.f36134g == dcVar.f36134g) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.f36132c, this.d, this.e, Boolean.valueOf(this.f36133f), Integer.valueOf(this.f36134g));
+    }
+
+    public dc(TL_stories.Boost boost, boolean z10, int i10) {
+        super(5, true);
+        this.d = boost;
+        this.f36133f = z10;
+        this.f36134g = i10;
     }
 }

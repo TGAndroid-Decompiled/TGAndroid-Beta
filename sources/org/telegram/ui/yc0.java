@@ -1,36 +1,39 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLRPC;
-public final class yc0 extends org.telegram.ui.ActionBar.j {
-    public final ld0 f41803a;
+import org.telegram.messenger.AndroidUtilities;
+public final class yc0 implements org.telegram.ui.Components.iw0 {
+    public final int f43385a;
+    public final org.telegram.ui.ActionBar.n2 f43386b;
 
-    public yc0(ld0 ld0Var) {
-        this.f41803a = ld0Var;
+    public yc0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f43385a = i10;
+        this.f43386b = n2Var;
     }
 
     @Override
-    public final void b(int i10) {
-        ld0 ld0Var = this.f41803a;
-        if (i10 == -1) {
-            ld0Var.finishFragment();
-        } else if (i10 == 1) {
-            try {
-                TLRPC.GeoPoint geoPoint = ld0Var.B0.messageOwner.media.geo;
-                double d = geoPoint.lat;
-                double d10 = geoPoint._long;
-                Activity parentActivity = ld0Var.getParentActivity();
-                parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        } else if (i10 == 5) {
-            ld0Var.r0(false);
-        } else if (i10 == 6) {
-            ld0Var.q0(null);
+    public final void H(int i10, boolean z10) {
+        uf0 uf0Var;
+        zk0 zk0Var;
+        switch (this.f43385a) {
+            case 0:
+                fg0 fg0Var = (fg0) this.f43386b;
+                if (i10 > AndroidUtilities.dp(20.0f) && fg0Var.h1()) {
+                    AndroidUtilities.hideKeyboard(fg0Var.fragmentView);
+                }
+                if (i10 <= AndroidUtilities.dp(20.0f) && (uf0Var = fg0Var.T) != null) {
+                    uf0Var.run();
+                    fg0Var.T = null;
+                    return;
+                }
+                return;
+            default:
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f43386b;
+                if (i10 >= AndroidUtilities.dp(20.0f) && (zk0Var = passcodeActivity.T) != null) {
+                    zk0Var.run();
+                    passcodeActivity.T = null;
+                    return;
+                }
+                return;
         }
     }
 }

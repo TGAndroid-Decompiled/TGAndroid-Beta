@@ -1,62 +1,59 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.R;
-public final class mv extends org.telegram.ui.Components.lm0 {
-    public final ov f38074c;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+public final class mv implements org.telegram.ui.Components.wl0 {
+    public final int f39252a;
+    public final ey f39253b;
 
-    public mv(ov ovVar) {
-        this.f38074c = ovVar;
+    public mv(ey eyVar, int i10) {
+        this.f39252a = i10;
+        this.f39253b = eyVar;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        if (this.f38074c.f38757g0.h()) {
-            return 1;
+    public final void a(int i10, View view) {
+        hg.o0 o0Var;
+        switch (this.f39252a) {
+            case 0:
+                ey eyVar = this.f39253b;
+                Object obj = eyVar.C0.f31359v0.G(i10).G;
+                if (obj instanceof MessageObject) {
+                    MessageObject messageObject = (MessageObject) obj;
+                    Bundle bundle = new Bundle();
+                    if (messageObject.getDialogId() >= 0) {
+                        bundle.putLong("user_id", messageObject.getDialogId());
+                    } else {
+                        bundle.putLong("chat_id", -messageObject.getDialogId());
+                    }
+                    bundle.putInt("message_id", messageObject.getId());
+                    sn snVar = new sn(bundle);
+                    ey.b4(snVar, messageObject);
+                    eyVar.presentFragment(snVar);
+                    return;
+                } else if (obj instanceof ci.u6) {
+                    ci.u6 u6Var = (ci.u6) obj;
+                    Bundle j10 = org.telegram.ui.Cells.t0.j(3, "type");
+                    j10.putString("hashtag", u6Var.C);
+                    j10.putInt("storiesCount", u6Var.J);
+                    eyVar.presentFragment(new org.telegram.ui.Components.wa0(j10, null));
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                ey eyVar2 = this.f39253b;
+                eyVar2.f36614b0.I0(true);
+                ArrayList arrayList = eyVar2.f36614b0.V2;
+                if (arrayList.isEmpty()) {
+                    o0Var = hg.q0.f12016a3[i10];
+                } else {
+                    o0Var = (hg.o0) arrayList.get(i10);
+                }
+                eyVar2.g3(o0Var);
+                return;
         }
-        return 3;
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View view;
-        int i11;
-        int i12;
-        ov ovVar = this.f38074c;
-        if (i10 == 0) {
-            view = ovVar.f38754d0;
-        } else if (i10 == 2) {
-            view = ovVar.f38755e0;
-            s4.o0 o0Var = new s4.o0(-1, -2);
-            i11 = ((org.telegram.ui.ActionBar.e3) ovVar).backgroundPaddingLeft;
-            ((ViewGroup.MarginLayoutParams) o0Var).leftMargin = i11;
-            i12 = ((org.telegram.ui.ActionBar.e3) ovVar).backgroundPaddingLeft;
-            ((ViewGroup.MarginLayoutParams) o0Var).rightMargin = i12;
-            view.setLayoutParams(o0Var);
-        } else {
-            org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(viewGroup.getContext());
-            e9Var.setFixedSize(12);
-            org.telegram.ui.Components.cr crVar = new org.telegram.ui.Components.cr(new ColorDrawable(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19543a7, false)), org.telegram.ui.ActionBar.g6.W0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.g6.f19563b7));
-            crVar.f23883w = true;
-            e9Var.setBackgroundDrawable(crVar);
-            view = e9Var;
-        }
-        return new s4.b1(view);
-    }
-
-    @Override
-    public final int j(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
     }
 }

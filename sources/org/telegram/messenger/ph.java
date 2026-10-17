@@ -1,26 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-public final class ph implements Runnable {
-    public final int f17820a;
-    public final Utilities.Callback2 f17821b;
-    public final Exception f17822c;
+import android.text.Spanned;
+import java.util.Comparator;
+import org.telegram.messenger.RichMessageLayout;
+public final class ph implements Comparator {
+    public final int f19288a;
+    public final Spanned f19289b;
 
-    public ph(Utilities.Callback2 callback2, Exception exc, int i10) {
-        this.f17820a = i10;
-        this.f17821b = callback2;
-        this.f17822c = exc;
+    public ph(Spanned spanned, int i10) {
+        this.f19288a = i10;
+        this.f19289b = spanned;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17820a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$withReplacements$0;
+        int lambda$new$0;
+        switch (this.f19288a) {
             case 0:
-                PasskeysController.lambda$create$3(this.f17821b, this.f17822c);
-                return;
+                lambda$withReplacements$0 = RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f19289b, (org.telegram.ui.Cells.t9) obj, (org.telegram.ui.Cells.t9) obj2);
+                return lambda$withReplacements$0;
             default:
-                PasskeysController.lambda$create$8(this.f17821b, this.f17822c);
-                return;
+                lambda$new$0 = RichMessageLayout.Text.lambda$new$0(this.f19289b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
+                return lambda$new$0;
         }
     }
 }

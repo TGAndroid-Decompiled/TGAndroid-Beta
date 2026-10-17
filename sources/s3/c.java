@@ -1,23 +1,23 @@
 package s3;
 
 import a4.g;
+import a4.l;
+import b2.s0;
 import b2.t0;
-import b2.u0;
 import e2.k0;
 import e2.x;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import ji.h5;
 import w7.m;
 public final class c extends m {
-    public final x f44803a = new x();
-    public final g f44804b = new g();
-    public k0 f44805c;
+    public final x f45903a = new x();
+    public final g f45904b = new g();
+    public k0 f45905c;
 
     @Override
-    public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
+    public final t0 b(l3.a aVar, ByteBuffer byteBuffer) {
         int i10;
         Object obj;
         boolean z10;
@@ -31,17 +31,17 @@ public final class c extends m {
         long j11;
         boolean z17;
         long j12;
-        k0 k0Var = this.f44805c;
-        if (k0Var == null || aVar.f14553r != k0Var.e()) {
+        k0 k0Var = this.f45905c;
+        if (k0Var == null || aVar.f15887r != k0Var.e()) {
             k0 k0Var2 = new k0(aVar.e);
-            this.f44805c = k0Var2;
-            k0Var2.a(aVar.e - aVar.f14553r);
+            this.f45905c = k0Var2;
+            k0Var2.a(aVar.e - aVar.f15887r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        x xVar = this.f44803a;
+        x xVar = this.f45903a;
         xVar.L(limit, array);
-        g gVar = this.f44804b;
+        g gVar = this.f45904b;
         gVar.k(limit, array);
         gVar.o(39);
         long g10 = (gVar.g(1) << 32) | gVar.g(32);
@@ -56,12 +56,12 @@ public final class c extends m {
                         if (g12 != 6) {
                             obj = null;
                         } else {
-                            k0 k0Var3 = this.f44805c;
+                            k0 k0Var3 = this.f45905c;
                             long d = a.d(g10, xVar);
                             obj = new a(d, k0Var3.b(d), 1);
                         }
                     } else {
-                        k0 k0Var4 = this.f44805c;
+                        k0 k0Var4 = this.f45905c;
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
                             z13 = true;
@@ -168,7 +168,7 @@ public final class c extends m {
                             xVar.A();
                             xVar.A();
                         }
-                        arrayList2.add(new h5(arrayList3));
+                        arrayList2.add(new l(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }
@@ -185,10 +185,10 @@ public final class c extends m {
             obj = new Object();
         }
         if (obj == null) {
-            return new u0(new t0[i10]);
+            return new t0(new s0[i10]);
         }
-        t0[] t0VarArr = new t0[1];
-        t0VarArr[i10] = obj;
-        return new u0(t0VarArr);
+        s0[] s0VarArr = new s0[1];
+        s0VarArr[i10] = obj;
+        return new t0(s0VarArr);
     }
 }

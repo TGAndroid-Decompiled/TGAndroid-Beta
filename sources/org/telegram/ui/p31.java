@@ -1,56 +1,59 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class p31 extends r71 {
-    public final r31 f38807d2;
-    public final i71[] f38808e2;
-    public final s31 f38809f2;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+import org.telegram.messenger.FileLog;
+public final class p31 extends AnimatorListenerAdapter {
+    public final int f39951a;
+    public final org.telegram.ui.Components.cn0 f39952b;
 
-    public p31(s31 s31Var, s31 s31Var2, Activity activity, Integer num, r31 r31Var, i71[] i71VarArr) {
-        super(s31Var2, activity, false, num, 2, null);
-        this.f38809f2 = s31Var;
-        this.f38807d2 = r31Var;
-        this.f38808e2 = i71VarArr;
+    public p31(org.telegram.ui.Components.cn0 cn0Var, int i10) {
+        this.f39951a = i10;
+        this.f39952b = cn0Var;
     }
 
     @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        int i10;
-        if (l4 != null) {
-            s31 s31Var = this.f38809f2;
-            i10 = ((org.telegram.ui.ActionBar.m2) s31Var).currentAccount;
-            MediaDataController mediaDataController = MediaDataController.getInstance(i10);
-            mediaDataController.setDoubleTapReaction("animated_" + l4);
-            r31 r31Var = this.f38807d2;
-            if (r31Var != null) {
-                r31Var.a(true);
-            }
-            i71 i71Var = this.f38808e2[0];
-            if (i71Var != null) {
-                s31Var.f39694n = null;
-                i71Var.dismiss();
-            }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39951a) {
+            case 0:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f39952b.f25311b;
+                secretMediaViewer.Z.getNextView().setText((CharSequence) null);
+                jt0 jt0Var = secretMediaViewer.f33770a0;
+                jt0Var.f42933l0 = false;
+                if (jt0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) jt0Var.f42935o0.getLayoutParams()).topMargin = jt0Var.m0;
+                    jt0Var.m0 = -1;
+                    jt0Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                ((SecretMediaViewer) this.f39952b.f25311b).Z.setTranslationY(0.0f);
+                return;
         }
     }
 
     @Override
-    public final void r(a71 a71Var, ah.i1 i1Var) {
-        int i10;
-        s31 s31Var = this.f38809f2;
-        i10 = ((org.telegram.ui.ActionBar.m2) s31Var).currentAccount;
-        MediaDataController.getInstance(i10).setDoubleTapReaction(i1Var.f783f);
-        r31 r31Var = this.f38807d2;
-        if (r31Var != null) {
-            r31Var.a(true);
-        }
-        i71 i71Var = this.f38808e2[0];
-        if (i71Var != null) {
-            s31Var.f39694n = null;
-            i71Var.dismiss();
+    public void onAnimationStart(Animator animator) {
+        switch (this.f39951a) {
+            case 0:
+                jt0 jt0Var = ((SecretMediaViewer) this.f39952b.f25311b).f33770a0;
+                Method method = jt0Var.f42927f0;
+                if (method != null) {
+                    try {
+                        method.invoke(jt0Var, null);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

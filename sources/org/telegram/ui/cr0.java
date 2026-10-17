@@ -1,70 +1,59 @@
 package org.telegram.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class cr0 implements org.telegram.ui.Cells.s5 {
-    public final dr0 f34771a;
+public final class cr0 implements Runnable {
+    public final int f35977a;
+    public final PhotoViewer f35978b;
+    public final Bitmap f35979c;
 
-    public cr0(dr0 dr0Var) {
-        this.f34771a = dr0Var;
-    }
-
-    public final void a() {
-        fo foVar;
-        TLRPC.Chat chat;
-        fr0 fr0Var = this.f34771a.d;
-        if (fr0Var.I && (foVar = fr0Var.U) != null && (chat = foVar.e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && fr0Var.W != 2) {
-            org.telegram.ui.Components.g5.t0(fr0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
-            if (fr0Var.W == 1) {
-                fr0Var.W = 2;
-            }
-        }
+    public cr0(PhotoViewer photoViewer, Bitmap bitmap, int i10) {
+        this.f35977a = i10;
+        this.f35978b = photoViewer;
+        this.f35979c = bitmap;
     }
 
     @Override
-    public final void c(org.telegram.ui.Cells.t5 t5Var) {
-        boolean z10;
-        int intValue = ((Integer) t5Var.getTag()).intValue();
-        fr0 fr0Var = this.f34771a.d;
-        MediaController.AlbumEntry albumEntry = fr0Var.J;
-        int i10 = -1;
-        int i11 = 1;
-        if (albumEntry != null) {
-            MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
-            boolean containsKey = fr0Var.f35913b.containsKey(Integer.valueOf(photoEntry.imageId));
-            z10 = !containsKey;
-            if (!containsKey && fr0Var.H > 0 && fr0Var.f35913b.size() >= fr0Var.H) {
-                a();
+    public final void run() {
+        int i10 = this.f35977a;
+        Bitmap bitmap = this.f35979c;
+        PhotoViewer photoViewer = this.f35978b;
+        switch (i10) {
+            case 0:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                photoViewer.n0(bitmap);
+                AndroidUtilities.runOnUIThread(new cr0(photoViewer, bitmap, 6));
                 return;
-            }
-            if (fr0Var.e && !containsKey) {
-                i10 = fr0Var.f35915c.size();
-            }
-            t5Var.b(i10, z10, true);
-            fr0Var.Y(intValue, photoEntry);
-        } else {
-            AndroidUtilities.hideKeyboard(fr0Var.getParentActivity().getCurrentFocus());
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) fr0Var.f35919f.get(intValue);
-            boolean containsKey2 = fr0Var.f35913b.containsKey(searchImage.f16394id);
-            z10 = !containsKey2;
-            if (!containsKey2 && fr0Var.H > 0 && fr0Var.f35913b.size() >= fr0Var.H) {
-                a();
+            case 1:
+                Drawable[] drawableArr2 = PhotoViewer.U8;
+                photoViewer.n0(bitmap);
+                AndroidUtilities.runOnUIThread(new cr0(photoViewer, bitmap, 5));
                 return;
-            }
-            if (fr0Var.e && !containsKey2) {
-                i10 = fr0Var.f35915c.size();
-            }
-            t5Var.b(i10, z10, true);
-            fr0Var.Y(intValue, searchImage);
+            case 2:
+                Drawable[] drawableArr3 = PhotoViewer.U8;
+                photoViewer.n0(bitmap);
+                AndroidUtilities.runOnUIThread(new cr0(photoViewer, bitmap, 4));
+                return;
+            case 3:
+                Drawable[] drawableArr4 = PhotoViewer.U8;
+                photoViewer.n0(bitmap);
+                return;
+            case 4:
+                photoViewer.C4.setImageBitmap(bitmap);
+                photoViewer.f33403t5.setUndoCutState(true);
+                photoViewer.a3(true, true);
+                return;
+            case 5:
+                photoViewer.C4.setImageBitmap(bitmap);
+                photoViewer.f33403t5.setUndoCutState(true);
+                photoViewer.a3(true, true);
+                return;
+            default:
+                photoViewer.C4.setImageBitmap(bitmap);
+                photoViewer.f33403t5.setUndoCutState(true);
+                photoViewer.a3(true, true);
+                return;
         }
-        if (!z10) {
-            i11 = 2;
-        }
-        fr0Var.i0(i11);
-        fr0Var.f35935s0.a();
     }
 }

@@ -9,18 +9,18 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.vu;
+import org.telegram.ui.Components.qu;
 public final class k extends ImageView {
-    public final int f11555a;
+    public final int f12938a;
 
     public k(Context context, int i10) {
         super(context);
-        this.f11555a = i10;
+        this.f12938a = i10;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f11555a) {
+        switch (this.f12938a) {
             case 2:
                 super.dispatchDraw(canvas);
                 return;
@@ -32,7 +32,7 @@ public final class k extends ImageView {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f11555a) {
+        switch (this.f12938a) {
             case 1:
                 if (getAlpha() < 0.5f) {
                     return false;
@@ -45,7 +45,7 @@ public final class k extends ImageView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f11555a) {
+        switch (this.f12938a) {
             case 4:
                 super.onDraw(canvas);
                 invalidate();
@@ -58,7 +58,7 @@ public final class k extends ImageView {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f11555a) {
+        switch (this.f12938a) {
             case 5:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
@@ -79,7 +79,7 @@ public final class k extends ImageView {
     public void onMeasure(int i10, int i11) {
         float f7;
         float f10;
-        switch (this.f11555a) {
+        switch (this.f12938a) {
             case 0:
                 super.onMeasure(i10, i11);
                 Matrix imageMatrix = getImageMatrix();
@@ -108,8 +108,8 @@ public final class k extends ImageView {
         }
     }
 
-    public k(vu vuVar, Context context) {
+    public k(qu quVar, Context context) {
         super(context);
-        this.f11555a = 2;
+        this.f12938a = 2;
     }
 }

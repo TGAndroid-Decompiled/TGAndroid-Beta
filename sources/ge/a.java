@@ -14,27 +14,27 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import v7.g8;
 import v7.i8;
 public abstract class a {
-    public static final a6.i f10108a = new a6.i("NO_DECISION", 22);
-    public static final a6.i f10109b = new a6.i("CLOSED", 22);
-    public static final a6.i f10110c = new a6.i("UNDEFINED", 22);
-    public static final a6.i d = new a6.i("REUSABLE_CLAIMED", 22);
-    public static final a6.i e = new a6.i("CONDITION_FALSE", 22);
-    public static final a6.i f10111f = new a6.i("NO_THREAD_ELEMENTS", 22);
+    public static final com.google.android.gms.internal.clearcut.e f11012a = new com.google.android.gms.internal.clearcut.e("NO_DECISION", 1);
+    public static final com.google.android.gms.internal.clearcut.e f11013b = new com.google.android.gms.internal.clearcut.e("CLOSED", 1);
+    public static final com.google.android.gms.internal.clearcut.e f11014c = new com.google.android.gms.internal.clearcut.e("UNDEFINED", 1);
+    public static final com.google.android.gms.internal.clearcut.e d = new com.google.android.gms.internal.clearcut.e("REUSABLE_CLAIMED", 1);
+    public static final com.google.android.gms.internal.clearcut.e e = new com.google.android.gms.internal.clearcut.e("CONDITION_FALSE", 1);
+    public static final com.google.android.gms.internal.clearcut.e f11015f = new com.google.android.gms.internal.clearcut.e("NO_THREAD_ELEMENTS", 1);
 
     public static final Object a(t tVar, long j10, td.p pVar) {
         while (true) {
-            if (tVar.f10136c >= j10 && !tVar.d()) {
+            if (tVar.f11040c >= j10 && !tVar.d()) {
                 return tVar;
             }
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f10114a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f11018a;
             Object obj = atomicReferenceFieldUpdater.get(tVar);
-            a6.i iVar = f10109b;
-            if (obj == iVar) {
-                return iVar;
+            com.google.android.gms.internal.clearcut.e eVar = f11013b;
+            if (obj == eVar) {
+                return eVar;
             }
             t tVar2 = (t) ((d) obj);
             if (tVar2 == null) {
-                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f10136c + 1), tVar);
+                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f11040c + 1), tVar);
                 while (!atomicReferenceFieldUpdater.compareAndSet(tVar, null, tVar2)) {
                     if (atomicReferenceFieldUpdater.get(tVar) != null) {
                         break;
@@ -49,7 +49,7 @@ public abstract class a {
     }
 
     public static final t b(Object obj) {
-        if (obj != f10109b) {
+        if (obj != f11013b) {
             return (t) obj;
         }
         throw new IllegalStateException("Does not contain segment");
@@ -57,7 +57,7 @@ public abstract class a {
 
     public static final void c(Throwable th2, kd.h hVar) {
         Throwable runtimeException;
-        for (ce.b bVar : f.f10117a) {
+        for (ce.b bVar : f.f11021a) {
             try {
                 bVar.c(th2);
             } catch (Throwable th3) {
@@ -80,7 +80,7 @@ public abstract class a {
     }
 
     public static final boolean d(Object obj) {
-        if (obj == f10109b) {
+        if (obj == f11013b) {
             return true;
         }
         return false;
@@ -101,17 +101,17 @@ public abstract class a {
     }
 
     public static final void f(kd.h hVar, Object obj) {
-        if (obj != f10111f) {
+        if (obj != f11015f) {
             if (obj instanceof y) {
                 y yVar = (y) obj;
-                c2[] c2VarArr = yVar.f10144b;
+                c2[] c2VarArr = yVar.f11048b;
                 int length = c2VarArr.length - 1;
                 if (length < 0) {
                     return;
                 }
                 c2 c2Var = c2VarArr[length];
                 kotlin.jvm.internal.i.b(null);
-                Object obj2 = yVar.f10143a[length];
+                Object obj2 = yVar.f11047a[length];
                 throw null;
             }
             Object fold = hVar.fold(null, w.d);
@@ -136,15 +136,15 @@ public abstract class a {
             }
             cVar2.getContext();
             if (a0Var.d()) {
-                hVar.f10120f = vVar;
-                hVar.f2690c = 1;
+                hVar.f11024f = vVar;
+                hVar.f4302c = 1;
                 a0Var.c(cVar2.getContext(), hVar);
                 return;
             }
             x0 a10 = d2.a();
-            if (a10.f2728c >= 4294967296L) {
-                hVar.f10120f = vVar;
-                hVar.f2690c = 1;
+            if (a10.f4340c >= 4294967296L) {
+                hVar.f11024f = vVar;
+                hVar.f4302c = 1;
                 jd.e eVar = a10.e;
                 if (eVar == null) {
                     eVar = new jd.e();
@@ -155,7 +155,7 @@ public abstract class a {
             }
             a10.h(true);
             try {
-                g1 g1Var = (g1) cVar2.getContext().get(b0.f2653b);
+                g1 g1Var = (g1) cVar2.getContext().get(b0.f4265b);
                 if (g1Var != null && !g1Var.isActive()) {
                     CancellationException cancellationException = g1Var.getCancellationException();
                     hVar.b(vVar, cancellationException);
@@ -164,7 +164,7 @@ public abstract class a {
                     Object obj2 = hVar.h;
                     kd.h context = cVar2.getContext();
                     Object k10 = k(context, obj2);
-                    if (k10 != f10111f) {
+                    if (k10 != f11015f) {
                         h2Var = f0.v(cVar2, context, k10);
                     } else {
                         h2Var = null;
@@ -203,11 +203,11 @@ public abstract class a {
 
     public static final Object k(kd.h hVar, Object obj) {
         if (obj == null) {
-            obj = hVar.fold(0, w.f10139c);
+            obj = hVar.fold(0, w.f11043c);
             kotlin.jvm.internal.i.b(obj);
         }
         if (obj == 0) {
-            return f10111f;
+            return f11015f;
         }
         if (obj instanceof Integer) {
             return hVar.fold(new y(((Number) obj).intValue(), hVar), w.e);

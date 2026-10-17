@@ -1,223 +1,163 @@
 package m;
 
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.view.ActionMode;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.CheckedTextView;
-import v7.q7;
-import w7.w7;
-public final class q extends CheckedTextView implements u0.k {
-    public final r f14936a;
-    public final e2.c f14937b;
-    public final y0 f14938c;
-    public v d;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.widget.CompoundButton;
+import android.widget.TextView;
+import java.util.Iterator;
+import java.util.Map;
+public final class q {
+    public Parcelable f16289a;
+    public Object f16290b;
+    public boolean f16291c;
+    public boolean d;
+    public boolean e;
+    public final Object f16292f;
 
-    public q(android.content.Context r8, android.util.AttributeSet r9) {
-        throw new UnsupportedOperationException("Method not decompiled: m.q.<init>(android.content.Context, android.util.AttributeSet):void");
+    public q(TextView textView) {
+        this.f16289a = null;
+        this.f16290b = null;
+        this.f16291c = false;
+        this.d = false;
+        this.f16292f = textView;
     }
 
-    private v getEmojiTextViewHelper() {
-        if (this.d == null) {
-            this.d = new v(this);
-        }
-        return this.d;
-    }
-
-    @Override
-    public final void drawableStateChanged() {
-        super.drawableStateChanged();
-        y0 y0Var = this.f14938c;
-        if (y0Var != null) {
-            y0Var.b();
-        }
-        e2.c cVar = this.f14937b;
-        if (cVar != null) {
-            cVar.b();
-        }
-        r rVar = this.f14936a;
-        if (rVar != null) {
-            rVar.b();
-        }
-    }
-
-    @Override
-    public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return w7.d(super.getCustomSelectionActionModeCallback());
-    }
-
-    public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f14937b;
-        if (cVar != null) {
-            return cVar.d();
-        }
-        return null;
-    }
-
-    public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f14937b;
-        if (cVar != null) {
-            return cVar.e();
-        }
-        return null;
-    }
-
-    public ColorStateList getSupportCheckMarkTintList() {
-        r rVar = this.f14936a;
-        if (rVar != null) {
-            return (ColorStateList) rVar.f14944a;
-        }
-        return null;
-    }
-
-    public PorterDuff.Mode getSupportCheckMarkTintMode() {
-        r rVar = this.f14936a;
-        if (rVar != null) {
-            return (PorterDuff.Mode) rVar.f14945b;
-        }
-        return null;
-    }
-
-    public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f14938c.d();
-    }
-
-    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f14938c.e();
-    }
-
-    @Override
-    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        w7.p.a(editorInfo, onCreateInputConnection, this);
-        return onCreateInputConnection;
-    }
-
-    @Override
-    public void setAllCaps(boolean z10) {
-        super.setAllCaps(z10);
-        getEmojiTextViewHelper().b(z10);
-    }
-
-    @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f14937b;
-        if (cVar != null) {
-            cVar.g();
-        }
-    }
-
-    @Override
-    public void setBackgroundResource(int i10) {
-        super.setBackgroundResource(i10);
-        e2.c cVar = this.f14937b;
-        if (cVar != null) {
-            cVar.h(i10);
-        }
-    }
-
-    @Override
-    public void setCheckMarkDrawable(Drawable drawable) {
-        super.setCheckMarkDrawable(drawable);
-        r rVar = this.f14936a;
-        if (rVar != null) {
-            if (rVar.e) {
-                rVar.e = false;
-                return;
+    public void a() {
+        CompoundButton compoundButton = (CompoundButton) this.f16292f;
+        Drawable buttonDrawable = compoundButton.getButtonDrawable();
+        if (buttonDrawable != null) {
+            if (this.f16291c || this.d) {
+                Drawable mutate = buttonDrawable.mutate();
+                if (this.f16291c) {
+                    mutate.setTintList((ColorStateList) this.f16289a);
+                }
+                if (this.d) {
+                    mutate.setTintMode((PorterDuff.Mode) this.f16290b);
+                }
+                if (mutate.isStateful()) {
+                    mutate.setState(compoundButton.getDrawableState());
+                }
+                compoundButton.setButtonDrawable(mutate);
             }
-            rVar.e = true;
-            rVar.b();
         }
     }
 
-    @Override
-    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        y0 y0Var = this.f14938c;
-        if (y0Var != null) {
-            y0Var.b();
+    public void b() {
+        p pVar = (p) this.f16292f;
+        Drawable checkMarkDrawable = pVar.getCheckMarkDrawable();
+        if (checkMarkDrawable != null) {
+            if (this.f16291c || this.d) {
+                Drawable mutate = checkMarkDrawable.mutate();
+                if (this.f16291c) {
+                    mutate.setTintList((ColorStateList) this.f16289a);
+                }
+                if (this.d) {
+                    mutate.setTintMode((PorterDuff.Mode) this.f16290b);
+                }
+                if (mutate.isStateful()) {
+                    mutate.setState(pVar.getDrawableState());
+                }
+                pVar.setCheckMarkDrawable(mutate);
+            }
         }
     }
 
-    @Override
-    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        y0 y0Var = this.f14938c;
-        if (y0Var != null) {
-            y0Var.b();
+    public Bundle c(String str) {
+        if (this.d) {
+            Bundle bundle = (Bundle) this.f16289a;
+            if (bundle == null) {
+                return null;
+            }
+            Bundle bundle2 = bundle.getBundle(str);
+            Bundle bundle3 = (Bundle) this.f16289a;
+            if (bundle3 != null) {
+                bundle3.remove(str);
+            }
+            Bundle bundle4 = (Bundle) this.f16289a;
+            if (bundle4 != null && !bundle4.isEmpty()) {
+                return bundle2;
+            }
+            this.f16289a = null;
+            return bundle2;
         }
+        throw new IllegalStateException("You can consumeRestoredStateForKey only after super.onCreate of corresponding component");
     }
 
-    @Override
-    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(w7.e(callback, this));
+    public t4.d d() {
+        Map.Entry components;
+        t4.d dVar;
+        Iterator it = ((o.f) this.f16292f).iterator();
+        do {
+            o.b bVar = (o.b) it;
+            if (bVar.hasNext()) {
+                components = (Map.Entry) bVar.next();
+                kotlin.jvm.internal.i.d(components, "components");
+                dVar = (t4.d) components.getValue();
+            } else {
+                return null;
+            }
+        } while (!kotlin.jvm.internal.i.a((String) components.getKey(), "androidx.lifecycle.internal.SavedStateHandlesProvider"));
+        return dVar;
     }
 
-    public void setEmojiCompatEnabled(boolean z10) {
-        getEmojiTextViewHelper().c(z10);
+    public void e(android.util.AttributeSet r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: m.q.e(android.util.AttributeSet, int):void");
     }
 
-    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f14937b;
-        if (cVar != null) {
-            cVar.l(colorStateList);
+    public void f(String str, t4.d provider) {
+        Object obj;
+        kotlin.jvm.internal.i.e(provider, "provider");
+        o.f fVar = (o.f) this.f16292f;
+        o.c h = fVar.h(str);
+        if (h != null) {
+            obj = h.f17498b;
+        } else {
+            o.c cVar = new o.c(str, provider);
+            fVar.d++;
+            o.c cVar2 = fVar.f17504b;
+            if (cVar2 == null) {
+                fVar.f17503a = cVar;
+                fVar.f17504b = cVar;
+            } else {
+                cVar2.f17499c = cVar;
+                cVar.d = cVar2;
+                fVar.f17504b = cVar;
+            }
+            obj = null;
         }
-    }
-
-    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f14937b;
-        if (cVar != null) {
-            cVar.m(mode);
+        if (((t4.d) obj) == null) {
+            return;
         }
+        throw new IllegalArgumentException("SavedStateProvider with the given key is already registered");
     }
 
-    public void setSupportCheckMarkTintList(ColorStateList colorStateList) {
-        r rVar = this.f14936a;
-        if (rVar != null) {
-            rVar.f14944a = colorStateList;
-            rVar.f14946c = true;
-            rVar.b();
+    public void g() {
+        if (this.e) {
+            t4.a aVar = (t4.a) this.f16290b;
+            if (aVar == null) {
+                aVar = new t4.a(this);
+            }
+            this.f16290b = aVar;
+            try {
+                androidx.lifecycle.j.class.getDeclaredConstructor(null);
+                t4.a aVar2 = (t4.a) this.f16290b;
+                if (aVar2 != null) {
+                    aVar2.f46897a.add(androidx.lifecycle.j.class.getName());
+                    return;
+                }
+                return;
+            } catch (NoSuchMethodException e) {
+                throw new IllegalArgumentException("Class " + androidx.lifecycle.j.class.getSimpleName() + " must have default constructor in order to be automatically recreated", e);
+            }
         }
+        throw new IllegalStateException("Can not perform this action after onSaveInstanceState");
     }
 
-    public void setSupportCheckMarkTintMode(PorterDuff.Mode mode) {
-        r rVar = this.f14936a;
-        if (rVar != null) {
-            rVar.f14945b = mode;
-            rVar.d = true;
-            rVar.b();
-        }
-    }
-
-    @Override
-    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        y0 y0Var = this.f14938c;
-        y0Var.l(colorStateList);
-        y0Var.b();
-    }
-
-    @Override
-    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        y0 y0Var = this.f14938c;
-        y0Var.m(mode);
-        y0Var.b();
-    }
-
-    @Override
-    public final void setTextAppearance(Context context, int i10) {
-        super.setTextAppearance(context, i10);
-        y0 y0Var = this.f14938c;
-        if (y0Var != null) {
-            y0Var.g(context, i10);
-        }
-    }
-
-    @Override
-    public void setCheckMarkDrawable(int i10) {
-        setCheckMarkDrawable(q7.b(getContext(), i10));
+    public q() {
+        this.f16292f = new o.f();
+        this.e = true;
     }
 }

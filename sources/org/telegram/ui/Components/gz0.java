@@ -1,309 +1,224 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Paint;
-import android.text.SpannableStringBuilder;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gz0 implements org.telegram.ui.vt {
-    public final lz0 f25127a;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.NotificationCenter;
+public class gz0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public boolean E;
+    public fr0 F;
+    public int G;
+    public String H;
+    public int I;
+    public String[] J;
+    public Runnable K;
+    public long L;
+    public Path M;
+    public Path N;
+    public Paint O;
+    public f6 P;
+    public f6 Q;
+    public f6 R;
+    public f6 S;
+    public Emoji.EmojiSpan T;
+    public float U;
+    public Integer V;
+    public Integer W;
+    public final int f26703a;
+    public float f26704a0;
+    public final org.telegram.ui.ActionBar.d6 f26705b;
+    public f6 f26706b0;
+    public ez0 f26707c;
+    public f6 f26708c0;
+    public ah.x d;
+    public f6 f26709d0;
+    public cz0 e;
+    public dz0 f26710f;
+    public int h;
+    public int f26711n;
+    public bz0 f26712r;
+    public boolean f26713s;
+    public boolean v;
+    public ArrayList f26714w;
+    public boolean f26715x;
+    public boolean f26716y;
 
-    public gz0(lz0 lz0Var) {
-        this.f25127a = lz0Var;
+    public gz0(Context context, int i10, org.telegram.ui.hk hkVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.h = 0;
+        this.f26711n = AndroidUtilities.dp(10.0f);
+        this.L = 0L;
+        this.f26703a = i10;
+        this.f26707c = hkVar;
+        this.f26705b = d6Var;
+        postDelayed(new gi.l2(i10, 11), 260L);
+    }
+
+    public static boolean a(gz0 gz0Var, j jVar, MotionEvent motionEvent) {
+        return org.telegram.ui.gt.q().s(motionEvent, gz0Var.e, jVar, gz0Var.getPreviewDelegate(), gz0Var.f26705b);
+    }
+
+    public org.telegram.ui.et getPreviewDelegate() {
+        if (this.f26712r == null) {
+            this.f26712r = new bz0(this);
+        }
+        return this.f26712r;
+    }
+
+    public final void c() {
+        if (this.e == null) {
+            this.M = new Path();
+            this.N = new Path();
+            ah.x xVar = new ah.x(this, getContext(), 24);
+            this.d = xVar;
+            bs bsVar = bs.h;
+            this.P = new f6(xVar, 120L, 350L, bsVar);
+            this.Q = new f6(this.d, 150L, 600L, bsVar);
+            new OvershootInterpolator(0.4f);
+            this.R = new f6(this.d, 300L, bsVar);
+            this.S = new f6(this.d, 300L, bsVar);
+            this.f26706b0 = new f6(this.d, 200L, bsVar);
+            this.f26708c0 = new f6(this.d, 350L, bsVar);
+            this.f26709d0 = new f6(this.d, 350L, bsVar);
+            cz0 cz0Var = new cz0(this, getContext());
+            this.e = cz0Var;
+            dz0 dz0Var = new dz0(this, this);
+            this.f26710f = dz0Var;
+            cz0Var.setAdapter(dz0Var);
+            getContext();
+            s4.b0 b0Var = new s4.b0();
+            b0Var.j1(0);
+            this.e.setLayoutManager(b0Var);
+            s4.k kVar = new s4.k();
+            kVar.n(45L);
+            kVar.f46001o = bsVar;
+            this.e.setItemAnimator(kVar);
+            this.e.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21075i6, this.f26705b));
+            cz0 cz0Var2 = this.e;
+            j jVar = new j(this, 17);
+            cz0Var2.setOnItemClickListener(jVar);
+            this.e.setOnTouchListener(new ei.p1(4, this, jVar));
+            this.d.addView(this.e, w7.z5.d(52.0f, -1));
+            addView(this.d, w7.z5.b(-1.0f, 66.66f, 80));
+            ez0 ez0Var = this.f26707c;
+            if (ez0Var != null) {
+                ez0Var.a(new ai.u(this, 14));
+            }
+        }
+    }
+
+    public int d() {
+        return 2;
     }
 
     @Override
-    public final MessageObject A() {
-        return null;
-    }
-
-    @Override
-    public final boolean B() {
-        return false;
-    }
-
-    @Override
-    public final void C(TLRPC.Document document) {
-        lz0 lz0Var = this.f25127a;
-        jz0 jz0Var = lz0Var.f26851c;
-        if (jz0Var != null) {
-            org.telegram.ui.ActionBar.m2 parentFragment = jz0Var.getParentFragment();
-            if (parentFragment instanceof org.telegram.ui.fo) {
-                ((org.telegram.ui.fo) parentFragment).fb(document);
-                lz0Var.f26851c.setFieldText("");
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.newEmojiSuggestionsAvailable) {
+            ArrayList arrayList = this.f26714w;
+            if (arrayList != null && !arrayList.isEmpty()) {
+                e();
+            }
+        } else if (i10 == NotificationCenter.emojiLoaded && this.e != null) {
+            for (int i12 = 0; i12 < this.e.getChildCount(); i12++) {
+                this.e.getChildAt(i12).invalidate();
             }
         }
     }
 
     @Override
-    public final boolean D() {
-        return false;
-    }
-
-    @Override
-    public final boolean E(TLRPC.Document document) {
-        if (this.f25127a.f26860y) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        cz0 cz0Var = this.e;
+        if (cz0Var == null) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        float f7 = this.f26709d0.f26093c;
+        float f10 = this.f26708c0.f26093c;
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f11 = f7 / 2.0f;
+        rectF.set(this.e.getTranslationX() + (f10 - f11) + cz0Var.getPaddingLeft(), this.e.getPaddingTop() + this.e.getTop(), Math.min(this.e.getTranslationX() + f10 + f11 + this.e.getPaddingLeft(), getWidth() - this.d.getPaddingRight()), this.e.getBottom());
+        rectF.offset(this.d.getX(), this.d.getY());
+        if (this.f26713s && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        if (motionEvent.getAction() == 0) {
             return false;
         }
-        return UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
+        if (motionEvent.getAction() == 0) {
+            motionEvent.setAction(3);
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
-    @Override
-    public final String G(boolean z10) {
-        return null;
+    public final void e() {
+        fr0 fr0Var = this.F;
+        if (fr0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(fr0Var);
+        }
+        fr0 fr0Var2 = new fr0(this, 11);
+        this.F = fr0Var2;
+        AndroidUtilities.runOnUIThread(fr0Var2, 16L);
     }
 
-    @Override
-    public final void H(TLRPC.Document document) {
-        jz0 jz0Var;
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
-        valueOf.setSpan(new b6(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
-        if (AndroidUtilities.addToClipboard(valueOf) && (jz0Var = this.f25127a.f26851c) != null) {
-            org.telegram.messenger.sk.p(R.string.EmojiCopied, zc.a0(jz0Var.getParentFragment()));
+    public final void f() {
+        fr0 fr0Var = this.F;
+        if (fr0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(fr0Var);
+            this.F = null;
+        }
+        this.f26713s = false;
+        this.v = true;
+        ah.x xVar = this.d;
+        if (xVar != null) {
+            xVar.invalidate();
         }
     }
 
-    @Override
-    public final boolean I() {
-        return false;
+    public ez0 getDelegate() {
+        return this.f26707c;
+    }
+
+    public int getDirection() {
+        return this.h;
     }
 
     @Override
-    public final boolean J() {
-        return false;
+    public final boolean isShown() {
+        return this.f26713s;
     }
 
     @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getInstance(this.f26703a).addObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
     }
 
     @Override
-    public final Boolean P(TLRPC.Document document) {
-        TLRPC.User currentUser;
-        boolean z10;
-        if (this.f25127a.E || !UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) == null) {
-            return null;
-        }
-        Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f18922id)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        return Boolean.valueOf(z10);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getInstance(this.f26703a).removeObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
     }
 
-    @Override
-    public final boolean Q() {
-        return true;
+    public void setDelegate(ez0 ez0Var) {
+        this.f26707c = ez0Var;
     }
 
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        jz0 jz0Var = this.f25127a.f26851c;
-        if (jz0Var == null) {
-            return false;
-        }
-        org.telegram.ui.ActionBar.m2 parentFragment = jz0Var.getParentFragment();
-        if (!(parentFragment instanceof org.telegram.ui.fo)) {
-            return false;
-        }
-        return ((org.telegram.ui.fo) parentFragment).c();
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer h() {
-        return null;
-    }
-
-    @Override
-    public final boolean i() {
-        return true;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final boolean l(int i10) {
-        jz0 jz0Var = this.f25127a.f26851c;
-        if (jz0Var == null) {
-            return false;
-        }
-        org.telegram.ui.ActionBar.m2 parentFragment = jz0Var.getParentFragment();
-        if (parentFragment instanceof org.telegram.ui.fo) {
-            org.telegram.ui.fo foVar = (org.telegram.ui.fo) parentFragment;
-            if (foVar.H6()) {
-                if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-                    if (foVar.i() != null && UserObject.isUserSelf(foVar.i())) {
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean p() {
-        return false;
-    }
-
-    @Override
-    public final l80 u(ah.v vVar) {
-        return null;
-    }
-
-    @Override
-    public final void v(TLRPC.Document document) {
-        TLRPC.EmojiStatus emojiStatus;
-        Object obj;
-        org.telegram.ui.ActionBar.m2 parentFragment;
-        lz0 lz0Var = this.f25127a;
-        org.telegram.ui.ActionBar.c6 c6Var = lz0Var.f26849b;
-        if (document == null) {
-            emojiStatus = new TLRPC.TL_emojiStatusEmpty();
-        } else {
-            TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f18922id;
-            emojiStatus = tL_emojiStatus;
-        }
-        TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
-        if (currentUser == null) {
-            obj = new TLRPC.TL_emojiStatusEmpty();
-        } else {
-            obj = currentUser.emoji_status;
-        }
-        MessagesController.getInstance(lz0Var.f26847a).updateEmojiStatus(emojiStatus);
-        g90 g90Var = new g90(24, this, obj);
-        jz0 jz0Var = lz0Var.f26851c;
-        if (jz0Var == null) {
-            parentFragment = null;
-        } else {
-            parentFragment = jz0Var.getParentFragment();
-        }
-        if (parentFragment != null) {
-            if (document == null) {
-                kc kcVar = new kc(lz0Var.getContext(), c6Var);
-                kcVar.f26348b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
-                kcVar.f26347a.setImageResource(R.drawable.msg_settings_premium);
-                qc qcVar = new qc(lz0Var.getContext(), c6Var, true);
-                qcVar.f28266a = g90Var;
-                kcVar.setButton(qcVar);
-                sc.g(parentFragment, kcVar, 1500).j();
-                return;
-            }
-            zc.a0(parentFragment).q(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.UndoNoCaps), g90Var).j();
+    public void setDirection(int i10) {
+        if (this.h != i10) {
+            this.h = i10;
+            requestLayout();
         }
     }
 
-    @Override
-    public final boolean y() {
-        return true;
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void j(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void n(String str) {
-    }
-
-    @Override
-    public final void o(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void q(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r() {
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void x(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void f(CharSequence charSequence, String str, org.telegram.ui.mt mtVar) {
-    }
-
-    @Override
-    public final void s(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+    public void setHorizontalPadding(int i10) {
+        this.f26711n = i10;
     }
 }

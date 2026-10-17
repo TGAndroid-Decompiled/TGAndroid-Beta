@@ -1,82 +1,66 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_account;
-public final class dn0 implements Runnable {
-    public final int f35086a;
-    public final en0 f35087b;
-    public final TLRPC.TL_error f35088c;
-    public final TLObject d;
+import android.widget.FrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import org.telegram.messenger.FileLog;
+public final class dn0 implements OnCompleteListener, org.telegram.ui.ActionBar.a2, pt {
+    public final int f36236a;
+    public final fo0 f36237b;
 
-    public dn0(en0 en0Var, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f35086a = 0;
-        this.f35087b = en0Var;
-        this.d = tLObject;
-        this.f35088c = tL_error;
+    public dn0(fo0 fo0Var, int i10) {
+        this.f36236a = i10;
+        this.f36237b = fo0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35086a) {
-            case 0:
-                en0 en0Var = this.f35087b;
-                TLObject tLObject = this.d;
-                TLRPC.TL_error tL_error = this.f35088c;
-                sn0 sn0Var = en0Var.e;
-                if (tLObject instanceof Vector) {
-                    sn0Var.f39909y = new TL_account.authorizationForm();
-                    Vector vector = (Vector) tLObject;
-                    int size = vector.objects.size();
-                    for (int i10 = 0; i10 < size; i10++) {
-                        sn0Var.f39909y.values.add((TLRPC.TL_secureValue) vector.objects.get(i10));
-                    }
-                    en0Var.a();
-                    return;
-                }
-                if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
-                    org.telegram.ui.Components.g5.w0(sn0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
-                } else {
-                    sn0Var.L1(LocaleController.getString(R.string.AppName), tL_error.text);
-                }
-                sn0Var.M1(true, false);
-                return;
-            case 1:
-                en0 en0Var2 = this.f35087b;
-                TLRPC.TL_error tL_error2 = this.f35088c;
-                TLObject tLObject2 = this.d;
-                if (tL_error2 == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject2;
-                    en0Var2.e.J = password;
-                    TwoStepVerificationActivity.m0(password);
-                    en0Var2.b();
-                    return;
-                }
-                en0Var2.getClass();
+    public void L0(kt ktVar) {
+        switch (this.f36236a) {
+            case 2:
+                fo0 fo0Var = this.f36237b;
+                fo0Var.A0 = ktVar;
+                fo0Var.f36983f[4].setText(ktVar.f38677a);
                 return;
             default:
-                en0 en0Var3 = this.f35087b;
-                TLRPC.TL_error tL_error3 = this.f35088c;
-                TLObject tLObject3 = this.d;
-                if (tL_error3 == null) {
-                    TL_account.Password password2 = (TL_account.Password) tLObject3;
-                    en0Var3.e.J = password2;
-                    TwoStepVerificationActivity.m0(password2);
-                    Utilities.globalQueue.postRunnable(new tf0(en0Var3, en0Var3.f35339b, en0Var3.d, 12));
-                    return;
-                }
+                fo0 fo0Var2 = this.f36237b;
+                fo0Var2.A0 = ktVar;
+                fo0Var2.f36983f[4].setText(ktVar.f38677a);
+                fo0Var2.B0 = ktVar.d;
                 return;
         }
     }
 
-    public dn0(en0 en0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f35086a = i10;
-        this.f35087b = en0Var;
-        this.f35088c = tL_error;
-        this.d = tLObject;
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f36236a) {
+            case 1:
+                fo0 fo0Var = this.f36237b;
+                fo0Var.I0(fo0Var.R0[0]);
+                return;
+            case 2:
+            default:
+                fo0 fo0Var2 = this.f36237b;
+                fo0Var2.D0(true);
+                fo0Var2.z0();
+                return;
+            case 3:
+                this.f36237b.A0(true);
+                return;
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        fo0 fo0Var = this.f36237b;
+        fo0Var.getClass();
+        if (task.isSuccessful()) {
+            FrameLayout frameLayout = fo0Var.O;
+            if (frameLayout != null) {
+                frameLayout.setVisibility(0);
+                return;
+            }
+            return;
+        }
+        FileLog.e("isReadyToPay failed", task.getException());
     }
 }

@@ -1,40 +1,93 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class et extends hg.e {
-    public final ContactsActivity L;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public interface et {
+    MessageObject A();
 
-    public et(ContactsActivity contactsActivity, Context context, int i10, boolean z10, a0.h hVar, int i11) {
-        super(context, i10, z10, hVar, i11);
-        this.L = contactsActivity;
-    }
+    boolean B();
 
-    @Override
-    public final int R() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.et.R():int");
-    }
+    void C(TLRPC.Document document);
 
-    @Override
-    public final void l() {
-        boolean z10 = false;
-        X(false);
-        ContactsActivity contactsActivity = this.L;
-        org.telegram.ui.Components.mm0 mm0Var = contactsActivity.f31733f;
-        if (mm0Var != null && mm0Var.getAdapter() == this) {
-            int h = h();
-            if (contactsActivity.H) {
-                org.telegram.ui.Components.mm0 mm0Var2 = contactsActivity.f31733f;
-                if (h != 2) {
-                    z10 = true;
-                }
-                mm0Var2.setFastScrollVisible(z10);
-                return;
-            }
-            org.telegram.ui.Components.mm0 mm0Var3 = contactsActivity.f31733f;
-            if (h != 0) {
-                z10 = true;
-            }
-            mm0Var3.setFastScrollVisible(z10);
-        }
-    }
+    boolean D();
+
+    boolean E(TLRPC.Document document);
+
+    void F(TLRPC.Document document);
+
+    String G(boolean z10);
+
+    void H(TLRPC.Document document);
+
+    boolean I();
+
+    boolean J();
+
+    void K();
+
+    void L();
+
+    void M(TLRPC.InputStickerSet inputStickerSet, boolean z10);
+
+    boolean N(TLRPC.Document document);
+
+    void O(String str);
+
+    Boolean P(TLRPC.Document document);
+
+    boolean Q();
+
+    long a();
+
+    boolean b();
+
+    boolean c();
+
+    TLRPC.TL_messageMediaPoll d();
+
+    boolean e(TLRPC.Document document);
+
+    boolean f();
+
+    TLRPC.PollAnswer g();
+
+    boolean h();
+
+    void i(SendMessagesHelper.ImportingSticker importingSticker);
+
+    boolean j();
+
+    boolean k(int i10);
+
+    void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11);
+
+    void m(String str);
+
+    void n(TLRPC.Document document);
+
+    boolean o();
+
+    void p(TLRPC.Document document);
+
+    void q();
+
+    void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10);
+
+    void s();
+
+    void t(CharSequence charSequence, String str, org.telegram.ui.Components.qy qyVar);
+
+    org.telegram.ui.Components.i80 u(ah.v vVar);
+
+    void v(TLRPC.Document document);
+
+    void w(TLRPC.StickerSet stickerSet, String str);
+
+    void x(TLObject tLObject, Object obj);
+
+    boolean y();
+
+    void z(String str);
 }

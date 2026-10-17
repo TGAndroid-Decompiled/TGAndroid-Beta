@@ -1,17 +1,61 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
-public final class va extends View {
-    public int f29611a;
+public final class va extends gd0 {
+    public final boolean D0;
+    public final boolean E0;
+    public final bb F0;
+
+    public va(bb bbVar, Context context, boolean z10, boolean z11) {
+        super(context);
+        this.F0 = bbVar;
+        this.D0 = z10;
+        this.E0 = z11;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        bb bbVar = this.F0;
+        bbVar.J(canvas, this);
+        super.dispatchDraw(canvas);
+        bbVar.I(canvas, this);
+    }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+        Drawable drawable;
+        if (motionEvent.getAction() == 0) {
+            float y3 = motionEvent.getY();
+            bb bbVar = this.F0;
+            drawable = ((org.telegram.ui.ActionBar.f3) bbVar).shadowDrawable;
+            if (y3 < drawable.getBounds().top) {
+                bbVar.dismiss();
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (!this.E0) {
+            this.F0.getClass();
+        }
+        return super.drawChild(canvas, view, j10);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f29611a, 1073741824));
+        int size = View.MeasureSpec.getSize(i11);
+        bb bbVar = this.F0;
+        bbVar.h = size;
+        bbVar.F(i10, i11);
+        if (this.D0) {
+            i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
+        }
+        super.onMeasure(i10, i11);
     }
 }

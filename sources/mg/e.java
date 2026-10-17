@@ -1,14 +1,14 @@
 package mg;
 public interface e {
-    void H();
+    boolean a();
 
-    void Q0();
+    void b();
 
-    void V0(float f7);
+    void c();
 
-    void b0();
+    boolean d();
 
-    boolean p();
+    void e();
 
-    boolean r0();
+    void f(float f7);
 }

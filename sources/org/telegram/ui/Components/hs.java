@@ -1,46 +1,51 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.view.View;
+import android.widget.PopupWindow;
 import org.telegram.messenger.AndroidUtilities;
-public final class hs extends View {
-    public final TextPaint f25392a;
-    public final TextPaint f25393b;
-    public final String f25394c;
-    public final String d;
-    public final Rect e;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public abstract class hs {
+    public final org.telegram.ui.ActionBar.m1 f26927a;
+    public boolean f26928b;
 
-    public hs(Context context, String str, String str2) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f25392a = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        this.f25393b = textPaint2;
-        this.e = new Rect();
-        this.f25394c = str;
-        this.d = str2;
-        textPaint.setTextSize(AndroidUtilities.dp(24.0f));
-        textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
-        textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
-        textPaint2.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.H6, false));
+    public hs(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z10 ? 1 : 0, context, d6Var);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new rk(this, 1));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new s(this, 27));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
+        b(actionBarPopupWindow$ActionBarPopupWindowLayout);
+        org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f26927a = m1Var;
+        m1Var.f21572b = false;
+        m1Var.setAnimationStyle(R.style.PopupContextAnimation2);
+        m1Var.setOutsideTouchable(true);
+        m1Var.setClippingEnabled(true);
+        m1Var.setInputMethodMode(2);
+        m1Var.setSoftInputMode(0);
+        m1Var.getContentView().setFocusableInTouchMode(true);
+        if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
+            m1Var.setFocusable(true);
+        }
+        m1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public final void onDismiss() {
+                hs hsVar = hs.this;
+                hsVar.c();
+                hsVar.f26928b = false;
+            }
+        });
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f25393b;
-        String str = this.d;
-        float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f25392a;
-        String str2 = this.f25394c;
-        float measureText2 = textPaint2.measureText(str2);
-        int length = str2.length();
-        Rect rect = this.e;
-        textPaint2.getTextBounds(str2, 0, length, rect);
-        textPaint.getTextBounds(str, 0, str.length(), rect);
-        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
-        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
+    public final void a() {
+        org.telegram.ui.ActionBar.m1 m1Var = this.f26927a;
+        if (m1Var != null) {
+            m1Var.dismiss();
+        }
     }
+
+    public abstract void b(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
+
+    public abstract void c();
 }

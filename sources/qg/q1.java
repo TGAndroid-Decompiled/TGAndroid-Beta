@@ -1,16 +1,25 @@
 package qg;
-public final class q1 {
-    public int f43285a;
-    public float f43286b;
-    public float f43287c;
+public abstract class q1 {
+    public final boolean f44623a;
+    public boolean f44624b;
+    public boolean f44625c;
+    public float d;
+    public float e;
 
-    public q1(float f7, float f10, int i10) {
-        this.f43285a = i10;
-        this.f43286b = f7;
-        this.f43287c = f10;
+    public q1() {
+        this.f44624b = true;
+        this.f44625c = true;
+        a();
     }
 
-    public final Object clone() {
-        return new q1(this.f43286b, this.f43287c, this.f43285a);
+    public abstract void a();
+
+    public abstract void b(float f7, float f10);
+
+    public q1(int i10) {
+        this.f44624b = true;
+        this.f44625c = true;
+        this.f44623a = true;
+        a();
     }
 }

@@ -1,23 +1,29 @@
 package rg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.ui.gu0;
-public final class f0 extends View {
-    public final gu0 f44011a;
+import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.it0;
+public final class f0 extends d {
+    public final Paint h;
+    public long f45366n;
+    public float f45367r;
+    public float f45368s;
+    public final it0 v;
 
-    public f0(gu0 gu0Var, Context context) {
-        super(context);
-        this.f44011a = gu0Var;
+    public f0(it0 it0Var, Context context, e0 e0Var) {
+        super(context, e0Var);
+        this.v = it0Var;
+        Paint paint = new Paint();
+        this.h = paint;
+        setWillNotDraw(false);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-1);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        d0 d0Var = this.f44011a.W0;
-        if (d0Var != null) {
-            d0Var.d(canvas);
-        }
+    public final void onDraw(android.graphics.Canvas r14) {
+        throw new UnsupportedOperationException("Method not decompiled: rg.f0.onDraw(android.graphics.Canvas):void");
     }
 }

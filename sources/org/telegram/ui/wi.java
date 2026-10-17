@@ -1,22 +1,36 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class wi extends org.telegram.ui.Components.wo {
-    public final fo M;
+import android.animation.ValueAnimator;
+import android.view.View;
+public final class wi implements ValueAnimator.AnimatorUpdateListener {
+    public final int f42861a;
+    public final org.telegram.ui.ActionBar.n2 f42862b;
 
-    public wi(fo foVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(activity, i10, document, c6Var);
-        this.M = foVar;
+    public wi(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f42861a = i10;
+        this.f42862b = n2Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        float y3 = getY();
-        fo foVar = this.M;
-        float y10 = foVar.R0.getY() + y3;
-        this.J = foVar.X0.getBackgroundSizeY();
-        this.I = y10;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f42861a) {
+            case 0:
+                sn snVar = (sn) this.f42862b;
+                snVar.f41290la = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                snVar.X0.invalidate();
+                return;
+            case 1:
+                ey eyVar = (ey) this.f42862b;
+                eyVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = eyVar.fragmentView;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ((mc1) this.f42862b).f39159x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+        }
     }
 }

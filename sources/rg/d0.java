@@ -1,27 +1,23 @@
 package rg;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import org.telegram.ui.gu0;
-public final class d0 extends qg.c1 {
-    public final Bitmap E;
-    public final gu0 F;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.ui.it0;
+public final class d0 extends View {
+    public final it0 f45345a;
 
-    public d0(gu0 gu0Var, Context context, qg.q0 q0Var, Bitmap bitmap, Bitmap bitmap2) {
-        super(context, q0Var, bitmap, null, null);
-        this.F = gu0Var;
-        this.E = bitmap2;
+    public d0(it0 it0Var, Context context) {
+        super(context);
+        this.f45345a = it0Var;
     }
 
     @Override
-    public final void g(qg.m mVar) {
-        int indexOf = qg.m.f43227a.indexOf(mVar);
-        int i10 = indexOf + 1;
-        if (i10 <= 1 || this.E != null) {
-            indexOf = i10;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        b0 b0Var = this.f45345a.W0;
+        if (b0Var != null) {
+            b0Var.d(canvas);
         }
-        gu0 gu0Var = this.F;
-        gu0Var.f44190t1.b(indexOf);
-        gu0Var.o(mVar);
     }
 }

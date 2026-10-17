@@ -1,96 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
-public abstract class ia extends FrameLayout {
-    public final ow0 f25612a;
-    public Paint f25613b;
-    public int f25614c;
-    public final boolean d;
-    public final boolean e;
-    public final Rect f25615f;
+public abstract class ia extends im0 {
+    public int V2;
+    public int W2;
+    public int X2;
+    public boolean Y2;
+    public int Z2;
+    public boolean f27154a3;
 
-    public ia(Context context, ow0 ow0Var) {
-        super(context);
-        this.f25614c = 0;
-        this.d = true;
-        this.e = true;
-        this.f25615f = new Rect();
-        this.f25612a = ow0Var;
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        if (this.V2 != 0 && !Z0()) {
+            canvas.clipRect(0, this.V2, getMeasuredWidth(), getMeasuredHeight() + this.Z2);
+            super.dispatchDraw(canvas);
+            return;
+        }
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        if (SharedConfig.chatBlurEnabled() && this.f25612a != null && this.e && this.f25614c != 0) {
-            if (this.f25613b == null) {
-                this.f25613b = new Paint();
-            }
-            this.f25613b.setColor(this.f25614c);
-            this.f25615f.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            float f7 = 0.0f;
-            View view = this;
-            while (true) {
-                ow0 ow0Var = this.f25612a;
-                if (view != ow0Var) {
-                    f7 += view.getY();
-                    ViewParent parent = view.getParent();
-                    if (parent instanceof View) {
-                        view = (View) parent;
-                    } else {
-                        super.dispatchDraw(canvas);
-                        return;
-                    }
-                } else {
-                    canvas2 = canvas;
-                    ow0Var.J(canvas2, f7, this.f25615f, this.f25613b, this.d);
-                    break;
-                }
-            }
-        } else {
-            canvas2 = canvas;
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view.getY() + view.getMeasuredHeight() < this.V2 && !this.f27154a3 && !Z0()) {
+            return true;
         }
-        super.dispatchDraw(canvas2);
+        return super.drawChild(canvas, view, j10);
     }
 
     @Override
-    public void onAttachedToWindow() {
-        ow0 ow0Var;
-        if (SharedConfig.chatBlurEnabled() && (ow0Var = this.f25612a) != null) {
-            ow0Var.T.add(this);
-        }
+    public final void f(Canvas canvas, RectF rectF) {
+        this.f27154a3 = true;
+        super.f(canvas, rectF);
+        this.f27154a3 = false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
+        y1();
     }
 
     @Override
-    public void onDetachedFromWindow() {
-        ow0 ow0Var = this.f25612a;
-        if (ow0Var != null) {
-            ow0Var.T.remove(this);
-        }
-        super.onDetachedFromWindow();
+    public void onMeasure(int i10, int i11) {
+        this.Y2 = true;
+        y1();
+        super.setPadding(getPaddingLeft(), this.W2 + this.V2, getPaddingRight(), getPaddingBottom());
+        this.Y2 = false;
+        super.onMeasure(i10, i11);
     }
 
     @Override
-    public void setBackgroundColor(int i10) {
-        if (SharedConfig.chatBlurEnabled() && this.f25612a != null) {
-            this.f25614c = i10;
-        } else {
-            super.setBackgroundColor(i10);
+    public void requestLayout() {
+        if (this.Y2) {
+            return;
         }
+        super.requestLayout();
     }
 
     @Override
-    public void setTranslationY(float f7) {
-        if (SharedConfig.chatBlurEnabled() && f7 != getTranslationY()) {
-            invalidate();
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        this.W2 = i11;
+        this.X2 = i13;
+        super.setPadding(i10, i11 + this.V2, i12, i13);
+    }
+
+    public int x1() {
+        return AndroidUtilities.dp(203.0f);
+    }
+
+    public final void y1() {
+        if (getLayoutParams() == null) {
+            return;
         }
-        super.setTranslationY(f7);
+        if (SharedConfig.chatBlurEnabled()) {
+            this.V2 = x1();
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.V2;
+            return;
+        }
+        this.V2 = 0;
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
     }
 }

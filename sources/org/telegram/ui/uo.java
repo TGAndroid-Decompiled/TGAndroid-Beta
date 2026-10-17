@@ -1,107 +1,98 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-import pi.g;
-import qi.k;
-import qi.q;
-public final class uo implements Runnable {
-    public final int f40456a;
-    public final long f40457b;
-    public final long f40458c;
-    public final Object d;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class uo extends org.telegram.ui.Components.e90 {
+    public final Context f42020w;
+    public final yo f42021x;
 
-    public uo(Object obj, long j10, long j11, int i10) {
-        this.f40456a = i10;
-        this.d = obj;
-        this.f40457b = j10;
-        this.f40458c = j11;
+    public uo(yo yoVar, Context context, TLRPC.Chat chat, Context context2) {
+        super(context, chat);
+        this.f42021x = yoVar;
+        this.f42020w = context2;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.a71 a71Var;
-        switch (this.f40456a) {
-            case 0:
-                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f40457b, this.f40458c, new f5((zo) this.d, 4));
-                return;
-            case 1:
-                org.telegram.ui.web.z1 z1Var = (org.telegram.ui.web.z1) this.d;
-                long j10 = this.f40457b;
-                long j11 = this.f40458c;
-                z1Var.f41271f = j10;
-                z1Var.h = j11;
-                org.telegram.ui.Components.c71 c71Var = z1Var.f24003a;
-                if (c71Var != null && (a71Var = c71Var.W2) != null && c71Var.G) {
-                    a71Var.N(true);
-                    return;
+    public final boolean a(final boolean z10, org.telegram.ui.Components.c90 c90Var) {
+        TLRPC.ChatFull chatFull;
+        int i10;
+        String str;
+        org.telegram.ui.ActionBar.d6 d6Var;
+        yo yoVar = this.f42021x;
+        if (yoVar.V && (chatFull = yoVar.Y) != null && (i10 = chatFull.invitesCount) != 0) {
+            if (yoVar.f43436a0) {
+                if (z10) {
+                    str = "ApproveNewMembersEnableForLinksChannel";
+                } else {
+                    str = "ApproveNewMembersDisableForLinksChannel";
                 }
-                return;
-            case 2:
-                qi.q qVar = (qi.q) this.d;
-                long j12 = this.f40457b;
-                long j13 = this.f40458c;
-                if (qVar.f43438m == qi.o.h) {
-                    long j14 = ((j12 - j13) * 48000) / 1000;
-                    qVar.f43441p = j14;
-                    qVar.f43443r = 0L;
-                    qVar.f43444s = qi.q.q(j14);
-                    qVar.i();
-                    return;
+            } else if (z10) {
+                str = "ApproveNewMembersEnableForLinks";
+            } else {
+                str = "ApproveNewMembersDisableForLinks";
+            }
+            Context context = this.f42020w;
+            d6Var = ((org.telegram.ui.ActionBar.n2) yoVar).resourceProvider;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+            alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
+            alertDialog$Builder.f20601a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
+            alertDialog$Builder.k(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksApply), new org.telegram.ui.ActionBar.a2(this) {
+                public final uo f41791b;
+
+                {
+                    this.f41791b = this;
                 }
-                return;
-            default:
-                long j15 = this.f40457b;
-                long j16 = this.f40458c;
-                final qi.q qVar2 = (qi.q) ((cc.e) this.d).f4725c;
-                if (j15 == qVar2.f43440o) {
-                    qVar2.f43439n = null;
-                    qVar2.f43441p += j16;
-                    qVar2.f43442q = 0L;
-                    qVar2.h.removeCallbacks(qVar2.D);
-                    qi.o oVar = qVar2.f43438m;
-                    if (oVar == qi.o.f43427s) {
-                        qVar2.c();
-                        qVar2.s();
-                        qVar2.l("cancelled");
-                        return;
-                    } else if (oVar == qi.o.f43426r) {
-                        qVar2.c();
-                        qVar2.s();
-                        return;
-                    } else if (qVar2.v) {
-                        qVar2.v = false;
-                        qVar2.i();
-                        return;
-                    } else if (oVar == qi.o.d) {
-                        final qi.k kVar = qVar2.f43450z;
-                        if (kVar == null) {
-                            qVar2.g(new IllegalStateException("Output generation is missing"));
+
+                @Override
+                public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
+                    switch (r3) {
+                        case 0:
+                            boolean z11 = z10;
+                            uo uoVar = this.f41791b;
+                            uoVar.setJoinRequest(z11);
+                            uoVar.f42021x.W = true;
                             return;
-                        }
-                        long j17 = qVar2.j();
-                        qVar2.f43443r = 0L;
-                        qVar2.f43444s = j17;
-                        qVar2.f43434i.execute(new Runnable() {
-                            @Override
-                            public final void run() {
-                                byte[] bArr;
-                                q qVar3 = q.this;
-                                k kVar2 = kVar;
-                                try {
-                                    bArr = AudioRecorderNative.e(kVar2.f43413b.getAbsolutePath());
-                                } catch (Throwable th2) {
-                                    qVar3.f43433g.a("waveform extraction failed", th2);
-                                    bArr = null;
-                                }
-                                qVar3.h.post(new g(qVar3, kVar2, bArr, 1));
-                            }
-                        });
-                        return;
-                    } else {
-                        return;
+                        default:
+                            boolean z12 = z10;
+                            uo uoVar2 = this.f41791b;
+                            uoVar2.setJoinRequest(z12);
+                            uoVar2.f42021x.W = false;
+                            return;
                     }
                 }
-                return;
+            });
+            alertDialog$Builder.h(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksDontApply), new org.telegram.ui.ActionBar.a2(this) {
+                public final uo f41791b;
+
+                {
+                    this.f41791b = this;
+                }
+
+                @Override
+                public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
+                    switch (r3) {
+                        case 0:
+                            boolean z11 = z10;
+                            uo uoVar = this.f41791b;
+                            uoVar.setJoinRequest(z11);
+                            uoVar.f42021x.W = true;
+                            return;
+                        default:
+                            boolean z12 = z10;
+                            uo uoVar2 = this.f41791b;
+                            uoVar2.setJoinRequest(z12);
+                            uoVar2.f42021x.W = false;
+                            return;
+                    }
+                }
+            });
+            yoVar.showDialog(alertDialog$Builder.f20601a);
+            return false;
         }
+        return true;
     }
 }

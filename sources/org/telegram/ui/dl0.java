@@ -1,50 +1,111 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
+import android.content.Context;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.RadioButton;
-public final class dl0 extends FrameLayout {
-    public TextView f35075a;
-    public RadioButton f35076b;
-    public org.telegram.ui.Components.aq f35077c;
-    public boolean d;
-    public cl0 e;
+import android.view.ViewGroup;
+public final class dl0 extends org.telegram.ui.Components.hm0 {
+    public final Context f36233c;
+    public final PasscodeActivity d;
+
+    public dl0(PasscodeActivity passcodeActivity, Context context) {
+        this.d = passcodeActivity;
+        this.f36233c = context;
+    }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        if (this.d) {
-            float f10 = 60.0f;
-            if (LocaleController.isRTL) {
-                f7 = 0.0f;
-            } else {
-                f7 = 60.0f;
+    public final boolean D(s4.b1 b1Var) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int b10 = b1Var.b();
+        PasscodeActivity passcodeActivity = this.d;
+        i10 = passcodeActivity.fingerprintRow;
+        if (b10 != i10) {
+            i11 = passcodeActivity.autoLockRow;
+            if (b10 != i11 && b10 != passcodeActivity.N) {
+                i12 = passcodeActivity.changePasscodeRow;
+                if (b10 != i12) {
+                    i13 = passcodeActivity.disablePasscodeRow;
+                    if (b10 != i13 && b10 != passcodeActivity.J && b10 != passcodeActivity.K) {
+                        return false;
+                    }
+                    return true;
+                }
+                return true;
             }
-            float dp = AndroidUtilities.dp(f7);
-            float height = getHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (!LocaleController.isRTL) {
-                f10 = 0.0f;
-            }
-            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.g6.f19722k0);
+            return true;
         }
+        return true;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f35076b.f22982f);
+    public final int h() {
+        return this.d.P;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+    public final int j(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        PasscodeActivity passcodeActivity = this.d;
+        i11 = passcodeActivity.fingerprintRow;
+        if (i10 != i11 && i10 != passcodeActivity.N && i10 != passcodeActivity.K && i10 != passcodeActivity.J) {
+            i12 = passcodeActivity.changePasscodeRow;
+            if (i10 != i12) {
+                i13 = passcodeActivity.autoLockRow;
+                if (i10 != i13) {
+                    i14 = passcodeActivity.disablePasscodeRow;
+                    if (i10 != i14) {
+                        if (i10 != passcodeActivity.H && i10 != passcodeActivity.O && i10 != passcodeActivity.G && i10 != passcodeActivity.L) {
+                            if (i10 != passcodeActivity.M && i10 != passcodeActivity.I) {
+                                if (i10 == 0) {
+                                    return 4;
+                                }
+                                return 0;
+                            }
+                            return 3;
+                        }
+                        return 2;
+                    }
+                    return 1;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dl0.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View v8Var;
+        Context context = this.f36233c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        v8Var = new org.telegram.ui.Cells.d9(context);
+                    } else {
+                        v8Var = new el0(context);
+                        v8Var.setTag(-33024);
+                    }
+                } else {
+                    v8Var = new org.telegram.ui.Cells.l4(context);
+                }
+            } else {
+                v8Var = new org.telegram.ui.Cells.ba(context);
+            }
+        } else {
+            v8Var = new org.telegram.ui.Cells.v8(context);
+        }
+        return new s4.b1(v8Var);
     }
 }

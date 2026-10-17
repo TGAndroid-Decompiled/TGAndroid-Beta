@@ -1,24 +1,12 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class t4 implements Runnable {
-    public final int f33457a;
-    public final v4 f33458b;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class t4 implements ai.i7 {
+    public final TL_wallet.nftItem f34897a;
+    public final l5 f34898b;
 
-    public t4(v4 v4Var, int i10) {
-        this.f33457a = i10;
-        this.f33458b = v4Var;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f33457a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new t4(this.f33458b, 1));
-                return;
-            default:
-                this.f33458b.a();
-                return;
-        }
+    public t4(l5 l5Var, TL_wallet.nftItem nftitem) {
+        this.f34898b = l5Var;
+        this.f34897a = nftitem;
     }
 }

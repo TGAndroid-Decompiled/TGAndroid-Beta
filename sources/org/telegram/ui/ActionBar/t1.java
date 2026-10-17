@@ -1,43 +1,21 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class t1 extends Drawable {
-    public final int f20341a;
-    public final GradientDrawable f20342b;
-    public final a2 f20343c;
+import android.view.View;
+import org.telegram.ui.Components.y6;
+public final class t1 implements View.OnAttachStateChangeListener {
+    public final y6 f21719a;
 
-    public t1(a2 a2Var, GradientDrawable gradientDrawable) {
-        this.f20343c = a2Var;
-        this.f20342b = gradientDrawable;
-        this.f20341a = AndroidUtilities.dp(52.0f) + a2Var.Y;
+    public t1(y6 y6Var) {
+        this.f21719a = y6Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        a2 a2Var = this.f20343c;
-        int width = a2Var.f19273k0.getWidth();
-        int i10 = this.f20341a;
-        GradientDrawable gradientDrawable = this.f20342b;
-        gradientDrawable.setBounds((int) ((width - i10) / 2.0f), (int) ((a2Var.f19273k0.getHeight() - i10) / 2.0f), (int) ((a2Var.f19273k0.getWidth() + i10) / 2.0f), (int) ((a2Var.f19273k0.getHeight() + i10) / 2.0f));
-        gradientDrawable.draw(canvas);
+    public final void onViewAttachedToWindow(View view) {
+        this.f21719a.c(null);
     }
 
     @Override
-    public final int getOpacity() {
-        return this.f20342b.getOpacity();
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f20342b.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f20342b.setColorFilter(colorFilter);
+    public final void onViewDetachedFromWindow(View view) {
+        this.f21719a.b(null);
     }
 }

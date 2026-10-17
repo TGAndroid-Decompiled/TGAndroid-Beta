@@ -1,112 +1,85 @@
 package zf;
 
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.view.animation.Interpolator;
-import android.view.animation.PathInterpolator;
-import org.telegram.ui.ActionBar.g6;
-public final class z extends Drawable {
-    public static final PathInterpolator f50229i = new PathInterpolator(0.42f, 0.0f, 0.58f, 1.0f);
-    public final Interpolator f50230a;
-    public final GradientDrawable f50231b;
-    public final int e;
-    public final int[] f50233f;
-    public int f50234g;
-    public final Paint f50232c = new Paint(1);
-    public final Rect d = new Rect();
-    public int h = 255;
+import java.io.OutputStream;
+import java.util.Arrays;
+public final class z extends OutputStream {
+    public byte[] f51636a;
+    public int f51637b;
 
     public z(int i10) {
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        this.f50231b = gradientDrawable;
-        this.f50230a = f50229i;
-        this.f50233f = new int[8];
-        this.e = i10;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 4) {
-                    if (i10 == 8) {
-                        gradientDrawable.setOrientation(GradientDrawable.Orientation.BOTTOM_TOP);
+        this.f51636a = new byte[i10];
+    }
+
+    public final void a(int i10) {
+        byte[] bArr = this.f51636a;
+        if (i10 - bArr.length > 0) {
+            int length = bArr.length << 1;
+            if (length - i10 < 0) {
+                length = i10;
+            }
+            if (length - 2147483639 > 0) {
+                if (i10 >= 0) {
+                    if (i10 > 2147483639) {
+                        length = Integer.MAX_VALUE;
+                    } else {
+                        length = 2147483639;
                     }
                 } else {
-                    gradientDrawable.setOrientation(GradientDrawable.Orientation.RIGHT_LEFT);
+                    throw new OutOfMemoryError();
                 }
-            } else {
-                gradientDrawable.setOrientation(GradientDrawable.Orientation.TOP_BOTTOM);
             }
-        } else {
-            gradientDrawable.setOrientation(GradientDrawable.Orientation.LEFT_RIGHT);
-        }
-        b(0);
-    }
-
-    public static void a(Interpolator interpolator, int i10, int[] iArr) {
-        int length = iArr.length - 1;
-        int alpha = Color.alpha(i10);
-        for (int i11 = length; i11 >= 0; i11--) {
-            iArr[i11] = i0.a.k(i10, (int) (interpolator.getInterpolation((length - i11) / length) * alpha));
+            this.f51636a = Arrays.copyOf(bArr, length);
         }
     }
 
-    public final void b(int i10) {
-        if (this.f50234g == i10) {
-            return;
+    public final synchronized void b() {
+        this.f51637b = 0;
+    }
+
+    public final void c(int i10) {
+        a(this.f51637b + 4);
+        byte[] bArr = this.f51636a;
+        int i11 = this.f51637b;
+        bArr[i11] = (byte) (i10 >>> 24);
+        bArr[i11 + 1] = (byte) (i10 >>> 16);
+        bArr[i11 + 2] = (byte) (i10 >>> 8);
+        bArr[i11 + 3] = (byte) i10;
+        this.f51637b = i11 + 4;
+    }
+
+    public final void d(long j10) {
+        a(this.f51637b + 8);
+        byte[] bArr = this.f51636a;
+        int i10 = this.f51637b;
+        bArr[i10] = (byte) (j10 >>> 56);
+        bArr[i10 + 1] = (byte) (j10 >>> 48);
+        bArr[i10 + 2] = (byte) (j10 >>> 40);
+        bArr[i10 + 3] = (byte) (j10 >>> 32);
+        bArr[i10 + 4] = (byte) (j10 >>> 24);
+        bArr[i10 + 5] = (byte) (j10 >>> 16);
+        bArr[i10 + 6] = (byte) (j10 >>> 8);
+        bArr[i10 + 7] = (byte) j10;
+        this.f51637b = i10 + 8;
+    }
+
+    @Override
+    public final synchronized void write(int i10) {
+        a(this.f51637b + 1);
+        byte[] bArr = this.f51636a;
+        int i11 = this.f51637b;
+        bArr[i11] = (byte) i10;
+        this.f51637b = i11 + 1;
+    }
+
+    @Override
+    public final synchronized void write(byte[] bArr, int i10, int i11) {
+        if (i10 >= 0) {
+            if (i10 <= bArr.length && i11 >= 0 && (i10 + i11) - bArr.length <= 0) {
+                a(this.f51637b + i11);
+                System.arraycopy(bArr, i10, this.f51636a, this.f51637b, i11);
+                this.f51637b += i11;
+            }
         }
-        this.f50234g = i10;
-        Interpolator interpolator = this.f50230a;
-        int[] iArr = this.f50233f;
-        a(interpolator, i10, iArr);
-        this.f50231b.setColors(iArr);
-        this.f50232c.setColor(g6.m1(this.h / 255.0f, this.f50234g));
-    }
-
-    public final void c(int i10, int i11) {
-        Rect rect = this.d;
-        if (rect.left == 0 && rect.top == i10 && rect.right == 0 && rect.bottom == i11) {
-            return;
-        }
-        rect.set(0, i10, 0, i11);
-        onBoundsChange(getBounds());
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r9) {
-        throw new UnsupportedOperationException("Method not decompiled: zf.z.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.h;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        int i10 = rect.left;
-        Rect rect2 = this.d;
-        int i11 = rect.bottom - rect2.bottom;
-        this.f50231b.setBounds(i10 + rect2.left, rect.top + rect2.top, rect.right - rect2.right, i11);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.h = i10;
-        this.f50231b.setAlpha(i10);
-        this.f50232c.setColor(g6.m1(this.h / 255.0f, this.f50234g));
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f50231b.setColorFilter(colorFilter);
-        this.f50232c.setColorFilter(colorFilter);
+        throw new IndexOutOfBoundsException();
     }
 }

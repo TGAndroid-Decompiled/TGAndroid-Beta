@@ -1,23 +1,23 @@
 package z9;
 public final class c1 {
-    public final String f49944a;
-    public final String f49945b;
-    public final String f49946c;
+    public final String f51349a;
+    public final String f51350b;
+    public final String f51351c;
     public final String d;
     public final int e;
-    public final m2.t f49947f;
+    public final mi.q f51352f;
 
-    public c1(String str, String str2, String str3, String str4, int i10, m2.t tVar) {
+    public c1(String str, String str2, String str3, String str4, int i10, mi.q qVar) {
         if (str != null) {
-            this.f49944a = str;
+            this.f51349a = str;
             if (str2 != null) {
-                this.f49945b = str2;
+                this.f51350b = str2;
                 if (str3 != null) {
-                    this.f49946c = str3;
+                    this.f51351c = str3;
                     if (str4 != null) {
                         this.d = str4;
                         this.e = i10;
-                        this.f49947f = tVar;
+                        this.f51352f = qVar;
                         return;
                     }
                     throw new NullPointerException("Null installUuid");
@@ -33,7 +33,7 @@ public final class c1 {
         if (obj != this) {
             if (obj instanceof c1) {
                 c1 c1Var = (c1) obj;
-                if (this.f49944a.equals(c1Var.f49944a) && this.f49945b.equals(c1Var.f49945b) && this.f49946c.equals(c1Var.f49946c) && this.d.equals(c1Var.d) && this.e == c1Var.e && this.f49947f.equals(c1Var.f49947f)) {
+                if (this.f51349a.equals(c1Var.f51349a) && this.f51350b.equals(c1Var.f51350b) && this.f51351c.equals(c1Var.f51351c) && this.d.equals(c1Var.d) && this.e == c1Var.e && this.f51352f.equals(c1Var.f51352f)) {
                     return true;
                 }
                 return false;
@@ -44,10 +44,10 @@ public final class c1 {
     }
 
     public final int hashCode() {
-        return ((((((((((this.f49944a.hashCode() ^ 1000003) * 1000003) ^ this.f49945b.hashCode()) * 1000003) ^ this.f49946c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e) * 1000003) ^ this.f49947f.hashCode();
+        return ((((((((((this.f51349a.hashCode() ^ 1000003) * 1000003) ^ this.f51350b.hashCode()) * 1000003) ^ this.f51351c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e) * 1000003) ^ this.f51352f.hashCode();
     }
 
     public final String toString() {
-        return "AppData{appIdentifier=" + this.f49944a + ", versionCode=" + this.f49945b + ", versionName=" + this.f49946c + ", installUuid=" + this.d + ", deliveryMechanism=" + this.e + ", developmentPlatformProvider=" + this.f49947f + "}";
+        return "AppData{appIdentifier=" + this.f51349a + ", versionCode=" + this.f51350b + ", versionName=" + this.f51351c + ", installUuid=" + this.d + ", deliveryMechanism=" + this.e + ", developmentPlatformProvider=" + this.f51352f + "}";
     }
 }

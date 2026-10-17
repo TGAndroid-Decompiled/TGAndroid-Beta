@@ -1,10 +1,10 @@
 package hg;
 public final class g1 {
-    public final String f10565a;
-    public final long f10566b;
+    public final String f11870a;
+    public final long f11871b;
 
     public g1(String str, long j10) {
-        this.f10565a = str;
-        this.f10566b = j10;
+        this.f11870a = str;
+        this.f11871b = j10;
     }
 }

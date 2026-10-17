@@ -1,38 +1,28 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class zk implements Runnable {
-    public final int f18906a;
-    public final long f18907b;
-    public final BaseController f18908c;
-    public final Object d;
+import org.telegram.messenger.LanguageDetector;
+public final class zk implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final TranslateController f20265a;
+    public final MessageObject f20266b;
+    public final long f20267c;
+    public final int d;
 
-    public zk(BaseController baseController, Object obj, long j10, int i10) {
-        this.f18906a = i10;
-        this.f18908c = baseController;
-        this.d = obj;
-        this.f18907b = j10;
+    public zk(TranslateController translateController, MessageObject messageObject, long j10, int i10) {
+        this.f20265a = translateController;
+        this.f20266b = messageObject;
+        this.f20267c = j10;
+        this.d = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18906a) {
-            case 0:
-                ((TopicsController) this.f18908c).lambda$updateTopicsWithDeletedMessages$10((ArrayList) this.d, this.f18907b);
-                return;
-            case 1:
-                ((TranslateController) this.f18908c).lambda$setDialogTranslateTo$0(this.f18907b, (String) this.d);
-                return;
-            default:
-                ((TranslateController) this.f18908c).lambda$invalidateTranslation$9((MessageObject) this.d, this.f18907b);
-                return;
-        }
+    public void run(Exception exc) {
+        this.f20265a.lambda$checkLanguage$15(this.f20266b, this.f20267c, this.d, exc);
     }
 
-    public zk(TranslateController translateController, long j10, String str) {
-        this.f18906a = 1;
-        this.f18908c = translateController;
-        this.f18907b = j10;
-        this.d = str;
+    @Override
+    public void run(String str) {
+        long j10 = this.f20267c;
+        int i10 = this.d;
+        this.f20265a.lambda$checkLanguage$13(this.f20266b, j10, i10, str);
     }
 }

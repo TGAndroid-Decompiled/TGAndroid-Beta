@@ -1,7 +1,7 @@
 package m3;
 
 import a4.g;
-import b2.u0;
+import b2.t0;
 import e2.x;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import w7.m;
 public final class b extends m {
-    public final int f15114a;
+    public final int f16467a;
 
     public static n3.a c(x xVar) {
         String v = xVar.v();
         v.getClass();
         String v10 = xVar.v();
         v10.getClass();
-        return new n3.a(v, v10, xVar.u(), xVar.u(), Arrays.copyOfRange(xVar.f8414a, xVar.f8415b, xVar.f8416c));
+        return new n3.a(v, v10, xVar.u(), xVar.u(), Arrays.copyOfRange(xVar.f8293a, xVar.f8294b, xVar.f8295c));
     }
 
     @Override
-    public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
-        switch (this.f15114a) {
+    public final t0 b(l3.a aVar, ByteBuffer byteBuffer) {
+        switch (this.f16467a) {
             case 0:
                 if (byteBuffer.get() != 116) {
                     return null;
@@ -80,9 +80,9 @@ public final class b extends m {
                 if (arrayList.isEmpty()) {
                     return null;
                 }
-                return new u0(arrayList);
+                return new t0(arrayList);
             default:
-                return new u0(c(new x(byteBuffer.array(), byteBuffer.limit())));
+                return new t0(c(new x(byteBuffer.array(), byteBuffer.limit())));
         }
     }
 }

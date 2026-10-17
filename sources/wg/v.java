@@ -4,28 +4,28 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.rw0;
-import org.telegram.ui.Components.sw0;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.nw0;
 import w7.z5;
 public final class v extends FrameLayout {
-    public final sw0 f47612a;
-    public final View f47613b;
+    public final nw0 f49021a;
+    public final View f49022b;
 
-    public v(Context context, c6 c6Var) {
+    public v(Context context, d6 d6Var) {
         super(context);
         View view = new View(context);
-        this.f47613b = view;
+        this.f49022b = view;
         addView(view, z5.n(-1, -1));
-        view.setBackgroundColor(g6.w0(g6.f19672h5, c6Var));
-        sw0 sw0Var = new sw0(context, c6Var);
-        this.f47612a = sw0Var;
-        addView(sw0Var, z5.a(-1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 48));
-        setBackground(g6.W0(getContext(), R.drawable.greydivider_top, g6.f19563b7));
+        view.setBackgroundColor(h6.w0(h6.f21057h5, d6Var));
+        nw0 nw0Var = new nw0(context, d6Var);
+        this.f49021a = nw0Var;
+        addView(nw0Var, z5.a(-1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 48));
+        setBackground(h6.W0(getContext(), R.drawable.greydivider_top, h6.f20948b7));
     }
 
-    public void setCallBack(rw0 rw0Var) {
-        this.f47612a.setCallback(rw0Var);
+    public void setCallBack(mw0 mw0Var) {
+        this.f49021a.setCallback(mw0Var);
     }
 }

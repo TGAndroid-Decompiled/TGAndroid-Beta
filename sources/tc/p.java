@@ -1,3 +1,5 @@
 package tc;
-public final class p extends b2.h {
+
+import ai.c1;
+public final class p extends c1 {
 }

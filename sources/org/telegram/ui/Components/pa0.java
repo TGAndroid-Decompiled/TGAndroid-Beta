@@ -1,22 +1,57 @@
 package org.telegram.ui.Components;
 
-import java.util.regex.Pattern;
-public final class pa0 extends gd.h {
-    public static final Pattern e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class pa0 extends org.telegram.ui.ActionBar.j {
+    public final wa0 f29263a;
 
-    @Override
-    public final df.p b() {
-        String a2 = a(e);
-        if (a2 == null) {
-            return null;
-        }
-        ?? pVar = new df.p();
-        pVar.f2647g = com.google.android.gms.internal.play_billing.k3.j(1, 1, a2);
-        return pVar;
+    public pa0(wa0 wa0Var) {
+        this.f29263a = wa0Var;
     }
 
     @Override
-    public final char d() {
-        return '$';
+    public final void b(int i10) {
+        int i11;
+        wa0 wa0Var = this.f29263a;
+        if (i10 == -1) {
+            if (!wa0Var.V.L(true)) {
+                wa0Var.finishFragment();
+            }
+        } else if (i10 == 2) {
+            if (wa0Var.I != null) {
+                ArrayList arrayList = new ArrayList();
+                for (int i12 = 0; i12 < wa0Var.I.size(); i12++) {
+                    TL_stories.StoryItem storyItem = ((MessageObject) wa0Var.I.valueAt(i12)).storyItem;
+                    if (storyItem != null) {
+                        arrayList.add(storyItem);
+                    }
+                }
+                if (!arrayList.isEmpty()) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wa0Var.getParentActivity(), 0, wa0Var.getResourceProvider());
+                    if (arrayList.size() > 1) {
+                        i11 = R.string.DeleteStoriesTitle;
+                    } else {
+                        i11 = R.string.DeleteStoryTitle;
+                    }
+                    alertDialog$Builder.f20601a.R = LocaleController.getString(i11);
+                    alertDialog$Builder.f20601a.T = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new s2(17, this, arrayList));
+                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new k2(17));
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                    b2Var.show();
+                    b2Var.h();
+                }
+            }
+        } else if (i10 == 10) {
+            ta0 ta0Var = wa0Var.V;
+            ta0Var.e1(ta0Var.getClosestTab(), false);
+        } else if (i10 == 11) {
+            wa0Var.V.L(true);
+            wa0Var.V.getSearchItem().z(false);
+        }
     }
 }

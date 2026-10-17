@@ -1,68 +1,55 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class em0 implements View.OnTouchListener {
-    public final int f35333a;
-    public final sn0 f35334b;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class em0 implements Comparator {
+    public final xm0 f36568a;
 
-    public em0(sn0 sn0Var, int i10) {
-        this.f35333a = i10;
-        this.f35334b = sn0Var;
+    public em0(xm0 xm0Var) {
+        this.f36568a = xm0Var;
+    }
+
+    public final int a(TLRPC.SecureValueError secureValueError) {
+        if (secureValueError instanceof TLRPC.TL_secureValueError) {
+            return 0;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
+            return 1;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
+            return 2;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
+            return 3;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
+            return 4;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
+            return 5;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
+            return 6;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
+            return 7;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
+            return xm0.B0(this.f36568a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
+        }
+        return 100;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f35333a;
-        sn0 sn0Var = this.f35334b;
-        switch (i10) {
-            case 0:
-                if (sn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    fu fuVar = new fu(null, false);
-                    fuVar.f35958r = new qw(26, sn0Var, view);
-                    sn0Var.presentFragment(fuVar);
-                }
-                return true;
-            case 1:
-                if (sn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(sn0Var.getParentActivity());
-                    String string = LocaleController.getString(R.string.PassportSelectGender);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
-                    a2Var.R = string;
-                    alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new o4(sn0Var, 3));
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
-                    sn0Var.showDialog(a2Var);
-                }
-                return true;
-            case 2:
-                if (sn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    fu fuVar2 = new fu(null, false);
-                    fuVar2.f35958r = new fm0(sn0Var, 2);
-                    sn0Var.presentFragment(fuVar2);
-                }
-                return true;
-            default:
-                if (sn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    fu fuVar3 = new fu(null, false);
-                    fuVar3.f35958r = new fm0(sn0Var, 3);
-                    sn0Var.presentFragment(fuVar3);
-                }
-                return true;
+    public final int compare(Object obj, Object obj2) {
+        int a2 = a((TLRPC.SecureValueError) obj);
+        int a10 = a((TLRPC.SecureValueError) obj2);
+        if (a2 < a10) {
+            return -1;
         }
+        if (a2 > a10) {
+            return 1;
+        }
+        return 0;
     }
 }

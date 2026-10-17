@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.JsonReader;
 import android.util.Log;
-import com.google.firebase.messaging.r;
+import com.google.firebase.messaging.q;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,29 +19,28 @@ import java.util.zip.GZIPOutputStream;
 import n6.l;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.c1;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
-    public final Context f45557a;
-    public final qa.b f45558b;
-    public final d f45559c = new d();
+    public final Context f46946a;
+    public final qa.b f46947b;
+    public final d f46948c = new d();
 
     public c(Context context, qa.b bVar) {
-        this.f45557a = context;
-        this.f45558b = bVar;
+        this.f46946a = context;
+        this.f46947b = bVar;
     }
 
     public static URL a(String str) {
         try {
             return new URL("https://firebaseinstallations.googleapis.com/v1/" + str);
         } catch (MalformedURLException e7) {
-            throw new r(e7.getMessage());
+            throw new q(e7.getMessage());
         }
     }
 
     public static void b(HttpURLConnection httpURLConnection, String str, String str2, String str3) {
-        String h;
+        String g10;
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
@@ -73,11 +72,11 @@ public final class c {
         if (!TextUtils.isEmpty(str4)) {
             Log.w("Firebase-Installations", str4);
             if (TextUtils.isEmpty(str)) {
-                h = "";
+                g10 = "";
             } else {
-                h = t8.b.h(", ", str);
+                g10 = r.c.g(", ", str);
             }
-            Log.w("Firebase-Installations", c1.i("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, h));
+            Log.w("Firebase-Installations", r.c.h("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, g10));
         }
     }
 
@@ -111,16 +110,16 @@ public final class c {
                 while (jsonReader.hasNext()) {
                     String nextName2 = jsonReader.nextName();
                     if (nextName2.equals("token")) {
-                        a2.f282c = jsonReader.nextString();
+                        a2.f281c = jsonReader.nextString();
                     } else if (nextName2.equals("expiresIn")) {
                         a2.d = Long.valueOf(d(jsonReader.nextString()));
                     } else {
                         jsonReader.skipValue();
                     }
                 }
-                b f7 = a2.f();
+                b e7 = a2.e();
                 jsonReader.endObject();
-                bVar = f7;
+                bVar = e7;
             } else {
                 jsonReader.skipValue();
             }
@@ -139,7 +138,7 @@ public final class c {
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
             if (nextName.equals("token")) {
-                a2.f282c = jsonReader.nextString();
+                a2.f281c = jsonReader.nextString();
             } else if (nextName.equals("expiresIn")) {
                 a2.d = Long.valueOf(d(jsonReader.nextString()));
             } else {
@@ -149,8 +148,8 @@ public final class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        a2.f281b = 1;
-        return a2.f();
+        a2.f280b = 1;
+        return a2.e();
     }
 
     public static void g(HttpURLConnection httpURLConnection, String str, String str2) {

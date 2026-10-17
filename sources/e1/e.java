@@ -1,0 +1,21 @@
+package e1;
+
+import android.content.Context;
+import android.os.CancellationSignal;
+import android.os.Handler;
+import android.os.Looper;
+import java.util.concurrent.Executor;
+import v0.i;
+public final class e extends b1.d {
+    public final Context e;
+    public i f8185f;
+    public Executor f8186g;
+    public CancellationSignal h;
+    public final c1.d f8187i;
+
+    public e(Context context) {
+        kotlin.jvm.internal.i.e(context, "context");
+        this.e = context;
+        this.f8187i = new c1.d(this, new Handler(Looper.getMainLooper()), 2);
+    }
+}

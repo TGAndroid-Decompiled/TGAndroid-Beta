@@ -25,46 +25,46 @@ public final class o3 extends FrameLayout {
     public boolean H;
     public float I;
     public b3 J;
-    public final k4 K;
-    public int f38528a;
-    public final di.v f38529b;
-    public final i4 f38530c;
+    public final l4 K;
+    public int f39632a;
+    public final ei.v f39633b;
+    public final j4 f39634c;
     public final s4.b0 d;
     public final l3 e;
-    public final m3 f38531f;
+    public final m3 f39635f;
     public boolean h;
-    public boolean f38532n;
-    public f3 f38533r;
-    public boolean f38534s;
+    public boolean f39636n;
+    public f3 f39637r;
+    public boolean f39638s;
     public boolean v;
-    public int f38535w;
-    public int f38536x;
-    public org.telegram.ui.web.g2 f38537y;
+    public int f39639w;
+    public int f39640x;
+    public org.telegram.ui.web.f2 f39641y;
 
-    public o3(k4 k4Var, Activity activity) {
+    public o3(l4 l4Var, Activity activity) {
         super(activity);
         boolean z10;
-        this.K = k4Var;
-        int i10 = org.telegram.ui.ActionBar.g6.Pk;
-        this.f38535w = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
-        this.f38536x = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
+        this.K = l4Var;
+        int i10 = org.telegram.ui.ActionBar.h6.Pk;
+        this.f39639w = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+        this.f39640x = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
         this.E = false;
         this.I = -1.0f;
         new Matrix();
-        di.v vVar = new di.v(this, activity);
-        this.f38529b = vVar;
+        ei.v vVar = new ei.v(this, activity);
+        this.f39633b = vVar;
         vVar.setClipToPadding(false);
         vVar.setPadding(0, AndroidUtilities.dp(56.0f), 0, 0);
         vVar.setTopGlowOffset(AndroidUtilities.dp(56.0f));
         ((s4.k) vVar.getItemAnimator()).C = false;
-        if (k4Var.K != null) {
+        if (l4Var.K != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        i4 i4Var = new i4(k4Var, activity, z10);
-        this.f38530c = i4Var;
-        vVar.setAdapter(i4Var);
+        j4 j4Var = new j4(l4Var, activity, z10);
+        this.f39634c = j4Var;
+        vVar.setAdapter(j4Var);
         s4.b0 b0Var = new s4.b0(1, false);
         this.d = b0Var;
         vVar.setLayoutManager(b0Var);
@@ -75,28 +75,28 @@ public final class o3 extends FrameLayout {
         l3Var.setShouldWaitWebViewScroll(true);
         l3Var.setFullSize(true);
         l3Var.setAllowFullSizeSwipe(true);
-        m3 m3Var = new m3(this, getContext(), org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false));
-        this.f38531f = m3Var;
+        m3 m3Var = new m3(this, getContext(), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+        this.f39635f = m3Var;
         m3Var.setOnCloseRequestedListener(new Runnable(this) {
-            public final o3 f36705b;
+            public final o3 f37730b;
 
             {
-                this.f36705b = this;
+                this.f37730b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        k4 k4Var2 = this.f36705b.K;
-                        LaunchActivity launchActivity = LaunchActivity.G1;
+                        l4 l4Var2 = this.f37730b.K;
+                        LaunchActivity launchActivity = LaunchActivity.H1;
                         if (launchActivity != null) {
-                            org.telegram.ui.ActionBar.m3 P = launchActivity.P();
+                            org.telegram.ui.ActionBar.n3 P = launchActivity.P();
                             if (P != null) {
                                 boolean z11 = false;
                                 int i11 = 0;
                                 while (true) {
-                                    HashMap hashMap = org.telegram.ui.ActionBar.m3.K;
+                                    HashMap hashMap = org.telegram.ui.ActionBar.n3.K;
                                     if (i11 < hashMap.size()) {
                                         ArrayList arrayList = (ArrayList) hashMap.get(Integer.valueOf(i11));
                                         if (arrayList != null) {
@@ -105,9 +105,9 @@ public final class o3 extends FrameLayout {
                                             while (i12 < size) {
                                                 Object obj = arrayList.get(i12);
                                                 i12++;
-                                                org.telegram.ui.ActionBar.l3 l3Var2 = (org.telegram.ui.ActionBar.l3) obj;
-                                                if (l3Var2.J == k4Var2) {
-                                                    z11 = P.h(i11, l3Var2, true);
+                                                org.telegram.ui.ActionBar.m3 m3Var2 = (org.telegram.ui.ActionBar.m3) obj;
+                                                if (m3Var2.J == l4Var2) {
+                                                    z11 = P.h(i11, m3Var2, true);
                                                 }
                                             }
                                             continue;
@@ -119,20 +119,20 @@ public final class o3 extends FrameLayout {
                                     return;
                                 }
                             }
-                            k4Var2.o(true, true);
+                            l4Var2.o(true, true);
                             return;
                         }
                         return;
                     case 1:
-                        this.f36705b.f38531f.n(true, false);
+                        this.f37730b.f39635f.n(true, false);
                         return;
                     default:
-                        o3 o3Var = this.f36705b;
-                        l3 l3Var3 = o3Var.e;
-                        o3Var.f38531f.n(false, false);
-                        f3 f3Var = o3Var.f38533r;
+                        o3 o3Var = this.f37730b;
+                        l3 l3Var2 = o3Var.e;
+                        o3Var.f39635f.n(false, false);
+                        f3 f3Var = o3Var.f39637r;
                         if (f3Var != null) {
-                            f3Var.f35447a.setTranslationY(((l3Var3.getTopActionBarOffsetY() + (-l3Var3.getOffsetY())) - l3Var3.getSwipeOffsetY()) / 2.0f);
+                            f3Var.f36780a.setTranslationY(((l3Var2.getTopActionBarOffsetY() + (-l3Var2.getOffsetY())) - l3Var2.getSwipeOffsetY()) / 2.0f);
                         }
                         o3Var.K.f0();
                         return;
@@ -144,25 +144,25 @@ public final class o3 extends FrameLayout {
         m3Var.setWebViewScrollListener(new g(this, 2));
         l3Var.addView(m3Var, w7.z5.d(-1.0f, -1));
         l3Var.setScrollEndListener(new Runnable(this) {
-            public final o3 f36705b;
+            public final o3 f37730b;
 
             {
-                this.f36705b = this;
+                this.f37730b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        k4 k4Var2 = this.f36705b.K;
-                        LaunchActivity launchActivity = LaunchActivity.G1;
+                        l4 l4Var2 = this.f37730b.K;
+                        LaunchActivity launchActivity = LaunchActivity.H1;
                         if (launchActivity != null) {
-                            org.telegram.ui.ActionBar.m3 P = launchActivity.P();
+                            org.telegram.ui.ActionBar.n3 P = launchActivity.P();
                             if (P != null) {
                                 boolean z11 = false;
                                 int i11 = 0;
                                 while (true) {
-                                    HashMap hashMap = org.telegram.ui.ActionBar.m3.K;
+                                    HashMap hashMap = org.telegram.ui.ActionBar.n3.K;
                                     if (i11 < hashMap.size()) {
                                         ArrayList arrayList = (ArrayList) hashMap.get(Integer.valueOf(i11));
                                         if (arrayList != null) {
@@ -171,9 +171,9 @@ public final class o3 extends FrameLayout {
                                             while (i12 < size) {
                                                 Object obj = arrayList.get(i12);
                                                 i12++;
-                                                org.telegram.ui.ActionBar.l3 l3Var2 = (org.telegram.ui.ActionBar.l3) obj;
-                                                if (l3Var2.J == k4Var2) {
-                                                    z11 = P.h(i11, l3Var2, true);
+                                                org.telegram.ui.ActionBar.m3 m3Var2 = (org.telegram.ui.ActionBar.m3) obj;
+                                                if (m3Var2.J == l4Var2) {
+                                                    z11 = P.h(i11, m3Var2, true);
                                                 }
                                             }
                                             continue;
@@ -185,20 +185,20 @@ public final class o3 extends FrameLayout {
                                     return;
                                 }
                             }
-                            k4Var2.o(true, true);
+                            l4Var2.o(true, true);
                             return;
                         }
                         return;
                     case 1:
-                        this.f36705b.f38531f.n(true, false);
+                        this.f37730b.f39635f.n(true, false);
                         return;
                     default:
-                        o3 o3Var = this.f36705b;
-                        l3 l3Var3 = o3Var.e;
-                        o3Var.f38531f.n(false, false);
-                        f3 f3Var = o3Var.f38533r;
+                        o3 o3Var = this.f37730b;
+                        l3 l3Var2 = o3Var.e;
+                        o3Var.f39635f.n(false, false);
+                        f3 f3Var = o3Var.f39637r;
                         if (f3Var != null) {
-                            f3Var.f35447a.setTranslationY(((l3Var3.getTopActionBarOffsetY() + (-l3Var3.getOffsetY())) - l3Var3.getSwipeOffsetY()) / 2.0f);
+                            f3Var.f36780a.setTranslationY(((l3Var2.getTopActionBarOffsetY() + (-l3Var2.getOffsetY())) - l3Var2.getSwipeOffsetY()) / 2.0f);
                         }
                         o3Var.K.f0();
                         return;
@@ -207,25 +207,25 @@ public final class o3 extends FrameLayout {
         });
         l3Var.setDelegate(new b1(this, 1));
         l3Var.setScrollListener(new Runnable(this) {
-            public final o3 f36705b;
+            public final o3 f37730b;
 
             {
-                this.f36705b = this;
+                this.f37730b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        k4 k4Var2 = this.f36705b.K;
-                        LaunchActivity launchActivity = LaunchActivity.G1;
+                        l4 l4Var2 = this.f37730b.K;
+                        LaunchActivity launchActivity = LaunchActivity.H1;
                         if (launchActivity != null) {
-                            org.telegram.ui.ActionBar.m3 P = launchActivity.P();
+                            org.telegram.ui.ActionBar.n3 P = launchActivity.P();
                             if (P != null) {
                                 boolean z11 = false;
                                 int i11 = 0;
                                 while (true) {
-                                    HashMap hashMap = org.telegram.ui.ActionBar.m3.K;
+                                    HashMap hashMap = org.telegram.ui.ActionBar.n3.K;
                                     if (i11 < hashMap.size()) {
                                         ArrayList arrayList = (ArrayList) hashMap.get(Integer.valueOf(i11));
                                         if (arrayList != null) {
@@ -234,9 +234,9 @@ public final class o3 extends FrameLayout {
                                             while (i12 < size) {
                                                 Object obj = arrayList.get(i12);
                                                 i12++;
-                                                org.telegram.ui.ActionBar.l3 l3Var2 = (org.telegram.ui.ActionBar.l3) obj;
-                                                if (l3Var2.J == k4Var2) {
-                                                    z11 = P.h(i11, l3Var2, true);
+                                                org.telegram.ui.ActionBar.m3 m3Var2 = (org.telegram.ui.ActionBar.m3) obj;
+                                                if (m3Var2.J == l4Var2) {
+                                                    z11 = P.h(i11, m3Var2, true);
                                                 }
                                             }
                                             continue;
@@ -248,20 +248,20 @@ public final class o3 extends FrameLayout {
                                     return;
                                 }
                             }
-                            k4Var2.o(true, true);
+                            l4Var2.o(true, true);
                             return;
                         }
                         return;
                     case 1:
-                        this.f36705b.f38531f.n(true, false);
+                        this.f37730b.f39635f.n(true, false);
                         return;
                     default:
-                        o3 o3Var = this.f36705b;
-                        l3 l3Var3 = o3Var.e;
-                        o3Var.f38531f.n(false, false);
-                        f3 f3Var = o3Var.f38533r;
+                        o3 o3Var = this.f37730b;
+                        l3 l3Var2 = o3Var.e;
+                        o3Var.f39635f.n(false, false);
+                        f3 f3Var = o3Var.f39637r;
                         if (f3Var != null) {
-                            f3Var.f35447a.setTranslationY(((l3Var3.getTopActionBarOffsetY() + (-l3Var3.getOffsetY())) - l3Var3.getSwipeOffsetY()) / 2.0f);
+                            f3Var.f36780a.setTranslationY(((l3Var2.getTopActionBarOffsetY() + (-l3Var2.getOffsetY())) - l3Var2.getSwipeOffsetY()) / 2.0f);
                         }
                         o3Var.K.f0();
                         return;
@@ -275,47 +275,47 @@ public final class o3 extends FrameLayout {
     }
 
     public static void a(o3 o3Var, boolean z10, int i10) {
-        k4 k4Var = o3Var.K;
-        x3 x3Var = k4Var.K;
+        l4 l4Var = o3Var.K;
+        x3 x3Var = l4Var.K;
         if (z10) {
-            int v = org.telegram.ui.ActionBar.g6.v(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Pk, false), i10);
-            o3Var.f38535w = v;
-            if (o3Var == k4Var.f37278u0[0]) {
+            int v = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Pk, false), i10);
+            o3Var.f39639w = v;
+            if (o3Var == l4Var.f38779u0[0]) {
                 if (SharedConfig.adaptableColorInBrowser) {
-                    k4Var.f37266h0.d(v, true);
+                    l4Var.f38767h0.d(v, true);
                 }
                 if (x3Var != null) {
                     x3Var.i();
                 }
             }
         } else {
-            int v10 = org.telegram.ui.ActionBar.g6.v(-1, i10);
-            o3Var.f38536x = v10;
-            if (o3Var == k4Var.f37278u0[0]) {
+            int v10 = org.telegram.ui.ActionBar.h6.v(-1, i10);
+            o3Var.f39640x = v10;
+            if (o3Var == l4Var.f38779u0[0]) {
                 if (SharedConfig.adaptableColorInBrowser) {
-                    k4Var.f37266h0.setMenuColors(v10);
+                    l4Var.f38767h0.setMenuColors(v10);
                 }
                 if (x3Var != null) {
                     x3Var.i();
                 }
             }
         }
-        k4Var.f0();
+        l4Var.f0();
     }
 
     public final void b() {
         boolean z10;
-        this.f38534s = false;
+        this.f39638s = false;
         this.v = false;
         setWeb(null);
-        m3 m3Var = this.f38531f;
+        m3 m3Var = this.f39635f;
         m3Var.h();
-        m3Var.f40981a = null;
-        int i10 = org.telegram.ui.ActionBar.g6.Pk;
-        this.f38535w = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
-        int x02 = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
-        this.f38536x = x02;
-        f3 f3Var = this.f38533r;
+        m3Var.f42514a = null;
+        int i10 = org.telegram.ui.ActionBar.h6.Pk;
+        this.f39639w = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+        int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+        this.f39640x = x02;
+        f3 f3Var = this.f39637r;
         if (f3Var != null) {
             if (AndroidUtilities.computePerceivedBrightness(x02) <= 0.721f) {
                 z10 = true;
@@ -323,39 +323,39 @@ public final class o3 extends FrameLayout {
                 z10 = false;
             }
             f3Var.b(z10, true);
-            this.f38533r.setBackgroundColor(this.f38536x);
-            f3 f3Var2 = this.f38533r;
-            this.f38532n = false;
+            this.f39637r.setBackgroundColor(this.f39640x);
+            f3 f3Var2 = this.f39637r;
+            this.f39636n = false;
             AndroidUtilities.updateViewVisibilityAnimated(f3Var2, false, 1.0f, false);
         }
-        i4 i4Var = this.f38530c;
-        i4Var.E = null;
-        i4Var.e.clear();
-        i4Var.f36710f.clear();
-        i4Var.f36713s.clear();
-        i4Var.v.clear();
-        i4Var.h.clear();
-        i4Var.f36712r.clear();
-        i4Var.f36711n.clear();
-        i4Var.f36715x.clear();
-        i4Var.f36714w.clear();
-        i4Var.F = null;
-        i4Var.l();
+        j4 j4Var = this.f39634c;
+        j4Var.E = null;
+        j4Var.e.clear();
+        j4Var.f38031f.clear();
+        j4Var.f38034s.clear();
+        j4Var.v.clear();
+        j4Var.h.clear();
+        j4Var.f38033r.clear();
+        j4Var.f38032n.clear();
+        j4Var.f38036x.clear();
+        j4Var.f38035w.clear();
+        j4Var.F = null;
+        j4Var.l();
         invalidate();
     }
 
     public final boolean c() {
-        if (this.f38528a == 0) {
+        if (this.f39632a == 0) {
             return true;
         }
         return false;
     }
 
     public final boolean d() {
-        i4 i4Var;
+        j4 j4Var;
         TLRPC.WebPage webPage;
         TL_iv.Page page;
-        if (!f() && (i4Var = this.f38530c) != null && (webPage = i4Var.E) != null && (page = webPage.cached_page) != null && page.local != null) {
+        if (!f() && (j4Var = this.f39634c) != null && (webPage = j4Var.E) != null && (page = webPage.cached_page) != null && page.local != null) {
             return true;
         }
         return false;
@@ -367,16 +367,16 @@ public final class o3 extends FrameLayout {
     }
 
     public final boolean e() {
-        org.telegram.ui.web.z0 webView;
+        org.telegram.ui.web.x0 webView;
         String u10;
-        if (!f() || (webView = getWebView()) == null || (u10 = org.telegram.ui.web.c1.u(webView.getUrl())) == null || !org.telegram.ui.web.c1.p(Uri.parse(u10))) {
+        if (!f() || (webView = getWebView()) == null || (u10 = org.telegram.ui.web.a1.u(webView.getUrl())) == null || !org.telegram.ui.web.a1.p(Uri.parse(u10))) {
             return false;
         }
         return true;
     }
 
     public final boolean f() {
-        if (this.f38528a == 1) {
+        if (this.f39632a == 1) {
             return true;
         }
         return false;
@@ -404,31 +404,31 @@ public final class o3 extends FrameLayout {
 
     public int getActionBarColor() {
         if (f() && SharedConfig.adaptableColorInBrowser) {
-            return this.f38535w;
+            return this.f39639w;
         }
-        int i10 = org.telegram.ui.ActionBar.g6.Pk;
+        int i10 = org.telegram.ui.ActionBar.h6.Pk;
         this.K.getClass();
-        return org.telegram.ui.ActionBar.g6.x0(null, i10, false);
+        return org.telegram.ui.ActionBar.h6.x0(null, i10, false);
     }
 
-    public i4 getAdapter() {
-        return this.f38530c;
+    public j4 getAdapter() {
+        return this.f39634c;
     }
 
     public int getBackgroundColor() {
         if (f() && SharedConfig.adaptableColorInBrowser) {
-            if (this.f38532n) {
-                return org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Pk, false);
+            if (this.f39636n) {
+                return org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Pk, false);
             }
-            return this.f38536x;
+            return this.f39640x;
         }
-        return org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Pk, false);
+        return org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Pk, false);
     }
 
     public float getListTop() {
         int i10;
         if (c()) {
-            di.v vVar = this.f38529b;
+            ei.v vVar = this.f39633b;
             float height = vVar.getHeight();
             for (int i11 = 0; i11 < vVar.getChildCount(); i11++) {
                 View childAt = vVar.getChildAt(i11);
@@ -436,7 +436,7 @@ public final class o3 extends FrameLayout {
                     i10 = 0;
                 } else {
                     vVar.getLayoutManager().getClass();
-                    i10 = RecyclerView.U(childAt).f44841f;
+                    i10 = RecyclerView.U(childAt).f45941f;
                 }
                 if (i10 == 2147483646) {
                     height = Math.min(height, childAt.getBottom());
@@ -452,13 +452,13 @@ public final class o3 extends FrameLayout {
         }
     }
 
-    public org.telegram.ui.Components.mm0 getListView() {
-        return this.f38529b;
+    public org.telegram.ui.Components.im0 getListView() {
+        return this.f39633b;
     }
 
     public float getProgress() {
-        org.telegram.ui.web.z0 webView;
-        i4 i4Var;
+        org.telegram.ui.web.x0 webView;
+        j4 j4Var;
         int i10;
         int B;
         View m10;
@@ -473,8 +473,8 @@ public final class o3 extends FrameLayout {
             int L0 = b0Var.L0();
             View m11 = b0Var.m(L0);
             if (m11 != null) {
-                int[] iArr = this.f38530c.I;
-                di.v vVar = this.f38529b;
+                int[] iArr = this.f39634c.I;
+                ei.v vVar = this.f39633b;
                 int i11 = 0;
                 if (iArr == null) {
                     int N0 = b0Var.N0();
@@ -512,21 +512,21 @@ public final class o3 extends FrameLayout {
                     if (L0 != 0 || x3Var == null) {
                         i11 = -m11.getTop();
                     }
-                    return Utilities.clamp01((i10 + i11) / Math.max(1, i4Var.J - vVar.getHeight()));
+                    return Utilities.clamp01((i10 + i11) / Math.max(1, j4Var.J - vVar.getHeight()));
                 }
             }
-        } else if (f() && (webView = this.f38531f.getWebView()) != null) {
+        } else if (f() && (webView = this.f39635f.getWebView()) != null) {
             return webView.getScrollProgress();
         }
         return 0.0f;
     }
 
     public String getSubtitle() {
-        org.telegram.ui.web.z0 webView;
+        org.telegram.ui.web.x0 webView;
         String uri;
         String[] split;
-        m0 m0Var;
-        if (!f() || (webView = this.f38531f.getWebView()) == null) {
+        n0 n0Var;
+        if (!f() || (webView = this.f39635f.getWebView()) == null) {
             return "";
         }
         if (TextUtils.equals(this.F, webView.getUrl())) {
@@ -535,7 +535,7 @@ public final class o3 extends FrameLayout {
         try {
             String url = webView.getUrl();
             this.F = url;
-            Uri parse = Uri.parse(org.telegram.ui.web.c1.u(url));
+            Uri parse = Uri.parse(org.telegram.ui.web.a1.u(url));
             if (parse.getScheme() != null && (parse.getScheme().equalsIgnoreCase("http") || parse.getScheme().equalsIgnoreCase("https"))) {
                 uri = parse.getSchemeSpecificPart();
             } else {
@@ -549,7 +549,7 @@ public final class o3 extends FrameLayout {
                             parse = parse2;
                         }
                         String a2 = pf.d.a(parse.getHost());
-                        if (a2.split("\\.").length > 2 && (m0Var = this.K.f37266h0) != null && di.d4.g(a2, m0Var.E) > AndroidUtilities.displaySize.x - AndroidUtilities.dp(162.0f)) {
+                        if (a2.split("\\.").length > 2 && (n0Var = this.K.f38767h0) != null && ei.x3.g(a2, n0Var.E) > AndroidUtilities.displaySize.x - AndroidUtilities.dp(162.0f)) {
                             a2 = split[split.length - 2] + '.' + split[split.length - 1];
                         }
                         uri = pf.d.u(parse, null, "", a2, null);
@@ -582,11 +582,11 @@ public final class o3 extends FrameLayout {
     }
 
     public String getTitle() {
-        org.telegram.ui.web.z0 webView;
+        org.telegram.ui.web.x0 webView;
         String str;
         String str2;
         if (c()) {
-            TLRPC.WebPage webPage = this.f38530c.E;
+            TLRPC.WebPage webPage = this.f39634c.E;
             if (webPage != null && (str2 = webPage.site_name) != null) {
                 return str2;
             }
@@ -594,18 +594,18 @@ public final class o3 extends FrameLayout {
                 return str;
             }
         }
-        if (f() && (webView = this.f38531f.getWebView()) != null) {
+        if (f() && (webView = this.f39635f.getWebView()) != null) {
             return webView.getTitle();
         }
         return "";
     }
 
-    public org.telegram.ui.web.c1 getWebContainer() {
-        return this.f38531f;
+    public org.telegram.ui.web.a1 getWebContainer() {
+        return this.f39635f;
     }
 
-    public org.telegram.ui.web.z0 getWebView() {
-        m3 m3Var = this.f38531f;
+    public org.telegram.ui.web.x0 getWebView() {
+        m3 m3Var = this.f39635f;
         if (m3Var != null) {
             return m3Var.getWebView();
         }
@@ -617,38 +617,38 @@ public final class o3 extends FrameLayout {
         f3 f3Var;
         boolean z10;
         super.onAttachedToWindow();
-        if (this.f38532n && (f3Var = this.f38533r) != null) {
-            int i10 = org.telegram.ui.ActionBar.g6.Pk;
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.g6.x0(null, i10, false)) <= 0.721f) {
+        if (this.f39636n && (f3Var = this.f39637r) != null) {
+            int i10 = org.telegram.ui.ActionBar.h6.Pk;
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.x0(null, i10, false)) <= 0.721f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             f3Var.b(z10, false);
-            this.f38533r.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
+            this.f39637r.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         }
     }
 
     public void setLastVisible(boolean z10) {
         if (this.H != z10) {
             this.H = z10;
-            this.f38531f.setKeyboardFocusable(z10);
+            this.f39635f.setKeyboardFocusable(z10);
         }
     }
 
     @Override
     public void setTranslationX(float f7) {
         super.setTranslationX(f7);
-        k4 k4Var = this.K;
-        k4Var.f0();
-        if (k4Var.f37264f0.f20568f) {
-            k4Var.f37265g0.invalidate();
+        l4 l4Var = this.K;
+        l4Var.f0();
+        if (l4Var.f38765f0.f21927f) {
+            l4Var.f38766g0.invalidate();
         }
-        if (k4Var.f37264f0.e) {
-            k4Var.f37265g0.invalidate();
-            k4Var.X((int) (((AndroidUtilities.dp(56.0f) - k4Var.f37264f0.h) * (f7 / getMeasuredWidth())) + k4Var.f37264f0.h));
+        if (l4Var.f38765f0.e) {
+            l4Var.f38766g0.invalidate();
+            l4Var.X((int) (((AndroidUtilities.dp(56.0f) - l4Var.f38765f0.h) * (f7 / getMeasuredWidth())) + l4Var.f38765f0.h));
         }
-        x3 x3Var = k4Var.K;
+        x3 x3Var = l4Var.K;
         if (x3Var != null) {
             x3Var.n();
         }
@@ -656,17 +656,17 @@ public final class o3 extends FrameLayout {
 
     public void setType(int i10) {
         int i11;
-        if (this.f38528a != i10) {
+        if (this.f39632a != i10) {
             b();
         }
-        this.f38528a = i10;
+        this.f39632a = i10;
         int i12 = 8;
         if (c()) {
             i11 = 0;
         } else {
             i11 = 8;
         }
-        this.f38529b.setVisibility(i11);
+        this.f39633b.setVisibility(i11);
         if (f()) {
             i12 = 0;
         }
@@ -681,30 +681,30 @@ public final class o3 extends FrameLayout {
             }
             this.J = b3Var;
             if (b3Var != null) {
-                org.telegram.ui.web.z0 z0Var = b3Var.f20186b;
-                m3 m3Var = this.f38531f;
-                if (z0Var != null) {
-                    z0Var.onResume();
-                    m3Var.N(UserConfig.selectedAccount, b3Var.f20186b, b3Var.d, b3Var.f20204x, false);
-                    a(this, true, b3Var.f20198q);
-                    a(this, false, b3Var.f20199r);
+                org.telegram.ui.web.x0 x0Var = b3Var.f21579b;
+                m3 m3Var = this.f39635f;
+                if (x0Var != null) {
+                    x0Var.onResume();
+                    m3Var.N(UserConfig.selectedAccount, b3Var.f21579b, b3Var.d, b3Var.f21597x, false);
+                    a(this, true, b3Var.f21591q);
+                    a(this, false, b3Var.f21592r);
                 } else {
-                    String str = b3Var.f20204x;
+                    String str = b3Var.f21597x;
                     if (str != null) {
                         m3Var.t(UserConfig.selectedAccount, str, false);
                     }
                 }
             }
-            org.telegram.ui.web.g2 g2Var = this.f38537y;
-            if (g2Var != null) {
-                g2Var.a();
-                org.telegram.ui.web.g2 g2Var2 = this.f38537y;
-                TLRPC.TL_webPage tL_webPage = g2Var2.f41048j;
+            org.telegram.ui.web.f2 f2Var = this.f39641y;
+            if (f2Var != null) {
+                f2Var.a();
+                org.telegram.ui.web.f2 f2Var2 = this.f39641y;
+                TLRPC.TL_webPage tL_webPage = f2Var2.f42596j;
                 if (tL_webPage != null) {
-                    org.telegram.ui.web.i2.o(tL_webPage);
-                    g2Var2.f41048j = null;
+                    org.telegram.ui.web.h2.o(tL_webPage);
+                    f2Var2.f42596j = null;
                 }
-                this.f38537y = null;
+                this.f39641y = null;
             }
         }
     }

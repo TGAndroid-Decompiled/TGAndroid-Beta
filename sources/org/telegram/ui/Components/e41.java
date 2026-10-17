@@ -1,55 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
-import org.telegram.messenger.R;
-public final class e41 extends Drawable {
-    public final yj0 f24303a;
-    public int f24304b;
-    public final TextPaint f24305c;
+import android.view.ViewGroup;
+public final class e41 extends s4.k {
+    public final r41 F;
 
-    public e41(TextPaint textPaint) {
-        ah.f1 f1Var = new ah.f1(this, 6);
-        this.f24305c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        yj0 yj0Var = new yj0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
-        this.f24303a = yj0Var;
-        yj0Var.setCallback(f1Var);
-        yj0Var.K(1);
-        yj0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        yj0Var.J(true);
-        yj0Var.start();
+    public e41(r41 r41Var) {
+        this.F = r41Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int color = this.f24305c.getColor();
-        int i10 = this.f24304b;
-        yj0 yj0Var = this.f24303a;
-        if (color != i10) {
-            yj0Var.Z = true;
-            yj0Var.Q(color, "Comp 1");
-            yj0Var.o();
-            yj0Var.J(true);
-            yj0Var.V(0L);
-            this.f24304b = color;
-        }
-        yj0Var.draw(canvas);
+    public final void O() {
+        ViewGroup viewGroup;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.F).containerView;
+        viewGroup.invalidate();
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void P(s4.b1 b1Var) {
+        ViewGroup viewGroup;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.F).containerView;
+        viewGroup.invalidate();
     }
 }

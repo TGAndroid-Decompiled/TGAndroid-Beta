@@ -1,57 +1,38 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MessagesStorage;
-public final class wq implements MessagesStorage.LongCallback, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.bm0, org.telegram.ui.Components.cm0 {
-    public final int f41339a;
-    public final yr f41340b;
+import org.telegram.messenger.AnimationNotificationsLocker;
+public final class wq extends s4.k {
+    public final AnimationNotificationsLocker F = new AnimationNotificationsLocker();
+    public final jr G;
 
-    public wq(yr yrVar, int i10) {
-        this.f41339a = i10;
-        this.f41340b = yrVar;
+    public wq(jr jrVar) {
+        this.G = jrVar;
     }
 
     @Override
-    public boolean a(int i10, View view) {
-        yr yrVar = this.f41340b;
-        if (yrVar.getParentActivity() != null) {
-            s4.g0 adapter = yrVar.f41895c.getAdapter();
-            ur urVar = yrVar.f41889a;
-            if (adapter == urVar) {
-                return yrVar.h0(urVar.E(i10), false, view);
-            }
+    public final void N() {
+        this.F.unlock();
+    }
+
+    @Override
+    public final void O() {
+        this.G.f38270c.invalidate();
+    }
+
+    @Override
+    public final void P(s4.b1 b1Var) {
+        this.G.f38270c.invalidate();
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f46002p.isEmpty();
+        boolean isEmpty2 = this.f46004r.isEmpty();
+        boolean isEmpty3 = this.f46005s.isEmpty();
+        boolean isEmpty4 = this.f46003q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            this.F.lock();
         }
-        return false;
-    }
-
-    @Override
-    public boolean c1(View view) {
-        return false;
-    }
-
-    @Override
-    public void d(float f7, float f10, int i10, View view) {
-        yr.V(this.f41340b, view, i10);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f41339a) {
-            case 1:
-                this.f41340b.u0();
-                return;
-            default:
-                this.f41340b.finishFragment();
-                return;
-        }
-    }
-
-    @Override
-    public void run(long j10) {
-        yr.U(this.f41340b, j10);
-    }
-
-    @Override
-    public void p0(View view, float f7, float f10) {
+        super.m();
     }
 }

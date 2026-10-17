@@ -6,38 +6,38 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class a0 implements View.OnClickListener {
-    public final int f19252a;
-    public final u0 f19253b;
+    public final int f20605a;
+    public final u0 f20606b;
 
     public a0(u0 u0Var, int i10) {
-        this.f19252a = i10;
-        this.f19253b = u0Var;
+        this.f20605a = i10;
+        this.f20606b = u0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        e5 e5Var;
-        switch (this.f19252a) {
+        g5 g5Var;
+        switch (this.f20605a) {
             case 0:
-                u0 u0Var = this.f19253b;
-                ArrayList arrayList = u0Var.f20383g0;
+                u0 u0Var = this.f20606b;
+                ArrayList arrayList = u0Var.f21736g0;
                 if (u0Var.e.length() != 0) {
                     u0Var.e.setText("");
                 } else if (u0Var.p()) {
                     u0Var.e.hideActionMode();
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        if (u0Var.H != null && ((hg.p0) arrayList.get(i10)).h) {
-                            u0Var.H.o((hg.p0) arrayList.get(i10));
+                        if (u0Var.H != null && ((hg.o0) arrayList.get(i10)).h) {
+                            u0Var.H.o((hg.o0) arrayList.get(i10));
                         }
                     }
                     u0Var.m();
                 } else {
                     TextView textView = u0Var.h;
-                    if (textView != null && textView.getVisibility() == 0 && ((e5Var = u0Var.H) == null || e5Var.a())) {
+                    if (textView != null && textView.getVisibility() == 0 && ((g5Var = u0Var.H) == null || g5Var.a())) {
                         u0Var.h.setVisibility(8);
-                        e5 e5Var2 = u0Var.H;
-                        if (e5Var2 != null) {
-                            e5Var2.k();
+                        g5 g5Var2 = u0Var.H;
+                        if (g5Var2 != null) {
+                            g5Var2.k();
                         }
                     }
                 }
@@ -45,7 +45,7 @@ public final class a0 implements View.OnClickListener {
                 AndroidUtilities.showKeyboard(u0Var.e);
                 return;
             case 1:
-                u0 u0Var2 = this.f19253b;
+                u0 u0Var2 = this.f20606b;
                 m1 m1Var = u0Var2.d;
                 if (m1Var != null && m1Var.isShowing()) {
                     if (!u0Var2.T) {
@@ -55,32 +55,32 @@ public final class a0 implements View.OnClickListener {
                         return;
                     }
                 }
-                y yVar = u0Var2.f20377c;
+                y yVar = u0Var2.f21730c;
                 if (yVar != null) {
                     yVar.o(((Integer) view.getTag()).intValue());
                     return;
                 }
                 q0 q0Var = u0Var2.P;
                 if (q0Var != null) {
-                    q0Var.k(((Integer) view.getTag()).intValue());
+                    q0Var.j(((Integer) view.getTag()).intValue());
                     return;
                 }
                 return;
             case 2:
-                u0 u0Var3 = this.f19253b;
-                y yVar2 = u0Var3.f20377c;
+                u0 u0Var3 = this.f20606b;
+                y yVar2 = u0Var3.f21730c;
                 if (yVar2 != null) {
                     yVar2.o(((Integer) view.getTag()).intValue());
                     return;
                 }
                 q0 q0Var2 = u0Var3.P;
                 if (q0Var2 != null) {
-                    q0Var2.k(((Integer) view.getTag()).intValue());
+                    q0Var2.j(((Integer) view.getTag()).intValue());
                     return;
                 }
                 return;
             default:
-                u0 u0Var4 = this.f19253b;
+                u0 u0Var4 = this.f20606b;
                 m1 m1Var2 = u0Var4.d;
                 if (m1Var2 != null && m1Var2.isShowing()) {
                     if (!u0Var4.T) {
@@ -93,14 +93,14 @@ public final class a0 implements View.OnClickListener {
                         return;
                     }
                 }
-                y yVar3 = u0Var4.f20377c;
+                y yVar3 = u0Var4.f21730c;
                 if (yVar3 != null) {
                     yVar3.o(((Integer) view.getTag()).intValue());
                     return;
                 }
                 q0 q0Var3 = u0Var4.P;
                 if (q0Var3 != null) {
-                    q0Var3.k(((Integer) view.getTag()).intValue());
+                    q0Var3.j(((Integer) view.getTag()).intValue());
                     return;
                 }
                 return;

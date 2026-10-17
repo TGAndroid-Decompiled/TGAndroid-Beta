@@ -2,35 +2,65 @@ package ci;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.TranslateController;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.i71;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.mm0;
-public final class v extends l61 {
-    public static final int f4795a = 0;
+import org.telegram.messenger.AndroidUtilities;
+public final class v extends org.telegram.ui.Components.k9 {
+    public final int e;
 
-    static {
-        l61.setup(new l61());
+    public v(int i10, Context context, boolean z10) {
+        super(context, z10);
+        this.e = i10;
     }
 
     @Override
-    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
-        w wVar = (w) view;
-        TranslateController.Language language = (TranslateController.Language) m61Var.G;
-        wVar.f4796a.setText(language.displayName);
-        wVar.f4797b.setText(language.ownDisplayName);
-        if (wVar.f4798c != z10) {
-            wVar.invalidate();
+    public void invalidate() {
+        switch (this.e) {
+            case 0:
+                if (w.f6097c) {
+                    w.f6096b.add(this);
+                    return;
+                } else {
+                    super.invalidate();
+                    return;
+                }
+            default:
+                super.invalidate();
+                return;
         }
-        wVar.f4798c = z10;
-        wVar.setWillNotDraw(!z10);
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, c6 c6Var) {
-        return new w(context);
+    public void onMeasure(int i10, int i11) {
+        int g10;
+        switch (this.e) {
+            case 1:
+                int i12 = this.f27801a.f27459n;
+                if (i12 == 0) {
+                    g10 = 0;
+                } else {
+                    g10 = i0.a.g(i12, 1, 20, 24);
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(g10), 1073741824), i11);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public void invalidate(int i10, int i11, int i12, int i13) {
+        switch (this.e) {
+            case 0:
+                if (w.f6097c) {
+                    w.f6096b.add(this);
+                    return;
+                } else {
+                    super.invalidate(i10, i11, i12, i13);
+                    return;
+                }
+            default:
+                super.invalidate(i10, i11, i12, i13);
+                return;
+        }
     }
 }

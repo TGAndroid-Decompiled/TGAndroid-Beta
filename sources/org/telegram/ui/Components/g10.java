@@ -1,74 +1,176 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-public abstract class g10 extends dp0 {
-    public final boolean d;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class g10 extends FrameLayout {
+    public ValueAnimator E;
+    public dq F;
+    public Paint f26435a;
+    public p6 f26436b;
+    public p6 f26437c;
+    public float d;
+    public f6 e;
+    public View f26438f;
+    public float h;
+    public boolean f26439n;
+    public ValueAnimator f26440r;
+    public float f26441s;
+    public ValueAnimator v;
+    public int f26442w;
+    public float f26443x;
+    public boolean f26444y;
 
-    public g10(boolean z10) {
-        this.d = z10;
-    }
-
-    @Override
-    public final boolean a() {
-        if (k() > j()) {
-            return true;
+    public final void a(boolean z10) {
+        float f7;
+        if (this.f26439n != z10) {
+            ValueAnimator valueAnimator = this.f26440r;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f26440r = null;
+            }
+            float f10 = this.h;
+            this.f26439n = z10;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+            this.f26440r = ofFloat;
+            ofFloat.addUpdateListener(new f10(this, 2));
+            this.f26440r.addListener(new org.telegram.ui.ho(10, this, z10));
+            this.f26440r.setDuration(320L);
+            this.f26440r.setInterpolator(bs.h);
+            this.f26440r.start();
         }
-        return false;
     }
 
-    @Override
-    public final boolean b() {
-        if (k() < i()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        float h = h();
+    public final void b(CharSequence charSequence, boolean z10) {
+        p6 p6Var = this.f26436b;
         if (z10) {
-            h *= -1.0f;
+            p6Var.a();
         }
-        l(Math.min(i(), Math.max(j(), k() + h)));
+        p6Var.t(charSequence, z10, true);
+        invalidate();
     }
 
     @Override
-    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.e(view, accessibilityNodeInfo);
-        if (this.d) {
-            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.b.h.f44792a);
-            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
-        }
-    }
-
-    @Override
-    public final boolean g(View view, int i10, Bundle bundle) {
-        if (super.g(view, i10, bundle)) {
-            return true;
-        }
-        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.b.h.f44792a).getId()) {
-            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
-            return true;
-        }
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
         return false;
     }
 
-    public float h() {
-        return 0.05f;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        boolean z10;
+        Paint paint = this.f26435a;
+        p6 p6Var = this.f26437c;
+        p6 p6Var2 = this.f26436b;
+        this.f26438f.draw(canvas);
+        if (this.h > 0.0f) {
+            if (this.F == null) {
+                this.F = new dq(p6Var2.f29190a.getColor());
+            }
+            int dp = (int) ((1.0f - this.h) * AndroidUtilities.dp(24.0f));
+            this.F.setBounds(0, dp, getWidth(), getHeight() + dp);
+            this.F.setAlpha((int) (this.h * 255.0f));
+            this.F.draw(canvas);
+            invalidate();
+        }
+        float f7 = this.h;
+        if (f7 < 1.0f) {
+            if (f7 != 0.0f) {
+                canvas.save();
+                canvas.translate(0.0f, (int) (this.h * AndroidUtilities.dp(-24.0f)));
+                canvas.scale(1.0f, 1.0f - (this.h * 0.4f));
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            float c10 = p6Var2.c();
+            float d = this.e.d(this.d, false);
+            float c11 = ((p6Var.c() + AndroidUtilities.dp(15.66f)) * d) + c10;
+            Rect rect = AndroidUtilities.rectTmp2;
+            rect.set((int) (((getMeasuredWidth() - c11) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - p6Var2.e) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) org.telegram.messenger.q.a(getMeasuredWidth() - c11, getWidth(), 2.0f, c10), (int) (((getMeasuredHeight() + p6Var2.e) / 2.0f) - AndroidUtilities.dp(1.0f)));
+            p6Var2.B = (int) (AndroidUtilities.lerp(0.5f, 1.0f, this.f26443x) * (1.0f - this.h) * 255.0f);
+            p6Var2.setBounds(rect);
+            p6Var2.draw(canvas);
+            rect.set((int) (com.google.android.gms.internal.cast.a6.z(getMeasuredWidth(), c11, 2.0f, c10) + AndroidUtilities.dp(5.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (Math.max(AndroidUtilities.dp(9.0f), p6Var.c()) + com.google.android.gms.internal.cast.a6.z(getMeasuredWidth(), c11, 2.0f, c10) + AndroidUtilities.dp(13.0f)), (int) ((AndroidUtilities.dp(18.0f) + getMeasuredHeight()) / 2.0f));
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(rect);
+            if (this.f26441s != 1.0f) {
+                canvas.save();
+                float f10 = this.f26441s;
+                canvas.scale(f10, f10, rect.centerX(), rect.centerY());
+            }
+            paint.setAlpha((int) ((1.0f - this.h) * 255.0f * d * d));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
+            rect.offset(-AndroidUtilities.dp(0.3f), -AndroidUtilities.dp(0.4f));
+            p6Var.B = (int) org.telegram.messenger.q.z(1.0f, this.h, 255.0f, d);
+            p6Var.setBounds(rect);
+            p6Var.draw(canvas);
+            if (this.f26441s != 1.0f) {
+                canvas.restore();
+            }
+            if (z10) {
+                canvas.restore();
+            }
+        }
     }
 
-    public float i() {
-        return 1.0f;
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        String str;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append((Object) this.f26436b.f29198i);
+        if (this.f26442w > 0) {
+            str = ", " + LocaleController.formatPluralString("Chats", this.f26442w, new Object[0]);
+        } else {
+            str = "";
+        }
+        sb2.append(str);
+        accessibilityNodeInfo.setContentDescription(sb2.toString());
     }
 
-    public float j() {
-        return 0.0f;
+    @Override
+    public final void setEnabled(boolean z10) {
+        float f7;
+        if (this.f26444y != z10) {
+            ValueAnimator valueAnimator = this.E;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.E = null;
+            }
+            float f10 = this.f26443x;
+            this.f26444y = z10;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+            this.E = ofFloat;
+            ofFloat.addUpdateListener(new f10(this, 0));
+            this.E.addListener(new ah.z(2));
+            this.E.start();
+        }
     }
 
-    public abstract float k();
-
-    public abstract void l(float f7);
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.f26436b != drawable && this.f26437c != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
+    }
 }

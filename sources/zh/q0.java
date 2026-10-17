@@ -1,78 +1,67 @@
 package zh;
 
-import android.content.Context;
-import android.graphics.Rect;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.es;
-public final class q0 extends ph.c implements ne.d {
-    public static final int f51000s = 0;
-    public final ne.e f51001f;
-    public final ji.p1 h;
-    public final ph.b[] f51002n;
-    public int f51003r;
+import android.text.TextUtils;
+import org.telegram.messenger.Utilities;
+public final class q0 implements Utilities.Callback {
+    public final int f52087a;
+    public final b1 f52088b;
+    public final String f52089c;
 
-    public q0(Context context, org.telegram.ui.ActionBar.c6 c6Var, ji.p1 p1Var) {
-        super(context);
-        this.f51001f = new ne.e(0, this, es.h, 1600L);
-        this.h = p1Var;
-        int i10 = org.telegram.ui.ActionBar.g6.Wk;
-        int m12 = org.telegram.ui.ActionBar.g6.m1(0.09411765f, org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
-        org.telegram.ui.ActionBar.g6.m1(0.1254902f, org.telegram.ui.ActionBar.g6.w0(i10, c6Var));
-        this.e.setColor(m12);
-        this.f51002n = new ph.b[]{ph.b.b(context, c6Var, ph.a.G, R.string.GiftPreviewModels), ph.b.b(context, c6Var, ph.a.v, R.string.GiftPreviewBackdrops), ph.b.b(context, c6Var, ph.a.J, R.string.GiftPreviewSymbols)};
-        int i11 = 0;
-        while (true) {
-            ph.b[] bVarArr = this.f51002n;
-            if (i11 < bVarArr.length) {
-                this.f42927a.addView(bVarArr[i11], w7.z5.l(1.0f, 0, -1));
-                this.f51002n[i11].setOnClickListener(new di.m4(this, i11, 28));
-                i11++;
-            } else {
-                bVarArr[0].e(true, false);
+    public q0(b1 b1Var, String str, int i10) {
+        this.f52087a = i10;
+        this.f52088b = b1Var;
+        this.f52089c = str;
+    }
+
+    @Override
+    public final void run(Object obj) {
+        boolean z10;
+        g gVar = (g) obj;
+        switch (this.f52087a) {
+            case 0:
+                b1 b1Var = this.f52088b;
+                if (TextUtils.equals(b1Var.d, this.f52089c)) {
+                    if (b1Var.f51856t0 == null) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    b1Var.f51856t0 = gVar;
+                    if (!b1Var.f51874v0) {
+                        if (z10) {
+                            h hVar = b1Var.f51847s0;
+                            hVar.f52010m = gVar;
+                            hVar.f52011n = null;
+                            hVar.f52014q = 2;
+                            hVar.f52012o = 0.0f;
+                            hVar.f52013p = 0L;
+                            hVar.E = 0L;
+                            hVar.F = false;
+                            b1Var.invalidate();
+                            return;
+                        }
+                        b1Var.c1(gVar);
+                        return;
+                    }
+                    return;
+                }
                 return;
-            }
+            default:
+                b1 b1Var2 = this.f52088b;
+                if (TextUtils.equals(b1Var2.e, this.f52089c)) {
+                    b1Var2.f51865u0 = gVar;
+                    if (b1Var2.f51874v0 && b1Var2.f51884w0 && b1Var2.A0) {
+                        b1Var2.A0 = false;
+                        b1Var2.f51912z0 = System.currentTimeMillis() + 60000;
+                        b1Var2.A2 = -1;
+                    }
+                    if (b1Var2.f51874v0) {
+                        b1Var2.c1(gVar);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-    }
-
-    public final void a(int i10) {
-        int i11 = this.f51003r;
-        if (i11 != i10) {
-            ph.b[] bVarArr = this.f51002n;
-            bVarArr[i11].e(false, true);
-            bVarArr[i10].e(true, true);
-            this.f51003r = i10;
-            this.f51001f.a(i10);
-            this.h.run(Integer.valueOf(i10));
-        }
-    }
-
-    public final void b() {
-        float f7 = this.f51001f.e;
-        int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(8.0f);
-        Rect rect = this.f42929c;
-        rect.set(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), f7 / 3.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), (f7 + 1.0f) / 3.0f), measuredHeight);
-        int dp = AndroidUtilities.dp(this.f42928b * 7.0f);
-        Rect rect2 = this.d;
-        rect2.set(rect);
-        int i10 = -dp;
-        rect2.inset(i10, i10);
-        Math.abs(f7 - 1.0f);
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        b();
-    }
-
-    @Override
-    public final void p(int i10, float f7, float f10, ne.e eVar) {
-        b();
-        invalidate();
-    }
-
-    @Override
-    public final void A(float f7, int i10) {
     }
 }

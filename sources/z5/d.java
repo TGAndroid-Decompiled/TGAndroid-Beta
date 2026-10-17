@@ -11,15 +11,15 @@ import com.google.android.gms.common.api.Scope;
 import java.util.ArrayList;
 import w7.e0;
 public final class d implements Parcelable.Creator {
-    public final int f49330a;
+    public final int f50735a;
 
     public d(int i10) {
-        this.f49330a = i10;
+        this.f50735a = i10;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f49330a) {
+        switch (this.f50735a) {
             case 0:
                 int z10 = e0.z(parcel);
                 String str = null;
@@ -161,7 +161,7 @@ public final class d implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f49330a) {
+        switch (this.f50735a) {
             case 0:
                 return new GoogleSignInAccount[i10];
             case 1:

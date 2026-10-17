@@ -1,6 +1,5 @@
 package org.webrtc;
 
-import com.google.android.gms.internal.play_billing.k3;
 import java.nio.ByteBuffer;
 import org.webrtc.VideoFrame;
 public class JavaI420Buffer implements VideoFrame.I420Buffer {
@@ -45,11 +44,11 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
     }
 
     private static void checkCapacity(ByteBuffer byteBuffer, int i10, int i11, int i12) {
-        int v = k3.v(i11, 1, i12, i10);
-        if (byteBuffer.capacity() >= v) {
+        int g10 = i0.a.g(i11, 1, i12, i10);
+        if (byteBuffer.capacity() >= g10) {
             return;
         }
-        StringBuilder l4 = i2.d.l(v, "Buffer must be at least ", " bytes, but was ");
+        StringBuilder l4 = i0.a.l(g10, "Buffer must be at least ", " bytes, but was ");
         l4.append(byteBuffer.capacity());
         throw new IllegalArgumentException(l4.toString());
     }

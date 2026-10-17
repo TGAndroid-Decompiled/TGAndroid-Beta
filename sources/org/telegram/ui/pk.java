@@ -1,30 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class pk extends org.telegram.ui.Components.gp {
-    public final fo f38964f;
+import android.animation.AnimatorSet;
+import android.widget.FrameLayout;
+public final class pk implements Runnable {
+    public final int f40173a;
+    public final sn f40174b;
 
-    public pk(fo foVar, Context context) {
-        super(context);
-        this.f38964f = foVar;
+    public pk(sn snVar, int i10) {
+        this.f40173a = i10;
+        this.f40174b = snVar;
     }
 
     @Override
-    public final void a(boolean z10) {
-        fo foVar = this.f38964f;
-        foVar.w7();
-        foVar.u7();
-        foVar.x7();
-        foVar.y7();
-        il ilVar = foVar.f35596bb;
-        if (ilVar != null) {
-            ilVar.setTranslationY(foVar.w9 + getCurrentHeight());
+    public final void run() {
+        org.telegram.ui.Components.ch chVar;
+        FrameLayout frameLayout;
+        switch (this.f40173a) {
+            case 0:
+                sn snVar = this.f40174b;
+                AnimatorSet animatorSet = snVar.V9;
+                if (animatorSet != null && !animatorSet.isRunning()) {
+                    snVar.V9.start();
+                    return;
+                }
+                return;
+            default:
+                sn snVar2 = this.f40174b;
+                if (snVar2.O2 == this && (chVar = snVar2.M0) != null && (frameLayout = snVar2.N2) != null) {
+                    chVar.i(frameLayout, false, true);
+                    return;
+                }
+                return;
         }
-        if (z10) {
-            foVar.D9 = true;
-            foVar.nc();
-            return;
-        }
-        foVar.t9();
     }
 }

@@ -1,38 +1,40 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AnimationNotificationsLocker;
-public final class lr extends s4.k {
-    public final AnimationNotificationsLocker F = new AnimationNotificationsLocker();
-    public final yr G;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class lr {
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f38920a;
+    public final LinearLayout f38921b;
+    public final zq0 f38922c;
 
-    public lr(yr yrVar) {
-        this.G = yrVar;
-    }
-
-    @Override
-    public final void N() {
-        this.F.unlock();
-    }
-
-    @Override
-    public final void O() {
-        this.G.f41895c.invalidate();
-    }
-
-    @Override
-    public final void P(s4.b1 b1Var) {
-        this.G.f41895c.invalidate();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f44902p.isEmpty();
-        boolean isEmpty2 = this.f44904r.isEmpty();
-        boolean isEmpty3 = this.f44905s.isEmpty();
-        boolean isEmpty4 = this.f44903q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            this.F.lock();
+    public lr(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.ph0 ph0Var, zq0 zq0Var) {
+        this.f38922c = zq0Var;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, contextThemeWrapper, null);
+        this.f38920a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
+        org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
+        c10.setOnClickListener(new kr(ph0Var, 0));
+        c10.c(-328966, -328966);
+        c10.setSelectorColor(268435455);
+        View i4Var = new ci.i4(contextThemeWrapper, 11);
+        i4Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        i4Var.setBackgroundColor(-15198184);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(i4Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) i4Var.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
         }
-        super.m();
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(8.0f);
+        i4Var.setLayoutParams(layoutParams);
+        LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
+        this.f38921b = linearLayout;
+        linearLayout.setOrientation(1);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
     }
 }

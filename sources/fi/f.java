@@ -1,128 +1,194 @@
 package fi;
 
+import ai.fa;
+import ai.q;
+import ai.tc;
+import ai.va;
 import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import ei.x3;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-public final class f extends sg.x1 {
-    public final int f9269n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.xa;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Wallet.p6;
+import org.telegram.ui.hk;
+import org.telegram.ui.sn;
+import s4.k;
+import w7.z5;
+public final class f extends bb implements NotificationCenter.NotificationCenterDelegate {
+    public final ag.a X;
+    public final tc Y;
+    public final FrameLayout Z;
+    public Runnable f10608a0;
+    public s61 f10609b0;
 
-    public f(Context context, int i10) {
-        super(context);
-        this.f9269n = i10;
-    }
+    public f(Context context, d6 d6Var, ag.a aVar, boolean z10, Runnable runnable) {
+        super(context, null, false, false, d6Var);
+        this.v = 0.2f;
+        this.f10608a0 = runnable;
+        fixNavigationBar();
+        im0 im0Var = this.d;
+        int i10 = this.backgroundPaddingLeft;
+        im0Var.setPadding(i10, 0, i10, 0);
+        this.d.setOnItemClickListener(new va(this, 11));
+        k kVar = new k();
+        kVar.f45972m = false;
+        kVar.C = false;
+        kVar.o(bs.h);
+        kVar.n(350L);
+        this.d.setItemAnimator(kVar);
+        setBackgroundColor(h6.w0(h6.f21057h5, d6Var));
+        this.X = aVar;
+        tc tcVar = new tc(context, 2, d6Var);
+        this.Y = tcVar;
+        ((TextView) tcVar.f2231c).setText(LocaleController.formatString(R.string.TonNeededTitle, ag.a.i(aVar.f632b - fa.y(this.currentAccount, true).s().f632b, ag.c.f636b).d()));
+        TextView textView = (TextView) tcVar.d;
+        textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.FragmentAddFunds)));
+        textView.setMaxWidth(x3.a(textView.getText(), textView.getPaint()));
+        this.e.setTitle(A());
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.Z = frameLayout;
+        ei.d dVar = new ei.d(getContext(), getResourcesProvider(), true);
+        frameLayout.addView(dVar, z5.t(-1, 48, 17, 20, 10, 20, 20));
+        if (!z10 && !g.C0()) {
+            dVar.g(LocaleController.getString(R.string.Close), false, true);
+            dVar.setOnClickListener(new View.OnClickListener(this) {
+                public final f f10607b;
 
-    @Override
-    public final void a() {
-        switch (this.f9269n) {
-            case 0:
-                super.a();
-                sg.w1 w1Var = this.f45428a;
-                w1Var.f45412q = true;
-                w1Var.K = false;
-                w1Var.L = true;
-                w1Var.H = true;
-                w1Var.c();
-                return;
-            case 1:
-                super.a();
-                sg.w1 w1Var2 = this.f45428a;
-                w1Var2.f45412q = true;
-                w1Var2.K = false;
-                w1Var2.L = true;
-                w1Var2.H = true;
-                w1Var2.c();
-                return;
-            case 2:
-                sg.w1 w1Var3 = new sg.w1(50);
-                this.f45428a = w1Var3;
-                w1Var3.N = 100;
-                w1Var3.M = false;
-                w1Var3.G = false;
-                w1Var3.K = true;
-                w1Var3.H = true;
-                w1Var3.J = false;
-                w1Var3.f45413r = 4;
-                w1Var3.f45417w = 0.98f;
-                w1Var3.v = 0.98f;
-                w1Var3.f45416u = 0.98f;
-                w1Var3.c();
-                return;
-            case 3:
-                sg.w1 w1Var4 = this.f45428a;
-                w1Var4.f45412q = true;
-                w1Var4.K = false;
-                w1Var4.H = true;
-                w1Var4.J = true;
-                w1Var4.f45406k = AndroidUtilities.dp(-14.0f);
-                sg.w1 w1Var5 = this.f45428a;
-                w1Var5.f45418x = 2000L;
-                w1Var5.f45419y = 3000;
-                w1Var5.f45413r = 16;
-                w1Var5.G = false;
-                w1Var5.N = 28;
-                w1Var5.P = g6.Mj;
-                w1Var5.c();
-                return;
-            case 4:
-                sg.w1 w1Var6 = this.f45428a;
-                w1Var6.f45412q = true;
-                w1Var6.K = false;
-                w1Var6.H = true;
-                w1Var6.J = true;
-                w1Var6.f45406k = AndroidUtilities.dp(-14.0f);
-                sg.w1 w1Var7 = this.f45428a;
-                w1Var7.f45418x = 2000L;
-                w1Var7.f45419y = 3000;
-                w1Var7.f45413r = 16;
-                w1Var7.G = false;
-                w1Var7.N = 28;
-                w1Var7.P = g6.Mj;
-                w1Var7.c();
-                return;
-            default:
-                super.a();
-                sg.w1 w1Var8 = this.f45428a;
-                w1Var8.f45412q = true;
-                w1Var8.K = false;
-                w1Var8.L = true;
-                w1Var8.H = true;
-                w1Var8.c();
-                return;
+                {
+                    this.f10607b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            pf.d.t(this.f10607b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            return;
+                        default:
+                            this.f10607b.dismiss();
+                            return;
+                    }
+                }
+            });
+        } else {
+            dVar.g(LocaleController.getString(R.string.TopUpViaFragment), false, true);
+            dVar.setOnClickListener(new View.OnClickListener(this) {
+                public final f f10607b;
+
+                {
+                    this.f10607b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            pf.d.t(this.f10607b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            return;
+                        default:
+                            this.f10607b.dismiss();
+                            return;
+                    }
+                }
+            });
+        }
+        s61 s61Var = this.f10609b0;
+        if (s61Var != null) {
+            s61Var.N(false);
         }
     }
 
     @Override
-    public int getStarsRectWidth() {
-        switch (this.f9269n) {
-            case 0:
-                return getMeasuredWidth();
-            case 1:
-                return getMeasuredWidth();
-            case 2:
-                return getMeasuredWidth();
-            default:
-                return super.getStarsRectWidth();
+    public final CharSequence A() {
+        tc tcVar = this.Y;
+        if (tcVar == null) {
+            return null;
+        }
+        return ((TextView) tcVar.f2231c).getText();
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        Runnable runnable;
+        if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
+            s61 s61Var = this.f10609b0;
+            if (s61Var != null) {
+                s61Var.N(true);
+            }
+            ag.a s10 = fa.y(this.currentAccount, true).s();
+            int i12 = R.string.TonNeededTitle;
+            ag.a aVar = this.X;
+            ((TextView) this.Y.f2231c).setText(LocaleController.formatString(i12, ag.a.i(aVar.f632b - s10.f632b, ag.c.f636b).d()));
+            xa xaVar = this.e;
+            if (xaVar != null) {
+                xaVar.setTitle(A());
+            }
+            if (s10.f632b >= aVar.f632b && (runnable = this.f10608a0) != null) {
+                runnable.run();
+                this.f10608a0 = null;
+                dismiss();
+            }
         }
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f9269n) {
-            case 3:
-                super.onMeasure(i10, i11);
-                this.f45428a.f45400b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
-                return;
-            case 4:
-                super.onMeasure(i10, i11);
-                this.f45428a.f45400b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
-                return;
-            case 5:
-                super.onMeasure(i10, i11);
-                this.f45428a.f45400b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public final void dismiss() {
+        super.dismiss();
+        tc tcVar = this.Y;
+        if (tcVar != null) {
+            ((p6) tcVar.f2230b).setPaused(true);
         }
+    }
+
+    @Override
+    public final void dismissInternal() {
+        super.dismissInternal();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starOptionsLoaded);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starBalanceUpdated);
+    }
+
+    @Override
+    public final void show() {
+        hk hkVar;
+        if (fa.y(this.currentAccount, true).s().f632b >= this.X.f632b) {
+            Runnable runnable = this.f10608a0;
+            if (runnable != null) {
+                runnable.run();
+                this.f10608a0 = null;
+                return;
+            }
+            return;
+        }
+        n2 R = LaunchActivity.R();
+        if (R instanceof sn) {
+            sn snVar = (sn) R;
+            if (snVar.C9() && (hkVar = snVar.Y) != null) {
+                hkVar.N();
+            }
+        }
+        super.show();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starOptionsLoaded);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starBalanceUpdated);
+    }
+
+    @Override
+    public final hm0 x(im0 im0Var) {
+        s61 s61Var = new s61(this.d, getContext(), this.currentAccount, 0, true, new q(this, 22), this.resourcesProvider);
+        this.f10609b0 = s61Var;
+        return s61Var;
     }
 }

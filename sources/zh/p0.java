@@ -1,129 +1,330 @@
 package zh;
 
-import android.content.Context;
-import android.graphics.drawable.ShapeDrawable;
+import android.os.SystemClock;
 import android.text.TextUtils;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.SvgHelper;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.z9;
-public final class p0 extends FrameLayout implements ne.d {
-    public final org.telegram.ui.ActionBar.c6 f50968a;
-    public final FrameLayout f50969b;
-    public final yh.e1 f50970c;
-    public final z9 d;
-    public final TextView e;
-    public final TextView f50971f;
-    public Integer h;
-    public TLRPC.Document f50972n;
-    public final ne.b f50973r;
-    public boolean f50974s;
-    public n0 v;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Wallet.s1;
+import org.telegram.ui.iq;
+import yh.u3;
+public final class p0 implements NotificationCenter.NotificationCenterDelegate {
+    public boolean E;
+    public TLRPC.ShareTheme H;
+    public final int f52076a;
+    public final b1 f52077b;
+    public final o0 f52078c;
+    public boolean e;
+    public TLRPC.TL_exportedNoPaidMessagesToken f52079f;
+    public long h;
+    public int f52080n;
+    public TLRPC.TL_exportedContactToken f52081r;
+    public long f52082s;
+    public TLRPC.ShareTheme v;
+    public int f52083w;
+    public boolean f52084x;
+    public boolean f52085y;
+    public int d = 0;
+    public final n0 F = new Runnable(this) {
+        public final p0 f52070b;
 
-    public p0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.f50973r = new ne.b(0, this, es.h, 320L, false);
-        this.f50968a = c6Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f50969b = frameLayout;
-        yh.e1 e1Var = new yh.e1(frameLayout, c6Var, true);
-        this.f50970c = e1Var;
-        frameLayout.setBackground(e1Var);
-        e1Var.v = 1;
-        addView(frameLayout, w7.z5.e(-1, -1, 119));
-        z9 z9Var = new z9(context);
-        this.d = z9Var;
-        z9Var.getImageReceiver().setAutoRepeat(0);
-        addView(z9Var, w7.z5.a(80.0f, 0.0f, 17.0f, 0.0f, 0.0f, 80, 49));
-        TextView textView = new TextView(context);
-        this.e = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 13.0f);
-        textView.setGravity(17);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setTextColor(-1);
-        addView(textView, w7.z5.a(-2.0f, 12.0f, 106.0f, 12.0f, 14.0f, -1, 0));
-        TextView textView2 = new TextView(context);
-        this.f50971f = textView2;
-        textView2.setClickable(false);
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setTextSize(1, 11.0f);
-        textView2.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(1.0f));
-        textView2.setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(10.0f), 285212671));
-        addView(textView2, w7.z5.a(-2.0f, 0.0f, 10.0f, 10.0f, 0.0f, -2, 53));
-    }
+        {
+            this.f52070b = this;
+        }
 
-    public static void a(p0 p0Var, TLRPC.Document document, int i10, Object obj, boolean z10) {
-        String str;
-        z9 z9Var = p0Var.d;
-        if (document == null) {
-            z9Var.b();
-            p0Var.f50972n = null;
-        } else if (p0Var.f50972n == document) {
-        } else {
-            p0Var.f50972n = document;
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.g6.f19543a7, 0.3f);
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(i10);
-            sb2.append("_");
-            sb2.append(i10);
-            if (z10) {
-                str = "_nolimit_pcache";
-            } else {
-                str = "";
+        @Override
+        public final void run() {
+            switch (r2) {
+                case 0:
+                    this.f52070b.j();
+                    return;
+                default:
+                    this.f52070b.i();
+                    return;
             }
-            sb2.append(str);
-            String sb3 = sb2.toString();
-            int i11 = (80 - i10) / 2;
-            z9Var.setLayoutParams(w7.z5.a(i10, 0.0f, i11 + 17, 0.0f, i11, i10, 49));
-            z9Var.l(ImageLocation.getForDocument(document), sb3, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), sb3, svgThumb, obj);
         }
+    };
+    public final n0 G = new Runnable(this) {
+        public final p0 f52070b;
+
+        {
+            this.f52070b = this;
+        }
+
+        @Override
+        public final void run() {
+            switch (r2) {
+                case 0:
+                    this.f52070b.j();
+                    return;
+                default:
+                    this.f52070b.i();
+                    return;
+            }
+        }
+    };
+
+    public p0(int i10, b1 b1Var, o0 o0Var) {
+        this.f52076a = i10;
+        this.f52077b = b1Var;
+        this.f52078c = o0Var;
     }
 
-    public final void b() {
-        int d;
-        yh.e1 e1Var = this.f50970c;
-        e1Var.f48842x = null;
-        Integer num = this.h;
-        ne.b bVar = this.f50973r;
-        TextView textView = this.f50971f;
-        if (num != null) {
-            d = org.telegram.ui.ActionBar.g6.v(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false), org.telegram.ui.ActionBar.g6.m1(AndroidUtilities.lerp(0.15f, 1.0f, bVar.e), this.h.intValue()));
-            e1Var.f48842x = this.h;
-            this.f50969b.invalidate();
-            textView.setTextColor(i0.a.d(bVar.e, this.h.intValue(), -1));
-        } else if (this.f50974s) {
-            int i10 = org.telegram.ui.ActionBar.g6.f19601d6;
-            int x02 = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
-            int i11 = org.telegram.ui.ActionBar.g6.G6;
-            int d10 = i0.a.d(bVar.e, i0.a.d(0.05f, x02, org.telegram.ui.ActionBar.g6.x0(null, i11, false)), org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Oh, false));
-            textView.setTextColor(i0.a.d(bVar.e, i0.a.d(0.5f, org.telegram.ui.ActionBar.g6.x0(null, i10, false), org.telegram.ui.ActionBar.g6.x0(null, i11, false)), -1));
-            d = d10;
+    public final void a(TLRPC.ShareTheme shareTheme) {
+        float f7;
+        this.H = shareTheme;
+        boolean z10 = shareTheme instanceof TLRPC.TL_shareThemeGift;
+        int i10 = -1;
+        int i11 = 0;
+        b1 b1Var = this.f52077b;
+        if (z10) {
+            TL_stars.StarGift starGift = ((TLRPC.TL_shareThemeGift) shareTheme).stargift;
+            if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
+                ArrayList arrayList = b1Var.f51875v1;
+                int i12 = 0;
+                while (true) {
+                    if (i12 >= arrayList.size()) {
+                        break;
+                    } else if (((TL_stars.TL_starGiftUnique) arrayList.get(i12)).f20496id == tL_starGiftUnique.f20496id) {
+                        i10 = i12;
+                        break;
+                    } else {
+                        i12++;
+                    }
+                }
+                if (i10 < 0) {
+                    arrayList.add(0, tL_starGiftUnique);
+                    i10 = 0;
+                }
+                y0 y0Var = b1Var.F;
+                if (y0Var.f52145a == 2 && y0Var.f52151j == i10) {
+                    return;
+                }
+                b1Var.f51719e2 = true;
+                b1Var.I.clear();
+                Runnable runnable = b1Var.f51709d2;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                b1Var.f51881v7 = i10;
+                if (b1Var.f51729f2) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                b1Var.f51901x7 = f7;
+                b1Var.f51910y7 = 1.0f;
+                b1Var.E0(b1Var.getWidth() / 2.0f, (b1Var.l() / 2.0f) + b1Var.m(), i10);
+                b1Var.f51719e2 = false;
+                return;
+            }
+        }
+        if (shareTheme instanceof TLRPC.TL_shareThemeBackdrop) {
+            int i13 = ((TLRPC.TL_shareThemeBackdrop) shareTheme).backdrop_id;
+            b1Var.getClass();
+            if (a.h != null) {
+                while (true) {
+                    int[] iArr = a.h;
+                    if (i11 >= iArr.length) {
+                        break;
+                    } else if (iArr[i11] == i13) {
+                        i10 = i11;
+                        break;
+                    } else {
+                        i11++;
+                    }
+                }
+            }
+            if (i10 < 0) {
+                i10 = b1.f51669q9;
+            }
+            b1Var.c(i10);
+        } else if (shareTheme instanceof TLRPC.TL_shareThemeEmoji) {
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList<TLRPC.Reaction> arrayList3 = ((TLRPC.TL_shareThemeEmoji) shareTheme).emojis;
+            int size = arrayList3.size();
+            while (i11 < size) {
+                TLRPC.Reaction reaction = arrayList3.get(i11);
+                i11++;
+                TLRPC.Reaction reaction2 = reaction;
+                if (reaction2 instanceof TLRPC.TL_reactionCustomEmoji) {
+                    arrayList2.add(Long.valueOf(((TLRPC.TL_reactionCustomEmoji) reaction2).document_id));
+                }
+            }
+            if (arrayList2.isEmpty()) {
+                b1Var.c(b1.f51669q9);
+            } else {
+                b1Var.d(arrayList2);
+            }
         } else {
-            d = i0.a.d(0.5f, i0.a.k(this.v.f50851a.center_color, 255), i0.a.k(this.v.f50851a.pattern_color, 255));
-            textView.setTextColor(-1);
-        }
-        if (textView.getBackground() instanceof ShapeDrawable) {
-            ((ShapeDrawable) textView.getBackground()).getPaint().setColor(d);
-            textView.invalidate();
-        } else if (org.telegram.ui.ActionBar.g6.C1(textView.getBackground(), d, false)) {
-            textView.invalidate();
+            b1Var.c(b1.f51669q9);
         }
     }
 
-    @Override
-    public final void p(int i10, float f7, float f10, ne.e eVar) {
-        b();
+    public final TLRPC.TL_exportedNoPaidMessagesToken b() {
+        int i10 = this.f52076a;
+        String string = MessagesController.getMainSettings(i10).getString("qrNoPaidToken", null);
+        if (TextUtils.isEmpty(string)) {
+            return null;
+        }
+        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = new TLRPC.TL_exportedNoPaidMessagesToken();
+        tL_exportedNoPaidMessagesToken.token = string;
+        tL_exportedNoPaidMessagesToken.url = MessagesController.getMainSettings(i10).getString("qrNoPaidUrl", null);
+        return tL_exportedNoPaidMessagesToken;
+    }
+
+    public final String c(TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken) {
+        o0 o0Var = this.f52078c;
+        String str = o0Var.f52071a;
+        if (TextUtils.isEmpty(tL_exportedNoPaidMessagesToken.url) && str != null && !o0Var.d) {
+            return str + "?free=" + tL_exportedNoPaidMessagesToken.token;
+        } else if (TextUtils.isEmpty(tL_exportedNoPaidMessagesToken.url)) {
+            return null;
+        } else {
+            return tL_exportedNoPaidMessagesToken.url;
+        }
+    }
+
+    public final TLRPC.InputPeer d() {
+        o0 o0Var = this.f52078c;
+        if (o0Var.e) {
+            return new TLRPC.TL_inputPeerSelf();
+        }
+        TLRPC.InputPeer inputPeer = MessagesController.getInstance(this.f52076a).getInputPeer(o0Var.f52074f);
+        if (inputPeer instanceof TLRPC.TL_inputPeerEmpty) {
+            return null;
+        }
+        return inputPeer;
     }
 
     @Override
-    public final void A(float f7, int i10) {
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.privacyRulesUpdated) {
+            k();
+        }
+    }
+
+    public final void e() {
+        TLRPC.TL_messages_getShareTheme tL_messages_getShareTheme = new TLRPC.TL_messages_getShareTheme();
+        TLRPC.InputPeer d = d();
+        tL_messages_getShareTheme.peer = d;
+        if (d == null) {
+            return;
+        }
+        ConnectionsManager.getInstance(this.f52076a).sendRequestTyped(tL_messages_getShareTheme, new Object(), new u3(this, 3));
+    }
+
+    public final void f() {
+        throw new UnsupportedOperationException("Method not decompiled: zh.p0.f():void");
+    }
+
+    public final void g() {
+        this.E = true;
+        int i10 = this.f52076a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.privacyRulesUpdated);
+        AndroidUtilities.cancelRunOnUIThread(this.F);
+        AndroidUtilities.cancelRunOnUIThread(this.G);
+        i();
+        if (this.f52080n != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f52080n, true);
+            this.f52080n = 0;
+        }
+    }
+
+    public final void h(boolean z10, boolean z11) {
+        int i10 = this.f52080n;
+        int i11 = this.f52076a;
+        if (i10 != 0) {
+            ConnectionsManager.getInstance(i11).cancelRequest(this.f52080n, true);
+        }
+        TLRPC.TL_contacts_exportNoPaidMessagesToken tL_contacts_exportNoPaidMessagesToken = new TLRPC.TL_contacts_exportNoPaidMessagesToken();
+        tL_contacts_exportNoPaidMessagesToken.revoke = z10;
+        tL_contacts_exportNoPaidMessagesToken.temporary = z11;
+        int sendRequestTyped = ConnectionsManager.getInstance(i11).sendRequestTyped(tL_contacts_exportNoPaidMessagesToken, new Object(), new iq(this, r6, z11, 1));
+        this.f52080n = sendRequestTyped;
+        int[] iArr = {sendRequestTyped};
+    }
+
+    public final void i() {
+        if (this.v != null) {
+            TLRPC.TL_messages_setShareTheme tL_messages_setShareTheme = new TLRPC.TL_messages_setShareTheme();
+            TLRPC.InputPeer d = d();
+            tL_messages_setShareTheme.peer = d;
+            tL_messages_setShareTheme.theme = this.v;
+            this.v = null;
+            if (d == null) {
+                return;
+            }
+            int i10 = this.f52083w;
+            int i11 = this.f52076a;
+            if (i10 != 0) {
+                ConnectionsManager.getInstance(i11).cancelRequest(this.f52083w, true);
+            }
+            int sendRequestTyped = ConnectionsManager.getInstance(i11).sendRequestTyped(tL_messages_setShareTheme, new Object(), new s1(8, this, r1));
+            this.f52083w = sendRequestTyped;
+            int[] iArr = {sendRequestTyped};
+        }
+    }
+
+    public final void j() {
+        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken;
+        n0 n0Var = this.F;
+        AndroidUtilities.cancelRunOnUIThread(n0Var);
+        if (this.E) {
+            return;
+        }
+        int i10 = this.d;
+        int i11 = this.f52076a;
+        if (i10 == 1 && this.f52080n == 0 && (this.f52079f == null || SystemClock.elapsedRealtime() - this.h >= 30000 || ((tL_exportedNoPaidMessagesToken = this.f52079f) != null && tL_exportedNoPaidMessagesToken.expires != 0 && ConnectionsManager.getInstance(i11).getCurrentTime() >= this.f52079f.expires - 5))) {
+            h(false, true);
+        }
+        if (this.f52078c.d && ((this.f52081r == null || System.currentTimeMillis() / 1000 >= this.f52081r.expires) && SystemClock.elapsedRealtime() - this.f52082s >= 5000)) {
+            this.f52082s = SystemClock.elapsedRealtime();
+            MessagesController.getInstance(i11).requestContactToken(new m(this, 3));
+        }
+        AndroidUtilities.runOnUIThread(n0Var, 1000L);
+    }
+
+    public final void k() {
+        long j10;
+        int i10 = this.f52076a;
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i10).getGlobalPrivacySettings();
+        if (globalPrivacySettings == null) {
+            ContactsController.getInstance(i10).loadGlobalPrivacySetting();
+            j10 = 0;
+        } else {
+            j10 = globalPrivacySettings.noncontact_peers_paid_stars;
+        }
+        b1 b1Var = this.f52077b;
+        b1Var.setFeeStars(j10);
+        if (j10 > 0 && !this.e) {
+            this.e = true;
+            if (!this.f52078c.d && this.d == 0 && MessagesController.getMainSettings(i10).getBoolean("qrNoPaidPermanent", false)) {
+                this.d = 2;
+                b1Var.f51874v0 = true;
+                b1Var.f51884w0 = false;
+                b1Var.B0 = 1.0f;
+                b1Var.D0 = 1.0f;
+                b1Var.C0 = 1.0f;
+                b1Var.F0 = true;
+                b1Var.G0 = 1.0f;
+                b1Var.f51914z2 = null;
+                b1Var.A2 = -1;
+                b1Var.n1(false);
+                b1Var.invalidate();
+                TLRPC.TL_exportedNoPaidMessagesToken b10 = b();
+                this.f52079f = b10;
+                if (b10 != null) {
+                    b1Var.setFreeLink(c(b10));
+                }
+                h(false, false);
+            }
+        }
     }
 }

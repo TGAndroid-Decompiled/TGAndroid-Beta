@@ -1,15 +1,15 @@
 package e9;
 public final class c1 extends a {
     public static final c1 d = new c1(new Object[0]);
-    public final Object[] f8544c;
+    public final Object[] f8425c;
 
     public c1(Object[] objArr) {
         super(objArr.length, 0);
-        this.f8544c = objArr;
+        this.f8425c = objArr;
     }
 
     @Override
     public final Object a(int i10) {
-        return this.f8544c[i10];
+        return this.f8425c[i10];
     }
 }

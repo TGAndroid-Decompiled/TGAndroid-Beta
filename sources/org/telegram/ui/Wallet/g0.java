@@ -1,14 +1,21 @@
 package org.telegram.ui.Wallet;
 public final class g0 {
-    public final String f32937a;
-    public int f32938b;
-    public long f32939c = -1;
-    public boolean d = true;
-    public boolean e = false;
-    public final p0 f32940f;
+    public String f34216a;
+    public j0 f34217b;
+    public byte[] f34218c;
+    public final m0 d;
 
-    public g0(p0 p0Var) {
-        this.f32940f = p0Var;
-        this.f32937a = p0Var.f33308c;
+    public g0(m0 m0Var) {
+        this.d = m0Var;
+    }
+
+    public final void a() {
+        j0 j0Var = this.f34217b;
+        this.f34217b = null;
+        try {
+            this.d.S(j0Var, false, new f0(this, 0));
+        } finally {
+            j0Var.close();
+        }
     }
 }

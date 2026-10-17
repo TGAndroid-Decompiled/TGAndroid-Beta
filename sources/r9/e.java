@@ -2,9 +2,8 @@ package r9;
 
 import com.google.firebase.components.ComponentRegistrar;
 import java.util.List;
-import r0.s0;
 public interface e {
-    public static final s0 A = new s0(2);
+    public static final r.a A = new r.a(5);
 
-    List w(ComponentRegistrar componentRegistrar);
+    List v(ComponentRegistrar componentRegistrar);
 }

@@ -1,70 +1,54 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.ViewTreeObserver;
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
-public final class qm implements ViewTreeObserver.OnPreDrawListener {
-    public final org.telegram.ui.Cells.u1 f39185a;
-    public final rm f39186b;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.Components.UndoView;
+public final class qm implements Runnable {
+    public final int f40463a;
+    public final en f40464b;
+    public final MessageObject f40465c;
 
-    public qm(rm rmVar, org.telegram.ui.Cells.u1 u1Var) {
-        this.f39186b = rmVar;
-        this.f39185a = u1Var;
+    public qm(en enVar, MessageObject messageObject, int i10) {
+        this.f40463a = i10;
+        this.f40464b = enVar;
+        this.f40465c = messageObject;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        float f7;
-        float centerX;
-        fo foVar = this.f39186b.Q;
-        org.telegram.ui.Cells.u1 u1Var = this.f39185a;
-        u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        MessageObject.SendAnimationData sendAnimationData = u1Var.getMessageObject().sendAnimationData;
-        if (sendAnimationData == null) {
-            return true;
+    public final void run() {
+        int i10;
+        switch (this.f40463a) {
+            case 0:
+                en enVar = this.f40464b;
+                sn snVar = enVar.f36569a;
+                snVar.T7();
+                UndoView undoView = snVar.y3;
+                if (undoView != null) {
+                    if (snVar.Y.getVisibility() == 0 && snVar.R.getVisibility() != 0) {
+                        i10 = 16;
+                    } else {
+                        i10 = 17;
+                    }
+                    int i11 = i10;
+                    MessageObject messageObject = this.f40465c;
+                    undoView.k(0L, i11, messageObject.getDiceEmoji(), null, null, new qm(enVar, messageObject, 2));
+                    return;
+                }
+                return;
+            case 1:
+                sn snVar2 = this.f40464b.f36569a;
+                snVar2.f41430wb = this.f40465c.getId();
+                snVar2.f41444xb = 0;
+                return;
+            default:
+                sn snVar3 = this.f40464b.f36569a;
+                if (snVar3.i7()) {
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(this.f40465c.getDiceEmoji(), snVar3.T5, snVar3.f41311n5, snVar3.X3, null, false, null, null, null, true, 0, 0, null, false);
+                    of2.sendMessageChatArguments = snVar3.H8();
+                    snVar3.getSendMessagesHelper().sendMessage(of2);
+                    return;
+                }
+                return;
         }
-        foVar.f35740n6.add(u1Var);
-        ImageReceiver photoImage = u1Var.getPhotoImage();
-        float imageWidth = photoImage.getImageWidth();
-        if (sendAnimationData.fromPreview) {
-            f7 = 1.0f;
-        } else {
-            f7 = sendAnimationData.width / imageWidth;
-        }
-        u1Var.getTransitionParams().f21756x0 = true;
-        u1Var.getLocationInWindow(r8);
-        int[] iArr = {0, (int) (iArr[1] - u1Var.getTranslationY())};
-        if (foVar.Y.x0()) {
-            iArr[1] = AndroidUtilities.dp(48.0f) + iArr[1];
-        }
-        AnimatorSet animatorSet = new AnimatorSet();
-        org.telegram.ui.Components.u6 u6Var = new org.telegram.ui.Components.u6("p1", 0);
-        nm nmVar = new nm(this);
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(sendAnimationData, u6Var, f7, 1.0f), ObjectAnimator.ofFloat(sendAnimationData, new om(this), 0.0f, 1.0f));
-        float f10 = sendAnimationData.f16398x;
-        float f11 = iArr[0];
-        if (sendAnimationData.fromPreview) {
-            centerX = 0.0f;
-        } else {
-            centerX = photoImage.getCenterX();
-        }
-        animatorSet.playTogether(ObjectAnimator.ofFloat(sendAnimationData, nmVar, f10, f11 + centerX), animatorSet2);
-        animatorSet.setInterpolator(org.telegram.ui.Components.es.h);
-        animatorSet.setDuration(460L);
-        animatorSet.addListener(new u0(this, 25));
-        animatorSet.start();
-        pm pmVar = new pm(this);
-        AnimatorSet animatorSet3 = new AnimatorSet();
-        animatorSet3.playTogether(ObjectAnimator.ofFloat(sendAnimationData, pmVar, 0.0f, 1.0f));
-        animatorSet3.setDuration(100L);
-        animatorSet3.setStartDelay(150L);
-        animatorSet3.setInterpolator(new DecelerateInterpolator());
-        animatorSet3.start();
-        return true;
     }
 }

@@ -1,29 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
 import android.view.View;
-public final class qf implements am0 {
-    public final ChatActivityEnterView f28276a;
+public final class qf implements View.OnKeyListener {
+    public final ChatActivityEnterView f29675a;
 
     public qf(ChatActivityEnterView chatActivityEnterView) {
-        this.f28276a = chatActivityEnterView;
+        this.f29675a = chatActivityEnterView;
     }
 
     @Override
-    public final void a(int i10, View view) {
-        if (view instanceof fi.z) {
-            String command = ((fi.z) view).getCommand();
-            if (!TextUtils.isEmpty(command)) {
-                ChatActivityEnterView chatActivityEnterView = this.f28276a;
-                if (chatActivityEnterView.c()) {
-                    g5.L(chatActivityEnterView.O2, chatActivityEnterView.Q2, new u2(4, this, command), chatActivityEnterView.W3);
-                    return;
-                }
-                org.telegram.ui.fo foVar = chatActivityEnterView.P2;
-                if (foVar == null || !foVar.h7(view)) {
-                    g5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.ui.uc(15, this, command));
-                }
-            }
-        }
+    public final boolean onKey(android.view.View r6, int r7, android.view.KeyEvent r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qf.onKey(android.view.View, int, android.view.KeyEvent):boolean");
     }
 }

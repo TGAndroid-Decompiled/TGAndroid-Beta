@@ -1,87 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-public final class ef extends AnimatorListenerAdapter {
-    public final int f24380a;
-    public final boolean f24381b;
-    public final ChatActivityEnterView f24382c;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class ef extends rp0 {
+    public final ChatActivityEnterView H;
 
-    public ef(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10) {
-        this.f24380a = i10;
-        this.f24382c = chatActivityEnterView;
-        this.f24381b = z10;
+    public ef(ChatActivityEnterView chatActivityEnterView, final Context context, final org.telegram.ui.sn snVar, MessagesController messagesController, final boolean z10, TLRPC.Peer peer, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, final ai.s2 s2Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        int width;
+        this.H = chatActivityEnterView;
+        this.f21572b = true;
+        this.f21573c = 150;
+        this.f21574f = -1L;
+        this.f21577j = new AnimationNotificationsLocker();
+        e();
+        this.f30013z = new ArrayList();
+        this.G = new ArrayList();
+        this.f30006r = peer;
+        this.f30007s = tL_channels_sendAsPeers;
+        ah.x xVar = new ah.x(this, context, 21);
+        this.f30008t = xVar;
+        xVar.setLayoutParams(w7.z5.d(-2.0f, -2));
+        setContentView(xVar);
+        setWidth(-2);
+        setHeight(-2);
+        setBackgroundDrawable(null);
+        Drawable mutate = context.getDrawable(R.drawable.popup_fixed_alert4).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, d6Var), PorterDuff.Mode.MULTIPLY));
+        xVar.setBackground(mutate);
+        Rect rect = new Rect();
+        mutate.getPadding(rect);
+        xVar.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+        int dp = AndroidUtilities.dp(450.0f);
+        if (snVar == null) {
+            width = AndroidUtilities.displaySize.x;
+        } else {
+            width = snVar.X0.getWidth();
+        }
+        int i10 = (int) (width * 0.75f);
+        lp0 lp0Var = new lp0(context, i10, dp);
+        this.f30003o = lp0Var;
+        lp0Var.setOrientation(1);
+        TextView textView = new TextView(context);
+        this.f30004p = textView;
+        org.telegram.messenger.wh.o(org.telegram.ui.ActionBar.h6.f21148m5, d6Var, textView, 1, 16.0f);
+        textView.setText(LocaleController.getString(R.string.SendMessageAsTitle));
+        textView.setTypeface(AndroidUtilities.bold(), 1);
+        int dp2 = AndroidUtilities.dp(18.0f);
+        textView.setPadding(dp2, AndroidUtilities.dp(12.0f), dp2, AndroidUtilities.dp(12.0f));
+        lp0Var.addView(textView);
+        FrameLayout frameLayout = new FrameLayout(context);
+        final ArrayList<TLRPC.TL_sendAsPeer> arrayList = tL_channels_sendAsPeers.peers;
+        im0 im0Var = new im0(context, null);
+        this.v = im0Var;
+        s4.b0 b0Var = new s4.b0();
+        this.f30010w = b0Var;
+        im0Var.setLayoutManager(b0Var);
+        im0Var.setAdapter(new mp0(d6Var, arrayList, messagesController, i10, peer));
+        im0Var.j(new np0(this));
+        im0Var.setOnItemClickListener(new wl0() {
+            @Override
+            public final void a(int i11, View view) {
+                rp0.k(ef.this, arrayList, context, snVar, z10, s2Var, view, i11);
+            }
+        });
+        im0Var.setOverScrollMode(2);
+        frameLayout.addView(im0Var);
+        View view = new View(context);
+        this.f30009u = view;
+        Drawable drawable = context.getDrawable(R.drawable.header_shadow);
+        drawable.setAlpha(153);
+        view.setBackground(drawable);
+        view.setAlpha(0.0f);
+        frameLayout.addView(view, w7.z5.d(4.0f, -1));
+        lp0Var.addView(frameLayout, w7.z5.d(-2.0f, -1));
+        xVar.addView(lp0Var);
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f24380a) {
-            case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f24382c;
-                if (animator.equals(chatActivityEnterView.f22658s2)) {
-                    chatActivityEnterView.f22658s2 = null;
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void dismiss() {
+        ArrayList arrayList = this.f30013z;
+        ChatActivityEnterView chatActivityEnterView = this.H;
+        if (chatActivityEnterView.f23999q0 != this) {
+            super.dismiss();
+            return;
         }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        bf bfVar;
-        float f7;
-        switch (this.f24380a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f24382c;
-                if (chatActivityEnterView.f22622l5) {
-                    ImageView imageView = chatActivityEnterView.f22678w1;
-                    if (this.f24381b) {
-                        i10 = 0;
-                    } else {
-                        i10 = 8;
-                    }
-                    imageView.setVisibility(i10);
-                    return;
-                }
-                return;
-            case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f24382c;
-                if (animator.equals(chatActivityEnterView2.f22658s2)) {
-                    chatActivityEnterView2.f22640p1.setVisibility(8);
-                    if (this.f24381b && (bfVar = chatActivityEnterView2.J1) != null) {
-                        bfVar.setVisibility(8);
-                    }
-                    chatActivityEnterView2.f22658s2 = null;
-                    return;
-                }
-                return;
-            case 2:
-                ChatActivityEnterView chatActivityEnterView3 = this.f24382c;
-                chatActivityEnterView3.M1 = null;
-                if (!this.f24381b) {
-                    chatActivityEnterView3.J1.setVisibility(8);
-                    return;
-                }
-                return;
-            default:
-                if (this.f24381b) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                ChatActivityEnterView chatActivityEnterView4 = this.f24382c;
-                chatActivityEnterView4.f22677w0 = f7;
-                fg fgVar = chatActivityEnterView4.U0;
-                if (fgVar != null) {
-                    fgVar.Y();
-                    return;
-                }
-                return;
+        chatActivityEnterView.f23999q0 = null;
+        int i10 = 0;
+        if (!this.f30005q) {
+            l(new o1.k[0]);
+            chatActivityEnterView.f23994p0.a(true, true, 0.0f);
+            return;
         }
+        int size = arrayList.size();
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((o1.k) obj).c();
+        }
+        arrayList.clear();
+        super.dismiss();
     }
 }

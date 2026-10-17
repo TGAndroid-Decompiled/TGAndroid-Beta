@@ -11,25 +11,25 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.x5;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.y5;
 import w7.z5;
-public final class d extends FrameLayout implements x5 {
-    public final c6 f16351a;
-    public final ImageView f16352b;
-    public final TextView f16353c;
+public final class d extends FrameLayout implements y5 {
+    public final d6 f17745a;
+    public final ImageView f17746b;
+    public final TextView f17747c;
 
-    public d(Context context, c6 c6Var) {
+    public d(Context context, d6 d6Var) {
         super(context);
-        this.f16351a = c6Var;
+        this.f17745a = d6Var;
         ImageView imageView = new ImageView(context);
-        this.f16352b = imageView;
+        this.f17746b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_arrow_back);
         addView(imageView, z5.a(48.0f, 6.0f, 0.0f, 0.0f, 0.0f, 48, 8388627));
         TextView textView = new TextView(context);
-        this.f16353c = textView;
+        this.f17747c = textView;
         textView.setText(LocaleController.getString(R.string.EmojiSearchBackToSearch));
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -41,14 +41,14 @@ public final class d extends FrameLayout implements x5 {
 
     @Override
     public final void d() {
-        int i10 = g6.Wk;
-        c6 c6Var = this.f16351a;
+        int i10 = h6.Wk;
+        d6 d6Var = this.f17745a;
         int i11 = (int) 153.0f;
-        this.f16353c.setTextColor(i0.a.k(g6.w0(i10, c6Var), i11));
-        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i0.a.k(g6.w0(i10, c6Var), i11), PorterDuff.Mode.MULTIPLY);
-        ImageView imageView = this.f16352b;
+        this.f17747c.setTextColor(i0.b.o(h6.w0(i10, d6Var), i11));
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i0.b.o(h6.w0(i10, d6Var), i11), PorterDuff.Mode.MULTIPLY);
+        ImageView imageView = this.f17746b;
         imageView.setColorFilter(porterDuffColorFilter);
-        imageView.setBackground(g6.g0(i0.a.k(g6.w0(i10, c6Var), (int) 25.5f), 1, -1));
+        imageView.setBackground(h6.g0(i0.b.o(h6.w0(i10, d6Var), (int) 25.5f), 1, -1));
     }
 
     public int[] getColorKeys() {
@@ -56,6 +56,6 @@ public final class d extends FrameLayout implements x5 {
     }
 
     public void setOnBackClickListener(View.OnClickListener onClickListener) {
-        this.f16352b.setOnClickListener(onClickListener);
+        this.f17746b.setOnClickListener(onClickListener);
     }
 }

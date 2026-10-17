@@ -1,53 +1,70 @@
 package ki;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import org.telegram.ui.Cells.h0;
-import org.telegram.ui.Cells.za;
-import org.telegram.ui.fo;
-public final class h implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14319a;
-    public final float f14320b;
-    public final n f14321c;
-    public final View d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.d80;
+import org.telegram.ui.Components.i80;
+public final class h implements Runnable {
+    public final int f15287a;
+    public final i80 f15288b;
 
-    public h(n nVar, View view, float f7, int i10) {
-        this.f14319a = i10;
-        this.f14321c = nVar;
-        this.d = view;
-        this.f14320b = f7;
+    public h(i80 i80Var, int i10) {
+        this.f15287a = i10;
+        this.f15288b = i80Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float f7;
-        float f10;
-        switch (this.f14319a) {
+    public final void run() {
+        switch (this.f15287a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n nVar = this.f14321c;
-                fo foVar = nVar.F;
-                h0 h0Var = (h0) this.d;
-                float measuredHeight = ((((nVar.G.getMeasuredHeight() - foVar.f35805s9) - foVar.Ba) / 2.0f) - (h0Var.getMeasuredHeight() / 2.0f)) + nVar.F.f35805s9;
-                if (h0Var.getTop() > measuredHeight) {
-                    f7 = measuredHeight - h0Var.getTop();
-                } else {
-                    f7 = 0.0f;
+                this.f15288b.s();
+                return;
+            case 1:
+                this.f15288b.s();
+                return;
+            case 2:
+                this.f15288b.s();
+                return;
+            case 3:
+                d80 d80Var = this.f15288b.f27124m;
+                if (d80Var != null) {
+                    AndroidUtilities.hideKeyboard(d80Var.getContentView());
+                    return;
                 }
-                h0Var.setTranslationY((f7 * floatValue) + ((1.0f - floatValue) * this.f14320b));
+                return;
+            case 4:
+                d80 d80Var2 = this.f15288b.f27124m;
+                if (d80Var2 != null) {
+                    AndroidUtilities.hideKeyboard(d80Var2.getContentView());
+                    return;
+                }
+                return;
+            case 5:
+                d80 d80Var3 = this.f15288b.f27124m;
+                if (d80Var3 != null) {
+                    AndroidUtilities.hideKeyboard(d80Var3.getContentView());
+                    return;
+                }
+                return;
+            case 6:
+                d80 d80Var4 = this.f15288b.f27124m;
+                if (d80Var4 != null) {
+                    AndroidUtilities.hideKeyboard(d80Var4.getContentView());
+                    return;
+                }
+                return;
+            case 7:
+                d80 d80Var5 = this.f15288b.f27124m;
+                if (d80Var5 != null) {
+                    AndroidUtilities.hideKeyboard(d80Var5.getContentView());
+                    return;
+                }
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n nVar2 = this.f14321c;
-                fo foVar2 = nVar2.F;
-                za zaVar = (za) this.d;
-                float measuredHeight2 = ((((nVar2.G.getMeasuredHeight() - foVar2.f35805s9) - foVar2.Ba) / 2.0f) - (zaVar.getMeasuredHeight() / 2.0f)) + nVar2.F.f35805s9;
-                if (zaVar.getTop() > measuredHeight2) {
-                    f10 = measuredHeight2 - zaVar.getTop();
-                } else {
-                    f10 = 0.0f;
+                d80 d80Var6 = this.f15288b.f27124m;
+                if (d80Var6 != null) {
+                    AndroidUtilities.hideKeyboard(d80Var6.getContentView());
+                    return;
                 }
-                zaVar.setTranslationY((f10 * floatValue2) + ((1.0f - floatValue2) * this.f14320b));
                 return;
         }
     }

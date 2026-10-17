@@ -1,106 +1,69 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import java.util.Arrays;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class gl0 implements DialogInterface.OnDismissListener {
-    public final int f36274a;
-    public final boolean[] f36275b;
-    public final Object f36276c;
-    public final Object d;
-    public final Object e;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_account;
+public final class gl0 extends org.telegram.ui.Components.e61 {
+    public static final int f37270a = 0;
 
-    public gl0(org.telegram.ui.web.c1 c1Var, boolean[] zArr, bi.n9 n9Var, String str) {
-        this.f36274a = 1;
-        this.f36276c = c1Var;
-        this.f36275b = zArr;
-        this.d = n9Var;
-        this.e = str;
+    static {
+        org.telegram.ui.Components.e61.setup(new org.telegram.ui.Components.e61());
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f36274a) {
-            case 0:
-                TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f36276c;
-                org.telegram.ui.ActionBar.e3[] e3VarArr = (org.telegram.ui.ActionBar.e3[]) this.d;
-                org.telegram.ui.ActionBar.e3[] e3VarArr2 = (org.telegram.ui.ActionBar.e3[]) this.e;
-                this.f36275b[0] = true;
-                TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = inputtonconnectoauthsessionArr[0];
-                if (inputtonconnectoauthsession != null) {
-                    Arrays.fill(inputtonconnectoauthsession.challenge_answer, (byte) 0);
-                    inputtonconnectoauthsessionArr[0] = null;
-                }
-                org.telegram.ui.ActionBar.e3 e3Var = e3VarArr[0];
-                if (e3Var != null) {
-                    e3Var.dismiss();
-                    e3VarArr[0] = null;
-                }
-                ql0.f39184a = null;
-                org.telegram.ui.ActionBar.e3 e3Var2 = e3VarArr2[0];
-                if (e3Var2 != null) {
-                    e3Var2.dismiss();
-                    e3VarArr2[0] = null;
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.ui.web.c1 c1Var = (org.telegram.ui.web.c1) this.f36276c;
-                bi.n9 n9Var = (bi.n9) this.d;
-                String str = (String) this.e;
-                c1Var.getClass();
-                boolean[] zArr = this.f36275b;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    c1Var.x(n9Var, "requested_chat_failed", org.telegram.ui.web.c1.A(str, "req_id"));
-                    return;
-                }
-                return;
-            case 2:
-                Utilities.Callback callback = (Utilities.Callback) this.f36276c;
-                boolean[] zArr2 = (boolean[]) this.d;
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.e;
-                if (callback != null && !this.f36275b[0]) {
-                    callback.run(Boolean.FALSE);
-                    if (!zArr2[0]) {
-                        callback2.run("cancelled", 0L);
-                        zArr2[0] = true;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                Utilities.Callback callback3 = (Utilities.Callback) this.f36276c;
-                boolean[] zArr3 = (boolean[]) this.d;
-                Utilities.Callback callback4 = (Utilities.Callback) this.e;
-                if (callback3 != null && !this.f36275b[0]) {
-                    callback3.run(Boolean.FALSE);
-                    if (!zArr3[0] && callback4 != null) {
-                        callback4.run("cancelled");
-                        zArr3[0] = true;
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void bindView(View view, org.telegram.ui.Components.f61 f61Var, boolean z10, org.telegram.ui.Components.s61 s61Var, org.telegram.ui.Components.a71 a71Var) {
+        hl0 hl0Var = (hl0) view;
+        TL_account.Passkey passkey = (TL_account.Passkey) f61Var.G;
+        View.OnClickListener onClickListener = f61Var.D;
+        TextView textView = hl0Var.f37578f;
+        TextView textView2 = hl0Var.e;
+        org.telegram.ui.ActionBar.d6 d6Var = hl0Var.f37576b;
+        FrameLayout frameLayout = hl0Var.f37577c;
+        org.telegram.ui.Components.w9 w9Var = hl0Var.d;
+        hl0Var.f37580r = passkey.f20474id;
+        long j10 = passkey.software_emoji_id;
+        if (j10 != 0) {
+            w9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.r5.n(hl0Var.f37575a, j10, null, 3));
+            frameLayout.setBackground(null);
+            w9Var.setColorFilter(null);
+            w9Var.setScaleX(1.0f);
+            w9Var.setScaleY(1.0f);
+        } else {
+            int dp = AndroidUtilities.dp(4.0f);
+            int i10 = org.telegram.ui.ActionBar.h6.G6;
+            frameLayout.setBackground(org.telegram.ui.ActionBar.h6.c0(dp, org.telegram.ui.ActionBar.h6.m1(0.04f, org.telegram.ui.ActionBar.h6.w0(i10, d6Var))));
+            w9Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.m1(0.3f, org.telegram.ui.ActionBar.h6.w0(i10, d6Var)), PorterDuff.Mode.SRC_IN));
+            w9Var.setImageResource(R.drawable.msg2_permissions);
+            w9Var.setScaleX(0.666f);
+            w9Var.setScaleY(0.666f);
+            w9Var.setAnimatedEmojiDrawable(null);
         }
+        if (TextUtils.isEmpty(passkey.name)) {
+            textView2.setText(LocaleController.getString(R.string.PasskeyUnknown));
+        } else {
+            textView2.setText(passkey.name);
+        }
+        int i11 = passkey.last_usage_date;
+        if (i11 != 0) {
+            textView.setText(LocaleController.formatString(R.string.PasskeyLastUsedOn, LocaleController.formatDateTime(i11, false)));
+        } else {
+            textView.setText(LocaleController.formatString(R.string.PasskeyCreatedOn, LocaleController.formatDateTime(passkey.date, false)));
+        }
+        hl0Var.h.setOnClickListener(onClickListener);
+        hl0Var.f37579n = z10;
+        hl0Var.setWillNotDraw(!z10);
     }
 
-    public gl0(zh.n5 n5Var, Utilities.Callback callback, boolean[] zArr, boolean[] zArr2, Object obj, int i10) {
-        this.f36274a = i10;
-        this.f36276c = callback;
-        this.f36275b = zArr;
-        this.d = zArr2;
-        this.e = obj;
-    }
-
-    public gl0(boolean[] zArr, TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr, org.telegram.ui.ActionBar.e3[] e3VarArr, org.telegram.ui.ActionBar.e3[] e3VarArr2) {
-        this.f36274a = 0;
-        this.f36275b = zArr;
-        this.f36276c = inputtonconnectoauthsessionArr;
-        this.d = e3VarArr;
-        this.e = e3VarArr2;
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new hl0(context, i10, d6Var);
     }
 }

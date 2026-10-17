@@ -1,15 +1,15 @@
 package yh;
 
 import android.view.ViewTreeObserver;
-import org.telegram.ui.ActionBar.c6;
-public final class c1 extends g4 {
+import org.telegram.ui.ActionBar.d6;
+public final class c1 extends h4 {
     public final ViewTreeObserver N;
-    public final o0 O;
+    public final n0 O;
 
-    public c1(long j10, String str, long j11, c6 c6Var, ViewTreeObserver viewTreeObserver, o0 o0Var) {
-        super(j10, str, j11, c6Var);
+    public c1(long j10, String str, long j11, d6 d6Var, ViewTreeObserver viewTreeObserver, n0 n0Var) {
+        super(j10, str, j11, d6Var);
         this.N = viewTreeObserver;
-        this.O = o0Var;
+        this.O = n0Var;
     }
 
     @Override

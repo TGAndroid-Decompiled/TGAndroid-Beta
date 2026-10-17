@@ -1,47 +1,50 @@
 package i2;
-
-import android.text.TextUtils;
-import v7.u6;
 public final class f {
-    public final String f10957a;
-    public final b2.x f10958b;
-    public final b2.x f10959c;
-    public final int d;
-    public final int e;
+    public final long f12357a;
+    public final long f12358b;
+    public long f12359c = -9223372036854775807L;
+    public long d = -9223372036854775807L;
+    public long f12360f = -9223372036854775807L;
+    public long f12361g = -9223372036854775807L;
+    public float f12363j = 0.97f;
+    public float f12362i = 1.03f;
+    public float f12364k = 1.0f;
+    public long f12365l = -9223372036854775807L;
+    public long e = -9223372036854775807L;
+    public long h = -9223372036854775807L;
+    public long f12366m = -9223372036854775807L;
+    public long f12367n = -9223372036854775807L;
 
-    public f(String str, b2.x xVar, b2.x xVar2, int i10, int i11) {
-        boolean z10;
-        if (i10 != 0 && i11 != 0) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        u6.g(z10);
-        u6.g(true ^ TextUtils.isEmpty(str));
-        this.f10957a = str;
-        xVar.getClass();
-        this.f10958b = xVar;
-        xVar2.getClass();
-        this.f10959c = xVar2;
-        this.d = i10;
-        this.e = i11;
+    public f(long j10, long j11) {
+        this.f12357a = j10;
+        this.f12358b = j11;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && f.class == obj.getClass()) {
-            f fVar = (f) obj;
-            if (this.d == fVar.d && this.e == fVar.e && this.f10957a.equals(fVar.f10957a) && this.f10958b.equals(fVar.f10958b) && this.f10959c.equals(fVar.f10959c)) {
-                return true;
+    public final void a() {
+        long j10;
+        long j11 = this.f12359c;
+        if (j11 != -9223372036854775807L) {
+            j10 = this.d;
+            if (j10 == -9223372036854775807L) {
+                long j12 = this.f12360f;
+                if (j12 != -9223372036854775807L && j11 < j12) {
+                    j11 = j12;
+                }
+                j10 = this.f12361g;
+                if (j10 == -9223372036854775807L || j11 <= j10) {
+                    j10 = j11;
+                }
             }
+        } else {
+            j10 = -9223372036854775807L;
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        int g10 = a1.g.g((((527 + this.d) * 31) + this.e) * 31, 31, this.f10957a);
-        return this.f10959c.hashCode() + ((this.f10958b.hashCode() + g10) * 31);
+        if (this.e == j10) {
+            return;
+        }
+        this.e = j10;
+        this.h = j10;
+        this.f12366m = -9223372036854775807L;
+        this.f12367n = -9223372036854775807L;
+        this.f12365l = -9223372036854775807L;
     }
 }

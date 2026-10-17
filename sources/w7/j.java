@@ -1,12 +1,17 @@
 package w7;
+
+import android.graphics.Rect;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 public abstract class j {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj != obj2) {
-            if (obj == null || !obj.equals(obj2)) {
-                return false;
-            }
-            return true;
+    public static StaticLayout f48734a;
+
+    public static ki.b0 a(int i10, int i11, int i12, int i13) {
+        Rect rect = new Rect(i10, i11, i12, i13);
+        if (f48734a == null) {
+            f48734a = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
-        return true;
+        return new ki.b0(f48734a, rect);
     }
 }

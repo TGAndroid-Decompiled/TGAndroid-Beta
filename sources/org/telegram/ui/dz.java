@@ -1,40 +1,16 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
 import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class dz implements org.telegram.ui.Components.dm0 {
-    public final Rect f35154a = new Rect();
-    public final hz f35155b;
+import android.widget.FrameLayout;
+public final class dz extends FrameLayout {
+    public wh.n f36346a;
 
-    public dz(hz hzVar) {
-        this.f35155b = hzVar;
+    public wh.n getSubtitleTextView() {
+        return this.f36346a;
     }
 
     @Override
-    public final boolean mo17d(float f7, float f10, int i10, View view) {
-        hz hzVar = this.f35155b;
-        if (hzVar.getParentActivity() != null && (view instanceof org.telegram.ui.Cells.g4)) {
-            Rect rect = this.f35154a;
-            ((ImageView) view.getTag(R.id.object_tag)).getHitRect(rect);
-            if (!rect.contains((int) f7, (int) f10)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hzVar.getParentActivity());
-                alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new cz(this, i10, 0));
-                hzVar.showDialog(alertDialog$Builder.f19248a);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void h() {
-    }
-
-    @Override
-    public final void q(float f7) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

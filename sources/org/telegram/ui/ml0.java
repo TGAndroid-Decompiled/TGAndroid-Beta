@@ -1,93 +1,85 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.content.Intent;
+import android.net.Uri;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class ml0 implements Utilities.Callback {
-    public final int[] f38027a;
-    public final di.d f38028b;
-    public final di.d f38029c;
-    public final TLRPC.TL_messages_requestUrlAuth d;
-    public final org.telegram.ui.ActionBar.e3 e;
-    public final boolean f38030f;
-    public final String f38031g;
-    public final TLRPC.UrlAuthResult h;
-    public final String[] f38032i;
-    public final boolean f38033j;
-    public final org.telegram.ui.web.c1 f38034k;
-    public final String f38035l;
-    public final org.telegram.ui.ActionBar.c6 f38036m;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ml0 implements org.telegram.ui.ActionBar.a2, pt, mm0 {
+    public final int f39217a;
+    public final xm0 f39218b;
 
-    public ml0(int[] iArr, di.d dVar, di.d dVar2, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.ActionBar.e3 e3Var, boolean z10, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z11, org.telegram.ui.web.c1 c1Var, String str2, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f38027a = iArr;
-        this.f38028b = dVar;
-        this.f38029c = dVar2;
-        this.d = tL_messages_requestUrlAuth;
-        this.e = e3Var;
-        this.f38030f = z10;
-        this.f38031g = str;
-        this.h = urlAuthResult;
-        this.f38032i = strArr;
-        this.f38033j = z11;
-        this.f38034k = c1Var;
-        this.f38035l = str2;
-        this.f38036m = c6Var;
+    public ml0(xm0 xm0Var, int i10) {
+        this.f39217a = i10;
+        this.f39218b = xm0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        int[] iArr = this.f38027a;
-        di.d dVar = this.f38028b;
-        di.d dVar2 = this.f38029c;
-        final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = this.d;
-        final org.telegram.ui.ActionBar.e3 e3Var = this.e;
-        final boolean z10 = this.f38030f;
-        final String str = this.f38031g;
-        final TLRPC.UrlAuthResult urlAuthResult = this.h;
-        final String[] strArr = this.f38032i;
-        final boolean z11 = this.f38033j;
-        final org.telegram.ui.web.c1 c1Var = this.f38034k;
-        final String str2 = this.f38035l;
-        final org.telegram.ui.ActionBar.c6 c6Var = this.f38036m;
-        final Integer num = (Integer) obj;
-        if (iArr[0] != num.intValue() && !dVar.N && !dVar2.N) {
-            final org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(ApplicationLoader.applicationContext, 3, null);
-            a2Var.q(200L);
-            ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new Utilities.Callback2() {
-                @Override
-                public final void run(Object obj2, Object obj3) {
-                    CharSequence replaceSingleLinkBold;
-                    TLRPC.UrlAuthResult urlAuthResult2 = (TLRPC.UrlAuthResult) obj2;
-                    TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
-                    org.telegram.ui.ActionBar.a2.this.dismiss();
-                    org.telegram.ui.ActionBar.e3 e3Var2 = e3Var;
-                    if (urlAuthResult2 != null) {
-                        e3Var2.dismiss();
-                        ql0.b(z10, num.intValue(), tL_messages_requestUrlAuth, urlAuthResult2, str, urlAuthResult, strArr[0], z11, c1Var);
-                    } else if (tL_error != null) {
-                        if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                            e3Var2.dismiss();
-                            org.telegram.ui.Components.zc a2 = ql0.a();
-                            int i10 = R.raw.error;
-                            String string = LocaleController.getString(R.string.BotAuthLoggedInFailTitle);
-                            String str3 = str2;
-                            if (TextUtils.isEmpty(str3)) {
-                                replaceSingleLinkBold = LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain);
-                            } else {
-                                replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str3), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Gi, c6Var));
-                            }
-                            a2.M(string, replaceSingleLinkBold, i10).j();
-                            return;
-                        }
-                        org.telegram.ui.Cells.c1.p(e3Var2.topBulletinContainer, e3Var2.getResourcesProvider(), tL_error, false);
+    public void L0(kt ktVar) {
+        String str;
+        switch (this.f39217a) {
+            case 2:
+                xm0 xm0Var = this.f39218b;
+                xm0Var.Y[5].setText(ktVar.f38677a);
+                xm0Var.f43203s = ktVar.d;
+                return;
+            default:
+                xm0 xm0Var2 = this.f39218b;
+                xm0Var2.Y[0].setText(ktVar.f38677a);
+                if (xm0Var2.U0.indexOf(ktVar.f38677a) != -1) {
+                    xm0Var2.Z0 = true;
+                    String str2 = (String) xm0Var2.V0.get(ktVar.f38677a);
+                    xm0Var2.Y[1].setText(str2);
+                    String str3 = (String) xm0Var2.X0.get(str2);
+                    EditTextBoldCursor editTextBoldCursor = xm0Var2.Y[2];
+                    if (str3 != null) {
+                        str = str3.replace('X', (char) 8211);
+                    } else {
+                        str = null;
                     }
+                    editTextBoldCursor.setHintText(str);
+                    xm0Var2.Z0 = false;
                 }
-            });
+                AndroidUtilities.runOnUIThread(new jl0(xm0Var2, 3), 300L);
+                xm0Var2.Y[2].requestFocus();
+                EditTextBoldCursor editTextBoldCursor2 = xm0Var2.Y[2];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+                return;
         }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f39217a) {
+            case 0:
+                xm0 xm0Var = this.f39218b;
+                xm0Var.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    xm0Var.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 1:
+                this.f39218b.finishFragment();
+                return;
+            case 2:
+            case 3:
+            default:
+                xm0.a0(this.f39218b);
+                return;
+            case 4:
+                xm0.d0(this.f39218b);
+                return;
+        }
+    }
+
+    @Override
+    public void p(String str, String str2) {
+        this.f39218b.w1();
     }
 }

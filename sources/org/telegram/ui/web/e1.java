@@ -1,56 +1,89 @@
 package org.telegram.ui.web;
 
-import android.util.LongSparseArray;
-import java.util.ArrayList;
+import android.text.TextUtils;
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.b31;
-public abstract class e1 {
-    public static boolean f41031a;
-    public static boolean f41032b;
-    public static ArrayList f41033c;
-    public static LongSparseArray d;
-    public static ArrayList e;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.wh;
+import org.telegram.ui.ActionBar.g5;
+import org.telegram.ui.Components.u61;
+public final class e1 extends g5 {
+    public final ki.u f42578r = new ki.u(this, 26);
+    public final f1 f42579s;
 
-    public static ArrayList a(Utilities.Callback callback) {
-        boolean z10;
-        if (callback != null && !f41032b) {
-            if (e == null) {
-                e = new ArrayList();
+    public e1(f1 f1Var) {
+        this.f42579s = f1Var;
+    }
+
+    public static boolean w(String str, String str2) {
+        if (str != null && str2 != null) {
+            String lowerCase = str.toLowerCase();
+            String lowerCase2 = str2.toLowerCase();
+            if (!lowerCase.startsWith(lowerCase2) && !wh.w(" ", lowerCase2, lowerCase) && !wh.w(".", lowerCase2, lowerCase)) {
+                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+                String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                if (translitSafe.startsWith(translitSafe2) || wh.w(" ", translitSafe2, translitSafe) || wh.w(".", translitSafe2, translitSafe)) {
+                    return true;
+                }
+                return false;
             }
-            e.add(callback);
-            z10 = true;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void m() {
+        int i10;
+        f1 f1Var = this.f42579s;
+        f1Var.f42586n = null;
+        f1Var.h = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f42578r);
+        u61 u61Var = f1Var.f31190a;
+        if (u61Var != null) {
+            u61Var.W2.N(true);
+            f1Var.f31190a.V2.h1(0, 0);
+        }
+        wh.n nVar = f1Var.f42589w.d;
+        if (TextUtils.isEmpty(f1Var.f42586n)) {
+            i10 = R.string.WebNoHistory;
         } else {
-            z10 = false;
+            i10 = R.string.WebNoSearchedHistory;
         }
-        b();
-        if (z10) {
-            return null;
-        }
-        return f41033c;
+        nVar.setText(LocaleController.getString(i10));
     }
 
-    public static void b() {
-        if (!f41031a && !f41032b) {
-            f41031a = true;
-            f41033c = new ArrayList();
-            d = new LongSparseArray();
-            Utilities.globalQueue.postRunnable(new b31(10));
-        }
-    }
-
-    public static void c(d1 d1Var) {
-        if (d1Var != null && d1Var.d != null) {
-            b();
-            d1 d1Var2 = (d1) d.get(d1Var.f41019a);
-            if (d1Var2 != null) {
-                d1Var2.d = d1Var.d;
+    @Override
+    public final void q(EditText editText) {
+        int i10;
+        f1 f1Var = this.f42579s;
+        boolean z10 = !TextUtils.isEmpty(f1Var.f42586n);
+        String obj = editText.getText().toString();
+        if (!TextUtils.equals(f1Var.f42586n, obj)) {
+            f1Var.f42586n = obj;
+            f1Var.h = true;
+            ki.u uVar = this.f42578r;
+            AndroidUtilities.cancelRunOnUIThread(uVar);
+            AndroidUtilities.runOnUIThread(uVar, 500L);
+            wh.n nVar = f1Var.f42589w.d;
+            if (TextUtils.isEmpty(obj)) {
+                i10 = R.string.WebNoHistory;
             } else {
-                f41033c.add(d1Var);
-                d.put(d1Var.f41019a, d1Var);
+                i10 = R.string.WebNoSearchedHistory;
             }
-            AndroidUtilities.cancelRunOnUIThread(new b31(9));
-            AndroidUtilities.runOnUIThread(new b31(9), 1000L);
+            nVar.setText(LocaleController.getString(i10));
         }
+        u61 u61Var = f1Var.f31190a;
+        if (u61Var != null) {
+            u61Var.W2.N(true);
+            if (z10 != (!TextUtils.isEmpty(obj))) {
+                f1Var.f31190a.V2.h1(0, 0);
+            }
+        }
+    }
+
+    @Override
+    public final void n() {
     }
 }

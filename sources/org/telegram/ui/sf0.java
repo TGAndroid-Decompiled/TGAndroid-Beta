@@ -1,23 +1,62 @@
 package org.telegram.ui;
-public final class sf0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f39810a;
-    public final dg0 f39811b;
 
-    public sf0(dg0 dg0Var, int i10) {
-        this.f39810a = i10;
-        this.f39811b = dg0Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class sf0 extends AnimatorListenerAdapter {
+    public final int f41093a;
+    public final tf0 f41094b;
+
+    public sf0(tf0 tf0Var, int i10) {
+        this.f41093a = i10;
+        this.f41094b = tf0Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f39810a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f41093a) {
             case 0:
-                dg0 dg0Var = this.f39811b;
-                dg0Var.c(true);
-                dg0Var.f35010s0.u1(0, true, null, true);
+                if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
+                    this.f41094b.h.requestFocus();
+                    return;
+                }
                 return;
             default:
-                this.f39811b.f35010s0.u1(0, true, null, true);
+                tf0 tf0Var = this.f41094b;
+                if (tf0Var.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) tf0Var.getParent()).removeView(tf0Var);
+                }
+                tf0Var.f41734c.setVisibility(0);
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f41093a) {
+            case 0:
+                tf0 tf0Var = this.f41094b;
+                tf0Var.f41734c.setVisibility(8);
+                int measuredWidth = (int) (tf0Var.f41733b.getMeasuredWidth() / 10.0f);
+                int measuredHeight = (int) (tf0Var.f41733b.getMeasuredHeight() / 10.0f);
+                Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                canvas.scale(0.1f, 0.1f);
+                canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+                tf0Var.f41733b.draw(canvas);
+                Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / 150));
+                tf0Var.d.setBackground(new BitmapDrawable(tf0Var.getContext().getResources(), createBitmap));
+                tf0Var.d.setAlpha(0.0f);
+                tf0Var.d.setVisibility(0);
+                tf0Var.f41733b.addView(tf0Var);
+                return;
+            default:
+                super.onAnimationStart(animator);
                 return;
         }
     }

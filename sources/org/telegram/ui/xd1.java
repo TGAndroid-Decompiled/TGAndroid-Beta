@@ -1,9 +1,17 @@
 package org.telegram.ui;
+public final class xd1 extends s4.y {
+    public final te1 S;
 
-import org.telegram.messenger.MessageObject;
-public final class xd1 extends MessageObject {
+    public xd1(te1 te1Var, se1 se1Var) {
+        super(se1Var);
+        this.S = te1Var;
+    }
+
     @Override
-    public final boolean needDrawAvatar() {
+    public final boolean q() {
+        if (this.S.f41721x > 0) {
+            return true;
+        }
         return false;
     }
 }

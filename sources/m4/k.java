@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcel;
 public final class k implements l {
-    public IBinder f15235a;
+    public IBinder f16588a;
 
     public final void F0(int i10, Bundle bundle) {
         Parcel obtain = Parcel.obtain();
@@ -12,7 +12,7 @@ public final class k implements l {
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(i10);
             w7.t.a(obtain, bundle);
-            this.f15235a.transact(3001, obtain, null, 1);
+            this.f16588a.transact(3001, obtain, null, 1);
         } finally {
             obtain.recycle();
         }
@@ -20,6 +20,6 @@ public final class k implements l {
 
     @Override
     public final IBinder asBinder() {
-        return this.f15235a;
+        return this.f16588a;
     }
 }

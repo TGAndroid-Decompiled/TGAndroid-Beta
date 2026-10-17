@@ -1,6 +1,6 @@
 package hg;
 
-import fi.q3;
+import ei.p6;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -9,30 +9,30 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.wq0;
+import org.telegram.ui.Components.rq0;
 public class a2 {
-    public z1 f10488a;
-    public ArrayList f10495k;
-    public ArrayList f10496l;
-    public String f10498n;
-    public final boolean f10499o;
-    public ArrayList f10501q;
-    public HashMap f10502r;
-    public final ArrayList f10489b = new ArrayList();
-    public String f10490c = null;
+    public z1 f11793a;
+    public ArrayList f11800k;
+    public ArrayList f11801l;
+    public String f11803n;
+    public final boolean f11804o;
+    public ArrayList f11806q;
+    public HashMap f11807r;
+    public final ArrayList f11794b = new ArrayList();
+    public String f11795c = null;
     public final ArrayList d = new ArrayList();
     public final ArrayList e = new ArrayList();
-    public final a0.h f10491f = new a0.h();
-    public final ArrayList f10492g = new ArrayList();
+    public final a0.h f11796f = new a0.h();
+    public final ArrayList f11797g = new ArrayList();
     public final a0.h h = new a0.h();
-    public final a0.h f10493i = new a0.h();
-    public final ArrayList f10494j = new ArrayList();
-    public final int f10497m = UserConfig.selectedAccount;
-    public boolean f10500p = true;
-    public boolean f10503s = false;
+    public final a0.h f11798i = new a0.h();
+    public final ArrayList f11799j = new ArrayList();
+    public final int f11802m = UserConfig.selectedAccount;
+    public boolean f11805p = true;
+    public boolean f11808s = false;
 
     public a2(boolean z10) {
-        this.f10499o = z10;
+        this.f11804o = z10;
     }
 
     public final void a(CharSequence charSequence) {
@@ -46,38 +46,38 @@ public class a2 {
                     start++;
                 }
                 String charSequence2 = charSequence.subSequence(start, end).toString();
-                if (this.f10502r == null) {
-                    this.f10502r = new HashMap();
-                    this.f10501q = new ArrayList();
+                if (this.f11807r == null) {
+                    this.f11807r = new HashMap();
+                    this.f11806q = new ArrayList();
                 }
-                y1 y1Var = (y1) this.f10502r.get(charSequence2);
+                y1 y1Var = (y1) this.f11807r.get(charSequence2);
                 if (y1Var == 0) {
                     y1Var = new Object();
-                    y1Var.f10805a = charSequence2;
-                    this.f10502r.put(charSequence2, y1Var);
+                    y1Var.f12110a = charSequence2;
+                    this.f11807r.put(charSequence2, y1Var);
                 } else {
-                    this.f10501q.remove((Object) y1Var);
+                    this.f11806q.remove((Object) y1Var);
                 }
-                y1Var.f10806b = (int) (System.currentTimeMillis() / 1000);
-                this.f10501q.add(0, y1Var);
+                y1Var.f12111b = (int) (System.currentTimeMillis() / 1000);
+                this.f11806q.add(0, y1Var);
                 z10 = true;
             }
             if (z10) {
-                MessagesStorage.getInstance(this.f10497m).getStorageQueue().postRunnable(new q3(11, this, this.f10501q));
+                MessagesStorage.getInstance(this.f11802m).getStorageQueue().postRunnable(new p6(28, this, this.f11806q));
             }
         }
     }
 
     public final void b() {
         this.e.clear();
-        this.f10491f.b();
+        this.f11796f.b();
         this.d.clear();
     }
 
     public final void c() {
-        this.f10501q = new ArrayList();
-        this.f10502r = new HashMap();
-        MessagesStorage.getInstance(this.f10497m).getStorageQueue().postRunnable(new x1(this, 0));
+        this.f11806q = new ArrayList();
+        this.f11807r = new HashMap();
+        MessagesStorage.getInstance(this.f11802m).getStorageQueue().postRunnable(new x1(this, 0));
     }
 
     public boolean d(TLObject tLObject) {
@@ -85,7 +85,7 @@ public class a2 {
     }
 
     public final boolean e() {
-        if (this.f10489b.size() > 0) {
+        if (this.f11794b.size() > 0) {
             return true;
         }
         return false;
@@ -96,9 +96,9 @@ public class a2 {
         int size2;
         Object obj;
         TLRPC.Chat chat;
-        this.f10495k = arrayList;
-        this.f10496l = arrayList2;
-        a0.h hVar = this.f10491f;
+        this.f11800k = arrayList;
+        this.f11801l = arrayList2;
+        a0.h hVar = this.f11796f;
         if (hVar.m() != 0) {
             if (arrayList != null || arrayList2 != null) {
                 if (arrayList == null) {
@@ -119,40 +119,40 @@ public class a2 {
                         obj = arrayList2.get(i11 - size);
                     }
                     if (obj instanceof g0) {
-                        obj = ((g0) obj).f10562a;
+                        obj = ((g0) obj).f11867a;
                     }
-                    if (obj instanceof wq0) {
-                        obj = ((wq0) obj).f30636b;
+                    if (obj instanceof rq0) {
+                        obj = ((rq0) obj).f30017b;
                     }
                     boolean z10 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;
                     ArrayList arrayList4 = this.e;
                     if (z10) {
                         TLRPC.User user = (TLRPC.User) obj;
-                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f19063id);
+                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f20419id);
                         if (user2 != null) {
                             arrayList4.remove(user2);
                             arrayList3.remove(user2);
-                            hVar.l(user2.f19063id);
+                            hVar.l(user2.f20419id);
                         }
-                        long j10 = user.f19063id;
+                        long j10 = user.f20419id;
                         a0.h hVar2 = this.h;
                         TLObject tLObject = (TLObject) hVar2.f(j10);
                         if (tLObject != null) {
-                            this.f10492g.remove(tLObject);
-                            hVar2.l(user.f19063id);
+                            this.f11797g.remove(tLObject);
+                            hVar2.l(user.f20419id);
                         }
-                        long j11 = user.f19063id;
-                        a0.h hVar3 = this.f10493i;
+                        long j11 = user.f20419id;
+                        a0.h hVar3 = this.f11798i;
                         Object f7 = hVar3.f(j11);
                         if (f7 != null) {
-                            this.f10494j.remove(f7);
-                            hVar3.l(user.f19063id);
+                            this.f11799j.remove(f7);
+                            hVar3.l(user.f20419id);
                         }
-                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f18916id)) != null) {
+                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f20272id)) != null) {
                         arrayList4.remove(chat);
                         arrayList3.remove(chat);
-                        hVar.l(-chat.f18916id);
+                        hVar.l(-chat.f20272id);
                     }
                 }
             }
@@ -168,7 +168,7 @@ public class a2 {
     }
 
     public final void i() {
-        a0.h hVar = this.f10491f;
+        a0.h hVar = this.f11796f;
         if (hVar.m() != 0) {
             a0.h hVar2 = this.h;
             int m10 = hVar2.m();
@@ -177,7 +177,7 @@ public class a2 {
                 if (user != null) {
                     this.e.remove(user);
                     this.d.remove(user);
-                    hVar.l(user.f19063id);
+                    hVar.l(user.f20419id);
                 }
             }
         }

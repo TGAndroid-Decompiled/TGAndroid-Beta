@@ -10,7 +10,7 @@ import android.graphics.RenderNode;
 import android.os.Build;
 import bh.g;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h6;
 public final class e extends d {
     public final gh.a G;
     public final Outline H = new Outline();
@@ -44,8 +44,8 @@ public final class e extends d {
 
     @Override
     public final void draw(Canvas canvas) {
-        c cVar = this.f6561j;
-        if (cVar.f6552m.isEmpty()) {
+        c cVar = this.f8016j;
+        if (cVar.f8007m.isEmpty()) {
             return;
         }
         boolean isHardwareAccelerated = canvas.isHardwareAccelerated();
@@ -61,16 +61,16 @@ public final class e extends d {
             w();
         }
         this.O = false;
-        int m12 = g6.m1(this.J.getAlpha() * this.f6567p, this.d);
+        int m12 = h6.m1(this.J.getAlpha() * this.f8022p, this.d);
         if (Color.alpha(m12) != 0) {
-            float f7 = this.f6565n;
-            float f10 = this.f6566o;
+            float f7 = this.f8020n;
+            float f10 = this.f8021o;
             Paint paint = this.L;
             paint.setShadowLayer(f7, 0.0f, f10, m12);
-            cVar.c(canvas, paint, this.f6564m);
+            cVar.c(canvas, paint, this.f8019m);
         }
         canvas.save();
-        Rect rect = cVar.f6552m;
+        Rect rect = cVar.f8007m;
         canvas.translate(rect.left, rect.top);
         canvas.drawRenderNode(this.J);
         canvas.restore();
@@ -89,20 +89,20 @@ public final class e extends d {
     @Override
     public final void k() {
         b();
-        c cVar = this.f6561j;
-        this.M.setStrokeWidth(cVar.f6548i);
-        this.N.setStrokeWidth(cVar.f6549j);
-        int width = cVar.f6552m.width();
-        int height = cVar.f6552m.height();
+        c cVar = this.f8016j;
+        this.M.setStrokeWidth(cVar.f8003i);
+        this.N.setStrokeWidth(cVar.f8004j);
+        int width = cVar.f8007m.width();
+        int height = cVar.f8007m.height();
         Rect rect = this.I;
         rect.set(0, 0, width, height);
-        float[] fArr = cVar.f6544b;
+        float[] fArr = cVar.f7999b;
         Outline outline = this.H;
         d.h(outline, rect, fArr);
         outline.setAlpha(1.0f);
-        if (!cVar.f6552m.isEmpty()) {
-            this.K.setPosition(0, 0, cVar.f6552m.width(), cVar.f6552m.height());
-            this.J.setPosition(0, 0, cVar.f6552m.width(), cVar.f6552m.height());
+        if (!cVar.f8007m.isEmpty()) {
+            this.K.setPosition(0, 0, cVar.f8007m.width(), cVar.f8007m.height());
+            this.J.setPosition(0, 0, cVar.f8007m.width(), cVar.f8007m.height());
             this.J.setOutline(outline);
             this.O = true;
         }
@@ -127,8 +127,8 @@ public final class e extends d {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f6563l;
-        this.f6563l = i10;
+        int i11 = this.f8018l;
+        this.f8018l = i10;
         this.J.setAlpha(i10 / 255.0f);
         this.O = true;
         if (i11 == 0 && i10 > 0) {
@@ -139,19 +139,19 @@ public final class e extends d {
     @Override
     public final void v() {
         super.v();
-        this.L.setShadowLayer(this.f6565n, 0.0f, this.f6566o, this.d);
-        this.M.setColor(this.f6558f);
-        this.N.setColor(this.f6559g);
+        this.L.setShadowLayer(this.f8020n, 0.0f, this.f8021o, this.d);
+        this.M.setColor(this.f8013f);
+        this.N.setColor(this.f8014g);
         this.O = true;
     }
 
     @Override
     public final void w() {
-        float f7 = this.f6555a;
-        float f10 = this.f6556b;
-        c cVar = this.f6561j;
-        Rect rect = cVar.f6552m;
-        Rect rect2 = cVar.f6552m;
+        float f7 = this.f8010a;
+        float f10 = this.f8011b;
+        c cVar = this.f8016j;
+        Rect rect = cVar.f8007m;
+        Rect rect2 = cVar.f8007m;
         float f11 = rect.left + f7;
         float f12 = rect.top + f10;
         float f13 = rect.right + f7;
@@ -160,7 +160,7 @@ public final class e extends d {
         beginRecording.save();
         beginRecording.translate(-f11, -f12);
         if (this.P != null && Build.VERSION.SDK_INT >= 33) {
-            int i10 = cVar.f6546f;
+            int i10 = cVar.f8001f;
             if (i10 <= 0) {
                 i10 = AndroidUtilities.dp(11.0f);
             }
@@ -168,10 +168,10 @@ public final class e extends d {
             g gVar = this.P;
             float width = rect2.width();
             float height = rect2.height();
-            float[] fArr = cVar.f6545c;
-            gVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f6547g, cVar.h, this.e);
+            float[] fArr = cVar.f8000c;
+            gVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f8002g, cVar.h, this.e);
         }
-        this.G.v(beginRecording, f11, f12, f13, f14);
+        this.G.y(beginRecording, f11, f12, f13, f14);
         beginRecording.save();
         this.K.endRecording();
         RecordingCanvas beginRecording2 = this.J.beginRecording();
@@ -183,11 +183,11 @@ public final class e extends d {
                 beginRecording2.drawColor(this.e);
             }
         }
-        if (this.f6558f != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f6544b, cVar.f6548i, true, this.M);
+        if (this.f8013f != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f7999b, cVar.f8003i, true, this.M);
         }
-        if (this.f6559g != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f6544b, cVar.f6549j, false, this.N);
+        if (this.f8014g != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f7999b, cVar.f8004j, false, this.N);
         }
         this.J.endRecording();
     }

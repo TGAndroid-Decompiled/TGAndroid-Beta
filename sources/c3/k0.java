@@ -1,25 +1,72 @@
 package c3;
 
-import android.os.Parcel;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class k0 implements com.google.android.gms.common.api.internal.s {
-    public final String[] f4270a;
+import v7.u6;
+public final class k0 {
+    public final byte[] f4640a = new byte[10];
+    public boolean f4641b;
+    public int f4642c;
+    public long d;
+    public int e;
+    public int f4643f;
+    public int f4644g;
 
-    public k0(g6.r rVar, String[] strArr) {
-        this.f4270a = strArr;
+    public final void a(j0 j0Var, i0 i0Var) {
+        if (this.f4642c > 0) {
+            j0Var.c(this.d, this.e, this.f4643f, this.f4644g, i0Var);
+            this.f4642c = 0;
+        }
     }
 
-    @Override
-    public void accept(Object obj, Object obj2) {
-        g6.q qVar = new g6.q(1, (TaskCompletionSource) obj2);
-        g6.i iVar = (g6.i) ((g6.s) obj).u();
-        Parcel N0 = iVar.N0();
-        com.google.android.gms.internal.cast.v.d(N0, qVar);
-        N0.writeStringArray(this.f4270a);
-        iVar.S0(N0, 6);
+    public final void b(j0 j0Var, long j10, int i10, int i11, int i12, i0 i0Var) {
+        boolean z10;
+        if (this.f4644g <= i11 + i12) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        u6.o("TrueHD chunk samples must be contiguous in the sample queue.", z10);
+        if (this.f4641b) {
+            int i13 = this.f4642c;
+            int i14 = i13 + 1;
+            this.f4642c = i14;
+            if (i13 == 0) {
+                this.d = j10;
+                this.e = i10;
+                this.f4643f = 0;
+            }
+            this.f4643f += i11;
+            this.f4644g = i12;
+            if (i14 >= 16) {
+                a(j0Var, i0Var);
+            }
+        }
     }
 
-    public k0(String[] strArr) {
-        this.f4270a = strArr;
+    public final void c(p pVar) {
+        char c10;
+        if (!this.f4641b) {
+            int i10 = 0;
+            byte[] bArr = this.f4640a;
+            pVar.b(0, 10, bArr);
+            pVar.q();
+            if (bArr[4] == -8 && bArr[5] == 114 && bArr[6] == 111) {
+                byte b10 = bArr[7];
+                if ((b10 & 254) == 186) {
+                    if ((b10 & 255) == 187) {
+                        i10 = 1;
+                    }
+                    if (i10 != 0) {
+                        c10 = '\t';
+                    } else {
+                        c10 = '\b';
+                    }
+                    i10 = 40 << ((bArr[c10] >> 4) & 7);
+                }
+            }
+            if (i10 == 0) {
+                return;
+            }
+            this.f4641b = true;
+        }
     }
 }

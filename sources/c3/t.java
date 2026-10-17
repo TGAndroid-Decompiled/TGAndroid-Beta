@@ -1,20 +1,20 @@
 package c3;
 
 import e2.m0;
-public class t implements b0 {
-    public final int f4284a;
-    public final long f4285b;
-    public final Object f4286c;
+public class t implements c0 {
+    public final int f4659a;
+    public final long f4660b;
+    public final Object f4661c;
 
     public t(Object obj, long j10, int i10) {
-        this.f4284a = i10;
-        this.f4286c = obj;
-        this.f4285b = j10;
+        this.f4659a = i10;
+        this.f4661c = obj;
+        this.f4660b = j10;
     }
 
     @Override
     public final boolean d() {
-        switch (this.f4284a) {
+        switch (this.f4659a) {
             case 0:
                 return true;
             case 1:
@@ -26,7 +26,7 @@ public class t implements b0 {
 
     @Override
     public final boolean e() {
-        switch (this.f4284a) {
+        switch (this.f4659a) {
             case 0:
                 return false;
             case 1:
@@ -37,16 +37,16 @@ public class t implements b0 {
     }
 
     @Override
-    public final a0 f(long j10) {
+    public final b0 f(long j10) {
         long j11;
-        switch (this.f4284a) {
+        switch (this.f4659a) {
             case 0:
-                u uVar = (u) this.f4286c;
-                uVar.f4294k.getClass();
-                qf.b bVar = uVar.f4294k;
-                long[] jArr = (long[]) bVar.f43097b;
-                long[] jArr2 = (long[]) bVar.f43098c;
-                int f7 = m0.f(jArr, m0.j((uVar.e * j10) / 1000000, 0L, uVar.f4293j - 1), false);
+                u uVar = (u) this.f4661c;
+                uVar.f4669k.getClass();
+                n4.s sVar = uVar.f4669k;
+                long[] jArr = (long[]) sVar.f17121b;
+                long[] jArr2 = (long[]) sVar.f17122c;
+                int f7 = m0.f(jArr, m0.j((uVar.e * j10) / 1000000, 0L, uVar.f4668j - 1), false);
                 long j12 = 0;
                 if (f7 == -1) {
                     j11 = 0;
@@ -58,24 +58,24 @@ public class t implements b0 {
                 }
                 int i10 = uVar.e;
                 long j13 = (j11 * 1000000) / i10;
-                long j14 = this.f4285b;
-                c0 c0Var = new c0(j13, j12 + j14);
+                long j14 = this.f4660b;
+                d0 d0Var = new d0(j13, j12 + j14);
                 if (j13 != j10 && f7 != jArr.length - 1) {
                     int i11 = f7 + 1;
-                    return new a0(c0Var, new c0((jArr[i11] * 1000000) / i10, j14 + jArr2[i11]));
+                    return new b0(d0Var, new d0((jArr[i11] * 1000000) / i10, j14 + jArr2[i11]));
                 }
-                return new a0(c0Var, c0Var);
+                return new b0(d0Var, d0Var);
             case 1:
-                return (a0) this.f4286c;
+                return (b0) this.f4661c;
             default:
-                e3.b bVar2 = (e3.b) this.f4286c;
-                a0 b10 = bVar2.f8427i[0].b(j10);
+                e3.b bVar = (e3.b) this.f4661c;
+                b0 b10 = bVar.f8306i[0].b(j10);
                 int i12 = 1;
                 while (true) {
-                    e3.e[] eVarArr = bVar2.f8427i;
+                    e3.e[] eVarArr = bVar.f8306i;
                     if (i12 < eVarArr.length) {
-                        a0 b11 = eVarArr[i12].b(j10);
-                        if (b11.f4194a.f4224b < b10.f4194a.f4224b) {
+                        b0 b11 = eVarArr[i12].b(j10);
+                        if (b11.f4590a.f4608b < b10.f4590a.f4608b) {
                             b10 = b11;
                         }
                         i12++;
@@ -88,25 +88,25 @@ public class t implements b0 {
 
     @Override
     public final long h() {
-        switch (this.f4284a) {
+        switch (this.f4659a) {
             case 0:
-                return ((u) this.f4286c).b();
+                return ((u) this.f4661c).b();
             case 1:
-                return this.f4285b;
+                return this.f4660b;
             default:
-                return this.f4285b;
+                return this.f4660b;
         }
     }
 
     public t(long j10) {
         this(j10, 0L);
-        this.f4284a = 1;
+        this.f4659a = 1;
     }
 
     public t(long j10, long j11) {
-        this.f4284a = 1;
-        this.f4285b = j10;
-        c0 c0Var = j11 == 0 ? c0.f4222c : new c0(0L, j11);
-        this.f4286c = new a0(c0Var, c0Var);
+        this.f4659a = 1;
+        this.f4660b = j10;
+        d0 d0Var = j11 == 0 ? d0.f4606c : new d0(0L, j11);
+        this.f4661c = new b0(d0Var, d0Var);
     }
 }

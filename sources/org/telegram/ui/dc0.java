@@ -1,61 +1,52 @@
 package org.telegram.ui;
-public final class dc0 implements Runnable {
-    public final int f34956a;
-    public final ic0 f34957b;
-    public final String f34958c;
 
-    public dc0(ic0 ic0Var, String str, int i10) {
-        this.f34956a = i10;
-        this.f34957b = ic0Var;
-        this.f34958c = str;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserObject;
+public final class dc0 extends hg.s0 {
+    public boolean m0;
+    public final pc0 f36135n0;
+
+    public dc0(pc0 pc0Var, Context context, int i10, long j10, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
+        super(context, i10, j10, false, d6Var, false, z10, z11);
+        this.f36135n0 = pc0Var;
+        this.m0 = true;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34956a) {
-            case 0:
-                ic0 ic0Var = this.f34957b;
-                if (ic0Var.a()) {
-                    ic0Var.w(this.f34958c);
-                    return;
+    public final void K() {
+        this.f36135n0.q0(null);
+    }
+
+    @Override
+    public final void N(ArrayList arrayList) {
+        int i10;
+        pc0 pc0Var = this.f36135n0;
+        MessageObject messageObject = pc0Var.B0;
+        if (messageObject != null && messageObject.isLiveLocation()) {
+            int i11 = 0;
+            if (arrayList != null) {
+                i10 = 0;
+                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                    jc0 jc0Var = (jc0) arrayList.get(i12);
+                    if (jc0Var != null && !UserObject.isUserSelf(jc0Var.f38113c)) {
+                        i10++;
+                    }
                 }
-                return;
-            case 1:
-                this.f34957b.w(this.f34958c);
-                return;
-            case 2:
-                ic0 ic0Var2 = this.f34957b;
-                ic0Var2.getClass();
-                String str = this.f34958c;
-                if ("disable".equalsIgnoreCase(str)) {
-                    ic0Var2.x("turnPasswordOffRow");
-                }
-                if ("change".equalsIgnoreCase(str)) {
-                    ic0Var2.x("changePasswordRow");
-                }
-                if ("change-email".equalsIgnoreCase(str)) {
-                    ic0Var2.x("emailRow");
-                    return;
-                }
-                return;
-            default:
-                ic0 ic0Var3 = this.f34957b;
-                ic0Var3.getClass();
-                String str2 = this.f34958c;
-                if ("disable".equalsIgnoreCase(str2)) {
-                    ic0Var3.x("disablePasscodeRow");
-                }
-                if ("change".equalsIgnoreCase(str2)) {
-                    ic0Var3.x("changePasscodeRow");
-                }
-                if ("auto-lock".equalsIgnoreCase(str2)) {
-                    ic0Var3.x("autoLockRow");
-                }
-                if ("fingerprint".equalsIgnoreCase(str2)) {
-                    ic0Var3.x("fingerprintRow");
-                    return;
-                }
-                return;
+            } else {
+                i10 = 0;
+            }
+            if (this.m0 && i10 == 1) {
+                pc0Var.f40049i0 = ((jc0) arrayList.get(0)).f38111a;
+            }
+            this.m0 = false;
+            org.telegram.ui.ActionBar.u0 u0Var = pc0Var.Z;
+            if (i10 != 1) {
+                i11 = 8;
+            }
+            u0Var.setVisibility(i11);
         }
+        super.N(arrayList);
     }
 }

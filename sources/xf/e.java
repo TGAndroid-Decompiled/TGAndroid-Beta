@@ -1,5 +1,6 @@
 package xf;
 
-import android.os.IInterface;
-public interface e extends IInterface {
+import android.os.Binder;
+public abstract class e extends Binder implements f {
+    public static final int f49800a = 0;
 }

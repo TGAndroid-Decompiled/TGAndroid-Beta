@@ -1,5 +1,8 @@
 package org.telegram.ui;
+public final class kb {
+    public final xb f38458a;
 
-import org.telegram.tgnet.TLRPC;
-public final class kb extends TLRPC.ChannelParticipant {
+    public kb(xb xbVar) {
+        this.f38458a = xbVar;
+    }
 }

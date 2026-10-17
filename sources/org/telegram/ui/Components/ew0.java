@@ -1,114 +1,65 @@
 package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
+import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
-public final class ew0 extends View {
-    public final ImageReceiver f24505a;
-    public final k9 f24506b;
-    public final Paint f24507c;
-    public float d;
-    public boolean e;
-    public ValueAnimator f24508f;
+public final class ew0 implements Runnable {
+    public final int f26008a;
+    public final androidx.activity.g f26009b;
 
-    public ew0(Context context) {
-        super(context);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f24505a = imageReceiver;
-        this.f24506b = new k9((org.telegram.ui.ActionBar.c6) null);
-        Paint paint = new Paint(1);
-        this.f24507c = paint;
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(28.0f));
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStyle(Paint.Style.STROKE);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        ValueAnimator valueAnimator = this.f24508f;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        float f7 = 0.0f;
-        if (z11) {
-            if (z10) {
-                f7 = 1.0f;
-            }
-            ValueAnimator duration = ValueAnimator.ofFloat(this.d, f7).setDuration(200L);
-            duration.setInterpolator(es.f24465f);
-            duration.addUpdateListener(new f80(this, 22));
-            duration.addListener(new k90(this, 19));
-            duration.start();
-            this.f24508f = duration;
-            return;
-        }
-        if (z10) {
-            f7 = 1.0f;
-        }
-        this.d = f7;
-        invalidate();
+    public ew0(androidx.activity.g gVar, int i10) {
+        this.f26008a = i10;
+        this.f26009b = gVar;
     }
 
     @Override
-    public final boolean isSelected() {
-        if (this.d == 1.0f) {
-            return true;
+    public final void run() {
+        int i10 = this.f26008a;
+        androidx.activity.g gVar = this.f26009b;
+        switch (i10) {
+            case 0:
+                jw0 jw0Var = (jw0) gVar.f2651c;
+                boolean z10 = jw0Var.O;
+                Paint paint = jw0Var.W;
+                if (!z10) {
+                    fw0 fw0Var = (fw0) gVar.d;
+                    if (fw0Var != null) {
+                        fw0Var.f26400c.recycle();
+                    }
+                    jw0Var.P = false;
+                    return;
+                }
+                fw0 fw0Var2 = jw0Var.Q;
+                jw0Var.R = fw0Var2;
+                jw0Var.f27612a0.setShader(paint.getShader());
+                jw0Var.f27616c0.setShader(jw0Var.f27614b0.getShader());
+                Bitmap bitmap = ((fw0) gVar.d).f26400c;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                paint.setShader(new BitmapShader(bitmap, tileMode, tileMode));
+                ((fw0) gVar.d).getClass();
+                ValueAnimator valueAnimator = jw0Var.f27621g0;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                jw0Var.f27620f0 = 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                jw0Var.f27621g0 = ofFloat;
+                ofFloat.addUpdateListener(new b80(gVar, 23));
+                jw0Var.f27621g0.addListener(new ml0(3, gVar, fw0Var2));
+                jw0Var.f27621g0.setDuration(50L);
+                jw0Var.f27621g0.start();
+                jw0Var.N();
+                jw0Var.Q = (fw0) gVar.d;
+                AndroidUtilities.runOnUIThread(new ew0(gVar, 1), 16L);
+                return;
+            default:
+                jw0 jw0Var2 = (jw0) gVar.f2651c;
+                jw0Var2.P = false;
+                jw0Var2.W();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f24505a.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f24505a.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.save();
-        float f7 = (this.d * 0.1f) + 0.9f;
-        canvas.scale(f7, f7);
-        int x02 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19763m5, false);
-        Paint paint = this.f24507c;
-        paint.setColor(x02);
-        paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.d));
-        float strokeWidth = paint.getStrokeWidth();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth);
-        canvas.drawArc(rectF, -90.0f, this.d * 360.0f, false, paint);
-        canvas.restore();
-        if (!this.e) {
-            float strokeWidth2 = paint.getStrokeWidth() * 2.5f * this.d;
-            float f10 = 2.0f * strokeWidth2;
-            float width = getWidth() - f10;
-            float height = getHeight() - f10;
-            ImageReceiver imageReceiver = this.f24505a;
-            imageReceiver.setImageCoords(strokeWidth2, strokeWidth2, width, height);
-            imageReceiver.draw(canvas);
-        }
-    }
-
-    public void setAvatar(TLObject tLObject) {
-        k9 k9Var = this.f24506b;
-        k9Var.p(tLObject);
-        this.f24505a.setForUserOrChat(tLObject, k9Var);
-    }
-
-    public void setHideAvatar(boolean z10) {
-        this.e = z10;
-        invalidate();
     }
 }

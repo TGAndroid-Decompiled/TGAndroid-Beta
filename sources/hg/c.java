@@ -1,9 +1,8 @@
 package hg;
 
+import ai.l3;
 import android.location.Location;
 import android.text.TextUtils;
-import bi.k8;
-import bi.z7;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
@@ -25,14 +24,14 @@ public abstract class c extends pg.b {
     public final boolean d;
     public final boolean e;
     public boolean h;
-    public boolean f10512n;
+    public boolean f11817n;
     public Location v;
-    public String f10515w;
-    public String f10516x;
-    public b f10517y;
-    public boolean f10511f = false;
-    public final ArrayList f10513r = new ArrayList();
-    public final ArrayList f10514s = new ArrayList();
+    public String f11820w;
+    public String f11821x;
+    public b f11822y;
+    public boolean f11816f = false;
+    public final ArrayList f11818r = new ArrayList();
+    public final ArrayList f11819s = new ArrayList();
     public final int G = UserConfig.selectedAccount;
 
     public c(boolean z10, boolean z11) {
@@ -60,8 +59,8 @@ public abstract class c extends pg.b {
             dispatchQueue.postRunnable(aVar, 400L);
             return;
         }
-        this.f10514s.clear();
-        this.f10513r.clear();
+        this.f11819s.clear();
+        this.f11818r.clear();
         this.J = false;
         l();
     }
@@ -84,7 +83,7 @@ public abstract class c extends pg.b {
                 location3 = new Location(location);
             }
             this.v = location3;
-            this.f10515w = str;
+            this.f11820w = str;
             if (this.h) {
                 this.h = false;
                 if (this.F != 0) {
@@ -94,7 +93,7 @@ public abstract class c extends pg.b {
             }
             h();
             this.h = true;
-            this.f10511f = true;
+            this.f11816f = true;
             MessagesController messagesController = MessagesController.getInstance(this.G);
             if (this.d) {
                 str2 = MessagesController.getInstance(this.G).storyVenueSearchBot;
@@ -114,7 +113,7 @@ public abstract class c extends pg.b {
                             str5 = MessagesController.getInstance(i10).venueSearchBot;
                         }
                         tL_contacts_resolveUsername.username = str5;
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new z7(this, 8));
+                        ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new ai.h(this, 14));
                     }
                 }
             } else {
@@ -144,9 +143,9 @@ public abstract class c extends pg.b {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    cVar.f10512n = false;
+                    cVar.f11817n = false;
                 } else {
-                    this.f10512n = true;
+                    this.f11817n = true;
                     Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
                     if (this.d) {
                         if (currentLocale.getLanguage().contains("en")) {
@@ -154,7 +153,7 @@ public abstract class c extends pg.b {
                             cVar = this;
                             str4 = str;
                             location4 = location;
-                            Utilities.globalQueue.postRunnable(new k8(cVar, currentLocale, str4, locale, location4, str, 2));
+                            Utilities.globalQueue.postRunnable(new l3(cVar, currentLocale, str4, locale, location4, str, 9));
                         } else {
                             locale2 = Locale.US;
                         }
@@ -163,12 +162,12 @@ public abstract class c extends pg.b {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    Utilities.globalQueue.postRunnable(new k8(cVar, currentLocale, str4, locale, location4, str, 2));
+                    Utilities.globalQueue.postRunnable(new l3(cVar, currentLocale, str4, locale, location4, str, 9));
                 }
                 if (location4 == null) {
                     return;
                 }
-                cVar.F = ConnectionsManager.getInstance(cVar.G).sendRequest(tL_messages_getInlineBotResults, new bi.m1(10, this, str4));
+                cVar.F = ConnectionsManager.getInstance(cVar.G).sendRequest(tL_messages_getInlineBotResults, new ai.g(17, this, str4));
                 l();
             }
         }

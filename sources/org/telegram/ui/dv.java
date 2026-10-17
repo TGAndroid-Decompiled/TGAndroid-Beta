@@ -1,13 +1,15 @@
 package org.telegram.ui;
+public final class dv implements Runnable {
+    public final int f36323a;
+    public final ey f36324b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class dv extends FrameLayout {
-    public TextView f35142a;
+    public dv(ey eyVar, int i10) {
+        this.f36323a = i10;
+        this.f36324b = eyVar;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dv.run():void");
     }
 }

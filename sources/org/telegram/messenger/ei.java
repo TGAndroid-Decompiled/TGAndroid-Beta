@@ -1,30 +1,89 @@
 package org.telegram.messenger;
-public final class ei implements Runnable {
-    public final int f16883a;
-    public final SecretChatHelper f16884b;
-    public final long f16885c;
 
-    public ei(SecretChatHelper secretChatHelper, long j10, int i10) {
-        this.f16883a = i10;
-        this.f16884b = secretChatHelper;
-        this.f16885c = j10;
+import java.util.HashMap;
+import java.util.List;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.sn;
+public final class ei implements RequestDelegate {
+    public final int f18298a = 0;
+    public final SendMessagesHelper f18299b;
+    public final MessageObject f18300c;
+    public final String d;
+    public final boolean e;
+    public final boolean f18301f;
+    public final Object f18302g;
+    public final Object h;
+    public final Object f18303i;
+    public final Object f18304j;
+    public final Object f18305k;
+    public final Object f18306l;
+
+    public ei(SendMessagesHelper sendMessagesHelper, String str, List list, boolean z10, MessageObject messageObject, TL_keyboard.KeyboardButtonProto keyboardButtonProto, sn snVar, TwoStepVerificationActivity twoStepVerificationActivity, TLObject[] tLObjectArr, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, boolean z11) {
+        this.f18299b = sendMessagesHelper;
+        this.d = str;
+        this.f18302g = list;
+        this.e = z10;
+        this.f18300c = messageObject;
+        this.h = keyboardButtonProto;
+        this.f18303i = snVar;
+        this.f18304j = twoStepVerificationActivity;
+        this.f18305k = tLObjectArr;
+        this.f18306l = inputCheckPasswordSRP;
+        this.f18301f = z11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f16883a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18298a) {
             case 0:
-                SecretChatHelper.y(this.f16884b, this.f16885c);
+                List list = (List) this.f18302g;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) this.h;
+                sn snVar = (sn) this.f18303i;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f18304j;
+                TLObject[] tLObjectArr = (TLObject[]) this.f18305k;
+                TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) this.f18306l;
+                boolean z10 = this.f18301f;
+                this.f18299b.lambda$sendCallback$49(this.d, list, this.e, this.f18300c, keyboardButtonProto, snVar, twoStepVerificationActivity, tLObjectArr, inputCheckPasswordSRP, z10, tLObject, tL_error);
                 return;
             case 1:
-                SecretChatHelper.u(this.f16884b, this.f16885c);
-                return;
-            case 2:
-                SecretChatHelper.j(this.f16884b, this.f16885c);
+                this.f18299b.lambda$performSendMessageRequest$79((TLRPC.TL_messages_addPollAnswer) this.f18302g, (TLRPC.TL_messages_addPollAnswer) this.h, this.f18300c, this.d, (SendMessagesHelper.DelayedMessage) this.f18303i, this.e, (SendMessagesHelper.DelayedMessage) this.f18304j, this.f18305k, (HashMap) this.f18306l, this.f18301f, tLObject, tL_error);
                 return;
             default:
-                SecretChatHelper.x(this.f16884b, this.f16885c);
+                this.f18299b.lambda$performSendMessageRequest$104((TLObject) this.f18302g, this.f18300c, this.d, (SendMessagesHelper.DelayedMessage) this.h, this.e, (SendMessagesHelper.DelayedMessage) this.f18303i, this.f18304j, (HashMap) this.f18305k, this.f18301f, (TLRPC.Message) this.f18306l, tLObject, tL_error);
                 return;
         }
+    }
+
+    public ei(SendMessagesHelper sendMessagesHelper, TLObject tLObject, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11, TLRPC.Message message) {
+        this.f18299b = sendMessagesHelper;
+        this.f18302g = tLObject;
+        this.f18300c = messageObject;
+        this.d = str;
+        this.h = delayedMessage;
+        this.e = z10;
+        this.f18303i = delayedMessage2;
+        this.f18304j = obj;
+        this.f18305k = hashMap;
+        this.f18301f = z11;
+        this.f18306l = message;
+    }
+
+    public ei(SendMessagesHelper sendMessagesHelper, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer2, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
+        this.f18299b = sendMessagesHelper;
+        this.f18302g = tL_messages_addPollAnswer;
+        this.h = tL_messages_addPollAnswer2;
+        this.f18300c = messageObject;
+        this.d = str;
+        this.f18303i = delayedMessage;
+        this.e = z10;
+        this.f18304j = delayedMessage2;
+        this.f18305k = obj;
+        this.f18306l = hashMap;
+        this.f18301f = z11;
     }
 }

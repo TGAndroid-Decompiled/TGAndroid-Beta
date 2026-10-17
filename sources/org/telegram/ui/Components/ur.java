@@ -1,171 +1,48 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ur extends db {
-    public final t80 X;
-    public final ArrayList Y;
-    public final boolean Z;
-    public final boolean f29422a0;
-    public final boolean f29423b0;
-    public boolean f29424c0;
-    public TLRPC.Peer f29425d0;
-    public TLRPC.InputPeer f29426e0;
-    public final org.telegram.ui.ActionBar.m2 f29427f0;
-    public final long f29428g0;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ur implements View.OnClickListener {
+    public final int f31072a;
+    public final long f31073b;
+    public final Object f31074c;
+    public final Object d;
+    public final Object e;
 
-    public ur(org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, long j10, t80 t80Var) {
-        super(m2Var, false);
-        boolean z10;
-        String formatString;
-        String formatString2;
-        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
-        this.f29427f0 = m2Var;
-        this.f29428g0 = j10;
-        this.v = 0.26f;
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        this.Y = arrayList2;
-        this.X = t80Var;
-        boolean isChannelOrGiga = ChatObject.isChannelOrGiga(chat);
-        this.f29423b0 = isChannelOrGiga;
-        this.f29425d0 = (TLRPC.Peer) arrayList2.get(0);
-        if (arrayList2.size() > 1) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.Z = z10;
-        this.f29422a0 = ChatObject.canManageCalls(chat);
-        Context context = this.containerView.getContext();
-        this.containerView.addView(new di.ab(this, context, 16), w7.z5.a(120.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
-        TextView textView = new TextView(context);
-        textView.setGravity(17);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        textView.setSingleLine(true);
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        if (isChannelOrGiga) {
-            formatString = LocaleController.formatString(R.string.VoipChannelStartVoiceChat, new Object[0]);
-        } else {
-            formatString = LocaleController.formatString(R.string.VoipGroupStartVoiceChat, new Object[0]);
-        }
-        textView.setText(formatString);
-        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Sh, false));
-        int dp = AndroidUtilities.dp(8.0f);
-        int i10 = org.telegram.ui.ActionBar.g6.Oh;
-        int x02 = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false), 120);
-        textView.setBackground(org.telegram.ui.ActionBar.g6.j0(dp, dp, dp, dp, x02, k10, k10));
-        this.containerView.addView(textView, w7.z5.a(48.0f, 16.0f, 0.0f, 16.0f, 60.0f, -1, 80));
-        TextView textView2 = new TextView(context);
-        textView2.setGravity(17);
-        textView2.setEllipsize(truncateAt);
-        textView2.setSingleLine(true);
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
-        if (isChannelOrGiga) {
-            formatString2 = LocaleController.formatString(R.string.VoipChannelScheduleVoiceChat, new Object[0]);
-        } else {
-            formatString2 = LocaleController.formatString(R.string.VoipGroupScheduleVoiceChat, new Object[0]);
-        }
-        textView2.setText(formatString2);
-        textView2.setLetterSpacing(0.025f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i10, false));
-        int dp2 = AndroidUtilities.dp(8.0f);
-        int k11 = i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, i10, false), 120);
-        textView2.setBackground(org.telegram.ui.ActionBar.g6.j0(dp2, dp2, dp2, dp2, 0, k11, k11));
-        this.containerView.addView(textView2, w7.z5.a(48.0f, 16.0f, 0.0f, 16.0f, 6.0f, -1, 80));
-        textView.setOnClickListener(new View.OnClickListener(this) {
-            public final ur f28629b;
-
-            {
-                this.f28629b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        ur.Q(this.f28629b);
-                        return;
-                    default:
-                        ur.R(this.f28629b);
-                        return;
-                }
-            }
-        });
-        textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final ur f28629b;
-
-            {
-                this.f28629b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        ur.Q(this.f28629b);
-                        return;
-                    default:
-                        ur.R(this.f28629b);
-                        return;
-                }
-            }
-        });
-        mm0 mm0Var = this.d;
-        int i11 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(120.0f));
-        this.d.setOnItemClickListener(new j(this, 4));
-        fixNavigationBar();
-        O();
-    }
-
-    public static void Q(ur urVar) {
-        urVar.f29426e0 = MessagesController.getInstance(urVar.currentAccount).getInputPeer(MessageObject.getPeerId(urVar.f29425d0));
-        urVar.dismiss();
-    }
-
-    public static void R(ur urVar) {
-        urVar.f29426e0 = MessagesController.getInstance(urVar.currentAccount).getInputPeer(MessageObject.getPeerId(urVar.f29425d0));
-        urVar.f29424c0 = true;
-        urVar.dismiss();
+    public ur(Object obj, Object obj2, Object obj3, long j10, int i10) {
+        this.f31072a = i10;
+        this.f31074c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f31073b = j10;
     }
 
     @Override
-    public final CharSequence B() {
-        if (this.f29423b0) {
-            return LocaleController.getString(R.string.StartVoipChannelTitle);
-        }
-        return LocaleController.getString(R.string.StartVoipChatTitle);
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        TLRPC.InputPeer inputPeer = this.f29426e0;
-        if (inputPeer != null) {
-            boolean z10 = true;
-            if (this.Y.size() <= 1) {
-                z10 = false;
-            }
-            this.X.a(inputPeer, z10, this.f29424c0, false);
+    public final void onClick(View view) {
+        switch (this.f31072a) {
+            case 0:
+                xr.T((xr) this.f31074c, (Context) this.d, (ei.d) this.e, this.f31073b);
+                return;
+            case 1:
+                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) this.f31074c;
+                eyVar.finishPreviewFragment();
+                AndroidUtilities.runOnUIThread(new ai.c3(eyVar, (MessagesController.DialogFilter) this.d, (TLRPC.Dialog) this.e, this.f31073b, 19), 100L);
+                return;
+            default:
+                ug.y.Q((ug.y) this.f31074c, (TL_stories.PrepaidGiveaway) this.d, this.f31073b, (org.telegram.ui.ActionBar.n2) this.e);
+                return;
         }
     }
 
-    @Override
-    public final lm0 x(mm0 mm0Var) {
-        return new sr(this);
+    public ur(ug.y yVar, TL_stories.PrepaidGiveaway prepaidGiveaway, long j10, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f31072a = 2;
+        this.f31074c = yVar;
+        this.d = prepaidGiveaway;
+        this.f31073b = j10;
+        this.e = n2Var;
     }
 }

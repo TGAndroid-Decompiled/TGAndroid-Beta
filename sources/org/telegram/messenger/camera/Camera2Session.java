@@ -476,7 +476,7 @@ public class Camera2Session {
     }
 
     public void open(SurfaceTexture surfaceTexture) {
-        this.handler.post(new r(1, this, surfaceTexture));
+        this.handler.post(new s(1, this, surfaceTexture));
     }
 
     public void setFlash(boolean z10) {

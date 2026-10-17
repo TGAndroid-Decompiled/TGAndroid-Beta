@@ -1,40 +1,61 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class do0 extends s4.k {
+import org.telegram.tgnet.TLRPC;
+public final class do0 extends ah.g1 {
+    public final eo0 f25628h0;
+
+    public do0(eo0 eo0Var, int i10, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(null, i10, view, tL_reactionCount, false, true, d6Var);
+        this.f25628h0 = eo0Var;
+    }
+
     @Override
-    public final boolean r(s4.b1 b1Var, b2.v0 v0Var, int i10, int i11, int i12, int i13) {
-        jo0 jo0Var;
-        io0 io0Var;
-        View view = b1Var.f44838a;
-        if ((view instanceof jo0) && (io0Var = (jo0Var = (jo0) view).f26089a) != null) {
-            io0Var.f752i = io0Var.N;
-            io0Var.f750g = io0Var.O;
-            io0Var.h = io0Var.P;
-            jo0Var.f26090b.d(0.0f, true);
-            jo0Var.invalidate();
-        }
-        int translationX = i10 + ((int) view.getTranslationX());
-        int translationY = i11 + ((int) view.getTranslationY());
-        R(b1Var);
-        int i14 = i12 - translationX;
-        int i15 = i13 - translationY;
-        if (i14 == 0 && i15 == 0) {
-            v(b1Var);
+    public final boolean e() {
+        if (this.f767w <= 0 && !this.f766u && this.F.f26362l == 1.0f) {
             return false;
         }
-        if (i14 != 0) {
-            view.setTranslationX(-i14);
-        }
-        if (i15 != 0) {
-            view.setTranslationY(-i15);
-        }
-        this.f44904r.add(new s4.j(b1Var, translationX, translationY, i12, i13));
         return true;
     }
 
     @Override
-    public final boolean t(s4.b1 b1Var) {
-        return true;
+    public final boolean i() {
+        return !e();
+    }
+
+    @Override
+    public final int j() {
+        return 18;
+    }
+
+    @Override
+    public final void s(float f7) {
+        int i10;
+        int i11;
+        int w02;
+        int i12 = this.f754i;
+        eo0 eo0Var = this.f25628h0;
+        if (eo0Var.e) {
+            i10 = org.telegram.ui.ActionBar.h6.Fj;
+        } else {
+            i10 = org.telegram.ui.ActionBar.h6.f21323va;
+        }
+        this.N = i0.b.f(f7, i12, org.telegram.ui.ActionBar.h6.w0(i10, eo0Var.f25969s.f26322c));
+        int i13 = this.f752g;
+        if (eo0Var.e) {
+            i11 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Cj, eo0Var.f25969s.f26322c);
+        } else {
+            i11 = 0;
+        }
+        int f10 = i0.b.f(f7, i13, i11);
+        this.O = f10;
+        this.N = org.telegram.ui.ActionBar.h6.v(f10, this.N);
+        int i14 = this.h;
+        if (eo0Var.e) {
+            w02 = 1526726655;
+        } else {
+            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21341wa, eo0Var.f25969s.f26322c);
+        }
+        this.P = i0.b.f(f7, i14, w02);
     }
 }

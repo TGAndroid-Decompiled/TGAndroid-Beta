@@ -1,37 +1,98 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class n50 extends org.telegram.ui.ActionBar.m1 {
-    public final n60 f38143o;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class n50 extends Drawable {
+    public final Paint f39312a;
+    public final Paint f39313b;
+    public long f39314c;
+    public float d;
+    public int e;
+    public boolean f39315f;
+    public View f39316g;
 
-    public n50(n60 n60Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f38143o = n60Var;
+    public n50() {
+        Paint paint = new Paint(1);
+        this.f39312a = paint;
+        this.f39313b = new Paint(1);
+        this.d = 1.0f;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
+    }
+
+    public final void a(ImageView imageView) {
+        this.f39316g = imageView;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        n60 n60Var = this.f38143o;
-        if (n60Var.f38181f3 != this) {
-            return;
+    public final void draw(Canvas canvas) {
+        int i10;
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(10.0f), this.f39312a);
+        if (this.f39315f) {
+            i10 = -1147527;
+        } else {
+            i10 = -1;
         }
-        n60Var.f38181f3 = null;
-        AnimatorSet animatorSet = n60Var.f38176e3;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            n60Var.f38176e3 = null;
+        Paint paint = this.f39313b;
+        paint.setColor(i10);
+        paint.setAlpha((int) (this.d * 255.0f));
+        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(5.0f), paint);
+        if (this.f39315f) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long j10 = elapsedRealtime - this.f39314c;
+            if (j10 > 17) {
+                j10 = 17;
+            }
+            this.f39314c = elapsedRealtime;
+            int i11 = this.e;
+            if (i11 == 0) {
+                float f7 = (((float) j10) / 2000.0f) + this.d;
+                this.d = f7;
+                if (f7 >= 1.0f) {
+                    this.d = 1.0f;
+                    this.e = 1;
+                }
+            } else if (i11 == 1) {
+                float f10 = this.d - (((float) j10) / 2000.0f);
+                this.d = f10;
+                if (f10 < 0.5f) {
+                    this.d = 0.5f;
+                    this.e = 0;
+                }
+            }
+            this.f39316g.invalidate();
         }
-        n60Var.Y.X = true;
-        n60Var.f38176e3 = new AnimatorSet();
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(ObjectAnimator.ofInt(n60Var.W2, org.telegram.ui.Components.v6.f29576b, 0));
-        n60Var.f38176e3.playTogether(arrayList);
-        n60Var.f38176e3.setDuration(220L);
-        n60Var.f38176e3.addListener(new org.telegram.ui.Components.v61(this, 25));
-        n60Var.f38176e3.start();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

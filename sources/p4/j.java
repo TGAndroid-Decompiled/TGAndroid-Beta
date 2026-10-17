@@ -7,19 +7,19 @@ import android.text.TextUtils;
 import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.ui.ps0;
+import org.telegram.ui.hk0;
 public final class j extends MediaRouter2$TransferCallback {
-    public final k f42750a;
+    public final k f44160a;
 
     public j(k kVar) {
-        this.f42750a = kVar;
+        this.f44160a = kVar;
     }
 
     public final void onStop(MediaRouter2.RoutingController routingController) {
-        k kVar = this.f42750a;
+        k kVar = this.f44160a;
         q qVar = (q) kVar.v.remove(routingController);
         if (qVar != null) {
-            e eVar = (e) kVar.f42757s.f14889a;
+            e eVar = (e) kVar.f44167s.f15519b;
             if (qVar == eVar.e) {
                 v c10 = eVar.c();
                 if (eVar.e() != c10) {
@@ -36,9 +36,9 @@ public final class j extends MediaRouter2$TransferCallback {
 
     public final void onTransfer(MediaRouter2.RoutingController routingController, MediaRouter2.RoutingController routingController2) {
         v vVar;
-        this.f42750a.v.remove(routingController);
-        if (routingController2 == this.f42750a.f42756r.getSystemController()) {
-            e eVar = (e) this.f42750a.f42757s.f14889a;
+        this.f44160a.v.remove(routingController);
+        if (routingController2 == this.f44160a.f44166r.getSystemController()) {
+            e eVar = (e) this.f44160a.f44167s.f15519b;
             v c10 = eVar.c();
             if (eVar.e() != c10) {
                 eVar.j(c10, 3);
@@ -52,17 +52,17 @@ public final class j extends MediaRouter2$TransferCallback {
             return;
         }
         int i10 = 0;
-        String id2 = ps0.d(selectedRoutes.get(0)).getId();
-        this.f42750a.v.put(routingController2, new g(this.f42750a, routingController2, id2));
-        e eVar2 = (e) this.f42750a.f42757s.f14889a;
-        ArrayList arrayList = eVar2.f42711j;
+        String id2 = hk0.d(selectedRoutes.get(0)).getId();
+        this.f44160a.v.put(routingController2, new g(this.f44160a, routingController2, id2));
+        e eVar2 = (e) this.f44160a.f44167s.f15519b;
+        ArrayList arrayList = eVar2.f44121j;
         int size = arrayList.size();
         while (true) {
             if (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
                 vVar = (v) obj;
-                if (vVar.c() == eVar2.f42719r && TextUtils.equals(id2, vVar.f42819b)) {
+                if (vVar.c() == eVar2.f44129r && TextUtils.equals(id2, vVar.f44229b)) {
                     break;
                 }
             } else {
@@ -75,7 +75,7 @@ public final class j extends MediaRouter2$TransferCallback {
         } else {
             eVar2.j(vVar, 3);
         }
-        this.f42750a.r(routingController2);
+        this.f44160a.r(routingController2);
     }
 
     public final void onTransferFailure(MediaRoute2Info mediaRoute2Info) {

@@ -74,7 +74,7 @@ public final class c extends k {
         List list = this.f223o;
         this.f224p = list;
         list.getClass();
-        return new l(list, 0);
+        return new l(list);
     }
 
     @Override
@@ -106,24 +106,24 @@ public final class c extends k {
     }
 
     @Override
-    public final z3.k c() {
-        z3.k kVar;
-        z3.k c10 = super.c();
+    public final z3.j c() {
+        z3.j jVar;
+        z3.j c10 = super.c();
         if (c10 != null) {
             return c10;
         }
         long j10 = this.f220l;
         if (j10 != -9223372036854775807L) {
             long j11 = this.f232y;
-            if (j11 != -9223372036854775807L && this.e - j11 >= j10 && (kVar = (z3.k) this.f274b.pollFirst()) != null) {
+            if (j11 != -9223372036854775807L && this.e - j11 >= j10 && (jVar = (z3.j) this.f274b.pollFirst()) != null) {
                 this.f223o = Collections.EMPTY_LIST;
                 this.f232y = -9223372036854775807L;
                 l f7 = f();
                 long j12 = this.e;
-                kVar.timeUs = j12;
-                kVar.f49268a = f7;
-                kVar.f49269b = j12;
-                return kVar;
+                jVar.timeUs = j12;
+                jVar.f50673a = f7;
+                jVar.f50674b = j12;
+                return jVar;
             }
             return null;
         }
@@ -147,14 +147,14 @@ public final class c extends k {
             d2.b c10 = ((b) arrayList.get(i11)).c(Integer.MIN_VALUE);
             arrayList2.add(c10);
             if (c10 != null) {
-                i10 = Math.min(i10, c10.f6305i);
+                i10 = Math.min(i10, c10.f7760i);
             }
         }
         ArrayList arrayList3 = new ArrayList(size);
         for (int i12 = 0; i12 < size; i12++) {
             d2.b bVar = (d2.b) arrayList2.get(i12);
             if (bVar != null) {
-                if (bVar.f6305i != i10) {
+                if (bVar.f7760i != i10) {
                     bVar = ((b) arrayList.get(i12)).c(i10);
                     bVar.getClass();
                 }

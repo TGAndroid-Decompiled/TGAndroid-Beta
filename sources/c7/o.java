@@ -5,10 +5,10 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class o implements Parcelable {
     public static final Parcelable.Creator<o> CREATOR = new r0(19);
-    public final Enum f4613a;
+    public final Enum f4983a;
 
     public o(a aVar) {
-        this.f4613a = (Enum) aVar;
+        this.f4983a = (Enum) aVar;
     }
 
     public static o a(int i10) {
@@ -23,18 +23,18 @@ public final class o implements Parcelable {
             while (true) {
                 if (i11 < length) {
                     c0 c0Var2 = values2[i11];
-                    if (c0Var2.f4569a == i10) {
+                    if (c0Var2.f4939a == i10) {
                         c0Var = c0Var2;
                         break;
                     }
                     i11++;
                 } else {
                     for (p pVar : p.values()) {
-                        if (pVar.f4616a == i10) {
+                        if (pVar.f4986a == i10) {
                             c0Var = pVar;
                         }
                     }
-                    throw new Exception(i2.d.k(i10, "Algorithm with COSE value ", " not supported"));
+                    throw new Exception(i0.a.k(i10, "Algorithm with COSE value ", " not supported"));
                 }
             }
         }
@@ -47,22 +47,22 @@ public final class o implements Parcelable {
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof o) && this.f4613a.a() == ((o) obj).f4613a.a()) {
+        if ((obj instanceof o) && this.f4983a.a() == ((o) obj).f4983a.a()) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4613a});
+        return Arrays.hashCode(new Object[]{this.f4983a});
     }
 
     public final String toString() {
-        return a1.g.p("COSEAlgorithmIdentifier{algorithm=", String.valueOf(this.f4613a), "}");
+        return a1.g.p("COSEAlgorithmIdentifier{algorithm=", String.valueOf(this.f4983a), "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f4613a.a());
+        parcel.writeInt(this.f4983a.a());
     }
 }

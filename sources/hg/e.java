@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.play_billing.k3;
+import com.google.android.gms.internal.cast.a6;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,21 +19,21 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Cells.a7;
-import org.telegram.ui.Cells.d3;
-import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Cells.p4;
-import org.telegram.ui.Cells.r4;
-import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Cells.xa;
-import org.telegram.ui.Components.fr;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Cells.c3;
+import org.telegram.ui.Cells.l4;
+import org.telegram.ui.Cells.o4;
+import org.telegram.ui.Cells.q4;
+import org.telegram.ui.Cells.q8;
+import org.telegram.ui.Cells.u3;
+import org.telegram.ui.Cells.va;
+import org.telegram.ui.Cells.z6;
+import org.telegram.ui.Components.cr;
+import org.telegram.ui.Components.em0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.xn;
+import org.telegram.ui.Components.un;
 import w7.z5;
-public abstract class e extends im0 {
+public abstract class e extends em0 {
     public final boolean E;
     public int F;
     public final boolean G;
@@ -41,19 +41,19 @@ public abstract class e extends im0 {
     public boolean I;
     public boolean J;
     public boolean K;
-    public final int f10533r = UserConfig.selectedAccount;
-    public final Context f10534s;
+    public final int f11838r = UserConfig.selectedAccount;
+    public final Context f11839s;
     public final int v;
-    public final boolean f10535w;
-    public final a0.h f10536x;
-    public ArrayList f10537y;
+    public final boolean f11840w;
+    public final a0.h f11841x;
+    public ArrayList f11842y;
 
     public e(Context context, int i10, boolean z10, a0.h hVar, int i11) {
         boolean z11;
-        this.f10534s = context;
+        this.f11839s = context;
         this.v = i10;
-        this.f10535w = z10;
-        this.f10536x = hVar;
+        this.f11840w = z10;
+        this.f11841x = hVar;
         if (i11 != 0) {
             z11 = true;
         } else {
@@ -67,7 +67,7 @@ public abstract class e extends im0 {
     public final String F(int i10) {
         ArrayList<String> arrayList;
         if (this.F != 2 && !this.I) {
-            int i11 = this.f10533r;
+            int i11 = this.f11838r;
             int i12 = this.v;
             ContactsController contactsController = ContactsController.getInstance(i11);
             if (i12 == 2) {
@@ -83,15 +83,18 @@ public abstract class e extends im0 {
                 if (S >= 0 && S < arrayList.size()) {
                     return arrayList.get(S);
                 }
+                return null;
             } else if (S > 0 && S <= arrayList.size()) {
                 return arrayList.get(S - 1);
+            } else {
+                return null;
             }
         }
         return null;
     }
 
     @Override
-    public final void G(mm0 mm0Var, float f7, int[] iArr) {
+    public final void G(im0 im0Var, float f7, int[] iArr) {
         iArr[0] = (int) (h() * f7);
         iArr[1] = 0;
     }
@@ -112,7 +115,7 @@ public abstract class e extends im0 {
         ArrayList<String> arrayList;
         int i12;
         boolean z10 = this.K;
-        int i13 = this.f10533r;
+        int i13 = this.f11838r;
         if (z10 && i10 == 1 && i11 > 1 && i11 - 2 < ContactsController.getInstance(i13).phoneBookContacts.size()) {
             return ContactsController.getInstance(i13).phoneBookContacts.get(i12);
         }
@@ -145,10 +148,10 @@ public abstract class e extends im0 {
         } else {
             if (this.F == 2) {
                 if (i10 == 1) {
-                    if (i11 >= this.f10537y.size()) {
+                    if (i11 >= this.f11842y.size()) {
                         return null;
                     }
-                    return MessagesController.getInstance(i13).getUser(Long.valueOf(((TLRPC.TL_contact) this.f10537y.get(i11)).user_id));
+                    return MessagesController.getInstance(i13).getUser(Long.valueOf(((TLRPC.TL_contact) this.f11842y.get(i11)).user_id));
                 }
             } else {
                 int i15 = i10 - 1;
@@ -160,7 +163,7 @@ public abstract class e extends im0 {
                     return MessagesController.getInstance(i13).getUser(Long.valueOf(arrayList3.get(i11).user_id));
                 }
             }
-            if (!this.f10535w || i11 < 0 || i11 >= ContactsController.getInstance(i13).phoneBookContacts.size()) {
+            if (!this.f11840w || i11 < 0 || i11 >= ContactsController.getInstance(i13).phoneBookContacts.size()) {
                 return null;
             }
             return ContactsController.getInstance(i13).phoneBookContacts.get(i11);
@@ -176,7 +179,7 @@ public abstract class e extends im0 {
     public final View T(int i10, View view) {
         ArrayList<String> arrayList;
         View view2;
-        int i11 = this.f10533r;
+        int i11 = this.f11838r;
         int i12 = this.v;
         ContactsController contactsController = ContactsController.getInstance(i11);
         if (i12 == 2) {
@@ -191,40 +194,40 @@ public abstract class e extends im0 {
             arrayList = contactsController2.sortedUsersSectionsArray;
         }
         if (view == null) {
-            ?? frameLayout = new FrameLayout(this.f10534s);
+            ?? frameLayout = new FrameLayout(this.f11839s);
             frameLayout.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(64.0f)));
             TextView textView = new TextView(frameLayout.getContext());
-            frameLayout.f21452a = textView;
-            k3.m(22.0f, 1, textView);
-            k3.o(g6.B6, null, false, textView, 17);
+            frameLayout.f22777a = textView;
+            a6.m(22.0f, 1, textView);
+            a6.o(h6.B6, null, false, textView, 17);
             frameLayout.addView(textView, z5.a(-1.0f, 12.0f, 0.0f, 0.0f, 0.0f, -1, 119));
             view2 = frameLayout;
         } else {
             view2 = view;
         }
-        r4 r4Var = (r4) view2;
+        q4 q4Var = (q4) view2;
         if (this.F != 2 && !this.H && !this.I) {
             if (i12 != 0 && !this.E) {
                 if (i10 < arrayList.size()) {
-                    r4Var.setLetter(arrayList.get(i10));
+                    q4Var.setLetter(arrayList.get(i10));
                     return view2;
                 }
-                r4Var.setLetter("");
+                q4Var.setLetter("");
                 return view2;
             } else if (i10 == 0) {
-                r4Var.setLetter("");
+                q4Var.setLetter("");
                 return view2;
             } else {
                 int i13 = i10 - 1;
                 if (i13 < arrayList.size()) {
-                    r4Var.setLetter(arrayList.get(i13));
+                    q4Var.setLetter(arrayList.get(i13));
                     return view2;
                 }
-                r4Var.setLetter("");
+                q4Var.setLetter("");
                 return view2;
             }
         }
-        r4Var.setLetter("");
+        q4Var.setLetter("");
         return view2;
     }
 
@@ -238,7 +241,7 @@ public abstract class e extends im0 {
             }
         } else {
             int i12 = this.v;
-            int i13 = this.f10533r;
+            int i13 = this.f11838r;
             ContactsController contactsController = ContactsController.getInstance(i13);
             if (i12 == 2) {
                 hashMap = contactsController.usersMutualSectionsDict;
@@ -261,7 +264,7 @@ public abstract class e extends im0 {
                     if (i11 >= 1) {
                         return false;
                     }
-                } else if (this.f10535w) {
+                } else if (this.f11840w) {
                     if (i11 >= 2) {
                         return false;
                     }
@@ -270,7 +273,7 @@ public abstract class e extends im0 {
                 }
             } else if (!this.I) {
                 if (this.F == 2) {
-                    if (i10 == 1 && i11 >= this.f10537y.size()) {
+                    if (i10 == 1 && i11 >= this.f11842y.size()) {
                         return false;
                     }
                 } else {
@@ -293,11 +296,11 @@ public abstract class e extends im0 {
         int i12;
         ArrayList<TLRPC.TL_contact> arrayList2;
         float f7;
-        int i13 = b1Var.f44841f;
-        View view = b1Var.f44838a;
+        int i13 = b1Var.f45941f;
+        View view = b1Var.f45938a;
         int i14 = 7;
         boolean z10 = this.E;
-        int i15 = this.f10533r;
+        int i15 = this.f11838r;
         boolean z11 = true;
         if (i13 != 0) {
             if (i13 != 1) {
@@ -305,27 +308,27 @@ public abstract class e extends im0 {
                     if (i13 != 4) {
                         if (i13 != 7) {
                             if (i13 == 8) {
-                                p4 p4Var = (p4) view;
+                                o4 o4Var = (o4) view;
                                 int i16 = i11 - 2;
                                 if (i16 >= 0 && i16 < ContactsController.getInstance(i15).phoneBookContacts.size()) {
-                                    p4Var.f21397f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
-                                    p4Var.h = null;
-                                    p4Var.a();
+                                    o4Var.f22725f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
+                                    o4Var.h = null;
+                                    o4Var.a();
                                     return;
                                 }
                                 return;
                             }
                             return;
                         }
-                        m4 m4Var = (m4) view;
+                        l4 l4Var = (l4) view;
                         if (this.K && i11 == 1 && i10 == 1) {
-                            m4Var.setText(LocaleController.getString(R.string.InviteFriends));
+                            l4Var.setText(LocaleController.getString(R.string.InviteFriends));
                             return;
                         } else if (this.F == 1) {
-                            m4Var.setText(LocaleController.getString(R.string.SortedByName));
+                            l4Var.setText(LocaleController.getString(R.string.SortedByName));
                             return;
                         } else {
-                            m4Var.setText(LocaleController.getString(R.string.SortedByLastSeen));
+                            l4Var.setText(LocaleController.getString(R.string.SortedByLastSeen));
                             return;
                         }
                     }
@@ -337,51 +340,51 @@ public abstract class e extends im0 {
                     view.setPadding(0, AndroidUtilities.dp(f7), 0, AndroidUtilities.dp(18.0f));
                     return;
                 }
-                v3 v3Var = (v3) view;
+                u3 u3Var = (u3) view;
                 int i17 = this.F;
                 if (i17 == 0) {
-                    v3Var.setText(LocaleController.getString(R.string.Contacts));
+                    u3Var.setText(LocaleController.getString(R.string.Contacts));
                     return;
                 } else if (i17 == 1) {
-                    v3Var.setText(LocaleController.getString(R.string.SortedByName));
+                    u3Var.setText(LocaleController.getString(R.string.SortedByName));
                     return;
                 } else {
-                    v3Var.setText(LocaleController.getString(R.string.SortedByLastSeen));
+                    u3Var.setText(LocaleController.getString(R.string.SortedByLastSeen));
                     return;
                 }
             }
-            r8 r8Var = (r8) view;
-            boolean z12 = this.f10535w;
+            q8 q8Var = (q8) view;
+            boolean z12 = this.f11840w;
             if (!z12 && z10) {
-                int i18 = g6.il;
-                r8Var.e(i18, i18);
+                int i18 = h6.il;
+                q8Var.e(i18, i18);
             } else {
-                int i19 = g6.G6;
-                r8Var.e(i19, i19);
+                int i19 = h6.G6;
+                q8Var.e(i19, i19);
             }
             if (i10 == 0) {
                 if (z12) {
                     if (i11 == 0) {
-                        r8Var.p(LocaleController.getString(R.string.InviteFriends), "", false, R.drawable.settings_invite, -14899731, -15431455, false);
+                        q8Var.p(LocaleController.getString(R.string.InviteFriends), "", false, R.drawable.settings_invite, -14899731, -15431455, false);
                         return;
                     } else if (i11 == 1) {
-                        r8Var.p(LocaleController.getString(R.string.RecentCalls), "", false, R.drawable.settings_calls, -11154873, -14175180, false);
+                        q8Var.p(LocaleController.getString(R.string.RecentCalls), "", false, R.drawable.settings_calls, -11154873, -14175180, false);
                         return;
                     } else {
                         return;
                     }
                 } else if (z10) {
                     if (this.G) {
-                        r8Var.m(R.drawable.msg_link2, LocaleController.getString(R.string.ChannelInviteViaLink), false);
+                        q8Var.m(R.drawable.msg_link2, LocaleController.getString(R.string.ChannelInviteViaLink), false);
                         return;
                     }
-                    r8Var.m(R.drawable.msg_link2, LocaleController.getString(R.string.InviteToGroupByLink), false);
+                    q8Var.m(R.drawable.msg_link2, LocaleController.getString(R.string.InviteToGroupByLink), false);
                     return;
                 } else if (i11 == 0) {
-                    r8Var.p(LocaleController.getString(R.string.NewGroup), "", false, R.drawable.settings_group, -14899731, -15431455, false);
+                    q8Var.p(LocaleController.getString(R.string.NewGroup), "", false, R.drawable.settings_group, -14899731, -15431455, false);
                     return;
                 } else if (i11 == 1) {
-                    r8Var.p(LocaleController.getString(R.string.NewChannel), "", false, R.drawable.settings_channel, -11154873, -14175180, false);
+                    q8Var.p(LocaleController.getString(R.string.NewChannel), "", false, R.drawable.settings_channel, -11154873, -14175180, false);
                     return;
                 } else {
                     return;
@@ -390,24 +393,24 @@ public abstract class e extends im0 {
             ContactsController.Contact contact = ContactsController.getInstance(i15).phoneBookContacts.get(i11);
             String str = contact.first_name;
             if (str != null && contact.last_name != null) {
-                r8Var.i(contact.first_name + " " + contact.last_name, false);
+                q8Var.i(contact.first_name + " " + contact.last_name, false);
                 return;
             } else if (str != null && contact.last_name == null) {
-                r8Var.i(str, false);
+                q8Var.i(str, false);
                 return;
             } else {
-                r8Var.i(contact.last_name, false);
+                q8Var.i(contact.last_name, false);
                 return;
             }
         }
-        xa xaVar = (xa) view;
-        xaVar.T.f3328a = false;
+        va vaVar = (va) view;
+        vaVar.T.f6211a = false;
         if (this.F != 2 && !this.H) {
             i14 = 58;
         }
-        xaVar.b(i14, 1);
+        vaVar.b(i14, 1);
         if (this.F == 2) {
-            arrayList2 = this.f10537y;
+            arrayList2 = this.f11842y;
         } else {
             int i20 = this.v;
             ContactsController contactsController = ContactsController.getInstance(i15);
@@ -429,27 +432,27 @@ public abstract class e extends im0 {
             arrayList2 = hashMap.get(arrayList.get(i10 - i12));
         }
         TLRPC.User user = MessagesController.getInstance(i15).getUser(Long.valueOf(arrayList2.get(i11).user_id));
-        xaVar.e(user, null, null, false);
-        if (this.f10536x.h(user.f19063id) < 0) {
+        vaVar.e(user, null, null, false);
+        if (this.f11841x.h(user.f20419id) < 0) {
             z11 = false;
         }
-        xaVar.c(z11, false);
+        vaVar.c(z11, false);
     }
 
     public final void Y(int i10, boolean z10) {
         this.F = i10;
         if (i10 == 2) {
-            if (this.f10537y == null || z10) {
-                int i11 = this.f10533r;
-                this.f10537y = new ArrayList(ContactsController.getInstance(i11).contacts);
+            if (this.f11842y == null || z10) {
+                int i11 = this.f11838r;
+                this.f11842y = new ArrayList(ContactsController.getInstance(i11).contacts);
                 long j10 = UserConfig.getInstance(i11).clientUserId;
-                int size = this.f10537y.size();
+                int size = this.f11842y.size();
                 int i12 = 0;
                 while (true) {
                     if (i12 >= size) {
                         break;
-                    } else if (((TLRPC.TL_contact) this.f10537y.get(i12)).user_id == j10) {
-                        this.f10537y.remove(i12);
+                    } else if (((TLRPC.TL_contact) this.f11842y.get(i12)).user_id == j10) {
+                        this.f11842y.remove(i12);
                         break;
                     } else {
                         i12++;
@@ -463,13 +466,13 @@ public abstract class e extends im0 {
     }
 
     public final void Z() {
-        int i10 = this.f10533r;
-        if (this.f10537y == null) {
+        int i10 = this.f11838r;
+        if (this.f11842y == null) {
             return;
         }
         try {
             int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
-            Collections.sort(this.f10537y, new d(MessagesController.getInstance(i10), currentTime, 0));
+            Collections.sort(this.f11842y, new d(MessagesController.getInstance(i10), currentTime, 0));
             l();
         } catch (Exception e) {
             FileLog.e(e);
@@ -481,7 +484,7 @@ public abstract class e extends im0 {
         View view;
         float f7;
         View view2;
-        Context context = this.f10534s;
+        Context context = this.f11839s;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -490,29 +493,29 @@ public abstract class e extends im0 {
                             if (i10 != 7) {
                                 if (i10 != 8) {
                                     if (i10 != 9) {
-                                        view = new a7(context, (org.telegram.ui.Cells.c1) null);
+                                        view = new z6(context, (org.telegram.ui.Cells.t0) null);
                                     } else {
-                                        View xnVar = new xn(context, 4);
-                                        xnVar.setId(9);
-                                        xnVar.setTag(-33024);
-                                        view2 = xnVar;
+                                        View unVar = new un(context, 4);
+                                        unVar.setId(9);
+                                        unVar.setTag(-33024);
+                                        view2 = unVar;
                                     }
                                 } else {
-                                    view = new p4(context, false);
+                                    view = new o4(context, false);
                                 }
                             } else {
-                                view = new m4(this.f10534s, g6.L6, 21, 14, 5, false, false, null);
+                                view = new l4(this.f11839s, h6.L6, 21, 14, 5, false, false, null);
                             }
                         } else {
-                            FrameLayout vVar = new ah.v(this, context, viewGroup, 3);
-                            vVar.addView(new fr(context), z5.e(-1, -2, 17));
+                            FrameLayout vVar = new ah.v(this, context, viewGroup, 4);
+                            vVar.addView(new cr(context), z5.e(-1, -2, 17));
                             vVar.setLayoutParams(new s4.o0(-1, -2));
                             vVar.setTag(-33024);
                             view2 = vVar;
                         }
                         view = view2;
                     } else {
-                        View d3Var = new d3(context, null);
+                        View c3Var = new c3(context, null);
                         float f10 = 72.0f;
                         if (LocaleController.isRTL) {
                             f7 = 28.0f;
@@ -524,19 +527,19 @@ public abstract class e extends im0 {
                         if (!LocaleController.isRTL) {
                             f10 = 28.0f;
                         }
-                        d3Var.setPadding(dp, dp2, AndroidUtilities.dp(f10), AndroidUtilities.dp(8.0f));
-                        view = d3Var;
+                        c3Var.setPadding(dp, dp2, AndroidUtilities.dp(f10), AndroidUtilities.dp(8.0f));
+                        view = c3Var;
                     }
                 } else {
-                    view = new v3(context, null);
+                    view = new u3(context, null);
                 }
             } else {
-                view = new r8(context);
+                view = new q8(context);
             }
         } else {
-            xa xaVar = new xa(58, 1, context, false);
-            xaVar.setCallCellStyle(58);
-            view = xaVar;
+            va vaVar = new va(58, 1, context, false);
+            vaVar.setCallCellStyle(58);
+            view = vaVar;
         }
         return new s4.b1(view);
     }

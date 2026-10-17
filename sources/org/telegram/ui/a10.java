@@ -1,13 +1,46 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class a10 extends FrameLayout {
-    public org.telegram.ui.Components.bk0 f33717a;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class a10 extends org.telegram.ui.Cells.h7 {
+    public final b10 f35257l0;
+
+    public a10(b10 b10Var, Context context) {
+        super(context, 1, null);
+        this.f35257l0 = b10Var;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(156.0f), 1073741824));
+    public final boolean d(MessageObject messageObject) {
+        ArrayList<MessageObject> arrayList;
+        boolean isVoice = messageObject.isVoice();
+        b10 b10Var = this.f35257l0;
+        if (!isVoice && !messageObject.isRoundVideo()) {
+            if (!messageObject.isMusic()) {
+                return false;
+            }
+            g10 g10Var = b10Var.v;
+            String str = g10Var.Q;
+            long j10 = g10Var.E;
+            long j11 = g10Var.H;
+            MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j10, j11, j11, g10Var.f37107y);
+            g10 g10Var2 = b10Var.v;
+            playlistGlobalSearchParams.endReached = g10Var2.N;
+            playlistGlobalSearchParams.nextSearchRate = g10Var2.v;
+            playlistGlobalSearchParams.totalCount = g10Var2.O;
+            playlistGlobalSearchParams.folderId = g10Var2.J ? 1 : 0;
+            return MediaController.getInstance().setPlaylist(b10Var.v.f37089f, messageObject, 0L, playlistGlobalSearchParams);
+        }
+        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
+        MediaController mediaController = MediaController.getInstance();
+        if (playMessage) {
+            arrayList = b10Var.v.f37089f;
+        } else {
+            arrayList = null;
+        }
+        mediaController.setVoiceMessagesPlaylist(arrayList, false);
+        return playMessage;
     }
 }

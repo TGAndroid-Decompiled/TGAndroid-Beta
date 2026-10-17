@@ -20,10 +20,10 @@ import android.view.accessibility.AccessibilityNodeProvider;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sk;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.yj0;
+import org.telegram.messenger.wh;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.yc;
 public final class e extends View {
     public boolean E;
     public boolean F;
@@ -41,42 +41,42 @@ public final class e extends View {
     public boolean R;
     public org.telegram.ui.Cells.z S;
     public final Paint T;
-    public final yj0 U;
+    public final uj0 U;
     public final Drawable V;
     public final q0 W;
-    public final FabBackgroundDrawable f29817a;
-    public final Paint f29818a0;
-    public final FabBackgroundDrawable f29819b;
-    public ValueAnimator f29820b0;
-    public final Drawable f29821c;
+    public final FabBackgroundDrawable f31422a;
+    public final Paint f31423a0;
+    public final FabBackgroundDrawable f31424b;
+    public ValueAnimator f31425b0;
+    public final Drawable f31426c;
     public final Drawable d;
     public final StaticLayout e;
-    public final StaticLayout f29822f;
+    public final StaticLayout f31427f;
     public final StaticLayout h;
-    public final ad f29823n;
-    public final ad f29824r;
-    public b f29825s;
+    public final yc f31428n;
+    public final yc f31429r;
+    public b f31430s;
     public final int v;
-    public float f29826w;
-    public float f29827x;
-    public boolean f29828y;
+    public float f31431w;
+    public float f31432x;
+    public boolean f31433y;
 
     public e(Activity activity) {
         super(activity);
         Paint paint = new Paint(1);
-        this.f29823n = new ad(this);
-        this.f29824r = new ad(this);
-        this.f29828y = true;
+        this.f31428n = new yc(this);
+        this.f31429r = new yc(this);
+        this.f31433y = true;
         this.E = true;
         this.M = new Rect();
         this.N = new Rect();
         this.T = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f29818a0 = paint2;
+        this.f31423a0 = paint2;
         q0 q0Var = new q0(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(8.0f), 4);
         this.W = q0Var;
         q0Var.h = true;
-        q0Var.f30075i = 0.0f;
+        q0Var.f31677i = 0.0f;
         q0Var.d = 0.0f;
         q0Var.b(0.0d);
         paint2.setColor(-16777216);
@@ -85,10 +85,10 @@ public final class e extends View {
         int dp = AndroidUtilities.dp(60.0f);
         this.v = dp;
         FabBackgroundDrawable fabBackgroundDrawable = new FabBackgroundDrawable();
-        this.f29817a = fabBackgroundDrawable;
+        this.f31422a = fabBackgroundDrawable;
         fabBackgroundDrawable.setColor(-12531895);
         FabBackgroundDrawable fabBackgroundDrawable2 = new FabBackgroundDrawable();
-        this.f29819b = fabBackgroundDrawable2;
+        this.f31424b = fabBackgroundDrawable2;
         fabBackgroundDrawable2.setColor(-1041108);
         fabBackgroundDrawable2.setBounds(0, 0, dp, dp);
         fabBackgroundDrawable.setBounds(0, 0, dp, dp);
@@ -100,21 +100,21 @@ public final class e extends View {
         String string3 = LocaleController.getString(R.string.RetryCall);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
         this.e = new StaticLayout(string, textPaint, (int) textPaint.measureText(string), alignment, 1.0f, 0.0f, false);
-        this.f29822f = new StaticLayout(string2, textPaint, (int) textPaint.measureText(string2), alignment, 1.0f, 0.0f, false);
+        this.f31427f = new StaticLayout(string2, textPaint, (int) textPaint.measureText(string2), alignment, 1.0f, 0.0f, false);
         this.h = new StaticLayout(string3, textPaint, (int) textPaint.measureText(string3), alignment, 1.0f, 0.0f, false);
-        this.f29821c = activity.getDrawable(R.drawable.calls_decline).mutate();
+        this.f31426c = activity.getDrawable(R.drawable.calls_decline).mutate();
         Drawable mutate = activity.getDrawable(R.drawable.ic_close_white).mutate();
         this.d = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
-        yj0 yj0Var = new yj0(R.raw.call_accept, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
-        this.U = yj0Var;
-        yj0Var.K(1);
-        yj0Var.P(90);
-        yj0Var.R(this);
+        uj0 uj0Var = new uj0(R.raw.call_accept, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
+        this.U = uj0Var;
+        uj0Var.K(1);
+        uj0Var.P(90);
+        uj0Var.R(this);
         this.V = activity.getDrawable(R.drawable.calls_video).mutate();
         paint.setColor(-1);
         paint.setAlpha(20);
-        org.telegram.ui.Cells.z i02 = g6.i0(AndroidUtilities.dp(52.0f), 0, i0.a.k(-1, 76));
+        org.telegram.ui.Cells.z i02 = h6.i0(AndroidUtilities.dp(52.0f), 0, i0.b.o(-1, 76));
         this.S = i02;
         i02.setCallback(this);
     }
@@ -127,10 +127,10 @@ public final class e extends View {
 
     @Override
     public AccessibilityNodeProvider getAccessibilityNodeProvider() {
-        if (this.f29825s == null) {
-            this.f29825s = new b(this, this);
+        if (this.f31430s == null) {
+            this.f31430s = new b(this, this);
         }
-        return this.f29825s;
+        return this.f31430s;
     }
 
     @Override
@@ -145,10 +145,10 @@ public final class e extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ValueAnimator valueAnimator = this.f29820b0;
+        ValueAnimator valueAnimator = this.f31425b0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f29820b0 = null;
+            this.f31425b0 = null;
             this.U.stop();
         }
     }
@@ -159,52 +159,52 @@ public final class e extends View {
         float f7;
         Rect rect2;
         if (!this.R) {
-            if (this.f29828y) {
-                float dp = (AndroidUtilities.dp(2.0f) * 0.04f) + this.f29826w;
-                this.f29826w = dp;
+            if (this.f31433y) {
+                float dp = (AndroidUtilities.dp(2.0f) * 0.04f) + this.f31431w;
+                this.f31431w = dp;
                 if (dp > AndroidUtilities.dp(4.0f)) {
-                    this.f29826w = AndroidUtilities.dp(4.0f);
-                    this.f29828y = false;
+                    this.f31431w = AndroidUtilities.dp(4.0f);
+                    this.f31433y = false;
                 }
             } else {
-                float dp2 = this.f29826w - (AndroidUtilities.dp(2.0f) * 0.04f);
-                this.f29826w = dp2;
+                float dp2 = this.f31431w - (AndroidUtilities.dp(2.0f) * 0.04f);
+                this.f31431w = dp2;
                 if (dp2 < 0.0f) {
-                    this.f29826w = 0.0f;
-                    this.f29828y = true;
+                    this.f31431w = 0.0f;
+                    this.f31433y = true;
                 }
             }
             if (this.E) {
-                float dp3 = (AndroidUtilities.dp(4.0f) * 0.03f) + this.f29827x;
-                this.f29827x = dp3;
+                float dp3 = (AndroidUtilities.dp(4.0f) * 0.03f) + this.f31432x;
+                this.f31432x = dp3;
                 if (dp3 > AndroidUtilities.dp(10.0f)) {
-                    this.f29827x = AndroidUtilities.dp(10.0f);
+                    this.f31432x = AndroidUtilities.dp(10.0f);
                     this.E = false;
                 }
             } else {
-                float dp4 = this.f29827x - (AndroidUtilities.dp(5.0f) * 0.03f);
-                this.f29827x = dp4;
+                float dp4 = this.f31432x - (AndroidUtilities.dp(5.0f) * 0.03f);
+                this.f31432x = dp4;
                 if (dp4 < AndroidUtilities.dp(5.0f)) {
-                    this.f29827x = AndroidUtilities.dp(5.0f);
+                    this.f31432x = AndroidUtilities.dp(5.0f);
                     this.E = true;
                 }
             }
             invalidate();
         }
-        this.f29827x = (AndroidUtilities.dp(8.0f) * 0.005f) + this.f29827x;
+        this.f31432x = (AndroidUtilities.dp(8.0f) * 0.005f) + this.f31432x;
         int measuredWidth = getMeasuredWidth();
         int i10 = this.v;
-        this.N.set(org.telegram.messenger.g0.B(46.0f, measuredWidth, i10), AndroidUtilities.dp(40.0f), getMeasuredWidth() - AndroidUtilities.dp(46.0f), AndroidUtilities.dp(40.0f) + i10);
+        this.N.set(org.telegram.messenger.q.B(46.0f, measuredWidth, i10), AndroidUtilities.dp(40.0f), getMeasuredWidth() - AndroidUtilities.dp(46.0f), AndroidUtilities.dp(40.0f) + i10);
         canvas.save();
         canvas.translate(0.0f, AndroidUtilities.dp(40.0f));
         canvas.save();
-        float a2 = this.f29824r.a(0.1f);
+        float a2 = this.f31429r.a(0.1f);
         float f10 = i10;
         float f11 = f10 / 2.0f;
         canvas.scale(a2, a2, rect.centerX(), rect.top + f11);
         canvas.translate(((this.K + getMeasuredWidth()) - AndroidUtilities.dp(46.0f)) - f10, 0.0f);
         boolean z10 = this.R;
-        FabBackgroundDrawable fabBackgroundDrawable = this.f29819b;
+        FabBackgroundDrawable fabBackgroundDrawable = this.f31424b;
         if (z10) {
             f7 = 2.0f;
             canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.T, 31);
@@ -213,17 +213,17 @@ public final class e extends View {
             if (drawable instanceof BitmapDrawable) {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                 if (bitmapDrawable.getBitmap() != null) {
-                    canvas.drawBitmap(bitmapDrawable.getBitmap(), (Rect) null, bitmapDrawable.getBounds(), this.f29818a0);
+                    canvas.drawBitmap(bitmapDrawable.getBitmap(), (Rect) null, bitmapDrawable.getBounds(), this.f31423a0);
                 }
             }
             canvas.restore();
         } else {
             f7 = 2.0f;
             fabBackgroundDrawable.draw(canvas);
-            this.f29821c.draw(canvas);
+            this.f31426c.draw(canvas);
         }
         canvas.save();
-        StaticLayout staticLayout = this.f29822f;
+        StaticLayout staticLayout = this.f31427f;
         canvas.translate(f11 - (staticLayout.getWidth() / f7), AndroidUtilities.dp(4.0f) + i10);
         staticLayout.draw(canvas);
         canvas.restore();
@@ -234,7 +234,7 @@ public final class e extends View {
         canvas.restore();
         this.M.set(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(46.0f) + i10, AndroidUtilities.dp(40.0f) + i10);
         canvas.save();
-        float a10 = this.f29823n.a(0.1f);
+        float a10 = this.f31428n.a(0.1f);
         canvas.scale(a10, a10, rect2.centerX(), rect2.top + f11);
         canvas.translate(this.J + AndroidUtilities.dp(46.0f), 0.0f);
         if (!this.R) {
@@ -243,7 +243,7 @@ public final class e extends View {
             float f12 = (int) f11;
             q0Var.a(canvas, f12, f12, this);
         }
-        this.f29817a.draw(canvas);
+        this.f31422a.draw(canvas);
         if (this.R) {
             canvas.save();
             StaticLayout staticLayout2 = this.h;
@@ -274,9 +274,9 @@ public final class e extends View {
 
     @Override
     public final boolean onHoverEvent(MotionEvent motionEvent) {
-        b bVar = this.f29825s;
+        b bVar = this.f31430s;
         if (bVar != null) {
-            Rect rect = bVar.f29801c;
+            Rect rect = bVar.f31403c;
             int x10 = (int) motionEvent.getX();
             int y3 = (int) motionEvent.getY();
             if (motionEvent.getAction() != 9 && motionEvent.getAction() != 7) {
@@ -285,8 +285,8 @@ public final class e extends View {
                     return true;
                 }
             } else {
-                for (int i10 = 0; i10 < bVar.f29800b; i10++) {
-                    e eVar = bVar.f29771g;
+                for (int i10 = 0; i10 < bVar.f31402b; i10++) {
+                    e eVar = bVar.f31383g;
                     if (i10 == 0) {
                         rect.set(eVar.M);
                     } else if (i10 == 1) {
@@ -312,9 +312,9 @@ public final class e extends View {
         super.onMeasure(i10, i11);
         int i12 = this.v;
         this.L = (getMeasuredWidth() / 2.0f) - ((i12 / 2.0f) + AndroidUtilities.dp(46.0f));
-        int A = sk.A(28.0f, i12, 2);
-        this.f29821c.setBounds(A, A, AndroidUtilities.dp(28.0f) + A, AndroidUtilities.dp(28.0f) + A);
-        this.d.setBounds(A, A, AndroidUtilities.dp(28.0f) + A, AndroidUtilities.dp(28.0f) + A);
+        int B = wh.B(28.0f, i12, 2);
+        this.f31426c.setBounds(B, B, AndroidUtilities.dp(28.0f) + B, AndroidUtilities.dp(28.0f) + B);
+        this.d.setBounds(B, B, AndroidUtilities.dp(28.0f) + B, AndroidUtilities.dp(28.0f) + B);
         Paint paint = this.T;
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         paint.setColor(-1);
@@ -331,7 +331,7 @@ public final class e extends View {
 
     public void setRetryMod(boolean z10) {
         this.R = z10;
-        FabBackgroundDrawable fabBackgroundDrawable = this.f29819b;
+        FabBackgroundDrawable fabBackgroundDrawable = this.f31424b;
         if (z10) {
             fabBackgroundDrawable.setColor(-1);
             return;
@@ -344,12 +344,12 @@ public final class e extends View {
         q0Var.e = true;
         fabBackgroundDrawable.setColor(-1041108);
         ValueAnimator ofInt = ValueAnimator.ofInt(0, 60, 0, 0, 60, 0, 0, 0, 0);
-        this.f29820b0 = ofInt;
+        this.f31425b0 = ofInt;
         ofInt.addUpdateListener(new a(this, 2));
-        this.f29820b0.setDuration(1500L);
-        this.f29820b0.setRepeatMode(1);
-        this.f29820b0.setRepeatCount(-1);
-        this.f29820b0.start();
+        this.f31425b0.setDuration(1500L);
+        this.f31425b0.setRepeatMode(1);
+        this.f31425b0.setRepeatCount(-1);
+        this.f31425b0.start();
     }
 
     @Override

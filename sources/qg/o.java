@@ -1,38 +1,39 @@
 package qg;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-public final class o extends ScrollView {
-    public final LinearLayout f43239a;
-    public final x f43240b;
+import rg.y1;
+public final class o extends y1 {
+    public final y f44607y;
 
-    public o(x xVar, Context context, LinearLayout linearLayout) {
+    public o(y yVar, Context context, Bitmap bitmap) {
         super(context);
-        this.f43240b = xVar;
-        this.f43239a = linearLayout;
-        setWillNotDraw(false);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float y3 = this.f43239a.getY() + AndroidUtilities.dp(1.0f);
-        int dp = AndroidUtilities.dp(36.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((getMeasuredWidth() - dp) / 2.0f, y3, (getMeasuredWidth() + dp) / 2.0f, AndroidUtilities.dp(4.0f) + y3);
-        g6.f19891t0.setColor(-10790053);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), g6.f19891t0);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        ((LinearLayout.LayoutParams) this.f43240b.f43351b.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(24.0f)) * 0.8333333f) + AndroidUtilities.dp(88.0f));
+        this.f44607y = yVar;
+        Paint paint = new Paint(1);
+        this.f45740b = paint;
+        Paint paint2 = new Paint(1);
+        this.f45741c = paint2;
+        Paint paint3 = new Paint(1);
+        this.d = paint3;
+        this.e = 0.5f;
+        this.f45742f = 0.5f;
+        this.h = new Path();
+        this.f45743n = new Rect();
+        this.f45744r = new RectF();
+        this.f45739a = bitmap;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
+        paint.setColor(-1);
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        paint2.setColor(-1711276033);
+        paint3.setStyle(style);
+        paint3.setStrokeWidth(AndroidUtilities.dp(12.0f));
     }
 }

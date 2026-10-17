@@ -1,82 +1,82 @@
 package wc;
 
-import w7.o9;
+import w7.p9;
 public final class a {
-    public static final String[] f47513o = {"34", "37"};
-    public static final String[] f47514p = {"60", "62", "64", "65"};
-    public static final String[] f47515q = {"35"};
-    public static final String[] f47516r = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
-    public static final String[] f47517s = {"4"};
-    public static final String[] f47518t = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55"};
-    public final String f47519a;
-    public final String f47520b;
-    public final Integer f47521c;
+    public static final String[] f48922o = {"34", "37"};
+    public static final String[] f48923p = {"60", "62", "64", "65"};
+    public static final String[] f48924q = {"35"};
+    public static final String[] f48925r = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+    public static final String[] f48926s = {"4"};
+    public static final String[] f48927t = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55"};
+    public final String f48928a;
+    public final String f48929b;
+    public final Integer f48930c;
     public final Integer d;
     public final String e;
-    public final String f47522f;
-    public final String f47523g;
+    public final String f48931f;
+    public final String f48932g;
     public final String h;
-    public final String f47524i;
-    public final String f47525j;
-    public final String f47526k;
-    public String f47527l;
-    public String f47528m;
-    public final String f47529n;
+    public final String f48933i;
+    public final String f48934j;
+    public final String f48935k;
+    public String f48936l;
+    public String f48937m;
+    public final String f48938n;
 
     public a(String str, Integer num, Integer num2, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, String str12, String str13, String str14, String str15) {
-        this.f47519a = o9.e(str == null ? null : str.trim().replaceAll("\\s+|-", ""));
-        this.f47521c = num;
+        this.f48928a = p9.e(str == null ? null : str.trim().replaceAll("\\s+|-", ""));
+        this.f48930c = num;
         this.d = num2;
-        this.f47520b = o9.e(str2);
-        this.e = o9.e(str3);
-        this.f47522f = o9.e(str4);
-        this.f47523g = o9.e(str5);
-        this.h = o9.e(str6);
-        this.f47524i = o9.e(str7);
-        this.f47525j = o9.e(str8);
-        this.f47526k = o9.e(str9);
-        this.f47528m = o9.a(str10) == null ? a() : str10;
-        this.f47527l = o9.e(str11) == null ? b() : str11;
-        o9.e(str12);
-        o9.b(str13);
-        o9.e(str14);
-        this.f47529n = o9.e(str15);
+        this.f48929b = p9.e(str2);
+        this.e = p9.e(str3);
+        this.f48931f = p9.e(str4);
+        this.f48932g = p9.e(str5);
+        this.h = p9.e(str6);
+        this.f48933i = p9.e(str7);
+        this.f48934j = p9.e(str8);
+        this.f48935k = p9.e(str9);
+        this.f48937m = p9.a(str10) == null ? a() : str10;
+        this.f48936l = p9.e(str11) == null ? b() : str11;
+        p9.e(str12);
+        p9.b(str13);
+        p9.e(str14);
+        this.f48938n = p9.e(str15);
     }
 
     public final String a() {
         String str;
-        if (o9.d(this.f47528m)) {
-            String str2 = this.f47519a;
-            if (!o9.d(str2)) {
-                if (o9.c(str2, f47513o)) {
+        if (p9.d(this.f48937m)) {
+            String str2 = this.f48928a;
+            if (!p9.d(str2)) {
+                if (p9.c(str2, f48922o)) {
                     str = "American Express";
-                } else if (o9.c(str2, f47514p)) {
+                } else if (p9.c(str2, f48923p)) {
                     str = "Discover";
-                } else if (o9.c(str2, f47515q)) {
+                } else if (p9.c(str2, f48924q)) {
                     str = "JCB";
-                } else if (o9.c(str2, f47516r)) {
+                } else if (p9.c(str2, f48925r)) {
                     str = "Diners Club";
-                } else if (o9.c(str2, f47517s)) {
+                } else if (p9.c(str2, f48926s)) {
                     str = "Visa";
-                } else if (o9.c(str2, f47518t)) {
+                } else if (p9.c(str2, f48927t)) {
                     str = "MasterCard";
                 } else {
                     str = "Unknown";
                 }
-                this.f47528m = str;
+                this.f48937m = str;
             }
         }
-        return this.f47528m;
+        return this.f48937m;
     }
 
     public final String b() {
-        if (!o9.d(this.f47527l)) {
-            return this.f47527l;
+        if (!p9.d(this.f48936l)) {
+            return this.f48936l;
         }
-        String str = this.f47519a;
+        String str = this.f48928a;
         if (str != null && str.length() > 4) {
             String substring = str.substring(str.length() - 4, str.length());
-            this.f47527l = substring;
+            this.f48936l = substring;
             return substring;
         }
         return null;

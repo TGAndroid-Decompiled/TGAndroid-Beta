@@ -1,23 +1,35 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class r4 implements Runnable {
-    public final u4 f39273a;
-
-    public r4(u4 u4Var) {
-        this.f39273a = u4Var;
-    }
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class r4 extends org.telegram.ui.ActionBar.n2 {
+    public org.telegram.ui.Components.im0 f40570a;
+    public q4 f40571b;
 
     @Override
-    public final void run() {
-        ?? m2Var = new org.telegram.ui.ActionBar.m2(null);
-        m2Var.N = new a0.h();
-        m2Var.O = new ArrayList();
-        m2Var.f32609x = 1;
-        m2Var.G = false;
-        u4 u4Var = this.f39273a;
-        m2Var.R = u4Var.U();
-        m2Var.f32605n = new b1(this, 2);
-        u4Var.presentFragment((org.telegram.ui.ActionBar.m2) m2Var);
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.AudioRecorderSettings));
+        this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 22));
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20928a7, false));
+        this.fragmentView = frameLayout;
+        org.telegram.ui.Components.im0 im0Var = new org.telegram.ui.Components.im0(context, null);
+        this.f40570a = im0Var;
+        im0Var.p1();
+        this.actionBar.setAdaptiveBackground(this.f40570a);
+        this.f40570a.setLayoutManager(new s4.b0());
+        this.f40570a.setVerticalScrollBarEnabled(false);
+        org.telegram.ui.Components.im0 im0Var2 = this.f40570a;
+        q4 q4Var = new q4(context);
+        this.f40571b = q4Var;
+        im0Var2.setAdapter(q4Var);
+        this.f40570a.setOnItemClickListener(new i(this, 2));
+        frameLayout.addView(this.f40570a, w7.z5.d(-1.0f, -1));
+        return this.fragmentView;
     }
 }

@@ -1,110 +1,145 @@
 package ci;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.text.TextUtils;
-import android.view.MotionEvent;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.l91;
-import org.telegram.ui.Components.ms0;
-import org.telegram.ui.Components.rs0;
-import org.telegram.ui.Components.ss0;
-import org.telegram.ui.Components.xv0;
-public final class a extends l91 {
-    public final int T = 0;
-    public Object U;
-    public final FrameLayout V;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.bs;
+public final class a extends FrameLayout {
+    public final ImageView f5126a;
+    public final org.telegram.ui.Components.p6 f5127b;
+    public final Paint f5128c;
+    public final Paint d;
+    public boolean e;
+    public int f5129f;
+    public float h;
+    public ValueAnimator f5130n;
 
-    public a(ss0 ss0Var, Context context, rs0 rs0Var) {
-        super(context, null);
-        this.V = ss0Var;
-        this.U = rs0Var;
+    public a(Context context, eh.b bVar) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f5128c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.h = 1.0f;
+        w7.b6.a(this);
+        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
+        this.f5127b = p6Var;
+        p6Var.u(-9866632);
+        p6Var.w(AndroidUtilities.dp(9.0f));
+        p6Var.setCallback(this);
+        p6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
+        p6Var.J = true;
+        paint.setColor(-14670806);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        FrameLayout frameLayout = new FrameLayout(context);
+        bh.j jVar = new bh.j();
+        jVar.a(bVar);
+        jVar.f4418g.setColor(-14670806);
+        jVar.invalidateSelf();
+        jVar.f4417f = AndroidUtilities.dp(1.0f);
+        frameLayout.setBackground(jVar);
+        addView(frameLayout, w7.z5.e(40, 40, 17));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(R.drawable.menu_comments);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
+        frameLayout.addView(imageView, w7.z5.e(20, 20, 17));
+        ImageView imageView2 = new ImageView(context);
+        this.f5126a = imageView2;
+        imageView2.setImageResource(R.drawable.menu_comments_arrow);
+        imageView2.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
+        frameLayout.addView(imageView2, w7.z5.e(20, 20, 17));
+        imageView2.setPivotX(AndroidUtilities.dp(10.27f));
+        imageView2.setPivotY(AndroidUtilities.dp(9.58f));
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        if (z11 && this.e == z10) {
+            return;
+        }
+        this.e = z10;
+        float f7 = 180.0f;
+        ImageView imageView = this.f5126a;
+        if (z11) {
+            ViewPropertyAnimator animate = imageView.animate();
+            if (z10) {
+                f7 = 0.0f;
+            }
+            wh.t(animate.rotation(f7), bs.h, 420L);
+            return;
+        }
+        if (z10) {
+            f7 = 0.0f;
+        }
+        imageView.setRotation(f7);
     }
 
     @Override
-    public boolean i(MotionEvent motionEvent) {
-        switch (this.T) {
-            case 0:
-                return !((ms0) this.V).G.C1;
-            default:
-                return super.i(motionEvent);
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+        super.dispatchDraw(canvas);
+        float f7 = this.h;
+        org.telegram.ui.Components.p6 p6Var = this.f5127b;
+        float i10 = p6Var.i() * f7;
+        float max = Math.max(AndroidUtilities.dp(12.0f), p6Var.c() + AndroidUtilities.dp(6.0f));
+        canvas.save();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+        canvas.scale(i10, i10, rectF.centerX(), rectF.centerY());
+        rectF.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.d);
+        rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f5128c);
+        canvas.translate(((max - p6Var.c()) / 2.0f) + rectF.left, AndroidUtilities.dp(7.0f));
+        p6Var.draw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    public void setCount(int i10) {
+        String formatNumber;
+        if (i10 <= 0) {
+            formatNumber = "";
+        } else {
+            formatNumber = LocaleController.formatNumber(i10, ',');
         }
+        this.f5127b.t(formatNumber, true, true);
+        if (this.f5129f != i10) {
+            ValueAnimator valueAnimator = this.f5130n;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f5130n = null;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.f5130n = ofFloat;
+            ofFloat.addUpdateListener(new ah.c0(this, 8));
+            this.f5130n.addListener(new ah.b(this, 5));
+            wh.l(2.5f, this.f5130n);
+            this.f5130n.setDuration(200L);
+            this.f5130n.start();
+            this.f5129f = i10;
+        }
+        invalidate();
     }
 
     @Override
-    public final void w(boolean z10) {
-        switch (this.T) {
-            case 0:
-                ms0 ms0Var = (ms0) this.V;
-                String currentLang = ms0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.U, currentLang)) {
-                    this.U = currentLang;
-                    ms0Var.G.M0();
-                    return;
-                }
-                return;
-            default:
-                ((rs0) this.U).d.K0(((ss0) this.V).f36375n.getAnimatingIndicatorProgress());
-                return;
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f5127b && !super.verifyDrawable(drawable)) {
+            return false;
         }
-    }
-
-    @Override
-    public void x(int i10) {
-        switch (this.T) {
-            case 0:
-                ms0 ms0Var = (ms0) this.V;
-                String currentLang = ms0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.U, currentLang)) {
-                    this.U = currentLang;
-                    ms0Var.G.M0();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void y(int i10, boolean z10) {
-        switch (this.T) {
-            case 1:
-                int i11 = ((ss0) this.V).f36375n.f26308b0.get(i10, -1);
-                xv0 xv0Var = ((rs0) this.U).d;
-                if (i11 <= 0) {
-                    xv0.t(xv0Var, 8, z10);
-                    return;
-                } else {
-                    xv0.t(xv0Var, xv0Var.j1(i11).f30672a, z10);
-                    return;
-                }
-            default:
-                super.y(i10, z10);
-                return;
-        }
-    }
-
-    @Override
-    public final void z(int i10) {
-        switch (this.T) {
-            case 0:
-                ms0 ms0Var = (ms0) this.V;
-                String currentLang = ms0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.U, currentLang)) {
-                    this.U = currentLang;
-                    ms0Var.G.M0();
-                    return;
-                }
-                return;
-            default:
-                ((ss0) this.V).f36375n.f26308b0.get(i10, -1);
-                ((rs0) this.U).d.K0(1.0f);
-                return;
-        }
-    }
-
-    public a(ms0 ms0Var, Context context) {
-        super(context, null);
-        this.V = ms0Var;
+        return true;
     }
 }

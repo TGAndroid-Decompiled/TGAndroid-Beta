@@ -1,94 +1,37 @@
 package u3;
 
-import android.util.SparseArray;
-import c3.a0;
-import c3.b0;
-import c3.c0;
-import c3.j;
-import java.util.Arrays;
-import java.util.List;
-public final class d implements b0 {
-    public final j f46123a;
-    public final SparseArray f46124b;
-    public final long f46125c;
-    public final int d;
+import j$.util.Objects;
+public final class d implements Comparable {
+    public final long f47528a;
+    public final long f47529b;
+    public final long f47530c;
 
-    public d(SparseArray sparseArray, long j10, int i10, long j11, long j12) {
-        j jVar;
-        int i11;
-        this.f46124b = sparseArray;
-        this.f46125c = j10;
-        this.d = i10;
-        List list = (List) sparseArray.get(i10);
-        if (list != null && !list.isEmpty()) {
-            int size = list.size();
-            int[] iArr = new int[size];
-            long[] jArr = new long[size];
-            long[] jArr2 = new long[size];
-            long[] jArr3 = new long[size];
-            int i12 = 0;
-            for (int i13 = 0; i13 < size; i13++) {
-                c cVar = (c) list.get(i13);
-                jArr3[i13] = cVar.f46120a;
-                jArr[i13] = cVar.f46121b;
-            }
-            while (true) {
-                i11 = size - 1;
-                if (i12 >= i11) {
-                    break;
-                }
-                int i14 = i12 + 1;
-                iArr[i12] = (int) (jArr[i14] - jArr[i12]);
-                jArr2[i12] = jArr3[i14] - jArr3[i12];
-                i12 = i14;
-            }
-            int i15 = i11;
-            while (i15 > 0 && jArr3[i15] >= j10) {
-                i15--;
-            }
-            iArr[i15] = (int) ((j11 + j12) - jArr[i15]);
-            jArr2[i15] = j10 - jArr3[i15];
-            if (i15 < i11) {
-                e2.a.l("MatroskaExtractor", "Discarding trailing cue points with timestamps greater than total duration.");
-                int i16 = i15 + 1;
-                iArr = Arrays.copyOf(iArr, i16);
-                jArr = Arrays.copyOf(jArr, i16);
-                jArr2 = Arrays.copyOf(jArr2, i16);
-                jArr3 = Arrays.copyOf(jArr3, i16);
-            }
-            jVar = new j(iArr, jArr, jArr2, jArr3);
-        } else {
-            jVar = null;
-        }
-        this.f46123a = jVar;
+    public d(long j10, long j11, long j12) {
+        this.f47528a = j10;
+        this.f47529b = j11;
+        this.f47530c = j12;
     }
 
     @Override
-    public final boolean d() {
-        List list = (List) this.f46124b.get(this.d);
-        if (list != null && !list.isEmpty()) {
+    public final int compareTo(Object obj) {
+        return Long.compare(this.f47528a, ((d) obj).f47528a);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof d)) {
+            return false;
+        }
+        d dVar = (d) obj;
+        if (this.f47528a == dVar.f47528a && this.f47529b == dVar.f47529b && this.f47530c == dVar.f47530c) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public final boolean e() {
-        return false;
-    }
-
-    @Override
-    public final a0 f(long j10) {
-        j jVar = this.f46123a;
-        if (jVar != null) {
-            return jVar.f(j10);
-        }
-        c0 c0Var = c0.f4222c;
-        return new a0(c0Var, c0Var);
-    }
-
-    @Override
-    public final long h() {
-        return this.f46125c;
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.f47528a), Long.valueOf(this.f47529b), Long.valueOf(this.f47530c));
     }
 }

@@ -1,107 +1,138 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class o4 implements DialogInterface.OnClickListener {
-    public final int f38540a;
-    public final Object f38541b;
+import android.content.Context;
+import android.graphics.Matrix;
+import android.view.TextureView;
+import android.view.View;
+import android.widget.FrameLayout;
+public class o4 extends FrameLayout {
+    public final n4 f39646a;
+    public float f39647b;
+    public int f39648c;
+    public boolean d;
+    public int e;
+    public final Matrix f39649f;
 
-    public o4(Object obj, int i10) {
-        this.f38540a = i10;
-        this.f38541b = obj;
+    public o4(Context context) {
+        super(context);
+        this.f39649f = new Matrix();
+        this.f39648c = 0;
+        this.f39646a = new n4(this, 0);
+    }
+
+    public final void a(float f7, int i10) {
+        if (this.f39647b != f7) {
+            this.f39647b = f7;
+            this.e = i10;
+            requestLayout();
+        }
+    }
+
+    public float getAspectRatio() {
+        return this.f39647b;
+    }
+
+    public int getResizeMode() {
+        return this.f39648c;
+    }
+
+    public int getVideoRotation() {
+        return this.e;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        qi.j jVar;
-        String str;
-        int i11 = 0;
-        switch (this.f38540a) {
-            case 0:
-                q4 q4Var = (q4) this.f38541b;
-                q4Var.getClass();
-                si.b bVar = si.e.f45486c;
-                if (i10 == 0) {
-                    jVar = qi.j.f43409a;
-                } else {
-                    jVar = qi.j.f43410b;
+    public void onMeasure(int i10, int i11) {
+        float f7;
+        float f10;
+        super.onMeasure(i10, i11);
+        if (this.f39647b > 0.0f) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            float f11 = measuredWidth;
+            float f12 = measuredHeight;
+            float f13 = (this.f39647b / (f11 / f12)) - 1.0f;
+            int i12 = (Math.abs(f13) > 0.01f ? 1 : (Math.abs(f13) == 0.01f ? 0 : -1));
+            n4 n4Var = this.f39646a;
+            if (i12 <= 0) {
+                if (!n4Var.f39305b) {
+                    n4Var.f39305b = true;
+                    ((o4) n4Var.f39306c).post(n4Var);
+                    return;
                 }
-                bVar.b(jVar);
-                q4Var.f39058b.m(2);
                 return;
-            case 1:
-                yy yyVar = (yy) this.f38541b;
-                if (i10 == 0) {
-                    yyVar.getMessagesStorage().readAllDialogs(1);
-                    return;
-                } else if (i10 != 1 || yyVar.f42004e0 == null) {
-                    return;
-                } else {
-                    while (true) {
-                        xy[] xyVarArr = yyVar.f42004e0;
-                        if (i11 < xyVarArr.length) {
-                            xy xyVar = xyVarArr[i11];
-                            if (xyVar.f41685s == 0 && xyVar.getVisibility() == 0) {
-                                org.telegram.ui.Cells.s2 O3 = yy.O3(yyVar.f42004e0[i11]);
-                                uy uyVar = yyVar.f42004e0[i11].f41679a;
-                                int i12 = uy.f40506t3;
-                                uyVar.A1(true, O3);
+            }
+            int i13 = this.f39648c;
+            if (i13 != 0) {
+                if (i13 != 1) {
+                    if (i13 != 2) {
+                        if (i13 != 3) {
+                            if (i13 == 4) {
+                                if (f13 > 0.0f) {
+                                    f7 = this.f39647b;
+                                } else {
+                                    f10 = this.f39647b;
+                                }
                             }
-                            i11++;
+                        } else if (f13 <= 0.0f) {
+                            f10 = this.f39647b;
                         } else {
-                            return;
+                            f7 = this.f39647b;
                         }
-                    }
-                }
-                break;
-            case 2:
-                zg0 zg0Var = (zg0) this.f38541b;
-                if (i10 == 0) {
-                    BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
-                    ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
-                    org.telegram.ui.Components.zc a02 = org.telegram.ui.Components.zc.a0(zg0Var.V);
-                    int i13 = R.raw.chats_infotip;
-                    if (BuildVars.LOGS_ENABLED) {
-                        str = "Logs enabled.";
                     } else {
-                        str = "Logs disabled.";
+                        f7 = this.f39647b;
                     }
-                    a02.Q(i13, 36, str).j();
-                    if (BuildVars.LOGS_ENABLED) {
-                        i2.d.x(new StringBuilder("app start time = "), ApplicationLoader.startTime);
-                        try {
-                            FileLog.d("buildVersion = " + ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode);
-                            return;
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                ProfileActivity.H4(zg0Var.V.getParentActivity(), false);
-                return;
-            case 3:
-                sn0 sn0Var = (sn0) this.f38541b;
-                if (i10 == 0) {
-                    sn0Var.f39903w = "male";
-                    sn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
-                    return;
-                } else if (i10 == 1) {
-                    sn0Var.f39903w = "female";
-                    sn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
-                    return;
+                    measuredWidth = (int) (f12 * f7);
                 } else {
-                    sn0Var.getClass();
+                    f10 = this.f39647b;
+                }
+                measuredHeight = (int) (f11 / f10);
+            } else if (f13 > 0.0f) {
+                f10 = this.f39647b;
+                measuredHeight = (int) (f11 / f10);
+            } else {
+                f7 = this.f39647b;
+                measuredWidth = (int) (f12 * f7);
+            }
+            if (!n4Var.f39305b) {
+                n4Var.f39305b = true;
+                ((o4) n4Var.f39306c).post(n4Var);
+            }
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
+            int childCount = getChildCount();
+            for (int i14 = 0; i14 < childCount; i14++) {
+                View childAt = getChildAt(i14);
+                if (childAt instanceof TextureView) {
+                    Matrix matrix = this.f39649f;
+                    matrix.reset();
+                    float width = getWidth() / 2;
+                    float height = getHeight() / 2;
+                    matrix.postRotate(this.e, width, height);
+                    int i15 = this.e;
+                    if (i15 == 90 || i15 == 270) {
+                        float height2 = getHeight() / getWidth();
+                        matrix.postScale(1.0f / height2, height2, width, height);
+                    }
+                    ((TextureView) childAt).setTransform(matrix);
                     return;
                 }
-            default:
-                o91.d0((o91) this.f38541b, i10);
-                return;
+            }
         }
+    }
+
+    public void setDrawingReady(boolean z10) {
+        if (this.d == z10) {
+            return;
+        }
+        this.d = z10;
+    }
+
+    public void setResizeMode(int i10) {
+        if (this.f39648c != i10) {
+            this.f39648c = i10;
+            requestLayout();
+        }
+    }
+
+    public void setAspectRatioListener(m4 m4Var) {
     }
 }

@@ -1,33 +1,33 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class aj0 implements Runnable {
-    public final int f33954a;
-    public final bj0 f33955b;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+public final class aj0 extends yg.h {
+    public boolean J;
+    public final dj0 K;
 
-    public aj0(bj0 bj0Var, int i10) {
-        this.f33954a = i10;
-        this.f33955b = bj0Var;
+    public aj0(dj0 dj0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.K = dj0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33954a) {
-            case 0:
-                this.f33955b.W = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
-            default:
-                this.f33955b.W = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
+        dj0 dj0Var = this.K;
+        dj0Var.f36221l0 = dp;
+        dj0Var.f36220k0.G();
+        if (this.J != dj0Var.isKeyboardVisible()) {
+            boolean isKeyboardVisible = dj0Var.isKeyboardVisible();
+            this.J = isKeyboardVisible;
+            if (isKeyboardVisible) {
+                org.telegram.ui.Components.im0 im0Var = dj0Var.d;
+                li.n nVar = new li.n(dj0Var.getContext(), 2, 0.6f);
+                nVar.f46079a = 1;
+                nVar.f16138p = AndroidUtilities.dp(36.0f);
+                im0Var.getLayoutManager().w0(nVar);
+            }
         }
     }
 }

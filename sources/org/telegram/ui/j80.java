@@ -1,87 +1,126 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.Utilities;
+import android.os.Bundle;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 public final class j80 implements Runnable {
-    public final int f36983a;
-    public final k80 f36984b;
-    public final String f36985c;
+    public final int f38080a = 1;
+    public final LaunchActivity f38081b;
+    public final TLObject f38082c;
+    public final int d;
+    public final String e;
+    public final TLRPC.TL_error f38083f;
+    public final b80 h;
 
-    public j80(k80 k80Var, String str, int i10) {
-        this.f36983a = i10;
-        this.f36984b = k80Var;
-        this.f36985c = str;
+    public j80(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, b80 b80Var) {
+        this.f38081b = launchActivity;
+        this.f38082c = tLObject;
+        this.d = i10;
+        this.e = str;
+        this.f38083f = tL_error;
+        this.h = b80Var;
     }
 
     @Override
     public final void run() {
+        org.telegram.ui.Components.xc a02;
         int i10;
-        switch (this.f36983a) {
+        int i11;
+        String str;
+        int i12 = this.f38080a;
+        b80 b80Var = this.h;
+        TLRPC.TL_error tL_error = this.f38083f;
+        String str2 = this.e;
+        TLObject tLObject = this.f38082c;
+        switch (i12) {
             case 0:
-                Utilities.searchQueue.postRunnable(new j80(this.f36984b, this.f36985c, 1));
-                return;
-            default:
-                k80 k80Var = this.f36984b;
-                String str = this.f36985c;
-                l80 l80Var = k80Var.f37325b;
-                String lowerCase = str.trim().toLowerCase();
-                if (lowerCase.isEmpty()) {
-                    ArrayList arrayList = new ArrayList();
-                    ArrayList arrayList2 = new ArrayList();
-                    l80Var.getClass();
-                    AndroidUtilities.runOnUIThread(new br(l80Var, arrayList, arrayList2, 12));
-                    return;
-                }
-                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-                if (lowerCase.equals(translitString) || translitString.isEmpty()) {
-                    translitString = null;
-                }
-                int i11 = 0;
-                if (translitString != null) {
-                    i10 = 1;
-                } else {
-                    i10 = 0;
-                }
-                int i12 = i10 + 1;
-                String[] strArr = new String[i12];
-                strArr[0] = lowerCase;
-                if (translitString != null) {
-                    strArr[1] = translitString;
-                }
-                ArrayList arrayList3 = new ArrayList();
-                ArrayList arrayList4 = new ArrayList();
-                int i13 = 0;
-                while (i13 < l80Var.f37656n.f38843w.size()) {
-                    ContactsController.Contact contact = (ContactsController.Contact) l80Var.f37656n.f38843w.get(i13);
-                    String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
-                    String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
-                    if (lowerCase2.equals(translitString2)) {
-                        translitString2 = null;
+                Pattern pattern = LaunchActivity.C1;
+                if (tL_error != null) {
+                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                    if (U != null) {
+                        if ("STARGIFT_ALREADY_BURNED".equalsIgnoreCase(tL_error.text)) {
+                            a02 = org.telegram.ui.Components.xc.a0(U);
+                            i10 = R.raw.fire_on;
+                            i11 = R.string.UniqueGiftNotFoundBurned;
+                        } else {
+                            a02 = org.telegram.ui.Components.xc.a0(U);
+                            i10 = R.raw.error;
+                            i11 = R.string.UniqueGiftNotFound;
+                        }
+                        org.telegram.messenger.q.q(i11, a02, i10, 36);
+                    } else {
+                        return;
                     }
-                    int i14 = i11;
-                    int i15 = i14;
-                    while (true) {
-                        if (i14 < i12) {
-                            String str2 = strArr[i14];
-                            if (lowerCase2.startsWith(str2) || org.telegram.messenger.g0.w(" ", str2, lowerCase2) || (translitString2 != null && (translitString2.startsWith(str2) || org.telegram.messenger.g0.w(" ", str2, translitString2)))) {
-                                i15 = 1;
-                            }
-                            if (i15 != 0) {
-                                arrayList4.add(AndroidUtilities.generateSearchName(contact.first_name, contact.last_name, str2));
-                                arrayList3.add(contact);
+                } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
+                    TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
+                    LaunchActivity launchActivity = this.f38081b;
+                    MessagesController.getInstance(launchActivity.O).putUsers(tL_payments_uniqueStarGift.users, false);
+                    MessagesController.getInstance(launchActivity.O).putChats(tL_payments_uniqueStarGift.chats, false);
+                    org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
+                    TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
+                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                        ai.k7 k7Var = new ai.k7(launchActivity, this.d, 0L, null, null);
+                        k7Var.A2(str2, (TL_stars.TL_starGiftUnique) starGift, null);
+                        if (U2 != null) {
+                            if (U2.getLastStoryViewer() != null && U2.getLastStoryViewer().K0) {
+                                U2.getLastStoryViewer().showDialog(k7Var);
                             } else {
-                                i14++;
+                                U2.showDialog(k7Var);
                             }
+                        } else {
+                            k7Var.show();
                         }
                     }
-                    i13++;
-                    i11 = 0;
                 }
-                AndroidUtilities.runOnUIThread(new br(l80Var, arrayList3, arrayList4, 12));
-                return;
+                try {
+                    b80Var.run();
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            default:
+                Pattern pattern2 = LaunchActivity.C1;
+                boolean z10 = tLObject instanceof TLRPC.User;
+                LaunchActivity launchActivity2 = this.f38081b;
+                if (z10) {
+                    TLRPC.User user = (TLRPC.User) tLObject;
+                    MessagesController.getInstance(this.d).putUser(user, false);
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("user_id", user.f20419id);
+                    launchActivity2.t0(new sn(bundle));
+                } else {
+                    StringBuilder v = a1.g.v("cant import contact token. token=", str2, " err=");
+                    if (tL_error == null) {
+                        str = null;
+                    } else {
+                        str = tL_error.text;
+                    }
+                    v.append(str);
+                    FileLog.e(v.toString());
+                    org.telegram.messenger.wh.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0((org.telegram.ui.ActionBar.n2) i0.a.h(1, launchActivity2.f33149d0)), null);
+                }
+                try {
+                    b80Var.run();
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
         }
+    }
+
+    public j80(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, b80 b80Var) {
+        this.f38081b = launchActivity;
+        this.f38083f = tL_error;
+        this.f38082c = tLObject;
+        this.d = i10;
+        this.e = str;
+        this.h = b80Var;
     }
 }

@@ -1,145 +1,142 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class v60 extends org.telegram.ui.Components.mm0 {
-    public final int V2;
-    public final Object W2;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class v60 extends org.telegram.ui.Components.hm0 {
+    public final Context f42136c;
+    public final w60 d;
 
-    public v60(Object obj, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
-        super(context, c6Var);
-        this.V2 = i10;
-        this.W2 = obj;
+    public v60(w60 w60Var, Context context) {
+        this.d = w60Var;
+        this.f42136c = context;
     }
 
     @Override
-    public boolean H0(View view, float f7, float f10) {
-        switch (this.V2) {
-            case 3:
-                ((zh.r0) this.W2).getClass();
-                return true;
-            default:
-                return super.H0(view, f7, f10);
+    public final boolean D(s4.b1 b1Var) {
+        int b10 = b1Var.b();
+        w60 w60Var = this.d;
+        if (b10 != w60Var.f42372r && b10 != w60Var.f42371n && b10 != w60Var.f42373s && b10 != 0) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public Integer W0(int i10) {
-        int i11;
-        switch (this.V2) {
-            case 2:
-                i11 = ((SessionsActivity) this.W2).terminateAllSessionsRow;
-                org.telegram.ui.ActionBar.c6 c6Var = this.f27148n2;
-                if (i10 == i11) {
-                    return Integer.valueOf(org.telegram.ui.ActionBar.g6.m1(0.1f, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19822p7, c6Var)));
-                }
-                return Integer.valueOf(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19690i6, c6Var));
-            default:
-                return super.W0(i10);
+    public final int h() {
+        w60 w60Var = this.d;
+        if (w60Var.e) {
+            return 0;
         }
+        return w60Var.f42374w;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.k kVar;
-        ArrayList arrayList;
-        View view;
-        switch (this.V2) {
-            case 0:
-                super.dispatchDraw(canvas);
-                x60 x60Var = (x60) this.W2;
-                if (x60Var.f41446z0 != null && x60Var.A0 >= 1.0f) {
-                    canvas.save();
-                    int measuredHeight = x60Var.f41446z0.getMeasuredHeight();
-                    kVar = ((org.telegram.ui.ActionBar.m2) x60Var).actionBar;
-                    canvas.translate(0.0f, -(measuredHeight - kVar.getMeasuredHeight()));
-                    x60Var.f41446z0.draw(canvas);
-                    canvas.restore();
-                    return;
+    public final int j(int i10) {
+        w60 w60Var = this.d;
+        if (i10 != w60Var.f42371n && i10 != w60Var.f42373s && i10 != w60Var.f42372r) {
+            if (i10 != w60Var.v && i10 != w60Var.h) {
+                if (i10 == 0) {
+                    return 2;
                 }
-                return;
-            case 1:
-                dq0 dq0Var = (dq0) this.W2;
-                Paint paint = dq0Var.f35125w;
-                RectF rectF = dq0Var.f35124s;
-                RectF rectF2 = dq0Var.f35123r;
-                RectF rectF3 = dq0Var.f35122n;
-                s4.b0 b0Var = dq0Var.f35119b;
-                if (!dq0Var.f35121f.isEmpty()) {
-                    float d = dq0Var.e.d(dq0Var.d, false);
-                    double d10 = d;
-                    int clamp = Utilities.clamp((int) Math.floor(d10), arrayList.size() - 1, 0);
-                    int clamp2 = Utilities.clamp((int) Math.ceil(d10), arrayList.size() - 1, 0);
-                    View m10 = b0Var.m(clamp);
-                    View m11 = b0Var.m(clamp2);
-                    if (m10 != null || m11 != null) {
-                        if (m10 != null) {
-                            view = m10;
-                        } else {
-                            view = m11;
-                        }
-                        rectF3.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                        if (m11 != null) {
-                            m10 = m11;
-                        }
-                        rectF2.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
-                        AndroidUtilities.lerp(rectF3, rectF2, d - clamp, rectF);
-                        paint.setColor(dq0Var.f35126x);
-                        float height = rectF.height() / 2.0f;
-                        canvas.drawRoundRect(rectF, height, height, paint);
-                        super.dispatchDraw(canvas);
-                        return;
+                return 0;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        String str;
+        int i11 = b1Var.f45941f;
+        View view = b1Var.f45938a;
+        w60 w60Var = this.d;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 == 2) {
+                    org.telegram.ui.Cells.o8 o8Var = (org.telegram.ui.Cells.o8) view;
+                    TLRPC.TL_chatInviteExported tL_chatInviteExported = w60Var.f42370f;
+                    if (tL_chatInviteExported != null) {
+                        str = tL_chatInviteExported.link;
+                    } else {
+                        str = "error";
                     }
-                }
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate() {
-        switch (this.V2) {
-            case 1:
-                super.invalidate();
-                op0 op0Var = ((dq0) this.W2).F;
-                if (op0Var != null) {
-                    op0Var.run();
+                    o8Var.f22730a.setText(str);
+                    o8Var.setWillNotDraw(true);
                     return;
                 }
                 return;
-            default:
-                super.invalidate();
+            }
+            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
+            int i12 = w60Var.v;
+            Context context = this.f42136c;
+            if (i10 == i12) {
+                d9Var.setText("");
+                d9Var.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20948b7));
                 return;
+            } else if (i10 == w60Var.h) {
+                TLRPC.Chat chat = w60Var.getMessagesController().getChat(Long.valueOf(w60Var.d));
+                if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                    d9Var.setText(LocaleController.getString(R.string.ChannelLinkInfo));
+                } else {
+                    d9Var.setText(LocaleController.getString(R.string.LinkInfo));
+                }
+                d9Var.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.f20948b7));
+                return;
+            } else {
+                return;
+            }
+        }
+        org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) view;
+        if (i10 == w60Var.f42371n) {
+            baVar.b(LocaleController.getString(R.string.CopyLink), true);
+        } else if (i10 == w60Var.f42373s) {
+            baVar.b(LocaleController.getString(R.string.ShareLink), false);
+        } else if (i10 == w60Var.f42372r) {
+            baVar.b(LocaleController.getString(R.string.RevokeLink), true);
         }
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.V2) {
-            case 3:
-                zh.r0 r0Var = (zh.r0) this.W2;
-                r0Var.u();
-                super.onLayout(z10, i10, i11, i12, i13);
-                r0Var.R(2);
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout frameLayout;
+        int i11;
+        Context context = this.f42136c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                ?? frameLayout2 = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout2.f22730a = textView;
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
+                textView.setTextSize(1, 16.0f);
+                int i12 = 3;
+                if (LocaleController.isRTL) {
+                    i11 = 5;
+                } else {
+                    i11 = 3;
+                }
+                textView.setGravity(i11 | 16);
+                if (LocaleController.isRTL) {
+                    i12 = 5;
+                }
+                frameLayout2.addView(textView, w7.z5.a(-2.0f, 23.0f, 10.0f, 23.0f, 10.0f, -1, i12 | 48));
+                frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+                frameLayout = frameLayout2;
+            } else {
+                frameLayout = new org.telegram.ui.Cells.d9(context);
+            }
+        } else {
+            FrameLayout baVar = new org.telegram.ui.Cells.ba(context);
+            baVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+            frameLayout = baVar;
         }
-    }
-
-    public v60(SessionsActivity sessionsActivity, Context context) {
-        super(context, null);
-        this.V2 = 2;
-        this.W2 = sessionsActivity;
+        return new s4.b1(frameLayout);
     }
 }

@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public abstract class k {
-    public static final Logger f15997a = Logger.getLogger(k.class.getName());
-    public static final HashMap f15998b = new HashMap();
+    public static final Logger f17373a = Logger.getLogger(k.class.getName());
+    public static final HashMap f17374b = new HashMap();
 
     static {
         HashSet hashSet = new HashSet();
@@ -30,14 +30,14 @@ public abstract class k {
             f fVar = (f) cls.getAnnotation(f.class);
             int[] tags = fVar.tags();
             int objectTypeIndication = fVar.objectTypeIndication();
-            Map map = (Map) f15998b.get(Integer.valueOf(objectTypeIndication));
+            Map map = (Map) f17374b.get(Integer.valueOf(objectTypeIndication));
             if (map == null) {
                 map = new HashMap();
             }
             for (int i10 : tags) {
                 map.put(Integer.valueOf(i10), cls);
             }
-            f15998b.put(Integer.valueOf(objectTypeIndication), map);
+            f17374b.put(Integer.valueOf(objectTypeIndication), map);
         }
     }
 
@@ -45,13 +45,13 @@ public abstract class k {
         b bVar;
         int k10 = e5.b.k(byteBuffer);
         Integer valueOf = Integer.valueOf(i10);
-        HashMap hashMap = f15998b;
+        HashMap hashMap = f17374b;
         Map map = (Map) hashMap.get(valueOf);
         if (map == null) {
             map = (Map) hashMap.get(-1);
         }
         Class cls = (Class) map.get(Integer.valueOf(k10));
-        Logger logger = f15997a;
+        Logger logger = f17373a;
         if (cls != null && !cls.isInterface() && !Modifier.isAbstract(cls.getModifiers())) {
             try {
                 bVar = (b) cls.newInstance();
@@ -63,20 +63,20 @@ public abstract class k {
             logger.warning("No ObjectDescriptor found for objectTypeIndication " + Integer.toHexString(i10) + " and tag " + Integer.toHexString(k10) + " found: " + cls);
             bVar = new Object();
         }
-        bVar.f15974a = k10;
+        bVar.f17350a = k10;
         int a2 = e5.b.a(byteBuffer.get());
-        bVar.f15975b = a2 & 127;
+        bVar.f17351b = a2 & 127;
         int i11 = 1;
         while ((a2 >>> 7) == 1) {
             a2 = e5.b.a(byteBuffer.get());
             i11++;
-            bVar.f15975b = (bVar.f15975b << 7) | (a2 & 127);
+            bVar.f17351b = (bVar.f17351b << 7) | (a2 & 127);
         }
-        bVar.f15976c = i11;
+        bVar.f17352c = i11;
         ByteBuffer slice = byteBuffer.slice();
-        slice.limit(bVar.f15975b);
+        slice.limit(bVar.f17351b);
         bVar.b(slice);
-        byteBuffer.position(byteBuffer.position() + bVar.f15975b);
+        byteBuffer.position(byteBuffer.position() + bVar.f17351b);
         return bVar;
     }
 }

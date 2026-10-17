@@ -1,161 +1,153 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-public final class y71 extends TextureView implements TextureView.SurfaceTextureListener {
-    public i81 f31175a;
-    public h00 f31176b;
-    public final il0 f31177c;
-    public int d;
-    public int e;
-    public di.j8 f31178f;
-    public x71 h;
-    public int f31179n;
-    public int f31180r;
-    public la f31181s;
+import android.net.Uri;
+import java.io.File;
+import java.net.URLEncoder;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class y71 {
+    public int f32557a;
+    public boolean f32558b;
+    public long f32559c;
+    public Uri d;
+    public long e;
+    public Uri f32560f;
+    public TLRPC.Document f32561g;
+    public TLRPC.Document h;
+    public int f32562i;
+    public int f32563j;
+    public long f32564k;
+    public double f32565l;
+    public String f32566m;
 
-    public y71(Context context, i81 i81Var) {
-        super(context);
-        this.f31177c = new Object();
-        this.f31175a = i81Var;
-        setSurfaceTextureListener(this);
-    }
-
-    public final void a(float f7, float f10, float f11, float f12) {
-        il0 il0Var = this.f31177c;
-        il0Var.f25653a = f7;
-        il0Var.f25654b = f10;
-        il0Var.f25655c = f11;
-        il0Var.d = f12;
-    }
-
-    public Bitmap getUiBlurBitmap() {
-        ra raVar;
-        h00 h00Var = this.f31176b;
-        if (h00Var == null || (raVar = h00Var.I) == null) {
-            return null;
+    public static Uri a(int i10, int i11, TLRPC.Document document) {
+        StringBuilder l4 = i0.a.l(i10, "?account=", "&id=");
+        l4.append(document.f20278id);
+        l4.append("&hash=");
+        l4.append(document.access_hash);
+        l4.append("&dc=");
+        l4.append(document.dc_id);
+        l4.append("&size=");
+        l4.append(document.size);
+        l4.append("&mime=");
+        l4.append(URLEncoder.encode(document.mime_type, "UTF-8"));
+        l4.append("&rid=");
+        l4.append(i11);
+        l4.append("&name=");
+        l4.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
+        l4.append("&reference=");
+        byte[] bArr = document.file_reference;
+        if (bArr == null) {
+            bArr = new byte[0];
         }
-        synchronized (raVar.f28481n) {
-            try {
-                if (!raVar.f28484q) {
-                    return null;
-                }
-                return raVar.f28483p;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+        l4.append(Utilities.bytesToHex(bArr));
+        String sb2 = l4.toString();
+        return Uri.parse("tg://" + MessageObject.getFileName(document) + sb2);
     }
 
-    public int getVideoHeight() {
-        return this.e;
-    }
-
-    public int getVideoWidth() {
-        return this.d;
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        int i12;
-        if (this.f31176b == null && surfaceTexture != null && this.f31175a != null) {
-            h00 h00Var = new h00(surfaceTexture, new xv(this, 29), this.f31178f, this.f31181s, i10, i11);
-            this.f31176b = h00Var;
-            h00Var.i(this.f31179n, this.f31180r);
-            h00 h00Var2 = this.f31176b;
-            la laVar = this.f31181s;
-            ra raVar = h00Var2.I;
-            if (raVar != null) {
-                la laVar2 = raVar.f28487t;
-                if (laVar2 != null && laVar2.f26710m != null) {
-                    laVar2.f26710m = null;
+    public static y71 d(int i10, TLRPC.Document document, TLRPC.Document document2, int i11, boolean z10) {
+        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
+        String str;
+        String str2;
+        ?? obj = new Object();
+        int i12 = 0;
+        while (true) {
+            if (i12 < document.attributes.size()) {
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i12);
+                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                    tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentAttribute;
+                    break;
                 }
-                raVar.f28487t = laVar;
-                if (laVar != null && laVar.f26710m != raVar) {
-                    laVar.f26710m = raVar;
-                    laVar.d();
-                }
-            }
-            int i13 = this.d;
-            if (i13 != 0 && (i12 = this.e) != 0) {
-                h00 h00Var3 = this.f31176b;
-                h00Var3.getClass();
-                h00Var3.postRunnable(new d00(h00Var3, i13, i12, 0));
-            }
-            this.f31176b.d(true, true, false);
-            x71 x71Var = this.h;
-            if (x71Var != null) {
-                x71Var.c(this.f31176b);
+                i12++;
+            } else {
+                tL_documentAttributeVideo = null;
+                break;
             }
         }
+        if (tL_documentAttributeVideo != null && (str2 = tL_documentAttributeVideo.video_codec) != null) {
+            str = str2.toLowerCase();
+        } else {
+            str = null;
+        }
+        obj.f32557a = i10;
+        obj.f32561g = document;
+        obj.f32559c = document.f20278id;
+        obj.d = a(i10, i11, document);
+        if (document2 != null) {
+            obj.h = document2;
+            obj.e = document2.f20278id;
+            obj.f32560f = a(i10, i11, document2);
+            File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(document2, null, false, z10);
+            if (pathToAttach != null && pathToAttach.exists()) {
+                obj.f32560f = Uri.fromFile(pathToAttach);
+            } else {
+                File pathToAttach2 = FileLoader.getInstance(i10).getPathToAttach(document2, null, true, z10);
+                if (pathToAttach2 != null && pathToAttach2.exists()) {
+                    obj.f32560f = Uri.fromFile(pathToAttach2);
+                }
+            }
+        }
+        obj.f32566m = str;
+        long j10 = document.size;
+        obj.f32564k = j10;
+        if (tL_documentAttributeVideo != null) {
+            double d = tL_documentAttributeVideo.duration;
+            obj.f32562i = tL_documentAttributeVideo.f20279w;
+            obj.f32563j = tL_documentAttributeVideo.h;
+            obj.f32565l = j10 / d;
+        }
+        File pathToAttach3 = FileLoader.getInstance(i10).getPathToAttach(document, null, false, z10);
+        if (pathToAttach3 != null && pathToAttach3.exists()) {
+            obj.d = Uri.fromFile(pathToAttach3);
+            return obj;
+        }
+        File pathToAttach4 = FileLoader.getInstance(i10).getPathToAttach(document, null, true, z10);
+        if (pathToAttach4 != null && pathToAttach4.exists()) {
+            obj.d = Uri.fromFile(pathToAttach4);
+        }
+        return obj;
     }
 
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        h00 h00Var = this.f31176b;
-        if (h00Var != null) {
-            h00Var.postRunnable(new e00(h00Var, 0));
-            this.f31176b = null;
+    public final boolean b() {
+        Uri uri = this.d;
+        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
             return true;
         }
-        return true;
+        return false;
     }
 
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        h00 h00Var = this.f31176b;
-        if (h00Var != null) {
-            h00Var.postRunnable(new d00(h00Var, i10, i11, 1));
-            this.f31176b.d(false, true, false);
-            this.f31176b.postRunnable(new w71(this, 0));
+    public final boolean c() {
+        Uri uri = this.f32560f;
+        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
+            return true;
         }
+        return false;
     }
 
-    public void setDelegate(x71 x71Var) {
-        this.h = x71Var;
-        h00 h00Var = this.f31176b;
-        if (h00Var != null) {
-            if (x71Var == null) {
-                h00Var.f(null);
+    public final void e(boolean z10) {
+        if (!b() && this.f32561g != null) {
+            File pathToAttach = FileLoader.getInstance(this.f32557a).getPathToAttach(this.f32561g, null, false, z10);
+            if (pathToAttach != null && pathToAttach.exists()) {
+                this.d = Uri.fromFile(pathToAttach);
             } else {
-                x71Var.c(h00Var);
+                File pathToAttach2 = FileLoader.getInstance(this.f32557a).getPathToAttach(this.f32561g, null, true, z10);
+                if (pathToAttach2 != null && pathToAttach2.exists()) {
+                    this.d = Uri.fromFile(pathToAttach2);
+                }
             }
         }
-    }
-
-    public void setHDRInfo(di.j8 j8Var) {
-        this.f31178f = j8Var;
-        h00 h00Var = this.f31176b;
-        if (h00Var != null) {
-            h00Var.postRunnable(new vm(20, h00Var, j8Var));
-        }
-    }
-
-    @Override
-    public void setTransform(Matrix matrix) {
-        super.setTransform(matrix);
-        h00 h00Var = this.f31176b;
-        if (h00Var != null) {
-            int width = getWidth();
-            int height = getHeight();
-            ra raVar = h00Var.I;
-            if (raVar != null) {
-                Matrix matrix2 = raVar.v;
-                matrix.invert(matrix2);
-                float f7 = width;
-                float f10 = height;
-                matrix2.preScale(f7, f10);
-                matrix2.postScale(1.0f / f7, 1.0f / f10);
-                raVar.c(matrix2);
-                h00Var.d(false, false, false);
+        if (!c() && this.h != null) {
+            File pathToAttach3 = FileLoader.getInstance(this.f32557a).getPathToAttach(this.h, null, false, z10);
+            if (pathToAttach3 != null && pathToAttach3.exists()) {
+                this.f32560f = Uri.fromFile(pathToAttach3);
+                return;
+            }
+            File pathToAttach4 = FileLoader.getInstance(this.f32557a).getPathToAttach(this.h, null, true, z10);
+            if (pathToAttach4 != null && pathToAttach4.exists()) {
+                this.f32560f = Uri.fromFile(pathToAttach4);
             }
         }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

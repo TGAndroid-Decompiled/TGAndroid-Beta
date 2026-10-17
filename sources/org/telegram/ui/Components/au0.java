@@ -1,18 +1,32 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class au0 extends ir0 {
-    public final org.telegram.ui.ActionBar.m2 f23307b1;
+public final class au0 extends pv0 {
+    public final sv0 G;
 
-    public au0(Context context, String str, String str2, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.ActionBar.m2 m2Var) {
-        super(context, null, str, false, str2, false, c6Var);
-        this.f23307b1 = m2Var;
+    public au0(sv0 sv0Var, Context context) {
+        super(sv0Var, context, 0, false);
+        this.G = sv0Var;
     }
 
     @Override
-    public final void S0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.gm(this.f23307b1, hVar, i10, 16), 100L);
+    public final void l() {
+        boolean z10;
+        super.l();
+        sv0 sv0Var = this.G;
+        lu0 W = sv0Var.W(8);
+        if (W != null && W.f28332r.getVisibility() == 0) {
+            sv0Var.f30349d0.l();
+        }
+        if (W != null) {
+            ct0 ct0Var = W.f28334w;
+            ci.a7 a7Var = this.f29435s;
+            if (a7Var != null && (a7Var.k() || (sv0Var.j0() && this.f29435s.g() > 0))) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            ct0Var.e(z10, true);
+        }
     }
 }

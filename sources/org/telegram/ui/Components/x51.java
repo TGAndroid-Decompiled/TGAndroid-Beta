@@ -1,41 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-public final class x51 extends yn0 {
-    public final i61 h;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class x51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f32325a;
+    public int f32326b;
+    public final int f32327c;
+    public final Object d;
 
-    public x51(i61 i61Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, 14.0f, c6Var);
-        this.h = i61Var;
+    public x51(org.telegram.ui.ru ruVar, int i10, int i11) {
+        this.f32325a = 1;
+        this.d = ruVar;
+        this.f32326b = i10;
+        this.f32327c = i11;
     }
 
     @Override
-    public final void a(String str) {
-        hg.e2 e2Var = this.h.v;
-        hg.c2 c2Var = e2Var.S;
-        int i10 = e2Var.f10545c;
-        if (e2Var.N != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.N, true);
-            e2Var.N = 0;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f32325a) {
+            case 0:
+                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f32327c);
+                b61 b61Var = (b61) this.d;
+                b61Var.N = true;
+                b61Var.f24816n.scrollBy(0, floatValue - this.f32326b);
+                b61Var.N = false;
+                this.f32326b = floatValue;
+                return;
+            default:
+                ((org.telegram.ui.ru) this.d).f40814c.d.setColorFilter(new PorterDuffColorFilter(i0.b.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f32326b, this.f32327c), PorterDuff.Mode.SRC_IN));
+                return;
         }
-        if (e2Var.O != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.O, true);
-            e2Var.O = 0;
-        }
-        if (TextUtils.isEmpty(str)) {
-            e2Var.R = null;
-            e2Var.F.clear();
-            e2Var.I.clear();
-            e2Var.E.clear();
-            e2Var.e.b(false);
-            e2Var.l();
-        } else {
-            e2Var.R = str.toLowerCase();
-        }
-        AndroidUtilities.cancelRunOnUIThread(c2Var);
-        AndroidUtilities.runOnUIThread(c2Var, 300L);
+    }
+
+    public x51(b61 b61Var, int i10) {
+        this.f32325a = 0;
+        this.d = b61Var;
+        this.f32327c = i10;
+        this.f32326b = 0;
     }
 }

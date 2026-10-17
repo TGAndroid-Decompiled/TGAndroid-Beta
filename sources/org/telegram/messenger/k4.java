@@ -1,25 +1,16 @@
 package org.telegram.messenger;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-public final class k4 implements OnCompleteListener {
-    public final int f17356a;
-    public final q0.a f17357b;
+import java.util.List;
+import org.telegram.messenger.TelegramMediaSession;
+public final class k4 implements TelegramMediaSession.BrowseChildrenCallback {
+    public final Runnable f18754a;
 
-    public k4(q0.a aVar, int i10) {
-        this.f17356a = i10;
-        this.f17357b = aVar;
+    public k4(Runnable runnable) {
+        this.f18754a = runnable;
     }
 
     @Override
-    public void onComplete(Task task) {
-        switch (this.f17356a) {
-            case 0:
-                GoogleLocationProvider.b(this.f17357b, task);
-                return;
-            default:
-                GoogleLocationProvider.c(this.f17357b, task);
-                return;
-        }
+    public void onResult(List list) {
+        TelegramMediaSession.d(this.f18754a, list);
     }
 }

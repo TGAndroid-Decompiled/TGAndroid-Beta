@@ -1,13 +1,14 @@
 package h3;
 
-import a4.l;
-import b2.u0;
-import c3.i0;
+import b2.t0;
+import c3.j0;
+import c3.l;
 import c3.o;
 import c3.p;
 import c3.q;
 import c3.s;
 import c3.u;
+import c3.y;
 import e2.x;
 import e9.l0;
 import e9.n0;
@@ -16,28 +17,28 @@ import java.util.List;
 import q3.h;
 public final class b implements o {
     public q e;
-    public i0 f10351f;
-    public u0 h;
-    public u f10353i;
-    public int f10354j;
-    public int f10355k;
-    public a f10356l;
-    public int f10357m;
-    public long f10358n;
-    public final byte[] f10348a = new byte[42];
-    public final x f10349b = new x(new byte[32768], 0);
-    public final boolean f10350c = false;
+    public j0 f11656f;
+    public t0 h;
+    public u f11658i;
+    public int f11659j;
+    public int f11660k;
+    public a f11661l;
+    public int f11662m;
+    public long f11663n;
+    public final byte[] f11653a = new byte[42];
+    public final x f11654b = new x(new byte[32768], 0);
+    public final boolean f11655c = false;
     public final s d = new Object();
-    public int f10352g = 0;
+    public int f11657g = 0;
 
     @Override
     public final boolean a(p pVar) {
-        u0 P = new l(9).P(pVar, h.f43024b, 0);
-        if (P != null) {
-            int length = P.f2402a.length;
+        t0 b10 = new y(0).b(pVar, h.f44392b, 0);
+        if (b10 != null) {
+            int length = b10.f4010a.length;
         }
         x xVar = new x(4);
-        ((c3.l) pVar).j(xVar.f8414a, 0, 4, false);
+        ((l) pVar).j(xVar.f8293a, 0, 4, false);
         if (xVar.C() != 1716281667) {
             return false;
         }
@@ -47,17 +48,17 @@ public final class b implements o {
     @Override
     public final void c(q qVar) {
         this.e = qVar;
-        this.f10351f = qVar.W(0, 1);
-        qVar.D();
+        this.f11656f = qVar.j0(0, 1);
+        qVar.H();
     }
 
     @Override
     public final void d(long j10, long j11) {
         long j12 = 0;
         if (j10 == 0) {
-            this.f10352g = 0;
+            this.f11657g = 0;
         } else {
-            a aVar = this.f10356l;
+            a aVar = this.f11661l;
             if (aVar != null) {
                 aVar.d(j11);
             }
@@ -65,14 +66,14 @@ public final class b implements o {
         if (j11 != 0) {
             j12 = -1;
         }
-        this.f10358n = j12;
-        this.f10357m = 0;
-        this.f10349b.K(0);
+        this.f11663n = j12;
+        this.f11662m = 0;
+        this.f11654b.K(0);
     }
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8595b;
+        l0 l0Var = n0.f8476b;
         return x1.e;
     }
 

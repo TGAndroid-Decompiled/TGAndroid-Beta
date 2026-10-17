@@ -1,98 +1,103 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class jp extends org.telegram.ui.Components.l90 {
-    public final Context f37107w;
-    public final np f37108x;
+public final class jp extends org.telegram.ui.Components.hm0 {
+    public final Context f38237c;
+    public ArrayList d = new ArrayList();
+    public ArrayList e = new ArrayList();
+    public ip f38238f;
+    public final kp h;
 
-    public jp(np npVar, Context context, TLRPC.Chat chat, Context context2) {
-        super(context, chat);
-        this.f37108x = npVar;
-        this.f37107w = context2;
+    public jp(kp kpVar, Context context) {
+        this.h = kpVar;
+        this.f38237c = context;
+    }
+
+    public static void E(jp jpVar, ArrayList arrayList, ArrayList arrayList2) {
+        kp kpVar = jpVar.h;
+        if (!kpVar.N) {
+            return;
+        }
+        jpVar.d = arrayList;
+        jpVar.e = arrayList2;
+        if (kpVar.f38623b.getAdapter() == kpVar.e) {
+            kpVar.d.c();
+        }
+        super.l();
     }
 
     @Override
-    public final boolean a(final boolean z10, org.telegram.ui.Components.i90 i90Var) {
-        TLRPC.ChatFull chatFull;
-        int i10;
-        String str;
-        org.telegram.ui.ActionBar.c6 c6Var;
-        np npVar = this.f37108x;
-        if (npVar.V && (chatFull = npVar.Y) != null && (i10 = chatFull.invitesCount) != 0) {
-            if (npVar.f38433a0) {
-                if (z10) {
-                    str = "ApproveNewMembersEnableForLinksChannel";
-                } else {
-                    str = "ApproveNewMembersDisableForLinksChannel";
-                }
-            } else if (z10) {
-                str = "ApproveNewMembersEnableForLinks";
-            } else {
-                str = "ApproveNewMembersDisableForLinks";
-            }
-            Context context = this.f37107w;
-            c6Var = ((org.telegram.ui.ActionBar.m2) npVar).resourceProvider;
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
-            alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
-            alertDialog$Builder.f19248a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
-            alertDialog$Builder.k(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksApply), new org.telegram.ui.ActionBar.z1(this) {
-                public final jp f36849b;
-
-                {
-                    this.f36849b = this;
-                }
-
-                @Override
-                public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i11) {
-                    switch (r3) {
-                        case 0:
-                            boolean z11 = z10;
-                            jp jpVar = this.f36849b;
-                            jpVar.setJoinRequest(z11);
-                            jpVar.f37108x.W = true;
-                            return;
-                        default:
-                            boolean z12 = z10;
-                            jp jpVar2 = this.f36849b;
-                            jpVar2.setJoinRequest(z12);
-                            jpVar2.f37108x.W = false;
-                            return;
-                    }
-                }
-            });
-            alertDialog$Builder.h(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksDontApply), new org.telegram.ui.ActionBar.z1(this) {
-                public final jp f36849b;
-
-                {
-                    this.f36849b = this;
-                }
-
-                @Override
-                public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i11) {
-                    switch (r3) {
-                        case 0:
-                            boolean z11 = z10;
-                            jp jpVar = this.f36849b;
-                            jpVar.setJoinRequest(z11);
-                            jpVar.f37108x.W = true;
-                            return;
-                        default:
-                            boolean z12 = z10;
-                            jp jpVar2 = this.f36849b;
-                            jpVar2.setJoinRequest(z12);
-                            jpVar2.f37108x.W = false;
-                            return;
-                    }
-                }
-            });
-            npVar.showDialog(alertDialog$Builder.f19248a);
-            return false;
+    public final void A(s4.b1 b1Var) {
+        View view = b1Var.f45938a;
+        if (view instanceof org.telegram.ui.Cells.a5) {
+            ((org.telegram.ui.Cells.a5) view).a();
         }
-        return true;
+    }
+
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        if (b1Var.f45941f != 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void F(String str) {
+        if (this.f38238f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f38238f);
+            this.f38238f = null;
+        }
+        if (TextUtils.isEmpty(str)) {
+            this.d.clear();
+            this.e.clear();
+            super.l();
+            return;
+        }
+        DispatchQueue dispatchQueue = Utilities.searchQueue;
+        ip ipVar = new ip(this, str, 0);
+        this.f38238f = ipVar;
+        dispatchQueue.postRunnable(ipVar, 300L);
+    }
+
+    @Override
+    public final int h() {
+        return this.d.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        TLRPC.Chat chat = (TLRPC.Chat) this.d.get(i10);
+        String publicUsername = ChatObject.getPublicUsername(chat);
+        CharSequence charSequence = (CharSequence) this.e.get(i10);
+        CharSequence charSequence2 = null;
+        if (charSequence != null && !TextUtils.isEmpty(publicUsername)) {
+            if (charSequence.toString().startsWith("@" + publicUsername)) {
+                charSequence2 = charSequence;
+                charSequence = null;
+            }
+        }
+        org.telegram.ui.Cells.a5 a5Var = (org.telegram.ui.Cells.a5) b1Var.f45938a;
+        a5Var.setTag(Integer.valueOf(i10));
+        a5Var.b(chat, charSequence, charSequence2, false);
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(6, 2, this.f38237c, null, false);
+        a5Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+        return new s4.b1(a5Var);
     }
 }

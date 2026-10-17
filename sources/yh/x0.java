@@ -2,15 +2,15 @@ package yh;
 
 import android.view.View;
 public final class x0 implements View.OnAttachStateChangeListener {
-    public final org.telegram.messenger.voip.f f49193a;
+    public final ai.z f50598a;
 
-    public x0(org.telegram.messenger.voip.f fVar) {
-        this.f49193a = fVar;
+    public x0(ai.z zVar) {
+        this.f50598a = zVar;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        this.f49193a.run();
+        this.f50598a.run();
     }
 
     @Override

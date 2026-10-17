@@ -1,29 +1,29 @@
 package ah;
 
 import android.os.Bundle;
-import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.hb1;
+import org.telegram.ui.r91;
 public final class k1 implements Runnable {
-    public final int f818a = 1;
-    public final long f819b;
-    public final m2 f820c;
+    public final int f820a = 1;
+    public final long f821b;
+    public final n2 f822c;
 
-    public k1(long j10, m2 m2Var) {
-        this.f819b = j10;
-        this.f820c = m2Var;
+    public k1(long j10, n2 n2Var) {
+        this.f821b = j10;
+        this.f822c = n2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f818a) {
+        switch (this.f820a) {
             case 0:
-                m2 m2Var = this.f820c;
-                m2Var.presentFragment(hb1.d0(m2Var.getMessagesController().getChat(Long.valueOf(-this.f819b)), true));
+                n2 n2Var = this.f822c;
+                n2Var.presentFragment(r91.d0(n2Var.getMessagesController().getChat(Long.valueOf(-this.f821b)), true));
                 return;
             default:
                 Bundle bundle = new Bundle();
-                long j10 = this.f819b;
+                long j10 = this.f821b;
                 if (j10 >= 0) {
                     bundle.putLong("user_id", j10);
                 } else {
@@ -31,13 +31,13 @@ public final class k1 implements Runnable {
                 }
                 bundle.putBoolean("my_profile", true);
                 bundle.putBoolean("open_gifts", true);
-                this.f820c.presentFragment(new ProfileActivity(bundle, null));
+                this.f822c.presentFragment(new ProfileActivity(bundle, null));
                 return;
         }
     }
 
-    public k1(m2 m2Var, long j10) {
-        this.f820c = m2Var;
-        this.f819b = j10;
+    public k1(n2 n2Var, long j10) {
+        this.f822c = n2Var;
+        this.f821b = j10;
     }
 }

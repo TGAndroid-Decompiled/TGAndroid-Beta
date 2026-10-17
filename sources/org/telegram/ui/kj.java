@@ -1,20 +1,14 @@
 package org.telegram.ui;
+public final class kj extends qh.i {
+    public final sn H;
 
-import android.app.Activity;
-import java.util.ArrayList;
-public final class kj extends org.telegram.ui.Components.ew {
-    public final fo W;
-
-    public kj(fo foVar, org.telegram.ui.ActionBar.m2 m2Var, Activity activity, org.telegram.ui.ActionBar.c6 c6Var, ArrayList arrayList) {
-        super(m2Var, activity, c6Var, arrayList);
-        this.W = foVar;
+    public kj(sn snVar, mf mfVar) {
+        super(mfVar);
+        this.H = snVar;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        fo foVar = this.W;
-        foVar.getClass();
-        foVar.j8(false, true, 0.0f);
+    public final r0.k1 b(r0.k1 k1Var) {
+        return this.H.z8(k1Var);
     }
 }

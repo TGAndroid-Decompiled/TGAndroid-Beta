@@ -1,58 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class qa0 implements org.telegram.ui.Components.qe0, org.telegram.ui.ActionBar.z1 {
-    public final LaunchActivity f39085a;
+import android.content.ComponentName;
+import android.content.Context;
+import org.telegram.messenger.R;
+public final class qa0 {
+    public static final qa0 h;
+    public static final qa0[] f40346n;
+    public final String f40347a;
+    public final int f40348b;
+    public final int f40349c;
+    public final int d;
+    public final boolean e;
+    public ComponentName f40350f;
 
-    public qa0(LaunchActivity launchActivity) {
-        this.f39085a = launchActivity;
+    static {
+        int i10 = R.drawable.icon_background_sa;
+        int i11 = R.mipmap.icon_foreground_sa;
+        qa0 qa0Var = new qa0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
+        h = qa0Var;
+        f40346n = new qa0[]{qa0Var, new qa0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new qa0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new qa0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new qa0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new qa0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
     }
 
-    @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        Pattern pattern = LaunchActivity.B1;
-        MessagesController.getInstance(this.f39085a.O).performLogout(2);
+    public qa0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
+        this.f40347a = str2;
+        this.f40348b = i11;
+        this.f40349c = i12;
+        this.d = i13;
+        this.e = z10;
     }
 
-    @Override
-    public void i(org.telegram.ui.Components.re0 re0Var) {
-        Pattern pattern = LaunchActivity.B1;
-        SharedConfig.isWaitingForPasscodeEnter = false;
-        LaunchActivity launchActivity = this.f39085a;
-        Intent intent = launchActivity.L0;
-        if (intent != null) {
-            launchActivity.X(intent, launchActivity.M0, launchActivity.N0, true, null, false, true);
-            launchActivity.L0 = null;
+    public static qa0 valueOf(String str) {
+        return (qa0) Enum.valueOf(qa0.class, str);
+    }
+
+    public static qa0[] values() {
+        return (qa0[]) f40346n.clone();
+    }
+
+    public final ComponentName a(Context context) {
+        if (this.f40350f == null) {
+            String packageName = context.getPackageName();
+            this.f40350f = new ComponentName(packageName, "org.telegram.messenger." + this.f40347a);
         }
-        launchActivity.f31835q0.getView().setVisibility(0);
-        launchActivity.f31835q0.U(true, true);
-        ActionBarLayout actionBarLayout = launchActivity.f31835q0;
-        org.telegram.ui.ActionBar.m2 lastFragment = actionBarLayout.getLastFragment();
-        if (lastFragment != null) {
-            lastFragment.setTitleOverlayText(actionBarLayout.G0, actionBarLayout.H0, actionBarLayout.I0);
-        }
-        if (AndroidUtilities.isTablet()) {
-            launchActivity.f31837r0.U(true, true);
-            launchActivity.f31839s0.U(true, true);
-            if (launchActivity.f31837r0.getView().getVisibility() == 4) {
-                launchActivity.f31837r0.getView().setVisibility(0);
-            }
-            launchActivity.f31839s0.getView().setVisibility(0);
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, re0Var);
-        try {
-            NotificationsController.getInstance(UserConfig.selectedAccount).showNotifications();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+        return this.f40350f;
     }
 }

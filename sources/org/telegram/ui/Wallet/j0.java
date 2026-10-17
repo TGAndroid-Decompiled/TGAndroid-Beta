@@ -1,153 +1,160 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
-import j$.util.List;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import org.json.JSONObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ds0;
-public final class j0 {
-    public boolean f33050g;
-    public final k0 f33052j;
-    public final x2 f33046a = new x2();
-    public final ArrayList f33047b = new ArrayList();
-    public final ArrayList f33048c = new ArrayList();
-    public final HashSet d = new HashSet();
-    public final HashMap e = new HashMap();
-    public String f33049f = "";
-    public int h = -1;
-    public int f33051i = -1;
+import java.util.Arrays;
+public final class j0 implements AutoCloseable {
+    public final byte[] f34343a;
+    public boolean f34344b;
 
-    public j0(k0 k0Var) {
-        this.f33052j = k0Var;
+    public j0(byte[] bArr) {
+        if (bArr != null) {
+            this.f34343a = (byte[]) bArr.clone();
+            return;
+        }
+        throw new IllegalArgumentException("Missing recovery phrase");
     }
 
-    public static TL_wallet.walletTransaction b(String str, ArrayList arrayList) {
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (TextUtils.equals(((TL_wallet.walletTransaction) arrayList.get(i10)).f19176id, str)) {
-                return (TL_wallet.walletTransaction) arrayList.get(i10);
+    public static j0 d(ArrayList arrayList) {
+        byte[] bytes;
+        int max = Math.max(0, arrayList.size() - 1);
+        ArrayList arrayList2 = new ArrayList();
+        try {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                arrayList2.add(((String) obj).getBytes(StandardCharsets.UTF_8));
+                long length = max + bytes.length;
+                max = (int) length;
+                if (length != max) {
+                    throw new ArithmeticException();
+                }
             }
+            byte[] bArr = new byte[max];
+            int i11 = 0;
+            for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                if (i12 > 0) {
+                    bArr[i11] = 32;
+                    i11++;
+                }
+                byte[] bArr2 = (byte[]) arrayList2.get(i12);
+                System.arraycopy(bArr2, 0, bArr, i11, bArr2.length);
+                i11 += bArr2.length;
+            }
+            j0 j0Var = new j0(bArr);
+            Arrays.fill(bArr, (byte) 0);
+            int size2 = arrayList2.size();
+            int i13 = 0;
+            while (i13 < size2) {
+                Object obj2 = arrayList2.get(i13);
+                i13++;
+                Arrays.fill((byte[]) obj2, (byte) 0);
+            }
+            return j0Var;
+        } catch (Throwable th2) {
+            int size3 = arrayList2.size();
+            int i14 = 0;
+            while (i14 < size3) {
+                Object obj3 = arrayList2.get(i14);
+                i14++;
+                Arrays.fill((byte[]) obj3, (byte) 0);
+            }
+            throw th2;
         }
-        return null;
     }
 
-    public static String g(JSONObject jSONObject) {
-        String optString = jSONObject.optString("lt", "");
-        String optString2 = jSONObject.optString("hash", "");
-        if (!TextUtils.isEmpty(optString) && !TextUtils.isEmpty(optString2)) {
-            return a1.g.D(optString, ":", optString2);
+    public static boolean f(byte b10) {
+        if (b10 != 32 && b10 != 9 && b10 != 10 && b10 != 13 && b10 != 12 && b10 != 11) {
+            return false;
         }
-        return null;
+        return true;
     }
 
     public final void a() {
-        int i10 = this.f33052j.f33092a;
-        if (this.f33051i >= 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f33051i, true);
-            this.f33051i = -1;
-        }
-        if (this.h >= 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(this.h, true);
-            this.h = -1;
-        }
-    }
-
-    public final void c(TL_wallet.walletTransaction wallettransaction) {
-        ArrayList arrayList;
-        int i10 = 0;
-        while (true) {
-            arrayList = this.f33047b;
-            if (i10 >= arrayList.size() || ((TL_wallet.walletTransaction) arrayList.get(i10)).date < wallettransaction.date) {
-                break;
-            }
-            i10++;
-        }
-        arrayList.add(i10, wallettransaction);
-    }
-
-    public final void d() {
-        TL_wallet.getTransactions gettransactions = new TL_wallet.getTransactions();
-        gettransactions.inbound = true;
-        gettransactions.outbound = true;
-        gettransactions.limit = 10;
-        gettransactions.offset = "";
-        this.h = ConnectionsManager.getInstance(this.f33052j.f33092a).sendRequestTyped(gettransactions, new Object(), new i0(this, gettransactions, 0));
-    }
-
-    public final void e() {
-        if (this.f33050g) {
+        if (!this.f34344b) {
             return;
         }
-        TL_wallet.getTransactions gettransactions = new TL_wallet.getTransactions();
-        gettransactions.inbound = true;
-        gettransactions.outbound = true;
-        gettransactions.limit = 10;
-        gettransactions.offset = this.f33049f;
-        this.f33051i = ConnectionsManager.getInstance(this.f33052j.f33092a).sendRequestTyped(gettransactions, new Object(), new i0(this, gettransactions, 1));
+        throw new IllegalStateException("Recovery phrase is closed");
     }
 
-    public final void f() {
-        k0 k0Var = this.f33052j;
-        NotificationCenter.getInstance(k0Var.f33092a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.walletTransactionsUpdate, this, k0Var);
+    public final synchronized j0 b() {
+        a();
+        return new j0(this.f34343a);
     }
 
-    public final void h() {
-        int i10;
+    public final synchronized byte[] c() {
+        a();
+        return (byte[]) this.f34343a.clone();
+    }
+
+    @Override
+    public final synchronized void close() {
+        Arrays.fill(this.f34343a, (byte) 0);
+        this.f34344b = true;
+    }
+
+    public final synchronized boolean e() {
+        boolean z10;
+        if (h() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        return z10;
+    }
+
+    public final synchronized ArrayList g() {
         ArrayList arrayList;
-        TL_wallet.WalletTransactionPeer walletTransactionPeer;
-        String str;
-        k0 k0Var = this.f33052j;
-        ArrayList arrayList2 = k0Var.f33104p;
-        int size = arrayList2.size();
-        while (true) {
-            size--;
-            i10 = 0;
-            arrayList = this.f33047b;
-            if (size < 0) {
-                break;
-            }
-            TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) arrayList2.get(size);
-            if (!TextUtils.isEmpty(wallettransaction.f19176id) || !TextUtils.isEmpty(wallettransaction.tx_hash) || !TextUtils.isEmpty(wallettransaction.messageHash)) {
-                int size2 = arrayList.size();
-                while (i10 < size2) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) obj;
-                    if ((!TextUtils.isEmpty(wallettransaction.f19176id) && TextUtils.equals(wallettransaction.f19176id, wallettransaction2.f19176id)) || (wallettransaction.incoming == wallettransaction2.incoming && (k0.Y(wallettransaction.tx_hash, wallettransaction2.tx_hash) || k0.Y(wallettransaction.messageHash, wallettransaction2.messageHash)))) {
-                        arrayList2.remove(size);
-                        m0 m0Var = (m0) k0Var.f33107s.remove(wallettransaction);
-                        if (m0Var != null) {
-                            m0Var.b();
-                        }
+        try {
+            a();
+            arrayList = new ArrayList();
+            int i10 = 0;
+            while (i10 < this.f34343a.length) {
+                while (true) {
+                    byte[] bArr = this.f34343a;
+                    if (i10 >= bArr.length || !f(bArr[i10])) {
+                        break;
                     }
+                    i10++;
                 }
+                int i11 = i10;
+                while (true) {
+                    byte[] bArr2 = this.f34343a;
+                    if (i11 >= bArr2.length || f(bArr2[i11])) {
+                        break;
+                    }
+                    i11++;
+                }
+                if (i11 > i10) {
+                    arrayList.add(new String(this.f34343a, i10, i11 - i10, StandardCharsets.UTF_8));
+                }
+                i10 = i11;
+            }
+        } catch (Throwable th2) {
+            throw th2;
+        }
+        return arrayList;
+    }
+
+    public final synchronized int h() {
+        int i10;
+        a();
+        i10 = 0;
+        boolean z10 = false;
+        for (byte b10 : this.f34343a) {
+            if (f(b10)) {
+                z10 = false;
+            } else if (!z10) {
+                i10++;
+                z10 = true;
             }
         }
-        ArrayList arrayList3 = this.f33048c;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList2);
-        arrayList3.addAll(arrayList);
-        List.EL.sort(arrayList3, new ds0(7));
-        x2 x2Var = this.f33046a;
-        HashSet hashSet = x2Var.f33581a;
-        HashSet hashSet2 = x2Var.f33581a;
-        HashMap hashMap = x2Var.f33582b;
-        hashSet.clear();
-        hashMap.clear();
-        int size3 = arrayList3.size();
-        while (i10 < size3) {
-            Object obj2 = arrayList3.get(i10);
-            i10++;
-            TL_wallet.walletTransaction wallettransaction3 = (TL_wallet.walletTransaction) obj2;
-            if (wallettransaction3 != null && (walletTransactionPeer = wallettransaction3.peer) != null && (str = walletTransactionPeer.address) != null && !str.isEmpty()) {
-                hashSet2.add(str);
-            }
-        }
-        hashMap.clear();
-        x2Var.b(4, new ArrayList(hashSet2));
+        return i10;
+    }
+
+    public final String toString() {
+        return "SecretPhrase[redacted]";
     }
 }

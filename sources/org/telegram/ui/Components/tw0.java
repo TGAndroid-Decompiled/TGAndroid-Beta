@@ -1,51 +1,18 @@
 package org.telegram.ui.Components;
+public final class tw0 {
+    public float f30721a;
+    public float f30722b;
+    public float f30723c;
+    public float d;
+    public float e;
+    public float f30724f;
+    public float f30725g;
+    public float h;
+    public float f30726i;
+    public int f30727j;
+    public final uw0 f30728k;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-public abstract class tw0 extends LinearLayout {
-    public boolean a() {
-        return this instanceof org.telegram.ui.je0;
-    }
-
-    public boolean b() {
-        return this instanceof org.telegram.ui.je0;
-    }
-
-    public boolean c(boolean z10) {
-        return true;
-    }
-
-    public String getHeaderName() {
-        return "";
-    }
-
-    public void d() {
-    }
-
-    public void f() {
-    }
-
-    public void g() {
-    }
-
-    public void h(String str) {
-    }
-
-    public void i() {
-    }
-
-    public void j() {
-    }
-
-    public void k(Bundle bundle) {
-    }
-
-    public void l(Bundle bundle) {
-    }
-
-    public void n() {
-    }
-
-    public void m(Bundle bundle, boolean z10) {
+    public tw0(uw0 uw0Var) {
+        this.f30728k = uw0Var;
     }
 }

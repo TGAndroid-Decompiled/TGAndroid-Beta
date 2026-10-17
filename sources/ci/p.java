@@ -1,24 +1,32 @@
 package ci;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.c6;
-public final class p extends di.d {
-    public final int f4773h0;
+import android.animation.ValueAnimator;
+import org.telegram.ui.vw;
+public final class p implements Runnable {
+    public final int f5710a;
+    public final q f5711b;
 
-    public p(int i10, Context context, c6 c6Var, boolean z10) {
-        super(context, c6Var, z10);
-        this.f4773h0 = i10;
+    public p(q qVar, int i10) {
+        this.f5710a = i10;
+        this.f5711b = qVar;
     }
 
     @Override
-    public boolean i() {
-        switch (this.f4773h0) {
-            case 1:
-                return false;
-            case 2:
-                return false;
+    public final void run() {
+        switch (this.f5710a) {
+            case 0:
+                vw vwVar = this.f5711b.f5741b0;
+                ValueAnimator valueAnimator = vwVar.f5881j0;
+                if (valueAnimator != null) {
+                    valueAnimator.start();
+                }
+                vwVar.f5882k0 = null;
+                return;
             default:
-                return super.i();
+                q qVar = this.f5711b;
+                qVar.f5747w = false;
+                qVar.invalidate();
+                return;
         }
     }
 }

@@ -1,63 +1,112 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.Window;
-public final class pa1 extends AnimatorListenerAdapter {
-    public final int f38866a;
-    public final ra1 f38867b;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.animation.Interpolator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.ThemeActivity;
+public final class pa1 implements org.telegram.ui.Components.wl0 {
+    public final int f40029a;
+    public final Object f40030b;
+    public final Object f40031c;
+    public final Object d;
 
-    public pa1(ra1 ra1Var, int i10) {
-        this.f38866a = i10;
-        this.f38867b = ra1Var;
+    public pa1(Object obj, Object obj2, Object obj3, int i10) {
+        this.f40029a = i10;
+        this.f40030b = obj;
+        this.f40031c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f38866a) {
+    public final void a(int i10, View view) {
+        org.telegram.ui.ActionBar.g6 B0;
+        Interpolator interpolator;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        int i11 = this.f40029a;
+        Object obj = this.d;
+        Object obj2 = this.f40031c;
+        Object obj3 = this.f40030b;
+        switch (i11) {
             case 0:
-                ra1 ra1Var = this.f38867b;
-                ra1Var.f39438b.setVisibility(4);
-                jg.g gVar = ra1Var.f39438b;
-                gVar.J = false;
-                jg.g gVar2 = ra1Var.f39439c;
-                gVar2.J = true;
-                gVar.f13076y0 = 0;
-                gVar2.f13076y0 = 0;
-                Window window = ra1Var.f39437a;
-                if (window != null) {
-                    window.clearFlags(16);
-                    return;
-                }
-                return;
-            case 1:
-                ra1 ra1Var2 = this.f38867b;
-                jg.g gVar3 = ra1Var2.f39439c;
-                gVar3.setVisibility(4);
-                jg.g gVar4 = ra1Var2.f39438b;
-                gVar4.f13076y0 = 0;
-                gVar3.f13076y0 = 0;
-                gVar4.J = true;
-                gVar3.J = false;
-                if (!(gVar4 instanceof jg.q)) {
-                    gVar4.f13069u0 = true;
-                    gVar4.x((gVar4.G0 * gVar4.f13049g0.f13090k) - jg.g.f13018k1);
-                    gVar4.c(true);
-                    gVar4.invalidate();
+                ya1 ya1Var = (ya1) obj2;
+                ua1 ua1Var = (ua1) obj;
+                ThemeActivity themeActivity = ((wa1) obj3).e;
+                int i12 = themeActivity.f33890f;
+                if (i12 == 1) {
+                    B0 = org.telegram.ui.ActionBar.h6.J;
                 } else {
-                    gVar4.f13069u0 = false;
-                    gVar4.d();
+                    B0 = org.telegram.ui.ActionBar.h6.B0();
                 }
-                Window window2 = ra1Var2.f39437a;
-                if (window2 != null) {
-                    window2.clearFlags(16);
-                    return;
+                org.telegram.ui.ActionBar.g6 g6Var = B0;
+                if (i10 == ya1Var.h() - 1) {
+                    interpolator = null;
+                    if (i12 == 1) {
+                        z13 = true;
+                    } else {
+                        z13 = false;
+                    }
+                    themeActivity.presentFragment(new mc1(g6Var, false, 1, false, z13));
+                } else {
+                    interpolator = null;
+                    org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) ya1Var.e.get(i10);
+                    if (!TextUtils.isEmpty(f6Var.f20839o) && f6Var.f20828a != org.telegram.ui.ActionBar.h6.f21162n) {
+                        org.telegram.ui.ActionBar.c6.a(false);
+                    }
+                    int i13 = g6Var.Y;
+                    int i14 = f6Var.f20828a;
+                    if (i13 != i14) {
+                        NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
+                        int i15 = NotificationCenter.needSetDayNightTheme;
+                        if (i12 == 1) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        globalInstance.lambda$postNotificationNameOnUIThread$1(i15, g6Var, Boolean.valueOf(z12), null, Integer.valueOf(f6Var.f20828a));
+                        org.telegram.ui.ActionBar.c4.p(g6Var, f6Var.f20828a);
+                        org.telegram.ui.ActionBar.h6.G1(themeActivity);
+                    } else {
+                        if (i14 >= 100) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        if (i12 == 1) {
+                            z11 = true;
+                        } else {
+                            z11 = false;
+                        }
+                        themeActivity.presentFragment(new mc1(g6Var, false, 1, z10, z11));
+                    }
+                }
+                int left = view.getLeft();
+                int right = view.getRight();
+                int dp = AndroidUtilities.dp(52.0f);
+                int i16 = left - dp;
+                if (i16 < 0) {
+                    ua1Var.v0(i16, 0, interpolator);
+                } else {
+                    int i17 = right + dp;
+                    if (i17 > ua1Var.getMeasuredWidth()) {
+                        ua1Var.v0(i17 - ua1Var.getMeasuredWidth(), 0, interpolator);
+                    }
+                }
+                int childCount = ua1Var.getChildCount();
+                for (int i18 = 0; i18 < childCount; i18++) {
+                    View childAt = ua1Var.getChildAt(i18);
+                    if (childAt instanceof ThemeActivity.InnerAccentView) {
+                        ((ThemeActivity.InnerAccentView) childAt).a(true);
+                    }
                 }
                 return;
             default:
-                ra1 ra1Var3 = this.f38867b;
-                ra1Var3.f39438b.f13076y0 = 0;
-                ra1Var3.e.setVisibility(8);
+                b11.V((b11) obj3, (Context) obj2, (String) obj, view, i10);
                 return;
         }
     }

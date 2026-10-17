@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import n6.l;
 public final class b implements r9.d {
-    public static final b f46938b = new b(0);
-    public static final b f46939c = new b(1);
-    public final int f46940a;
+    public static final b f48345b = new b(0);
+    public static final b f48346c = new b(1);
+    public final int f48347a;
 
     public b(int i10) {
-        this.f46940a = i10;
+        this.f48347a = i10;
     }
 
     @Override
-    public final Object n2(z5 z5Var) {
-        switch (this.f46940a) {
+    public final Object j2(z5 z5Var) {
+        switch (this.f48347a) {
             case 0:
-                ArrayList arrayList = new ArrayList(z5Var.w(ub.a.class));
+                ArrayList arrayList = new ArrayList(z5Var.y(ub.a.class));
                 l.j("No delegate creator registered.", !arrayList.isEmpty());
-                Collections.sort(arrayList, c.f46941a);
+                Collections.sort(arrayList, c.f48348a);
                 return new e((Context) z5Var.a(Context.class), (ub.a) arrayList.get(0));
             default:
                 return new a((e) z5Var.a(e.class), (rb.d) z5Var.a(rb.d.class));

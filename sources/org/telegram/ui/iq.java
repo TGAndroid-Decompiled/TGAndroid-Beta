@@ -1,79 +1,113 @@
 package org.telegram.ui;
 
+import android.os.SystemClock;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class iq implements org.telegram.ui.ActionBar.z1, MessagesController.ErrorDelegate, MessagesStorage.LongCallback {
-    public final int f36853a;
-    public final tq f36854b;
+public final class iq implements Utilities.Callback2 {
+    public final int f37954a;
+    public final boolean f37955b;
+    public final NotificationCenter.NotificationCenterDelegate f37956c;
+    public final Object d;
 
-    public iq(tq tqVar, int i10) {
-        this.f36853a = i10;
-        this.f36854b = tqVar;
+    public iq(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, boolean z10, int i10) {
+        this.f37954a = i10;
+        this.f37956c = notificationCenterDelegate;
+        this.d = obj;
+        this.f37955b = z10;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        TLRPC.TL_chatAdminRights o02;
-        switch (this.f36853a) {
+    public final void run(Object obj, Object obj2) {
+        String str;
+        switch (this.f37954a) {
             case 0:
-                this.f36854b.r0(true);
-                return;
-            case 1:
-                tq tqVar = this.f36854b;
-                tqVar.t0(true);
-                lq lqVar = new lq(tqVar, 0);
-                if (!tqVar.K && !tqVar.L) {
-                    tqVar.getMessagesController().addUserToChat(tqVar.f40192w.f18916id, tqVar.v, 0, tqVar.Y0, tqVar, true, lqVar, new iq(tqVar, 3));
+                jr jrVar = (jr) this.f37956c;
+                org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) this.d;
+                TLRPC.Updates updates = (TLRPC.Updates) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (updates != null) {
+                    jrVar.getMessagesController().lambda$processUpdates$377(updates, false);
                     return;
                 }
-                MessagesController messagesController = tqVar.getMessagesController();
-                long j10 = tqVar.f40192w.f18916id;
-                TLRPC.User user = tqVar.v;
-                if (tqVar.K) {
-                    o02 = tqVar.M;
-                } else {
-                    o02 = tq.o0(false);
+                jrVar.getClass();
+                if (tL_error != null) {
+                    q8Var.setChecked(this.f37955b);
+                    org.telegram.ui.Components.xc.a0(jrVar).f0(tL_error, false);
+                    return;
                 }
-                messagesController.setUserAdminRole(j10, user, o02, tqVar.S, false, tqVar, tqVar.Z0, tqVar.K, tqVar.Y0, lqVar, new iq(tqVar, 2));
                 return;
-            case 2:
-            case 3:
             default:
-                tq tqVar2 = this.f36854b;
-                tqVar2.getClass();
-                tqVar2.presentFragment(new oh1(6, null));
+                zh.p0 p0Var = (zh.p0) this.f37956c;
+                TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = (TLRPC.TL_exportedNoPaidMessagesToken) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                int i10 = p0Var.f52076a;
+                zh.b1 b1Var = p0Var.f52077b;
+                boolean z10 = false;
+                if (p0Var.f52080n == ((int[]) this.d)[0] && !p0Var.E) {
+                    p0Var.f52080n = 0;
+                    boolean z11 = this.f37955b;
+                    boolean z12 = true;
+                    if (tL_exportedNoPaidMessagesToken == null) {
+                        String str2 = null;
+                        if (tL_error2 != null) {
+                            str = tL_error2.text;
+                        } else {
+                            str = null;
+                        }
+                        FileLog.e("QrShare: exportNoPaidMessagesToken " + str);
+                        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken2 = p0Var.f52079f;
+                        if (tL_exportedNoPaidMessagesToken2 != null) {
+                            if (tL_exportedNoPaidMessagesToken2.expires == 0) {
+                                z12 = false;
+                            }
+                            if (z12 == z11) {
+                                if (str != null) {
+                                    b1Var.getClass();
+                                    b1Var.W0(R.drawable.msg_warning, LocaleController.getString(R.string.ErrorOccurred), null);
+                                    return;
+                                }
+                                return;
+                            }
+                        }
+                        p0Var.d = 0;
+                        MessagesController.getMainSettings(i10).edit().putBoolean("qrNoPaidPermanent", false).apply();
+                        if (b1Var.f51874v0) {
+                            if (str != null) {
+                                str2 = LocaleController.getString(R.string.ErrorOccurred);
+                            }
+                            b1Var.N0(str2);
+                            return;
+                        } else if (str != null) {
+                            b1Var.W0(R.drawable.msg_warning, LocaleController.getString(R.string.ErrorOccurred), null);
+                            return;
+                        } else {
+                            return;
+                        }
+                    }
+                    int i11 = p0Var.d;
+                    if (i11 != 0) {
+                        if (i11 == 1) {
+                            z10 = true;
+                        }
+                        if (z11 == z10) {
+                            if (tL_exportedNoPaidMessagesToken.expires == 0) {
+                                MessagesController.getMainSettings(i10).edit().putString("qrNoPaidToken", tL_exportedNoPaidMessagesToken.token).putString("qrNoPaidUrl", tL_exportedNoPaidMessagesToken.url).apply();
+                            }
+                            p0Var.f52079f = tL_exportedNoPaidMessagesToken;
+                            p0Var.h = SystemClock.elapsedRealtime();
+                            b1Var.setFreeLink(p0Var.c(tL_exportedNoPaidMessagesToken));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
                 return;
-            case 4:
-                this.f36854b.finishFragment();
-                return;
-            case 5:
-                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                tq tqVar3 = this.f36854b;
-                m4.y0 y0Var = new m4.y0(21, tqVar3, twoStepVerificationActivity);
-                twoStepVerificationActivity.Z = 0;
-                twoStepVerificationActivity.f32584b0 = y0Var;
-                tqVar3.presentFragment(twoStepVerificationActivity);
-                return;
-        }
-    }
-
-    @Override
-    public void run(long j10) {
-        tq.U(this.f36854b, j10);
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f36853a) {
-            case 2:
-                this.f36854b.t0(false);
-                return true;
-            case 3:
-                this.f36854b.t0(false);
-                return true;
-            default:
-                return tq.W(this.f36854b, tL_error);
         }
     }
 }

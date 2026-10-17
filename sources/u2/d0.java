@@ -1,4 +1,4 @@
 package u2;
 public interface d0 extends e1 {
-    void q(e0 e0Var);
+    void h(e0 e0Var);
 }

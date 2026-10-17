@@ -1,118 +1,63 @@
 package qg;
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.iw0;
-import org.telegram.ui.c90;
-public final class p1 {
-    public c1 f43249a;
-    public w0 f43250b;
-    public Paint f43251c;
-    public Paint d;
-    public Paint e;
-    public Paint f43252f;
-    public Paint f43253g;
-    public f1 h;
-    public float f43254i;
-    public float f43255j;
-    public o1 f43256k;
-    public l1 f43257l;
-    public ArrayList f43258m;
-    public ArrayList f43259n;
-    public Matrix f43260o;
-    public float[] f43261p;
+import v7.f7;
+public final class p1 extends q1 {
+    public final h1 f44617f;
+    public final float f44618g;
+    public final float h;
+    public final r1 f44619i;
 
-    public static float a(float f7, float f10, float f11, float f12, float f13, float f14) {
-        float f15 = f13 - f11;
-        float f16 = f14 - f12;
-        float max = Math.max(Math.min((((f10 - f12) * f16) + ((f7 - f11) * f15)) / ((f16 * f16) + (f15 * f15)), 1.0f), 0.0f);
-        float f17 = ((f15 * max) + f11) - f7;
-        float f18 = ((max * f16) + f12) - f10;
-        return (float) Math.sqrt((f18 * f18) + (f17 * f17));
-    }
-
-    public final void b(Canvas canvas, iw0 iw0Var, o1 o1Var) {
-        Paint paint;
-        Paint paint2;
-        float width = (o1Var.d / iw0Var.f25809a) * canvas.getWidth();
-        float height = (o1Var.e / iw0Var.f25810b) * canvas.getHeight();
-        float dp = AndroidUtilities.dp(5.0f);
-        boolean z10 = o1Var.f43244a;
+    public p1(r1 r1Var, h1 h1Var, boolean z10, boolean z11) {
+        float f7;
+        this.f44619i = r1Var;
+        this.f44624b = false;
+        this.f44617f = h1Var;
         if (z10) {
-            paint = this.d;
+            f7 = -1.0f;
         } else {
-            paint = this.f43252f;
+            f7 = 1.0f;
         }
-        canvas.drawCircle(width, height, dp, paint);
-        float width2 = (o1Var.d / iw0Var.f25809a) * canvas.getWidth();
-        float height2 = (o1Var.e / iw0Var.f25810b) * canvas.getHeight();
-        float dp2 = AndroidUtilities.dp(5.0f);
-        if (z10) {
-            paint2 = this.e;
-        } else {
-            paint2 = this.f43253g;
-        }
-        canvas.drawCircle(width2, height2, dp2, paint2);
+        this.f44618g = f7;
+        this.h = z11 ? -1.0f : 1.0f;
+        a();
     }
 
-    public final void c(float f7, float f10, boolean z10) {
-        float[] fArr = this.f43261p;
-        fArr[0] = f7;
-        fArr[1] = f10;
-        d(z10);
-    }
-
-    public final void d(boolean z10) {
-        int i10;
-        float[] fArr = this.f43261p;
-        f1 f1Var = this.h;
-        if (f1Var != null) {
-            float f7 = f1Var.h;
-            if (f7 != 0.0f) {
-                float f10 = fArr[0] - f1Var.f43178b;
-                fArr[0] = f10;
-                fArr[1] = fArr[1] - f1Var.f43179c;
-                if (z10) {
-                    i10 = -1;
-                } else {
-                    i10 = 1;
-                }
-                double d = f7 * i10;
-                float cos = (float) ((Math.cos(d) * f10) - (Math.sin(d) * fArr[1]));
-                double sin = Math.sin(d) * fArr[0];
-                f1 f1Var2 = this.h;
-                fArr[0] = cos + f1Var2.f43178b;
-                fArr[1] = ((float) i2.d.f(d, fArr[1], sin)) + f1Var2.f43179c;
-            }
+    @Override
+    public final void a() {
+        h1 h1Var = this.f44617f;
+        if (h1Var != null) {
+            float f7 = (this.f44618g * h1Var.d) + h1Var.f44554b;
+            float f10 = h1Var.f44555c;
+            r1 r1Var = this.f44619i;
+            r1Var.c(f7, (this.h * h1Var.e) + f10, true);
+            float[] fArr = r1Var.f44641p;
+            float f11 = fArr[0];
+            float f12 = fArr[1];
+            this.d = f11;
+            this.e = f12;
         }
     }
 
-    public final void e() {
-        f1 f1Var;
-        c1 c1Var = this.f43249a;
-        if (c1Var != null && c1Var.getPainting() != null && (f1Var = this.h) != null) {
-            f1Var.f43180f = c1Var.getCurrentWeight();
-            q0 painting = c1Var.getPainting();
-            f1 f1Var2 = this.h;
-            int currentColor = c1Var.getCurrentColor();
-            if (f1Var2 != null) {
-                if (painting.f43277r != null) {
-                    painting.f43266f.f(new c90(painting, f1Var2, currentColor, 18));
-                }
-            } else {
-                painting.getClass();
-            }
-            this.f43258m.clear();
-            this.f43259n.clear();
-            this.h = null;
-            b1 b1Var = c1Var.f43139a;
-            if (b1Var != null) {
-                b1Var.c();
-            }
-            c1Var.e.f43170z = true;
+    @Override
+    public final void b(float f7, float f10) {
+        this.d = f7;
+        this.e = f10;
+        h1 h1Var = this.f44617f;
+        float f11 = ((-this.f44618g) * h1Var.d) + h1Var.f44554b;
+        float f12 = ((-this.h) * h1Var.e) + h1Var.f44555c;
+        r1 r1Var = this.f44619i;
+        r1Var.c(f7, f10, false);
+        r1Var.c(f11, f12, true);
+        float[] fArr = r1Var.f44641p;
+        float f13 = fArr[0];
+        float f14 = fArr[1];
+        double atan2 = (3.141592653589793d - Math.atan2(f10 - f14, f7 - f13)) - h1Var.h;
+        h1Var.d = ((float) Math.abs(Math.cos(atan2) * f7.a(f7, f10, f13, f14))) / 2.0f;
+        h1Var.e = ((float) Math.abs(Math.sin(atan2) * f7.a(f7, f10, f13, f14))) / 2.0f;
+        h1Var.f44554b = (f7 + f13) / 2.0f;
+        h1Var.f44555c = (f10 + f14) / 2.0f;
+        for (int i10 = 0; i10 < r1Var.f44638m.size(); i10++) {
+            ((q1) r1Var.f44638m.get(i10)).a();
         }
     }
 }

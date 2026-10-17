@@ -1,10 +1,10 @@
 package c3;
 public interface q {
-    public static final oa.d f4282i = new oa.d(4);
+    public static final oa.d f4657i = new oa.d(4);
 
-    void D();
+    void H();
 
-    void K(b0 b0Var);
+    void g0(c0 c0Var);
 
-    i0 W(int i10, int i11);
+    j0 j0(int i10, int i11);
 }

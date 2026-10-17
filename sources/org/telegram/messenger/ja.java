@@ -1,48 +1,38 @@
 package org.telegram.messenger;
 
-import j$.util.function.Function$CC;
-import java.util.function.Function;
-import org.telegram.messenger.TranslateController;
-public final class ja implements Function {
-    public final int f17273a;
+import org.telegram.tgnet.TLRPC;
+public final class ja implements Runnable {
+    public final int f18689a;
+    public final MessagesController f18690b;
+    public final TLRPC.Chat f18691c;
 
-    public ja(int i10) {
-        this.f17273a = i10;
-    }
-
-    public Function andThen(Function function) {
-        int i10 = this.f17273a;
-        return Function$CC.$default$andThen(this, function);
+    public ja(MessagesController messagesController, TLRPC.Chat chat, int i10) {
+        this.f18689a = i10;
+        this.f18690b = messagesController;
+        this.f18691c = chat;
     }
 
     @Override
-    public final Object apply(Object obj) {
-        String valueOf;
-        String lambda$applyAppConfig$34;
-        Long lambda$new$14;
-        int[] lambda$new$15;
-        String str;
-        switch (this.f17273a) {
+    public final void run() {
+        switch (this.f18689a) {
             case 0:
-                valueOf = String.valueOf((Long) obj);
-                return valueOf;
+                this.f18690b.lambda$processUpdateArray$416(this.f18691c);
+                return;
             case 1:
-                lambda$applyAppConfig$34 = MessagesController.lambda$applyAppConfig$34((int[]) obj);
-                return lambda$applyAppConfig$34;
+                this.f18690b.lambda$processLoadedDialogs$217(this.f18691c);
+                return;
             case 2:
-                lambda$new$14 = MessagesController.lambda$new$14((String) obj);
-                return lambda$new$14;
+                this.f18690b.lambda$addOrRemoveActiveVoiceChat$60(this.f18691c);
+                return;
             case 3:
-                lambda$new$15 = MessagesController.lambda$new$15((String) obj);
-                return lambda$new$15;
+                this.f18690b.lambda$putChat$57(this.f18691c);
+                return;
+            case 4:
+                this.f18690b.lambda$putChat$58(this.f18691c);
+                return;
             default:
-                str = ((TranslateController.Language) obj).displayName;
-                return str;
+                this.f18690b.lambda$putChat$59(this.f18691c);
+                return;
         }
-    }
-
-    public Function compose(Function function) {
-        int i10 = this.f17273a;
-        return Function$CC.$default$compose(this, function);
     }
 }

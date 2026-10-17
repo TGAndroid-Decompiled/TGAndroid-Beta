@@ -1,18 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-public final class sg0 implements Utilities.Callback3 {
-    public final int f39817a;
-    public final NotificationCenter.NotificationCenterDelegate f39818b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class sg0 implements RequestDelegate {
+    public final int f41101a;
+    public final kh0 f41102b;
 
-    public sg0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f39817a = i10;
-        this.f39818b = notificationCenterDelegate;
+    public sg0(kh0 kh0Var, int i10) {
+        this.f41101a = i10;
+        this.f41102b = kh0Var;
     }
 
     @Override
-    public final void run(java.lang.Object r18, java.lang.Object r19, java.lang.Object r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sg0.run(java.lang.Object, java.lang.Object, java.lang.Object):void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f41101a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new xg0(this.f41102b, tL_error, tLObject, 0));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new b80(29, this.f41102b, tL_error));
+                return;
+        }
     }
 }

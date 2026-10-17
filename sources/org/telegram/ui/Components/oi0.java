@@ -1,147 +1,112 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-public final class oi0 extends iq {
-    public final ArrayList f27653c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public final Context e;
-    public final Paint f27654f;
-    public z9 f27655g;
-    public final pi0 h;
+import android.graphics.Path;
+import android.os.Build;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotchInfoUtils;
+import org.telegram.messenger.SharedConfig;
+public final class oi0 extends FrameLayout {
+    public final Paint f28979a;
+    public final Path f28980b;
+    public final ni0 f28981c;
+    public float d;
+    public float e;
+    public float f28982f;
+    public boolean h;
+    public NotchInfoUtils.NotchInfo f28983n;
 
-    public oi0(pi0 pi0Var, Context context, org.telegram.ui.r01 r01Var) {
-        this.h = pi0Var;
-        this.e = context;
-        this.f27655g = r01Var;
+    public oi0(Context context) {
+        super(context);
+        float f7;
         Paint paint = new Paint(1);
-        this.f27654f = paint;
+        this.f28979a = paint;
+        this.f28980b = new Path();
         paint.setColor(-16777216);
+        if (Build.VERSION.SDK_INT >= 31 && SharedConfig.getDevicePerformanceClass() >= 1) {
+            if (SharedConfig.getDevicePerformanceClass() == 2) {
+                f7 = 1.0f;
+            } else {
+                f7 = 1.5f;
+            }
+            this.f28981c = new mi0(this, f7);
+        } else {
+            this.f28981c = new li0(this);
+        }
+        setIntensity(15.0f);
+        setBlurIntensity(0.0f);
+        setWillNotDraw(false);
+    }
+
+    public static void a(oi0 oi0Var, Canvas canvas) {
+        canvas.save();
+        canvas.translate(0.0f, AndroidUtilities.dp(32.0f));
+        super.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void a(z4.g gVar, Object obj) {
-        li0 li0Var = (li0) obj;
-        View view = li0Var.f26750b;
-        if (view != null) {
-            gVar.removeView(view);
-        }
-        if (li0Var.f26749a) {
+    public final void draw(Canvas canvas) {
+        if (!this.h) {
+            super.draw(canvas);
             return;
         }
-        ji0 ji0Var = li0Var.f26751c;
-        if (ji0Var.getImageReceiver().hasStaticThumb()) {
-            Drawable drawable = ji0Var.getImageReceiver().getDrawable();
-            if (drawable instanceof f6) {
-                ((f6) drawable).w(ji0Var);
-            }
+        this.f28981c.c(new tv(this, 13), canvas);
+    }
+
+    public float getAvatarEndScale() {
+        float min;
+        int dp;
+        NotchInfoUtils.NotchInfo notchInfo = this.f28983n;
+        if (notchInfo == null) {
+            return 0.8f;
         }
-        ji0Var.setRoundRadius(0);
-        gVar.removeView(ji0Var);
-        ji0Var.getImageReceiver().cancelLoadImage();
-    }
-
-    @Override
-    public final int b() {
-        return this.f27653c.size();
-    }
-
-    @Override
-    public final int c(Object obj) {
-        int indexOf = this.f27653c.indexOf((li0) obj);
-        if (indexOf == -1) {
-            return -2;
-        }
-        return indexOf;
-    }
-
-    @Override
-    public final CharSequence d(int i10) {
-        int count;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(k(i10) + 1);
-        sb2.append("/");
-        MessagesController.DialogPhotos dialogPhotos = this.h.S0;
-        if (dialogPhotos == null) {
-            count = 0;
+        if (notchInfo.isLikelyCircle) {
+            min = notchInfo.bounds.width() - AndroidUtilities.dp(2.0f);
+            dp = AndroidUtilities.dp(100.0f);
         } else {
-            count = dialogPhotos.getCount();
+            min = Math.min(notchInfo.bounds.width(), this.f28983n.bounds.height());
+            dp = AndroidUtilities.dp(100.0f);
         }
-        sb2.append(count);
-        return sb2.toString();
+        return Math.min(0.8f, min / dp);
     }
 
     @Override
-    public final java.lang.Object e(z4.g r42, int r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.oi0.e(z4.g, int):java.lang.Object");
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        NotchInfoUtils.NotchInfo info = NotchInfoUtils.getInfo(getContext());
+        this.f28983n = info;
+        if ((info != null && info.gravity != 17) || getWidth() > getHeight()) {
+            this.f28983n = null;
+        }
+        this.f28981c.d(i10, i11);
     }
 
-    @Override
-    public final boolean f(View view, Object obj) {
-        li0 li0Var = (li0) obj;
-        if (li0Var.f26749a) {
-            if (view == li0Var.f26750b) {
-                return true;
-            }
-            return false;
-        } else if (view == li0Var.f26751c) {
-            return true;
-        } else {
-            return false;
-        }
+    public void setBlurIntensity(float f7) {
+        this.f28982f = f7;
+        this.f28981c.b(f7);
+        invalidate();
     }
 
-    @Override
-    public final void g() {
-        ArrayList arrayList;
-        int count;
-        int i10 = 0;
-        while (true) {
-            arrayList = this.d;
-            if (i10 >= arrayList.size()) {
-                break;
-            }
-            if (arrayList.get(i10) != null) {
-                ((z9) arrayList.get(i10)).getImageReceiver().cancelLoadImage();
-            }
-            i10++;
+    public void setGooeyEnabled(boolean z10) {
+        if (this.h == z10) {
+            return;
         }
-        ArrayList arrayList2 = this.f27653c;
-        arrayList2.clear();
-        arrayList.clear();
-        pi0 pi0Var = this.h;
-        int size = pi0Var.X0.size();
-        if (pi0Var.f28015i1) {
-            size++;
-        }
-        MessagesController.DialogPhotos dialogPhotos = pi0Var.S0;
-        if (dialogPhotos == null) {
-            count = 0;
-        } else {
-            count = dialogPhotos.getCount();
-        }
-        int j10 = (j() * 2) + Math.max(count, size);
-        for (int i11 = 0; i11 < j10; i11++) {
-            arrayList2.add(new Object());
-            arrayList.add(null);
-        }
-        super.g();
+        this.h = z10;
+        invalidate();
     }
 
-    @Override
-    public final int j() {
-        pi0 pi0Var = this.h;
-        int size = pi0Var.X0.size();
-        if (pi0Var.f28015i1) {
-            size++;
-        }
-        if (size >= 2) {
-            return pi0Var.getOffscreenPageLimit();
-        }
-        return 0;
+    public void setIntensity(float f7) {
+        this.d = f7;
+        this.f28981c.a(f7);
+        invalidate();
+    }
+
+    public void setPullProgress(float f7) {
+        this.e = f7;
+        invalidate();
     }
 }

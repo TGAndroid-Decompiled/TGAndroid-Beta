@@ -1,35 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-public final class ux extends FrameLayout {
-    public final wz f29462a;
+public final class ux extends sz {
+    public final tz d;
 
-    public ux(wz wzVar, Context context) {
-        super(context);
-        this.f29462a = wzVar;
+    public ux(tz tzVar) {
+        super(tzVar, 1);
+        this.d = tzVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        wz wzVar = this.f29462a;
-        zx zxVar = wzVar.I;
-        vw vwVar = wzVar.V;
-        iy iyVar = wzVar.P;
-        if (view != iyVar && view != vwVar) {
-            return super.drawChild(canvas, view, j10);
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 0) {
+            this.d.f30756f0 = false;
         }
-        canvas.save();
-        float y3 = zxVar.getY() + zxVar.getMeasuredHeight() + 1.0f;
-        if (view == iyVar && vwVar != null) {
-            y3 = Math.max(y3, vwVar.getY() + vwVar.getMeasuredHeight() + 1.0f);
+        super.a(recyclerView, i10);
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        bh.f fVar;
+        tz tzVar = this.d;
+        ty tyVar = tzVar.S;
+        rx rxVar = tzVar.Q;
+        tzVar.U(rxVar.I0());
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = tzVar.f30770j2) != null) {
+            fVar.f(i10, i11);
         }
-        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * wzVar.f30701b.e), getMeasuredWidth(), getMeasuredHeight());
-        boolean drawChild = super.drawChild(canvas, view, j10);
-        canvas.restore();
-        return drawChild;
+        super.b(recyclerView, i10, i11);
+        if (tyVar != null && tzVar.P.getAdapter() == tyVar && !tyVar.f30736x.a() && !tyVar.f30736x.f30405a.E) {
+            if (rxVar.N0() + 20 > tyVar.h()) {
+                sy syVar = tyVar.f30736x;
+                Objects.requireNonNull(syVar);
+                AndroidUtilities.runOnUIThread(new zw(syVar, 1));
+            }
+        }
     }
 }

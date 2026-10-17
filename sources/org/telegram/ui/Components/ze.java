@@ -1,75 +1,55 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class ze extends wg {
-    public final int f31548l0;
-    public final ChatActivityEnterView m0;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ze extends ImageView {
+    public float f32886a;
+    public final ChatActivityEnterView f32887b;
 
-    public ze(ChatActivityEnterView chatActivityEnterView, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
-        super(i10, context, c6Var, true);
-        this.f31548l0 = i11;
-        this.m0 = chatActivityEnterView;
+    public ze(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.f32887b = chatActivityEnterView;
     }
 
     @Override
-    public boolean d() {
-        switch (this.f31548l0) {
-            case 0:
-                return this.m0.c();
-            default:
-                return super.d();
-        }
+    public final float getTranslationX() {
+        return this.f32886a;
     }
 
     @Override
-    public final boolean e() {
-        switch (this.f31548l0) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.m0;
-                if (!chatActivityEnterView.c() && chatActivityEnterView.G0 == Integer.MAX_VALUE) {
-                    return true;
-                }
-                return false;
-            default:
-                return !this.m0.f22647q3;
+    public final void setTranslationX(float f7) {
+        float f10;
+        float alpha;
+        this.f32886a = f7;
+        float f11 = -44.0f;
+        float dp = AndroidUtilities.dp(-44.0f) + this.f32886a;
+        ChatActivityEnterView chatActivityEnterView = this.f32887b;
+        float f12 = dp + chatActivityEnterView.f24043y + chatActivityEnterView.f24037x;
+        bf bfVar = chatActivityEnterView.K1;
+        float f13 = 0.0f;
+        if (bfVar != null && bfVar.getVisibility() == 0) {
+            f10 = -44.0f;
+        } else {
+            f10 = 0.0f;
         }
-    }
-
-    @Override
-    public final boolean f() {
-        switch (this.f31548l0) {
-            case 0:
-                of ofVar = this.m0.L0;
-                if ((ofVar != null && !ofVar.f36252q0) || this.f30562r > 0) {
-                    return true;
-                }
-                return false;
-            default:
-                return true;
+        float dp2 = AndroidUtilities.dp(f10);
+        bf bfVar2 = chatActivityEnterView.K1;
+        if (bfVar2 == null) {
+            alpha = 0.0f;
+        } else {
+            alpha = bfVar2.getAlpha();
         }
-    }
-
-    @Override
-    public boolean j() {
-        switch (this.f31548l0) {
-            case 0:
-                return this.m0.f22692y4;
-            default:
-                return super.j();
+        float f14 = (dp2 * alpha) + f12;
+        bf bfVar3 = chatActivityEnterView.f24039x1;
+        if (bfVar3 == null || bfVar3.getVisibility() != 0) {
+            f11 = 0.0f;
         }
-    }
-
-    @Override
-    public void setAlpha(float f7) {
-        switch (this.f31548l0) {
-            case 0:
-                super.setAlpha(f7);
-                int i10 = ChatActivityEnterView.f22549n5;
-                this.m0.w1();
-                return;
-            default:
-                super.setAlpha(f7);
-                return;
+        float dp3 = AndroidUtilities.dp(f11);
+        bf bfVar4 = chatActivityEnterView.f24039x1;
+        if (bfVar4 != null) {
+            f13 = bfVar4.getAlpha();
         }
+        super.setTranslationX((dp3 * f13) + f14);
     }
 }

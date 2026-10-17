@@ -1,66 +1,79 @@
 package b2;
 
-import android.os.Bundle;
-import j$.util.Objects;
-import v7.u6;
-public final class i1 extends h1 {
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class i1 implements Comparable, Parcelable {
+    public static final Parcelable.Creator<i1> CREATOR = new q(2);
     public static final String d;
     public static final String e;
-    public final int f2168b;
-    public final float f2169c;
+    public static final String f3787f;
+    public final int f3788a;
+    public final int f3789b;
+    public final int f3790c;
 
     static {
-        String str = e2.m0.f8375a;
-        d = Integer.toString(1, 36);
-        e = Integer.toString(2, 36);
+        String str = e2.m0.f8254a;
+        d = Integer.toString(0, 36);
+        e = Integer.toString(1, 36);
+        f3787f = Integer.toString(2, 36);
     }
 
-    public i1(int i10) {
-        u6.f("maxStars must be a positive integer", i10 > 0);
-        this.f2168b = i10;
-        this.f2169c = -1.0f;
+    public i1(int i10, int i11, int i12) {
+        this.f3788a = i10;
+        this.f3789b = i11;
+        this.f3790c = i12;
     }
 
     @Override
-    public final boolean b() {
-        if (this.f2169c != -1.0f) {
+    public final int compareTo(Object obj) {
+        i1 i1Var = (i1) obj;
+        int i10 = this.f3788a - i1Var.f3788a;
+        if (i10 == 0) {
+            int i11 = this.f3789b - i1Var.f3789b;
+            if (i11 == 0) {
+                return this.f3790c - i1Var.f3790c;
+            }
+            return i11;
+        }
+        return i10;
+    }
+
+    @Override
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
             return true;
+        }
+        if (obj != null && i1.class == obj.getClass()) {
+            i1 i1Var = (i1) obj;
+            if (this.f3788a == i1Var.f3788a && this.f3789b == i1Var.f3789b && this.f3790c == i1Var.f3790c) {
+                return true;
+            }
         }
         return false;
     }
 
-    @Override
-    public final Bundle c() {
-        Bundle bundle = new Bundle();
-        bundle.putInt(h1.f2163a, 2);
-        bundle.putInt(d, this.f2168b);
-        bundle.putFloat(e, this.f2169c);
-        return bundle;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof i1)) {
-            return false;
-        }
-        i1 i1Var = (i1) obj;
-        if (this.f2168b != i1Var.f2168b || this.f2169c != i1Var.f2169c) {
-            return false;
-        }
-        return true;
-    }
-
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f2168b), Float.valueOf(this.f2169c));
+        return (((this.f3788a * 31) + this.f3789b) * 31) + this.f3790c;
     }
 
-    public i1(int i10, float f7) {
-        boolean z10 = false;
-        u6.f("maxStars must be a positive integer", i10 > 0);
-        if (f7 >= 0.0f && f7 <= i10) {
-            z10 = true;
-        }
-        u6.f("starRating is out of range [0, maxStars]", z10);
-        this.f2168b = i10;
-        this.f2169c = f7;
+    public final String toString() {
+        return this.f3788a + "." + this.f3789b + "." + this.f3790c;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeInt(this.f3788a);
+        parcel.writeInt(this.f3789b);
+        parcel.writeInt(this.f3790c);
+    }
+
+    public i1(Parcel parcel) {
+        this.f3788a = parcel.readInt();
+        this.f3789b = parcel.readInt();
+        this.f3790c = parcel.readInt();
     }
 }

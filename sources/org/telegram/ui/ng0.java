@@ -1,63 +1,62 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.ViewGroup;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class ng0 extends AnimatorListenerAdapter {
-    public final int f38391a;
-    public final og0 f38392b;
+public final class ng0 extends ReplacementSpan {
+    public final String f39445a;
+    public final boolean f39446b;
+    public final TextPaint f39447c;
+    public final Paint d;
+    public final float e;
+    public final pg0 f39448f;
 
-    public ng0(og0 og0Var, int i10) {
-        this.f38391a = i10;
-        this.f38392b = og0Var;
+    public ng0(pg0 pg0Var, int i10, boolean z10) {
+        this.f39448f = pg0Var;
+        TextPaint textPaint = new TextPaint(1);
+        this.f39447c = textPaint;
+        this.d = new Paint(1);
+        String valueOf = String.valueOf(i10);
+        this.f39445a = valueOf;
+        this.f39446b = z10;
+        textPaint.setTextSize(AndroidUtilities.dpf2(11.0f));
+        textPaint.setTypeface(AndroidUtilities.bold());
+        this.e = Math.max(AndroidUtilities.dp(7.333f), textPaint.measureText(valueOf)) + AndroidUtilities.dp(10.0f);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f38391a) {
-            case 0:
-                if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
-                    this.f38392b.h.requestFocus();
-                    return;
-                }
-                return;
-            default:
-                og0 og0Var = this.f38392b;
-                if (og0Var.getParent() instanceof ViewGroup) {
-                    ((ViewGroup) og0Var.getParent()).removeView(og0Var);
-                }
-                og0Var.f38643c.setVisibility(0);
-                return;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15;
+        float dp = f7 + AndroidUtilities.dp(5.0f);
+        float dp2 = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.0f);
+        float dp3 = AndroidUtilities.dp(17.333f) / 2.0f;
+        if (this.f39446b) {
+            i15 = org.telegram.ui.ActionBar.h6.Oh;
+        } else {
+            i15 = org.telegram.ui.ActionBar.h6.U9;
         }
+        pg0 pg0Var = this.f39448f;
+        int themedColor = pg0Var.getThemedColor(i15);
+        Paint paint2 = this.d;
+        paint2.setColor(themedColor);
+        int themedColor2 = pg0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21265s8);
+        TextPaint textPaint = this.f39447c;
+        textPaint.setColor(themedColor2);
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f10 = this.e;
+        rectF.set(dp, dp2 - dp3, dp + f10, dp2 + dp3);
+        canvas.drawRoundRect(rectF, dp3, dp3, paint2);
+        Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
+        float f11 = dp2 - ((fontMetrics.ascent + fontMetrics.descent) / 2.0f);
+        String str = this.f39445a;
+        canvas.drawText(str, ((f10 - textPaint.measureText(str)) / 2.0f) + dp, f11, textPaint);
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f38391a) {
-            case 0:
-                og0 og0Var = this.f38392b;
-                og0Var.f38643c.setVisibility(8);
-                int measuredWidth = (int) (og0Var.f38642b.getMeasuredWidth() / 10.0f);
-                int measuredHeight = (int) (og0Var.f38642b.getMeasuredHeight() / 10.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                canvas.scale(0.1f, 0.1f);
-                canvas.drawColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false));
-                og0Var.f38642b.draw(canvas);
-                Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / 150));
-                og0Var.d.setBackground(new BitmapDrawable(og0Var.getContext().getResources(), createBitmap));
-                og0Var.d.setAlpha(0.0f);
-                og0Var.d.setVisibility(0);
-                og0Var.f38642b.addView(og0Var);
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) Math.ceil(AndroidUtilities.dp(5.0f) + this.e);
     }
 }

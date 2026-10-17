@@ -1,57 +1,31 @@
 package f2;
+public abstract class f {
+    public final int f10287a;
+    public final int f10288b;
 
-import b2.r0;
-import b2.t0;
-import b2.x;
-import v7.u6;
-public final class f implements t0 {
-    public final float f8845a;
-    public final float f8846b;
+    public f(int i10, int i11) {
+        this.f10287a = i11;
+        this.f10288b = i10;
+    }
 
-    public f(float f7, float f10) {
-        boolean z10;
-        if (f7 >= -90.0f && f7 <= 90.0f && f10 >= -180.0f && f10 <= 180.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public static String a(int i10) {
+        return "" + ((char) ((i10 >> 24) & 255)) + ((char) ((i10 >> 16) & 255)) + ((char) ((i10 >> 8) & 255)) + ((char) (i10 & 255));
+    }
+
+    public static void c(StringBuilder sb2) {
+        if (sb2 != null) {
+            sb2.delete(0, sb2.length());
         }
-        u6.f("Invalid latitude or longitude", z10);
-        this.f8845a = f7;
-        this.f8846b = f10;
     }
 
-    @Override
-    public final x a() {
-        return null;
-    }
+    public abstract f b();
 
-    @Override
-    public final byte[] c() {
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public String toString() {
+        switch (this.f10287a) {
+            case 0:
+                return a(this.f10288b);
+            default:
+                return super.toString();
         }
-        if (obj != null && f.class == obj.getClass()) {
-            f fVar = (f) obj;
-            if (this.f8845a == fVar.f8845a && this.f8846b == fVar.f8846b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Float.valueOf(this.f8846b).hashCode() + ((Float.valueOf(this.f8845a).hashCode() + 527) * 31);
-    }
-
-    public final String toString() {
-        return "xyz: latitude=" + this.f8845a + ", longitude=" + this.f8846b;
-    }
-
-    @Override
-    public final void b(r0 r0Var) {
     }
 }

@@ -1,32 +1,55 @@
 package b2;
 
-import android.os.Bundle;
-public abstract class z0 extends Exception {
-    public static final String d;
+import java.util.Locale;
+import v7.u6;
+public final class z0 {
+    public static final z0 d = new z0(1.0f, 1.0f);
     public static final String e;
-    public static final String f2539f;
-    public static final String h;
-    public static final String f2540n;
-    public static final String f2541r;
-    public final int f2542a;
-    public final long f2543b;
-    public final Bundle f2544c;
+    public static final String f4154f;
+    public final float f4155a;
+    public final float f4156b;
+    public final int f4157c;
 
     static {
-        String str = e2.m0.f8375a;
-        d = Integer.toString(0, 36);
-        e = Integer.toString(1, 36);
-        f2539f = Integer.toString(2, 36);
-        h = Integer.toString(3, 36);
-        f2540n = Integer.toString(4, 36);
-        f2541r = Integer.toString(5, 36);
+        String str = e2.m0.f8254a;
+        e = Integer.toString(0, 36);
+        f4154f = Integer.toString(1, 36);
     }
 
-    public z0(String str, Throwable th2, int i10, long j10) {
-        super(str, th2);
-        Bundle bundle = Bundle.EMPTY;
-        this.f2542a = i10;
-        this.f2544c = bundle;
-        this.f2543b = j10;
+    public z0(float f7, float f10) {
+        boolean z10;
+        if (f7 > 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        u6.g(z10);
+        u6.g(f10 > 0.0f);
+        this.f4155a = f7;
+        this.f4156b = f10;
+        this.f4157c = Math.round(f7 * 1000.0f);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && z0.class == obj.getClass()) {
+            z0 z0Var = (z0) obj;
+            if (this.f4155a == z0Var.f4155a && this.f4156b == z0Var.f4156b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Float.floatToRawIntBits(this.f4156b) + ((Float.floatToRawIntBits(this.f4155a) + 527) * 31);
+    }
+
+    public final String toString() {
+        Object[] objArr = {Float.valueOf(this.f4155a), Float.valueOf(this.f4156b)};
+        String str = e2.m0.f8254a;
+        return String.format(Locale.US, "PlaybackParameters(speed=%.2f, pitch=%.2f)", objArr);
     }
 }

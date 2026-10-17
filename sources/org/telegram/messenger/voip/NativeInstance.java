@@ -116,7 +116,7 @@ public class NativeInstance {
         if (this.isGroup && iArr != null && iArr.length == 0) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new m(this, iArr, fArr, zArr, 1));
+        AndroidUtilities.runOnUIThread(new l(this, iArr, fArr, zArr, 1));
     }
 
     private void onCancelRequestBroadcastPart(long j10, int i10, int i11) {
@@ -125,7 +125,7 @@ public class NativeInstance {
 
     private void onEmitJoinPayload(String str, int i10) {
         try {
-            AndroidUtilities.runOnUIThread(new ah.o(this, i10, str, 20));
+            AndroidUtilities.runOnUIThread(new ah.o(this, i10, str, 24));
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -141,7 +141,7 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new a3.i0(this, j10, iArr, 10));
+        AndroidUtilities.runOnUIThread(new a3.i0(this, j10, iArr, 13));
     }
 
     private void onRemoteMediaStateUpdated(int i10, int i11) {

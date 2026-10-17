@@ -1,26 +1,19 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class cw implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34800a;
-    public final yy f34801b;
-    public final float f34802c;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class cw extends org.telegram.ui.Components.s00 {
+    public final ey B0;
 
-    public cw(yy yyVar, float f7, int i10) {
-        this.f34800a = i10;
-        this.f34801b = yyVar;
-        this.f34802c = f7;
+    public cw(ey eyVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.B0 = eyVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34800a) {
-            case 0:
-                yy.V(this.f34801b, this.f34802c, valueAnimator);
-                return;
-            default:
-                yy.C0(this.f34801b, this.f34802c, valueAnimator);
-                return;
-        }
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        this.B0.f36677n3 = false;
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

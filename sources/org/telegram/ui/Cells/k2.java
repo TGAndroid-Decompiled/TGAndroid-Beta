@@ -2,13 +2,13 @@ package org.telegram.ui.Cells;
 
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.yy;
-public final class k2 extends bi.m9 {
-    public final s2 S;
+import org.telegram.ui.ey;
+public final class k2 extends ci.y7 {
+    public final r2 S;
 
-    public k2(s2 s2Var) {
+    public k2(r2 r2Var) {
         super(null, false);
-        this.S = s2Var;
+        this.S = r2Var;
     }
 
     @Override
@@ -21,21 +21,21 @@ public final class k2 extends bi.m9 {
 
     @Override
     public final boolean d(long j10) {
-        s2 s2Var = this.S;
-        int i10 = s2Var.F0;
-        yy yyVar = s2Var.D4;
-        if (yyVar != null && !s2Var.O0) {
+        r2 r2Var = this.S;
+        int i10 = r2Var.F0;
+        ey eyVar = r2Var.D4;
+        if (eyVar != null && !r2Var.O0) {
             if (j10 > 0) {
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
                 if (user != null && user.linked_community_id != 0) {
-                    yyVar.showDialog(new gi.k0(yyVar, user.linked_community_id));
+                    eyVar.showDialog(new hi.k0(eyVar, user.linked_community_id));
                     return true;
                 }
                 return false;
             }
             TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
             if (chat != null && chat.linked_community_id != 0) {
-                yyVar.showDialog(new gi.k0(yyVar, chat.linked_community_id));
+                eyVar.showDialog(new hi.k0(eyVar, chat.linked_community_id));
                 return true;
             }
             return false;
@@ -45,25 +45,25 @@ public final class k2 extends bi.m9 {
 
     @Override
     public final void e() {
-        s2 s2Var = this.S;
-        o2 o2Var = s2Var.f21514d0;
-        if (o2Var == null) {
+        r2 r2Var = this.S;
+        n2 n2Var = r2Var.f22818d0;
+        if (n2Var == null) {
             return;
         }
-        o2Var.g(s2Var);
+        n2Var.g(r2Var);
     }
 
     @Override
     public final void f(long j10) {
-        s2 s2Var = this.S;
-        o2 o2Var = s2Var.f21514d0;
-        if (o2Var == null) {
+        r2 r2Var = this.S;
+        n2 n2Var = r2Var.f22818d0;
+        if (n2Var == null) {
             return;
         }
-        if (s2Var.J0 != 0) {
-            o2Var.c();
+        if (r2Var.J0 != 0) {
+            n2Var.c();
         } else {
-            o2Var.f(s2Var);
+            n2Var.f(r2Var);
         }
     }
 }

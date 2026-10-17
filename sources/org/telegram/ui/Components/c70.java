@@ -1,46 +1,23 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class c70 extends mm0 {
-    public int V2;
-    public final p70 W2;
+import android.text.SpannableStringBuilder;
+public final class c70 extends q90 {
+    public final g70 L;
 
-    public c70(p70 p70Var, Context context) {
-        super(context, null);
-        this.W2 = p70Var;
+    public c70(g70 g70Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.f3 f3Var, boolean z10) {
+        super(context, n2Var, f3Var, false, z10);
+        this.L = g70Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        p70 p70Var = this.W2;
-        c70 c70Var = p70Var.V;
-        if (this.V2 != View.MeasureSpec.getSize(i11)) {
-            this.V2 = View.MeasureSpec.getSize(i11);
-            p70Var.f27898a0 = true;
-            c70Var.setPadding(0, 0, 0, 0);
-            p70Var.f27898a0 = false;
-            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-            int measuredHeight = getMeasuredHeight();
-            int i12 = this.V2;
-            int i13 = (int) ((i12 / 5.0f) * 2.0f);
-            if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
-                i13 = this.V2 - measuredHeight;
-            }
-            p70Var.f27898a0 = true;
-            c70Var.setPadding(0, i13, 0, 0);
-            p70Var.f27898a0 = false;
-            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-        }
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W2.f27898a0) {
-            return;
-        }
-        super.requestLayout();
+    public final void e(int i10, SpannableStringBuilder spannableStringBuilder) {
+        org.telegram.ui.ActionBar.d6 d6Var;
+        l70 l70Var = this.L.f26492c;
+        org.telegram.ui.ActionBar.d3 d3Var = l70Var.container;
+        d6Var = ((org.telegram.ui.ActionBar.f3) l70Var).resourcesProvider;
+        qc Q = new xc(d3Var, d6Var).Q(i10, 36, spannableStringBuilder);
+        Q.f29647r = false;
+        Q.k(true);
     }
 }

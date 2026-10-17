@@ -1,33 +1,55 @@
 package org.telegram.ui;
-public final class z60 implements Runnable {
-    public final int f42171a;
-    public final j70 f42172b;
 
-    public z60(j70 j70Var, int i10) {
-        this.f42171a = i10;
-        this.f42172b = j70Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class z60 extends LinearLayout {
+    public final org.telegram.ui.Components.iu f43640a;
+    public boolean f43641b;
+    public int f43642c;
+    public nt d;
+    public String e;
+    public final y60 f43643f;
+    public final c70 h;
+
+    public z60(c70 c70Var, Context context) {
+        super(context);
+        this.h = c70Var;
+        this.f43643f = new y60(this);
+        TextView f7 = org.telegram.messenger.q.f(context, 1, 16.0f);
+        f7.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21092j5, false));
+        f7.setText("t.me/addemoji/");
+        org.telegram.ui.Components.iu iuVar = new org.telegram.ui.Components.iu(context, null);
+        this.f43640a = iuVar;
+        iuVar.setLines(1);
+        iuVar.setSingleLine(true);
+        iuVar.setInputType(16384);
+        iuVar.setTextSize(1, 16.0f);
+        iuVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ud, false));
+        iuVar.setLinkTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.hc, false));
+        iuVar.setHighlightColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21310uf, false));
+        int i10 = org.telegram.ui.ActionBar.h6.Vd;
+        iuVar.setHintColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+        iuVar.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+        iuVar.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Wd, false));
+        iuVar.setHandlesColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21328vf, false));
+        iuVar.setBackground(null);
+        iuVar.setHint(LocaleController.getString(R.string.AddEmojiPackLinkHint));
+        addView(f7, w7.z5.t(-2, -2, 16, 20, 0, 0, 0));
+        addView(iuVar, w7.z5.t(-1, -2, 16, -4, 0, 0, 0));
+        setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+        setPadding(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f));
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void run() {
-        switch (this.f42171a) {
-            case 0:
-                this.f42172b.finishFragment();
-                return;
-            case 1:
-                j70 j70Var = this.f42172b;
-                j70Var.i0();
-                j70Var.e0();
-                return;
-            case 2:
-                j70 j70Var2 = this.f42172b;
-                j70Var2.getClass();
-                j70Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            default:
-                j70 j70Var3 = this.f42172b;
-                j70Var3.f36955n.postOnAnimation(new z60(j70Var3, 1));
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (this.f43641b) {
+            canvas.drawLine(AndroidUtilities.dp(20.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.h6.f21107k0);
         }
     }
 }

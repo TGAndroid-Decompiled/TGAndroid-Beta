@@ -3,30 +3,30 @@ package t9;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
-import pi.g;
+import org.telegram.ui.Components.ay0;
 import u4.f;
-import x9.p;
-import x9.x;
+import x9.o;
+import x9.w;
 public final class b implements Callable {
-    public final boolean f45547a;
-    public final p f45548b;
-    public final ea.b f45549c;
+    public final boolean f46936a;
+    public final o f46937b;
+    public final ea.b f46938c;
 
-    public b(boolean z10, p pVar, ea.b bVar) {
-        this.f45547a = z10;
-        this.f45548b = pVar;
-        this.f45549c = bVar;
+    public b(boolean z10, o oVar, ea.b bVar) {
+        this.f46936a = z10;
+        this.f46937b = oVar;
+        this.f46938c = bVar;
     }
 
     @Override
     public final Object call() {
-        if (this.f45547a) {
-            p pVar = this.f45548b;
-            ExecutorService executorService = pVar.f48327k;
-            f fVar = new f(3, pVar, this.f45549c);
-            ExecutorService executorService2 = x.f48355a;
+        if (this.f46936a) {
+            o oVar = this.f46937b;
+            ExecutorService executorService = oVar.f49734k;
+            f fVar = new f(3, oVar, this.f46938c);
+            ExecutorService executorService2 = w.f49762a;
             TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-            executorService.execute(new g(fVar, executorService, taskCompletionSource, 14));
+            executorService.execute(new ay0(fVar, executorService, taskCompletionSource, 29));
             taskCompletionSource.getTask();
             return null;
         }

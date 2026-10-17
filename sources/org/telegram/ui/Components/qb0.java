@@ -1,64 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class qb0 extends Drawable {
-    public Paint f28256a;
-    public Paint f28257b;
-    public long f28258c;
-    public float d;
-    public boolean e;
-    public boolean f28259f;
-    public float f28260g;
-    public float h;
-    public float f28261i;
-    public float f28262j;
-    public float f28263k;
-    public long f28264l;
-    public org.telegram.ui.Cells.u1 f28265m;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+public final class qb0 extends c91 {
+    public final oc0 T;
 
-    public final void a() {
-        int i10;
-        int i11;
-        Rect bounds = getBounds();
-        float centerX = bounds.centerX();
-        float centerY = bounds.centerY();
-        float f7 = bounds.left - centerX;
-        float f10 = bounds.top - centerY;
-        this.f28260g = (float) Math.ceil(Math.sqrt(com.google.android.gms.internal.play_billing.k3.y(i11, centerY, f10, f7 * (i10 - centerX))));
+    public qb0(oc0 oc0Var, Context context, kc0 kc0Var) {
+        super(context, kc0Var);
+        this.T = oc0Var;
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qb0.draw(android.graphics.Canvas):void");
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        int i10 = 0;
+        while (true) {
+            View[] viewArr = this.T.f28924f.e;
+            if (i10 < viewArr.length) {
+                View view = viewArr[i10];
+                if (view != null) {
+                    ic0 ic0Var = (ic0) view;
+                    if (ic0Var.f27180a == 0) {
+                        z10 = ic0Var.e.f21993i;
+                        break;
+                    }
+                }
+                i10++;
+            } else {
+                z10 = false;
+                break;
+            }
+        }
+        if (z10) {
+            return false;
+        }
+        return A(motionEvent);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void u() {
+        View view = this.e[0];
+        if (view instanceof ic0) {
+            ((ic0) view).e.V();
+        }
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.f28256a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        a();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f28256a.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setBounds(Rect rect) {
-        super.setBounds(rect);
-        a();
+    public final void w(boolean z10) {
+        oc0 oc0Var = this.T;
+        oc0Var.e.setSelectedTab(oc0Var.f28924f.getPositionAnimated());
+        View[] viewArr = this.e;
+        View view = viewArr[0];
+        if (view instanceof ic0) {
+            ((ic0) view).e.G();
+        }
+        View view2 = viewArr[1];
+        if (view2 instanceof ic0) {
+            ((ic0) view2).e.G();
+        }
     }
 }

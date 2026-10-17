@@ -1,28 +1,60 @@
 package org.telegram.messenger;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class vi implements Runnable {
-    public final int f18396a;
-    public final SendMessagesHelper f18397b;
-    public final TLRPC.Message f18398c;
-    public final int d;
+    public final int f19761a;
+    public final Object f19762b;
+    public final Object f19763c;
+    public final Object d;
+    public final Object e;
 
-    public vi(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, int i10, int i11) {
-        this.f18396a = i11;
-        this.f18397b = sendMessagesHelper;
-        this.f18398c = message;
-        this.d = i10;
+    public vi(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f19761a = i10;
+        this.f19762b = obj;
+        this.f19763c = obj2;
+        this.d = obj3;
+        this.e = obj4;
     }
 
     @Override
     public final void run() {
-        switch (this.f18396a) {
+        switch (this.f19761a) {
             case 0:
-                this.f18397b.lambda$performSendMessageRequest$105(this.f18398c, this.d);
+                ((SendMessagesHelper) this.f19762b).lambda$performSendDelayedMessage$60((TLObject) this.f19763c, (SendMessagesHelper.DelayedMessage) this.d, (String) this.e);
+                return;
+            case 1:
+                ((SendMessagesHelper) this.f19762b).lambda$sendMessage$22((TLRPC.TL_messages_forwardMessages) this.f19763c, (ArrayList) this.d, (oj) this.e);
+                return;
+            case 2:
+                ((SendMessagesHelper) this.f19762b).lambda$didReceivedNotification$4((SendMessagesHelper.DelayedMessage) this.d, (File) this.f19763c, (MessageObject) this.e);
+                return;
+            case 3:
+                ((UnconfirmedAuthController) this.f19762b).lambda$readCache$0((ArrayList) this.f19763c, (HashSet) this.d, (ArrayList) this.e);
                 return;
             default:
-                this.f18397b.lambda$sendMessage$18(this.f18398c, this.d);
+                ((UserNameResolver) this.f19762b).lambda$resolve$0((String) this.e, (TLRPC.TL_error) this.d, (TLObject) this.f19763c);
                 return;
         }
+    }
+
+    public vi(String str, UserNameResolver userNameResolver, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.f19761a = 4;
+        this.f19762b = userNameResolver;
+        this.e = str;
+        this.d = tL_error;
+        this.f19763c = tLObject;
+    }
+
+    public vi(SendMessagesHelper sendMessagesHelper, SendMessagesHelper.DelayedMessage delayedMessage, File file, MessageObject messageObject) {
+        this.f19761a = 2;
+        this.f19762b = sendMessagesHelper;
+        this.d = delayedMessage;
+        this.f19763c = file;
+        this.e = messageObject;
     }
 }

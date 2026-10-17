@@ -1,103 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
 import org.telegram.messenger.AndroidUtilities;
-public final class ax0 extends CharacterStyle {
-    public final Paint f23311a;
-    public final Path f23312b;
+import org.telegram.messenger.MessagesController;
+public final class ax0 {
+    public MessagesController.PeerColor f24728a;
+    public org.telegram.ui.ActionBar.d6 f24729b;
+    public int f24730c;
+    public int d;
+    public float e;
 
-    public ax0() {
-        Paint paint = new Paint(1);
-        this.f23311a = paint;
-        this.f23312b = new Path();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-    }
-
-    public static void a(Canvas canvas, Layout layout) {
-        CharSequence text;
-        int lineStart;
-        int lineEnd;
-        Layout layout2 = layout;
-        if (layout2 != null && (text = layout2.getText()) != null && (text instanceof Spanned)) {
-            Spanned spanned = (Spanned) text;
-            ax0[] ax0VarArr = (ax0[]) spanned.getSpans(0, spanned.length(), ax0.class);
-            if (ax0VarArr != null && ax0VarArr.length != 0) {
-                int i10 = 0;
-                while (i10 < ax0VarArr.length) {
-                    ax0 ax0Var = ax0VarArr[i10];
-                    int spanStart = spanned.getSpanStart(ax0Var);
-                    int spanEnd = spanned.getSpanEnd(ax0Var);
-                    int lineForOffset = layout2.getLineForOffset(spanStart);
-                    int lineForOffset2 = layout2.getLineForOffset(spanEnd);
-                    int i11 = lineForOffset;
-                    while (i11 <= lineForOffset2) {
-                        float lineBottom = layout2.getLineBottom(i11) - AndroidUtilities.dp(1.0f);
-                        if (i11 == lineForOffset) {
-                            lineStart = spanStart;
-                        } else {
-                            lineStart = layout2.getLineStart(i11);
-                        }
-                        float primaryHorizontal = layout2.getPrimaryHorizontal(lineStart);
-                        if (i11 == lineForOffset2) {
-                            lineEnd = spanEnd;
-                        } else {
-                            lineEnd = layout2.getLineEnd(i11) - 1;
-                        }
-                        float primaryHorizontal2 = layout2.getPrimaryHorizontal(lineEnd);
-                        ax0Var.getClass();
-                        float dp = AndroidUtilities.dp(1.33f);
-                        float dp2 = AndroidUtilities.dp(10.0f);
-                        float dp3 = AndroidUtilities.dp(2.0f);
-                        Paint paint = ax0Var.f23311a;
-                        Spanned spanned2 = spanned;
-                        ax0[] ax0VarArr2 = ax0VarArr;
-                        int i12 = i10;
-                        paint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Oh, false));
-                        paint.setStrokeWidth(dp);
-                        Path path = ax0Var.f23312b;
-                        path.rewind();
-                        path.moveTo(primaryHorizontal, lineBottom);
-                        float f7 = primaryHorizontal;
-                        while (f7 < primaryHorizontal2) {
-                            float f10 = f7;
-                            float f11 = dp2;
-                            path.quadTo((dp2 / 4.0f) + f7, lineBottom - dp3, (dp2 / 2.0f) + f10, lineBottom);
-                            float f12 = f10 + f11;
-                            path.quadTo(((f11 * 3.0f) / 4.0f) + f10, lineBottom + dp3, f12, lineBottom);
-                            f7 = f12;
-                            dp2 = f11;
-                        }
-                        if (f7 > primaryHorizontal2) {
-                            canvas.save();
-                            float f13 = dp / 2.0f;
-                            canvas.clipRect(primaryHorizontal - f13, (lineBottom - dp3) - f13, primaryHorizontal2 + f13, lineBottom + dp3 + f13);
-                            canvas.drawPath(path, paint);
-                            canvas.restore();
-                        } else {
-                            canvas.drawPath(path, paint);
-                        }
-                        i11++;
-                        layout2 = layout;
-                        spanned = spanned2;
-                        ax0VarArr = ax0VarArr2;
-                        i10 = i12;
-                    }
-                    i10++;
-                    layout2 = layout;
-                }
-            }
+    public final void a(MessagesController.PeerColor peerColor) {
+        int b10;
+        int i10;
+        this.f24728a = peerColor;
+        if (peerColor == null) {
+            this.f24730c = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.A8, this.f24729b);
+            this.d = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21265s8, this.f24729b);
+            this.f24730c = i0.b.f(this.e, this.f24730c, 603979776);
+            this.d = i0.b.f(this.e, this.d, -1);
+            return;
         }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
+        int bgColor1 = peerColor.getBgColor1(org.telegram.ui.ActionBar.h6.I.q());
+        int bgColor2 = peerColor.getBgColor2(org.telegram.ui.ActionBar.h6.I.q());
+        org.telegram.ui.ActionBar.d6 d6Var = this.f24729b;
+        int f7 = i0.b.f(0.75f, bgColor2, bgColor1);
+        if (AndroidUtilities.computePerceivedBrightness(f7) > 0.721f) {
+            b10 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21319v6, d6Var);
+        } else {
+            b10 = org.telegram.ui.ActionBar.h6.b(0.08f, -0.08f, f7);
+        }
+        this.f24730c = b10;
+        if (AndroidUtilities.computePerceivedBrightness(b10) > 0.721f) {
+            i10 = -16777216;
+        } else {
+            i10 = -1;
+        }
+        this.d = i10;
+        this.f24730c = i0.b.f(this.e, this.f24730c, 603979776);
+        this.d = i0.b.f(this.e, this.d, -1);
     }
 }

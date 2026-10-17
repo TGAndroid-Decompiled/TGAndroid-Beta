@@ -1,50 +1,90 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class h4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f32975a;
-    public final TL_wallet.walletTransaction[] f32976b;
-    public final o3 f32977c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.u81;
+public final class h4 extends u81 {
+    public final Context f34258a;
+    public final l5 f34259b;
 
-    public h4(int i10, TL_wallet.walletTransaction[] wallettransactionArr, o3 o3Var) {
-        this.f32975a = i10;
-        this.f32976b = wallettransactionArr;
-        this.f32977c = o3Var;
+    public h4(l5 l5Var, Context context) {
+        this.f34259b = l5Var;
+        this.f34258a = context;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        TL_wallet.walletTransaction[] wallettransactionArr;
-        TL_wallet.walletTransaction wallettransaction;
-        if (i10 == NotificationCenter.walletUpdate || i10 == NotificationCenter.walletTransactionsUpdate) {
-            ArrayList arrayList = k0.v(this.f32975a).z().f33048c;
-            int size = arrayList.size();
-            int i12 = 0;
-            while (true) {
-                wallettransactionArr = this.f32976b;
-                if (i12 < size) {
-                    Object obj = arrayList.get(i12);
-                    i12++;
-                    wallettransaction = (TL_wallet.walletTransaction) obj;
-                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
-                    if (wallettransaction != wallettransaction2) {
-                        if (k0.d0(wallettransaction2, wallettransaction)) {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } else {
-                    wallettransaction = null;
-                    break;
-                }
+    public final void b(View view, int i10, int i11) {
+        l5.R0((a71) view, false);
+    }
+
+    @Override
+    public final View d(int i10) {
+        int i11;
+        int i12;
+        org.telegram.ui.ActionBar.d6 d6Var;
+        int i13;
+        l5 l5Var = this.f34259b;
+        a71[] a71VarArr = l5Var.f34501s0;
+        a71 a71Var = a71VarArr[i10];
+        if (a71Var == null) {
+            i11 = ((org.telegram.ui.ActionBar.n2) l5Var).currentAccount;
+            i12 = ((org.telegram.ui.ActionBar.n2) l5Var).classGuid;
+            org.telegram.ui.Components.o oVar = new org.telegram.ui.Components.o(this, i10, 2);
+            p3 p3Var = new p3(l5Var);
+            p3 p3Var2 = new p3(l5Var);
+            d6Var = ((org.telegram.ui.ActionBar.n2) l5Var).resourceProvider;
+            if (i10 == 1) {
+                i13 = 3;
+            } else {
+                i13 = -1;
             }
-            if (wallettransaction != null) {
-                wallettransactionArr[0] = wallettransaction;
-                this.f32977c.run(wallettransaction);
+            a71 a71Var2 = new a71(this.f34258a, i11, i12, false, oVar, p3Var, p3Var2, d6Var, i13, 1);
+            if (i10 == 1) {
+                a71Var2.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(12.0f));
             }
+            a71Var2.setFocusableInTouchMode(false);
+            a71Var2.setClipChildren(false);
+            a71Var2.setClipToPadding(false);
+            if (i10 == 0) {
+                a71Var2.p1();
+            } else {
+                a71Var2.setSelectorType(9);
+                a71Var2.setSelectorDrawableColor(0);
+            }
+            a71Var2.W2.f30200r = false;
+            a71Var2.j(new j51(this, i10));
+            a71VarArr[i10] = a71Var2;
+            return a71Var2;
         }
+        return a71Var;
+    }
+
+    @Override
+    public final int e() {
+        if (this.f34259b.f34487g0) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        int i11;
+        if (i10 == 0) {
+            i11 = R.string.WalletTransactions;
+        } else {
+            i11 = R.string.WalletCollectibles;
+        }
+        return LocaleController.getString(i11);
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
     }
 }

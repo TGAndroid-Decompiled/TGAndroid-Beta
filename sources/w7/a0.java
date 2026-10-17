@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 public abstract class a0 {
-    public static n2.v a(g2.h hVar, String str, byte[] bArr, Map map) {
+    public static n2.w a(g2.h hVar, String str, byte[] bArr, Map map) {
         Map map2;
         List list;
         g2.b0 b0Var = new g2.b0(hVar);
@@ -23,18 +23,18 @@ public abstract class a0 {
                 g2.k kVar = new g2.k(b0Var, mVar2);
                 try {
                     byte[] b10 = f9.f.b(kVar);
-                    u2.u uVar = new u2.u(mVar, b0Var.f9859c, b0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
-                    m2.t tVar = new m2.t(b10);
-                    tVar.f15111c = uVar;
-                    n2.v vVar = new n2.v(tVar);
-                    String str2 = e2.m0.f8375a;
+                    u2.u uVar = new u2.u(mVar, b0Var.f10765c, b0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
+                    mi.q qVar = new mi.q(b10);
+                    qVar.f16968c = uVar;
+                    n2.w wVar = new n2.w(qVar);
+                    String str2 = e2.m0.f8254a;
                     try {
                         kVar.close();
                     } catch (IOException unused) {
                     }
-                    return vVar;
+                    return wVar;
                 } catch (g2.x e) {
-                    int i11 = e.f9917c;
+                    int i11 = e.f10823c;
                     String str3 = null;
                     if ((i11 == 307 || i11 == 308) && i10 < 5 && (map2 = e.d) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
                         str3 = (String) list.get(0);
@@ -44,7 +44,7 @@ public abstract class a0 {
                         g2.l a2 = mVar2.a();
                         a2.e = Uri.parse(str3);
                         mVar2 = a2.d();
-                        String str4 = e2.m0.f8375a;
+                        String str4 = e2.m0.f8254a;
                         try {
                             kVar.close();
                         } catch (IOException unused2) {
@@ -54,7 +54,7 @@ public abstract class a0 {
                     }
                 }
             } catch (Exception e7) {
-                throw new n2.w(mVar, b0Var.f9859c, b0Var.f9857a.getResponseHeaders(), b0Var.f9858b, e7);
+                throw new n2.x(mVar, b0Var.f10765c, b0Var.f10763a.getResponseHeaders(), b0Var.f10764b, e7);
             }
         }
     }

@@ -9,36 +9,36 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.vi;
-import org.telegram.ui.p20;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.f6;
+import org.telegram.ui.Components.ti;
+import org.telegram.ui.u10;
 public final class j extends FrameLayout {
-    public final int f11539a = 0;
-    public int f11540b;
-    public final Object f11541c;
+    public final int f12931a = 0;
+    public int f12932b;
+    public final Object f12933c;
     public final Object d;
     public final NotificationCenter.NotificationCenterDelegate e;
 
     public j(m mVar, Context context) {
         super(context);
         this.e = mVar;
-        this.f11540b = -1;
-        this.f11541c = new Rect();
-        this.d = new g6(this, 220L, es.h);
+        this.f12932b = -1;
+        this.f12933c = new Rect();
+        this.d = new f6(this, 220L, bs.h);
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f11539a) {
+        switch (this.f12931a) {
             case 1:
-                p20 p20Var = (p20) this.d;
-                Path path = (Path) this.f11541c;
-                vi viVar = (vi) this.e;
-                dh.d dVar = viVar.E0;
+                u10 u10Var = (u10) this.d;
+                Path path = (Path) this.f12933c;
+                ti tiVar = (ti) this.e;
+                dh.d dVar = tiVar.E0;
                 if (dVar != null) {
-                    dVar.setBounds(0, (int) viVar.Y1, getMeasuredWidth(), getMeasuredHeight());
-                    viVar.E0.draw(canvas);
+                    dVar.setBounds(0, (int) tiVar.Y1, getMeasuredWidth(), getMeasuredHeight());
+                    tiVar.E0.draw(canvas);
                 }
                 float dp = AndroidUtilities.dp(20.0f);
                 int dp2 = AndroidUtilities.dp(7.0f);
@@ -53,9 +53,9 @@ public final class j extends FrameLayout {
                 canvas.saveLayerAlpha(rectF, 255, 31);
                 super.dispatchDraw(canvas);
                 rectF.set(getPaddingLeft(), f7, getWidth() - getPaddingRight(), AndroidUtilities.dp(6.0f) + dp2);
-                p20Var.b(canvas, rectF, 1, 1.0f);
+                u10Var.b(canvas, rectF, 1, 1.0f);
                 rectF.set(getPaddingLeft(), (getHeight() - dp3) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - dp3);
-                p20Var.b(canvas, rectF, 3, 1.0f);
+                u10Var.b(canvas, rectF, 3, 1.0f);
                 canvas.restore();
                 canvas.restore();
                 return;
@@ -67,16 +67,16 @@ public final class j extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f11539a) {
+        switch (this.f12931a) {
             case 0:
                 float width = getWidth() / 2.0f;
                 m mVar = (m) this.e;
-                float d = ((g6) this.d).d(mVar.f11575n.getWidth(), false);
-                Rect rect = (Rect) this.f11541c;
+                float d = ((f6) this.d).d(mVar.f12958n.getWidth(), false);
+                Rect rect = (Rect) this.f12933c;
                 float f7 = d / 2.0f;
-                rect.set((int) (width - (mVar.f11575n.getScaleX() * f7)), (int) (((1.0f - mVar.f11575n.getScaleY()) * mVar.f11575n.getHeight()) + mVar.f11575n.getY()), (int) ((mVar.f11575n.getScaleX() * f7) + width), (int) (mVar.f11575n.getY() + mVar.f11575n.getHeight()));
-                mVar.f11576r.setBounds(rect);
-                mVar.f11576r.draw(canvas);
+                rect.set((int) (width - (mVar.f12958n.getScaleX() * f7)), (int) (((1.0f - mVar.f12958n.getScaleY()) * mVar.f12958n.getHeight()) + mVar.f12958n.getY()), (int) ((mVar.f12958n.getScaleX() * f7) + width), (int) (mVar.f12958n.getY() + mVar.f12958n.getHeight()));
+                mVar.f12959r.setBounds(rect);
+                mVar.f12959r.draw(canvas);
                 return super.drawChild(canvas, view, j10);
             default:
                 return super.drawChild(canvas, view, j10);
@@ -85,16 +85,16 @@ public final class j extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f11539a) {
+        switch (this.f12931a) {
             case 1:
-                int i14 = this.f11540b;
-                vi viVar = (vi) this.e;
-                int top = i14 - viVar.f29724w.getTop();
+                int i14 = this.f12932b;
+                ti tiVar = (ti) this.e;
+                int top = i14 - tiVar.f30626w.getTop();
                 super.onLayout(z10, i10, i11, i12, i13);
-                this.f11540b = getHeight();
-                if (viVar.f29724w.getVisibility() == 0 && getHeight() - viVar.f29724w.getTop() != top) {
-                    viVar.f29724w.setTranslationY(viVar.f29724w.getTranslationY() + ((getHeight() - viVar.f29724w.getTop()) - top));
-                    viVar.f29724w.animate().translationY(0.0f).setDuration(320L).setInterpolator(es.h).start();
+                this.f12932b = getHeight();
+                if (tiVar.f30626w.getVisibility() == 0 && getHeight() - tiVar.f30626w.getTop() != top) {
+                    tiVar.f30626w.setTranslationY(tiVar.f30626w.getTranslationY() + ((getHeight() - tiVar.f30626w.getTop()) - top));
+                    tiVar.f30626w.animate().translationY(0.0f).setDuration(320L).setInterpolator(bs.h).start();
                     return;
                 }
                 return;
@@ -106,14 +106,14 @@ public final class j extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f11539a) {
+        switch (this.f12931a) {
             case 0:
                 m mVar = (m) this.e;
-                mVar.f11575n.measure(i10, i11);
+                mVar.f12958n.measure(i10, i11);
                 invalidate();
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f11540b, AndroidUtilities.dp(36.0f) + mVar.f11575n.getMeasuredHeight()), 1073741824));
-                if (this.f11540b < 0) {
-                    this.f11540b = getMeasuredHeight();
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f12932b, AndroidUtilities.dp(36.0f) + mVar.f12958n.getMeasuredHeight()), 1073741824));
+                if (this.f12932b < 0) {
+                    this.f12932b = getMeasuredHeight();
                     return;
                 }
                 return;
@@ -123,10 +123,10 @@ public final class j extends FrameLayout {
         }
     }
 
-    public j(vi viVar, Context context) {
+    public j(ti tiVar, Context context) {
         super(context);
-        this.e = viVar;
-        this.f11541c = new Path();
-        this.d = new p20();
+        this.e = tiVar;
+        this.f12933c = new Path();
+        this.d = new u10();
     }
 }

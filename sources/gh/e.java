@@ -3,7 +3,7 @@ package gh;
 import android.graphics.Canvas;
 import dh.f;
 public final class e implements a {
-    public a f10160a;
+    public a f11064a;
 
     @Override
     public final dh.d f() {
@@ -11,10 +11,10 @@ public final class e implements a {
     }
 
     @Override
-    public final void v(Canvas canvas, float f7, float f10, float f11, float f12) {
-        a aVar = this.f10160a;
+    public final void y(Canvas canvas, float f7, float f10, float f11, float f12) {
+        a aVar = this.f11064a;
         if (aVar != null) {
-            aVar.v(canvas, f7, f10, f11, f12);
+            aVar.y(canvas, f7, f10, f11, f12);
         }
     }
 

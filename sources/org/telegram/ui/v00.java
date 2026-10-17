@@ -1,68 +1,95 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class v00 extends FrameLayout {
-    public final w00 f40533a;
+import org.telegram.messenger.MessageObject;
+public final class v00 extends s4.r0 {
+    public final g10 f42084a;
 
-    public v00(w00 w00Var, Context context) {
-        super(context);
-        int i10;
-        String string;
-        this.f40533a = w00Var;
-        ImageView imageView = new ImageView(context);
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.msg_limit_links);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.Oh, false)));
-        addView(imageView, w7.z5.a(44.0f, 0.0f, 22.0f, 0.0f, 0.0f, 54, 49));
-        wh.n nVar = new wh.n(context);
-        nVar.setTypeface(AndroidUtilities.bold());
-        nVar.setTextSize(1, 20.0f);
-        int i11 = org.telegram.ui.ActionBar.g6.f19707j5;
-        nVar.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i11, false));
-        nVar.setGravity(1);
-        nVar.setText(w00Var.S(nVar));
-        MessagesController.DialogFilter dialogFilter = w00Var.X;
-        if (dialogFilter != null && dialogFilter.title_noanimate) {
-            i10 = 26;
-        } else {
-            i10 = 0;
-        }
-        nVar.f47713s = i10;
-        addView(nVar, w7.z5.a(-2.0f, 20.0f, 84.0f, 20.0f, 0.0f, -2, 49));
-        TextView textView = new TextView(context);
-        if (w00Var.Y.isEmpty()) {
-            string = LocaleController.getString(R.string.FolderLinkShareSubtitleEmpty);
-        } else {
-            string = LocaleController.getString(R.string.FolderLinkShareSubtitle);
-        }
-        textView.setText(string);
-        textView.setLines(2);
-        textView.setGravity(1);
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i11, false));
-        addView(textView, w7.z5.a(-2.0f, 30.0f, 117.0f, 30.0f, 0.0f, -2, 49));
-        ImageView imageView2 = new ImageView(context);
-        imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(R.drawable.msg_close);
-        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.C6, false), PorterDuff.Mode.MULTIPLY));
-        imageView2.setOnClickListener(new a(this, 22));
-        addView(imageView2, w7.z5.a(48.0f, 0.0f, -4.0f, 2.0f, 0.0f, 48, 53));
+    public v00(g10 g10Var) {
+        this.f42084a = g10Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(171.0f), 1073741824));
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            AndroidUtilities.hideKeyboard(this.f42084a.K.getCurrentFocus());
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        MessageObject messageObject;
+        g10 g10Var = this.f42084a;
+        ci.i3 i3Var = g10Var.m0;
+        s4.b0 b0Var = g10Var.f37094j0;
+        ne.b bVar = g10Var.f37081a;
+        fz fzVar = g10Var.f37098n0;
+        if (recyclerView.getAdapter() != null && g10Var.d != null) {
+            int L0 = b0Var.L0();
+            int N0 = b0Var.N0();
+            int abs = Math.abs(N0 - L0) + 1;
+            int h = recyclerView.getAdapter().h();
+            if (!g10Var.M && abs > 0 && N0 >= h - 10 && !g10Var.N) {
+                AndroidUtilities.runOnUIThread(new fz(this, 2));
+            }
+            if (g10Var.d == g10Var.U) {
+                if (i11 != 0 && !g10Var.f37089f.isEmpty() && TextUtils.isEmpty(g10Var.Q)) {
+                    AndroidUtilities.cancelRunOnUIThread(fzVar);
+                    AndroidUtilities.runOnUIThread(fzVar, 1650L);
+                    bVar.a(true, true);
+                }
+                s4.b1 K = recyclerView.K(L0);
+                if (K != null && K.f45941f == 0) {
+                    View view = K.f45938a;
+                    if (view instanceof org.telegram.ui.Cells.t7) {
+                        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
+                        if (t7Var.e <= 0) {
+                            messageObject = null;
+                        } else {
+                            messageObject = t7Var.f23200b[0];
+                        }
+                        if (messageObject != null) {
+                            int i12 = messageObject.messageOwner.date;
+                            i3Var.getClass();
+                            String formatDateChat = LocaleController.formatDateChat(i12);
+                            if (!TextUtils.equals((String) i3Var.d, formatDateChat)) {
+                                i3Var.d = formatDateChat;
+                                ((org.telegram.ui.Components.p6) i3Var.f5487b).t(formatDateChat, true, true);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
+            View pinnedHeader = g10Var.f37083b.getPinnedHeader();
+            if (pinnedHeader instanceof org.telegram.ui.Cells.u3) {
+                org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) pinnedHeader;
+                CharSequence text = u3Var.getText();
+                if (!TextUtils.isEmpty(text) && u3Var.getAlpha() > 0.0f) {
+                    String charSequence = text.toString();
+                    if (!TextUtils.equals((String) i3Var.d, charSequence)) {
+                        i3Var.d = charSequence;
+                        ((org.telegram.ui.Components.p6) i3Var.f5487b).t(charSequence, true, true);
+                    }
+                    if (i11 != 0) {
+                        AndroidUtilities.cancelRunOnUIThread(fzVar);
+                        AndroidUtilities.runOnUIThread(fzVar, 1650L);
+                        bVar.a(true, true);
+                        return;
+                    }
+                    return;
+                }
+            }
+            AndroidUtilities.cancelRunOnUIThread(fzVar);
+            bVar.a(false, true);
+        }
     }
 }

@@ -1,12 +1,12 @@
 package u2;
 public final class l {
-    public final a f45962a;
-    public final j f45963b;
-    public final k f45964c;
+    public final a f47369a;
+    public final j f47370b;
+    public final k f47371c;
 
     public l(a aVar, j jVar, k kVar) {
-        this.f45962a = aVar;
-        this.f45963b = jVar;
-        this.f45964c = kVar;
+        this.f47369a = aVar;
+        this.f47370b = jVar;
+        this.f47371c = kVar;
     }
 }

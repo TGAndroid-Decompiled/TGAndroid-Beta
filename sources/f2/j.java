@@ -1,21 +1,18 @@
 package f2;
-
-import e9.n0;
-import e9.x1;
 public final class j {
-    public final n0 f8856a;
-    public final int[] f8857b;
+    public final int f10296a;
+    public final boolean f10297b;
+    public final int f10298c;
+    public final int d;
+    public final int[] e;
+    public final int f10299f;
 
-    public j(x1 x1Var, int[] iArr, int i10) {
-        switch (i10) {
-            case 1:
-                this.f8856a = n0.u(x1Var);
-                this.f8857b = iArr;
-                return;
-            default:
-                this.f8856a = n0.u(x1Var);
-                this.f8857b = iArr;
-                return;
-        }
+    public j(int i10, int i11, int i12, int i13, boolean z10, int[] iArr) {
+        this.f10296a = i10;
+        this.f10297b = z10;
+        this.f10298c = i11;
+        this.d = i12;
+        this.e = iArr;
+        this.f10299f = i13;
     }
 }

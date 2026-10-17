@@ -13,7 +13,7 @@ import java.util.concurrent.Executor;
 import v7.u6;
 public final class r implements p0 {
     public e9.n0 f185a;
-    public b2.x f186b;
+    public b2.w f186b;
     public long f187c;
     public long d;
     public int e;
@@ -23,7 +23,7 @@ public final class r implements p0 {
     public r(w wVar, Context context) {
         this.f189g = wVar;
         e2.m0.N(context);
-        e9.l0 l0Var = e9.n0.f8595b;
+        e9.l0 l0Var = e9.n0.f8476b;
         this.f185a = x1.e;
         this.d = -9223372036854775807L;
         this.f188f = w.f192q;
@@ -48,22 +48,22 @@ public final class r implements p0 {
     }
 
     @Override
-    public final boolean d(b2.x xVar) {
+    public final boolean d(b2.w wVar) {
         boolean z10;
         boolean z11;
-        w wVar = this.f189g;
+        w wVar2 = this.f189g;
         boolean z12 = true;
-        if (wVar.f203n == 0) {
+        if (wVar2.f203n == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         u6.p(z10);
-        b2.o oVar = xVar.I;
-        if (oVar == null || !oVar.d()) {
-            oVar = b2.o.h;
+        b2.n nVar = wVar.I;
+        if (nVar == null || !nVar.d()) {
+            nVar = b2.n.h;
         }
-        int i10 = oVar.f2239c;
+        int i10 = nVar.f3847c;
         if (i10 == 7) {
             try {
                 int i11 = Build.VERSION.SDK_INT;
@@ -74,16 +74,16 @@ public final class r implements p0 {
                         z11 = false;
                     }
                     if (z11) {
-                        e2.g0 g0Var = wVar.f196f;
+                        e2.g0 g0Var = wVar2.f196f;
                         Looper myLooper = Looper.myLooper();
                         myLooper.getClass();
-                        wVar.f200k = g0Var.a(myLooper, null);
-                        wVar.f194b.a();
+                        wVar2.f200k = g0Var.a(myLooper, null);
+                        wVar2.f194b.a();
                         throw null;
                     }
                 }
             } catch (e2.m e) {
-                throw new o0(e, xVar);
+                throw new o0(e, wVar);
             }
         }
         if (i10 == 6) {
@@ -96,22 +96,22 @@ public final class r implements p0 {
         if (!z12 && Build.VERSION.SDK_INT >= 29) {
             Locale locale = Locale.US;
             e2.a.l("PlaybackVidGraphWrapper", "Color transfer " + i10 + " is not supported. Falling back to OpenGl tone mapping.");
-            b2.o oVar2 = b2.o.h;
-            e2.g0 g0Var2 = wVar.f196f;
+            b2.n nVar2 = b2.n.h;
+            e2.g0 g0Var2 = wVar2.f196f;
             Looper myLooper2 = Looper.myLooper();
             myLooper2.getClass();
-            wVar.f200k = g0Var2.a(myLooper2, null);
-            wVar.f194b.a();
+            wVar2.f200k = g0Var2.a(myLooper2, null);
+            wVar2.f194b.a();
             throw null;
         }
         if (i10 == 2 || i10 == 10) {
-            b2.o oVar3 = b2.o.h;
+            b2.n nVar3 = b2.n.h;
         }
-        e2.g0 g0Var22 = wVar.f196f;
+        e2.g0 g0Var22 = wVar2.f196f;
         Looper myLooper22 = Looper.myLooper();
         myLooper22.getClass();
-        wVar.f200k = g0Var22.a(myLooper22, null);
-        wVar.f194b.a();
+        wVar2.f200k = g0Var22.a(myLooper22, null);
+        wVar2.f194b.a();
         throw null;
     }
 
@@ -133,7 +133,7 @@ public final class r implements p0 {
 
     @Override
     public final void g(a6.i iVar) {
-        this.f188f = j9.r.f12944a;
+        this.f188f = j9.r.f14351a;
     }
 
     @Override
@@ -159,21 +159,21 @@ public final class r implements p0 {
     public final void k() {
         w wVar = this.f189g;
         wVar.getClass();
-        int i10 = e2.y.f8417c.f8418a;
+        int i10 = e2.y.f8296c.f8297a;
         wVar.f201l = null;
     }
 
     @Override
-    public final void l(b2.x xVar, long j10, int i10, List list) {
+    public final void l(b2.w wVar, long j10, int i10, List list) {
         u6.p(false);
         this.f185a = e9.n0.u(list);
-        this.f186b = xVar;
-        b2.w a2 = xVar.a();
-        b2.o oVar = xVar.I;
-        if (oVar == null || !oVar.d()) {
-            oVar = b2.o.h;
+        this.f186b = wVar;
+        b2.v a2 = wVar.a();
+        b2.n nVar = wVar.I;
+        if (nVar == null || !nVar.d()) {
+            nVar = b2.n.h;
         }
-        a2.H = oVar;
+        a2.H = nVar;
         a2.a();
         throw null;
     }
@@ -186,17 +186,17 @@ public final class r implements p0 {
         if (wVar.f203n == 1) {
             wVar.f202m++;
             fVar.m(z10);
-            while (wVar.f199j.m() > 1) {
-                wVar.f199j.h();
+            while (wVar.f199j.j() > 1) {
+                wVar.f199j.f();
             }
-            if (wVar.f199j.m() != 1) {
+            if (wVar.f199j.j() != 1) {
                 wVar.f204o = -9223372036854775807L;
                 e2.i0 i0Var = wVar.f200k;
                 i0Var.getClass();
                 i0Var.d(new d(wVar, 1));
                 return;
             }
-            ((v) wVar.f199j.h()).getClass();
+            ((v) wVar.f199j.f()).getClass();
             throw null;
         }
     }
@@ -223,7 +223,7 @@ public final class r implements p0 {
                 r2.l lVar = jVar.f125a;
                 int i11 = jVar.f126b;
                 Trace.beginSection("dropVideoBuffer");
-                lVar.e(i11);
+                lVar.d(i11);
                 Trace.endSection();
                 nVar.R0(0, 1);
                 return true;
@@ -240,16 +240,16 @@ public final class r implements p0 {
     public final void o(List list) {
         if (!this.f185a.equals(list)) {
             this.f185a = e9.n0.u(list);
-            b2.x xVar = this.f186b;
-            if (xVar == null) {
+            b2.w wVar = this.f186b;
+            if (wVar == null) {
                 return;
             }
-            b2.w a2 = xVar.a();
-            b2.o oVar = xVar.I;
-            if (oVar == null || !oVar.d()) {
-                oVar = b2.o.h;
+            b2.v a2 = wVar.a();
+            b2.n nVar = wVar.I;
+            if (nVar == null || !nVar.d()) {
+                nVar = b2.n.h;
             }
-            a2.H = oVar;
+            a2.H = nVar;
             a2.a();
             throw null;
         }
@@ -281,7 +281,7 @@ public final class r implements p0 {
         }
         e2.i0 i0Var = wVar.f200k;
         if (i0Var != null) {
-            i0Var.f8360a.removeCallbacksAndMessages(null);
+            i0Var.f8239a.removeCallbacksAndMessages(null);
         }
         wVar.f201l = null;
         wVar.f203n = 2;
@@ -295,7 +295,7 @@ public final class r implements p0 {
             return;
         }
         wVar.f201l = Pair.create(surface, yVar);
-        int i10 = yVar.f8418a;
+        int i10 = yVar.f8297a;
     }
 
     @Override
@@ -311,15 +311,15 @@ public final class r implements p0 {
     @Override
     public final void w() {
         w wVar = this.f189g;
-        if (wVar.f199j.m() == 0) {
+        if (wVar.f199j.j() == 0) {
             wVar.e.w();
             return;
         }
-        e2.j0 j0Var = new e2.j0(0, (byte) 0);
-        if (wVar.f199j.m() <= 0) {
+        e2.j0 j0Var = new e2.j0();
+        if (wVar.f199j.j() <= 0) {
             wVar.f199j = j0Var;
         } else {
-            ((v) wVar.f199j.h()).getClass();
+            ((v) wVar.f199j.f()).getClass();
             throw null;
         }
     }

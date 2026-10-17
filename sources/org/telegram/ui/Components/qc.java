@@ -1,91 +1,269 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import j$.util.Objects;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class qc extends ob {
-    public Runnable f28266a;
-    public Runnable f28267b;
-    public sc f28268c;
-    public final TextView d;
-    public boolean e;
+public class qc {
+    public static qc f29632w;
+    public int f29633a;
+    public int f29634b;
+    public eb f29635c;
+    public o1.k d;
+    public final ub e;
+    public final ib f29636f;
+    public final org.telegram.ui.ActionBar.n2 f29637g;
+    public final FrameLayout h;
+    public final Runnable f29638i;
+    public int f29639j;
+    public boolean f29640k;
+    public boolean f29641l;
+    public boolean f29642m;
+    public boolean f29643n;
+    public int f29644o;
+    public ob f29645p;
+    public tb f29646q;
+    public boolean f29647r;
+    public boolean f29648s;
+    public boolean f29649t;
+    public boolean f29650u;
+    public Runnable v;
 
-    public qc(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10, boolean z11) {
-        super(context);
-        int x02;
-        int i10 = org.telegram.ui.ActionBar.g6.Gi;
-        if (c6Var != null) {
-            x02 = c6Var.E0(i10);
-        } else {
-            x02 = org.telegram.ui.ActionBar.g6.x0(null, i10, false);
+    public qc() {
+        this.f29638i = new db(this, 0);
+        this.f29643n = true;
+        this.f29647r = true;
+        this.f29650u = true;
+        this.e = null;
+        this.f29636f = null;
+        this.f29637g = null;
+        this.h = null;
+    }
+
+    public static void a(FrameLayout frameLayout, ob obVar) {
+        if (frameLayout != null) {
+            frameLayout.setTag(R.id.bulletin_delegate_tag, obVar);
         }
-        if (z10) {
-            TextView textView = new TextView(context);
-            this.d = textView;
-            textView.setBackground(org.telegram.ui.ActionBar.g6.g0((x02 & 16777215) | 419430400, 7, -1));
-            textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setTextColor(x02);
-            org.telegram.messenger.sk.m(R.string.UndoNoCaps, textView, 16);
-            float f7 = z11 ? 34.0f : 12.0f;
-            boolean z12 = LocaleController.isRTL;
-            w7.f6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
-            addView(textView, w7.z5.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
-        }
-        if (z11) {
-            ImageView imageView = new ImageView(getContext());
-            imageView.setImageResource(R.drawable.chats_undo);
-            imageView.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
-            if (!z10) {
-                imageView.setBackground(org.telegram.ui.ActionBar.g6.g0((x02 & 16777215) | 419430400, 1, -1));
+    }
+
+    public static void d(FrameLayout frameLayout) {
+        qc qcVar;
+        int childCount = frameLayout.getChildCount();
+        int i10 = 0;
+        while (true) {
+            if (i10 < childCount) {
+                View childAt = frameLayout.getChildAt(i10);
+                if (childAt instanceof ub) {
+                    qcVar = ((ub) childAt).bulletin;
+                    break;
+                }
+                i10++;
+            } else {
+                qcVar = null;
+                break;
             }
-            w7.f6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
-            addView(imageView, w7.z5.h(56.0f, 48.0f, 16));
         }
-        setOnClickListener(new f0(this, 5));
+        if (qcVar != null) {
+            qcVar.c(0L, MessagesController.getGlobalMainSettings().getBoolean("view_animations", true));
+        }
     }
 
-    @Override
-    public final void a(sc scVar) {
-        this.f28268c = scVar;
+    public static void e() {
+        qc qcVar = f29632w;
+        if (qcVar != null) {
+            qcVar.b();
+        }
     }
 
-    @Override
+    public static qc f(FrameLayout frameLayout, ub ubVar, int i10) {
+        if (frameLayout == null) {
+            return new qc();
+        }
+        return new qc(null, frameLayout, ubVar, i10);
+    }
+
+    public static qc g(org.telegram.ui.ActionBar.n2 n2Var, nb nbVar, int i10) {
+        if (n2Var == null) {
+            return new qc();
+        }
+        if (n2Var instanceof org.telegram.ui.sn) {
+            ub.access$000(nbVar, -2, 1);
+        } else if (n2Var instanceof org.telegram.ui.ey) {
+            ub.access$000(nbVar, -1, 0);
+        }
+        return new qc(n2Var, n2Var.getBulletinLayoutContainer(), nbVar, i10);
+    }
+
+    public static void h(FrameLayout frameLayout) {
+        if (frameLayout != null) {
+            frameLayout.setTag(R.id.bulletin_delegate_tag, null);
+        }
+    }
+
     public final void b() {
-        this.f28268c = null;
-        Runnable runnable = this.f28267b;
-        if (runnable != null && !this.e) {
-            runnable.run();
-        }
+        c(0L, MessagesController.getGlobalMainSettings().getBoolean("view_animations", true));
     }
 
-    public final void e(CharSequence charSequence) {
-        TextView textView = this.d;
-        if (textView != null) {
-            textView.setText(charSequence);
-        }
-    }
-
-    public final void f() {
-        if (this.f28268c != null) {
-            this.e = true;
-            Runnable runnable = this.f28266a;
+    public final void c(long j10, boolean z10) {
+        ub ubVar = this.e;
+        if (ubVar != null && this.f29641l) {
+            this.f29641l = false;
+            if (f29632w == this) {
+                f29632w = null;
+            }
+            WeakHashMap weakHashMap = r0.i0.f44844a;
+            if (ubVar.isLaidOut() || this.f29649t) {
+                ubVar.removeCallbacks(this.f29638i);
+                if (z10) {
+                    ubVar.transitionRunningExit = true;
+                    ubVar.delegate = this.f29645p;
+                    ubVar.invalidate();
+                    if (j10 >= 0) {
+                        ?? obj = new Object();
+                        obj.f4658a = j10;
+                        this.f29646q = obj;
+                    } else if (ubVar != null && this.f29646q == null) {
+                        this.f29646q = ubVar.createTransition();
+                    }
+                    tb tbVar = this.f29646q;
+                    Objects.requireNonNull(ubVar);
+                    tbVar.d(ubVar, new fb(ubVar, 0), new db(this, 1), new gb(this, 0));
+                    return;
+                }
+            }
+            ob obVar = this.f29645p;
+            if (obVar != null && !ubVar.top) {
+                obVar.c(0.0f);
+                this.f29645p.d(this);
+            }
+            ubVar.onExitTransitionStart();
+            ubVar.onExitTransitionEnd();
+            ubVar.onHide();
+            if (this.h != null) {
+                AndroidUtilities.runOnUIThread(new db(this, 2));
+            }
+            ubVar.onDetach();
+            Runnable runnable = this.v;
             if (runnable != null) {
                 runnable.run();
             }
-            sc scVar = this.f28268c;
-            if (scVar != null) {
-                scVar.b();
-            }
         }
     }
 
-    public qc(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
-        this(context, c6Var, z10, !z10);
+    public final void i(boolean z10) {
+        boolean z11;
+        ub ubVar;
+        if (z10 && this.f29643n) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (this.f29642m != z11 && (ubVar = this.e) != null) {
+            this.f29642m = z11;
+            Runnable runnable = this.f29638i;
+            if (z11) {
+                int i10 = this.f29639j;
+                if (i10 >= 0) {
+                    ubVar.postDelayed(runnable, i10);
+                    return;
+                }
+                return;
+            }
+            ubVar.removeCallbacks(runnable);
+        }
+    }
+
+    public qc j() {
+        k(false);
+        return this;
+    }
+
+    public final void k(final boolean z10) {
+        FrameLayout frameLayout;
+        if (!this.f29641l && (frameLayout = this.h) != 0) {
+            this.f29641l = true;
+            ub ubVar = this.e;
+            ubVar.setTop(z10);
+            CharSequence accessibilityText = ubVar.getAccessibilityText();
+            if (accessibilityText != null) {
+                AndroidUtilities.makeAccessibilityAnnouncement(accessibilityText);
+            }
+            ViewParent parent = ubVar.getParent();
+            ib ibVar = this.f29636f;
+            if (parent == ibVar) {
+                qc qcVar = f29632w;
+                if (qcVar != null) {
+                    qcVar.b();
+                }
+                f29632w = this;
+                ubVar.onAttach(this);
+                ?? r22 = new View.OnLayoutChangeListener() {
+                    @Override
+                    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+                        int i18;
+                        qc qcVar2 = qc.this;
+                        ob obVar = qcVar2.f29645p;
+                        if ((obVar == null || obVar.a()) && !z10) {
+                            ob obVar2 = qcVar2.f29645p;
+                            if (obVar2 != null) {
+                                i18 = obVar2.f(qcVar2.f29633a);
+                            } else {
+                                i18 = 0;
+                            }
+                            int i19 = qcVar2.f29644o;
+                            if (i19 != i18) {
+                                o1.k kVar = qcVar2.d;
+                                if (kVar != null && kVar.f17548f) {
+                                    kVar.f17555u.f17561i = i18;
+                                } else {
+                                    o1.k kVar2 = new o1.k(new o1.j(i19));
+                                    o1.l lVar = new o1.l();
+                                    lVar.f17561i = i18;
+                                    lVar.b(900.0f);
+                                    lVar.a(1.0f);
+                                    kVar2.f17555u = lVar;
+                                    qcVar2.d = kVar2;
+                                    kVar2.b(new l7(qcVar2, 1));
+                                    qcVar2.d.a(new hb(qcVar2, 0));
+                                }
+                                qcVar2.d.h();
+                            }
+                        }
+                    }
+                };
+                this.f29635c = r22;
+                frameLayout.addOnLayoutChangeListener(r22);
+                ubVar.addOnLayoutChangeListener(new jb(this, z10));
+                if (!this.f29649t) {
+                    ubVar.addOnAttachStateChangeListener(new ai.m6(this, 7));
+                }
+                frameLayout.addView(ibVar);
+                return;
+            }
+            throw new IllegalStateException("Layout has incorrect parent");
+        }
+    }
+
+    public final void l() {
+        ub ubVar = this.e;
+        if (ubVar != null) {
+            ubVar.updatePosition();
+        }
+    }
+
+    public qc(org.telegram.ui.ActionBar.n2 n2Var, FrameLayout frameLayout, ub ubVar, int i10) {
+        this.f29638i = new db(this, 0);
+        this.f29647r = true;
+        this.f29650u = true;
+        this.e = ubVar;
+        this.f29643n = true ^ (ubVar instanceof vb);
+        this.f29636f = new ib(this, ubVar, frameLayout);
+        this.f29637g = n2Var;
+        this.h = frameLayout;
+        this.f29639j = i10;
     }
 }

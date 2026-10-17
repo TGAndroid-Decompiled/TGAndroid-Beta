@@ -3,73 +3,37 @@ package e0;
 import android.app.PendingIntent;
 import android.os.Bundle;
 import androidx.core.graphics.drawable.IconCompat;
-import java.util.ArrayList;
 public final class h {
-    public final IconCompat f8223a;
-    public final CharSequence f8224b;
-    public final PendingIntent f8225c;
-    public boolean d;
-    public final Bundle e;
-    public ArrayList f8226f;
-    public int f8227g;
-    public boolean h;
+    public final Bundle f8108a;
+    public IconCompat f8109b;
+    public final o0[] f8110c;
+    public final boolean d;
+    public final boolean e;
+    public final int f8111f;
+    public final int f8112g;
+    public final CharSequence h;
+    public final PendingIntent f8113i;
 
-    public h(int i10, String str, PendingIntent pendingIntent) {
-        IconCompat e;
-        if (i10 == 0) {
-            e = null;
-        } else {
-            e = IconCompat.e(null, "", i10);
+    public h(IconCompat iconCompat, CharSequence charSequence, PendingIntent pendingIntent, Bundle bundle, o0[] o0VarArr, o0[] o0VarArr2, boolean z10, int i10, boolean z11) {
+        this.e = true;
+        this.f8109b = iconCompat;
+        if (iconCompat != null && iconCompat.i() == 2) {
+            this.f8112g = iconCompat.g();
         }
-        Bundle bundle = new Bundle();
-        this.d = true;
-        this.h = true;
-        this.f8223a = e;
-        this.f8224b = r.d(str);
-        this.f8225c = pendingIntent;
-        this.e = bundle;
-        this.f8226f = null;
-        this.d = true;
-        this.f8227g = 0;
-        this.h = true;
+        this.h = q.d(charSequence);
+        this.f8113i = pendingIntent;
+        this.f8108a = bundle == null ? new Bundle() : bundle;
+        this.f8110c = o0VarArr;
+        this.d = z10;
+        this.f8111f = i10;
+        this.e = z11;
     }
 
-    public final void a(p0 p0Var) {
-        if (this.f8226f == null) {
-            this.f8226f = new ArrayList();
+    public final IconCompat a() {
+        int i10;
+        if (this.f8109b == null && (i10 = this.f8112g) != 0) {
+            this.f8109b = IconCompat.e(null, "", i10);
         }
-        this.f8226f.add(p0Var);
-    }
-
-    public final i b() {
-        p0[] p0VarArr;
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        ArrayList arrayList3 = this.f8226f;
-        if (arrayList3 != null) {
-            int size = arrayList3.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList3.get(i10);
-                i10++;
-                p0 p0Var = (p0) obj;
-                p0Var.getClass();
-                arrayList2.add(p0Var);
-            }
-        }
-        p0[] p0VarArr2 = null;
-        if (arrayList.isEmpty()) {
-            p0VarArr = null;
-        } else {
-            p0VarArr = (p0[]) arrayList.toArray(new p0[arrayList.size()]);
-        }
-        if (!arrayList2.isEmpty()) {
-            p0VarArr2 = (p0[]) arrayList2.toArray(new p0[arrayList2.size()]);
-        }
-        return new i(this.f8223a, this.f8224b, this.f8225c, this.e, p0VarArr2, p0VarArr, this.d, this.f8227g, this.h);
-    }
-
-    public final void c() {
-        this.d = true;
+        return this.f8109b;
     }
 }

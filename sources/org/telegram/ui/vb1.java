@@ -1,40 +1,18 @@
 package org.telegram.ui;
+public final class vb1 extends mc1 {
+    public final sn f42167k2;
+    public final boolean f42168l2;
 
-import android.content.Intent;
-public final class vb1 implements org.telegram.ui.Components.xl0, org.telegram.ui.ActionBar.z1 {
-    public final int f40669a;
-    public final ThemeActivity f40670b;
-
-    public vb1(ThemeActivity themeActivity, int i10) {
-        this.f40669a = i10;
-        this.f40670b = themeActivity;
+    public vb1(Object obj, sn snVar, boolean z10) {
+        super(obj, null, true);
+        this.f42167k2 = snVar;
+        this.f42168l2 = z10;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f40669a) {
-            case 1:
-                ThemeActivity themeActivity = this.f40670b;
-                themeActivity.getClass();
-                org.telegram.ui.Components.g5.V(themeActivity, 0, null, null);
-                return;
-            default:
-                ThemeActivity themeActivity2 = this.f40670b;
-                if (themeActivity2.getParentActivity() != null) {
-                    try {
-                        themeActivity2.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
-        }
-    }
-
-    @Override
-    public int run() {
-        int i10;
-        i10 = this.f40670b.sensitiveContentRow;
-        return i10;
+    public final void onFragmentClosed() {
+        super.onFragmentClosed();
+        qn qnVar = this.f42167k2.f41205ea;
+        qnVar.k(qnVar.f40471f, qnVar.h, false, Boolean.valueOf(this.f42168l2), false);
     }
 }

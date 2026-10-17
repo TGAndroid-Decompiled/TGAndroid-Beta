@@ -1,4 +1,4 @@
 package ee;
 public interface b {
-    Object g(c cVar, md.c cVar2);
+    Object r(c cVar, md.c cVar2);
 }

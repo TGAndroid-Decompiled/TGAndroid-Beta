@@ -1,26 +1,29 @@
 package org.telegram.ui;
 
-import java.util.TimerTask;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class k80 extends TimerTask {
-    public final String f37324a;
-    public final l80 f37325b;
+import android.animation.ValueAnimator;
+import java.util.regex.Pattern;
+public final class k80 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38435a;
+    public final LaunchActivity f38436b;
 
-    public k80(l80 l80Var, String str) {
-        this.f37325b = l80Var;
-        this.f37324a = str;
+    public k80(LaunchActivity launchActivity, int i10) {
+        this.f38435a = i10;
+        this.f38436b = launchActivity;
     }
 
     @Override
-    public final void run() {
-        l80 l80Var = this.f37325b;
-        try {
-            l80Var.f37655f.cancel();
-            l80Var.f37655f = null;
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f38435a;
+        LaunchActivity launchActivity = this.f38436b;
+        switch (i10) {
+            case 0:
+                launchActivity.f33185w0.invalidate();
+                return;
+            default:
+                Pattern pattern = LaunchActivity.C1;
+                launchActivity.getClass();
+                launchActivity.D0(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                return;
         }
-        AndroidUtilities.runOnUIThread(new j80(this, this.f37324a, 0));
     }
 }

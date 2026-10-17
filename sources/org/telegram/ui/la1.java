@@ -1,12 +1,13 @@
 package org.telegram.ui;
+public final class la1 extends org.telegram.ui.ActionBar.j {
+    public final ThemeActivity f38840a;
 
-import android.graphics.Canvas;
-public final class la1 extends lg.c {
+    public la1(ThemeActivity themeActivity) {
+        this.f38840a = themeActivity;
+    }
+
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (getTranslationY() != 0.0f) {
-            canvas.drawColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false));
-        }
-        super.onDraw(canvas);
+    public final void b(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.la1.b(int):void");
     }
 }

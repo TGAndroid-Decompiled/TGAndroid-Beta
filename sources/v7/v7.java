@@ -13,7 +13,7 @@ public abstract class v7 {
                 if (i10 >= 0 && i10 < bitmap.getWidth() && i11 >= 0 && i11 < bitmap.getHeight()) {
                     return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, c(i10, i10 + 1, i11, i11 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i10, i11)).array(), rect, null);
                 }
-                StringBuilder m10 = i2.d.m("center pixel is outside bitmap: (", i10, ", ", i11, ") for ");
+                StringBuilder m10 = i0.a.m("center pixel is outside bitmap: (", i10, ", ", i11, ") for ");
                 m10.append(bitmap.getWidth());
                 m10.append("x");
                 m10.append(bitmap.getHeight());

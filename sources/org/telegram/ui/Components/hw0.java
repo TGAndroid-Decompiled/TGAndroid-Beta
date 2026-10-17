@@ -1,21 +1,54 @@
 package org.telegram.ui.Components;
-public final class hw0 extends o1.i {
-    public final fw0 f25421a;
-    public final gw0 f25422b;
-    public float f25423c = 1.0f;
 
-    public hw0(fw0 fw0Var, gw0 gw0Var) {
-        this.f25421a = fw0Var;
-        this.f25422b = gw0Var;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Region;
+import android.graphics.text.MeasuredText;
+public final class hw0 extends Canvas {
+    @Override
+    public final boolean clipPath(Path path) {
+        return false;
     }
 
     @Override
-    public final float a(Object obj) {
-        return this.f25421a.get(obj) * this.f25423c;
+    public final void drawText(CharSequence charSequence, int i10, int i11, float f7, float f10, Paint paint) {
     }
 
     @Override
-    public final void b(Object obj, float f7) {
-        this.f25422b.b(obj, f7 / this.f25423c);
+    public final void drawTextOnPath(String str, Path path, float f7, float f10, Paint paint) {
+    }
+
+    @Override
+    public final void drawTextRun(MeasuredText measuredText, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
+    }
+
+    @Override
+    public final boolean clipPath(Path path, Region.Op op) {
+        return false;
+    }
+
+    @Override
+    public final void drawText(String str, float f7, float f10, Paint paint) {
+    }
+
+    @Override
+    public final void drawTextOnPath(char[] cArr, int i10, int i11, Path path, float f7, float f10, Paint paint) {
+    }
+
+    @Override
+    public final void drawTextRun(CharSequence charSequence, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
+    }
+
+    @Override
+    public final void drawText(String str, int i10, int i11, float f7, float f10, Paint paint) {
+    }
+
+    @Override
+    public final void drawTextRun(char[] cArr, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
+    }
+
+    @Override
+    public final void drawText(char[] cArr, int i10, int i11, float f7, float f10, Paint paint) {
     }
 }

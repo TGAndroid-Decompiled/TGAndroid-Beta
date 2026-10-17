@@ -4,9 +4,9 @@ public interface f1 {
 
     long d();
 
-    boolean m(i2.v0 v0Var);
+    boolean p(i2.t0 t0Var);
 
-    long p();
+    long s();
 
-    void s(long j10);
+    void u(long j10);
 }

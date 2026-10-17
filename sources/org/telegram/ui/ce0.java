@@ -1,101 +1,55 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
 public final class ce0 implements Runnable {
-    public final int f34575a;
-    public final je0 f34576b;
+    public final int f35925a;
+    public final fe0 f35926b;
 
-    public ce0(je0 je0Var, int i10) {
-        this.f34575a = i10;
-        this.f34576b = je0Var;
+    public ce0(fe0 fe0Var, int i10) {
+        this.f35925a = i10;
+        this.f35926b = fe0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34575a) {
+        switch (this.f35925a) {
             case 0:
-                this.f34576b.p();
+                fe0 fe0Var = this.f35926b;
+                ei.e2 e2Var = fe0Var.f36883c;
+                e2Var.requestFocus();
+                String str = fe0Var.K;
+                if (str != null) {
+                    int i10 = 1;
+                    if (str.length() > 1) {
+                        String obj = e2Var.getText().toString();
+                        int length = obj.length();
+                        int i11 = 0;
+                        while (i11 < length && obj.charAt(i11) <= ' ') {
+                            i11++;
+                        }
+                        int length2 = fe0Var.K.length() + i11;
+                        if (length2 < 0 || length2 >= obj.length() || obj.charAt(length2) != ' ') {
+                            i10 = 0;
+                        }
+                        e2Var.setSelection(Utilities.clamp(length2 + i10, obj.length(), 0), e2Var.getText().length());
+                        return;
+                    }
+                }
+                e2Var.setSelection(0, e2Var.getText().length());
                 return;
             case 1:
-                je0 je0Var = this.f34576b;
-                je0Var.postDelayed(new ce0(je0Var, 2), 150L);
-                ce0 ce0Var = je0Var.S;
-                je0Var.removeCallbacks(ce0Var);
-                je0Var.postDelayed(ce0Var, 3000L);
-                je0Var.R = true;
+                this.f35926b.q(true);
                 return;
             case 2:
-                ge0 ge0Var = this.f34576b.f37030a;
-                int i10 = 0;
-                ge0Var.e = false;
-                ge0Var.f36645f[0].requestFocus();
-                while (true) {
-                    ks[] ksVarArr = ge0Var.f36645f;
-                    if (i10 < ksVarArr.length) {
-                        ksVarArr[i10].i(0.0f);
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 3:
-                je0 je0Var2 = this.f34576b;
-                je0Var2.postDelayed(new ce0(je0Var2, 5), 150L);
-                return;
-            case 4:
-                je0 je0Var3 = this.f34576b;
-                ie0 ie0Var = je0Var3.Q;
-                boolean z10 = false;
-                je0Var3.R = false;
-                int i11 = 0;
-                while (true) {
-                    ks[] ksVarArr2 = je0Var3.f37030a.f36645f;
-                    if (i11 < ksVarArr2.length) {
-                        ksVarArr2[i11].i(0.0f);
-                        i11++;
-                    } else if (ie0Var.getCurrentView() != je0Var3.e) {
-                        ie0Var.showNext();
-                        FrameLayout frameLayout = je0Var3.h;
-                        if (je0Var3.f37033f.getVisibility() != 0 && je0Var3.W.F != 3 && !je0Var3.P) {
-                            z10 = true;
-                        }
-                        AndroidUtilities.updateViewVisibilityAnimated(frameLayout, z10, 1.0f, true);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                break;
-            case 5:
-                ge0 ge0Var2 = this.f34576b.f37030a;
-                int i12 = 0;
-                ge0Var2.e = false;
-                ge0Var2.f36645f[0].requestFocus();
-                while (true) {
-                    ks[] ksVarArr3 = ge0Var2.f36645f;
-                    if (i12 < ksVarArr3.length) {
-                        ksVarArr3[i12].i(0.0f);
-                        i12++;
-                    } else {
-                        return;
-                    }
-                }
-            case 6:
-                this.f34576b.q(true);
-                return;
-            case 7:
-                this.f34576b.r();
+                this.f35926b.o(false);
                 return;
             default:
-                je0 je0Var4 = this.f34576b;
-                org.telegram.ui.Components.bk0 bk0Var = je0Var4.f37037w;
-                bk0Var.getAnimatedDrawable().N(0, false, false);
-                bk0Var.d();
-                ge0 ge0Var3 = je0Var4.f37030a;
-                if (ge0Var3 != null && ge0Var3.f36645f != null) {
-                    ge0Var3.setText("");
-                    ge0Var3.f36645f[0].requestFocus();
+                ei.e2 e2Var2 = this.f35926b.f36883c;
+                if (e2Var2 != null) {
+                    e2Var2.requestFocus();
+                    e2Var2.setSelection(e2Var2.length());
+                    AndroidUtilities.showKeyboard(e2Var2);
                     return;
                 }
                 return;

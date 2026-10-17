@@ -2,34 +2,24 @@ package org.telegram.ui.Components;
 
 import android.text.Editable;
 import org.telegram.messenger.Utilities;
-public final class du implements Utilities.Callback0Return {
-    public final int f24186a;
-    public final Object f24187b;
+public final class du implements Utilities.Callback {
+    public final iu f25696a;
+    public final int f25697b;
+    public final int f25698c;
 
-    public du(Object obj, int i10) {
-        this.f24186a = i10;
-        this.f24187b = obj;
+    public du(iu iuVar, int i10, int i11) {
+        this.f25696a = iuVar;
+        this.f25697b = i10;
+        this.f25698c = i11;
     }
 
     @Override
-    public final Object run() {
-        boolean z10;
-        Editable text;
-        sj0[] sj0VarArr;
-        int i10 = this.f24186a;
-        Object obj = this.f24187b;
-        switch (i10) {
-            case 0:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
-                int i11 = EditTextBoldCursor.f22852a;
-                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((sj0VarArr = (sj0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), sj0.class)) == null || sj0VarArr.length == 0)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            default:
-                return ((h50) obj).getCloseIntoObject();
-        }
+    public final void run(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        iu iuVar = this.f25696a;
+        Editable text = iuVar.getText();
+        int i10 = this.f25697b;
+        text.replace(i10, this.f25698c, charSequence);
+        iuVar.setSelection(i10, charSequence.length() + i10);
     }
 }

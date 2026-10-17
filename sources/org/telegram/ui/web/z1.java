@@ -1,873 +1,215 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
+import android.graphics.RectF;
+import android.view.Choreographer;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.CookieManager;
-import android.webkit.WebStorage;
-import android.webkit.WebView;
-import android.widget.LinearLayout;
-import bi.j3;
-import bi.y2;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.regex.Pattern;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.cast.z5;
+import ei.r5;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Cells.l6;
-import org.telegram.ui.Cells.sa;
-import org.telegram.ui.Cells.w8;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.l80;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.voip.r2;
-import org.telegram.ui.Wallet.z6;
-import org.telegram.ui.is;
-import org.telegram.ui.p6;
-import w7.z5;
-public final class z1 extends d71 implements NotificationCenter.NotificationCenterDelegate {
-    public j3 d;
-    public final Utilities.Callback e;
-    public long f41271f;
-    public long h;
-    public long f41272n;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Cells.b6;
+import org.telegram.ui.Components.l60;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Wallet.o6;
+import org.telegram.ui.Wallet.p6;
+import org.telegram.ui.r91;
+import rg.v2;
+public final class z1 implements Runnable {
+    public final int f42823a;
+    public final Object f42824b;
 
-    public z1(org.telegram.ui.r rVar) {
-        this.e = rVar;
-    }
-
-    public static boolean Y(File file, Boolean bool) {
-        boolean z10;
-        if (file == null || !file.exists()) {
-            return false;
-        }
-        if (file.isDirectory()) {
-            File[] listFiles = file.listFiles();
-            if (listFiles != null) {
-                z10 = true;
-                for (File file2 : listFiles) {
-                    if ((bool == null || bool.booleanValue() == file2.getName().startsWith("Cookies")) && !Y(file2, bool)) {
-                        z10 = false;
-                    }
-                }
-            } else {
-                z10 = true;
-            }
-            if (z10) {
-                file.delete();
-            }
-        } else if (bool != null && bool.booleanValue() != file.getName().startsWith("Cookies")) {
-            return false;
-        } else {
-            file.delete();
-        }
-        return true;
-    }
-
-    public static long Z(File file, Boolean bool) {
-        long j10 = 0;
-        if (file == null || !file.exists()) {
-            return 0L;
-        }
-        if (file.isDirectory()) {
-            File[] listFiles = file.listFiles();
-            if (listFiles != null) {
-                for (File file2 : listFiles) {
-                    j10 += Z(file2, bool);
-                }
-                return j10;
-            }
-        } else if (bool == null || bool.booleanValue() == file.getName().startsWith("Cookies")) {
-            return file.length();
-        }
-        return 0L;
+    public z1(Object obj, int i10) {
+        this.f42823a = i10;
+        this.f42824b = obj;
     }
 
     @Override
-    public final void U(ArrayList arrayList, a71 a71Var) {
-        String str;
-        boolean isWebBrowserInAppEnabled = getMessagesController().isWebBrowserInAppEnabled();
-        arrayList.size();
-        String string = LocaleController.getString(R.string.BrowserSettingsEnable);
-        m61 m61Var = new m61(9);
-        m61Var.d = 1;
-        m61Var.f26946l = string;
-        m61Var.K(isWebBrowserInAppEnabled);
-        arrayList.add(m61Var);
-        i2.d.B(R.string.BrowserSettingsEnableInfo, arrayList);
-        if (!isWebBrowserInAppEnabled) {
-            getMessagesController().isWebBrowserUseCustomTabs();
-            m61 i10 = m61.i(17, LocaleController.getString(R.string.WebBrowserShowCloseButton));
-            i10.K(getMessagesController().isWebBrowserUseCustomTabs());
-            arrayList.add(i10);
-            i2.d.B(R.string.WebBrowserShowCloseButtonInfo, arrayList);
-            arrayList.add(m61.t(LocaleController.getString(R.string.BrowserSettingsAlwaysOpenInTitle2)));
-            arrayList.size();
-            j3 j3Var = this.d;
-            String string2 = LocaleController.getString(R.string.BrowserSettingsNeverOpenInAdd);
-            m61 m61Var2 = new m61(3);
-            m61Var2.d = 16;
-            m61Var2.G = j3Var;
-            m61Var2.f26946l = string2;
-            m61Var2.f26951q = true;
-            arrayList.add(m61Var2);
-            List<TL_account.WebDomainException> webBrowserExceptionsList = getMessagesController().getWebBrowserExceptionsList(false);
-            for (TL_account.WebDomainException webDomainException : webBrowserExceptionsList) {
-                String str2 = webDomainException.domain;
-                String str3 = webDomainException.title;
-                long j10 = webDomainException.favicon;
-                int i11 = x1.f41249a;
-                m61 J = m61.J(x1.class);
-                J.f26946l = str2;
-                J.f26948n = str3;
-                J.B = j10;
-                arrayList.add(J);
-            }
-            arrayList.add(m61.B(LocaleController.getString(R.string.BrowserSettingsAlwaysOpenInInfo2)));
-            if (!webBrowserExceptionsList.isEmpty()) {
-                arrayList.size();
-                m61 e = m61.e(5, LocaleController.getString(R.string.BrowserSettingsNeverOpenInClearList2));
-                e.f26952r = true;
-                arrayList.add(e);
-                arrayList.add(m61.B(null));
+    public final void run() {
+        switch (this.f42823a) {
+            case 0:
+                ((boolean[]) this.f42824b)[0] = true;
                 return;
-            }
-            return;
-        }
-        arrayList.size();
-        int i12 = R.drawable.menu_clear_cookies;
-        String string3 = LocaleController.getString(R.string.BrowserSettingsCookiesClear);
-        long j11 = this.h;
-        String str4 = "";
-        if (j11 <= 0) {
-            str = "";
-        } else {
-            str = AndroidUtilities.formatFileSize(j11);
-        }
-        arrayList.add(m61.d(3, i12, string3, str));
-        arrayList.size();
-        int i13 = R.drawable.menu_clear_cache;
-        String string4 = LocaleController.getString(R.string.BrowserSettingsCacheClear);
-        long j12 = this.f41271f;
-        if (j12 > 0) {
-            str4 = AndroidUtilities.formatFileSize(j12);
-        }
-        arrayList.add(m61.d(2, i13, string4, str4));
-        i2.d.B(R.string.BrowserSettingsCookiesInfo, arrayList);
-        if (this.f41272n > 0) {
-            arrayList.size();
-            arrayList.add(m61.c(9, R.drawable.menu_clear_recent, LocaleController.getString(R.string.BrowserSettingsHistoryShow)));
-            arrayList.size();
-            arrayList.add(m61.d(7, R.drawable.menu_clear_cache, LocaleController.getString(R.string.BrowserSettingsHistoryClear), LocaleController.formatPluralStringComma("BrowserSettingsHistoryPages", (int) this.f41272n, ',')));
-            arrayList.add(m61.B(null));
-        }
-        arrayList.add(m61.t(LocaleController.getString(R.string.BrowserSettingsNeverOpenInTitle2)));
-        arrayList.size();
-        j3 j3Var2 = this.d;
-        String string5 = LocaleController.getString(R.string.BrowserSettingsNeverOpenInAdd);
-        m61 m61Var3 = new m61(3);
-        m61Var3.d = 15;
-        m61Var3.G = j3Var2;
-        m61Var3.f26946l = string5;
-        m61Var3.f26951q = true;
-        arrayList.add(m61Var3);
-        List<TL_account.WebDomainException> webBrowserExceptionsList2 = getMessagesController().getWebBrowserExceptionsList(true);
-        for (TL_account.WebDomainException webDomainException2 : webBrowserExceptionsList2) {
-            String str5 = webDomainException2.domain;
-            String str6 = webDomainException2.title;
-            long j13 = webDomainException2.favicon;
-            int i14 = x1.f41249a;
-            m61 J2 = m61.J(x1.class);
-            J2.f26946l = str5;
-            J2.f26948n = str6;
-            J2.B = j13;
-            arrayList.add(J2);
-        }
-        arrayList.add(m61.B(LocaleController.getString(R.string.BrowserSettingsNeverOpenInInfo2)));
-        if (!webBrowserExceptionsList2.isEmpty()) {
-            arrayList.size();
-            m61 e7 = m61.e(5, LocaleController.getString(R.string.BrowserSettingsNeverOpenInClearList2));
-            e7.f26952r = true;
-            arrayList.add(e7);
-            arrayList.add(m61.B(null));
-        }
-        arrayList.size();
-        arrayList.add(m61.d(6, R.drawable.msg_search, LocaleController.getString(R.string.SearchEngine), o1.a().f41144a));
-        i2.d.B(R.string.BrowserSettingsSearchEngineInfo, arrayList);
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            m61 i15 = m61.i(12, "adaptable colors");
-            i15.K(SharedConfig.adaptableColorInBrowser);
-            arrayList.add(i15);
-            m61 i16 = m61.i(13, "only local IV");
-            i16.K(SharedConfig.onlyLocalInstantView);
-            arrayList.add(i16);
-        }
-    }
-
-    @Override
-    public final CharSequence V() {
-        return LocaleController.getString(R.string.BrowserSettingsTitle);
-    }
-
-    @Override
-    public final void W(m61 m61Var, View view) {
-        int i10;
-        int i11;
-        boolean z10;
-        int i12;
-        int i13 = m61Var.d;
-        if (i13 == 12) {
-            SharedConfig.toggleBrowserAdaptableColors();
-            ((w8) view).setChecked(SharedConfig.adaptableColorInBrowser);
-        } else if (i13 == 13) {
-            SharedConfig.toggleLocalInstantView();
-            ((w8) view).setChecked(SharedConfig.onlyLocalInstantView);
-        } else if (i13 == 17) {
-            boolean z11 = !getMessagesController().isWebBrowserUseCustomTabs();
-            getMessagesController().toggleWebBrowserUseCustomTabs(z11);
-            ((w8) view).setChecked(z11);
-            this.f24003a.W2.N(true);
-        } else {
-            View view2 = null;
-            if (i13 == 1) {
-                getMessagesController().toggleWebBrowserInAppEnabled();
-                boolean isWebBrowserInAppEnabled = getMessagesController().isWebBrowserInAppEnabled();
-                w8 w8Var = (w8) view;
-                w8Var.setChecked(isWebBrowserInAppEnabled);
-                if (isWebBrowserInAppEnabled) {
-                    i12 = g6.f19637f6;
-                } else {
-                    i12 = g6.f19618e6;
+            case 1:
+                ((p4.e) this.f42824b).k();
+                return;
+            case 2:
+                ((p4.g) this.f42824b).f44147n = -1;
+                return;
+            case 3:
+                ((ll0) this.f42824b).b();
+                return;
+            case 4:
+                le.b bVar = ((qg.r0) this.f42824b).f44628b.f44645a;
+                if (bVar != null) {
+                    bVar.a0();
+                    return;
                 }
-                w8Var.b(g6.x0(null, i12, false), isWebBrowserInAppEnabled);
-                this.f24003a.W2.N(true);
-            } else if (i13 == 10) {
-                getMessagesController().toggleWebBrowserUseCustomTabs(true);
-                this.f24003a.W2.N(true);
-            } else if (i13 == 11) {
-                getMessagesController().toggleWebBrowserUseCustomTabs(false);
-                this.f24003a.W2.N(true);
-            } else {
-                String str = "";
-                if (i13 == 2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
-                    String string = LocaleController.getString(R.string.BrowserSettingsCacheClear);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f19248a;
-                    a2Var.R = string;
-                    int i14 = R.string.BrowserSettingsCacheClearText;
-                    if (this.f41271f != 0) {
-                        str = " (" + AndroidUtilities.formatFileSize(this.f41271f) + ")";
-                    }
-                    a2Var.T = LocaleController.formatString(i14, str);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Clear), new org.telegram.ui.ActionBar.z1(this) {
-                        public final z1 f41244b;
-
-                        {
-                            this.f41244b = this;
-                        }
-
-                        @Override
-                        public final void g(org.telegram.ui.ActionBar.a2 a2Var2, int i15) {
-                            switch (r2) {
-                                case 0:
-                                    z1 z1Var = this.f41244b;
-                                    z1Var.getClass();
-                                    ApplicationLoader.applicationContext.deleteDatabase("webview.db");
-                                    ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
-                                    WebStorage.getInstance().deleteAllData();
-                                    try {
-                                        WebView webView = new WebView(z1Var.getParentActivity());
-                                        webView.clearCache(true);
-                                        webView.clearHistory();
-                                        webView.destroy();
-                                    } catch (Exception unused) {
-                                    }
-                                    try {
-                                        File file = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                                        if (file.exists()) {
-                                            z1.Y(file, Boolean.FALSE);
-                                        }
-                                    } catch (Exception e) {
-                                        FileLog.e(e);
-                                    }
-                                    try {
-                                        File file2 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "cache/WebView");
-                                        if (file2.exists()) {
-                                            z1.Y(file2, null);
-                                        }
-                                    } catch (Exception e7) {
-                                        FileLog.e(e7);
-                                    }
-                                    n2 b10 = n2.b();
-                                    HashMap hashMap = b10.f41132a;
-                                    if (hashMap == null) {
-                                        b10.f41134c = false;
-                                        b10.f41133b = true;
-                                        b10.f41132a = new HashMap();
-                                    } else {
-                                        hashMap.clear();
-                                    }
-                                    b10.d();
-                                    z1Var.a0();
-                                    return;
-                                case 1:
-                                    z1 z1Var2 = this.f41244b;
-                                    z1Var2.getClass();
-                                    CookieManager cookieManager = CookieManager.getInstance();
-                                    cookieManager.removeAllCookies(null);
-                                    cookieManager.flush();
-                                    try {
-                                        File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                                        if (file3.exists()) {
-                                            z1.Y(file3, Boolean.TRUE);
-                                        }
-                                    } catch (Exception e10) {
-                                        FileLog.e(e10);
-                                    }
-                                    z1Var2.a0();
-                                    return;
-                                case 2:
-                                    z1 z1Var3 = this.f41244b;
-                                    try {
-                                        e1.f41033c.clear();
-                                        e1.d.clear();
-                                        File file4 = new File(FileLoader.getDirectory(4), "webhistory.dat");
-                                        if (file4.exists()) {
-                                            file4.delete();
-                                        }
-                                    } catch (Exception e11) {
-                                        FileLog.e(e11);
-                                    }
-                                    z1Var3.f41272n = 0L;
-                                    z1Var3.f24003a.W2.N(true);
-                                    return;
-                                default:
-                                    z1 z1Var4 = this.f41244b;
-                                    z1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    z1Var4.f24003a.W2.N(true);
-                                    return;
-                            }
-                        }
-                    });
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                    alertDialog$Builder.d(-1);
-                    alertDialog$Builder.o();
-                } else if (i13 == 3) {
-                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
-                    String string2 = LocaleController.getString(R.string.BrowserSettingsCookiesClear);
-                    org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder2.f19248a;
-                    a2Var2.R = string2;
-                    int i15 = R.string.BrowserSettingsCookiesClearText;
-                    if (this.h != 0) {
-                        str = " (" + AndroidUtilities.formatFileSize(this.h) + ")";
-                    }
-                    a2Var2.T = LocaleController.formatString(i15, str);
-                    alertDialog$Builder2.k(LocaleController.getString(R.string.Clear), new org.telegram.ui.ActionBar.z1(this) {
-                        public final z1 f41244b;
-
-                        {
-                            this.f41244b = this;
-                        }
-
-                        @Override
-                        public final void g(org.telegram.ui.ActionBar.a2 a2Var22, int i152) {
-                            switch (r2) {
-                                case 0:
-                                    z1 z1Var = this.f41244b;
-                                    z1Var.getClass();
-                                    ApplicationLoader.applicationContext.deleteDatabase("webview.db");
-                                    ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
-                                    WebStorage.getInstance().deleteAllData();
-                                    try {
-                                        WebView webView = new WebView(z1Var.getParentActivity());
-                                        webView.clearCache(true);
-                                        webView.clearHistory();
-                                        webView.destroy();
-                                    } catch (Exception unused) {
-                                    }
-                                    try {
-                                        File file = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                                        if (file.exists()) {
-                                            z1.Y(file, Boolean.FALSE);
-                                        }
-                                    } catch (Exception e) {
-                                        FileLog.e(e);
-                                    }
-                                    try {
-                                        File file2 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "cache/WebView");
-                                        if (file2.exists()) {
-                                            z1.Y(file2, null);
-                                        }
-                                    } catch (Exception e7) {
-                                        FileLog.e(e7);
-                                    }
-                                    n2 b10 = n2.b();
-                                    HashMap hashMap = b10.f41132a;
-                                    if (hashMap == null) {
-                                        b10.f41134c = false;
-                                        b10.f41133b = true;
-                                        b10.f41132a = new HashMap();
-                                    } else {
-                                        hashMap.clear();
-                                    }
-                                    b10.d();
-                                    z1Var.a0();
-                                    return;
-                                case 1:
-                                    z1 z1Var2 = this.f41244b;
-                                    z1Var2.getClass();
-                                    CookieManager cookieManager = CookieManager.getInstance();
-                                    cookieManager.removeAllCookies(null);
-                                    cookieManager.flush();
-                                    try {
-                                        File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                                        if (file3.exists()) {
-                                            z1.Y(file3, Boolean.TRUE);
-                                        }
-                                    } catch (Exception e10) {
-                                        FileLog.e(e10);
-                                    }
-                                    z1Var2.a0();
-                                    return;
-                                case 2:
-                                    z1 z1Var3 = this.f41244b;
-                                    try {
-                                        e1.f41033c.clear();
-                                        e1.d.clear();
-                                        File file4 = new File(FileLoader.getDirectory(4), "webhistory.dat");
-                                        if (file4.exists()) {
-                                            file4.delete();
-                                        }
-                                    } catch (Exception e11) {
-                                        FileLog.e(e11);
-                                    }
-                                    z1Var3.f41272n = 0L;
-                                    z1Var3.f24003a.W2.N(true);
-                                    return;
-                                default:
-                                    z1 z1Var4 = this.f41244b;
-                                    z1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    z1Var4.f24003a.W2.N(true);
-                                    return;
-                            }
-                        }
-                    });
-                    alertDialog$Builder2.h(LocaleController.getString(R.string.Cancel), null);
-                    alertDialog$Builder2.d(-1);
-                    alertDialog$Builder2.o();
-                } else if (i13 == 7) {
-                    ArrayList a2 = e1.a(null);
-                    int size = a2.size();
-                    long j10 = Long.MAX_VALUE;
-                    int i16 = 0;
-                    while (i16 < size) {
-                        Object obj = a2.get(i16);
-                        i16++;
-                        j10 = Math.min(j10, ((d1) obj).f41020b);
-                    }
-                    AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
-                    String string3 = LocaleController.getString(R.string.BrowserSettingsHistoryClear);
-                    org.telegram.ui.ActionBar.a2 a2Var3 = alertDialog$Builder3.f19248a;
-                    a2Var3.R = string3;
-                    a2Var3.T = LocaleController.formatString(R.string.BrowserSettingsHistoryClearText, LocaleController.formatDateChat(j10 / 1000));
-                    alertDialog$Builder3.k(LocaleController.getString(R.string.Clear), new org.telegram.ui.ActionBar.z1(this) {
-                        public final z1 f41244b;
-
-                        {
-                            this.f41244b = this;
-                        }
-
-                        @Override
-                        public final void g(org.telegram.ui.ActionBar.a2 a2Var22, int i152) {
-                            switch (r2) {
-                                case 0:
-                                    z1 z1Var = this.f41244b;
-                                    z1Var.getClass();
-                                    ApplicationLoader.applicationContext.deleteDatabase("webview.db");
-                                    ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
-                                    WebStorage.getInstance().deleteAllData();
-                                    try {
-                                        WebView webView = new WebView(z1Var.getParentActivity());
-                                        webView.clearCache(true);
-                                        webView.clearHistory();
-                                        webView.destroy();
-                                    } catch (Exception unused) {
-                                    }
-                                    try {
-                                        File file = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                                        if (file.exists()) {
-                                            z1.Y(file, Boolean.FALSE);
-                                        }
-                                    } catch (Exception e) {
-                                        FileLog.e(e);
-                                    }
-                                    try {
-                                        File file2 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "cache/WebView");
-                                        if (file2.exists()) {
-                                            z1.Y(file2, null);
-                                        }
-                                    } catch (Exception e7) {
-                                        FileLog.e(e7);
-                                    }
-                                    n2 b10 = n2.b();
-                                    HashMap hashMap = b10.f41132a;
-                                    if (hashMap == null) {
-                                        b10.f41134c = false;
-                                        b10.f41133b = true;
-                                        b10.f41132a = new HashMap();
-                                    } else {
-                                        hashMap.clear();
-                                    }
-                                    b10.d();
-                                    z1Var.a0();
-                                    return;
-                                case 1:
-                                    z1 z1Var2 = this.f41244b;
-                                    z1Var2.getClass();
-                                    CookieManager cookieManager = CookieManager.getInstance();
-                                    cookieManager.removeAllCookies(null);
-                                    cookieManager.flush();
-                                    try {
-                                        File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                                        if (file3.exists()) {
-                                            z1.Y(file3, Boolean.TRUE);
-                                        }
-                                    } catch (Exception e10) {
-                                        FileLog.e(e10);
-                                    }
-                                    z1Var2.a0();
-                                    return;
-                                case 2:
-                                    z1 z1Var3 = this.f41244b;
-                                    try {
-                                        e1.f41033c.clear();
-                                        e1.d.clear();
-                                        File file4 = new File(FileLoader.getDirectory(4), "webhistory.dat");
-                                        if (file4.exists()) {
-                                            file4.delete();
-                                        }
-                                    } catch (Exception e11) {
-                                        FileLog.e(e11);
-                                    }
-                                    z1Var3.f41272n = 0L;
-                                    z1Var3.f24003a.W2.N(true);
-                                    return;
-                                default:
-                                    z1 z1Var4 = this.f41244b;
-                                    z1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    z1Var4.f24003a.W2.N(true);
-                                    return;
-                            }
-                        }
-                    });
-                    alertDialog$Builder3.h(LocaleController.getString(R.string.Cancel), null);
-                    alertDialog$Builder3.d(-1);
-                    alertDialog$Builder3.o();
-                } else if (i13 == 9) {
-                    h1[] h1VarArr = {null};
-                    org.telegram.ui.ActionBar.m2 h1Var = new h1(null, new z6(6, this, h1VarArr));
-                    h1VarArr[0] = h1Var;
-                    presentFragment(h1Var);
-                } else if (i13 == 5) {
-                    AlertDialog$Builder alertDialog$Builder4 = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
-                    String string4 = LocaleController.getString(R.string.WebBrowserDeleteAllExceptionsTitle);
-                    org.telegram.ui.ActionBar.a2 a2Var4 = alertDialog$Builder4.f19248a;
-                    a2Var4.R = string4;
-                    a2Var4.T = LocaleController.getString(R.string.WebBrowserDeleteAllExceptionsMessage);
-                    alertDialog$Builder4.k(LocaleController.getString(R.string.Delete), new org.telegram.ui.ActionBar.z1(this) {
-                        public final z1 f41244b;
-
-                        {
-                            this.f41244b = this;
-                        }
-
-                        @Override
-                        public final void g(org.telegram.ui.ActionBar.a2 a2Var22, int i152) {
-                            switch (r2) {
-                                case 0:
-                                    z1 z1Var = this.f41244b;
-                                    z1Var.getClass();
-                                    ApplicationLoader.applicationContext.deleteDatabase("webview.db");
-                                    ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
-                                    WebStorage.getInstance().deleteAllData();
-                                    try {
-                                        WebView webView = new WebView(z1Var.getParentActivity());
-                                        webView.clearCache(true);
-                                        webView.clearHistory();
-                                        webView.destroy();
-                                    } catch (Exception unused) {
-                                    }
-                                    try {
-                                        File file = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                                        if (file.exists()) {
-                                            z1.Y(file, Boolean.FALSE);
-                                        }
-                                    } catch (Exception e) {
-                                        FileLog.e(e);
-                                    }
-                                    try {
-                                        File file2 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "cache/WebView");
-                                        if (file2.exists()) {
-                                            z1.Y(file2, null);
-                                        }
-                                    } catch (Exception e7) {
-                                        FileLog.e(e7);
-                                    }
-                                    n2 b10 = n2.b();
-                                    HashMap hashMap = b10.f41132a;
-                                    if (hashMap == null) {
-                                        b10.f41134c = false;
-                                        b10.f41133b = true;
-                                        b10.f41132a = new HashMap();
-                                    } else {
-                                        hashMap.clear();
-                                    }
-                                    b10.d();
-                                    z1Var.a0();
-                                    return;
-                                case 1:
-                                    z1 z1Var2 = this.f41244b;
-                                    z1Var2.getClass();
-                                    CookieManager cookieManager = CookieManager.getInstance();
-                                    cookieManager.removeAllCookies(null);
-                                    cookieManager.flush();
-                                    try {
-                                        File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                                        if (file3.exists()) {
-                                            z1.Y(file3, Boolean.TRUE);
-                                        }
-                                    } catch (Exception e10) {
-                                        FileLog.e(e10);
-                                    }
-                                    z1Var2.a0();
-                                    return;
-                                case 2:
-                                    z1 z1Var3 = this.f41244b;
-                                    try {
-                                        e1.f41033c.clear();
-                                        e1.d.clear();
-                                        File file4 = new File(FileLoader.getDirectory(4), "webhistory.dat");
-                                        if (file4.exists()) {
-                                            file4.delete();
-                                        }
-                                    } catch (Exception e11) {
-                                        FileLog.e(e11);
-                                    }
-                                    z1Var3.f41272n = 0L;
-                                    z1Var3.f24003a.W2.N(true);
-                                    return;
-                                default:
-                                    z1 z1Var4 = this.f41244b;
-                                    z1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    z1Var4.f24003a.W2.N(true);
-                                    return;
-                            }
-                        }
-                    });
-                    alertDialog$Builder4.h(LocaleController.getString(R.string.Cancel), null);
-                    alertDialog$Builder4.d(-1);
-                    alertDialog$Builder4.o();
-                } else if (m61Var.G(x1.class)) {
-                    y1 y1Var = (y1) view;
-                    String str2 = y1Var.e;
-                    l80 F = l80.F((ViewGroup) this.fragmentView, null, y1Var);
-                    F.f26668s = 40;
-                    F.c(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new v(6, this, str2), false);
-                    F.Z();
+                return;
+            case 5:
+                qg.s0 s0Var = ((qg.r0) this.f42824b).f44628b;
+                if (s0Var.d == null) {
+                    s0Var.L = null;
+                    return;
+                }
+                int currentColor = s0Var.f44648f.getCurrentColor();
+                s0Var.l(s0Var.f44646b, false, false);
+                a5.a d = s0Var.d(s0Var.f44646b, currentColor, new RectF(s0Var.h));
+                s0Var.b();
+                qg.h1 h1Var = s0Var.d;
+                RectF rectF = new RectF();
+                s0Var.h = rectF;
+                h1Var.a(rectF);
+                s0Var.p(s0Var.e(h1Var, currentColor, new RectF(s0Var.h)), false);
+                s0Var.p(d, false);
+                s0Var.e(h1Var, currentColor, null);
+                s0Var.d = null;
+                s0Var.J = 0.0f;
+                s0Var.L = null;
+                return;
+            case 6:
+                ((qg.c1) ((p4.s0) this.f42824b).f44214b).f44508y.f44535a.a();
+                return;
+            case 7:
+                qg.u1 u1Var = ((qg.v1) this.f42824b).f44706a;
+                if (u1Var != null) {
+                    u1Var.e();
+                    return;
+                }
+                return;
+            case 8:
+                qh.c cVar = (qh.c) this.f42824b;
+                qh.b bVar2 = cVar.f44747c;
+                if (bVar2 == qh.b.f44743b) {
+                    cVar.a(qh.b.f44742a, true);
+                    return;
+                } else if (bVar2 == qh.b.f44744c) {
+                    cVar.a(qh.b.d, true);
+                    return;
                 } else {
-                    int i17 = m61Var.d;
-                    if (i17 == 6) {
-                        if (getParentActivity() != null) {
-                            AtomicReference atomicReference = new AtomicReference();
-                            LinearLayout linearLayout = new LinearLayout(getParentActivity());
-                            linearLayout.setOrientation(1);
-                            ArrayList b10 = o1.b();
-                            int size2 = b10.size();
-                            CharSequence[] charSequenceArr = new CharSequence[size2];
-                            for (int i18 = 0; i18 < size2; i18++) {
-                                charSequenceArr[i18] = ((o1) b10.get(i18)).f41144a;
-                                l6 l6Var = new l6(getParentActivity(), null);
-                                l6Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-                                l6Var.a(g6.x0(null, g6.f19655g7, false), g6.x0(null, g6.E5, false));
-                                CharSequence charSequence = charSequenceArr[i18];
-                                if (i18 == SharedConfig.searchEngineType) {
-                                    z10 = true;
+                    return;
+                }
+            case 9:
+                qi.c cVar2 = (qi.c) this.f42824b;
+                AndroidUtilities.runOnUIThread(new qi.b(cVar2.f44772a, cVar2.f44773b, 1), 500L);
+                return;
+            case 10:
+                r2.f fVar = (r2.f) this.f42824b;
+                synchronized (fVar.f44938a) {
+                    try {
+                        if (!fVar.f44947m) {
+                            long j10 = fVar.f44946l - 1;
+                            fVar.f44946l = j10;
+                            int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
+                            if (i10 <= 0) {
+                                if (i10 < 0) {
+                                    fVar.c(new IllegalStateException());
+                                    return;
                                 } else {
-                                    z10 = false;
+                                    fVar.a();
+                                    return;
                                 }
-                                l6Var.b(charSequence, z10);
-                                l6Var.setBackground(g6.g0(g6.x0(null, g6.f19690i6, false), 2, -1));
-                                linearLayout.addView(l6Var);
-                                l6Var.setOnClickListener(new sa(i18, view, atomicReference));
                             }
-                            AlertDialog$Builder alertDialog$Builder5 = new AlertDialog$Builder(getParentActivity());
-                            String string5 = LocaleController.getString(R.string.SearchEngine);
-                            org.telegram.ui.ActionBar.a2 a2Var5 = alertDialog$Builder5.f19248a;
-                            a2Var5.R = string5;
-                            alertDialog$Builder5.n(linearLayout);
-                            alertDialog$Builder5.h(LocaleController.getString(R.string.Cancel), null);
-                            atomicReference.set(a2Var5);
-                            showDialog(a2Var5);
-                        }
-                    } else if (i17 == 15 || i17 == 16) {
-                        boolean isWebBrowserInAppEnabled2 = getMessagesController().isWebBrowserInAppEnabled();
-                        if (getMessagesController().isWebBrowserExceptionsLimitReached(isWebBrowserInAppEnabled2)) {
-                            g5.t0(this, LocaleController.getString(R.string.WebBrowserExceptionsLimitTitle), LocaleController.getString(R.string.WebBrowserExceptionsLimitMessage), null);
                             return;
                         }
-                        Activity parentActivity = getParentActivity();
-                        c6 resourceProvider = getResourceProvider();
-                        y2 y2Var = new y2(9, this, isWebBrowserInAppEnabled2);
-                        Pattern pattern = g5.f24879a;
-                        Activity findActivity = AndroidUtilities.findActivity(parentActivity);
-                        if (findActivity != null) {
-                            view2 = findActivity.getCurrentFocus();
-                        }
-                        View view3 = view2;
-                        org.telegram.ui.ActionBar.a2[] a2VarArr = new org.telegram.ui.ActionBar.a2[1];
-                        AlertDialog$Builder alertDialog$Builder6 = new AlertDialog$Builder(parentActivity, 0, resourceProvider);
-                        if (isWebBrowserInAppEnabled2) {
-                            i10 = R.string.BrowserSettingsAddTitle;
-                        } else {
-                            i10 = R.string.BrowserSettingsAddTitleExternal;
-                        }
-                        String string6 = LocaleController.getString(i10);
-                        org.telegram.ui.ActionBar.a2 a2Var6 = alertDialog$Builder6.f19248a;
-                        a2Var6.R = string6;
-                        if (isWebBrowserInAppEnabled2) {
-                            i11 = R.string.BrowserSettingsAddText;
-                        } else {
-                            i11 = R.string.BrowserSettingsAddTextExternal;
-                        }
-                        a2Var6.T = LocaleController.getString(i11);
-                        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(parentActivity);
-                        editTextBoldCursor.setTextSize(1, 16.0f);
-                        int i19 = g6.f19707j5;
-                        editTextBoldCursor.setTextColor(g6.w0(i19, resourceProvider));
-                        editTextBoldCursor.setHintTextColor(g6.w0(g6.Xh, resourceProvider));
-                        editTextBoldCursor.setHint(LocaleController.getString(R.string.BrowserSettingsAddHint));
-                        editTextBoldCursor.setInputType(17);
-                        editTextBoldCursor.setImeOptions(6);
-                        editTextBoldCursor.setSingleLine(true);
-                        editTextBoldCursor.setFocusable(true);
-                        editTextBoldCursor.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(13.0f));
-                        editTextBoldCursor.setCursorWidth(1.5f);
-                        editTextBoldCursor.setCursorColor(g6.w0(g6.q6, resourceProvider));
-                        GradientDrawable gradientDrawable = new GradientDrawable();
-                        gradientDrawable.setCornerRadius(AndroidUtilities.dp(22.0f));
-                        gradientDrawable.setColor(g6.m1(0.06f, g6.w0(i19, resourceProvider)));
-                        editTextBoldCursor.setBackground(gradientDrawable);
-                        p6 p6Var = new p6(editTextBoldCursor, y2Var, a2VarArr, view3, 14);
-                        editTextBoldCursor.setOnEditorActionListener(new org.telegram.ui.Components.e1(p6Var, 0));
-                        LinearLayout linearLayout2 = new LinearLayout(parentActivity);
-                        linearLayout2.setOrientation(1);
-                        linearLayout2.addView(editTextBoldCursor, z5.k(24.0f, 4.0f, 24.0f, 9.0f, -1, -2));
-                        alertDialog$Builder6.c();
-                        alertDialog$Builder6.n(linearLayout2);
-                        a2Var6.f19257a = Math.min(AndroidUtilities.dp(320.0f), (AndroidUtilities.displaySize.x * 85) / 100);
-                        alertDialog$Builder6.k(LocaleController.getString(R.string.Done), new org.telegram.ui.Components.s(p6Var, 2));
-                        alertDialog$Builder6.h(LocaleController.getString(R.string.Cancel), new is(7));
-                        a2VarArr[0] = a2Var6;
-                        a2Var6.f19270h0 = false;
-                        a2Var6.setOnDismissListener(new org.telegram.ui.Components.b1(editTextBoldCursor, 1));
-                        a2VarArr[0].setOnShowListener(new org.telegram.ui.Components.f1(0, editTextBoldCursor));
-                        a2VarArr[0].show();
+                        return;
+                    } finally {
                     }
                 }
-            }
+            case 11:
+                com.google.firebase.messaging.r rVar = (com.google.firebase.messaging.r) this.f42824b;
+                ((s5.g) ((t5.c) rVar.e)).f(new qg.g0(rVar, 5));
+                return;
+            case 12:
+                r5 r5Var = (r5) this.f42824b;
+                r5Var.f45358x0 = true;
+                r5Var.s();
+                return;
+            case 13:
+                ((View) this.f42824b).performClick();
+                return;
+            case 14:
+                MediaDataController.getInstance(UserConfig.selectedAccount).addRecentSticker(2, null, ((rg.k2) this.f42824b).f45461f.document, (int) (System.currentTimeMillis() / 1000), false);
+                return;
+            case 15:
+                AndroidUtilities.showKeyboard(((v2) this.f42824b).f45687q0);
+                return;
+            case 16:
+                AndroidUtilities.showKeyboard(((rh.c) this.f42824b).f45760a);
+                return;
+            case 17:
+                rh.c cVar3 = (rh.c) ((b6) this.f42824b).d;
+                org.telegram.ui.Cells.u1 u1Var2 = cVar3.f45764n;
+                if (u1Var2 != null && u1Var2.getDelegate() != null) {
+                    cVar3.f45764n.getDelegate().x1(cVar3.f45764n, false);
+                    return;
+                }
+                return;
+            case 18:
+                ((rh.q) this.f42824b).f45813c.W2.N(true);
+                return;
+            case 19:
+                ((rh.p) this.f42824b).a();
+                return;
+            case 20:
+                RecyclerView recyclerView = (RecyclerView) this.f42824b;
+                if (recyclerView.getAdapter() != null) {
+                    recyclerView.getAdapter().l();
+                    return;
+                }
+                return;
+            case 21:
+                sg.j0 j0Var = ((sg.c0) this.f42824b).f46232c;
+                j0Var.f24915n.presentFragment(r91.d0(j0Var.t1(), true));
+                return;
+            case 22:
+                xj0 xj0Var = ((sg.p0) this.f42824b).f46386y;
+                xj0Var.getAnimatedDrawable().N(0, true, false);
+                xj0Var.d();
+                return;
+            case 23:
+                ((sg.v0) this.f42824b).f46469b.A();
+                return;
+            case 24:
+                sg.p1 p1Var = (sg.p1) this.f42824b;
+                int size = 1073741823 - (1073741823 % p1Var.V2.size());
+                s4.b0 b0Var = p1Var.W2;
+                p1Var.f46396j3 = size;
+                b0Var.h1(size, (p1Var.getMeasuredHeight() - p1Var.getChildAt(0).getMeasuredHeight()) >> 1);
+                p1Var.x1(null, false);
+                return;
+            case 25:
+                ((sg.r1) this.f42824b).invalidate();
+                return;
+            case 26:
+                ((sg.z1) this.f42824b).a();
+                return;
+            case 27:
+                l60 l60Var = (l60) ((l2.f) this.f42824b).f15837b;
+                l60Var.f28096p0 = true;
+                FileLog.d("RoundVideo camera flip first frame: elapsedMs=" + l60.k(l60Var));
+                l60Var.t(true);
+                l60.l(l60Var);
+                return;
+            case 28:
+                ((z5) this.f42824b).A();
+                return;
+            default:
+                tg.f fVar2 = ((tg.d) this.f42824b).d;
+                fVar2.f47086s = false;
+                fVar2.v = null;
+                Choreographer.getInstance().removeFrameCallback(fVar2);
+                fVar2.F = 0L;
+                o6 o6Var = (o6) fVar2;
+                p6 p6Var = o6Var.L;
+                if (p6Var.d == o6Var) {
+                    p6.c(p6Var);
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final boolean X(m61 m61Var, View view) {
-        return false;
-    }
-
-    public final void a0() {
-        a71 a71Var;
-        ArrayList a2 = e1.a(new ji.p1(this, 5));
-        if (a2 != null) {
-            this.f41272n = a2.size();
-            c71 c71Var = this.f24003a;
-            if (c71Var != null && (a71Var = c71Var.W2) != null && c71Var.G) {
-                a71Var.N(true);
-            }
-        }
-        Utilities.globalQueue.postRunnable(new r2(this, 9));
-    }
-
-    @Override
-    public final View createView(Context context) {
-        Drawable mutate = context.getResources().getDrawable(R.drawable.poll_add_circle).mutate();
-        Drawable mutate2 = context.getResources().getDrawable(R.drawable.poll_add_plus).mutate();
-        int themedColor = getThemedColor(g6.N6);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
-        mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(g6.f19729k7), mode));
-        j3 j3Var = new j3(mutate, mutate2, 4);
-        j3Var.f23884x = AndroidUtilities.dp(2.0f);
-        this.d = j3Var;
-        this.fragmentView = super.createView(context);
-        this.f24003a.p1();
-        this.actionBar.setAdaptiveBackground(this.f24003a);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        c71 c71Var;
-        if (i10 == NotificationCenter.webBrowserSettingsUpdate && (c71Var = this.f24003a) != null) {
-            c71Var.W2.N(true);
-        }
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        a0();
-        getNotificationCenter().addObserver(this, NotificationCenter.webBrowserSettingsUpdate);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        getNotificationCenter().removeObserver(this, NotificationCenter.webBrowserSettingsUpdate);
-    }
-
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        super.onInsets(i10, i11, i12, i13);
-        c71 c71Var = this.f24003a;
-        c71Var.setPadding(0, c71Var.getPaddingTop(), 0, i13);
-        this.f24003a.setClipToPadding(false);
     }
 }

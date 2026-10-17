@@ -1,71 +1,37 @@
 package b2;
+public class u0 {
+    public int f4056a;
+    public int f4057b;
 
-import java.util.Arrays;
-import java.util.List;
-import v7.c8;
-public final class u0 {
-    public final t0[] f2402a;
-    public final long f2403b;
-
-    public u0(t0... t0VarArr) {
-        this(-9223372036854775807L, t0VarArr);
+    public u0(int i10, int i11) {
+        this.f4056a = i10;
+        this.f4057b = i11;
     }
 
-    public final u0 a(t0... t0VarArr) {
-        if (t0VarArr.length == 0) {
-            return this;
-        }
-        String str = e2.m0.f8375a;
-        t0[] t0VarArr2 = this.f2402a;
-        Object[] copyOf = Arrays.copyOf(t0VarArr2, t0VarArr2.length + t0VarArr.length);
-        System.arraycopy(t0VarArr, 0, copyOf, t0VarArr2.length, t0VarArr.length);
-        return new u0(this.f2403b, (t0[]) copyOf);
-    }
-
-    public final u0 b(u0 u0Var) {
-        if (u0Var == null) {
-            return this;
-        }
-        return a(u0Var.f2402a);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && u0.class == obj.getClass()) {
-            u0 u0Var = (u0) obj;
-            if (Arrays.equals(this.f2402a, u0Var.f2402a) && this.f2403b == u0Var.f2403b) {
-                return true;
+    public int a() {
+        int i10 = this.f4057b;
+        if (i10 != 2) {
+            if (i10 != 5) {
+                if (i10 != 29) {
+                    if (i10 != 42) {
+                        if (i10 != 22) {
+                            if (i10 != 23) {
+                                return 0;
+                            }
+                            return 15;
+                        }
+                        return 1073741824;
+                    }
+                    return 16;
+                }
+                return 12;
             }
+            return 11;
         }
-        return false;
+        return 10;
     }
 
-    public final int hashCode() {
-        return c8.b(this.f2403b) + (Arrays.hashCode(this.f2402a) * 31);
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("entries=");
-        sb2.append(Arrays.toString(this.f2402a));
-        long j10 = this.f2403b;
-        if (j10 == -9223372036854775807L) {
-            str = "";
-        } else {
-            str = ", presentationTimeUs=" + j10;
-        }
-        sb2.append(str);
-        return sb2.toString();
-    }
-
-    public u0(long j10, t0... t0VarArr) {
-        this.f2403b = j10;
-        this.f2402a = t0VarArr;
-    }
-
-    public u0(List list) {
-        this((t0[]) list.toArray(new t0[0]));
+    public int b() {
+        return this.f4056a | this.f4057b;
     }
 }

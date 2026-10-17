@@ -1,84 +1,113 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class l10 extends FrameLayout {
-    public final s6 f26578a;
-    public final s6 f26579b;
+public final class l10 extends Drawable {
+    public final Drawable f28046a;
+    public final Path f28047b;
+    public boolean f28048c = true;
+    public final Paint d;
+    public final Paint e;
 
-    public l10(Context context) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        s6 s6Var = new s6(context, true, true, false);
-        this.f26578a = s6Var;
-        s6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        s6Var.setTypeface(AndroidUtilities.bold());
-        int i13 = org.telegram.ui.ActionBar.g6.L6;
-        s6Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i13, false));
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
+    public l10(Context context, int i10, int i11) {
+        this.f28046a = context.getResources().getDrawable(i10);
+        if (i11 >= 0) {
+            this.f28047b = new Path();
+            Paint paint = new Paint(1);
+            this.d = paint;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setColor(-16777216);
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setStrokeJoin(Paint.Join.ROUND);
+            Paint paint2 = new Paint(1);
+            this.e = paint2;
+            paint2.setStyle(Paint.Style.FILL);
+            int[] iArr = org.telegram.ui.ActionBar.h6.f21245r8;
+            paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, iArr[i11 % iArr.length], false));
+            paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
+            return;
         }
-        s6Var.setGravity(i10);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(s6Var, w7.z5.a(20.0f, 21.0f, 15.0f, 21.0f, 2.0f, -1, i11 | 80));
-        s6 s6Var2 = new s6(context, true, true, true);
-        this.f26579b = s6Var2;
-        s6Var2.b(0.45f, 250L, es.h);
-        s6Var2.setTextSize(AndroidUtilities.dp(15.0f));
-        s6Var2.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, i13, false));
-        if (LocaleController.isRTL) {
-            i12 = 3;
-        } else {
-            i12 = 5;
-        }
-        s6Var2.setGravity(i12);
-        addView(s6Var2, w7.z5.a(20.0f, 21.0f, 15.0f, 21.0f, 2.0f, -2, (LocaleController.isRTL ? 3 : 5) | 80));
-        WeakHashMap weakHashMap = r0.i0.f43485a;
-        new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
+        this.f28047b = null;
+        this.d = null;
+        this.e = null;
     }
 
-    public final void a(String str, Runnable runnable) {
-        s6 s6Var = this.f26579b;
-        s6Var.c(str, !LocaleController.isRTL, true);
-        s6Var.setOnClickListener(new x6(1, runnable));
+    public final int a(float f7) {
+        return AndroidUtilities.lerp(getBounds().left, getBounds().right, f7);
     }
 
-    public final void b(String str, boolean z10) {
-        boolean z11;
-        s6 s6Var = this.f26578a;
-        if (z10) {
-            s6Var.a();
-        }
-        if (z10 && !LocaleController.isRTL) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        s6Var.c(str, z11, true);
+    public final int b(float f7) {
+        return AndroidUtilities.lerp(getBounds().top, getBounds().bottom, f7);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f26578a.getText());
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.f28046a;
+        Path path = this.f28047b;
+        if (path != null) {
+            canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255);
+            drawable.setBounds(getBounds());
+            drawable.draw(canvas);
+            boolean z10 = this.f28048c;
+            Paint paint = this.d;
+            if (z10) {
+                path.rewind();
+                path.moveTo(a(0.4871f), b(0.6025f));
+                path.lineTo(a(0.8974f), b(0.6025f));
+                path.lineTo(a(1.0f), b(0.7564f));
+                path.lineTo(a(0.8974f), b(0.9102f));
+                path.lineTo(a(0.4871f), b(0.9102f));
+                path.close();
+                this.f28048c = false;
+                paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+            }
+            canvas.drawPath(path, paint);
+            canvas.drawPath(path, this.e);
+            canvas.restore();
+            return;
+        }
+        drawable.setBounds(getBounds());
+        drawable.draw(canvas);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final int getIntrinsicHeight() {
+        return this.f28046a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f28046a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return this.f28046a.getOpacity();
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f28046a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        this.f28048c = true;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f28046a.setColorFilter(colorFilter);
     }
 }

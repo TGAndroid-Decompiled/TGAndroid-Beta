@@ -1,29 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
-public final class jp implements Utilities.Callback {
-    public final int f26096a;
-    public final zp f26097b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.lc1;
+public final class jp implements lc1 {
+    public final int f27564a;
+    public final ti f27565b;
+    public final org.telegram.ui.hc f27566c;
 
-    public jp(zp zpVar, int i10) {
-        this.f26096a = i10;
-        this.f26097b = zpVar;
+    public jp(ti tiVar, org.telegram.ui.hc hcVar, int i10) {
+        this.f27564a = i10;
+        this.f27565b = tiVar;
+        this.f27566c = hcVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f26096a) {
+    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        switch (this.f27564a) {
             case 0:
-                zp zpVar = this.f26097b;
-                zpVar.f31651f0 = (TL_stories.TL_premium_boostsStatus) obj;
-                zpVar.f31649e0 = true;
-                zpVar.G(true);
-                zpVar.f31648d0 = false;
+                this.f27565b.dismissInternal();
+                this.f27566c.run(tL_wallPaper);
                 return;
             default:
-                zp.n(this.f26097b, (ChannelBoostsController.CanApplyBoost) obj);
+                this.f27565b.dismissInternal();
+                this.f27566c.run(tL_wallPaper);
                 return;
         }
     }

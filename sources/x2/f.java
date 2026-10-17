@@ -1,22 +1,22 @@
 package x2;
 
-import b2.q1;
-import b2.x;
+import b2.p1;
+import b2.w;
 public final class f extends l implements Comparable {
     public final int e;
-    public final int f47752f;
+    public final int f49161f;
 
-    public f(int i10, q1 q1Var, int i11, i iVar, int i12) {
-        super(i10, q1Var, i11);
+    public f(int i10, p1 p1Var, int i11, i iVar, int i12) {
+        super(i10, p1Var, i11);
         int i13;
-        this.e = i2.d.e(i12, iVar.B0) ? 1 : 0;
-        x xVar = this.d;
-        int i14 = xVar.f2529z;
+        this.e = i0.a.e(i12, iVar.B0) ? 1 : 0;
+        w wVar = this.d;
+        int i14 = wVar.f4137z;
         int i15 = -1;
-        if (i14 != -1 && (i13 = xVar.A) != -1) {
+        if (i14 != -1 && (i13 = wVar.A) != -1) {
             i15 = i14 * i13;
         }
-        this.f47752f = i15;
+        this.f49161f = i15;
     }
 
     @Override
@@ -32,6 +32,6 @@ public final class f extends l implements Comparable {
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f47752f, ((f) obj).f47752f);
+        return Integer.compare(this.f49161f, ((f) obj).f49161f);
     }
 }

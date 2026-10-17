@@ -1,105 +1,145 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
-import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class u3 extends org.telegram.ui.Components.s6 {
-    public final int f22221s;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.im0;
+public final class u3 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
+    public final org.telegram.ui.Components.z5 f23583a;
+    public final t3 f23584b;
+    public final FrameLayout.LayoutParams f23585c;
+    public final org.telegram.ui.ActionBar.d6 d;
+    public int e;
+    public boolean f23586f;
 
-    public u3(Context context, boolean z10, boolean z11, boolean z12, int i10) {
-        super(context, z10, z11, z12);
-        this.f22221s = i10;
+    public u3(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        this(context, 16, d6Var);
+    }
+
+    public static void a(ArrayList arrayList, im0 im0Var) {
+        int i10 = org.telegram.ui.ActionBar.h6.f7;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(im0Var, 0, new Class[]{u3.class}, new String[]{"textView"}, null, null, -1, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(im0Var, 0, new Class[]{u3.class}, new String[]{"rightTextView"}, null, null, -1, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(im0Var, 16, new Class[]{u3.class}, null, null, null, org.telegram.ui.ActionBar.h6.e7));
+    }
+
+    public final void b(CharSequence charSequence, View.OnClickListener onClickListener) {
+        t3 t3Var = this.f23584b;
+        t3Var.c(charSequence, true, true);
+        t3Var.setOnClickListener(onClickListener);
+        t3Var.setVisibility(0);
+    }
+
+    public final void c(CharSequence charSequence, CharSequence charSequence2, View.OnClickListener onClickListener) {
+        this.f23583a.setText(charSequence);
+        t3 t3Var = this.f23584b;
+        t3Var.c(charSequence2, false, true);
+        t3Var.setOnClickListener(onClickListener);
+        t3Var.setVisibility(0);
     }
 
     @Override
-    public CharSequence getAccessibilityClassName() {
-        switch (this.f22221s) {
-            case 0:
-                return Button.class.getName();
-            case 1:
-                return Button.class.getName();
-            default:
-                return super.getAccessibilityClassName();
+    public final void d() {
+        int w02;
+        boolean z10 = this.f23586f;
+        org.telegram.ui.ActionBar.d6 d6Var = this.d;
+        if (z10) {
+            w02 = 0;
+        } else {
+            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.e7, d6Var);
         }
+        setBackgroundColor(w02);
+        int i10 = org.telegram.ui.ActionBar.h6.f7;
+        this.f23583a.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        this.f23584b.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    public CharSequence getText() {
+        return this.f23583a.getText();
+    }
+
+    public TextView getTextView() {
+        return this.f23583a;
     }
 
     @Override
-    public int getBaseline() {
-        switch (this.f22221s) {
-            case 5:
-                return Math.round((getHeight() - getDrawable().e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
-            default:
-                return super.getBaseline();
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.e), 1073741824));
     }
 
-    @Override
-    public void invalidate() {
-        switch (this.f22221s) {
-            case 4:
-                if (ah.x0.b(this)) {
-                    return;
-                }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
+    public void setLayerHeight(int i10) {
+        this.e = i10;
+        requestLayout();
     }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f22221s) {
-            case 2:
-                canvas.save();
-                canvas.translate(AndroidUtilities.dp(17.0f), 0.0f);
-                super.onDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
+    public void setNoBackground(boolean z10) {
+        this.f23586f = z10;
+        d();
     }
 
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f22221s) {
-            case 3:
-                super.onMeasure(i10, i11);
-                setPivotX(getMeasuredWidth());
-                return;
-            case 4:
-            default:
-                super.onMeasure(i10, i11);
-                return;
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, Integer.MIN_VALUE), i11);
-                setMeasuredDimension(View.resolveSize((int) Math.ceil(getDrawable().c()), i10), getMeasuredHeight());
-                return;
-        }
+    public void setRightText(CharSequence charSequence) {
+        t3 t3Var = this.f23584b;
+        t3Var.c(charSequence, true, true);
+        t3Var.setVisibility(0);
     }
 
-    public u3(Context context, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        super(context, z10, z11, z12, z13, z14);
-        this.f22221s = 5;
+    public void setRightTextMargin(int i10) {
+        float f7 = i10;
+        int dp = AndroidUtilities.dp(f7);
+        FrameLayout.LayoutParams layoutParams = this.f23585c;
+        layoutParams.leftMargin = dp;
+        layoutParams.rightMargin = AndroidUtilities.dp(f7);
+        this.f23584b.setLayoutParams(layoutParams);
     }
 
-    @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.f22221s) {
-            case 4:
-                if (ah.x0.b(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            default:
-                super.invalidate(i10, i11, i12, i13);
-                return;
-        }
+    public void setText(CharSequence charSequence) {
+        this.f23583a.setText(charSequence);
+        t3 t3Var = this.f23584b;
+        t3Var.setVisibility(8);
+        t3Var.setOnClickListener(null);
+    }
+
+    public void setTextColor(int i10) {
+        int w02 = org.telegram.ui.ActionBar.h6.w0(i10, this.d);
+        this.f23583a.setTextColor(w02);
+        this.f23584b.setTextColor(w02);
+    }
+
+    public u3(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.e = 32;
+        this.d = d6Var;
+        setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.e7, d6Var));
+        org.telegram.ui.Components.z5 z5Var = new org.telegram.ui.Components.z5(getContext());
+        this.f23583a = z5Var;
+        z5Var.setTextSize(1, 14.0f);
+        z5Var.setTypeface(AndroidUtilities.bold());
+        int i11 = org.telegram.ui.ActionBar.h6.f7;
+        z5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
+        z5Var.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        float f7 = i10;
+        addView(z5Var, w7.z5.a(-1.0f, f7, 0.0f, f7, 0.0f, -1, (LocaleController.isRTL ? 5 : 3) | 48));
+        t3 t3Var = new t3(getContext(), true, true, true, 0);
+        this.f23584b = t3Var;
+        t3Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
+        t3Var.b(0.9f, 420L, bs.h);
+        t3Var.setTextSize(AndroidUtilities.dp(14.0f));
+        t3Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
+        t3Var.setGravity(LocaleController.isRTL ? 3 : 5);
+        FrameLayout.LayoutParams a2 = w7.z5.a(-1.0f, f7, 0.0f, f7, 0.0f, -2, (LocaleController.isRTL ? 3 : 5) | 48);
+        this.f23585c = a2;
+        addView(t3Var, a2);
+        WeakHashMap weakHashMap = r0.i0.f44844a;
+        new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 }

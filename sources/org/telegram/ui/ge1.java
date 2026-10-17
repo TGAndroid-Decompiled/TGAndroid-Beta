@@ -1,48 +1,68 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ge1 implements TextWatcher {
-    public final he1 f36175a;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ge1 extends s4.k {
+    public Runnable F;
+    public int G;
+    public final te1 H;
 
-    public ge1(he1 he1Var) {
-        this.f36175a = he1Var;
+    public ge1(te1 te1Var) {
+        this.H = te1Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        he1 he1Var = this.f36175a;
-        if (he1Var.I) {
-            return;
-        }
-        if (he1Var.f36527a.length() > 0) {
-            String str = "https://" + he1Var.getMessagesController().linkPrefix + "/addtheme/" + ((Object) he1Var.f36527a.getText());
-            String formatString = LocaleController.formatString("ThemeHelpLink", R.string.ThemeHelpLink, str);
-            int indexOf = formatString.indexOf(str);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
-            if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new org.telegram.ui.Cells.i(str, he1Var, 8), indexOf, str.length() + indexOf, 33);
+    public final void F() {
+        if (this.G == -1) {
+            this.G = this.H.getNotificationCenter().setAnimationInProgress(this.G, null, false);
+            Runnable runnable = this.F;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                this.F = null;
             }
-            he1Var.d.setText(TextUtils.concat(he1Var.H, "\n\n", spannableStringBuilder));
-            return;
         }
-        he1Var.d.setText(he1Var.H);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        he1 he1Var = this.f36175a;
-        if (he1Var.G) {
-            return;
+    public final void N() {
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.F = null;
         }
-        he1Var.Z(he1Var.f36527a.getText().toString(), false);
+        fe1 fe1Var = new fe1(this, 0);
+        this.F = fe1Var;
+        AndroidUtilities.runOnUIThread(fe1Var);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void g() {
+        super.g();
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        fe1 fe1Var = new fe1(this, 1);
+        this.F = fe1Var;
+        AndroidUtilities.runOnUIThread(fe1Var);
+    }
+
+    @Override
+    public final void z(s4.b1 b1Var) {
+        te1 te1Var = this.H;
+        View view = te1Var.f41684b1;
+        if (view == b1Var.f45938a) {
+            view.setTranslationX(0.0f);
+            xd1 xd1Var = te1Var.O;
+            if (xd1Var != null) {
+                xd1Var.F.clear();
+            }
+            View view2 = te1Var.f41684b1;
+            if (view2 instanceof qe1) {
+                qe1 qe1Var = (qe1) view2;
+                qe1Var.setTopicIcon(qe1Var.f40404c5);
+            }
+            te1Var.f41684b1 = null;
+        }
     }
 }

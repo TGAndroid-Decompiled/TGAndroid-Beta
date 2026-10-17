@@ -1,49 +1,50 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class we implements DialogInterface.OnDismissListener {
-    public final int f40940a;
-    public final fo f40941b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class we implements Runnable {
+    public final int f42497a;
+    public final sn f42498b;
+    public final org.telegram.ui.Components.ym0 f42499c;
+    public final String d;
 
-    public we(fo foVar, int i10) {
-        this.f40940a = i10;
-        this.f40941b = foVar;
+    public we(sn snVar, org.telegram.ui.Components.ym0 ym0Var, String str, int i10) {
+        this.f42497a = i10;
+        this.f42498b = snVar;
+        this.f42499c = ym0Var;
+        this.d = str;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f40940a) {
+    public final void run() {
+        org.telegram.ui.Components.xc a02;
+        int i10;
+        switch (this.f42497a) {
             case 0:
-                mk mkVar = this.f40941b.X1;
-                if (mkVar != null) {
-                    mkVar.c(false);
-                    return;
-                }
-                return;
+                this.f42499c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.xc.a0(this.f42498b);
+                i10 = R.string.RelativeDateCopied;
+                break;
             case 1:
-                fo.a1(this.f40941b);
-                return;
+                this.f42499c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.xc.a0(this.f42498b);
+                i10 = R.string.WalletAddressCopiedBulletin;
+                break;
             case 2:
-                this.f40941b.j8(false, true, 0.0f);
-                return;
-            case 3:
-                this.f40941b.j8(false, true, 0.0f);
-                return;
-            case 4:
-                this.f40941b.j8(false, true, 0.0f);
-                return;
-            case 5:
-                this.f40941b.j8(false, true, 0.0f);
-                return;
-            case 6:
-                this.f40941b.j8(false, true, 0.0f);
-                return;
-            case 7:
-                this.f40941b.j8(false, true, 0.0f);
-                return;
+                this.f42499c.dismiss();
+                AndroidUtilities.addToClipboard("@" + this.d);
+                a02 = org.telegram.ui.Components.xc.a0(this.f42498b);
+                i10 = R.string.UsernameCopied;
+                break;
             default:
-                this.f40941b.Gb = null;
-                return;
+                this.f42499c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.xc.a0(this.f42498b);
+                i10 = R.string.CardNumberCopied;
+                break;
         }
+        org.telegram.messenger.wh.p(i10, a02);
     }
 }

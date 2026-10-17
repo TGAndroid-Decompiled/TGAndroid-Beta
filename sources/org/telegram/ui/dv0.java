@@ -1,32 +1,33 @@
 package org.telegram.ui;
 
-import java.io.File;
-import java.util.List;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public interface dv0 {
-    boolean a(int i10);
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class dv0 extends org.telegram.ui.Cells.c6 {
+    public final fv0 F;
 
-    File b(int i10);
+    public dv0(fv0 fv0Var, Context context, int i10) {
+        super(context, i10, null, null);
+        this.F = fv0Var;
+    }
 
-    String c(int i10);
+    @Override
+    public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
+        if (b6Var.isFocused() && b6Var.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                sn.n8(menu, this.F.d.f37656f.h, false, true, true, true);
+            }
+        }
+    }
 
-    TLObject d(int i10);
+    @Override
+    public final void i(boolean z10) {
+        hv0.d0(this.F.d, this, z10);
+    }
 
-    boolean e(int i10);
-
-    TLRPC.PhotoSize f(TLObject tLObject, int[] iArr);
-
-    Object g();
-
-    TL_iv.PageBlock get(int i10);
-
-    List getAll();
-
-    void h(TL_iv.PageBlock pageBlock);
-
-    CharSequence i(int i10);
-
-    int j();
+    @Override
+    public final void j(org.telegram.ui.Cells.c6 c6Var) {
+        hv0.e0(this.F.d, c6Var);
+    }
 }

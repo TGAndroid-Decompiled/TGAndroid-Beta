@@ -2,28 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class pi implements Runnable {
-    public final int f17823a;
-    public final SendMessagesHelper f17824b;
-    public final TLRPC.Updates f17825c;
-    public final TLRPC.Message d;
-    public final boolean e;
+    public final int f19290a;
+    public final SendMessagesHelper f19291b;
+    public final TLRPC.Message f19292c;
+    public final int d;
 
-    public pi(SendMessagesHelper sendMessagesHelper, TLRPC.Updates updates, TLRPC.Message message, boolean z10, int i10) {
-        this.f17823a = i10;
-        this.f17824b = sendMessagesHelper;
-        this.f17825c = updates;
-        this.d = message;
-        this.e = z10;
+    public pi(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, int i10, int i11) {
+        this.f19290a = i11;
+        this.f19291b = sendMessagesHelper;
+        this.f19292c = message;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17823a) {
+        switch (this.f19290a) {
             case 0:
-                this.f17824b.lambda$performSendMessageRequest$88(this.f17825c, this.d, this.e);
+                this.f19291b.lambda$performSendMessageRequest$105(this.f19292c, this.d);
                 return;
             default:
-                this.f17824b.lambda$performSendMessageRequest$91(this.f17825c, this.d, this.e);
+                this.f19291b.lambda$sendMessage$18(this.f19292c, this.d);
                 return;
         }
     }

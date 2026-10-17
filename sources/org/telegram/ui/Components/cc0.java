@@ -1,59 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-public final class cc0 extends s4.t {
-    public final pc0 S;
+import org.telegram.messenger.NotificationCenter;
+public final class cc0 implements Runnable {
+    public final int f25190a;
+    public final dc0 f25191b;
 
-    public cc0(pc0 pc0Var) {
-        super(true);
-        this.S = pc0Var;
+    public cc0(dc0 dc0Var, int i10) {
+        this.f25190a = i10;
+        this.f25191b = dc0Var;
     }
 
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        pc0 pc0Var = this.S;
-        MessageObject messageObject = pc0Var.f27970r.previewMessages.get(i10);
-        MessageObject.GroupedMessages a2 = pc0.a(pc0Var, messageObject);
-        if (a2 != null) {
-            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
-            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
-                int size = a2.posArray.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
-                    if (groupedMessagePosition != position) {
-                        byte b11 = groupedMessagePosition.minY;
-                        byte b12 = position.minY;
-                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
-                            return true;
-                        }
-                    }
+    public final void run() {
+        switch (this.f25190a) {
+            case 0:
+                dc0 dc0Var = this.f25191b;
+                if (dc0Var.W != -1) {
+                    NotificationCenter.getInstance(dc0Var.Y.f27185c0.f28928w).onAnimationFinish(dc0Var.W);
+                    dc0Var.W = -1;
+                    return;
                 }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        return false;
-    }
-
-    @Override
-    public final void b0(qf.e eVar, s4.y0 y0Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            super.b0(eVar, y0Var);
-            return;
-        }
-        try {
-            super.b0(eVar, y0Var);
-        } catch (Exception e) {
-            FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new kq(this, 29));
+                return;
+            case 1:
+                this.f25191b.Y.i();
+                return;
+            default:
+                dc0 dc0Var2 = this.f25191b;
+                if (dc0Var2.W != -1) {
+                    NotificationCenter.getInstance(dc0Var2.Y.f27185c0.f28928w).onAnimationFinish(dc0Var2.W);
+                    dc0Var2.W = -1;
+                    return;
+                }
+                return;
         }
     }
 }

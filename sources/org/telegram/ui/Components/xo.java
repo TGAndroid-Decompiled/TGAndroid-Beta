@@ -1,48 +1,71 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.Utilities;
-public final class xo implements Utilities.Callback {
-    public final l80 f30975a;
-    public final int f30976b;
-    public final long f30977c;
-    public final long d;
-    public final org.telegram.ui.ActionBar.m2 e;
-    public final org.telegram.ui.ActionBar.c6 f30978f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class xo extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
+    public final int T;
+    public Object U;
 
-    public xo(l80 l80Var, int i10, long j10, long j11, org.telegram.ui.fo foVar, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f30975a = l80Var;
-        this.f30976b = i10;
-        this.f30977c = j10;
-        this.d = j11;
-        this.e = foVar;
-        this.f30978f = c6Var;
+    public xo(Context context, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var, int i12) {
+        super(i10, i11, context, d6Var);
+        this.T = i12;
     }
 
     @Override
-    public final void run(Object obj) {
-        Integer num = (Integer) obj;
-        this.f30975a.u();
-        int intValue = num.intValue();
-        int i10 = this.f30976b;
-        long j10 = this.f30977c;
-        long j11 = this.d;
-        org.telegram.ui.ActionBar.m2 m2Var = this.e;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f30978f;
-        if (intValue == 0) {
-            if (MessagesController.getInstance(i10).isDialogMuted(j10, j11)) {
-                NotificationsController.getInstance(i10).muteDialog(j10, j11, false);
-            }
-            if (zc.a(m2Var)) {
-                zc.z(m2Var, 4, num.intValue(), c6Var).j();
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        switch (this.T) {
+            case 0:
+                canvas.save();
+                Path path = (Path) this.U;
+                path.rewind();
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+                canvas.clipPath(path);
+                boolean drawChild = super.drawChild(canvas, view, j10);
+                canvas.restore();
+                return drawChild;
+            case 1:
+                canvas.save();
+                Path path2 = (Path) this.U;
+                path2.rewind();
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                path2.addRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+                canvas.clipPath(path2);
+                boolean drawChild2 = super.drawChild(canvas, view, j10);
+                canvas.restore();
+                return drawChild2;
+            default:
+                return super.drawChild(canvas, view, j10);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        int i12;
+        switch (this.T) {
+            case 2:
+                i80 i80Var = (i80) this.U;
+                if (this == i80Var.A && (i12 = i80Var.X) > 0) {
+                    i11 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11));
+                }
+                super.onMeasure(i10, i11);
                 return;
-            }
-            return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
-        NotificationsController.getInstance(i10).muteUntil(j10, j11, num.intValue());
-        if (zc.a(m2Var)) {
-            zc.z(m2Var, 5, num.intValue(), c6Var).j();
-        }
+    }
+
+    public xo(i80 i80Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
+        super(i10, i11, context, d6Var);
+        this.T = 2;
+        this.U = i80Var;
     }
 }

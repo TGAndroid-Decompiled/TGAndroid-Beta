@@ -1,60 +1,68 @@
 package gb;
-public final class j extends Number {
-    public final String f10057a;
 
-    public j(String str) {
-        this.f10057a = str;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+public final class j implements Iterator {
+    public l f10963a;
+    public l f10964b = null;
+    public int f10965c;
+    public final m d;
+    public final int e;
+
+    public j(m mVar, int i10) {
+        this.e = i10;
+        this.d = mVar;
+        this.f10963a = mVar.f10978f.d;
+        this.f10965c = mVar.e;
+    }
+
+    public final Object a() {
+        return b();
+    }
+
+    public final l b() {
+        l lVar = this.f10963a;
+        m mVar = this.d;
+        if (lVar != mVar.f10978f) {
+            if (mVar.e == this.f10965c) {
+                this.f10963a = lVar.d;
+                this.f10964b = lVar;
+                return lVar;
+            }
+            throw new ConcurrentModificationException();
+        }
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final double doubleValue() {
-        return Double.parseDouble(this.f10057a);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
+    public final boolean hasNext() {
+        if (this.f10963a != this.d.f10978f) {
             return true;
-        }
-        if (obj instanceof j) {
-            return this.f10057a.equals(((j) obj).f10057a);
         }
         return false;
     }
 
     @Override
-    public final float floatValue() {
-        return Float.parseFloat(this.f10057a);
-    }
-
-    public final int hashCode() {
-        return this.f10057a.hashCode();
-    }
-
-    @Override
-    public final int intValue() {
-        String str = this.f10057a;
-        try {
-            try {
-                return Integer.parseInt(str);
-            } catch (NumberFormatException unused) {
-                return (int) Long.parseLong(str);
-            }
-        } catch (NumberFormatException unused2) {
-            return d.i(str).intValue();
+    public Object next() {
+        switch (this.e) {
+            case 1:
+                return b().f10971f;
+            default:
+                return a();
         }
     }
 
     @Override
-    public final long longValue() {
-        String str = this.f10057a;
-        try {
-            return Long.parseLong(str);
-        } catch (NumberFormatException unused) {
-            return d.i(str).longValue();
+    public final void remove() {
+        l lVar = this.f10964b;
+        if (lVar != null) {
+            m mVar = this.d;
+            mVar.c(lVar, true);
+            this.f10964b = null;
+            this.f10965c = mVar.e;
+            return;
         }
-    }
-
-    public final String toString() {
-        return this.f10057a;
+        throw new IllegalStateException();
     }
 }

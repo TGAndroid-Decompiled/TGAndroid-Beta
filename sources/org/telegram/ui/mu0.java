@@ -1,30 +1,55 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class mu0 extends AnimatorListenerAdapter {
-    public final nu0 f38073a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mu0 extends org.telegram.ui.Components.s60 {
+    public final nu0 d;
 
     public mu0(nu0 nu0Var) {
-        this.f38073a = nu0Var;
+        this.d = nu0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        super.onAnimationEnd(animator);
-        nu0 nu0Var = this.f38073a;
-        PhotoViewer photoViewer = nu0Var.f38478c;
-        photoViewer.f32010n4 = 0;
-        photoViewer.G1();
-        photoViewer.L0.setAlpha(255);
-        photoViewer.f31928e0.invalidate();
-        photoViewer.P0.setTranslationY(0.0f);
-        if (photoViewer.f32064t4) {
-            PhotoViewer.a0(photoViewer, nu0Var.f38477b.intValue());
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+        if (this.d.f39563s.Z7 > 0) {
+            sb2.append(", ");
+            sb2.append(this.d.f39563s.Y7 + 1);
+            sb2.append(" / ");
+            sb2.append(this.d.f39563s.Z7);
         }
-        hv0 hv0Var = nu0Var.f38476a;
-        if (hv0Var != null) {
-            hv0Var.d();
+        sb2.append(", ");
+        sb2.append(this.d.h);
+        sb2.append(" – ");
+        sb2.append(this.d.f39561n);
+        return sb2.toString();
+    }
+
+    @Override
+    public final int i() {
+        return Math.max(0, this.d.f39563s.Z7 - 1);
+    }
+
+    @Override
+    public final int j() {
+        return this.d.f39563s.Y7;
+    }
+
+    @Override
+    public final void k(int i10) {
+        int max;
+        if (this.d.f39563s.Z7 > 0 && (max = Math.max(0, Math.min(this.d.f39563s.Z7 - 1, i10))) != this.d.f39563s.Y7) {
+            nu0 nu0Var = this.d;
+            nu0Var.f39562r = nu0Var.f39563s.Y7;
+            this.d.f39563s.Y7 = max;
+            this.d.f39563s.S0();
+            this.d.invalidate();
+            int i11 = this.d.f39563s.Y7;
+            nu0 nu0Var2 = this.d;
+            if (i11 != nu0Var2.f39562r) {
+                nu0Var2.f39563s.p2(1);
+            }
         }
     }
 }

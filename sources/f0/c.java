@@ -9,11 +9,11 @@ import android.os.Handler;
 import android.os.Process;
 import android.text.TextUtils;
 import androidx.biometric.o;
-import e0.l0;
+import e0.k0;
 import j$.util.Objects;
 import java.util.concurrent.Executor;
 public abstract class c {
-    public static final Object f8827a = null;
+    public static final Object f10272a = null;
 
     public static int a(Context context, String str, int i10, int i11, String str2) {
         int noteProxyOpNoThrow;
@@ -63,7 +63,7 @@ public abstract class c {
     public static int b(Context context, String str) {
         if (str != null) {
             if (Build.VERSION.SDK_INT < 33 && TextUtils.equals("android.permission.POST_NOTIFICATIONS", str)) {
-                if (new l0(context).a()) {
+                if (new k0(context).a()) {
                     return 0;
                 }
                 return -1;

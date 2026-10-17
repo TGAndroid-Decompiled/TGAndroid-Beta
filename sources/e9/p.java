@@ -5,17 +5,17 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public abstract class p implements n1 {
-    public transient Collection f8600a;
-    public transient Set f8601b;
-    public transient Collection f8602c;
+    public transient Collection f8481a;
+    public transient Set f8482b;
+    public transient Collection f8483c;
     public transient Map d;
 
     @Override
     public Collection a() {
-        Collection collection = this.f8600a;
+        Collection collection = this.f8481a;
         if (collection == null) {
             Collection e = e();
-            this.f8600a = e;
+            this.f8481a = e;
             return e;
         }
         return collection;
@@ -65,10 +65,10 @@ public abstract class p implements n1 {
 
     @Override
     public Set keySet() {
-        Set set = this.f8601b;
+        Set set = this.f8482b;
         if (set == null) {
             Set f7 = f();
-            this.f8601b = f7;
+            this.f8482b = f7;
             return f7;
         }
         return set;

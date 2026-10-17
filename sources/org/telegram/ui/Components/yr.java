@@ -1,40 +1,93 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class yr extends l61 {
-    public static final int f31351a = 0;
+public final class yr extends Drawable {
+    public final Drawable f32739a;
+    public final RectF f32740b = new RectF();
+    public final Paint f32741c;
+    public final Paint d;
+    public int e;
+    public final int f32742f;
+    public float f32743g;
+    public boolean h;
+    public float f32744i;
+    public float f32745j;
+    public float f32746k;
 
-    static {
-        l61.setup(new l61());
+    public yr(Context context, int i10, int i11) {
+        Paint paint = new Paint(1);
+        this.f32741c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.f32739a = context.getDrawable(i10);
+        this.f32742f = i11;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-16777216);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
     }
 
-    @Override
-    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
-        org.telegram.ui.Cells.c9 c9Var = (org.telegram.ui.Cells.c9) view;
-        c9Var.c(m61Var.f26946l, m61Var.f26948n, !m61Var.f26944j);
-        wh.n nVar = c9Var.f20728a;
-        if (m61Var.f26946l instanceof SpannableStringBuilder) {
-            nVar.setTextSize(1, 13.0f);
-            nVar.setTranslationY(AndroidUtilities.dp(2.0f));
-            nVar.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
+    public final void a(boolean z10, boolean z11) {
+        if (this.h != z10) {
+            this.h = z10;
+            float f7 = 0.0f;
+            if (!z11) {
+                if (z10) {
+                    f7 = 1.0f;
+                }
+                this.f32743g = f7;
+            } else {
+                if (!z10) {
+                    f7 = 1.0f;
+                }
+                this.f32743g = f7;
+            }
+            invalidateSelf();
         }
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        org.telegram.ui.Cells.c9 c9Var = new org.telegram.ui.Cells.c9(context, c6Var, true);
-        c9Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19601d6, c6Var));
-        Drawable mutate = context.getDrawable(R.drawable.msg_copy).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.L6, c6Var), PorterDuff.Mode.MULTIPLY));
-        c9Var.setImage(mutate);
-        c9Var.setImageClickListener(new bi.x(this, context, c9Var, 19));
-        return c9Var;
+    public final void draw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yr.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f32739a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f32739a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        this.f32739a.setBounds(i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,12 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-public interface si0 {
-    void a(float f7);
-
-    void b(float f7);
-
-    void c(xv xvVar, Canvas canvas);
-
-    void d(int i10, int i11);
+import android.widget.FrameLayout;
+public abstract class si0 extends FrameLayout {
 }

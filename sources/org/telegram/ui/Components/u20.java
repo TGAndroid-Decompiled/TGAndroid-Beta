@@ -1,3 +1,6 @@
 package org.telegram.ui.Components;
-public interface u20 {
+
+import android.view.GestureDetector;
+public abstract class u20 extends GestureDetector.SimpleOnGestureListener {
+    public abstract boolean a();
 }

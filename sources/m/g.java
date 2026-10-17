@@ -1,54 +1,33 @@
 package m;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-public final class g extends x implements j {
-    public final i d;
+import android.view.View;
+public final class g implements Runnable {
+    public final e f16193a;
+    public final i f16194b;
 
-    public g(i iVar, Context context) {
-        super(context, null, 2130968607);
-        this.d = iVar;
-        setClickable(true);
-        setFocusable(true);
-        setVisibility(0);
-        setEnabled(true);
-        w7.q.a(this, getContentDescription());
-        setOnTouchListener(new l.b(this, this));
+    public g(i iVar, e eVar) {
+        this.f16194b = iVar;
+        this.f16193a = eVar;
     }
 
     @Override
-    public final boolean a() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final boolean performClick() {
-        if (super.performClick()) {
-            return true;
+    public final void run() {
+        l.i iVar;
+        i iVar2 = this.f16194b;
+        l.k kVar = iVar2.f16212c;
+        if (kVar != null && (iVar = kVar.e) != null) {
+            iVar.b(kVar);
         }
-        playSoundEffect(0);
-        this.d.l();
-        return true;
-    }
-
-    @Override
-    public final boolean setFrame(int i10, int i11, int i12, int i13) {
-        boolean frame = super.setFrame(i10, i11, i12, i13);
-        Drawable drawable = getDrawable();
-        Drawable background = getBackground();
-        if (drawable != null && background != null) {
-            int width = getWidth();
-            int height = getHeight();
-            int max = Math.max(width, height) / 2;
-            int paddingLeft = (width + (getPaddingLeft() - getPaddingRight())) / 2;
-            int paddingTop = (height + (getPaddingTop() - getPaddingBottom())) / 2;
-            background.setHotspotBounds(paddingLeft - max, paddingTop - max, paddingLeft + max, paddingTop + max);
+        View view = (View) iVar2.f16214n;
+        if (view != null && view.getWindowToken() != null) {
+            e eVar = this.f16193a;
+            if (!eVar.b()) {
+                if (eVar.e != null) {
+                    eVar.d(0, 0, false, false);
+                }
+            }
+            iVar2.I = eVar;
         }
-        return frame;
+        iVar2.K = null;
     }
 }

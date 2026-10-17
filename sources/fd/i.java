@@ -1,7 +1,7 @@
 package fd;
 public final class i extends j {
     @Override
-    public final f2.e b() {
+    public final f2.f b() {
         k();
         return this;
     }
@@ -9,15 +9,15 @@ public final class i extends j {
     @Override
     public final j k() {
         super.b();
-        this.f9122k = new ed.c();
+        this.f10563k = new ed.c();
         return this;
     }
 
     @Override
     public final String toString() {
-        ed.c cVar = this.f9122k;
-        if (cVar != null && cVar.f8730a > 0) {
-            return "<" + i() + " " + this.f9122k.toString() + ">";
+        ed.c cVar = this.f10563k;
+        if (cVar != null && cVar.f8611a > 0) {
+            return "<" + i() + " " + this.f10563k.toString() + ">";
         }
         return "<" + i() + ">";
     }

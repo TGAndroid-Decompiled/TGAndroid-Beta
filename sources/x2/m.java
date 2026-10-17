@@ -17,26 +17,26 @@ public final class m extends l {
     public final boolean O;
     public final String P;
     public final boolean e;
-    public final i f47769f;
+    public final i f49178f;
     public final boolean h;
-    public final boolean f47770n;
-    public final boolean f47771r;
-    public final int f47772s;
+    public final boolean f49179n;
+    public final boolean f49180r;
+    public final int f49181s;
     public final int v;
-    public final int f47773w;
-    public final int f47774x;
-    public final int f47775y;
+    public final int f49182w;
+    public final int f49183x;
+    public final int f49184y;
 
-    public m(int r7, b2.q1 r8, int r9, x2.i r10, int r11, java.lang.String r12, int r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: x2.m.<init>(int, b2.q1, int, x2.i, int, java.lang.String, int, boolean):void");
+    public m(int r7, b2.p1 r8, int r9, x2.i r10, int r11, java.lang.String r12, int r13, boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: x2.m.<init>(int, b2.p1, int, x2.i, int, java.lang.String, int, boolean):void");
     }
 
     public static int c(m mVar, m mVar2) {
-        b0 c10 = b0.f8536a.c(mVar.f47770n, mVar2.f47770n);
-        Integer valueOf = Integer.valueOf(mVar.f47774x);
-        Integer valueOf2 = Integer.valueOf(mVar2.f47774x);
-        s1 s1Var = s1.f8619c;
-        return c10.b(valueOf, valueOf2, s1Var).a(mVar.f47775y, mVar2.f47775y).a(mVar.E, mVar2.E).b(Integer.valueOf(mVar.F), Integer.valueOf(mVar2.F), s1Var).c(mVar.G, mVar2.G).a(mVar.H, mVar2.H).c(mVar.f47771r, mVar2.f47771r).c(mVar.e, mVar2.e).c(mVar.h, mVar2.h).b(Integer.valueOf(mVar.f47773w), Integer.valueOf(mVar2.f47773w), s1Var).c(mVar.K, mVar2.K).c(mVar.M, mVar2.M).e();
+        b0 c10 = b0.f8417a.c(mVar.f49179n, mVar2.f49179n);
+        Integer valueOf = Integer.valueOf(mVar.f49183x);
+        Integer valueOf2 = Integer.valueOf(mVar2.f49183x);
+        s1 s1Var = s1.f8500c;
+        return c10.b(valueOf, valueOf2, s1Var).a(mVar.f49184y, mVar2.f49184y).a(mVar.E, mVar2.E).b(Integer.valueOf(mVar.F), Integer.valueOf(mVar2.F), s1Var).c(mVar.G, mVar2.G).a(mVar.H, mVar2.H).c(mVar.f49180r, mVar2.f49180r).c(mVar.e, mVar2.e).c(mVar.h, mVar2.h).b(Integer.valueOf(mVar.f49182w), Integer.valueOf(mVar2.f49182w), s1Var).c(mVar.K, mVar2.K).c(mVar.M, mVar2.M).e();
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class m extends l {
     public final boolean b(l lVar) {
         m mVar = (m) lVar;
         if (this.I || Objects.equals(this.P, mVar.P)) {
-            this.f47769f.getClass();
+            this.f49178f.getClass();
             if (this.K == mVar.K && this.M == mVar.M) {
                 return true;
             }

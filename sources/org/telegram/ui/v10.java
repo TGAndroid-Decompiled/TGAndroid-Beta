@@ -1,46 +1,49 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class v10 extends org.telegram.ui.Cells.i7 {
-    public final w10 f40543l0;
+import android.text.style.URLSpan;
+import android.view.View;
+import android.view.ViewParent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class v10 implements Utilities.CallbackReturn {
+    public final int f42101a;
+    public final Object f42102b;
 
-    public v10(w10 w10Var, Context context) {
-        super(context, 1, null);
-        this.f40543l0 = w10Var;
+    public v10(Object obj, int i10) {
+        this.f42101a = i10;
+        this.f42102b = obj;
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        boolean isVoice = messageObject.isVoice();
-        w10 w10Var = this.f40543l0;
-        if (!isVoice && !messageObject.isRoundVideo()) {
-            if (!messageObject.isMusic()) {
-                return false;
-            }
-            b20 b20Var = w10Var.v;
-            String str = b20Var.Q;
-            long j10 = b20Var.E;
-            long j11 = b20Var.H;
-            MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j10, j11, j11, b20Var.f34187y);
-            b20 b20Var2 = w10Var.v;
-            playlistGlobalSearchParams.endReached = b20Var2.N;
-            playlistGlobalSearchParams.nextSearchRate = b20Var2.v;
-            playlistGlobalSearchParams.totalCount = b20Var2.O;
-            playlistGlobalSearchParams.folderId = b20Var2.J ? 1 : 0;
-            return MediaController.getInstance().setPlaylist(w10Var.v.f34169f, messageObject, 0L, playlistGlobalSearchParams);
+    public final Object run(Object obj) {
+        switch (this.f42101a) {
+            case 0:
+                a20 a20Var = (a20) this.f42102b;
+                View view = (View) obj;
+                a20Var.getClass();
+                ViewParent parent = view.getParent();
+                org.telegram.ui.Components.im0 im0Var = a20Var.f35270c;
+                if (parent != im0Var) {
+                    return Boolean.FALSE;
+                }
+                return Boolean.valueOf(!org.telegram.ui.Components.s61.K(im0Var.T(view).f45941f));
+            case 1:
+                of0 of0Var = (of0) this.f42102b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                if (tL_error != null && "PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    AndroidUtilities.runOnUIThread(new lf0(of0Var, 1));
+                    return Boolean.TRUE;
+                }
+                return Boolean.FALSE;
+            default:
+                ProfileActivity profileActivity = (ProfileActivity) this.f42102b;
+                URLSpan uRLSpan = (URLSpan) obj;
+                if (uRLSpan != null) {
+                    profileActivity.B4(uRLSpan.getURL(), null);
+                    return Boolean.TRUE;
+                }
+                return Boolean.FALSE;
         }
-        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-        MediaController mediaController = MediaController.getInstance();
-        if (playMessage) {
-            arrayList = w10Var.v.f34169f;
-        } else {
-            arrayList = null;
-        }
-        mediaController.setVoiceMessagesPlaylist(arrayList, false);
-        return playMessage;
     }
 }

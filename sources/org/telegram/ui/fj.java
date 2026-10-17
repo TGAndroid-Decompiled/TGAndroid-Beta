@@ -1,41 +1,47 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-import org.telegram.messenger.MessageObject;
-public final class fj {
-    public boolean f35546a;
-    public final boolean f35547b;
-    public final SparseArray f35548c;
-    public final fo d;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.TLRPC;
+public final class fj implements MessagesStorage.IntCallback {
+    public final int f36943a;
+    public final boolean f36944b;
+    public final Object f36945c;
 
-    public fj(fo foVar, boolean z10, SparseArray sparseArray) {
-        this.d = foVar;
-        this.f35547b = z10;
-        this.f35548c = sparseArray;
+    public fj(int i10, Object obj, boolean z10) {
+        this.f36943a = i10;
+        this.f36945c = obj;
+        this.f36944b = z10;
     }
 
-    public final boolean a(int i10) {
-        fo foVar = this.d;
-        int i11 = i10 - foVar.A0.J;
-        if (i11 >= 0 && i11 < foVar.f35828u6.size()) {
-            MessageObject messageObject = (MessageObject) foVar.f35828u6.get(i11);
-            if (messageObject.contentType == 0) {
-                SparseArray sparseArray = this.f35548c;
-                boolean z10 = this.f35547b;
-                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
-                    return true;
+    @Override
+    public final void run(int i10) {
+        org.telegram.ui.Components.wc wcVar;
+        switch (this.f36943a) {
+            case 0:
+                sn snVar = ((hj) this.f36945c).f37566b;
+                if (i10 > 0 && snVar.getParentActivity() != null) {
+                    org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(snVar);
+                    if (this.f36944b) {
+                        wcVar = org.telegram.ui.Components.wc.G;
+                    } else {
+                        wcVar = org.telegram.ui.Components.wc.I;
+                    }
+                    a02.m(wcVar, i10, 0, 0, snVar.f41205ea).j();
+                    return;
                 }
-                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
-                    return true;
+                return;
+            default:
+                gj gjVar = (gj) this.f36945c;
+                sn snVar2 = gjVar.f37253b.f37566b;
+                if (i10 >= 50) {
+                    TLRPC.Chat chat = snVar2.e;
+                    TLRPC.User user = snVar2.f41208f;
+                    boolean z10 = this.f36944b;
+                    org.telegram.ui.Components.f5.r(snVar2, true, chat, user, false, false, false, z10, new b1(gjVar, z10));
+                    return;
                 }
-                return false;
-            }
-            return false;
+                snVar2.va(snVar2.f41188d4, true);
+                return;
         }
-        return false;
-    }
-
-    public final void b(int r8, boolean r9, float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fj.b(int, boolean, float, float):void");
     }
 }

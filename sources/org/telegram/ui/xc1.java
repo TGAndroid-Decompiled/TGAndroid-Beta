@@ -2,186 +2,148 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.MotionEvent;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class xc1 extends org.telegram.ui.Components.mm0 {
-    public boolean V2;
-    public float W2;
-    public final ce1 X2;
+public final class xc1 extends FrameLayout {
+    public final int f43085a;
+    public final ad1 f43086b;
 
-    public xc1(Context context, ce1 ce1Var) {
-        super(context, null);
-        this.X2 = ce1Var;
+    public xc1(ad1 ad1Var, Context context, int i10) {
+        super(context);
+        this.f43085a = i10;
+        this.f43086b = ad1Var;
     }
 
     @Override
-    public final boolean F0(View view) {
-        s4.b1 T;
-        xc1 xc1Var = this.X2.f34631u0;
-        View F = xc1Var.F(view);
-        if (F == null) {
-            T = null;
-        } else {
-            T = xc1Var.T(F);
+    public void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        org.telegram.ui.Cells.u1 u1Var;
+        switch (this.f43085a) {
+            case 0:
+                ad1 ad1Var = this.f43086b;
+                if (ad1Var.f35409x > 0.0f && ad1Var.v != null) {
+                    ad1Var.f35408w.reset();
+                    float width = getWidth() / ad1Var.f35406r.getWidth();
+                    ad1Var.f35408w.postScale(width, width);
+                    ad1Var.f35407s.setLocalMatrix(ad1Var.f35408w);
+                    ad1Var.v.setAlpha((int) (ad1Var.f35409x * 255.0f));
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), ad1Var.v);
+                } else {
+                    canvas2 = canvas;
+                }
+                if (ad1Var.N && (u1Var = ad1Var.K) != null) {
+                    u1Var.K7 = ad1Var.O;
+                    u1Var.invalidate();
+                    ad1Var.N = false;
+                }
+                super.dispatchDraw(canvas2);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
-        if (T != null && T.f44841f == 2) {
-            return false;
-        }
-        return true;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        s4.b1 T;
-        boolean drawChild = super.drawChild(canvas, view, j10);
-        if (view instanceof org.telegram.ui.Cells.u1) {
-            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
-            u1Var.getMessageObject();
-            ImageReceiver avatarImage = u1Var.getAvatarImage();
-            if (avatarImage != null) {
-                int top = view.getTop();
-                boolean m32 = u1Var.m3();
-                ce1 ce1Var = this.X2;
-                if (m32 && (T = ce1Var.f34631u0.T(view)) != null) {
-                    if (ce1Var.f34631u0.K(T.b() - 1) != null) {
-                        avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
-                        avatarImage.draw(canvas);
-                        return drawChild;
+    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
+        switch (this.f43085a) {
+            case 0:
+                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+                    this.f43086b.c(true);
+                    return true;
+                }
+                return super.dispatchKeyEventPreIme(keyEvent);
+            default:
+                return super.dispatchKeyEventPreIme(keyEvent);
+        }
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        switch (this.f43085a) {
+            case 1:
+                ad1 ad1Var = this.f43086b;
+                if (view != ad1Var.J && view != ad1Var.I) {
+                    return super.drawChild(canvas, view, j10);
+                }
+                canvas.save();
+                canvas.clipRect(0.0f, AndroidUtilities.lerp(ad1Var.L, 0.0f, ad1Var.f35409x), getWidth(), AndroidUtilities.lerp(ad1Var.M, getHeight(), ad1Var.f35409x));
+                boolean drawChild = super.drawChild(canvas, view, j10);
+                canvas.restore();
+                return drawChild;
+            default:
+                return super.drawChild(canvas, view, j10);
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f43085a) {
+            case 0:
+                super.onLayout(z10, i10, i11, i12, i13);
+                this.f43086b.d();
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f43085a) {
+            case 2:
+                int size = View.MeasureSpec.getSize(i10);
+                int size2 = View.MeasureSpec.getSize(i11);
+                ad1 ad1Var = this.f43086b;
+                ad1Var.e();
+                for (int i12 = 0; i12 < getChildCount(); i12++) {
+                    View childAt = getChildAt(i12);
+                    ViewGroup viewGroup = ad1Var.S;
+                    if (childAt == viewGroup) {
+                        float f7 = ad1Var.T;
+                        if (f7 > 0.0f) {
+                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f7), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        }
+                    }
+                    ViewGroup viewGroup2 = ad1Var.Q;
+                    if (childAt == viewGroup2) {
+                        float f10 = ad1Var.R;
+                        if (f10 > 0.0f) {
+                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        }
+                    }
+                    org.telegram.ui.Components.cl0 cl0Var = ad1Var.P;
+                    if (childAt == cl0Var) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(cl0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    } else {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     }
                 }
-                float translationX = u1Var.getTranslationX();
-                int layoutHeight = u1Var.getLayoutHeight() + view.getTop();
-                int measuredHeight = ce1Var.f34631u0.getMeasuredHeight() - ce1Var.f34631u0.getPaddingBottom();
-                if (layoutHeight > measuredHeight) {
-                    layoutHeight = measuredHeight;
-                }
-                if (u1Var.n3() && (r11 = ce1Var.f34631u0.T(view)) != null) {
-                    int i10 = 0;
-                    while (i10 < 20) {
-                        i10++;
-                        s4.b1 T2 = ce1Var.f34631u0.K(T2.b() + 1);
-                        if (T2 == null) {
-                            break;
-                        }
-                        View view2 = T2.f44838a;
-                        int top2 = view2.getTop();
-                        if (layoutHeight - AndroidUtilities.dp(48.0f) < view2.getBottom()) {
-                            translationX = Math.min(view2.getTranslationX(), translationX);
-                        }
-                        if ((view2 instanceof org.telegram.ui.Cells.u1) && ((org.telegram.ui.Cells.u1) view2).n3()) {
-                            top = top2;
-                        } else {
-                            top = top2;
-                            break;
-                        }
-                    }
-                }
-                if (layoutHeight - AndroidUtilities.dp(48.0f) < top) {
-                    layoutHeight = AndroidUtilities.dp(48.0f) + top;
-                }
-                int i11 = (translationX > 0.0f ? 1 : (translationX == 0.0f ? 0 : -1));
-                if (i11 != 0) {
-                    canvas.save();
-                    canvas.translate(translationX, 0.0f);
-                }
-                avatarImage.setImageY(layoutHeight - AndroidUtilities.dp(44.0f));
-                avatarImage.draw(canvas);
-                if (i11 != 0) {
-                    canvas.restore();
-                }
-            }
+                setMeasuredDimension(size, size2);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
-        return drawChild;
     }
 
     @Override
-    public final void h1(View view, float f7, float f10, boolean z10) {
-        if (z10 && (view instanceof org.telegram.ui.Cells.u1) && !((org.telegram.ui.Cells.u1) view).i3(f7)) {
-            return;
-        }
-        super.h1(view, f7, f10, z10);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.X2.V0();
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        ce1 ce1Var = this.X2;
-        if (action == 1) {
-            if (!ce1Var.f34624r0 && (ce1Var.B1 instanceof oj1) && ce1Var.L0[0].getVisibility() == 0) {
-                ce1Var.f1(0, false, true);
-            }
-            ce1Var.f34624r0 = false;
-        }
-        if (ce1Var.a2) {
-            if (motionEvent.getAction() == 0) {
-                this.W2 = motionEvent.getX();
-                motionEvent.getY();
-                if (getParent() != null) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                this.V2 = true;
-            } else if (motionEvent.getAction() == 2) {
-                if (!this.V2 && Math.abs(this.W2 - motionEvent.getX()) > AndroidUtilities.touchSlop) {
-                    if (getParent() != null) {
-                        getParent().requestDisallowInterceptTouchEvent(true);
-                    }
-                    this.V2 = true;
-                }
-            } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-                this.V2 = false;
-                if (getParent() != null) {
-                    getParent().requestDisallowInterceptTouchEvent(false);
-                }
-            }
-            ce1Var.S1.a(motionEvent);
-        }
-        if (!this.V2 && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ce1 ce1Var = this.X2;
-        int i10 = 0;
-        if (ce1Var.J0 != null) {
-            int i11 = 0;
-            while (true) {
-                org.telegram.ui.Components.m91[] m91VarArr = ce1Var.J0;
-                if (i11 >= m91VarArr.length) {
-                    break;
-                }
-                m91VarArr[i11].invalidate();
-                i11++;
-            }
-        }
-        if (ce1Var.K0 != null) {
-            while (true) {
-                org.telegram.ui.Components.m91[] m91VarArr2 = ce1Var.K0;
-                if (i10 >= m91VarArr2.length) {
-                    break;
-                }
-                m91VarArr2[i10].invalidate();
-                i10++;
-            }
-        }
-        ad1 ad1Var = ce1Var.D0;
-        if (ad1Var != null) {
-            ad1Var.invalidate();
-        }
-        ad1 ad1Var2 = ce1Var.E0;
-        if (ad1Var2 != null) {
-            ad1Var2.invalidate();
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f43085a) {
+            case 0:
+                super.onSizeChanged(i10, i11, i12, i13);
+                ad1 ad1Var = this.f43086b;
+                hh.d.c(ad1Var.E, ad1Var.f35398b);
+                ad1Var.F.d();
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
         }
     }
 }

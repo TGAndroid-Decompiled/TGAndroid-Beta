@@ -1,27 +1,27 @@
 package qg;
+public final class p0 implements Runnable {
+    public final int f44615a;
+    public final s0 f44616b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.voip.r2;
-public final class p0 extends AnimatorListenerAdapter {
-    public final int f43247a;
-    public final q0 f43248b;
-
-    public p0(q0 q0Var, int i10) {
-        this.f43247a = i10;
-        this.f43248b = q0Var;
+    public p0(s0 s0Var, int i10) {
+        this.f44615a = i10;
+        this.f44616b = s0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f43247a) {
+    public final void run() {
+        switch (this.f44615a) {
             case 0:
-                q0 q0Var = this.f43248b;
-                q0Var.K = null;
-                q0Var.f43266f.f(new r2(this, 15));
+                s0 s0Var = this.f44616b;
+                s0Var.f44647c = null;
+                le.b bVar = s0Var.f44645a;
+                if (bVar != null) {
+                    bVar.a0();
+                    return;
+                }
                 return;
             default:
-                this.f43248b.f43266f.f(new r2(this, 16));
+                this.f44616b.b();
                 return;
         }
     }

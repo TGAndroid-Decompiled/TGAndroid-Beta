@@ -1,61 +1,148 @@
 package ji;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_iv;
-public final class a {
-    public static long f13105u = 1;
-    public final long f13106a;
-    public TL_iv.PageBlock f13107b;
-    public int f13108c;
-    public int d;
-    public boolean e;
-    public boolean f13109f;
-    public u f13110g;
-    public ArrayList h;
-    public boolean f13111i;
-    public final ArrayList f13112j;
-    public final ArrayList f13113k;
-    public int f13114l;
-    public int f13115m;
-    public boolean f13116n;
-    public boolean f13117o;
-    public boolean f13118p;
-    public boolean f13119q;
-    public boolean f13120r;
-    public boolean f13121s;
-    public long f13122t;
+import ai.v0;
+import ai.va;
+import ai.x7;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import ei.d;
+import hg.o;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Cells.i6;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.s61;
+import s4.o0;
+import w7.z5;
+public final class a extends bb {
+    public s61 X;
+    public boolean Y;
+    public final FrameLayout Z;
+    public final boolean f14512a0;
+    public final boolean f14513b0;
+    public int f14514c0;
 
-    public a(org.telegram.tgnet.tl.TL_iv.PageBlock r7, int r8, int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: ji.a.<init>(org.telegram.tgnet.tl.TL_iv$PageBlock, int, int):void");
-    }
-
-    public final boolean a() {
-        if (this.f13108c > 0 && this.e) {
-            return true;
+    public a(Context context, TLRPC.Chat chat, long j10, Utilities.Callback callback) {
+        super(context, (d6) null, false);
+        int i10;
+        int i11;
+        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10));
+        TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
+        this.f14513b0 = UserObject.isBot(user);
+        this.f14512a0 = ChatObject.isChannelAndNotMegaGroup(chat2);
+        this.L = false;
+        this.K = AndroidUtilities.dp(12.0f);
+        this.e.setTitle(A());
+        setBackgroundColor(h6.w0(h6.f20928a7, this.resourcesProvider));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.Z = frameLayout;
+        frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
+        frameLayout.setLayoutParams(new o0(-1, -2));
+        org.telegram.ui.Cells.h6 h6Var = new org.telegram.ui.Cells.h6(context, null);
+        if (chat2 != null) {
+            i10 = -1;
+            h6Var.t(chat2, null, chat2.title, LocaleController.formatPluralStringSpaced("Members", chat2.participants_count), false, false);
+        } else {
+            i10 = -1;
+            if (user != null) {
+                h6Var.t(user, null, DialogObject.getName(user), LocaleController.getString(R.string.Bot), false, false);
+            }
         }
-        return false;
-    }
-
-    public final boolean b() {
-        if (this.f13108c > 0) {
-            return true;
+        frameLayout.addView(h6Var, z5.d(-2.0f, i10));
+        im0 im0Var = this.d;
+        int i12 = this.backgroundPaddingLeft;
+        im0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
+        this.d.p1();
+        this.d.setClipToPadding(false);
+        this.d.setOnItemClickListener(new va(this, 16));
+        d dVar = new d(context, this.resourcesProvider, true);
+        if (chat != null) {
+            if (ChatObject.canAddChatToCommunity(chat)) {
+                i11 = R.string.CommunityAddToCommunityButton;
+            } else {
+                i11 = R.string.CommunityAddToCommunityRequestButton;
+            }
+            dVar.setText(LocaleController.getString(i11));
+        } else {
+            dVar.setText(LocaleController.getString(R.string.CommunityCreateCommunity));
         }
-        return false;
+        dVar.e();
+        dVar.setOnClickListener(new v0(this, callback, chat, 12));
+        this.containerView.addView(dVar, z5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        this.X.N(false);
     }
 
-    public final boolean c() {
-        if (this.d > 0) {
-            return true;
+    @Override
+    public final CharSequence A() {
+        int i10;
+        if (this.f14513b0) {
+            i10 = R.string.CommunityAddBotTitle;
+        } else {
+            i10 = R.string.CommunityAddChatTitle;
         }
-        return false;
+        return LocaleController.getString(i10);
     }
 
-    public a(TL_iv.PageBlock pageBlock, int i10, int i11, long j10) {
-        this.f13112j = new ArrayList();
-        this.f13113k = new ArrayList();
-        this.f13107b = pageBlock;
-        this.f13108c = i10;
-        this.d = i11;
-        this.f13106a = j10;
+    public final void Q(Utilities.Callback callback, boolean z10, boolean z11) {
+        int i10;
+        if (z11 && !z10 && !this.f14513b0) {
+            Context context = getContext();
+            d6 d6Var = this.resourcesProvider;
+            String string = LocaleController.getString(R.string.CommunityAddToCommunityTitle);
+            if (this.f14512a0) {
+                i10 = R.string.CommunityAddToCommunityChannelMessage;
+            } else {
+                i10 = R.string.CommunityAddToCommunityGroupMessage;
+            }
+            f5.O(context, d6Var, string, LocaleController.getString(i10), LocaleController.getString(R.string.Add), new x7(this, callback, z10, 6)).show();
+            return;
+        }
+        callback.run(Boolean.valueOf(z10));
+        dismiss();
+    }
+
+    public final void R(boolean z10) {
+        boolean z11;
+        if (this.Y != z10) {
+            this.Y = z10;
+            im0 im0Var = this.d;
+            View U0 = im0Var.U0(this.f14514c0 + 1);
+            if (U0 instanceof i6) {
+                ((i6) U0).a(!z10);
+                z11 = false;
+            } else {
+                z11 = true;
+            }
+            View U02 = im0Var.U0(this.f14514c0 + 2);
+            if (U02 instanceof i6) {
+                ((i6) U02).a(z10);
+            } else {
+                z11 = true;
+            }
+            if (z11) {
+                this.X.N(true);
+            }
+        }
+    }
+
+    @Override
+    public final hm0 x(im0 im0Var) {
+        s61 s61Var = new s61(this.d, getContext(), this.currentAccount, 0, false, new o(this, 11), this.resourcesProvider);
+        this.X = s61Var;
+        s61Var.f30200r = false;
+        return s61Var;
     }
 }

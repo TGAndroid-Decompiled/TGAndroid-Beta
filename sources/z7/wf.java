@@ -1,84 +1,26 @@
 package z7;
 
 import android.content.Context;
-import android.os.SystemClock;
-import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-public final class wf {
-    public static m f49845k;
-    public static final r f49846l;
-    public final String f49847a;
-    public final String f49848b;
-    public final uf f49849c;
-    public final rb.k d;
-    public final Task e;
-    public final Task f49850f;
-    public final String f49851g;
-    public final int h;
-    public final HashMap f49852i = new HashMap();
-    public final HashMap f49853j = new HashMap();
+public final class wf implements vf {
+    public final ArrayList f51238a;
 
-    static {
-        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
-        objArr[0].getClass();
-        objArr[1].getClass();
-        f49846l = new r(objArr);
+    public wf(Context context, uf ufVar) {
+        ArrayList arrayList = new ArrayList();
+        this.f51238a = arrayList;
+        ufVar.getClass();
+        arrayList.add(new zf(context, ufVar));
     }
 
-    public wf(Context context, rb.k kVar, uf ufVar) {
-        int i10;
-        this.f49847a = context.getPackageName();
-        this.f49848b = rb.c.a(context);
-        this.d = kVar;
-        this.f49849c = ufVar;
-        ag.b();
-        this.f49851g = "subject-segmentation";
-        rb.f a2 = rb.f.a();
-        c5.y yVar = new c5.y(this, 10);
-        a2.getClass();
-        this.e = rb.f.b(yVar);
-        rb.f a10 = rb.f.a();
-        kVar.getClass();
-        t7.p pVar = new t7.p(kVar, 4);
-        a10.getClass();
-        this.f49850f = rb.f.b(pVar);
-        r rVar = f49846l;
-        if (rVar.containsKey("subject-segmentation")) {
-            i10 = y6.e.d(context, (String) rVar.get("subject-segmentation"), false);
-        } else {
-            i10 = -1;
+    @Override
+    public final void a(a5.a aVar) {
+        ArrayList arrayList = this.f51238a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((vf) obj).a(aVar);
         }
-        this.h = i10;
-    }
-
-    public static long a(ArrayList arrayList, double d) {
-        return ((Long) arrayList.get(Math.max(((int) Math.ceil((d / 100.0d) * arrayList.size())) - 1, 0))).longValue();
-    }
-
-    public final void b(vf vfVar, hb hbVar) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (!d(hbVar, elapsedRealtime)) {
-            return;
-        }
-        this.f49852i.put(hbVar, Long.valueOf(elapsedRealtime));
-        rb.m.f43869a.execute(new com.google.android.gms.internal.cast.p(this, vfVar.zza(), hbVar, c(), 8));
-    }
-
-    public final String c() {
-        Task task = this.e;
-        if (task.isSuccessful()) {
-            return (String) task.getResult();
-        }
-        return n6.i.f15817c.a(this.f49851g);
-    }
-
-    public final boolean d(hb hbVar, long j10) {
-        HashMap hashMap = this.f49852i;
-        if (hashMap.get(hbVar) == null || j10 - ((Long) hashMap.get(hbVar)).longValue() > TimeUnit.SECONDS.toMillis(30L)) {
-            return true;
-        }
-        return false;
     }
 }

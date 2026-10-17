@@ -1,84 +1,145 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class i10 extends lm0 {
-    public final o10 f25452c;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class i10 extends View {
+    public TextPaint f27036a;
+    public Paint f27037b;
+    public Path f27038c;
+    public float[] d;
+    public d11 e;
+    public d11 f27039f;
+    public d11 h;
+    public LinearGradient f27040n;
+    public LinearGradient f27041r;
+    public Paint f27042s;
+    public Paint v;
+    public Matrix f27043w;
+    public Matrix f27044x;
+    public p6 f27045y;
 
-    public i10(o10 o10Var) {
-        this.f25452c = o10Var;
+    public static CharSequence a(CharSequence charSequence) {
+        if ("ALL_CHATS".equals(charSequence.toString())) {
+            return LocaleController.getString(R.string.FilterAllChats);
+        }
+        return charSequence;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f44841f == 2) {
-            int b10 = b1Var.b();
-            o10 o10Var = this.f25452c;
-            if (b10 >= o10Var.f27487r0 && b1Var.b() <= o10Var.f27488s0) {
-                return true;
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        d11 d11Var;
+        float f13;
+        float f14;
+        Paint paint = this.f27037b;
+        Matrix matrix = this.f27044x;
+        Matrix matrix2 = this.f27043w;
+        Path path = this.f27038c;
+        d11 d11Var2 = this.e;
+        p6 p6Var = this.f27045y;
+        d11 d11Var3 = this.h;
+        super.onDraw(canvas);
+        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
+        float measuredWidth = getMeasuredWidth() / 2.0f;
+        float measuredHeight = getMeasuredHeight() / 2.0f;
+        d11 d11Var4 = this.f27039f;
+        if (d11Var4 != null) {
+            canvas.save();
+            float f15 = d11Var4.f25437c;
+            f7 = 15.32f;
+            CharSequence charSequence = p6Var.f29198i;
+            if (charSequence != null && charSequence.length() != 0) {
+                f14 = p6Var.c() + AndroidUtilities.dp(15.32f);
+            } else {
+                f14 = 0.0f;
             }
+            float f16 = f15 + f14;
+            f10 = measuredWidth - (f16 / 2.0f);
+            canvas.translate(f10, measuredHeight - (d11Var4.j() / 2.0f));
+            d11Var4.d(canvas);
+            canvas.restore();
+            f11 = f16;
+        } else {
+            f7 = 15.32f;
+            f10 = measuredWidth;
+            f11 = 0.0f;
+        }
+        CharSequence charSequence2 = p6Var.f29198i;
+        if (charSequence2 == null || charSequence2.length() == 0) {
+            f12 = measuredHeight;
+            d11Var = d11Var4;
+            f13 = 2.0f;
+        } else {
+            Rect rect = AndroidUtilities.rectTmp2;
+            f13 = 2.0f;
+            f12 = measuredHeight;
+            d11Var = d11Var4;
+            rect.set((int) (d11Var4.f25437c + f10 + AndroidUtilities.dp(4.66f)), (int) (measuredHeight - AndroidUtilities.dp(9.0f)), (int) (p6Var.c() + d11Var4.f25437c + f10 + AndroidUtilities.dp(f7)), (int) (f12 + AndroidUtilities.dp(9.0f)));
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(rect);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint);
+            rect.offset(-AndroidUtilities.dp(0.33f), -AndroidUtilities.dp(0.66f));
+            p6Var.setBounds(rect);
+            p6Var.draw(canvas);
+        }
+        float dp = AndroidUtilities.dp(30.0f);
+        float f17 = (f10 - dp) - d11Var2.f25437c;
+        canvas.save();
+        canvas.translate(f17, (f12 - (d11Var2.j() / f13)) + AndroidUtilities.dp(1.0f));
+        d11Var2.d(canvas);
+        canvas.restore();
+        float f18 = f10 + f11;
+        if (d11Var3 != null) {
+            canvas.save();
+            canvas.translate(f18 + dp, (f12 - (d11Var3.j() / f13)) + AndroidUtilities.dp(1.0f));
+            d11Var3.d(canvas);
+            canvas.restore();
+            f18 += dp + d11Var3.f25437c;
+        }
+        float f19 = f18;
+        float dp2 = AndroidUtilities.dp(12.0f) + (d11Var.j() / f13) + f12;
+        canvas.drawRect(0.0f, dp2, getMeasuredWidth(), 1.0f + dp2, this.f27036a);
+        path.rewind();
+        RectF rectF2 = AndroidUtilities.rectTmp;
+        float f20 = f11 / f13;
+        float f21 = measuredWidth + f20;
+        rectF2.set((measuredWidth - f20) - AndroidUtilities.dp(4.0f), dp2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + f21, dp2);
+        path.addRoundRect(rectF2, this.d, Path.Direction.CW);
+        canvas.drawPath(path, paint);
+        canvas.save();
+        float max = Math.max(AndroidUtilities.dp(8.0f), f17);
+        matrix2.reset();
+        matrix2.postTranslate(Math.min(f10, max + AndroidUtilities.dp(8.0f)), 0.0f);
+        this.f27040n.setLocalMatrix(matrix2);
+        float min = Math.min(getMeasuredWidth() - AndroidUtilities.dp(8.0f), f19);
+        matrix.reset();
+        matrix.postTranslate(Math.max(f21, min - AndroidUtilities.dp(88.0f)), 0.0f);
+        this.f27041r.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f27042s);
+        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.v);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f27045y && !super.verifyDrawable(drawable)) {
             return false;
         }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.f25452c.f27484o0;
-    }
-
-    @Override
-    public final int j(int i10) {
-        o10 o10Var = this.f25452c;
-        o10Var.getClass();
-        if (i10 == 0) {
-            return 0;
-        }
-        if (i10 != o10Var.f27485p0 && i10 != o10Var.f27489t0 && i10 != o10Var.f27493x0) {
-            if (i10 != o10Var.f27486q0 && i10 != o10Var.f27490u0) {
-                return 2;
-            }
-            return 3;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(s4.b1 r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i10.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        n10 n10Var;
-        n10 n10Var2;
-        o10 o10Var = this.f25452c;
-        if (i10 == 0) {
-            boolean z10 = false;
-            Context context = o10Var.getContext();
-            if ((o10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) || o10Var.f27471a0 != null) {
-                z10 = true;
-            }
-            n10Var = new n10(o10Var, context, z10, o10Var.f27476f0, o10Var.f27474d0, o10Var.f27475e0);
-            o10Var.f27483n0 = n10Var;
-        } else {
-            n10Var = null;
-            if (i10 == 1) {
-                ?? e9Var = new org.telegram.ui.Cells.e9(o10Var.getContext());
-                e9Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19543a7, false));
-                n10Var2 = e9Var;
-            } else if (i10 == 2) {
-                ?? g4Var = new org.telegram.ui.Cells.g4(1, 0, o10Var.getContext(), false);
-                g4Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false));
-                n10Var = g4Var;
-            } else if (i10 == 3) {
-                ?? l10Var = new l10(o10Var.getContext());
-                l10Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19601d6, false));
-                n10Var2 = l10Var;
-            }
-            n10Var = n10Var2;
-        }
-        return new s4.b1(n10Var);
+        return true;
     }
 }

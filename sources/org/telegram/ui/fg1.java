@@ -1,94 +1,80 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
-import java.util.ArrayList;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class fg1 extends org.telegram.ui.Components.d91 {
-    public final ArrayList f35530a;
-    public final gg1 f35531b;
+public final class fg1 extends org.telegram.ui.Components.v61 {
+    public dg1 d;
+    public long e;
+    public bg1 f36931f;
+    public String h;
+    public org.telegram.ui.ActionBar.u0 f36932n;
+    public boolean f36933r;
 
-    public fg1(gg1 gg1Var) {
-        this.f35531b = gg1Var;
-        ArrayList arrayList = new ArrayList();
-        this.f35530a = arrayList;
-        arrayList.add(new cg1(0));
-        cg1 cg1Var = new cg1(2);
-        cg1Var.f34662b = 0;
-        arrayList.add(cg1Var);
-        cg1 cg1Var2 = new cg1(2);
-        cg1Var2.f34662b = 1;
-        arrayList.add(cg1Var2);
-        cg1 cg1Var3 = new cg1(2);
-        cg1Var3.f34662b = 2;
-        arrayList.add(cg1Var3);
-        cg1 cg1Var4 = new cg1(2);
-        cg1Var4.f34662b = 3;
-        arrayList.add(cg1Var4);
-        cg1 cg1Var5 = new cg1(2);
-        cg1Var5.f34662b = 4;
-        arrayList.add(cg1Var5);
+    @Override
+    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.s61 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fg1.U(java.util.ArrayList, org.telegram.ui.Components.s61):void");
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        gg1 gg1Var = this.f35531b;
-        gg1Var.K(view, i10, gg1Var.f36197b0, true);
+    public final CharSequence V() {
+        return LocaleController.getString(R.string.EditProfileChannelTitle);
     }
 
     @Override
-    public final View d(int i10) {
-        int i11;
-        gg1 gg1Var = this.f35531b;
-        kg1 kg1Var = gg1Var.f36214t0;
+    public final void W(org.telegram.ui.Components.f61 f61Var, View view) {
+        bg1 bg1Var = this.f36931f;
+        int i10 = f61Var.d;
         if (i10 == 1) {
-            return gg1Var.T;
+            bg1Var.run(null);
+            finishFragment();
+        } else if (i10 == 2) {
+            this.f36933r = true;
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
+                presentFragment(new od(org.telegram.ui.Cells.t0.j(0, "step")));
+                return;
+            }
+            presentFragment(new h(0));
+            globalMainSettings.edit().putBoolean("channel_intro", true).apply();
+        } else if (f61Var.f44314a == 12) {
+            finishFragment();
+            bg1Var.run(getMessagesController().getChat(Long.valueOf(-f61Var.f26151x)));
         }
-        if (i10 == 2) {
-            i11 = ((org.telegram.ui.ActionBar.m2) kg1Var).currentAccount;
-            org.telegram.ui.Components.xn0 xn0Var = new org.telegram.ui.Components.xn0(i11, kg1Var);
-            xn0Var.f30966b.j(new eg1(0));
-            xn0Var.setUiCallback(gg1Var);
-            return xn0Var;
-        }
-        b20 b20Var = new b20(kg1Var);
-        b20Var.setChatPreviewDelegate(gg1Var.f36212r0);
-        b20Var.setUiCallback(gg1Var);
-        b20Var.f34163b.j(new eg1(1));
-        return b20Var;
     }
 
     @Override
-    public final int e() {
-        return this.f35530a.size();
+    public final boolean X(org.telegram.ui.Components.f61 f61Var, View view) {
+        return false;
     }
 
     @Override
-    public final CharSequence g(int i10) {
-        ArrayList arrayList = this.f35530a;
-        if (((cg1) arrayList.get(i10)).f34661a == 0) {
-            return LocaleController.getString(R.string.SearchMessages);
-        }
-        if (((cg1) arrayList.get(i10)).f34661a == 1) {
-            return LocaleController.getString(R.string.DownloadsTabs);
-        }
-        hg.p0 p0Var = hg.r0.f10718a3[((cg1) arrayList.get(i10)).f34662b];
-        String str = p0Var.f10705c;
-        if (str != null) {
-            return str;
-        }
-        return LocaleController.getString(p0Var.f10704b);
+    public final View createView(Context context) {
+        org.telegram.ui.ActionBar.u0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
+        c10.F();
+        c10.H = new ig.a2(this, 19);
+        this.f36932n = c10;
+        c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        this.f36932n.setContentDescription(LocaleController.getString(R.string.Search));
+        this.f36932n.setVisibility(8);
+        super.createView(context);
+        this.f31190a.p1();
+        this.actionBar.setAdaptiveBackground(this.f31190a);
+        return this.fragmentView;
     }
 
     @Override
-    public final int h(int i10) {
-        ArrayList arrayList = this.f35530a;
-        if (((cg1) arrayList.get(i10)).f34661a == 0) {
-            return 1;
+    public final void onResume() {
+        super.onResume();
+        if (this.f36933r) {
+            dg1 dg1Var = this.d;
+            dg1Var.f36197c = false;
+            dg1Var.f36198f.add(new eg1(this, 0));
+            this.f36933r = false;
         }
-        if (((cg1) arrayList.get(i10)).f34661a == 1) {
-            return 2;
-        }
-        return ((cg1) arrayList.get(i10)).f34661a + i10;
     }
 }

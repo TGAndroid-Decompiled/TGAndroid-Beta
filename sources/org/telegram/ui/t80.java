@@ -1,101 +1,82 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.method.LinkMovementMethod;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.CacheByChatsController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class t80 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
-    public final org.telegram.ui.Components.da0 T;
-    public final org.telegram.ui.ActionBar.e1 U;
-    public final org.telegram.ui.ActionBar.e1 V;
-    public final org.telegram.ui.ActionBar.e1 W;
-    public final ArrayList f40021a0;
-    public final org.telegram.ui.Components.x00 f40022b0;
-    public int f40023c0;
-    public final CacheByChatsController f40024d0;
-    public r80 f40025e0;
-    public ArrayList f40026f0;
-    public final org.telegram.ui.ActionBar.m2 f40027g0;
-    public final FrameLayout f40028h0;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class t80 implements RequestDelegate {
+    public final int f41618a;
+    public final LaunchActivity f41619b;
+    public final int f41620c;
+    public final b80 d;
+    public final Object e;
+    public final Object f41621f;
+    public final Object f41622g;
+    public final Object h;
+    public final Object f41623i;
 
-    public t80(Context context, org.telegram.ui.ActionBar.m2 m2Var) {
-        super(context, null);
-        ArrayList arrayList = new ArrayList();
-        this.f40021a0 = arrayList;
-        this.f40027g0 = m2Var;
-        this.f40024d0 = m2Var.getMessagesController().getCacheByChatsController();
-        setFitItems(true);
-        org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_autodelete_1d, LocaleController.formatPluralString("Days", 1, new Object[0]), false, null);
-        org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_autodelete_2d, LocaleController.formatPluralString("Days", 2, new Object[0]), false, null);
-        this.W = c11;
-        org.telegram.ui.ActionBar.e1 c12 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_autodelete_1w, LocaleController.formatPluralString("Weeks", 1, new Object[0]), false, null);
-        org.telegram.ui.ActionBar.e1 c13 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_autodelete_1m, LocaleController.formatPluralString("Months", 1, new Object[0]), false, null);
-        this.V = c13;
-        org.telegram.ui.ActionBar.e1 c14 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_cancel, LocaleController.getString(R.string.AutoDeleteMediaNever), false, null);
-        org.telegram.ui.ActionBar.e1 c15 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_delete, LocaleController.getString(R.string.DeleteException), false, null);
-        this.U = c15;
-        int i10 = org.telegram.ui.ActionBar.g6.f19822p7;
-        c15.c(org.telegram.ui.ActionBar.g6.x0(null, i10, false), org.telegram.ui.ActionBar.g6.x0(null, i10, false));
-        arrayList.add(new s80(c10, CacheByChatsController.KEEP_MEDIA_ONE_DAY));
-        arrayList.add(new s80(c11, CacheByChatsController.KEEP_MEDIA_TWO_DAY));
-        arrayList.add(new s80(c12, CacheByChatsController.KEEP_MEDIA_ONE_WEEK));
-        arrayList.add(new s80(c13, CacheByChatsController.KEEP_MEDIA_ONE_MONTH));
-        arrayList.add(new s80(c14, CacheByChatsController.KEEP_MEDIA_FOREVER));
-        arrayList.add(new s80(c15, CacheByChatsController.KEEP_MEDIA_DELETE));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f40028h0 = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.H8, false));
-        View view = new View(context);
-        view.setBackground(org.telegram.ui.ActionBar.g6.V0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19563b7, null)));
-        frameLayout.addView(view, w7.z5.d(-1.0f, -1));
-        frameLayout.setTag(R.id.fit_width_tag, 1);
-        a(frameLayout, w7.z5.n(-1, 8));
-        org.telegram.ui.Components.x00 x00Var = new org.telegram.ui.Components.x00(this, context);
-        this.f40022b0 = x00Var;
-        a(x00Var, w7.z5.n(-1, 48));
-        x00Var.setOnClickListener(new xv(12, this, m2Var));
-        for (int i11 = 0; i11 < this.f40021a0.size(); i11++) {
-            ((s80) this.f40021a0.get(i11)).f39718a.setOnClickListener(new di.m4(this, ((s80) this.f40021a0.get(i11)).f39719b, 18));
-        }
-        org.telegram.ui.Components.da0 da0Var = new org.telegram.ui.Components.da0(context, null);
-        this.T = da0Var;
-        da0Var.setTag(R.id.fit_width_tag, 1);
-        da0Var.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-        da0Var.setTextSize(1, 13.0f);
-        da0Var.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.E8, false));
-        da0Var.setMovementMethod(LinkMovementMethod.getInstance());
-        da0Var.setLinkTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.J6, false));
-        da0Var.setText(LocaleController.getString(R.string.KeepMediaPopupDescription));
-        a(da0Var, w7.z5.p(-1, -2, 0.0f, 0, 0, 8, 0, 0));
+    public t80(LaunchActivity launchActivity, b80 b80Var, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
+        this.f41618a = 0;
+        this.f41619b = launchActivity;
+        this.d = b80Var;
+        this.f41620c = i10;
+        this.f41623i = authorizationform;
+        this.e = getauthorizationform;
+        this.f41621f = str;
+        this.f41622g = str2;
+        this.h = str3;
     }
 
-    public final void f() {
-        if (this.f40026f0 != null) {
-            ((org.telegram.ui.Components.n9) this.f40022b0.d).setTranslationX((3 - Math.min(3, this.f40026f0.size())) * AndroidUtilities.dp(12.0f));
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f41618a;
+        Object obj = this.h;
+        Object obj2 = this.f41622g;
+        Object obj3 = this.f41621f;
+        Object obj4 = this.e;
+        Object obj5 = this.f41623i;
+        switch (i10) {
+            case 0:
+                Pattern pattern = LaunchActivity.C1;
+                AndroidUtilities.runOnUIThread(new ai.c9(this.f41619b, this.d, tLObject, this.f41620c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 3));
+                return;
+            case 1:
+                int[] iArr = (int[]) obj5;
+                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
+                String str = (String) obj3;
+                String str2 = (String) obj2;
+                String str3 = (String) obj;
+                Pattern pattern2 = LaunchActivity.C1;
+                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
+                LaunchActivity launchActivity = this.f41619b;
+                b80 b80Var = this.d;
+                if (authorizationform != null) {
+                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                    int i11 = this.f41620c;
+                    iArr[0] = ConnectionsManager.getInstance(i11).sendRequest(getpassword, new t80(launchActivity, b80Var, i11, authorizationform, getauthorizationform, str, str2, str3));
+                    return;
+                }
+                AndroidUtilities.runOnUIThread(new lq(launchActivity, b80Var, tL_error, 15));
+                return;
+            default:
+                Pattern pattern3 = LaunchActivity.C1;
+                AndroidUtilities.runOnUIThread(new ai.c9(this.f41619b, tLObject, (int[]) obj5, this.f41620c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 2));
+                return;
         }
     }
 
-    public final void g(boolean z10) {
-        int i10;
-        this.f40023c0 = -1;
-        this.f40028h0.setVisibility(0);
-        if (z10) {
-            i10 = 8;
-        } else {
-            i10 = 0;
-        }
-        this.U.setVisibility(i10);
-        this.T.setVisibility(0);
-        this.f40022b0.setVisibility(8);
-    }
-
-    public void setCallback(r80 r80Var) {
-        this.f40025e0 = r80Var;
+    public t80(LaunchActivity launchActivity, int[] iArr, int i10, b80 b80Var, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
+        this.f41618a = i11;
+        this.f41619b = launchActivity;
+        this.f41623i = iArr;
+        this.f41620c = i10;
+        this.d = b80Var;
+        this.e = obj;
+        this.f41621f = obj2;
+        this.f41622g = obj3;
+        this.h = obj4;
     }
 }

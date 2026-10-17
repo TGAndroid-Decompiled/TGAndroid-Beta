@@ -1,42 +1,26 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class di implements Runnable {
-    public final int f35027a = 1;
-    public final fo f35028b;
-    public final int f35029c;
-    public final MessageObject d;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class di extends bu0 {
+    public final sn f36203a;
 
-    public di(fo foVar, int i10, MessageObject messageObject) {
-        this.f35028b = foVar;
-        this.f35029c = i10;
-        this.d = messageObject;
+    public di(sn snVar) {
+        this.f36203a = snVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35027a) {
-            case 0:
-                this.f35028b.f35738n4 = null;
-                this.d.messageOwner.replies.read_max_id = this.f35029c;
-                return;
-            default:
-                fo foVar = this.f35028b;
-                org.telegram.ui.Components.zc.a0(foVar).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessagesController.getInstance(this.f35029c).disableAds(false);
-                MessageObject messageObject = this.d;
-                foVar.Ja(messageObject);
-                foVar.La(messageObject);
-                return;
-        }
+    public final org.telegram.ui.lu0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.di.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.lu0");
     }
 
-    public di(fo foVar, MessageObject messageObject, int i10) {
-        this.f35028b = foVar;
-        this.d = messageObject;
-        this.f35029c = i10;
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        if (i10 >= 0) {
+            sn snVar = this.f36203a;
+            if (i10 < snVar.Ia.size()) {
+                snVar.gb((TLRPC.BotInlineResult) snVar.Ia.get(i10), z10, i11, 0L);
+            }
+        }
     }
 }

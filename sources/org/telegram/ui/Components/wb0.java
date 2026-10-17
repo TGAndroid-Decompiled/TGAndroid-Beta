@@ -1,63 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-public final class wb0 extends l91 {
-    public final vc0 T;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+public final class wb0 extends s4.t {
+    public final ic0 S;
 
-    public wb0(vc0 vc0Var, Context context, rc0 rc0Var) {
-        super(context, rc0Var);
-        this.T = vc0Var;
+    public wb0(ic0 ic0Var) {
+        super(true);
+        this.S = ic0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        int i10 = 0;
-        while (true) {
-            View[] viewArr = this.T.f29621f.e;
-            if (i10 < viewArr.length) {
-                View view = viewArr[i10];
-                if (view != null) {
-                    pc0 pc0Var = (pc0) view;
-                    if (pc0Var.f27962a == 0) {
-                        z10 = pc0Var.e.f20668i;
-                        break;
+    public final boolean B1(int i10) {
+        byte b10;
+        ic0 ic0Var = this.S;
+        MessageObject messageObject = ic0Var.f27188r.previewMessages.get(i10);
+        MessageObject.GroupedMessages a2 = ic0.a(ic0Var, messageObject);
+        if (a2 != null) {
+            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = a2.posArray.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
+                        }
                     }
                 }
-                i10++;
-            } else {
-                z10 = false;
-                break;
             }
         }
-        if (z10) {
-            return false;
-        }
-        return A(motionEvent);
+        return false;
     }
 
     @Override
-    public final void u() {
-        View view = this.e[0];
-        if (view instanceof pc0) {
-            ((pc0) view).e.V();
-        }
+    public final boolean C1(View view) {
+        return false;
     }
 
     @Override
-    public final void w(boolean z10) {
-        vc0 vc0Var = this.T;
-        vc0Var.e.setSelectedTab(vc0Var.f29621f.getPositionAnimated());
-        View[] viewArr = this.e;
-        View view = viewArr[0];
-        if (view instanceof pc0) {
-            ((pc0) view).e.G();
+    public final void b0(qf.e eVar, s4.y0 y0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            super.b0(eVar, y0Var);
+            return;
         }
-        View view2 = viewArr[1];
-        if (view2 instanceof pc0) {
-            ((pc0) view2).e.G();
+        try {
+            super.b0(eVar, y0Var);
+        } catch (Exception e) {
+            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new hq(this, 29));
         }
     }
 }

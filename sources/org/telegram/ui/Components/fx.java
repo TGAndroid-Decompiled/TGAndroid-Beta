@@ -1,40 +1,54 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.FileLog;
-public final class fx extends s4.s {
-    public final wz Q;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class fx extends FrameLayout {
+    public final Paint f26401a;
+    public final tz f26402b;
 
-    public fx(wz wzVar) {
-        super(5);
-        this.Q = wzVar;
+    public fx(tz tzVar, Context context) {
+        super(context);
+        this.f26402b = tzVar;
+        this.f26401a = new Paint();
     }
 
     @Override
-    public final int o0(int i10, qf.e eVar, s4.y0 y0Var) {
-        int o02 = super.o0(i10, eVar, y0Var);
-        wz wzVar = this.Q;
-        if (o02 != 0 && wzVar.D0.getScrollState() == 1) {
-            wzVar.X1 = false;
-            wzVar.Y();
+    public final void dispatchDraw(Canvas canvas) {
+        tz tzVar = this.f26402b;
+        ex exVar = tzVar.B0;
+        float dp = AndroidUtilities.dp(50.0f) * tzVar.f30800t1.p();
+        if (dp > getMeasuredHeight()) {
+            return;
         }
-        if (wzVar.T0 == null) {
-            hg.f1 f1Var = new hg.f1(wzVar, wzVar.f30707c1, wzVar.f30760t1.a(), wzVar.f30760t1.f(), 1);
-            wzVar.T0 = f1Var;
-            f1Var.a();
+        canvas.save();
+        if (dp != 0.0f) {
+            canvas.clipRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight());
         }
-        wzVar.T0.b();
-        return o02;
+        int A = tzVar.A(org.telegram.ui.ActionBar.h6.He);
+        Paint paint = this.f26401a;
+        paint.setColor(A);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), exVar.getExpandedOffset() + AndroidUtilities.dp(36.0f), paint);
+        super.dispatchDraw(canvas);
+        if (exVar.f26618s != null) {
+            canvas.save();
+            float f7 = exVar.f26600c0 - exVar.f26601d0;
+            float f10 = exVar.v;
+            if (f10 > 0.0f) {
+                f7 = ((exVar.f26618s.getX() - exVar.getScrollX()) * exVar.v) + ((1.0f - f10) * f7);
+            }
+            canvas.translate(f7, 0.0f);
+            exVar.f26618s.draw(canvas);
+            canvas.restore();
+        }
+        canvas.restore();
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
-        try {
-            ki.o oVar = new ki.o(recyclerView.getContext(), 2);
-            oVar.f44979a = i10;
-            w0(oVar);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f26402b.Y();
     }
 }

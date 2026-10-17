@@ -7,23 +7,23 @@ import android.graphics.RectF;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.xt;
+import org.telegram.ui.Components.st;
 public final class s extends LinearLayout {
-    public static final int f21472f = 0;
-    public Paint f21473a;
-    public Paint f21474b;
-    public q f21475c;
+    public static final int f22961f = 0;
+    public Paint f22962a;
+    public Paint f22963b;
+    public q f22964c;
     public TextView d;
     public float e;
 
     public final void a(float f7) {
         this.e = f7;
         TextView textView = this.d;
-        int x02 = org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false);
-        int i10 = org.telegram.ui.ActionBar.g6.I6;
-        textView.setTextColor(i0.a.d(f7, x02, org.telegram.ui.ActionBar.g6.x0(null, i10, false)));
-        Paint paint = this.f21473a;
-        paint.setColor(i0.a.d(f7, i0.a.k(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.M6, false), 63), org.telegram.ui.ActionBar.g6.x0(null, i10, false)));
+        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false);
+        int i10 = org.telegram.ui.ActionBar.h6.I6;
+        textView.setTextColor(i0.b.f(f7, x02, org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
+        Paint paint = this.f22962a;
+        paint.setColor(i0.b.f(f7, i0.b.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.M6, false), 63), org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
         paint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(AndroidUtilities.lerp(0.5f, 2.0f, f7))));
         invalidate();
     }
@@ -41,7 +41,7 @@ public final class s extends LinearLayout {
         }
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(f10, f7).setDuration(250L);
-            duration.setInterpolator(xt.e);
+            duration.setInterpolator(st.e);
             duration.addUpdateListener(new r(this, 0));
             duration.start();
             return;
@@ -51,12 +51,12 @@ public final class s extends LinearLayout {
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f21473a;
+        Paint paint = this.f22962a;
         float strokeWidth = paint.getStrokeWidth();
         RectF rectF = AndroidUtilities.rectTmp;
-        q qVar = this.f21475c;
+        q qVar = this.f22964c;
         rectF.set(qVar.getLeft() + strokeWidth, qVar.getTop() + strokeWidth, qVar.getRight() - strokeWidth, qVar.getBottom() - strokeWidth);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f21474b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f22963b);
         super.draw(canvas);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
     }

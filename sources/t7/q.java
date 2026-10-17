@@ -1,12 +1,12 @@
 package t7;
 
 import android.content.Context;
-import c5.y;
+import c5.x;
 import j$.util.Objects;
 import java.util.HashMap;
 public final class q {
-    public static final l f45532b = l.b(1, new Object[]{"optional-module-barcode", "com.google.android.gms.vision.barcode"}, null);
-    public final String f45533a;
+    public static final l f46921b = l.b(1, new Object[]{"optional-module-barcode", "com.google.android.gms.vision.barcode"}, null);
+    public final String f46922a;
 
     public q(Context context, rb.k kVar) {
         new HashMap();
@@ -14,21 +14,21 @@ public final class q {
         context.getPackageName();
         rb.c.a(context);
         synchronized (u.class) {
-            if (u.f45537b == null) {
-                u.f45537b = new u(0);
+            if (u.f46926b == null) {
+                u.f46926b = new u(0);
             }
         }
-        this.f45533a = "common";
+        this.f46922a = "common";
         rb.f a2 = rb.f.a();
-        y yVar = new y(this, 2);
+        x xVar = new x(this, 2);
         a2.getClass();
-        rb.f.b(yVar);
+        rb.f.b(xVar);
         rb.f a10 = rb.f.a();
         Objects.requireNonNull(kVar);
         p pVar = new p(kVar, 0);
         a10.getClass();
         rb.f.b(pVar);
-        l lVar = f45532b;
+        l lVar = f46921b;
         if (lVar.containsKey("common")) {
             y6.e.d(context, (String) lVar.get("common"), false);
         }

@@ -9,13 +9,13 @@ public final class c implements View.OnAttachStateChangeListener {
         b a2;
         d dVar = (d) view.getTag(R.id.tag_view_on_post_draw_state);
         if (dVar != null && (a2 = e.a(view, dVar)) != null) {
-            ArrayList arrayList = dVar.f46951a;
+            ArrayList arrayList = dVar.f48358a;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ((re.b) a2.f46950a.f2949b).add((mi.a) obj);
+                ((re.b) a2.f48357a.f5487b).add((ni.a) obj);
             }
         }
     }
@@ -24,16 +24,16 @@ public final class c implements View.OnAttachStateChangeListener {
     public final void onViewDetachedFromWindow(View view) {
         b bVar;
         d dVar = (d) view.getTag(R.id.tag_view_on_post_draw_state);
-        if (dVar != null && (bVar = dVar.f46952b) != null) {
-            ArrayList arrayList = dVar.f46951a;
+        if (dVar != null && (bVar = dVar.f48359b) != null) {
+            ArrayList arrayList = dVar.f48358a;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ((re.b) bVar.f46950a.f2949b).remove((mi.a) obj);
+                ((re.b) bVar.f48357a.f5487b).remove((ni.a) obj);
             }
-            dVar.f46952b = null;
+            dVar.f48359b = null;
         }
     }
 }

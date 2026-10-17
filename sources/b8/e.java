@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.text.TextUtils;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.internal.t0;
+import com.google.android.gms.common.api.internal.s0;
 import com.google.android.gms.common.api.m;
 import com.google.android.gms.common.api.q;
 import x8.j;
@@ -15,21 +15,21 @@ import y8.h0;
 import y8.i0;
 import y8.y0;
 public final class e extends com.google.android.gms.common.api.internal.e {
-    public final int f2607q = 1;
-    public final String f2608r;
-    public final byte[] f2609s;
-    public final Object f2610t;
+    public final int f4219q = 1;
+    public final String f4220r;
+    public final byte[] f4221s;
+    public final Object f4222t;
 
     public e(m mVar, byte[] bArr, String str) {
-        super(m8.c.f15444a, mVar);
-        this.f2609s = bArr;
-        this.f2608r = str;
-        this.f2610t = new g(this);
+        super(m8.c.f16796a, mVar);
+        this.f4221s = bArr;
+        this.f4220r = str;
+        this.f4222t = new g(this);
     }
 
     @Override
     public final void a(q qVar) {
-        switch (this.f2607q) {
+        switch (this.f4219q) {
             case 0:
                 a(qVar);
                 return;
@@ -41,7 +41,7 @@ public final class e extends com.google.android.gms.common.api.internal.e {
 
     @Override
     public final q d(Status status) {
-        switch (this.f2607q) {
+        switch (this.f4219q) {
             case 0:
                 return new f(status, null);
             default:
@@ -55,10 +55,10 @@ public final class e extends com.google.android.gms.common.api.internal.e {
         Parcel obtain2;
         ApplicationInfo applicationInfo;
         Bundle bundle;
-        int i10 = this.f2607q;
-        byte[] bArr = this.f2609s;
-        Object obj = this.f2610t;
-        String str = this.f2608r;
+        int i10 = this.f4219q;
+        byte[] bArr = this.f4221s;
+        Object obj = this.f4222t;
+        String str = this.f4220r;
         switch (i10) {
             case 0:
                 a aVar = (a) cVar;
@@ -80,7 +80,7 @@ public final class e extends com.google.android.gms.common.api.internal.e {
                 d dVar = (d) aVar.u();
                 obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.safetynet.internal.ISafetyNetService");
-                int i11 = c.f2605a;
+                int i11 = c.f4217a;
                 if (gVar == null) {
                     obtain.writeStrongBinder(null);
                 } else {
@@ -90,7 +90,7 @@ public final class e extends com.google.android.gms.common.api.internal.e {
                 obtain.writeString(str);
                 obtain2 = Parcel.obtain();
                 try {
-                    dVar.f2606a.transact(7, obtain, obtain2, 0);
+                    dVar.f4218a.transact(7, obtain, obtain2, 0);
                     obtain2.readException();
                     return;
                 } finally {
@@ -98,17 +98,17 @@ public final class e extends com.google.android.gms.common.api.internal.e {
             default:
                 h0 h0Var = (h0) ((y0) cVar).u();
                 ?? aVar2 = new y8.a();
-                aVar2.f48682b = this;
+                aVar2.f50087b = this;
                 obtain = Parcel.obtain();
-                obtain.writeInterfaceToken(h0Var.f320c);
-                int i12 = f8.a.f9064a;
+                obtain.writeInterfaceToken(h0Var.f319c);
+                int i12 = f8.a.f10505a;
                 obtain.writeStrongBinder(aVar2);
                 obtain.writeString(str);
                 obtain.writeString((String) obj);
                 obtain.writeByteArray(bArr);
                 obtain2 = Parcel.obtain();
                 try {
-                    h0Var.f319b.transact(12, obtain, obtain2, 0);
+                    h0Var.f318b.transact(12, obtain, obtain2, 0);
                     obtain2.readException();
                     return;
                 } finally {
@@ -116,10 +116,10 @@ public final class e extends com.google.android.gms.common.api.internal.e {
         }
     }
 
-    public e(t0 t0Var, String str, String str2, byte[] bArr) {
-        super(j.f48261a, t0Var);
-        this.f2608r = str;
-        this.f2610t = str2;
-        this.f2609s = bArr;
+    public e(s0 s0Var, String str, String str2, byte[] bArr) {
+        super(j.f49670a, s0Var);
+        this.f4220r = str;
+        this.f4222t = str2;
+        this.f4221s = bArr;
     }
 }

@@ -3,14 +3,14 @@ package c7;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.Arrays;
-import m.h3;
+import m.g3;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class i extends l {
     public static final Parcelable.Creator<i> CREATOR = new r0(15);
-    public final n7.t0 f4592a;
-    public final n7.t0 f4593b;
-    public final n7.t0 f4594c;
+    public final n7.t0 f4962a;
+    public final n7.t0 f4963b;
+    public final n7.t0 f4964c;
     public final n7.t0 d;
     public final n7.t0 e;
 
@@ -29,9 +29,9 @@ public final class i extends l {
         } else {
             s10 = n7.t0.s(bArr5.length, bArr5);
         }
-        this.f4592a = s11;
-        this.f4593b = s12;
-        this.f4594c = s13;
+        this.f4962a = s11;
+        this.f4963b = s12;
+        this.f4964c = s13;
         this.d = s14;
         this.e = s10;
     }
@@ -40,8 +40,8 @@ public final class i extends l {
         byte[] t10;
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("clientDataJSON", u6.b.c(this.f4593b.t()));
-            jSONObject.put("authenticatorData", u6.b.c(this.f4594c.t()));
+            jSONObject.put("clientDataJSON", u6.b.c(this.f4963b.t()));
+            jSONObject.put("authenticatorData", u6.b.c(this.f4964c.t()));
             jSONObject.put("signature", u6.b.c(this.d.t()));
             n7.t0 t0Var = this.e;
             if (t0Var != null) {
@@ -62,7 +62,7 @@ public final class i extends l {
     public final boolean equals(Object obj) {
         if (obj instanceof i) {
             i iVar = (i) obj;
-            if (n6.l.l(this.f4592a, iVar.f4592a) && n6.l.l(this.f4593b, iVar.f4593b) && n6.l.l(this.f4594c, iVar.f4594c) && n6.l.l(this.d, iVar.d) && n6.l.l(this.e, iVar.e)) {
+            if (n6.l.l(this.f4962a, iVar.f4962a) && n6.l.l(this.f4963b, iVar.f4963b) && n6.l.l(this.f4964c, iVar.f4964c) && n6.l.l(this.d, iVar.d) && n6.l.l(this.e, iVar.e)) {
                 return true;
             }
             return false;
@@ -71,21 +71,21 @@ public final class i extends l {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4592a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4593b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4594c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.e}))});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4962a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4963b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4964c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.e}))});
     }
 
     public final String toString() {
         byte[] t10;
-        h3 h3Var = new h3(getClass().getSimpleName());
+        g3 g3Var = new g3(getClass().getSimpleName());
         n7.l0 l0Var = n7.n0.d;
-        byte[] t11 = this.f4592a.t();
-        h3Var.Y(l0Var.c(t11.length, t11), "keyHandle");
-        byte[] t12 = this.f4593b.t();
-        h3Var.Y(l0Var.c(t12.length, t12), "clientDataJSON");
-        byte[] t13 = this.f4594c.t();
-        h3Var.Y(l0Var.c(t13.length, t13), "authenticatorData");
+        byte[] t11 = this.f4962a.t();
+        g3Var.Y(l0Var.c(t11.length, t11), "keyHandle");
+        byte[] t12 = this.f4963b.t();
+        g3Var.Y(l0Var.c(t12.length, t12), "clientDataJSON");
+        byte[] t13 = this.f4964c.t();
+        g3Var.Y(l0Var.c(t13.length, t13), "authenticatorData");
         byte[] t14 = this.d.t();
-        h3Var.Y(l0Var.c(t14.length, t14), "signature");
+        g3Var.Y(l0Var.c(t14.length, t14), "signature");
         n7.t0 t0Var = this.e;
         if (t0Var == null) {
             t10 = null;
@@ -93,18 +93,18 @@ public final class i extends l {
             t10 = t0Var.t();
         }
         if (t10 != null) {
-            h3Var.Y(l0Var.c(t10.length, t10), "userHandle");
+            g3Var.Y(l0Var.c(t10.length, t10), "userHandle");
         }
-        return h3Var.toString();
+        return g3Var.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] t10;
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.c(parcel, 2, this.f4592a.t());
-        w7.f0.c(parcel, 3, this.f4593b.t());
-        w7.f0.c(parcel, 4, this.f4594c.t());
+        w7.f0.c(parcel, 2, this.f4962a.t());
+        w7.f0.c(parcel, 3, this.f4963b.t());
+        w7.f0.c(parcel, 4, this.f4964c.t());
         w7.f0.c(parcel, 5, this.d.t());
         n7.t0 t0Var = this.e;
         if (t0Var == null) {

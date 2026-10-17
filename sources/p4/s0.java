@@ -1,14 +1,14 @@
 package p4;
 
-import z7.hb;
-import z7.wf;
+import z7.jb;
+import z7.yf;
 public final class s0 implements Runnable {
-    public final int f42803a;
-    public final Object f42804b;
+    public final int f44213a;
+    public final Object f44214b;
 
     public s0(Object obj, int i10) {
-        this.f42803a = i10;
-        this.f42804b = obj;
+        this.f44213a = i10;
+        this.f44214b = obj;
     }
 
     private final void a() {
@@ -20,9 +20,9 @@ public final class s0 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: p4.s0.run():void");
     }
 
-    public s0(wf wfVar) {
-        this.f42803a = 14;
-        hb hbVar = hb.UNKNOWN_EVENT;
-        this.f42804b = wfVar;
+    public s0(yf yfVar) {
+        this.f44213a = 14;
+        jb jbVar = jb.UNKNOWN_EVENT;
+        this.f44214b = yfVar;
     }
 }

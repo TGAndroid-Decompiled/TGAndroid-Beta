@@ -1,86 +1,81 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-public class ad {
-    public View f23196a;
-    public final float f23197b;
-    public final float f23198c;
-    public final float d;
-    public long e;
-    public Runnable f23199f;
-    public ValueAnimator f23200g;
-    public final float h;
-    public boolean f23201i;
-    public float f23202j;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.SpannableString;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+public final class ad extends ReplacementSpan {
+    public final org.telegram.ui.ActionBar.d6 f24561a;
+    public final Paint f24562b = new Paint(1);
+    public final d11 f24563c;
+    public final Runnable d;
+    public yc e;
+    public Integer f24564f;
 
-    public ad(View view) {
-        this(view, 1.0f, 5.0f);
+    public ad(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f24561a = d6Var;
+        this.d = runnable;
+        this.f24563c = new d11(charSequence, 12.0f, null);
     }
 
-    public final float a(float f7) {
-        return com.google.android.gms.internal.play_billing.k3.y(1.0f, this.f23202j, f7, 1.0f - f7) * this.h;
+    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.d6 d6Var, Integer num) {
+        SpannableString spannableString = new SpannableString("btn");
+        ad adVar = new ad(charSequence, runnable, d6Var);
+        spannableString.setSpan(adVar, 0, spannableString.length(), 33);
+        adVar.f24564f = num;
+        return spannableString;
     }
 
-    public void b() {
-        View view = this.f23196a;
-        if (view != null) {
-            view.invalidate();
+    public final int a() {
+        return (int) (this.f24563c.f25437c + AndroidUtilities.dp(14.0f));
+    }
+
+    public final void c(zc zcVar, boolean z10) {
+        if (this.e == null) {
+            this.e = new yc(zcVar);
         }
-        Runnable runnable = this.f23199f;
-        if (runnable != null) {
-            runnable.run();
+        this.e.c(z10);
+    }
+
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        float a2;
+        int w02;
+        float dpf2 = AndroidUtilities.dpf2(17.0f);
+        float f10 = (i12 + i14) / 2.0f;
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f11 = dpf2 / 2.0f;
+        rectF.set(f7, f10 - f11, a() + f7, f10 + f11);
+        yc ycVar = this.e;
+        if (ycVar == null) {
+            a2 = 1.0f;
+        } else {
+            a2 = ycVar.a(0.025f);
         }
-    }
-
-    public final void c(boolean z10) {
-        float f7;
-        if (this.f23201i != z10) {
-            this.f23201i = z10;
-            ValueAnimator valueAnimator = this.f23200g;
-            this.f23200g = null;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            float f10 = this.f23202j;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f23200g = ofFloat;
-            ofFloat.addUpdateListener(new n6(this, 7));
-            this.f23200g.addListener(new org.telegram.ui.vo(2, this, z10));
-            if (this.f23201i) {
-                this.f23200g.setInterpolator(es.f24465f);
-                this.f23200g.setDuration(this.f23197b * 60.0f);
-                this.f23200g.setStartDelay(0L);
-            } else {
-                this.f23200g.setInterpolator(new OvershootInterpolator(this.d));
-                this.f23200g.setDuration(this.f23198c * 350.0f);
-                this.f23200g.setStartDelay(this.e);
-            }
-            this.f23200g.start();
+        canvas.save();
+        canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
+        Integer num = this.f24564f;
+        if (num != null) {
+            w02 = num.intValue();
+        } else {
+            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f24561a);
         }
+        int i15 = w02;
+        int m12 = org.telegram.ui.ActionBar.h6.m1(0.15f, i15);
+        Paint paint2 = this.f24562b;
+        paint2.setColor(m12);
+        canvas.drawRoundRect(rectF, f11, f11, paint2);
+        this.f24563c.c(f7 + AndroidUtilities.dp(7.0f), f10, 1.0f, i15, canvas);
+        canvas.restore();
     }
 
-    public ad(View view, float f7, float f10) {
-        this.e = 0L;
-        this.h = 1.0f;
-        this.f23196a = view;
-        this.f23198c = f7;
-        this.f23197b = f7;
-        this.d = f10;
-    }
-
-    public ad(di.m6 m6Var) {
-        this.e = 0L;
-        this.h = 1.0f;
-        this.f23196a = m6Var;
-        this.f23197b = 1.5f;
-        this.f23198c = 1.0f;
-        this.d = 2.0f;
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        if (fontMetricsInt != null) {
+            paint.getFontMetricsInt(fontMetricsInt);
+        }
+        return a();
     }
 }

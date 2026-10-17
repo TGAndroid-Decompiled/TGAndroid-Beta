@@ -1,44 +1,47 @@
 package i2;
 
-import java.util.Locale;
+import android.text.TextUtils;
+import v7.u6;
 public final class e {
-    public int f10944a;
-    public int f10945b;
-    public int f10946c;
-    public int d;
-    public int e;
-    public int f10947f;
-    public int f10948g;
-    public int h;
-    public int f10949i;
-    public int f10950j;
-    public long f10951k;
-    public int f10952l;
+    public final String f12350a;
+    public final b2.w f12351b;
+    public final b2.w f12352c;
+    public final int d;
+    public final int e;
 
-    public final String toString() {
-        int i10 = this.f10944a;
-        int i11 = this.f10945b;
-        int i12 = this.f10946c;
-        int i13 = this.d;
-        int i14 = this.e;
-        int i15 = this.f10947f;
-        int i16 = this.f10948g;
-        int i17 = this.h;
-        int i18 = this.f10949i;
-        int i19 = this.f10950j;
-        long j10 = this.f10951k;
-        int i20 = this.f10952l;
-        String str = e2.m0.f8375a;
-        Locale locale = Locale.US;
-        StringBuilder m10 = d.m("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
-        d.w(m10, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
-        d.w(m10, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
-        d.w(m10, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
-        d.w(m10, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
-        m10.append(j10);
-        m10.append("\n videoFrameProcessingOffsetCount=");
-        m10.append(i20);
-        m10.append("\n}");
-        return m10.toString();
+    public e(String str, b2.w wVar, b2.w wVar2, int i10, int i11) {
+        boolean z10;
+        if (i10 != 0 && i11 != 0) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        u6.g(z10);
+        u6.g(true ^ TextUtils.isEmpty(str));
+        this.f12350a = str;
+        wVar.getClass();
+        this.f12351b = wVar;
+        wVar2.getClass();
+        this.f12352c = wVar2;
+        this.d = i10;
+        this.e = i11;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && e.class == obj.getClass()) {
+            e eVar = (e) obj;
+            if (this.d == eVar.d && this.e == eVar.e && this.f12350a.equals(eVar.f12350a) && this.f12351b.equals(eVar.f12351b) && this.f12352c.equals(eVar.f12352c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int g10 = a1.g.g((((527 + this.d) * 31) + this.e) * 31, 31, this.f12350a);
+        return this.f12352c.hashCode() + ((this.f12351b.hashCode() + g10) * 31);
     }
 }

@@ -2,18 +2,36 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ChatActivityEnterView;
 public final class xf extends AnimatorListenerAdapter {
-    public final ChatActivityEnterView f30927a;
+    public final int f32378a;
+    public final ChatActivityEnterView f32379b;
 
-    public xf(ChatActivityEnterView chatActivityEnterView) {
-        this.f30927a = chatActivityEnterView;
+    public xf(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f32379b = chatActivityEnterView;
+        this.f32378a = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f30927a;
-        chatActivityEnterView.f22596h1.setAllowDraw(true);
-        chatActivityEnterView.N1.setTransformToSeekbar(1.0f);
-        chatActivityEnterView.v0();
+        ChatActivityEnterView chatActivityEnterView = this.f32379b;
+        if (animator.equals(chatActivityEnterView.f24018t2)) {
+            int i10 = this.f32378a;
+            if (i10 != 3 && chatActivityEnterView.E0 != null && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
+                chatActivityEnterView.E0.requestFocus();
+            }
+            chatActivityEnterView.y();
+            if (i10 != 3) {
+                sg sgVar = chatActivityEnterView.O1;
+                if (sgVar != null) {
+                    sgVar.setVisibility(8);
+                }
+                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.N1;
+                if (recordCircle != null) {
+                    recordCircle.d();
+                }
+            }
+        }
     }
 }

@@ -1,15 +1,16 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import java.io.File;
 public final class vh1 {
-    public final int f40713a;
-    public boolean f40715c;
-    public boolean d;
-    public final ArrayList e = new ArrayList();
-    public final ArrayList f40716f = new ArrayList();
-    public final boolean f40714b = true;
+    public String f42214a;
+    public int f42215b;
+    public int f42216c;
+    public File d;
+    public final File e;
 
-    public vh1(int i10) {
-        this.f40713a = i10;
+    public vh1(File file, File file2, String str) {
+        this.f42214a = str;
+        this.d = file;
+        this.e = file2;
     }
 }

@@ -12,11 +12,11 @@ public final class r implements d1 {
     }
 
     @Override
-    public final int j(long j10) {
+    public final int h(long j10) {
         return 0;
     }
 
     @Override
-    public final void b() {
+    public final void a() {
     }
 }

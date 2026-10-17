@@ -2,15 +2,15 @@ package c6;
 
 import java.util.Arrays;
 public final class p {
-    public final long f4521a;
+    public final long f4891a;
 
     public p(long j10) {
-        this.f4521a = j10;
+        this.f4891a = j10;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
-            if ((obj instanceof p) && this.f4521a == ((p) obj).f4521a && n6.l.l(null, null)) {
+            if ((obj instanceof p) && this.f4891a == ((p) obj).f4891a && n6.l.l(null, null)) {
                 return true;
             }
             return false;
@@ -19,6 +19,6 @@ public final class p {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f4521a), 0, Boolean.FALSE, null});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f4891a), 0, Boolean.FALSE, null});
     }
 }

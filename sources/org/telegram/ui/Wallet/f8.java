@@ -1,67 +1,64 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class f8 extends ReplacementSpan {
-    public final String f32927a;
-    public final String f32928b;
-    public final boolean f32929c;
-    public float d;
-    public int e;
-    public int f32930f;
-    public h8 h;
-    public h8 f32931n;
-    public final i8 f32932r;
+import org.telegram.messenger.Utilities;
+public final class f8 implements Utilities.Callback {
+    public final int f34205a = 0;
+    public final k8 f34206b;
+    public final Utilities.Callback f34207c;
+    public final q0 d;
+    public final m0 e;
 
-    public f8(i8 i8Var, String str, boolean z10, boolean z11) {
-        String str2;
-        this.f32932r = i8Var;
-        this.f32927a = str;
-        if (z10) {
-            str2 = i8Var.O;
-        } else {
-            str2 = "";
-        }
-        this.f32928b = str2;
-        this.f32929c = z11;
-    }
-
-    public final int a() {
-        int i10 = this.e;
-        return Math.round((i8.R.getInterpolation(this.f32932r.H) * (this.f32930f - i10)) + i10);
+    public f8(k8 k8Var, Utilities.Callback callback, m0 m0Var, q0 q0Var) {
+        this.f34206b = k8Var;
+        this.f34207c = callback;
+        this.e = m0Var;
+        this.d = q0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        Canvas canvas2;
-        Paint paint2;
-        int i15;
-        float textSize = paint.getTextSize();
-        if (this.f32929c) {
-            paint.setTextSize((28.0f * textSize) / 44.0f);
+    public final void run(Object obj) {
+        String o10;
+        switch (this.f34205a) {
+            case 0:
+                k8.Y(this.f34206b, this.f34207c, this.e, this.d, (j0) obj);
+                return;
+            default:
+                d0 d0Var = (d0) obj;
+                Utilities.Callback callback = this.f34207c;
+                if (d0Var == null) {
+                    callback.run("ADDRESS_NO_INFO");
+                    return;
+                }
+                byte[] bArr = d0Var.f34106c;
+                q0 q0Var = this.d;
+                if (bArr == null) {
+                    byte[][] m10 = q0Var.m();
+                    if (m10.length <= 0) {
+                        callback.run("STORAGE_NO_PUBLIC_KEY");
+                        return;
+                    }
+                    bArr = m10[0];
+                }
+                if (!q0Var.f(bArr)) {
+                    callback.run("STORAGE_OLD_PUBLIC_KEY");
+                    return;
+                }
+                f8 f8Var = new f8(this.f34206b, callback, this.e, q0Var);
+                if (bArr == null) {
+                    o10 = "";
+                } else {
+                    o10 = q0.o(bArr);
+                }
+                String str = o10;
+                q0.h.execute(new org.telegram.ui.Components.q2(q0Var, q0Var.l(), str, false, (Utilities.Callback) f8Var));
+                return;
         }
-        float f10 = f7 - this.d;
-        h8 h8Var = this.f32931n;
-        if (h8Var != null) {
-            paint2 = paint;
-            i15 = i13;
-            canvas2 = canvas;
-            h8Var.b(canvas2, paint2, this.f32928b, f10, i15);
-        } else {
-            canvas2 = canvas;
-            paint2 = paint;
-            i15 = i13;
-        }
-        this.h.b(canvas2, paint2, this.f32927a, f10, i15);
-        paint2.setTextSize(textSize);
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            paint.getFontMetricsInt(fontMetricsInt);
-        }
-        return a();
+    public f8(k8 k8Var, Utilities.Callback callback, q0 q0Var, m0 m0Var) {
+        this.f34206b = k8Var;
+        this.f34207c = callback;
+        this.d = q0Var;
+        this.e = m0Var;
     }
 }

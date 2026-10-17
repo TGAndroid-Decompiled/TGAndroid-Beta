@@ -1,71 +1,78 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ap extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
-    public final int T;
-    public Object U;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+public final class ap extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
+    public final org.telegram.ui.ActionBar.d6 f24684a;
+    public final ImageView f24685b;
+    public final org.telegram.ui.ActionBar.j5 f24686c;
+    public final org.telegram.ui.ActionBar.j5 d;
+    public final org.telegram.ui.ActionBar.j5 e;
+    public final org.telegram.ui.gl f24687f;
+    public boolean h;
+    public boolean f24688n;
 
-    public ap(Context context, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var, int i12) {
-        super(i10, i11, context, c6Var);
-        this.T = i12;
+    public ap(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f24684a = d6Var;
+        ImageView imageView = new ImageView(context);
+        this.f24685b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(imageView, w7.z5.e(52, 46, 51));
+        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
+        this.f24686c = j5Var;
+        j5Var.setTextSize(14);
+        j5Var.setTypeface(AndroidUtilities.bold());
+        addView(j5Var, w7.z5.a(18.0f, 52.0f, 6.0f, 0.0f, 0.0f, -1, 51));
+        org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(context);
+        this.d = j5Var2;
+        j5Var2.setTextSize(14);
+        NotificationCenter.listenEmojiLoading(j5Var2);
+        addView(j5Var2, w7.z5.a(18.0f, 52.0f, 24.0f, 0.0f, 0.0f, -1, 51));
+        org.telegram.ui.ActionBar.j5 j5Var3 = new org.telegram.ui.ActionBar.j5(context);
+        this.e = j5Var3;
+        j5Var3.setTextSize(14);
+        j5Var3.l(LocaleController.getString(R.string.TapForForwardingOptions), false);
+        j5Var3.setAlpha(0.0f);
+        addView(j5Var3, w7.z5.a(18.0f, 52.0f, 24.0f, 0.0f, 0.0f, -1, 51));
+        org.telegram.ui.gl glVar = new org.telegram.ui.gl(this, context, new wh.g());
+        this.f24687f = glVar;
+        glVar.setRoundRadius(AndroidUtilities.dp(6.0f));
+        addView(glVar, w7.z5.a(34.0f, 52.0f, 6.0f, 0.0f, 0.0f, 34, 51));
+        d();
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.T) {
-            case 0:
-                canvas.save();
-                Path path = (Path) this.U;
-                path.rewind();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-                canvas.clipPath(path);
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                canvas.restore();
-                return drawChild;
-            case 1:
-                canvas.save();
-                Path path2 = (Path) this.U;
-                path2.rewind();
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path2.addRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-                canvas.clipPath(path2);
-                boolean drawChild2 = super.drawChild(canvas, view, j10);
-                canvas.restore();
-                return drawChild2;
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
+    public final void d() {
+        int i10 = org.telegram.ui.ActionBar.h6.f21290te;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f24684a;
+        this.f24685b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i10, d6Var), PorterDuff.Mode.MULTIPLY));
+        this.f24686c.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21327ve, d6Var));
+        int i11 = org.telegram.ui.ActionBar.h6.Xk;
+        int w02 = org.telegram.ui.ActionBar.h6.w0(i11, d6Var);
+        org.telegram.ui.ActionBar.j5 j5Var = this.d;
+        j5Var.setTextColor(w02);
+        j5Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21045gc, d6Var));
+        this.e.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        int i12;
-        switch (this.T) {
-            case 2:
-                l80 l80Var = (l80) this.U;
-                if (this == l80Var.A && (i12 = l80Var.X) > 0) {
-                    i11 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11));
-                }
-                super.onMeasure(i10, i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!this.f24688n) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
-    public ap(l80 l80Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
-        super(i10, i11, context, c6Var);
-        this.T = 2;
-        this.U = l80Var;
+    public int[] getColorKeys() {
+        return null;
     }
 }

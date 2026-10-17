@@ -134,13 +134,14 @@ public class VideoFrameDrawer {
         matrix2.preConcat(matrix);
         float[] convertMatrixFromAndroidGraphicsMatrix = RendererCommon.convertMatrixFromAndroidGraphicsMatrix(matrix2);
         int i18 = AnonymousClass1.$SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type[textureBuffer.getType().ordinal()];
-        if (i18 == 1) {
-            glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i10, i11, convertMatrixFromAndroidGraphicsMatrix, i12, i13, i14, i15, i16, i17, z10);
-        } else if (i18 == 2) {
-            glDrawer.drawRgb(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i10, i11, convertMatrixFromAndroidGraphicsMatrix, i12, i13, i14, i15, i16, i17, z10);
-        } else {
+        if (i18 != 1) {
+            if (i18 == 2) {
+                glDrawer.drawRgb(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i10, i11, convertMatrixFromAndroidGraphicsMatrix, i12, i13, i14, i15, i16, i17, z10);
+                return;
+            }
             throw new RuntimeException("Unknown texture type.");
         }
+        glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i10, i11, convertMatrixFromAndroidGraphicsMatrix, i12, i13, i14, i15, i16, i17, z10);
     }
 
     public void drawFrame(VideoFrame videoFrame, RendererCommon.GlDrawer glDrawer) {

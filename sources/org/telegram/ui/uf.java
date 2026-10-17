@@ -1,23 +1,36 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class uf implements DialogInterface.OnShowListener {
-    public final int f40386a;
-    public final fo f40387b;
+import android.view.View;
+import java.util.ArrayList;
+public final class uf implements View.OnClickListener {
+    public final int f41973a;
+    public final sn f41974b;
+    public final ArrayList f41975c;
 
-    public uf(fo foVar, int i10) {
-        this.f40386a = i10;
-        this.f40387b = foVar;
+    public uf(sn snVar, ArrayList arrayList, int i10) {
+        this.f41973a = i10;
+        this.f41974b = snVar;
+        this.f41975c = arrayList;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f40386a) {
+    public final void onClick(View view) {
+        switch (this.f41973a) {
             case 0:
-                this.f40387b.Rb(false);
+                sn snVar = this.f41974b;
+                ji jiVar = new ji(snVar, snVar, snVar.getParentActivity(), snVar.f41205ea, this.f41975c);
+                jiVar.setCalcMandatoryInsets(snVar.C9());
+                jiVar.setDimBehind(false);
+                snVar.D7(false);
+                snVar.showDialog(jiVar);
                 return;
             default:
-                this.f40387b.Rb(false);
+                sn snVar2 = this.f41974b;
+                if (snVar2.getParentActivity() != null && snVar2.getParentActivity() != null) {
+                    new org.telegram.ui.Components.aw(snVar2, snVar2.getParentActivity(), snVar2.f41205ea, this.f41975c).show();
+                    snVar2.D7(true);
+                    return;
+                }
                 return;
         }
     }

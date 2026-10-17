@@ -1,5 +1,5 @@
 package yd;
 
-import w7.x8;
-public abstract class f extends x8 {
+import w7.y8;
+public abstract class f extends y8 {
 }

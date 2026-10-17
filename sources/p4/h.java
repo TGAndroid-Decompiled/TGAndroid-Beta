@@ -1,18 +1,18 @@
 package p4;
 public final class h extends q {
-    public final String f42741a;
-    public final g f42742b;
+    public final String f44151a;
+    public final g f44152b;
 
     public h(String str, g gVar) {
-        this.f42741a = str;
-        this.f42742b = gVar;
+        this.f44151a = str;
+        this.f44152b = gVar;
     }
 
     @Override
     public final void f(int i10) {
         g gVar;
-        String str = this.f42741a;
-        if (str != null && (gVar = this.f42742b) != null) {
+        String str = this.f44151a;
+        if (str != null && (gVar = this.f44152b) != null) {
             gVar.q(i10, str);
         }
     }
@@ -20,8 +20,8 @@ public final class h extends q {
     @Override
     public final void i(int i10) {
         g gVar;
-        String str = this.f42741a;
-        if (str != null && (gVar = this.f42742b) != null) {
+        String str = this.f44151a;
+        if (str != null && (gVar = this.f44152b) != null) {
             gVar.r(i10, str);
         }
     }

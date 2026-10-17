@@ -1,367 +1,297 @@
 package qg;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.DashPathEffect;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.view.TextureView;
-import bi.n7;
-import com.google.android.gms.internal.play_billing.k3;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.SurfaceTexture;
+import android.opengl.GLES20;
+import j$.util.DesugarCollections;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import ji.w4;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.HashMap;
+import java.util.Map;
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+import javax.microedition.khronos.egl.EGLSurface;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.iw0;
-import org.telegram.ui.Components.la;
-import w7.q6;
-public class c1 extends TextureView {
-    public b1 f43139a;
-    public t1 f43140b;
-    public final q0 f43141c;
-    public a1 d;
-    public final d0 e;
-    public final p1 f43142f;
-    public Bitmap h;
-    public Bitmap f43143n;
-    public boolean f43144r;
-    public boolean f43145s;
-    public float v;
-    public int f43146w;
-    public m f43147x;
-    public boolean f43148y;
+import org.telegram.messenger.wh;
+import org.telegram.ui.Components.dw0;
+import org.telegram.ui.Components.ja;
+import w7.t6;
+public final class c1 extends DispatchQueue {
+    public final SurfaceTexture f44499a;
+    public EGL10 f44500b;
+    public EGLDisplay f44501c;
+    public EGLContext d;
+    public EGLSurface e;
+    public boolean f44502f;
+    public volatile boolean h;
+    public int f44503n;
+    public int f44504r;
+    public b1 f44505s;
+    public final ja v;
+    public final p4.s0 f44506w;
+    public final b1 f44507x;
+    public final e1 f44508y;
 
-    public c1(Context context, q0 q0Var, Bitmap bitmap, Bitmap bitmap2, la laVar) {
-        super(context);
-        setOpaque(false);
-        this.h = bitmap;
-        this.f43143n = bitmap2;
-        this.f43141c = q0Var;
-        q0Var.f43266f = this;
-        setSurfaceTextureListener(new y0(this, laVar));
-        this.e = new d0(this);
-        w0 w0Var = new w0(this, 0);
-        ?? obj = new Object();
-        Paint paint = new Paint(1);
-        obj.f43251c = paint;
-        Paint paint2 = new Paint(1);
-        obj.d = paint2;
-        Paint paint3 = new Paint(1);
-        obj.e = paint3;
-        Paint paint4 = new Paint(1);
-        obj.f43252f = paint4;
-        Paint paint5 = new Paint(1);
-        obj.f43253g = paint5;
-        obj.f43258m = new ArrayList();
-        obj.f43259n = new ArrayList();
-        obj.f43261p = new float[2];
-        obj.f43249a = this;
-        obj.f43250b = w0Var;
-        paint2.setColor(-13840296);
-        Paint.Style style = Paint.Style.STROKE;
-        paint3.setStyle(style);
-        paint3.setColor(-1);
-        paint3.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        paint4.setColor(-16745729);
-        paint5.setStyle(style);
-        paint5.setColor(-1);
-        paint5.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        paint.setStyle(style);
-        paint.setColor(-1);
-        paint.setStrokeWidth(AndroidUtilities.dp(0.8f));
-        paint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f)}, 0.0f));
-        paint.setShadowLayer(4.0f, 0.0f, 1.5f, 1073741824);
-        this.f43142f = obj;
-        q0Var.f43263a = new w4(this, 20);
+    public c1(e1 e1Var, SurfaceTexture surfaceTexture, ja jaVar) {
+        super("CanvasInternal");
+        this.f44508y = e1Var;
+        this.f44506w = new p4.s0(this, 2);
+        this.f44507x = new b1(this, 0);
+        this.v = jaVar;
+        this.f44499a = surfaceTexture;
     }
 
-    public final void a() {
-        w0 w0Var = new w0(this, 2);
-        d0 d0Var = this.e;
-        d0Var.f43153g = new u0(d0Var.f43149a.getPainting().f43267g.f25809a, 0.0d, 1.0d);
-        d0Var.f43157l = true;
-        d0Var.a(new Object(), false, w0Var);
-    }
-
-    public final void b() {
-        c1 c1Var;
-        p1 p1Var = this.f43142f;
-        if (p1Var != null && (c1Var = p1Var.f43249a) != null && c1Var.getPainting() != null && p1Var.h != null) {
-            q0 painting = c1Var.getPainting();
-            painting.f43266f.f(new n0(painting, 0));
-            p1Var.f43258m.clear();
-            p1Var.f43259n.clear();
-            p1Var.h = null;
+    public static void b(c1 c1Var) {
+        if (!c1Var.f44502f) {
+            return;
         }
+        if (c1Var.d.equals(c1Var.f44500b.eglGetCurrentContext()) && c1Var.e.equals(c1Var.f44500b.eglGetCurrentSurface(12377))) {
+            return;
+        }
+        EGL10 egl10 = c1Var.f44500b;
+        EGLDisplay eGLDisplay = c1Var.f44501c;
+        EGLSurface eGLSurface = c1Var.e;
+        egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, c1Var.d);
     }
 
-    public final Bitmap c(boolean z10, boolean z11) {
-        if (this.f43147x instanceof l) {
-            this.f43142f.e();
+    public final void finish() {
+        ja jaVar = this.v;
+        if (this.e != null) {
+            EGL10 egl10 = this.f44500b;
+            EGLDisplay eGLDisplay = this.f44501c;
+            EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
+            egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
+            this.f44500b.eglDestroySurface(this.f44501c, this.e);
+            this.e = null;
         }
-        a1 a1Var = this.d;
-        if (a1Var != null && a1Var.f43125f) {
-            CountDownLatch countDownLatch = new CountDownLatch(1);
-            Bitmap[] bitmapArr = new Bitmap[1];
-            try {
-                a1Var.postRunnable(new n7(a1Var, z10, z11, bitmapArr, countDownLatch));
-                countDownLatch.await();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            return bitmapArr[0];
-        }
-        return null;
-    }
-
-    public final void d(Canvas canvas) {
-        Canvas canvas2;
-        f1 f1Var;
-        if (this.f43147x instanceof l) {
-            p1 p1Var = this.f43142f;
-            Paint paint = p1Var.f43251c;
-            ArrayList arrayList = p1Var.f43258m;
-            c1 c1Var = p1Var.f43249a;
-            if (c1Var != null && c1Var.getPainting() != null) {
-                iw0 iw0Var = c1Var.getPainting().f43267g;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    o1 o1Var = (o1) arrayList.get(i10);
-                    if (o1Var.f43246c && !o1Var.f43245b) {
-                        p1Var.b(canvas, iw0Var, o1Var);
+        EGLContext eGLContext = this.d;
+        if (eGLContext != null) {
+            if (jaVar != null) {
+                synchronized (jaVar.f27479f) {
+                    try {
+                        if (jaVar.f27480g == eGLContext) {
+                            jaVar.f27480g = null;
+                        }
+                    } finally {
                     }
                 }
-                f1 f1Var2 = p1Var.h;
-                if (f1Var2 != null && f1Var2.h != 0.0f) {
-                    canvas.save();
-                    canvas.rotate((float) (((-f1Var.h) / 3.141592653589793d) * 180.0d), (p1Var.h.f43178b / iw0Var.f25809a) * canvas.getWidth(), (p1Var.h.f43179c / iw0Var.f25810b) * canvas.getHeight());
+            }
+            this.f44500b.eglDestroyContext(this.f44501c, this.d);
+            this.d = null;
+        }
+        EGLDisplay eGLDisplay2 = this.f44501c;
+        if (eGLDisplay2 != null) {
+            this.f44500b.eglTerminate(eGLDisplay2);
+            this.f44501c = null;
+        }
+        if (jaVar != null) {
+            b1 b1Var = this.f44507x;
+            ArrayList arrayList = jaVar.e;
+            arrayList.remove(b1Var);
+            if (arrayList.isEmpty() && jaVar.d.isEmpty()) {
+                jaVar.f27486n.a();
+            }
+        }
+    }
+
+    @Override
+    public final void run() {
+        EGLContext eGLContext;
+        Bitmap bitmap;
+        e1 e1Var = this.f44508y;
+        Bitmap bitmap2 = e1Var.h;
+        if (bitmap2 != null && !bitmap2.isRecycled()) {
+            SurfaceTexture surfaceTexture = this.f44499a;
+            ja jaVar = this.v;
+            EGL10 egl10 = (EGL10) EGLContext.getEGL();
+            this.f44500b = egl10;
+            EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+            this.f44501c = eglGetDisplay;
+            int i10 = 0;
+            r6 = false;
+            r6 = false;
+            r6 = false;
+            r6 = false;
+            boolean z10 = false;
+            if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+                if (BuildVars.LOGS_ENABLED) {
+                    wh.v(this.f44500b, new StringBuilder("eglGetDisplay failed "));
                 }
-                f1 f1Var3 = p1Var.h;
-                if (f1Var3 != null && f1Var3.f43177a.o() == 4) {
-                    canvas2 = canvas;
-                    canvas2.drawLine(canvas.getWidth() * (p1Var.h.f43178b / iw0Var.f25809a), canvas.getHeight() * (p1Var.h.f43179c / iw0Var.f25810b), canvas.getWidth() * (p1Var.h.f43182i / iw0Var.f25809a), canvas.getHeight() * (p1Var.h.f43183j / iw0Var.f25810b), paint);
-                    canvas2.drawLine(canvas2.getWidth() * (p1Var.h.d / iw0Var.f25809a), canvas2.getHeight() * (p1Var.h.e / iw0Var.f25810b), canvas2.getWidth() * (p1Var.h.f43182i / iw0Var.f25809a), canvas2.getHeight() * (p1Var.h.f43183j / iw0Var.f25810b), paint);
+                finish();
+            } else {
+                if (!this.f44500b.eglInitialize(eglGetDisplay, new int[2])) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        wh.v(this.f44500b, new StringBuilder("eglInitialize failed "));
+                    }
+                    finish();
                 } else {
-                    canvas2 = canvas;
-                }
-                for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    o1 o1Var2 = (o1) arrayList.get(i11);
-                    if (o1Var2.f43246c && o1Var2.f43245b) {
-                        p1Var.b(canvas2, iw0Var, o1Var2);
+                    int[] iArr = new int[1];
+                    EGLConfig[] eGLConfigArr = new EGLConfig[1];
+                    if (!this.f44500b.eglChooseConfig(this.f44501c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
+                        if (BuildVars.LOGS_ENABLED) {
+                            wh.v(this.f44500b, new StringBuilder("eglChooseConfig failed "));
+                        }
+                        finish();
+                    } else {
+                        if (iArr[0] > 0) {
+                            EGLConfig eGLConfig = eGLConfigArr[0];
+                            int[] iArr2 = {12440, 2, 12344};
+                            if (jaVar != null) {
+                                synchronized (jaVar.f27479f) {
+                                    try {
+                                        eGLContext = jaVar.f27480g;
+                                        if (eGLContext == null) {
+                                            eGLContext = EGL10.EGL_NO_CONTEXT;
+                                        }
+                                    } finally {
+                                    }
+                                }
+                            } else {
+                                eGLContext = EGL10.EGL_NO_CONTEXT;
+                            }
+                            EGLContext eglCreateContext = this.f44500b.eglCreateContext(this.f44501c, eGLConfig, eGLContext, iArr2);
+                            this.d = eglCreateContext;
+                            if (eglCreateContext == null) {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    wh.v(this.f44500b, new StringBuilder("eglCreateContext failed "));
+                                }
+                                finish();
+                            } else {
+                                if (jaVar != null) {
+                                    jaVar.a(eglCreateContext);
+                                    jaVar.e.add(this.f44507x);
+                                }
+                                if (surfaceTexture != null) {
+                                    EGLSurface eglCreateWindowSurface = this.f44500b.eglCreateWindowSurface(this.f44501c, eGLConfig, surfaceTexture, null);
+                                    this.e = eglCreateWindowSurface;
+                                    if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
+                                        if (!this.f44500b.eglMakeCurrent(this.f44501c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
+                                            if (BuildVars.LOGS_ENABLED) {
+                                                wh.v(this.f44500b, new StringBuilder("eglMakeCurrent failed "));
+                                            }
+                                            finish();
+                                        } else {
+                                            GLES20.glEnable(3042);
+                                            GLES20.glDisable(3024);
+                                            GLES20.glDisable(2960);
+                                            GLES20.glDisable(2929);
+                                            s0 s0Var = e1Var.f44537c;
+                                            s0Var.getClass();
+                                            Map map = g1.f44551a;
+                                            HashMap hashMap = new HashMap();
+                                            for (Map.Entry entry : g1.f44551a.entrySet()) {
+                                                Map map2 = (Map) entry.getValue();
+                                                String str = (String) map2.get("fragment");
+                                                String[] strArr = (String[]) map2.get("attributes");
+                                                String[] strArr2 = (String[]) map2.get("uniforms");
+                                                ?? obj = new Object();
+                                                obj.f44548b = new HashMap();
+                                                obj.f44547a = GLES20.glCreateProgram();
+                                                b2.u0 b10 = f1.b(35633, (String) map2.get("vertex"));
+                                                int i11 = b10.f4056a;
+                                                if (b10.f4057b == 0) {
+                                                    if (BuildVars.LOGS_ENABLED) {
+                                                        FileLog.e("Vertex shader compilation failed");
+                                                    }
+                                                    f1.c(i11, i10, obj.f44547a);
+                                                } else {
+                                                    b2.u0 b11 = f1.b(35632, str);
+                                                    int i12 = b11.f4056a;
+                                                    if (b11.f4057b == 0) {
+                                                        if (BuildVars.LOGS_ENABLED) {
+                                                            FileLog.e("Fragment shader compilation failed");
+                                                        }
+                                                        f1.c(i11, i12, obj.f44547a);
+                                                    } else {
+                                                        GLES20.glAttachShader(obj.f44547a, i11);
+                                                        GLES20.glAttachShader(obj.f44547a, i12);
+                                                        for (int i13 = i10; i13 < strArr.length; i13++) {
+                                                            GLES20.glBindAttribLocation(obj.f44547a, i13, strArr[i13]);
+                                                        }
+                                                        int i14 = obj.f44547a;
+                                                        GLES20.glLinkProgram(i14);
+                                                        int[] iArr3 = new int[1];
+                                                        GLES20.glGetProgramiv(i14, 35714, iArr3, i10);
+                                                        if (iArr3[i10] == 0 && BuildVars.LOGS_ENABLED) {
+                                                            FileLog.e(GLES20.glGetProgramInfoLog(i14));
+                                                        }
+                                                        if (iArr3[i10] == 0) {
+                                                            f1.c(i11, i12, obj.f44547a);
+                                                        } else {
+                                                            int length = strArr2.length;
+                                                            for (int i15 = i10; i15 < length; i15++) {
+                                                                String str2 = strArr2[i15];
+                                                                obj.f44548b.put(str2, Integer.valueOf(GLES20.glGetUniformLocation(obj.f44547a, str2)));
+                                                            }
+                                                            if (i11 != 0) {
+                                                                GLES20.glDeleteShader(i11);
+                                                            }
+                                                            if (i12 != 0) {
+                                                                GLES20.glDeleteShader(i12);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                hashMap.put((String) entry.getKey(), obj);
+                                                i10 = 0;
+                                            }
+                                            s0Var.f44659r = DesugarCollections.unmodifiableMap(hashMap);
+                                            dw0 dw0Var = s0Var.f44649g;
+                                            if (e1Var.h.getWidth() != dw0Var.f25720a || e1Var.h.getHeight() != dw0Var.f25721b) {
+                                                Bitmap createBitmap = Bitmap.createBitmap((int) dw0Var.f25720a, (int) dw0Var.f25721b, Bitmap.Config.ARGB_8888);
+                                                new Canvas(createBitmap).drawBitmap(e1Var.h, (Rect) null, new RectF(0.0f, 0.0f, dw0Var.f25720a, dw0Var.f25721b), (Paint) null);
+                                                e1Var.h = createBitmap;
+                                                e1Var.f44540r = true;
+                                            }
+                                            if (e1Var.f44539n != null && (bitmap.getWidth() != dw0Var.f25720a || e1Var.f44539n.getHeight() != dw0Var.f25721b)) {
+                                                Bitmap createBitmap2 = Bitmap.createBitmap((int) dw0Var.f25720a, (int) dw0Var.f25721b, Bitmap.Config.ARGB_8888);
+                                                new Canvas(createBitmap2).drawBitmap(e1Var.f44539n, (Rect) null, new RectF(0.0f, 0.0f, dw0Var.f25720a, dw0Var.f25721b), (Paint) null);
+                                                e1Var.f44539n = createBitmap2;
+                                                e1Var.f44540r = true;
+                                            }
+                                            Bitmap bitmap3 = e1Var.h;
+                                            Bitmap bitmap4 = e1Var.f44539n;
+                                            if (s0Var.f44652k == null) {
+                                                s0Var.f44652k = new t1(bitmap3);
+                                            }
+                                            if (s0Var.D == null) {
+                                                s0Var.D = new t1(bitmap4);
+                                            }
+                                            if (s0Var.G && s0Var.f44653l == null) {
+                                                s0Var.f44653l = new t1(s0Var.A);
+                                            }
+                                            t6.a();
+                                            z10 = true;
+                                        }
+                                    } else {
+                                        if (BuildVars.LOGS_ENABLED) {
+                                            wh.v(this.f44500b, new StringBuilder("createWindowSurface failed "));
+                                        }
+                                        finish();
+                                    }
+                                } else {
+                                    finish();
+                                }
+                            }
+                        } else {
+                            if (BuildVars.LOGS_ENABLED) {
+                                FileLog.e("eglConfig not initialized");
+                            }
+                            finish();
+                        }
+                        z10 = false;
                     }
                 }
-                f1 f1Var4 = p1Var.h;
-                if (f1Var4 != null && f1Var4.h != 0.0f) {
-                    canvas2.restore();
-                }
             }
+            this.f44502f = z10;
+            super.run();
         }
-    }
-
-    public final void e(android.view.MotionEvent r33) {
-        throw new UnsupportedOperationException("Method not decompiled: qg.c1.e(android.view.MotionEvent):void");
-    }
-
-    public final void f(Runnable runnable) {
-        a1 a1Var = this.d;
-        if (a1Var == null) {
-            return;
-        }
-        a1Var.postRunnable(new org.telegram.ui.web.v(14, this, runnable));
-    }
-
-    public m getCurrentBrush() {
-        return this.f43147x;
-    }
-
-    public int getCurrentColor() {
-        return this.f43146w;
-    }
-
-    public float getCurrentWeight() {
-        return this.v;
-    }
-
-    public q0 getPainting() {
-        return this.f43141c;
-    }
-
-    public t1 getUndoStore() {
-        return this.f43140b;
-    }
-
-    public final void h() {
-        this.f43148y = true;
-        if (this.d != null) {
-            f(new w0(this, 1));
-        }
-        setVisibility(8);
-    }
-
-    public final void i() {
-        float f7;
-        if (this.d == null) {
-            return;
-        }
-        Matrix matrix = new Matrix();
-        float f10 = 1.0f;
-        q0 q0Var = this.f43141c;
-        if (q0Var != null) {
-            f7 = getWidth() / q0Var.f43267g.f25809a;
-        } else {
-            f7 = 1.0f;
-        }
-        if (f7 > 0.0f) {
-            f10 = f7;
-        }
-        iw0 iw0Var = getPainting().f43267g;
-        matrix.preTranslate(getWidth() / 2.0f, getHeight() / 2.0f);
-        matrix.preScale(f10, -f10);
-        matrix.preTranslate((-iw0Var.f25809a) / 2.0f, (-iw0Var.f25810b) / 2.0f);
-        if (this.f43147x instanceof l) {
-            p1 p1Var = this.f43142f;
-            p1Var.getClass();
-            Matrix matrix2 = new Matrix();
-            p1Var.f43260o = matrix2;
-            matrix.invert(matrix2);
-        } else {
-            d0 d0Var = this.e;
-            d0Var.getClass();
-            Matrix matrix3 = new Matrix();
-            d0Var.f43165t = matrix3;
-            matrix.invert(matrix3);
-        }
-        a1 a1Var = this.d;
-        q0Var.f43283y = q6.c(q6.b(a1Var.f43126n, a1Var.f43127r), q6.a(matrix));
-    }
-
-    public void setBrush(m mVar) {
-        boolean z10 = this.f43147x instanceof l;
-        p1 p1Var = this.f43142f;
-        if (z10) {
-            p1Var.e();
-        }
-        this.f43147x = mVar;
-        i();
-        this.f43141c.q(this.f43147x);
-        m mVar2 = this.f43147x;
-        if (mVar2 instanceof l) {
-            int o10 = ((l) mVar2).o();
-            ArrayList arrayList = p1Var.f43259n;
-            ArrayList arrayList2 = p1Var.f43258m;
-            c1 c1Var = p1Var.f43249a;
-            if (c1Var != null && c1Var.getPainting() != null) {
-                arrayList2.clear();
-                arrayList.clear();
-                p1Var.h = new f1(l.p(o10));
-                iw0 iw0Var = c1Var.getPainting().f43267g;
-                f1 f1Var = p1Var.h;
-                float f7 = iw0Var.f25809a;
-                f1Var.f43178b = f7 / 2.0f;
-                float f10 = iw0Var.f25810b;
-                f1Var.f43179c = f10 / 2.0f;
-                float min = Math.min(f7, f10) / 5.0f;
-                f1Var.e = min;
-                f1Var.d = min;
-                p1Var.h.f43180f = c1Var.getCurrentWeight();
-                p1Var.h.f43181g = AndroidUtilities.dp(32.0f);
-                p1Var.h.f43185l = s0.e(UserConfig.selectedAccount).f43314k;
-                if (p1Var.h.f43177a.o() == 4) {
-                    f1 f1Var2 = p1Var.h;
-                    float f11 = iw0Var.f25809a / 2.0f;
-                    f1Var2.d = f11;
-                    f1Var2.f43178b = f11;
-                    f1Var2.f43182i = f11 + 1.0f;
-                    float f12 = iw0Var.f25810b;
-                    float f13 = f12 / 3.0f;
-                    float f14 = 1.0f * f13;
-                    f1Var2.f43179c = f14;
-                    float f15 = f12 / 2.0f;
-                    f1Var2.f43183j = f15;
-                    f1Var2.e = f13 * 2.0f;
-                    f1Var2.f43184k = Math.abs(f14 - f15);
-                    l1 l1Var = new l1(p1Var, 0);
-                    arrayList2.add(l1Var);
-                    m1 m1Var = new m1(p1Var, l1Var, 0);
-                    arrayList2.add(m1Var);
-                    arrayList.add(m1Var);
-                    m1 m1Var2 = new m1(p1Var, l1Var, 1);
-                    arrayList2.add(m1Var2);
-                    arrayList.add(m1Var2);
-                }
-                if (p1Var.h.f43177a.o() == 0) {
-                    arrayList2.add(new l1(p1Var, 1));
-                }
-                if (p1Var.h.f43177a.o() == 2) {
-                    arrayList2.add(new l1(p1Var, 2));
-                }
-                if (p1Var.h.f43177a.o() == 1 || p1Var.h.f43177a.o() == 3) {
-                    arrayList2.add(new n1(p1Var, p1Var.h, false, false));
-                    arrayList2.add(new n1(p1Var, p1Var.h, true, false));
-                    arrayList2.add(new n1(p1Var, p1Var.h, false, true));
-                    arrayList2.add(new n1(p1Var, p1Var.h, true, true));
-                    arrayList2.add(new l1(p1Var, 3, false));
-                }
-                if (p1Var.h.f43177a.o() == 3) {
-                    f1 f1Var3 = p1Var.h;
-                    f1Var3.f43182i = (f1Var3.d * 0.8f) + f1Var3.f43178b;
-                    f1Var3.f43183j = (f1Var3.e * 1.2f) + f1Var3.f43179c + f1Var3.f43180f;
-                    l1 l1Var2 = new l1(p1Var, 4);
-                    arrayList2.add(l1Var2);
-                    l1Var2.f43245b = false;
-                    arrayList.add(l1Var2);
-                }
-                p1Var.f43257l = new l1(p1Var, 5, false);
-                if (p1Var.h.f43177a.o() != 4) {
-                    p1Var.f43257l.f43246c = false;
-                }
-                l1 l1Var3 = p1Var.f43257l;
-                l1Var3.f43245b = false;
-                arrayList.add(l1Var3);
-                arrayList2.add(p1Var.f43257l);
-                c1Var.getPainting().k(p1Var.h);
-            }
-        }
-    }
-
-    public void setBrushSize(float f7) {
-        float f10 = this.f43141c.f43267g.f25809a;
-        this.v = k3.t(f10, 0.043945312f, f7, 0.00390625f * f10);
-        if (this.f43147x instanceof l) {
-            p1 p1Var = this.f43142f;
-            c1 c1Var = p1Var.f43249a;
-            f1 f1Var = p1Var.h;
-            if (f1Var != null && f1Var.f43180f != c1Var.getCurrentWeight()) {
-                p1Var.h.f43180f = c1Var.getCurrentWeight();
-                c1Var.getPainting().k(p1Var.h);
-            }
-        }
-    }
-
-    public void setColor(int i10) {
-        this.f43146w = i10;
-        if (this.f43147x instanceof l) {
-            p1 p1Var = this.f43142f;
-            if (p1Var.h != null) {
-                p1Var.f43249a.getPainting().k(p1Var.h);
-            }
-        }
-    }
-
-    public void setDelegate(b1 b1Var) {
-        this.f43139a = b1Var;
-    }
-
-    public void setUndoStore(t1 t1Var) {
-        this.f43140b = t1Var;
-    }
-
-    public void g(m mVar) {
-    }
-
-    public void setQueue(DispatchQueue dispatchQueue) {
     }
 }

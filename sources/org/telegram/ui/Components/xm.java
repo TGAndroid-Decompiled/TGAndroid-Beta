@@ -1,33 +1,18 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class xm {
-    public final ArrayList f30948a = new ArrayList();
-    public final HashMap f30949b = new HashMap();
-    public int f30950c;
-    public int d;
-    public int e;
-    public float f30951f;
-    public final ArrayList f30952g;
-    public final en h;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class xm extends AnimatorListenerAdapter {
+    public final ym f32417a;
 
-    public xm(en enVar, ArrayList arrayList) {
-        this.h = enVar;
-        this.f30952g = arrayList;
-        a();
+    public xm(ym ymVar) {
+        this.f32417a = ymVar;
     }
 
-    public static float b(float[] fArr, int i10, int i11) {
-        float f7 = 0.0f;
-        while (i10 < i11) {
-            f7 += fArr[i10];
-            i10++;
-        }
-        return 1000.0f / f7;
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xm.a():void");
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        ym ymVar = this.f32417a;
+        ymVar.f32680b.isChatPreviewSpoilerRevealed = true;
+        ymVar.O.f32968z.invalidate();
     }
 }

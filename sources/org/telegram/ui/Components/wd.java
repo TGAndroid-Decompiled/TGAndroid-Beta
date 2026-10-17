@@ -1,25 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-public final class wd implements InputFilter {
+import android.view.View;
+public final class wd implements View.OnLongClickListener {
+    public final int f32106a;
+    public final ChatActivityEnterView f32107b;
+
+    public wd(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f32106a = i10;
+        this.f32107b = chatActivityEnterView;
+    }
+
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        int i14 = ChatActivityEnterView.f22549n5;
-        for (int i15 = i10; i15 < i11; i15++) {
-            char charAt = charSequence.charAt(i15);
-            if (charAt == '\n' || charAt == '\r') {
-                StringBuilder sb2 = new StringBuilder(i11 - i10);
-                while (i10 < i11) {
-                    char charAt2 = charSequence.charAt(i10);
-                    if (charAt2 != '\n' && charAt2 != '\r') {
-                        sb2.append(charAt2);
-                    }
-                    i10++;
+    public final boolean onLongClick(View view) {
+        int i10 = this.f32106a;
+        ChatActivityEnterView chatActivityEnterView = this.f32107b;
+        switch (i10) {
+            case 0:
+                int i11 = ChatActivityEnterView.f23904n5;
+                return chatActivityEnterView.D0(view);
+            default:
+                pf pfVar = chatActivityEnterView.E0;
+                if (pfVar != null && pfVar.length() > 0) {
+                    return chatActivityEnterView.D0(view);
                 }
-                return sb2;
-            }
+                return false;
         }
-        return null;
     }
 }

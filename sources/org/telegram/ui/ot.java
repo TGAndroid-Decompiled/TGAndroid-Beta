@@ -1,22 +1,64 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.view.ViewGroup;
-public final class ot extends org.telegram.ui.ActionBar.m1 {
-    public final tt f38746o;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Timer;
+import org.telegram.messenger.Emoji;
+public final class ot extends org.telegram.ui.Components.hm0 {
+    public final Context f39882c;
+    public Timer d;
+    public ArrayList e;
+    public final ArrayList f39883f = new ArrayList();
+    public final qt h;
 
-    public ot(tt ttVar, ViewGroup viewGroup) {
-        super(viewGroup, -2, -2);
-        this.f38746o = ttVar;
+    public ot(qt qtVar, Context context, HashMap hashMap) {
+        this.h = qtVar;
+        this.f39882c = context;
+        for (List<kt> list : hashMap.values()) {
+            for (kt ktVar : list) {
+                this.f39883f.add(ktVar);
+            }
+        }
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        xt xtVar = this.f38746o.f40207a;
-        xtVar.f41646k = null;
-        xtVar.K = false;
-        if (xtVar.R) {
-            xtVar.n();
+    public final boolean D(s4.b1 b1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        ArrayList arrayList = this.e;
+        if (arrayList == null) {
+            return 0;
         }
+        return arrayList.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        String str;
+        kt ktVar = (kt) this.e.get(i10);
+        org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45938a;
+        CharSequence replaceEmoji = Emoji.replaceEmoji(qt.V(ktVar), baVar.getTextView().getPaint().getFontMetricsInt(), false);
+        if (this.h.h) {
+            str = "+" + ktVar.f38679c;
+        } else {
+            str = null;
+        }
+        baVar.c(replaceEmoji, str, false, false);
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        return new s4.b1(qt.U(this.f39882c));
     }
 }

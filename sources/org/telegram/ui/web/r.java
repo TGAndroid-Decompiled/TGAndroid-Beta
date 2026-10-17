@@ -1,38 +1,38 @@
 package org.telegram.ui.web;
 
-import bi.n9;
+import ci.z7;
 import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
 public final class r implements Utilities.Callback {
-    public final int f41164a;
-    public final c1 f41165b;
-    public final n9 f41166c;
+    public final int f42716a;
+    public final a1 f42717b;
+    public final z7 f42718c;
 
-    public r(c1 c1Var, n9 n9Var, int i10) {
-        this.f41164a = i10;
-        this.f41165b = c1Var;
-        this.f41166c = n9Var;
+    public r(a1 a1Var, z7 z7Var, int i10) {
+        this.f42716a = i10;
+        this.f42717b = a1Var;
+        this.f42718c = z7Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f41164a) {
+        switch (this.f42716a) {
             case 0:
-                this.f41165b.x(this.f41166c, "location_requested", (JSONObject) obj);
+                this.f42717b.x(this.f42718c, "location_requested", (JSONObject) obj);
                 return;
             case 1:
-                this.f41165b.x(this.f41166c, "location_requested", (JSONObject) obj);
+                this.f42717b.x(this.f42718c, "location_requested", (JSONObject) obj);
                 return;
             default:
-                c1 c1Var = this.f41165b;
-                c1Var.getClass();
+                a1 a1Var = this.f42717b;
+                a1Var.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                n9 n9Var = this.f41166c;
+                z7 z7Var = this.f42718c;
                 if (booleanValue) {
-                    c1Var.x(n9Var, "home_screen_added", null);
+                    a1Var.x(z7Var, "home_screen_added", null);
                     return;
                 } else {
-                    c1Var.x(n9Var, "home_screen_failed", c1.A("UNSUPPORTED", "error"));
+                    a1Var.x(z7Var, "home_screen_failed", a1.A("UNSUPPORTED", "error"));
                     return;
                 }
         }

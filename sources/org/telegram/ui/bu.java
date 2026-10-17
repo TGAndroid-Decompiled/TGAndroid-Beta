@@ -1,62 +1,156 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.TLRPC;
-public final class bu implements Comparator {
-    public final int f34386a;
-    public final Object f34387b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.SharedConfig;
+public final class bu extends org.telegram.ui.Components.hm0 {
+    public final Context f35742c;
+    public final DataSettingsActivity d;
 
-    public bu(Object obj, int i10) {
-        this.f34386a = i10;
-        this.f34387b = obj;
+    public bu(DataSettingsActivity dataSettingsActivity, Context context) {
+        this.d = dataSettingsActivity;
+        this.f35742c = context;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f34386a) {
-            case 0:
-                return ((Comparator) this.f34387b).compare(((au) obj).f34084a, ((au) obj2).f34084a);
-            case 1:
-                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f34387b;
-                int i10 = longSparseIntArray.get(((Long) obj).longValue());
-                int i11 = longSparseIntArray.get(((Long) obj2).longValue());
-                if (i10 > i11) {
-                    return 1;
-                }
-                if (i10 < i11) {
-                    return -1;
-                }
-                return 0;
-            case 2:
-                LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) this.f34387b;
-                LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) obj;
-                LocaleController.LocaleInfo localeInfo3 = (LocaleController.LocaleInfo) obj2;
-                if (localeInfo2 != localeInfo) {
-                    if (localeInfo3 != localeInfo) {
-                        int i12 = localeInfo2.serverIndex;
-                        int i13 = localeInfo3.serverIndex;
-                        if (i12 == i13) {
-                            return localeInfo2.name.compareTo(localeInfo3.name);
-                        }
-                        if (i12 <= i13) {
-                            if (i12 >= i13) {
-                                return 0;
+    public final boolean D(s4.b1 b1Var) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int b10 = b1Var.b();
+        DataSettingsActivity dataSettingsActivity = this.d;
+        if (b10 != dataSettingsActivity.e && b10 != dataSettingsActivity.f33111f && b10 != dataSettingsActivity.h && b10 != dataSettingsActivity.f33114s) {
+            i10 = dataSettingsActivity.useLessDataForCallsRow;
+            if (b10 != i10 && b10 != dataSettingsActivity.v) {
+                i11 = dataSettingsActivity.proxyRow;
+                if (b10 != i11) {
+                    i12 = dataSettingsActivity.clearDraftsRow;
+                    if (b10 != i12 && b10 != dataSettingsActivity.E && b10 != dataSettingsActivity.f33117y && b10 != dataSettingsActivity.F && b10 != dataSettingsActivity.G && b10 != dataSettingsActivity.N && b10 != dataSettingsActivity.K && b10 != dataSettingsActivity.J && b10 != dataSettingsActivity.f33112n) {
+                        i13 = dataSettingsActivity.saveToGalleryGroupsRow;
+                        if (b10 != i13) {
+                            i14 = dataSettingsActivity.saveToGalleryPeerRow;
+                            if (b10 != i14) {
+                                i15 = dataSettingsActivity.saveToGalleryChannelsRow;
+                                if (b10 != i15) {
+                                    i16 = dataSettingsActivity.resetDownloadRow;
+                                    if (b10 != i16) {
+                                        return false;
+                                    }
+                                }
                             }
                         }
                     }
-                    return 1;
                 }
-                return -1;
-            default:
-                StickersActivity stickersActivity = (StickersActivity) this.f34387b;
-                int indexOf = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj);
-                int indexOf2 = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj2);
-                if (indexOf >= 0 && indexOf2 >= 0) {
-                    return indexOf - indexOf2;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.U;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        DataSettingsActivity dataSettingsActivity = this.d;
+        if (i10 != dataSettingsActivity.f33113r && i10 != dataSettingsActivity.f33115w && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.R && i10 != dataSettingsActivity.T) {
+            if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f33116x && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.S) {
+                if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.f33117y && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
+                    if (i10 == dataSettingsActivity.H) {
+                        return 4;
+                    }
+                    if (i10 != dataSettingsActivity.e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f33111f) {
+                        i11 = dataSettingsActivity.saveToGalleryGroupsRow;
+                        if (i10 != i11) {
+                            i12 = dataSettingsActivity.saveToGalleryPeerRow;
+                            if (i10 != i12) {
+                                i13 = dataSettingsActivity.saveToGalleryChannelsRow;
+                                if (i10 != i13) {
+                                    if (i10 != dataSettingsActivity.f33114s && i10 != dataSettingsActivity.v && i10 != dataSettingsActivity.f33112n) {
+                                        return 1;
+                                    }
+                                    return 6;
+                                }
+                                return 5;
+                            }
+                            return 5;
+                        }
+                        return 5;
+                    }
+                    return 5;
                 }
-                return 0;
+                return 3;
+            }
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 r28, int r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bu.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View z6Var;
+        Context context = this.f35742c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            if (i10 != 5) {
+                                z6Var = new org.telegram.ui.Cells.q8(context);
+                            } else {
+                                z6Var = new org.telegram.ui.Cells.i5(context);
+                            }
+                        } else {
+                            z6Var = new org.telegram.ui.Cells.d9(context);
+                        }
+                    } else {
+                        z6Var = new org.telegram.ui.Cells.v8(context);
+                    }
+                } else {
+                    z6Var = new org.telegram.ui.Cells.l4(context, 22);
+                }
+            } else {
+                z6Var = new org.telegram.ui.Cells.ba(context);
+            }
+        } else {
+            z6Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.t0) null);
+        }
+        return com.google.android.gms.internal.cast.a6.l(z6Var, z6Var, -1, -2);
+    }
+
+    @Override
+    public final void y(s4.b1 b1Var) {
+        if (b1Var.f45941f == 3) {
+            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) b1Var.f45938a;
+            int b10 = b1Var.b();
+            DataSettingsActivity dataSettingsActivity = this.d;
+            if (b10 == dataSettingsActivity.E) {
+                v8Var.setChecked(SharedConfig.saveStreamMedia);
+            } else if (b10 == dataSettingsActivity.f33117y) {
+                v8Var.setChecked(SharedConfig.streamMedia);
+            } else if (b10 == dataSettingsActivity.F) {
+                v8Var.setChecked(SharedConfig.streamAllVideo);
+            } else if (b10 == dataSettingsActivity.G) {
+                v8Var.setChecked(SharedConfig.streamMkv);
+            } else if (b10 == dataSettingsActivity.J) {
+                v8Var.setChecked(SharedConfig.isAutoplayGifs());
+            } else if (b10 == dataSettingsActivity.K) {
+                v8Var.setChecked(SharedConfig.isAutoplayVideo());
+            }
         }
     }
 }

@@ -1,66 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public final class qx extends f61 {
-    public final wz f28374b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class qx extends FrameLayout {
+    public final tz f29774a;
 
-    public qx(wz wzVar) {
-        this.f28374b = wzVar;
+    public qx(tz tzVar, Context context) {
+        super(context);
+        this.f29774a = tzVar;
     }
 
     @Override
-    public final boolean a() {
-        return this.f28374b.f30760t1.b();
-    }
-
-    @Override
-    public final String[] b() {
-        return this.f28374b.W0;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f28374b.f30760t1.c();
-    }
-
-    @Override
-    public final boolean d(y51 y51Var, MotionEvent motionEvent) {
-        org.telegram.ui.xt q6 = org.telegram.ui.xt.q();
-        wz wzVar = this.f28374b;
-        wzVar.getMeasuredHeight();
-        return q6.r(motionEvent, y51Var, wzVar.f30721g2, wzVar.Z1);
-    }
-
-    @Override
-    public final boolean e(y51 y51Var, j jVar, MotionEvent motionEvent) {
-        org.telegram.ui.xt q6 = org.telegram.ui.xt.q();
-        wz wzVar = this.f28374b;
-        wzVar.getMeasuredHeight();
-        return q6.s(motionEvent, y51Var, jVar, wzVar.f30721g2, wzVar.Z1);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
-        this.f28374b.f30760t1.m(null, document, null, obj, null, z10, i10);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        wz wzVar = this.f28374b;
-        wzVar.f30760t1.r(stickerSetCovered);
-        if (z10) {
-            wzVar.X(true);
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        tz tzVar = this.f29774a;
+        vx vxVar = tzVar.I;
+        rw rwVar = tzVar.V;
+        ey eyVar = tzVar.P;
+        if (view != eyVar && view != rwVar) {
+            return super.drawChild(canvas, view, j10);
         }
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f28374b.f30760t1.h(stickerSetCovered);
-    }
-
-    @Override
-    public final void i(String[] strArr) {
-        this.f28374b.W0 = strArr;
+        canvas.save();
+        float y3 = vxVar.getY() + vxVar.getMeasuredHeight() + 1.0f;
+        if (view == eyVar && rwVar != null) {
+            y3 = Math.max(y3, rwVar.getY() + rwVar.getMeasuredHeight() + 1.0f);
+        }
+        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * tzVar.f30741b.e), getMeasuredWidth(), getMeasuredHeight());
+        boolean drawChild = super.drawChild(canvas, view, j10);
+        canvas.restore();
+        return drawChild;
     }
 }

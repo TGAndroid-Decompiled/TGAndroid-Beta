@@ -5,23 +5,23 @@ import be.d2;
 import be.f0;
 import be.m0;
 import be.x0;
-import com.google.android.gms.internal.play_billing.k3;
+import com.google.android.gms.internal.cast.a6;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class h extends m0 implements md.d, kd.c {
-    public static final AtomicReferenceFieldUpdater f10119n = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "_reusableCancellableContinuation$volatile");
+    public static final AtomicReferenceFieldUpdater f11023n = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "_reusableCancellableContinuation$volatile");
     private volatile Object _reusableCancellableContinuation$volatile;
     public final a0 d;
     public final md.c e;
-    public Object f10120f;
+    public Object f11024f;
     public final Object h;
 
     public h(a0 a0Var, md.c cVar) {
         super(-1);
         this.d = a0Var;
         this.e = cVar;
-        this.f10120f = a.f10110c;
-        Object fold = cVar.getContext().fold(0, w.f10139c);
+        this.f11024f = a.f11014c;
+        Object fold = cVar.getContext().fold(0, w.f11043c);
         kotlin.jvm.internal.i.b(fold);
         this.h = fold;
     }
@@ -37,7 +37,7 @@ public final class h extends m0 implements md.d, kd.c {
     @Override
     public final md.d getCallerFrame() {
         md.c cVar = this.e;
-        if (k3.s(cVar)) {
+        if (a6.s(cVar)) {
             return cVar;
         }
         return null;
@@ -50,8 +50,8 @@ public final class h extends m0 implements md.d, kd.c {
 
     @Override
     public final Object j() {
-        Object obj = this.f10120f;
-        this.f10120f = a.f10110c;
+        Object obj = this.f11024f;
+        this.f11024f = a.f11014c;
         return obj;
     }
 
@@ -68,15 +68,15 @@ public final class h extends m0 implements md.d, kd.c {
         }
         a0 a0Var = this.d;
         if (a0Var.d()) {
-            this.f10120f = vVar;
-            this.f2690c = 0;
+            this.f11024f = vVar;
+            this.f4302c = 0;
             a0Var.c(context, this);
             return;
         }
         x0 a10 = d2.a();
-        if (a10.f2728c >= 4294967296L) {
-            this.f10120f = vVar;
-            this.f2690c = 0;
+        if (a10.f4340c >= 4294967296L) {
+            this.f11024f = vVar;
+            this.f4302c = 0;
             jd.e eVar = a10.e;
             if (eVar == null) {
                 eVar = new jd.e();

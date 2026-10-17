@@ -1,32 +1,22 @@
 package ri;
-
-import android.hardware.camera2.CameraCharacteristics;
-import android.util.Range;
-import android.util.Size;
 public final class i {
-    public final String f44533a;
-    public final k0 f44534b;
-    public final CameraCharacteristics f44535c;
-    public final Size d;
-    public final Size e;
-    public final int f44536f;
-    public final l0 f44537g;
-    public final m0 h;
-    public final Range f44538i;
-    public final j6.l f44539j;
-    public final float f44540k;
+    public static final i f45833a;
+    public static final i f45834b;
+    public static final i[] f45835c;
 
-    public i(String str, k0 k0Var, CameraCharacteristics cameraCharacteristics, Size size, Size size2, int i10, l0 l0Var, m0 m0Var, Range range, j6.l lVar, float f7) {
-        this.f44533a = str;
-        this.f44534b = k0Var;
-        this.f44535c = cameraCharacteristics;
-        this.d = size;
-        this.e = size2;
-        this.f44536f = i10;
-        this.f44537g = l0Var;
-        this.h = m0Var;
-        this.f44538i = range;
-        this.f44539j = lVar;
-        this.f44540k = f7;
+    static {
+        ?? r02 = new Enum("DISABLED", 0);
+        f45833a = r02;
+        ?? r12 = new Enum("RNNOISE", 1);
+        f45834b = r12;
+        f45835c = new i[]{r02, r12};
+    }
+
+    public static i valueOf(String str) {
+        return (i) Enum.valueOf(i.class, str);
+    }
+
+    public static i[] values() {
+        return (i[]) f45835c.clone();
     }
 }

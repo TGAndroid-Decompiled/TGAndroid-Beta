@@ -8,19 +8,19 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import b2.f;
-import b2.x;
+import b2.w;
 import c2.i;
 import e2.m0;
 import e9.l0;
 import e9.n0;
 import e9.x1;
-import i2.f0;
+import i2.e0;
 import j$.util.Objects;
 import java.util.List;
 public final class d {
-    public final Spatializer f49247a;
-    public final boolean f49248b;
-    public final Handler f49249c;
+    public final Spatializer f50653a;
+    public final boolean f50654b;
+    public final Handler f50655c;
     public final c d;
 
     public d(Context context, Runnable runnable, Boolean bool) {
@@ -32,29 +32,29 @@ public final class d {
         }
         if (e != null && (bool == null || !bool.booleanValue())) {
             Spatializer spatializer = e.getSpatializer();
-            this.f49247a = spatializer;
-            this.f49248b = spatializer.getImmersiveAudioLevel() != 0;
+            this.f50653a = spatializer;
+            this.f50654b = spatializer.getImmersiveAudioLevel() != 0;
             Looper myLooper = Looper.myLooper();
             myLooper.getClass();
             Handler handler = new Handler(myLooper);
-            this.f49249c = handler;
+            this.f50655c = handler;
             c cVar = new c(runnable);
             this.d = cVar;
-            spatializer.addOnSpatializerStateChangedListener(new f0(handler, 1), cVar);
+            spatializer.addOnSpatializerStateChangedListener(new e0(handler, 1), cVar);
             return;
         }
-        this.f49247a = null;
-        this.f49248b = false;
-        this.f49249c = null;
+        this.f50653a = null;
+        this.f50654b = false;
+        this.f50655c = null;
         this.d = null;
     }
 
-    public final boolean a(f fVar, x xVar) {
-        if (this.f49247a == null || !this.f49248b || !c() || !d()) {
+    public final boolean a(f fVar, w wVar) {
+        if (this.f50653a == null || !this.f50654b || !c() || !d()) {
             return false;
         }
-        String str = xVar.f2523s;
-        int i10 = xVar.K;
+        String str = wVar.f4131s;
+        int i10 = wVar.K;
         if (Objects.equals(str, "audio/eac3-joc")) {
             if (i10 == 16) {
                 i10 = 12;
@@ -71,30 +71,30 @@ public final class d {
             return false;
         }
         AudioFormat.Builder channelMask = new AudioFormat.Builder().setEncoding(2).setChannelMask(t10);
-        int i11 = xVar.L;
+        int i11 = wVar.L;
         if (i11 != -1) {
             channelMask.setSampleRate(i11);
         }
-        Spatializer spatializer = this.f49247a;
+        Spatializer spatializer = this.f50653a;
         spatializer.getClass();
         return spatializer.canBeSpatialized(fVar.b(), channelMask.build());
     }
 
     public final List b() {
-        if (this.f49247a != null && this.f49248b && c() && d()) {
+        if (this.f50653a != null && this.f50654b && c() && d()) {
             if (Build.VERSION.SDK_INT >= 36) {
-                Spatializer spatializer = this.f49247a;
+                Spatializer spatializer = this.f50653a;
                 spatializer.getClass();
                 return spatializer.getSpatializedChannelMasks();
             }
             return n0.y(252);
         }
-        l0 l0Var = n0.f8595b;
+        l0 l0Var = n0.f8476b;
         return x1.e;
     }
 
     public final boolean c() {
-        Spatializer spatializer = this.f49247a;
+        Spatializer spatializer = this.f50653a;
         if (spatializer != null && spatializer.isAvailable()) {
             return true;
         }
@@ -102,7 +102,7 @@ public final class d {
     }
 
     public final boolean d() {
-        Spatializer spatializer = this.f49247a;
+        Spatializer spatializer = this.f50653a;
         if (spatializer != null && spatializer.isEnabled()) {
             return true;
         }
@@ -112,8 +112,8 @@ public final class d {
     public final void e() {
         c cVar;
         Handler handler;
-        Spatializer spatializer = this.f49247a;
-        if (spatializer != null && (cVar = this.d) != null && (handler = this.f49249c) != null) {
+        Spatializer spatializer = this.f50653a;
+        if (spatializer != null && (cVar = this.d) != null && (handler = this.f50655c) != null) {
             spatializer.removeOnSpatializerStateChangedListener(cVar);
             handler.removeCallbacksAndMessages(null);
         }

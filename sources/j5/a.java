@@ -6,29 +6,29 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
-import l5.k;
+import l5.l;
 import v7.n8;
-public final class a implements k {
-    public static final String f12840c;
+public final class a implements l {
+    public static final String f14245c;
     public static final Set d;
     public static final a e;
-    public static final a f12841f;
-    public final String f12842a;
-    public final String f12843b;
+    public static final a f14246f;
+    public final String f14247a;
+    public final String f14248b;
 
     static {
         String a2 = n8.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
-        f12840c = a2;
+        f14245c = a2;
         String a10 = n8.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
         String a11 = n8.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
         d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new i5.c("proto"), new i5.c("json"))));
         e = new a(a2, null);
-        f12841f = new a(a10, a11);
+        f14246f = new a(a10, a11);
     }
 
     public a(String str, String str2) {
-        this.f12842a = str;
-        this.f12843b = str2;
+        this.f14247a = str;
+        this.f14248b = str2;
     }
 
     public static a a(byte[] bArr) {

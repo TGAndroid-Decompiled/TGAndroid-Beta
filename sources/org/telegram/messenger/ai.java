@@ -1,35 +1,29 @@
 package org.telegram.messenger;
 
-import android.view.View;
-import org.telegram.messenger.RichMessageLayout;
+import org.telegram.tgnet.TLRPC;
 public final class ai implements Runnable {
-    public final int f16491a = 0;
-    public final RichMessageLayout.Text f16492b;
-    public final RichMessageLayout f16493c;
-    public final View d;
+    public final int f17874a;
+    public final SecretChatHelper f17875b;
+    public final TLRPC.EncryptedChat f17876c;
 
-    public ai(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
-        this.f16492b = text;
-        this.d = view;
-        this.f16493c = richMessageLayout;
+    public ai(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
+        this.f17874a = i10;
+        this.f17875b = secretChatHelper;
+        this.f17876c = encryptedChat;
     }
 
     @Override
     public final void run() {
-        switch (this.f16491a) {
+        switch (this.f17874a) {
             case 0:
-                RichMessageLayout.Text.c(this.f16492b, this.d, this.f16493c);
+                this.f17875b.lambda$processAcceptedSecretChat$18(this.f17876c);
+                return;
+            case 1:
+                this.f17875b.lambda$acceptSecretChat$21(this.f17876c);
                 return;
             default:
-                RichMessageLayout richMessageLayout = this.f16493c;
-                RichMessageLayout.Text.a(this.f16492b, this.d, richMessageLayout);
+                this.f17875b.lambda$applyPeerLayer$9(this.f17876c);
                 return;
         }
-    }
-
-    public ai(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
-        this.f16492b = text;
-        this.f16493c = richMessageLayout;
-        this.d = view;
     }
 }

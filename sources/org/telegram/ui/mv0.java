@@ -1,16 +1,16 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class mv0 {
-    public final int f38075a;
-    public final ArrayList f38076b;
-    public final hv0 f38077c;
-    public final PhotoViewer d;
+import android.view.View;
+public final class mv0 implements View.OnClickListener {
+    public final org.telegram.ui.Components.i80 f39254a;
 
-    public mv0(PhotoViewer photoViewer, int i10, ArrayList arrayList, hv0 hv0Var) {
-        this.d = photoViewer;
-        this.f38076b = arrayList;
-        this.f38075a = i10;
-        this.f38077c = hv0Var;
+    public mv0(org.telegram.ui.Components.i80 i80Var) {
+        this.f39254a = i80Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        org.telegram.ui.Components.qc.e();
+        this.f39254a.s();
     }
 }

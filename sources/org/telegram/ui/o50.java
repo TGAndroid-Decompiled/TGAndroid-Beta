@@ -1,118 +1,84 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class o50 extends s4.o {
-    public final n60 f38550b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class o50 extends Drawable {
+    public long f39656b;
+    public int d;
+    public final View e;
+    public final Paint f39655a = new Paint(1);
+    public float f39657c = 1.0f;
 
-    public o50(n60 n60Var) {
-        this.f38550b = n60Var;
+    public o50(View view) {
+        this.e = view;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return true;
+    public final void draw(Canvas canvas) {
+        int dp;
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        View view = this.e;
+        if (view instanceof org.telegram.ui.ActionBar.j5) {
+            dp = AndroidUtilities.dp(1.0f) + centerY;
+            centerX -= AndroidUtilities.dp(3.0f);
+        } else {
+            dp = AndroidUtilities.dp(2.0f) + centerY;
+        }
+        Paint paint = this.f39655a;
+        paint.setColor(-1147527);
+        paint.setAlpha((int) (this.f39657c * 255.0f));
+        canvas.drawCircle(centerX, dp, AndroidUtilities.dp(4.0f), paint);
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j10 = elapsedRealtime - this.f39656b;
+        if (j10 > 17) {
+            j10 = 17;
+        }
+        this.f39656b = elapsedRealtime;
+        int i10 = this.d;
+        if (i10 == 0) {
+            float f7 = (((float) j10) / 2000.0f) + this.f39657c;
+            this.f39657c = f7;
+            if (f7 >= 1.0f) {
+                this.f39657c = 1.0f;
+                this.d = 1;
+            }
+        } else if (i10 == 1) {
+            float f10 = this.f39657c - (((float) j10) / 2000.0f);
+            this.f39657c = f10;
+            if (f10 < 0.5f) {
+                this.f39657c = 0.5f;
+                this.d = 0;
+            }
+        }
+        view.invalidate();
     }
 
     @Override
-    public final boolean b(int i10, int i11) {
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        n60 n60Var = this.f38550b;
-        h60 h60Var = n60Var.P;
-        int i17 = h60Var.f36415w;
-        if (i17 >= 0) {
-            int i18 = n60Var.f38189h3;
-            if (i10 == i18 && i11 == i17) {
-                return true;
-            }
-            if ((i10 == i18 && i11 != i17) || (i10 != i18 && i11 == i17)) {
-                return false;
-            }
-        }
-        int i19 = h60Var.f36416x;
-        if (i19 >= 0) {
-            int i20 = n60Var.f38242u3;
-            if (i10 == i20 && i11 == i19) {
-                return true;
-            }
-            if ((i10 == i20 && i11 != i19) || (i10 != i20 && i11 == i19)) {
-                return false;
-            }
-        }
-        int i21 = h60Var.f36417y;
-        if (i21 >= 0) {
-            int i22 = n60Var.f38246v3;
-            if (i10 == i22 && i11 == i21) {
-                return true;
-            }
-            if ((i10 == i22 && i11 != i21) || (i10 != i22 && i11 == i21)) {
-                return false;
-            }
-        }
-        int i23 = h60Var.K;
-        if (i23 >= 0) {
-            int i24 = n60Var.f38185g3;
-            if (i10 == i24 && i11 == i23) {
-                return true;
-            }
-            if ((i10 == i24 && i11 != i23) || (i10 != i24 && i11 == i23)) {
-                return false;
-            }
-        }
-        int i25 = h60Var.J;
-        if (i25 >= 0) {
-            int i26 = n60Var.f38238t3;
-            if (i10 == i26 && i11 == i25) {
-                return true;
-            }
-            if ((i10 == i26 && i11 != i25) || (i10 != i26 && i11 == i25)) {
-                return false;
-            }
-        }
-        int i27 = h60Var.I;
-        if (i27 >= 0 && i27 == i11 && i10 == n60Var.f38234s3) {
-            return true;
-        }
-        int i28 = n60Var.I0;
-        if (i10 == i28 - 1 && i11 == h60Var.F - 1) {
-            return true;
-        }
-        if (i10 != i28 - 1 && i11 != h60Var.F - 1) {
-            if (i11 >= h60Var.G && i11 < h60Var.H && i10 >= (i16 = n60Var.f38224q3) && i10 < n60Var.f38229r3) {
-                return ((ChatObject.VideoParticipant) n60Var.E0.get(i10 - i16)).equals((ChatObject.VideoParticipant) n60Var.f38221q0.get(i11 - n60Var.P.G));
-            }
-            if (i11 >= h60Var.d && i11 < h60Var.e && i10 >= (i15 = n60Var.f38193i3) && i10 < n60Var.f38197j3) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) n60Var.D0.get(i10 - i15);
-                if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(n60Var.f38157a1.visibleParticipants.get(i11 - n60Var.P.d).peer) || (i10 != i11 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
-                    return false;
-                }
-                return true;
-            } else if (i11 >= h60Var.f36411f && i11 < h60Var.h && i10 >= (i14 = n60Var.f38201k3) && i10 < n60Var.f38204l3) {
-                return ((Long) n60Var.F0.get(i10 - i14)).equals(n60Var.f38157a1.invitedUsers.get(i11 - n60Var.P.f36411f));
-            } else {
-                if (i11 >= h60Var.f36412n && i11 < h60Var.f36413r && i10 >= (i13 = n60Var.f38207m3) && i10 < n60Var.f38212n3) {
-                    return ((Long) n60Var.G0.get(i10 - i13)).equals(n60Var.f38157a1.shadyJoinParticipants.get(i11 - n60Var.P.f36412n));
-                }
-                if (i11 >= h60Var.f36414s && i11 < h60Var.v && i10 >= (i12 = n60Var.f38216o3) && i10 < n60Var.f38220p3) {
-                    return ((Long) n60Var.H0.get(i10 - i12)).equals(n60Var.f38157a1.shadyLeftParticipants.get(i11 - n60Var.P.f36414s));
-                }
-            }
-        }
-        return false;
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public final int d() {
-        return this.f38550b.P.F;
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public final int e() {
-        return this.f38550b.I0;
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -3,15 +3,15 @@ package e9;
 import v7.b8;
 import v7.u6;
 public final class d2 extends w0 {
-    public static final d2 f8551n;
+    public static final d2 f8432n;
     public final transient u1 e;
-    public final transient int f8552f;
+    public final transient int f8433f;
     public transient v0 h;
 
     static {
         ?? obj = new Object();
         obj.d(3);
-        f8551n = new d2(obj);
+        f8432n = new d2(obj);
     }
 
     public d2(u1 u1Var) {
@@ -19,13 +19,13 @@ public final class d2 extends w0 {
         long j10 = 0;
         int i10 = 0;
         while (true) {
-            int i11 = u1Var.f8634c;
+            int i11 = u1Var.f8515c;
             if (i10 < i11) {
                 u6.j(i10, i11);
-                j10 += u1Var.f8633b[i10];
+                j10 += u1Var.f8514b[i10];
                 i10++;
             } else {
-                this.f8552f = b8.e(j10);
+                this.f8433f = b8.e(j10);
                 return;
             }
         }
@@ -49,6 +49,6 @@ public final class d2 extends w0 {
 
     @Override
     public final int size() {
-        return this.f8552f;
+        return this.f8433f;
     }
 }

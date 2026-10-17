@@ -1,6 +1,6 @@
 package u2;
 public interface f0 {
-    a a(b2.p0 p0Var);
+    a a(b2.o0 o0Var);
 
     f0 b(boolean z10);
 

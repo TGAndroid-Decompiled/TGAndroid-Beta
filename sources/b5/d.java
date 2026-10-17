@@ -20,23 +20,23 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import androidx.core.graphics.drawable.IconCompat;
 import com.google.android.gms.common.api.internal.BasePendingResult;
-import com.google.android.gms.internal.clearcut.f2;
-import e0.n0;
+import com.google.android.gms.internal.clearcut.g2;
+import e0.m0;
 import java.util.concurrent.atomic.AtomicInteger;
-import m.b1;
+import m.a1;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.aa;
+import org.telegram.ui.z9;
 public abstract class d {
-    public static int f2587a;
-    public static AtomicInteger f2588b;
-    public static boolean f2589c;
+    public static int f4199a;
+    public static AtomicInteger f4200b;
+    public static boolean f4201c;
     public static int d;
-    public static f2 e;
+    public static g2 e;
 
     public static void A(float f7) {
         BasePendingResult basePendingResult;
@@ -44,10 +44,10 @@ public abstract class d {
         if (e7 == null) {
             return;
         }
-        if (f2588b == null) {
-            f2588b = new AtomicInteger(0);
+        if (f4200b == null) {
+            f4200b = new AtomicInteger(0);
         }
-        f2588b.incrementAndGet();
+        f4200b.incrementAndGet();
         double d10 = f7;
         n6.l.e("Must be called from the main thread.");
         if (!e7.w()) {
@@ -57,7 +57,7 @@ public abstract class d {
             e6.h.x(mVar);
             basePendingResult = mVar;
         }
-        basePendingResult.b(new aa(2));
+        basePendingResult.b(new z9(2));
     }
 
     public static boolean B(ViewConfiguration viewConfiguration) {
@@ -65,7 +65,7 @@ public abstract class d {
     }
 
     public static void C() {
-        int i10 = f2587a;
+        int i10 = f4199a;
         if (i10 == 0) {
             PhotoViewer.t1().i3();
         } else if (i10 == 1) {
@@ -89,14 +89,14 @@ public abstract class d {
         }
     }
 
-    public static Person E(n0 n0Var) {
-        Person.Builder name = new Person.Builder().setName(n0Var.f8255a);
-        IconCompat iconCompat = n0Var.f8256b;
+    public static Person E(m0 m0Var) {
+        Person.Builder name = new Person.Builder().setName(m0Var.f8132a);
+        IconCompat iconCompat = m0Var.f8133b;
         Icon icon = null;
         if (iconCompat != null) {
             icon = iconCompat.m(null);
         }
-        return name.setIcon(icon).setUri(n0Var.f8257c).setKey(n0Var.d).setBot(n0Var.e).setImportant(n0Var.f8258f).build();
+        return name.setIcon(icon).setUri(m0Var.f8134c).setKey(m0Var.d).setBot(m0Var.e).setImportant(m0Var.f8135f).build();
     }
 
     public static void a(Notification.Builder builder, Person person) {
@@ -105,14 +105,14 @@ public abstract class d {
 
     public static void b(int i10) {
         d6.a c10;
-        f2587a = i10;
-        if (!f2589c) {
+        f4199a = i10;
+        if (!f4201c) {
             try {
                 if (f() == null || (c10 = d6.a.c(f())) == null) {
                     return;
                 }
                 c10.b().a(new com.google.android.gms.internal.cast.a(i10));
-                f2589c = true;
+                f4201c = true;
             } catch (Exception e7) {
                 FileLog.e(e7);
             }
@@ -127,8 +127,8 @@ public abstract class d {
         boolean z11;
         Context f7;
         AudioManager audioManager;
-        f2 f2Var = e;
-        if (f2Var != null) {
+        g2 g2Var = e;
+        if (g2Var != null) {
             z11 = true;
         } else {
             z11 = false;
@@ -140,13 +140,13 @@ public abstract class d {
                     d = audioManager.getStreamVolume(3);
                     ContentResolver contentResolver = f10.getContentResolver();
                     Uri uri = Settings.System.CONTENT_URI;
-                    f2 f2Var2 = new f2(new Handler(), 1);
-                    e = f2Var2;
-                    contentResolver.registerContentObserver(uri, true, f2Var2);
+                    g2 g2Var2 = new g2(new Handler(), 1);
+                    e = g2Var2;
+                    contentResolver.registerContentObserver(uri, true, g2Var2);
                     A(g());
                     audioManager.adjustStreamVolume(3, 0, 1);
                 }
-            } else if (f2Var != null && (f7 = f()) != null) {
+            } else if (g2Var != null && (f7 = f()) != null) {
                 f7.getContentResolver().unregisterContentObserver(e);
                 e = null;
                 AudioManager audioManager2 = (AudioManager) f7.getSystemService("audio");
@@ -165,7 +165,7 @@ public abstract class d {
                 d6.a c11 = d6.a.c(f());
                 if (c11 != null && (c10 = c11.b().c()) != null && c10.b()) {
                     n6.l.e("Must be called from the main thread.");
-                    return c10.f6401j;
+                    return c10.f7856j;
                 }
             } catch (Exception e7) {
                 FileLog.e(e7);
@@ -176,7 +176,7 @@ public abstract class d {
     }
 
     public static Context f() {
-        LaunchActivity launchActivity = LaunchActivity.G1;
+        LaunchActivity launchActivity = LaunchActivity.H1;
         if (launchActivity == null) {
             return ApplicationLoader.applicationContext;
         }
@@ -232,8 +232,8 @@ public abstract class d {
         return viewConfiguration.getScaledHoverSlop();
     }
 
-    public static PrecomputedText.Params p(b1 b1Var) {
-        return b1Var.getTextMetricsParams();
+    public static PrecomputedText.Params p(a1 a1Var) {
+        return a1Var.getTextMetricsParams();
     }
 
     public static int q(Object obj) {
@@ -279,11 +279,11 @@ public abstract class d {
         if (e7 == null) {
             return;
         }
-        if (f2588b == null) {
-            f2588b = new AtomicInteger(0);
+        if (f4200b == null) {
+            f4200b = new AtomicInteger(0);
         }
-        f2588b.incrementAndGet();
-        e7.q(new c6.p(j10)).b(new aa(3));
+        f4200b.incrementAndGet();
+        e7.q(new c6.p(j10)).b(new z9(3));
     }
 
     public static void w(int i10, TextView textView) {
@@ -295,10 +295,10 @@ public abstract class d {
         BasePendingResult basePendingResult2;
         e6.h e7 = e();
         if (e7 != null && z10 != e7.m()) {
-            if (f2588b == null) {
-                f2588b = new AtomicInteger(0);
+            if (f4200b == null) {
+                f4200b = new AtomicInteger(0);
             }
-            f2588b.incrementAndGet();
+            f4200b.incrementAndGet();
             if (z10) {
                 n6.l.e("Must be called from the main thread.");
                 if (!e7.w()) {
@@ -308,7 +308,7 @@ public abstract class d {
                     e6.h.x(jVar);
                     basePendingResult2 = jVar;
                 }
-                basePendingResult2.b(new aa(0));
+                basePendingResult2.b(new z9(0));
                 return;
             }
             n6.l.e("Must be called from the main thread.");
@@ -319,7 +319,7 @@ public abstract class d {
                 e6.h.x(jVar2);
                 basePendingResult = jVar2;
             }
-            basePendingResult.b(new aa(1));
+            basePendingResult.b(new z9(1));
         }
     }
 
@@ -333,10 +333,10 @@ public abstract class d {
         if (e7 == null) {
             return;
         }
-        if (f2588b == null) {
-            f2588b = new AtomicInteger(0);
+        if (f4200b == null) {
+            f4200b = new AtomicInteger(0);
         }
-        f2588b.incrementAndGet();
+        f4200b.incrementAndGet();
         double d10 = f7;
         n6.l.e("Must be called from the main thread.");
         if (!e7.w()) {
@@ -346,6 +346,6 @@ public abstract class d {
             e6.h.x(mVar);
             basePendingResult = mVar;
         }
-        basePendingResult.b(new aa(4));
+        basePendingResult.b(new z9(4));
     }
 }

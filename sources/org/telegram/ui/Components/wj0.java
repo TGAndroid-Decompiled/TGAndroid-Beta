@@ -1,183 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.text.TextUtils;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DispatchQueuePoolBackground;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public class wj0 extends yj0 {
-    public volatile RLottieNative U0;
-    public boolean V0;
-    public boolean W0;
-    public volatile boolean X0;
-    public boolean Y0;
-    public final int Z0;
-    public int f30595a1;
+public final class wj0 extends Drawable {
+    public final int f32141a;
+    public final int f32142b;
+    public final xj0 f32143c;
 
-    public wj0(String str, int i10, int i11) {
-        super(i10, i11);
-        String str2;
-        this.Z0 = -1;
-        this.J = 1;
-        if ("🎲".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.diceloop);
-            this.Z0 = 60;
-        } else if ("🎯".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.dartloop);
-        } else {
-            str2 = null;
-        }
-        getPaint().setFlags(2);
-        if (TextUtils.isEmpty(str2)) {
-            return;
-        }
-        this.m0 = RLottieNative.b(str2, this.e, null, null);
+    public wj0(xj0 xj0Var, int i10, int i11) {
+        this.f32143c = xj0Var;
+        this.f32141a = i10;
+        this.f32142b = i11;
     }
 
     @Override
-    public int B(Bitmap bitmap, boolean z10) {
-        RLottieNative rLottieNative;
-        int i10 = this.J;
-        if (i10 == 1) {
-            rLottieNative = this.m0;
-        } else if (i10 == 2) {
-            rLottieNative = this.U0;
-            if (this.X0) {
-                this.f31285a0 = this.f30595a1 - 1;
-            }
-        } else {
-            rLottieNative = this.m0;
-        }
-        if (rLottieNative.c(this.f31285a0, bitmap, z10) < 0) {
-            return 2;
-        }
-        return 1;
+    public final void draw(Canvas canvas) {
+        Rect rect = AndroidUtilities.rectTmp2;
+        int centerX = getBounds().centerX();
+        float f7 = this.f32141a;
+        int dp = centerX - (AndroidUtilities.dp(f7) / 2);
+        int centerY = getBounds().centerY();
+        float f10 = this.f32142b;
+        rect.set(dp, centerY - (AndroidUtilities.dp(f10) / 2), (AndroidUtilities.dp(f7) / 2) + getBounds().centerX(), (AndroidUtilities.dp(f10) / 2) + getBounds().centerY());
+        xj0 xj0Var = this.f32143c;
+        xj0Var.f32409c.setImageCoords(rect);
+        xj0Var.f32409c.draw(canvas);
     }
 
     @Override
-    public void C(boolean z10) {
-        this.f31298k0 = false;
-        this.f31299l0 = true;
-        n();
-        l();
-        if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f31315x0) {
-                D(z10);
-                zf.f fVar = this.B0;
-                if (fVar != null) {
-                    RandomAccessFile randomAccessFile = fVar.f50172s;
-                    if (randomAccessFile != null) {
-                        try {
-                            randomAccessFile.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        fVar.f50172s = null;
-                    }
-                    fVar.f50171r = true;
-                    this.B0 = null;
-                }
-                E();
-                return;
-            }
-            this.V = true;
-            return;
-        }
-        this.W0 = true;
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final void D(boolean z10) {
-        RLottieNative rLottieNative = this.m0;
-        RLottieNative rLottieNative2 = this.U0;
-        this.m0 = null;
-        this.U0 = null;
-        if (rLottieNative == null && rLottieNative2 == null) {
-            return;
-        }
-        g90 g90Var = new g90(10, rLottieNative, rLottieNative2);
-        if (z10) {
-            DispatchQueuePoolBackground.execute(g90Var);
-        } else {
-            Utilities.globalQueue.postRunnable(g90Var);
-        }
+    public final void setAlpha(int i10) {
+        this.f32143c.f32409c.setAlpha(i10 / 255.0f);
     }
 
     @Override
-    public void i() {
-        int i10 = this.J;
-        if (i10 == 1) {
-            int i11 = this.f31285a0 + 1;
-            int i12 = this.Z0;
-            if (i12 == -1) {
-                i12 = this.e[0];
-            }
-            if (i11 < i12) {
-                this.f31285a0 = i11;
-                return;
-            }
-            this.f31285a0 = 0;
-            this.N = false;
-            if (this.U0 != null) {
-                this.J = 2;
-            }
-            if (this.f31316y) {
-                this.f31314x = null;
-                this.f31316y = false;
-            }
-        } else if (i10 == 2) {
-            int i13 = this.f31285a0 + 1;
-            if (i13 < this.f30595a1) {
-                this.f31285a0 = i13;
-                return;
-            }
-            this.N = true;
-            this.M++;
-        }
-    }
-
-    @Override
-    public int j() {
-        if (this.f31299l0) {
-            return 3;
-        }
-        if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public void p() {
-        if (this.V) {
-            n();
-            if (this.P == null && this.m0 != null) {
-                D(true);
-            }
-        }
-        if (this.m0 == null && this.U0 == null && this.B0 == null) {
-            E();
-            return;
-        }
-        this.T = true;
-        if (!v()) {
-            stop();
-        }
-        if (this.f31298k0) {
-            I();
-        }
-    }
-
-    @Override
-    public final boolean w() {
-        return this.Y0;
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f32143c.f32409c.setColorFilter(colorFilter);
     }
 }

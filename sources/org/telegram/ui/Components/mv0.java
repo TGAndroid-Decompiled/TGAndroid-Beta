@@ -1,150 +1,252 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.messenger.MessageObject;
-public final class mv0 {
-    public boolean f27215g;
-    public boolean h;
-    public int f27218k;
-    public int f27220m;
-    public int f27221n;
-    public boolean f27222o;
-    public int f27223p;
-    public boolean f27225r;
-    public int f27227t;
-    public int f27228u;
-    public boolean v;
-    public boolean f27229w;
-    public final ArrayList f27211a = new ArrayList();
-    public final SparseArray[] f27212b = {new SparseArray(), new SparseArray()};
-    public final ArrayList f27213c = new ArrayList();
-    public final HashMap d = new HashMap();
-    public final ArrayList e = new ArrayList();
-    public final int[] f27214f = {0, 0};
-    public final boolean[] f27216i = {false, true};
-    public final int[] f27217j = {0, 0};
-    public boolean f27219l = true;
-    public int f27224q = 0;
-    public final ArrayList f27226s = new ArrayList();
-    public s4.t0 f27230x = new s4.t0();
+public class mv0 extends ql0 {
+    public final Context f28594c;
+    public boolean d;
+    public org.telegram.ui.Cells.r7 e;
+    public final sv0 f28595f;
 
-    public final boolean a(MessageObject messageObject, int i10, boolean z10, boolean z11) {
-        SparseArray[] sparseArrayArr = this.f27212b;
-        if (sparseArrayArr[i10].indexOfKey(messageObject.getId()) >= 0) {
-            return false;
-        }
-        String str = messageObject.monthKey;
-        HashMap hashMap = this.d;
-        ArrayList arrayList = (ArrayList) hashMap.get(str);
-        if (arrayList == null) {
-            arrayList = new ArrayList();
-            hashMap.put(messageObject.monthKey, arrayList);
-            ArrayList arrayList2 = this.f27213c;
-            if (z10) {
-                arrayList2.add(0, messageObject.monthKey);
+    public mv0(sv0 sv0Var, Context context) {
+        this.f28595f = sv0Var;
+        this.f28594c = context;
+    }
+
+    @Override
+    public boolean D(s4.b1 b1Var) {
+        return false;
+    }
+
+    @Override
+    public final boolean E(im0 im0Var) {
+        int i10;
+        sv0 sv0Var = this.f28595f;
+        if (!sv0Var.v0()) {
+            if (this != sv0Var.H && sv0.v(sv0Var, this) == -1) {
+                i10 = sv0Var.f30376q1;
             } else {
-                arrayList2.add(messageObject.monthKey);
+                i10 = sv0Var.f30367m1[0];
+            }
+            int ceil = (int) Math.ceil(k() / i10);
+            if (im0Var.getChildCount() != 0 && im0Var.getChildAt(0).getMeasuredHeight() * ceil > im0Var.getMeasuredHeight()) {
+                return true;
             }
         }
-        ArrayList arrayList3 = this.f27211a;
-        if (z10) {
-            arrayList.add(0, messageObject);
-            arrayList3.add(0, messageObject);
+        return false;
+    }
+
+    @Override
+    public String F(int i10) {
+        ArrayList arrayList = this.f28595f.f30384t1[0].e;
+        if (arrayList == null || arrayList.isEmpty()) {
+            return "";
+        }
+        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+            if (i10 <= ((qu0) arrayList.get(i11)).f29754b) {
+                return ((qu0) arrayList.get(i11)).f29753a;
+            }
+        }
+        return ((qu0) i0.a.h(1, arrayList)).f29753a;
+    }
+
+    @Override
+    public final void G(im0 im0Var, float f7, int[] iArr) {
+        int i10;
+        int measuredHeight = im0Var.getChildAt(0).getMeasuredHeight();
+        sv0 sv0Var = this.f28595f;
+        int[] iArr2 = sv0Var.f30367m1;
+        if (sv0.p(sv0Var, this) == -1 && this != sv0Var.I) {
+            if (sv0.v(sv0Var, this) != -1) {
+                i10 = iArr2[1];
+            } else {
+                i10 = iArr2[0];
+            }
         } else {
-            arrayList.add(messageObject);
-            arrayList3.add(messageObject);
+            i10 = sv0Var.f30376q1;
         }
-        sparseArrayArr[i10].put(messageObject.getId(), messageObject);
-        int[] iArr = this.f27217j;
-        if (!z11) {
-            if (messageObject.getId() > 0) {
-                iArr[i10] = Math.min(messageObject.getId(), iArr[i10]);
-                this.f27218k = Math.max(messageObject.getId(), this.f27218k);
+        int ceil = (int) (Math.ceil(k() / i10) * measuredHeight);
+        int measuredHeight2 = im0Var.getMeasuredHeight() - im0Var.getPaddingTop();
+        if (measuredHeight == 0) {
+            iArr[1] = 0;
+            iArr[0] = 0;
+            return;
+        }
+        float f10 = f7 * (ceil - measuredHeight2);
+        iArr[0] = ((int) (f10 / measuredHeight)) * i10;
+        iArr[1] = ((int) f10) % measuredHeight;
+    }
+
+    @Override
+    public final float H(im0 im0Var) {
+        int i10;
+        sv0 sv0Var = this.f28595f;
+        int[] iArr = sv0Var.f30367m1;
+        if (this != sv0Var.I && sv0.p(sv0Var, this) == -1) {
+            if (sv0.v(sv0Var, this) != -1) {
+                i10 = iArr[1];
+            } else {
+                i10 = iArr[0];
             }
         } else {
-            iArr[i10] = Math.max(messageObject.getId(), iArr[i10]);
-            this.f27218k = Math.min(messageObject.getId(), this.f27218k);
+            i10 = sv0Var.f30376q1;
         }
-        if (!this.v && messageObject.isVideo()) {
-            this.v = true;
+        int ceil = (int) Math.ceil(k() / i10);
+        if (im0Var.getChildCount() != 0) {
+            int measuredHeight = im0Var.getChildAt(0).getMeasuredHeight();
+            View childAt = im0Var.getChildAt(0);
+            int R = RecyclerView.R(childAt);
+            if (R < 0) {
+                return 0.0f;
+            }
+            return (((R / i10) * measuredHeight) - (childAt.getTop() - im0Var.getPaddingTop())) / ((ceil * measuredHeight) - (im0Var.getMeasuredHeight() - im0Var.getPaddingTop()));
         }
-        if (!this.f27229w && messageObject.isPhoto()) {
-            this.f27229w = true;
-        }
-        return true;
+        return 0.0f;
     }
 
-    public final MessageObject b(int i10, int i11) {
-        SparseArray[] sparseArrayArr = this.f27212b;
-        MessageObject messageObject = (MessageObject) sparseArrayArr[i11].get(i10);
-        if (messageObject == null) {
-            return null;
-        }
-        String str = messageObject.monthKey;
-        HashMap hashMap = this.d;
-        ArrayList arrayList = (ArrayList) hashMap.get(str);
-        if (arrayList == null) {
-            return null;
-        }
-        arrayList.remove(messageObject);
-        this.f27211a.remove(messageObject);
-        sparseArrayArr[i11].remove(messageObject.getId());
-        if (arrayList.isEmpty()) {
-            hashMap.remove(messageObject.monthKey);
-            this.f27213c.remove(messageObject.monthKey);
-        }
-        int[] iArr = this.f27214f;
-        int i12 = iArr[i11] - 1;
-        iArr[i11] = i12;
-        if (i12 < 0) {
-            iArr[i11] = 0;
-        }
-        return messageObject;
+    @Override
+    public void I() {
+        this.f28595f.e1(0, true);
     }
 
-    public final ArrayList c() {
-        if (this.f27225r) {
-            return this.f27226s;
-        }
-        return this.f27211a;
-    }
-
-    public final int d() {
-        if (this.f27225r) {
-            return this.f27227t;
-        }
-        return this.f27220m;
-    }
-
-    public final int e() {
-        int[] iArr = this.f27214f;
-        return iArr[0] + iArr[1];
-    }
-
-    public final void f(int i10, int i11, int i12) {
-        SparseArray[] sparseArrayArr = this.f27212b;
-        MessageObject messageObject = (MessageObject) sparseArrayArr[i10].get(i11);
-        if (messageObject != null) {
-            sparseArrayArr[i10].remove(i11);
-            sparseArrayArr[i10].put(i12, messageObject);
-            messageObject.messageOwner.f18937id = i12;
-            int[] iArr = this.f27217j;
-            iArr[i10] = Math.min(i12, iArr[i10]);
-        }
-    }
-
-    public final void g(boolean z10) {
-        if (this.f27225r != z10) {
-            this.f27225r = z10;
-            if (z10) {
-                this.f27227t = this.f27220m;
-                this.f27228u = this.f27221n;
-                ArrayList arrayList = this.f27226s;
-                arrayList.clear();
-                arrayList.addAll(this.f27211a);
+    @Override
+    public final void J(im0 im0Var) {
+        if (this.d) {
+            this.d = false;
+            int i10 = 0;
+            for (int i11 = 0; i11 < im0Var.getChildCount(); i11++) {
+                View childAt = im0Var.getChildAt(i11);
+                if (childAt instanceof org.telegram.ui.Cells.s7) {
+                    i10 = ((org.telegram.ui.Cells.s7) childAt).getMessageId();
+                }
+                if (i10 != 0) {
+                    break;
+                }
+            }
+            if (i10 == 0) {
+                this.f28595f.S(0, im0Var, true);
             }
         }
+    }
+
+    @Override
+    public final void K() {
+        this.d = true;
+        lu0 W = this.f28595f.W(0);
+        if (W != null) {
+            sv0.r(W, null, false);
+        }
+    }
+
+    public int L(int i10) {
+        return this.f28595f.f30384t1[0].f26951m + i10;
+    }
+
+    @Override
+    public int h() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mv0.h():int");
+    }
+
+    @Override
+    public int j(int i10) {
+        hv0[] hv0VarArr = this.f28595f.f30384t1;
+        if (!this.d && hv0VarArr[0].c().size() == 0) {
+            hv0 hv0Var = hv0VarArr[0];
+            if (!hv0Var.f26946g && hv0Var.f26950l) {
+                return 2;
+            }
+        }
+        hv0VarArr[0].getClass();
+        hv0VarArr[0].c().size();
+        hv0VarArr[0].getClass();
+        return 0;
+    }
+
+    @Override
+    public int k() {
+        return this.f28595f.f30384t1[0].e();
+    }
+
+    @Override
+    public void v(s4.b1 b1Var, int i10) {
+        int i11;
+        boolean z10;
+        char c10;
+        sv0 sv0Var = this.f28595f;
+        int[] iArr = sv0Var.f30367m1;
+        hv0[] hv0VarArr = sv0Var.f30384t1;
+        if (b1Var.f45941f == 0) {
+            ArrayList c11 = hv0VarArr[0].c();
+            int d = i10 - hv0VarArr[0].d();
+            View view = b1Var.f45938a;
+            if (view instanceof org.telegram.ui.Cells.s7) {
+                org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) view;
+                int messageId = s7Var.getMessageId();
+                boolean z11 = true;
+                if (this == sv0Var.H) {
+                    i11 = iArr[0];
+                } else if (sv0.v(sv0Var, this) != -1) {
+                    i11 = iArr[1];
+                } else {
+                    i11 = sv0Var.f30376q1;
+                }
+                if (d >= 0 && d < c11.size()) {
+                    MessageObject messageObject = (MessageObject) c11.get(d);
+                    if (messageObject.getId() == messageId) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (sv0Var.C1) {
+                        SparseArray[] sparseArrayArr = sv0Var.Z0;
+                        if (messageObject.getDialogId() == sv0Var.f30363j1) {
+                            c10 = 0;
+                        } else {
+                            c10 = 1;
+                        }
+                        if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) < 0) {
+                            z11 = false;
+                        }
+                        s7Var.i(z11, z10);
+                    } else {
+                        s7Var.i(false, z10);
+                    }
+                    s7Var.k(messageObject, i11, false);
+                    return;
+                }
+                s7Var.k(null, i11, false);
+                s7Var.i(false, false);
+            }
+        }
+    }
+
+    @Override
+    public s4.b1 x(ViewGroup viewGroup, int i10) {
+        sv0 sv0Var = this.f28595f;
+        org.telegram.ui.ActionBar.d6 d6Var = sv0Var.F1;
+        Context context = this.f28594c;
+        if (i10 != 0 && i10 != 19) {
+            fu0 M = sv0.M(0, sv0Var.f30363j1, context, d6Var);
+            M.setLayoutParams(new s4.o0(-1, -1));
+            return new s4.b1(M);
+        }
+        if (this.e == null) {
+            this.e = new org.telegram.ui.Cells.r7(viewGroup.getContext(), d6Var);
+        }
+        org.telegram.ui.Cells.s7 s7Var = new org.telegram.ui.Cells.s7(context, this.e, sv0Var.f30388v1.getCurrentAccount());
+        if (i10 == 19) {
+            s7Var.f23051w0 = true;
+        }
+        s7Var.setGradientView(sv0Var.f30395y);
+        if (sv0.v(sv0Var, this) != -1) {
+            s7Var.f23028d0 = true;
+        }
+        s7Var.setLayoutParams(new s4.o0(-1, -2));
+        return new s4.b1(s7Var);
     }
 }

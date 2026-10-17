@@ -1,58 +1,60 @@
 package gb;
+public final class h extends Number {
+    public final String f10961a;
 
-import eb.v;
-import java.lang.reflect.Modifier;
-import java.util.Collections;
-import java.util.List;
-import v7.r8;
-public final class h implements v, Cloneable {
-    public static final h f10053c = new h();
-    public List f10054a;
-    public final List f10055b;
-
-    public h() {
-        List list = Collections.EMPTY_LIST;
-        this.f10054a = list;
-        this.f10055b = list;
+    public h(String str) {
+        this.f10961a = str;
     }
 
-    public final h clone() {
-        try {
-            return (h) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e);
-        }
+    @Override
+    public final double doubleValue() {
+        return Double.parseDouble(this.f10961a);
     }
 
-    public final boolean b(Class cls, boolean z10) {
-        List<eb.a> list;
-        if (!z10 && !Enum.class.isAssignableFrom(cls)) {
-            r8 r8Var = jb.c.f12958a;
-            if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
-                return true;
-            }
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        if (z10) {
-            list = this.f10054a;
-        } else {
-            list = this.f10055b;
-        }
-        for (eb.a aVar : list) {
-            if (aVar.shouldSkipClass(cls)) {
-                return true;
-            }
+        if (obj instanceof h) {
+            return this.f10961a.equals(((h) obj).f10961a);
         }
         return false;
     }
 
     @Override
-    public final eb.u create(eb.g gVar, lb.a aVar) {
-        Class cls = aVar.f14653a;
-        boolean b10 = b(cls, true);
-        boolean b11 = b(cls, false);
-        if (!b10 && !b11) {
-            return null;
+    public final float floatValue() {
+        return Float.parseFloat(this.f10961a);
+    }
+
+    public final int hashCode() {
+        return this.f10961a.hashCode();
+    }
+
+    @Override
+    public final int intValue() {
+        String str = this.f10961a;
+        try {
+            try {
+                return Integer.parseInt(str);
+            } catch (NumberFormatException unused) {
+                return (int) Long.parseLong(str);
+            }
+        } catch (NumberFormatException unused2) {
+            return d.i(str).intValue();
         }
-        return new g(this, b11, b10, gVar, aVar);
+    }
+
+    @Override
+    public final long longValue() {
+        String str = this.f10961a;
+        try {
+            return Long.parseLong(str);
+        } catch (NumberFormatException unused) {
+            return d.i(str).longValue();
+        }
+    }
+
+    public final String toString() {
+        return this.f10961a;
     }
 }

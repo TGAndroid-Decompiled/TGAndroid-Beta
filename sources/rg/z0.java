@@ -1,390 +1,126 @@
 package rg;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.view.View;
-import com.google.android.gms.internal.play_billing.k3;
-import di.a6;
-import java.util.ArrayList;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.TextureView;
+import ei.q6;
+import ei.r5;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.qb0;
-public final class z0 extends mm0 {
-    public final ArrayList V2;
-    public final ArrayList W2;
-    public final ArrayList X2;
-    public final ArrayList Y2;
-    public final ArrayList Z2;
-    public final a6 f44392a3;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.na;
+public final class z0 extends org.telegram.ui.Cells.u1 {
+    public final na Ge;
+    public final float[] He;
+    public final Path Ie;
+    public final Paint Je;
+    public final Rect Ke;
+    public final RectF Le;
+    public final a1 Me;
 
-    public z0(a6 a6Var, Context context, com.google.firebase.messaging.m mVar) {
-        super(context, mVar);
-        this.f44392a3 = a6Var;
-        this.V2 = new ArrayList();
-        this.W2 = new ArrayList();
-        this.X2 = new ArrayList();
-        this.Y2 = new ArrayList();
-        this.Z2 = new ArrayList(10);
+    public z0(a1 a1Var, Context context, int i10, com.google.firebase.messaging.l lVar) {
+        super(context, i10, false, null, lVar);
+        this.Me = a1Var;
+        this.Ge = new na(a1Var.d, this, 10, false);
+        this.He = new float[8];
+        this.Ie = new Path();
+        Paint paint = new Paint();
+        this.Je = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.Ke = new Rect();
+        this.Le = new RectF();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        int i10;
-        int i11;
-        float f10;
-        boolean z10;
-        float f11;
-        float f12;
-        boolean z11;
-        float f13;
-        float f14;
-        float f15;
-        int i12;
-        boolean z12;
-        MessageObject.GroupedMessages currentMessagesGroup;
-        int i13;
-        canvas.save();
-        this.E1.setEmpty();
-        int childCount = getChildCount();
-        int i14 = 0;
-        MessageObject.GroupedMessages groupedMessages = null;
-        while (true) {
-            f7 = 0.0f;
-            i10 = 4;
-            i11 = 2;
-            f10 = 2.0f;
-            z10 = true;
-            if (i14 >= childCount) {
-                break;
+    public final Paint M2(String str) {
+        if ("paintChatActionBackground".equals(str)) {
+            this.Me.h.f45356v0 = true;
+            Paint c10 = this.Ge.c(1.0f);
+            if (c10 != null) {
+                return c10;
             }
-            View childAt = getChildAt(i14);
-            if (childAt.getVisibility() != 4) {
-                if (childAt instanceof org.telegram.ui.Cells.u1) {
-                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
-                    MessageObject.GroupedMessages currentMessagesGroup2 = u1Var.getCurrentMessagesGroup();
-                    if (currentMessagesGroup2 == null || currentMessagesGroup2 != groupedMessages) {
-                        MessageObject.GroupedMessagePosition currentPosition = u1Var.getCurrentPosition();
-                        qb0 backgroundDrawable = u1Var.getBackgroundDrawable();
-                        if ((backgroundDrawable.f28259f || u1Var.g3()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
-                            int y3 = (int) u1Var.getY();
-                            canvas.save();
-                            if (currentPosition == null) {
-                                i13 = u1Var.getMeasuredHeight();
-                            } else {
-                                int measuredHeight = u1Var.getMeasuredHeight() + y3;
-                                long j10 = 0;
-                                float f16 = 0.0f;
-                                for (int i15 = 0; i15 < childCount; i15++) {
-                                    View childAt2 = getChildAt(i15);
-                                    if (childAt2 instanceof org.telegram.ui.Cells.u1) {
-                                        org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) childAt2;
-                                        if (u1Var2.getCurrentMessagesGroup() == currentMessagesGroup2) {
-                                            qb0 backgroundDrawable2 = u1Var2.getBackgroundDrawable();
-                                            int min = Math.min(y3, (int) u1Var2.getY());
-                                            int max = Math.max(measuredHeight, u1Var2.getMeasuredHeight() + ((int) u1Var2.getY()));
-                                            long j11 = backgroundDrawable2.f28264l;
-                                            if (j11 > j10) {
-                                                float x10 = u1Var2.getX() + backgroundDrawable2.h;
-                                                f16 = u1Var2.getY() + backgroundDrawable2.f28261i;
-                                                f7 = x10;
-                                                j10 = j11;
-                                            }
-                                            y3 = min;
-                                            measuredHeight = max;
-                                        }
-                                    }
-                                }
-                                backgroundDrawable.f28262j = f7;
-                                backgroundDrawable.f28263k = f16 - y3;
-                                i13 = measuredHeight - y3;
-                            }
-                            int i16 = i13 + y3;
-                            canvas.clipRect(0, y3, getMeasuredWidth(), i16);
-                            backgroundDrawable.f28257b = null;
-                            backgroundDrawable.f28256a.setColor(g6.w0(g6.Hc, this.f27148n2));
-                            backgroundDrawable.setBounds(0, y3, getMeasuredWidth(), i16);
-                            backgroundDrawable.draw(canvas);
-                            canvas.restore();
-                        }
-                        groupedMessages = currentMessagesGroup2;
-                    }
-                } else if (childAt instanceof org.telegram.ui.Cells.w0) {
-                    org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) childAt;
-                    if (w0Var.K()) {
-                        canvas.save();
-                        canvas.translate(w0Var.getX(), w0Var.getY() + w0Var.getPaddingTop());
-                        canvas.scale(w0Var.getScaleX(), w0Var.getScaleY(), w0Var.getMeasuredWidth() / 2.0f, w0Var.getMeasuredHeight() / 2.0f);
-                        w0Var.B(canvas, true);
-                        w0Var.D(canvas, true);
-                        canvas.restore();
-                    }
-                }
-            }
-            i14++;
         }
-        int i17 = 0;
-        while (i17 < 3) {
-            ArrayList arrayList = this.Z2;
-            arrayList.clear();
-            if (i17 == i11 && !this.V1) {
-                i12 = i11;
-            } else {
-                int i18 = 0;
-                while (i18 < childCount) {
-                    View childAt3 = getChildAt(i18);
-                    if (childAt3 instanceof org.telegram.ui.Cells.u1) {
-                        org.telegram.ui.Cells.u1 u1Var3 = (org.telegram.ui.Cells.u1) childAt3;
-                        if (childAt3.getY() <= getHeight() && childAt3.getY() + childAt3.getHeight() >= f7 && u1Var3.getVisibility() != i10 && u1Var3.getVisibility() != 8 && (currentMessagesGroup = u1Var3.getCurrentMessagesGroup()) != null && ((i17 != 0 || currentMessagesGroup.messages.size() != z10) && ((i17 != z10 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i17 != 0 || !u1Var3.getMessageObject().deleted) && ((i17 != z10 || u1Var3.getMessageObject().deleted) && ((i17 != i11 || u1Var3.oc) && (i17 == i11 || !u1Var3.oc))))))) {
-                            if (!arrayList.contains(currentMessagesGroup)) {
-                                MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
-                                transitionParams.left = 0;
-                                transitionParams.top = 0;
-                                transitionParams.right = 0;
-                                transitionParams.bottom = 0;
-                                transitionParams.pinnedBotton = false;
-                                transitionParams.pinnedTop = false;
-                                transitionParams.cell = u1Var3;
-                                arrayList.add(currentMessagesGroup);
-                            }
-                            currentMessagesGroup.transitionParams.pinnedTop = u1Var3.n3();
-                            currentMessagesGroup.transitionParams.pinnedBotton = u1Var3.m3();
-                            int backgroundDrawableLeft = u1Var3.getBackgroundDrawableLeft() + u1Var3.getLeft();
-                            int backgroundDrawableRight = u1Var3.getBackgroundDrawableRight() + u1Var3.getLeft();
-                            int backgroundDrawableTop = u1Var3.getBackgroundDrawableTop() + u1Var3.getPaddingTop() + u1Var3.getTop();
-                            int backgroundDrawableBottom = u1Var3.getBackgroundDrawableBottom() + u1Var3.getPaddingTop() + u1Var3.getTop();
-                            if ((u1Var3.getCurrentPosition().flags & i10) == 0) {
-                                backgroundDrawableTop -= AndroidUtilities.dp(10.0f);
-                            }
-                            int i19 = backgroundDrawableTop;
-                            if ((u1Var3.getCurrentPosition().flags & 8) == 0) {
-                                backgroundDrawableBottom = AndroidUtilities.dp(10.0f) + backgroundDrawableBottom;
-                            }
-                            int i20 = backgroundDrawableBottom;
-                            if (u1Var3.oc) {
-                                currentMessagesGroup.transitionParams.cell = u1Var3;
-                            }
-                            MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
-                            int i21 = transitionParams2.top;
-                            if (i21 == 0 || i19 < i21) {
-                                transitionParams2.top = i19;
-                            }
-                            int i22 = transitionParams2.bottom;
-                            if (i22 == 0 || i20 > i22) {
-                                transitionParams2.bottom = i20;
-                            }
-                            int i23 = transitionParams2.left;
-                            if (i23 == 0 || backgroundDrawableLeft < i23) {
-                                transitionParams2.left = backgroundDrawableLeft;
-                            }
-                            int i24 = transitionParams2.right;
-                            if (i24 == 0 || backgroundDrawableRight > i24) {
-                                transitionParams2.right = backgroundDrawableRight;
-                            }
-                            i18++;
-                            i11 = 2;
-                            f7 = 0.0f;
-                        }
-                    }
-                    i18++;
-                    i11 = 2;
-                    f7 = 0.0f;
+        return super.M2(str);
+    }
+
+    @Override
+    public final boolean a2(Canvas canvas) {
+        q6 q6Var;
+        float[] fArr;
+        ImageReceiver photoImage = getPhotoImage();
+        a1 a1Var = this.Me;
+        r5 r5Var = a1Var.h;
+        if (a1Var.f45302f && photoImage != null && (((q6Var = a1Var.e) != null && q6Var.f9649g && q6Var.d && r5Var.f45358x0) || r5Var.f45355u0 || (r5Var.f45357w0 != null && r5Var.M0.I0))) {
+            int i10 = 0;
+            while (true) {
+                int length = photoImage.getRoundRadius().length;
+                fArr = this.He;
+                if (i10 >= length) {
+                    break;
                 }
-                int i25 = 0;
-                while (i25 < arrayList.size()) {
-                    MessageObject.GroupedMessages groupedMessages2 = (MessageObject.GroupedMessages) arrayList.get(i25);
-                    float E2 = groupedMessages2.transitionParams.cell.E2(z10);
-                    MessageObject.GroupedMessages.TransitionParams transitionParams3 = groupedMessages2.transitionParams;
-                    float f17 = transitionParams3.left + E2 + transitionParams3.offsetLeft;
-                    float f18 = transitionParams3.top + transitionParams3.offsetTop;
-                    float f19 = transitionParams3.offsetRight + transitionParams3.right + E2;
-                    float f20 = transitionParams3.bottom + transitionParams3.offsetBottom;
-                    if (!transitionParams3.backgroundChangeBounds) {
-                        f18 += transitionParams3.cell.getTranslationY();
-                        f20 += groupedMessages2.transitionParams.cell.getTranslationY();
-                    }
-                    float f21 = f18;
-                    float f22 = f20;
-                    if (groupedMessages2.transitionParams.cell.getScaleX() == 1.0f && groupedMessages2.transitionParams.cell.getScaleY() == 1.0f) {
-                        z12 = false;
-                    } else {
-                        z12 = z10;
-                    }
-                    if (z12) {
-                        canvas.save();
-                        canvas.scale(groupedMessages2.transitionParams.cell.getScaleX(), groupedMessages2.transitionParams.cell.getScaleY(), k3.z(f19, f17, f10, f17), k3.z(f22, f21, f10, f21));
-                    }
-                    MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages2.transitionParams;
-                    ArrayList arrayList2 = arrayList;
-                    float f23 = f10;
-                    transitionParams4.cell.B1(canvas, (int) f17, (int) f21, (int) f19, (int) f22, transitionParams4.pinnedTop, transitionParams4.pinnedBotton, false, 0);
-                    MessageObject.GroupedMessages.TransitionParams transitionParams5 = groupedMessages2.transitionParams;
-                    transitionParams5.cell = null;
-                    transitionParams5.drawCaptionLayout = groupedMessages2.hasCaption;
-                    if (z12) {
-                        canvas.restore();
-                        for (int i26 = 0; i26 < childCount; i26++) {
-                            View childAt4 = getChildAt(i26);
-                            if (childAt4 instanceof org.telegram.ui.Cells.u1) {
-                                org.telegram.ui.Cells.u1 u1Var4 = (org.telegram.ui.Cells.u1) childAt4;
-                                if (u1Var4.getCurrentMessagesGroup() == groupedMessages2) {
-                                    int left = u1Var4.getLeft();
-                                    int top = u1Var4.getTop();
-                                    childAt4.setPivotX(((f19 - f17) / f23) + (f17 - left));
-                                    childAt4.setPivotY(((f22 - f21) / f23) + (f21 - top));
-                                }
-                            }
-                        }
-                    }
-                    i25++;
-                    z10 = true;
-                    f10 = f23;
-                    arrayList = arrayList2;
-                }
-                i12 = 2;
+                int i11 = i10 * 2;
+                fArr[i11] = photoImage.getRoundRadius()[i10];
+                fArr[i11 + 1] = photoImage.getRoundRadius()[i10];
+                i10++;
             }
-            i17++;
-            z10 = z10;
-            i11 = i12;
-            f10 = f10;
-            f7 = 0.0f;
-            i10 = 4;
-        }
-        boolean z13 = z10;
-        super.dispatchDraw(canvas);
-        ArrayList arrayList3 = this.V2;
-        int size = arrayList3.size();
-        if (size > 0) {
-            for (int i27 = 0; i27 < size; i27++) {
-                org.telegram.ui.Cells.u1 u1Var5 = (org.telegram.ui.Cells.u1) arrayList3.get(i27);
-                canvas.save();
-                canvas.translate(u1Var5.E2(false) + u1Var5.getLeft(), u1Var5.getY());
-                if (u1Var5.a()) {
-                    f15 = u1Var5.getAlpha();
-                } else {
-                    f15 = 1.0f;
-                }
-                u1Var5.m2(f15, canvas, z13);
-                canvas.restore();
-            }
-            arrayList3.clear();
-        }
-        ArrayList arrayList4 = this.W2;
-        int size2 = arrayList4.size();
-        if (size2 > 0) {
-            for (int i28 = 0; i28 < size2; i28++) {
-                org.telegram.ui.Cells.u1 u1Var6 = (org.telegram.ui.Cells.u1) arrayList4.get(i28);
-                float E22 = u1Var6.E2(false) + u1Var6.getLeft();
-                float y10 = u1Var6.getY();
-                if (u1Var6.a()) {
-                    f14 = u1Var6.getAlpha();
-                } else {
-                    f14 = 1.0f;
-                }
-                canvas.save();
-                canvas.translate(E22, y10);
-                u1Var6.setInvalidatesParent(z13);
-                u1Var6.W1(canvas, f14);
-                u1Var6.setInvalidatesParent(false);
-                canvas.restore();
-            }
-            arrayList4.clear();
-        }
-        ArrayList arrayList5 = this.X2;
-        int size3 = arrayList5.size();
-        if (size3 > 0) {
-            int i29 = 0;
-            while (i29 < size3) {
-                org.telegram.ui.Cells.u1 u1Var7 = (org.telegram.ui.Cells.u1) arrayList5.get(i29);
-                if (u1Var7.getCurrentPosition() != null && (u1Var7.getCurrentPosition().flags & z13) == 0) {
-                    z11 = z13;
-                } else {
-                    z11 = false;
-                }
-                if (u1Var7.a()) {
-                    f13 = u1Var7.getAlpha();
-                } else {
-                    f13 = 1.0f;
-                }
-                float E23 = u1Var7.E2(false) + u1Var7.getLeft();
-                float y11 = u1Var7.getY();
-                canvas.save();
-                MessageObject.GroupedMessages currentMessagesGroup3 = u1Var7.getCurrentMessagesGroup();
-                if (currentMessagesGroup3 != null && currentMessagesGroup3.transitionParams.backgroundChangeBounds) {
-                    float E24 = u1Var7.E2(z13);
-                    MessageObject.GroupedMessages.TransitionParams transitionParams6 = currentMessagesGroup3.transitionParams;
-                    float f24 = transitionParams6.left + E24 + transitionParams6.offsetLeft;
-                    float f25 = transitionParams6.top + transitionParams6.offsetTop;
-                    float f26 = transitionParams6.right + E24 + transitionParams6.offsetRight;
-                    float f27 = transitionParams6.bottom + transitionParams6.offsetBottom;
-                    if (!transitionParams6.backgroundChangeBounds) {
-                        f25 += u1Var7.getTranslationY();
-                        f27 += u1Var7.getTranslationY();
-                    }
-                    canvas.clipRect(f24 + AndroidUtilities.dp(8.0f), f25 + AndroidUtilities.dp(8.0f), f26 - AndroidUtilities.dp(8.0f), f27 - AndroidUtilities.dp(8.0f));
-                }
-                if (u1Var7.getTransitionParams().f21748v0) {
-                    canvas.translate(E23, y11);
-                    u1Var7.setInvalidatesParent(true);
-                    u1Var7.I1(f13, canvas, z11);
-                    u1Var7.setInvalidatesParent(false);
-                    canvas.restore();
-                }
-                i29++;
-                z13 = true;
-            }
-            f11 = 8.0f;
-            arrayList5.clear();
-        } else {
-            f11 = 8.0f;
-        }
-        ArrayList arrayList6 = this.Y2;
-        int size4 = arrayList6.size();
-        if (size4 > 0) {
-            for (int i30 = 0; i30 < size4; i30++) {
-                org.telegram.ui.Cells.u1 u1Var8 = (org.telegram.ui.Cells.u1) arrayList6.get(i30);
-                if (u1Var8.getCurrentPosition() == null || (u1Var8.getCurrentPosition().flags & 1) != 0) {
-                    if (u1Var8.a()) {
-                        f12 = u1Var8.getAlpha();
-                    } else {
-                        f12 = 1.0f;
-                    }
-                    float E25 = u1Var8.E2(false) + u1Var8.getLeft();
-                    float y12 = u1Var8.getY();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(photoImage.getImageX(), photoImage.getImageY(), photoImage.getImageX2(), photoImage.getImageY2());
+            Path path = this.Ie;
+            path.rewind();
+            path.addRoundRect(rectF, fArr, Path.Direction.CW);
+            TextureView textureView = r5Var.f45357w0;
+            if (textureView != null && r5Var.M0.I0) {
+                Bitmap bitmap = textureView.getBitmap();
+                if (bitmap != null) {
                     canvas.save();
-                    MessageObject.GroupedMessages currentMessagesGroup4 = u1Var8.getCurrentMessagesGroup();
-                    if (currentMessagesGroup4 != null && currentMessagesGroup4.transitionParams.backgroundChangeBounds) {
-                        float E26 = u1Var8.E2(true);
-                        MessageObject.GroupedMessages.TransitionParams transitionParams7 = currentMessagesGroup4.transitionParams;
-                        float f28 = transitionParams7.left + E26 + transitionParams7.offsetLeft;
-                        float f29 = transitionParams7.top + transitionParams7.offsetTop;
-                        float f30 = transitionParams7.right + E26 + transitionParams7.offsetRight;
-                        float f31 = transitionParams7.bottom + transitionParams7.offsetBottom;
-                        if (!transitionParams7.backgroundChangeBounds) {
-                            f29 += u1Var8.getTranslationY();
-                            f31 += u1Var8.getTranslationY();
-                        }
-                        canvas.clipRect(f28 + AndroidUtilities.dp(f11), f29 + AndroidUtilities.dp(f11), f30 - AndroidUtilities.dp(f11), f31 - AndroidUtilities.dp(f11));
-                    }
-                    if (u1Var8.getTransitionParams().f21748v0) {
-                        canvas.translate(E25, y12);
-                        u1Var8.setInvalidatesParent(true);
-                        u1Var8.d2(canvas, f12, null);
-                        u1Var8.N1(canvas, f12);
-                        u1Var8.setInvalidatesParent(false);
-                        canvas.restore();
-                    }
+                    canvas.clipPath(path);
+                    canvas.translate(-getX(), -getY());
+                    float max = Math.max(photoImage.getImageWidth() / r5Var.f45359y0, photoImage.getImageHeight() / r5Var.f45360z0);
+                    canvas.translate(photoImage.getCenterX() - ((r5Var.f45359y0 * max) / 2.0f), photoImage.getCenterY() - ((r5Var.f45360z0 * max) / 2.0f));
+                    canvas.scale((r5Var.f45359y0 / r5Var.f45357w0.getWidth()) * max, (r5Var.f45360z0 / r5Var.f45357w0.getHeight()) * max);
+                    int width = bitmap.getWidth();
+                    int height = bitmap.getHeight();
+                    Rect rect = this.Ke;
+                    rect.set(0, 0, width, height);
+                    RectF rectF2 = this.Le;
+                    rectF2.set(0.0f, 0.0f, r5Var.f45357w0.getWidth(), r5Var.f45357w0.getHeight());
+                    canvas.drawBitmap(bitmap, rect, rectF2, (Paint) null);
+                    canvas.restore();
+                    return true;
                 }
+                return super.a2(canvas);
             }
-            arrayList6.clear();
+            canvas.drawPath(path, this.Je);
+            return true;
         }
-        canvas.restore();
+        return super.a2(canvas);
     }
 
     @Override
-    public final boolean drawChild(android.graphics.Canvas r20, android.view.View r21, long r22) {
-        throw new UnsupportedOperationException("Method not decompiled: rg.z0.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        a1 a1Var = this.Me;
+        q6 q6Var = a1Var.e;
+        if ((q6Var != null && q6Var.f9649g && q6Var.d) || a1Var.h.f45355u0) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+        } else {
+            canvas2 = canvas;
+            canvas2.save();
+        }
+        S1(canvas2);
+        canvas2.restore();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 }

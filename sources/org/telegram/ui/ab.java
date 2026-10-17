@@ -1,45 +1,30 @@
 package org.telegram.ui;
+public final class ab implements Runnable {
+    public final int f35380a;
+    public final xb f35381b;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class ab implements ch.a {
-    public final int f33828a;
-    public final Object f33829b;
-
-    public ab(Object obj, int i10) {
-        this.f33828a = i10;
-        this.f33829b = obj;
+    public ab(xb xbVar, int i10) {
+        this.f35380a = i10;
+        this.f35381b = xbVar;
     }
 
     @Override
-    public final void e(bh.a aVar, RectF rectF) {
-        switch (this.f33828a) {
+    public final void run() {
+        switch (this.f35380a) {
             case 0:
-            case 1:
-            default:
-                aVar.f2744a = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f33828a) {
-            case 0:
-                ((xb) this.f33829b).Z(canvas, rectF);
+                xb xbVar = this.f35381b;
+                xbVar.G0 = Integer.MAX_VALUE;
+                xbVar.H0 = -1;
+                xbVar.d1();
+                xbVar.I0 = null;
                 return;
             case 1:
-                eq0 eq0Var = (eq0) this.f33829b;
-                l0 l0Var = eq0Var.d;
-                pp0 pp0Var = eq0Var.h.f41863b;
-                hh.d.a(pp0Var, canvas, rectF, pp0Var, l0Var);
-                pp0 pp0Var2 = eq0Var.f35362n.f41863b;
-                hh.d.a(pp0Var2, canvas, rectF, pp0Var2, l0Var);
+                xb xbVar2 = this.f35381b;
+                xbVar2.W0(false);
+                xbVar2.E.l();
                 return;
             default:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f33829b;
-                org.telegram.ui.Components.mm0 mm0Var = premiumPreviewFragment.f32147a;
-                hh.d.a(mm0Var, canvas, rectF, mm0Var, premiumPreviewFragment.f32153d0);
+                this.f35381b.V0();
                 return;
         }
     }

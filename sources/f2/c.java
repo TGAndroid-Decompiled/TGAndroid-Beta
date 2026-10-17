@@ -1,45 +1,43 @@
 package f2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-public final class c extends e {
-    public final long f8841c;
-    public final ArrayList d;
-    public final ArrayList e;
+import b2.q0;
+import b2.s0;
+public final class c implements s0 {
+    public final int f10284a;
 
-    public c(int i10, long j10) {
-        super(i10, 0);
-        this.f8841c = j10;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
+    public c(int i10) {
+        this.f10284a = i10;
     }
 
-    public final c d(int i10) {
-        ArrayList arrayList = this.e;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            c cVar = (c) arrayList.get(i11);
-            if (cVar.f8844b == i10) {
-                return cVar;
-            }
-        }
-        return null;
-    }
-
-    public final d e(int i10) {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            d dVar = (d) arrayList.get(i11);
-            if (dVar.f8844b == i10) {
-                return dVar;
-            }
-        }
+    @Override
+    public final b2.w a() {
         return null;
     }
 
     @Override
+    public final byte[] c() {
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if ((obj instanceof c) && this.f10284a == ((c) obj).f10284a) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f10284a;
+    }
+
     public final String toString() {
-        return e.a(this.f8844b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.e.toArray());
+        return "Mp4AlternateGroup: " + this.f10284a;
+    }
+
+    @Override
+    public final void b(q0 q0Var) {
     }
 }

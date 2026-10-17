@@ -1,44 +1,76 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class c61 extends g.o {
-    public final int f34465c;
-    public final r71 d;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class c61 implements TextWatcher {
+    public final sy0 f35834a = new sy0(this, 17);
+    public final j61 f35835b;
 
-    public c61(r71 r71Var, int i10) {
-        this.f34465c = i10;
-        this.d = r71Var;
+    public c61(j61 j61Var) {
+        this.f35835b = j61Var;
+    }
+
+    public final void a() {
+        boolean z10;
+        boolean z11;
+        TLRPC.TL_channelParticipantsSearch tL_channelParticipantsSearch = new TLRPC.TL_channelParticipantsSearch();
+        j61 j61Var = this.f35835b;
+        String obj = j61Var.f38057c0.getText().toString();
+        tL_channelParticipantsSearch.f20271q = obj;
+        i61 i61Var = j61Var.f38061g0;
+        TLRPC.ChannelParticipantsFilter channelParticipantsFilter = i61Var.f37763c;
+        if (channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) {
+            z10 = !TextUtils.equals(channelParticipantsFilter.f20271q, obj);
+            z11 = false;
+        } else {
+            z10 = true;
+            z11 = true;
+        }
+        i61Var.f37763c = tL_channelParticipantsSearch;
+        if (z10) {
+            if (z11) {
+                i61Var.f37766r = false;
+                if (i61Var.f37765n >= 0) {
+                    ConnectionsManager.getInstance(i61Var.f37761a).cancelRequest(i61Var.f37765n, true);
+                    i61Var.f37765n = -1;
+                }
+                i61Var.f37764f = false;
+                i61Var.d.clear();
+                i61Var.h = false;
+            } else {
+                i61Var.f37766r = true;
+                i61Var.h = false;
+            }
+            i61Var.b();
+        }
+        org.telegram.ui.Components.s61 s61Var = j61Var.f38063i0;
+        if (s61Var != null) {
+            s61Var.N(true);
+        }
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        ArrayList arrayList;
-        int i12;
-        switch (this.f34465c) {
-            case 0:
-                r71 r71Var = this.d;
-                if (r71Var.f39362w0.indexOfKey(i10) < 0 && r71Var.f39370z0.indexOfKey(i10) < 0 && i10 != r71Var.f39325f && i10 != r71Var.f39367y && i10 != r71Var.f39340n && i10 != r71Var.h && i10 != r71Var.v && i10 != r71Var.f39312a && i10 != r71Var.f39364x) {
-                    if ((i10 >= r71Var.E && i10 < r71Var.F) || r71Var.Q) {
-                        return 8;
-                    }
-                    return 5;
-                }
-                return r71Var.f39350r0.J;
-            default:
-                r71 r71Var2 = this.d;
-                b71 b71Var = r71Var2.f39347q0;
-                int j10 = b71Var.j(i10);
-                if (j10 == 6) {
-                    return r71Var2.f39350r0.J;
-                }
-                if (j10 != 5) {
-                    r71 r71Var3 = b71Var.f34222s;
-                    if (r71Var3.W != 14 ? i10 <= (i11 = b71Var.f34218c) || (i10 - i11) - 1 >= r71Var3.C1.size() : (arrayList = r71Var3.B1) == null || i10 < (i12 = b71Var.f34218c) || i10 - i12 >= arrayList.size()) {
-                        return 5;
-                    }
-                }
-                return 8;
+    public final void afterTextChanged(Editable editable) {
+        int length = editable.length();
+        sy0 sy0Var = this.f35834a;
+        if (length <= 0) {
+            AndroidUtilities.cancelRunOnUIThread(sy0Var);
+            a();
+            return;
         }
+        AndroidUtilities.cancelRunOnUIThread(sy0Var);
+        AndroidUtilities.runOnUIThread(sy0Var, 300L);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

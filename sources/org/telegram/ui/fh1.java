@@ -1,35 +1,40 @@
 package org.telegram.ui;
-public final class fh1 implements org.telegram.ui.ActionBar.z1 {
-    public final int f35536a;
-    public final oh1 f35537b;
 
-    public fh1(oh1 oh1Var, int i10) {
-        this.f35536a = i10;
-        this.f35537b = oh1Var;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.LinearLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.voip.VoIPServiceState;
+public final class fh1 extends LinearLayout {
+    public final jh1 f36939a;
+
+    public fh1(jh1 jh1Var, Activity activity) {
+        super(activity);
+        this.f36939a = jh1Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f35536a) {
-            case 0:
-                this.f35537b.finishFragment();
-                return;
-            case 1:
-                oh1 oh1Var = this.f35537b;
-                oh1Var.B0();
-                oh1Var.finishFragment();
-                return;
-            case 2:
-                oh1 oh1Var2 = this.f35537b;
-                oh1Var2.R = "";
-                oh1Var2.E0(false);
-                return;
-            case 3:
-                oh1.a0(this.f35537b);
-                return;
-            default:
-                oh1.X(this.f35537b);
-                return;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        VoIPServiceState sharedState = VoIPService.getSharedState();
+        CharSequence text = this.f36939a.E.getText();
+        if (sharedState != null && !TextUtils.isEmpty(text)) {
+            StringBuilder sb2 = new StringBuilder(text);
+            sb2.append(", ");
+            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
+                sb2.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
+            } else {
+                sb2.append(LocaleController.getString(R.string.VoipInCallBranding));
+            }
+            long callDuration = sharedState.getCallDuration();
+            if (callDuration > 0) {
+                sb2.append(", ");
+                sb2.append(LocaleController.formatDuration((int) (callDuration / 1000)));
+            }
+            accessibilityNodeInfo.setText(sb2);
         }
     }
 }

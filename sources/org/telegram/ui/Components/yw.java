@@ -1,57 +1,61 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-public final class yw extends mm0 {
-    public boolean V2;
-    public boolean W2;
-    public final wz X2;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class yw extends FrameLayout {
+    public final boolean f32763a;
+    public final tz f32764b;
 
-    public yw(wz wzVar, Context context) {
-        super(context, null);
-        this.X2 = wzVar;
+    public yw(tz tzVar, Context context, boolean z10) {
+        super(context);
+        this.f32764b = tzVar;
+        this.f32763a = z10;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.xt q6 = org.telegram.ui.xt.q();
-        wz wzVar = this.X2;
-        boolean r10 = q6.r(motionEvent, wzVar.f30722h0, wzVar.f30721g2, this.f27148n2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-            return false;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        tz tzVar = this.f32764b;
+        ex exVar = tzVar.B0;
+        ax axVar = tzVar.D0;
+        dx dxVar = tzVar.G0;
+        if (!this.f32763a && (view == axVar || view == dxVar)) {
+            canvas.save();
+            float y3 = exVar.getY() + exVar.getMeasuredHeight() + 1.0f;
+            if (view == axVar) {
+                y3 = Math.max(y3, dxVar.getY() + dxVar.getMeasuredHeight() + 1.0f);
+            }
+            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * tzVar.f30738a.e), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.restore();
+            return drawChild;
         }
-        return true;
+        return super.drawChild(canvas, view, j10);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        wz wzVar = this.X2;
-        if (wzVar.f30748q0 && wzVar.f30739n0.G > 1) {
-            this.V2 = true;
-            wzVar.f30725i0.h1(0, 0);
-            wzVar.f30742o0.setVisibility(0);
-            wzVar.f30745p0.k(0, 0);
-            wzVar.f30748q0 = false;
-            this.V2 = false;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        wz.f(wzVar, true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (!this.W2) {
-            this.X2.f30739n0.l();
-            this.W2 = true;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        tz tzVar = this.f32764b;
+        tzVar.K0 = true;
+        tzVar.Y();
+        hg.f1 f1Var = tzVar.T0;
+        if (f1Var != null) {
+            f1Var.a();
         }
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.V2) {
-            return;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        tz tzVar = this.f32764b;
+        tzVar.K0 = false;
+        tzVar.Y();
+        hg.f1 f1Var = tzVar.T0;
+        if (f1Var != null) {
+            f1Var.a();
         }
-        super.requestLayout();
     }
 }

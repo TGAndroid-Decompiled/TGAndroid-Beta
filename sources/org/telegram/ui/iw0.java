@@ -1,65 +1,99 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class iw0 implements Runnable {
-    public final int f36881a = 1;
-    public final rw0 f36882b;
-    public final boolean f36883c;
-    public final TLRPC.PollAnswer d;
-    public final org.telegram.ui.ActionBar.m2 e;
-    public final ArrayList f36884f;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class iw0 extends org.telegram.ui.Components.hm0 {
+    public final PremiumPreviewFragment f37991c;
 
-    public iw0(rw0 rw0Var, boolean z10, TLRPC.PollAnswer pollAnswer, org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList) {
-        this.f36882b = rw0Var;
-        this.f36883c = z10;
-        this.d = pollAnswer;
-        this.e = m2Var;
-        this.f36884f = arrayList;
+    public iw0(PremiumPreviewFragment premiumPreviewFragment) {
+        this.f37991c = premiumPreviewFragment;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36881a) {
-            case 0:
-                rw0 rw0Var = this.f36882b;
-                rw0Var.getClass();
-                boolean z10 = this.f36883c;
-                org.telegram.ui.ActionBar.m2 m2Var = this.e;
-                if (!z10) {
-                    m2Var.getSendMessagesHelper().sendVote(rw0Var.H, null, null);
-                } else {
-                    ArrayList<TLRPC.PollAnswer> arrayList = this.f36884f;
-                    arrayList.remove(this.d);
-                    m2Var.getSendMessagesHelper().sendVote(rw0Var.H, arrayList, null);
-                }
-                rw0Var.c(true);
-                return;
-            default:
-                rw0 rw0Var2 = this.f36882b;
-                rw0Var2.getClass();
-                boolean z11 = this.f36883c;
-                TLRPC.PollAnswer pollAnswer = this.d;
-                org.telegram.ui.ActionBar.m2 m2Var2 = this.e;
-                if (!z11) {
-                    ArrayList<TLRPC.PollAnswer> arrayList2 = new ArrayList<>(1);
-                    arrayList2.add(pollAnswer);
-                    m2Var2.getSendMessagesHelper().sendVote(rw0Var2.H, arrayList2, null);
-                } else {
-                    ArrayList<TLRPC.PollAnswer> arrayList3 = this.f36884f;
-                    arrayList3.add(pollAnswer);
-                    m2Var2.getSendMessagesHelper().sendVote(rw0Var2.H, arrayList3, null);
-                }
-                rw0Var2.c(true);
-                return;
+    public final boolean D(s4.b1 b1Var) {
+        int i10 = b1Var.f45941f;
+        if (i10 == 1 || i10 == 8) {
+            return true;
         }
+        return false;
     }
 
-    public iw0(rw0 rw0Var, boolean z10, org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, TLRPC.PollAnswer pollAnswer) {
-        this.f36882b = rw0Var;
-        this.f36883c = z10;
-        this.e = m2Var;
-        this.f36884f = arrayList;
-        this.d = pollAnswer;
+    @Override
+    public final int h() {
+        return this.f37991c.h;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 != 0) {
+            PremiumPreviewFragment premiumPreviewFragment = this.f37991c;
+            if (i10 < premiumPreviewFragment.f33501n || i10 >= premiumPreviewFragment.f33506r) {
+                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f33513w) {
+                    return 1;
+                }
+                if (i10 == 0) {
+                    return 4;
+                }
+                if (i10 != premiumPreviewFragment.f33515x && i10 != premiumPreviewFragment.f33517y && i10 != premiumPreviewFragment.E && i10 != premiumPreviewFragment.H) {
+                    if (i10 == premiumPreviewFragment.F) {
+                        return 6;
+                    }
+                    if (i10 != premiumPreviewFragment.f33508s && i10 != premiumPreviewFragment.G) {
+                        if (i10 == premiumPreviewFragment.showAdsRow) {
+                            return 8;
+                        }
+                        return 0;
+                    }
+                    return 7;
+                }
+                return 5;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 r18, int r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iw0.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View hw0Var;
+        org.telegram.ui.ActionBar.d6 d6Var;
+        Context context = viewGroup.getContext();
+        switch (i10) {
+            case 1:
+                hw0Var = new hw0(this, context);
+                break;
+            case 2:
+                hw0Var = new org.telegram.ui.Cells.z6(context, 0, 0);
+                break;
+            case 3:
+            default:
+                hw0Var = new x10(this, context, 6);
+                hw0Var.setTag(-33024);
+                break;
+            case 4:
+                hw0Var = new sg.a(context);
+                break;
+            case 5:
+                hw0Var = new org.telegram.ui.Cells.d9(context);
+                break;
+            case 6:
+                hw0Var = new View(context);
+                hw0Var.setTag(-33024);
+                break;
+            case 7:
+                hw0Var = new org.telegram.ui.Cells.l4(context);
+                break;
+            case 8:
+                d6Var = ((org.telegram.ui.ActionBar.n2) this.f37991c).resourceProvider;
+                hw0Var = new org.telegram.ui.Cells.q8(23, context, d6Var, false, true);
+                break;
+        }
+        return com.google.android.gms.internal.cast.a6.l(hw0Var, hw0Var, -1, -2);
     }
 }

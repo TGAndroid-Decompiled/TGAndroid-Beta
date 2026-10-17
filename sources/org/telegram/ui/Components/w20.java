@@ -1,83 +1,108 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.ViewConfiguration;
-import org.telegram.ui.PhotoViewer;
-public final class w20 {
-    public static final int f30428x;
-    public static final int f30429y;
-    public final int f30430a;
-    public final int f30431b;
-    public final int f30432c;
-    public final int d;
-    public final int e;
-    public final ab.o0 f30433f;
-    public final v20 f30434g;
-    public u20 h;
-    public boolean f30435i;
-    public boolean f30436j;
-    public boolean f30437k;
-    public boolean f30438l;
-    public boolean f30439m;
-    public MotionEvent f30440n;
-    public MotionEvent f30441o;
-    public MotionEvent f30442p;
-    public boolean f30443q;
-    public float f30444r;
-    public float f30445s;
-    public float f30446t;
-    public float f30447u;
-    public boolean v;
-    public VelocityTracker f30448w;
-
-    static {
-        ViewConfiguration.getLongPressTimeout();
-        f30428x = ViewConfiguration.getTapTimeout();
-        f30429y = ViewConfiguration.getDoubleTapTimeout();
-    }
-
-    public w20(Context context, PhotoViewer photoViewer) {
-        this(context, (v20) photoViewer);
-    }
-
-    public final boolean a(android.view.MotionEvent r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w20.a(android.view.MotionEvent):boolean");
-    }
-
-    public final void b() {
-        this.v = false;
-    }
-
-    public w20(Context context, v20 v20Var) {
-        int scaledTouchSlop;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public abstract class w20 extends org.telegram.ui.ActionBar.f3 {
+    public w20(Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(context, true);
         int i10;
         int i11;
-        this.f30433f = new ab.o0(this, 8);
-        this.f30434g = v20Var;
-        if (v20Var instanceof u20) {
-            this.h = (u20) v20Var;
+        setApplyBottomPadding(false);
+        setApplyTopPadding(false);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        setCustomView(linearLayout);
+        ?? imageView = new ImageView(context);
+        imageView.setAutoRepeat(true);
+        imageView.f(R.raw.utyan_gigagroup, 120, 120, null);
+        imageView.d();
+        linearLayout.addView((View) imageView, w7.z5.t(160, 160, 49, 17, 30, 17, 0));
+        TextView textView = new TextView(context);
+        org.telegram.messenger.wh.k(24.0f, 1, textView);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21092j5, false));
+        textView.setText(LocaleController.getString(R.string.GigagroupConvertTitle));
+        linearLayout.addView(textView, w7.z5.t(-2, -2, 49, 17, 18, 17, 0));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        linearLayout.addView(linearLayout2, w7.z5.t(-2, -2, 1, 0, 12, 0, 0));
+        for (int i12 = 0; i12 < 3; i12++) {
+            LinearLayout e = org.telegram.messenger.wh.e(context, 0);
+            if (LocaleController.isRTL) {
+                i10 = 5;
+            } else {
+                i10 = 3;
+            }
+            linearLayout2.addView(e, w7.z5.t(-2, -2, i10, 0, 8, 0, 0));
+            ImageView imageView2 = new ImageView(context);
+            int i13 = org.telegram.ui.ActionBar.h6.f21242r5;
+            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i13, false), PorterDuff.Mode.MULTIPLY));
+            imageView2.setImageResource(R.drawable.list_circle);
+            TextView textView2 = new TextView(context);
+            textView2.setTextSize(1, 15.0f);
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i13, false));
+            if (LocaleController.isRTL) {
+                i11 = 5;
+            } else {
+                i11 = 3;
+            }
+            textView2.setGravity(i11 | 16);
+            textView2.setMaxWidth(AndroidUtilities.dp(260.0f));
+            if (i12 != 0) {
+                if (i12 != 1) {
+                    if (i12 == 2) {
+                        textView2.setText(LocaleController.getString(R.string.GigagroupConvertInfo3));
+                    }
+                } else {
+                    textView2.setText(LocaleController.getString(R.string.GigagroupConvertInfo2));
+                }
+            } else {
+                textView2.setText(LocaleController.getString(R.string.GigagroupConvertInfo1));
+            }
+            if (LocaleController.isRTL) {
+                e.addView(textView2, w7.z5.n(-2, -2));
+                e.addView(imageView2, w7.z5.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
+            } else {
+                e.addView(imageView2, w7.z5.k(0.0f, 8.0f, 8.0f, 0.0f, -2, -2));
+                e.addView(textView2, w7.z5.n(-2, -2));
+            }
         }
-        this.v = true;
-        if (context == null) {
-            i10 = ViewConfiguration.getTouchSlop();
-            this.d = ViewConfiguration.getMinimumFlingVelocity();
-            this.e = ViewConfiguration.getMaximumFlingVelocity();
-            i11 = 100;
-            scaledTouchSlop = i10;
-        } else {
-            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
-            int scaledTouchSlop2 = viewConfiguration.getScaledTouchSlop();
-            scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
-            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
-            this.d = viewConfiguration.getScaledMinimumFlingVelocity();
-            this.e = viewConfiguration.getScaledMaximumFlingVelocity();
-            i10 = scaledTouchSlop2;
-            i11 = scaledDoubleTapSlop;
-        }
-        this.f30430a = i10 * i10;
-        this.f30431b = scaledTouchSlop * scaledTouchSlop;
-        this.f30432c = i11 * i11;
+        ?? frameLayout = new FrameLayout(context);
+        View view = new View(context);
+        frameLayout.f31147a = view;
+        view.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
+        frameLayout.addView(view, w7.z5.a(-1.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 0));
+        TextView textView3 = new TextView(context);
+        frameLayout.f31148b = textView3;
+        textView3.setLines(1);
+        textView3.setSingleLine(true);
+        textView3.setGravity(1);
+        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        textView3.setGravity(17);
+        org.telegram.messenger.q.m(14.0f, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false), 1, textView3);
+        frameLayout.addView(textView3, w7.z5.e(-2, -2, 17));
+        frameLayout.setBackground(null);
+        frameLayout.setText(LocaleController.getString(R.string.GigagroupConvertProcessButton));
+        view.setOnClickListener(new ai.v0(this, context, n2Var, 25));
+        linearLayout.addView((View) frameLayout, w7.z5.t(-1, 50, 51, 0, 29, 0, 0));
+        TextView textView4 = new TextView(context);
+        textView4.setTextSize(1, 14.0f);
+        textView4.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21168n5, false));
+        org.telegram.messenger.wh.m(R.string.GigagroupConvertCancelButton, textView4, 17);
+        linearLayout.addView(textView4, w7.z5.t(-2, 48, 49, 17, 0, 17, 16));
+        textView4.setOnClickListener(new f0(this, 19));
     }
+
+    public abstract void n();
+
+    public abstract void o();
 }

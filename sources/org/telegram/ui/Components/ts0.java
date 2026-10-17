@@ -1,49 +1,22 @@
 package org.telegram.ui.Components;
+public final class ts0 extends s4.s {
+    public final sv0 Q;
 
-import android.content.Context;
-import android.widget.ImageView;
-public final class ts0 extends qu0 {
-    public final xv0 M;
-
-    public ts0(xv0 xv0Var, Context context) {
-        super(context);
-        this.M = xv0Var;
+    public ts0(sv0 sv0Var) {
+        super(3);
+        this.Q = sv0Var;
     }
 
     @Override
-    public final void setTranslationX(float f7) {
-        qu0 qu0Var;
-        int i10;
-        super.setTranslationX(f7);
-        xv0 xv0Var = this.M;
-        qu0[] qu0VarArr = xv0Var.f31045k0;
-        if (xv0Var.f31038g1 && (qu0Var = qu0VarArr[0]) == this) {
-            float abs = Math.abs(qu0Var.getTranslationX()) / qu0VarArr[0].getMeasuredWidth();
-            xv0Var.a1(abs, qu0VarArr[1].F);
-            if (xv0Var.D()) {
-                int i11 = xv0Var.f31074x0;
-                if (i11 == 2) {
-                    xv0Var.f31052o0 = 1.0f - abs;
-                } else if (i11 == 1) {
-                    xv0Var.f31052o0 = abs;
-                }
-                xv0Var.t1(abs);
-                float a02 = xv0Var.a0(abs);
-                xv0Var.f31054p0 = a02;
-                ImageView imageView = xv0Var.f31059r0;
-                if (a02 != 0.0f && xv0Var.D() && !xv0Var.q0()) {
-                    i10 = 0;
-                } else {
-                    i10 = 4;
-                }
-                imageView.setVisibility(i10);
-            } else {
-                xv0Var.f31052o0 = 0.0f;
-            }
-            xv0Var.r1(false);
+    public final int o0(int i10, qf.e eVar, s4.y0 y0Var) {
+        if (this.Q.f30372o1) {
+            i10 = 0;
         }
-        xv0Var.I();
-        xv0Var.K();
-        xv0Var.o0();
+        return super.o0(i10, eVar, y0Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

@@ -1,145 +1,101 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-public class ax0 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.h5 f34112a;
-    public final TextView f34113b;
-    public final ImageView f34114c;
-    public final ImageView d;
-    public boolean e;
-    public qx0 f34115f;
-    public org.telegram.ui.Components.q5 h;
-    public Drawable f34116n;
+import android.util.SparseIntArray;
+public final class ax0 extends s4.o {
+    public int f35513b;
+    public final SparseIntArray f35514c = new SparseIntArray();
+    public final SparseIntArray d = new SparseIntArray();
+    public final PrivacyControlActivity e;
 
-    public ax0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        setClipChildren(false);
-        linearLayout.setClipChildren(false);
-        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
-        this.f34112a = h5Var;
-        h5Var.setTypeface(AndroidUtilities.bold());
-        h5Var.setTextSize(15);
-        h5Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.G6, c6Var));
-        linearLayout.addView(h5Var, w7.z5.n(-1, -2));
-        TextView textView = new TextView(context);
-        this.f34113b = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.f19988y6, c6Var));
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        linearLayout.addView(textView, w7.z5.p(-1, -2, 0.0f, 0, 0, 1, 0, 0));
-        addView(linearLayout, w7.z5.a(-2.0f, 62.0f, 8.0f, 48.0f, 9.0f, -1, 0));
-        ImageView imageView = new ImageView(context);
-        this.f34114c = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_INSIDE;
-        imageView.setScaleType(scaleType);
-        addView(imageView, w7.z5.a(28.0f, 18.0f, 12.0f, 0.0f, 0.0f, 28, 0));
-        ImageView imageView2 = new ImageView(context);
-        this.d = imageView2;
-        imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(R.drawable.msg_arrowright);
-        imageView2.setColorFilter(org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.M6, c6Var));
-        addView(imageView2, w7.z5.a(24.0f, 0.0f, 0.0f, 18.0f, 0.0f, 24, 21));
+    public ax0(PrivacyControlActivity privacyControlActivity) {
+        this.e = privacyControlActivity;
     }
 
-    public final void a(qx0 qx0Var, boolean z10) {
-        long longValue;
-        boolean isPremium = UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
-        ImageView imageView = this.d;
-        if (isPremium && qx0Var.f39234a == 12 && qx0Var.f39235b == R.drawable.filled_premium_status2) {
-            imageView.setVisibility(8);
-            if (this.h == null) {
-                this.h = new org.telegram.ui.Components.q5(AndroidUtilities.dp(24.0f), 13, this, false);
-                if (isAttachedToWindow()) {
-                    this.h.a();
-                }
-            }
-            Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
-            if (emojiStatusDocumentId == null) {
-                longValue = 0;
-            } else {
-                longValue = emojiStatusDocumentId.longValue();
-            }
-            b(longValue, false);
-        } else {
-            imageView.setVisibility(0);
-            org.telegram.ui.Components.q5 q5Var = this.h;
-            if (q5Var != null) {
-                q5Var.b();
-                this.h = null;
-            }
-        }
-        this.f34115f = qx0Var;
-        this.f34112a.l(qx0Var.f39236c, false);
-        this.f34113b.setText(qx0Var.d);
-        this.f34114c.setImageResource(qx0Var.f39235b);
-        this.e = z10;
-    }
-
-    public final void b(long j10, boolean z10) {
-        if (this.h == null) {
-            this.h = new org.telegram.ui.Components.q5(AndroidUtilities.dp(24.0f), 13, this, false);
-            if (isAttachedToWindow()) {
-                this.h.a();
-            }
-        }
-        if (j10 == 0) {
-            if (this.f34116n == null) {
-                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_prolfilestar).mutate();
-                this.f34116n = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19933v6, false), PorterDuff.Mode.SRC_IN));
-            }
-            this.h.g(this.f34116n, z10);
-            return;
-        }
-        this.h.j(j10, z10);
-    }
-
-    public final void c() {
-        this.h.setBounds((getWidth() - this.h.f28200s) - AndroidUtilities.dp(21.0f), (getHeight() - this.h.f28200s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + this.h.f28200s) / 2);
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.h != null) {
-            c();
-            this.h.k(Integer.valueOf(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19933v6, false)));
-            this.h.draw(canvas);
-        }
-        if (this.e) {
-            canvas.drawRect(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.g6.f19722k0);
+    public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
+        if (i11 >= 0) {
+            sparseIntArray.put(i11, i10);
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        org.telegram.ui.Components.q5 q5Var = this.h;
-        if (q5Var != null) {
-            q5Var.a();
-        }
-        super.onAttachedToWindow();
+    public final boolean a(int i10, int i11) {
+        return b(i10, i11);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        org.telegram.ui.Components.q5 q5Var = this.h;
-        if (q5Var != null) {
-            q5Var.b();
+    public final boolean b(int i10, int i11) {
+        int i12 = this.f35514c.get(i10, -1);
+        if (i12 == this.d.get(i11, -1) && i12 >= 0) {
+            return true;
         }
-        super.onDetachedFromWindow();
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.e.f33542r0;
+    }
+
+    @Override
+    public final int e() {
+        return this.f35513b;
+    }
+
+    public final void f(SparseIntArray sparseIntArray) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        sparseIntArray.clear();
+        PrivacyControlActivity privacyControlActivity = this.e;
+        g(1, privacyControlActivity.M, sparseIntArray);
+        g(2, privacyControlActivity.N, sparseIntArray);
+        i10 = privacyControlActivity.everybodyRow;
+        g(3, i10, sparseIntArray);
+        g(4, privacyControlActivity.O, sparseIntArray);
+        i11 = privacyControlActivity.nobodyRow;
+        g(5, i11, sparseIntArray);
+        g(6, privacyControlActivity.f33530g0, sparseIntArray);
+        g(7, privacyControlActivity.P, sparseIntArray);
+        g(8, privacyControlActivity.R, sparseIntArray);
+        g(9, privacyControlActivity.S, sparseIntArray);
+        g(10, privacyControlActivity.T, sparseIntArray);
+        g(11, privacyControlActivity.U, sparseIntArray);
+        g(12, privacyControlActivity.V, sparseIntArray);
+        g(13, privacyControlActivity.W, sparseIntArray);
+        g(14, privacyControlActivity.X, sparseIntArray);
+        g(15, privacyControlActivity.Y, sparseIntArray);
+        i12 = privacyControlActivity.photoForRestRow;
+        g(16, i12, sparseIntArray);
+        i13 = privacyControlActivity.currentPhotoForRestRow;
+        g(17, i13, sparseIntArray);
+        g(18, privacyControlActivity.Z, sparseIntArray);
+        g(19, privacyControlActivity.f33521a0, sparseIntArray);
+        g(20, privacyControlActivity.f33523b0, sparseIntArray);
+        g(21, privacyControlActivity.f33525c0, sparseIntArray);
+        i14 = privacyControlActivity.readRow;
+        g(22, i14, sparseIntArray);
+        g(23, privacyControlActivity.f33526d0, sparseIntArray);
+        g(24, privacyControlActivity.f33527e0, sparseIntArray);
+        g(25, privacyControlActivity.f33529f0, sparseIntArray);
+        g(26, privacyControlActivity.f33531h0, sparseIntArray);
+        i15 = privacyControlActivity.priceRow;
+        g(27, i15, sparseIntArray);
+        g(28, privacyControlActivity.f33533j0, sparseIntArray);
+        i16 = privacyControlActivity.showGiftIconRow;
+        g(29, i16, sparseIntArray);
+        g(30, privacyControlActivity.f33534k0, sparseIntArray);
+        i17 = privacyControlActivity.giftTypesHeaderRow;
+        g(31, i17, sparseIntArray);
+        g(32, privacyControlActivity.m0, sparseIntArray);
+        g(33, privacyControlActivity.f33535l0, sparseIntArray);
+        g(34, privacyControlActivity.f33537n0, sparseIntArray);
+        g(35, privacyControlActivity.f33538o0, sparseIntArray);
+        g(36, privacyControlActivity.f33539p0, sparseIntArray);
+        g(37, privacyControlActivity.f33540q0, sparseIntArray);
     }
 }

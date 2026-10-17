@@ -12,22 +12,22 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.WeakHashMap;
-import m.f3;
-import m.h3;
-import m.n1;
+import m.e3;
+import m.g3;
+import m.m1;
 import v7.u6;
 public final class c {
-    public int f8325a;
-    public final Object f8326b;
-    public final Object f8327c;
+    public int f8204a;
+    public final Object f8205b;
+    public final Object f8206c;
     public Object d;
     public Object e;
-    public Object f8328f;
+    public Object f8207f;
 
     public c(View view) {
-        this.f8325a = -1;
-        this.f8326b = view;
-        this.f8327c = m.s.a();
+        this.f8204a = -1;
+        this.f8205b = view;
+        this.f8206c = m.r.a();
     }
 
     public void a(long r10, e2.x r12) {
@@ -35,42 +35,42 @@ public final class c {
     }
 
     public void b() {
-        View view = (View) this.f8326b;
+        View view = (View) this.f8205b;
         Drawable background = view.getBackground();
         if (background != null) {
-            if (((f3) this.d) != null) {
-                if (((f3) this.f8328f) == null) {
-                    this.f8328f = new Object();
+            if (((e3) this.d) != null) {
+                if (((e3) this.f8207f) == null) {
+                    this.f8207f = new Object();
                 }
-                f3 f3Var = (f3) this.f8328f;
-                f3Var.f14845c = null;
-                f3Var.f14844b = false;
-                f3Var.d = null;
-                f3Var.f14843a = false;
-                WeakHashMap weakHashMap = r0.i0.f43485a;
+                e3 e3Var = (e3) this.f8207f;
+                e3Var.f16190c = null;
+                e3Var.f16189b = false;
+                e3Var.d = null;
+                e3Var.f16188a = false;
+                WeakHashMap weakHashMap = r0.i0.f44844a;
                 ColorStateList c10 = r0.a0.c(view);
                 if (c10 != null) {
-                    f3Var.f14844b = true;
-                    f3Var.f14845c = c10;
+                    e3Var.f16189b = true;
+                    e3Var.f16190c = c10;
                 }
                 PorterDuff.Mode d = r0.a0.d(view);
                 if (d != null) {
-                    f3Var.f14843a = true;
-                    f3Var.d = d;
+                    e3Var.f16188a = true;
+                    e3Var.d = d;
                 }
-                if (f3Var.f14844b || f3Var.f14843a) {
-                    m.s.d(background, f3Var, view.getDrawableState());
+                if (e3Var.f16189b || e3Var.f16188a) {
+                    m.r.d(background, e3Var, view.getDrawableState());
                     return;
                 }
             }
-            f3 f3Var2 = (f3) this.e;
-            if (f3Var2 != null) {
-                m.s.d(background, f3Var2, view.getDrawableState());
+            e3 e3Var2 = (e3) this.e;
+            if (e3Var2 != null) {
+                m.r.d(background, e3Var2, view.getDrawableState());
                 return;
             }
-            f3 f3Var3 = (f3) this.d;
-            if (f3Var3 != null) {
-                m.s.d(background, f3Var3, view.getDrawableState());
+            e3 e3Var3 = (e3) this.d;
+            if (e3Var3 != null) {
+                m.r.d(background, e3Var3, view.getDrawableState());
             }
         }
     }
@@ -79,60 +79,60 @@ public final class c {
         ArrayList arrayList;
         PriorityQueue priorityQueue = (PriorityQueue) this.e;
         while (priorityQueue.size() > i10) {
-            f2.u uVar = (f2.u) priorityQueue.poll();
-            String str = m0.f8375a;
+            f2.v vVar = (f2.v) priorityQueue.poll();
+            String str = m0.f8254a;
             int i11 = 0;
             while (true) {
-                arrayList = uVar.f8912a;
+                arrayList = vVar.f10356a;
                 if (i11 >= arrayList.size()) {
                     break;
                 }
-                ((f2.v) this.f8326b).a(uVar.f8913b, (x) arrayList.get(i11));
-                ((ArrayDeque) this.f8327c).push((x) arrayList.get(i11));
+                ((f2.w) this.f8205b).c(vVar.f10357b, (x) arrayList.get(i11));
+                ((ArrayDeque) this.f8206c).push((x) arrayList.get(i11));
                 i11++;
             }
             arrayList.clear();
-            f2.u uVar2 = (f2.u) this.f8328f;
-            if (uVar2 != null && uVar2.f8913b == uVar.f8913b) {
-                this.f8328f = null;
+            f2.v vVar2 = (f2.v) this.f8207f;
+            if (vVar2 != null && vVar2.f10357b == vVar.f10357b) {
+                this.f8207f = null;
             }
-            ((ArrayDeque) this.d).push(uVar);
+            ((ArrayDeque) this.d).push(vVar);
         }
     }
 
     public ColorStateList d() {
-        f3 f3Var = (f3) this.e;
-        if (f3Var != null) {
-            return (ColorStateList) f3Var.f14845c;
+        e3 e3Var = (e3) this.e;
+        if (e3Var != null) {
+            return (ColorStateList) e3Var.f16190c;
         }
         return null;
     }
 
     public PorterDuff.Mode e() {
-        f3 f3Var = (f3) this.e;
-        if (f3Var != null) {
-            return (PorterDuff.Mode) f3Var.d;
+        e3 e3Var = (e3) this.e;
+        if (e3Var != null) {
+            return (PorterDuff.Mode) e3Var.d;
         }
         return null;
     }
 
     public void f(AttributeSet attributeSet, int i10) {
         ColorStateList i11;
-        View view = (View) this.f8326b;
+        View view = (View) this.f8205b;
         Context context = view.getContext();
-        int[] iArr = f.a.f8826z;
-        h3 P = h3.P(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) P.f14851c;
-        View view2 = (View) this.f8326b;
-        r0.i0.i(view2, view2.getContext(), iArr, attributeSet, (TypedArray) P.f14851c, i10);
+        int[] iArr = f.a.f10271z;
+        g3 P = g3.P(context, attributeSet, iArr, i10);
+        TypedArray typedArray = (TypedArray) P.f16197c;
+        View view2 = (View) this.f8205b;
+        r0.i0.i(view2, view2.getContext(), iArr, attributeSet, (TypedArray) P.f16197c, i10);
         try {
             if (typedArray.hasValue(0)) {
-                this.f8325a = typedArray.getResourceId(0, -1);
-                m.s sVar = (m.s) this.f8327c;
+                this.f8204a = typedArray.getResourceId(0, -1);
+                m.r rVar = (m.r) this.f8206c;
                 Context context2 = view.getContext();
-                int i12 = this.f8325a;
-                synchronized (sVar) {
-                    i11 = sVar.f14960a.i(context2, i12);
+                int i12 = this.f8204a;
+                synchronized (rVar) {
+                    i11 = rVar.f16305a.i(context2, i12);
                 }
                 if (i11 != null) {
                     j(i11);
@@ -142,7 +142,7 @@ public final class c {
                 r0.a0.f(view, P.E(1));
             }
             if (typedArray.hasValue(2)) {
-                r0.a0.g(view, n1.b(typedArray.getInt(2, -1), null));
+                r0.a0.g(view, m1.b(typedArray.getInt(2, -1), null));
             }
             P.Q();
         } catch (Throwable th2) {
@@ -152,19 +152,19 @@ public final class c {
     }
 
     public void g() {
-        this.f8325a = -1;
+        this.f8204a = -1;
         j(null);
         b();
     }
 
     public void h(int i10) {
         ColorStateList colorStateList;
-        this.f8325a = i10;
-        m.s sVar = (m.s) this.f8327c;
-        if (sVar != null) {
-            Context context = ((View) this.f8326b).getContext();
-            synchronized (sVar) {
-                colorStateList = sVar.f14960a.i(context, i10);
+        this.f8204a = i10;
+        m.r rVar = (m.r) this.f8206c;
+        if (rVar != null) {
+            Context context = ((View) this.f8205b).getContext();
+            synchronized (rVar) {
+                colorStateList = rVar.f16305a.i(context, i10);
             }
         } else {
             colorStateList = null;
@@ -174,8 +174,8 @@ public final class c {
     }
 
     public void i(Runnable runnable) {
-        i0 i0Var = (i0) this.f8326b;
-        if (!i0Var.f8360a.getLooper().getThread().isAlive()) {
+        i0 i0Var = (i0) this.f8205b;
+        if (!i0Var.f8239a.getLooper().getThread().isAlive()) {
             return;
         }
         i0Var.d(runnable);
@@ -183,12 +183,12 @@ public final class c {
 
     public void j(ColorStateList colorStateList) {
         if (colorStateList != null) {
-            if (((f3) this.d) == null) {
+            if (((e3) this.d) == null) {
                 this.d = new Object();
             }
-            f3 f3Var = (f3) this.d;
-            f3Var.f14845c = colorStateList;
-            f3Var.f14844b = true;
+            e3 e3Var = (e3) this.d;
+            e3Var.f16190c = colorStateList;
+            e3Var.f16189b = true;
         } else {
             this.d = null;
         }
@@ -203,27 +203,27 @@ public final class c {
             z10 = false;
         }
         u6.p(z10);
-        this.f8325a = i10;
+        this.f8204a = i10;
         c(i10);
     }
 
     public void l(ColorStateList colorStateList) {
-        if (((f3) this.e) == null) {
+        if (((e3) this.e) == null) {
             this.e = new Object();
         }
-        f3 f3Var = (f3) this.e;
-        f3Var.f14845c = colorStateList;
-        f3Var.f14844b = true;
+        e3 e3Var = (e3) this.e;
+        e3Var.f16190c = colorStateList;
+        e3Var.f16189b = true;
         b();
     }
 
     public void m(PorterDuff.Mode mode) {
-        if (((f3) this.e) == null) {
+        if (((e3) this.e) == null) {
             this.e = new Object();
         }
-        f3 f3Var = (f3) this.e;
-        f3Var.d = mode;
-        f3Var.f14843a = true;
+        e3 e3Var = (e3) this.e;
+        e3Var.d = mode;
+        e3Var.f16188a = true;
         b();
     }
 
@@ -231,30 +231,30 @@ public final class c {
         Object obj2 = this.e;
         this.e = obj;
         if (!obj2.equals(obj)) {
-            i2.h0 h0Var = ((i2.w) this.d).f11214b;
+            i2.g0 g0Var = ((i2.v) this.d).f12600b;
             ((Integer) obj2).getClass();
             Integer num = (Integer) obj;
             int intValue = num.intValue();
-            h0Var.F1();
-            h0Var.t1(1, 10, num);
-            h0Var.t1(2, 10, num);
-            h0Var.f11005m.e(21, new i2.v(intValue, 1));
+            g0Var.F1();
+            g0Var.t1(1, 10, num);
+            g0Var.t1(2, 10, num);
+            g0Var.f12397m.e(21, new i2.u(intValue, 1));
         }
     }
 
-    public c(f2.v vVar) {
-        this.f8326b = vVar;
-        this.f8327c = new ArrayDeque();
+    public c(f2.w wVar) {
+        this.f8205b = wVar;
+        this.f8206c = new ArrayDeque();
         this.d = new ArrayDeque();
         this.e = new PriorityQueue();
-        this.f8325a = -1;
+        this.f8204a = -1;
     }
 
-    public c(Object obj, Looper looper, Looper looper2, g0 g0Var, i2.w wVar) {
-        this.f8326b = g0Var.a(looper, null);
-        this.f8327c = g0Var.a(looper2, null);
+    public c(Object obj, Looper looper, Looper looper2, g0 g0Var, i2.v vVar) {
+        this.f8205b = g0Var.a(looper, null);
+        this.f8206c = g0Var.a(looper2, null);
         this.e = obj;
-        this.f8328f = obj;
-        this.d = wVar;
+        this.f8207f = obj;
+        this.d = vVar;
     }
 }

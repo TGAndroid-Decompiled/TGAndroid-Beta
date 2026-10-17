@@ -1,81 +1,84 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.content.Context;
-import android.view.KeyEvent;
-public final class fs extends ks {
-    public final int M;
-    public final int N;
-    public final hs O;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class fs extends org.telegram.ui.Cells.q8 {
+    public final int R = 2;
+    public final Object S;
 
-    public fs(hs hsVar, Context context, int i10, int i11) {
-        super(context);
-        this.O = hsVar;
-        this.M = i10;
-        this.N = i11;
-        this.e = 1.0f;
-        this.f37502f = new o1.k(this, ks.I);
-        this.h = new o1.k(this, ks.J);
-        this.f37503n = new o1.k(this, ks.K);
-        this.f37504r = new o1.k(this, ks.L);
-        this.f37505s = true;
-        this.v = 1.0f;
-        this.f37506w = 1.0f;
-        this.H = false;
-        setBackground(null);
-        setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
-        setMovementMethod(null);
-        addTextChangedListener(new n0(this, 5));
+    public fs(hs hsVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.S = hsVar;
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == 4) {
-            return false;
+    public int c(int i10) {
+        switch (this.R) {
+            case 2:
+                ((d01) this.S).e.getClass();
+                return i10;
+            default:
+                return i10;
         }
-        int keyCode = keyEvent.getKeyCode();
-        hs hsVar = this.O;
-        int length = hsVar.f36645f.length;
-        int i10 = this.M;
-        if (i10 >= length) {
-            return false;
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.R) {
+            case 0:
+                super.onLayout(z10, i10, i11, i12, i13);
+                int dp = AndroidUtilities.dp(21.0f);
+                int measuredHeight = getMeasuredHeight();
+                hs hsVar = (hs) this.S;
+                int measuredHeight2 = (measuredHeight - hsVar.U.getMeasuredHeight()) / 2;
+                org.telegram.ui.Components.w9 w9Var = hsVar.U;
+                w9Var.layout(dp, measuredHeight2, w9Var.getMeasuredWidth() + dp, hsVar.U.getMeasuredHeight() + measuredHeight2);
+                return;
+            case 1:
+                super.onLayout(z10, i10, i11, i12, i13);
+                int dp2 = AndroidUtilities.dp(21.0f);
+                int measuredHeight3 = getMeasuredHeight();
+                ex0 ex0Var = (ex0) this.S;
+                int measuredHeight4 = (measuredHeight3 - ex0Var.d.f33547v0.getMeasuredHeight()) / 2;
+                org.telegram.ui.Components.w9 w9Var2 = ex0Var.d.f33547v0;
+                w9Var2.layout(dp2, measuredHeight4, w9Var2.getMeasuredWidth() + dp2, ex0Var.d.f33547v0.getMeasuredHeight() + measuredHeight4);
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
         }
-        if (keyEvent.getAction() == 1) {
-            if (keyCode == 67 && hsVar.f36645f[i10].length() == 1) {
-                hsVar.f36645f[i10].m();
-                hsVar.f36645f[i10].setText("");
-                return true;
-            } else if (keyCode == 67 && hsVar.f36645f[i10].length() == 0 && i10 > 0) {
-                ks[] ksVarArr = hsVar.f36645f;
-                ksVarArr[i10 - 1].setSelection(ksVarArr[i10 - 1].length());
-                for (int i11 = 0; i11 < i10; i11++) {
-                    if (i11 == i10 - 1) {
-                        hsVar.f36645f[i10 - 1].requestFocus();
-                    } else {
-                        hsVar.f36645f[i11].clearFocus();
-                    }
-                }
-                hsVar.f36645f[i10 - 1].m();
-                hsVar.f36645f[i10 - 1].setText("");
-                return true;
-            } else {
-                if (keyCode >= 7 && keyCode <= 16) {
-                    String num = Integer.toString(keyCode - 7);
-                    if (hsVar.f36645f[i10].getText() != null && num.equals(hsVar.f36645f[i10].getText().toString())) {
-                        if (i10 >= this.N - 1) {
-                            hsVar.a();
-                        } else {
-                            hsVar.f36645f[i10 + 1].requestFocus();
-                        }
-                        return true;
-                    }
-                    if (hsVar.f36645f[i10].length() > 0) {
-                        hsVar.f36645f[i10].m();
-                    }
-                    hsVar.f36645f[i10].setText(num);
-                }
-                return true;
-            }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.R) {
+            case 0:
+                super.onMeasure(i10, i11);
+                hs hsVar = (hs) this.S;
+                hsVar.U.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+                hsVar.U.setRoundRadius(AndroidUtilities.dp(30.0f));
+                return;
+            case 1:
+                super.onMeasure(i10, i11);
+                ex0 ex0Var = (ex0) this.S;
+                ex0Var.d.f33547v0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+                ex0Var.d.f33547v0.setRoundRadius(AndroidUtilities.dp(30.0f));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
-        return isFocused();
+    }
+
+    public fs(ex0 ex0Var, Activity activity) {
+        super(activity);
+        this.S = ex0Var;
+    }
+
+    public fs(d01 d01Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(18, context, d6Var, false, false);
+        this.S = d01Var;
     }
 }

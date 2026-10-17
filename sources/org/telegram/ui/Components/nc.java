@@ -2,44 +2,65 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class nc extends pb {
-    public final z9 f27338a;
-    public final da0 f27339b;
-    public final da0 f27340c;
+public final class nc extends nb {
+    public final xj0 f28729a;
+    public final x90 f28730b;
+    public final x90 f28731c;
+    public final LinearLayout d;
+    public final int e;
 
-    public nc(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        int i10 = org.telegram.ui.ActionBar.g6.Hi;
-        getThemedColor(i10);
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.g6.Fi));
-        z9 z9Var = new z9(context);
-        this.f27338a = z9Var;
-        addView(z9Var, w7.z5.i(32.0f, 32.0f, 8388627, 12.0f, 0.0f, 12.0f, 0.0f));
+    public nc(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        int i10 = org.telegram.ui.ActionBar.h6.Hi;
+        this.e = getThemedColor(i10);
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.h6.Fi));
+        ?? imageView = new ImageView(context);
+        this.f28729a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView((View) imageView, w7.z5.h(56.0f, 48.0f, 8388627));
         int themedColor = getThemedColor(i10);
-        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.g6.Gi);
-        LinearLayout e = org.telegram.messenger.sk.e(context, 1);
-        addView(e, w7.z5.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
-        da0 da0Var = new da0(context, null);
-        this.f27339b = da0Var;
-        da0Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        da0Var.setTextColor(themedColor);
-        da0Var.setTextSize(1, 14.0f);
-        da0Var.setTypeface(AndroidUtilities.bold());
-        e.addView(da0Var);
-        da0 da0Var2 = new da0(context, null);
-        this.f27340c = da0Var2;
-        da0Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        da0Var2.setTextColor(themedColor);
-        da0Var2.setLinkTextColor(themedColor2);
-        da0Var2.setTypeface(Typeface.SANS_SERIF);
-        da0Var2.setTextSize(1, 13.0f);
-        e.addView(da0Var2);
+        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.h6.Gi);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.d = linearLayout;
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.z5.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+        x90 x90Var = new x90(context, null);
+        this.f28730b = x90Var;
+        x90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        x90Var.setTextColor(themedColor);
+        x90Var.setTextSize(1, 14.0f);
+        x90Var.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(x90Var);
+        x90 x90Var2 = new x90(context, null);
+        this.f28731c = x90Var2;
+        x90Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        x90Var2.setTextColor(themedColor);
+        x90Var2.setLinkTextColor(themedColor2);
+        x90Var2.setTypeface(Typeface.SANS_SERIF);
+        x90Var2.setTextSize(1, 13.0f);
+        linearLayout.addView(x90Var2);
+    }
+
+    public final void c(int i10, int i11, int i12, String... strArr) {
+        xj0 xj0Var = this.f28729a;
+        xj0Var.f(i10, i11, i12, null);
+        for (String str : strArr) {
+            xj0Var.h(this.e, str);
+        }
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f27339b.getText()) + ".\n" + ((Object) this.f27340c.getText());
+        return ((Object) this.f28730b.getText()) + ".\n" + ((Object) this.f28731c.getText());
+    }
+
+    @Override
+    public final void onShow() {
+        super.onShow();
+        this.f28729a.d();
     }
 }

@@ -4,6 +4,9 @@ precision highp float;
 uniform sampler2D uCardDetailTexture;
 uniform vec4 uDiamondBounds;
 uniform float uDiamondAlpha;
+// Artwork layers: R = white, G = tint weight, A = coverage (premultiplied).
+uniform vec3 uDiamondTint[2];
+uniform vec4 uStickerReveal;
 flat in vec3 vEngravingXAxis;
 flat in vec3 vEngravingYAxis;
 flat in vec3 vFaceNormal;
@@ -46,7 +49,14 @@ void main() {
 
     // Preserve the supplied texture even outside the card's moving light band.
     // The shared light adds facet glints; it never dims the entire icon in unison.
-    vec3 artwork = sampleColor.rgb / max(sampleColor.a, 0.00392157);
+    float stickerMix = uStickerReveal.z;
+    if (uStickerReveal.w < 0.5 && stickerMix < 1.0) {
+        float distanceFromGift = length((cardUv - uStickerReveal.xy) * vec2(1.0, 0.61035));
+        stickerMix = 1.0 - smoothstep(stickerMix * 1.2 - 0.025, stickerMix * 1.2, distanceFromGift);
+    }
+    vec2 layers = sampleColor.rg / max(sampleColor.a, 0.00392157);
+    vec3 artwork = vec3(layers.x)
+            + layers.y * mix(uDiamondTint[0], uDiamondTint[1], stickerMix);
     vec3 color = artwork * (0.94 + 0.06 * diffuse);
     color += vec3(0.90, 0.96, 1.0)
             * (0.34 * shine + 0.055 * broadShine + 0.10 * fresnel);

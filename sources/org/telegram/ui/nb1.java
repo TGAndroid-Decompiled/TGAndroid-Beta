@@ -1,27 +1,31 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class nb1 extends org.telegram.ui.Components.f61 {
-    public final StickersActivity f38357b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+public final class nb1 extends FrameLayout {
+    public final int f39409a;
+    public final Rect f39410b;
+    public final mc1 f39411c;
 
-    public nb1(StickersActivity stickersActivity) {
-        this.f38357b = stickersActivity;
+    public nb1(mc1 mc1Var, Context context, int i10, Rect rect) {
+        super(context);
+        this.f39411c = mc1Var;
+        this.f39409a = i10;
+        this.f39410b = rect;
     }
 
     @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        int i10;
-        StickersActivity stickersActivity = this.f38357b;
-        i10 = ((org.telegram.ui.ActionBar.m2) stickersActivity).currentAccount;
-        MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 2, stickersActivity, false, false);
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        int i10;
-        StickersActivity stickersActivity = this.f38357b;
-        i10 = ((org.telegram.ui.ActionBar.m2) stickersActivity).currentAccount;
-        MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 0, stickersActivity, false, false);
+    public final void onDraw(Canvas canvas) {
+        int i10 = this.f39409a;
+        Rect rect = this.f39410b;
+        mc1 mc1Var = this.f39411c;
+        if (i10 == 0) {
+            mc1Var.f39143r.setBounds(mc1Var.V.getLeft() - rect.left, 0, mc1Var.V.getRight() + rect.right, getMeasuredHeight());
+        } else {
+            mc1Var.f39143r.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+        }
+        mc1Var.f39143r.draw(canvas);
     }
 }

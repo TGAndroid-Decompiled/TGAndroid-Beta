@@ -1,100 +1,142 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-public final class yh1 extends org.telegram.ui.Components.l61 {
-    public static final int f41835a = 0;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class yh1 implements Runnable {
+    public final int f43410a;
+    public final int f43411b;
+    public final Object f43412c;
+    public final Object d;
+    public final Object e;
+    public final Object f43413f;
 
-    static {
-        org.telegram.ui.Components.l61.setup(new org.telegram.ui.Components.l61());
+    public yh1(Object obj, int i10, Object obj2, Object obj3, Object obj4, int i11) {
+        this.f43410a = i11;
+        this.f43412c = obj;
+        this.f43411b = i10;
+        this.d = obj2;
+        this.e = obj3;
+        this.f43413f = obj4;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.m61 m61Var, boolean z10, org.telegram.ui.Components.a71 a71Var, org.telegram.ui.Components.i71 i71Var) {
-        float f7;
+    public final void run() {
         int i10;
         int i11;
-        int i12;
-        int i13;
-        zh1 zh1Var = (zh1) view;
-        int i14 = m61Var.f26945k;
-        CharSequence charSequence = m61Var.f26946l;
-        CharSequence charSequence2 = m61Var.f26947m;
-        boolean z11 = m61Var.f26951q;
-        boolean z12 = m61Var.f26952r;
-        int i15 = m61Var.f26959z;
-        TextView textView = zh1Var.d;
-        TextView textView2 = zh1Var.e;
-        ImageView imageView = zh1Var.f42326f;
-        zh1Var.h = z11;
-        zh1Var.f42327n = z12;
-        ImageView imageView2 = zh1Var.f42324b;
-        imageView2.setImageResource(i14);
-        int i16 = 8;
-        if (i15 != 0) {
-            imageView.setVisibility(0);
-            imageView.setImageResource(i15);
-        } else {
-            imageView.setVisibility(8);
+        boolean z10;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
+        switch (this.f43410a) {
+            case 0:
+                int i12 = this.f43411b;
+                org.telegram.ui.Components.h9 h9Var = (org.telegram.ui.Components.h9) this.d;
+                TLRPC.User user = (TLRPC.User) this.e;
+                ((int[]) this.f43412c)[0] = i12;
+                h9Var.r(user);
+                ((org.telegram.ui.Components.w9) this.f43413f).e(user, h9Var);
+                return;
+            case 1:
+                rg.m2 m2Var = (rg.m2) this.f43412c;
+                int i13 = this.f43411b;
+                List list = (List) this.d;
+                ArrayList arrayList = (ArrayList) this.e;
+                xq0 xq0Var = (xq0) this.f43413f;
+                if (m2Var.I != null && !m2Var.f45556y) {
+                    Matrix matrix = new Matrix();
+                    matrix.postScale(1.0f / m2Var.I.getWidth(), 1.0f / m2Var.I.getHeight());
+                    matrix.postTranslate(-0.5f, -0.5f);
+                    matrix.postRotate(i13);
+                    matrix.postTranslate(0.5f, 0.5f);
+                    if ((i13 / 90) % 2 != 0) {
+                        matrix.postScale(m2Var.I.getHeight(), m2Var.I.getWidth());
+                    } else {
+                        matrix.postScale(m2Var.I.getWidth(), m2Var.I.getHeight());
+                    }
+                    if (list.isEmpty()) {
+                        rg.j2 j2Var = new rg.j2(m2Var);
+                        j2Var.h.set(0.0f, 0.0f, m2Var.I.getWidth(), m2Var.I.getHeight());
+                        j2Var.f45439i.set(j2Var.h);
+                        matrix.mapRect(j2Var.f45439i);
+                        j2Var.f45436c = i13;
+                        Bitmap d = m2Var.d(0, 0, m2Var.I, false);
+                        j2Var.d = d;
+                        if (d == null) {
+                            FileLog.e(new RuntimeException("createSmoothEdgesSegmentedImage failed on empty image"));
+                            return;
+                        }
+                        j2Var.f45437f = j2Var.c();
+                        rg.m2.c(j2Var, m2Var.T, m2Var.U);
+                        m2Var.O = j2Var.f45440j;
+                        m2Var.P = j2Var.f45441k;
+                        arrayList.add(j2Var);
+                        AndroidUtilities.runOnUIThread(new gn0(m2Var, arrayList, xq0Var, j2Var, 28));
+                        m2Var.E = j2Var;
+                        m2Var.f45556y = true;
+                        m2Var.f45555x = false;
+                        return;
+                    }
+                    for (int i14 = 0; i14 < list.size(); i14++) {
+                        rg.l2 l2Var = (rg.l2) list.get(i14);
+                        rg.j2 j2Var2 = new rg.j2(m2Var);
+                        j2Var2.h.set(l2Var.f45488b, l2Var.f45489c, i10 + l2Var.d, i11 + l2Var.e);
+                        j2Var2.f45439i.set(j2Var2.h);
+                        matrix.mapRect(j2Var2.f45439i);
+                        j2Var2.f45436c = i13;
+                        Bitmap d10 = m2Var.d(l2Var.f45488b, l2Var.f45489c, l2Var.f45487a, false);
+                        j2Var2.d = d10;
+                        if (d10 != null) {
+                            j2Var2.f45437f = j2Var2.c();
+                            rg.m2.c(j2Var2, m2Var.T, m2Var.U);
+                            m2Var.O = j2Var2.f45440j;
+                            m2Var.P = j2Var2.f45441k;
+                            arrayList.add(j2Var2);
+                        }
+                    }
+                    m2Var.E = null;
+                    m2Var.f45556y = true;
+                    m2Var.f45555x = false;
+                    AndroidUtilities.runOnUIThread(new p2.b(14, m2Var, arrayList));
+                    return;
+                }
+                return;
+            default:
+                yh.p1 p1Var = (yh.p1) this.f43412c;
+                Context context = (Context) this.d;
+                int i15 = this.f43411b;
+                TL_stars.StarGift starGift = (TL_stars.StarGift) this.e;
+                long j10 = p1Var.f50459c0;
+                yh.m0 m0Var = new yh.m0(p1Var, (Utilities.Callback) this.f43413f, 2);
+                boolean z11 = starGift.limited;
+                boolean z12 = false;
+                boolean z13 = true;
+                if (z11 && (disallowedGiftsSettings2 = p1Var.f50458b0) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
+                    z10 = false;
+                    z12 = true;
+                } else {
+                    z10 = false;
+                }
+                if (!z11 || (disallowedGiftsSettings = p1Var.f50458b0) == null || !disallowedGiftsSettings.disallow_unique_stargifts) {
+                    z13 = z10;
+                }
+                new yh.s0(p1Var, context, i15, starGift, j10, m0Var, z12, z13).show();
+                return;
         }
-        textView.setText(charSequence);
-        textView2.setText(charSequence2);
-        if (!TextUtils.isEmpty(charSequence2)) {
-            i16 = 0;
-        }
-        textView2.setVisibility(i16);
-        if (TextUtils.isEmpty(charSequence2)) {
-            f7 = 15.0f;
-        } else {
-            f7 = 10.0f;
-        }
-        int dp = AndroidUtilities.dp(f7);
-        zh1Var.f42325c.setPadding(0, dp, 0, dp);
-        org.telegram.ui.ActionBar.c6 c6Var = zh1Var.f42323a;
-        if (zh1Var.f42327n) {
-            i10 = org.telegram.ui.ActionBar.g6.f19839q7;
-        } else if (zh1Var.h) {
-            i10 = org.telegram.ui.ActionBar.g6.f19784n6;
-        } else {
-            i10 = org.telegram.ui.ActionBar.g6.G6;
-        }
-        int w02 = org.telegram.ui.ActionBar.g6.w0(i10, c6Var);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView2.setColorFilter(new PorterDuffColorFilter(w02, mode));
-        if (zh1Var.f42327n) {
-            i11 = org.telegram.ui.ActionBar.g6.f19839q7;
-        } else if (zh1Var.h) {
-            i11 = org.telegram.ui.ActionBar.g6.f19784n6;
-        } else {
-            i11 = org.telegram.ui.ActionBar.g6.G6;
-        }
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(i11, c6Var), mode));
-        if (zh1Var.f42327n) {
-            i12 = org.telegram.ui.ActionBar.g6.f19822p7;
-        } else if (zh1Var.h) {
-            i12 = org.telegram.ui.ActionBar.g6.f19784n6;
-        } else {
-            i12 = org.telegram.ui.ActionBar.g6.G6;
-        }
-        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(i12, c6Var));
-        if (zh1Var.f42327n) {
-            i13 = org.telegram.ui.ActionBar.g6.f19822p7;
-        } else if (zh1Var.h) {
-            i13 = org.telegram.ui.ActionBar.g6.f19784n6;
-        } else {
-            i13 = org.telegram.ui.ActionBar.g6.f19988y6;
-        }
-        textView2.setTextColor(org.telegram.ui.ActionBar.g6.w0(i13, c6Var));
     }
 
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        return new zh1(context, c6Var);
+    public yh1(yh.p1 p1Var, Context context, int i10, TL_stars.StarGift starGift, Utilities.Callback callback) {
+        this.f43410a = 2;
+        this.f43412c = p1Var;
+        this.d = context;
+        this.f43411b = i10;
+        this.e = starGift;
+        this.f43413f = callback;
     }
 }

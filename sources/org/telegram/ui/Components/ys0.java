@@ -1,22 +1,40 @@
 package org.telegram.ui.Components;
-public final class ys0 extends s4.s {
-    public final xv0 Q;
 
-    public ys0(xv0 xv0Var) {
-        super(3);
-        this.Q = xv0Var;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+public final class ys0 implements zl0 {
+    public final os0 f32752a;
+    public final sv0 f32753b;
+
+    public ys0(sv0 sv0Var, os0 os0Var) {
+        this.f32753b = sv0Var;
+        this.f32752a = os0Var;
     }
 
     @Override
-    public final int o0(int i10, qf.e eVar, s4.y0 y0Var) {
-        if (this.Q.f31053o1) {
-            i10 = 0;
+    public final boolean mo17d(float r18, float r19, int r20, android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ys0.mo17d(float, float, int, android.view.View):boolean");
+    }
+
+    @Override
+    public final void h() {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f32753b.f30388v1;
+        if (n2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                n2Var.finishPreviewFragment();
+            }
         }
-        return super.o0(i10, eVar, y0Var);
     }
 
     @Override
-    public final boolean y0() {
-        return false;
+    public final void o(float f7) {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f32753b.f30388v1;
+        if (n2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                n2Var.movePreviewFragment(f7);
+            }
+        }
     }
 }

@@ -1,41 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class o90 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.ActionBar.k1 {
-    public final int f27608a;
-    public final w90 f27609b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class o90 extends k9 {
+    public final ai.w1 e;
 
-    public o90(w90 w90Var, int i10) {
-        this.f27608a = i10;
-        this.f27609b = w90Var;
+    public o90(ai.w1 w1Var, Context context) {
+        super(context, false);
+        this.e = w1Var;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f27608a) {
-            case 0:
-                v90 v90Var = this.f27609b.f30507r;
-                if (v90Var != null) {
-                    v90Var.j();
-                    return;
-                }
-                return;
-            default:
-                v90 v90Var2 = this.f27609b.f30507r;
-                if (v90Var2 != null) {
-                    v90Var2.d();
-                    return;
-                }
-                return;
+    public final void onMeasure(int i10, int i11) {
+        int g10;
+        int min = Math.min(3, ((q90) this.e.d).f29604w);
+        if (min == 0) {
+            g10 = 0;
+        } else {
+            g10 = i0.a.g(min, 1, 20, 32);
         }
-    }
-
-    @Override
-    public void n(KeyEvent keyEvent) {
-        w90 w90Var = this.f27609b;
-        w90Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && w90Var.f30508s.isShowing()) {
-            w90Var.f30508s.d(true);
-        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(g10), 1073741824), i11);
     }
 }

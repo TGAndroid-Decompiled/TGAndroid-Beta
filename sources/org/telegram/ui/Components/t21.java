@@ -1,21 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseIntArray;
-public final class t21 extends org.telegram.ui.ActionBar.d5 {
-    public final SparseIntArray T;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class t21 extends TextView {
+    public View f30453a;
+    public ViewPropertyAnimator f30454b;
+    public boolean f30455c;
+    public fr0 d;
 
-    public t21(boolean z10, SparseIntArray sparseIntArray) {
-        super(2, z10, false, null);
-        this.T = sparseIntArray;
+    public final void a() {
+        if (this.f30453a == null) {
+            return;
+        }
+        View view = (View) getParent();
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        for (View view2 = this.f30453a; view2 != view; view2 = (View) view2.getParent()) {
+            i12 += view2.getTop();
+            i11 += view2.getLeft();
+        }
+        int width = ((this.f30453a.getWidth() / 2) + i11) - (getMeasuredWidth() / 2);
+        if (width >= 0) {
+            if (getMeasuredWidth() + width > view.getMeasuredWidth()) {
+                i10 = (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f);
+            } else {
+                i10 = width;
+            }
+        }
+        setTranslationX(i10);
+        setTranslationY(i12 - getMeasuredHeight());
     }
 
     @Override
-    public final int g(int i10) {
-        return this.T.get(i10);
-    }
-
-    @Override
-    public final int h(int i10) {
-        return this.T.get(i10);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        a();
     }
 }

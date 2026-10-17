@@ -3,13 +3,13 @@ package hg;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Cells.f8;
-public final class d2 extends f8 {
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.Cells.e8;
+public final class d2 extends e8 {
     public final int O;
 
-    public d2(int i10, Context context, c6 c6Var, boolean z10) {
-        super(context, c6Var, z10);
+    public d2(int i10, Context context, d6 d6Var, boolean z10) {
+        super(context, d6Var, z10);
         this.O = i10;
     }
 

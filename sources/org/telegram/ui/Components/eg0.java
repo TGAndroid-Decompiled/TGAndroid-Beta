@@ -1,76 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-public final class eg0 implements TextureView.SurfaceTextureListener {
-    public final boolean f24384a;
-    public final la f24385b;
-    public final jg0 f24386c;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class eg0 extends LinearLayout {
+    public final LinearLayout f25919a;
+    public final LinearLayout f25920b;
 
-    public eg0(jg0 jg0Var, boolean z10, la laVar) {
-        this.f24386c = jg0Var;
-        this.f24384a = z10;
-        this.f24385b = laVar;
+    public eg0(Context context) {
+        super(context);
+        setOrientation(0);
+        setGravity(17);
+        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
+        this.f25920b = a2;
+        addView(a2, w7.z5.n(-2, -1));
+        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
+        this.f25919a = a10;
+        addView(a10, w7.z5.n(-2, -1));
+    }
+
+    public final LinearLayout a(int i10, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i10);
+        linearLayout.addView(imageView, w7.z5.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, w7.z5.n(-2, -2));
+        w7.b6.a(linearLayout);
+        return linearLayout;
     }
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        jg0 jg0Var = this.f24386c;
-        TextureView textureView = jg0Var.f26006i0;
-        if (jg0Var.f26009l0 == null && surfaceTexture != null) {
-            h00 h00Var = new h00(surfaceTexture, jg0Var.C0, jg0Var.H0, jg0Var.f26023w0, this.f24384a, this.f24385b, i10, i11);
-            jg0Var.f26009l0 = h00Var;
-            if (!this.f24384a) {
-                h00Var.i(jg0Var.J0, jg0Var.K0);
-                h00 h00Var2 = jg0Var.f26009l0;
-                Matrix transform = textureView.getTransform(null);
-                int width = textureView.getWidth();
-                int height = textureView.getHeight();
-                ra raVar = h00Var2.I;
-                if (raVar != null) {
-                    Matrix matrix = raVar.v;
-                    transform.invert(matrix);
-                    float f7 = width;
-                    float f10 = height;
-                    matrix.preScale(f7, f10);
-                    matrix.postScale(1.0f / f7, 1.0f / f10);
-                    raVar.c(matrix);
-                    h00Var2.d(false, false, false);
-                }
-            }
-            jg0Var.f26009l0.f(jg0Var);
-            h00 h00Var3 = jg0Var.f26009l0;
-            h00Var3.getClass();
-            h00Var3.postRunnable(new d00(h00Var3, i10, i11, 1));
-            jg0Var.f26009l0.d(true, true, false);
-        }
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        jg0 jg0Var = this.f24386c;
-        h00 h00Var = jg0Var.f26009l0;
-        if (h00Var != null) {
-            h00Var.postRunnable(new e00(h00Var, 0));
-            jg0Var.f26009l0 = null;
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        jg0 jg0Var = this.f24386c;
-        h00 h00Var = jg0Var.f26009l0;
-        if (h00Var != null) {
-            h00Var.postRunnable(new d00(h00Var, i10, i11, 1));
-            jg0Var.f26009l0.d(false, true, false);
-            jg0Var.f26009l0.postRunnable(new yc0(this, 7));
-        }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    public final void onMeasure(int i10, int i11) {
+        LinearLayout linearLayout = this.f25919a;
+        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int paddingRight = getPaddingRight() + getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int max = Math.max(0, size - paddingRight);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+        LinearLayout linearLayout2 = this.f25920b;
+        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+        layoutParams2.width = min;
+        layoutParams.width = min;
+        super.onMeasure(i10, i11);
     }
 }

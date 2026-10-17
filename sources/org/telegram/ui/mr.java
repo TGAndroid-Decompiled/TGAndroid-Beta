@@ -1,56 +1,56 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class mr implements rr {
-    public final yr f38054a;
+import android.graphics.drawable.Drawable;
+public final class mr implements Drawable.Callback {
+    public final int f39235a;
+    public final Drawable f39236b;
 
-    public mr(yr yrVar) {
-        this.f38054a = yrVar;
+    public mr(int i10, Drawable drawable) {
+        this.f39235a = i10;
+        this.f39236b = drawable;
     }
 
     @Override
-    public final void c(long j10, TLObject tLObject) {
-        yr yrVar = this.f38054a;
-        if (yrVar.K.f(j10) == null) {
-            sr w02 = yrVar.w0();
-            yrVar.F.add(tLObject);
-            yrVar.K.k(tLObject, j10);
-            yrVar.z0(yrVar.F);
-            yrVar.A0(w02);
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f39235a) {
+            case 0:
+                ((nr) this.f39236b).invalidateSelf();
+                return;
+            default:
+                org.telegram.ui.Cells.x0 x0Var = ((p01) this.f39236b).h;
+                if (x0Var != null) {
+                    x0Var.invalidate();
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void d(long j10) {
-        yr yrVar = this.f38054a;
-        if (yrVar.K.f(j10) == null) {
-            sr w02 = yrVar.w0();
-            TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
-            if (j10 > 0) {
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_channelParticipantBanned.peer = tL_peerUser;
-                tL_peerUser.user_id = j10;
-            } else {
-                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                tL_channelParticipantBanned.peer = tL_peerChannel;
-                tL_peerChannel.channel_id = -j10;
-            }
-            tL_channelParticipantBanned.date = yrVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantBanned.kicked_by = yrVar.getAccountInstance().getUserConfig().clientUserId;
-            yrVar.f41929s.kicked_count++;
-            yrVar.F.add(tL_channelParticipantBanned);
-            yrVar.K.k(tL_channelParticipantBanned, j10);
-            yrVar.z0(yrVar.F);
-            yrVar.A0(w02);
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        switch (this.f39235a) {
+            case 0:
+                ((nr) this.f39236b).scheduleSelf(runnable, j10);
+                return;
+            default:
+                return;
         }
     }
 
     @Override
-    public final void a(TLRPC.User user) {
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f39235a) {
+            case 0:
+                ((nr) this.f39236b).unscheduleSelf(runnable);
+                return;
+            default:
+                return;
+        }
     }
 
-    @Override
-    public final void b(long j10) {
+    private final void b(Drawable drawable, Runnable runnable) {
+    }
+
+    private final void a(Drawable drawable, Runnable runnable, long j10) {
     }
 }

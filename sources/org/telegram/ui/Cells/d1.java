@@ -2,33 +2,33 @@ package org.telegram.ui.Cells;
 
 import android.util.Property;
 import android.view.View;
-import org.telegram.ui.Components.gl0;
-import org.telegram.ui.qv0;
+import org.telegram.ui.Components.cl0;
+import org.telegram.ui.su0;
 public final class d1 extends Property {
-    public final int f20754a;
+    public final int f22116a;
 
     public d1(Class cls, String str, int i10) {
         super(cls, str);
-        this.f20754a = i10;
+        this.f22116a = i10;
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f20754a) {
+        switch (this.f22116a) {
             case 0:
                 return Float.valueOf(((u1) obj).Ae);
             case 1:
                 return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
             case 2:
-                return Float.valueOf(((gl0) obj).v);
+                return Float.valueOf(((cl0) obj).v);
             default:
-                return Float.valueOf(((qv0) obj).f39224a);
+                return Float.valueOf(((su0) obj).f41497a);
         }
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f20754a) {
+        switch (this.f22116a) {
             case 0:
                 ((u1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
                 return;
@@ -36,10 +36,10 @@ public final class d1 extends Property {
                 ((View) obj).setTranslationY(((Integer) obj2).intValue());
                 return;
             case 2:
-                ((gl0) obj).setTransitionProgress(((Float) obj2).floatValue());
+                ((cl0) obj).setTransitionProgress(((Float) obj2).floatValue());
                 return;
             default:
-                ((qv0) obj).b(((Float) obj2).floatValue());
+                ((su0) obj).b(((Float) obj2).floatValue());
                 return;
         }
     }

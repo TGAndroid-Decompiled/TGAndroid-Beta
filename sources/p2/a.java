@@ -2,61 +2,61 @@ package p2;
 
 import android.net.Uri;
 import android.os.SystemClock;
-import c5.c0;
+import c5.b0;
 import e9.l0;
 import e9.m2;
 import e9.y0;
 import java.util.HashMap;
-import org.telegram.ui.Wallet.k5;
-public final class a implements u {
-    public final d f42533a;
+import org.telegram.ui.Wallet.x5;
+public final class a implements v {
+    public final e f43940a;
 
-    public a(d dVar) {
-        this.f42533a = dVar;
+    public a(e eVar) {
+        this.f43940a = eVar;
     }
 
     @Override
     public final void a() {
-        this.f42533a.e.remove(this);
+        this.f43940a.e.remove(this);
     }
 
     @Override
-    public final boolean b(Uri uri, c0 c0Var, boolean z10) {
-        c cVar;
-        d dVar = this.f42533a;
-        HashMap hashMap = dVar.d;
-        if (dVar.G == null) {
+    public final boolean b(Uri uri, b0 b0Var, boolean z10) {
+        d dVar;
+        e eVar = this.f43940a;
+        HashMap hashMap = eVar.d;
+        if (eVar.G == null) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            c cVar2 = (c) hashMap.get(uri);
-            cVar2.getClass();
-            w wVar = cVar2.f42543a;
-            int size = wVar.f42685b.size();
-            m2 it = y0.u(wVar.f42685b.values()).iterator();
+            d dVar2 = (d) hashMap.get(uri);
+            dVar2.getClass();
+            x xVar = dVar2.f43953a;
+            int size = xVar.f44095b.size();
+            m2 it = y0.u(xVar.f44095b.values()).iterator();
             int i10 = 0;
             while (it.hasNext()) {
                 Uri uri2 = (Uri) it.next();
-                c cVar3 = (c) hashMap.get(uri2);
-                if (cVar3 != null) {
-                    b bVar = (b) i2.d.i(cVar3.f42544b, uri2, uri2);
-                    bVar.getClass();
-                    if (elapsedRealtime <= bVar.f42539r) {
+                d dVar3 = (d) hashMap.get(uri2);
+                if (dVar3 != null) {
+                    c cVar = (c) i0.a.i(dVar3.f43954b, uri2, uri2);
+                    cVar.getClass();
+                    if (elapsedRealtime <= cVar.f43949r) {
                         i10++;
                     }
                 }
             }
-            int size2 = dVar.f42553w.size();
-            l0 listIterator = dVar.f42553w.listIterator(0);
+            int size2 = eVar.f43963w.size();
+            l0 listIterator = eVar.f43963w.listIterator(0);
             int i11 = 0;
             while (listIterator.hasNext()) {
-                if (dVar.e((w) listIterator.next(), elapsedRealtime)) {
+                if (eVar.e((x) listIterator.next(), elapsedRealtime)) {
                     i11++;
                 }
             }
-            k5 k5Var = new k5(size, i10, size2, i11);
-            dVar.f42548c.getClass();
-            k4.d x32 = oa.d.x3(k5Var, c0Var);
-            if (x32 != null && (cVar = (c) hashMap.get(uri)) != null) {
-                return c.c(cVar, uri, x32.f14096b);
+            x5 x5Var = new x5(size, i10, size2, i11);
+            eVar.f43958c.getClass();
+            k4.d x32 = oa.d.x3(x5Var, b0Var);
+            if (x32 != null && (dVar = (d) hashMap.get(uri)) != null) {
+                return d.c(dVar, uri, x32.f14891b);
             }
         }
         return false;

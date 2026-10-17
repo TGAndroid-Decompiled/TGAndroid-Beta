@@ -1,6 +1,6 @@
 package org.telegram.messenger.video;
 
-import c5.c0;
+import c5.b0;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 public class SequenceParameterSetRbsp {
@@ -21,12 +21,12 @@ public class SequenceParameterSetRbsp {
     public SequenceParameterSetRbsp(InputStream inputStream) {
         int i10;
         ?? obj = new Object();
-        c0 c0Var = new c0(7, false, false);
-        c0Var.f4356c = new char[50];
-        obj.e = c0Var;
-        obj.f43087a = inputStream;
-        obj.f43088b = inputStream.read();
-        obj.f43089c = inputStream.read();
+        b0 b0Var = new b0(7, false, false);
+        b0Var.f4703c = new char[50];
+        obj.e = b0Var;
+        obj.f44455a = inputStream;
+        obj.f44456b = inputStream.read();
+        obj.f44457c = inputStream.read();
         obj.d(4, "sps_video_parameter_set_id");
         this.sps_max_sub_layers_minus1 = (int) obj.d(3, "sps_max_sub_layers_minus1");
         obj.b("sps_temporal_id_nesting_flag");
@@ -138,20 +138,20 @@ public class SequenceParameterSetRbsp {
         long[] jArr;
         int i11 = i10;
         long d = aVar.d(2, "general_profile_space");
-        InputStream inputStream = aVar.f43087a;
+        InputStream inputStream = aVar.f44455a;
         this.general_profile_space = (int) d;
         this.general_tier_flag = aVar.b("general_tier_flag");
         this.general_profile_idc = (int) aVar.d(5, "general_profile_idc");
         this.general_profile_compatibility_flags = aVar.c(32);
         this.general_constraint_indicator_flags = aVar.c(48);
         if (aVar.d > 0) {
-            aVar.f43088b = aVar.f43089c;
-            aVar.f43089c = inputStream.read();
+            aVar.f44456b = aVar.f44457c;
+            aVar.f44457c = inputStream.read();
             aVar.d = 0;
         }
-        int i12 = aVar.f43088b;
-        aVar.f43088b = aVar.f43089c;
-        aVar.f43089c = inputStream.read();
+        int i12 = aVar.f44456b;
+        aVar.f44456b = aVar.f44457c;
+        aVar.f44457c = inputStream.read();
         aVar.d = 0;
         this.general_level_idc = (byte) i12;
         boolean[] zArr3 = new boolean[i11];

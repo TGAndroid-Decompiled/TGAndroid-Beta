@@ -1,150 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.SharedPreferences;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import java.util.regex.Pattern;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.CallReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SavedMessagesController;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class ve implements Runnable {
-    public final int f29630a;
+import org.telegram.messenger.AndroidUtilities;
+public final class ve extends ah {
+    public final Rect f31246x;
+    public final ChatActivityEnterView f31247y;
 
-    public ve(int i10) {
-        this.f29630a = i10;
+    public ve(ChatActivityEnterView chatActivityEnterView, Activity activity) {
+        super(activity, 24);
+        this.f31247y = chatActivityEnterView;
+        this.f31246x = new Rect();
     }
 
     @Override
-    public final void run() {
-        switch (this.f29630a) {
-            case 0:
-                MediaController.getInstance().stopRecording(0, false, 0, false, 0L);
-                return;
-            case 1:
-                return;
-            case 2:
-                int i10 = io.f25663m1;
-                return;
-            case 3:
-                PhotoViewer.t1().G0(false, false);
-                return;
-            case 4:
-                PhotoViewer.t1().G0(false, false);
-                return;
-            case 5:
-                int i11 = nu.f27414b;
-                return;
-            case 6:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
-                return;
-            case 7:
-                if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
-                    VoIPService.getSharedInstance().setMicMute(false, true, false);
-                    return;
-                }
-                return;
-            case 8:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-                return;
-            case 9:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                return;
-            case 10:
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
-                if (R != 0) {
-                    ?? obj = new Object();
-                    obj.f20169a = true;
-                    R.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
-                    return;
-                }
-                return;
-            case 11:
-                int i12 = j11.f25847f;
-                return;
-            case 12:
-                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                z11.f31423f = Boolean.TRUE;
-                edit.putBoolean("nothanos", true).apply();
-                return;
-            case 13:
-                SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
-                z11.f31423f = Boolean.TRUE;
-                edit2.putBoolean("nothanos", true).apply();
-                return;
-            case 14:
-                int i13 = y31.f31131f0;
-                return;
-            case 15:
-                SavedMessagesController.openSavedMessages();
-                return;
-            case 16:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
-                return;
-            case 17:
-                org.telegram.ui.Components.voip.k2.i();
-                return;
-            case 18:
-                bi.j7.r();
-                return;
-            case 19:
-                org.telegram.ui.n60 n60Var = org.telegram.ui.n60.D3;
-                if (n60Var != null) {
-                    n60Var.show();
-                    return;
-                }
-                return;
-            case 20:
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().setMicMute(false, true, false);
-                    return;
-                }
-                return;
-            case 21:
-                Pattern pattern = LaunchActivity.B1;
-                return;
-            case 22:
-                Pattern pattern2 = LaunchActivity.B1;
-                return;
-            case 23:
-                Pattern pattern3 = LaunchActivity.B1;
-                ApplicationLoader.mainInterfacePausedStageQueue = false;
-                ApplicationLoader.mainInterfacePausedStageQueueTime = System.currentTimeMillis();
-                return;
-            case 24:
-                return;
-            case 25:
-                CallReceiver.checkLastReceivedCall();
-                return;
-            case 26:
-                CallReceiver.checkLastReceivedCall();
-                return;
-            case 27:
-                zc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
-                return;
-            case 28:
-                zc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
-                return;
-            default:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return;
+    public final void draw(Canvas canvas) {
+        Drawable drawable;
+        ChatActivityEnterView chatActivityEnterView = this.f31247y;
+        if (chatActivityEnterView.f23907a1) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            Rect rect = this.f31246x;
+            rect.set(0, 0, measuredWidth, measuredHeight);
+            rect.inset(AndroidUtilities.dp(7.5f), AndroidUtilities.dp(7.5f));
+            if (getCurrentState() == yg.f32624b) {
+                drawable = chatActivityEnterView.O3;
+            } else {
+                drawable = chatActivityEnterView.N3;
+            }
+            drawable.setBounds(rect);
+            drawable.draw(canvas);
+            return;
         }
-    }
-
-    public ve(Object obj, int i10) {
-        this.f29630a = i10;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
+        super.draw(canvas);
     }
 }

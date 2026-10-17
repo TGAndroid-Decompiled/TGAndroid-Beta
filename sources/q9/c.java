@@ -3,11 +3,10 @@ package q9;
 import android.os.Parcel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.f;
-import com.google.android.gms.common.api.internal.w;
+import com.google.android.gms.common.api.internal.v;
 import com.google.android.gms.common.api.q;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.messaging.r;
-public final class c extends w implements f {
+public final class c extends v implements f {
     public TaskCompletionSource d;
     public final b[] e;
 
@@ -18,34 +17,34 @@ public final class c extends w implements f {
 
     @Override
     public final void a(q qVar) {
-        r rVar;
+        com.google.firebase.messaging.q qVar2;
         Status status = (Status) qVar;
         if (status.b()) {
             this.d.setResult(null);
             return;
         }
         TaskCompletionSource taskCompletionSource = this.d;
-        String str = status.f4889b;
+        String str = status.f6347b;
         str = (str == null || str.isEmpty()) ? "User Action indexing error, please try again." : "User Action indexing error, please try again.";
-        switch (status.f4888a) {
+        switch (status.f6346a) {
             case 17510:
-                rVar = new r(str);
+                qVar2 = new com.google.firebase.messaging.q(str);
                 break;
             case 17511:
-                rVar = new r(str);
+                qVar2 = new com.google.firebase.messaging.q(str);
                 break;
             case 17512:
             default:
-                rVar = new r(str);
+                qVar2 = new com.google.firebase.messaging.q(str);
                 break;
             case 17513:
-                rVar = new r(str);
+                qVar2 = new com.google.firebase.messaging.q(str);
                 break;
             case 17514:
-                rVar = new r(str);
+                qVar2 = new com.google.firebase.messaging.q(str);
                 break;
         }
-        taskCompletionSource.setException(rVar);
+        taskCompletionSource.setException(qVar2);
     }
 
     @Override
@@ -55,12 +54,12 @@ public final class c extends w implements f {
         b7.b bVar = new b7.b(this);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
-        int i10 = p7.c.f42848a;
+        int i10 = p7.c.f44258a;
         obtain.writeStrongBinder(bVar);
         obtain.writeTypedArray(this.e, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            aVar.f42847a.transact(7, obtain, obtain2, 0);
+            aVar.f44257a.transact(7, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();

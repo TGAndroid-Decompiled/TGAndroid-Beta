@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 public interface gw0 {
-    void b(Object obj, float f7);
+    void g(Runnable runnable);
 }

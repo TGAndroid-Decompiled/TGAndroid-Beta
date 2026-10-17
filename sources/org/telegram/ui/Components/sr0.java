@@ -1,124 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import android.util.SparseArray;
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.DialogObject;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.kg1;
-public final class sr0 implements i20, org.telegram.ui.sy {
-    public final xv0 f28884a;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class sr0 implements Runnable {
+    public final int f30316a = 0;
+    public final sv0 f30317b;
+    public final org.telegram.ui.ActionBar.d6 f30318c;
+    public final MessageObject d;
+    public final int e;
 
-    @Override
-    public boolean D() {
-        return false;
+    public sr0(sv0 sv0Var, org.telegram.ui.ActionBar.d6 d6Var, int i10, MessageObject messageObject) {
+        this.f30317b = sv0Var;
+        this.f30318c = d6Var;
+        this.e = i10;
+        this.d = messageObject;
     }
 
     @Override
-    public boolean L(org.telegram.ui.yy yyVar) {
-        return false;
-    }
-
-    public void a(boolean z10) {
-        xv0 xv0Var = this.f28884a;
-        if (!z10) {
-            xv0Var.requestLayout();
-        }
-        xv0Var.setVisibleHeight(xv0Var.M1);
-    }
-
-    @Override
-    public boolean w(org.telegram.ui.yy yyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, kg1 kg1Var) {
-        int i12;
-        UndoView undoView;
-        xv0 xv0Var = this.f28884a;
-        SparseArray[] sparseArrayArr = xv0Var.Z0;
-        org.telegram.ui.ActionBar.m2 m2Var = xv0Var.f31069v1;
-        ArrayList<MessageObject> arrayList2 = new ArrayList<>();
-        boolean z12 = true;
-        int i13 = 1;
-        while (true) {
-            i12 = 0;
-            if (i13 < 0) {
-                break;
-            }
-            ArrayList arrayList3 = new ArrayList();
-            for (int i14 = 0; i14 < sparseArrayArr[i13].size(); i14++) {
-                arrayList3.add(Integer.valueOf(sparseArrayArr[i13].keyAt(i14)));
-            }
-            Collections.sort(arrayList3);
-            int size = arrayList3.size();
-            while (i12 < size) {
-                Object obj = arrayList3.get(i12);
-                i12++;
-                Integer num = (Integer) obj;
-                if (num.intValue() > 0) {
-                    arrayList2.add((MessageObject) sparseArrayArr[i13].get(num.intValue()));
+    public final void run() {
+        switch (this.f30316a) {
+            case 0:
+                org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(this.f30317b.getContext(), 3, this.f30318c)};
+                int i10 = this.e;
+                int sendVote = SendMessagesHelper.getInstance(i10).sendVote(this.d, null, new vs(b2VarArr, 1));
+                if (sendVote != 0) {
+                    AndroidUtilities.runOnUIThread(new xr0(b2VarArr, i10, sendVote, 0), 500L);
+                    return;
                 }
-            }
-            sparseArrayArr[i13].clear();
-            i13--;
-        }
-        xv0Var.f31021a1 = 0;
-        xv0Var.c1(false);
-        hv0 hv0Var = xv0Var.R;
-        if (hv0Var != null) {
-            hv0Var.f25419w.clear();
-        }
-        if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != m2Var.getUserConfig().getClientUserId() && charSequence == null) {
-            long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-            Bundle h = a1.g.h("scrollToTopOnResume", true);
-            if (DialogObject.isEncryptedDialog(j10)) {
-                h.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
-            } else {
-                if (DialogObject.isUserDialog(j10)) {
-                    h.putLong("user_id", j10);
+                return;
+            default:
+                sv0 sv0Var = this.f30317b;
+                Context context = sv0Var.getContext();
+                org.telegram.ui.ActionBar.d6 d6Var = this.f30318c;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                b2Var.P0 = false;
+                MessageObject messageObject = this.d;
+                if (messageObject.isQuiz()) {
+                    b2Var.R = LocaleController.getString(R.string.StopQuizAlertTitle);
+                    b2Var.T = LocaleController.getString(R.string.StopQuizAlertText);
                 } else {
-                    h.putLong("chat_id", -j10);
+                    b2Var.R = LocaleController.getString(R.string.StopPollAlertTitle);
+                    b2Var.T = LocaleController.getString(R.string.StopPollAlertText);
                 }
-                if (!m2Var.getMessagesController().checkCanOpenChat(h, yyVar)) {
-                    return true;
-                }
-            }
-            m2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-            org.telegram.ui.fo foVar = new org.telegram.ui.fo(h);
-            og.d.a(foVar, (MessagesStorage.TopicKey) arrayList.get(0));
-            yyVar.presentFragment(foVar, true);
-            foVar.Eb(arrayList2);
-            return true;
+                alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new org.telegram.ui.ha(sv0Var, d6Var, messageObject, this.e, 4));
+                i0.a.r(R.string.Cancel, alertDialog$Builder, null);
+                return;
         }
-        xv0Var.s1(true);
-        int i15 = 0;
-        while (i15 < arrayList.size()) {
-            long j11 = ((MessagesStorage.TopicKey) arrayList.get(i15)).dialogId;
-            if (charSequence != null) {
-                m2Var.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j11, null, null, null, true, null, null, null, true, 0, 0, null, false));
-            }
-            m2Var.getSendMessagesHelper().sendMessage(arrayList2, j11, false, false, true, 0, 0L);
-            i15++;
-            z12 = z12;
-            i12 = 0;
-        }
-        boolean z13 = z12;
-        yyVar.finishFragment();
-        if (m2Var instanceof ProfileActivity) {
-            undoView = ((ProfileActivity) m2Var).M;
-        } else {
-            undoView = null;
-        }
-        if (undoView != null) {
-            if (arrayList.size() == z13) {
-                undoView.m(((MessagesStorage.TopicKey) arrayList.get(0)).dialogId, Integer.valueOf(arrayList2.size()), 53);
-                return z13;
-            }
-            undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);
-            return z13;
-        }
-        return z13;
+    }
+
+    public sr0(sv0 sv0Var, org.telegram.ui.ActionBar.d6 d6Var, MessageObject messageObject, int i10) {
+        this.f30317b = sv0Var;
+        this.f30318c = d6Var;
+        this.d = messageObject;
+        this.e = i10;
     }
 }

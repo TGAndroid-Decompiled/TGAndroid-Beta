@@ -1,28 +1,92 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.FileLog;
-public final class je0 extends v7.l {
-    public final re0 f25986a;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class je0 extends FrameLayout {
+    public final ImageView f27512a;
+    public final TextView f27513b;
+    public final TextView f27514c;
 
-    public je0(re0 re0Var) {
-        this.f25986a = re0Var;
+    public je0(Context context) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f27512a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.fingerprint);
+        addView(imageView, w7.z5.e(-1, -1, 119));
+        TextView textView = new TextView(context);
+        this.f27513b = textView;
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 26.0f);
+        textView.setGravity(17);
+        addView(textView, w7.z5.a(-2.0f, 0.0f, -5.33f, 0.0f, 0.0f, -1, 17));
+        TextView textView2 = new TextView(context);
+        this.f27514c = textView2;
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setTextSize(1, 10.0f);
+        textView2.setTextColor(Integer.MAX_VALUE);
+        textView2.setGravity(17);
+        addView(textView2, w7.z5.a(-2.0f, 0.0f, 14.0f, 0.0f, 0.0f, -1, 17));
     }
 
     @Override
-    public final void a(int i10, CharSequence charSequence) {
-        FileLog.d("PasscodeView onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
-        this.f25986a.n(true);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
     }
 
-    @Override
-    public final void b() {
-        FileLog.d("PasscodeView onAuthenticationFailed");
-        this.f25986a.n(true);
+    public void setImage(int i10) {
+        ImageView imageView = this.f27512a;
+        imageView.setVisibility(0);
+        this.f27513b.setVisibility(8);
+        this.f27514c.setVisibility(8);
+        imageView.setImageResource(i10);
     }
 
-    @Override
-    public final void c(androidx.biometric.u uVar) {
-        FileLog.d("PasscodeView onAuthenticationSucceeded");
-        this.f25986a.m(true);
+    public void setNum(int i10) {
+        this.f27512a.setVisibility(8);
+        TextView textView = this.f27513b;
+        textView.setVisibility(0);
+        TextView textView2 = this.f27514c;
+        textView2.setVisibility(0);
+        String str = "";
+        textView.setText("" + i10);
+        if (i10 != 0) {
+            switch (i10) {
+                case 2:
+                    str = "ABC";
+                    break;
+                case 3:
+                    str = "DEF";
+                    break;
+                case 4:
+                    str = "GHI";
+                    break;
+                case 5:
+                    str = "JKL";
+                    break;
+                case 6:
+                    str = "MNO";
+                    break;
+                case 7:
+                    str = "PQRS";
+                    break;
+                case 8:
+                    str = "TUV";
+                    break;
+                case 9:
+                    str = "WXYZ";
+                    break;
+            }
+        } else {
+            str = "+";
+        }
+        textView2.setText(str);
     }
 }

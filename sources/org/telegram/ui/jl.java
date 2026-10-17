@@ -1,22 +1,243 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-public final class jl implements NotificationCenter.PostponeNotificationCallback {
-    public final fo f37087a;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessageSuggestionParams;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class jl implements org.telegram.ui.Components.ri {
+    public final sn f38224a;
 
-    public jl(fo foVar) {
-        this.f37087a = foVar;
+    public jl(sn snVar) {
+        this.f38224a = snVar;
     }
 
     @Override
-    public final boolean needPostpone(int i10, int i11, Object[] objArr) {
-        if (i10 == NotificationCenter.didReceiveNewMessages) {
-            long longValue = ((Long) objArr[0]).longValue();
-            fo foVar = this.f37087a;
-            if (foVar.H6 && longValue == foVar.T5) {
-                return true;
+    public final void J() {
+        this.f38224a.Y.N();
+    }
+
+    @Override
+    public final void X(TLRPC.User user) {
+        String publicUsername = UserObject.getPublicUsername(user);
+        sn snVar = this.f38224a;
+        if (snVar.Y != null && user != null && !TextUtils.isEmpty(publicUsername)) {
+            hk hkVar = snVar.Y;
+            hkVar.setFieldText("@" + publicUsername + " ");
+            snVar.Y.F0();
+        }
+    }
+
+    @Override
+    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+        ci.b3 b3Var;
+        HashMap<Object, Object> hashMap;
+        boolean z14;
+        int i13;
+        int i14;
+        boolean z15;
+        boolean z16;
+        ArrayList arrayList;
+        boolean z17;
+        HashMap<Object, Object> hashMap2;
+        boolean z18;
+        String str;
+        boolean z19;
+        String str2;
+        TLRPC.Message message;
+        sn snVar = this.f38224a;
+        if (snVar.getParentActivity() != null && (b3Var = snVar.J1) != null) {
+            boolean z20 = b3Var.G;
+            MessageObject messageObject = b3Var.K1;
+            snVar.p5 = messageObject;
+            if (messageObject != null && (message = messageObject.messageOwner) != null) {
+                message.invert_media = z12;
+            }
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || b3Var.f30586j0.getSelectedPhotos().isEmpty())) {
+                ci.b3 b3Var2 = snVar.J1;
+                if (b3Var2 != null) {
+                    b3Var2.dismissWithButtonClick(i10);
+                }
+                snVar.Ea(i10);
+                return;
+            }
+            ci.b3 b3Var3 = snVar.J1;
+            if (b3Var3 != null && i10 != 8) {
+                b3Var3.dismiss(true);
+            }
+            HashMap<Object, Object> selectedPhotos = snVar.J1.f30586j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = snVar.J1.f30586j0.getSelectedPhotosOrder();
+            if (!selectedPhotos.isEmpty()) {
+                int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
+                int i15 = 0;
+                while (i15 < ceil) {
+                    int i16 = i15 * 10;
+                    int min = Math.min(10, selectedPhotos.size() - i16);
+                    ArrayList arrayList2 = new ArrayList();
+                    int i17 = 0;
+                    while (i17 < min) {
+                        int i18 = i16 + i17;
+                        if (i18 >= selectedPhotosOrder.size()) {
+                            hashMap2 = selectedPhotos;
+                            z18 = z20;
+                        } else {
+                            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i18));
+                            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                            sendingMediaInfo.imagePath = photoEntry.imagePath;
+                            boolean isLivePhoto = photoEntry.isLivePhoto();
+                            sendingMediaInfo.isLivePhoto = isLivePhoto;
+                            boolean z21 = photoEntry.isVideo;
+                            if (z20 && isLivePhoto) {
+                                sendingMediaInfo.isLivePhoto = false;
+                                z21 = false;
+                            }
+                            if (!z21 && (str2 = photoEntry.imagePath) != null) {
+                                sendingMediaInfo.path = str2;
+                                if (!z20 && photoEntry.isHighQuality()) {
+                                    sendingMediaInfo.originalPhotoEntry = photoEntry.clone();
+                                }
+                            } else {
+                                String str3 = photoEntry.path;
+                                if (str3 != null) {
+                                    sendingMediaInfo.path = str3;
+                                }
+                            }
+                            sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+                            sendingMediaInfo.coverPath = photoEntry.coverPath;
+                            sendingMediaInfo.coverPhoto = photoEntry.coverPhoto;
+                            sendingMediaInfo.isVideo = z21;
+                            sendingMediaInfo.discardLivePhoto = photoEntry.isUnalivePhoto();
+                            hashMap2 = selectedPhotos;
+                            z18 = z20;
+                            sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
+                            sendingMediaInfo.livePhotoTimestampUs = photoEntry.livePhotoTimestampUs;
+                            CharSequence charSequence = photoEntry.caption;
+                            if (charSequence != null) {
+                                str = charSequence.toString();
+                            } else {
+                                str = null;
+                            }
+                            sendingMediaInfo.caption = str;
+                            sendingMediaInfo.entities = photoEntry.entities;
+                            sendingMediaInfo.masks = photoEntry.stickers;
+                            sendingMediaInfo.ttl = photoEntry.ttl;
+                            sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+                            sendingMediaInfo.canDeleteAfter = photoEntry.canDeleteAfter;
+                            sendingMediaInfo.updateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(photoEntry.caption);
+                            sendingMediaInfo.hasMediaSpoilers = photoEntry.hasSpoiler;
+                            sendingMediaInfo.stars = photoEntry.starsAmount;
+                            if (!z18 && photoEntry.isHighQuality()) {
+                                z19 = true;
+                            } else {
+                                z19 = false;
+                            }
+                            sendingMediaInfo.highQuality = z19;
+                            arrayList2.add(sendingMediaInfo);
+                            photoEntry.reset();
+                        }
+                        i17++;
+                        z20 = z18;
+                        selectedPhotos = hashMap2;
+                    }
+                    HashMap<Object, Object> hashMap3 = selectedPhotos;
+                    boolean z22 = z20;
+                    if (i15 == 0) {
+                        snVar.o8(((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).caption, ((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).entities);
+                        z14 = ((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).updateStickersOrder;
+                    } else {
+                        z14 = false;
+                    }
+                    MessageObject messageObject2 = snVar.p5;
+                    if (messageObject2 != null && messageObject2.needResendWhenEdit()) {
+                        MessageSuggestionParams messageSuggestionParams = snVar.f41225g5;
+                        if (messageSuggestionParams == null) {
+                            messageSuggestionParams = MessageSuggestionParams.of(snVar.p5.messageOwner.suggested_post);
+                        }
+                        MessageSuggestionParams messageSuggestionParams2 = messageSuggestionParams;
+                        AccountInstance accountInstance = snVar.getAccountInstance();
+                        int i19 = ceil;
+                        long j12 = snVar.T5;
+                        MessageObject messageObject3 = snVar.p5;
+                        int i20 = i15;
+                        MessageObject messageObject4 = snVar.X3;
+                        in inVar = snVar.f41285l5;
+                        if (i10 != 4 && !z13) {
+                            z16 = true;
+                            arrayList = arrayList2;
+                            z17 = false;
+                        } else {
+                            z16 = true;
+                            arrayList = arrayList2;
+                            z17 = true;
+                        }
+                        i14 = i20;
+                        i13 = i19;
+                        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j12, messageObject3, messageObject4, null, inVar, z17, z10, null, z11, i11, i12, snVar.R3, z14, null, snVar.H8(), j10, z12, j11, snVar.S8(), messageSuggestionParams2);
+                    } else {
+                        i13 = ceil;
+                        i14 = i15;
+                        AccountInstance accountInstance2 = snVar.getAccountInstance();
+                        long j13 = snVar.T5;
+                        MessageObject messageObject5 = snVar.f41311n5;
+                        MessageObject messageObject6 = snVar.X3;
+                        in inVar2 = snVar.f41285l5;
+                        if (i10 != 4 && !z13) {
+                            z15 = false;
+                        } else {
+                            z15 = true;
+                        }
+                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j13, messageObject5, messageObject6, null, inVar2, z15, z10, snVar.p5, z11, i11, i12, snVar.R3, z14, null, snVar.H8(), j10, z12, j11, snVar.S8(), snVar.f41225g5);
+                    }
+                    i15 = i14 + 1;
+                    ceil = i13;
+                    selectedPhotos = hashMap3;
+                    z20 = z22;
+                }
+                hashMap = selectedPhotos;
+                snVar.B6();
+                snVar.Y.setFieldText("");
+            } else {
+                hashMap = selectedPhotos;
+            }
+            if (i11 != 0) {
+                if (snVar.S3 == -1) {
+                    snVar.S3 = 0;
+                }
+                snVar.S3 += hashMap.size();
+                snVar.Ic(true);
             }
         }
+    }
+
+    @Override
+    public final boolean p0() {
         return false;
+    }
+
+    @Override
+    public final void r(org.telegram.ui.Components.gh ghVar) {
+        this.f38224a.k8(ghVar);
+    }
+
+    @Override
+    public final boolean v() {
+        return this.f38224a.U9();
+    }
+
+    @Override
+    public final void E() {
+    }
+
+    @Override
+    public final void O(Object obj) {
+    }
+
+    @Override
+    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
     }
 }

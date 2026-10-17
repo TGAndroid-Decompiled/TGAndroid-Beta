@@ -9,7 +9,9 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.n;
+import org.telegram.tgnet.m;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Wallet.WalletEngine2;
 public class TL_wallet {
 
@@ -93,6 +95,7 @@ public class TL_wallet {
 
     public static class WalletTransactionPeer extends TLObject {
         public String address;
+        public long channel_id;
         public String domain;
         public long user_id;
 
@@ -105,8 +108,14 @@ public class TL_wallet {
                 case -443213714:
                     wallettransactionpeeruser = new walletTransactionPeerOnramp();
                     break;
+                case -193817447:
+                    wallettransactionpeeruser = new walletTransactionPeerTelegramGift();
+                    break;
                 case 103596476:
                     wallettransactionpeeruser = new walletTransactionPeerAddress();
+                    break;
+                case 1424428081:
+                    wallettransactionpeeruser = new walletTransactionPeerChannel();
                     break;
                 case 1921772890:
                     wallettransactionpeeruser = new walletTransactionPeerUnsupported();
@@ -133,16 +142,118 @@ public class TL_wallet {
                     return false;
                 }
                 return true;
+            } else if (walletTransactionPeer instanceof walletTransactionPeerChannel) {
+                if (!(this instanceof walletTransactionPeerChannel)) {
+                    return false;
+                }
+                walletTransactionPeerChannel wallettransactionpeerchannel = (walletTransactionPeerChannel) this;
+                walletTransactionPeerChannel wallettransactionpeerchannel2 = (walletTransactionPeerChannel) walletTransactionPeer;
+                if (wallettransactionpeerchannel.channel_id != wallettransactionpeerchannel2.channel_id || !TextUtils.equals(wallettransactionpeerchannel.address, wallettransactionpeerchannel2.address)) {
+                    return false;
+                }
+                return true;
             } else if (walletTransactionPeer instanceof walletTransactionPeerAddress) {
                 if (!(this instanceof walletTransactionPeerAddress)) {
                     return false;
                 }
                 return TextUtils.equals(((walletTransactionPeerAddress) this).address, ((walletTransactionPeerAddress) walletTransactionPeer).address);
+            } else if (walletTransactionPeer instanceof walletTransactionPeerTelegramGift) {
+                if (!(this instanceof walletTransactionPeerTelegramGift) || ((walletTransactionPeerTelegramGift) this).own_profile != ((walletTransactionPeerTelegramGift) walletTransactionPeer).own_profile) {
+                    return false;
+                }
+                return true;
             } else if (!(walletTransactionPeer instanceof walletTransactionPeerUnsupported)) {
                 return false;
             } else {
                 return this instanceof walletTransactionPeerUnsupported;
             }
+        }
+    }
+
+    public static class card extends TLObject {
+        public static final int constructor = -1898953807;
+        public String address;
+        public long balance;
+        public nftItem bg_nft_item;
+        public ArrayList<cardSticker> stickers = new ArrayList<>();
+
+        public static card TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            card cardVar;
+            if (-1898953807 != i10) {
+                cardVar = null;
+            } else {
+                cardVar = new card();
+            }
+            return (card) TLObject.TLdeserialize(card.class, cardVar, inputSerializedData, i10, z10);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            if (TLObject.hasFlag(readInt32, 1)) {
+                this.stickers = Vector.deserialize(inputSerializedData, new d(18), z10);
+            }
+            if (TLObject.hasFlag(readInt32, 2)) {
+                this.bg_nft_item = nftItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            }
+            this.address = inputSerializedData.readString(z10);
+            this.balance = inputSerializedData.readInt64(z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            outputSerializedData.writeInt32(-1898953807);
+            ArrayList<cardSticker> arrayList = this.stickers;
+            boolean z11 = false;
+            if (arrayList != null && !arrayList.isEmpty()) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(0, 1, z10);
+            if (this.bg_nft_item != null) {
+                z11 = true;
+            }
+            int flag2 = TLObject.setFlag(flag, 2, z11);
+            outputSerializedData.writeInt32(flag2);
+            if (TLObject.hasFlag(flag2, 1)) {
+                Vector.serialize(outputSerializedData, this.stickers);
+            }
+            if (TLObject.hasFlag(flag2, 2)) {
+                this.bg_nft_item.serializeToStream(outputSerializedData);
+            }
+            outputSerializedData.writeString(this.address);
+            outputSerializedData.writeInt64(this.balance);
+        }
+    }
+
+    public static class cardSticker extends TLObject {
+        public static final int constructor = -218035014;
+        public TL_stories.MediaAreaCoordinates coordinates;
+        public nftItem nft;
+
+        public static cardSticker TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            cardSticker cardsticker;
+            if (-218035014 != i10) {
+                cardsticker = null;
+            } else {
+                cardsticker = new cardSticker();
+            }
+            return (cardSticker) TLObject.TLdeserialize(cardSticker.class, cardsticker, inputSerializedData, i10, z10);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = TL_stories.MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.nft = nftItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-218035014);
+            this.coordinates.serializeToStream(outputSerializedData);
+            this.nft.serializeToStream(outputSerializedData);
         }
     }
 
@@ -517,12 +628,12 @@ public class TL_wallet {
 
     public static class getTransactionsByIDs extends TLMethod<walletTransactions> {
         public static final int constructor = -2128811338;
-        public ArrayList<String> f19172id = new ArrayList<>();
+        public ArrayList<String> f20527id = new ArrayList<>();
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2128811338);
-            Vector.serializeString(outputSerializedData, this.f19172id);
+            Vector.serializeString(outputSerializedData, this.f20527id);
         }
 
         @Override
@@ -550,14 +661,14 @@ public class TL_wallet {
     public static class getUserAddresses extends TLMethod<userAddresses> {
         public static final int constructor = 1383456733;
         public boolean force;
-        public ArrayList<TLRPC.InputUser> f19173id = new ArrayList<>();
+        public ArrayList<TLRPC.InputUser> f20528id = new ArrayList<>();
         public ArrayList<String> addresses = new ArrayList<>();
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1383456733);
             outputSerializedData.writeInt32(TLObject.setFlag(0, 1, this.force));
-            Vector.serialize(outputSerializedData, this.f19173id);
+            Vector.serialize(outputSerializedData, this.f20528id);
             Vector.serializeString(outputSerializedData, this.addresses);
         }
 
@@ -569,7 +680,7 @@ public class TL_wallet {
 
     public static class holderDc extends TLObject {
         public static final int constructor = -103410961;
-        public int f19174dc;
+        public int f20529dc;
         public byte[] public_key;
 
         public static holderDc TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
@@ -584,14 +695,14 @@ public class TL_wallet {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f19174dc = inputSerializedData.readInt32(z10);
+            this.f20529dc = inputSerializedData.readInt32(z10);
             this.public_key = inputSerializedData.readByteArray(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-103410961);
-            outputSerializedData.writeInt32(this.f19174dc);
+            outputSerializedData.writeInt32(this.f20529dc);
             outputSerializedData.writeByteArray(this.public_key);
         }
     }
@@ -628,6 +739,35 @@ public class TL_wallet {
             outputSerializedData.writeByteArray(this.challenge_answer);
             outputSerializedData.writeByteArray(this.body);
             this.proof.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class inputWalletCardSticker extends TLObject {
+        public static final int constructor = 1474250151;
+        public TL_stories.MediaAreaCoordinates coordinates;
+        public String nft_address;
+
+        public static inputWalletCardSticker TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            inputWalletCardSticker inputwalletcardsticker;
+            if (1474250151 != i10) {
+                inputwalletcardsticker = null;
+            } else {
+                inputwalletcardsticker = new inputWalletCardSticker();
+            }
+            return (inputWalletCardSticker) TLObject.TLdeserialize(inputWalletCardSticker.class, inputwalletcardsticker, inputSerializedData, i10, z10);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = TL_stories.MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.nft_address = inputSerializedData.readString(z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1474250151);
+            this.coordinates.serializeToStream(outputSerializedData);
+            outputSerializedData.writeString(this.nft_address);
         }
     }
 
@@ -731,13 +871,14 @@ public class TL_wallet {
     }
 
     public static class nftItem extends TLObject {
-        public static final int constructor = 876739868;
+        public static final int constructor = 389937907;
         public String address;
         public ArrayList<nftAttribute> attributes = new ArrayList<>();
         public String collection_address;
         public TLRPC.WebDocument content_url;
         public String description;
         public TLRPC.TL_dataJSON extra;
+        public TL_stars.StarGift gift;
         public TLRPC.WebDocument image;
         public TLRPC.WebDocument image_small;
         public String index;
@@ -747,7 +888,7 @@ public class TL_wallet {
 
         public static nftItem TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             nftItem nftitem;
-            if (876739868 != i10) {
+            if (389937907 != i10) {
                 nftitem = null;
             } else {
                 nftitem = new nftItem();
@@ -830,6 +971,9 @@ public class TL_wallet {
             if (TLObject.hasFlag(readInt32, 256)) {
                 this.extra = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
+            if (TLObject.hasFlag(readInt32, 512)) {
+                this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            }
         }
 
         @Override
@@ -842,8 +986,9 @@ public class TL_wallet {
             boolean z15;
             boolean z16;
             boolean z17;
-            outputSerializedData.writeInt32(876739868);
-            boolean z18 = false;
+            boolean z18;
+            outputSerializedData.writeInt32(389937907);
+            boolean z19 = false;
             if (this.collection_address != null) {
                 z10 = true;
             } else {
@@ -895,38 +1040,47 @@ public class TL_wallet {
             int flag8 = TLObject.setFlag(flag7, 128, z17);
             if (this.extra != null) {
                 z18 = true;
+            } else {
+                z18 = false;
             }
             int flag9 = TLObject.setFlag(flag8, 256, z18);
-            outputSerializedData.writeInt32(flag9);
-            if (TLObject.hasFlag(flag9, 1)) {
+            if (this.gift != null) {
+                z19 = true;
+            }
+            int flag10 = TLObject.setFlag(flag9, 512, z19);
+            outputSerializedData.writeInt32(flag10);
+            if (TLObject.hasFlag(flag10, 1)) {
                 outputSerializedData.writeString(this.collection_address);
             }
             outputSerializedData.writeString(this.address);
             outputSerializedData.writeString(this.owner_address);
             outputSerializedData.writeString(this.index);
-            if (TLObject.hasFlag(flag9, 2)) {
+            if (TLObject.hasFlag(flag10, 2)) {
                 outputSerializedData.writeString(this.name);
             }
-            if (TLObject.hasFlag(flag9, 4)) {
+            if (TLObject.hasFlag(flag10, 4)) {
                 outputSerializedData.writeString(this.description);
             }
-            if (TLObject.hasFlag(flag9, 8)) {
+            if (TLObject.hasFlag(flag10, 8)) {
                 this.image.serializeToStream(outputSerializedData);
             }
-            if (TLObject.hasFlag(flag9, 16)) {
+            if (TLObject.hasFlag(flag10, 16)) {
                 this.image_small.serializeToStream(outputSerializedData);
             }
-            if (TLObject.hasFlag(flag9, 32)) {
+            if (TLObject.hasFlag(flag10, 32)) {
                 this.content_url.serializeToStream(outputSerializedData);
             }
-            if (TLObject.hasFlag(flag9, 64)) {
+            if (TLObject.hasFlag(flag10, 64)) {
                 this.lottie.serializeToStream(outputSerializedData);
             }
-            if (TLObject.hasFlag(flag9, 128)) {
+            if (TLObject.hasFlag(flag10, 128)) {
                 Vector.serialize(outputSerializedData, this.attributes);
             }
-            if (TLObject.hasFlag(flag9, 256)) {
+            if (TLObject.hasFlag(flag10, 256)) {
                 this.extra.serializeToStream(outputSerializedData);
+            }
+            if (TLObject.hasFlag(flag10, 512)) {
+                this.gift.serializeToStream(outputSerializedData);
             }
         }
     }
@@ -1093,6 +1247,34 @@ public class TL_wallet {
         @Override
         public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
             return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        }
+    }
+
+    public static class setCardStickers extends TLMethod<card> {
+        public static final int constructor = 109382060;
+        public String bg_nft_address;
+        public ArrayList<inputWalletCardSticker> stickers = new ArrayList<>();
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            outputSerializedData.writeInt32(109382060);
+            if (this.bg_nft_address != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(0, 1, z10);
+            outputSerializedData.writeInt32(flag);
+            Vector.serialize(outputSerializedData, this.stickers);
+            if (TLObject.hasFlag(flag, 1)) {
+                outputSerializedData.writeString(this.bg_nft_address);
+            }
+        }
+
+        @Override
+        public card deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return card.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -1457,7 +1639,7 @@ public class TL_wallet {
         public boolean closing;
         public String dapp_client_id;
         public int date;
-        public long f19175id;
+        public long f20530id;
         public tonConnectManifest manifest;
         public Integer manifest_error;
         public byte[] nonce;
@@ -1479,7 +1661,7 @@ public class TL_wallet {
             this.pending = TLObject.hasFlag(readInt32, 1);
             this.closing = TLObject.hasFlag(readInt32, 2);
             this.closed = TLObject.hasFlag(readInt32, 4);
-            this.f19175id = inputSerializedData.readInt64(z10);
+            this.f20530id = inputSerializedData.readInt64(z10);
             this.dapp_client_id = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(readInt32, 8)) {
                 this.client_id = inputSerializedData.readString(z10);
@@ -1518,7 +1700,7 @@ public class TL_wallet {
             }
             int flag4 = TLObject.setFlag(flag3, 32, z12);
             outputSerializedData.writeInt32(flag4);
-            outputSerializedData.writeInt64(this.f19175id);
+            outputSerializedData.writeInt64(this.f20530id);
             outputSerializedData.writeString(this.dapp_client_id);
             if (TLObject.hasFlag(flag4, 8)) {
                 outputSerializedData.writeString(this.client_id);
@@ -1642,7 +1824,7 @@ public class TL_wallet {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.addresses = Vector.deserialize(inputSerializedData, new d(25), z10);
-            this.users = Vector.deserialize(inputSerializedData, new n(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override
@@ -1694,7 +1876,7 @@ public class TL_wallet {
         public boolean feeUnknown;
         public boolean gasless;
         public String gaslessMessageBodyHash;
-        public String f19176id;
+        public String f20531id;
         public boolean incoming;
         public boolean key_change;
         public int localMessageId;
@@ -1741,7 +1923,7 @@ public class TL_wallet {
                 return false;
             }
             walletTransaction wallettransaction = (walletTransaction) obj;
-            if (TextUtils.equals(this.f19176id, wallettransaction.f19176id) && this.incoming == wallettransaction.incoming && this.pending == wallettransaction.pending && this.key_change == wallettransaction.key_change && this.failed == wallettransaction.failed && this.amount == wallettransaction.amount && this.fee == wallettransaction.fee && this.date == wallettransaction.date && peerEquals(this.peer, wallettransaction.peer) && this.comment_encrypted == wallettransaction.comment_encrypted && this.comment_encrypted_preparing == wallettransaction.comment_encrypted_preparing && TextUtils.equals(this.comment, wallettransaction.comment) && TextUtils.equals(this.tx_hash, wallettransaction.tx_hash) && Objects.equals(this.nft, wallettransaction.nft) && this.preview == wallettransaction.preview && this.feeUnknown == wallettransaction.feeUnknown && Objects.equals(this.traceFeesNanograms, wallettransaction.traceFeesNanograms) && this.validUntil == wallettransaction.validUntil && this.traceSucceeded == wallettransaction.traceSucceeded && this.traceIncomplete == wallettransaction.traceIncomplete && Objects.equals(this.operationId, wallettransaction.operationId) && Objects.equals(this.messageHash, wallettransaction.messageHash) && this.phase == wallettransaction.phase) {
+            if (TextUtils.equals(this.f20531id, wallettransaction.f20531id) && this.incoming == wallettransaction.incoming && this.pending == wallettransaction.pending && this.key_change == wallettransaction.key_change && this.failed == wallettransaction.failed && this.amount == wallettransaction.amount && this.fee == wallettransaction.fee && this.date == wallettransaction.date && peerEquals(this.peer, wallettransaction.peer) && this.comment_encrypted == wallettransaction.comment_encrypted && this.comment_encrypted_preparing == wallettransaction.comment_encrypted_preparing && TextUtils.equals(this.comment, wallettransaction.comment) && TextUtils.equals(this.tx_hash, wallettransaction.tx_hash) && Objects.equals(this.nft, wallettransaction.nft) && this.preview == wallettransaction.preview && this.feeUnknown == wallettransaction.feeUnknown && Objects.equals(this.traceFeesNanograms, wallettransaction.traceFeesNanograms) && this.validUntil == wallettransaction.validUntil && this.traceSucceeded == wallettransaction.traceSucceeded && this.traceIncomplete == wallettransaction.traceIncomplete && Objects.equals(this.operationId, wallettransaction.operationId) && Objects.equals(this.messageHash, wallettransaction.messageHash) && this.phase == wallettransaction.phase) {
                 return true;
             }
             return false;
@@ -1755,7 +1937,7 @@ public class TL_wallet {
             this.failed = TLObject.hasFlag(readInt32, 4);
             this.key_change = TLObject.hasFlag(readInt32, 32);
             this.comment_encrypted = TLObject.hasFlag(readInt32, 64);
-            this.f19176id = inputSerializedData.readString(z10);
+            this.f20531id = inputSerializedData.readString(z10);
             this.amount = inputSerializedData.readInt64(z10);
             this.fee = inputSerializedData.readInt64(z10);
             this.date = inputSerializedData.readInt32(z10);
@@ -1795,7 +1977,7 @@ public class TL_wallet {
             }
             int flag4 = TLObject.setFlag(flag3, 128, z12);
             outputSerializedData.writeInt32(flag4);
-            outputSerializedData.writeString(this.f19176id);
+            outputSerializedData.writeString(this.f20531id);
             outputSerializedData.writeInt64(this.amount);
             outputSerializedData.writeInt64(this.fee);
             outputSerializedData.writeInt32(this.date);
@@ -1871,6 +2053,38 @@ public class TL_wallet {
         }
     }
 
+    public static class walletTransactionPeerChannel extends WalletTransactionPeer {
+        public static final int constructor = 1424428081;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.channel_id = inputSerializedData.readInt64(z10);
+            this.address = inputSerializedData.readString(z10);
+            if (TLObject.hasFlag(readInt32, 1)) {
+                this.domain = inputSerializedData.readString(z10);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            outputSerializedData.writeInt32(1424428081);
+            if (this.domain != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(0, 1, z10);
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt64(this.channel_id);
+            outputSerializedData.writeString(this.address);
+            if (TLObject.hasFlag(flag, 1)) {
+                outputSerializedData.writeString(this.domain);
+            }
+        }
+    }
+
     public static class walletTransactionPeerOnramp extends WalletTransactionPeer {
         public static final int constructor = -443213714;
         public String provider_name;
@@ -1901,6 +2115,22 @@ public class TL_wallet {
                 outputSerializedData.writeString(this.domain);
             }
             outputSerializedData.writeString(this.provider_name);
+        }
+    }
+
+    public static class walletTransactionPeerTelegramGift extends WalletTransactionPeer {
+        public static final int constructor = -193817447;
+        public boolean own_profile;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.own_profile = TLObject.hasFlag(inputSerializedData.readInt32(z10), 1);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-193817447);
+            outputSerializedData.writeInt32(TLObject.setFlag(0, 1, this.own_profile));
         }
     }
 
@@ -1962,8 +2192,8 @@ public class TL_wallet {
             if (TLObject.hasFlag(readInt32, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new n(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new n(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override

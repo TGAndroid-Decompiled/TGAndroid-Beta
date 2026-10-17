@@ -1,29 +1,31 @@
 package gi;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.fo;
-public final class g implements Runnable {
-    public final int f10184a;
-    public final p f10185b;
-    public final long f10186c;
+import android.app.Activity;
+import android.view.ViewGroup;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.s61;
+public final class g extends s61 {
+    public final l N;
 
-    public g(p pVar, long j10, int i10) {
-        this.f10184a = i10;
-        this.f10185b = pVar;
-        this.f10186c = j10;
+    public g(l lVar, im0 im0Var, Activity activity, int i10, int i11, ai.q qVar, d6 d6Var) {
+        super(im0Var, activity, i10, i11, true, qVar, d6Var);
+        this.N = lVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f10184a) {
-            case 0:
-                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f10186c, r0.f10232b, new i(this.f10185b, 0));
-                return;
-            default:
-                p pVar = this.f10185b;
-                pVar.getClass();
-                pVar.presentFragment(fo.W9(this.f10186c));
-                return;
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        d6 d6Var;
+        if (i10 == 42) {
+            l lVar = this.N;
+            Activity parentActivity = lVar.getParentActivity();
+            int i11 = h6.L6;
+            d6Var = ((org.telegram.ui.ActionBar.n2) lVar).resourceProvider;
+            org.telegram.ui.Cells.l4 l4Var = new org.telegram.ui.Cells.l4(parentActivity, i11, 21, 0, false, d6Var);
+            l4Var.setHeight(25);
+            return new s4.b1(l4Var);
         }
+        return super.x(viewGroup, i10);
     }
 }

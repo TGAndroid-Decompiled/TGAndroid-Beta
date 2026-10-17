@@ -11,14 +11,14 @@ import java.util.HashSet;
 import java.util.Set;
 import r9.r;
 public final class d implements qa.b {
-    public final int f14617a;
-    public final Object f14618b;
-    public final Object f14619c;
+    public final int f15952a;
+    public final Object f15953b;
+    public final Object f15954c;
 
     public d(int i10, Object obj, Object obj2) {
-        this.f14617a = i10;
-        this.f14619c = obj;
-        this.f14618b = obj2;
+        this.f15952a = i10;
+        this.f15954c = obj;
+        this.f15953b = obj2;
     }
 
     @Override
@@ -26,10 +26,10 @@ public final class d implements qa.b {
         ApplicationInfo applicationInfo;
         Bundle bundle;
         boolean z10;
-        switch (this.f14617a) {
+        switch (this.f15952a) {
             case 0:
-                h hVar = (h) this.f14619c;
-                Context context = (Context) this.f14618b;
+                h hVar = (h) this.f15954c;
+                Context context = (Context) this.f15953b;
                 String d = hVar.d();
                 na.a aVar = (na.a) hVar.d.a(na.a.class);
                 ?? obj = new Object();
@@ -54,31 +54,31 @@ public final class d implements qa.b {
                     } catch (PackageManager.NameNotFoundException unused) {
                     }
                 }
-                obj.f46934a = z11;
+                obj.f48341a = z11;
                 return obj;
             case 1:
-                return new oa.g((Context) this.f14618b, (String) this.f14619c);
+                return new oa.g((Context) this.f15953b, (String) this.f15954c);
             default:
-                r9.g gVar = (r9.g) this.f14619c;
-                r9.a aVar2 = (r9.a) this.f14618b;
-                r9.d dVar = aVar2.f43791f;
+                r9.g gVar = (r9.g) this.f15954c;
+                r9.a aVar2 = (r9.a) this.f15953b;
+                r9.d dVar = aVar2.f45147f;
                 ?? obj2 = new Object();
                 HashSet hashSet = new HashSet();
                 HashSet hashSet2 = new HashSet();
                 HashSet hashSet3 = new HashSet();
                 HashSet hashSet4 = new HashSet();
                 HashSet hashSet5 = new HashSet();
-                Set<r9.j> set = aVar2.f43790c;
-                Set set2 = aVar2.f43792g;
+                Set<r9.j> set = aVar2.f45146c;
+                Set set2 = aVar2.f45148g;
                 for (r9.j jVar : set) {
-                    int i11 = jVar.f43808c;
-                    int i12 = jVar.f43807b;
+                    int i11 = jVar.f45164c;
+                    int i12 = jVar.f45163b;
                     if (i11 == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    r rVar = jVar.f43806a;
+                    r rVar = jVar.f45162a;
                     if (z10) {
                         if (i12 == 2) {
                             hashSet4.add(rVar);
@@ -96,19 +96,19 @@ public final class d implements qa.b {
                 if (!set2.isEmpty()) {
                     hashSet.add(r.a(na.a.class));
                 }
-                obj2.f5429b = DesugarCollections.unmodifiableSet(hashSet);
-                obj2.f5430c = DesugarCollections.unmodifiableSet(hashSet2);
-                obj2.f5428a = DesugarCollections.unmodifiableSet(hashSet3);
+                obj2.f6883b = DesugarCollections.unmodifiableSet(hashSet);
+                obj2.f6884c = DesugarCollections.unmodifiableSet(hashSet2);
+                obj2.f6882a = DesugarCollections.unmodifiableSet(hashSet3);
                 obj2.d = DesugarCollections.unmodifiableSet(hashSet4);
                 DesugarCollections.unmodifiableSet(hashSet5);
                 obj2.e = gVar;
-                return dVar.n2(obj2);
+                return dVar.j2(obj2);
         }
     }
 
     public d(Context context, String str) {
-        this.f14617a = 1;
-        this.f14618b = context;
-        this.f14619c = str;
+        this.f15952a = 1;
+        this.f15953b = context;
+        this.f15954c = str;
     }
 }

@@ -1,121 +1,144 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.GradientDrawable;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class f11 extends View implements org.telegram.ui.Components.ki0 {
-    public boolean E;
-    public float F;
-    public float G;
-    public float[] H;
-    public long I;
-    public float J;
-    public int K;
-    public float L;
-    public int M;
-    public float N;
-    public int O;
-    public final ProfileActivity P;
-    public final int f35424a;
-    public final Rect f35425b;
-    public final Rect f35426c;
-    public final RectF d;
-    public final GradientDrawable e;
-    public final GradientDrawable f35427f;
-    public final ValueAnimator h;
-    public final float[] f35428n;
-    public final Paint f35429r;
-    public final Paint f35430s;
-    public final Paint v;
-    public final GradientDrawable[] f35431w;
-    public final boolean[] f35432x;
-    public final float[] f35433y;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class f11 extends org.telegram.ui.Components.u81 {
+    public boolean f36763a;
+    public final org.telegram.ui.Components.ns0 f36764b;
 
-    public f11(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.f11.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
+    public f11(org.telegram.ui.Components.ns0 ns0Var) {
+        this.f36764b = ns0Var;
     }
 
     @Override
-    public final void a() {
-        Arrays.fill(this.f35432x, false);
-        postInvalidateOnAnimation();
-    }
-
-    @Override
-    public final void b(boolean z10) {
-        this.f35432x[!z10 ? 1 : 0] = true;
-        postInvalidateOnAnimation();
-    }
-
-    @Override
-    public final void c() {
-        this.P.i5(false);
-    }
-
-    @Override
-    public final void d() {
-        invalidate();
-    }
-
-    public final void e(float f7, boolean z10) {
-        int i10 = (int) (255.0f * f7);
-        this.e.setAlpha(i10);
-        this.f35427f.setAlpha(i10);
-        this.f35429r.setAlpha((int) (66.0f * f7));
-        this.f35430s.setAlpha((int) (85.0f * f7));
-        this.v.setAlpha(i10);
-        this.G = f7;
-        if (!z10) {
-            this.F = f7;
-        }
-        invalidate();
-    }
-
-    public final void f(float f7, boolean z10) {
-        if (z10 != this.E) {
-            this.E = z10;
-            ValueAnimator valueAnimator = this.h;
-            valueAnimator.cancel();
-            float f10 = this.F;
-            float[] fArr = this.f35428n;
-            float lerp = AndroidUtilities.lerp(fArr, f10);
-            float f11 = 1.0f;
-            if (z10) {
-                valueAnimator.setDuration(((1.0f - lerp) * 250.0f) / f7);
-            } else {
-                valueAnimator.setDuration((250.0f * lerp) / f7);
+    public final void a(ArrayList arrayList) {
+        org.telegram.ui.Components.ns0 ns0Var = this.f36764b;
+        sy0 sy0Var = ns0Var.G;
+        org.telegram.ui.Components.b91 b91Var = ns0Var.f37108n;
+        ArrayList arrayList2 = new ArrayList();
+        int size = arrayList.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            Integer num = (Integer) obj;
+            int intValue = num.intValue();
+            if (intValue != -1 && intValue != -2 && intValue != 0) {
+                arrayList2.add(num);
             }
-            fArr[0] = lerp;
-            if (!z10) {
-                f11 = 0.0f;
-            }
-            fArr[1] = f11;
-            valueAnimator.start();
         }
+        int f7 = f(b91Var.getCurrentPosition());
+        ci.w6 w6Var = ns0Var.f37109r;
+        w6Var.getClass();
+        HashMap hashMap = new HashMap();
+        ArrayList arrayList3 = w6Var.h;
+        int size2 = arrayList3.size();
+        int i12 = 0;
+        while (i12 < size2) {
+            Object obj2 = arrayList3.get(i12);
+            i12++;
+            ci.b7 b7Var = (ci.b7) obj2;
+            hashMap.put(Integer.valueOf(b7Var.f5253a), b7Var);
+        }
+        ArrayList arrayList4 = new ArrayList();
+        int size3 = arrayList2.size();
+        while (i10 < size3) {
+            Object obj3 = arrayList2.get(i10);
+            i10++;
+            Integer num2 = (Integer) obj3;
+            num2.getClass();
+            ci.b7 b7Var2 = (ci.b7) hashMap.get(num2);
+            if (b7Var2 != null) {
+                arrayList4.add(b7Var2);
+            }
+        }
+        arrayList3.clear();
+        arrayList3.addAll(arrayList4);
+        if (f7 >= 0) {
+            int i13 = i(f7);
+            b91Var.e(0.0f, i13, i13);
+        }
+        AndroidUtilities.cancelRunOnUIThread(sy0Var);
+        AndroidUtilities.runOnUIThread(sy0Var, 1000L);
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.f11.onDraw(android.graphics.Canvas):void");
+    public final boolean c(int i10) {
+        if (i10 == 0) {
+            return false;
+        }
+        if (this.f36763a && i10 == e() - 1) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f35424a;
-        Rect rect = this.f35425b;
-        rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
-        Rect rect2 = this.f35426c;
-        rect2.set(0, (int) (i11 - (AndroidUtilities.dp(72.0f) * 0.5f)), i10, i11);
-        this.e.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
-        this.f35427f.setBounds(0, ((i11 - this.P.O3()) - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
-        GradientDrawable[] gradientDrawableArr = this.f35431w;
-        int i14 = i10 / 5;
-        gradientDrawableArr[0].setBounds(0, 0, i14, i11);
-        gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);
+    public final View d(int i10) {
+        if (i10 == -1) {
+            return null;
+        }
+        return new View(this.f36764b.getContext());
+    }
+
+    @Override
+    public final int e() {
+        return this.f36764b.f37109r.h.size() + 1 + (this.f36763a ? 1 : 0);
+    }
+
+    @Override
+    public final int f(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        if (this.f36763a && i10 == e() - 1) {
+            return -1;
+        }
+        return ((ci.b7) this.f36764b.f37109r.h.get(i10 - 1)).f5253a;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 == 0) {
+            return LocaleController.getString(R.string.StoriesAlbumNameAllStories);
+        }
+        if (this.f36763a && i10 == e() - 1) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoriesAlbumAddAlbum));
+            org.telegram.ui.Components.yq yqVar = new org.telegram.ui.Components.yq(R.drawable.poll_add_plus, 0);
+            yqVar.spaceScaleX = 0.8f;
+            spannableStringBuilder.setSpan(yqVar, 0, 1, 33);
+            return spannableStringBuilder;
+        }
+        return ((ci.b7) this.f36764b.f37109r.h.get(i10 - 1)).f5254b;
+    }
+
+    @Override
+    public final int h(int i10) {
+        if (this.f36763a && i10 == e() - 1) {
+            return -1;
+        }
+        return i10;
+    }
+
+    public final int i(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        int c10 = this.f36764b.f37109r.c(i10);
+        if (c10 == -1) {
+            return -1;
+        }
+        return c10 + 1;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

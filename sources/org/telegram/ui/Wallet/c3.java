@@ -1,45 +1,53 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ha0;
-public final class c3 extends ha0 {
-    public final Paint M;
-    public final e3 N;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+public final class c3 {
+    public final HashSet f34074a = new HashSet();
+    public final HashMap f34075b = new HashMap();
 
-    public c3(e3 e3Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(c6Var);
-        this.N = e3Var;
-        Paint paint = new Paint(1);
-        this.M = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-    }
-
-    @Override
-    public final void b(Canvas canvas, Path path) {
-        super.b(canvas, path);
-        e3 e3Var = this.N;
-        RectF rectF = e3Var.f32830f;
-        if (e3Var.f32847o0 != null) {
-            canvas.saveLayer(rectF, null);
-            e3Var.f32847o0.c((AndroidUtilities.dp(206.0f) - e3Var.f32847o0.l()) / 2.0f, (rectF.bottom - AndroidUtilities.dp(7.0f)) - e3Var.f32847o0.j(), 1.0f, -1, canvas);
-            Shader shader = this.f25266x.getShader();
-            Paint paint = this.M;
-            paint.setShader(shader);
-            canvas.drawRect(rectF, paint);
-            canvas.restore();
+    public static String c(int i10, String str) {
+        if (str.length() <= (i10 * 2) + 1) {
+            return str;
         }
+        return str.substring(0, i10) + "…" + str.substring(str.length() - i10);
     }
 
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        this.N.f32822a.invalidate();
+    public final String a(String str) {
+        if (str == null) {
+            return null;
+        }
+        String str2 = (String) this.f34075b.get(str);
+        if (str2 == null) {
+            return str;
+        }
+        return str2;
+    }
+
+    public final void b(int i10, ArrayList arrayList) {
+        HashMap hashMap = new HashMap();
+        int size = arrayList.size();
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            String str = (String) obj;
+            String c10 = c(i10, str);
+            ArrayList arrayList2 = (ArrayList) hashMap.get(c10);
+            if (arrayList2 == null) {
+                arrayList2 = new ArrayList();
+                hashMap.put(c10, arrayList2);
+            }
+            arrayList2.add(str);
+        }
+        for (ArrayList arrayList3 : hashMap.values()) {
+            if (arrayList3.size() == 1) {
+                String str2 = (String) arrayList3.get(0);
+                this.f34075b.put(str2, c(i10, str2));
+            } else {
+                b(i10 + 1, arrayList3);
+            }
+        }
     }
 }

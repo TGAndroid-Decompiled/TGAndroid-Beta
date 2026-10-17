@@ -1,45 +1,45 @@
 package c3;
 
-import b2.x0;
+import b2.w0;
 import e9.n0;
 import java.util.Collections;
 import java.util.List;
 public final class x {
-    public final List f4300a;
-    public final int f4301b;
-    public final int f4302c;
+    public final List f4675a;
+    public final int f4676b;
+    public final int f4677c;
     public final int d;
     public final int e;
-    public final int f4303f;
-    public final int f4304g;
+    public final int f4678f;
+    public final int f4679g;
     public final int h;
-    public final int f4305i;
-    public final int f4306j;
-    public final int f4307k;
-    public final float f4308l;
-    public final int f4309m;
-    public final String f4310n;
-    public final pi.e f4311o;
+    public final int f4680i;
+    public final int f4681j;
+    public final int f4682k;
+    public final float f4683l;
+    public final int f4684m;
+    public final String f4685n;
+    public final qi.e f4686o;
 
-    public x(List list, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, float f7, int i20, String str, pi.e eVar) {
-        this.f4300a = list;
-        this.f4301b = i10;
-        this.f4302c = i11;
+    public x(List list, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, float f7, int i20, String str, qi.e eVar) {
+        this.f4675a = list;
+        this.f4676b = i10;
+        this.f4677c = i11;
         this.d = i12;
         this.e = i13;
-        this.f4303f = i14;
-        this.f4304g = i15;
+        this.f4678f = i14;
+        this.f4679g = i15;
         this.h = i16;
-        this.f4305i = i17;
-        this.f4306j = i18;
-        this.f4307k = i19;
-        this.f4308l = f7;
-        this.f4309m = i20;
-        this.f4310n = str;
-        this.f4311o = eVar;
+        this.f4680i = i17;
+        this.f4681j = i18;
+        this.f4682k = i19;
+        this.f4683l = f7;
+        this.f4684m = i20;
+        this.f4685n = str;
+        this.f4686o = eVar;
     }
 
-    public static x a(e2.x xVar, boolean z10, pi.e eVar) {
+    public static x a(e2.x xVar, boolean z10, qi.e eVar) {
         String str;
         boolean z11;
         List singletonList;
@@ -54,7 +54,7 @@ public final class x {
             }
             int A = xVar.A() & 3;
             int A2 = xVar.A();
-            int i12 = xVar.f8415b;
+            int i12 = xVar.f8294b;
             int i13 = 0;
             int i14 = 0;
             int i15 = 0;
@@ -74,7 +74,7 @@ public final class x {
             }
             xVar.N(i12);
             byte[] bArr = new byte[i15];
-            pi.e eVar2 = eVar;
+            qi.e eVar2 = eVar;
             int i17 = -1;
             int i18 = -1;
             int i19 = -1;
@@ -93,34 +93,34 @@ public final class x {
                 int A3 = xVar.A() & 63;
                 int H3 = xVar.H();
                 int i29 = i13;
-                pi.e eVar3 = eVar2;
+                qi.e eVar3 = eVar2;
                 while (i29 < H3) {
                     boolean z12 = z11;
                     int H4 = xVar.H();
                     int i30 = A;
-                    System.arraycopy(f2.p.f8892a, i13, bArr, i28, i11);
+                    System.arraycopy(f2.q.f10336a, i13, bArr, i28, i11);
                     int i31 = i28 + 4;
-                    System.arraycopy(xVar.f8414a, xVar.f8415b, bArr, i31, H4);
+                    System.arraycopy(xVar.f8293a, xVar.f8294b, bArr, i31, H4);
                     if (A3 == 32 && i29 == 0) {
-                        eVar3 = f2.p.l(i31, i31 + H4, bArr);
+                        eVar3 = f2.q.l(i31, i31 + H4, bArr);
                     } else {
                         if (A3 == 33 && i29 == 0) {
-                            f2.l k10 = f2.p.k(bArr, i31, i31 + H4, eVar3);
-                            i17 = k10.f8861a + 1;
-                            i18 = k10.f8865g;
+                            f2.m k10 = f2.q.k(bArr, i31, i31 + H4, eVar3);
+                            i17 = k10.f10305a + 1;
+                            i18 = k10.f10309g;
                             int i32 = k10.h;
-                            i20 = k10.f8863c + 8;
+                            i20 = k10.f10307c + 8;
                             i21 = k10.d + 8;
-                            int i33 = k10.f8868k;
+                            int i33 = k10.f10312k;
                             i19 = i32;
-                            int i34 = k10.f8869l;
-                            int i35 = k10.f8870m;
-                            float f10 = k10.f8866i;
-                            int i36 = k10.f8867j;
-                            f2.i iVar = k10.f8862b;
-                            if (iVar != null) {
+                            int i34 = k10.f10313l;
+                            int i35 = k10.f10314m;
+                            float f10 = k10.f10310i;
+                            int i36 = k10.f10311j;
+                            f2.j jVar = k10.f10306b;
+                            if (jVar != null) {
                                 i10 = i36;
-                                str2 = e2.g.a(iVar.f8852a, iVar.f8854c, iVar.d, iVar.f8855f, iVar.f8853b, iVar.e);
+                                str2 = e2.g.a(jVar.f10296a, jVar.f10298c, jVar.d, jVar.f10299f, jVar.f10297b, jVar.e);
                             } else {
                                 i10 = i36;
                             }
@@ -129,9 +129,9 @@ public final class x {
                             i24 = i35;
                             i23 = i34;
                             i22 = i33;
-                        } else if (A3 == 39 && i29 == 0 && (j10 = f2.p.j(i31, i31 + H4, bArr)) != null && eVar3 != null) {
+                        } else if (A3 == 39 && i29 == 0 && (j10 = f2.q.j(i31, i31 + H4, bArr)) != null && eVar3 != null) {
                             i13 = 0;
-                            if (j10.f5111a == ((f2.h) ((n0) eVar3.f42944a).get(0)).f8851b) {
+                            if (j10.f6565a == ((f2.i) ((n0) eVar3.f44777a).get(0)).f10295b) {
                                 i25 = 4;
                             } else {
                                 i25 = 5;
@@ -163,7 +163,7 @@ public final class x {
             } else {
                 str = "HEVC config";
             }
-            throw x0.a(e, "Error parsing".concat(str));
+            throw w0.a(e, "Error parsing".concat(str));
         }
     }
 }

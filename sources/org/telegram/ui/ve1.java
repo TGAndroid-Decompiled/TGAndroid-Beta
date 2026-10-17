@@ -1,30 +1,25 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ve1 extends AnimatorListenerAdapter {
-    public final int f40686a;
-    public final ze1 f40687b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class ve1 implements a11 {
+    public final TLRPC.TL_forumTopic f42191a;
+    public final we1 f42192b;
 
-    public ve1(ze1 ze1Var, int i10) {
-        this.f40686a = i10;
-        this.f40687b = ze1Var;
+    public ve1(we1 we1Var, TLRPC.TL_forumTopic tL_forumTopic) {
+        this.f42192b = we1Var;
+        this.f42191a = tL_forumTopic;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f40686a) {
-            case 0:
-                ze1 ze1Var = this.f40687b;
-                ze1Var.v = 0;
-                ze1Var.f42296n.setVisibility(8);
-                return;
-            case 1:
-                this.f40687b.v = 0;
-                return;
-            default:
-                this.f40687b.F.setVisibility(8);
-                return;
-        }
+    public final void O() {
+        ze1 ze1Var = this.f42192b.f42502a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f42191a;
+        ze1.U(ze1Var, tL_forumTopic.f20324id);
+        AndroidUtilities.runOnUIThread(new m71(14, this, tL_forumTopic), 300L);
+    }
+
+    @Override
+    public final void r(gk0 gk0Var) {
     }
 }

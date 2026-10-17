@@ -1,9 +1,9 @@
 package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.g10;
-import org.telegram.ui.Components.gd;
-public final class z0 extends g10 {
+import org.telegram.ui.Components.c10;
+import org.telegram.ui.Components.ed;
+public final class z0 extends c10 {
     public final a1 e;
 
     public z0(a1 a1Var) {
@@ -14,9 +14,9 @@ public final class z0 extends g10 {
     @Override
     public final CharSequence d() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(gd.a(this.e.getSpeed()));
+        sb2.append(ed.a(this.e.getSpeed()));
         sb2.append("x  ");
-        return org.telegram.messenger.g0.g(R.string.AccDescrSpeedSlider, sb2);
+        return org.telegram.messenger.q.g(R.string.AccDescrSpeedSlider, sb2);
     }
 
     @Override

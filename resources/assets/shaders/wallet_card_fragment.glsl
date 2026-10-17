@@ -15,8 +15,11 @@ flat in float vRadialLightResponse;
 #endif
 
 uniform float uCardGradientRotation;
+uniform float uFinishPixelScale;
 uniform sampler2D uCardDetailTexture;
 uniform sampler2D uEngravingTexture;
+uniform sampler2D uEngravingNormalTexture;
+uniform vec4 uEngravingFieldBounds;
 #ifdef WALLET_FINISH_LUT
 uniform highp sampler2D uFinishLut;
 #endif
@@ -27,8 +30,18 @@ flat in vec3 vFlecksRegion;
 #endif
 out vec4 fragmentColor;
 uniform vec2 uEngravingTexel;
+// Hides the card number engraving while a flat copy is drawn above stickers.
+uniform float uEngravingAlpha;
+// Card number ink per gift side (sRGB, applied after tone mapping): pattern lerped toward edge.
+uniform vec3 uEngravingInk[2];
 uniform vec3 uMainLightDirection;
 uniform vec2 uQrCenter;
+uniform vec3 uStickerPaletteFrom[4];
+uniform vec3 uStickerPaletteTo[4];
+uniform vec4 uStickerReveal;
+// Pre-tone-map scale per palette side: 1 for default blue, 0.6 marks gift backdrops
+// (their GIFT_* calibration replaces the scale).
+uniform vec2 uStickerToneScale;
 
 in vec3 vObjectPosition;
 in vec3 vObjectNormal;
@@ -37,7 +50,7 @@ in vec2 vCardPosition;
 
 const float PI = 3.14159265359;
 
-// Radial Blue preset captured from the WebGL material editor.
+// Palette-independent brushed metal. Color comes only from material inputs.
 const float RADIAL_FREQUENCY = 1.40;
 const float RADIAL_DETAIL = 0.30;
 const float FINISH_DETAIL = 1.65;
@@ -50,18 +63,39 @@ const float ENVIRONMENT_SPECULAR_STRENGTH = 1.45;
 const float AMBIENT_DIFFUSE_STRENGTH = 0.70;
 const float AMBIENT_DETAIL_STRENGTH = 0.50;
 const float GRAZING_STRENGTH = 0.50;
-const float BLUE_SATURATION = 1.16;
+const float MATERIAL_SATURATION = 1.00;
 const float EDGE_REFLECTION_STRENGTH = 2.50;
 const float STUDIO_FILL_STRENGTH = 1.00;
 const float STUDIO_SOFTBOX_STRENGTH = 1.00;
 const float LIGHT_INTENSITY = 1.70;
 const float ENVIRONMENT_INTENSITY = 0.80;
 const float EXPOSURE = 1.30;
+// Gift backdrops take the GramWalletCards3 card look: its two surface colors and
+// lobes, less highlight, calibrated against its 2D card at rest. Relative to the
+// values above; default blue is unaffected.
+const float GIFT_EXPOSURE = 1.765;
+const float GIFT_ENVIRONMENT = 1.375;
+const float GIFT_LIGHT = 0.60;
+const float GIFT_SHINE = 0.20;
+const float GIFT_CONTRAST = 0.93;
+// 0 = ACES tone map, 1 = linear clamp: keeps dark backdrops and saturation as in 2D.
+const float GIFT_TONE = 0.65;
+// Side faces' reflection strength.
+const float GIFT_EDGE = 0.60;
+// Evens out the studio environment's left-to-right and top-to-bottom falloff.
+const vec2 GIFT_BALANCE = vec2(0.06, -0.20);
 const float QR_LIGHTING_STRENGTH = 0.95;
 const float QR_ROUGHNESS_SCALE = 0.30;
 const float QR_REFLECTION_STRENGTH = 2.05;
 const float QR_ENGRAVING_STRENGTH = 1.00;
 const float ENGRAVING_DEPTH = 2.00;
+// Card number engraving, tuned in wallet-backdrop-lab: relief normal tilt, groove darkening,
+// recess shadow, groove specular roughness and how fully the ink color replaces the lit card.
+const float ENGRAVING_RELIEF = 1.04;
+const float ENGRAVING_DARKEN = 0.0;
+const float ENGRAVING_RECESS = 0.0;
+const float ENGRAVING_ROUGHNESS = 0.0;
+const float ENGRAVING_INK = 1.0;
 // Calibrated to the existing resting highlight; independent of light alignment.
 const float RADIAL_SHINE_SLOPE = 0.103713069;
 const vec2 RADIAL_SHINE_ROTATION_RESPONSE = vec2(2.0, 4.0);
@@ -80,16 +114,10 @@ const float FLECKS_MAIN_SPECULAR_START = 0.006;
 const float FLECKS_MAIN_SPECULAR_FULL = 0.08;
 const vec2 FLECKS_CARD_UV_SCALE = vec2(1.0, 0.6103515625);
 
-// Current camera-space detail lighting captured from the web Radial Blue editor.
+// Neutral detail light preserves the machining on every palette.
 const vec3 DETAIL_LIGHT_DIRECTION = vec3(0.12, -0.54, 0.45);
 const float DETAIL_LIGHT_STRENGTH = 0.10;
 const float DETAIL_LIGHT_SOFTNESS = 2.10;
-// Calibrated before exposure, ACES and saturation so the resting front body
-// renders as #229AF0. Using the raw linearized hex color renders too cyan.
-const vec3 CARD_COLOR = vec3(0.09729573, 0.29946935, 1.1024685);
-// Calibrated blue/cyan endpoints for the 2D-style sweep, around #229AF0.
-const vec3 CARD_GRADIENT_DARK = vec3(0.06964265, 0.22803165, 0.74607265);
-const vec3 CARD_GRADIENT_BRIGHT = vec3(0.14900434, 0.42189533, 2.1465068);
 
 float hash(float value) {
     return fract(sin(value * 127.1) * 43758.5453);
@@ -154,8 +182,8 @@ float wrappedDiffuse(vec3 normal, vec3 lightDirection, float wrap) {
 vec3 studioEnvironment(vec3 direction, float roughness) {
     float horizon = smoothstep(-0.45, 0.72, direction.y);
     vec3 environment = mix(
-            vec3(0.055, 0.062, 0.075),
-            vec3(0.32, 0.36, 0.42),
+            vec3(0.061),
+            vec3(0.356),
             horizon
     );
 
@@ -173,9 +201,9 @@ vec3 studioEnvironment(vec3 direction, float roughness) {
             ), 0.0),
             mix(5.0, 1.5, roughness)
     );
-    environment += vec3(0.24, 0.29, 0.36)
+    environment += vec3(0.284)
             * frontalFill * 0.9 * STUDIO_FILL_STRENGTH;
-    environment += vec3(0.17, 0.21, 0.28)
+    environment += vec3(0.206)
             * overheadFill * 0.55 * STUDIO_FILL_STRENGTH;
 
     float keySoftbox = pow(
@@ -192,9 +220,9 @@ vec3 studioEnvironment(vec3 direction, float roughness) {
             ), 0.0),
             mix(34.0, 5.5, roughness)
     );
-    environment += vec3(1.0, 0.93, 0.76)
+    environment += vec3(0.933)
             * keySoftbox * 2.7 * STUDIO_SOFTBOX_STRENGTH;
-    environment += vec3(0.62, 0.72, 0.90)
+    environment += vec3(0.712)
             * rimSoftbox * 1.1 * STUDIO_SOFTBOX_STRENGTH;
     return environment;
 }
@@ -206,6 +234,15 @@ vec3 acesToneMap(vec3 color) {
             0.0,
             1.0
     );
+}
+
+vec3 srgbEncode(vec3 c) {
+    c = clamp(c, 0.0, 1.0);
+    return mix(c * 12.92, 1.055 * pow(c, vec3(1.0 / 2.4)) - 0.055, step(0.0031308, c));
+}
+
+vec3 srgbDecode(vec3 c) {
+    return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)), step(0.04045, c));
 }
 
 void main() {
@@ -231,6 +268,24 @@ void main() {
             vCardPosition.x * 0.5 + 0.5,
             0.5 - vCardPosition.y / 1.219512
     );
+    float stickerMix = uStickerReveal.z;
+    if (uStickerReveal.w < 0.5 && stickerMix < 1.0) {
+        vec2 faceUv = vec2(cardUv.x, (0.618561-vCardPosition.y)/1.212122);
+        float distanceFromGift = length((faceUv-uStickerReveal.xy)*vec2(1.0,0.61035));
+        stickerMix = 1.0-smoothstep(stickerMix*1.2-0.025,stickerMix*1.2,distanceFromGift);
+    }
+    vec3 CARD_COLOR = mix(uStickerPaletteFrom[0],uStickerPaletteTo[0],stickerMix);
+    vec3 CARD_GRADIENT_DARK = mix(uStickerPaletteFrom[1],uStickerPaletteTo[1],stickerMix);
+    vec3 CARD_GRADIENT_BRIGHT = mix(uStickerPaletteFrom[2],uStickerPaletteTo[2],stickerMix);
+    vec3 cardGrazingColor = mix(uStickerPaletteFrom[3],uStickerPaletteTo[3],stickerMix);
+    // Gift sides are those with the 0.6 tone scale.
+    float giftLook = mix(
+            step(uStickerToneScale.x, 0.8),
+            step(uStickerToneScale.y, 0.8),
+            stickerMix
+    );
+    float lightIntensity = LIGHT_INTENSITY * mix(1.0, GIFT_LIGHT, giftLook);
+    float environmentIntensity = ENVIRONMENT_INTENSITY * mix(1.0, GIFT_ENVIRONMENT, giftLook);
     // Only the insert pass samples the QR masks. The body is replaced by
     // the original, pre-tone-map material mix wherever that mask contributes.
 #if defined(WALLET_QR_PASS) || defined(WALLET_FLECKS_PASS)
@@ -324,73 +379,28 @@ void main() {
 #endif
     vec3 flatNormal = normal;
 #ifdef WALLET_BODY_PASS
-    // The small engraved region is replaced by its own bounded material pass.
     const float engraving = 0.0;
     const vec2 engravingGradient = vec2(0.0);
+    const float bevelCoverage = 0.0;
+    const float bevelVariance = 0.0;
 #else
-    vec2 engravingFilterTexel = max(
-            uEngravingTexel,
-            fwidth(cardUv) * 0.75
-    );
-    float engravingCenter = texture(
-            uEngravingTexture,
-            cardUv
-    ).a;
-    float engravingTopLeft = texture(
-            uEngravingTexture,
-            cardUv - engravingFilterTexel
-    ).a;
-    float engravingTopRight = texture(
-            uEngravingTexture,
-            cardUv + vec2(
-                    engravingFilterTexel.x,
-                    -engravingFilterTexel.y
-            )
-    ).a;
-    float engravingBottomLeft = texture(
-            uEngravingTexture,
-            cardUv + vec2(
-                    -engravingFilterTexel.x,
-                    engravingFilterTexel.y
-            )
-    ).a;
-    float engravingBottomRight = texture(
-            uEngravingTexture,
-            cardUv + engravingFilterTexel
-    ).a;
-    float engraving = (
-            engravingCenter * 4.0
-                    + engravingTopLeft
-                    + engravingTopRight
-                    + engravingBottomLeft
-                    + engravingBottomRight
-    ) * 0.125 * frontFace;
-    float engravingFootprint = max(
-            engravingFilterTexel.x / max(uEngravingTexel.x, 0.000001),
-            engravingFilterTexel.y / max(uEngravingTexel.y, 0.000001)
-    );
-    float engravingNormalFilter = inversesqrt(
-            max(engravingFootprint, 1.0)
-    );
-    vec2 engravingGradient = vec2(
-            engravingTopRight
-                    + engravingBottomRight
-                    - engravingTopLeft
-                    - engravingBottomLeft,
-            engravingBottomLeft
-                    + engravingBottomRight
-                    - engravingTopLeft
-                    - engravingTopRight
-    ) * 0.5 * frontFace * engravingNormalFilter;
+    // Original mask and normal response, precomputed into one filtered lookup.
+    vec2 fieldUv = (cardUv - uEngravingFieldBounds.xy) / uEngravingFieldBounds.zw;
+    float inField = step(0.0, fieldUv.x) * step(fieldUv.x, 1.0);
+    vec4 bevel = texture(uEngravingNormalTexture, fieldUv) * inField * uEngravingAlpha;
+    float engraving = bevel.a * frontFace;
+    vec2 engravingGradient = bevel.rg * frontFace;
+    float bevelCoverage = engraving;
+    float bevelVariance = max(0.0, bevel.b - dot(bevel.rg, bevel.rg));
 #endif
     vec3 engravingXAxis = vEngravingXAxis;
     vec3 engravingYAxis = vEngravingYAxis;
     normal = normalize(
             normal
                     - engravingXAxis * engravingGradient.x
-                    * 0.42 * ENGRAVING_DEPTH
+                    * ENGRAVING_RELIEF
                     + engravingYAxis * engravingGradient.y
-                    * 0.42 * ENGRAVING_DEPTH
+                    * ENGRAVING_RELIEF
     );
     vec3 surfaceNormal = normal;
 #ifdef WALLET_FLECKS_PASS
@@ -431,11 +441,13 @@ void main() {
     // Reuse the front mesh so coverage, depth and card UVs match the body draw.
 #endif
     float radius = length(vCardPosition);
-    float radialFootprint = fwidth(radius) * RADIAL_FREQUENCY;
+    // Filter the finish at a shared card resolution, independent of display density.
+    // Keep native filtering when the card is smaller to avoid aliasing.
+    float radialFootprint = fwidth(radius) * RADIAL_FREQUENCY * max(1.0, uFinishPixelScale);
 #ifdef WALLET_ENGRAVING_PASS
     // All texture reads and derivatives precede discard so filtered edges keep
     // the same helper-fragment results as the original full-face material.
-    if (engraving <= 0.0) discard;
+    if (max(bevelCoverage, engraving) <= 0.0) discard;
 #endif
 #ifdef WALLET_QR_PASS
     if (qrButton <= 0.0) discard;
@@ -533,6 +545,13 @@ void main() {
             0.012
     );
 
+    // Normal variance is in slope units; convert to the actual normal scale.
+    // Filter only unresolved specular detail, not the engraved stroke itself.
+    float engravingNormalScale = ENGRAVING_RELIEF;
+    float specularVariance = min(0.00004, bevelVariance * engravingNormalScale * engravingNormalScale * 0.01 * ENGRAVING_ROUGHNESS);
+    alphaTangent = sqrt(alphaTangent * alphaTangent + specularVariance);
+    alphaBitangent = sqrt(alphaBitangent * alphaBitangent + specularVariance);
+
     vec3 viewDirection = normalize(-vViewPosition);
     vec3 lightDirection = vLightDirection;
     vec3 halfwayDirection = normalize(
@@ -563,6 +582,28 @@ void main() {
             min(sweepGradient * 2.0, 1.0));
     gradientColor = mix(gradientColor, CARD_GRADIENT_BRIGHT,
             max(sweepGradient * 2.0 - 1.0, 0.0));
+    // Gift backdrops: GramWalletCards3 CardSurface, two lobes along its light's
+    // half vector (-53.97 degrees at rest, 32.98 past the sweep), mixed in sRGB.
+    const vec2 giftTurn = vec2(0.838894, -0.544294);
+    vec2 giftAxis = vec2(
+            giftTurn.x * vGradientAxis.x - giftTurn.y * vGradientAxis.y,
+            giftTurn.y * vGradientAxis.x + giftTurn.x * vGradientAxis.y
+    );
+    float giftAlignment = abs(dot(radial, giftAxis));
+    // 90 dp of the 336 dp card, and its half diagonal, in card units.
+    float giftLobe = mix(0.5, giftAlignment * giftAlignment,
+            smoothstep(0.0, 0.535714, radius));
+    float giftT = clamp(
+            giftLobe * (0.55 + 0.45 * (1.0 - smoothstep(0.0, 1.171303, radius))),
+            0.0, 1.0
+    );
+    // The 3D lighting adds its own lobe contrast on top.
+    giftT = mix(0.40, giftT, GIFT_CONTRAST);
+    vec3 giftColor = srgbDecode(
+            mix(srgbEncode(CARD_GRADIENT_DARK), srgbEncode(CARD_GRADIENT_BRIGHT), giftT)
+                    * (0.80 + 0.20 * giftT)
+    );
+    gradientColor = mix(gradientColor, giftColor, giftLook);
     vec3 baseColor = gradientColor * 0.30 / 0.2788;
     float cardColorPeak = max(
             max(CARD_COLOR.r, CARD_COLOR.g),
@@ -573,14 +614,13 @@ void main() {
             0.0,
             1.0
     ));
-    vec3 edgeReflectance = mix(
-            vec3(0.018),
-            cardAccent * 0.78,
-            0.94
-    );
+    // The edge uses the dark material input, not the peak-normalized accent.
+    // Normalizing a black/gray palette turns it into white regardless of value.
+    vec3 edgeReflectance = vec3(0.004)
+            + clamp(CARD_GRADIENT_DARK, 0.0, 1.0) * 0.70;
     vec3 reflectance = mix(
             baseColor,
-            edgeReflectance * EDGE_REFLECTION_STRENGTH,
+            edgeReflectance * EDGE_REFLECTION_STRENGTH * mix(1.0, GIFT_EDGE, giftLook),
             edgeMaterial
     );
     reflectance *= mix(
@@ -615,14 +655,17 @@ void main() {
                     alphaTangent,
                     alphaBitangent
             );
-    vec3 blueGrazingReflectance = mix(
+    vec3 grazingReflectance = mix(
             vec3(0.04),
             cardAccent,
             0.94
     );
+    // A small grazing glint makes dark edges readable without a white rim.
+    grazingReflectance = mix(grazingReflectance,
+            min(vec3(0.35), edgeReflectance * 2.0 + vec3(0.008)), edgeMaterial);
     vec3 fresnel = mix(
             reflectance,
-            blueGrazingReflectance,
+            grazingReflectance,
             pow(1.0 - viewHalf, 5.0)
     );
     vec3 direct = distribution * visibility * fresnel;
@@ -635,7 +678,8 @@ void main() {
     // Fresnel and flecks; a stable halfway direction controls the shine shape.
     vec3 radialViewDirection = vec3(0.0, 0.0, 1.0);
     vec3 radialReferenceHalfway = vRadialReferenceHalfway;
-    vec2 radialHighlightAxis = vRadialHighlightAxis;
+    // On gifts the brushed shine follows the 2D card's lobes.
+    vec2 radialHighlightAxis = giftLook > 0.5 ? giftAxis : vRadialHighlightAxis;
     // Use a fixed polar angle for the brushed lobe. Width and peak energy no
     // longer collapse or explode as the real light passes through alignment.
 #ifdef WALLET_EDGE_PASS
@@ -645,7 +689,11 @@ void main() {
                             + engravingYAxis * radialHighlightAxis.y) * RADIAL_SHINE_SLOPE
     );
 #else
-    vec3 radialShineHalfway = vRadialShineHalfway;
+    vec3 radialShineHalfway = giftLook > 0.5
+            ? normalize(vFaceNormal * sqrt(1.0 - RADIAL_SHINE_SLOPE * RADIAL_SHINE_SLOPE)
+                    + (engravingXAxis * radialHighlightAxis.x
+                            + engravingYAxis * radialHighlightAxis.y) * RADIAL_SHINE_SLOPE)
+            : vRadialShineHalfway;
 #endif
     float radialHighlightAlignment = abs(dot(radial, radialHighlightAxis));
     float radialHighlightHalfAngle =
@@ -696,7 +744,7 @@ void main() {
             );
     vec3 centeredRadialFresnel = mix(
             reflectance,
-            blueGrazingReflectance,
+            grazingReflectance,
             pow(1.0 - radialViewHalf, 5.0)
     );
 
@@ -761,7 +809,9 @@ void main() {
             0.0001
     );
     float centeredRadialPeak = colorPeak(centeredRadialDirect);
-    centeredRadialDirect /= 1.0 + centeredRadialPeak;
+    // Retain the original reflection envelope, including black's highlight.
+    // Reduce energy moderately without scaling it down by the dark pigment.
+    centeredRadialDirect *= 0.85 / (1.0 + centeredRadialPeak);
     // Stabilize shape, not illumination: a broad real-light envelope dims the
     // shine as the card turns away, without changing the lobe's angular width.
     // Normalize at the existing resting pose to preserve its brightness.
@@ -773,9 +823,9 @@ void main() {
                     RADIAL_SHINE_LIGHT_FALLOFF);
     float radialRestLightResponse = radialRestNormalLight
             * pow(radialRestNormalHalf, RADIAL_SHINE_LIGHT_FALLOFF);
-    centeredRadialDirect *= clamp(radialLightResponse / radialRestLightResponse, 0.0, 1.0);
+    centeredRadialDirect *= mix(0.72, 1.0, clamp(radialLightResponse / radialRestLightResponse, 0.0, 1.0));
 #else
-    centeredRadialDirect *= vRadialLightResponse;
+    centeredRadialDirect *= mix(0.72, 1.0, vRadialLightResponse);
 #endif
     vec3 radialBroadSpecular = centeredRadialDirect
             * radialHighlightLobe
@@ -787,6 +837,9 @@ void main() {
             * RADIAL_DETAIL_SPECULAR
             * 0.24;
     radialNormalSpecular = capSpecular(radialNormalSpecular, RADIAL_DETAIL_SPECULAR_MAX);
+    float giftShine = mix(1.0, GIFT_SHINE, giftLook);
+    radialBroadSpecular *= giftShine;
+    radialNormalSpecular *= giftShine;
     direct = mix(
             direct,
             radialBroadSpecular + radialNormalSpecular,
@@ -794,7 +847,7 @@ void main() {
     );
 
     // Diffuse-only secondary light. Its virtual, filtered micro-relief makes
-    // Radial Blue's roughness-based machining readable without introducing a
+    // The material's roughness-based machining readable without introducing a
     // second glossy lobe.
     vec3 detailLightDirection = normalize(DETAIL_LIGHT_DIRECTION);
     float detailDiffuseWrap = clamp(
@@ -823,20 +876,25 @@ void main() {
             reflectionDirection,
             roughness
     );
-    environment *= vec3(0.30) + cardAccent * 0.86;
+    // Keep reflection motion, but anchor its energy to the resting view.
+    // This prevents the top-left softbox from washing out the whole card and
+    // the opposite tilt from losing the base material in a dark environment.
+    float referenceEnvironment = max(studioEnvironment(vec3(0.0, 0.0, 1.0), roughness).r, 0.0001);
+    float environmentRatio = environment.r / referenceEnvironment;
+    environment = vec3(referenceEnvironment * 0.82 * clamp(environmentRatio, 0.82, 1.18));
     vec3 environmentFresnel = mix(
             reflectance,
-            blueGrazingReflectance,
+            grazingReflectance,
             pow(1.0 - normalView, 5.0)
     );
     vec3 indirect = environment * environmentFresnel
             * mix(0.92, 0.60, roughness)
-            * ENVIRONMENT_INTENSITY
+            * environmentIntensity
             * ENVIRONMENT_SPECULAR_STRENGTH;
 
     float grazing = pow(1.0 - normalView, 3.0);
     vec3 directSpecular = direct
-            * LIGHT_INTENSITY
+            * lightIntensity
             * SPECULAR_STRENGTH;
     directSpecular = capSpecular(directSpecular, SPECULAR_MAX);
     vec3 color = indirect + directSpecular;
@@ -888,24 +946,24 @@ void main() {
             * 0.24
             * DETAIL_LIGHT_STRENGTH;
     color += surfaceDiffuseColor
-            * max(dot(surfaceNormal, lightDirection), 0.0)
+            * mix(0.72, 1.0, max(dot(surfaceNormal, lightDirection), 0.0))
             * 0.055
-            * LIGHT_INTENSITY
+            * lightIntensity
             * DIFFUSE_STRENGTH;
     color += surfaceDiffuseColor
             * 0.055
-            * ENVIRONMENT_INTENSITY
+            * environmentIntensity
             * AMBIENT_DIFFUSE_STRENGTH;
 
-    float blueLuminance = dot(
+    float materialLuminance = dot(
             color,
             vec3(0.2126, 0.7152, 0.0722)
     );
     color = max(
-            mix(vec3(blueLuminance), color, BLUE_SATURATION),
+            mix(vec3(materialLuminance), color, MATERIAL_SATURATION),
             vec3(0.0)
     );
-    color += vec3(0.018, 0.18, 0.42)
+    color += cardGrazingColor
             * grazing * 0.28 * GRAZING_STRENGTH;
     float unlitFinish = (finishVariation - 0.5)
             * (1.0 - edgeMaterial);
@@ -913,7 +971,18 @@ void main() {
             0.0,
             1.0 + unlitFinish * 0.18 * AMBIENT_DETAIL_STRENGTH
     );
-    color *= 1.0 - engraving * 0.24 * ENGRAVING_DEPTH;
+    color *= 1.0 - engraving * ENGRAVING_DARKEN;
+#ifdef WALLET_ENGRAVING_PASS
+    // Recess shadow on the wall facing away from the moving highlight.
+    // Use the filtered bevel so the darker edge stays stable at small sizes.
+    vec2 recessLight = vec2(-dot(engravingXAxis, radialShineHalfway),
+            dot(engravingYAxis, radialShineHalfway));
+    recessLight /= max(length(recessLight), 0.0001);
+    float recessShadow = clamp(-dot(engravingGradient, recessLight) * 3.0, 0.0, 1.0);
+    color *= 1.0 - recessShadow * ENGRAVING_RECESS;
+#endif
+
+
 
 #if defined(WALLET_QR_PASS) || defined(WALLET_FLECKS_PASS)
     // Figma QR masks are sampled in card-face space. The gray insert gets its
@@ -1026,8 +1095,8 @@ void main() {
                 qrRoughness
         ) * fresnelSchlick(qrNormalView, qrReflectance)
                 * mix(0.72, 0.42, qrRoughness)
-                * ENVIRONMENT_INTENSITY
-                + qrDirect * LIGHT_INTENSITY;
+                * environmentIntensity
+                + qrDirect * lightIntensity;
         float qrDetailSurfaceDiffuse = wrappedDiffuse(
                 qrNormal, detailLightDirection, detailDiffuseWrap
         );
@@ -1057,8 +1126,15 @@ void main() {
 
 #endif
 
-    color = acesToneMap(color * EXPOSURE);
+    // Blue keeps its tone scale; gifts use the GramWalletCards3 calibration instead.
+    color *= mix(mix(uStickerToneScale.x, uStickerToneScale.y, stickerMix), 1.0, giftLook);
+    color *= 1.0 + giftLook * dot(GIFT_BALANCE, vCardPosition);
+    float exposure = EXPOSURE * mix(1.0, GIFT_EXPOSURE, giftLook);
+    color = mix(acesToneMap(color * exposure), clamp(color * exposure, 0.0, 1.0),
+            GIFT_TONE * giftLook);
     color = pow(color, vec3(1.0 / 2.2));
+    color = mix(color, mix(uEngravingInk[0], uEngravingInk[1], stickerMix),
+            clamp(engraving, 0.0, 1.0) * ENGRAVING_INK);
     fragmentColor = vec4(color, 1.0);
 #endif
 }

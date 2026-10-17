@@ -1,9 +1,13 @@
 package org.telegram.ui;
+public final class xj0 extends s4.k {
+    public final NotificationsCustomSettingsActivity F;
 
-import android.text.Layout;
-import android.view.View;
-public interface xj0 {
-    Layout getLayout();
+    public xj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
+        this.F = notificationsCustomSettingsActivity;
+    }
 
-    View getParentView();
+    @Override
+    public final void P(s4.b1 b1Var) {
+        this.F.f33193a.invalidate();
+    }
 }

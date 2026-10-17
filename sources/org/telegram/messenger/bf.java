@@ -1,29 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.MessagesStorage;
 public final class bf implements Runnable {
-    public final int f16578a;
-    public final MessagesStorage f16579b;
-    public final Utilities.Callback f16580c;
-    public final long d;
-    public final long e;
+    public final int f17952a;
+    public final MessagesStorage.IntCallback f17953b;
+    public final int[] f17954c;
 
-    public bf(MessagesStorage messagesStorage, Utilities.Callback callback, long j10, long j11, int i10) {
-        this.f16578a = i10;
-        this.f16579b = messagesStorage;
-        this.f16580c = callback;
-        this.d = j10;
-        this.e = j11;
+    public bf(MessagesStorage.IntCallback intCallback, int[] iArr, int i10) {
+        this.f17952a = i10;
+        this.f17953b = intCallback;
+        this.f17954c = iArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f16578a) {
+        switch (this.f17952a) {
             case 0:
-                this.f16579b.lambda$getEphemeralMessages$208(this.f16580c, this.d, this.e);
+                MessagesStorage.a4(this.f17953b, this.f17954c);
                 return;
             default:
-                this.f16579b.lambda$getEphemeralMessages$207(this.f16580c, this.d, this.e);
+                MessagesStorage.w0(this.f17953b, this.f17954c);
                 return;
         }
     }

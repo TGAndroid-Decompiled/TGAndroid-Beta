@@ -1,41 +1,52 @@
 package x9;
 
+import android.content.SharedPreferences;
 import android.util.Log;
-import java.lang.Thread;
-import java.util.concurrent.atomic.AtomicBoolean;
-public final class r implements Thread.UncaughtExceptionHandler {
-    public final v1.b f48337a;
-    public final ea.b f48338b;
-    public final Thread.UncaughtExceptionHandler f48339c;
-    public final u9.a d;
-    public final AtomicBoolean e = new AtomicBoolean(false);
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class r {
+    public final SharedPreferences f49747a;
+    public final l9.h f49748b;
+    public final Object f49749c;
+    public TaskCompletionSource d;
+    public boolean e;
+    public boolean f49750f;
+    public Boolean f49751g;
+    public final TaskCompletionSource h;
 
-    public r(v1.b bVar, ea.b bVar2, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, u9.a aVar) {
-        this.f48337a = bVar;
-        this.f48338b = bVar2;
-        this.f48339c = uncaughtExceptionHandler;
-        this.d = aVar;
+    public r(l9.h r8) {
+        throw new UnsupportedOperationException("Method not decompiled: x9.r.<init>(l9.h):void");
     }
 
-    public final boolean a(Thread thread, Throwable th2) {
-        if (thread == null) {
-            Log.e("FirebaseCrashlytics", "Crashlytics will not record uncaught exception; null thread", null);
-            return false;
-        } else if (th2 == null) {
-            Log.e("FirebaseCrashlytics", "Crashlytics will not record uncaught exception; null throwable", null);
-            return false;
-        } else if (this.d.b()) {
-            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                Log.d("FirebaseCrashlytics", "Crashlytics will not record uncaught exception; native crash exists for session.", null);
-            }
-            return false;
+    public final synchronized boolean a() {
+        boolean z10;
+        String str;
+        String str2;
+        Boolean bool = this.f49751g;
+        if (bool != null) {
+            z10 = bool.booleanValue();
         } else {
-            return true;
+            try {
+                z10 = this.f49748b.h();
+            } catch (IllegalStateException unused) {
+                z10 = false;
+            }
         }
-    }
-
-    @Override
-    public final void uncaughtException(java.lang.Thread r10, java.lang.Throwable r11) {
-        throw new UnsupportedOperationException("Method not decompiled: x9.r.uncaughtException(java.lang.Thread, java.lang.Throwable):void");
+        if (z10) {
+            str = "ENABLED";
+        } else {
+            str = "DISABLED";
+        }
+        if (this.f49751g == null) {
+            str2 = "global Firebase setting";
+        } else if (this.f49750f) {
+            str2 = "firebase_crashlytics_collection_enabled manifest flag";
+        } else {
+            str2 = "API";
+        }
+        String h = r.c.h("Crashlytics automatic data collection ", str, " by ", str2, ".");
+        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+            Log.d("FirebaseCrashlytics", h, null);
+        }
+        return z10;
     }
 }

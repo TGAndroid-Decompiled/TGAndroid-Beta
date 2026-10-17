@@ -1,31 +1,87 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class fb1 extends ra1 {
-    public final int v;
-    public final int f35500w;
-    public int f35501x;
-    public bi f35502y;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class fb1 implements RequestDelegate {
+    public final int f36861a;
+    public final mc1 f36862b;
 
-    public fb1(Context context, int i10, int i11, jg.f fVar, int i12) {
-        super(context, i11, fVar, null);
-        this.v = i10;
-        this.f35500w = i12;
+    public fb1(mc1 mc1Var, int i10) {
+        this.f36861a = i10;
+        this.f36862b = mc1Var;
     }
 
     @Override
-    public final void b(ta1 ta1Var) {
-        int i10;
-        if (ta1Var != null && (i10 = this.f35501x) >= 0) {
-            ta1Var.a(this.v, this.f35500w, i10, this.f35502y);
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f36861a) {
+            case 0:
+                final mc1 mc1Var = this.f36862b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                mc1.W(mc1Var, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        mc1 mc1Var2 = mc1Var;
+                                        mc1Var2.W0 = tL_wallPaper;
+                                        mc1Var2.b1(false);
+                                        mc1Var2.j1();
+                                        mc1Var2.U0.add(0, mc1Var2.W0);
+                                        kc1 kc1Var = mc1Var2.Q0;
+                                        if (kc1Var != null) {
+                                            kc1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final mc1 mc1Var2 = this.f36862b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                mc1.W(mc1Var2, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        mc1 mc1Var22 = mc1Var2;
+                                        mc1Var22.W0 = tL_wallPaper;
+                                        mc1Var22.b1(false);
+                                        mc1Var22.j1();
+                                        mc1Var22.U0.add(0, mc1Var22.W0);
+                                        kc1 kc1Var = mc1Var22.Q0;
+                                        if (kc1Var != null) {
+                                            kc1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void f() {
     }
 }

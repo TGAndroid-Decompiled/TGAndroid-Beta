@@ -8,14 +8,14 @@ import n7.k1;
 import n7.l1;
 public final class u extends o6.a {
     public static final Parcelable.Creator<u> CREATOR = new w.a(25);
-    public final String f4636a;
-    public final String f4637b;
-    public final n7.t0 f4638c;
+    public final String f5006a;
+    public final String f5007b;
+    public final n7.t0 f5008c;
     public final j d;
     public final i e;
-    public final k f4639f;
+    public final k f5009f;
     public final g h;
-    public final String f4640n;
+    public final String f5010n;
 
     public u(String str, String str2, byte[] bArr, j jVar, i iVar, k kVar, g gVar, String str3) {
         n7.t0 s10;
@@ -36,20 +36,20 @@ public final class u extends o6.a {
             z11 = true;
         }
         n6.l.a("Must provide id and rawId if not an error response.", z11);
-        this.f4636a = str;
-        this.f4637b = str2;
-        this.f4638c = s10;
+        this.f5006a = str;
+        this.f5007b = str2;
+        this.f5008c = s10;
         this.d = jVar;
         this.e = iVar;
-        this.f4639f = kVar;
+        this.f5009f = kVar;
         this.h = gVar;
-        this.f4640n = str3;
+        this.f5010n = str3;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof u) {
             u uVar = (u) obj;
-            if (n6.l.l(this.f4636a, uVar.f4636a) && n6.l.l(this.f4637b, uVar.f4637b) && n6.l.l(this.f4638c, uVar.f4638c) && n6.l.l(this.d, uVar.d) && n6.l.l(this.e, uVar.e) && n6.l.l(this.f4639f, uVar.f4639f) && n6.l.l(this.h, uVar.h) && n6.l.l(this.f4640n, uVar.f4640n)) {
+            if (n6.l.l(this.f5006a, uVar.f5006a) && n6.l.l(this.f5007b, uVar.f5007b) && n6.l.l(this.f5008c, uVar.f5008c) && n6.l.l(this.d, uVar.d) && n6.l.l(this.e, uVar.e) && n6.l.l(this.f5009f, uVar.f5009f) && n6.l.l(this.h, uVar.h) && n6.l.l(this.f5010n, uVar.f5010n)) {
                 return true;
             }
             return false;
@@ -58,12 +58,12 @@ public final class u extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4636a, this.f4637b, this.f4638c, this.e, this.d, this.f4639f, this.h, this.f4640n});
+        return Arrays.hashCode(new Object[]{this.f5006a, this.f5007b, this.f5008c, this.e, this.d, this.f5009f, this.h, this.f5010n});
     }
 
     public final String toString() {
         byte[] t10;
-        n7.t0 t0Var = this.f4638c;
+        n7.t0 t0Var = this.f5008c;
         if (t0Var == null) {
             t10 = null;
         } else {
@@ -72,22 +72,22 @@ public final class u extends o6.a {
         String c10 = u6.b.c(t10);
         String valueOf = String.valueOf(this.d);
         String valueOf2 = String.valueOf(this.e);
-        String valueOf3 = String.valueOf(this.f4639f);
+        String valueOf3 = String.valueOf(this.f5009f);
         String valueOf4 = String.valueOf(this.h);
-        StringBuilder w9 = a1.g.w("PublicKeyCredential{\n id='", this.f4636a, "', \n type='", this.f4637b, "', \n rawId=");
+        StringBuilder w9 = a1.g.w("PublicKeyCredential{\n id='", this.f5006a, "', \n type='", this.f5007b, "', \n rawId=");
         a1.g.A(w9, c10, ", \n registerResponse=", valueOf, ", \n signResponse=");
         a1.g.A(w9, valueOf2, ", \n errorResponse=", valueOf3, ", \n extensionsClientOutputs=");
         w9.append(valueOf4);
         w9.append(", \n authenticatorAttachment='");
-        w9.append(this.f4640n);
+        w9.append(this.f5010n);
         w9.append("'}");
         return w9.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        k1 k1Var = (k1) j1.f15903b.f15904a.f15889a;
-        l1.f15912a.a();
+        k1 k1Var = (k1) j1.f17279b.f17280a.f17265a;
+        l1.f17288a.a();
         throw null;
     }
 }

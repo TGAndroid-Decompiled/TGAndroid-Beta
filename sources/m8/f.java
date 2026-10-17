@@ -6,19 +6,19 @@ import g8.j;
 import w7.f0;
 public final class f extends o6.a {
     public static final Parcelable.Creator<f> CREATOR = new j(29);
-    public final long f15446a;
-    public final a[] f15447b;
-    public final int f15448c;
+    public final long f16798a;
+    public final a[] f16799b;
+    public final int f16800c;
     public final boolean d;
 
     public f(long j10, a[] aVarArr, int i10, boolean z10) {
-        this.f15446a = j10;
-        this.f15447b = aVarArr;
+        this.f16798a = j10;
+        this.f16799b = aVarArr;
         this.d = z10;
         if (z10) {
-            this.f15448c = i10;
+            this.f16800c = i10;
         } else {
-            this.f15448c = -1;
+            this.f16800c = -1;
         }
     }
 
@@ -26,10 +26,10 @@ public final class f extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 2, 8);
-        parcel.writeLong(this.f15446a);
-        f0.o(parcel, 3, this.f15447b, i10);
+        parcel.writeLong(this.f16798a);
+        f0.o(parcel, 3, this.f16799b, i10);
         f0.s(parcel, 4, 4);
-        parcel.writeInt(this.f15448c);
+        parcel.writeInt(this.f16800c);
         f0.s(parcel, 5, 4);
         parcel.writeInt(this.d ? 1 : 0);
         f0.r(parcel, q6);

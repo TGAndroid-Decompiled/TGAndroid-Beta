@@ -1,13 +1,13 @@
 package qh;
 
 import android.view.View;
-import r0.l1;
+import r0.k1;
 public interface d {
-    void J();
+    void L();
 
     View N();
 
-    void k(l1 l1Var);
+    void k(k1 k1Var);
 
-    void u();
+    void t();
 }

@@ -1,121 +1,38 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class n80 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final Paint f38282a;
-    public final Path f38283b;
-    public final ImageView f38284c;
-    public final di.g2 d;
-    public GradientDrawable e;
-    public final p80 f38285f;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.Utilities;
+public final class n80 implements Utilities.Callback {
+    public final int f39369a;
+    public final Object f39370b;
+    public final Object f39371c;
+    public final Object d;
+    public final Object e;
+    public final Object f39372f;
+    public final Object f39373g;
 
-    public n80(p80 p80Var, Context context, org.telegram.ui.ActionBar.u1 u1Var) {
-        super(context);
-        int i10;
-        this.f38285f = p80Var;
-        this.f38282a = new Paint(1);
-        this.f38283b = new Path();
-        setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f));
-        setClipChildren(false);
-        setClipToPadding(false);
-        ImageView imageView = new ImageView(context);
-        this.f38284c = imageView;
-        imageView.setImageResource(R.drawable.outline_search_1_24);
-        int i11 = org.telegram.ui.ActionBar.g6.G6;
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.m1(0.6f, p80Var.getThemedColor(i11)), PorterDuff.Mode.SRC_IN));
-        addView(imageView, w7.z5.a(24.0f, 11.0f, 8.0f, 11.0f, 8.0f, 24, 51));
-        u1Var.setClipChildren(true);
-        addView(u1Var, w7.z5.a(-1.0f, 0.0f, 0.0f, 0.0f, 40.0f, -1, 119));
-        di.g2 g2Var = new di.g2(this, context, 7);
-        this.d = g2Var;
-        g2Var.setHint(LocaleController.getString(R.string.Search));
-        g2Var.setTextSize(1, 15.0f);
-        g2Var.setCursorWidth(1.5f);
-        g2Var.setInputType(g2Var.getInputType() | 176);
-        g2Var.setSingleLine(true);
-        g2Var.setBackground(null);
-        g2Var.setVerticalScrollBarEnabled(false);
-        g2Var.setHorizontalScrollBarEnabled(false);
-        g2Var.setClipToPadding(true);
-        g2Var.setPadding(AndroidUtilities.dp(46.0f), 0, AndroidUtilities.dp(46.0f), 0);
-        g2Var.setEllipsizeByGradient(true);
-        g2Var.setImeOptions(268435462);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        g2Var.setGravity(i10 | 16);
-        g2Var.addTextChangedListener(new m80(this));
-        if (Build.VERSION.SDK_INT >= 35) {
-            g2Var.setLocalePreferredLineHeightForMinimumUsed(false);
-        }
-        g2Var.setTextColor(p80Var.getThemedColor(i11));
-        g2Var.setHintTextColor(p80Var.getThemedColor(org.telegram.ui.ActionBar.g6.H6));
-        addView(g2Var, w7.z5.a(40.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 55));
-        d();
+    public n80(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f39369a = i10;
+        this.f39370b = obj;
+        this.f39371c = obj2;
+        this.e = obj3;
+        this.f39373g = obj4;
+        this.f39372f = obj5;
+        this.d = obj6;
     }
 
     @Override
-    public final void d() {
-        int themedColor = this.f38285f.getThemedColor(org.telegram.ui.ActionBar.g6.f19543a7);
-        this.e = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.g6.m1(1.0f, themedColor), org.telegram.ui.ActionBar.g6.m1(0.0f, themedColor)});
+    public final void run(java.lang.Object r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.n80.run(java.lang.Object):void");
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float dpf2 = AndroidUtilities.dpf2(2.0f);
-        float dpf22 = AndroidUtilities.dpf2(0.33f);
-        Paint paint = this.f38282a;
-        paint.setShadowLayer(dpf2, 0.0f, dpf22, 285212672);
-        int i10 = org.telegram.ui.ActionBar.g6.f19601d6;
-        p80 p80Var = this.f38285f;
-        paint.setColor(p80Var.getThemedColor(i10));
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f) + p80Var.f38837b.e + AndroidUtilities.dp(3.0f));
-        Path path = this.f38283b;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), Path.Direction.CW);
-        GradientDrawable gradientDrawable = this.e;
-        if (gradientDrawable != null) {
-            gradientDrawable.setBounds(0, 0, getWidth(), Math.min(getHeight(), AndroidUtilities.dp(24.0f) + ((int) p80Var.f38837b.e)));
-            this.e.draw(canvas);
-        }
-        canvas.save();
-        canvas.drawPath(path, paint);
-        canvas.clipPath(path);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f38285f.e) {
-            canvas.save();
-            canvas.clipRect(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight());
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(144.0f), 1073741824));
+    public n80(LaunchActivity launchActivity, pf.c cVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l4, org.telegram.ui.Cells.u1 u1Var) {
+        this.f39369a = 1;
+        this.f39370b = launchActivity;
+        this.f39371c = cVar;
+        this.d = runnable;
+        this.f39373g = channelBoostsController;
+        this.e = l4;
+        this.f39372f = u1Var;
     }
 }

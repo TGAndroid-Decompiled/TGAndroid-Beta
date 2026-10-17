@@ -1,37 +1,31 @@
 package org.telegram.messenger;
 public final class kb implements Runnable {
-    public final int f17376a;
-    public final MessagesController f17377b;
-    public final long f17378c;
-    public final int d;
-    public final boolean e;
-    public final int f17379f;
-    public final int h;
+    public final int f18776a;
+    public final MessagesController f18777b;
+    public final a0.h f18778c;
+    public final a0.h d;
 
-    public kb(MessagesController messagesController, long j10, int i10, boolean z10, int i11, int i12, int i13) {
-        this.f17376a = i13;
-        this.f17377b = messagesController;
-        this.f17378c = j10;
-        this.d = i10;
-        this.e = z10;
-        this.f17379f = i11;
-        this.h = i12;
+    public kb(MessagesController messagesController, a0.h hVar, a0.h hVar2, int i10) {
+        this.f18776a = i10;
+        this.f18777b = messagesController;
+        this.f18778c = hVar;
+        this.d = hVar2;
     }
 
     @Override
     public final void run() {
-        switch (this.f17376a) {
+        switch (this.f18776a) {
             case 0:
-                int i10 = this.f17379f;
-                int i11 = this.h;
-                int i12 = this.d;
-                this.f17377b.lambda$markDialogAsRead$242(this.f17378c, i12, this.e, i10, i11);
+                this.f18777b.lambda$checkDeletingTask$85(this.f18778c, this.d);
+                return;
+            case 1:
+                this.f18777b.lambda$updatePrintingStrings$169(this.f18778c, this.d);
+                return;
+            case 2:
+                this.f18777b.lambda$getNewDeleteTask$82(this.f18778c, this.d);
                 return;
             default:
-                int i13 = this.f17379f;
-                int i14 = this.h;
-                int i15 = this.d;
-                this.f17377b.lambda$markDialogAsRead$243(this.f17378c, i15, this.e, i13, i14);
+                this.f18777b.lambda$checkDeletingTask$84(this.f18778c, this.d);
                 return;
         }
     }

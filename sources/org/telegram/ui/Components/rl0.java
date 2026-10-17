@@ -1,87 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.util.SparseArray;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class rl0 {
-    public final mm0 f28566a;
-    public boolean d;
-    public final boolean e;
-    public final SparseArray f28567b = new SparseArray();
-    public final HashSet f28568c = new HashSet();
-    public final boolean f28569f = true;
-    public final ArrayList f28570g = new ArrayList();
-    public final ArrayList h = new ArrayList();
+import android.view.ViewConfiguration;
+import android.view.ViewParent;
+public final class rl0 implements View.OnTouchListener {
+    public float f29992a;
+    public float f29993b;
+    public boolean f29994c;
 
-    public rl0(mm0 mm0Var, boolean z10) {
-        this.f28566a = mm0Var;
-        this.e = z10;
-        mm0Var.setItemsEnterAnimator(this);
-    }
-
-    public final void a() {
-        ArrayList arrayList = this.f28570g;
-        int i10 = 0;
-        if (!arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList(arrayList);
-            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                ((AnimatorSet) arrayList2.get(i11)).end();
-                ((AnimatorSet) arrayList2.get(i11)).cancel();
+    @Override
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        ViewParent parent = view.getParent();
+        if (parent != null) {
+            if (motionEvent.getAction() == 0) {
+                this.f29992a = motionEvent.getX();
+                this.f29993b = motionEvent.getY();
+                this.f29994c = true;
+                parent.requestDisallowInterceptTouchEvent(true);
+            }
+            if (motionEvent.getAction() == 2) {
+                float x10 = this.f29992a - motionEvent.getX();
+                float y3 = this.f29993b - motionEvent.getY();
+                float scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+                if (this.f29994c) {
+                    if (Math.sqrt((y3 * y3) + (x10 * x10)) > scaledTouchSlop) {
+                        this.f29994c = false;
+                        parent.requestDisallowInterceptTouchEvent(false);
+                        return false;
+                    }
+                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                this.f29994c = false;
+                parent.requestDisallowInterceptTouchEvent(false);
+                return false;
             }
         }
-        arrayList.clear();
-        while (true) {
-            ArrayList arrayList3 = this.h;
-            int size = arrayList3.size();
-            mm0 mm0Var = this.f28566a;
-            if (i10 < size) {
-                mm0Var.getViewTreeObserver().removeOnPreDrawListener((ViewTreeObserver.OnPreDrawListener) arrayList3.get(i10));
-                i10++;
-            } else {
-                arrayList3.clear();
-                this.f28567b.clear();
-                mm0Var.invalidate();
-                this.d = true;
-                return;
-            }
-        }
-    }
-
-    public final void b(int i10) {
-        Animator ofFloat;
-        mm0 mm0Var = this.f28566a;
-        int childCount = mm0Var.getChildCount();
-        f10 f10Var = null;
-        for (int i11 = 0; i11 < childCount; i11++) {
-            View childAt = mm0Var.getChildAt(i11);
-            if (RecyclerView.R(childAt) >= 0 && (childAt instanceof f10)) {
-                f10Var = childAt;
-            }
-        }
-        s4.n0 layoutManager = mm0Var.getLayoutManager();
-        if (f10Var != null && layoutManager != null) {
-            mm0Var.removeView(f10Var);
-            this.f28568c.add(f10Var);
-            mm0Var.addView(f10Var);
-            layoutManager.M(f10Var);
-            if (this.f28569f) {
-                ofFloat = ObjectAnimator.ofFloat(f10Var, View.ALPHA, f10Var.getAlpha(), 0.0f);
-            } else {
-                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            }
-            ofFloat.addListener(new bi.t(this, f10Var, layoutManager));
-            ofFloat.start();
-            i10--;
-        }
-        org.telegram.ui.fr frVar = new org.telegram.ui.fr(this, f10Var, i10, 2);
-        this.h.add(frVar);
-        mm0Var.getViewTreeObserver().addOnPreDrawListener(frVar);
+        return false;
     }
 }

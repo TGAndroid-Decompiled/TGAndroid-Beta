@@ -6,11 +6,11 @@ public enum s1 extends a2 {
 
     @Override
     public final void d(k kVar, a aVar) {
-        f fVar = kVar.f9134m;
+        f fVar = kVar.f10575m;
         char d = aVar.d();
         if (d != 0) {
             if (d != '\'') {
-                v vVar = a2.f9079a;
+                v vVar = a2.f10520a;
                 if (d != '>') {
                     if (d != 65535) {
                         fVar.e.append(d);
@@ -19,16 +19,16 @@ public enum s1 extends a2 {
                     kVar.l(this);
                     fVar.getClass();
                     kVar.j();
-                    kVar.f9127c = vVar;
+                    kVar.f10568c = vVar;
                     return;
                 }
                 kVar.m(this);
                 fVar.getClass();
                 kVar.j();
-                kVar.f9127c = vVar;
+                kVar.f10568c = vVar;
                 return;
             }
-            kVar.f9127c = a2.B0;
+            kVar.f10568c = a2.B0;
             return;
         }
         kVar.m(this);

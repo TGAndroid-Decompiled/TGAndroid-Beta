@@ -2,62 +2,62 @@ package org.telegram.messenger;
 
 import android.app.Activity;
 import java.util.HashMap;
-import org.telegram.ui.Components.df0;
-import org.telegram.ui.Components.qn;
-import org.telegram.ui.dw;
-import org.telegram.ui.kk0;
-import org.telegram.ui.mt;
-import org.telegram.ui.yy;
+import org.telegram.ui.Components.nn;
+import org.telegram.ui.Components.qy;
+import org.telegram.ui.Components.we0;
+import org.telegram.ui.ey;
+import org.telegram.ui.lv;
+import org.telegram.ui.rj0;
 public final class q1 implements Runnable {
-    public final int f17851a = 0;
-    public final boolean f17852b;
-    public final boolean f17853c;
+    public final int f19311a = 0;
+    public final boolean f19312b;
+    public final boolean f19313c;
     public final boolean d;
     public final Object e;
-    public final Object f17854f;
+    public final Object f19314f;
 
     public q1(ContactsController contactsController, HashMap hashMap, boolean z10, boolean z11, boolean z12) {
         this.e = contactsController;
-        this.f17854f = hashMap;
-        this.f17852b = z10;
-        this.f17853c = z11;
+        this.f19314f = hashMap;
+        this.f19312b = z10;
+        this.f19313c = z11;
         this.d = z12;
     }
 
     @Override
     public final void run() {
-        switch (this.f17851a) {
+        switch (this.f19311a) {
             case 0:
-                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f17854f, this.f17852b, this.f17853c, this.d);
+                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f19314f, this.f19312b, this.f19313c, this.d);
                 return;
             default:
-                yy yyVar = (yy) this.e;
-                Activity activity = (Activity) this.f17854f;
-                if (yyVar.getParentActivity() != null) {
-                    yyVar.f42082t2 = false;
-                    boolean z10 = this.f17852b;
-                    boolean z11 = this.f17853c;
+                ey eyVar = (ey) this.e;
+                Activity activity = (Activity) this.f19314f;
+                if (eyVar.getParentActivity() != null) {
+                    eyVar.f36708t2 = false;
+                    boolean z10 = this.f19312b;
+                    boolean z11 = this.f19313c;
                     boolean z12 = this.d;
                     if (z10 || z11 || z12) {
-                        yyVar.A0 = true;
-                        if (z10 && kk0.o(activity)) {
-                            df0.e(new String[]{"android.permission.POST_NOTIFICATIONS"}, new qn(1, new mt(2, yyVar, activity)));
+                        eyVar.A0 = true;
+                        if (z10 && rj0.o(activity)) {
+                            we0.e(new String[]{"android.permission.POST_NOTIFICATIONS"}, new nn(1, new qy(8, eyVar, activity)));
                             return;
-                        } else if (z11 && yyVar.U1 && yyVar.getUserConfig().syncContacts && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
-                            org.telegram.ui.ActionBar.a2 a2Var = org.telegram.ui.Components.g5.v(activity, new dw(yyVar, 0)).f19248a;
-                            yyVar.T1 = a2Var;
-                            yyVar.showDialog(a2Var);
+                        } else if (z11 && eyVar.U1 && eyVar.getUserConfig().syncContacts && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
+                            org.telegram.ui.ActionBar.b2 b2Var = org.telegram.ui.Components.f5.v(activity, new lv(eyVar, 0)).f20601a;
+                            eyVar.T1 = b2Var;
+                            eyVar.showDialog(b2Var);
                             return;
                         } else if (z12 && activity.shouldShowRequestPermissionRationale("android.permission.WRITE_EXTERNAL_STORAGE")) {
-                            if (activity instanceof org.telegram.ui.l5) {
-                                org.telegram.ui.ActionBar.a2 v = ((org.telegram.ui.l5) activity).v(R.raw.permission_request_folder, LocaleController.getString(R.string.PermissionStorageWithHint));
-                                yyVar.T1 = v;
-                                yyVar.showDialog(v);
+                            if (activity instanceof org.telegram.ui.m5) {
+                                org.telegram.ui.ActionBar.b2 v = ((org.telegram.ui.m5) activity).v(R.raw.permission_request_folder, LocaleController.getString(R.string.PermissionStorageWithHint));
+                                eyVar.T1 = v;
+                                eyVar.showDialog(v);
                                 return;
                             }
                             return;
                         } else {
-                            yyVar.h3(true);
+                            eyVar.h3(true);
                             return;
                         }
                     }
@@ -67,11 +67,11 @@ public final class q1 implements Runnable {
         }
     }
 
-    public q1(yy yyVar, boolean z10, boolean z11, boolean z12, Activity activity) {
-        this.e = yyVar;
-        this.f17852b = z10;
-        this.f17853c = z11;
+    public q1(ey eyVar, boolean z10, boolean z11, boolean z12, Activity activity) {
+        this.e = eyVar;
+        this.f19312b = z10;
+        this.f19313c = z11;
         this.d = z12;
-        this.f17854f = activity;
+        this.f19314f = activity;
     }
 }

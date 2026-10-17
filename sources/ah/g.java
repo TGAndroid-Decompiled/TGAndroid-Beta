@@ -1,56 +1,52 @@
 package ah;
 
+import ai.fa;
+import ai.t5;
 import android.os.Looper;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.util.StateSet;
-import bi.q7;
-import bi.x8;
-import di.k8;
-import di.kc;
-import di.r2;
-import di.y6;
+import ci.i7;
+import ci.v7;
+import ei.a8;
+import ei.n2;
+import ei.vb;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import ji.p3;
-import ji.u3;
-import ji.x3;
+import ki.o3;
+import ki.t3;
+import ki.w3;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.da0;
-import org.telegram.ui.Components.n1;
-import org.telegram.ui.dj;
-import org.telegram.ui.ej;
-import org.telegram.ui.fo;
-import org.telegram.ui.le;
-import org.telegram.ui.mj;
-import org.telegram.ui.qn;
-import org.telegram.ui.u4;
-import org.telegram.ui.xm;
+import org.telegram.ui.bj;
+import org.telegram.ui.en;
+import org.telegram.ui.fe;
+import org.telegram.ui.lm;
+import org.telegram.ui.si;
+import org.telegram.ui.sn;
+import org.telegram.ui.ti;
+import org.telegram.ui.v4;
 import v7.u6;
 public final class g implements Runnable {
-    public final int f735a;
-    public final int f736b;
-    public final Object f737c;
+    public final int f737a;
+    public final int f738b;
+    public final Object f739c;
 
     public g(int i10, Object obj, int i11) {
-        this.f735a = i11;
-        this.f736b = i10;
-        this.f737c = obj;
+        this.f737a = i11;
+        this.f738b = i10;
+        this.f739c = obj;
     }
 
     @Override
@@ -61,14 +57,14 @@ public final class g implements Runnable {
         boolean z11;
         int i10;
         int i11;
-        int i12 = this.f735a;
+        int i12 = this.f737a;
         boolean z12 = false;
-        int i13 = this.f736b;
-        Object obj = this.f737c;
+        int i13 = this.f738b;
+        Object obj = this.f739c;
         switch (i12) {
             case 0:
                 i iVar = (i) obj;
-                if (iVar.f776b) {
+                if (iVar.f778b) {
                     Utilities.Callback callback = iVar.d;
                     if (callback != null) {
                         if (i13 < 300) {
@@ -78,97 +74,103 @@ public final class g implements Runnable {
                         }
                         callback.run(Boolean.valueOf(z10));
                         try {
-                            iVar.f775a.performHapticFeedback(3);
+                            iVar.f777a.performHapticFeedback(3);
                         } catch (Exception unused) {
                         }
                     }
-                    iVar.f777c = true;
+                    iVar.f779c = true;
                     int max = Math.max(50, i13 - 100);
                     AndroidUtilities.runOnUIThread(new g(iVar, max, 0), max);
                     return;
                 }
                 return;
             case 1:
-                x8 x8Var = (x8) obj;
-                ArrayList arrayList3 = x8Var.f3970g;
-                x8Var.v(arrayList3);
-                q7 q7Var = x8Var.J;
-                Collections.sort(arrayList3, q7Var);
-                ArrayList arrayList4 = x8Var.h;
-                x8Var.v(arrayList4);
-                Collections.sort(arrayList4, q7Var);
-                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                pf.d.r(((ai.x) obj).getParentActivity(), LocaleController.getString(i13));
                 return;
             case 2:
-                ((c2.g) obj).f4137b.onAudioFocusChange(i13);
+                ConnectionsManager.getInstance(((fa) obj).f1311a).cancelRequest(i13, true);
                 return;
             case 3:
-                ((di.o) obj).run(Integer.valueOf(i13));
+                ((c2.g) obj).f4507b.onAudioFocusChange(i13);
                 return;
             case 4:
-                ((Utilities.Callback) obj).run(Integer.valueOf(i13));
+                i7 i7Var = (i7) obj;
+                ArrayList arrayList3 = i7Var.f5497g;
+                i7Var.v(arrayList3);
+                t5 t5Var = i7Var.J;
+                Collections.sort(arrayList3, t5Var);
+                ArrayList arrayList4 = i7Var.h;
+                i7Var.v(arrayList4);
+                Collections.sort(arrayList4, t5Var);
+                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                 return;
             case 5:
-                ((r2) obj).q0(i13);
+                ((ei.o) obj).run(Integer.valueOf(i13));
                 return;
             case 6:
-                MessagesController.getInstance(i13).putUsers((ArrayList) obj, true);
+                ((Utilities.Callback) obj).run(Integer.valueOf(i13));
                 return;
             case 7:
-                kc kcVar = (kc) obj;
-                int i14 = kcVar.f7244c;
-                kcVar.l();
-                kcVar.X1 = false;
-                File file = kcVar.K1.O0;
+                ((n2) obj).q0(i13);
+                return;
+            case 8:
+                MessagesController.getInstance(i13).putUsers((ArrayList) obj, true);
+                return;
+            case 9:
+                vb vbVar = (vb) obj;
+                int i14 = vbVar.f9955c;
+                vbVar.l();
+                vbVar.X1 = false;
+                File file = vbVar.K1.O0;
                 if (file != null) {
                     file.delete();
-                    kcVar.K1.O0 = null;
+                    vbVar.K1.O0 = null;
                 }
-                kcVar.V(kcVar.K1, true);
-                CharSequence[] charSequenceArr = {kcVar.f7246c1.getText()};
+                vbVar.V(vbVar.K1, true);
+                CharSequence[] charSequenceArr = {vbVar.f9957c1.getText()};
                 if (MessagesController.getInstance(i14).storyEntitiesAllowed()) {
                     arrayList = MediaDataController.getInstance(i14).getEntities(charSequenceArr, true);
                 } else {
                     arrayList = new ArrayList<>();
                 }
-                CharSequence[] charSequenceArr2 = {kcVar.K1.C0};
+                CharSequence[] charSequenceArr2 = {vbVar.K1.C0};
                 if (MessagesController.getInstance(i14).storyEntitiesAllowed()) {
                     arrayList2 = MediaDataController.getInstance(i14).getEntities(charSequenceArr2, true);
                 } else {
                     arrayList2 = new ArrayList<>();
                 }
-                k8 k8Var = kcVar.K1;
-                if (TextUtils.equals(k8Var.C0, charSequenceArr[0]) && MediaDataController.entitiesEqual(arrayList, arrayList2)) {
+                a8 a8Var = vbVar.K1;
+                if (TextUtils.equals(a8Var.C0, charSequenceArr[0]) && MediaDataController.entitiesEqual(arrayList, arrayList2)) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
-                k8Var.f7197k = z11;
-                kcVar.K1.C0 = new SpannableString(kcVar.f7246c1.getText());
-                kcVar.y();
-                kcVar.x();
-                k8 k8Var2 = kcVar.K1;
-                if (k8Var2 != null && k8Var2.K) {
+                a8Var.f8718k = z11;
+                vbVar.K1.C0 = new SpannableString(vbVar.f9957c1.getText());
+                vbVar.y();
+                vbVar.x();
+                a8 a8Var2 = vbVar.K1;
+                if (a8Var2 != null && a8Var2.K) {
                     i10 = 1;
                 } else {
                     i10 = 0;
                 }
-                kcVar.O1 = i10;
-                kcVar.K1 = (k8) kcVar.H1.get(i13);
-                kcVar.N(0, 1);
-                kcVar.M(0, 1);
-                kcVar.f7249d1.f7756b.W2.N(false);
-                kcVar.f7246c1.setText(kcVar.K1.C0);
-                return;
-            case 8:
-                ((hg.h0) obj).m(i13);
-                return;
-            case 9:
-                j2.f fVar = ((i2.r0) obj).M;
-                j2.a l4 = fVar.l();
-                fVar.q(l4, 1034, new j2.c(l4, i13, 10, (char) 0));
+                vbVar.O1 = i10;
+                vbVar.K1 = (a8) vbVar.H1.get(i13);
+                vbVar.N(0, 1);
+                vbVar.M(0, 1);
+                vbVar.f9960d1.f9367b.W2.N(false);
+                vbVar.f9957c1.setText(vbVar.K1.C0);
                 return;
             case 10:
+                ((hg.h0) obj).m(i13);
+                return;
+            case 11:
+                j2.f fVar = ((i2.p0) obj).M;
+                j2.a l4 = fVar.l();
+                fVar.q(l4, 1034, new j2.c(l4, i13, 12, (char) 0));
+                return;
+            case 12:
                 try {
                     SQLiteDatabase database = ((MessagesStorage) obj).getDatabase();
                     database.executeFast("DELETE FROM business_replies WHERE topic_id = " + i13).stepThis().dispose();
@@ -178,168 +180,143 @@ public final class g implements Runnable {
                     FileLog.e(e);
                     return;
                 }
-            case 11:
+            case 13:
                 ih.g gVar = (ih.g) obj;
                 gVar.getClass();
                 try {
-                    gVar.f11752a.scrollBy(0, i13);
+                    gVar.f13134a.scrollBy(0, i13);
                     return;
                 } catch (Throwable th2) {
                     FileLog.e(th2);
                     return;
                 }
-            case 12:
-                ji.d0 d0Var = (ji.d0) obj;
-                ji.g0 g0Var = d0Var.f13198f;
-                if (d0Var.f13197c && g0Var.E != null && g0Var.f13123a != null) {
+            case 14:
+                String str = e2.m0.f8254a;
+                e2.c cVar = ((i2.a0) ((k2.u) ((qf.b) obj).f44466c)).f12309a.C;
+                i2.u uVar = new i2.u(i13, 2);
+                cVar.getClass();
+                if (Looper.myLooper() == ((e2.i0) cVar.f8206c).f8239a.getLooper()) {
+                    z12 = true;
+                }
+                u6.p(z12);
+                cVar.f8204a++;
+                cVar.i(new v7(16, cVar, uVar));
+                Integer num = (Integer) cVar.e;
+                cVar.n(Integer.valueOf(i13));
+                return;
+            case 15:
+                ki.d0 d0Var = (ki.d0) obj;
+                ki.g0 g0Var = d0Var.f15188f;
+                if (d0Var.f15187c && g0Var.E != null && g0Var.f15105a != null) {
                     d0Var.d = true;
-                    d0Var.f13195a.setPressed(false);
+                    d0Var.f15185a.setPressed(false);
                     try {
                         d0Var.performHapticFeedback(0);
                     } catch (Exception unused2) {
                     }
-                    ji.e0 e0Var = g0Var.E;
-                    ji.a aVar = g0Var.f13123a;
-                    x3 x3Var = ((p3) e0Var).f13467a;
-                    x3Var.p3(false);
-                    x3Var.f13630f3.i(new u3(x3Var, aVar, i13), d0Var);
+                    ki.e0 e0Var = g0Var.E;
+                    ki.a aVar = g0Var.f15105a;
+                    w3 w3Var = ((o3) e0Var).f15417a;
+                    w3Var.p3(false);
+                    w3Var.f15586f3.m(new t3(w3Var, aVar, i13), d0Var);
                     return;
                 }
                 return;
-            case 13:
-                String str = e2.m0.f8375a;
-                e2.c cVar = ((i2.b0) ((k2.u) ((qf.b) obj).f43098c)).f10929a.C;
-                i2.v vVar = new i2.v(i13, 2);
-                cVar.getClass();
-                if (Looper.myLooper() == ((e2.i0) cVar.f8327c).f8360a.getLooper()) {
-                    z12 = true;
-                }
-                u6.p(z12);
-                cVar.f8325a++;
-                cVar.i(new y6(19, cVar, vVar));
-                Integer num = (Integer) cVar.e;
-                cVar.n(Integer.valueOf(i13));
-                return;
-            case 14:
+            case 16:
                 ((oh.a) obj).v0(i13, 0, null);
                 return;
-            case 15:
+            case 17:
                 ConnectionsManager.lambda$onUpdateConfig$21(i13, (TLRPC.TL_config) obj);
                 return;
-            case 16:
-                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f18916id, 0, true);
-                return;
-            case 17:
-                ((u4) ((org.telegram.ui.g) obj).f36029b).V(i13, true);
-                return;
             case 18:
+                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f20272id, 0, true);
+                return;
+            case 19:
+                ((v4) ((org.telegram.ui.g) obj).f37062b).V(i13, true);
+                return;
+            case 20:
                 u1 u1Var = (u1) obj;
-                int i15 = u1Var.f22151v7;
+                int i15 = u1Var.f23515v7;
                 if (i13 == i15) {
-                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) u1Var.f22052o7.get(i15);
+                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) u1Var.f23416o7.get(i15);
                     if (e0Var2 != null) {
-                        org.telegram.ui.Cells.z zVar = e0Var2.f20802s;
+                        org.telegram.ui.Cells.z zVar = e0Var2.f22170s;
                         if (zVar != null) {
                             zVar.setState(StateSet.NOTHING);
                         }
                         e0Var2.b(false);
-                        if (!u1Var.f22197y7.scheduled) {
-                            if (e0Var2.f20793j != null) {
+                        if (!u1Var.f23561y7.scheduled) {
+                            if (e0Var2.f22161j != null) {
                                 u1Var.k();
-                            } else if (e0Var2.f20792i != null) {
+                            } else if (e0Var2.f22160i != null) {
                                 u1Var.k();
                                 org.telegram.ui.Cells.l1 l1Var = u1Var.Jc;
                                 if (l1Var != null) {
-                                    l1Var.B1(u1Var, e0Var2.f20792i);
+                                    l1Var.A1(u1Var, e0Var2.f22160i);
                                 }
                             }
                         }
                     }
-                    u1Var.f22151v7 = -1;
+                    u1Var.f23515v7 = -1;
                     u1Var.a3();
                     return;
                 }
                 return;
-            case 19:
-                ((le) obj).f37723f.c(i13);
-                return;
-            case 20:
-                fo foVar = ((dj) obj).f35063g;
-                if (foVar.f35858wb == i13) {
-                    foVar.Qa();
-                    return;
-                }
-                return;
             case 21:
-                fo foVar2 = ((ej) obj).f35315g;
-                if (foVar2.f35858wb == i13) {
-                    foVar2.Qa();
-                    return;
-                }
+                ((fe) obj).f36879f.c(i13);
                 return;
             case 22:
-                ((mj) obj).f38022a.j(this.f736b, 0, true, 0, true, 0);
+                sn snVar = ((si) obj).f41118g;
+                if (snVar.f41430wb == i13) {
+                    snVar.Qa();
+                    return;
+                }
                 return;
             case 23:
-                fo foVar3 = ((dj) obj).f35063g;
-                if (foVar3.f35858wb == i13) {
-                    foVar3.Qa();
+                sn snVar2 = ((ti) obj).f41758g;
+                if (snVar2.f41430wb == i13) {
+                    snVar2.Qa();
                     return;
                 }
                 return;
             case 24:
-                fo foVar4 = ((ej) obj).f35315g;
-                if (foVar4.f35858wb == i13) {
-                    foVar4.Qa();
-                    return;
-                }
+                ((bj) obj).f35699a.j(this.f738b, 0, true, 0, true, 0);
                 return;
             case 25:
-                fo foVar5 = ((ej) obj).f35315g;
-                if (foVar5.f35858wb == i13) {
-                    foVar5.Qa();
+                sn snVar3 = ((si) obj).f41118g;
+                if (snVar3.f41430wb == i13) {
+                    snVar3.Qa();
                     return;
                 }
                 return;
             case 26:
-                fo foVar6 = ((xm) obj).J0;
-                foVar6.f35886z0.h1(i13, foVar6.f35878y4);
+                sn snVar4 = ((ti) obj).f41758g;
+                if (snVar4.f41430wb == i13) {
+                    snVar4.Qa();
+                    return;
+                }
                 return;
             case 27:
-                i11 = ((m2) ((qn) obj).f39190a).currentAccount;
-                ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
+                sn snVar5 = ((ti) obj).f41758g;
+                if (snVar5.f41430wb == i13) {
+                    snVar5.Qa();
+                    return;
+                }
                 return;
             case 28:
-                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.u1((MessagesStorage.BooleanCallback) obj, 1), 250L);
+                sn snVar6 = ((lm) obj).J0;
+                snVar6.f41458z0.h1(i13, snVar6.f41450y4);
                 return;
             default:
-                da0 da0Var = (da0) obj;
-                ArrayList<TLRPC.PrivacyRule> privacyRules = ContactsController.getInstance(i13).getPrivacyRules(11);
-                String string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
-                if (privacyRules != null && !privacyRules.isEmpty()) {
-                    int i16 = 0;
-                    while (true) {
-                        if (i16 < privacyRules.size()) {
-                            if (privacyRules.get(i16) instanceof TLRPC.TL_privacyValueAllowContacts) {
-                                string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
-                            } else {
-                                if ((privacyRules.get(i16) instanceof TLRPC.TL_privacyValueAllowAll) || (privacyRules.get(i16) instanceof TLRPC.TL_privacyValueDisallowAll)) {
-                                    string = LocaleController.getString(R.string.EditProfileBirthdayInfo);
-                                }
-                                i16++;
-                            }
-                        }
-                    }
-                }
-                da0Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new n1(privacyRules, 0)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
+                i11 = ((org.telegram.ui.ActionBar.n2) ((en) obj).f36569a).currentAccount;
+                ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
                 return;
         }
     }
 
     public g(Object obj, int i10, int i11) {
-        this.f735a = i11;
-        this.f737c = obj;
-        this.f736b = i10;
+        this.f737a = i11;
+        this.f739c = obj;
+        this.f738b = i10;
     }
 }

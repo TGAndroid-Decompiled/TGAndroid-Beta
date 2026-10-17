@@ -1,19 +1,10 @@
 package n2;
+public final class w {
+    public final byte[] f17071a;
+    public final u2.u f17072b;
 
-import android.net.Uri;
-import java.io.IOException;
-import java.util.Map;
-public final class w extends IOException {
-    public final g2.m f15694a;
-    public final Uri f15695b;
-    public final Map f15696c;
-    public final long d;
-
-    public w(g2.m mVar, Uri uri, Map map, long j10, Exception exc) {
-        super(exc);
-        this.f15694a = mVar;
-        this.f15695b = uri;
-        this.f15696c = map;
-        this.d = j10;
+    public w(mi.q qVar) {
+        this.f17071a = (byte[]) qVar.f16967b;
+        this.f17072b = (u2.u) qVar.f16968c;
     }
 }

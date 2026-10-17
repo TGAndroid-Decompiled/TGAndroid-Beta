@@ -1,4 +1,4 @@
 package ef;
 public interface b {
-    a F(qf.b bVar);
+    a y(qf.b bVar);
 }

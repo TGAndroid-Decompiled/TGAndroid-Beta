@@ -5,7 +5,7 @@ public final class b extends kd.a implements kd.f {
     private volatile Object _preHandler;
 
     public b() {
-        super(b0.f2652a);
+        super(b0.f4264a);
         this._preHandler = this;
     }
 

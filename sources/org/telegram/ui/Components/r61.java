@@ -1,16 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-public final class r61 extends q61 {
-    public r61(String str) {
-        super(str != null ? str.replace((char) 8238, ' ') : str, (q11) null);
-    }
+import android.view.View;
+public final class r61 extends View {
+    public int f29854a;
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setUnderlineText(false);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f29854a, 1073741824));
+    }
+
+    public void setHeight(int i10) {
+        if (this.f29854a == i10) {
+            return;
+        }
+        this.f29854a = i10;
+        requestLayout();
     }
 }

@@ -1,29 +1,24 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.be1;
-public final class pp implements be1 {
-    public final int f28083a;
-    public final qp f28084b;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class pp extends xj0 {
+    public final wp f29390r;
 
-    public pp(qp qpVar, int i10) {
-        this.f28083a = i10;
-        this.f28084b = qpVar;
+    public pp(wp wpVar, Context context) {
+        super(context);
+        this.f29390r = wpVar;
     }
 
     @Override
-    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f28083a) {
-            case 0:
-                zp zpVar = this.f28084b.f28342a;
-                zpVar.Y.dismissInternal();
-                zpVar.dismiss();
-                return;
-            default:
-                zp zpVar2 = this.f28084b.f28342a;
-                zpVar2.Y.dismissInternal();
-                zpVar2.dismiss();
-                return;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f29390r.N) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
+        } else {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
         }
     }
 }

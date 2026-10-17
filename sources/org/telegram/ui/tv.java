@@ -1,55 +1,65 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
+import android.text.SpannableStringBuilder;
+import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
 public final class tv implements Runnable {
-    public final int f40216a;
-    public final Context f40217b;
+    public final int f41831a;
+    public final ey f41832b;
+    public final long f41833c;
+    public final boolean d;
 
-    public tv(Context context, int i10) {
-        this.f40216a = i10;
-        this.f40217b = context;
+    public tv(ey eyVar, long j10, boolean z10, int i10) {
+        this.f41831a = i10;
+        this.f41832b = eyVar;
+        this.f41833c = j10;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f40216a) {
+        String str;
+        TLRPC.Chat chat;
+        SpannableStringBuilder replaceTags;
+        int i10 = this.f41831a;
+        boolean z10 = this.d;
+        long j10 = this.f41833c;
+        ey eyVar = this.f41832b;
+        switch (i10) {
             case 0:
-                org.telegram.ui.ActionBar.g6.J(this.f40217b, false);
+                ey eyVar2 = this.f41832b;
+                ci.i7 storiesController = eyVar2.getMessagesController().getStoriesController();
+                long j11 = this.f41833c;
+                boolean z11 = this.d;
+                storiesController.i0(j11, z11, false);
+                n2.e eVar = new n2.e(7, false);
+                eVar.f17035b = new tv(eyVar2, j11, z11, 1);
+                eVar.f17036c = new tv(eyVar2, j11, z11, 2);
+                if (j11 >= 0) {
+                    TLRPC.User user = eyVar2.getMessagesController().getUser(Long.valueOf(j11));
+                    str = ContactsController.formatName(user.first_name, null, 15);
+                    chat = user;
+                } else {
+                    TLRPC.Chat chat2 = eyVar2.getMessagesController().getChat(Long.valueOf(-j11));
+                    str = chat2.title;
+                    chat = chat2;
+                }
+                if (eyVar2.c4()) {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, str));
+                } else {
+                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 15)));
+                }
+                eyVar2.S = org.telegram.ui.Components.xc.X().V(Collections.singletonList(chat), replaceTags, null, eVar).j();
                 return;
             case 1:
-                Activity findActivity = AndroidUtilities.findActivity(this.f40217b);
-                if (findActivity == null) {
-                    findActivity = LaunchActivity.G1;
-                }
-                if (findActivity != null && !findActivity.isFinishing()) {
-                    findActivity.moveTaskToBack(true);
-                    return;
-                }
-                return;
-            case 2:
-                pf.d.r(this.f40217b, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                pf.d.r(this.f40217b, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                pf.d.r(this.f40217b, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                pf.d.r(this.f40217b, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                pf.d.r(this.f40217b, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                pf.d.r(this.f40217b, "https://promote.telegram.org/guidelines");
+                eyVar.getMessagesController().getStoriesController().i0(j10, !z10, false);
                 return;
             default:
-                pf.d.r(this.f40217b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
+                eyVar.getMessagesController().getStoriesController().i0(j10, z10, true);
                 return;
         }
     }

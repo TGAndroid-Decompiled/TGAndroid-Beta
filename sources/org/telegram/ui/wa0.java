@@ -1,107 +1,67 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
-public final class wa0 implements Utilities.Callback {
-    public final int f40905a;
-    public final LaunchActivity f40906b;
-    public final d20 f40907c;
-    public final Long d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.Emoji;
+public final class wa0 implements TextWatcher {
+    public final int f42471a;
+    public final cb0 f42472b;
 
-    public wa0(LaunchActivity launchActivity, d20 d20Var, Long l4, int i10) {
-        this.f40905a = i10;
-        this.f40906b = launchActivity;
-        this.f40907c = d20Var;
-        this.d = l4;
+    public wa0(cb0 cb0Var, int i10) {
+        this.f42471a = i10;
+        this.f42472b = cb0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        org.telegram.ui.Components.zc X;
-        int i10;
-        int i11;
-        org.telegram.ui.Components.zc X2;
-        int i12;
-        int i13;
-        int i14 = this.f40905a;
-        Long l4 = this.d;
-        d20 d20Var = this.f40907c;
-        LaunchActivity launchActivity = this.f40906b;
-        TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
-        switch (i14) {
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f42471a) {
             case 0:
-                Pattern pattern = LaunchActivity.B1;
-                try {
-                    d20Var.run();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
-                if (storyItem == null) {
-                    X = org.telegram.ui.Components.zc.X();
-                    if (X != null) {
-                        i10 = R.raw.story_bomb2;
-                        i11 = R.string.StoryNotFound;
-                    } else {
-                        return;
-                    }
-                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    X = org.telegram.ui.Components.zc.X();
-                    if (X != null) {
-                        i10 = R.raw.story_bomb1;
-                        i11 = R.string.StoryNotFound;
-                    } else {
-                        return;
-                    }
-                } else if (R != null) {
-                    storyItem.dialogId = l4.longValue();
-                    bi.sb createOverlayStoryViewer = R.createOverlayStoryViewer();
-                    createOverlayStoryViewer.v();
-                    createOverlayStoryViewer.F(launchActivity, storyItem, null);
-                    return;
-                } else {
-                    return;
-                }
-                org.telegram.messenger.g0.q(i11, X, i10, 36);
+                Emoji.replaceEmoji(editable, this.f42472b.K.getPaint().getFontMetricsInt(), false);
                 return;
             default:
-                Pattern pattern2 = LaunchActivity.B1;
-                try {
-                    d20Var.run();
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                }
-                org.telegram.ui.ActionBar.m2 R2 = LaunchActivity.R();
-                if (storyItem == null) {
-                    X2 = org.telegram.ui.Components.zc.X();
-                    if (X2 != null) {
-                        i12 = R.raw.story_bomb2;
-                        i13 = R.string.StoryNotFound;
-                    } else {
+                cb0 cb0Var = this.f42472b;
+                if (!cb0Var.O) {
+                    if (editable.toString().equals("0")) {
+                        cb0Var.F.setText("");
                         return;
                     }
-                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    X2 = org.telegram.ui.Components.zc.X();
-                    if (X2 != null) {
-                        i12 = R.raw.story_bomb1;
-                        i13 = R.string.StoryNotFound;
-                    } else {
+                    try {
+                        int parseInt = Integer.parseInt(editable.toString());
+                        if (parseInt > 100000) {
+                            cb0Var.X();
+                            return;
+                        } else {
+                            cb0Var.W(parseInt);
+                            return;
+                        }
+                    } catch (NumberFormatException unused) {
+                        cb0Var.X();
                         return;
                     }
-                } else if (R2 != null) {
-                    storyItem.dialogId = l4.longValue();
-                    bi.sb createOverlayStoryViewer2 = R2.createOverlayStoryViewer();
-                    createOverlayStoryViewer2.v();
-                    createOverlayStoryViewer2.F(launchActivity, storyItem, null);
-                    return;
-                } else {
-                    return;
                 }
-                org.telegram.messenger.g0.q(i13, X2, i12, 36);
                 return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f42471a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f42471a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

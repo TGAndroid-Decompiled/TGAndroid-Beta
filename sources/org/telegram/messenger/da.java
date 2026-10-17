@@ -1,28 +1,33 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-public final class da implements Runnable {
-    public final int f16762a;
-    public final Context f16763b;
-    public final org.telegram.ui.ActionBar.a2 f16764c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class da implements RequestDelegate {
+    public final int f18170a;
+    public final BaseController f18171b;
+    public final int f18172c;
 
-    public da(int i10, Context context, org.telegram.ui.ActionBar.a2 a2Var) {
-        this.f16762a = i10;
-        this.f16763b = context;
-        this.f16764c = a2Var;
+    public da(BaseController baseController, int i10, int i11) {
+        this.f18170a = i11;
+        this.f18171b = baseController;
+        this.f18172c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f16762a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18170a) {
             case 0:
-                MessagesController.lambda$convertToMegaGroup$261(this.f16763b, this.f16764c);
+                ((MessagesController) this.f18171b).lambda$migrateDialogs$215(this.f18172c, tLObject, tL_error);
                 return;
             case 1:
-                MessagesController.lambda$convertToGigaGroup$266(this.f16763b, this.f16764c);
+                ((MessagesController) this.f18171b).lambda$loadPinnedDialogs$366(this.f18172c, tLObject, tL_error);
+                return;
+            case 2:
+                ((MessagesController) this.f18171b).lambda$loadGlobalNotificationsSettings$200(this.f18172c, tLObject, tL_error);
                 return;
             default:
-                SecretChatHelper.lambda$startSecretChat$24(this.f16763b, this.f16764c);
+                ((ContactsController) this.f18171b).lambda$loadPrivacySettings$65(this.f18172c, tLObject, tL_error);
                 return;
         }
     }

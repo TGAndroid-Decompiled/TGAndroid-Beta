@@ -18,7 +18,7 @@ public abstract class k extends Service implements c {
     private Looper zze;
     private boolean zzg;
     private final Object zzf = new Object();
-    private y8.d zzh = new y8.d(new m.h(this, 24));
+    private y8.d zzh = new y8.d(new l2.f(this, 26));
 
     public Looper getLooper() {
         if (this.zze == null) {

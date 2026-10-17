@@ -9,26 +9,26 @@ import android.os.Build;
 import android.os.PersistableBundle;
 import android.text.TextUtils;
 import androidx.core.graphics.drawable.IconCompat;
-import e0.n0;
+import e0.m0;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 public final class c {
-    public Context f9837a;
-    public String f9838b;
-    public Intent[] f9839c;
+    public Context f10743a;
+    public String f10744b;
+    public Intent[] f10745c;
     public ComponentName d;
     public CharSequence e;
-    public CharSequence f9840f;
-    public CharSequence f9841g;
+    public CharSequence f10746f;
+    public CharSequence f10747g;
     public IconCompat h;
-    public n0[] f9842i;
-    public Set f9843j;
-    public f0.f f9844k;
-    public boolean f9845l;
-    public int f9846m;
-    public PersistableBundle f9847n;
+    public m0[] f10748i;
+    public Set f10749j;
+    public f0.f f10750k;
+    public boolean f10751l;
+    public int f10752m;
+    public PersistableBundle f10753n;
 
     public static ArrayList a(Context context, List list) {
         ArrayList arrayList = new ArrayList(list.size());
@@ -40,99 +40,99 @@ public final class c {
     }
 
     public final String b() {
-        return this.f9838b;
+        return this.f10744b;
     }
 
     public final Intent c() {
-        Intent[] intentArr = this.f9839c;
+        Intent[] intentArr = this.f10745c;
         return intentArr[intentArr.length - 1];
     }
 
     public final ShortcutInfo d() {
         String str;
-        ShortcutInfo.Builder intents = new ShortcutInfo.Builder(this.f9837a, this.f9838b).setShortLabel(this.e).setIntents(this.f9839c);
+        ShortcutInfo.Builder intents = new ShortcutInfo.Builder(this.f10743a, this.f10744b).setShortLabel(this.e).setIntents(this.f10745c);
         IconCompat iconCompat = this.h;
         if (iconCompat != null) {
-            intents.setIcon(iconCompat.m(this.f9837a));
+            intents.setIcon(iconCompat.m(this.f10743a));
         }
-        if (!TextUtils.isEmpty(this.f9840f)) {
-            intents.setLongLabel(this.f9840f);
+        if (!TextUtils.isEmpty(this.f10746f)) {
+            intents.setLongLabel(this.f10746f);
         }
-        if (!TextUtils.isEmpty(this.f9841g)) {
-            intents.setDisabledMessage(this.f9841g);
+        if (!TextUtils.isEmpty(this.f10747g)) {
+            intents.setDisabledMessage(this.f10747g);
         }
         ComponentName componentName = this.d;
         if (componentName != null) {
             intents.setActivity(componentName);
         }
-        Set<String> set = this.f9843j;
+        Set<String> set = this.f10749j;
         if (set != null) {
             intents.setCategories(set);
         }
-        intents.setRank(this.f9846m);
-        PersistableBundle persistableBundle = this.f9847n;
+        intents.setRank(this.f10752m);
+        PersistableBundle persistableBundle = this.f10753n;
         if (persistableBundle != null) {
             intents.setExtras(persistableBundle);
         }
         int i10 = 0;
         if (Build.VERSION.SDK_INT >= 29) {
-            n0[] n0VarArr = this.f9842i;
-            if (n0VarArr != null && n0VarArr.length > 0) {
-                int length = n0VarArr.length;
+            m0[] m0VarArr = this.f10748i;
+            if (m0VarArr != null && m0VarArr.length > 0) {
+                int length = m0VarArr.length;
                 Person[] personArr = new Person[length];
                 while (i10 < length) {
-                    n0 n0Var = this.f9842i[i10];
-                    n0Var.getClass();
-                    personArr[i10] = b5.d.E(n0Var);
+                    m0 m0Var = this.f10748i[i10];
+                    m0Var.getClass();
+                    personArr[i10] = b5.d.E(m0Var);
                     i10++;
                 }
                 intents.setPersons(personArr);
             }
-            f0.f fVar = this.f9844k;
+            f0.f fVar = this.f10750k;
             if (fVar != null) {
-                intents.setLocusId(fVar.f8831b);
+                intents.setLocusId(fVar.f10276b);
             }
-            intents.setLongLived(this.f9845l);
+            intents.setLongLived(this.f10751l);
         } else {
-            if (this.f9847n == null) {
-                this.f9847n = new PersistableBundle();
+            if (this.f10753n == null) {
+                this.f10753n = new PersistableBundle();
             }
-            n0[] n0VarArr2 = this.f9842i;
-            if (n0VarArr2 != null && n0VarArr2.length > 0) {
-                this.f9847n.putInt("extraPersonCount", n0VarArr2.length);
-                while (i10 < this.f9842i.length) {
-                    PersistableBundle persistableBundle2 = this.f9847n;
+            m0[] m0VarArr2 = this.f10748i;
+            if (m0VarArr2 != null && m0VarArr2.length > 0) {
+                this.f10753n.putInt("extraPersonCount", m0VarArr2.length);
+                while (i10 < this.f10748i.length) {
+                    PersistableBundle persistableBundle2 = this.f10753n;
                     StringBuilder sb2 = new StringBuilder("extraPerson_");
                     int i11 = i10 + 1;
                     sb2.append(i11);
                     String sb3 = sb2.toString();
-                    n0 n0Var2 = this.f9842i[i10];
-                    n0Var2.getClass();
+                    m0 m0Var2 = this.f10748i[i10];
+                    m0Var2.getClass();
                     PersistableBundle persistableBundle3 = new PersistableBundle();
-                    CharSequence charSequence = n0Var2.f8255a;
+                    CharSequence charSequence = m0Var2.f8132a;
                     if (charSequence != null) {
                         str = charSequence.toString();
                     } else {
                         str = null;
                     }
                     persistableBundle3.putString("name", str);
-                    persistableBundle3.putString("uri", n0Var2.f8257c);
-                    persistableBundle3.putString("key", n0Var2.d);
-                    persistableBundle3.putBoolean("isBot", n0Var2.e);
-                    persistableBundle3.putBoolean("isImportant", n0Var2.f8258f);
+                    persistableBundle3.putString("uri", m0Var2.f8134c);
+                    persistableBundle3.putString("key", m0Var2.d);
+                    persistableBundle3.putBoolean("isBot", m0Var2.e);
+                    persistableBundle3.putBoolean("isImportant", m0Var2.f8135f);
                     persistableBundle2.putPersistableBundle(sb3, persistableBundle3);
                     i10 = i11;
                 }
             }
-            f0.f fVar2 = this.f9844k;
+            f0.f fVar2 = this.f10750k;
             if (fVar2 != null) {
-                this.f9847n.putString("extraLocusId", fVar2.f8830a);
+                this.f10753n.putString("extraLocusId", fVar2.f10275a);
             }
-            this.f9847n.putBoolean("extraLongLived", this.f9845l);
-            intents.setExtras(this.f9847n);
+            this.f10753n.putBoolean("extraLongLived", this.f10751l);
+            intents.setExtras(this.f10753n);
         }
         if (Build.VERSION.SDK_INT >= 33) {
-            a.h(intents);
+            a.i(intents);
         }
         return intents.build();
     }

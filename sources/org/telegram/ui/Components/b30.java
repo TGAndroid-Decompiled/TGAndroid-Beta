@@ -1,134 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public class b30 {
-    public boolean f23371a;
-    public boolean f23372b;
-    public int d;
-    public int e;
-    public int f23374f;
-    public int f23375g;
-    public Shader f23376i;
-    public boolean f23380m;
-    public final Paint f23373c = new Paint(1);
-    public final RectF h = new RectF();
-    public final Matrix f23377j = new Matrix();
-    public Bitmap f23378k = null;
-    public final int[] f23379l = new int[4];
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.ui.ba1;
+public final class b30 extends AnimatorListenerAdapter {
+    public final int f24782a = 0;
+    public final View f24783b;
+    public final View f24784c;
+    public final View d;
+    public final Object e;
+    public final Object f24785f;
 
-    public final int a() {
-        int i10 = this.d;
-        int i11 = this.e;
-        if (i11 != 0) {
-            i10 = i0.a.d(0.5f, i10, i11);
-        }
-        int i12 = this.f23374f;
-        if (i12 != 0) {
-            i10 = i0.a.d(0.5f, i10, i12);
-        }
-        int i13 = this.f23375g;
-        if (i13 != 0) {
-            return i0.a.d(0.5f, i10, i13);
-        }
-        return i10;
+    public b30(ba1 ba1Var, si siVar, org.telegram.ui.Cells.u1 u1Var, org.telegram.ui.hk hkVar, org.telegram.ui.sn snVar) {
+        this.f24785f = ba1Var;
+        this.f24783b = siVar;
+        this.f24784c = u1Var;
+        this.d = hkVar;
+        this.e = snVar;
     }
 
-    public final void b(float f7, float f10, float f11, float f12) {
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f7, f10, f11, f12);
-        c(rectF);
-    }
-
-    public final void c(RectF rectF) {
-        RectF rectF2 = this.h;
-        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
-            return;
-        }
-        rectF2.set(rectF);
-        e();
-    }
-
-    public final void d(int i10, int i11, int i12, int i13) {
-        float f7;
-        float f10;
-        if (this.f23376i != null && this.d == i10 && this.e == i11 && this.f23374f == i12 && this.f23375g == i13) {
-            return;
-        }
-        this.d = i10;
-        int[] iArr = this.f23379l;
-        iArr[0] = i10;
-        this.e = i11;
-        iArr[1] = i11;
-        this.f23374f = i12;
-        iArr[2] = i12;
-        this.f23375g = i13;
-        iArr[3] = i13;
-        Paint paint = this.f23373c;
-        if (i11 == 0) {
-            this.f23376i = null;
-            paint.setShader(null);
-            paint.setColor(i10);
-        } else if (i12 == 0) {
-            if (this.f23371a && this.f23372b) {
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f23376i = linearGradient;
-                paint.setShader(linearGradient);
-            } else {
-                if (this.f23371a) {
-                    f10 = 80.0f;
-                } else {
-                    f10 = 0.0f;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f24782a) {
+            case 0:
+                WindowManager windowManager = (WindowManager) this.f24785f;
+                View view = this.f24783b;
+                if (view.getParent() != null) {
+                    view.setVisibility(8);
+                    View view2 = this.f24784c;
+                    view2.setVisibility(8);
+                    View view3 = this.d;
+                    view3.setVisibility(8);
+                    windowManager.removeView(view);
+                    windowManager.removeView(view2);
+                    windowManager.removeView(view3);
+                    windowManager.removeView((View) this.e);
+                    return;
                 }
-                LinearGradient linearGradient2 = new LinearGradient(f10, 0.0f, 0.0f, 80.0f, new int[]{i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f23376i = linearGradient2;
-                paint.setShader(linearGradient2);
-            }
-        } else if (this.f23380m) {
-            if (this.f23371a && this.f23372b) {
-                LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i10, i11, i12}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f23376i = linearGradient3;
-                paint.setShader(linearGradient3);
-            } else {
-                if (this.f23371a) {
-                    f7 = 80.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                LinearGradient linearGradient4 = new LinearGradient(f7, 0.0f, 0.0f, 80.0f, new int[]{i10, i11, i12}, (float[]) null, Shader.TileMode.CLAMP);
-                this.f23376i = linearGradient4;
-                paint.setShader(linearGradient4);
-            }
-        } else {
-            if (this.f23378k == null) {
-                this.f23378k = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
-            }
-            Utilities.generateGradient(this.f23378k, 0, 0.0f, iArr);
-            Bitmap bitmap = this.f23378k;
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-            this.f23376i = bitmapShader;
-            paint.setShader(bitmapShader);
+                return;
+            default:
+                ba1 ba1Var = (ba1) this.f24785f;
+                ba1Var.D.unlock();
+                si siVar = (si) this.f24783b;
+                ((ArrayList) siVar.f30279c).remove(ba1Var);
+                siVar.a();
+                ((ViewGroup) siVar.d).invalidate();
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f24784c;
+                u1Var.setEnterTransitionInProgress(false);
+                u1Var.getTransitionParams().D0.set(u1Var.getBackgroundDrawableLeft(), u1Var.getBackgroundDrawableTop(), u1Var.getBackgroundDrawableRight(), u1Var.getBackgroundDrawableBottom());
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.d;
+                chatActivityEnterView.setTextTransitionIsRunning(false);
+                chatActivityEnterView.getEditField().setAlpha(1.0f);
+                org.telegram.ui.sn snVar = (org.telegram.ui.sn) this.e;
+                ((ap[]) snVar.f41144a0.f901b)[0].f24686c.setAlpha(1.0f);
+                ((ap[]) snVar.f41144a0.f901b)[0].d.setAlpha(1.0f);
+                a6.release((View) null, ba1Var.H);
+                return;
         }
-        e();
     }
 
-    public void e() {
-        if (this.f23376i == null) {
-            return;
-        }
-        RectF rectF = this.h;
-        Matrix matrix = this.f23377j;
-        matrix.reset();
-        matrix.postTranslate(rectF.left, rectF.top);
-        matrix.preScale(rectF.width() / 60.0f, rectF.height() / 80.0f);
-        this.f23376i.setLocalMatrix(matrix);
+    public b30(f30 f30Var, ah.x xVar, FrameLayout frameLayout, WindowManager windowManager, org.telegram.ui.x7 x7Var) {
+        this.f24783b = f30Var;
+        this.f24784c = xVar;
+        this.d = frameLayout;
+        this.f24785f = windowManager;
+        this.e = x7Var;
     }
 }

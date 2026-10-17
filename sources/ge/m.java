@@ -1,8 +1,8 @@
 package ge;
 public final class m {
-    public final int f10128a;
+    public final int f11032a;
 
     public m(int i10) {
-        this.f10128a = i10;
+        this.f11032a = i10;
     }
 }

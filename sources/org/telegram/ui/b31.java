@@ -1,237 +1,134 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.os.Looper;
-import android.util.LongSparseArray;
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.concurrent.CopyOnWriteArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
+import android.content.Context;
+import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLObject;
-public final class b31 implements Runnable {
-    public final int f34191a;
+public final class b31 extends org.telegram.ui.Components.hm0 {
+    public final Context f35558c;
 
-    public b31(int i10) {
-        this.f34191a = i10;
+    public b31(Context context) {
+        this.f35558c = context;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.zc a02;
-        int i10 = 0;
-        switch (this.f34191a) {
-            case 0:
-                org.telegram.ui.Components.zc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
-                return;
-            case 1:
-                org.telegram.ui.Components.zc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
-                return;
-            case 2:
-                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-                if (U != null && (a02 = org.telegram.ui.Components.zc.a0(U)) != null) {
-                    org.telegram.ui.Components.sc M = a02.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                    M.f28805j = 5000;
-                    M.j();
-                    return;
+    public final boolean D(s4.b1 b1Var) {
+        int b10 = b1Var.b();
+        if (b10 != 1) {
+            ti.a aVar = ti.e.d;
+            aVar.a();
+            if (aVar.d) {
+                if (b10 != 2 && b10 != 3 && b10 != 4 && b10 != 5 && b10 != 8) {
+                    return false;
                 }
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return 7;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 != 0 && i10 != 7) {
+            if (i10 == 1 || i10 == 8) {
+                return 1;
+            }
+            if (i10 != 6 && i10 != 9) {
+                return 2;
+            }
+            return 3;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        String string;
+        String string2;
+        boolean z10;
+        String string3;
+        ti.a aVar = ti.e.d;
+        aVar.a();
+        boolean z11 = aVar.d;
+        int i11 = b1Var.f45941f;
+        if (i11 == 0) {
+            org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) b1Var.f45938a;
+            if (i10 == 0) {
+                string3 = LocaleController.getString(R.string.RoundVideoGeneral);
+            } else {
+                string3 = LocaleController.getString(R.string.RoundVideoComposition);
+            }
+            l4Var.setText(string3);
+        } else if (i11 == 1) {
+            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) b1Var.f45938a;
+            if (i10 != 1 && !z11) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            v8Var.setEnabled(z10);
+            if (i10 == 1) {
+                v8Var.f(LocaleController.getString(R.string.RoundVideoUseNewRecorder), z11, false);
                 return;
-            case 3:
-                int i11 = z91.f42247d0;
-                return;
-            case 4:
-                org.telegram.ui.ActionBar.g6.N = false;
-                org.telegram.ui.ActionBar.g6.E(false);
-                return;
-            case 5:
-                if (VoIPService.getSharedState() != null) {
-                    VoIPService.getSharedState().acceptIncomingCall();
-                    return;
+            }
+            String string4 = LocaleController.getString(R.string.RoundVideoCompositionEnabled);
+            ti.a aVar2 = ti.e.f47240i;
+            aVar2.a();
+            v8Var.f(string4, aVar2.d, false);
+        } else if (i11 == 2) {
+            org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45938a;
+            baVar.setEnabled(z11);
+            if (i10 == 2) {
+                baVar.c(LocaleController.getString(R.string.RoundVideoOutputResolution), a1.g.n(((si.r0) ti.e.e.a()).f46779a, "p", new StringBuilder()), false, true);
+            } else if (i10 == 3) {
+                String string5 = LocaleController.getString(R.string.RoundVideoCameraResolution);
+                si.n0 n0Var = (si.n0) ti.e.f47238f.a();
+                if (n0Var == si.n0.f46756a) {
+                    string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionHigh);
+                } else if (n0Var == si.n0.f46757b) {
+                    string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionMedium);
+                } else {
+                    string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionLow);
                 }
-                return;
-            case 6:
-                org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    org.telegram.ui.Components.sc M2 = org.telegram.ui.Components.zc.a0(U2).M(LocaleController.getString(R.string.WalletBackupDisabled), LocaleController.getString(R.string.WalletBackupDisabledInfo), R.raw.contact_check);
-                    M2.f28805j = 5000;
-                    M2.j();
-                    return;
-                }
-                return;
-            case 7:
-                CopyOnWriteArrayList copyOnWriteArrayList = org.telegram.ui.Wallet.p0.f33305i;
-                Iterator it = copyOnWriteArrayList.iterator();
-                while (it.hasNext()) {
-                    WeakReference weakReference = (WeakReference) it.next();
-                    Runnable runnable = (Runnable) weakReference.get();
-                    if (runnable == null) {
-                        copyOnWriteArrayList.remove(weakReference);
-                    } else {
-                        runnable.run();
-                    }
-                }
-                return;
-            case 8:
-                int[][] iArr = WallpapersListActivity.f33674k0;
-                PhotoViewer.t1().G0(false, false);
-                return;
-            case 9:
-                Utilities.globalQueue.postRunnable(new b31(11));
-                return;
-            case 10:
-                ArrayList arrayList = new ArrayList();
-                LongSparseArray longSparseArray = new LongSparseArray();
-                try {
-                    File file = new File(FileLoader.getDirectory(4), "webhistory.dat");
-                    if (file.exists()) {
-                        SerializedData serializedData = new SerializedData(file);
-                        long readInt64 = serializedData.readInt64(true);
-                        for (long j10 = 0; j10 < readInt64; j10++) {
-                            ?? tLObject = new TLObject();
-                            tLObject.readParams(serializedData, true);
-                            arrayList.add(tLObject);
-                            longSparseArray.put(tLObject.f41019a, tLObject);
-                        }
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.v(2, arrayList, longSparseArray));
-                return;
-            case 11:
-                try {
-                    File file2 = new File(FileLoader.getDirectory(4), "webhistory.dat");
-                    if (!file2.exists()) {
-                        file2.createNewFile();
-                    }
-                    long size = org.telegram.ui.web.e1.f41033c.size();
-                    SerializedData serializedData2 = new SerializedData(true);
-                    serializedData2.writeInt64(size);
-                    ArrayList arrayList2 = org.telegram.ui.web.e1.f41033c;
-                    int size2 = arrayList2.size();
-                    int i12 = 0;
-                    while (i12 < size2) {
-                        Object obj = arrayList2.get(i12);
-                        i12++;
-                        ((org.telegram.ui.web.d1) obj).serializeToStream(serializedData2);
-                    }
-                    SerializedData serializedData3 = new SerializedData(serializedData2.length());
-                    serializedData3.writeInt64(size);
-                    ArrayList arrayList3 = org.telegram.ui.web.e1.f41033c;
-                    int size3 = arrayList3.size();
-                    while (i10 < size3) {
-                        Object obj2 = arrayList3.get(i10);
-                        i10++;
-                        ((org.telegram.ui.web.d1) obj2).serializeToStream(serializedData3);
-                    }
-                    try {
-                        FileOutputStream fileOutputStream = new FileOutputStream(file2);
-                        fileOutputStream.write(serializedData3.toByteArray());
-                        fileOutputStream.close();
-                        return;
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
-                        return;
-                    }
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
-            case 12:
-                return;
-            case 13:
-                qg.j0.b();
-                return;
-            case 14:
-                int i13 = AlarmManagerSchedulerBroadcastReceiver.f4816a;
-                return;
-            case 15:
-                Looper myLooper = Looper.myLooper();
-                if (myLooper != null) {
-                    myLooper.quit();
-                    return;
-                }
-                return;
-            case 16:
-                Looper myLooper2 = Looper.myLooper();
-                if (myLooper2 != null) {
-                    myLooper2.quit();
-                    return;
-                }
-                return;
-            case 17:
-                NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, new Object[0]);
-                return;
-            case 18:
-                float[] fArr = sg.a2.U;
-                return;
-            case 19:
-                ug.m1.f0(0, null);
-                return;
-            case 20:
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
-                if (R != 0) {
-                    ?? obj3 = new Object();
-                    obj3.f20169a = true;
-                    R.showAsSheet(new PremiumPreviewFragment(0, "gifts"), obj3);
-                    return;
-                }
-                return;
-            case 21:
-                a5.a aVar = zf.f.B;
-                if (aVar != null) {
-                    ArrayList arrayList4 = null;
-                    while (i10 < zf.f.f50155y) {
-                        if (((Bitmap[]) aVar.d)[i10] != null) {
-                            if (arrayList4 == null) {
-                                arrayList4 = new ArrayList();
-                            }
-                            arrayList4.add(((Bitmap[]) aVar.d)[i10]);
-                        }
-                        ((Bitmap[]) aVar.d)[i10] = null;
-                        ((zf.a0[]) aVar.f282c)[i10] = null;
-                        i10++;
-                    }
-                    if (!arrayList4.isEmpty()) {
-                        Utilities.globalQueue.postRunnable(new qg.e0(arrayList4, 1));
-                    }
-                    zf.f.B = null;
-                    return;
-                }
-                return;
-            case 22:
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                return;
-            case 23:
-                org.telegram.ui.ActionBar.m2 U3 = LaunchActivity.U();
-                if (U3 != null) {
-                    U3.presentFragment(new zh.p7());
-                    return;
-                }
-                return;
-            default:
-                zh.n5[][] n5VarArr = zh.n5.S;
-                return;
+                baVar.c(string5, string2, false, true);
+            } else if (i10 == 4) {
+                baVar.c(LocaleController.getString(R.string.RoundVideoFrameRate), a1.g.n(((si.o0) ti.e.f47239g.a()).f46764a, " FPS", new StringBuilder()), false, true);
+            } else {
+                baVar.c(LocaleController.getString(R.string.RoundVideoBitrate), c31.U(ti.e.h.a()), false, false);
+            }
+        } else {
+            org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) b1Var.f45938a;
+            if (i10 == 6) {
+                string = LocaleController.getString(R.string.RoundVideoGeneralInfo);
+            } else {
+                string = LocaleController.getString(R.string.RoundVideoCompositionInfo);
+            }
+            d9Var.setText(string);
         }
     }
 
-    public b31(m0 m0Var) {
-        this.f34191a = 12;
-    }
-
-    private final void a() {
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.ba baVar;
+        Context context = this.f35558c;
+        if (i10 == 0) {
+            baVar = new org.telegram.ui.Cells.l4(context);
+        } else if (i10 == 1) {
+            baVar = new org.telegram.ui.Cells.v8(context);
+        } else if (i10 == 2) {
+            org.telegram.ui.Cells.ba baVar2 = new org.telegram.ui.Cells.ba(context);
+            baVar2.setCanDisable(true);
+            baVar = baVar2;
+        } else {
+            baVar = new org.telegram.ui.Cells.d9(context);
+        }
+        baVar.setLayoutParams(new s4.o0(-1, -2));
+        return new s4.b1(baVar);
     }
 }

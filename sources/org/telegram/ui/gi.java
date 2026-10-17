@@ -1,69 +1,72 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
-public final class gi extends AnimatorListenerAdapter {
-    public final boolean f36221a;
-    public final boolean f36222b;
-    public final org.telegram.ui.Components.z9 f36223c;
-    public final eo d;
-    public final org.telegram.ui.ActionBar.h5 e;
-    public final boolean f36224f;
-    public final bi.f4 h;
-    public final fo f36225n;
+public final class gi implements View.OnTouchListener {
+    public final int f37245a;
+    public final int[] f37246b;
+    public final Rect f37247c;
+    public final Object d;
 
-    public gi(fo foVar, boolean z10, boolean z11, org.telegram.ui.Components.z9 z9Var, eo eoVar, org.telegram.ui.ActionBar.h5 h5Var, boolean z12, bi.f4 f4Var) {
-        this.f36225n = foVar;
-        this.f36221a = z10;
-        this.f36222b = z11;
-        this.f36223c = z9Var;
-        this.d = eoVar;
-        this.e = h5Var;
-        this.f36224f = z12;
-        this.h = f4Var;
+    public gi(s50 s50Var, Rect rect) {
+        this.f37245a = 1;
+        this.d = s50Var;
+        this.f37247c = rect;
+        this.f37246b = new int[2];
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        fo foVar = this.f36225n;
-        foVar.H2[1] = null;
-        foVar.B2[1].setTranslationY(0.0f);
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        Object[] objArr = this.f36225n.H2;
-        if (animator.equals(objArr[1])) {
-            org.telegram.ui.Components.z9 z9Var = this.f36223c;
-            boolean z10 = this.f36222b;
-            boolean z11 = this.f36221a;
-            if (!z11 && !z10 && z9Var == null) {
-                objArr[1] = null;
-                return;
-            }
-            objArr[1] = new AnimatorSet();
-            objArr[1].setInterpolator(org.telegram.ui.Components.es.h);
-            objArr[1].setDuration(360L);
-            ArrayList arrayList = new ArrayList();
-            if (z11) {
-                arrayList.add(ObjectAnimator.ofFloat(this.d, View.TRANSLATION_Y, 0.0f));
-            }
-            if (z10) {
-                arrayList.add(ObjectAnimator.ofFloat(this.e, View.TRANSLATION_Y, 0.0f));
-            }
-            if (this.f36224f) {
-                arrayList.add(ObjectAnimator.ofFloat(this.h, View.TRANSLATION_Y, 0.0f));
-            }
-            if (z9Var != null) {
-                arrayList.add(ObjectAnimator.ofFloat(z9Var, View.TRANSLATION_Y, 0.0f));
-            }
-            objArr[1].addListener(new u0(this, 21));
-            objArr[1].playTogether(arrayList);
-            objArr[1].start();
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        s40 s40Var;
+        switch (this.f37245a) {
+            case 0:
+                sn snVar = (sn) this.d;
+                if (motionEvent.getActionMasked() == 0) {
+                    org.telegram.ui.ActionBar.m1 m1Var = snVar.Q8;
+                    if (m1Var != null && m1Var.isShowing()) {
+                        View contentView = snVar.Q8.getContentView();
+                        int[] iArr = this.f37246b;
+                        contentView.getLocationInWindow(iArr);
+                        int i10 = iArr[0];
+                        int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
+                        Rect rect = this.f37247c;
+                        rect.set(i10, iArr[1], contentView.getMeasuredWidth() + i10, measuredHeight);
+                        if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                            snVar.D7(true);
+                        }
+                    }
+                } else if (motionEvent.getActionMasked() == 4) {
+                    snVar.D7(true);
+                }
+                return false;
+            default:
+                s50 s50Var = (s50) this.d;
+                if (motionEvent.getActionMasked() == 0) {
+                    s40 s40Var2 = s50Var.f40937f3;
+                    if (s40Var2 != null && s40Var2.isShowing()) {
+                        View contentView2 = s50Var.f40937f3.getContentView();
+                        int[] iArr2 = this.f37246b;
+                        contentView2.getLocationInWindow(iArr2);
+                        int i11 = iArr2[0];
+                        int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
+                        Rect rect2 = this.f37247c;
+                        rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
+                        if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                            s50Var.f40937f3.dismiss();
+                        }
+                    }
+                } else if (motionEvent.getActionMasked() == 4 && (s40Var = s50Var.f40937f3) != null && s40Var.isShowing()) {
+                    s50Var.f40937f3.dismiss();
+                }
+                return false;
         }
+    }
+
+    public gi(sn snVar, Rect rect) {
+        this.f37245a = 0;
+        this.d = snVar;
+        this.f37247c = rect;
+        this.f37246b = new int[2];
     }
 }

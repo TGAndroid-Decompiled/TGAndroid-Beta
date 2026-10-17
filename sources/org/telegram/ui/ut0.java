@@ -1,78 +1,15 @@
 package org.telegram.ui;
-public final class ut0 extends org.telegram.ui.Components.i81 {
-    public final PhotoViewer m0;
+public final class ut0 implements Runnable {
+    public final int f42052a;
+    public final Object f42053b;
 
-    public ut0(PhotoViewer photoViewer) {
-        this.m0 = photoViewer;
+    public ut0(Object obj, int i10) {
+        this.f42052a = i10;
+        this.f42053b = obj;
     }
 
     @Override
-    public final void B() {
-        super.B();
-        PhotoViewer photoViewer = this.m0;
-        if (photoViewer.f32073u4 == 0) {
-            PhotoViewer.Y(photoViewer, false);
-        }
-        if (!photoViewer.O8) {
-            b5.d.D(n());
-            b5.d.x(false);
-        }
-    }
-
-    @Override
-    public final void C() {
-        super.C();
-        PhotoViewer photoViewer = this.m0;
-        PhotoViewer.Y(photoViewer, true);
-        if (!photoViewer.O8) {
-            b5.d.D(n());
-            b5.d.x(true);
-        }
-    }
-
-    @Override
-    public final void K(long j10) {
-        L(j10, false);
-        PhotoViewer photoViewer = this.m0;
-        if (photoViewer.f32042r1) {
-            PhotoViewer.Z(photoViewer, j10);
-        }
-        if (!photoViewer.O8) {
-            b5.d.D(j10);
-        }
-    }
-
-    @Override
-    public final void Q(float f7) {
-        super.Q(f7);
-        if (!this.m0.O8) {
-            b5.d.z(f7);
-        }
-    }
-
-    @Override
-    public final void onRenderedFirstFrame() {
-        b2.a1 h;
-        super.onRenderedFirstFrame();
-        PhotoViewer photoViewer = this.m0;
-        boolean z10 = true;
-        photoViewer.R = true;
-        if (photoViewer.D2) {
-            photoViewer.f31928e0.invalidate();
-        }
-        photoViewer.z3();
-        if (!b5.d.u() && !photoViewer.f32040r) {
-            z10 = false;
-        }
-        O(z10);
-        if (!photoViewer.O8) {
-            b5.d.D(n());
-            i2.h0 h0Var = this.d;
-            float f7 = 1.0f;
-            if (h0Var != null && (h = h0Var.h()) != null) {
-                f7 = h.f2077a;
-            }
-            b5.d.z(f7);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ut0.run():void");
     }
 }

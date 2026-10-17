@@ -1,41 +1,78 @@
 package org.telegram.ui;
 
-import java.util.List;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class qy0 implements MessagesStorage.BooleanCallback, vs {
-    public final ProfileActivity f39239a;
-    public final TLRPC.User f39240b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class qy0 extends s4.r0 {
+    public final int f40530a;
+    public final ProfileActivity f40531b;
 
-    public qy0(ProfileActivity profileActivity, TLRPC.User user) {
-        this.f39239a = profileActivity;
-        this.f39240b = user;
+    public qy0(ProfileActivity profileActivity, int i10) {
+        this.f40530a = i10;
+        this.f40531b = profileActivity;
     }
 
     @Override
-    public void b() {
-        ProfileActivity.j0(this.f39239a, this.f39240b);
-    }
-
-    @Override
-    public void run(boolean z10) {
-        org.telegram.ui.ActionBar.m2 m2Var;
-        ProfileActivity profileActivity = this.f39239a;
-        if (profileActivity.getParentLayout() != null) {
-            List fragmentStack = profileActivity.getParentLayout().getFragmentStack();
-            if (fragmentStack != null && fragmentStack.size() >= 2) {
-                m2Var = (org.telegram.ui.ActionBar.m2) t8.b.g(2, fragmentStack);
-            } else {
-                m2Var = null;
-            }
-            if (m2Var instanceof fo) {
-                ((ActionBarLayout) profileActivity.getParentLayout()).Y(fragmentStack.size() - 2);
-            }
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        switch (this.f40530a) {
+            case 0:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(this.f40531b.getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            default:
+                ProfileActivity profileActivity = this.f40531b;
+                boolean z11 = true;
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
+                }
+                if (profileActivity.G0 && i10 != 2) {
+                    profileActivity.G0 = false;
+                }
+                org.telegram.ui.ActionBar.u0 u0Var = profileActivity.V0;
+                if (u0Var != null) {
+                    if (i10 != 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    profileActivity.A1 = z10;
+                    if (z10 || profileActivity.f33682q2) {
+                        z11 = false;
+                    }
+                    u0Var.setEnabled(z11);
+                }
+                pz0 pz0Var = profileActivity.O;
+                boolean z12 = profileActivity.f33568a.I1;
+                pz0Var.getClass();
+                return;
         }
-        profileActivity.N1 = true;
-        profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f32290i1), this.f39240b, profileActivity.E2, Boolean.valueOf(z10));
+    }
+
+    @Override
+    public void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f40530a) {
+            case 1:
+                ProfileActivity profileActivity = this.f40531b;
+                org.telegram.ui.Components.r40 r40Var = profileActivity.X;
+                boolean z10 = true;
+                if (r40Var != null) {
+                    r40Var.b(true);
+                }
+                profileActivity.A3();
+                if (profileActivity.D1 != null && !profileActivity.E1 && profileActivity.f33583c.N0() > profileActivity.f33728w4 - 8) {
+                    profileActivity.R3(false);
+                }
+                pz0 pz0Var = profileActivity.O;
+                if (pz0Var.getY() > 0.0f) {
+                    z10 = false;
+                }
+                pz0Var.setPinnedToTop(z10);
+                profileActivity.U4();
+                return;
+            default:
+                return;
+        }
     }
 }

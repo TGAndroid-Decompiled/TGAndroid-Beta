@@ -1,45 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-public final class t6 extends u6 {
-    public final int f28981b;
+import android.view.animation.OvershootInterpolator;
+public abstract class t6 {
+    public static final OvershootInterpolator f30471a = new OvershootInterpolator(1.9f);
+    public static final r6 f30472b = new r6("alpha", 0);
+    public static final org.telegram.ui.Cells.s8 f30473c;
+    public static final r6 d;
+    public static final r6 e;
+    public static final org.telegram.ui.Cells.s8 f30474f;
+    public static final org.telegram.ui.Cells.s8 f30475g;
+    public static final org.telegram.ui.Cells.s8 h;
 
-    public t6(String str, int i10) {
-        super(str, 1);
-        this.f28981b = i10;
-    }
-
-    @Override
-    public final void b(int i10, Object obj) {
-        switch (this.f28981b) {
-            case 0:
-                ((Paint) obj).setAlpha(i10);
-                return;
-            case 1:
-                ((Paint) obj).setColor(i10);
-                return;
-            case 2:
-                ((Drawable) obj).setAlpha(i10);
-                return;
-            default:
-                ((ShapeDrawable) obj).getPaint().setAlpha(i10);
-                return;
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f28981b) {
-            case 0:
-                return Integer.valueOf(((Paint) obj).getAlpha());
-            case 1:
-                return Integer.valueOf(((Paint) obj).getColor());
-            case 2:
-                return Integer.valueOf(((Drawable) obj).getAlpha());
-            default:
-                return Integer.valueOf(((ShapeDrawable) obj).getPaint().getAlpha());
-        }
+    static {
+        new r6("color", 1);
+        f30473c = new org.telegram.ui.Cells.s8("currentAlpha", 4);
+        d = new r6("alpha", 2);
+        e = new r6("alpha", 3);
+        f30474f = new org.telegram.ui.Cells.s8("animationProgress", 5);
+        f30475g = new org.telegram.ui.Cells.s8("animationValue", 6);
+        h = new org.telegram.ui.Cells.s8("clipProgress", 7);
     }
 }

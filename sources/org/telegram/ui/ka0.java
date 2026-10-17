@@ -1,50 +1,21 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.os.SystemClock;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-public final class ka0 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f37335a;
-    public final Object f37336b;
-
-    public ka0(Object obj, int i10) {
-        this.f37335a = i10;
-        this.f37336b = obj;
-    }
+public final class ka0 implements View.OnLayoutChangeListener {
+    public boolean f38451a;
 
     @Override
-    public final void onGlobalLayout() {
-        int i10 = this.f37335a;
-        Object obj = this.f37336b;
-        switch (i10) {
-            case 0:
-                Pattern pattern = LaunchActivity.B1;
-                int measuredHeight = ((View) obj).getMeasuredHeight();
-                org.telegram.messenger.g0.o(AndroidUtilities.displaySize.y, i2.d.l(measuredHeight, "height = ", " displayHeight = "));
-                int i11 = (measuredHeight - AndroidUtilities.navigationBarHeight) - AndroidUtilities.statusBarHeight;
-                if (i11 > AndroidUtilities.dp(100.0f) && i11 < AndroidUtilities.displaySize.y) {
-                    int dp = AndroidUtilities.dp(100.0f) + i11;
-                    Point point = AndroidUtilities.displaySize;
-                    if (dp > point.y) {
-                        point.y = i11;
-                        if (BuildVars.LOGS_ENABLED) {
-                            org.telegram.messenger.g0.o(AndroidUtilities.displaySize.y, new StringBuilder("fix display size y to "));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ce1 ce1Var = (ce1) obj;
-                ce1Var.P = SystemClock.elapsedRealtime() + 1500;
-                ce1Var.f34610k0.invalidate();
-                return;
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        boolean z10;
+        if (i13 - i11 > i12 - i10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10 != this.f38451a) {
+            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.rc(this, 28));
+            this.f38451a = z10;
         }
     }
 }

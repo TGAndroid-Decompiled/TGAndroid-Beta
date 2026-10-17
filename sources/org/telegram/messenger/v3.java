@@ -1,27 +1,27 @@
 package org.telegram.messenger;
 public final class v3 implements Runnable {
-    public final int f18334a;
-    public final FileUploadOperation f18335b;
+    public final int f19710a;
+    public final FileUploadOperation f19711b;
 
     public v3(FileUploadOperation fileUploadOperation, int i10) {
-        this.f18334a = i10;
-        this.f18335b = fileUploadOperation;
+        this.f19710a = i10;
+        this.f19711b = fileUploadOperation;
     }
 
     @Override
     public final void run() {
-        switch (this.f18334a) {
+        switch (this.f19710a) {
             case 0:
-                FileUploadOperation.f(this.f18335b);
+                FileUploadOperation.f(this.f19711b);
                 return;
             case 1:
-                FileUploadOperation.e(this.f18335b);
+                FileUploadOperation.e(this.f19711b);
                 return;
             case 2:
-                FileUploadOperation.d(this.f18335b);
+                FileUploadOperation.d(this.f19711b);
                 return;
             default:
-                FileUploadOperation.b(this.f18335b);
+                FileUploadOperation.b(this.f19711b);
                 return;
         }
     }

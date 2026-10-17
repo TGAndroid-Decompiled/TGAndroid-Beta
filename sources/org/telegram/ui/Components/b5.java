@@ -1,10 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.widget.TextView;
-import org.telegram.messenger.Emoji;
-public final class b5 extends TextView {
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class b5 extends FrameLayout {
+    public final org.telegram.ui.Cells.a2[] f24795a;
+
+    public b5(Context context, org.telegram.ui.Cells.a2[] a2VarArr) {
+        super(context);
+        this.f24795a = a2VarArr;
+    }
+
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        org.telegram.ui.Cells.a2[] a2VarArr = this.f24795a;
+        if (a2VarArr[0] != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, AndroidUtilities.dp(7.0f) + a2VarArr[0].getMeasuredHeight() + measuredHeight);
+        }
     }
 }

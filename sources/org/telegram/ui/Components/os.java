@@ -1,243 +1,186 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-public final class os implements MessagesStorage.LongCallback, bm0 {
-    public final int f27724a;
-    public final ss f27725b;
+public final class os {
+    public final int f29056a;
+    public String f29057b;
+    public final ArrayList f29058c;
+    public final boolean[] d;
+    public boolean[] e;
+    public boolean f29059f;
+    public final int f29060g;
+    public int h;
+    public int f29061i;
+    public final ps f29062j;
 
-    public os(ss ssVar, int i10) {
-        this.f27724a = i10;
-        this.f27725b = ssVar;
+    public os(ps psVar, int i10, ArrayList arrayList) {
+        this.f29062j = psVar;
+        this.f29056a = i10;
+        int size = arrayList.size();
+        this.f29060g = size;
+        this.f29061i = 0;
+        if (size > 0) {
+            this.f29058c = arrayList;
+            this.d = new boolean[size];
+            this.f29059f = true;
+            g();
+        }
     }
 
-    @Override
-    public boolean c1(View view) {
+    public final boolean a() {
+        boolean[] zArr;
+        for (int i10 = 0; i10 < this.f29060g; i10++) {
+            if (!this.d[i10] || ((zArr = this.e) != null && !zArr[i10])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final boolean b() {
+        int i10;
+        if (this.e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f29060g;
+        }
+        if (i10 > 1) {
+            return true;
+        }
         return false;
     }
 
-    @Override
-    public void d(float f7, float f10, int i10, View view) {
-        boolean z10;
+    public final boolean c() {
+        int i10;
+        if (this.e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f29060g;
+        }
+        if (i10 > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
         boolean[] zArr;
-        ss ssVar = this.f27725b;
-        m61 G = ssVar.X.G(i10 - 1);
-        if (G != null) {
-            rs rsVar = ssVar.f28895k0;
-            rs rsVar2 = ssVar.f28894j0;
-            rs rsVar3 = ssVar.f28893i0;
-            rs rsVar4 = ssVar.f28896l0;
-            TLRPC.TL_chatBannedRights tL_chatBannedRights = ssVar.f28906w0;
-            int i11 = G.d;
-            if (i11 == 103) {
-                boolean z11 = !ssVar.f28899p0;
-                ssVar.f28899p0 = z11;
-                ((org.telegram.ui.Cells.v8) view).setChecked(z11);
-                return;
+        boolean[] zArr2;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            int i11 = this.f29060g;
+            zArr = this.d;
+            if (i10 >= i11) {
+                break;
+            } else if (!zArr[i10] || ((zArr2 = this.e) != null && !zArr2[i10])) {
+                i10++;
             }
-            int i12 = G.f42904a;
-            if (i12 == 37) {
-                int i13 = i11 >>> 24;
-                int i14 = 16777215 & i11;
-                if (i13 == 0) {
-                    rsVar3.e(i14);
-                } else if (i13 == 1) {
-                    rsVar2.e(i14);
-                    ssVar.V();
-                } else if (i11 == 3) {
-                    rsVar.e(i14);
-                    ssVar.V();
-                } else if (i13 == 2) {
-                    rsVar4.e(i14);
+        }
+        z10 = true;
+        Arrays.fill(zArr, !z10);
+        f();
+        this.f29062j.X.N(true);
+    }
+
+    public final void e(int i10) {
+        boolean[] zArr = this.e;
+        if (zArr != null && !zArr[i10]) {
+            return;
+        }
+        boolean[] zArr2 = this.d;
+        boolean z10 = zArr2[i10];
+        zArr2[i10] = !z10;
+        if (!z10) {
+            this.f29061i++;
+        } else {
+            this.f29061i--;
+        }
+        this.f29062j.X.N(true);
+    }
+
+    public final void f() {
+        this.f29061i = 0;
+        this.h = 0;
+        for (int i10 = 0; i10 < this.f29060g; i10++) {
+            boolean[] zArr = this.e;
+            boolean[] zArr2 = this.d;
+            if (zArr == null) {
+                if (zArr2[i10]) {
+                    this.f29061i++;
                 }
-            } else if (i12 != 36 && i12 != 35) {
-                if (i12 == 39) {
-                    if (G.f26954t) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ssVar.getContext());
-                        alertDialog$Builder.f19248a.R = LocaleController.getString(R.string.UserRestrictionsCantModify);
-                        alertDialog$Builder.f19248a.T = LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled);
-                        alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                        alertDialog$Builder.f19248a.show();
-                        return;
-                    }
-                    if (i11 == 2) {
-                        tL_chatBannedRights.invite_users = !tL_chatBannedRights.invite_users;
-                        ssVar.W();
-                    } else if (i11 == 3) {
-                        tL_chatBannedRights.pin_messages = !tL_chatBannedRights.pin_messages;
-                        ssVar.W();
-                    } else if (i11 == 4) {
-                        tL_chatBannedRights.change_info = !tL_chatBannedRights.change_info;
-                        ssVar.W();
-                    } else if (i11 == 5) {
-                        tL_chatBannedRights.manage_topics = !tL_chatBannedRights.manage_topics;
-                        ssVar.W();
-                    } else if (i11 == 0) {
-                        tL_chatBannedRights.send_plain = !tL_chatBannedRights.send_plain;
-                        ssVar.W();
-                    }
-                    ssVar.X.N(true);
-                } else if (i12 == 40) {
-                    ssVar.f28908y0 = !ssVar.f28908y0;
-                    ssVar.K();
-                    ssVar.X.N(true);
-                    ssVar.u();
-                } else if (i11 == 100) {
-                    ssVar.B0 = false;
-                    boolean z12 = !ssVar.C0;
-                    ssVar.C0 = z12;
-                    ssVar.D0 = z12;
-                    ssVar.K();
-                    ssVar.X.N(true);
-                    ssVar.u();
-                    ssVar.P();
-                } else if (i12 == 38) {
-                    boolean z13 = ssVar.f28891g0;
-                    ssVar.f28891g0 = !z13;
-                    if (!z13) {
-                        zArr = ssVar.f28897n0;
+            } else if (zArr[i10]) {
+                this.h++;
+                if (zArr2[i10]) {
+                    this.f29061i++;
+                }
+            }
+        }
+    }
+
+    public final void g() {
+        TLObject tLObject;
+        String formatName;
+        String formatString;
+        String formatString2;
+        String formatString3;
+        String formatString4;
+        int i10 = this.f29060g;
+        if (i10 != 0) {
+            for (int i11 = 0; i11 < i10; i11++) {
+                boolean[] zArr = this.e;
+                if (zArr == null || zArr[i11]) {
+                    tLObject = (TLObject) this.f29058c.get(i11);
+                    break;
+                }
+            }
+            tLObject = null;
+            if (tLObject instanceof TLRPC.User) {
+                formatName = UserObject.getForcedFirstName((TLRPC.User) tLObject);
+            } else {
+                formatName = ContactsController.formatName(tLObject);
+            }
+            int i12 = this.f29056a;
+            if (i12 == 0) {
+                this.f29057b = LocaleController.getString(R.string.DeleteReportSpam);
+            } else if (i12 == 1) {
+                if (b()) {
+                    formatString4 = LocaleController.getString(R.string.DeleteAllMessagesFromUsers);
+                } else {
+                    formatString4 = LocaleController.formatString(R.string.DeleteAllFrom, formatName);
+                }
+                this.f29057b = formatString4;
+            } else if (i12 == 3) {
+                if (b()) {
+                    formatString3 = LocaleController.getString(R.string.DeleteAllReactionsFromUsers);
+                } else {
+                    formatString3 = LocaleController.formatString(R.string.DeleteAllReactionsFrom, formatName);
+                }
+                this.f29057b = formatString3;
+            } else if (i12 == 2) {
+                if (this.f29062j.f29409g0) {
+                    if (b()) {
+                        formatString2 = LocaleController.getString(R.string.DeleteRestrictUsers);
                     } else {
-                        zArr = ssVar.m0;
+                        formatString2 = LocaleController.formatString(R.string.DeleteRestrict, formatName);
                     }
-                    if (rsVar4.f28636g != 0) {
-                        rsVar4.e = zArr;
-                        rsVar4.f();
-                        rsVar4.g();
-                    }
-                    ssVar.X.N(true);
-                    ssVar.W();
-                }
-            } else if (i11 == 0) {
-                rsVar3.d();
-            } else if (i11 == 1) {
-                rsVar2.d();
-                ssVar.V();
-            } else if (i11 == 3) {
-                rsVar.d();
-                ssVar.V();
-            } else if (i11 == 2) {
-                rsVar4.d();
-            } else if (i12 == 35) {
-                if (G.f26954t) {
-                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(ssVar.getContext());
-                    alertDialog$Builder2.f19248a.R = LocaleController.getString(R.string.UserRestrictionsCantModify);
-                    alertDialog$Builder2.f19248a.T = LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled);
-                    alertDialog$Builder2.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder2.f19248a.show();
+                    this.f29057b = formatString2;
                     return;
                 }
-                if (i11 == 6) {
-                    z10 = true;
-                    tL_chatBannedRights.send_photos = !tL_chatBannedRights.send_photos;
-                    ssVar.W();
+                if (b()) {
+                    formatString = LocaleController.getString(R.string.DeleteBanUsers);
                 } else {
-                    z10 = true;
-                    if (i11 == 7) {
-                        tL_chatBannedRights.send_videos = !tL_chatBannedRights.send_videos;
-                        ssVar.W();
-                    } else if (i11 == 9) {
-                        tL_chatBannedRights.send_audios = !tL_chatBannedRights.send_audios;
-                        ssVar.W();
-                    } else if (i11 == 8) {
-                        tL_chatBannedRights.send_docs = !tL_chatBannedRights.send_docs;
-                        ssVar.W();
-                    } else if (i11 == 11) {
-                        tL_chatBannedRights.send_roundvideos = !tL_chatBannedRights.send_roundvideos;
-                        ssVar.W();
-                    } else if (i11 == 10) {
-                        tL_chatBannedRights.send_voices = !tL_chatBannedRights.send_voices;
-                        ssVar.W();
-                    } else if (i11 == 15) {
-                        tL_chatBannedRights.send_reactions = !tL_chatBannedRights.send_reactions;
-                        ssVar.W();
-                    } else {
-                        if (i11 == 12) {
-                            boolean z14 = !tL_chatBannedRights.send_stickers;
-                            tL_chatBannedRights.send_inline = z14;
-                            tL_chatBannedRights.send_gifs = z14;
-                            tL_chatBannedRights.send_games = z14;
-                            tL_chatBannedRights.send_stickers = z14;
-                            ssVar.W();
-                        } else if (i11 == 14) {
-                            if (!tL_chatBannedRights.send_plain && !ssVar.f28905v0.send_plain) {
-                                tL_chatBannedRights.embed_links = !tL_chatBannedRights.embed_links;
-                                ssVar.W();
-                            } else {
-                                int i15 = 0;
-                                while (true) {
-                                    if (i15 >= ssVar.X.f23148x.size()) {
-                                        break;
-                                    }
-                                    m61 G2 = ssVar.X.G(i15);
-                                    if (G2.f42904a == 39 && G2.d == 0) {
-                                        s4.b1 K = ssVar.d.K(i15 + 1);
-                                        if (K != null) {
-                                            View view2 = K.f44838a;
-                                            float f11 = -ssVar.F0;
-                                            ssVar.F0 = f11;
-                                            AndroidUtilities.shakeViewSpring(view2, f11);
-                                        }
-                                    } else {
-                                        i15++;
-                                    }
-                                }
-                                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                                return;
-                            }
-                        } else if (i11 == 13) {
-                            z10 = true;
-                            tL_chatBannedRights.send_polls = !tL_chatBannedRights.send_polls;
-                            ssVar.W();
-                        } else {
-                            z10 = true;
-                            if (i11 == 101) {
-                                ssVar.C0 = !ssVar.C0;
-                                ssVar.P();
-                            } else if (i11 == 102) {
-                                ssVar.D0 = !ssVar.D0;
-                                ssVar.P();
-                            }
-                        }
-                        z10 = true;
-                    }
+                    formatString = LocaleController.formatString(R.string.DeleteBan, formatName);
                 }
-                ssVar.X.N(z10);
+                this.f29057b = formatString;
             }
         }
-    }
-
-    @Override
-    public void run(long j10) {
-        switch (this.f27724a) {
-            case 0:
-                ss ssVar = this.f27725b;
-                ssVar.getClass();
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
-                if (R != null) {
-                    R.presentFragment(org.telegram.ui.fo.W9(j10));
-                }
-                ssVar.dismiss();
-                return;
-            default:
-                ss ssVar2 = this.f27725b;
-                ssVar2.getClass();
-                org.telegram.ui.ActionBar.m2 R2 = LaunchActivity.R();
-                if (R2 != null) {
-                    R2.presentFragment(org.telegram.ui.fo.W9(j10));
-                }
-                ssVar2.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public void p0(View view, float f7, float f10) {
     }
 }

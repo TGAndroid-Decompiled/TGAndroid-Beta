@@ -12,27 +12,26 @@ import androidx.mediarouter.app.z;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import n6.q;
-import v0.k;
 import v7.a8;
 public final class j {
-    public androidx.biometric.e f10388a;
-    public Bundle f10389b;
-    public LinkedList f10390c;
+    public androidx.biometric.e f11693a;
+    public Bundle f11694b;
+    public LinkedList f11695c;
     public final d e;
-    public final Context f10391f;
-    public k f10392g;
-    public final k d = new k(this);
+    public final Context f11696f;
+    public le.b f11697g;
+    public final le.b d = new le.b(this, 26);
     public final ArrayList h = new ArrayList();
 
     public j(d dVar, Context context) {
         this.e = dVar;
-        this.f10391f = context;
+        this.f11696f = context;
     }
 
     public static void a(d dVar) {
         k6.d dVar2 = k6.d.d;
         Context context = dVar.getContext();
-        int d = dVar2.d(context, k6.e.f14171a);
+        int d = dVar2.d(context, k6.e.f14966a);
         String c10 = q.c(context, d);
         String b10 = q.b(context, d);
         LinearLayout linearLayout = new LinearLayout(dVar.getContext());
@@ -55,45 +54,45 @@ public final class j {
     }
 
     public final void b(int i10) {
-        while (!this.f10390c.isEmpty() && ((x6.e) this.f10390c.getLast()).a() >= i10) {
-            this.f10390c.removeLast();
+        while (!this.f11695c.isEmpty() && ((x6.e) this.f11695c.getLast()).a() >= i10) {
+            this.f11695c.removeLast();
         }
     }
 
     public final void c(Bundle bundle, x6.e eVar) {
-        if (this.f10388a != null) {
+        if (this.f11693a != null) {
             eVar.b();
             return;
         }
-        if (this.f10390c == null) {
-            this.f10390c = new LinkedList();
+        if (this.f11695c == null) {
+            this.f11695c = new LinkedList();
         }
-        this.f10390c.add(eVar);
+        this.f11695c.add(eVar);
         if (bundle != null) {
-            Bundle bundle2 = this.f10389b;
+            Bundle bundle2 = this.f11694b;
             if (bundle2 == null) {
-                this.f10389b = (Bundle) bundle.clone();
+                this.f11694b = (Bundle) bundle.clone();
             } else {
                 bundle2.putAll(bundle);
             }
         }
-        this.f10392g = this.d;
+        this.f11697g = this.d;
         ArrayList arrayList = this.h;
-        Context context = this.f10391f;
-        if (this.f10388a == null) {
+        Context context = this.f11696f;
+        if (this.f11693a == null) {
             try {
                 synchronized (e.class) {
                     e.b(context);
                 }
                 i8.g W0 = a8.a(context).W0(new x6.b(context));
                 if (W0 != null) {
-                    this.f10392g.b(new androidx.biometric.e(this.e, W0));
+                    this.f11697g.b0(new androidx.biometric.e(this.e, W0));
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        this.f10388a.n((f) obj);
+                        this.f11693a.p((f) obj);
                     }
                     arrayList.clear();
                 }

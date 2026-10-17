@@ -1,34 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-public final class t61 extends q61 {
-    public final int e;
-    public final q11 f28982f;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class t61 implements Utilities.Callback5, Utilities.Callback5Return {
+    public final v61 f30478a;
 
-    public t61(String str, int i10, q11 q11Var) {
-        super(str, (q11) null);
-        this.e = i10;
-        this.f28982f = q11Var;
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(this.f30478a.X((f61) obj, (View) obj2));
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        int i10 = this.e;
-        if (i10 == 3) {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.J6, false));
-        } else if (i10 == 2) {
-            textPaint.setColor(-1);
-        } else if (i10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.hc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19660gc, false));
-        }
-        q11 q11Var = this.f28982f;
-        if (q11Var != null) {
-            q11Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
-        }
+    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        this.f30478a.W((f61) obj, (View) obj2);
     }
 }

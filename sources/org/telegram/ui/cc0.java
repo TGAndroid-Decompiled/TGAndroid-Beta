@@ -1,22 +1,36 @@
 package org.telegram.ui;
-public final class cc0 implements Runnable {
-    public final int f34556a;
-    public final ic0 f34557b;
 
-    public cc0(ic0 ic0Var, int i10) {
-        this.f34556a = i10;
-        this.f34557b = ic0Var;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class cc0 extends org.telegram.ui.ActionBar.j {
+    public final pc0 f35910a;
+
+    public cc0(pc0 pc0Var) {
+        this.f35910a = pc0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34556a) {
-            case 0:
-                this.f34557b.b();
-                return;
-            default:
-                this.f34557b.c();
-                return;
+    public final void b(int i10) {
+        pc0 pc0Var = this.f35910a;
+        if (i10 == -1) {
+            pc0Var.finishFragment();
+        } else if (i10 == 1) {
+            try {
+                TLRPC.GeoPoint geoPoint = pc0Var.B0.messageOwner.media.geo;
+                double d = geoPoint.lat;
+                double d10 = geoPoint._long;
+                Activity parentActivity = pc0Var.getParentActivity();
+                parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        } else if (i10 == 5) {
+            pc0Var.r0(false);
+        } else if (i10 == 6) {
+            pc0Var.q0(null);
         }
     }
 }

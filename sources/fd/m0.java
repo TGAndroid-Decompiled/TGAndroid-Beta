@@ -7,7 +7,7 @@ public enum m0 extends a2 {
     @Override
     public final void d(k kVar, a aVar) {
         String h = aVar.h(a2.G0);
-        j jVar = kVar.f9130i;
+        j jVar = kVar.f10571i;
         String str = jVar.e;
         if (str != null) {
             h = str.concat(h);
@@ -18,42 +18,42 @@ public enum m0 extends a2 {
             if (d != ' ') {
                 if (d != '\"' && d != '\'') {
                     if (d != '/') {
-                        v vVar = a2.f9079a;
+                        v vVar = a2.f10520a;
                         if (d != 65535) {
                             if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
                                 switch (d) {
                                     case '<':
                                         break;
                                     case '=':
-                                        kVar.f9127c = a2.Z;
+                                        kVar.f10568c = a2.Z;
                                         return;
                                     case '>':
                                         kVar.k();
-                                        kVar.f9127c = vVar;
+                                        kVar.f10568c = vVar;
                                         return;
                                     default:
-                                        kVar.f9130i.d(d);
+                                        kVar.f10571i.d(d);
                                         return;
                                 }
                             }
                         } else {
                             kVar.l(this);
-                            kVar.f9127c = vVar;
+                            kVar.f10568c = vVar;
                             return;
                         }
                     } else {
-                        kVar.f9127c = a2.f9086e0;
+                        kVar.f10568c = a2.f10527e0;
                         return;
                     }
                 }
                 kVar.m(this);
-                kVar.f9130i.d(d);
+                kVar.f10571i.d(d);
                 return;
             }
-            kVar.f9127c = a2.Y;
+            kVar.f10568c = a2.Y;
             return;
         }
         kVar.m(this);
-        kVar.f9130i.d((char) 65533);
+        kVar.f10571i.d((char) 65533);
     }
 }

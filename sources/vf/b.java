@@ -1,10 +1,10 @@
 package vf;
 
-import bi.d4;
+import ci.i3;
 public final class b {
-    public final d4 f46950a;
+    public final i3 f48357a;
 
-    public b(d4 d4Var) {
-        this.f46950a = d4Var;
+    public b(i3 i3Var) {
+        this.f48357a = i3Var;
     }
 }

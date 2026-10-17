@@ -1,115 +1,56 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.Calendar;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class ev0 extends lm0 {
-    public final Context f24491c;
-    public final int d;
-    public final org.telegram.ui.ActionBar.c6 e;
-    public final cv0 f24492f;
-    public final ArrayList h = new ArrayList(10);
-    public final ArrayList f24493n = new ArrayList();
-    public pu0 f24494r;
-    public final xv0 f24495s;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import org.telegram.messenger.SharedConfig;
+public abstract class ev0 extends ScrollSlidingTextTabStrip {
+    public Paint f26004p0;
+    public int f26005q0;
+    public final Rect f26006r0;
+    public final sv0 f26007s0;
 
-    public ev0(xv0 xv0Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f24495s = xv0Var;
-        this.f24491c = context;
-        this.d = i10;
-        this.e = c6Var;
-        this.f24492f = new cv0(this, i10, c6Var);
-        E();
+    public ev0(sv0 sv0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.f26007s0 = sv0Var;
+        this.f26005q0 = 0;
+        this.f26006r0 = new Rect();
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return false;
-    }
-
-    public final void E() {
-        ArrayList arrayList = this.f24493n;
-        arrayList.clear();
-        ArrayList c10 = this.f24495s.f31065t1[8].c();
-        int i10 = 0;
-        for (int i11 = 0; i11 < c10.size(); i11++) {
-            MessageObject messageObject = (MessageObject) c10.get(i11);
-            if (messageObject.dateKeyInt != i10) {
-                int i12 = messageObject.messageOwner.date;
-                TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                long j10 = i12;
-                tL_message.message = LocaleController.formatDateChat(j10);
-                tL_message.f18937id = 0;
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(j10 * 1000);
-                calendar.set(11, 0);
-                calendar.set(12, 0);
-                calendar.set(13, 0);
-                calendar.set(14, 0);
-                tL_message.date = (int) (calendar.getTimeInMillis() / 1000);
-                MessageObject messageObject2 = new MessageObject(this.d, tL_message, false, false);
-                messageObject2.type = 10;
-                messageObject2.contentType = 1;
-                messageObject2.isDateObject = true;
-                arrayList.add(messageObject2);
-                i10 = messageObject.dateKeyInt;
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.f26005q0 != 0) {
+            if (this.f26004p0 == null) {
+                this.f26004p0 = new Paint();
             }
-            arrayList.add(messageObject);
-        }
-    }
-
-    @Override
-    public final int h() {
-        return this.f24493n.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.f24493n;
-            if (i10 < arrayList.size()) {
-                return ((MessageObject) arrayList.get(i10)).contentType;
+            this.f26004p0.setColor(this.f26005q0);
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            Rect rect = this.f26006r0;
+            rect.set(0, 0, measuredWidth, measuredHeight);
+            canvas.save();
+            canvas.translate(getScrollX(), 0.0f);
+            canvas.clipPath(this.f24350f0);
+            if (SharedConfig.chatBlurEnabled()) {
+                this.f26007s0.P(canvas, getY(), rect, this.f26004p0);
+            } else {
+                canvas.drawPaint(this.f26004p0);
             }
-            return 0;
+            canvas.translate(-getScrollX(), 0.0f);
+            canvas.restore();
         }
-        return 0;
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final void l() {
-        E();
-        super.l();
+    public int[] getColorKeys() {
+        return null;
     }
 
     @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.f24493n;
-            if (i10 < arrayList.size()) {
-                MessageObject messageObject = (MessageObject) arrayList.get(i10);
-                int i11 = b1Var.f44841f;
-                View view = b1Var.f44838a;
-                if (i11 == 0) {
-                    ((org.telegram.ui.Cells.u1) view).X3(messageObject, null, false, false, false, false);
-                } else {
-                    ((org.telegram.ui.Cells.w0) view).setMessageObject(messageObject);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        if (i10 == 0) {
-            dv0 dv0Var = new dv0(this.f24491c, this.d, false, null, this.e);
-            dv0Var.setDelegate(this.f24492f);
-            return new s4.b1(dv0Var);
-        }
-        return new s4.b1(new org.telegram.ui.Cells.w0(this.f24491c, this.e, false));
+    public void setBackgroundColor(int i10) {
+        this.f26005q0 = i10;
+        invalidate();
     }
 }

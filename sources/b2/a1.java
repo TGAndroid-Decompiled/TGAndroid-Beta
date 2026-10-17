@@ -1,55 +1,14 @@
 package b2;
-
-import java.util.Locale;
-import v7.u6;
 public final class a1 {
-    public static final a1 d = new a1(1.0f, 1.0f);
-    public static final String e;
-    public static final String f2076f;
-    public final float f2077a;
-    public final float f2078b;
-    public final int f2079c;
+    public static final int[] f3692b = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 31, 20, 21, 22, 23, 24, 25, 33, 26, 34, 35, 27, 28, 29, 30, 32};
+    public Object f3693a;
 
-    static {
-        String str = e2.m0.f8375a;
-        e = Integer.toString(0, 36);
-        f2076f = Integer.toString(1, 36);
-    }
-
-    public a1(float f7, float f10) {
-        boolean z10;
-        if (f7 > 0.0f) {
-            z10 = true;
+    public void a(int i10, boolean z10) {
+        t tVar = (t) this.f3693a;
+        if (z10) {
+            tVar.b(i10);
         } else {
-            z10 = false;
+            tVar.getClass();
         }
-        u6.g(z10);
-        u6.g(f10 > 0.0f);
-        this.f2077a = f7;
-        this.f2078b = f10;
-        this.f2079c = Math.round(f7 * 1000.0f);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && a1.class == obj.getClass()) {
-            a1 a1Var = (a1) obj;
-            if (this.f2077a == a1Var.f2077a && this.f2078b == a1Var.f2078b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Float.floatToRawIntBits(this.f2078b) + ((Float.floatToRawIntBits(this.f2077a) + 527) * 31);
-    }
-
-    public final String toString() {
-        Object[] objArr = {Float.valueOf(this.f2077a), Float.valueOf(this.f2078b)};
-        String str = e2.m0.f8375a;
-        return String.format(Locale.US, "PlaybackParameters(speed=%.2f, pitch=%.2f)", objArr);
     }
 }

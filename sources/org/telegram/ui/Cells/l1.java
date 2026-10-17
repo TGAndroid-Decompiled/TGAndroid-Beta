@@ -8,195 +8,195 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.vv0;
+import org.telegram.ui.xu0;
 public interface l1 {
-    void A0(u1 u1Var, TLObject tLObject, boolean z10);
+    void A(u1 u1Var);
 
-    boolean A1(u1 u1Var, TLRPC.Chat chat);
+    void A0(u1 u1Var, float f7, float f10);
+
+    void A1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto);
 
     void B(u1 u1Var);
 
-    void B0(u1 u1Var, float f7, float f10);
+    boolean B1();
 
-    void B1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto);
+    void C0(u1 u1Var);
 
-    void C(u1 u1Var);
+    void D(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom);
 
-    boolean C1();
+    void D1(u1 u1Var);
 
-    void D0(u1 u1Var);
+    void E0(u1 u1Var);
 
-    void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom);
+    void F(u1 u1Var);
 
-    void E1(u1 u1Var);
+    void F1(MessageObject messageObject);
 
-    void F0(u1 u1Var);
+    void G(MessageObject.TextLayoutBlock textLayoutBlock);
 
-    void G(u1 u1Var);
+    void G0(u1 u1Var);
 
-    void H0(u1 u1Var);
+    void G1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10);
 
-    void H1(MessageObject messageObject);
+    CharacterStyle H1(u1 u1Var);
 
-    void I(MessageObject.TextLayoutBlock textLayoutBlock);
+    void I(u1 u1Var);
 
-    void J1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10);
+    void I1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11);
 
-    boolean K0(long j10);
+    boolean J0(long j10);
 
-    CharacterStyle K1(u1 u1Var);
+    boolean J1(u1 u1Var, MessageObject messageObject);
 
-    void L(u1 u1Var);
+    void K(int i10, u1 u1Var);
 
-    void L0(u1 u1Var);
+    void K0(u1 u1Var);
 
-    void L1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11);
+    void K1(u1 u1Var, ah.t tVar);
 
-    void M(int i10, u1 u1Var);
+    void L1();
 
-    boolean M1(u1 u1Var, MessageObject messageObject);
+    void M(MessageObject messageObject);
 
-    void N(MessageObject messageObject);
+    void M0(int i10, u1 u1Var);
 
-    void N0(int i10, u1 u1Var);
+    void M1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia);
 
-    void N1(u1 u1Var, ah.t tVar);
+    boolean N(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10);
 
-    boolean O(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10);
+    void N1(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str);
 
-    void O1();
+    void O0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton);
+
+    boolean O1(u1 u1Var, TLRPC.PollAnswer pollAnswer);
 
     boolean P();
 
-    void P0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton);
-
-    void P1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia);
+    xu0 P1();
 
     boolean Q(u1 u1Var);
 
-    void Q1(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str);
+    boolean Q1(long j10);
 
     boolean R();
 
-    boolean R1(u1 u1Var, TLRPC.PollAnswer pollAnswer);
+    void R0(u1 u1Var, CharacterStyle characterStyle, boolean z10);
+
+    void R1(u1 u1Var, int i10, float f7, float f10, boolean z10);
 
     void S(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10);
 
-    void S0(u1 u1Var, CharacterStyle characterStyle, boolean z10);
+    boolean S0(u1 u1Var, boolean z10);
 
-    vv0 S1();
+    boolean S1(u1 u1Var, TLRPC.TodoItem todoItem);
 
     void T(u1 u1Var);
 
-    boolean T0(u1 u1Var, boolean z10);
+    void T0(u1 u1Var);
 
-    boolean T1(long j10);
-
-    void U0(u1 u1Var);
-
-    void U1(u1 u1Var, int i10, float f7, float f10, boolean z10);
+    void U1(u1 u1Var);
 
     int V();
 
-    boolean V1(u1 u1Var, TLRPC.TodoItem todoItem);
+    void V0(u1 u1Var);
 
-    void W0(u1 u1Var);
+    ih.a W();
 
-    void X1(u1 u1Var);
-
-    ih.a Y();
+    void W1(u1 u1Var, long j10);
 
     boolean Z(u1 u1Var);
 
-    void Z1(u1 u1Var, long j10);
+    boolean Z0(int i10, u1 u1Var);
 
-    boolean a1(int i10, u1 u1Var);
+    boolean b2(u1 u1Var, TL_iv.PageBlock pageBlock);
 
     boolean c();
 
     boolean c0(u1 u1Var, TLRPC.User user);
 
+    void c2(u1 u1Var);
+
     void d0(int i10);
+
+    boolean d1(MessageObject messageObject);
 
     boolean e();
 
     boolean e0();
 
-    boolean e1(MessageObject messageObject);
-
-    boolean e2(u1 u1Var, TL_iv.PageBlock pageBlock);
-
     void f0(u1 u1Var, float f7, float f10);
 
-    void f2(u1 u1Var);
+    void f1();
 
     String g(u1 u1Var);
 
-    void g1();
+    void g2();
 
     int h0(u1 u1Var);
+
+    void h1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto);
 
     void i(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12);
 
     void i0(u1 u1Var);
 
-    void i1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto);
+    void i2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
 
     void j();
 
-    void j2();
+    void k1(u1 u1Var, TLRPC.Document document);
+
+    void l(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10);
 
     boolean l0();
 
-    void l1(u1 u1Var, TLRPC.Document document);
+    boolean l2(int i10);
 
-    void l2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
+    void m(u1 u1Var);
 
-    void m(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10);
-
-    void n(u1 u1Var);
+    void n();
 
     void n0(String str);
 
-    void o();
+    void n2();
 
-    boolean o0(org.telegram.ui.Components.b6 b6Var);
+    boolean o0(org.telegram.ui.Components.a6 a6Var);
 
-    boolean p2(int i10);
+    void o2(u1 u1Var, int i10, int i11);
+
+    void p(u1 u1Var);
+
+    void p1(u1 u1Var, float f7, float f10);
+
+    o9 p2();
+
+    void q();
 
     void q0(u1 u1Var, float f7, float f10);
 
-    void q1(u1 u1Var, float f7, float f10);
-
-    void r(u1 u1Var);
-
-    void r2();
-
-    void s();
-
-    void s2(u1 u1Var, int i10, int i11);
+    void s(u1 u1Var);
 
     void t(u1 u1Var);
-
-    p9 t2();
-
-    void u(u1 u1Var);
 
     void u0(u1 u1Var, TLRPC.User user, float f7, float f10);
 
     void v0(u1 u1Var, float f7, float f10, boolean z10);
 
-    boolean w1();
+    boolean v1();
 
-    String x(long j10);
+    String w(long j10);
 
-    boolean x0(MessageObject messageObject);
+    boolean w0(MessageObject messageObject);
 
-    void x1(u1 u1Var);
+    void w1(u1 u1Var);
 
-    void y0(u1 u1Var);
+    void x0(u1 u1Var);
 
-    void y1(u1 u1Var, boolean z10);
+    void x1(u1 u1Var, boolean z10);
 
-    void z0();
+    void y0();
+
+    void z0(u1 u1Var, TLObject tLObject, boolean z10);
+
+    boolean z1(u1 u1Var, TLRPC.Chat chat);
 }

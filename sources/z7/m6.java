@@ -1,9 +1,9 @@
 package z7;
 public final class m6 implements ja.d {
-    public static final m6 f49715a = new Object();
+    public static final m6 f51118a = new Object();
 
     static {
-        t8.b.s(t8.b.n(w.class, t8.b.r(4, t8.b.n(w.class, t8.b.r(3, t8.b.n(w.class, t8.b.r(2, t8.b.n(w.class, new s(1)))))))));
+        r.c.s(r.c.n(w.class, r.c.r(3, r.c.n(w.class, r.c.r(2, r.c.n(w.class, new s(1)))))));
     }
 
     @Override

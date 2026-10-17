@@ -1,121 +1,24 @@
 package ug;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.zc;
-import zh.f5;
+import java.util.concurrent.atomic.AtomicBoolean;
 public final class c implements Runnable {
-    public final int f46285a = 0;
-    public final boolean f46286b;
-    public final Object f46287c;
-    public final Object d;
-    public final Object e;
+    public final int f47679a;
+    public final AtomicBoolean f47680b;
 
-    public c(zc zcVar, boolean z10, TLRPC.Chat chat, c6 c6Var) {
-        this.f46287c = zcVar;
-        this.f46286b = z10;
-        this.d = chat;
-        this.e = c6Var;
+    public c(AtomicBoolean atomicBoolean, int i10) {
+        this.f47679a = i10;
+        this.f47680b = atomicBoolean;
     }
 
     @Override
     public final void run() {
-        String string;
-        int i10;
-        String string2;
-        int i11;
-        Boolean bool;
-        boolean z10;
-        int i12 = this.f46285a;
-        boolean z11 = this.f46286b;
-        Object obj = this.e;
-        Object obj2 = this.d;
-        Object obj3 = this.f46287c;
-        switch (i12) {
+        switch (this.f47679a) {
             case 0:
-                zc zcVar = (zc) obj3;
-                TLRPC.Chat chat = (TLRPC.Chat) obj2;
-                c6 c6Var = (c6) obj;
-                int i13 = R.raw.star_premium_2;
-                if (z11) {
-                    string = LocaleController.getString("BoostingGiveawayCreated", R.string.BoostingGiveawayCreated);
-                } else {
-                    string = LocaleController.getString("BoostingAwardsCreated", R.string.BoostingAwardsCreated);
-                }
-                if (z11) {
-                    if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                        i11 = R.string.BoostingCheckStatistic;
-                    } else {
-                        i11 = R.string.BoostingCheckStatisticGroup;
-                    }
-                    string2 = LocaleController.getString(i11);
-                } else {
-                    if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                        i10 = R.string.BoostingCheckGiftsStatistic;
-                    } else {
-                        i10 = R.string.BoostingCheckGiftsStatisticGroup;
-                    }
-                    string2 = LocaleController.getString(i10);
-                }
-                sc M = zcVar.M(string, AndroidUtilities.replaceSingleTag(string2, g6.Gi, 0, new d(chat), c6Var), i13);
-                M.f28805j = 5000;
-                M.j();
+                this.f47680b.set(true);
                 return;
             default:
-                f5 f5Var = (f5) obj3;
-                TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList = f5Var.f50510l;
-                int i14 = f5Var.f50502a;
-                if (((int[]) obj2)[0] == f5Var.f50511m) {
-                    f5Var.f50507i = false;
-                    f5Var.f50511m = -1;
-                    if (tLObject instanceof TL_stars.TL_payments_savedStarGifts) {
-                        TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject;
-                        MessagesController.getInstance(i14).putUsers(tL_payments_savedStarGifts.users, false);
-                        MessagesController.getInstance(i14).putChats(tL_payments_savedStarGifts.chats, false);
-                        if (z11) {
-                            arrayList.clear();
-                        }
-                        arrayList.addAll(tL_payments_savedStarGifts.gifts);
-                        f5Var.f50509k = tL_payments_savedStarGifts.next_offset;
-                        f5Var.f50512n = tL_payments_savedStarGifts.count;
-                        if ((tL_payments_savedStarGifts.flags & 2) != 0) {
-                            bool = Boolean.valueOf(tL_payments_savedStarGifts.chat_notifications_enabled);
-                        } else {
-                            bool = null;
-                        }
-                        f5Var.h = bool;
-                        if (arrayList.size() <= f5Var.f50512n && f5Var.f50509k != null) {
-                            z10 = false;
-                        } else {
-                            z10 = true;
-                        }
-                        f5Var.f50508j = z10;
-                    } else {
-                        f5Var.f50508j = true;
-                    }
-                    NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(f5Var.f50503b), f5Var);
-                    return;
-                }
+                this.f47680b.set(true);
                 return;
         }
-    }
-
-    public c(f5 f5Var, int[] iArr, TLObject tLObject, boolean z10) {
-        this.f46287c = f5Var;
-        this.d = iArr;
-        this.e = tLObject;
-        this.f46286b = z10;
     }
 }

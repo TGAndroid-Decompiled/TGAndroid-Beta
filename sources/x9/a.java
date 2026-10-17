@@ -5,30 +5,30 @@ import android.content.pm.PackageInfo;
 import android.os.Build;
 import java.util.ArrayList;
 public final class a {
-    public final String f48272a;
-    public final String f48273b;
-    public final ArrayList f48274c;
+    public final String f49681a;
+    public final String f49682b;
+    public final ArrayList f49683c;
     public final String d;
     public final String e;
-    public final String f48275f;
-    public final String f48276g;
-    public final m2.t h;
+    public final String f49684f;
+    public final String f49685g;
+    public final mi.q h;
 
-    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, m2.t tVar) {
-        this.f48272a = str;
-        this.f48273b = str2;
-        this.f48274c = arrayList;
+    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, mi.q qVar) {
+        this.f49681a = str;
+        this.f49682b = str2;
+        this.f49683c = arrayList;
         this.d = str3;
         this.e = str4;
-        this.f48275f = str5;
-        this.f48276g = str6;
-        this.h = tVar;
+        this.f49684f = str5;
+        this.f49685g = str6;
+        this.h = qVar;
     }
 
-    public static a a(Context context, v vVar, String str, String str2, ArrayList arrayList, m2.t tVar) {
+    public static a a(Context context, u uVar, String str, String str2, ArrayList arrayList, mi.q qVar) {
         String num;
         String packageName = context.getPackageName();
-        String c10 = vVar.c();
+        String c10 = uVar.c();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
         if (Build.VERSION.SDK_INT >= 28) {
             num = Long.toString(packageInfo.getLongVersionCode());
@@ -40,6 +40,6 @@ public final class a {
         if (str4 == null) {
             str4 = "0.0";
         }
-        return new a(str, str2, arrayList, c10, packageName, str3, str4, tVar);
+        return new a(str, str2, arrayList, c10, packageName, str3, str4, qVar);
     }
 }

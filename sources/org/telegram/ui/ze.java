@@ -1,94 +1,129 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class ze implements Runnable {
-    public final int f42285a = 0;
-    public final boolean f42286b;
-    public final Object f42287c;
-    public final boolean d;
-    public final Object e;
-    public final Object f42288f;
-    public final Object h;
-    public final Object f42289n;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.MessageSuggestionParams;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ze implements Utilities.Callback {
+    public final int f43726a;
+    public final sn f43727b;
 
-    public ze(fo foVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var, boolean z10, boolean z11) {
-        this.e = foVar;
-        this.f42287c = str;
-        this.f42288f = characterStyle;
-        this.h = messageObject;
-        this.f42289n = u1Var;
-        this.f42286b = z10;
-        this.d = z11;
+    public ze(sn snVar, int i10) {
+        this.f43726a = i10;
+        this.f43727b = snVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42285a) {
+    public final void run(Object obj) {
+        int i10 = this.f43726a;
+        sn snVar = this.f43727b;
+        switch (i10) {
             case 0:
-                fo foVar = (fo) this.e;
-                String str = (String) this.f42287c;
-                CharacterStyle characterStyle = (CharacterStyle) this.f42288f;
-                MessageObject messageObject = (MessageObject) this.h;
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f42289n;
-                if (str.startsWith("video?")) {
-                    foVar.X7(characterStyle, false, messageObject, u1Var);
+                MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
+                sn snVar2 = this.f43727b;
+                snVar2.f41225g5 = messageSuggestionParams;
+                snVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
+                snVar2.Cb(true, null, snVar2.p5, null, null, true, 0, null, false, 0L, null, true);
+                return;
+            case 1:
+                snVar.zb(true, false);
+                if (((Boolean) obj).booleanValue()) {
+                    snVar.finishFragment();
                     return;
-                } else if (this.f42286b && !this.d) {
-                    foVar.getParentActivity();
-                    pf.d.m(str);
+                }
+                return;
+            case 2:
+                snVar.ia((String) obj, false);
+                return;
+            case 3:
+                snVar.E1 = (ChannelBoostsController.CanApplyBoost) obj;
+                return;
+            case 4:
+                snVar.Hb((MessageSuggestionParams) obj);
+                return;
+            case 5:
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus != null) {
+                    snVar.D1 = tL_premium_boostsStatus;
+                    snVar.getMessagesController().getBoostsController().userCanBoostChannel(snVar.T5, tL_premium_boostsStatus, new ze(snVar, 3));
+                    return;
+                }
+                return;
+            case 6:
+                View view = (View) obj;
+                if (view instanceof org.telegram.ui.Cells.u1) {
+                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+                    u1Var.E8 = snVar.y9();
+                    u1Var.F8 = snVar.H9();
+                    boolean G9 = snVar.G9();
+                    if (u1Var.G8 != G9) {
+                        u1Var.G8 = G9;
+                        snVar.f41433x0.getClass();
+                        int R = RecyclerView.R(view);
+                        u1Var.f23402n8 = true;
+                        u1Var.forceLayout();
+                        if (R >= 0) {
+                            snVar.A0.m(R);
+                        }
+                    }
+                    u1Var.H8 = snVar.V8();
+                    int W8 = snVar.W8();
+                    if (u1Var.I8 != W8) {
+                        u1Var.I8 = W8;
+                        u1Var.y4();
+                        u1Var.invalidate();
+                        return;
+                    }
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.x0) {
+                    org.telegram.ui.Cells.x0 x0Var = (org.telegram.ui.Cells.x0) view;
+                    x0Var.f23724e0 = snVar.y9();
+                    x0Var.f23737i0 = snVar.H9();
+                    snVar.G9();
+                    snVar.V8();
+                    int W82 = snVar.W8();
+                    if (x0Var.f23740j0 != W82) {
+                        x0Var.f23740j0 = W82;
+                        x0Var.invalidate();
+                        return;
+                    }
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.w1) {
+                    ((org.telegram.ui.Cells.w1) view).getTextView().setTranslationX(snVar.W8() / 2.0f);
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.b0) {
+                    view.invalidate();
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.h0) {
+                    view.invalidate();
                     return;
                 } else {
-                    foVar.O9(messageObject, false, false);
-                    foVar.ea(characterStyle, str, false, u1Var, messageObject);
                     return;
                 }
-            case 1:
-                xh.l lVar = (xh.l) this.e;
-                Runnable runnable = (Runnable) this.f42288f;
-                String str2 = (String) this.f42287c;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
-                TLObject tLObject = (TLObject) this.f42289n;
-                lVar.f48492w = false;
-                lVar.f48495z = true;
-                if (this.f42286b) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
-                }
-                xh.l.k(lVar.f48487q, false, false);
-                if (TextUtils.equals(str2, lVar.f48490t) && tL_error == null) {
-                    lVar.f48495z = true;
-                    lVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.d, false);
+            case 7:
+                Long l4 = (Long) obj;
+                org.telegram.ui.Components.q31 q31Var = snVar.R1;
+                if (q31Var != null) {
+                    q31Var.m(l4.longValue(), true);
                     return;
                 }
+                return;
+            case 8:
+                wr wrVar = snVar.f41184d0;
+                wrVar.f42913c.add(((org.telegram.ui.ActionBar.u0) obj).getIconView());
+                return;
+            case 9:
+                int intValue = ((Integer) obj).intValue();
+                int i11 = sn.Hc;
+                snVar.Fa(intValue);
                 return;
             default:
-                zh.r3.B0((zh.r3) this.e, (TLObject) this.f42287c, this.f42286b, (TLRPC.Document) this.f42288f, this.d, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f42289n);
+                int intValue2 = ((Integer) obj).intValue();
+                int i12 = sn.Hc;
+                snVar.Fa(intValue2);
                 return;
         }
-    }
-
-    public ze(xh.l lVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
-        this.e = lVar;
-        this.f42286b = z10;
-        this.f42288f = runnable;
-        this.f42287c = str;
-        this.h = tL_error;
-        this.f42289n = tLObject;
-        this.d = z11;
-    }
-
-    public ze(zh.r3 r3Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
-        this.e = r3Var;
-        this.f42287c = tLObject;
-        this.f42286b = z10;
-        this.f42288f = document;
-        this.d = z11;
-        this.h = tL_error;
-        this.f42289n = savestargift;
     }
 }

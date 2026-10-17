@@ -1,30 +1,30 @@
 package u2;
 public final class g extends s {
-    public final long f45917f;
-    public final long f45918g;
+    public final long f47324f;
+    public final long f47325g;
     public final long h;
-    public final boolean f45919i;
+    public final boolean f47326i;
 
-    public g(b2.p1 p1Var, long j10, long j11, boolean z10) {
-        super(p1Var);
+    public g(b2.o1 o1Var, long j10, long j11, boolean z10) {
+        super(o1Var);
         long max;
         int i10 = (j11 > Long.MIN_VALUE ? 1 : (j11 == Long.MIN_VALUE ? 0 : -1));
         if (i10 != 0 && j11 < j10) {
             throw new h(2, j10, j11);
         }
         boolean z11 = false;
-        if (p1Var.h() == 1) {
-            b2.o1 m10 = p1Var.m(0, new b2.o1(), 0L);
+        if (o1Var.h() == 1) {
+            b2.n1 m10 = o1Var.m(0, new b2.n1(), 0L);
             long max2 = Math.max(0L, j10);
-            if (!z10 && !m10.f2269k && max2 != 0 && !m10.h) {
+            if (!z10 && !m10.f3877k && max2 != 0 && !m10.h) {
                 throw new h(1);
             }
             if (i10 == 0) {
-                max = m10.f2271m;
+                max = m10.f3879m;
             } else {
                 max = Math.max(0L, j11);
             }
-            long j12 = m10.f2271m;
+            long j12 = m10.f3879m;
             int i11 = (j12 > (-9223372036854775807L) ? 1 : (j12 == (-9223372036854775807L) ? 0 : -1));
             if (i11 != 0) {
                 max = max > j12 ? j12 : max;
@@ -32,59 +32,59 @@ public final class g extends s {
                     max2 = max;
                 }
             }
-            this.f45917f = max2;
-            this.f45918g = max;
+            this.f47324f = max2;
+            this.f47325g = max;
             int i12 = (max > (-9223372036854775807L) ? 1 : (max == (-9223372036854775807L) ? 0 : -1));
             this.h = i12 != 0 ? max - max2 : -9223372036854775807L;
-            if (m10.f2267i && (i12 == 0 || (i11 != 0 && max == j12))) {
+            if (m10.f3875i && (i12 == 0 || (i11 != 0 && max == j12))) {
                 z11 = true;
             }
-            this.f45919i = z11;
+            this.f47326i = z11;
             return;
         }
         throw new h(0);
     }
 
     @Override
-    public final b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
-        this.e.f(0, m1Var, z10);
-        long j10 = m1Var.e - this.f45917f;
+    public final b2.l1 f(int i10, b2.l1 l1Var, boolean z10) {
+        this.e.f(0, l1Var, z10);
+        long j10 = l1Var.e - this.f47324f;
         long j11 = this.h;
         long j12 = -9223372036854775807L;
         if (j11 != -9223372036854775807L) {
             j12 = j11 - j10;
         }
-        m1Var.h(m1Var.f2215a, m1Var.f2216b, 0, j12, j10, b2.c.f2090c, false);
-        return m1Var;
+        l1Var.h(l1Var.f3823a, l1Var.f3824b, 0, j12, j10, b2.c.f3704c, false);
+        return l1Var;
     }
 
     @Override
-    public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
-        this.e.m(0, o1Var, 0L);
-        long j11 = o1Var.f2274p;
-        long j12 = this.f45917f;
-        o1Var.f2274p = j11 + j12;
-        o1Var.f2271m = this.h;
-        o1Var.f2267i = this.f45919i;
-        long j13 = o1Var.f2270l;
+    public final b2.n1 m(int i10, b2.n1 n1Var, long j10) {
+        this.e.m(0, n1Var, 0L);
+        long j11 = n1Var.f3882p;
+        long j12 = this.f47324f;
+        n1Var.f3882p = j11 + j12;
+        n1Var.f3879m = this.h;
+        n1Var.f3875i = this.f47326i;
+        long j13 = n1Var.f3878l;
         if (j13 != -9223372036854775807L) {
             long max = Math.max(j13, j12);
-            o1Var.f2270l = max;
-            long j14 = this.f45918g;
+            n1Var.f3878l = max;
+            long j14 = this.f47325g;
             if (j14 != -9223372036854775807L) {
                 max = Math.min(max, j14);
             }
-            o1Var.f2270l = max - j12;
+            n1Var.f3878l = max - j12;
         }
         long h02 = e2.m0.h0(j12);
-        long j15 = o1Var.e;
+        long j15 = n1Var.e;
         if (j15 != -9223372036854775807L) {
-            o1Var.e = j15 + h02;
+            n1Var.e = j15 + h02;
         }
-        long j16 = o1Var.f2265f;
+        long j16 = n1Var.f3873f;
         if (j16 != -9223372036854775807L) {
-            o1Var.f2265f = j16 + h02;
+            n1Var.f3873f = j16 + h02;
         }
-        return o1Var;
+        return n1Var;
     }
 }

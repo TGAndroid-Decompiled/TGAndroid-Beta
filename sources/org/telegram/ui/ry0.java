@@ -1,68 +1,51 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class ry0 implements Runnable {
-    public final int f39624a;
-    public final ProfileActivity f39625b;
-    public final TLRPC.TL_error f39626c;
-    public final TLObject d;
-    public final TLRPC.TL_channels_getParticipants e;
+import org.telegram.ui.Components.UndoView;
+public final class ry0 implements aq {
+    public final TLRPC.Chat f40830a;
+    public final dq f40831b;
+    public final ProfileActivity f40832c;
 
-    public ry0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i10) {
-        this.f39624a = i10;
-        this.f39625b = profileActivity;
-        this.f39626c = tL_error;
-        this.d = tLObject;
-        this.e = tL_channels_getParticipants;
+    public ry0(ProfileActivity profileActivity, TLRPC.Chat chat, dq dqVar) {
+        this.f40832c = profileActivity;
+        this.f40830a = chat;
+        this.f40831b = dqVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39624a) {
-            case 0:
-                ProfileActivity profileActivity = this.f39625b;
-                profileActivity.getNotificationCenter().doOnIdle(new ry0(profileActivity, this.f39626c, this.d, this.e, 1));
-                return;
-            default:
-                ProfileActivity profileActivity2 = this.f39625b;
-                if (this.f39626c == null) {
-                    profileActivity2.getClass();
-                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
-                    profileActivity2.getMessagesController().putUsers(tL_channels_channelParticipants.users, false);
-                    profileActivity2.getMessagesController().putChats(tL_channels_channelParticipants.chats, false);
-                    if (tL_channels_channelParticipants.users.size() < 200) {
-                        profileActivity2.D1 = true;
-                    }
-                    if (this.e.offset == 0) {
-                        profileActivity2.C1.b();
-                        profileActivity2.f32373u2.participants = new TLRPC.TL_chatParticipants();
-                        profileActivity2.getMessagesStorage().putUsersAndChats(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
-                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f32269f1, tL_channels_channelParticipants.participants);
-                    }
-                    for (int i10 = 0; i10 < tL_channels_channelParticipants.participants.size(); i10++) {
-                        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
-                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i10);
-                        tL_chatChannelParticipant.channelParticipant = channelParticipant;
-                        tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
-                        long peerId = MessageObject.getPeerId(channelParticipant.peer);
-                        tL_chatChannelParticipant.user_id = peerId;
-                        tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
-                        if (profileActivity2.C1.h(peerId) < 0) {
-                            TLRPC.ChatFull chatFull = profileActivity2.f32373u2;
-                            if (chatFull.participants == null) {
-                                chatFull.participants = new TLRPC.TL_chatParticipants();
-                            }
-                            profileActivity2.f32373u2.participants.participants.add(tL_chatChannelParticipant);
-                            profileActivity2.C1.k(tL_chatChannelParticipant, tL_chatChannelParticipant.user_id);
-                        }
+    public final void a(TLRPC.User user) {
+        int i10;
+        ProfileActivity profileActivity = this.f40832c;
+        UndoView undoView = profileActivity.M;
+        long j10 = -profileActivity.f33614g1;
+        if (profileActivity.F2.megagroup) {
+            i10 = 10;
+        } else {
+            i10 = 9;
+        }
+        undoView.m(j10, user, i10);
+    }
+
+    @Override
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.Chat chat;
+        ProfileActivity profileActivity = this.f40832c;
+        profileActivity.removeSelfFromStack();
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33607f1));
+        if (user != null && (chat = this.f40830a) != null && profileActivity.f33607f1 != 0) {
+            dq dqVar = this.f40831b;
+            if (dqVar.Q && dqVar.getParentLayout() != null) {
+                for (org.telegram.ui.ActionBar.n2 n2Var : dqVar.getParentLayout().getFragmentStack()) {
+                    if (n2Var instanceof xb) {
+                        xb xbVar = (xb) n2Var;
+                        xbVar.V0();
+                        AndroidUtilities.runOnUIThread(new xe0(xbVar, user, chat, 26));
+                        return;
                     }
                 }
-                profileActivity2.B1 = false;
-                profileActivity2.F4();
-                profileActivity2.e5(true, false);
-                return;
+            }
         }
     }
 }

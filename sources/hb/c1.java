@@ -11,7 +11,7 @@ public class c1 extends eb.u {
             if (p5 <= 65535 && p5 >= -32768) {
                 return Short.valueOf((short) p5);
             }
-            StringBuilder l4 = i2.d.l(p5, "Lossy conversion from ", " to short; at path ");
+            StringBuilder l4 = i0.a.l(p5, "Lossy conversion from ", " to short; at path ");
             l4.append(aVar.j());
             throw new RuntimeException(l4.toString());
         } catch (NumberFormatException e) {

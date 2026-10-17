@@ -1,68 +1,34 @@
 package gi;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
+import ei.p6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.g6;
-public final class a extends Drawable {
-    public int f10162b;
-    public int f10163c = 255;
-    public final Drawable f10161a = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.settings_arrow).mutate();
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class a implements Utilities.Callback {
+    public final int f11065a;
+    public final l f11066b;
+
+    public a(l lVar, int i10) {
+        this.f11065a = i10;
+        this.f11066b = lVar;
+    }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float exactCenterX = getBounds().exactCenterX();
-        float exactCenterY = getBounds().exactCenterY();
-        int x02 = g6.x0(null, g6.G6, false);
-        int x03 = g6.x0(null, g6.f19601d6, false);
-        int i10 = this.f10162b;
-        Drawable drawable = this.f10161a;
-        if (i10 != x03) {
-            this.f10162b = x03;
-            drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
+    public final void run(Object obj) {
+        switch (this.f11065a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new p6(14, this.f11066b, (TLRPC.UserFull) obj));
+                return;
+            case 1:
+                l lVar = this.f11066b;
+                lVar.Y.commission_permille = ((Integer) obj).intValue();
+                lVar.J0();
+                return;
+            default:
+                l lVar2 = this.f11066b;
+                lVar2.Y.duration_months = ((Integer) lVar2.f11307a0.get(((Integer) obj).intValue())).intValue();
+                lVar2.J0();
+                return;
         }
-        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(7.6666665f), g6.m0(i0.a.k(x03, this.f10163c)));
-        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(6.6666665f), g6.m0(i0.a.k(x02, this.f10163c)));
-        zf.q.d(drawable, exactCenterX, exactCenterY, 17);
-        canvas.translate(0.0f, AndroidUtilities.dp(0.66f));
-        canvas.save();
-        canvas.rotate(90.0f, exactCenterX, exactCenterY);
-        zf.q.b(canvas, drawable, 0.8f);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.f10163c;
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(13.333333f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(13.333333f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f10163c = i10;
-        this.f10161a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

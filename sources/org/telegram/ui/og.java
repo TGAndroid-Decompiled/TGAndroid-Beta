@@ -1,45 +1,97 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class og implements Utilities.Callback2 {
-    public final int f38638a;
-    public final fo f38639b;
-    public final String f38640c;
+import android.content.DialogInterface;
+public final class og implements Runnable {
+    public final int f39772a;
+    public final sn f39773b;
+    public final org.telegram.ui.ActionBar.b2[] f39774c;
+    public final int d;
 
-    public og(fo foVar, String str, int i10) {
-        this.f38638a = i10;
-        this.f38639b = foVar;
-        this.f38640c = str;
+    public og(sn snVar, org.telegram.ui.ActionBar.b2[] b2VarArr, int i10, int i11) {
+        this.f39772a = i11;
+        this.f39773b = snVar;
+        this.f39774c = b2VarArr;
+        this.d = i10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f38638a) {
+    public final void run() {
+        switch (this.f39772a) {
             case 0:
-                if (bool.booleanValue()) {
-                    boolean booleanValue = bool2.booleanValue();
-                    fo foVar = this.f38639b;
-                    String str = this.f38640c;
-                    if (booleanValue) {
-                        foVar.getMessagesController().addWebBrowserException(str, false);
-                    }
-                    foVar.getParentActivity();
-                    pf.d.m(str);
+                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f39774c;
+                org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
+                if (b2Var != null) {
+                    final sn snVar = this.f39773b;
+                    final int i10 = this.d;
+                    b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    snVar.getConnectionsManager().cancelRequest(i10, true);
+                                    return;
+                                case 1:
+                                    snVar.getConnectionsManager().cancelRequest(i10, true);
+                                    return;
+                                default:
+                                    snVar.getConnectionsManager().cancelRequest(i10, true);
+                                    return;
+                            }
+                        }
+                    });
+                    snVar.showDialog(b2VarArr[0]);
+                    return;
+                }
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f39774c;
+                org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr2[0];
+                if (b2Var2 != null) {
+                    final sn snVar2 = this.f39773b;
+                    final int i11 = this.d;
+                    b2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    snVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    return;
+                                case 1:
+                                    snVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    return;
+                                default:
+                                    snVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    return;
+                            }
+                        }
+                    });
+                    snVar2.showDialog(b2VarArr2[0]);
                     return;
                 }
                 return;
             default:
-                fo foVar2 = this.f38639b;
-                foVar2.getClass();
-                if (bool.booleanValue()) {
-                    boolean booleanValue2 = bool2.booleanValue();
-                    String str2 = this.f38640c;
-                    if (booleanValue2) {
-                        foVar2.getMessagesController().addWebBrowserException(str2, true);
-                    }
-                    pf.d.l(foVar2.getParentActivity(), str2, false, null);
+                org.telegram.ui.ActionBar.b2[] b2VarArr3 = this.f39774c;
+                org.telegram.ui.ActionBar.b2 b2Var3 = b2VarArr3[0];
+                if (b2Var3 != null) {
+                    final sn snVar3 = this.f39773b;
+                    final int i12 = this.d;
+                    b2Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    snVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    return;
+                                case 1:
+                                    snVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    return;
+                                default:
+                                    snVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    return;
+                            }
+                        }
+                    });
+                    snVar3.showDialog(b2VarArr3[0]);
                     return;
                 }
                 return;

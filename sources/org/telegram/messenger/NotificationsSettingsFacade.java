@@ -34,17 +34,17 @@ public class NotificationsSettingsFacade {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         NotificationsController notificationsController = NotificationsController.getInstance(this.currentAccount);
-        int c10 = g0.c("notify2_", sharedPrefKey, getPreferences(), -1);
+        int c10 = q.c("notify2_", sharedPrefKey, getPreferences(), -1);
         boolean z11 = true;
-        int c11 = g0.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
+        int c11 = q.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
         SharedPreferences.Editor edit = getPreferences().edit();
         if ((peerNotifySettings.flags & 2) != 0) {
-            edit.putBoolean(t8.b.h("silent_", sharedPrefKey), peerNotifySettings.silent);
+            edit.putBoolean(r.c.g("silent_", sharedPrefKey), peerNotifySettings.silent);
         } else {
             edit.remove("silent_" + sharedPrefKey);
         }
         if ((peerNotifySettings.flags & 64) != 0) {
-            edit.putBoolean(t8.b.h("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
+            edit.putBoolean(r.c.g("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
         } else {
             edit.remove("stories_" + sharedPrefKey);
         }
@@ -123,7 +123,7 @@ public class NotificationsSettingsFacade {
         applySoundSettings(peerNotifySettings.android_sound, edit, j10, j11, 0, false);
         edit.apply();
         if (z11) {
-            AndroidUtilities.runOnUIThread(new jh(this, 0));
+            AndroidUtilities.runOnUIThread(new bh(this, 0));
         }
     }
 
@@ -131,7 +131,7 @@ public class NotificationsSettingsFacade {
         if (peerNotifySettings == null) {
             return;
         }
-        Utilities.globalQueue.postRunnable(new a3.h0(this, j10, j11, peerNotifySettings, 9));
+        Utilities.globalQueue.postRunnable(new a3.h0(this, j10, j11, peerNotifySettings, 10));
     }
 
     public void applySoundSettings(org.telegram.tgnet.TLRPC.NotificationSound r19, android.content.SharedPreferences.Editor r20, long r21, long r23, int r25, boolean r26) {

@@ -1,54 +1,43 @@
 package ug;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.k9;
-import org.telegram.ui.Components.z9;
-import w7.z5;
-public final class i0 extends FrameLayout {
-    public static final int f46319f = 0;
-    public final z9 f46320a;
-    public final h0 f46321b;
-    public final Paint f46322c;
-    public boolean d;
-    public final k9 e;
-
-    public i0(Context context, float f7) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f46322c = paint;
-        this.d = true;
-        this.e = new k9((c6) null);
-        z9 z9Var = new z9(getContext());
-        this.f46320a = z9Var;
-        z9Var.setRoundRadius(AndroidUtilities.dp(f7));
-        ?? view = new View(context);
-        TextPaint textPaint = new TextPaint(1);
-        view.f46317a = textPaint;
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        int i10 = g6.f19543a7;
-        textPaint.setColor(g6.x0(null, i10, false));
-        textPaint.setTextSize(AndroidUtilities.dp(11.5f));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        this.f46321b = view;
-        view.setAlpha(0.0f);
-        addView(z9Var, z5.a(-1.0f, 5.0f, 5.0f, 5.0f, 5.0f, -1, 0));
-        addView((View) view, z5.a(26.0f, 0.0f, 0.0f, 1.0f, 3.0f, 26, 85));
-        paint.setColor(g6.x0(null, i10, false));
+import org.telegram.ui.Components.ob;
+import org.telegram.ui.Components.qc;
+public final class i0 implements ob {
+    @Override
+    public final boolean a() {
+        return true;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.d) {
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f46322c);
-        }
-        super.dispatchDraw(canvas);
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final int f(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final boolean g(int i10) {
+        return false;
+    }
+
+    @Override
+    public final int h(int i10) {
+        return AndroidUtilities.statusBarHeight;
+    }
+
+    @Override
+    public final void b(qc qcVar) {
+    }
+
+    @Override
+    public final void c(float f7) {
+    }
+
+    @Override
+    public final void d(qc qcVar) {
     }
 }

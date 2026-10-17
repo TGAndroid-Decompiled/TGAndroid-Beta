@@ -1,29 +1,83 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class l3 extends FrameLayout {
-    public int f21177a;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.c61;
+public final class l3 {
+    public boolean f22526a;
+    public StaticLayout f22527b;
+    public StaticLayout f22528c;
+    public int d;
+    public int e;
+    public float f22529f;
+    public float f22530g;
+    public float h;
+    public float f22531i;
 
-    public l3(Context context) {
-        this(context, 8);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f21177a, 1073741824));
-    }
-
-    public void setHeight(int i10) {
-        if (this.f21177a != i10) {
-            this.f21177a = i10;
-            requestLayout();
+    public final void a(u1 u1Var) {
+        TLRPC.Message message;
+        String str;
+        int parentWidth;
+        String str2;
+        SpannableStringBuilder e = ci.d8.e(R.string.ExpiredStory, false, new Object[0]);
+        MessageObject messageObject = u1Var.getMessageObject();
+        if (messageObject != null && (message = messageObject.messageOwner) != null) {
+            TLRPC.MessageMedia messageMedia = message.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaStory) {
+                TLRPC.User user = MessagesController.getInstance(u1Var.I7).getUser(Long.valueOf(((TLRPC.TL_messageMediaStory) messageMedia).user_id));
+                if (user == null) {
+                    str = "DELETED";
+                } else {
+                    str = user.first_name;
+                }
+                if (AndroidUtilities.isTablet()) {
+                    parentWidth = AndroidUtilities.getMinTabletSide();
+                } else {
+                    parentWidth = u1Var.getParentWidth();
+                }
+                int i10 = (int) (parentWidth * 0.4f);
+                String string = LocaleController.getString(R.string.From);
+                TextPaint textPaint = org.telegram.ui.ActionBar.h6.X2;
+                int ceil = (int) Math.ceil(textPaint.measureText(string + " "));
+                if (str == null) {
+                    str = "";
+                }
+                String str3 = (String) TextUtils.ellipsize(str.replace('\n', ' '), org.telegram.ui.ActionBar.h6.Y2, i10 - ceil, TextUtils.TruncateAt.END);
+                String string2 = LocaleController.getString(R.string.FromFormatted);
+                int indexOf = string2.indexOf("%1$s");
+                String format = String.format(string2, str3);
+                if (indexOf >= 0) {
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
+                    spannableStringBuilder.setSpan(new c61(AndroidUtilities.bold()), indexOf, str3.length() + indexOf, 33);
+                    str2 = spannableStringBuilder;
+                } else {
+                    str2 = format;
+                }
+                TextPaint textPaint2 = org.telegram.ui.ActionBar.h6.Z2;
+                int dp = AndroidUtilities.dp(10.0f);
+                Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+                this.f22527b = new StaticLayout(e, textPaint2, dp + ((int) (textPaint2.measureText(e, 0, e.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.f22528c = new StaticLayout(str2, textPaint2, AndroidUtilities.dp(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.e = 0;
+                this.h = AndroidUtilities.dp(4.0f);
+                this.f22531i = AndroidUtilities.dp(12.0f);
+                this.e = (int) r.c.c(this.h, 2.0f, AndroidUtilities.dp(4.0f) + this.f22528c.getHeight() + AndroidUtilities.dp(2.0f) + this.f22527b.getHeight() + AndroidUtilities.dp(4.0f), this.e);
+                this.d = u1Var.getExtraTextX() + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(12.0f) + Math.max(this.f22527b.getWidth(), this.f22528c.getWidth());
+                return;
+            }
         }
-    }
-
-    public l3(Context context, int i10) {
-        super(context);
-        this.f21177a = i10;
+        this.h = AndroidUtilities.dp(4.0f);
+        this.f22531i = AndroidUtilities.dp(12.0f);
+        this.e = 0;
+        this.d = 0;
     }
 }

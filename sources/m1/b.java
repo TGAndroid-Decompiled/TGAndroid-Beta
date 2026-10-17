@@ -3,20 +3,20 @@ package m1;
 import android.content.Context;
 import java.io.File;
 public final class b extends kotlin.jvm.internal.j implements td.a {
-    public final Context f15042b;
-    public final c f15043c;
+    public final Context f16395b;
+    public final c f16396c;
 
     public b(Context context, c cVar) {
         super(0);
-        this.f15042b = context;
-        this.f15043c = cVar;
+        this.f16395b = context;
+        this.f16396c = cVar;
     }
 
     @Override
     public final Object invoke() {
-        Context applicationContext = this.f15042b;
+        Context applicationContext = this.f16395b;
         kotlin.jvm.internal.i.d(applicationContext, "applicationContext");
-        String name = this.f15043c.f15044a;
+        String name = this.f16396c.f16397a;
         kotlin.jvm.internal.i.e(name, "name");
         String fileName = kotlin.jvm.internal.i.g(".preferences_pb", name);
         kotlin.jvm.internal.i.e(fileName, "fileName");

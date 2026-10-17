@@ -1,12 +1,6 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-public final class lc1 extends org.telegram.ui.Cells.ga {
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (getParent() != null && getParent().getParent() != null) {
-            getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
+import org.telegram.tgnet.TLRPC;
+public interface lc1 {
+    void a(TLRPC.TL_wallPaper tL_wallPaper);
 }

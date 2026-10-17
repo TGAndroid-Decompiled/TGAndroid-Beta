@@ -2,9 +2,9 @@ package w7;
 
 import java.nio.ByteBuffer;
 public abstract class m {
-    public b2.u0 a(l3.a aVar) {
+    public b2.t0 a(l3.a aVar) {
         boolean z10;
-        ByteBuffer byteBuffer = aVar.f10330c;
+        ByteBuffer byteBuffer = aVar.f11635c;
         byteBuffer.getClass();
         if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
             z10 = true;
@@ -15,5 +15,5 @@ public abstract class m {
         return b(aVar, byteBuffer);
     }
 
-    public abstract b2.u0 b(l3.a aVar, ByteBuffer byteBuffer);
+    public abstract b2.t0 b(l3.a aVar, ByteBuffer byteBuffer);
 }

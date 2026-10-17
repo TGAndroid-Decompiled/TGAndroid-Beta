@@ -6,7 +6,7 @@ import org.telegram.messenger.AndroidUtilities;
 public final class n1 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawLine(0.0f, 0.0f, getMeasuredWidth(), 0.0f, k4.f37249r1);
+        canvas.drawLine(0.0f, 0.0f, getMeasuredWidth(), 0.0f, l4.f38750r1);
     }
 
     @Override

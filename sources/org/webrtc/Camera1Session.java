@@ -4,7 +4,7 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.SystemClock;
-import bi.t1;
+import ci.h1;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -159,7 +159,7 @@ public class Camera1Session implements CameraSession {
 
     public int getFrameOrientation() {
         int orientation;
-        if (t1.W != null) {
+        if (h1.W != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();
@@ -215,7 +215,7 @@ public class Camera1Session implements CameraSession {
                 if (i10 == 100) {
                     j10 = "Camera server died!";
                 } else {
-                    j10 = i2.d.j(i10, "Camera error: ");
+                    j10 = i0.a.j(i10, "Camera error: ");
                 }
                 Logging.e("Camera1Session", j10);
                 Camera1Session.this.stopInternal();

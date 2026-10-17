@@ -1,52 +1,49 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.TextPaint;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class vl extends org.telegram.ui.Components.p11 {
-    public final fo K;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class vl extends bu0 {
+    public final MessageObject f42228a;
+    public final MediaController.PhotoEntry f42229b;
+    public final wl f42230c;
 
-    public vl(Activity activity, org.telegram.ui.ActionBar.c6 c6Var, fo foVar) {
-        super(activity);
-        this.K = foVar;
-        TextPaint textPaint = new TextPaint(1);
-        this.f27820b = textPaint;
-        Paint paint = new Paint(1);
-        this.f27821c = paint;
-        this.d = AndroidUtilities.dp(24.0f);
-        this.e = new OvershootInterpolator();
-        this.H = new org.telegram.ui.Components.kr0(this, 15);
-        this.J = new Path();
-        int w02 = org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Hi, c6Var);
-        int alpha = Color.alpha(w02);
-        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        textPaint.setColor(w02);
-        paint.setColor(w02);
-        paint.setAlpha((int) (alpha * 0.14d));
-        setBackground(org.telegram.ui.ActionBar.g6.c0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.g6.w0(org.telegram.ui.ActionBar.g6.Fi, c6Var)));
-    }
-
-    public final void d() {
-        int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
-        fo foVar = this.K;
-        int top = foVar.Y.getTop() - foVar.X0.getMeasuredHeight();
-        setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
+    public vl(wl wlVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
+        this.f42230c = wlVar;
+        this.f42228a = messageObject;
+        this.f42229b = photoEntry;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        d();
+    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return this.f42230c.f42889a.Q.Ga.E(this.f42228a, fileLocation, i10, z10, false);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        d();
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        fm fmVar = this.f42230c.f42889a;
+        MessageObject messageObject = this.f42228a;
+        messageObject.settingAvatar = true;
+        MediaController.PhotoEntry photoEntry = this.f42229b;
+        if (photoEntry.imagePath == null && !photoEntry.isVideo) {
+            TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+            TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
+            tL_photos_updateProfilePhoto.f20404id = tL_inputPhoto;
+            TLRPC.Photo photo = messageObject.messageOwner.action.photo;
+            tL_inputPhoto.f20291id = photo.f20296id;
+            tL_inputPhoto.access_hash = photo.access_hash;
+            tL_inputPhoto.file_reference = photo.file_reference;
+            fmVar.Q.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new xc(6, this, messageObject));
+            return;
+        }
+        sn snVar = fmVar.Q;
+        vi viVar = new vi(messageObject, 5);
+        org.telegram.ui.ActionBar.d5 parentLayout = snVar.getParentLayout();
+        int currentAccount = snVar.getCurrentAccount();
+        org.telegram.ui.Components.e50 e50Var = new org.telegram.ui.Components.e50(0, true, true);
+        e50Var.f25805a = snVar;
+        e50Var.s(photoEntry);
+        e50Var.f25806b = new ha(currentAccount, viVar, parentLayout, e50Var);
     }
 }

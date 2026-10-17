@@ -11,18 +11,18 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import n4.s;
 public final class h implements Runnable {
-    public final int f12866a;
-    public final j f12867b;
+    public final int f14273a;
+    public final j f14274b;
 
     public h(j jVar, int i10) {
-        this.f12866a = i10;
-        this.f12867b = jVar;
+        this.f14273a = i10;
+        this.f14274b = jVar;
     }
 
     private final void a() {
-        j jVar = this.f12867b;
+        j jVar = this.f14274b;
         synchronized (jVar) {
-            if (jVar.f12869a == 1) {
+            if (jVar.f14276a == 1) {
                 jVar.a("Timed out while binding");
             }
         }
@@ -30,52 +30,52 @@ public final class h implements Runnable {
 
     @Override
     public final void run() {
-        switch (this.f12866a) {
+        switch (this.f14273a) {
             case 0:
                 break;
             case 1:
                 a();
                 return;
             default:
-                this.f12867b.a("Service disconnected");
+                this.f14274b.a("Service disconnected");
                 return;
         }
         while (true) {
-            j jVar = this.f12867b;
+            j jVar = this.f14274b;
             synchronized (jVar) {
                 try {
-                    if (jVar.f12869a == 2) {
+                    if (jVar.f14276a == 2) {
                         if (jVar.d.isEmpty()) {
                             jVar.c();
                             return;
                         }
                         k kVar = (k) jVar.d.poll();
-                        jVar.e.put(kVar.f12873a, kVar);
-                        ((ScheduledExecutorService) jVar.f12872f.f12878c).schedule(new u(18, jVar, kVar), 30L, TimeUnit.SECONDS);
+                        jVar.e.put(kVar.f14280a, kVar);
+                        ((ScheduledExecutorService) jVar.f14279f.f14285c).schedule(new u(18, jVar, kVar), 30L, TimeUnit.SECONDS);
                         if (Log.isLoggable("MessengerIpcClient", 3)) {
                             Log.d("MessengerIpcClient", "Sending ".concat(String.valueOf(kVar)));
                         }
-                        l lVar = jVar.f12872f;
-                        Messenger messenger = jVar.f12870b;
-                        int i10 = kVar.f12875c;
+                        l lVar = jVar.f14279f;
+                        Messenger messenger = jVar.f14277b;
+                        int i10 = kVar.f14282c;
                         Message obtain = Message.obtain();
                         obtain.what = i10;
-                        obtain.arg1 = kVar.f12873a;
+                        obtain.arg1 = kVar.f14280a;
                         obtain.replyTo = messenger;
                         Bundle bundle = new Bundle();
                         bundle.putBoolean("oneWay", kVar.a());
-                        bundle.putString("pkg", ((Context) lVar.f12877b).getPackageName());
+                        bundle.putString("pkg", ((Context) lVar.f14284b).getPackageName());
                         bundle.putBundle("data", kVar.d);
                         obtain.setData(bundle);
                         try {
-                            s sVar = jVar.f12871c;
-                            Messenger messenger2 = (Messenger) sVar.f15745b;
+                            s sVar = jVar.f14278c;
+                            Messenger messenger2 = (Messenger) sVar.f17121b;
                             if (messenger2 != null) {
                                 messenger2.send(obtain);
                             } else {
-                                f fVar = (f) sVar.f15746c;
+                                f fVar = (f) sVar.f17122c;
                                 if (fVar != null) {
-                                    Messenger messenger3 = fVar.f12862a;
+                                    Messenger messenger3 = fVar.f14269a;
                                     messenger3.getClass();
                                     messenger3.send(obtain);
                                 } else {

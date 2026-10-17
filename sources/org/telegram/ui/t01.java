@@ -1,43 +1,40 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class t01 implements View.OnClickListener {
-    public final int f39975a;
-    public final e11 f39976b;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public final class t01 implements ImageReceiver.ImageReceiverDelegate {
+    public final Runnable[] f41554a;
 
-    public t01(e11 e11Var, int i10) {
-        this.f39975a = i10;
-        this.f39976b = e11Var;
+    public t01(Runnable[] runnableArr) {
+        this.f41554a = runnableArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39975a) {
-            case 0:
-                e11 e11Var = this.f39976b;
-                ProfileActivity profileActivity = e11Var.e;
-                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f32261e1));
-                MessagesController messagesController = profileActivity.getMessagesController();
-                ProfileActivity profileActivity2 = e11Var.e;
-                messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
-                return;
-            default:
-                ProfileActivity profileActivity3 = this.f39976b.e;
-                profileActivity3.O4 = !profileActivity3.O4;
-                if (!profileActivity3.N4) {
-                    profileActivity3.N4 = true;
+    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        if (imageReceiver.hasBitmapImage()) {
+            Runnable[] runnableArr = this.f41554a;
+            if (runnableArr[0] != null) {
+                org.telegram.ui.Components.uj0 lottieAnimation = imageReceiver.getLottieAnimation();
+                if (lottieAnimation == null) {
+                    runnableArr[0].run();
+                    runnableArr[0] = null;
+                } else if (lottieAnimation.y()) {
+                    lottieAnimation.A0 = new sy0(runnableArr, 6);
+                } else {
+                    runnableArr[0].run();
+                    runnableArr[0] = null;
                 }
-                profileActivity3.F4();
-                view.requestLayout();
-                profileActivity3.d.m(profileActivity3.O3);
-                int i10 = profileActivity3.U5;
-                if (i10 >= 0) {
-                    profileActivity3.f32245c.h1(i10, profileActivity3.V5 - profileActivity3.f32230a.getPaddingTop());
-                    return;
-                }
-                return;
+            }
         }
+    }
+
+    @Override
+    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        org.telegram.messenger.k5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public final void onAnimationReady(ImageReceiver imageReceiver) {
+        org.telegram.messenger.k5.b(this, imageReceiver);
     }
 }

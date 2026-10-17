@@ -2,17 +2,17 @@ package v7;
 
 import j$.util.Objects;
 public abstract class r {
-    public static boolean a(e0.n0 n0Var, e0.n0 n0Var2) {
-        if (n0Var == null && n0Var2 == null) {
+    public static boolean a(e0.m0 m0Var, e0.m0 m0Var2) {
+        if (m0Var == null && m0Var2 == null) {
             return true;
         }
-        if (n0Var == null || n0Var2 == null) {
+        if (m0Var == null || m0Var2 == null) {
             return false;
         }
-        String str = n0Var.d;
-        String str2 = n0Var2.d;
+        String str = m0Var.d;
+        String str2 = m0Var2.d;
         if (str == null && str2 == null) {
-            if (Objects.equals(Objects.toString(n0Var.f8255a), Objects.toString(n0Var2.f8255a)) && Objects.equals(n0Var.f8257c, n0Var2.f8257c) && Boolean.valueOf(n0Var.e).equals(Boolean.valueOf(n0Var2.e)) && Boolean.valueOf(n0Var.f8258f).equals(Boolean.valueOf(n0Var2.f8258f))) {
+            if (Objects.equals(Objects.toString(m0Var.f8132a), Objects.toString(m0Var2.f8132a)) && Objects.equals(m0Var.f8134c, m0Var2.f8134c) && Boolean.valueOf(m0Var.e).equals(Boolean.valueOf(m0Var2.e)) && Boolean.valueOf(m0Var.f8135f).equals(Boolean.valueOf(m0Var2.f8135f))) {
                 return true;
             }
             return false;
@@ -20,14 +20,14 @@ public abstract class r {
         return Objects.equals(str, str2);
     }
 
-    public static int b(e0.n0 n0Var) {
-        if (n0Var == null) {
+    public static int b(e0.m0 m0Var) {
+        if (m0Var == null) {
             return 0;
         }
-        String str = n0Var.d;
+        String str = m0Var.d;
         if (str != null) {
             return str.hashCode();
         }
-        return Objects.hash(n0Var.f8255a, n0Var.f8257c, Boolean.valueOf(n0Var.e), Boolean.valueOf(n0Var.f8258f));
+        return Objects.hash(m0Var.f8132a, m0Var.f8134c, Boolean.valueOf(m0Var.e), Boolean.valueOf(m0Var.f8135f));
     }
 }

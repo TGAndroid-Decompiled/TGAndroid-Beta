@@ -1,206 +1,186 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.ColorMatrix;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.json.JSONObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.GiftAuctionController;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class a3 implements Utilities.Callback {
-    public final int f23114a;
-    public final Object f23115b;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class a3 implements Utilities.Callback2 {
+    public final int f24467a = 0;
+    public final long f24468b;
+    public final int f24469c;
+    public final Object d;
+    public final Object e;
+    public final Object f24470f;
 
-    public a3(Object obj, int i10) {
-        this.f23114a = i10;
-        this.f23115b = obj;
+    public a3(int i10, long j10, TLRPC.Photo photo, Context context, ci.b bVar) {
+        this.f24469c = i10;
+        this.f24468b = j10;
+        this.d = photo;
+        this.e = context;
+        this.f24470f = bVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        boolean z10;
-        float top;
-        float f7;
-        float f10;
-        float f11;
-        TL_account.TL_birthday tL_birthday;
-        switch (this.f23114a) {
+    public final void run(Object obj, Object obj2) {
+        int i10;
+        int i11;
+        long j10;
+        TLObject chat;
+        TLObject chat2;
+        int i12;
+        int i13;
+        int i14 = this.f24467a;
+        Object obj3 = this.f24470f;
+        Object obj4 = this.d;
+        Object obj5 = this.e;
+        switch (i14) {
             case 0:
-                Object[] objArr = (Object[]) obj;
-                ((ah.g) this.f23115b).run();
+                TLRPC.Photo photo = (TLRPC.Photo) obj4;
+                Context context = (Context) obj5;
+                ci.b bVar = (ci.b) obj3;
+                Integer num = (Integer) obj;
+                String str = (String) obj2;
+                TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
+                int i15 = this.f24469c;
+                reportprofilephoto.peer = MessagesController.getInstance(i15).getInputPeer(this.f24468b);
+                TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
+                tL_inputPhoto.f20291id = photo.f20296id;
+                tL_inputPhoto.file_reference = photo.file_reference;
+                tL_inputPhoto.access_hash = photo.access_hash;
+                reportprofilephoto.photo_id = tL_inputPhoto;
+                reportprofilephoto.message = "";
+                if (num.intValue() == 0) {
+                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonSpam();
+                } else if (num.intValue() == 1) {
+                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonViolence();
+                } else if (num.intValue() == 2) {
+                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonChildAbuse();
+                } else if (num.intValue() == 5) {
+                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonPornography();
+                } else if (num.intValue() == 3) {
+                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonIllegalDrugs();
+                } else if (num.intValue() == 4) {
+                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonPersonalDetails();
+                }
+                ConnectionsManager.getInstance(i15).sendRequest(reportprofilephoto, null);
+                new xc(lb.a(context), bVar).E(bVar).j();
                 return;
             case 1:
-                CharSequence charSequence = (CharSequence) obj;
-                di.g gVar = ((md) this.f23115b).f7385f;
-                gVar.setText(charSequence);
-                gVar.w(charSequence.length(), charSequence.length());
-                return;
-            case 2:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((um) this.f23115b).v;
-                chatAttachAlertPhotoLayout.r0(null, null, ((Long) obj).longValue());
-                chatAttachAlertPhotoLayout.f27360b.dismiss();
-                return;
-            case 3:
-                MessagesController.getInstance(((et) this.f23115b).N).openApp((TLRPC.User) obj, 0);
-                return;
-            case 4:
-                ((nu) this.f23115b).performMenuAction(((Integer) obj).intValue());
-                return;
-            case 5:
-                Runnable runnable = (Runnable) this.f23115b;
-                ArrayList arrayList = (ArrayList) obj;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 6:
-                ((cb0) this.f23115b).V.Z0(((Integer) obj).intValue() + 8);
-                return;
-            case 7:
-                vc0 vc0Var = (vc0) this.f23115b;
-                Integer num = (Integer) obj;
-                ArrayList arrayList2 = vc0Var.e.f29035a;
-                wb0 wb0Var = vc0Var.f29621f;
-                if (((sc0) arrayList2.get(wb0Var.getCurrentPosition())).f28817a != num.intValue()) {
-                    int i10 = 0;
-                    int i11 = 0;
-                    while (true) {
-                        if (i11 < arrayList2.size()) {
-                            if (((sc0) arrayList2.get(i11)).f28817a == num.intValue()) {
-                                i10 = i11;
-                            } else {
-                                i11++;
-                            }
-                        }
-                    }
-                    if (wb0Var.getCurrentPosition() != i10) {
-                        wb0Var.D(i10);
+                org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) obj4;
+                Utilities.Callback callback = (Utilities.Callback) obj5;
+                JSONObject jSONObject = (JSONObject) obj3;
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (tL_error == null && (bool instanceof TLRPC.TL_boolTrue)) {
+                    boolean optBoolean = jSONObject.optBoolean("disconnect");
+                    long j11 = this.f24468b;
+                    int i16 = this.f24469c;
+                    if (optBoolean) {
+                        TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
+                        tonconnectclosesession.session_id = j11;
+                        f2Var.f34194f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.t1(f2Var, callback, j11, i16, 1));
                         return;
                     }
+                    f2Var.d(j11, i16, callback);
                     return;
                 }
-                return;
-            case 8:
-                pc0 pc0Var = (pc0) this.f23115b;
-                pc0Var.f27969n.y(pc0Var.f27968f.T((View) obj));
-                return;
-            case 9:
-                re0 re0Var = (re0) this.f23115b;
-                Integer num2 = (Integer) obj;
-                FrameLayout frameLayout = re0Var.h;
-                if (re0Var.getContext() != null) {
-                    if (re0Var.getContext().getResources().getConfiguration().orientation == 2) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    int intValue = num2.intValue() - AndroidUtilities.navigationBarHeight;
-                    if (SharedConfig.passcodeType == 1) {
-                        ViewPropertyAnimator animate = frameLayout.animate();
-                        float f12 = 1.0f;
-                        if (intValue <= AndroidUtilities.dp(20.0f)) {
-                            top = 0.0f;
-                        } else {
-                            float f13 = 2.0f;
-                            float height = (re0Var.getHeight() - intValue) / 2.0f;
-                            float height2 = frameLayout.getHeight();
-                            if (z10) {
-                                f13 = 1.0f;
-                            }
-                            top = (height - (height2 / f13)) - frameLayout.getTop();
-                        }
-                        ViewPropertyAnimator duration = animate.translationY(top).setDuration(320L);
-                        es esVar = es.h;
-                        duration.setInterpolator(esVar).start();
-                        ViewPropertyAnimator animate2 = re0Var.I.animate();
-                        if (intValue > AndroidUtilities.dp(20.0f)) {
-                            f12 = 0.0f;
-                        }
-                        animate2.alpha(f12).setDuration(320L).setInterpolator(esVar);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 10:
-                pf0 pf0Var = (pf0) this.f23115b;
-                pf0Var.K.b(pf0Var.N, true, 0, ((Long) obj).longValue());
-                pf0Var.dismiss();
-                return;
-            case 11:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f23115b;
-                Bitmap bitmap = (Bitmap) obj;
-                ColorMatrix colorMatrix = new ColorMatrix();
-                if (org.telegram.ui.ActionBar.g6.I.q()) {
-                    f7 = 0.04f;
-                } else {
-                    f7 = 0.25f;
-                }
-                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, f7);
-                float f14 = -0.07f;
-                if (org.telegram.ui.ActionBar.g6.I.q()) {
-                    f10 = -0.04f;
-                } else {
-                    f10 = -0.07f;
-                }
-                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f10);
-                Bitmap applyColorMatrix = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix);
-                applyColorMatrix.setHasAlpha(false);
-                ColorMatrix colorMatrix2 = new ColorMatrix();
-                if (org.telegram.ui.ActionBar.g6.I.q()) {
-                    f11 = 2.0f;
-                } else {
-                    f11 = 3.0f;
-                }
-                colorMatrix2.setSaturation(f11);
-                if (!org.telegram.ui.ActionBar.g6.I.q()) {
-                    if (org.telegram.ui.ActionBar.g6.I.q()) {
-                        f14 = -0.2f;
-                    }
-                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, f14);
-                }
-                Bitmap applyColorMatrix2 = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix2);
-                applyColorMatrix2.setHasAlpha(false);
-                bitmap.recycle();
-                callback2.run(applyColorMatrix, applyColorMatrix2);
-                return;
-            case 12:
-                fz0 fz0Var = (fz0) this.f23115b;
-                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
-                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
-                updatebirthday.flags |= 1;
-                updatebirthday.birthday = tL_birthday2;
-                int i12 = fz0Var.f24836a;
-                TLRPC.UserFull userFull = MessagesController.getInstance(i12).getUserFull(UserConfig.getInstance(i12).getClientUserId());
-                if (userFull != null) {
-                    tL_birthday = userFull.birthday;
-                } else {
-                    tL_birthday = null;
-                }
-                if (userFull != null) {
-                    userFull.flags2 |= 32;
-                    userFull.birthday = tL_birthday2;
-                    MessagesStorage.getInstance(i12).updateUserInfo(userFull, false);
-                }
-                ConnectionsManager.getInstance(i12).sendRequest(updatebirthday, new bi.e5(fz0Var, userFull, tL_birthday, 13), 1024);
-                MessagesController.getInstance(i12).invalidateContentSettings();
-                MessagesController.getInstance(i12).removeSuggestion(0L, "BIRTHDAY_SETUP");
-                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+                callback.run(org.telegram.ui.Wallet.f2.x(tL_error, "submitResponse"));
                 return;
             default:
-                i71 i71Var = (i71) this.f23115b;
-                i71Var.W2.Q(i71Var.T((View) obj), i71Var.f25575a3);
+                Context context2 = (Context) obj5;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj4;
+                Runnable runnable = (Runnable) obj3;
+                GiftAuctionController.Auction auction = (GiftAuctionController.Auction) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                if (auction != null) {
+                    int i17 = this.f24469c;
+                    long j12 = UserConfig.getInstance(i17).clientUserId;
+                    long peerDialogId = DialogObject.getPeerDialogId(auction.auctionUserState.peer);
+                    long j13 = this.f24468b;
+                    if (j13 != peerDialogId && j13 != 0 && peerDialogId != 0) {
+                        ai.g0 g0Var = new ai.g0(context2, i17, auction, j13, runnable);
+                        if (i11 >= 0) {
+                            chat = MessagesController.getInstance(i17).getUser(Long.valueOf(peerDialogId));
+                            j10 = peerDialogId;
+                        } else {
+                            j10 = peerDialogId;
+                            chat = MessagesController.getInstance(i17).getChat(Long.valueOf(-j10));
+                        }
+                        if (i10 >= 0) {
+                            chat2 = MessagesController.getInstance(i17).getUser(Long.valueOf(j13));
+                        } else {
+                            chat2 = MessagesController.getInstance(i17).getChat(Long.valueOf(-j13));
+                        }
+                        LinearLayout e = org.telegram.messenger.wh.e(context2, 1);
+                        e.addView(new ai.h7(context2, chat, chat2), w7.z5.t(-1, -2, 48, 0, -4, 0, 0));
+                        TextView textView = new TextView(context2);
+                        NotificationCenter.listenEmojiLoading(textView);
+                        textView.setText(LocaleController.getString(R.string.Gift2AuctionsChangeRecipient));
+                        int i18 = org.telegram.ui.ActionBar.h6.f21092j5;
+                        org.telegram.ui.Cells.t0.r(i18, d6Var, textView, 1, 20.0f);
+                        if (LocaleController.isRTL) {
+                            i12 = 5;
+                        } else {
+                            i12 = 3;
+                        }
+                        textView.setGravity(i12);
+                        if (LocaleController.isRTL) {
+                            i13 = 5;
+                        } else {
+                            i13 = 3;
+                        }
+                        e.addView(textView, w7.z5.a(-2.0f, 24.0f, 19.0f, 24.0f, 2.0f, -2, i13 | 48));
+                        TextView textView2 = new TextView(context2);
+                        org.telegram.messenger.wh.o(i18, d6Var, textView2, 1, 16.0f);
+                        org.telegram.messenger.wh.r(R.string.Gift2AuctionsChangeRecipient2, new Object[]{DialogObject.getShortName(j10), DialogObject.getShortName(j13)}, textView2);
+                        e.addView(textView2, w7.z5.t(-1, -2, 48, 24, 4, 24, 4));
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2, 0, d6Var);
+                        alertDialog$Builder.n(e);
+                        alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new qg.g0(g0Var, 28));
+                        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                        alertDialog$Builder.f20601a.show();
+                        return;
+                    } else if (auction.auctionUserState.bid_date > 0 && !auction.isFinished()) {
+                        yh.n nVar = new yh.n(context2, d6Var, null, auction);
+                        nVar.f50418n0 = runnable;
+                        nVar.show();
+                        return;
+                    } else {
+                        new yh.w(context2, d6Var, j13, auction.gift, runnable).show();
+                        return;
+                    }
+                }
                 return;
         }
+    }
+
+    public a3(Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10, long j10, Runnable runnable) {
+        this.e = context;
+        this.d = d6Var;
+        this.f24469c = i10;
+        this.f24468b = j10;
+        this.f24470f = runnable;
+    }
+
+    public a3(org.telegram.ui.Wallet.f2 f2Var, Utilities.Callback callback, JSONObject jSONObject, long j10, int i10) {
+        this.d = f2Var;
+        this.e = callback;
+        this.f24470f = jSONObject;
+        this.f24468b = j10;
+        this.f24469c = i10;
     }
 }

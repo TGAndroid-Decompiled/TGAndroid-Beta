@@ -1,39 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.ViewGroup;
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class j50 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.eq f36929u1;
-    public final n60 f36930v1;
+public final class j50 extends org.telegram.ui.Cells.d4 {
+    public final m50 f38046f0;
 
-    public j50(n60 n60Var, LaunchActivity launchActivity, org.telegram.ui.Components.eq eqVar) {
-        super(launchActivity, null);
-        this.f36930v1 = n60Var;
-        this.f36929u1 = eqVar;
+    public j50(m50 m50Var, Context context) {
+        super(context);
+        this.f38046f0 = m50Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
-            org.telegram.ui.Components.eq eqVar = this.f36929u1;
-            eqVar.f24451f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            eqVar.draw(canvas);
-            canvas.restore();
-            invalidate();
-        }
+    public final void d(org.telegram.ui.Cells.d4 d4Var) {
+        s50 s50Var = this.f38046f0.M;
+        s50 s50Var2 = s50.D3;
+        s50Var.G1(d4Var);
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        ViewGroup viewGroup;
-        if (getAlpha() != f7) {
-            super.setAlpha(f7);
-            viewGroup = ((org.telegram.ui.ActionBar.e3) this.f36930v1).containerView;
-            viewGroup.invalidate();
+    public final void onMeasure(int i10, int i11) {
+        if (AndroidUtilities.isTablet()) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(420.0f), View.MeasureSpec.getSize(i10)), 1073741824), i11);
+        } else {
+            super.onMeasure(i10, i11);
         }
     }
 }

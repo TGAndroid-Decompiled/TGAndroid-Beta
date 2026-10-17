@@ -1,117 +1,198 @@
 package org.telegram.ui;
 
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-import org.telegram.messenger.Intro;
-import org.telegram.messenger.NotificationCenter;
-public final class d80 implements TextureView.SurfaceTextureListener {
-    public final int f34915a;
-    public final NotificationCenter.NotificationCenterDelegate f34916b;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.RadioButton;
+public final class d80 extends org.telegram.ui.Components.hm0 {
+    public final Context f36098c;
+    public final boolean d;
+    public final LanguageSelectActivity e;
 
-    public d80(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f34915a = i10;
-        this.f34916b = notificationCenterDelegate;
+    public d80(LanguageSelectActivity languageSelectActivity, Context context, boolean z10) {
+        this.e = languageSelectActivity;
+        this.f36098c = context;
+        this.d = z10;
     }
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        switch (this.f34915a) {
-            case 0:
-                h80 h80Var = (h80) this.f34916b;
-                if (h80Var.I == null && surfaceTexture != null) {
-                    h80Var.I = new f80(h80Var, surfaceTexture);
-                    Intro.onSurfaceChanged(i10, i11, Math.min(i10 / 150.0f, i11 / 150.0f), 0);
-                    h80Var.I.postRunnable(new zz(this, 12));
-                    f80 f80Var = h80Var.I;
-                    f80Var.postRunnable(f80Var.f35481w);
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final boolean D(s4.b1 b1Var) {
+        int i10 = b1Var.f45941f;
+        if (i10 != 0 && i10 != 4 && i10 != 5 && i10 != 2) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        TextureView textureView;
-        switch (this.f34915a) {
-            case 0:
-                h80 h80Var = (h80) this.f34916b;
-                f80 f80Var = h80Var.I;
-                if (f80Var != null) {
-                    f80Var.postRunnable(new zz(f80Var, 14));
-                    h80Var.I = null;
-                    return true;
-                }
-                return true;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f34916b;
-                if (photoViewer.B2 != null) {
-                    org.telegram.ui.Components.fh0 fh0Var = org.telegram.ui.Components.fh0.f24733p0;
-                    if (fh0Var.P && org.telegram.ui.Components.fh0.p() != null && org.telegram.ui.Components.fh0.p().f43934b.f45646a != 0) {
-                        TextureView textureView2 = null;
-                        if (fh0Var != null) {
-                            textureView = fh0Var.f24749l0;
+    public final int h() {
+        int i10;
+        int i11;
+        boolean z10 = this.d;
+        LanguageSelectActivity languageSelectActivity = this.e;
+        if (z10) {
+            ArrayList arrayList = languageSelectActivity.e;
+            if (arrayList == null) {
+                return 0;
+            }
+            return arrayList.size();
+        }
+        if (!languageSelectActivity.getMessagesController().isTranslationsManualEnabled() && !languageSelectActivity.getMessagesController().isTranslationsAutoEnabled()) {
+            i11 = 1;
+        } else {
+            if (languageSelectActivity.getMessagesController().isTranslationsManualEnabled()) {
+                i10 = 3;
+            } else {
+                i10 = 2;
+            }
+            if (languageSelectActivity.getMessagesController().isTranslationsAutoEnabled() && !languageSelectActivity.getMessagesController().premiumFeaturesBlocked()) {
+                i10++;
+            }
+            if (languageSelectActivity.g0() || languageSelectActivity.h0()) {
+                i10++;
+            }
+            i11 = i10 + 1;
+        }
+        int size = languageSelectActivity.f33140f.size() + i11 + 1;
+        if (!languageSelectActivity.h.isEmpty()) {
+            return languageSelectActivity.h.size() + 1 + size;
+        }
+        return size;
+    }
+
+    @Override
+    public final int j(int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d80.j(int):int");
+    }
+
+    @Override
+    public final void v(s4.b1 r22, int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d80.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        int i11;
+        int i12;
+        float f7;
+        float f10;
+        int i13;
+        int i14;
+        float f11;
+        org.telegram.ui.Cells.z6 z6Var;
+        int i15 = 5;
+        Context context = this.f36098c;
+        if (i10 != 0) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 != 4 && i10 != 5) {
+                        if (i10 != 6) {
+                            z6Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.t0) null);
                         } else {
-                            textureView = null;
+                            z6Var = new org.telegram.ui.Cells.d9(context);
                         }
-                        textureView.setSurfaceTexture(surfaceTexture);
-                        if (fh0Var != null) {
-                            textureView2 = fh0Var.f24749l0;
-                        }
-                        textureView2.setVisibility(0);
-                        return false;
-                    } else if (photoViewer.F3) {
-                        if (photoViewer.L3) {
-                            photoViewer.G3 = 2;
-                        }
-                        photoViewer.B2.setSurfaceTexture(surfaceTexture);
-                        photoViewer.B2.setVisibility(0);
-                        photoViewer.F3 = false;
-                        photoViewer.f31928e0.invalidate();
-                        return false;
+                    } else {
+                        z6Var = new org.telegram.ui.Cells.ba(context);
                     }
+                } else {
+                    z6Var = new org.telegram.ui.Cells.l4(context);
                 }
-                return true;
+            } else {
+                z6Var = new org.telegram.ui.Cells.v8(context);
+            }
+        } else {
+            ?? frameLayout = new FrameLayout(context);
+            frameLayout.e = 50;
+            frameLayout.f22265r = 21;
+            TextView textView = new TextView(context);
+            frameLayout.f22260a = textView;
+            org.telegram.messenger.wh.u(textView, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false), 1, 16.0f, 1);
+            textView.setMaxLines(1);
+            textView.setSingleLine(true);
+            if (LocaleController.isRTL) {
+                i11 = 5;
+            } else {
+                i11 = 3;
+            }
+            textView.setGravity(i11 | 16);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            textView.setEllipsize(truncateAt);
+            boolean z10 = LocaleController.isRTL;
+            if (z10) {
+                i12 = 5;
+            } else {
+                i12 = 3;
+            }
+            int i16 = i12 | 48;
+            float f12 = 64.0f;
+            if (z10) {
+                f7 = 21;
+            } else {
+                f7 = 64.0f;
+            }
+            if (z10) {
+                f10 = 64.0f;
+            } else {
+                f10 = 21;
+            }
+            frameLayout.addView(textView, w7.z5.a(-1.0f, f7, 0.0f, f10, 0.0f, -1, i16));
+            TextView textView2 = new TextView(context);
+            frameLayout.f22261b = textView2;
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21391z6, false));
+            textView2.setTextSize(1, 13.0f);
+            if (LocaleController.isRTL) {
+                i13 = 5;
+            } else {
+                i13 = 3;
+            }
+            textView2.setGravity(i13);
+            textView2.setLines(1);
+            textView2.setMaxLines(1);
+            textView2.setSingleLine(true);
+            textView2.setPadding(0, 0, 0, 0);
+            textView2.setEllipsize(truncateAt);
+            boolean z11 = LocaleController.isRTL;
+            if (z11) {
+                i14 = 5;
+            } else {
+                i14 = 3;
+            }
+            int i17 = i14 | 48;
+            if (z11) {
+                f11 = 21;
+            } else {
+                f11 = 64.0f;
+            }
+            if (!z11) {
+                f12 = 21;
+            }
+            frameLayout.addView(textView2, w7.z5.a(-2.0f, f11, 36.0f, f12, 0.0f, -2, i17));
+            RadioButton radioButton = new RadioButton(context);
+            frameLayout.f22262c = radioButton;
+            radioButton.setSize(AndroidUtilities.dp(20.0f));
+            radioButton.b(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21040g7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21059h7, false));
+            if (!LocaleController.isRTL) {
+                i15 = 3;
+            }
+            frameLayout.addView(radioButton, w7.z5.a(20.0f, 22.0f, 0.0f, 22.0f, 0.0f, 20, i15 | 16));
+            frameLayout.f22264n = LocaleController.isRTL;
+            frameLayout.setClipChildren(false);
+            z6Var = frameLayout;
         }
+        return new s4.b1(z6Var);
     }
 
     @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        switch (this.f34915a) {
-            case 0:
-                if (((h80) this.f34916b).I != null) {
-                    Intro.onSurfaceChanged(i10, i11, Math.min(i10 / 150.0f, i11 / 150.0f), 0);
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final void y(s4.b1 b1Var) {
+        View view = b1Var.f45938a;
+        if (view instanceof org.telegram.ui.Cells.f9) {
+            ((org.telegram.ui.Cells.f9) view).c();
         }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        switch (this.f34915a) {
-            case 0:
-                return;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f34916b;
-                if (photoViewer.G3 == 1) {
-                    photoViewer.x0(true);
-                    return;
-                }
-                return;
-        }
-    }
-
-    private final void c(SurfaceTexture surfaceTexture) {
-    }
-
-    private final void a(SurfaceTexture surfaceTexture, int i10, int i11) {
-    }
-
-    private final void b(SurfaceTexture surfaceTexture, int i10, int i11) {
     }
 }

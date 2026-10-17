@@ -1,22 +1,29 @@
 package org.telegram.messenger;
 
-import android.app.NotificationChannel;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-public final class ah implements org.telegram.ui.ActionBar.z1, Vector.TLDeserializer {
-    public static NotificationChannel a(Object obj) {
-        return (NotificationChannel) obj;
+import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
+public final class ah implements Runnable {
+    public final int f17871a;
+    public final NotificationsController f17872b;
+    public final LongSparseIntArray f17873c;
+    public final ArrayList d;
+
+    public ah(NotificationsController notificationsController, LongSparseIntArray longSparseIntArray, ArrayList arrayList, int i10) {
+        this.f17871a = i10;
+        this.f17872b = notificationsController;
+        this.f17873c = longSparseIntArray;
+        this.d = arrayList;
     }
 
     @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        return TLRPC.PollAnswer.TLdeserialize(inputSerializedData, i10, z10);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        SharedConfig.lambda$checkSdCard$1(a2Var, i10);
+    public final void run() {
+        switch (this.f17871a) {
+            case 0:
+                this.f17872b.lambda$processDialogsUpdateRead$31(this.f17873c, this.d);
+                return;
+            default:
+                this.f17872b.lambda$removeDeletedHisoryFromNotifications$14(this.f17873c, this.d);
+                return;
+        }
     }
 }

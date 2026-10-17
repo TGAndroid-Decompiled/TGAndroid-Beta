@@ -1,51 +1,50 @@
 package ug;
 
-import android.os.Bundle;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.zc;
-import org.telegram.ui.fo;
-public final class b0 extends vg.e {
-    public final c0 f46282r;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.d6;
+public final class b0 extends ei.d {
+    public final RectF f47672h0;
+    public boolean f47673i0;
+    public float f47674j0;
+    public final org.telegram.ui.Components.voip.h f47675k0;
 
-    public b0(c0 c0Var, c6 c6Var) {
-        super(c6Var);
-        this.f46282r = c0Var;
+    public b0(Context context, d6 d6Var) {
+        super(context, d6Var, true);
+        this.f47672h0 = new RectF();
+        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
+        this.f47675k0 = hVar;
+        hVar.f31474n = 1.2f;
+        hVar.f31471k = false;
+        hVar.f31473m = 4.0f;
     }
 
     @Override
-    public final void E() {
-        String string;
-        c0 c0Var = this.f46282r;
-        String str = c0Var.f46288a0;
-        if ((str == null || str.isEmpty()) && c0Var.X.to_id == -1) {
-            string = LocaleController.getString(R.string.BoostingOnlyGiveawayCreatorSeeLink);
+    public final void onDraw(Canvas canvas) {
+        if (this.f47673i0) {
+            float f7 = this.f47674j0 + 0.016f;
+            this.f47674j0 = f7;
+            if (f7 > 3.0f) {
+                this.f47673i0 = false;
+            }
         } else {
-            string = LocaleController.getString(R.string.BoostingOnlyRecipientCode);
+            float f10 = this.f47674j0 - 0.016f;
+            this.f47674j0 = f10;
+            if (f10 < 1.0f) {
+                this.f47673i0 = true;
+            }
         }
-        new zc(c0Var.container, c0.Q(c0Var)).Q(R.raw.chats_infotip, 36, string).k(true);
-    }
-
-    @Override
-    public final void F(TLObject tLObject) {
-        c0 c0Var = this.f46282r;
-        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = c0Var.X;
-        m2 m2Var = c0Var.f24070n;
-        c0Var.dismiss();
-        if (tLObject instanceof TLRPC.Chat) {
-            m2Var.presentFragment(fo.W9(-((TLRPC.Chat) tLObject).f18916id));
-        } else if (tLObject instanceof TLRPC.User) {
-            m2Var.presentFragment(fo.W9(((TLRPC.User) tLObject).f19063id));
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -DialogObject.getPeerDialogId(tL_payments_checkedGiftCode.from_id));
-            bundle.putInt("message_id", tL_payments_checkedGiftCode.giveaway_msg_id);
-            m2Var.presentFragment(new fo(bundle));
-        }
+        RectF rectF = this.f47672h0;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        sg.a1.d().f((-getMeasuredWidth()) * 0.1f * this.f47674j0, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), sg.a1.d().e());
+        int measuredWidth = getMeasuredWidth();
+        org.telegram.ui.Components.voip.h hVar = this.f47675k0;
+        hVar.f31467f = measuredWidth;
+        hVar.a(AndroidUtilities.dp(8.0f), canvas, rectF, null);
+        super.onDraw(canvas);
+        invalidate();
     }
 }

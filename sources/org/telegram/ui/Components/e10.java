@@ -1,141 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class e10 extends View {
-    public int E;
-    public RectF F;
-    public float G;
-    public ValueAnimator H;
-    public boolean f24246a;
-    public boolean f24247b;
-    public boolean f24248c;
-    public String d;
-    public TextPaint e;
-    public Paint f24249f;
-    public Paint h;
-    public Paint f24250n;
-    public int f24251r;
-    public int f24252s;
-    public int v;
-    public int f24253w;
-    public int f24254x;
-    public int f24255y;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class e10 extends hm0 {
+    public final k10 f25776c;
 
-    public final void a(boolean z10, boolean z11) {
-        this.f24247b = z10;
-        float f7 = 0.0f;
-        if (this.f24246a && z11) {
-            ValueAnimator valueAnimator = this.H;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.H.cancel();
+    public e10(k10 k10Var) {
+        this.f25776c = k10Var;
+    }
+
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        if (b1Var.f45941f == 2) {
+            int b10 = b1Var.b();
+            k10 k10Var = this.f25776c;
+            if (b10 >= k10Var.f27687r0 && b1Var.b() <= k10Var.f27688s0) {
+                return true;
             }
-            float f10 = this.G;
-            if (z10) {
-                f7 = 1.0f;
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.f25776c.f27684o0;
+    }
+
+    @Override
+    public final int j(int i10) {
+        k10 k10Var = this.f25776c;
+        k10Var.getClass();
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 != k10Var.f27685p0 && i10 != k10Var.f27689t0 && i10 != k10Var.f27693x0) {
+            if (i10 != k10Var.f27686q0 && i10 != k10Var.f27690u0) {
+                return 2;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.H = ofFloat;
-            ofFloat.addUpdateListener(new n6(this, 25));
-            this.H.setDuration(300L);
-            this.H.start();
-            return;
+            return 3;
         }
-        if (z10) {
-            f7 = 1.0f;
-        }
-        this.G = f7;
+        return 1;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        Canvas canvas2;
-        int i10 = this.f24253w;
-        RectF rectF = this.F;
-        Paint paint = this.h;
-        Paint paint2 = this.f24250n;
-        Paint paint3 = this.f24249f;
-        TextPaint textPaint = this.e;
-        super.draw(canvas);
-        float f10 = this.G;
-        if (f10 <= 0.5f) {
-            f7 = f10 / 0.5f;
-            paint3.setColor(Color.rgb(Color.red(this.f24251r) + ((int) ((Color.red(this.f24252s) - Color.red(this.f24251r)) * f7)), Color.green(this.f24251r) + ((int) ((Color.green(this.f24252s) - Color.green(this.f24251r)) * f7)), Color.blue(this.f24251r) + ((int) ((Color.blue(this.f24252s) - Color.blue(this.f24251r)) * f7))));
-            textPaint.setColor(Color.rgb(Color.red(this.f24252s) + ((int) ((Color.red(this.v) - Color.red(this.f24252s)) * f7)), Color.green(this.f24252s) + ((int) ((Color.green(this.v) - Color.green(this.f24252s)) * f7)), Color.blue(this.f24252s) + ((int) ((Color.blue(this.v) - Color.blue(this.f24252s)) * f7))));
+    public final void v(s4.b1 r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e10.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        j10 j10Var;
+        j10 j10Var2;
+        k10 k10Var = this.f25776c;
+        if (i10 == 0) {
+            boolean z10 = false;
+            Context context = k10Var.getContext();
+            if ((k10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) || k10Var.f27671a0 != null) {
+                z10 = true;
+            }
+            j10Var = new j10(k10Var, context, z10, k10Var.f27676f0, k10Var.f27674d0, k10Var.f27675e0);
+            k10Var.f27683n0 = j10Var;
         } else {
-            textPaint.setColor(this.v);
-            paint3.setColor(this.f24252s);
-            f7 = 1.0f;
+            j10Var = null;
+            if (i10 == 1) {
+                ?? d9Var = new org.telegram.ui.Cells.d9(k10Var.getContext());
+                d9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20928a7, false));
+                j10Var2 = d9Var;
+            } else if (i10 == 2) {
+                ?? f4Var = new org.telegram.ui.Cells.f4(1, 0, k10Var.getContext(), false);
+                f4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+                j10Var = f4Var;
+            } else if (i10 == 3) {
+                ?? h10Var = new h10(k10Var.getContext());
+                h10Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+                j10Var2 = h10Var;
+            }
+            j10Var = j10Var2;
         }
-        int measuredHeight = getMeasuredHeight() >> 1;
-        paint.setColor(this.f24252s);
-        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint3);
-        canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint);
-        String str = this.d;
-        if (str != null) {
-            canvas.drawText(str, (f7 * this.f24255y) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
-        }
-        float f11 = 2.0f - (this.G / 0.5f);
-        canvas.save();
-        canvas.scale(0.9f, 0.9f, AndroidUtilities.dpf2(7.0f), measuredHeight);
-        canvas.translate(AndroidUtilities.dp(12.0f), measuredHeight - AndroidUtilities.dp(9.0f));
-        if (this.G > 0.5f) {
-            paint2.setColor(this.v);
-            float f12 = 1.0f - f11;
-            canvas2 = canvas;
-            canvas2.drawLine(AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) - (AndroidUtilities.dp(4.0f) * f12)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(4.0f) * f12)), paint2);
-            canvas2.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) ((AndroidUtilities.dp(8.0f) * f12) + AndroidUtilities.dpf2(7.0f)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(8.0f) * f12)), paint2);
-        } else {
-            canvas2 = canvas;
-        }
-        canvas2.restore();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f24246a = true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f24246a = false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int measureText;
-        Paint paint = this.h;
-        RectF rectF = this.F;
-        int i12 = this.E;
-        String str = this.d;
-        if (str == null) {
-            measureText = 0;
-        } else {
-            measureText = (int) this.e.measureText(str);
-        }
-        setMeasuredDimension((i12 * 2) + measureText + (this.f24254x << 1), AndroidUtilities.dp(4.0f) + this.f24253w);
-        if (getMeasuredWidth() != 0) {
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            rectF.inset((paint.getStrokeWidth() / 2.0f) + i12, (paint.getStrokeWidth() / 2.0f) + i12);
-        }
-    }
-
-    public void setChecked(boolean z10) {
-        a(z10, true);
-    }
-
-    public void setText(String str) {
-        this.d = str;
-        requestLayout();
+        return new s4.b1(j10Var);
     }
 }

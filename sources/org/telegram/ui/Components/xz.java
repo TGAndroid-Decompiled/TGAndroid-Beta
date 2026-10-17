@@ -1,53 +1,173 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class xz extends ReplacementSpan {
-    public final int f31087a;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+public class xz extends s4.s {
+    public final SparseArray Q;
+    public int R;
+    public int S;
+    public int T;
+    public final int U;
+    public final im0 V;
+    public boolean W;
+    public boolean X;
 
-    public xz(int i10) {
-        this.f31087a = i10;
+    public xz(int i10, int i11, im0 im0Var) {
+        super(i10);
+        this.Q = new SparseArray();
+        this.R = -1;
+        this.W = true;
+        this.X = true;
+        this.V = im0Var;
+        this.U = i11;
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f31087a;
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f31087a) {
-            case 0:
-                return (int) paint.measureText(charSequence, i10, i11);
-            case 1:
-                return AndroidUtilities.dp(16.0f);
-            case 2:
-                return AndroidUtilities.dp(12.0f);
-            case 3:
-                return AndroidUtilities.dp(12.0f);
-            default:
-                return AndroidUtilities.dp(16.0f);
+    public final void B1() {
+        im0 im0Var;
+        s4.g0 adapter;
+        int i10;
+        im0 im0Var2;
+        if (this.S > 0 && D1() && (adapter = (im0Var = this.V).getAdapter()) != null) {
+            int i11 = this.J;
+            boolean z10 = true;
+            int h = adapter.h() - 1;
+            g.o oVar = this.O;
+            boolean z11 = true;
+            int i12 = 0;
+            int i13 = 0;
+            int i14 = 0;
+            while (true) {
+                i10 = this.U;
+                if (i12 < h) {
+                    int i15 = oVar.i(i12);
+                    i13 += i15;
+                    if (i15 == i11 || i13 > i11) {
+                        z11 = z10;
+                        i13 = i15;
+                    }
+                    if (!z11) {
+                        im0Var2 = im0Var;
+                    } else {
+                        int j10 = adapter.j(i12);
+                        SparseArray sparseArray = this.Q;
+                        s4.b1 b1Var = (s4.b1) sparseArray.get(j10, null);
+                        if (b1Var == null) {
+                            b1Var = adapter.d(im0Var, j10);
+                            View view = b1Var.f45938a;
+                            sparseArray.put(j10, b1Var);
+                            if (view.getLayoutParams() == null) {
+                                view.setLayoutParams(n());
+                            }
+                        }
+                        View view2 = b1Var.f45938a;
+                        if (this.W) {
+                            adapter.v(b1Var, i12);
+                        }
+                        s4.o0 o0Var = (s4.o0) view2.getLayoutParams();
+                        im0Var2 = im0Var;
+                        view2.measure(s4.n0.s(d(), this.T, this.f46037k, E() + D() + ((ViewGroup.MarginLayoutParams) o0Var).leftMargin + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, ((ViewGroup.MarginLayoutParams) o0Var).width), s4.n0.s(this.X, this.S, this.f46038l, C() + F() + ((ViewGroup.MarginLayoutParams) o0Var).topMargin + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) o0Var).height));
+                        i14 += view2.getMeasuredHeight();
+                        if (i14 >= (this.S - i10) - im0Var2.getPaddingBottom()) {
+                            break;
+                        }
+                        z11 = false;
+                    }
+                    i12++;
+                    im0Var = im0Var2;
+                    z10 = true;
+                } else {
+                    im0Var2 = im0Var;
+                    break;
+                }
+            }
+            this.R = Math.max(0, ((this.S - i14) - i10) - im0Var2.getPaddingBottom());
         }
     }
 
-    public xz(boolean z10) {
-        this.f31087a = 0;
+    public final void C1() {
+        this.W = false;
     }
 
-    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    public boolean D1() {
+        return true;
     }
 
-    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    @Override
+    public final void Q() {
+        this.Q.clear();
+        B1();
     }
 
-    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    @Override
+    public final void V(RecyclerView recyclerView, int i10, int i11) {
+        super.V(recyclerView, i10, i11);
+        B1();
     }
 
-    private final void d(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    @Override
+    public final void W(RecyclerView recyclerView) {
+        this.Q.clear();
+        B1();
+        super.W(recyclerView);
     }
 
-    private final void e(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    @Override
+    public final void X(RecyclerView recyclerView, int i10, int i11) {
+        super.X(recyclerView, i10, i11);
+        B1();
+    }
+
+    @Override
+    public final void Y(RecyclerView recyclerView, int i10, int i11) {
+        super.Y(recyclerView, i10, i11);
+        B1();
+    }
+
+    @Override
+    public final void Z() {
+        B1();
+    }
+
+    @Override
+    public final void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
+        super.a0(recyclerView, i10, i11, obj);
+        B1();
+    }
+
+    @Override
+    public final void d0(qf.e eVar, s4.y0 y0Var, int i10, int i11) {
+        int i12 = this.S;
+        this.T = View.MeasureSpec.getSize(i10);
+        int size = View.MeasureSpec.getSize(i11);
+        this.S = size;
+        if (i12 != size) {
+            B1();
+        }
+        super.d0(eVar, y0Var, i10, i11);
+    }
+
+    @Override
+    public final boolean e() {
+        return this.X;
+    }
+
+    @Override
+    public final void w1(View view, int i10, boolean z10) {
+        if (this.V.G(view).b() == B() - 1) {
+            ((ViewGroup.MarginLayoutParams) ((s4.o0) view.getLayoutParams())).height = Math.max(this.R, 0);
+        }
+        super.w1(view, i10, z10);
+    }
+
+    public xz(int i10, org.telegram.ui.y40 y40Var) {
+        super(i10, false);
+        this.Q = new SparseArray();
+        this.R = -1;
+        this.W = true;
+        this.X = true;
+        this.V = y40Var;
+        this.U = 0;
     }
 }

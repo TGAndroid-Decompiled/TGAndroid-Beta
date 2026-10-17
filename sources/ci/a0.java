@@ -1,0 +1,56 @@
+package ci;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public final class a0 implements Runnable {
+    public final int f5131a;
+    public final x0 f5132b;
+
+    public a0(x0 x0Var, int i10) {
+        this.f5131a = i10;
+        this.f5132b = x0Var;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f5131a) {
+            case 0:
+                this.f5132b.b();
+                return;
+            default:
+                x0 x0Var = this.f5132b;
+                ArrayList arrayList = x0Var.f6144s;
+                a0 a0Var = x0Var.E;
+                if (a0Var != null) {
+                    AndroidUtilities.cancelRunOnUIThread(a0Var);
+                    x0Var.E = null;
+                }
+                int currentTime = ConnectionsManager.getInstance(x0Var.N).getCurrentTime();
+                for (int size = arrayList.size() - 1; size >= 0; size--) {
+                    w0 w0Var = (w0) arrayList.get(size);
+                    ArrayList arrayList2 = w0Var.f6102f;
+                    int size2 = arrayList2.size();
+                    int i10 = 0;
+                    while (true) {
+                        if (i10 < size2) {
+                            Object obj = arrayList2.get(i10);
+                            i10++;
+                            v0 v0Var = (v0) obj;
+                            long j10 = v0Var.f6070g;
+                            if (j10 <= 0 || currentTime - v0Var.d > u.b(w0Var.f6099a, (int) j10, 0)) {
+                            }
+                        } else {
+                            arrayList.remove(size);
+                        }
+                    }
+                }
+                Collections.sort(arrayList, new a4.d(x0Var, 10));
+                x0Var.f6142n.N(true);
+                x0Var.u(true);
+                x0Var.m();
+                return;
+        }
+    }
+}

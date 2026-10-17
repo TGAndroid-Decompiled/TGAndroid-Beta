@@ -1,47 +1,54 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class q41 extends AnimatorListenerAdapter {
-    public final int f39060a;
-    public final r41 f39061b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class q41 extends o51 {
+    public final z51 E;
 
-    public q41(r41 r41Var, int i10) {
-        this.f39060a = i10;
-        this.f39061b = r41Var;
+    public q41(z51 z51Var, Context context, boolean z10) {
+        super(z51Var, context, z10);
+        this.E = z51Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39060a) {
-            case 0:
-                r41 r41Var = this.f39061b;
-                if (r41Var.h != null) {
-                    r41Var.h = null;
-                    r41Var.e = 0.0f;
-                    r41Var.g();
-                    r41Var.f39278n.unlock();
-                    zx zxVar = r41Var.f39274a;
-                    if (zxVar != null) {
-                        zxVar.onPause();
-                        r41Var.f39274a.onFragmentDestroy();
-                        r41Var.removeAllViews();
-                        r41Var.f39274a = null;
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-                    }
-                    r41Var.d(false);
-                    return;
-                }
-                return;
-            default:
-                r41 r41Var2 = this.f39061b;
-                if (r41Var2.h != null) {
-                    r41Var2.h = null;
-                    r41Var2.d(true);
-                    return;
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        float y3;
+        z51 z51Var = this.E;
+        l41 l41Var = z51Var.f43594g0;
+        q41 q41Var = z51Var.f43592f0;
+        z41 z41Var = z51Var.U;
+        if (z41Var != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            float x10 = l41Var.getX() + q41Var.getX();
+            float y10 = l41Var.getY() + q41Var.getY();
+            ah.h0 h0Var = (ah.h0) z41Var;
+            ah.t0 t0Var = (ah.t0) h0Var.f774b;
+            ah.s0 s0Var = t0Var.f870a;
+            RectF rectF = AndroidUtilities.rectTmp;
+            float f7 = 0;
+            rectF.set(f7, f7, measuredWidth, measuredHeight);
+            org.telegram.ui.Components.bl0 delegate = ((org.telegram.ui.Components.cl0) h0Var.f775c).getDelegate();
+            float x11 = s0Var.getX() + x10;
+            if (t0Var.f890y == 1) {
+                y3 = s0Var.getY() - AndroidUtilities.statusBarHeight;
+            } else {
+                y3 = s0Var.getY() + t0Var.f872c.getY();
+            }
+            delegate.m(canvas, rectF, 0.0f, x11, y3 + y10, 255, true);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        if (f7 != getTranslationY()) {
+            super.setTranslationY(f7);
+            if (this.E.U != null) {
+                invalidate();
+            }
         }
     }
 }

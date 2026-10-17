@@ -6,22 +6,22 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import w7.n;
 public final class d extends h implements a {
-    public static final AtomicReferenceFieldUpdater f14233g = AtomicReferenceFieldUpdater.newUpdater(d.class, Object.class, "owner$volatile");
+    public static final AtomicReferenceFieldUpdater f15028g = AtomicReferenceFieldUpdater.newUpdater(d.class, Object.class, "owner$volatile");
     private volatile Object owner$volatile;
 
     public d(boolean z10) {
         super(z10 ? 1 : 0);
-        a6.i iVar;
+        com.google.android.gms.internal.clearcut.e eVar;
         if (z10) {
-            iVar = null;
+            eVar = null;
         } else {
-            iVar = e.f14234a;
+            eVar = e.f15029a;
         }
-        this.owner$volatile = iVar;
+        this.owner$volatile = eVar;
     }
 
     public final boolean c() {
-        if (Math.max(h.f14239f.get(this), 0) != 0) {
+        if (Math.max(h.f15034f.get(this), 0) != 0) {
             return false;
         }
         return true;
@@ -30,7 +30,7 @@ public final class d extends h implements a {
     public final Object d(md.c cVar) {
         int i10;
         while (true) {
-            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = h.f14239f;
+            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = h.f15034f;
             int i11 = atomicIntegerFieldUpdater.get(this);
             if (i11 > 1) {
                 do {
@@ -39,13 +39,13 @@ public final class d extends h implements a {
                     }
                 } while (!atomicIntegerFieldUpdater.compareAndSet(this, i10, 1));
             } else {
-                id.i iVar = id.i.f11390a;
+                id.i iVar = id.i.f12779a;
                 if (i11 <= 0) {
                     m l4 = f0.l(n.b(cVar));
                     try {
                         a(new c(this, l4));
                         Object r10 = l4.r();
-                        ld.a aVar = ld.a.f14658a;
+                        ld.a aVar = ld.a.f15993a;
                         if (r10 != aVar) {
                             r10 = iVar;
                         }
@@ -58,7 +58,7 @@ public final class d extends h implements a {
                         throw th2;
                     }
                 } else if (atomicIntegerFieldUpdater.compareAndSet(this, i11, i11 - 1)) {
-                    f14233g.set(this, null);
+                    f15028g.set(this, null);
                     return iVar;
                 }
             }
@@ -67,14 +67,14 @@ public final class d extends h implements a {
 
     public final void e(Object obj) {
         while (c()) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f14233g;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f15028g;
             Object obj2 = atomicReferenceFieldUpdater.get(this);
-            a6.i iVar = e.f14234a;
-            if (obj2 != iVar) {
+            com.google.android.gms.internal.clearcut.e eVar = e.f15029a;
+            if (obj2 != eVar) {
                 if (obj2 != obj && obj != null) {
                     throw new IllegalStateException(("This mutex is locked by " + obj2 + ", but " + obj + " is expected").toString());
                 }
-                while (!atomicReferenceFieldUpdater.compareAndSet(this, obj2, iVar)) {
+                while (!atomicReferenceFieldUpdater.compareAndSet(this, obj2, eVar)) {
                     if (atomicReferenceFieldUpdater.get(this) != obj2) {
                         break;
                     }
@@ -87,6 +87,6 @@ public final class d extends h implements a {
     }
 
     public final String toString() {
-        return "Mutex@" + f0.k(this) + "[isLocked=" + c() + ",owner=" + f14233g.get(this) + ']';
+        return "Mutex@" + f0.k(this) + "[isLocked=" + c() + ",owner=" + f15028g.get(this) + ']';
     }
 }

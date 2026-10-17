@@ -1,35 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class xb0 extends d91 {
-    public final Context f30909a;
-    public final vc0 f30910b;
+import org.telegram.messenger.MessageObject;
+public final class xb0 extends g.o {
+    public final ic0 f32359c;
 
-    public xb0(vc0 vc0Var, Context context) {
-        this.f30910b = vc0Var;
-        this.f30909a = context;
+    public xb0(ic0 ic0Var) {
+        this.f32359c = ic0Var;
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        pc0 pc0Var = (pc0) view;
-        pc0Var.h();
-        pc0Var.k(false);
-    }
-
-    @Override
-    public final View d(int i10) {
-        return new pc0(this.f30910b, this.f30909a, i10);
-    }
-
-    @Override
-    public final int e() {
-        return this.f30910b.e.f29035a.size();
-    }
-
-    @Override
-    public final int h(int i10) {
-        return ((sc0) this.f30910b.e.f29035a.get(i10)).f28817a;
+    public final int i(int i10) {
+        MessageObject messageObject;
+        MessageObject.GroupedMessages a2;
+        if (i10 >= 0) {
+            ic0 ic0Var = this.f32359c;
+            if (i10 < ic0Var.f27188r.previewMessages.size() && (a2 = ic0.a(ic0Var, (messageObject = ic0Var.f27188r.previewMessages.get(i10)))) != null) {
+                return a2.getPosition(messageObject).spanSize;
+            }
+            return 1000;
+        }
+        return 1000;
     }
 }

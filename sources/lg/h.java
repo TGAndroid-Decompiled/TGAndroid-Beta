@@ -2,30 +2,30 @@ package lg;
 
 import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 public final class h extends f {
-    public final Paint f14723q;
-    public int f14724r;
-    public final c6 f14725s;
+    public final Paint f16060q;
+    public int f16061r;
+    public final d6 f16062s;
 
-    public h(kg.a aVar, c6 c6Var) {
+    public h(kg.a aVar, d6 d6Var) {
         super(aVar, false, null);
         Paint paint = new Paint();
-        this.f14723q = paint;
-        this.f14724r = 0;
-        this.f14725s = c6Var;
-        this.f14712c.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        Paint paint2 = this.f14712c;
+        this.f16060q = paint;
+        this.f16061r = 0;
+        this.f16062s = d6Var;
+        this.f16049c.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        Paint paint2 = this.f16049c;
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         paint.setStyle(style);
-        this.f14712c.setAntiAlias(false);
+        this.f16049c.setAntiAlias(false);
     }
 
     @Override
     public final void a() {
         super.a();
-        this.f14724r = i0.a.d(0.3f, g6.w0(g6.f19601d6, this.f14725s), this.f14719m);
+        this.f16061r = i0.b.f(0.3f, h6.w0(h6.f20986d6, this.f16062s), this.f16056m);
     }
 }

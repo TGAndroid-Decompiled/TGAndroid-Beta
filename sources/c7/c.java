@@ -7,16 +7,16 @@ public enum c implements Parcelable {
     CROSS_PLATFORM("cross-platform");
     
     public static final Parcelable.Creator<c> CREATOR = new w.a(16);
-    public final String f4566a;
+    public final String f4936a;
 
     c(String str) {
-        this.f4566a = str;
+        this.f4936a = str;
     }
 
     public static c a(String str) {
         c[] values;
         for (c cVar : values()) {
-            if (str.equals(cVar.f4566a)) {
+            if (str.equals(cVar.f4936a)) {
                 return cVar;
             }
         }
@@ -30,11 +30,11 @@ public enum c implements Parcelable {
 
     @Override
     public final String toString() {
-        return this.f4566a;
+        return this.f4936a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f4566a);
+        parcel.writeString(this.f4936a);
     }
 }

@@ -1,91 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-public final class u8 implements org.telegram.ui.ActionBar.z1, yq {
-    public final int f29274a;
-    public final h9 f29275b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class u8 extends wq {
+    public final int f30905f0;
 
-    public u8(h9 h9Var, int i10) {
-        this.f29274a = i10;
-        this.f29275b = h9Var;
+    public u8(Context context, boolean z10, vq vqVar, int i10) {
+        super(context, z10, vqVar);
+        this.f30905f0 = i10;
     }
 
     @Override
-    public int J0(int i10) {
-        return 0;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f29274a) {
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f30905f0) {
             case 0:
-                this.f29275b.finishFragment();
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
                 return;
             default:
-                this.f29275b.finishFragment();
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
                 return;
         }
-    }
-
-    @Override
-    public void t0(int i10, int i11, boolean z10) {
-        h9 h9Var = this.f29275b;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                if (i11 != 2) {
-                    if (i11 == 3) {
-                        d9 d9Var = h9Var.Y;
-                        int i12 = d9Var.f24015f;
-                        if (i12 != i10 && (i12 == 0 || i10 == 0)) {
-                            d9 a2 = d9Var.a();
-                            h9Var.Y = a2;
-                            h9Var.f25209a.b(a2, true);
-                            h9Var.n0();
-                        }
-                        h9Var.Y.f24015f = i10;
-                    }
-                } else {
-                    d9 d9Var2 = h9Var.Y;
-                    int i13 = d9Var2.e;
-                    if (i13 != i10 && (i13 == 0 || i10 == 0)) {
-                        d9 a10 = d9Var2.a();
-                        h9Var.Y = a10;
-                        h9Var.f25209a.b(a10, true);
-                        h9Var.n0();
-                    }
-                    h9Var.Y.e = i10;
-                }
-            } else {
-                d9 d9Var3 = h9Var.Y;
-                int i14 = d9Var3.d;
-                if (i14 != i10 && (i14 == 0 || i10 == 0)) {
-                    d9 a11 = d9Var3.a();
-                    h9Var.Y = a11;
-                    h9Var.f25209a.b(a11, true);
-                    h9Var.n0();
-                }
-                h9Var.Y.d = i10;
-            }
-        } else {
-            d9 d9Var4 = h9Var.Y;
-            int i15 = d9Var4.f24014c;
-            if (i15 != i10 && (i15 == 0 || i10 == 0)) {
-                d9 a12 = d9Var4.a();
-                h9Var.Y = a12;
-                h9Var.f25209a.b(a12, true);
-                h9Var.n0();
-            }
-            h9Var.Y.f24014c = i10;
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-        h9Var.f25209a.invalidate();
-    }
-
-    @Override
-    public void k(boolean z10) {
-    }
-
-    @Override
-    public void y() {
     }
 }

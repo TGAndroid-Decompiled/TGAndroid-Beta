@@ -1,59 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class s31 extends l61 {
-    public static final int f28721a = 0;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+public final class s31 implements Runnable {
+    public final int f30180a;
+    public final MessageObject f30181b;
+    public final long f30182c;
+    public final String d;
 
-    static {
-        l61.setup(new l61());
+    public s31(String str, MessageObject messageObject, long j10, int i10) {
+        this.f30180a = i10;
+        this.f30181b = messageObject;
+        this.f30182c = j10;
+        this.d = str;
     }
 
     @Override
-    public final void bindView(View view, m61 m61Var, boolean z10, a71 a71Var, i71 i71Var) {
-        boolean z11;
-        int i10;
-        t31 t31Var = (t31) view;
-        boolean z12 = false;
-        if (m61Var.f26952r) {
-            t31Var.f();
-        } else {
-            Object obj = m61Var.G;
-            if (obj == null) {
-                if (m61Var.d == -2) {
-                    t31Var.c();
-                } else {
-                    if ((m61Var.f26958y & 1) != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    t31Var.d(z11, m61Var.f26951q, m61Var.e);
-                }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!m61Var.I) {
-                    t31Var.g(m61Var.f26957x, (TLRPC.TL_forumTopic) obj, m61Var.e);
-                } else {
-                    t31Var.b(m61Var.f26957x, (TLRPC.TL_forumTopic) obj, m61Var.e);
-                }
-            }
+    public final void run() {
+        int i10 = this.f30180a;
+        String str = this.d;
+        long j10 = this.f30182c;
+        MessageObject messageObject = this.f30181b;
+        switch (i10) {
+            case 0:
+                NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
+                int i11 = NotificationCenter.voiceTranscriptionUpdate;
+                Long valueOf = Long.valueOf(j10);
+                Boolean bool = Boolean.TRUE;
+                notificationCenter.lambda$postNotificationNameOnUIThread$1(i11, messageObject, valueOf, str, bool, bool);
+                return;
+            default:
+                y31.g(messageObject, j10, str);
+                return;
         }
-        if (w7.l6.a(m61Var.f26958y, 8)) {
-            i10 = AndroidUtilities.dp(10.0f);
-        } else {
-            i10 = 0;
-        }
-        t31Var.L = i10;
-        if (i71Var != null && i71Var.f25575a3 && t31Var.f28965s) {
-            z12 = true;
-        }
-        t31Var.setReorder(z12);
-    }
-
-    @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        return new t31(context, i10, c6Var);
     }
 }

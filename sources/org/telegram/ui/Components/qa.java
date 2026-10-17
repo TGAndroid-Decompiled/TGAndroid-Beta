@@ -1,54 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import org.telegram.messenger.AndroidUtilities;
 public final class qa {
-    public String f28251a;
-    public Bitmap f28252b;
-    public final Paint f28253c;
-    public final int d;
-    public final Runnable e;
-    public org.telegram.messenger.y7 f28254f;
+    public final int f29617a;
+    public final uj0 f29618b;
+    public final org.telegram.ui.Cells.z f29619c;
+    public final TextPaint d;
+    public final StaticLayout e;
+    public final float f29620f;
+    public final float f29621g;
+    public final RectF h;
+    public final f6 f29622i;
+    public final int f29623j;
+    public final int f29624k;
+    public boolean f29625l;
+    public int f29626m;
+    public final va0 f29627n;
 
-    public qa(int i10, Runnable runnable) {
-        Paint paint = new Paint(1);
-        this.f28253c = paint;
-        this.d = i10;
-        this.e = runnable;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-    }
-
-    public final void a() {
-        this.f28251a = null;
-        if (this.f28254f != null) {
-            Utilities.globalQueue.cancelRunnable(this.f28254f);
+    public qa(va0 va0Var, int i10, int i11, int i12, int i13, String str) {
+        float f7;
+        this.f29627n = va0Var;
+        TextPaint textPaint = new TextPaint(1);
+        this.d = textPaint;
+        this.h = new RectF();
+        this.f29622i = new f6(va0Var, 0L, 200L, bs.h);
+        this.f29626m = -1;
+        this.f29617a = i10;
+        this.f29623j = i12;
+        this.f29624k = i13;
+        uj0 uj0Var = new uj0(i11, AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f));
+        this.f29618b = uj0Var;
+        uj0Var.R(va0Var);
+        uj0Var.J(true);
+        uj0Var.h = true;
+        uj0Var.K(0);
+        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        int i14 = org.telegram.ui.ActionBar.h6.G6;
+        org.telegram.ui.ActionBar.d6 d6Var = va0Var.f29906a;
+        textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(i14, d6Var));
+        StaticLayout staticLayout = new StaticLayout(str, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.e = staticLayout;
+        if (staticLayout.getLineCount() > 0) {
+            f7 = staticLayout.getLineWidth(0);
+        } else {
+            f7 = 0.0f;
         }
-        Bitmap bitmap = this.f28252b;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            this.f28252b.recycle();
-        }
-        this.f28252b = null;
-    }
-
-    public final android.graphics.Bitmap b(android.graphics.Bitmap r9, java.lang.String r10, int r11, int r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qa.b(android.graphics.Bitmap, java.lang.String, int, int, boolean):android.graphics.Bitmap");
-    }
-
-    public final Bitmap c(ImageReceiver.BitmapHolder bitmapHolder) {
-        if (bitmapHolder == null) {
-            return null;
-        }
-        return b(bitmapHolder.bitmap, bitmapHolder.getKey(), bitmapHolder.orientation, 0, false);
-    }
-
-    public final Bitmap d(ImageReceiver imageReceiver) {
-        if (imageReceiver == null) {
-            return null;
-        }
-        return b(imageReceiver.getBitmap(), imageReceiver.getImageKey(), imageReceiver.getOrientation(), imageReceiver.getInvert(), false);
+        this.f29620f = f7;
+        this.f29621g = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
+        this.f29619c = org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(i14, d6Var)), 7, AndroidUtilities.dp(16.0f));
     }
 }

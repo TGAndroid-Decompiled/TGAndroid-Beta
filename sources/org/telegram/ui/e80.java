@@ -1,22 +1,60 @@
 package org.telegram.ui;
 
+import android.content.SharedPreferences;
+import android.os.StatFs;
+import java.io.File;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class e80 implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.ActionBar.a2 f35217a;
-    public final h80 f35218b;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+public final class e80 implements Runnable {
+    public final int f36421a;
+    public final LaunchActivity f36422b;
+    public final int f36423c;
 
-    public e80(h80 h80Var, org.telegram.ui.ActionBar.a2 a2Var) {
-        this.f35218b = h80Var;
-        this.f35217a = a2Var;
+    public e80(LaunchActivity launchActivity, int i10, int i11) {
+        this.f36421a = i11;
+        this.f36422b = launchActivity;
+        this.f36423c = i10;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.reloadInterface) {
-            this.f35217a.dismiss();
-            NotificationCenter.getGlobalInstance().removeObserver(this, i10);
-            AndroidUtilities.runOnUIThread(new zz(this, 13), 100L);
+    public final void run() {
+        File directory;
+        int i10 = this.f36421a;
+        int i11 = this.f36423c;
+        LaunchActivity launchActivity = this.f36422b;
+        switch (i10) {
+            case 0:
+                Pattern pattern = LaunchActivity.C1;
+                if (UserConfig.getInstance(launchActivity.O).isClientActivated()) {
+                    try {
+                        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                        if ((((i11 == 2 || i11 == 1) && Math.abs(launchActivity.f33188x1 - System.currentTimeMillis()) > 240000) || Math.abs(globalMainSettings.getLong("last_space_check", 0L) - System.currentTimeMillis()) >= 259200000) && (directory = FileLoader.getDirectory(4)) != null) {
+                            StatFs statFs = new StatFs(directory.getAbsolutePath());
+                            long availableBlocksLong = statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong();
+                            if (i11 > 0 || availableBlocksLong < 52428800) {
+                                if (i11 > 0) {
+                                    launchActivity.f33188x1 = System.currentTimeMillis();
+                                }
+                                globalMainSettings.edit().putLong("last_space_check", System.currentTimeMillis()).commit();
+                                AndroidUtilities.runOnUIThread(new l80(launchActivity, 10));
+                            } else {
+                                return;
+                            }
+                        }
+                        return;
+                    } catch (Throwable unused) {
+                        return;
+                    }
+                }
+                return;
+            default:
+                Pattern pattern2 = LaunchActivity.C1;
+                ConnectionsManager.getInstance(launchActivity.O).cancelRequest(i11, true);
+                return;
         }
     }
 }

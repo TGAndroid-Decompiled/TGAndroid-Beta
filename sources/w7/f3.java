@@ -1,9 +1,9 @@
 package w7;
 public final class f3 implements ja.d {
-    public static final f3 f47257a = new Object();
+    public static final f3 f48664a = new Object();
 
     static {
-        t8.b.s(t8.b.l(d.class, new a(1)));
+        r.c.s(r.c.l(d.class, new a(1)));
     }
 
     @Override

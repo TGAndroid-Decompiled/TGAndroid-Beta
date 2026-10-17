@@ -1,46 +1,38 @@
 package gi;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.m61;
-import r0.l1;
-public final class j implements Utilities.Callback5, Utilities.Callback5Return, r0.n, MessagesStorage.BooleanCallback {
-    public final p f10197a;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.s61;
+public final class j extends e61 {
+    static {
+        e61.setup(new e61());
+    }
 
-    public j(p pVar) {
-        this.f10197a = pVar;
+    public static f61 a(int i10, String str, String str2) {
+        f61 J = f61.J(j.class);
+        J.f26139k = i10;
+        J.f26140l = str;
+        J.f26141m = str2;
+        return J;
     }
 
     @Override
-    public l1 Q0(View view, l1 l1Var) {
-        i0.b f7 = l1Var.f43497a.f(519);
-        this.f10197a.d.setPadding(0, f7.f10893b, 0, f7.d);
-        return l1.f43496b;
+    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+        ((k) view).a(f61Var.f26140l, f61Var.f26141m, f61Var.f26139k);
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(p.U(this.f10197a, (m61) obj, (View) obj2));
+    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+        return new k(context, d6Var, false);
     }
 
     @Override
-    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        p.V(this.f10197a, (m61) obj);
-    }
-
-    @Override
-    public void run(boolean z10) {
-        p pVar = this.f10197a;
-        pVar.finishFragment();
-        pVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-pVar.f10232b), null, pVar.H, Boolean.valueOf(z10));
+    public final boolean isClickable() {
+        return false;
     }
 }

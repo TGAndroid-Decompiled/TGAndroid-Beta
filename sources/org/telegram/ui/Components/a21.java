@@ -1,27 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class a21 extends FrameLayout {
-    public static final int e = 0;
-    public float f23111a;
-    public float f23112b;
-    public boolean f23113c;
-    public final ThemeEditorView d;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class a21 extends s4.r0 {
+    public final ThemeEditorView.EditorAlert f24466a;
 
-    public a21(ThemeEditorView themeEditorView, Activity activity) {
-        super(activity);
-        this.d = themeEditorView;
+    public a21(ThemeEditorView.EditorAlert editorAlert) {
+        this.f24466a = editorAlert;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a21.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ThemeEditorView.EditorAlert.t(this.f24466a);
     }
 }

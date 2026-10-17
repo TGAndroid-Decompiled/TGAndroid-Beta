@@ -1,65 +1,65 @@
 package e2;
 
 import android.os.SystemClock;
-import b2.p1;
+import b2.o1;
 import j$.util.Objects;
 public final class b0 {
-    public final int f8320a;
-    public Object f8321b;
-    public int f8322c;
+    public final int f8199a;
+    public Object f8200b;
+    public int f8201c;
     public int d;
     public long e;
-    public boolean f8323f;
-    public long f8324g;
+    public boolean f8202f;
+    public long f8203g;
     public final e0 h;
 
     public b0(e0 e0Var, int i10) {
         this.h = e0Var;
-        this.f8320a = i10;
+        this.f8199a = i10;
     }
 
     public final void a() {
         Object l4;
         e0 e0Var = this.h;
-        i0 i0Var = e0Var.f8340f;
-        i2.h0 h0Var = e0Var.f8337a;
-        if (!h0Var.j0()) {
-            if (this.f8323f) {
+        i0 i0Var = e0Var.f8219f;
+        i2.g0 g0Var = e0Var.f8216a;
+        if (!g0Var.j0()) {
+            if (this.f8202f) {
                 i0Var.e(2);
             }
-            this.f8323f = false;
+            this.f8202f = false;
             return;
         }
-        p1 y02 = h0Var.y0();
+        o1 y02 = g0Var.y0();
         if (y02.p()) {
             l4 = null;
         } else {
-            l4 = y02.l(h0Var.A());
+            l4 = y02.l(g0Var.A());
         }
-        int m0 = h0Var.m0();
-        int N = h0Var.N();
-        long M0 = h0Var.M0();
+        int m0 = g0Var.m0();
+        int N = g0Var.N();
+        long M0 = g0Var.M0();
         if (l4 != null && m0 == -1) {
             M0 -= m0.h0(y02.g(l4, e0Var.e).e);
         }
         e0Var.d.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        boolean z10 = this.f8323f;
-        int i10 = this.f8320a;
-        if (z10 && Objects.equals(l4, this.f8321b) && m0 == this.f8322c && N == this.d && M0 == this.e) {
-            if (elapsedRealtime - this.f8324g >= i10) {
-                e0Var.f8339c.f10929a.A1(new i2.m(2, new f0(2, i10), 1003));
+        boolean z10 = this.f8202f;
+        int i10 = this.f8199a;
+        if (z10 && Objects.equals(l4, this.f8200b) && m0 == this.f8201c && N == this.d && M0 == this.e) {
+            if (elapsedRealtime - this.f8203g >= i10) {
+                e0Var.f8218c.f12309a.A1(new i2.l(2, new f0(2, i10), 1003));
                 return;
             }
             return;
         }
-        this.f8323f = true;
-        this.f8324g = elapsedRealtime;
-        this.f8321b = l4;
-        this.f8322c = m0;
+        this.f8202f = true;
+        this.f8203g = elapsedRealtime;
+        this.f8200b = l4;
+        this.f8201c = m0;
         this.d = N;
         this.e = M0;
         i0Var.e(2);
-        i0Var.f8360a.sendEmptyMessageDelayed(2, i10);
+        i0Var.f8239a.sendEmptyMessageDelayed(2, i10);
     }
 }

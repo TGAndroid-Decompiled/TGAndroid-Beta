@@ -1,851 +1,318 @@
 package org.telegram.ui.Cells;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.text.Layout;
-import android.text.NoCopySpan;
-import android.text.SpanWatcher;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextWatcher;
+import android.text.StaticLayout;
 import android.util.SparseArray;
-import android.util.SparseIntArray;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-public class o9 extends ba {
-    public boolean E0;
-    public int f21356r0;
-    public int f21359u0;
-    public s4.b0 f21364z0;
-    public int f21354p0 = -1;
-    public int f21355q0 = -1;
-    public int f21357s0 = -1;
-    public int f21358t0 = -1;
-    public int f21360v0 = -1;
-    public final SparseArray f21361w0 = new SparseArray();
-    public final SparseArray f21362x0 = new SparseArray();
-    public final SparseIntArray f21363y0 = new SparseIntArray();
-    public final ArrayList A0 = new ArrayList();
-    public int B0 = -1;
-    public int C0 = -1;
-    public int D0 = 0;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.RichMessageLayout;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+public abstract class o9 extends aa {
+    public final SparseArray f22731p0 = new SparseArray();
+    public boolean f22732q0;
+    public boolean f22733r0;
+    public boolean f22734s0;
+    public boolean f22735t0;
+    public boolean f22736u0;
+    public boolean f22737v0;
 
-    public o9() {
-        this.Z = true;
-    }
-
-    public static CharSequence Y(CharSequence charSequence) {
-        Object[] spans;
-        if (charSequence == null) {
-            return "";
-        }
-        if (!(charSequence instanceof Spanned)) {
-            return charSequence.toString();
-        }
-        Spanned spanned = (Spanned) charSequence;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence.toString());
-        for (Object obj : spanned.getSpans(0, spanned.length(), Object.class)) {
-            if (!(obj instanceof TextWatcher) && !(obj instanceof SpanWatcher) && !(obj instanceof NoCopySpan)) {
-                int spanStart = spanned.getSpanStart(obj);
-                int spanEnd = spanned.getSpanEnd(obj);
-                if (spanStart >= 0 && spanEnd >= spanStart && spanStart <= spannableStringBuilder.length()) {
-                    spannableStringBuilder.setSpan(obj, spanStart, Math.min(spanEnd, spannableStringBuilder.length()), spanned.getSpanFlags(obj));
-                }
+    @Override
+    public final boolean C() {
+        v9 v9Var;
+        RichMessageLayout richMessageLayout;
+        CharSequence r10;
+        String str;
+        if (this.f22736u0 && (v9Var = this.W) != null && ((u1) v9Var).getMessageObject() != null && (richMessageLayout = ((u1) this.W).getMessageObject().richLayout) != null && !richMessageLayout.textBlocks.isEmpty() && (r10 = r()) != null && r10.length() != 0) {
+            try {
+                str = richMessageLayout.getSelectionHtml(this.f22011u, this.v);
+            } catch (Exception e) {
+                FileLog.e(e);
+                str = null;
             }
-        }
-        return spannableStringBuilder;
-    }
-
-    @Override
-    public final void A(int i10, int i11, boolean z10, float f7, float f10, w9 w9Var) {
-        n9 n9Var = (n9) w9Var;
-        if (z10 && n9Var == this.W && f10 == f7) {
-            if (this.f20670j) {
-                this.f20686u = i10;
-                return;
-            } else {
-                this.v = i10;
-                return;
-            }
-        }
-        super.A(i10, i11, z10, f7, f10, n9Var);
-    }
-
-    @Override
-    public void F() {
-        int i10;
-        int d02 = d0((n9) this.W);
-        if (this.E0) {
-            i10 = this.f21355q0;
-        } else {
-            i10 = this.f21358t0;
-        }
-        if (d02 == this.f21354p0 && i10 == this.f21355q0) {
-            this.f21356r0 = this.f20686u;
-        }
-        if (d02 == this.f21357s0 && i10 == this.f21358t0) {
-            this.f21359u0 = this.v;
-        }
-    }
-
-    @Override
-    public final void L(w9 w9Var, w9 w9Var2) {
-        n9 n9Var = (n9) w9Var;
-        n9 n9Var2 = (n9) w9Var2;
-        int d02 = d0(n9Var);
-        if (d02 >= 0) {
-            this.f21357s0 = d02;
-            this.f21354p0 = d02;
-            int i10 = this.f21360v0;
-            this.f21358t0 = i10;
-            this.f21355q0 = i10;
-            ArrayList arrayList = this.A0;
-            arrayList.clear();
-            n9Var.fillTextLayoutBlocks(arrayList);
-            int size = arrayList.size();
-            this.f21363y0.put(d02, size);
-            for (int i11 = 0; i11 < size; i11++) {
-                W((z9) arrayList.get(i11), d02, i11);
-            }
-        }
-    }
-
-    @Override
-    public final void N() {
-        n9 n9Var;
-        if (x()) {
-            this.E0 = false;
-            int i10 = this.f21357s0;
-            if (i10 >= 0) {
-                s4.b0 b0Var = this.f21364z0;
-                if (b0Var != null) {
-                    n9Var = (n9) b0Var.m(i10);
-                } else if (i10 < this.F.getChildCount()) {
-                    n9Var = (n9) this.F.getChildAt(this.f21357s0);
-                } else {
-                    n9Var = null;
-                }
-                if (n9Var == null) {
-                    this.W = null;
-                    return;
-                }
-                this.W = n9Var;
-                if (this.f21354p0 != this.f21357s0) {
-                    this.f20686u = 0;
-                } else if (this.f21355q0 != this.f21358t0) {
-                    this.f20686u = 0;
-                } else {
-                    this.f20686u = this.f21356r0;
-                }
-                this.v = this.f21359u0;
-                CharSequence s10 = s(n9Var, false);
-                if (this.v > s10.length()) {
-                    this.v = s10.length();
-                }
-                ArrayList arrayList = this.A0;
-                arrayList.clear();
-                ((n9) this.W).fillTextLayoutBlocks(arrayList);
-                int i11 = this.f21358t0;
-                if (i11 >= 0 && i11 < arrayList.size()) {
-                    this.f20655a = ((z9) arrayList.get(this.f21358t0)).getX();
-                    this.f20657b = ((z9) arrayList.get(this.f21358t0)).getY();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void O() {
-        n9 n9Var;
-        if (x()) {
-            this.E0 = true;
-            int i10 = this.f21354p0;
-            if (i10 >= 0) {
-                s4.b0 b0Var = this.f21364z0;
-                if (b0Var != null) {
-                    n9Var = (n9) b0Var.m(i10);
-                } else if (this.f21357s0 < this.F.getChildCount()) {
-                    n9Var = (n9) this.F.getChildAt(this.f21354p0);
-                } else {
-                    n9Var = null;
-                }
-                if (n9Var == null) {
-                    this.W = null;
-                    return;
-                }
-                this.W = n9Var;
-                if (this.f21354p0 != this.f21357s0) {
-                    this.v = s(n9Var, false).length();
-                } else if (this.f21355q0 != this.f21358t0) {
-                    this.v = s(n9Var, false).length();
-                } else {
-                    this.v = this.f21359u0;
-                }
-                this.f20686u = this.f21356r0;
-                ArrayList arrayList = this.A0;
-                arrayList.clear();
-                ((n9) this.W).fillTextLayoutBlocks(arrayList);
-                int i11 = this.f21355q0;
-                if (i11 >= 0 && i11 < arrayList.size()) {
-                    this.f20655a = ((z9) arrayList.get(this.f21355q0)).getX();
-                    this.f20657b = ((z9) arrayList.get(this.f21355q0)).getY();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean P(int i10, int i11) {
-        int i12;
-        if (this.Z) {
-            if (i11 > ((n9) this.W).getTop() && i11 < ((n9) this.W).getBottom()) {
-                if (this.E0) {
-                    i12 = this.f21355q0;
-                } else {
-                    i12 = this.f21358t0;
-                }
-                int c02 = c0((int) (i10 - ((n9) this.W).getX()), (int) (i11 - ((n9) this.W).getY()), (n9) this.W);
-                if (c02 != i12 && c02 >= 0) {
-                    n9 n9Var = (n9) this.W;
-                    g0(n9Var, n9Var, c02);
-                    return true;
-                }
-            } else {
-                int childCount = this.F.getChildCount();
-                int i13 = 0;
-                while (true) {
-                    if (i13 >= childCount) {
-                        break;
-                    }
-                    if (f0(this.F.getChildAt(i13))) {
-                        n9 n9Var2 = (n9) this.F.getChildAt(i13);
-                        if (i11 > n9Var2.getTop() && i11 < n9Var2.getBottom()) {
-                            int c03 = c0((int) (i10 - n9Var2.getX()), (int) (i11 - n9Var2.getY()), n9Var2);
-                            if (c03 >= 0) {
-                                g0((n9) this.W, n9Var2, c03);
-                                this.W = n9Var2;
-                                return true;
-                            }
-                        }
-                    }
-                    i13++;
-                }
+            if (str != null && str.length() != 0) {
+                AndroidUtilities.addToClipboard(r10, str);
+                return true;
             }
         }
         return false;
     }
 
-    public final void W(z9 z9Var, int i10, int i11) {
-        int i12 = i10 + (i11 << 16);
-        this.f21361w0.put(i12, Y(z9Var.getText()));
-        CharSequence prefix = z9Var.getPrefix();
-        SparseArray sparseArray = this.f21362x0;
-        if (prefix == null) {
-            sparseArray.remove(i12);
-        } else {
-            sparseArray.put(i12, Y(prefix));
-        }
-    }
-
-    public final void X(int i10, String str) {
-        this.f21361w0.put(i10, Y(str));
-        this.f21362x0.remove(i10);
-        SparseIntArray sparseIntArray = this.f21363y0;
-        sparseIntArray.put(i10, Math.max(1, sparseIntArray.get(i10)));
-    }
-
-    public final void Z(Canvas canvas, n9 n9Var, int i10) {
-        z9 z9Var;
-        int i11 = org.telegram.ui.ActionBar.g6.f19924uf;
-        this.f20679o.setColor(org.telegram.ui.ActionBar.g6.w0(i11, this.f20666g0));
-        this.f20681p.setColor(org.telegram.ui.ActionBar.g6.w0(i11, this.f20666g0));
-        int d02 = d0(n9Var);
-        if (d02 >= 0) {
-            ArrayList arrayList = this.A0;
-            arrayList.clear();
-            n9Var.fillTextLayoutBlocks(arrayList);
-            if (i10 >= 0 && i10 < arrayList.size() && (z9Var = (z9) arrayList.get(i10)) != null && z9Var.getLayout() != null && z9Var.getLayout().getText() != null) {
-                int i12 = this.f21359u0;
-                int length = z9Var.getLayout().getText().length();
-                if (i12 > length) {
-                    i12 = length;
-                }
-                int i13 = this.f21354p0;
-                if (d02 == i13 && d02 == this.f21357s0) {
-                    int i14 = this.f21355q0;
-                    int i15 = this.f21358t0;
-                    if (i14 == i15 && i14 == i10) {
-                        h(canvas, z9Var.getLayout(), this.f21356r0, i12, true, true, 0.0f);
-                        return;
-                    } else if (i10 == i14) {
-                        h(canvas, z9Var.getLayout(), this.f21356r0, length, true, false, 0.0f);
-                        return;
-                    } else {
-                        int i16 = i12;
-                        if (i10 == i15) {
-                            h(canvas, z9Var.getLayout(), 0, i16, false, true, 0.0f);
-                            return;
-                        } else if (i10 > i14 && i10 < i15) {
-                            h(canvas, z9Var.getLayout(), 0, length, false, false, 0.0f);
-                            return;
-                        } else {
-                            return;
-                        }
-                    }
-                }
-                int i17 = i12;
-                if (d02 == i13 && this.f21355q0 == i10) {
-                    h(canvas, z9Var.getLayout(), this.f21356r0, length, true, false, 0.0f);
-                    return;
-                }
-                int i18 = this.f21357s0;
-                if (d02 == i18 && this.f21358t0 == i10) {
-                    h(canvas, z9Var.getLayout(), 0, i17, false, true, 0.0f);
-                } else if ((d02 > i13 && d02 < i18) || ((d02 == i13 && i10 > this.f21355q0) || (d02 == i18 && i10 < this.f21358t0))) {
-                    h(canvas, z9Var.getLayout(), 0, length, false, false, 0.0f);
-                }
+    @Override
+    public final void E(boolean z10) {
+        v9 v9Var = this.W;
+        if (v9Var != null && ((u1) v9Var).g3() && !z10) {
+            u1 u1Var = (u1) this.W;
+            int id2 = u1Var.getMessageObject().getId();
+            SparseArray sparseArray = this.f22731p0;
+            Animator animator = (Animator) sparseArray.get(id2);
+            if (animator != null) {
+                animator.removeAllListeners();
+                animator.cancel();
             }
+            u1Var.setSelectedBackgroundProgress(0.01f);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.01f, 1.0f);
+            ofFloat.addUpdateListener(new org.telegram.ui.ActionBar.q2(u1Var, id2, 1));
+            ofFloat.addListener(new k1(1, u1Var));
+            ofFloat.setDuration(300L);
+            ofFloat.start();
+            sparseArray.put(id2, ofFloat);
         }
-    }
-
-    public final boolean a0() {
-        int i10;
-        int length;
-        if (x() && this.W != null && this.f21354p0 == this.f21357s0 && (i10 = this.f21355q0) == this.f21358t0) {
-            if (i10 < 0) {
-                i10 = 0;
-            }
-            ArrayList arrayList = this.A0;
-            arrayList.clear();
-            ((n9) this.W).fillTextLayoutBlocks(arrayList);
-            if (!arrayList.isEmpty() && i10 < arrayList.size() && (length = ((z9) arrayList.get(i10)).getLayout().getText().length()) > 0 && (this.f21356r0 > 0 || this.f21359u0 < length)) {
-                return j0((n9) this.W, i10, 0, length);
-            }
-        }
-        return false;
-    }
-
-    public final boolean b0(int i10, int i11, n9 n9Var) {
-        int compare;
-        int i12;
-        int i13;
-        int i14;
-        int d02 = d0(n9Var);
-        if (d02 < 0) {
-            return false;
-        }
-        if (this.B0 < 0) {
-            this.B0 = this.f21354p0;
-            this.D0 = this.f21355q0;
-            this.C0 = this.f21356r0;
-        }
-        h0(n9Var, d02);
-        int i15 = this.B0;
-        int i16 = this.D0;
-        int i17 = this.C0;
-        if (d02 != i15) {
-            compare = Integer.compare(d02, i15);
-        } else if (i10 != i16) {
-            compare = Integer.compare(i10, i16);
-        } else {
-            compare = Integer.compare(i11, i17);
-        }
-        if (compare < 0) {
-            i14 = this.B0;
-            i12 = this.D0;
-            i13 = this.C0;
-        } else {
-            int i18 = this.B0;
-            i12 = i10;
-            i10 = this.D0;
-            i13 = i11;
-            i11 = this.C0;
-            d02 = i18;
-            i14 = d02;
-        }
-        if (d02 == i14 && i10 == i12 && i11 == i13) {
-            f(false);
-            return true;
-        }
-        this.f21354p0 = d02;
-        this.f21355q0 = i10;
-        this.f21356r0 = i11;
-        this.f21357s0 = i14;
-        this.f21358t0 = i12;
-        this.f21359u0 = i13;
-        N();
-        w();
-        aa aaVar = this.C;
-        if (aaVar != null) {
-            aaVar.invalidate();
-        }
-        g gVar = this.m0;
-        AndroidUtilities.cancelRunOnUIThread(gVar);
-        AndroidUtilities.runOnUIThread(gVar);
-        return true;
     }
 
     @Override
-    public final boolean c(int i10) {
-        if (this.f21354p0 == this.f21357s0 && this.f21355q0 == this.f21358t0) {
-            return super.c(i10);
+    public final void L(v9 v9Var, v9 v9Var2) {
+        boolean z10;
+        u1 u1Var = (u1) v9Var;
+        u1 u1Var2 = (u1) v9Var2;
+        if (u1Var2 != null && (u1Var2.getMessageObject() == null || u1Var2.getMessageObject().getId() == u1Var.getMessageObject().getId())) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
-        return true;
+        this.f22012w = u1Var.getMessageObject().getId();
+        try {
+            int i10 = u1Var.getMessageObject().messageOwner.edit_date;
+        } catch (Exception unused) {
+        }
+        this.U = 0.0f;
+        this.f22732q0 = this.f22733r0;
+        this.f22734s0 = this.f22735t0;
+        this.f22736u0 = this.f22737v0;
+        int i11 = this.f22012w;
+        SparseArray sparseArray = this.f22731p0;
+        Animator animator = (Animator) sparseArray.get(i11);
+        if (animator != null) {
+            animator.removeAllListeners();
+            animator.cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat.addUpdateListener(new ah.k0(4, this, z10));
+        ofFloat.setDuration(250L);
+        ofFloat.start();
+        sparseArray.put(this.f22012w, ofFloat);
+        if (!z10) {
+            u1Var.setSelectedBackgroundProgress(0.0f);
+        }
+        SharedConfig.removeTextSelectionHint();
     }
 
-    public final int c0(int i10, int i11, n9 n9Var) {
-        int i12 = 0;
-        if (n9Var instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) n9Var;
-            for (int i13 = 0; i13 < viewGroup.getChildCount(); i13++) {
-                View childAt = viewGroup.getChildAt(i13);
-                if (childAt instanceof n9) {
-                    float f7 = i11;
-                    if (f7 > childAt.getY() && f7 < childAt.getY() + childAt.getHeight()) {
-                        return c0((int) (i10 - childAt.getX()), (int) (f7 - childAt.getY()), (n9) childAt);
-                    }
-                }
-            }
+    public final void W(MessageObject messageObject) {
+        try {
+            int i10 = messageObject.messageOwner.edit_date;
+        } catch (Exception unused) {
         }
-        ArrayList arrayList = this.A0;
-        arrayList.clear();
-        n9Var.fillTextLayoutBlocks(arrayList);
-        if (arrayList.isEmpty()) {
-            return -1;
+        if (this.f22012w == messageObject.getId()) {
+            f(true);
         }
-        int size = arrayList.size() - 1;
-        int i14 = Integer.MAX_VALUE;
-        int i15 = -1;
-        int i16 = Integer.MAX_VALUE;
-        while (true) {
-            if (size >= 0) {
-                z9 z9Var = (z9) arrayList.get(size);
-                int y3 = z9Var.getY();
-                int height = z9Var.getLayout().getHeight() + y3;
-                if (i11 >= y3 && i11 < height) {
-                    break;
-                }
-                int min = Math.min(Math.abs(i11 - y3), Math.abs(i11 - height));
-                if (min < i16) {
-                    i15 = size;
-                    i16 = min;
-                }
-                size--;
-            } else {
-                i12 = i16;
-                size = i15;
-                break;
-            }
-        }
-        if (size < 0) {
-            return -1;
-        }
-        int row = ((z9) arrayList.get(size)).getRow();
-        if (row > 0 && i12 < AndroidUtilities.dp(24.0f)) {
-            for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
-                z9 z9Var2 = (z9) arrayList.get(size2);
-                if (z9Var2.getRow() == row) {
-                    int x10 = z9Var2.getX();
-                    int width = z9Var2.getLayout().getWidth() + z9Var2.getX();
-                    if (i10 >= x10 && i10 <= width) {
-                        return size2;
-                    }
-                    int min2 = Math.min(Math.abs(i10 - x10), Math.abs(i10 - width));
-                    if (min2 < i14) {
-                        size = size2;
-                        i14 = min2;
-                    }
-                }
-            }
-        }
-        return size;
     }
 
-    @Override
-    public final boolean d() {
-        s4.b0 b0Var = this.f21364z0;
-        if (b0Var == null) {
-            return true;
+    public final void X(boolean z10, StaticLayout staticLayout, Canvas canvas) {
+        if (!this.f22732q0) {
+            return;
         }
-        int L0 = b0Var.L0();
-        int N0 = this.f21364z0.N0();
-        int i10 = this.f21354p0;
-        if ((L0 >= i10 && L0 <= this.f21357s0) || (N0 >= i10 && N0 <= this.f21357s0)) {
-            return true;
-        }
-        if (i10 >= L0 && this.f21357s0 <= N0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int d0(n9 n9Var) {
-        ViewGroup viewGroup;
-        View view = (View) n9Var;
-        ViewParent parent = view.getParent();
-        while (true) {
-            viewGroup = this.F;
-            if (parent != viewGroup && parent != null) {
-                if (parent instanceof View) {
-                    view = (View) parent;
-                    parent = view.getParent();
-                } else {
-                    parent = null;
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-        if (parent != null) {
-            if (this.E != null) {
-                return RecyclerView.R(view);
-            }
-            return viewGroup.indexOfChild(view);
-        }
-        return -1;
-    }
-
-    @Override
-    public final CharSequence s(n9 n9Var, boolean z10) {
-        int i10;
-        ArrayList arrayList = this.A0;
-        arrayList.clear();
-        n9Var.fillTextLayoutBlocks(arrayList);
+        Paint paint = this.f22006p;
+        Paint paint2 = this.f22004o;
         if (z10) {
-            i10 = this.f21360v0;
-        } else if (this.E0) {
-            i10 = this.f21355q0;
+            int i10 = org.telegram.ui.ActionBar.h6.Vb;
+            paint2.setColor(t(i10));
+            paint.setColor(t(i10));
         } else {
-            i10 = this.f21358t0;
+            int i11 = org.telegram.ui.ActionBar.h6.f21310uf;
+            paint2.setColor(t(i11));
+            paint.setColor(t(i11));
         }
-        if (!arrayList.isEmpty() && i10 >= 0 && i10 < arrayList.size()) {
-            return ((z9) arrayList.get(i10)).getLayout().getText();
+        h(canvas, staticLayout, this.f22011u, this.v, true, true, 0.0f);
+    }
+
+    public final void Y(MessageObject messageObject, RichMessageLayout richMessageLayout, Canvas canvas) {
+        v9 v9Var;
+        y9 y9Var;
+        Canvas canvas2;
+        boolean z10;
+        if (this.f22736u0 && richMessageLayout != null && (v9Var = this.W) != null && ((u1) v9Var).getMessageObject() != null && ((u1) this.W).getMessageObject().getId() == messageObject.getId()) {
+            boolean isOutOwner = messageObject.isOutOwner();
+            Paint paint = this.f22006p;
+            Paint paint2 = this.f22004o;
+            if (isOutOwner) {
+                int i10 = org.telegram.ui.ActionBar.h6.Vb;
+                paint2.setColor(t(i10));
+                paint.setColor(t(i10));
+            } else {
+                int i11 = org.telegram.ui.ActionBar.h6.f21310uf;
+                paint2.setColor(t(i11));
+                paint.setColor(t(i11));
+            }
+            int i12 = 0;
+            while (i12 < richMessageLayout.textBlocks.size()) {
+                Layout layout = richMessageLayout.textBlocks.get(i12).getLayout();
+                if (layout != null && layout.getText() != null) {
+                    int intValue = richMessageLayout.textBlockCharOffsets.get(i12).intValue();
+                    int length = layout.getText().length();
+                    int clamp = Utilities.clamp(this.f22011u - intValue, length, 0);
+                    int clamp2 = Utilities.clamp(this.v - intValue, length, 0);
+                    if (clamp != clamp2) {
+                        boolean z11 = true;
+                        if (this.f22011u >= intValue) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        if (this.v > intValue + length) {
+                            z11 = false;
+                        }
+                        canvas.save();
+                        canvas.translate(y9Var.getX(), y9Var.getY());
+                        canvas2 = canvas;
+                        h(canvas2, layout, clamp, clamp2, z10, z11, 0.0f);
+                        canvas2.restore();
+                        i12++;
+                        canvas = canvas2;
+                    }
+                }
+                canvas2 = canvas;
+                i12++;
+                canvas = canvas2;
+            }
         }
-        return "";
+    }
+
+    public final void Z(u1 u1Var, int i10, int i11) {
+        boolean z10;
+        if (u1Var == null) {
+            return;
+        }
+        this.W = u1Var;
+        this.f22012w = u1Var.getMessageObject().getId();
+        if (((u1) this.W).getMessageObject().type == 36 && ((u1) this.W).getMessageObject().richLayout != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f22736u0 = z10;
+        if (z10) {
+            this.f22732q0 = false;
+            this.f22734s0 = false;
+        }
+        this.f22011u = i10;
+        this.v = i11;
+        w();
+        w7.j0 j0Var = this.D;
+        if (j0Var != null) {
+            j0Var.a(true);
+        }
+        this.f21990g = 0.0f;
+        this.f21988f = 0.0f;
+        this.e = false;
+        z9 z9Var = this.C;
+        if (z9Var != null) {
+            z9Var.setVisibility(0);
+        }
+        U();
+    }
+
+    public final void a0(u1 u1Var) {
+        ArrayList<MessageObject.TextLayoutBlock> arrayList;
+        RichMessageLayout richMessageLayout;
+        this.X = u1Var;
+        MessageObject messageObject = u1Var.getMessageObject();
+        t1 t1Var = u1Var.Zc;
+        boolean z10 = this.f22733r0;
+        Rect rect = this.B;
+        if (z10 && u1Var.getDescriptionlayout() != null) {
+            int i10 = this.f21984c;
+            rect.set(i10, this.d, u1Var.getDescriptionlayout().getWidth() + i10, u1Var.getDescriptionlayout().getHeight() + this.d);
+        } else if (this.f22735t0 && u1Var.getFactCheckLayout() != null) {
+            int i11 = this.f21984c;
+            rect.set(i11, this.d, u1Var.getFactCheckLayout().getWidth() + i11, u1Var.getFactCheckLayout().getHeight() + this.d);
+        } else if (this.f22737v0 && messageObject != null && (richMessageLayout = messageObject.richLayout) != null && !richMessageLayout.textBlocks.isEmpty()) {
+            RichMessageLayout richMessageLayout2 = messageObject.richLayout;
+            int i12 = this.f21984c;
+            rect.set(i12, this.d, richMessageLayout2.getMinWidth() + i12, richMessageLayout2.getHeight() + this.d);
+        } else if (u1Var.P2() && u1Var.getCaptionLayout().textLayoutBlocks.size() > 0) {
+            MessageObject.TextLayoutBlock textLayoutBlock = (MessageObject.TextLayoutBlock) i0.a.h(1, u1Var.getCaptionLayout().textLayoutBlocks);
+            int i13 = this.f21984c;
+            rect.set(i13, this.d, textLayoutBlock.textLayout.getWidth() + i13, (int) (textLayoutBlock.textYOffset(u1Var.getCaptionLayout().textLayoutBlocks, t1Var) + this.d + textLayoutBlock.padTop + textLayoutBlock.textLayout.getHeight()));
+        } else if (messageObject != null && (arrayList = messageObject.textLayoutBlocks) != null && arrayList.size() > 0) {
+            MessageObject.TextLayoutBlock textLayoutBlock2 = (MessageObject.TextLayoutBlock) i0.a.h(1, messageObject.textLayoutBlocks);
+            int i14 = this.f21984c;
+            rect.set(i14, this.d, textLayoutBlock2.textLayout.getWidth() + i14, (int) (textLayoutBlock2.textYOffset(messageObject.textLayoutBlocks, t1Var) + this.d + textLayoutBlock2.padTop + textLayoutBlock2.textLayout.getHeight()));
+        } else {
+            this.X = null;
+        }
+    }
+
+    public final void b0(int i10, int i11) {
+        if (this.f21980a == i10 && this.f21982b == i11) {
+            return;
+        }
+        this.f21980a = i10;
+        this.f21982b = i11;
+        w();
     }
 
     @Override
     public final void f(boolean z10) {
         super.f(z10);
-        this.f21354p0 = -1;
-        this.f21357s0 = -1;
-        this.f21355q0 = -1;
-        this.f21358t0 = -1;
-        this.f21361w0.clear();
-        this.f21363y0.clear();
-        this.B0 = -1;
-        this.C0 = -1;
+        this.f22732q0 = false;
+        this.f22734s0 = false;
+        this.f22736u0 = false;
     }
 
-    public final boolean f0(View view) {
-        if (view instanceof n9) {
-            ArrayList arrayList = this.A0;
-            arrayList.clear();
-            ((n9) view).fillTextLayoutBlocks(arrayList);
-            if (view instanceof org.telegram.ui.w2) {
-                return true;
-            }
-            return !arrayList.isEmpty();
-        }
-        return false;
-    }
-
-    public final void g0(n9 n9Var, n9 n9Var2, int i10) {
+    @Override
+    public final void i(int i10, q9 q9Var, boolean z10) {
+        v9 v9Var;
         int i11;
+        MessageObject.TextLayoutBlock textLayoutBlock;
         int i12;
-        int d02 = d0(n9Var2);
-        if (n9Var != null) {
-            i11 = d0(n9Var);
-        } else {
-            i11 = -1;
-        }
-        w();
-        if (this.R && (i12 = this.f21354p0) == this.f21357s0) {
-            if (d02 == i12) {
-                if (i10 < this.f21355q0) {
-                    this.f21355q0 = i10;
-                    O();
-                    this.f20670j = true;
-                    int i13 = this.v;
-                    this.f21356r0 = i13;
-                    this.f20686u = i13 - 1;
-                } else {
-                    this.f21358t0 = i10;
-                    N();
-                    this.f20670j = false;
-                    this.f21359u0 = 0;
-                }
-            } else if (d02 < i12) {
-                this.f21354p0 = d02;
-                this.f21355q0 = i10;
-                O();
-                this.f20670j = true;
-                int i14 = this.v;
-                this.f21356r0 = i14;
-                this.f20686u = i14 - 1;
-            } else {
-                this.f21357s0 = d02;
-                this.f21358t0 = i10;
-                N();
-                this.f20670j = false;
-                this.f21359u0 = 0;
-            }
-        } else if (this.f20670j) {
-            if (d02 == i11) {
-                int i15 = this.f21358t0;
-                if (i10 > i15 && d02 >= this.f21357s0) {
-                    this.f21357s0 = d02;
-                    this.f21355q0 = i15;
-                    this.f21358t0 = i10;
-                    this.f21356r0 = this.f21359u0;
-                    N();
-                    this.f21359u0 = 0;
-                    this.f20670j = false;
-                } else {
-                    this.f21354p0 = d02;
-                    this.f21355q0 = i10;
-                    O();
-                    this.f21356r0 = this.v;
-                }
-            } else if (d02 <= this.f21357s0) {
-                this.f21354p0 = d02;
-                this.f21355q0 = i10;
-                O();
-                this.f21356r0 = this.v;
-            } else {
-                this.f21357s0 = d02;
-                this.f21355q0 = this.f21358t0;
-                this.f21358t0 = i10;
-                this.f21356r0 = this.f21359u0;
-                N();
-                this.f21359u0 = 0;
-                this.f20670j = false;
-            }
-        } else if (d02 == i11) {
-            int i16 = this.f21355q0;
-            if (i10 < i16 && d02 <= this.f21354p0) {
-                this.f21354p0 = d02;
-                this.f21358t0 = i16;
-                this.f21355q0 = i10;
-                this.f21359u0 = this.f21356r0;
-                O();
-                this.f20670j = true;
-                this.f21356r0 = this.v;
-            } else {
-                this.f21357s0 = d02;
-                this.f21358t0 = i10;
-                N();
-                this.f21359u0 = 0;
-            }
-        } else if (d02 >= this.f21354p0) {
-            this.f21357s0 = d02;
-            this.f21358t0 = i10;
-            N();
-            this.f21359u0 = 0;
-        } else {
-            this.f21354p0 = d02;
-            this.f21358t0 = this.f21355q0;
-            this.f21355q0 = i10;
-            this.f21359u0 = this.f21356r0;
-            O();
-            this.f20670j = true;
-            this.f21356r0 = this.v;
-        }
-        ArrayList arrayList = this.A0;
-        arrayList.clear();
-        n9Var2.fillTextLayoutBlocks(arrayList);
-        int size = arrayList.size();
-        this.f21363y0.put(d02, size);
-        for (int i17 = 0; i17 < size; i17++) {
-            W((z9) arrayList.get(i17), d02, i17);
-        }
-    }
-
-    public final void h0(n9 n9Var, int i10) {
-        ArrayList arrayList = this.A0;
-        arrayList.clear();
-        n9Var.fillTextLayoutBlocks(arrayList);
-        int size = arrayList.size();
-        this.f21363y0.put(i10, size);
-        for (int i11 = 0; i11 < size; i11++) {
-            W((z9) arrayList.get(i11), i10, i11);
-        }
-    }
-
-    @Override
-    public final void i(int i10, r9 r9Var, boolean z10) {
-        w9 w9Var;
-        int i11;
-        ArrayList arrayList = this.A0;
-        arrayList.clear();
-        r9Var.e = null;
-        if (z10) {
-            w9Var = this.X;
-        } else {
-            w9Var = this.W;
-        }
-        n9 n9Var = (n9) w9Var;
-        if (n9Var == null) {
-            r9Var.f21467b = null;
-            return;
-        }
-        n9Var.fillTextLayoutBlocks(arrayList);
-        if (z10) {
-            i11 = this.f21360v0;
-        } else if (this.E0) {
-            i11 = this.f21355q0;
-        } else {
-            i11 = this.f21358t0;
-        }
-        if (i11 >= 0 && i11 < arrayList.size()) {
-            r9Var.f21467b = ((z9) arrayList.get(i11)).getLayout();
-            r9Var.e = ((z9) arrayList.get(i11)).getSelectionBounds();
-            r9Var.f21468c = 0.0f;
-            r9Var.d = 0.0f;
-            return;
-        }
-        r9Var.f21467b = null;
-    }
-
-    public final void i0(int i10, int i11) {
-        int length;
-        n9 n9Var;
-        if (i10 >= 0 && i11 >= i10) {
-            CharSequence charSequence = (CharSequence) this.f21361w0.get(i11);
-            if (charSequence == null) {
-                length = 0;
-            } else {
-                length = charSequence.length();
-            }
-            if (this.F != null) {
-                for (int i12 = 0; i12 < this.F.getChildCount(); i12++) {
-                    View childAt = this.F.getChildAt(i12);
-                    if (childAt instanceof n9) {
-                        n9Var = (n9) childAt;
-                        if (d0(n9Var) == i11) {
-                            break;
-                        }
-                    }
-                }
-            }
-            n9Var = null;
-            this.W = n9Var;
-            this.f20686u = 0;
-            this.v = length;
-            this.f21354p0 = i10;
-            this.f21357s0 = i11;
-            this.f21358t0 = 0;
-            this.f21355q0 = 0;
-            this.f21356r0 = 0;
-            this.f21359u0 = length;
-            SparseIntArray sparseIntArray = this.f21363y0;
-            sparseIntArray.put(i10, Math.max(1, sparseIntArray.get(i10)));
-            sparseIntArray.put(i11, Math.max(1, sparseIntArray.get(i11)));
-            this.B0 = i10;
-            this.C0 = 0;
-            aa aaVar = this.C;
-            if (aaVar != null) {
-                aaVar.setVisibility(0);
-            }
-            U();
-            w();
-            u();
-            g gVar = this.m0;
-            AndroidUtilities.cancelRunOnUIThread(gVar);
-            AndroidUtilities.runOnUIThread(gVar);
-            w7.j0 j0Var = this.D;
-            if (j0Var != null) {
-                j0Var.a(true);
-            }
-        }
-    }
-
-    public final boolean j0(n9 n9Var, int i10, int i11, int i12) {
-        int d02 = d0(n9Var);
-        if (d02 < 0 || i11 == i12) {
-            return false;
-        }
-        int min = Math.min(i11, i12);
-        int max = Math.max(i11, i12);
-        this.W = n9Var;
-        this.f20686u = min;
-        this.v = max;
-        this.f21357s0 = d02;
-        this.f21354p0 = d02;
-        this.f21358t0 = i10;
-        this.f21355q0 = i10;
-        this.f21356r0 = min;
-        this.f21359u0 = max;
-        this.B0 = d02;
-        this.C0 = i11;
-        this.D0 = i10;
-        h0(n9Var, d02);
-        ArrayList arrayList = this.A0;
-        if (!arrayList.isEmpty() && i10 >= 0 && i10 < arrayList.size()) {
-            this.f20655a = ((z9) arrayList.get(i10)).getX();
-            this.f20657b = ((z9) arrayList.get(i10)).getY();
-        } else if (!arrayList.isEmpty()) {
-            this.f20655a = ((z9) arrayList.get(0)).getX();
-            this.f20657b = ((z9) arrayList.get(0)).getY();
-        }
-        aa aaVar = this.C;
-        if (aaVar != null) {
-            aaVar.setVisibility(0);
-        }
-        U();
-        w();
-        u();
-        g gVar = this.m0;
-        AndroidUtilities.cancelRunOnUIThread(gVar);
-        AndroidUtilities.runOnUIThread(gVar);
-        w7.j0 j0Var = this.D;
-        if (j0Var != null) {
-            j0Var.a(true);
-        }
-        n9Var.invalidate();
-        return true;
-    }
-
-    @Override
-    public final int k(int i10, int i11, int i12, int i13, w9 w9Var, boolean z10) {
+        int i13;
         int i14;
-        n9 n9Var = (n9) w9Var;
-        if (n9Var != null) {
-            int i15 = i10 - i12;
-            int i16 = i11 - i13;
-            ArrayList arrayList = this.A0;
-            arrayList.clear();
-            n9Var.fillTextLayoutBlocks(arrayList);
-            if (z10) {
-                i14 = this.f21360v0;
-            } else if (this.E0) {
-                i14 = this.f21355q0;
+        MessageObject.TextLayoutBlock textLayoutBlock2;
+        int i15;
+        int i16;
+        RichMessageLayout richMessageLayout;
+        y9 y9Var;
+        if (z10) {
+            v9Var = this.X;
+        } else {
+            v9Var = this.W;
+        }
+        u1 u1Var = (u1) v9Var;
+        if (u1Var == null) {
+            q9Var.f22792b = null;
+            return;
+        }
+        MessageObject messageObject = u1Var.getMessageObject();
+        int i17 = 0;
+        if (this.f22732q0) {
+            q9Var.f22792b = u1Var.getDescriptionlayout();
+            q9Var.f22793c = 0.0f;
+            q9Var.d = 0.0f;
+            q9Var.f22791a = 0;
+        } else if (this.f22734s0) {
+            q9Var.f22792b = u1Var.getFactCheckLayout();
+            q9Var.f22793c = 0.0f;
+            q9Var.d = 0.0f;
+            q9Var.f22791a = 0;
+        } else if (this.f22736u0) {
+            if (messageObject != null) {
+                richMessageLayout = messageObject.richLayout;
             } else {
-                i14 = this.f21358t0;
+                richMessageLayout = null;
             }
-            if (i14 >= 0 && i14 < arrayList.size()) {
-                Layout layout = ((z9) arrayList.get(i14)).getLayout();
-                if (i15 < 0) {
-                    i15 = 1;
-                }
-                if (i16 < 0) {
-                    i16 = 1;
-                }
-                if (i15 > layout.getWidth()) {
-                    i15 = layout.getWidth();
-                }
-                if (i16 > layout.getLineBottom(layout.getLineCount() - 1)) {
-                    i16 = layout.getLineBottom(layout.getLineCount() - 1) - 1;
-                }
-                int i17 = 0;
+            if (richMessageLayout != null && !richMessageLayout.textBlocks.isEmpty()) {
                 while (true) {
-                    if (i17 < layout.getLineCount()) {
-                        if (i16 >= layout.getLineTop(i17) && i16 <= layout.getLineBottom(i17)) {
+                    if (i17 < richMessageLayout.textBlocks.size()) {
+                        int intValue = richMessageLayout.textBlockCharOffsets.get(i17).intValue();
+                        int length = richMessageLayout.textBlocks.get(i17).getLayout().getText().length();
+                        if (i10 >= intValue && i10 <= intValue + length) {
                             break;
                         }
                         i17++;
@@ -854,208 +321,195 @@ public class o9 extends ba {
                         break;
                     }
                 }
-                if (i17 >= 0) {
-                    return layout.getOffsetForHorizontal(i17, i15);
+                if (i17 < 0) {
+                    i17 = richMessageLayout.textBlocks.size() - 1;
                 }
-            }
-        }
-        return -1;
-    }
-
-    public final void k0(View view, int i10, int i11) {
-        if (view instanceof n9) {
-            this.f20684s = i10;
-            this.f20685t = i11;
-            n9 n9Var = (n9) view;
-            this.X = n9Var;
-            int c02 = c0(i10, i11, n9Var);
-            this.f21360v0 = c02;
-            if (c02 < 0) {
-                this.X = null;
+                q9Var.f22792b = richMessageLayout.textBlocks.get(i17).getLayout();
+                q9Var.f22793c = y9Var.getY();
+                q9Var.d = y9Var.getX();
+                q9Var.f22791a = richMessageLayout.textBlockCharOffsets.get(i17).intValue();
                 return;
             }
-            ArrayList arrayList = this.A0;
-            this.f20659c = ((z9) arrayList.get(c02)).getX();
-            this.d = ((z9) arrayList.get(this.f21360v0)).getY();
-        }
-    }
-
-    public final void l0() {
-        if (this.X != null) {
-            this.f20664f0.run();
+            q9Var.f22792b = null;
+        } else if (u1Var.P2()) {
+            MessageObject.TextLayoutBlocks captionLayout = u1Var.getCaptionLayout();
+            if (captionLayout.textLayoutBlocks.size() == 1) {
+                q9Var.f22792b = captionLayout.textLayoutBlocks.get(0).textLayout;
+                q9Var.f22793c = textLayoutBlock2.padTop;
+                MessageObject.TextLayoutBlock textLayoutBlock3 = captionLayout.textLayoutBlocks.get(0);
+                if (textLayoutBlock3.quote) {
+                    i15 = AndroidUtilities.dp(10.0f);
+                } else {
+                    i15 = 0;
+                }
+                if (textLayoutBlock3.isRtl()) {
+                    i16 = ((int) Math.ceil(captionLayout.textXOffset)) - i15;
+                } else {
+                    i16 = 0;
+                }
+                float f7 = -i16;
+                q9Var.d = f7;
+                if (textLayoutBlock3.code && !textLayoutBlock3.quote) {
+                    q9Var.d = f7 + AndroidUtilities.dp(8.0f);
+                }
+                q9Var.f22791a = 0;
+                return;
+            }
+            for (int i18 = 0; i18 < captionLayout.textLayoutBlocks.size(); i18++) {
+                MessageObject.TextLayoutBlock textLayoutBlock4 = captionLayout.textLayoutBlocks.get(i18);
+                int i19 = i10 - textLayoutBlock4.charactersOffset;
+                if (i19 >= 0 && i19 <= textLayoutBlock4.textLayout.getText().length()) {
+                    q9Var.f22792b = textLayoutBlock4.textLayout;
+                    q9Var.f22793c = textLayoutBlock4.textYOffset(captionLayout.textLayoutBlocks) + textLayoutBlock4.padTop;
+                    if (textLayoutBlock4.quote) {
+                        i14 = AndroidUtilities.dp(10.0f);
+                    } else {
+                        i14 = 0;
+                    }
+                    if (textLayoutBlock4.isRtl()) {
+                        i17 = ((int) Math.ceil(captionLayout.textXOffset)) - i14;
+                    }
+                    float f10 = -i17;
+                    q9Var.d = f10;
+                    if (textLayoutBlock4.code && !textLayoutBlock4.quote) {
+                        q9Var.d = f10 + AndroidUtilities.dp(8.0f);
+                    }
+                    q9Var.f22791a = textLayoutBlock4.charactersOffset;
+                    return;
+                }
+            }
+            q9Var.f22792b = null;
+        } else {
+            ArrayList<MessageObject.TextLayoutBlock> arrayList = messageObject.textLayoutBlocks;
+            if (arrayList == null) {
+                q9Var.f22792b = null;
+            } else if (arrayList.size() == 1) {
+                q9Var.f22792b = messageObject.textLayoutBlocks.get(0).textLayout;
+                q9Var.f22793c = textLayoutBlock.padTop;
+                MessageObject.TextLayoutBlock textLayoutBlock5 = messageObject.textLayoutBlocks.get(0);
+                if (textLayoutBlock5.quote) {
+                    i12 = AndroidUtilities.dp(10.0f);
+                } else {
+                    i12 = 0;
+                }
+                if (textLayoutBlock5.isRtl()) {
+                    i13 = ((int) Math.ceil(messageObject.textXOffset)) - i12;
+                } else {
+                    i13 = 0;
+                }
+                float f11 = -i13;
+                q9Var.d = f11;
+                if (textLayoutBlock5.code && !textLayoutBlock5.quote) {
+                    q9Var.d = f11 + AndroidUtilities.dp(8.0f);
+                }
+                q9Var.f22791a = 0;
+            } else {
+                for (int i20 = 0; i20 < messageObject.textLayoutBlocks.size(); i20++) {
+                    MessageObject.TextLayoutBlock textLayoutBlock6 = messageObject.textLayoutBlocks.get(i20);
+                    int i21 = i10 - textLayoutBlock6.charactersOffset;
+                    if (i21 >= 0 && i21 <= textLayoutBlock6.textLayout.getText().length()) {
+                        q9Var.f22792b = textLayoutBlock6.textLayout;
+                        q9Var.f22793c = textLayoutBlock6.textYOffset(messageObject.textLayoutBlocks) + textLayoutBlock6.padTop;
+                        if (textLayoutBlock6.quote) {
+                            i11 = AndroidUtilities.dp(10.0f);
+                        } else {
+                            i11 = 0;
+                        }
+                        if (textLayoutBlock6.isRtl()) {
+                            i17 = ((int) Math.ceil(messageObject.textXOffset)) - i11;
+                        }
+                        float f12 = -i17;
+                        q9Var.d = f12;
+                        if (textLayoutBlock6.code && !textLayoutBlock6.quote) {
+                            q9Var.d = f12 + AndroidUtilities.dp(8.0f);
+                        }
+                        q9Var.f22791a = textLayoutBlock6.charactersOffset;
+                        return;
+                    }
+                }
+                q9Var.f22792b = null;
+            }
         }
     }
 
     @Override
+    public final int k(int r19, int r20, int r21, int r22, org.telegram.ui.Cells.v9 r23, boolean r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.o9.k(int, int, int, int, org.telegram.ui.Cells.v9, boolean):int");
+    }
+
+    @Override
     public final int m() {
-        int i10;
-        if (this.W != null) {
-            ArrayList arrayList = this.A0;
-            arrayList.clear();
-            ((n9) this.W).fillTextLayoutBlocks(arrayList);
-            if (this.E0) {
-                i10 = this.f21355q0;
-            } else {
-                i10 = this.f21358t0;
-            }
-            if (i10 >= 0 && i10 < arrayList.size()) {
-                Layout layout = ((z9) arrayList.get(i10)).getLayout();
-                int i11 = Integer.MAX_VALUE;
-                for (int i12 = 0; i12 < layout.getLineCount(); i12++) {
-                    int lineBottom = layout.getLineBottom(i12) - layout.getLineTop(i12);
-                    if (lineBottom < i11) {
-                        i11 = lineBottom;
-                    }
+        Layout layout;
+        RichMessageLayout richMessageLayout;
+        v9 v9Var = this.W;
+        if (v9Var != null && ((u1) v9Var).getMessageObject() != null) {
+            MessageObject messageObject = ((u1) this.W).getMessageObject();
+            if (this.f22732q0) {
+                layout = ((u1) this.W).getDescriptionlayout();
+            } else if (this.f22734s0) {
+                layout = ((u1) this.W).getFactCheckLayout();
+            } else if (this.f22736u0) {
+                if (messageObject != null) {
+                    richMessageLayout = messageObject.richLayout;
+                } else {
+                    richMessageLayout = null;
                 }
-                return i11;
+                if (richMessageLayout != null && !richMessageLayout.textBlocks.isEmpty()) {
+                    layout = richMessageLayout.textBlocks.get(0).getLayout();
+                }
+                layout = null;
+            } else if (((u1) this.W).P2()) {
+                layout = ((u1) this.W).getCaptionLayout().textLayoutBlocks.get(0).textLayout;
+            } else {
+                ArrayList<MessageObject.TextLayoutBlock> arrayList = messageObject.textLayoutBlocks;
+                if (arrayList != null) {
+                    layout = arrayList.get(0).textLayout;
+                }
+                layout = null;
+            }
+            if (layout != null) {
+                return layout.getLineBottom(0) - layout.getLineTop(0);
             }
         }
         return 0;
     }
 
     @Override
-    public final CharSequence r() {
-        q9[] q9VarArr;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        int i10 = this.f21354p0;
-        while (true) {
-            int i11 = this.f21357s0;
-            if (i10 > i11) {
-                break;
+    public final CharSequence s(v9 v9Var, boolean z10) {
+        u1 u1Var = (u1) v9Var;
+        if (u1Var != null && u1Var.getMessageObject() != null) {
+            if (!z10 ? this.f22732q0 : this.f22733r0) {
+                return u1Var.getDescriptionlayout().getText();
             }
-            int i12 = this.f21354p0;
-            SparseIntArray sparseIntArray = this.f21363y0;
-            SparseArray sparseArray = this.f21361w0;
-            SparseArray sparseArray2 = this.f21362x0;
-            if (i10 == i12) {
-                int i13 = i12 == i11 ? this.f21358t0 : sparseIntArray.get(i10) - 1;
-                for (int i14 = this.f21355q0; i14 <= i13; i14++) {
-                    int i15 = (i14 << 16) + i10;
-                    CharSequence charSequence = (CharSequence) sparseArray.get(i15);
-                    if (charSequence != null) {
-                        int i16 = this.f21354p0;
-                        int i17 = this.f21357s0;
-                        if (i16 == i17 && i14 == this.f21358t0 && i14 == this.f21355q0) {
-                            int i18 = this.f21359u0;
-                            int i19 = this.f21356r0;
-                            if (i18 >= i19) {
-                                i19 = i18;
-                                i18 = i19;
-                            }
-                            if (i18 < charSequence.length()) {
-                                if (i19 > charSequence.length()) {
-                                    i19 = charSequence.length();
-                                }
-                                spannableStringBuilder.append(charSequence.subSequence(i18, i19));
-                                spannableStringBuilder.append('\n');
-                            }
-                        } else if (i16 == i17 && i14 == this.f21358t0) {
-                            CharSequence charSequence2 = (CharSequence) sparseArray2.get(i15);
-                            if (charSequence2 != null) {
-                                spannableStringBuilder.append(charSequence2).append(' ');
-                            }
-                            int i20 = this.f21359u0;
-                            if (i20 > charSequence.length()) {
-                                i20 = charSequence.length();
-                            }
-                            spannableStringBuilder.append(charSequence.subSequence(0, i20));
-                            spannableStringBuilder.append('\n');
-                        } else if (i14 == this.f21355q0) {
-                            int i21 = this.f21356r0;
-                            if (i21 < charSequence.length()) {
-                                spannableStringBuilder.append(charSequence.subSequence(i21, charSequence.length()));
-                                spannableStringBuilder.append('\n');
-                            }
-                        } else {
-                            CharSequence charSequence3 = (CharSequence) sparseArray2.get(i15);
-                            if (charSequence3 != null) {
-                                spannableStringBuilder.append(charSequence3).append(' ');
-                            }
-                            spannableStringBuilder.append(charSequence);
-                            spannableStringBuilder.append('\n');
-                        }
-                    }
+            if (!z10 ? this.f22734s0 : this.f22735t0) {
+                return u1Var.getFactCheckLayout().getText();
+            }
+            if (!z10 ? this.f22736u0 : this.f22737v0) {
+                RichMessageLayout richMessageLayout = u1Var.getMessageObject().richLayout;
+                if (richMessageLayout != null) {
+                    return richMessageLayout.joinedText;
                 }
-            } else if (i10 == i11) {
-                for (int i22 = 0; i22 <= this.f21358t0; i22++) {
-                    int i23 = (i22 << 16) + i10;
-                    CharSequence charSequence4 = (CharSequence) sparseArray.get(i23);
-                    if (charSequence4 != null) {
-                        if (this.f21354p0 == this.f21357s0 && i22 == this.f21358t0 && i22 == this.f21355q0) {
-                            int i24 = this.f21359u0;
-                            int i25 = this.f21356r0;
-                            if (i25 < charSequence4.length()) {
-                                if (i24 > charSequence4.length()) {
-                                    i24 = charSequence4.length();
-                                }
-                                spannableStringBuilder.append(charSequence4.subSequence(i25, i24));
-                                spannableStringBuilder.append('\n');
-                            }
-                        } else if (i22 == this.f21358t0) {
-                            CharSequence charSequence5 = (CharSequence) sparseArray2.get(i23);
-                            if (charSequence5 != null) {
-                                spannableStringBuilder.append(charSequence5).append(' ');
-                            }
-                            int i26 = this.f21359u0;
-                            if (i26 > charSequence4.length()) {
-                                i26 = charSequence4.length();
-                            }
-                            spannableStringBuilder.append(charSequence4.subSequence(0, i26));
-                            spannableStringBuilder.append('\n');
-                        } else {
-                            CharSequence charSequence6 = (CharSequence) sparseArray2.get(i23);
-                            if (charSequence6 != null) {
-                                spannableStringBuilder.append(charSequence6).append(' ');
-                            }
-                            spannableStringBuilder.append(charSequence4);
-                            spannableStringBuilder.append('\n');
-                        }
-                    }
-                }
+                return "";
+            } else if (u1Var.P2()) {
+                return u1Var.getCaptionLayout().text;
             } else {
-                int i27 = sparseIntArray.get(i10);
-                for (int i28 = this.f21355q0; i28 < i27; i28++) {
-                    int i29 = (i28 << 16) + i10;
-                    CharSequence charSequence7 = (CharSequence) sparseArray2.get(i29);
-                    if (charSequence7 != null) {
-                        spannableStringBuilder.append(charSequence7).append(' ');
-                    }
-                    spannableStringBuilder.append((CharSequence) sparseArray.get(i29));
-                    spannableStringBuilder.append('\n');
-                }
+                return u1Var.getMessageObject().messageText;
             }
-            i10++;
-        }
-        if (spannableStringBuilder.length() > 0) {
-            u9[] u9VarArr = (u9[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length() - 1, u9.class);
-            if (u9VarArr != null && u9VarArr.length > 0) {
-                Arrays.sort(u9VarArr, new p1(spannableStringBuilder, 1));
-                for (u9 u9Var : u9VarArr) {
-                    int spanStart = spannableStringBuilder.getSpanStart(u9Var);
-                    int spanEnd = spannableStringBuilder.getSpanEnd(u9Var);
-                    if (spanStart >= 0 && spanEnd > spanStart) {
-                        CharSequence charSequence8 = u9Var.f22254a;
-                        if (charSequence8 == null) {
-                            charSequence8 = "";
-                        }
-                        spannableStringBuilder.replace(spanStart, spanEnd, charSequence8);
-                    }
-                }
-            }
-            for (q9 q9Var : (q9[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length() - 1, q9.class)) {
-                spannableStringBuilder.delete(spannableStringBuilder.getSpanStart(q9Var), spannableStringBuilder.getSpanEnd(q9Var));
-            }
-            return spannableStringBuilder.subSequence(0, spannableStringBuilder.length() - 1);
         }
         return null;
     }
 
     @Override
-    public final void w() {
+    public void w() {
         super.w();
-        if (this.F != null) {
-            for (int i10 = 0; i10 < this.F.getChildCount(); i10++) {
-                this.F.getChildAt(i10).invalidate();
+        v9 v9Var = this.W;
+        if (v9Var != null && ((u1) v9Var).getCurrentMessagesGroup() != null) {
+            this.F.invalidate();
+        }
+        v9 v9Var2 = this.W;
+        if (v9Var2 != null) {
+            if (this.f22734s0 || this.f22735t0) {
+                ((u1) v9Var2).a3();
             }
         }
     }

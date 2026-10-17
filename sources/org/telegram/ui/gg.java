@@ -1,75 +1,57 @@
 package org.telegram.ui;
+public final class gg implements q0.a {
+    public final int f37237a;
+    public final sn f37238b;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class gg implements org.telegram.ui.Components.pk0, org.telegram.ui.ActionBar.z1 {
-    public final int f36190a;
-    public final fo f36191b;
-    public final MessageObject f36192c;
-
-    public gg(fo foVar, MessageObject messageObject, int i10) {
-        this.f36190a = i10;
-        this.f36191b = foVar;
-        this.f36192c = messageObject;
+    public gg(sn snVar, int i10) {
+        this.f37237a = i10;
+        this.f37238b = snVar;
     }
 
     @Override
-    public void a(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f36190a) {
+    public final void accept(Object obj) {
+        switch (this.f37237a) {
             case 0:
-                Bundle bundle = new Bundle();
-                if (j10 > 0) {
-                    bundle.putLong("user_id", j10);
-                } else {
-                    bundle.putLong("chat_id", -j10);
+                Integer num = (Integer) obj;
+                sn snVar = this.f37238b;
+                snVar.getClass();
+                if (num.intValue() == 0) {
+                    snVar.l1 = 0;
+                    snVar.Fc(true);
+                    snVar.getMessagesController().markReactionsAsRead(snVar.T5, snVar.d());
+                    return;
                 }
-                fo foVar = this.f36191b;
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle.putInt("report_reaction_message_id", this.f36192c.getId());
-                    bundle.putLong("report_reaction_from_dialog_id", foVar.T5);
+                snVar.Fc(true);
+                snVar.j(num.intValue(), 0, false, 0, true, 0);
+                return;
+            case 1:
+                Integer num2 = (Integer) obj;
+                sn snVar2 = this.f37238b;
+                snVar2.getClass();
+                if (num2.intValue() == 0) {
+                    snVar2.f41293m1 = 0;
+                    snVar2.Ec(true);
+                    snVar2.getMessagesController().markPollVotesAsRead(snVar2.T5, snVar2.d());
+                    return;
                 }
-                foVar.presentFragment(new ProfileActivity(bundle, null));
-                foVar.D7(true);
+                int i10 = snVar2.f41293m1 - 1;
+                snVar2.f41293m1 = i10;
+                if (i10 <= 0) {
+                    snVar2.getMessagesController().markPollVotesAsRead(snVar2.T5, snVar2.d());
+                }
+                snVar2.Ec(true);
+                snVar2.j(num2.intValue(), 0, false, 0, true, 0);
                 return;
             default:
-                fo foVar2 = this.f36191b;
-                foVar2.getClass();
-                Bundle bundle2 = new Bundle();
-                if (j10 > 0) {
-                    bundle2.putLong("user_id", j10);
-                } else {
-                    bundle2.putLong("chat_id", -j10);
+                sn snVar3 = this.f37238b;
+                snVar3.getClass();
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                snVar3.f7 = booleanValue;
+                if (!booleanValue) {
+                    snVar3.v8();
+                    return;
                 }
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle2.putInt("report_reaction_message_id", this.f36192c.getId());
-                    bundle2.putLong("report_reaction_from_dialog_id", foVar2.T5);
-                }
-                foVar2.presentFragment(new ProfileActivity(bundle2, null));
-                foVar2.D7(true);
                 return;
         }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        fo foVar = this.f36191b;
-        org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(foVar.getParentActivity(), 3, foVar.f35633ea)};
-        TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-        MessageObject messageObject = this.f36192c;
-        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
-        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
-        tL_inputMediaPoll.poll = tL_poll;
-        TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media).poll;
-        tL_poll.f18942id = poll.f18942id;
-        tL_poll.question = poll.question;
-        tL_poll.answers = poll.answers;
-        tL_poll.closed = true;
-        tL_messages_editMessage.media = tL_inputMediaPoll;
-        tL_messages_editMessage.peer = foVar.getMessagesController().getInputPeer(foVar.T5);
-        tL_messages_editMessage.f18999id = messageObject.getId();
-        tL_messages_editMessage.flags |= 16384;
-        AndroidUtilities.runOnUIThread(new zg(foVar, a2VarArr, foVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new fa(foVar, a2VarArr, tL_messages_editMessage, 5)), 2), 500L);
     }
 }

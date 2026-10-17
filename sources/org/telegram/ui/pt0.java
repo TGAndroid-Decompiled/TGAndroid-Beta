@@ -1,66 +1,57 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.Crop.CropAreaView;
-public final class pt0 extends AnimatorListenerAdapter {
-    public final float f39009a;
-    public final Runnable f39010b;
-    public final PhotoViewer f39011c;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.util.Property;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+public final class pt0 implements ViewTreeObserver.OnPreDrawListener {
+    public final ju0 f40237a;
+    public final Integer f40238b;
+    public final PhotoViewer f40239c;
 
-    public pt0(PhotoViewer photoViewer, float f7, Runnable runnable) {
-        this.f39011c = photoViewer;
-        this.f39009a = f7;
-        this.f39010b = runnable;
+    public pt0(PhotoViewer photoViewer, ju0 ju0Var, Integer num) {
+        this.f40239c = photoViewer;
+        this.f40237a = ju0Var;
+        this.f40238b = num;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        PhotoViewer photoViewer = this.f39011c;
-        photoViewer.f32029p6 = null;
-        photoViewer.f31943f6 = 0.0f;
-        photoViewer.f31906b6 = 0.0f;
-        photoViewer.f31951g6 = 0.0f;
-        float r22 = photoViewer.r2(false);
-        photoViewer.f31934e6 = r22;
-        photoViewer.f31896a6 = r22;
-        photoViewer.f31928e0.invalidate();
-        CropAreaView cropAreaView = photoViewer.C1.f29367b.f15559a;
-        float r23 = photoViewer.r2(false);
-        cropAreaView.f22840n0 = 0.0f;
-        cropAreaView.f22841o0 = r23;
-        cropAreaView.f22842p0 = 0.0f;
-        cropAreaView.f22843q0 = 0.0f;
-        cropAreaView.invalidate();
-        photoViewer.C1.f29368c.setRotated(false);
-        float f7 = this.f39009a;
-        if (Math.abs(f7) > 0.0f) {
-            org.telegram.ui.Components.uf0 uf0Var = photoViewer.C1;
-            mg.f fVar = uf0Var.f29368c;
-            if (fVar != null) {
-                fVar.b(0.0f);
-                fVar.setRotated(false);
-            }
-            if (uf0Var.f29367b.m(f7)) {
-                photoViewer.f31901b1.setColorFilter(new PorterDuffColorFilter(photoViewer.z1(org.telegram.ui.ActionBar.g6.f20013zf), PorterDuff.Mode.MULTIPLY));
-            } else {
-                photoViewer.f31901b1.setColorFilter((ColorFilter) null);
-            }
-        }
-        MediaController.CropState cropState = photoViewer.X4.f41960c;
-        if (cropState != null) {
-            cropState.cropPy = 0.0f;
-            cropState.cropPx = 0.0f;
-            cropState.cropPh = 1.0f;
-            cropState.cropPw = 1.0f;
-        }
-        Runnable runnable = this.f39010b;
-        if (runnable != null) {
-            runnable.run();
-        }
+    public final boolean onPreDraw() {
+        PhotoViewer photoViewer = this.f40239c;
+        photoViewer.f33283g0.getViewTreeObserver().removeOnPreDrawListener(this);
+        photoViewer.F.setTranslationY(-AndroidUtilities.dp(32.0f));
+        ViewPropertyAnimator duration = photoViewer.F.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
+        org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.f25030f;
+        duration.setInterpolator(bsVar).start();
+        photoViewer.N0.setTranslationY(-AndroidUtilities.dp(32.0f));
+        photoViewer.N0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(bsVar).start();
+        photoViewer.O0.setTranslationY(-AndroidUtilities.dp(32.0f));
+        photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(bsVar).start();
+        photoViewer.P0.setTranslationY(AndroidUtilities.dp(32.0f));
+        photoViewer.P0.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
+        photoViewer.S0.setTranslationY(AndroidUtilities.dp(32.0f));
+        photoViewer.S0.setAlpha(0.0f);
+        photoViewer.S0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(bsVar).start();
+        photoViewer.f33392s3.setTranslationY(AndroidUtilities.dp(32.0f));
+        photoViewer.f33392s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(bsVar).start();
+        photoViewer.f33266e0.setAlpha(0.0f);
+        photoViewer.L0.setAlpha(0);
+        photoViewer.f33348n4 = 4;
+        photoViewer.f33266e0.invalidate();
+        AnimatorSet animatorSet = new AnimatorSet();
+        ai.n5 n5Var = photoViewer.P0;
+        ObjectAnimator duration2 = ObjectAnimator.ofFloat(n5Var, View.TRANSLATION_Y, n5Var.getTranslationY(), 0.0f).setDuration(220L);
+        duration2.setInterpolator(bsVar);
+        ai.n5 n5Var2 = photoViewer.P0;
+        Property property = View.ALPHA;
+        ObjectAnimator duration3 = ObjectAnimator.ofFloat(n5Var2, property, 1.0f).setDuration(220L);
+        duration3.setInterpolator(bsVar);
+        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f33266e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f33310j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
+        animatorSet.addListener(new ot0(this));
+        animatorSet.start();
+        return true;
     }
 }

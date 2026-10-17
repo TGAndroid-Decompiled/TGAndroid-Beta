@@ -1,82 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class dz0 extends FrameLayout {
-    public float E;
-    public float F;
-    public ValueAnimator G;
-    public ValueAnimator H;
-    public c2.b I;
-    public float J;
-    public boolean K;
-    public org.telegram.ui.Components.voip.h L;
-    public Paint f24204a;
-    public Paint f24205b;
-    public Paint f24206c;
-    public Paint d;
-    public boolean e;
-    public di.ab f24207f;
-    public TextView h;
-    public TextView f24208n;
-    public TextView f24209r;
-    public TextView f24210s;
-    public TextView v;
-    public View f24211w;
-    public int f24212x;
-    public org.telegram.ui.Cells.ca f24213y;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+public final class dz0 extends hm0 {
+    public final gz0 f25730c;
+    public final gz0 d;
 
-    @Override
-    public final void invalidate() {
-        TextView textView = this.f24210s;
-        TextView textView2 = this.f24209r;
-        TextView textView3 = this.f24208n;
-        TextView textView4 = this.h;
-        super.invalidate();
-        this.f24207f.invalidate();
-        int i10 = this.f24212x;
-        int i11 = org.telegram.ui.ActionBar.g6.Vi;
-        if (i10 != org.telegram.ui.ActionBar.g6.x0(null, i11, false)) {
-            this.f24212x = org.telegram.ui.ActionBar.g6.x0(null, i11, false);
-            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.g6.K(AndroidUtilities.dp(10.0f), this.f24212x), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.g6.K(AndroidUtilities.dp(10.0f), this.f24212x), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.g6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f24212x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.g6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f24212x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-        }
-        this.f24213y.setTextColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.G6, false));
-        this.f24211w.setBackgroundColor(org.telegram.ui.ActionBar.g6.x0(null, org.telegram.ui.ActionBar.g6.f19602d7, false));
+    public dz0(gz0 gz0Var, gz0 gz0Var2) {
+        this.d = gz0Var;
+        this.f25730c = gz0Var2;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        c2.b bVar = this.I;
-        if (bVar != null) {
-            bVar.f4122a = true;
-            AnimatorSet animatorSet = (AnimatorSet) bVar.f4124c;
-            if (!animatorSet.isRunning()) {
-                animatorSet.start();
+    public final boolean D(s4.b1 b1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        ArrayList arrayList = this.f25730c.f26714w;
+        if (arrayList == null) {
+            return 0;
+        }
+        return arrayList.size();
+    }
+
+    @Override
+    public final long i(int i10) {
+        ArrayList arrayList = this.f25730c.f26714w;
+        if (arrayList == null) {
+            return 0L;
+        }
+        return ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.hashCode();
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        String str;
+        fz0 fz0Var = (fz0) b1Var.f45938a;
+        gz0 gz0Var = this.f25730c;
+        ArrayList arrayList = gz0Var.f26714w;
+        if (arrayList == null) {
+            str = null;
+        } else {
+            str = ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji;
+        }
+        int direction = gz0Var.getDirection();
+        fz0Var.f26411a = str;
+        if (str != null && str.startsWith("animated_")) {
+            try {
+                long parseLong = Long.parseLong(str.substring(9));
+                Drawable drawable = fz0Var.f26412b;
+                if (!(drawable instanceof r5) || ((r5) drawable).i() != parseLong) {
+                    fz0Var.setImageDrawable(r5.n(UserConfig.selectedAccount, parseLong, null, fz0Var.f26414f.d()));
+                }
+            } catch (Exception unused) {
+                fz0Var.setImageDrawable(null);
             }
+        } else {
+            fz0Var.setImageDrawable(Emoji.getEmojiBigDrawable(str));
+        }
+        if (fz0Var.d != direction) {
+            fz0Var.d = direction;
+            fz0Var.requestLayout();
         }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        c2.b bVar = this.I;
-        if (bVar != null) {
-            bVar.f4122a = false;
-            ((AnimatorSet) bVar.f4124c).cancel();
-        }
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        return new s4.b1(new fz0(this.d, this.f25730c.getContext()));
     }
 }

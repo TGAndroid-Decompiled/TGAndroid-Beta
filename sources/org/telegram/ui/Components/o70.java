@@ -1,31 +1,45 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class o70 extends org.telegram.ui.Cells.e9 {
-    public final org.telegram.ui.Cells.l7 v;
-    public boolean f27591w;
-    public final p70 f27592x;
+import android.view.View;
+public final class o70 extends rx0 {
+    public final int K;
 
-    public o70(p70 p70Var, Context context) {
-        super(context);
-        this.f27592x = p70Var;
-        this.v = new org.telegram.ui.Cells.l7(this, 14);
+    public o70(Context context, View view, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
+        super(context, view, i10, d6Var);
+        this.K = i11;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        org.telegram.ui.Cells.l7 l7Var = this.v;
-        AndroidUtilities.cancelRunOnUIThread(l7Var);
-        if (this.f27591w) {
-            AndroidUtilities.runOnUIThread(l7Var, 500L);
+    public void onAttachedToWindow() {
+        switch (this.K) {
+            case 0:
+                super.onAttachedToWindow();
+                this.f30071b.getImageReceiver().startAnimation();
+                return;
+            case 1:
+                super.onAttachedToWindow();
+                this.f30071b.getImageReceiver().startAnimation();
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
         }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.v);
+    public void setVisibility(int i10) {
+        switch (this.K) {
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    e(false, false);
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
+        }
     }
 }

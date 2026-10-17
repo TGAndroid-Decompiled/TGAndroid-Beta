@@ -1,30 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.TranslateController;
-import org.telegram.messenger.Utilities;
-public final class rl implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final TranslateController f18043a;
-    public final MessageObject f18044b;
-    public final TranslateController.MessageKey f18045c;
-    public final Utilities.Callback d;
+import org.telegram.tgnet.TLRPC;
+public final class rl implements Runnable {
+    public final int f19450a = 0;
+    public final String f19451b;
+    public final Object f19452c;
+    public final Object d;
 
-    public rl(TranslateController translateController, MessageObject messageObject, TranslateController.MessageKey messageKey, Utilities.Callback callback) {
-        this.f18043a = translateController;
-        this.f18044b = messageObject;
-        this.f18045c = messageKey;
-        this.d = callback;
+    public rl(String str, String str2, byte[] bArr) {
+        this.f19451b = str;
+        this.f19452c = str2;
+        this.d = bArr;
     }
 
     @Override
-    public void run(Exception exc) {
-        this.f18043a.lambda$detectPhotoLanguage$42(this.f18044b, this.f18045c, this.d, exc);
+    public final void run() {
+        switch (this.f19450a) {
+            case 0:
+                WearAuthListenerService.a(this.f19451b, (String) this.f19452c, (byte[]) this.d);
+                return;
+            default:
+                ((MediaDataController) this.f19452c).lambda$putEmojiKeywords$216((TLRPC.TL_emojiKeywordsDifference) this.d, this.f19451b);
+                return;
+        }
     }
 
-    @Override
-    public void run(String str) {
-        TranslateController.MessageKey messageKey = this.f18045c;
-        Utilities.Callback callback = this.d;
-        this.f18043a.lambda$detectPhotoLanguage$40(this.f18044b, messageKey, callback, str);
+    public rl(MediaDataController mediaDataController, TLRPC.TL_emojiKeywordsDifference tL_emojiKeywordsDifference, String str) {
+        this.f19452c = mediaDataController;
+        this.d = tL_emojiKeywordsDifference;
+        this.f19451b = str;
     }
 }

@@ -1,53 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class y51 extends mm0 {
-    public final f61 V2;
-    public final i61 W2;
+import org.telegram.tgnet.TLRPC;
+public abstract class y51 {
+    public String[] f32550a = new String[0];
 
-    public y51(i61 i61Var, Context context, f61 f61Var) {
-        super(context, null);
-        this.W2 = i61Var;
-        this.V2 = f61Var;
-    }
-
-    @Override
-    public final boolean E0(float f7) {
-        if (f7 >= AndroidUtilities.dp(58.0f) + this.W2.E) {
-            return true;
-        }
+    public boolean a() {
         return false;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        this.W2.F = true;
-        return super.dispatchTouchEvent(motionEvent);
+    public String[] b() {
+        return this.f32550a;
     }
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        boolean d = this.V2.d(this, motionEvent);
-        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
-            return false;
-        }
-        return true;
+    public boolean c() {
+        return false;
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.W2.L != null) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
+    public boolean d(r51 r51Var, MotionEvent motionEvent) {
+        return false;
     }
 
-    @Override
-    public final void requestLayout() {
-        if (!this.W2.H) {
-            super.requestLayout();
-        }
+    public boolean e(r51 r51Var, j jVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f32550a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
     }
 }

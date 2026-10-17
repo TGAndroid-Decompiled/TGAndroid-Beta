@@ -6,16 +6,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 public final class c implements ja.f {
-    public static final SimpleDateFormat f14643a;
+    public static final SimpleDateFormat f15978a;
 
     static {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
-        f14643a = simpleDateFormat;
+        f15978a = simpleDateFormat;
         simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("UTC"));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((g) obj2).b(f14643a.format((Date) obj));
+        ((g) obj2).b(f15978a.format((Date) obj));
     }
 }

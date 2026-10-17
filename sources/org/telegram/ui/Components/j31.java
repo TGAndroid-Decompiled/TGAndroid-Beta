@@ -1,88 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class j31 implements Runnable {
-    public final int f25874a = 0;
-    public final boolean f25875b;
-    public final long f25876c;
-    public final NotificationCenter.NotificationCenterDelegate d;
-    public final Object e;
-    public final Object f25877f;
-    public final Object h;
-    public final TLObject f25878n;
+public final class j31 extends e61 {
+    public static final int f27405a = 0;
 
-    public j31(y31 y31Var, boolean z10, org.telegram.ui.ActionBar.e1 e1Var, l80 l80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
-        this.d = y31Var;
-        this.f25875b = z10;
-        this.e = e1Var;
-        this.f25877f = l80Var;
-        this.f25876c = j10;
-        this.h = user;
-        this.f25878n = chat;
+    static {
+        e61.setup(new e61());
     }
 
     @Override
-    public final void run() {
+    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+        boolean z11;
         int i10;
-        switch (this.f25874a) {
-            case 0:
-                final y31 y31Var = (y31) this.d;
-                org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.e;
-                final l80 l80Var = (l80) this.f25877f;
-                final TLRPC.User user = (TLRPC.User) this.h;
-                final TLRPC.Chat chat = (TLRPC.Chat) this.f25878n;
-                boolean z10 = this.f25875b;
-                final boolean z11 = !z10;
-                e1Var.setVisibility(0);
-                if (!z10) {
-                    i10 = R.string.UnbanUserMonoforum;
+        k31 k31Var = (k31) view;
+        boolean z12 = false;
+        if (f61Var.f26146r) {
+            k31Var.f();
+        } else {
+            Object obj = f61Var.G;
+            if (obj == null) {
+                if (f61Var.d == -2) {
+                    k31Var.c();
                 } else {
-                    i10 = R.string.BanUserMonoforum;
-                }
-                e1Var.setText(LocaleController.getString(i10));
-                final long j10 = this.f25876c;
-                e1Var.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        y31 y31Var2 = y31.this;
-                        int i11 = y31Var2.f31134b;
-                        l80Var.u();
-                        boolean z12 = z11;
-                        TLRPC.User user2 = user;
-                        if (!z12) {
-                            MessagesController.getInstance(i11).deleteParticipantFromChat(j10, user2, (TLRPC.Chat) null, false, false);
-                            return;
-                        }
-                        TLRPC.TL_channels_editBanned tL_channels_editBanned = new TLRPC.TL_channels_editBanned();
-                        tL_channels_editBanned.participant = MessagesController.getInputPeer(user2);
-                        tL_channels_editBanned.channel = MessagesController.getInputChannel(chat);
-                        tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
-                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new y1(y31Var2, 15));
+                    if ((f61Var.f26152y & 1) != 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
                     }
-                });
-                return;
-            default:
-                zh.g.Z((zh.g) this.d, (TLRPC.TL_error) this.e, (TwoStepVerificationActivity) this.f25877f, (Activity) this.h, this.f25875b, this.f25876c, this.f25878n);
-                return;
+                    k31Var.d(z11, f61Var.f26145q, f61Var.e);
+                }
+            } else if (obj instanceof TLRPC.TL_forumTopic) {
+                if (!f61Var.I) {
+                    k31Var.g(f61Var.f26151x, (TLRPC.TL_forumTopic) obj, f61Var.e);
+                } else {
+                    k31Var.b(f61Var.f26151x, (TLRPC.TL_forumTopic) obj, f61Var.e);
+                }
+            }
         }
+        if (w7.m6.a(f61Var.f26152y, 8)) {
+            i10 = AndroidUtilities.dp(10.0f);
+        } else {
+            i10 = 0;
+        }
+        k31Var.L = i10;
+        if (a71Var != null && a71Var.f24513a3 && k31Var.f27726s) {
+            z12 = true;
+        }
+        k31Var.setReorder(z12);
     }
 
-    public j31(zh.g gVar, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j10, TLObject tLObject) {
-        this.d = gVar;
-        this.e = tL_error;
-        this.f25877f = twoStepVerificationActivity;
-        this.h = activity;
-        this.f25875b = z10;
-        this.f25876c = j10;
-        this.f25878n = tLObject;
+    @Override
+    public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new k31(context, i10, d6Var);
     }
 }
