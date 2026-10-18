@@ -1,19 +1,19 @@
 package org.telegram.ui;
 public final class gg implements q0.a {
-    public final int f37237a;
-    public final sn f37238b;
+    public final int f37207a;
+    public final sn f37208b;
 
     public gg(sn snVar, int i10) {
-        this.f37237a = i10;
-        this.f37238b = snVar;
+        this.f37207a = i10;
+        this.f37208b = snVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f37237a) {
+        switch (this.f37207a) {
             case 0:
                 Integer num = (Integer) obj;
-                sn snVar = this.f37238b;
+                sn snVar = this.f37208b;
                 snVar.getClass();
                 if (num.intValue() == 0) {
                     snVar.l1 = 0;
@@ -26,16 +26,16 @@ public final class gg implements q0.a {
                 return;
             case 1:
                 Integer num2 = (Integer) obj;
-                sn snVar2 = this.f37238b;
+                sn snVar2 = this.f37208b;
                 snVar2.getClass();
                 if (num2.intValue() == 0) {
-                    snVar2.f41293m1 = 0;
+                    snVar2.f41314m1 = 0;
                     snVar2.Ec(true);
                     snVar2.getMessagesController().markPollVotesAsRead(snVar2.T5, snVar2.d());
                     return;
                 }
-                int i10 = snVar2.f41293m1 - 1;
-                snVar2.f41293m1 = i10;
+                int i10 = snVar2.f41314m1 - 1;
+                snVar2.f41314m1 = i10;
                 if (i10 <= 0) {
                     snVar2.getMessagesController().markPollVotesAsRead(snVar2.T5, snVar2.d());
                 }
@@ -43,7 +43,7 @@ public final class gg implements q0.a {
                 snVar2.j(num2.intValue(), 0, false, 0, true, 0);
                 return;
             default:
-                sn snVar3 = this.f37238b;
+                sn snVar3 = this.f37208b;
                 snVar3.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 snVar3.f7 = booleanValue;

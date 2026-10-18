@@ -106,7 +106,7 @@ public abstract class i {
                     } else {
                         i11 = R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOther;
                     }
-                    return AndroidUtilities.replaceTags(LocaleController.formatString(i11, stringBuffer, i0.a.h(1, arrayList)));
+                    return AndroidUtilities.replaceTags(LocaleController.formatString(i11, stringBuffer, i2.d.h(1, arrayList)));
                 } else if (m6.a(i10, 1)) {
                     TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                     if (messageFwdHeader != null) {

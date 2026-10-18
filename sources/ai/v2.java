@@ -1,194 +1,107 @@
 package ai;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import java.io.File;
-import java.io.FileOutputStream;
+import android.os.Bundle;
+import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MediaController;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.f51;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.dx;
-import org.telegram.ui.ey;
-import org.telegram.ui.ko;
-import org.telegram.ui.rq0;
-import org.telegram.ui.xx;
-public final class v2 implements Utilities.Callback {
-    public final int f2287a;
-    public final long f2288b;
-    public final Object f2289c;
+import org.telegram.ui.wk0;
+public final class v2 implements Utilities.Callback2 {
+    public final int f2289a;
+    public final Object f2290b;
+    public final Object f2291c;
     public final Object d;
     public final Object e;
 
-    public v2(ci.i7 i7Var, Utilities.Callback callback, long j10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        this.f2287a = 3;
-        this.f2289c = i7Var;
-        this.e = callback;
-        this.f2288b = j10;
-        this.d = tL_premium_boostsStatus;
+    public v2(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f2289a = i10;
+        this.f2290b = obj;
+        this.f2291c = obj2;
+        this.d = obj3;
+        this.e = obj4;
     }
 
     @Override
-    public final void run(Object obj) {
-        s3 s3Var;
-        int i10 = this.f2287a;
-        long j10 = this.f2288b;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        Object obj4 = this.f2289c;
+    public final void run(Object obj, Object obj2) {
+        CharSequence replaceSingleLinkBold;
+        int i10 = this.f2289a;
+        Object obj3 = this.e;
+        Object obj4 = this.d;
+        Object obj5 = this.f2291c;
+        Object obj6 = this.f2290b;
         switch (i10) {
             case 0:
-                k7.y0((k7) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f2288b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
+                k7.h0((k7) obj6, (Utilities.Callback2) obj5, (ArrayList) obj4, (Runnable) obj3, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                ci.r rVar = (ci.r) obj4;
-                ci.q qVar = (ci.q) obj2;
-                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
-                if (((Boolean) obj).booleanValue()) {
-                    ei.vb D = ei.vb.D(rVar.f5875e0.getParentActivity(), rVar.f5876f);
-                    D.N = j10;
-                    ei.lb lbVar = D.f9957c1;
-                    if (lbVar != null) {
-                        lbVar.setDialogId(j10);
-                    }
-                    D.M = false;
-                    D.Q(ei.qb.c(qVar));
-                    return;
-                }
+                k7.e1((k7) obj6, (pf.c) obj5, (ug.m1) obj4, (q3) obj3, (TL_stars.starGiftDepositPayload) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                ci.i7 i7Var = (ci.i7) obj4;
-                Utilities.Callback callback = (Utilities.Callback) obj3;
-                MessagesController messagesController = (MessagesController) obj2;
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                if (tL_premium_boostsStatus == null) {
-                    callback.run(Boolean.FALSE);
+                f51 f51Var = (f51) obj5;
+                String str = (String) obj4;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj3;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                ((org.telegram.ui.ActionBar.b2) obj6).dismiss();
+                if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) {
+                    f51Var.run();
                     return;
                 }
-                ChannelBoostsController boostsController = messagesController.getBoostsController();
-                long j11 = this.f2288b;
-                boostsController.userCanBoostChannel(j11, tL_premium_boostsStatus, new v2(i7Var, callback, j11, tL_premium_boostsStatus));
-                callback.run(Boolean.FALSE);
-                return;
-            case 3:
-                ci.i7 i7Var2 = (ci.i7) obj4;
-                Utilities.Callback callback2 = (Utilities.Callback) obj2;
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus2 = (TL_stories.TL_premium_boostsStatus) obj3;
-                ChannelBoostsController.CanApplyBoost canApplyBoost = (ChannelBoostsController.CanApplyBoost) obj;
-                if (canApplyBoost == null) {
-                    callback2.run(Boolean.FALSE);
-                    return;
+                org.telegram.ui.ActionBar.f3 f3Var = wk0.f42912a;
+                if (f3Var != null) {
+                    f3Var.dismiss();
+                    wk0.f42912a = null;
                 }
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                if (i7Var2.j(j10)) {
-                    s3Var = new s3(i7Var2, j10, 5);
+                org.telegram.ui.Components.xc a2 = wk0.a();
+                int i11 = R.raw.error;
+                String string = LocaleController.getString(R.string.BotAuthLoggedInFailTitle);
+                if (TextUtils.isEmpty(str)) {
+                    replaceSingleLinkBold = LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain);
                 } else {
-                    s3Var = null;
+                    replaceSingleLinkBold = AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Gi, d6Var));
                 }
-                int i11 = sg.j0.V0;
-                if (R != null && tL_premium_boostsStatus2 != null && R.getContext() != null) {
-                    sg.j0 j0Var = new sg.j0(18, R.getCurrentAccount(), R.getContext(), R, R.getResourceProvider());
-                    j0Var.H1(canApplyBoost);
-                    j0Var.G1(tL_premium_boostsStatus2, true);
-                    j0Var.I1(j10);
-                    j0Var.Q0 = s3Var;
-                    j0Var.show();
-                }
-                callback2.run(Boolean.FALSE);
+                a2.M(string, replaceSingleLinkBold, i11).j();
                 return;
-            case 4:
-                ko.Y((ko) obj4, (org.telegram.ui.ActionBar.b2) obj2, (TL_stories.TL_premium_boostsStatus) obj3, this.f2288b, (ChannelBoostsController.CanApplyBoost) obj);
-                return;
-            case 5:
-                dx dxVar = (dx) obj4;
-                org.telegram.ui.ActionBar.n2[] n2VarArr = (org.telegram.ui.ActionBar.n2[]) obj2;
-                Runnable runnable = (Runnable) obj;
-                dxVar.getClass();
-                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
-                ey eyVar = dxVar.f36330b;
-                eyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j10));
-                xx xxVar = eyVar.C2;
-                eyVar.removeSelfFromStack();
-                if (n2VarArr[1] != null) {
-                    n2VarArr[0].removeSelfFromStack();
-                    n2VarArr[1].finishFragment();
-                } else {
-                    n2VarArr[0].finishFragment();
-                }
-                if (xxVar != null) {
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add(MessagesStorage.TopicKey.of(-j10, 0L));
-                    xxVar.w(eyVar, arrayList, null, false, eyVar.J2, eyVar.K2, eyVar.L2, null);
-                    return;
-                }
-                return;
-            case 6:
-                PhotoViewer photoViewer = (PhotoViewer) obj4;
-                String str = (String) obj3;
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj2;
-                Bitmap bitmap = (Bitmap) obj;
-                Drawable[] drawableArr = PhotoViewer.U8;
-                if (bitmap == null) {
-                    AndroidUtilities.runOnUIThread(new rq0(photoViewer, 16));
-                    return;
-                }
-                try {
-                    FileOutputStream fileOutputStream = new FileOutputStream(new File(str));
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
-                    fileOutputStream.close();
-                    Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(createBitmap);
-                    Paint paint = new Paint(3);
-                    canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
-                    float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
-                    canvas.scale(max, max);
-                    canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
-                    AndroidUtilities.runOnUIThread(new z(photoViewer, photoEntry, this.f2288b, str, createBitmap, 13));
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    AndroidUtilities.runOnUIThread(new rq0(photoViewer, 17));
-                    return;
-                }
             default:
-                yh.b1 b1Var = (yh.b1) obj3;
-                pf.c cVar = (pf.c) obj;
-                cVar.d();
-                b1Var.I1(j10, new ci.z2((yh.p1) obj4, cVar, (Utilities.Callback) obj2, b1Var, 19));
-                return;
+                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) obj6;
+                ci.z7 z7Var = (ci.z7) obj5;
+                String str2 = (String) obj4;
+                TLRPC.User user = (TLRPC.User) obj3;
+                TLRPC.Updates updates = (TLRPC.Updates) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                org.telegram.ui.ActionBar.d6 d6Var2 = a1Var.e;
+                if (updates != null) {
+                    MessagesController.getInstance(a1Var.M).lambda$processUpdates$377(updates, false);
+                    a1Var.x(z7Var, "requested_chat_sent", org.telegram.ui.web.a1.A(str2, "req_id"));
+                    long j10 = a1Var.U.f20426id;
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("user_id", user.f20426id);
+                    org.telegram.ui.web.e0 e0Var = new org.telegram.ui.web.e0(a1Var, bundle, user, j10);
+                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                    if (U != null) {
+                        U.presentFragment(e0Var);
+                    }
+                    org.telegram.ui.web.g0 g0Var = a1Var.f42542c;
+                    if (g0Var != null) {
+                        g0Var.b();
+                        return;
+                    }
+                    return;
+                } else if (tL_error2 != null) {
+                    new org.telegram.ui.Components.xc(a1Var, d6Var2).f0(tL_error2, false);
+                    a1Var.x(z7Var, "requested_chat_failed", org.telegram.ui.web.a1.A(str2, "req_id"));
+                    return;
+                } else {
+                    new org.telegram.ui.Components.xc(a1Var, d6Var2).e0("UNKNOWN_BUTTON", false);
+                    a1Var.x(z7Var, "requested_chat_failed", org.telegram.ui.web.a1.A(str2, "req_id"));
+                    return;
+                }
         }
-    }
-
-    public v2(Object obj, Object obj2, long j10, Object obj3, int i10) {
-        this.f2287a = i10;
-        this.f2289c = obj;
-        this.d = obj2;
-        this.f2288b = j10;
-        this.e = obj3;
-    }
-
-    public v2(Object obj, Object obj2, Object obj3, long j10, int i10) {
-        this.f2287a = i10;
-        this.f2289c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f2288b = j10;
-    }
-
-    public v2(ko koVar, org.telegram.ui.ActionBar.b2 b2Var, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, long j10) {
-        this.f2287a = 4;
-        this.f2289c = koVar;
-        this.e = b2Var;
-        this.d = tL_premium_boostsStatus;
-        this.f2288b = j10;
     }
 }

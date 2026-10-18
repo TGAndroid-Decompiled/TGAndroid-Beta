@@ -2,16 +2,16 @@ package rg;
 
 import android.content.Context;
 public final class r2 extends o0 {
-    public final t2 f45646t0;
+    public final t2 f45666t0;
 
     public r2(t2 t2Var, Context context, float f7) {
         super(context, f7);
-        this.f45646t0 = t2Var;
+        this.f45666t0 = t2Var;
     }
 
     @Override
     public final void invalidate() {
-        this.f45646t0.d.invalidate();
+        this.f45666t0.d.invalidate();
         super.invalidate();
     }
 }

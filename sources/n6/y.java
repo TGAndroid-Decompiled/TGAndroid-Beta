@@ -4,10 +4,10 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 public final class y implements IInterface {
-    public final IBinder f17246a;
+    public final IBinder f17253a;
 
     public y(IBinder iBinder) {
-        this.f17246a = iBinder;
+        this.f17253a = iBinder;
     }
 
     public final void F0(b0 b0Var, f fVar) {
@@ -18,7 +18,7 @@ public final class y implements IInterface {
             obtain.writeStrongBinder(b0Var);
             obtain.writeInt(1);
             m8.h.a(fVar, obtain, 0);
-            this.f17246a.transact(46, obtain, obtain2, 0);
+            this.f17253a.transact(46, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain2.recycle();
@@ -28,6 +28,6 @@ public final class y implements IInterface {
 
     @Override
     public final IBinder asBinder() {
-        return this.f17246a;
+        return this.f17253a;
     }
 }

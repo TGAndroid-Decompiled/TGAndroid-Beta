@@ -13,7 +13,7 @@ public final class a extends LinearLayout {
         super(context);
         setOrientation(1);
         setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        TextView f7 = org.telegram.messenger.q.f(context, 1, 14.0f);
+        TextView f7 = org.telegram.messenger.g0.f(context, 1, 14.0f);
         int i10 = h6.G6;
         f7.setTextColor(h6.x0(null, i10, false));
         f7.setTypeface(AndroidUtilities.bold());
@@ -22,12 +22,12 @@ public final class a extends LinearLayout {
         TextView textView = new TextView(context);
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(h6.x0(null, i10, false));
-        org.telegram.messenger.q.n(R.string.AboutPremiumDescription, textView);
+        org.telegram.messenger.g0.n(R.string.AboutPremiumDescription, textView);
         addView(textView, z5.p(-1, -2, 0.0f, 0, 0, 0, 0, 0));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(h6.x0(null, i10, false));
-        org.telegram.messenger.q.n(R.string.AboutPremiumDescription2, textView2);
+        org.telegram.messenger.g0.n(R.string.AboutPremiumDescription2, textView2);
         addView(textView2, z5.p(-1, -2, 0.0f, 0, 0, 24, 0, 0));
     }
 }

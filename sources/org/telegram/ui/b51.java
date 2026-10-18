@@ -22,23 +22,23 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
     public final ArrayList X2;
     public final ArrayList Y2;
     public final ArrayList Z2;
-    public boolean f35567a3;
-    public final LongSparseArray f35568b3;
-    public final z51 f35569c3;
+    public boolean f35590a3;
+    public final LongSparseArray f35591b3;
+    public final z51 f35592c3;
 
     public b51(z51 z51Var, Context context) {
         super(context, null);
-        this.f35569c3 = z51Var;
+        this.f35592c3 = z51Var;
         this.V2 = new SparseArray();
         this.W2 = new ArrayList();
         this.X2 = new ArrayList();
         this.Y2 = new ArrayList();
         this.Z2 = new ArrayList();
-        this.f35568b3 = new LongSparseArray();
+        this.f35591b3 = new LongSparseArray();
         setDrawSelectorBehind(true);
         setClipToPadding(false);
         setSelectorRadius(AndroidUtilities.dp(4.0f));
-        setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21075i6, this.f27284n2));
+        setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21082i6, this.f27291n2));
     }
 
     public static void x1(ArrayList arrayList) {
@@ -75,9 +75,9 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
         float f12;
         Canvas canvas2 = canvas;
         if (getVisibility() == 0) {
-            this.f35567a3 = false;
+            this.f35590a3 = false;
             int saveCount = canvas2.getSaveCount();
-            z51 z51Var = this.f35569c3;
+            z51 z51Var = this.f35592c3;
             int i11 = z51Var.W;
             int i12 = 14;
             if (i11 != 6 && i11 != 14 && i11 != 13) {
@@ -85,7 +85,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                 if (!rect.isEmpty()) {
                     this.B1.setBounds(rect);
                     canvas2.save();
-                    q0.a aVar = this.f27282m2;
+                    q0.a aVar = this.f27289m2;
                     if (aVar != null) {
                         aVar.accept(canvas2);
                     }
@@ -112,7 +112,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
             } else {
                 z10 = false;
             }
-            if (this.f35568b3 != null) {
+            if (this.f35591b3 != null) {
                 int i14 = 0;
                 boolean z12 = false;
                 while (i14 < getChildCount()) {
@@ -128,8 +128,8 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                                 i51Var.invalidate();
                             }
                         }
-                        int i16 = i51Var.f37750c;
-                        if (z51Var.f43629w1) {
+                        int i16 = i51Var.f37764c;
+                        if (z51Var.f43655w1) {
                             top = (int) childAt.getY();
                         } else {
                             top = childAt.getTop();
@@ -137,8 +137,8 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                         ArrayList arrayList5 = (ArrayList) sparseArray.get(top);
                         canvas2.save();
                         canvas2.translate(i51Var.getX(), i51Var.getY());
-                        if (i51Var.f37755w != null) {
-                            ai.ce collectionParticles = z51Var.getCollectionParticles();
+                        if (i51Var.f37769w != null) {
+                            ai.de collectionParticles = z51Var.getCollectionParticles();
                             i10 = i14;
                             boolean z13 = z12;
                             collectionParticles.f(0, 0, i51Var.getWidth(), i51Var.getHeight());
@@ -164,7 +164,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                             view = childAt;
                             canvas2.scale(f11, f12, i51Var.getWidth() / 2.0f, i51Var.getHeight() / 2.0f);
                             canvas2.rotate((i16 % 4) * 90, i51Var.getWidth() / 2.0f, i51Var.getHeight() / 2.0f);
-                            collectionParticles.a(canvas2, i51Var.f37755w.intValue());
+                            collectionParticles.a(canvas2, i51Var.f37769w.intValue());
                             canvas2.restore();
                             z12 = z14;
                         } else {
@@ -172,7 +172,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                             view = childAt;
                         }
                         boolean z15 = i51Var.L;
-                        if ((z15 || i51Var.M || i51Var.S > 0.0f) && !i51Var.f37749b) {
+                        if ((z15 || i51Var.M || i51Var.S > 0.0f) && !i51Var.f37763b) {
                             if (z15 || i51Var.M) {
                                 float f14 = i51Var.R;
                                 if (f14 < 1.0f) {
@@ -209,7 +209,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                             rectF.set(0.0f, 0.0f, i51Var.getMeasuredWidth(), i51Var.getMeasuredHeight());
                             float f16 = dp;
                             rectF.inset(f16, f16);
-                            if (!i51Var.f37748a) {
+                            if (!i51Var.f37762a) {
                                 Drawable drawable = i51Var.E;
                                 if (!(drawable instanceof org.telegram.ui.Components.r5) || !((org.telegram.ui.Components.r5) drawable).c()) {
                                     paint = z51Var2.L;
@@ -236,7 +236,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                         }
                         if (arrayList5 == null) {
                             if (!arrayList.isEmpty()) {
-                                arrayList3 = (ArrayList) i0.a.z(1, arrayList);
+                                arrayList3 = (ArrayList) i2.d.A(1, arrayList);
                             } else {
                                 arrayList3 = new ArrayList();
                             }
@@ -246,7 +246,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                         }
                         arrayList3.add(i51Var);
                         h51 h51Var = i51Var.J;
-                        if (h51Var != null && h51Var.getVisibility() == 0 && i51Var.J.getImageReceiver() == null && (imageReceiver2 = i51Var.f37753r) != null) {
+                        if (h51Var != null && h51Var.getVisibility() == 0 && i51Var.J.getImageReceiver() == null && (imageReceiver2 = i51Var.f37767r) != null) {
                             i51Var.J.setImageReceiver(imageReceiver2);
                         }
                     } else {
@@ -259,7 +259,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                         int i18 = z51Var.N1;
                         List list = z51.Z1;
                         if (R == i18 - 1) {
-                            float interpolation2 = org.telegram.ui.Components.bs.f25031g.getInterpolation(w7.r.a(((float) (SystemClock.elapsedRealtime() - z51Var.P1)) / 200.0f, 0.0f, 1.0f));
+                            float interpolation2 = org.telegram.ui.Components.bs.f25038g.getInterpolation(w7.r.a(((float) (SystemClock.elapsedRealtime() - z51Var.P1)) / 200.0f, 0.0f, 1.0f));
                             if (interpolation2 < 1.0f) {
                                 float f18 = 1.0f - interpolation2;
                                 canvas2.saveLayerAlpha(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), (int) (255.0f * f18), 31);
@@ -311,7 +311,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                 }
                 if (a51Var == null) {
                     if (!arrayList2.isEmpty()) {
-                        a51Var = (a51) i0.a.z(1, arrayList2);
+                        a51Var = (a51) i2.d.A(1, arrayList2);
                     } else {
                         a51Var = new a51(this);
                         a51Var.l(7);
@@ -354,7 +354,7 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
                         canvas2.translate((int) ((i51Var3.getX() + i51Var3.getMeasuredWidth()) - i51Var3.J.getMeasuredWidth()), (int) ((i51Var3.getY() + i51Var3.getMeasuredHeight()) - i51Var3.J.getMeasuredHeight()));
                         Drawable drawable2 = i51Var3.E;
                         if (drawable2 instanceof org.telegram.ui.Components.r5) {
-                            imageReceiver = ((org.telegram.ui.Components.r5) drawable2).f29841k;
+                            imageReceiver = ((org.telegram.ui.Components.r5) drawable2).f29849k;
                         } else {
                             imageReceiver = i51Var3.h;
                         }
@@ -400,18 +400,18 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
 
     @Override
     public final void invalidate() {
-        if (ah.x0.b(this) || this.f35567a3) {
+        if (ah.x0.b(this) || this.f35590a3) {
             return;
         }
-        this.f35567a3 = true;
+        this.f35590a3 = true;
         super.invalidate();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        z51 z51Var = this.f35569c3;
-        if (this == z51Var.f43596h0) {
+        z51 z51Var = this.f35592c3;
+        if (this == z51Var.f43622h0) {
             z51Var.V0.onAttachedToWindow();
         }
     }
@@ -419,8 +419,8 @@ public abstract class b51 extends org.telegram.ui.Components.im0 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        z51 z51Var = this.f35569c3;
-        if (this == z51Var.f43596h0) {
+        z51 z51Var = this.f35592c3;
+        if (this == z51Var.f43622h0) {
             z51Var.V0.onDetachedFromWindow();
         }
         x1(this.X2);

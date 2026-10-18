@@ -1,12 +1,12 @@
 package e2;
 public final class q {
-    public final Object f8271a;
-    public b2.t f8272b = new b2.t();
-    public boolean f8273c;
+    public final Object f8272a;
+    public b2.t f8273b = new b2.t();
+    public boolean f8274c;
     public boolean d;
 
     public q(Object obj) {
-        this.f8271a = obj;
+        this.f8272a = obj;
     }
 
     public final boolean equals(Object obj) {
@@ -14,12 +14,12 @@ public final class q {
             return true;
         }
         if (obj != null && q.class == obj.getClass()) {
-            return this.f8271a.equals(((q) obj).f8271a);
+            return this.f8272a.equals(((q) obj).f8272a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f8271a.hashCode();
+        return this.f8272a.hashCode();
     }
 }

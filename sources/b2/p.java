@@ -1,13 +1,13 @@
 package b2;
 public final class p {
-    public static final p f3896c = new p(new Object());
+    public static final p f3897c = new p(new Object());
     public static final String d;
     public static final String e;
-    public final int f3897a = 0;
-    public final int f3898b = 0;
+    public final int f3898a = 0;
+    public final int f3899b = 0;
 
     static {
-        String str = e2.m0.f8254a;
+        String str = e2.m0.f8255a;
         Integer.toString(0, 36);
         d = Integer.toString(1, 36);
         e = Integer.toString(2, 36);
@@ -21,7 +21,7 @@ public final class p {
         if (this != obj) {
             if (obj instanceof p) {
                 p pVar = (p) obj;
-                if (this.f3897a == pVar.f3897a && this.f3898b == pVar.f3898b) {
+                if (this.f3898a == pVar.f3898a && this.f3899b == pVar.f3899b) {
                     return true;
                 }
                 return false;
@@ -32,6 +32,6 @@ public final class p {
     }
 
     public final int hashCode() {
-        return (((16337 + this.f3897a) * 31) + this.f3898b) * 31;
+        return (((16337 + this.f3898a) * 31) + this.f3899b) * 31;
     }
 }

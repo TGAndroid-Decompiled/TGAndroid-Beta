@@ -5,19 +5,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class fk implements Runnable {
-    public final sn f36946a;
+    public final sn f36969a;
 
     public fk(sn snVar) {
-        this.f36946a = snVar;
+        this.f36969a = snVar;
     }
 
     @Override
     public final void run() {
         String formatPluralString;
-        sn snVar = this.f36946a;
-        MessageObject messageObject = snVar.f41189d5;
+        sn snVar = this.f36969a;
+        MessageObject messageObject = snVar.f41210d5;
         if (messageObject != null && snVar.T8 != null) {
-            int max = Math.max(0, messageObject.messageOwner.ttl_period - (snVar.getConnectionsManager().getCurrentTime() - snVar.f41189d5.messageOwner.date));
+            int max = Math.max(0, messageObject.messageOwner.ttl_period - (snVar.getConnectionsManager().getCurrentTime() - snVar.f41210d5.messageOwner.date));
             if (max < 86400) {
                 formatPluralString = AndroidUtilities.formatDuration(max, false, true);
             } else {

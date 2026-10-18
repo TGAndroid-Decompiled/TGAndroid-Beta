@@ -4,12 +4,12 @@ import android.text.TextPaint;
 public final class g61 extends j61 {
     public static boolean h = true;
     public final int e;
-    public final l11 f26488f;
+    public final l11 f26495f;
 
     public g61(String str, int i10, l11 l11Var) {
         super(str, (l11) null);
         this.e = i10;
-        this.f26488f = l11Var;
+        this.f26495f = l11Var;
     }
 
     @Override
@@ -29,13 +29,13 @@ public final class g61 extends j61 {
             textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         } else {
             if (h) {
-                i10 = org.telegram.ui.ActionBar.h6.f21045gc;
+                i10 = org.telegram.ui.ActionBar.h6.f21052gc;
             } else {
-                i10 = org.telegram.ui.ActionBar.h6.f21008ec;
+                i10 = org.telegram.ui.ActionBar.h6.f21015ec;
             }
             textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         }
-        l11 l11Var = this.f26488f;
+        l11 l11Var = this.f26495f;
         if (l11Var != null) {
             l11Var.a(textPaint);
         } else {

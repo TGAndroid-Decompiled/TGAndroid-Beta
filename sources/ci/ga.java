@@ -10,14 +10,14 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bs;
 public final class ga extends ReplacementSpan {
-    public View f5435a;
+    public View f5436a;
     public float d;
     public boolean e;
-    public long f5438f;
-    public boolean f5439n;
-    public boolean f5440r;
-    public int f5436b = 1;
-    public int f5437c = 2;
+    public long f5439f;
+    public boolean f5440n;
+    public boolean f5441r;
+    public int f5437b = 1;
+    public int f5438c = 2;
     public final bs h = new bs(0.0f, 0.5f, 0.5f, 1.0f);
 
     public static CharSequence a(TextView textView, String str) {
@@ -39,8 +39,8 @@ public final class ga extends ReplacementSpan {
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             ga gaVar = new ga();
-            gaVar.f5435a = textView;
-            gaVar.f5439n = false;
+            gaVar.f5436a = textView;
+            gaVar.f5440n = false;
             spannableStringBuilder.setSpan(gaVar, i12, i12 + i11, 33);
             i12 += i11 - 1;
             i12++;
@@ -51,9 +51,9 @@ public final class ga extends ReplacementSpan {
         return spannableStringBuilder;
     }
 
-    public final void b(org.telegram.ui.Cells.x0 x0Var) {
-        this.f5435a = x0Var;
-        this.f5439n = false;
+    public final void b(org.telegram.ui.Cells.w0 w0Var) {
+        this.f5436a = w0Var;
+        this.f5440n = false;
     }
 
     @Override
@@ -64,14 +64,14 @@ public final class ga extends ReplacementSpan {
         float x10;
         TextPaint textPaint = (TextPaint) paint;
         float measureText = paint.measureText("…") / 3.0f;
-        if (this.f5440r) {
+        if (this.f5441r) {
             f10 = textPaint.getFontMetrics().ascent;
         } else {
             f10 = textPaint.getFontMetrics().top;
         }
         float f13 = -f10;
         float f14 = textPaint.getFontMetrics().bottom - textPaint.getFontMetrics().top;
-        if (this.f5439n) {
+        if (this.f5440n) {
             f11 = 0.05f;
         } else {
             f11 = 0.0365f;
@@ -79,7 +79,7 @@ public final class ga extends ReplacementSpan {
         float f15 = f14 * f11;
         float f16 = f13 - f15;
         if (this.e) {
-            if (System.currentTimeMillis() - this.f5438f > 1000) {
+            if (System.currentTimeMillis() - this.f5439f > 1000) {
                 this.e = false;
             }
         } else {
@@ -87,38 +87,38 @@ public final class ga extends ReplacementSpan {
             this.d = f17;
             if (f17 > 1.0f) {
                 this.d = 0.0f;
-                int i15 = this.f5436b - 1;
-                this.f5436b = i15;
-                this.f5437c--;
+                int i15 = this.f5437b - 1;
+                this.f5437b = i15;
+                this.f5438c--;
                 if (i15 < 0) {
-                    this.f5436b = 1;
-                    this.f5437c = 2;
+                    this.f5437b = 1;
+                    this.f5438c = 2;
                     this.e = true;
-                    this.f5438f = System.currentTimeMillis();
+                    this.f5439f = System.currentTimeMillis();
                 }
             }
         }
         for (int i16 = 0; i16 < 3; i16++) {
             float f18 = measureText / 2.0f;
             float f19 = (i16 * measureText) + f7 + f18;
-            if (i16 == this.f5436b) {
-                f19 = AndroidUtilities.lerp(f19, r.c.c(measureText, i16 + 1, f7, f18), this.d);
+            if (i16 == this.f5437b) {
+                f19 = AndroidUtilities.lerp(f19, r4.c.c(measureText, i16 + 1, f7, f18), this.d);
                 float f20 = this.d;
                 if (f20 < 0.5f) {
                     x10 = f20 / 0.5f;
                 } else {
-                    x10 = org.telegram.messenger.q.x(f20, 0.5f, 0.5f, 1.0f);
+                    x10 = org.telegram.messenger.g0.x(f20, 0.5f, 0.5f, 1.0f);
                 }
                 f12 = AndroidUtilities.lerp(f16, f16 - f18, this.h.getInterpolation(x10));
             } else {
-                if (i16 == this.f5437c) {
-                    f19 = AndroidUtilities.lerp(f19, r.c.c(measureText, i16 - 1, f7, f18), this.d);
+                if (i16 == this.f5438c) {
+                    f19 = AndroidUtilities.lerp(f19, r4.c.c(measureText, i16 - 1, f7, f18), this.d);
                 }
                 f12 = f16;
             }
             canvas.drawCircle(f19, f12, f15, paint);
         }
-        View view = this.f5435a;
+        View view = this.f5436a;
         if (view != null) {
             view.invalidate();
         }

@@ -8,9 +8,9 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class lc extends View implements r2 {
-    public Paint f9390a;
-    public Paint f9391b;
-    public org.telegram.ui.Components.p6 f9392c;
+    public Paint f9391a;
+    public Paint f9392b;
+    public org.telegram.ui.Components.p6 f9393c;
     public boolean d;
     public org.telegram.ui.Components.f6 e;
 
@@ -27,7 +27,7 @@ public final class lc extends View implements r2 {
             sb2.append('0');
         }
         sb2.append(j11);
-        this.f9392c.t(sb2, z10, true);
+        this.f9393c.t(sb2, z10, true);
     }
 
     public final void b(boolean z10, boolean z11) {
@@ -48,8 +48,8 @@ public final class lc extends View implements r2 {
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        Paint paint = this.f9391b;
-        org.telegram.ui.Components.p6 p6Var = this.f9392c;
+        Paint paint = this.f9392b;
+        org.telegram.ui.Components.p6 p6Var = this.f9393c;
         super.onDraw(canvas);
         org.telegram.ui.Components.f6 f6Var = this.e;
         if (this.d) {
@@ -62,7 +62,7 @@ public final class lc extends View implements r2 {
         float c10 = p6Var.c() + dp;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(((getWidth() - c10) / 2.0f) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), ((getWidth() + c10) / 2.0f) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f9390a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f9391a);
         if (d > 0.0f) {
             paint.setAlpha((int) (Utilities.clamp((((float) Math.sin((((float) (System.currentTimeMillis() % 2000)) / 1000.0f) * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
             invalidate();
@@ -79,13 +79,13 @@ public final class lc extends View implements r2 {
 
     @Override
     public void setInvert(float f7) {
-        this.f9390a.setColor(i0.b.f(f7, 1056964608, 268435456));
-        this.f9392c.u(i0.b.f(f7, -1, -16777216));
+        this.f9391a.setColor(i0.a.f(f7, 1056964608, 268435456));
+        this.f9393c.u(i0.a.f(f7, -1, -16777216));
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f9392c != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f9393c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

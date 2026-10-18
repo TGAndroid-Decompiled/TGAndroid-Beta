@@ -2,28 +2,28 @@ package org.telegram.ui.web;
 
 import android.webkit.GeolocationPermissions;
 public final class p0 implements q0.a {
-    public final int f42703a;
-    public final u0 f42704b;
-    public final GeolocationPermissions.Callback f42705c;
+    public final int f42728a;
+    public final u0 f42729b;
+    public final GeolocationPermissions.Callback f42730c;
     public final String d;
 
     public p0(u0 u0Var, GeolocationPermissions.Callback callback, String str, int i10) {
-        this.f42703a = i10;
-        this.f42704b = u0Var;
-        this.f42705c = callback;
+        this.f42728a = i10;
+        this.f42729b = u0Var;
+        this.f42730c = callback;
         this.d = str;
     }
 
     @Override
     public final void accept(Object obj) {
         Boolean bool = (Boolean) obj;
-        switch (this.f42703a) {
+        switch (this.f42728a) {
             case 0:
-                u0 u0Var = this.f42704b;
-                if (u0Var.f42775a != null) {
-                    u0Var.f42775a = null;
+                u0 u0Var = this.f42729b;
+                if (u0Var.f42800a != null) {
+                    u0Var.f42800a = null;
                     boolean booleanValue = bool.booleanValue();
-                    GeolocationPermissions.Callback callback = this.f42705c;
+                    GeolocationPermissions.Callback callback = this.f42730c;
                     String str = this.d;
                     if (booleanValue) {
                         a1.a(u0Var.e.Q, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new p0(u0Var, callback, str, 1));
@@ -35,9 +35,9 @@ public final class p0 implements q0.a {
                 }
                 return;
             default:
-                u0 u0Var2 = this.f42704b;
+                u0 u0Var2 = this.f42729b;
                 u0Var2.getClass();
-                this.f42705c.invoke(this.d, bool.booleanValue(), false);
+                this.f42730c.invoke(this.d, bool.booleanValue(), false);
                 if (bool.booleanValue()) {
                     u0Var2.e.Q.T = true;
                     return;

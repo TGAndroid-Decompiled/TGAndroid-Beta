@@ -17,22 +17,22 @@ public final class qi extends hm0 {
     public int I;
     public int J;
     public final ti K;
-    public final Context f29688c;
+    public final Context f29694c;
     public int d;
     public int e;
-    public int f29689f;
+    public int f29695f;
     public final ArrayList h = new ArrayList();
-    public int f29690n;
-    public int f29691r;
-    public int f29692s;
+    public int f29696n;
+    public int f29697r;
+    public int f29698s;
     public int v;
-    public int f29693w;
-    public int f29694x;
-    public int f29695y;
+    public int f29699w;
+    public int f29700x;
+    public int f29701y;
 
     public qi(ti tiVar, Context context) {
         this.K = tiVar;
-        this.f29688c = context;
+        this.f29694c = context;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class qi extends hm0 {
     public final int h() {
         int i10 = this.J;
         ti tiVar = this.K;
-        if (tiVar.K1 == null && (tiVar.f30574f0 instanceof org.telegram.ui.sn) && !tiVar.H) {
+        if (tiVar.K1 == null && (tiVar.f30581f0 instanceof org.telegram.ui.sn) && !tiVar.H) {
             return MediaDataController.getInstance(tiVar.M1).inlineBots.size() + i10;
         }
         return i10;
@@ -55,7 +55,7 @@ public final class qi extends hm0 {
         if (i10 >= this.J) {
             return 1;
         }
-        if (i10 >= this.e && i10 < this.f29689f) {
+        if (i10 >= this.e && i10 < this.f29695f) {
             return 1;
         }
         return 0;
@@ -67,23 +67,23 @@ public final class qi extends hm0 {
         int i10 = 0;
         this.J = 0;
         this.d = -1;
-        this.f29690n = -1;
-        this.f29692s = -1;
+        this.f29696n = -1;
+        this.f29698s = -1;
         this.v = -1;
-        this.f29693w = -1;
-        this.f29694x = -1;
-        this.f29695y = -1;
+        this.f29699w = -1;
+        this.f29700x = -1;
+        this.f29701y = -1;
         this.E = -1;
         this.F = -1;
         this.H = -1;
         this.I = -1;
         this.G = -1;
         this.e = -1;
-        this.f29689f = -1;
-        this.f29691r = -1;
+        this.f29695f = -1;
+        this.f29697r = -1;
         ti tiVar = this.K;
         int i11 = tiVar.M1;
-        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30574f0;
+        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30581f0;
         boolean z10 = true;
         if (tiVar.H) {
             this.J = 1;
@@ -92,7 +92,7 @@ public final class qi extends hm0 {
             if (i12 == 0 || w7.m6.a(i12, 16)) {
                 int i13 = this.J;
                 this.J = i13 + 1;
-                this.f29690n = i13;
+                this.f29696n = i13;
             }
             int i14 = tiVar.I;
             if (i14 == 0 || w7.m6.a(i14, 8192)) {
@@ -110,7 +110,7 @@ public final class qi extends hm0 {
             if (i18 == 0 || w7.m6.a(i18, 8)) {
                 int i19 = this.J;
                 this.J = i19 + 1;
-                this.f29692s = i19;
+                this.f29698s = i19;
             }
             int i20 = tiVar.I;
             if (i20 == 0 || w7.m6.a(i20, 64)) {
@@ -127,18 +127,18 @@ public final class qi extends hm0 {
         } else if (!(n2Var instanceof org.telegram.ui.sn)) {
             this.d = 0;
             this.J = 2;
-            this.f29690n = 1;
+            this.f29696n = 1;
             if (tiVar.W) {
                 this.J = 3;
-                this.f29692s = 2;
+                this.f29698s = 2;
             }
         } else if (tiVar.K1 != null) {
             int i24 = tiVar.J1;
             if (i24 == -1) {
                 this.d = 0;
-                this.f29690n = 1;
+                this.f29696n = 1;
                 this.J = 3;
-                this.f29692s = 2;
+                this.f29698s = 2;
             } else {
                 if (i24 == 0) {
                     this.J = 1;
@@ -147,12 +147,12 @@ public final class qi extends hm0 {
                 if (i24 == 1) {
                     int i25 = this.J;
                     this.J = i25 + 1;
-                    this.f29690n = i25;
+                    this.f29696n = i25;
                 }
                 if (i24 == 2) {
                     int i26 = this.J;
                     this.J = i26 + 1;
-                    this.f29692s = i26;
+                    this.f29698s = i26;
                 }
             }
         } else {
@@ -162,17 +162,17 @@ public final class qi extends hm0 {
             } else {
                 chat = null;
             }
-            if (i27 == null || ((org.telegram.ui.sn) n2Var).getMessagesController().getSendPaidMessagesStars(i27.f20419id) <= 0) {
+            if (i27 == null || ((org.telegram.ui.sn) n2Var).getMessagesController().getSendPaidMessagesStars(i27.f20426id) <= 0) {
                 z10 = false;
             }
             int i28 = this.J;
             this.d = i28;
             this.J = i28 + 2;
-            this.f29690n = i28 + 1;
+            this.f29696n = i28 + 1;
             if (MessagesController.getInstance(i11).config.walletAvailable.get() && ((org.telegram.ui.sn) n2Var).R3 == 0 && ti.v1(i27)) {
                 int i29 = this.J;
                 this.J = i29 + 1;
-                this.f29691r = i29;
+                this.f29697r = i29;
             }
             boolean z11 = tiVar.T1;
             if (z11) {
@@ -193,20 +193,20 @@ public final class qi extends hm0 {
             if (tiVar.T1) {
                 int i33 = this.J;
                 this.J = i33 + 1;
-                this.f29694x = i33;
+                this.f29700x = i33;
             }
             int i34 = this.J;
             int i35 = i34 + 1;
             this.J = i35;
-            this.f29692s = i34;
+            this.f29698s = i34;
             if (tiVar.S1) {
                 this.J = i34 + 2;
-                this.f29693w = i35;
+                this.f29699w = i35;
             }
-            if ((n2Var instanceof org.telegram.ui.sn) && ((org.telegram.ui.sn) n2Var).R3 == 0 && i27 != null && !z10 && !i27.bot && !ig.y1.f(i11).f13094b.isEmpty()) {
+            if ((n2Var instanceof org.telegram.ui.sn) && ((org.telegram.ui.sn) n2Var).R3 == 0 && i27 != null && !z10 && !i27.bot && !ig.a2.f(i11).f12828b.isEmpty()) {
                 int i36 = this.J;
                 this.J = i36 + 1;
-                this.f29695y = i36;
+                this.f29701y = i36;
             }
             if ((tiVar.O1 || tiVar.P1) && !z10 && ((chat == null || !ChatObject.isMonoForum(chat)) && (n2Var instanceof org.telegram.ui.sn) && !((org.telegram.ui.sn) n2Var).c() && !((org.telegram.ui.sn) n2Var).x())) {
                 org.telegram.ui.sn snVar = (org.telegram.ui.sn) n2Var;
@@ -232,7 +232,7 @@ public final class qi extends hm0 {
                     }
                     int size2 = arrayList.size() + this.J;
                     this.J = size2;
-                    this.f29689f = size2;
+                    this.f29695f = size2;
                 }
             }
         }
@@ -247,7 +247,7 @@ public final class qi extends hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View niVar;
-        Context context = this.f29688c;
+        Context context = this.f29694c;
         ti tiVar = this.K;
         if (i10 != 0) {
             niVar = new mi(tiVar, context);

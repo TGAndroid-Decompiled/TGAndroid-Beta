@@ -16,44 +16,44 @@ public abstract class qt implements NotificationCenter.NotificationCenterDelegat
     public boolean I;
     public int J;
     public final int K;
-    public boolean f29732a;
-    public Bitmap f29733b;
-    public Canvas f29734c;
+    public boolean f29738a;
+    public Bitmap f29739b;
+    public Canvas f29740c;
     public Bitmap d;
     public Canvas e;
-    public boolean f29735f;
-    public int f29736n;
-    public boolean f29737r;
+    public boolean f29741f;
+    public int f29742n;
+    public boolean f29743r;
     public int v;
-    public int f29739w;
-    public int f29740x;
-    public final DispatchQueue f29741y;
+    public int f29745w;
+    public int f29746x;
+    public final DispatchQueue f29747y;
     public int h = 1;
-    public final Paint f29738s = new Paint(1);
+    public final Paint f29744s = new Paint(1);
     public final ot F = new ot(this, 0);
     public final ot H = new ot(this, 1);
 
     public qt() {
         if (L == null) {
             ?? obj = new Object();
-            obj.f29429b = new DispatchQueue[2];
+            obj.f29436b = new DispatchQueue[2];
             L = obj;
         }
         pt ptVar = L;
-        int i10 = ptVar.f29428a + 1;
-        ptVar.f29428a = i10;
+        int i10 = ptVar.f29435a + 1;
+        ptVar.f29435a = i10;
         if (i10 > 1) {
-            ptVar.f29428a = 0;
+            ptVar.f29435a = 0;
         }
-        DispatchQueue[] dispatchQueueArr = (DispatchQueue[]) ptVar.f29429b;
-        int i11 = ptVar.f29428a;
+        DispatchQueue[] dispatchQueueArr = (DispatchQueue[]) ptVar.f29436b;
+        int i11 = ptVar.f29435a;
         DispatchQueue dispatchQueue = dispatchQueueArr[i11];
         if (dispatchQueue == null) {
-            dispatchQueue = new DispatchQueue("draw_background_queue_" + ptVar.f29428a);
+            dispatchQueue = new DispatchQueue("draw_background_queue_" + ptVar.f29435a);
             dispatchQueueArr[i11] = dispatchQueue;
         }
-        this.f29741y = dispatchQueue;
-        this.K = L.f29428a;
+        this.f29747y = dispatchQueue;
+        this.K = L.f29435a;
     }
 
     public void a(Canvas canvas, long j10, int i10, int i11, float f7) {
@@ -64,16 +64,16 @@ public abstract class qt implements NotificationCenter.NotificationCenterDelegat
             }
             return;
         }
-        this.f29739w = i11;
-        this.f29740x = i10;
+        this.f29745w = i11;
+        this.f29746x = i10;
         if (this.G) {
             this.G = false;
             Bitmap bitmap = this.d;
             Canvas canvas2 = this.e;
-            this.d = this.f29733b;
-            this.e = this.f29734c;
-            this.f29733b = bitmap;
-            this.f29734c = canvas2;
+            this.d = this.f29739b;
+            this.e = this.f29740c;
+            this.f29739b = bitmap;
+            this.f29740c = canvas2;
         }
         Bitmap bitmap2 = this.d;
         if (bitmap2 == null || this.I) {
@@ -84,12 +84,12 @@ public abstract class qt implements NotificationCenter.NotificationCenterDelegat
                 AndroidUtilities.recycleBitmaps(arrayList);
                 this.d = null;
             }
-            int i12 = this.f29739w + 0;
+            int i12 = this.f29745w + 0;
             Bitmap bitmap3 = this.d;
-            if (bitmap3 != null && bitmap3.getHeight() == i12 && this.d.getWidth() == this.f29740x) {
+            if (bitmap3 != null && bitmap3.getHeight() == i12 && this.d.getWidth() == this.f29746x) {
                 this.d.eraseColor(0);
             } else {
-                this.d = Bitmap.createBitmap(this.f29740x, i12, Bitmap.Config.ARGB_8888);
+                this.d = Bitmap.createBitmap(this.f29746x, i12, Bitmap.Config.ARGB_8888);
                 this.e = new Canvas(this.d);
             }
             this.e.save();
@@ -97,15 +97,15 @@ public abstract class qt implements NotificationCenter.NotificationCenterDelegat
             d(this.e, f7);
             this.e.restore();
         }
-        if (!this.f29735f && !this.f29737r) {
-            this.f29735f = true;
+        if (!this.f29741f && !this.f29743r) {
+            this.f29741f = true;
             i(j10);
             this.J = this.v;
-            this.f29741y.postRunnable(this.F);
+            this.f29747y.postRunnable(this.F);
         }
         Bitmap bitmap4 = this.d;
         if (bitmap4 != null) {
-            Paint paint = this.f29738s;
+            Paint paint = this.f29744s;
             paint.setAlpha((int) (f7 * 255.0f));
             canvas.save();
             canvas.translate(0.0f, -0);
@@ -129,48 +129,48 @@ public abstract class qt implements NotificationCenter.NotificationCenterDelegat
             Integer num = (Integer) objArr[0];
             if (this.h < num.intValue()) {
                 if (num.intValue() != 512 || SharedConfig.getDevicePerformanceClass() < 2) {
-                    int intValue = num.intValue() | this.f29736n;
-                    this.f29736n = intValue;
-                    if (intValue != 0 && !this.f29737r) {
-                        this.f29737r = true;
+                    int intValue = num.intValue() | this.f29742n;
+                    this.f29742n = intValue;
+                    if (intValue != 0 && !this.f29743r) {
+                        this.f29743r = true;
                     }
                 }
             }
         } else if (i10 == NotificationCenter.startAllHeavyOperations) {
             Integer num2 = (Integer) objArr[0];
-            if (this.h < num2.intValue() && (i12 = this.f29736n) != 0) {
+            if (this.h < num2.intValue() && (i12 = this.f29742n) != 0) {
                 int i13 = (~num2.intValue()) & i12;
-                this.f29736n = i13;
-                if (i13 == 0 && this.f29737r) {
-                    this.f29737r = false;
+                this.f29742n = i13;
+                if (i13 == 0 && this.f29743r) {
+                    this.f29743r = false;
                 }
             }
         }
     }
 
     public final void e() {
-        if (this.f29732a) {
+        if (this.f29738a) {
             return;
         }
-        this.f29732a = true;
+        this.f29738a = true;
         this.E = false;
         int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (~this.h);
-        this.f29736n = currentHeavyOperationFlags;
-        if (currentHeavyOperationFlags == 0 && this.f29737r) {
-            this.f29737r = false;
+        this.f29742n = currentHeavyOperationFlags;
+        if (currentHeavyOperationFlags == 0 && this.f29743r) {
+            this.f29743r = false;
         }
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.stopAllHeavyOperations);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.startAllHeavyOperations);
     }
 
     public final void f() {
-        if (!this.f29732a) {
+        if (!this.f29738a) {
             return;
         }
-        if (!this.f29735f) {
+        if (!this.f29741f) {
             j();
         }
-        this.f29732a = false;
+        this.f29738a = false;
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopAllHeavyOperations);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.startAllHeavyOperations);
     }
@@ -185,13 +185,13 @@ public abstract class qt implements NotificationCenter.NotificationCenterDelegat
         if (bitmap != null) {
             arrayList.add(bitmap);
         }
-        Bitmap bitmap2 = this.f29733b;
+        Bitmap bitmap2 = this.f29739b;
         if (bitmap2 != null) {
             arrayList.add(bitmap2);
         }
         this.d = null;
-        this.f29733b = null;
-        this.f29734c = null;
+        this.f29739b = null;
+        this.f29740c = null;
         this.e = null;
         AndroidUtilities.recycleBitmaps(arrayList);
     }
@@ -209,8 +209,8 @@ public abstract class qt implements NotificationCenter.NotificationCenterDelegat
 
     public final void l(int i10) {
         this.h = 7;
-        if (this.f29732a) {
-            this.f29736n = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (~this.h);
+        if (this.f29738a) {
+            this.f29742n = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (~this.h);
         }
     }
 

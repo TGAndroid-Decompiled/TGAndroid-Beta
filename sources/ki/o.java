@@ -10,10 +10,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.b61;
 import org.telegram.ui.Components.uy;
 public final class o implements uy {
-    public final q f15403a;
+    public final q f15410a;
 
     public o(q qVar) {
-        this.f15403a = qVar;
+        this.f15410a = qVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class o implements uy {
     public final void i(int i10) {
         h1 focusedEditTextOrNull;
         boolean z10 = false;
-        q qVar = this.f15403a;
-        if (i10 != 0 && (focusedEditTextOrNull = qVar.f15442r.getFocusedEditTextOrNull()) != null) {
+        q qVar = this.f15410a;
+        if (i10 != 0 && (focusedEditTextOrNull = qVar.f15449r.getFocusedEditTextOrNull()) != null) {
             qVar.F = focusedEditTextOrNull;
             qVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        qVar.f15446y = z10;
+        qVar.f15453y = z10;
         qVar.V();
     }
 
@@ -69,7 +69,7 @@ public final class o implements uy {
 
     @Override
     public final boolean k() {
-        h1 P = q.P(this.f15403a);
+        h1 P = q.P(this.f15410a);
         if (P == null || P.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class o implements uy {
 
     @Override
     public final void l(String str) {
-        q qVar = this.f15403a;
+        q qVar = this.f15410a;
         h1 P = q.P(qVar);
         if (P != null) {
             int Q = q.Q(qVar, P);
@@ -104,7 +104,7 @@ public final class o implements uy {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.a6 a6Var;
-        q qVar = this.f15403a;
+        q qVar = this.f15410a;
         h1 P = q.P(qVar);
         if (P != null) {
             int Q = q.Q(qVar, P);
@@ -133,23 +133,7 @@ public final class o implements uy {
 
     @Override
     public final boolean z() {
-        return this.f15403a.f15446y;
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
+        return this.f15410a.f15453y;
     }
 
     @Override
@@ -157,7 +141,15 @@ public final class o implements uy {
     }
 
     @Override
+    public final void n() {
+    }
+
+    @Override
     public final void o(b61 b61Var) {
+    }
+
+    @Override
+    public final void q() {
     }
 
     @Override
@@ -170,6 +162,14 @@ public final class o implements uy {
 
     @Override
     public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
     }
 
     @Override

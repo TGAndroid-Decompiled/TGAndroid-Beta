@@ -6,18 +6,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ll0 implements View.OnTouchListener {
-    public final int f38896a;
-    public final xm0 f38897b;
+    public final int f38887a;
+    public final xm0 f38888b;
 
     public ll0(xm0 xm0Var, int i10) {
-        this.f38896a = i10;
-        this.f38897b = xm0Var;
+        this.f38887a = i10;
+        this.f38888b = xm0Var;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f38896a;
-        xm0 xm0Var = this.f38897b;
+        int i10 = this.f38887a;
+        xm0 xm0Var = this.f38888b;
         switch (i10) {
             case 0:
                 if (xm0Var.getParentActivity() == null) {
@@ -25,7 +25,7 @@ public final class ll0 implements View.OnTouchListener {
                 }
                 if (motionEvent.getAction() == 1) {
                     qt qtVar = new qt(null, false);
-                    qtVar.f40499r = new ov(27, xm0Var, view);
+                    qtVar.f40524r = new zu(28, xm0Var, view);
                     xm0Var.presentFragment(qtVar);
                 }
                 return true;
@@ -36,7 +36,7 @@ public final class ll0 implements View.OnTouchListener {
                 if (motionEvent.getAction() == 1) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xm0Var.getParentActivity());
                     String string = LocaleController.getString(R.string.PassportSelectGender);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                     b2Var.R = string;
                     alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new p4(xm0Var, 3));
                     alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
@@ -49,7 +49,7 @@ public final class ll0 implements View.OnTouchListener {
                 }
                 if (motionEvent.getAction() == 1) {
                     qt qtVar2 = new qt(null, false);
-                    qtVar2.f40499r = new ml0(xm0Var, 2);
+                    qtVar2.f40524r = new ml0(xm0Var, 2);
                     xm0Var.presentFragment(qtVar2);
                 }
                 return true;
@@ -59,7 +59,7 @@ public final class ll0 implements View.OnTouchListener {
                 }
                 if (motionEvent.getAction() == 1) {
                     qt qtVar3 = new qt(null, false);
-                    qtVar3.f40499r = new ml0(xm0Var, 3);
+                    qtVar3.f40524r = new ml0(xm0Var, 3);
                     xm0Var.presentFragment(qtVar3);
                 }
                 return true;

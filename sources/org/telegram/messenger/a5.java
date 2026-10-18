@@ -6,64 +6,64 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class a5 implements Runnable {
-    public final int f17832a;
-    public final int f17833b;
-    public final int f17834c;
+    public final int f17841a;
+    public final int f17842b;
+    public final int f17843c;
     public final Object d;
     public final Object e;
 
     public a5(Object obj, Object obj2, int i10, int i11, int i12) {
-        this.f17832a = i12;
+        this.f17841a = i12;
         this.d = obj;
         this.e = obj2;
-        this.f17833b = i10;
-        this.f17834c = i11;
+        this.f17842b = i10;
+        this.f17843c = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f17832a) {
+        switch (this.f17841a) {
             case 0:
-                ((ImageLoader.AnonymousClass5) this.d).lambda$fileDidFailedLoad$6((String) this.e, this.f17833b, this.f17834c);
+                ((ImageLoader.AnonymousClass5) this.d).lambda$fileDidFailedLoad$6((String) this.e, this.f17842b, this.f17843c);
                 return;
             case 1:
-                ((MediaDataController) this.d).lambda$loadReactions$11((List) this.e, this.f17833b, this.f17834c);
+                ((MediaDataController) this.d).lambda$loadReactions$11((List) this.e, this.f17842b, this.f17843c);
                 return;
             case 2:
-                ((MediaDataController) this.d).lambda$putReactionsToCache$16((ArrayList) this.e, this.f17833b, this.f17834c);
+                ((MediaDataController) this.d).lambda$putReactionsToCache$16((ArrayList) this.e, this.f17842b, this.f17843c);
                 return;
             case 3:
-                ((MessagesController) this.d).lambda$getDifference$349((TLRPC.updates_Difference) this.e, this.f17833b, this.f17834c);
+                ((MessagesController) this.d).lambda$getDifference$349((TLRPC.updates_Difference) this.e, this.f17842b, this.f17843c);
                 return;
             case 4:
-                ((MessagesController.DialogPhotos) this.d).lambda$load$0((TLRPC.photos_Photos) this.e, this.f17833b, this.f17834c);
+                ((MessagesController.DialogPhotos) this.d).lambda$load$0((TLRPC.photos_Photos) this.e, this.f17842b, this.f17843c);
                 return;
             case 5:
-                ((MessagesController.DialogPhotos) this.d).lambda$load$2((TLRPC.messages_Messages) this.e, this.f17833b, this.f17834c);
+                ((MessagesController.DialogPhotos) this.d).lambda$load$2((TLRPC.messages_Messages) this.e, this.f17842b, this.f17843c);
                 return;
             case 6:
-                ((MessagesStorage) this.d).lambda$saveSecretParams$7(this.f17833b, this.f17834c, (byte[]) this.e);
+                ((MessagesStorage) this.d).lambda$saveSecretParams$7(this.f17842b, this.f17843c, (byte[]) this.e);
                 return;
             default:
-                int i10 = this.f17834c;
-                ((NotificationCenter) this.d).lambda$postNotificationDebounced$2(this.f17833b, (Object[]) this.e, i10);
+                int i10 = this.f17843c;
+                ((NotificationCenter) this.d).lambda$postNotificationDebounced$2(this.f17842b, (Object[]) this.e, i10);
                 return;
         }
     }
 
     public a5(MessagesStorage messagesStorage, int i10, int i11, byte[] bArr) {
-        this.f17832a = 6;
+        this.f17841a = 6;
         this.d = messagesStorage;
-        this.f17833b = i10;
-        this.f17834c = i11;
+        this.f17842b = i10;
+        this.f17843c = i11;
         this.e = bArr;
     }
 
     public a5(NotificationCenter notificationCenter, int i10, Object[] objArr, int i11) {
-        this.f17832a = 7;
+        this.f17841a = 7;
         this.d = notificationCenter;
-        this.f17833b = i10;
+        this.f17842b = i10;
         this.e = objArr;
-        this.f17834c = i11;
+        this.f17843c = i11;
     }
 }

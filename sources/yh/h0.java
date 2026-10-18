@@ -13,12 +13,12 @@ import org.telegram.ui.Components.q6;
 import org.telegram.ui.in;
 import org.telegram.ui.vf1;
 public final class h0 implements og {
-    public final TL_stars.TL_starGiftUnique f50281a;
-    public final j0 f50282b;
+    public final TL_stars.TL_starGiftUnique f50306a;
+    public final j0 f50307b;
 
     public h0(j0 j0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f50282b = j0Var;
-        this.f50281a = tL_starGiftUnique;
+        this.f50307b = j0Var;
+        this.f50306a = tL_starGiftUnique;
     }
 
     @Override
@@ -40,11 +40,11 @@ public final class h0 implements og {
         int i10;
         int i11;
         boolean z10;
-        j0 j0Var = this.f50282b;
-        q6 q6Var = j0Var.f50328w;
-        z4 z4Var = j0Var.f50322b;
+        j0 j0Var = this.f50307b;
+        q6 q6Var = j0Var.f50353w;
+        z4 z4Var = j0Var.f50347b;
         i10 = ((org.telegram.ui.ActionBar.f3) j0Var).currentAccount;
-        z4Var.a(this.f50281a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f50325n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        z4Var.a(this.f50306a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f50350n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         j0Var.F = codePointCount;
         int i12 = j0Var.E;
@@ -68,10 +68,10 @@ public final class h0 implements og {
             q6Var.animate().setListener(null).cancel();
             q6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                q6Var.setTextColor(j0Var.getThemedColor(h6.f21207p7));
+                q6Var.setTextColor(j0Var.getThemedColor(h6.f21214p7));
                 return;
             } else {
-                q6Var.setTextColor(j0Var.getThemedColor(h6.f21374y6));
+                q6Var.setTextColor(j0Var.getThemedColor(h6.f21381y6));
                 return;
             }
         }
@@ -134,6 +134,10 @@ public final class h0 implements og {
     }
 
     @Override
+    public final void C(boolean z10) {
+    }
+
+    @Override
     public final void F0() {
     }
 
@@ -154,11 +158,27 @@ public final class h0 implements og {
     }
 
     @Override
+    public final void V1(int i10) {
+    }
+
+    @Override
+    public final void X0(int i10) {
+    }
+
+    @Override
     public final void Y() {
     }
 
     @Override
     public final void Y1() {
+    }
+
+    @Override
+    public final void Z1(boolean z10) {
+    }
+
+    @Override
+    public final void a0(boolean z10) {
     }
 
     @Override
@@ -215,26 +235,6 @@ public final class h0 implements og {
 
     @Override
     public final void y1() {
-    }
-
-    @Override
-    public final void C(boolean z10) {
-    }
-
-    @Override
-    public final void V1(int i10) {
-    }
-
-    @Override
-    public final void X0(int i10) {
-    }
-
-    @Override
-    public final void Z1(boolean z10) {
-    }
-
-    @Override
-    public final void a0(boolean z10) {
     }
 
     @Override

@@ -1,93 +1,36 @@
 package ai;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ab implements DialogInterface.OnDismissListener {
-    public final int f975a;
-    public final Object f976b;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class ab implements View.OnClickListener {
+    public final int f973a;
+    public final ad f974b;
 
-    public ab(Object obj, int i10) {
-        this.f975a = i10;
-        this.f976b = obj;
+    public ab(ad adVar, int i10) {
+        this.f973a = i10;
+        this.f974b = adVar;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        org.telegram.ui.web.g0 g0Var;
-        switch (this.f975a) {
+    public final void onClick(View view) {
+        org.telegram.ui.ActionBar.n2 R;
+        org.telegram.ui.ActionBar.n2 R2;
+        switch (this.f973a) {
             case 0:
-                ((w8) this.f976b).run();
-                return;
-            case 1:
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f976b);
-                return;
-            case 2:
-                ((a1.f) this.f976b).run();
-                return;
-            case 3:
-                ((androidx.fragment.app.d) this.f976b).run();
-                return;
-            case 4:
-                ci.aa aaVar = (ci.aa) this.f976b;
-                if (dialogInterface == aaVar.f5221u0) {
-                    aaVar.f5221u0 = null;
-                    aaVar.P();
+                if (this.f974b.f981f > 0 && (R = LaunchActivity.R()) != 0) {
+                    ?? obj = new Object();
+                    obj.f21559a = true;
+                    R.showAsSheet(new md(), obj);
                     return;
                 }
-                return;
-            case 5:
-                AndroidUtilities.hideKeyboard((ig.s) this.f976b);
-                return;
-            case 6:
-                AndroidUtilities.hideKeyboard((ig.o1) this.f976b);
-                return;
-            case 7:
-                ((ki.q) this.f976b).O = null;
-                return;
-            case 8:
-                ((ki.d2) this.f976b).O0 = null;
-                return;
-            case 9:
-                Runnable[] runnableArr = (Runnable[]) this.f976b;
-                Runnable runnable = runnableArr[0];
-                if (runnable != null) {
-                    runnable.run();
-                    runnableArr[0] = null;
-                    return;
-                }
-                return;
-            case 10:
-                org.telegram.ui.web.a1 a1Var = ((org.telegram.ui.web.m0) this.f976b).e.Q;
-                if (a1Var != null && (g0Var = a1Var.f42518c) != null) {
-                    g0Var.y();
-                    return;
-                }
-                return;
-            case 11:
-                org.telegram.ui.web.g0 g0Var2 = ((org.telegram.ui.web.t0) this.f976b).f42736b.e.Q.f42518c;
-                if (g0Var2 != null) {
-                    g0Var2.y();
-                    return;
-                }
-                return;
-            case 12:
-                sg.j0 j0Var = (sg.j0) this.f976b;
-                j0Var.f46283f0 = false;
-                j0Var.f46300x0.f24282d0 = true;
-                j0Var.E0.invalidate();
-                j0Var.f46300x0.invalidate();
-                return;
-            case 13:
-                sg.l1 l1Var = (sg.l1) this.f976b;
-                yd ydVar = l1Var.f46339r0;
-                if (ydVar != null) {
-                    ydVar.setDialogVisible(false);
-                }
-                l1Var.f46338q0.setPaused(false);
                 return;
             default:
-                ((xh.k) this.f976b).f49894s = null;
+                if (this.f974b.f981f > 0 && (R2 = LaunchActivity.R()) != 0) {
+                    ?? obj2 = new Object();
+                    obj2.f21559a = true;
+                    R2.showAsSheet(new md(), obj2);
+                    return;
+                }
                 return;
         }
     }

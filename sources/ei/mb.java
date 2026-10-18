@@ -1,6 +1,6 @@
 package ei;
 public interface mb {
-    void a(long j10, ai.s3 s3Var);
+    qb a(long j10);
 
-    qb b(long j10);
+    void b(long j10, ai.r3 r3Var);
 }

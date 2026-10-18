@@ -44,7 +44,7 @@ public final class b {
     }
 
     public static final String f(String str, String str2) {
-        return a1.g.D(str, ":", str2);
+        return a1.g.C(str, ":", str2);
     }
 
     public final GoogleSignInAccount b() {
@@ -62,16 +62,16 @@ public final class b {
     public final void c(GoogleSignInAccount googleSignInAccount, GoogleSignInOptions googleSignInOptions) {
         n6.l.h(googleSignInAccount);
         n6.l.h(googleSignInOptions);
-        String str = googleSignInAccount.f6281r;
+        String str = googleSignInAccount.f6282r;
         e("defaultGoogleSignInAccount", str);
         String f7 = f("googleSignInAccount", str);
         JSONObject jSONObject = new JSONObject();
         try {
-            String str2 = googleSignInAccount.f6277b;
+            String str2 = googleSignInAccount.f6278b;
             if (str2 != null) {
                 jSONObject.put("id", str2);
             }
-            String str3 = googleSignInAccount.f6278c;
+            String str3 = googleSignInAccount.f6279c;
             if (str3 != null) {
                 jSONObject.put("tokenId", str3);
             }
@@ -87,11 +87,11 @@ public final class b {
             if (str6 != null) {
                 jSONObject.put("givenName", str6);
             }
-            String str7 = googleSignInAccount.f6283w;
+            String str7 = googleSignInAccount.f6284w;
             if (str7 != null) {
                 jSONObject.put("familyName", str7);
             }
-            Uri uri = googleSignInAccount.f6279f;
+            Uri uri = googleSignInAccount.f6280f;
             if (uri != null) {
                 jSONObject.put("photoUrl", uri.toString());
             }
@@ -99,23 +99,23 @@ public final class b {
             if (str8 != null) {
                 jSONObject.put("serverAuthCode", str8);
             }
-            jSONObject.put("expirationTime", googleSignInAccount.f6280n);
+            jSONObject.put("expirationTime", googleSignInAccount.f6281n);
             jSONObject.put("obfuscatedIdentifier", str);
             JSONArray jSONArray = new JSONArray();
-            List list = googleSignInAccount.f6282s;
+            List list = googleSignInAccount.f6283s;
             Scope[] scopeArr = (Scope[]) list.toArray(new Scope[list.size()]);
-            Arrays.sort(scopeArr, z5.c.f50733b);
+            Arrays.sort(scopeArr, z5.c.f50758b);
             int i10 = 0;
             for (Scope scope : scopeArr) {
-                jSONArray.put(scope.f6342b);
+                jSONArray.put(scope.f6343b);
             }
             jSONObject.put("grantedScopes", jSONArray);
             jSONObject.remove("serverAuthCode");
             e(f7, jSONObject.toString());
             String f10 = f("googleSignInOptions", str);
-            String str9 = googleSignInOptions.f6292n;
+            String str9 = googleSignInOptions.f6293n;
             String str10 = googleSignInOptions.h;
-            ArrayList arrayList = googleSignInOptions.f6289b;
+            ArrayList arrayList = googleSignInOptions.f6290b;
             JSONObject jSONObject2 = new JSONObject();
             try {
                 JSONArray jSONArray2 = new JSONArray();
@@ -124,15 +124,15 @@ public final class b {
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    jSONArray2.put(((Scope) obj).f6342b);
+                    jSONArray2.put(((Scope) obj).f6343b);
                 }
                 jSONObject2.put("scopes", jSONArray2);
-                Account account = googleSignInOptions.f6290c;
+                Account account = googleSignInOptions.f6291c;
                 if (account != null) {
                     jSONObject2.put("accountName", account.name);
                 }
                 jSONObject2.put("idTokenRequested", googleSignInOptions.d);
-                jSONObject2.put("forceCodeForRefreshToken", googleSignInOptions.f6291f);
+                jSONObject2.put("forceCodeForRefreshToken", googleSignInOptions.f6292f);
                 jSONObject2.put("serverAuthRequested", googleSignInOptions.e);
                 if (!TextUtils.isEmpty(str10)) {
                     jSONObject2.put("serverClientId", str10);

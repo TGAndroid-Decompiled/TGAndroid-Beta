@@ -1,9 +1,9 @@
 package w7;
 public final class k2 implements ja.d {
-    public static final k2 f48745a = new Object();
+    public static final k2 f48770a = new Object();
 
     static {
-        r.c.s(r.c.l(d.class, r.c.p(10, r.c.l(d.class, r.c.p(9, r.c.l(d.class, r.c.p(8, r.c.l(d.class, r.c.p(7, r.c.l(d.class, r.c.p(6, r.c.l(d.class, r.c.p(5, r.c.l(d.class, r.c.p(4, r.c.l(d.class, r.c.p(3, r.c.l(d.class, r.c.p(2, r.c.l(d.class, new a(1)))))))))))))))))))));
+        r4.c.s(r4.c.l(d.class, r4.c.p(10, r4.c.l(d.class, r4.c.p(9, r4.c.l(d.class, r4.c.p(8, r4.c.l(d.class, r4.c.p(7, r4.c.l(d.class, r4.c.p(6, r4.c.l(d.class, r4.c.p(5, r4.c.l(d.class, r4.c.p(4, r4.c.l(d.class, r4.c.p(3, r4.c.l(d.class, r4.c.p(2, r4.c.l(d.class, new a(1)))))))))))))))))))));
     }
 
     @Override

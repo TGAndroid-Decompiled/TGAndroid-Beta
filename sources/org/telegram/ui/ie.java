@@ -14,46 +14,46 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
 public final class ie extends LinearLayout {
-    public final LinearLayout f37862a;
-    public final LinearLayout[] f37863b;
-    public final org.telegram.ui.Components.z5[] f37864c;
+    public final LinearLayout f37876a;
+    public final LinearLayout[] f37877b;
+    public final org.telegram.ui.Components.z5[] f37878c;
     public final TextView[] d;
     public final TextView e;
-    public final DecimalFormat f37865f;
+    public final DecimalFormat f37879f;
 
     public ie(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f37863b = new LinearLayout[2];
-        this.f37864c = new org.telegram.ui.Components.z5[2];
+        this.f37877b = new LinearLayout[2];
+        this.f37878c = new org.telegram.ui.Components.z5[2];
         this.d = new TextView[2];
         setOrientation(1);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f37862a = linearLayout;
+        this.f37876a = linearLayout;
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.z5.k(22.0f, 9.0f, 22.0f, 0.0f, -1, -2));
         for (int i10 = 0; i10 < 2; i10++) {
-            this.f37863b[i10] = new LinearLayout(context);
-            this.f37863b[i10].setOrientation(0);
-            this.f37862a.addView(this.f37863b[i10], w7.z5.o(-1, -2, 1.0f, 119));
-            this.f37864c[i10] = new org.telegram.ui.Components.z5(context);
-            this.f37864c[i10].setTypeface(AndroidUtilities.bold());
-            this.f37864c[i10].setTextSize(1, 16.0f);
-            this.f37864c[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
-            this.f37863b[i10].addView(this.f37864c[i10], w7.z5.t(-2, -2, 80, 0, 0, 5, 0));
+            this.f37877b[i10] = new LinearLayout(context);
+            this.f37877b[i10].setOrientation(0);
+            this.f37876a.addView(this.f37877b[i10], w7.z5.o(-1, -2, 1.0f, 119));
+            this.f37878c[i10] = new org.telegram.ui.Components.z5(context);
+            this.f37878c[i10].setTypeface(AndroidUtilities.bold());
+            this.f37878c[i10].setTextSize(1, 16.0f);
+            this.f37878c[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
+            this.f37877b[i10].addView(this.f37878c[i10], w7.z5.t(-2, -2, 80, 0, 0, 5, 0));
             this.d[i10] = new org.telegram.ui.Components.z5(context);
             this.d[i10].setTextSize(1, 11.5f);
-            this.d[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21374y6, d6Var));
-            this.f37863b[i10].addView(this.d[i10], w7.z5.q(-2, -2, 80));
+            this.d[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21381y6, d6Var));
+            this.f37877b[i10].addView(this.d[i10], w7.z5.q(-2, -2, 80));
         }
         TextView textView = new TextView(context);
         this.e = textView;
         textView.setTextSize(1, 13.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21374y6, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21381y6, d6Var));
         addView(textView, w7.z5.t(-1, -2, 55, 22, 5, 22, 9));
         DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
         decimalFormatSymbols.setDecimalSeparator('.');
         DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-        this.f37865f = decimalFormat;
+        this.f37879f = decimalFormat;
         decimalFormat.setMinimumFractionDigits(2);
         decimalFormat.setMaximumFractionDigits(12);
         decimalFormat.setGroupingUsed(false);
@@ -70,30 +70,30 @@ public final class ie extends LinearLayout {
         int i10;
         SpannableStringBuilder spannableStringBuilder;
         int indexOf;
-        this.e.setText(heVar.f37525c);
+        this.e.setText(heVar.f37543c);
         int i11 = 0;
         while (i11 < 2) {
             if (i11 == 0) {
-                str = heVar.f37524b;
+                str = heVar.f37542b;
             } else {
                 str = heVar.h;
             }
             if (i11 == 0) {
                 j10 = heVar.e;
             } else {
-                j10 = heVar.f37529j;
+                j10 = heVar.f37547j;
             }
-            LinearLayout[] linearLayoutArr = this.f37863b;
-            if (i11 == 0 && !heVar.f37523a) {
+            LinearLayout[] linearLayoutArr = this.f37877b;
+            if (i11 == 0 && !heVar.f37541a) {
                 linearLayoutArr[i11].setVisibility(8);
-            } else if (i11 == 1 && !heVar.f37527g) {
+            } else if (i11 == 1 && !heVar.f37545g) {
                 linearLayoutArr[i11].setVisibility(8);
             } else {
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(r.c.u(str, " "));
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(r4.c.u(str, " "));
                 boolean equalsIgnoreCase = "TON".equalsIgnoreCase(str);
-                TextView[] textViewArr = this.f37864c;
+                TextView[] textViewArr = this.f37878c;
                 if (equalsIgnoreCase) {
-                    String format = this.f37865f.format(heVar.d / 1.0E9d);
+                    String format = this.f37879f.format(heVar.d / 1.0E9d);
                     int indexOf2 = format.indexOf(46);
                     if (indexOf2 >= 0) {
                         i10 = i11;
@@ -110,9 +110,9 @@ public final class ie extends LinearLayout {
                         if (i10 == 0) {
                             spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber(heVar.d, ' '));
                         } else {
-                            spannableStringBuilder2.append((CharSequence) ai.ld.K0(heVar.f37528i, 0.8f, ' '));
+                            spannableStringBuilder2.append((CharSequence) ai.md.K0(heVar.f37546i, 0.8f, ' '));
                         }
-                        spannableStringBuilder = ai.ld.Y0(false, spannableStringBuilder2, 0.7f, null);
+                        spannableStringBuilder = ai.md.Y0(false, spannableStringBuilder2, 0.7f, null);
                     } else {
                         spannableStringBuilder2.append((CharSequence) Long.toString(heVar.d));
                         spannableStringBuilder = spannableStringBuilder2;
@@ -125,7 +125,7 @@ public final class ie extends LinearLayout {
                 linearLayoutArr[i10].setVisibility(0);
                 textViewArr[i10].setText(spannableStringBuilder3);
                 TextView textView = this.d[i10];
-                textView.setText("≈" + BillingController.getInstance().formatCurrency(j10, heVar.f37526f));
+                textView.setText("≈" + BillingController.getInstance().formatCurrency(j10, heVar.f37544f));
                 i11 = i10 + 1;
             }
             i10 = i11;

@@ -1,22 +1,22 @@
 package qg;
 public final class w0 {
-    public final double f44713a;
-    public final double f44714b;
-    public final double f44715c;
+    public final double f44733a;
+    public final double f44734b;
+    public final double f44735c;
     public boolean d;
 
     public w0(double d, double d10, double d11) {
-        this.f44713a = d;
-        this.f44714b = d10;
-        this.f44715c = d11;
+        this.f44733a = d;
+        this.f44734b = d10;
+        this.f44735c = d11;
     }
 
     public final float a(w0 w0Var) {
-        return (float) Math.sqrt(Math.pow(this.f44715c - w0Var.f44715c, 2.0d) + Math.pow(this.f44714b - w0Var.f44714b, 2.0d) + Math.pow(this.f44713a - w0Var.f44713a, 2.0d));
+        return (float) Math.sqrt(Math.pow(this.f44735c - w0Var.f44735c, 2.0d) + Math.pow(this.f44734b - w0Var.f44734b, 2.0d) + Math.pow(this.f44733a - w0Var.f44733a, 2.0d));
     }
 
     public final w0 b(w0 w0Var) {
-        return new w0((this.f44713a + w0Var.f44713a) * 0.5d, (this.f44714b + w0Var.f44714b) * 0.5d, (this.f44715c + w0Var.f44715c) * 0.5d);
+        return new w0((this.f44733a + w0Var.f44733a) * 0.5d, (this.f44734b + w0Var.f44734b) * 0.5d, (this.f44735c + w0Var.f44735c) * 0.5d);
     }
 
     public final boolean equals(Object obj) {
@@ -30,16 +30,16 @@ public final class w0 {
             return false;
         }
         w0 w0Var = (w0) obj;
-        if (this.f44713a != w0Var.f44713a || this.f44714b != w0Var.f44714b || this.f44715c != w0Var.f44715c) {
+        if (this.f44733a != w0Var.f44733a || this.f44734b != w0Var.f44734b || this.f44735c != w0Var.f44735c) {
             return false;
         }
         return true;
     }
 
     public w0(double d, double d10, double d11, int i10) {
-        this.f44713a = d;
-        this.f44714b = d10;
-        this.f44715c = d11;
+        this.f44733a = d;
+        this.f44734b = d10;
+        this.f44735c = d11;
         this.d = true;
     }
 }

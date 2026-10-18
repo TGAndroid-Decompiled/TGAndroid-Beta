@@ -4,20 +4,20 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 public class q5 extends Drawable {
-    public final Drawable f29573a;
-    public final int f29574b;
-    public final int f29575c;
+    public final Drawable f29579a;
+    public final int f29580b;
+    public final int f29581c;
     public int d = 255;
 
     public q5(int i10, int i11, Drawable drawable) {
-        this.f29573a = drawable;
-        this.f29574b = i10;
-        this.f29575c = i11;
+        this.f29579a = drawable;
+        this.f29580b = i10;
+        this.f29581c = i11;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        Drawable drawable = this.f29573a;
+        Drawable drawable = this.f29579a;
         if (drawable != null) {
             drawable.setBounds(getBounds());
             drawable.setAlpha(this.d);
@@ -27,17 +27,17 @@ public class q5 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f29575c;
+        return this.f29581c;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f29574b;
+        return this.f29580b;
     }
 
     @Override
     public final int getOpacity() {
-        Drawable drawable = this.f29573a;
+        Drawable drawable = this.f29579a;
         if (drawable != null) {
             return drawable.getOpacity();
         }
@@ -47,7 +47,7 @@ public class q5 extends Drawable {
     @Override
     public final void setAlpha(int i10) {
         this.d = i10;
-        Drawable drawable = this.f29573a;
+        Drawable drawable = this.f29579a;
         if (drawable != null) {
             drawable.setAlpha(i10);
         }
@@ -55,7 +55,7 @@ public class q5 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f29573a;
+        Drawable drawable = this.f29579a;
         if (drawable != null) {
             drawable.setColorFilter(colorFilter);
         }

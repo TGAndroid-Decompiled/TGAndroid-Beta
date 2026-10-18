@@ -35,7 +35,7 @@ public final class o5 extends n2 {
                     this.container.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
-                new xc(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.h6.f21045gc, 0, new com.google.firebase.messaging.s(this, 10), this.resourcesProvider), R.raw.star_premium_2).k(true);
+                new xc(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.h6.f21052gc, 0, new com.google.firebase.messaging.s(this, 10), this.resourcesProvider), R.raw.star_premium_2).k(true);
                 return false;
             } else if (i10 >= MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium) {
                 try {
@@ -78,18 +78,18 @@ public final class o5 extends n2 {
     @Override
     public final boolean o0(Runnable runnable) {
         vb vbVar = ((xa) this.I).A2;
-        Activity activity = vbVar.f9951b;
+        Activity activity = vbVar.f9953b;
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    vbVar.f10029y2 = (ah.g) runnable;
+                    vbVar.f10031y2 = (ah.g) runnable;
                     return false;
                 }
                 return true;
             } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                vbVar.f10029y2 = (ah.g) runnable;
+                vbVar.f10031y2 = (ah.g) runnable;
                 return false;
             } else {
                 return true;

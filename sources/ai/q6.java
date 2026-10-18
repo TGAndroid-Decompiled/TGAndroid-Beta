@@ -4,21 +4,21 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stars;
 public final class q6 extends n6 {
-    public final boolean f2059c;
+    public final boolean f2065c;
     public final ImageReceiver d;
 
     public q6(View view, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f1895a = stargiftattributemodel.name;
-        this.f1896b = stargiftattributemodel.getRarityPermille();
-        this.f2059c = true;
+        this.f1896a = stargiftattributemodel.name;
+        this.f1897b = stargiftattributemodel.getRarityPermille();
+        this.f2065c = true;
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.d = imageReceiver;
-        ld.a1(imageReceiver, stargiftattributemodel.document, 160);
+        md.a1(imageReceiver, stargiftattributemodel.document, 160);
     }
 
     @Override
     public final void a() {
-        if (this.f2059c) {
+        if (this.f2065c) {
             this.d.onDetachedFromWindow();
         }
     }
@@ -32,9 +32,9 @@ public final class q6 extends n6 {
     }
 
     public q6(org.telegram.ui.Components.w9 w9Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f1895a = stargiftattributemodel.name;
-        this.f1896b = stargiftattributemodel.getRarityPermille();
-        this.f2059c = false;
+        this.f1896a = stargiftattributemodel.name;
+        this.f1897b = stargiftattributemodel.getRarityPermille();
+        this.f2065c = false;
         this.d = w9Var.getImageReceiver();
     }
 }

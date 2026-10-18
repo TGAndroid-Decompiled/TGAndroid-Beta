@@ -26,11 +26,11 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
     public final HashSet P;
     public final ne.b Q;
     public final oe.b R;
-    public final org.telegram.ui.ActionBar.d6 f40733s;
+    public final org.telegram.ui.ActionBar.d6 f40758s;
     public int v;
-    public float[] f40734w;
-    public float[] f40735x;
-    public int[] f40736y;
+    public float[] f40759w;
+    public float[] f40760x;
+    public int[] f40761y;
 
     public rg0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -38,20 +38,20 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
         this.J = new Paint(1);
         new ArrayList();
         new ArrayList();
-        o1.c cVar = o1.h.f17543s;
-        o1.c cVar2 = o1.h.f17542r;
-        o1.c cVar3 = o1.h.f17539o;
-        o1.c cVar4 = o1.h.f17541q;
+        o1.c cVar = o1.h.f17550s;
+        o1.c cVar2 = o1.h.f17549r;
+        o1.c cVar3 = o1.h.f17546o;
+        o1.c cVar4 = o1.h.f17548q;
         new o1.l(1.0f);
         new ArrayList();
         new ArrayList();
-        o1.c cVar5 = o1.h.f17540p;
+        o1.c cVar5 = o1.h.f17547p;
         new o1.l(1.0f);
         o1.k kVar = new o1.k(this, new org.telegram.ui.Components.qb(1));
         this.K = kVar;
         o1.k kVar2 = new o1.k(this, new org.telegram.ui.Components.qb(2));
         this.L = kVar2;
-        kVar.f17555u = org.telegram.ui.Cells.t0.l(1.0f, 1500.0f, 0.75f);
+        kVar.f17562u = org.telegram.ui.Cells.c1.l(1.0f, 1500.0f, 0.75f);
         o1.l lVar = new o1.l(1.0f);
         lVar.b(250.0f);
         lVar.a(0.25f);
@@ -61,11 +61,11 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
         o1.l lVar3 = new o1.l(1.0f);
         lVar3.b(1500.0f);
         lVar3.a(0.75f);
-        kVar2.f17555u = lVar3;
+        kVar2.f17562u = lVar3;
         this.P = new HashSet();
         this.Q = new ne.b(0, new wt(this, 21), org.telegram.ui.Components.bs.h, 380L, false);
         this.R = new oe.b(new g(this, 25));
-        this.f40733s = d6Var;
+        this.f40758s = d6Var;
     }
 
     public static void k(rg0 rg0Var, View view, float f7, float f10) {
@@ -150,7 +150,7 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
                     break;
                 }
                 View childAt3 = rg0Var.getChildAt(i12);
-                if (childAt3.getVisibility() == 0 && (childAt3 instanceof ph.b) && ((ph.b) childAt3).h.f17380f) {
+                if (childAt3.getVisibility() == 0 && (childAt3 instanceof ph.b) && ((ph.b) childAt3).h.f17387f) {
                     view2 = childAt3;
                     break;
                 }
@@ -203,7 +203,7 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
     public void setSkipDrawSelector(boolean z10) {
         this.I = z10;
         if (z10) {
-            this.J.setColor(org.telegram.ui.ActionBar.h6.m1(0.09f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, this.f40733s)));
+            this.J.setColor(org.telegram.ui.ActionBar.h6.m1(0.09f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, this.f40758s)));
         }
         int childCount = getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
@@ -300,8 +300,8 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
     public final void o() {
         int entriesCount = getEntriesCount();
         for (int i10 = 0; i10 < entriesCount; i10++) {
-            ne.g m10 = this.f26777c.m(i10);
-            ((ph.b) ((org.telegram.ui.Components.g6) m10.f17389a).f26483a).setVisualWidth(m10.b().width());
+            ne.g m10 = this.f26784c.m(i10);
+            ((ph.b) ((org.telegram.ui.Components.g6) m10.f17396a).f26490a).setVisualWidth(m10.b().width());
         }
     }
 
@@ -338,11 +338,11 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
             if (i16 < 3) {
                 if (fArr[i16] != f12) {
                     int childCount = getChildCount();
-                    float[] fArr2 = this.f40734w;
+                    float[] fArr2 = this.f40759w;
                     if (fArr2 == null || fArr2.length < childCount) {
-                        this.f40734w = new float[childCount];
-                        this.f40735x = new float[childCount];
-                        this.f40736y = new int[childCount];
+                        this.f40759w = new float[childCount];
+                        this.f40760x = new float[childCount];
+                        this.f40761y = new int[childCount];
                         this.F = new int[childCount];
                         this.E = new int[childCount];
                     }
@@ -351,7 +351,7 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
                     for (int i18 = 0; i18 < childCount; i18++) {
                         View childAt = getChildAt(i18);
                         if (!d(childAt)) {
-                            this.f40734w[i18] = -1.0f;
+                            this.f40759w[i18] = -1.0f;
                         } else {
                             if (childAt instanceof qg0) {
                                 ph.b bVar = (ph.b) ((qg0) childAt);
@@ -359,11 +359,11 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
                                     bVar.T = new TextPaint(bVar.F);
                                 }
                                 bVar.T.setTextSize(AndroidUtilities.dp(f10));
-                                f11 = bVar.T.measureText(bVar.f44327a.getText().toString());
+                                f11 = bVar.T.measureText(bVar.f44347a.getText().toString());
                             } else {
                                 f11 = 0.0f;
                             }
-                            this.f40734w[i18] = f11;
+                            this.f40759w[i18] = f11;
                             f13 = Math.max(f13, f11);
                             i17++;
                         }
@@ -384,7 +384,7 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
                 float f14 = f7;
                 for (int i19 = i12; i19 < childCount2; i19++) {
                     if (d(getChildAt(i19))) {
-                        f14 += this.f40734w[i19] + (dp * 2);
+                        f14 += this.f40759w[i19] + (dp * 2);
                     }
                 }
                 if (f14 <= paddingLeft || i16 == i14) {
@@ -414,15 +414,15 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
         float f16 = f7;
         while (i21 < childCount4) {
             if (!d(getChildAt(i21))) {
-                float[] fArr3 = this.f40734w;
-                this.f40735x[i21] = f7;
+                float[] fArr3 = this.f40759w;
+                this.f40760x[i21] = f7;
                 fArr3[i21] = f7;
-                this.f40736y[i21] = i12;
+                this.f40761y[i21] = i12;
             } else {
-                float[] fArr4 = this.f40735x;
-                float f17 = this.f40734w[i21] + dp2;
+                float[] fArr4 = this.f40760x;
+                float f17 = this.f40759w[i21] + dp2;
                 fArr4[i21] = f17;
-                int[] iArr2 = this.f40736y;
+                int[] iArr2 = this.f40761y;
                 if (f17 > max + dp2) {
                     i13 = i12;
                 } else {
@@ -437,7 +437,7 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
         if (i22 == 0) {
             int childCount5 = getChildCount();
             for (int i23 = i12; i23 < childCount5; i23++) {
-                this.f40736y[i23] = d(getChildAt(i23)) ? 1 : 0;
+                this.f40761y[i23] = d(getChildAt(i23)) ? 1 : 0;
             }
             i22 = this.G;
         }
@@ -446,7 +446,7 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
             float f19 = f18 / f16;
             int childCount6 = getChildCount();
             for (int i24 = i12; i24 < childCount6; i24++) {
-                float[] fArr5 = this.f40735x;
+                float[] fArr5 = this.f40760x;
                 fArr5[i24] = fArr5[i24] * f19;
             }
         } else {
@@ -455,8 +455,8 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
                 float f21 = (f20 - f16) / i22;
                 int childCount7 = getChildCount();
                 for (int i25 = i12; i25 < childCount7; i25++) {
-                    float[] fArr6 = this.f40735x;
-                    fArr6[i25] = (this.f40736y[i25] * f21) + fArr6[i25];
+                    float[] fArr6 = this.f40760x;
+                    fArr6[i25] = (this.f40761y[i25] * f21) + fArr6[i25];
                 }
             }
         }
@@ -465,7 +465,7 @@ public final class rg0 extends org.telegram.ui.Components.h6 {
         int i27 = i26;
         while (i26 < childCount8) {
             if (d(getChildAt(i26))) {
-                this.E[i26] = Math.round(this.f40735x[i26]);
+                this.E[i26] = Math.round(this.f40760x[i26]);
                 this.F[i26] = i27;
                 i27 += this.E[i26];
             }

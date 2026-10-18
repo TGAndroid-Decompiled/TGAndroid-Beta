@@ -41,21 +41,21 @@ public final class u0 implements View.OnFocusChangeListener {
                 return;
             case 2:
                 ai.b1 b1Var = (ai.b1) this.f894b;
-                b1Var.f993c0.c(z10, !TextUtils.isEmpty(b1Var.f994d0.getText()));
+                b1Var.f997c0.c(z10, !TextUtils.isEmpty(b1Var.f998d0.getText()));
                 return;
             case 3:
                 ai.h1 h1Var = (ai.h1) this.f894b;
-                h1Var.f1407f.c(z10, !TextUtils.isEmpty(h1Var.h.getText()));
+                h1Var.f1396f.c(z10, !TextUtils.isEmpty(h1Var.h.getText()));
                 return;
             case 4:
                 ai.l1 l1Var = (ai.l1) this.f894b;
-                l1Var.f1749b.c(z10, !TextUtils.isEmpty(l1Var.f1750c.getText()));
+                l1Var.f1738b.c(z10, !TextUtils.isEmpty(l1Var.f1739c.getText()));
                 return;
             case 5:
                 c6.a((c6) this.f894b, z10);
                 return;
             case 6:
-                EditTextBoldCursor editTextBoldCursor = ((qg.w) this.f894b).f44711c;
+                EditTextBoldCursor editTextBoldCursor = ((qg.w) this.f894b).f44731c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;

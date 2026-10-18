@@ -7,24 +7,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.NotificationCenter;
 public final class b41 implements Runnable {
-    public final int f35563a;
-    public final z51 f35564b;
+    public final int f35586a;
+    public final z51 f35587b;
 
     public b41(z51 z51Var, int i10) {
-        this.f35563a = i10;
-        this.f35564b = z51Var;
+        this.f35586a = i10;
+        this.f35587b = z51Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f35563a) {
+        switch (this.f35586a) {
             case 0:
-                z51 z51Var = this.f35564b;
+                z51 z51Var = this.f35587b;
                 z51Var.getClass();
                 HashSet hashSet = ah.x0.f902a;
                 hf.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
-                if (cacheOutQueue.f11786b == null) {
-                    cacheOutQueue.f11786b = new CountDownLatch(1);
+                if (cacheOutQueue.f11788b == null) {
+                    cacheOutQueue.f11788b = new CountDownLatch(1);
                 }
                 ah.x0.f903b = true;
                 ah.x0.e = false;
@@ -32,7 +32,7 @@ public final class b41 implements Runnable {
                 AndroidUtilities.runOnUIThread(new b41(z51Var, 2), 0L);
                 return;
             case 1:
-                z51 z51Var2 = this.f35564b;
+                z51 z51Var2 = this.f35587b;
                 ArrayList arrayList = z51Var2.A1;
                 if (arrayList != null) {
                     arrayList.clear();
@@ -45,16 +45,16 @@ public final class b41 implements Runnable {
                 if (arrayList3 != null) {
                     arrayList3.clear();
                 }
-                z51Var2.f43613q0.E(true);
+                z51Var2.f43639q0.E(true);
                 return;
             case 2:
-                this.f35564b.U1.start();
+                this.f35587b.U1.start();
                 return;
             case 3:
-                this.f35564b.B(true, true, true);
+                this.f35587b.B(true, true, true);
                 return;
             default:
-                z51 z51Var3 = this.f35564b;
+                z51 z51Var3 = this.f35587b;
                 NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
                 b41 b41Var = z51Var3.R1;
                 globalInstance.removeDelayed(b41Var);

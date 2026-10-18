@@ -6,26 +6,26 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class be0 implements Runnable {
-    public final int f35659a = 0;
-    public final fe0 f35660b;
-    public final TLRPC.TL_error f35661c;
+    public final int f35682a = 0;
+    public final fe0 f35683b;
+    public final TLRPC.TL_error f35684c;
     public final Bundle d;
     public final TLObject e;
 
     public be0(fe0 fe0Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error) {
-        this.f35660b = fe0Var;
+        this.f35683b = fe0Var;
         this.e = tLObject;
         this.d = bundle;
-        this.f35661c = tL_error;
+        this.f35684c = tL_error;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f35659a) {
+        switch (this.f35682a) {
             case 0:
-                fe0 fe0Var = this.f35660b;
-                fg0 fg0Var = fe0Var.f36881a0;
+                fe0 fe0Var = this.f35683b;
+                fg0 fg0Var = fe0Var.f36904a0;
                 fe0Var.M = false;
                 fe0Var.v.invalidate();
                 TLObject tLObject = this.e;
@@ -37,7 +37,7 @@ public final class be0 implements Runnable {
                     fg0Var.g1(bundle, tL_auth_sentCode, true);
                     return;
                 }
-                TLRPC.TL_error tL_error = this.f35661c;
+                TLRPC.TL_error tL_error = this.f35684c;
                 if (tL_error != null && (str = tL_error.text) != null) {
                     if (str.contains("PHONE_NUMBER_INVALID")) {
                         fg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.InvalidPhoneNumber));
@@ -54,7 +54,7 @@ public final class be0 implements Runnable {
                         } else if (tL_error.code != -1000) {
                             String string = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
                             StringBuilder sb2 = new StringBuilder();
-                            org.telegram.ui.Cells.t0.n(R.string.ErrorOccurred, "\n", sb2);
+                            org.telegram.ui.Cells.c1.n(R.string.ErrorOccurred, "\n", sb2);
                             sb2.append(tL_error.text);
                             fg0Var.l1(string, sb2.toString());
                             return;
@@ -68,10 +68,10 @@ public final class be0 implements Runnable {
                 }
                 return;
             default:
-                fe0 fe0Var2 = this.f35660b;
-                fg0 fg0Var2 = fe0Var2.f36881a0;
+                fe0 fe0Var2 = this.f35683b;
+                fg0 fg0Var2 = fe0Var2.f36904a0;
                 fe0Var2.R = false;
-                TLRPC.TL_error tL_error2 = this.f35661c;
+                TLRPC.TL_error tL_error2 = this.f35684c;
                 if (tL_error2 == null) {
                     fg0Var2.g1(this.d, (TLRPC.TL_auth_sentCode) this.e, true);
                 } else {
@@ -89,7 +89,7 @@ public final class be0 implements Runnable {
                             } else if (tL_error2.code != -1000) {
                                 String string2 = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
                                 StringBuilder sb3 = new StringBuilder();
-                                org.telegram.ui.Cells.t0.n(R.string.ErrorOccurred, "\n", sb3);
+                                org.telegram.ui.Cells.c1.n(R.string.ErrorOccurred, "\n", sb3);
                                 sb3.append(tL_error2.text);
                                 fg0Var2.l1(string2, sb3.toString());
                             }
@@ -104,8 +104,8 @@ public final class be0 implements Runnable {
     }
 
     public be0(fe0 fe0Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject) {
-        this.f35660b = fe0Var;
-        this.f35661c = tL_error;
+        this.f35683b = fe0Var;
+        this.f35684c = tL_error;
         this.d = bundle;
         this.e = tLObject;
     }

@@ -4,8 +4,8 @@ import android.os.Build;
 import android.view.View;
 import j$.util.Objects;
 public class h1 {
-    public static final k1 f44841b;
-    public final k1 f44842a;
+    public static final k1 f44861b;
+    public final k1 f44862a;
 
     static {
         a1 w0Var;
@@ -19,23 +19,23 @@ public class h1 {
         } else {
             w0Var = new w0();
         }
-        f44841b = w0Var.b().f44853a.a().f44853a.b().f44853a.c();
+        f44861b = w0Var.b().f44873a.a().f44873a.b().f44873a.c();
     }
 
     public h1(k1 k1Var) {
-        this.f44842a = k1Var;
+        this.f44862a = k1Var;
     }
 
     public k1 a() {
-        return this.f44842a;
+        return this.f44862a;
     }
 
     public k1 b() {
-        return this.f44842a;
+        return this.f44862a;
     }
 
     public k1 c() {
-        return this.f44842a;
+        return this.f44862a;
     }
 
     public i e() {
@@ -56,18 +56,18 @@ public class h1 {
         return false;
     }
 
-    public i0.c f(int i10) {
-        return i0.c.e;
+    public i0.b f(int i10) {
+        return i0.b.e;
     }
 
-    public i0.c g(int i10) {
+    public i0.b g(int i10) {
         if ((i10 & 8) == 0) {
-            return i0.c.e;
+            return i0.b.e;
         }
         throw new IllegalArgumentException("Unable to query the maximum insets for IME");
     }
 
-    public i0.c h() {
+    public i0.b h() {
         return k();
     }
 
@@ -75,24 +75,24 @@ public class h1 {
         return Objects.hash(Boolean.valueOf(o()), Boolean.valueOf(n()), k(), i(), e());
     }
 
-    public i0.c i() {
-        return i0.c.e;
+    public i0.b i() {
+        return i0.b.e;
     }
 
-    public i0.c j() {
+    public i0.b j() {
         return k();
     }
 
-    public i0.c k() {
-        return i0.c.e;
+    public i0.b k() {
+        return i0.b.e;
     }
 
-    public i0.c l() {
+    public i0.b l() {
         return k();
     }
 
     public k1 m(int i10, int i11, int i12, int i13) {
-        return f44841b;
+        return f44861b;
     }
 
     public boolean n() {
@@ -110,13 +110,13 @@ public class h1 {
     public void d(View view) {
     }
 
-    public void q(i0.c[] cVarArr) {
+    public void q(i0.b[] bVarArr) {
     }
 
     public void r(k1 k1Var) {
     }
 
-    public void s(i0.c cVar) {
+    public void s(i0.b bVar) {
     }
 
     public void t(int i10) {

@@ -1,37 +1,28 @@
 package org.telegram.ui.Wallet;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class b8 implements View.OnClickListener {
-    public final int f34051a;
-    public final ei.d f34052b;
-    public final Utilities.Callback f34053c;
-    public final org.telegram.ui.ActionBar.f3 d;
-    public final org.telegram.ui.ActionBar.d6 e;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class b8 implements Runnable {
+    public final int f34061a;
+    public final c8 f34062b;
 
-    public b8(ei.d dVar, Utilities.Callback callback, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        this.f34051a = i10;
-        this.f34052b = dVar;
-        this.f34053c = callback;
-        this.d = f3Var;
-        this.e = d6Var;
+    public b8(c8 c8Var, int i10) {
+        this.f34061a = i10;
+        this.f34062b = c8Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f34051a) {
+    public final void run() {
+        switch (this.f34061a) {
             case 0:
-                ei.d dVar = this.f34052b;
-                dVar.setLoading(true);
-                this.f34053c.run(new q3(dVar, this.d, this.e, 1));
+                c8 c8Var = this.f34062b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c8Var.getParentActivity(), 0, c8Var.getResourceProvider());
+                alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.WalletEnterSecretPhraseInfo);
+                org.telegram.messenger.g0.p(R.string.OK, alertDialog$Builder, null);
                 return;
             default:
-                ei.d dVar2 = this.f34052b;
-                if (!dVar2.N) {
-                    dVar2.setLoading(true);
-                    this.f34053c.run(new q3(this.d, this.e, dVar2));
-                    return;
-                }
+                this.f34062b.Y();
                 return;
         }
     }

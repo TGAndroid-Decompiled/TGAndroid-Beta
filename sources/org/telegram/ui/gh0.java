@@ -6,22 +6,22 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class gh0 extends org.telegram.ui.Components.dr0 {
-    public final hh0 f37244b1;
+    public final hh0 f37214b1;
 
     public gh0(hh0 hh0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, str, false, str2, false, d6Var);
-        this.f37244b1 = hh0Var;
+        this.f37214b1 = hh0Var;
     }
 
     @Override
     public final void S0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         String formatString;
-        kh0 kh0Var = this.f37244b1.K;
+        kh0 kh0Var = this.f37214b1.K;
         if (!z10) {
             return;
         }
         if (hVar != null && hVar.m() == 1) {
-            long j10 = ((TLRPC.Dialog) hVar.n(0)).f20276id;
+            long j10 = ((TLRPC.Dialog) hVar.n(0)).f20283id;
             if (j10 != 0 && j10 != kh0Var.getUserConfig().getClientUserId()) {
                 formatString = LocaleController.formatString(R.string.InvLinkToUser, kh0Var.getMessagesController().getPeerName(j10, true));
             } else {
@@ -31,7 +31,7 @@ public final class gh0 extends org.telegram.ui.Components.dr0 {
             formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i10, new Object[0]));
         }
         org.telegram.ui.Components.qc Q = org.telegram.ui.Components.xc.a0(kh0Var).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
-        Q.f29647r = false;
+        Q.f29653r = false;
         Q.k(true);
     }
 }

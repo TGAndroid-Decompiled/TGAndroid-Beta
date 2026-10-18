@@ -41,9 +41,9 @@ public final class u extends e7 {
     @Override
     public final void k(int i10) {
         w wVar = this.D0;
-        TextView textView = wVar.f50572b0;
+        TextView textView = wVar.f50597b0;
         if (textView != null && h6.C1(textView.getBackground(), i10, false)) {
-            wVar.f50572b0.invalidate();
+            wVar.f50597b0.invalidate();
         }
     }
 

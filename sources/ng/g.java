@@ -22,7 +22,7 @@ import s4.b1;
 import s4.o0;
 import w7.z5;
 public final class g extends hm0 {
-    public final int f17454c = 0;
+    public final int f17461c = 0;
     public final Context d;
     public final FrameLayout e;
 
@@ -33,9 +33,9 @@ public final class g extends hm0 {
 
     @Override
     public final boolean D(b1 b1Var) {
-        switch (this.f17454c) {
+        switch (this.f17461c) {
             case 0:
-                if (j.d(3)[b1Var.f45941f] == 1) {
+                if (j.d(3)[b1Var.f45961f] == 1) {
                     return true;
                 }
                 return false;
@@ -46,7 +46,7 @@ public final class g extends hm0 {
 
     @Override
     public final int h() {
-        switch (this.f17454c) {
+        switch (this.f17461c) {
             case 0:
                 return ((i) this.e).E.size();
             default:
@@ -56,9 +56,9 @@ public final class g extends hm0 {
 
     @Override
     public long i(int i10) {
-        switch (this.f17454c) {
+        switch (this.f17461c) {
             case 1:
-                return ((y81) ((b91) this.e).h.get(i10)).f32571a;
+                return ((y81) ((b91) this.e).h.get(i10)).f32578a;
             default:
                 return super.i(i10);
         }
@@ -66,9 +66,9 @@ public final class g extends hm0 {
 
     @Override
     public final int j(int i10) {
-        switch (this.f17454c) {
+        switch (this.f17461c) {
             case 0:
-                return j.c(((a) ((i) this.e).E.get(i10)).f17440b);
+                return j.c(((a) ((i) this.e).E.get(i10)).f17447b);
             default:
                 return 0;
         }
@@ -78,22 +78,22 @@ public final class g extends hm0 {
     public final void v(b1 b1Var, int i10) {
         boolean z10;
         a91 a91Var;
-        switch (this.f17454c) {
+        switch (this.f17461c) {
             case 0:
-                View view = b1Var.f45938a;
+                View view = b1Var.f45958a;
                 a aVar = (a) ((i) this.e).E.get(i10);
-                int i11 = aVar.f17440b;
-                s6 s6Var = aVar.f17442f;
-                CharSequence charSequence = aVar.f17439a;
+                int i11 = aVar.f17447b;
+                s6 s6Var = aVar.f17449f;
+                CharSequence charSequence = aVar.f17446a;
                 int c10 = j.c(i11);
                 if (c10 != 0) {
                     if (c10 != 1) {
                         if (c10 == 2) {
                             h hVar = (h) view;
-                            hVar.f17458f = charSequence.toString();
+                            hVar.f17465f = charSequence.toString();
                             hVar.d = ((Float) s6Var.get(null)).floatValue();
-                            hVar.f17456b = aVar.d;
-                            hVar.f17457c = aVar.e;
+                            hVar.f17463b = aVar.d;
+                            hVar.f17464c = aVar.e;
                             hVar.e = s6Var;
                             hVar.invalidate();
                             return;
@@ -106,18 +106,18 @@ public final class g extends hm0 {
                     return;
                 }
                 x1 x1Var = (x1) view;
-                x1Var.setTextColor(h6.x0(null, h6.f21092j5, false));
+                x1Var.setTextColor(h6.x0(null, h6.f21099j5, false));
                 x1Var.a(0, charSequence);
                 return;
             default:
-                z81 z81Var = (z81) b1Var.f45938a;
+                z81 z81Var = (z81) b1Var.f45958a;
                 b91 b91Var = (b91) this.e;
                 y81 y81Var = (y81) b91Var.h.get(i10);
-                z81Var.f32861a = y81Var;
-                z81Var.setContentDescription(y81Var.f32572b);
+                z81Var.f32868a = y81Var;
+                z81Var.setContentDescription(y81Var.f32579b);
                 z81Var.setAlpha(1.0f);
                 z81Var.requestLayout();
-                if (b91Var.m0 && (a91Var = b91Var.f24871y) != null && ((l2.f) a91Var).q(i10)) {
+                if (b91Var.m0 && (a91Var = b91Var.f24878y) != null && ((l2.f) a91Var).q(i10)) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -130,7 +130,7 @@ public final class g extends hm0 {
     @Override
     public final b1 x(ViewGroup viewGroup, int i10) {
         FrameLayout frameLayout;
-        switch (this.f17454c) {
+        switch (this.f17461c) {
             case 0:
                 int c10 = j.c(j.d(3)[i10]);
                 Context context = this.d;
@@ -144,7 +144,7 @@ public final class g extends hm0 {
                         frameLayout2.h = textPaint;
                         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
                         cp0 cp0Var = new cp0(context);
-                        frameLayout2.f17455a = cp0Var;
+                        frameLayout2.f17462a = cp0Var;
                         cp0Var.setReportChanges(true);
                         cp0Var.setDelegate(new l2.f(frameLayout2, 4));
                         cp0Var.setImportantForAccessibility(2);

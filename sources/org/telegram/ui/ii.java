@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class ii implements org.telegram.ui.Components.zl0 {
-    public final sn f37900a;
+    public final sn f37914a;
 
     public ii(sn snVar) {
-        this.f37900a = snVar;
+        this.f37914a = snVar;
     }
 
     @Override

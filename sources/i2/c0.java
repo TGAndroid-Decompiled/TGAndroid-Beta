@@ -1,22 +1,44 @@
 package i2;
-public final class c0 implements y0 {
-    public final Object f12330a;
-    public final u2.b0 f12331b;
-    public b2.o1 f12332c;
 
-    public c0(Object obj, u2.b0 b0Var) {
-        this.f12330a = obj;
-        this.f12331b = b0Var;
-        this.f12332c = b0Var.f47276o;
+import android.media.MediaFormat;
+public final class c0 implements a3.y, k1 {
+    public a3.y f12330a;
+    public c0 f12331b;
+
+    @Override
+    public final void a(long j10, long j11, b2.w wVar, MediaFormat mediaFormat) {
+        a3.y yVar = this.f12330a;
+        if (yVar != null) {
+            yVar.a(j10, j11, wVar, mediaFormat);
+        }
+    }
+
+    public final void b() {
+        c0 c0Var = this.f12331b;
+        if (c0Var != null) {
+            c0Var.b();
+        }
     }
 
     @Override
-    public final Object a() {
-        return this.f12330a;
+    public final void c(int i10, Object obj) {
+        if (i10 != 7) {
+            if (i10 != 8) {
+                if (i10 != 10000 || obj == null) {
+                    return;
+                }
+                throw new ClassCastException();
+            }
+            this.f12331b = (c0) obj;
+            return;
+        }
+        this.f12330a = (a3.y) obj;
     }
 
-    @Override
-    public final b2.o1 b() {
-        return this.f12332c;
+    public final void d() {
+        c0 c0Var = this.f12331b;
+        if (c0Var != null) {
+            c0Var.d();
+        }
     }
 }

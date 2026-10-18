@@ -7,8 +7,8 @@ import java.util.HashMap;
 import v7.r8;
 public final class w extends t {
     public static final HashMap e;
-    public final Constructor f11768b;
-    public final Object[] f11769c;
+    public final Constructor f11770b;
+    public final Object[] f11771c;
     public final HashMap d;
 
     static {
@@ -27,34 +27,34 @@ public final class w extends t {
     public w(Class cls, v vVar) {
         super(vVar);
         this.d = new HashMap();
-        r8 r8Var = jb.c.f14365a;
+        r8 r8Var = jb.c.f14372a;
         Constructor b10 = r8Var.b(cls);
-        this.f11768b = b10;
+        this.f11770b = b10;
         jb.c.f(b10);
         String[] c10 = r8Var.c(cls);
         for (int i10 = 0; i10 < c10.length; i10++) {
             this.d.put(c10[i10], Integer.valueOf(i10));
         }
-        Class<?>[] parameterTypes = this.f11768b.getParameterTypes();
-        this.f11769c = new Object[parameterTypes.length];
+        Class<?>[] parameterTypes = this.f11770b.getParameterTypes();
+        this.f11771c = new Object[parameterTypes.length];
         for (int i11 = 0; i11 < parameterTypes.length; i11++) {
-            this.f11769c[i11] = e.get(parameterTypes[i11]);
+            this.f11771c[i11] = e.get(parameterTypes[i11]);
         }
     }
 
     @Override
     public final Object a() {
-        return (Object[]) this.f11769c.clone();
+        return (Object[]) this.f11771c.clone();
     }
 
     @Override
     public final Object b(Object obj) {
         Object[] objArr = (Object[]) obj;
-        Constructor constructor = this.f11768b;
+        Constructor constructor = this.f11770b;
         try {
             return constructor.newInstance(objArr);
         } catch (IllegalAccessException e7) {
-            r8 r8Var = jb.c.f14365a;
+            r8 r8Var = jb.c.f14372a;
             throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e7);
         } catch (IllegalArgumentException e10) {
             e = e10;
@@ -70,12 +70,12 @@ public final class w extends t {
     @Override
     public final void c(Object obj, mb.a aVar, s sVar) {
         Object[] objArr = (Object[]) obj;
-        String str = sVar.f11760c;
+        String str = sVar.f11762c;
         Integer num = (Integer) this.d.get(str);
         if (num != null) {
             int intValue = num.intValue();
-            Object read = sVar.f11761f.read(aVar);
-            if (read == null && sVar.f11762g) {
+            Object read = sVar.f11763f.read(aVar);
+            if (read == null && sVar.f11764g) {
                 StringBuilder v = a1.g.v("null is not allowed as value for record component '", str, "' of primitive type; at path ");
                 v.append(aVar.h());
                 throw new RuntimeException(v.toString());
@@ -83,6 +83,6 @@ public final class w extends t {
             objArr[intValue] = read;
             return;
         }
-        throw new IllegalStateException("Could not find the index in the constructor '" + jb.c.b(this.f11768b) + "' for field with name '" + str + "', unable to determine which argument in the constructor the field corresponds to. This is unexpected behavior, as we expect the RecordComponents to have the same names as the fields in the Java class, and that the order of the RecordComponents is the same as the order of the canonical constructor parameters.");
+        throw new IllegalStateException("Could not find the index in the constructor '" + jb.c.b(this.f11770b) + "' for field with name '" + str + "', unable to determine which argument in the constructor the field corresponds to. This is unexpected behavior, as we expect the RecordComponents to have the same names as the fields in the Java class, and that the order of the RecordComponents is the same as the order of the canonical constructor parameters.");
     }
 }

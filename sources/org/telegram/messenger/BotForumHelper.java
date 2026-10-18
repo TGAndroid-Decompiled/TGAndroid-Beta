@@ -157,7 +157,7 @@ public class BotForumHelper extends BaseController {
         d61Var.b(-1);
         d61Var.d();
         TypingBotSpan typingBotSpan = new TypingBotSpan(d61Var, 1);
-        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.h6.f21008ec);
+        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.h6.f21015ec);
         typingBotSpan.setTopOffset(-AndroidUtilities.dp(10.0f));
         spannableStringBuilder.append((CharSequence) " _");
         spannableStringBuilder.setSpan(typingBotSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
@@ -170,7 +170,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j10);
         tL_message.from_id = getMessagesController().getPeer(j10);
         tL_message.local_id = i11;
-        tL_message.f20293id = i11;
+        tL_message.f20300id = i11;
         tL_message.random_id = j11;
         tL_message.message = tL_textWithEntities.text;
         tL_message.entities = tL_textWithEntities.entities;
@@ -300,10 +300,10 @@ public class BotForumHelper extends BaseController {
         tL_messageService.action = tL_messageActionTopicCreate;
         tL_messageService.peer_id = getMessagesController().getPeer(j10);
         tL_messageService.dialog_id = j10;
-        tL_messageService.f20293id = tL_updateMessageID.f20525id;
+        tL_messageService.f20300id = tL_updateMessageID.f20532id;
         tL_messageService.date = (int) (System.currentTimeMillis() / 1000);
-        int i11 = tL_updateMessageID.f20525id;
-        tL_forumTopic.f20324id = i11;
+        int i11 = tL_updateMessageID.f20532id;
+        tL_forumTopic.f20331id = i11;
         tL_forumTopic.my = true;
         tL_forumTopic.flags |= 2;
         tL_forumTopic.topicStartMessage = tL_messageService;
@@ -315,8 +315,8 @@ public class BotForumHelper extends BaseController {
         tL_forumTopic.icon_color = 0;
         tL_forumTopic.title_missing = true;
         getMessagesController().getTopicsController().onTopicCreated(j10, tL_forumTopic, true);
-        performSendBotTopicCreateComplete(j10, tL_updateMessageID.f20525id);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j10, tL_updateMessageID.f20525id));
+        performSendBotTopicCreateComplete(j10, tL_updateMessageID.f20532id);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j10, tL_updateMessageID.f20532id));
     }
 
     public void lambda$onBotForumDraftUpdate$1(long j10, int i10, long j11) {
@@ -645,7 +645,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j10);
         tL_message.from_id = getMessagesController().getPeer(j10);
         tL_message.local_id = i11;
-        tL_message.f20293id = i11;
+        tL_message.f20300id = i11;
         tL_message.random_id = j11;
         tL_message.message = "";
         tL_message.flags |= 8192;

@@ -6,15 +6,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class wo extends org.telegram.ui.Components.hm0 {
-    public final xo f42901c;
+    public final xo f42924c;
 
     public wo(xo xoVar) {
-        this.f42901c = xoVar;
+        this.f42924c = xoVar;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45941f == 1) {
+        if (b1Var.f45961f == 1) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class wo extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final int h() {
-        return this.f42901c.Y2.N.size() + 2;
+        return this.f42924c.Y2.N.size() + 2;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class wo extends org.telegram.ui.Components.hm0 {
         if (i10 == 0) {
             return 0;
         }
-        if (i10 <= this.f42901c.Y2.N.size()) {
+        if (i10 <= this.f42924c.Y2.N.size()) {
             return 1;
         }
         return 2;
@@ -38,17 +38,17 @@ public final class wo extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        xo xoVar = this.f42901c;
+        xo xoVar = this.f42924c;
         yo yoVar = xoVar.Y2;
-        int i11 = b1Var.f45941f;
-        View view = b1Var.f45938a;
+        int i11 = b1Var.f45961f;
+        View view = b1Var.f45958a;
         if (i11 != 0) {
             boolean z10 = true;
             if (i11 != 1) {
                 if (i11 == 2) {
                     org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
                     d9Var.setText(LocaleController.getString(R.string.UsernamesChannelHelp));
-                    d9Var.setBackground(org.telegram.ui.ActionBar.h6.W0(xoVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20948b7));
+                    d9Var.setBackground(org.telegram.ui.ActionBar.h6.W0(xoVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20955b7));
                     return;
                 }
                 return;
@@ -69,14 +69,14 @@ public final class wo extends org.telegram.ui.Components.hm0 {
             return;
         }
         org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
-        l4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, xoVar.f27284n2));
+        l4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, xoVar.f27291n2));
         l4Var.setText(LocaleController.getString(R.string.UsernamesChannelHeader));
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        xo xoVar = this.f42901c;
-        org.telegram.ui.ActionBar.d6 d6Var = xoVar.f27284n2;
+        xo xoVar = this.f42924c;
+        org.telegram.ui.ActionBar.d6 d6Var = xoVar.f27291n2;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

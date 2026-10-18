@@ -5,16 +5,16 @@ import android.view.View;
 import org.telegram.ui.Components.cl0;
 import org.telegram.ui.su0;
 public final class d1 extends Property {
-    public final int f22116a;
+    public final int f22120a;
 
     public d1(Class cls, String str, int i10) {
         super(cls, str);
-        this.f22116a = i10;
+        this.f22120a = i10;
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f22116a) {
+        switch (this.f22120a) {
             case 0:
                 return Float.valueOf(((u1) obj).Ae);
             case 1:
@@ -22,13 +22,13 @@ public final class d1 extends Property {
             case 2:
                 return Float.valueOf(((cl0) obj).v);
             default:
-                return Float.valueOf(((su0) obj).f41497a);
+                return Float.valueOf(((su0) obj).f41523a);
         }
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f22116a) {
+        switch (this.f22120a) {
             case 0:
                 ((u1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
                 return;

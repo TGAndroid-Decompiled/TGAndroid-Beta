@@ -9,49 +9,49 @@ import org.telegram.ui.Components.dq;
 import org.telegram.ui.Components.gr;
 import w7.z5;
 public final class b extends FrameLayout {
-    public final d6 f14509a;
-    public a f14510b;
-    public gr f14511c;
+    public final d6 f14516a;
+    public a f14517b;
+    public gr f14518c;
     public boolean d;
 
     public b(Context context, d6 d6Var) {
         super(context);
-        this.f14509a = d6Var;
+        this.f14516a = d6Var;
     }
 
     public final void a(int i10, boolean z10) {
-        if (this.f14511c == null) {
-            gr grVar = new gr(getContext(), this.f14509a);
-            this.f14511c = grVar;
+        if (this.f14518c == null) {
+            gr grVar = new gr(getContext(), this.f14516a);
+            this.f14518c = grVar;
             grVar.setReverse(this.d);
-            addView(this.f14511c, z5.e(-1, 28, 48));
+            addView(this.f14518c, z5.e(-1, 28, 48));
         }
-        this.f14511c.f26654a.c(i10, z10);
+        this.f14518c.f26661a.c(i10, z10);
     }
 
     public final void b(boolean z10, boolean z11) {
         super.setEnabled(z10);
-        this.f14510b.e(z10, z11);
+        this.f14517b.e(z10, z11);
     }
 
     public final void c(boolean z10, boolean z11) {
-        a aVar = this.f14510b;
+        a aVar = this.f14517b;
         if (aVar.d == null) {
             if (!z10) {
                 return;
             }
             dq dqVar = new dq(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
             aVar.e = dqVar;
-            dqVar.f25640f = 90.0f;
+            dqVar.f25647f = 90.0f;
             ImageView imageView = new ImageView(aVar.getContext());
             aVar.d = imageView;
             imageView.setBackground(aVar.e);
             aVar.d.setVisibility(8);
             aVar.addView(aVar.d, z5.e(46, 46, 17));
         }
-        ne.b bVar = aVar.f14504a;
-        if (!bVar.f17380f && bVar.e == 0.0f) {
-            aVar.e.f25639c = -1L;
+        ne.b bVar = aVar.f14511a;
+        if (!bVar.f17387f && bVar.e == 0.0f) {
+            aVar.e.f25646c = -1L;
         }
         bVar.a(z10, z11);
     }

@@ -11,27 +11,27 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class s01 {
-    public final int f40851a;
-    public boolean f40852b;
-    public u01 f40853c;
-    public final boolean[] f40855g;
-    public boolean f40856i;
+    public final int f40872a;
+    public boolean f40873b;
+    public u01 f40874c;
+    public final boolean[] f40876g;
+    public boolean f40877i;
     public final ArrayList d = new ArrayList();
     public final ArrayList e = new ArrayList();
-    public final ArrayList f40854f = new ArrayList();
+    public final ArrayList f40875f = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f40857j = new ArrayList();
+    public final ArrayList f40878j = new ArrayList();
 
     public s01(int i10, int i11) {
         boolean[] zArr = new boolean[2];
-        this.f40855g = zArr;
-        this.f40851a = i11;
+        this.f40876g = zArr;
+        this.f40872a = i11;
         if (i11 <= 0) {
             zArr[0] = true;
         } else {
             ArrayList arrayList = new ArrayList();
             HashSet hashSet = new HashSet();
-            String j10 = i0.a.j(i11, "");
+            String j10 = i2.d.j(i11, "");
             for (int i12 = 0; i12 < j10.length(); i12++) {
                 int charAt = j10.charAt(i12) - '0';
                 if (charAt >= 0 && charAt <= 9) {
@@ -40,11 +40,11 @@ public final class s01 {
                 }
             }
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            String[] strArr = v01.f42085s;
+            String[] strArr = v01.f42102s;
             tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
             MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName, 0, false, new z(this, hashSet, arrayList, 11));
         }
-        String str = v01.f42085s[Utilities.random.nextInt(3)];
+        String str = v01.f42102s[Utilities.random.nextInt(3)];
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
         tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
         MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName2, 0, false, new org.telegram.ui.Components.qy(20, this, str));
@@ -60,7 +60,7 @@ public final class s01 {
                 i11 = 0;
             }
             if (s01Var != null) {
-                if (s01Var.f40851a == i11) {
+                if (s01Var.f40872a == i11) {
                     return s01Var;
                 }
                 s01Var.b(false);
@@ -75,11 +75,11 @@ public final class s01 {
     }
 
     public final void a() {
-        if (!this.f40852b && this.f40854f.size() >= this.e.size()) {
-            boolean[] zArr = this.f40855g;
+        if (!this.f40873b && this.f40875f.size() >= this.e.size()) {
+            boolean[] zArr = this.f40876g;
             int i10 = 0;
             if (zArr[0] && zArr[1]) {
-                this.f40852b = true;
+                this.f40873b = true;
                 ArrayList arrayList = this.h;
                 int size = arrayList.size();
                 while (i10 < size) {
@@ -93,8 +93,8 @@ public final class s01 {
     }
 
     public final void b(boolean z10) {
-        if (!z10 && !this.f40857j.isEmpty()) {
-            this.f40856i = true;
+        if (!z10 && !this.f40878j.isEmpty()) {
+            this.f40877i = true;
             return;
         }
         this.h.clear();

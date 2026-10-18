@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class uw {
-    public final int f42060a;
-    public final vw f42061b;
-    public final View f42062c;
+    public final int f42077a;
+    public final vw f42078b;
+    public final View f42079c;
 
     public uw(vw vwVar, View view, int i10) {
-        this.f42060a = i10;
-        this.f42061b = vwVar;
-        this.f42062c = view;
+        this.f42077a = i10;
+        this.f42078b = vwVar;
+        this.f42079c = view;
     }
 
     public final void a(boolean z10) {
-        switch (this.f42060a) {
+        switch (this.f42077a) {
             case 0:
-                View view = this.f42062c;
+                View view = this.f42079c;
                 if (view instanceof ci.q) {
-                    this.f42061b.O0.E0.i((ci.q) view, false);
+                    this.f42078b.O0.E0.i((ci.q) view, false);
                     if (z10) {
                         AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.rc(22), 500L);
                         return;
@@ -27,9 +27,9 @@ public final class uw {
                 }
                 return;
             default:
-                View view2 = this.f42062c;
+                View view2 = this.f42079c;
                 if (view2 instanceof ci.q) {
-                    this.f42061b.O0.E0.i((ci.q) view2, false);
+                    this.f42078b.O0.E0.i((ci.q) view2, false);
                     if (z10) {
                         AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.rc(22), 500L);
                         return;

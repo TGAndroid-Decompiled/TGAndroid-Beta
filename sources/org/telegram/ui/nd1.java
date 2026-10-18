@@ -5,21 +5,21 @@ import android.graphics.Canvas;
 import android.widget.FrameLayout;
 import org.telegram.messenger.Utilities;
 public final class nd1 extends FrameLayout {
-    public ValueAnimator f39427a;
-    public boolean f39428b;
-    public float f39429c;
+    public ValueAnimator f39453a;
+    public boolean f39454b;
+    public float f39455c;
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        float f7 = ((1.0f - this.f39429c) * 0.2f) + 0.8f;
+        float f7 = ((1.0f - this.f39455c) * 0.2f) + 0.8f;
         canvas.save();
         canvas.scale(f7, f7, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
         super.dispatchDraw(canvas);
         canvas.restore();
         if (isPressed()) {
-            float f10 = this.f39429c;
+            float f10 = this.f39455c;
             if (f10 != 1.0f) {
-                this.f39429c = Utilities.clamp(f10 + 0.16f, 1.0f, 0.0f);
+                this.f39455c = Utilities.clamp(f10 + 0.16f, 1.0f, 0.0f);
                 invalidate();
             }
         }
@@ -29,23 +29,23 @@ public final class nd1 extends FrameLayout {
     public final void setPressed(boolean z10) {
         ValueAnimator valueAnimator;
         super.setPressed(z10);
-        if (this.f39428b != z10) {
-            this.f39428b = z10;
+        if (this.f39454b != z10) {
+            this.f39454b = z10;
             invalidate();
-            if (z10 && (valueAnimator = this.f39427a) != null) {
+            if (z10 && (valueAnimator = this.f39453a) != null) {
                 valueAnimator.removeAllListeners();
-                this.f39427a.cancel();
+                this.f39453a.cancel();
             }
             if (!z10) {
-                float f7 = this.f39429c;
+                float f7 = this.f39455c;
                 if (f7 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                    this.f39427a = ofFloat;
+                    this.f39453a = ofFloat;
                     ofFloat.addUpdateListener(new e11(this, 14));
-                    this.f39427a.addListener(new bc0(this, 28));
-                    org.telegram.messenger.wh.l(5.0f, this.f39427a);
-                    this.f39427a.setDuration(350L);
-                    this.f39427a.start();
+                    this.f39453a.addListener(new bc0(this, 28));
+                    org.telegram.messenger.kk.l(5.0f, this.f39453a);
+                    this.f39453a.setDuration(350L);
+                    this.f39453a.start();
                 }
             }
         }

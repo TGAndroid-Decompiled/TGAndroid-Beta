@@ -2,14 +2,14 @@ package y2;
 
 import e2.m0;
 import java.util.Arrays;
-import u2.z0;
+import u2.y0;
 public final class d {
-    public int f49918c;
+    public int f49943c;
     public int d;
-    public final boolean f49916a = true;
-    public final int f49917b = 65536;
+    public final boolean f49941a = true;
+    public final int f49942b = 65536;
     public int e = 0;
-    public a[] f49919f = new a[100];
+    public a[] f49944f = new a[100];
 
     public final synchronized a a() {
         a aVar;
@@ -18,17 +18,17 @@ public final class d {
             this.d = i10;
             int i11 = this.e;
             if (i11 > 0) {
-                a[] aVarArr = this.f49919f;
+                a[] aVarArr = this.f49944f;
                 int i12 = i11 - 1;
                 this.e = i12;
                 aVar = aVarArr[i12];
                 aVar.getClass();
-                this.f49919f[this.e] = null;
+                this.f49944f[this.e] = null;
             } else {
-                a aVar2 = new a(new byte[this.f49917b], 0);
-                a[] aVarArr2 = this.f49919f;
+                a aVar2 = new a(new byte[this.f49942b], 0);
+                a[] aVarArr2 = this.f49944f;
                 if (i10 > aVarArr2.length) {
-                    this.f49919f = (a[]) Arrays.copyOf(aVarArr2, aVarArr2.length * 2);
+                    this.f49944f = (a[]) Arrays.copyOf(aVarArr2, aVarArr2.length * 2);
                 }
                 aVar = aVar2;
             }
@@ -38,24 +38,24 @@ public final class d {
         return aVar;
     }
 
-    public final synchronized void b(z0 z0Var) {
-        while (z0Var != null) {
-            a[] aVarArr = this.f49919f;
+    public final synchronized void b(y0 y0Var) {
+        while (y0Var != null) {
+            a[] aVarArr = this.f49944f;
             int i10 = this.e;
             this.e = i10 + 1;
-            a aVar = (a) z0Var.f47519c;
+            a aVar = (a) y0Var.f47539c;
             aVar.getClass();
             aVarArr[i10] = aVar;
             this.d--;
-            z0Var = (z0) z0Var.d;
-            if (z0Var == null || ((a) z0Var.f47519c) == null) {
-                z0Var = null;
+            y0Var = (y0) y0Var.d;
+            if (y0Var == null || ((a) y0Var.f47539c) == null) {
+                y0Var = null;
             }
         }
     }
 
     public final synchronized void c(a aVar) {
-        a[] aVarArr = this.f49919f;
+        a[] aVarArr = this.f49944f;
         int i10 = this.e;
         this.e = i10 + 1;
         aVarArr[i10] = aVar;
@@ -64,24 +64,24 @@ public final class d {
 
     public final synchronized void d(int i10) {
         boolean z10;
-        if (i10 < this.f49918c) {
+        if (i10 < this.f49943c) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f49918c = i10;
+        this.f49943c = i10;
         if (z10) {
             e();
         }
     }
 
     public final synchronized void e() {
-        int max = Math.max(0, m0.g(this.f49918c, this.f49917b) - this.d);
+        int max = Math.max(0, m0.g(this.f49943c, this.f49942b) - this.d);
         int i10 = this.e;
         if (max >= i10) {
             return;
         }
-        Arrays.fill(this.f49919f, max, i10, (Object) null);
+        Arrays.fill(this.f49944f, max, i10, (Object) null);
         this.e = max;
     }
 }

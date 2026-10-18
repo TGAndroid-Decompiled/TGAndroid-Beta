@@ -7,14 +7,14 @@ import java.util.Collections;
 import java.util.List;
 import v7.r8;
 public final class f implements v, Cloneable {
-    public static final f f10957c = new f();
-    public List f10958a;
-    public final List f10959b;
+    public static final f f10959c = new f();
+    public List f10960a;
+    public final List f10961b;
 
     public f() {
         List list = Collections.EMPTY_LIST;
-        this.f10958a = list;
-        this.f10959b = list;
+        this.f10960a = list;
+        this.f10961b = list;
     }
 
     public final f clone() {
@@ -28,15 +28,15 @@ public final class f implements v, Cloneable {
     public final boolean b(Class cls, boolean z10) {
         List<eb.a> list;
         if (!z10 && !Enum.class.isAssignableFrom(cls)) {
-            r8 r8Var = jb.c.f14365a;
+            r8 r8Var = jb.c.f14372a;
             if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
                 return true;
             }
         }
         if (z10) {
-            list = this.f10958a;
+            list = this.f10960a;
         } else {
-            list = this.f10959b;
+            list = this.f10961b;
         }
         for (eb.a aVar : list) {
             if (aVar.shouldSkipClass(cls)) {
@@ -48,7 +48,7 @@ public final class f implements v, Cloneable {
 
     @Override
     public final u create(eb.g gVar, lb.a aVar) {
-        Class cls = aVar.f15988a;
+        Class cls = aVar.f15995a;
         boolean b10 = b(cls, true);
         boolean b11 = b(cls, false);
         if (!b10 && !b11) {

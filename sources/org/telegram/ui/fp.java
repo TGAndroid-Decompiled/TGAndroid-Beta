@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class fp implements Runnable {
-    public final int f37011a;
-    public final gp f37012b;
+    public final int f36991a;
+    public final gp f36992b;
 
     public fp(gp gpVar, int i10) {
-        this.f37011a = i10;
-        this.f37012b = gpVar;
+        this.f36991a = i10;
+        this.f36992b = gpVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f37011a) {
+        switch (this.f36991a) {
             case 0:
-                this.f37012b.f37284x.d.P = false;
+                this.f36992b.f37295x.d.P = false;
                 return;
             default:
-                this.f37012b.f37284x.d.P = false;
+                this.f36992b.f37295x.d.P = false;
                 return;
         }
     }

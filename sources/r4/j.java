@@ -1,30 +1,73 @@
 package r4;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import c0.m;
-public abstract class j {
-    public static final m f45031a = new Object();
-    public static final Object f45032b = new Object();
-    public static rb.b f45033c = null;
+import j$.util.Objects;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+public final class j {
+    public final int f45048a;
+    public final int f45049b;
+    public final long f45050c;
+    public final long d;
 
-    public static long a(Context context) {
-        PackageManager packageManager = context.getApplicationContext().getPackageManager();
-        if (Build.VERSION.SDK_INT >= 33) {
-            return h.a(packageManager, context).lastUpdateTime;
+    public j(long j10, int i10, int i11, long j11) {
+        this.f45048a = i10;
+        this.f45049b = i11;
+        this.f45050c = j10;
+        this.d = j11;
+    }
+
+    public static j a(File file) {
+        DataInputStream dataInputStream = new DataInputStream(new FileInputStream(file));
+        try {
+            j jVar = new j(dataInputStream.readLong(), dataInputStream.readInt(), dataInputStream.readInt(), dataInputStream.readLong());
+            dataInputStream.close();
+            return jVar;
+        } catch (Throwable th2) {
+            try {
+                dataInputStream.close();
+            } catch (Throwable th3) {
+                th2.addSuppressed(th3);
+            }
+            throw th2;
         }
-        return packageManager.getPackageInfo(context.getPackageName(), 0).lastUpdateTime;
     }
 
-    public static rb.b b() {
-        rb.b bVar = new rb.b(21);
-        f45033c = bVar;
-        f45031a.k(bVar);
-        return f45033c;
+    public final void b(File file) {
+        file.delete();
+        DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file));
+        try {
+            dataOutputStream.writeInt(this.f45048a);
+            dataOutputStream.writeInt(this.f45049b);
+            dataOutputStream.writeLong(this.f45050c);
+            dataOutputStream.writeLong(this.d);
+            dataOutputStream.close();
+        } catch (Throwable th2) {
+            try {
+                dataOutputStream.close();
+            } catch (Throwable th3) {
+                th2.addSuppressed(th3);
+            }
+            throw th2;
+        }
     }
 
-    public static void c(android.content.Context r18, boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: r4.j.c(android.content.Context, boolean):void");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && (obj instanceof j)) {
+            j jVar = (j) obj;
+            if (this.f45049b == jVar.f45049b && this.f45050c == jVar.f45050c && this.f45048a == jVar.f45048a && this.d == jVar.d) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f45049b), Long.valueOf(this.f45050c), Integer.valueOf(this.f45048a), Long.valueOf(this.d));
     }
 }

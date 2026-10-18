@@ -54,7 +54,7 @@ public final class eh0 extends im0 {
         int measuredHeight2 = getMeasuredHeight();
         zf.y yVar = this.V2;
         yVar.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
-        yVar.b(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21074i5, this.f27284n2));
+        yVar.b(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21081i5, this.f27291n2));
         yVar.draw(canvas);
     }
 }

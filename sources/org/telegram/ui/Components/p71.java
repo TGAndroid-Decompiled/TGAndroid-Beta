@@ -6,44 +6,44 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class p71 extends TextureView implements TextureView.SurfaceTextureListener {
-    public a81 f29219a;
-    public e00 f29220b;
-    public final el0 f29221c;
+    public a81 f29226a;
+    public e00 f29227b;
+    public final el0 f29228c;
     public int d;
     public int e;
-    public ei.z7 f29222f;
+    public ei.z7 f29229f;
     public o71 h;
-    public int f29223n;
-    public int f29224r;
-    public ja f29225s;
+    public int f29230n;
+    public int f29231r;
+    public ja f29232s;
 
     public p71(Context context, a81 a81Var) {
         super(context);
-        this.f29221c = new Object();
-        this.f29219a = a81Var;
+        this.f29228c = new Object();
+        this.f29226a = a81Var;
         setSurfaceTextureListener(this);
     }
 
     public final void a(float f7, float f10, float f11, float f12) {
-        el0 el0Var = this.f29221c;
-        el0Var.f25956a = f7;
-        el0Var.f25957b = f10;
-        el0Var.f25958c = f11;
+        el0 el0Var = this.f29228c;
+        el0Var.f25963a = f7;
+        el0Var.f25964b = f10;
+        el0Var.f25965c = f11;
         el0Var.d = f12;
     }
 
     public Bitmap getUiBlurBitmap() {
         pa paVar;
-        e00 e00Var = this.f29220b;
+        e00 e00Var = this.f29227b;
         if (e00Var == null || (paVar = e00Var.I) == null) {
             return null;
         }
-        synchronized (paVar.f29255n) {
+        synchronized (paVar.f29262n) {
             try {
-                if (!paVar.f29258q) {
+                if (!paVar.f29265q) {
                     return null;
                 }
-                return paVar.f29257p;
+                return paVar.f29264p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -61,44 +61,44 @@ public final class p71 extends TextureView implements TextureView.SurfaceTexture
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
         int i12;
-        if (this.f29220b == null && surfaceTexture != null && this.f29219a != null) {
-            e00 e00Var = new e00(surfaceTexture, new tv(this, 29), this.f29222f, this.f29225s, i10, i11);
-            this.f29220b = e00Var;
-            e00Var.i(this.f29223n, this.f29224r);
-            e00 e00Var2 = this.f29220b;
-            ja jaVar = this.f29225s;
+        if (this.f29227b == null && surfaceTexture != null && this.f29226a != null) {
+            e00 e00Var = new e00(surfaceTexture, new tv(this, 29), this.f29229f, this.f29232s, i10, i11);
+            this.f29227b = e00Var;
+            e00Var.i(this.f29230n, this.f29231r);
+            e00 e00Var2 = this.f29227b;
+            ja jaVar = this.f29232s;
             pa paVar = e00Var2.I;
             if (paVar != null) {
-                ja jaVar2 = paVar.f29261t;
-                if (jaVar2 != null && jaVar2.f27485m != null) {
-                    jaVar2.f27485m = null;
+                ja jaVar2 = paVar.f29268t;
+                if (jaVar2 != null && jaVar2.f27492m != null) {
+                    jaVar2.f27492m = null;
                 }
-                paVar.f29261t = jaVar;
-                if (jaVar != null && jaVar.f27485m != paVar) {
-                    jaVar.f27485m = paVar;
+                paVar.f29268t = jaVar;
+                if (jaVar != null && jaVar.f27492m != paVar) {
+                    jaVar.f27492m = paVar;
                     jaVar.d();
                 }
             }
             int i13 = this.d;
             if (i13 != 0 && (i12 = this.e) != 0) {
-                e00 e00Var3 = this.f29220b;
+                e00 e00Var3 = this.f29227b;
                 e00Var3.getClass();
                 e00Var3.postRunnable(new a00(e00Var3, i13, i12, 0));
             }
-            this.f29220b.d(true, true, false);
+            this.f29227b.d(true, true, false);
             o71 o71Var = this.h;
             if (o71Var != null) {
-                o71Var.c(this.f29220b);
+                o71Var.c(this.f29227b);
             }
         }
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        e00 e00Var = this.f29220b;
+        e00 e00Var = this.f29227b;
         if (e00Var != null) {
             e00Var.postRunnable(new b00(e00Var, 0));
-            this.f29220b = null;
+            this.f29227b = null;
             return true;
         }
         return true;
@@ -106,17 +106,17 @@ public final class p71 extends TextureView implements TextureView.SurfaceTexture
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        e00 e00Var = this.f29220b;
+        e00 e00Var = this.f29227b;
         if (e00Var != null) {
             e00Var.postRunnable(new a00(e00Var, i10, i11, 1));
-            this.f29220b.d(false, true, false);
-            this.f29220b.postRunnable(new fr0(this, 29));
+            this.f29227b.d(false, true, false);
+            this.f29227b.postRunnable(new fr0(this, 29));
         }
     }
 
     public void setDelegate(o71 o71Var) {
         this.h = o71Var;
-        e00 e00Var = this.f29220b;
+        e00 e00Var = this.f29227b;
         if (e00Var != null) {
             if (o71Var == null) {
                 e00Var.f(null);
@@ -127,8 +127,8 @@ public final class p71 extends TextureView implements TextureView.SurfaceTexture
     }
 
     public void setHDRInfo(ei.z7 z7Var) {
-        this.f29222f = z7Var;
-        e00 e00Var = this.f29220b;
+        this.f29229f = z7Var;
+        e00 e00Var = this.f29227b;
         if (e00Var != null) {
             e00Var.postRunnable(new yt(9, e00Var, z7Var));
         }
@@ -137,7 +137,7 @@ public final class p71 extends TextureView implements TextureView.SurfaceTexture
     @Override
     public void setTransform(Matrix matrix) {
         super.setTransform(matrix);
-        e00 e00Var = this.f29220b;
+        e00 e00Var = this.f29227b;
         if (e00Var != null) {
             int width = getWidth();
             int height = getHeight();

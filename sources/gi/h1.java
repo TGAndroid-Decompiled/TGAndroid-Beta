@@ -119,7 +119,7 @@ public final class h1 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean d1(MessageObject messageObject) {
-        return org.telegram.ui.Cells.t0.a(messageObject);
+        return org.telegram.ui.Cells.c1.a(messageObject);
     }
 
     @Override
@@ -183,38 +183,6 @@ public final class h1 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final void L1() {
-    }
-
-    @Override
-    public final void f1() {
-    }
-
-    @Override
-    public final void g2() {
-    }
-
-    @Override
-    public final void j() {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void n2() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void y0() {
-    }
-
-    @Override
     public final void A(org.telegram.ui.Cells.u1 u1Var) {
     }
 
@@ -259,6 +227,10 @@ public final class h1 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
+    public final void L1() {
+    }
+
+    @Override
     public final void M(MessageObject messageObject) {
     }
 
@@ -287,7 +259,19 @@ public final class h1 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
+    public final void f1() {
+    }
+
+    @Override
+    public final void g2() {
+    }
+
+    @Override
     public final void i0(org.telegram.ui.Cells.u1 u1Var) {
+    }
+
+    @Override
+    public final void j() {
     }
 
     @Override
@@ -295,11 +279,23 @@ public final class h1 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
+    public final void n() {
+    }
+
+    @Override
     public final void n0(String str) {
     }
 
     @Override
+    public final void n2() {
+    }
+
+    @Override
     public final void p(org.telegram.ui.Cells.u1 u1Var) {
+    }
+
+    @Override
+    public final void q() {
     }
 
     @Override
@@ -316,6 +312,10 @@ public final class h1 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void x0(org.telegram.ui.Cells.u1 u1Var) {
+    }
+
+    @Override
+    public final void y0() {
     }
 
     @Override

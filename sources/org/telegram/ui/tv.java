@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class tv implements Runnable {
-    public final int f41831a;
-    public final ey f41832b;
-    public final long f41833c;
+    public final int f41846a;
+    public final ey f41847b;
+    public final long f41848c;
     public final boolean d;
 
     public tv(ey eyVar, long j10, boolean z10, int i10) {
-        this.f41831a = i10;
-        this.f41832b = eyVar;
-        this.f41833c = j10;
+        this.f41846a = i10;
+        this.f41847b = eyVar;
+        this.f41848c = j10;
         this.d = z10;
     }
 
@@ -25,20 +25,20 @@ public final class tv implements Runnable {
         String str;
         TLRPC.Chat chat;
         SpannableStringBuilder replaceTags;
-        int i10 = this.f41831a;
+        int i10 = this.f41846a;
         boolean z10 = this.d;
-        long j10 = this.f41833c;
-        ey eyVar = this.f41832b;
+        long j10 = this.f41848c;
+        ey eyVar = this.f41847b;
         switch (i10) {
             case 0:
-                ey eyVar2 = this.f41832b;
+                ey eyVar2 = this.f41847b;
                 ci.i7 storiesController = eyVar2.getMessagesController().getStoriesController();
-                long j11 = this.f41833c;
+                long j11 = this.f41848c;
                 boolean z11 = this.d;
                 storiesController.i0(j11, z11, false);
                 n2.e eVar = new n2.e(7, false);
-                eVar.f17035b = new tv(eyVar2, j11, z11, 1);
-                eVar.f17036c = new tv(eyVar2, j11, z11, 2);
+                eVar.f17042b = new tv(eyVar2, j11, z11, 1);
+                eVar.f17043c = new tv(eyVar2, j11, z11, 2);
                 if (j11 >= 0) {
                     TLRPC.User user = eyVar2.getMessagesController().getUser(Long.valueOf(j11));
                     str = ContactsController.formatName(user.first_name, null, 15);

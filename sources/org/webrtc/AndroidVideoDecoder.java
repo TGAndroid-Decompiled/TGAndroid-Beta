@@ -76,7 +76,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             this.frameInfos = new LinkedBlockingDeque();
             return;
         }
-        throw new IllegalArgumentException(i0.a.j(i10, "Unsupported color format: "));
+        throw new IllegalArgumentException(i2.d.j(i10, "Unsupported color format: "));
     }
 
     private VideoFrame.Buffer copyI420Buffer(ByteBuffer byteBuffer, int i10, int i11, int i12, int i13) {
@@ -125,7 +125,7 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                 return allocateI420Buffer;
             }
         }
-        throw new AssertionError(i0.a.j(i10, "Stride is not divisible by two: "));
+        throw new AssertionError(i2.d.j(i10, "Stride is not divisible by two: "));
     }
 
     private VideoFrame.Buffer copyNV12ToI420Buffer(ByteBuffer byteBuffer, int i10, int i11, int i12, int i13) {

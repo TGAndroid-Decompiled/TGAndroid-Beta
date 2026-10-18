@@ -30,7 +30,7 @@ public final class u6 extends a7 {
     @Override
     public final MessageObject f(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f5151i;
+            ArrayList arrayList = this.f5152i;
             if (i10 < arrayList.size()) {
                 return (MessageObject) arrayList.get(i10);
             }
@@ -51,7 +51,7 @@ public final class u6 extends a7 {
 
     @Override
     public final int i() {
-        return this.f5151i.size();
+        return this.f5152i.size();
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class u6 extends a7 {
         this.G = true;
         String str2 = this.D;
         boolean isEmpty = TextUtils.isEmpty(str2);
-        int i11 = this.f5148c;
+        int i11 = this.f5149c;
         if (!isEmpty) {
             tLObject = MessagesController.getInstance(i11).getUserOrChat(str2);
             if (tLObject == null) {

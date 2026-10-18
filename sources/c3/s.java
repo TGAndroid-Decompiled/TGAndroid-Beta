@@ -1,6 +1,6 @@
 package c3;
 
-import ai.le;
+import ai.me;
 import android.animation.ObjectAnimator;
 import org.telegram.ui.Components.db;
 import org.telegram.ui.Components.fb;
@@ -11,22 +11,22 @@ import org.telegram.ui.Components.tb;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.xl;
 public final class s implements tb {
-    public long f4658a;
+    public long f4659a;
 
     @Override
     public void D0(ub ubVar, fb fbVar, pg pgVar, xl xlVar) {
         ubVar.setInOutOffset(ubVar.getMeasuredHeight());
         xlVar.accept(Float.valueOf(ubVar.getTranslationY()));
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ubVar, ub.IN_OUT_OFFSET_Y2, 0.0f);
-        ofFloat.setDuration(this.f4658a);
+        ofFloat.setDuration(this.f4659a);
         ofFloat.setInterpolator(st.d);
-        ofFloat.addListener(new le(fbVar, pgVar, 17));
+        ofFloat.addListener(new me(fbVar, pgVar, 17));
         ofFloat.addUpdateListener(new ah.l0(15, xlVar, ubVar));
         ofFloat.start();
     }
 
     public boolean a(nf.m mVar) {
-        if (mVar.f7628b == this.f4658a && nf.a.c(mVar)) {
+        if (mVar.f7629b == this.f4659a && nf.a.c(mVar)) {
             return true;
         }
         return false;
@@ -36,8 +36,8 @@ public final class s implements tb {
     public void d(ub ubVar, fb fbVar, db dbVar, gb gbVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ubVar, ub.IN_OUT_OFFSET_Y2, ubVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(st.f30326c);
-        ofFloat.addListener(new le(fbVar, dbVar, 18));
+        ofFloat.setInterpolator(st.f30333c);
+        ofFloat.addListener(new me(fbVar, dbVar, 18));
         ofFloat.addUpdateListener(new ah.l0(14, gbVar, ubVar));
         ofFloat.start();
     }

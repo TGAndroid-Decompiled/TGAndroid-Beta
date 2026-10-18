@@ -10,18 +10,18 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class e11 extends ReplacementSpan {
-    public static final int f25777f = 0;
-    public ImageReceiver f25778a;
-    public int f25779b;
-    public int f25780c;
+    public static final int f25784f = 0;
+    public ImageReceiver f25785a;
+    public int f25786b;
+    public int f25787c;
     public final boolean d;
     public final int e;
 
     public e11(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f25779b = i10;
-        this.f25780c = i11;
+        this.f25786b = i10;
+        this.f25787c = i11;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f25778a = imageReceiver;
+        this.f25785a = imageReceiver;
         imageReceiver.setInvalidateAll(true);
         imageReceiver.setImageBitmap(bitmap);
         imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
@@ -31,14 +31,14 @@ public final class e11 extends ReplacementSpan {
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f25779b;
-        int i16 = this.f25780c;
-        ImageReceiver imageReceiver = this.f25778a;
+        int i15 = this.f25786b;
+        int i16 = this.f25787c;
+        ImageReceiver imageReceiver = this.f25785a;
         canvas.save();
         if (this.d) {
             imageReceiver.setImageCoords((int) f7, i13 - (i16 - this.e), i15, i16);
         } else {
-            imageReceiver.setImageCoords((int) f7, i0.a.C(org.telegram.messenger.q.B(4.0f, i14, i12), i16, 2, i12), i15, i16);
+            imageReceiver.setImageCoords((int) f7, i2.d.C(org.telegram.messenger.g0.B(4.0f, i14, i12), i16, 2, i12), i15, i16);
         }
         imageReceiver.draw(canvas);
         canvas.restore();
@@ -46,7 +46,7 @@ public final class e11 extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        int i12 = this.f25780c;
+        int i12 = this.f25787c;
         if (fontMetricsInt != null) {
             if (this.d) {
                 int i13 = this.e;
@@ -64,6 +64,6 @@ public final class e11 extends ReplacementSpan {
                 fontMetricsInt.bottom = dp2;
             }
         }
-        return this.f25779b;
+        return this.f25786b;
     }
 }

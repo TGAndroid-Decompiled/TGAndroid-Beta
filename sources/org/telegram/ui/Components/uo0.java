@@ -5,47 +5,47 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class uo0 extends u81 {
-    public final ArrayList f31061a = new ArrayList();
-    public final org.telegram.ui.nx f31062b;
+    public final ArrayList f31068a = new ArrayList();
+    public final org.telegram.ui.nx f31069b;
 
     public uo0(org.telegram.ui.nx nxVar) {
-        this.f31062b = nxVar;
+        this.f31069b = nxVar;
         i();
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        org.telegram.ui.nx nxVar = this.f31062b;
+        org.telegram.ui.nx nxVar = this.f31069b;
         nxVar.O(view, i10, nxVar.K0, true);
     }
 
     @Override
     public final View d(int i10) {
-        org.telegram.ui.nx nxVar = this.f31062b;
+        org.telegram.ui.nx nxVar = this.f31069b;
         org.telegram.ui.ey eyVar = nxVar.J0;
         if (i10 == 1) {
             return nxVar.U;
         }
         if (i10 == 3) {
-            return nxVar.f31344f0;
+            return nxVar.f31351f0;
         }
         if (i10 == 4) {
-            return nxVar.f31349k0;
+            return nxVar.f31356k0;
         }
         if (i10 == 5) {
-            return nxVar.f31355r0;
+            return nxVar.f31362r0;
         }
         if (i10 == 2) {
             tn0 tn0Var = new tn0(nxVar.H0, eyVar);
             nxVar.G0 = tn0Var;
             tn0Var.b(nxVar.U0, nxVar.V0, false);
-            nxVar.G0.f30669b.setClipToPadding(false);
-            nxVar.G0.f30669b.j(new so0(this, 0));
-            nxVar.G0.f30669b.C0(new rc0(nxVar, 23));
+            nxVar.G0.f30676b.setClipToPadding(false);
+            nxVar.G0.f30676b.j(new so0(this, 0));
+            nxVar.G0.f30676b.C0(new rc0(nxVar, 23));
             nxVar.G0.setUiCallback(nxVar);
             return nxVar.G0;
         } else if (i10 == 6) {
-            return nxVar.f31353p0;
+            return nxVar.f31360p0;
         } else {
             org.telegram.ui.g10 g10Var = new org.telegram.ui.g10(eyVar);
             g10Var.setChatPreviewDelegate(nxVar.P0);
@@ -55,7 +55,7 @@ public final class uo0 extends u81 {
             if (bVar != null) {
                 g10Var.setBlurredBackgroundDrawableFactory(bVar);
             }
-            ai.u1 u1Var = g10Var.f37083b;
+            ai.u1 u1Var = g10Var.f37053b;
             u1Var.setClipToPadding(false);
             u1Var.j(new so0(this, 1));
             u1Var.C0(new rc0(nxVar, 23));
@@ -65,69 +65,69 @@ public final class uo0 extends u81 {
 
     @Override
     public final int e() {
-        return this.f31061a.size();
+        return this.f31068a.size();
     }
 
     @Override
     public final CharSequence g(int i10) {
-        ArrayList arrayList = this.f31061a;
-        if (((to0) arrayList.get(i10)).f30688a == 0) {
+        ArrayList arrayList = this.f31068a;
+        if (((to0) arrayList.get(i10)).f30695a == 0) {
             return LocaleController.getString(R.string.SearchAllChatsShort);
         }
-        if (((to0) arrayList.get(i10)).f30688a == 1) {
+        if (((to0) arrayList.get(i10)).f30695a == 1) {
             return LocaleController.getString(R.string.ChannelsTab);
         }
-        if (((to0) arrayList.get(i10)).f30688a == 4) {
+        if (((to0) arrayList.get(i10)).f30695a == 4) {
             return LocaleController.getString(R.string.AppsTab);
         }
-        if (((to0) arrayList.get(i10)).f30688a == 6) {
+        if (((to0) arrayList.get(i10)).f30695a == 6) {
             return LocaleController.getString(R.string.SearchPosts);
         }
-        if (((to0) arrayList.get(i10)).f30688a == 2) {
+        if (((to0) arrayList.get(i10)).f30695a == 2) {
             return LocaleController.getString(R.string.DownloadsTabs);
         }
-        if (((to0) arrayList.get(i10)).f30688a == 5) {
+        if (((to0) arrayList.get(i10)).f30695a == 5) {
             return LocaleController.getString(R.string.PublicPostsTabs);
         }
-        hg.o0 o0Var = hg.q0.f12016a3[((to0) arrayList.get(i10)).f30689b];
-        String str = o0Var.f12004c;
+        hg.o0 o0Var = hg.q0.f12018a3[((to0) arrayList.get(i10)).f30696b];
+        String str = o0Var.f12006c;
         if (str != null) {
             return str;
         }
-        return LocaleController.getString(o0Var.f12003b);
+        return LocaleController.getString(o0Var.f12005b);
     }
 
     @Override
     public final int h(int i10) {
-        ArrayList arrayList = this.f31061a;
-        if (((to0) arrayList.get(i10)).f30688a == 0) {
+        ArrayList arrayList = this.f31068a;
+        if (((to0) arrayList.get(i10)).f30695a == 0) {
             return 1;
         }
-        if (((to0) arrayList.get(i10)).f30688a == 1) {
+        if (((to0) arrayList.get(i10)).f30695a == 1) {
             return 3;
         }
-        if (((to0) arrayList.get(i10)).f30688a == 4) {
+        if (((to0) arrayList.get(i10)).f30695a == 4) {
             return 4;
         }
-        if (((to0) arrayList.get(i10)).f30688a == 2) {
+        if (((to0) arrayList.get(i10)).f30695a == 2) {
             return 2;
         }
-        if (((to0) arrayList.get(i10)).f30688a == 5) {
+        if (((to0) arrayList.get(i10)).f30695a == 5) {
             return 5;
         }
-        if (((to0) arrayList.get(i10)).f30688a == 6) {
+        if (((to0) arrayList.get(i10)).f30695a == 6) {
             return 6;
         }
-        return ((to0) arrayList.get(i10)).f30688a + i10;
+        return ((to0) arrayList.get(i10)).f30695a + i10;
     }
 
     public final void i() {
-        ArrayList arrayList = this.f31061a;
+        ArrayList arrayList = this.f31068a;
         arrayList.clear();
         arrayList.add(new to0(0));
-        org.telegram.ui.nx nxVar = this.f31062b;
+        org.telegram.ui.nx nxVar = this.f31069b;
         if (nxVar.T0 == 0) {
-            if (nxVar.f31354q0) {
+            if (nxVar.f31361q0) {
                 arrayList.add(new to0(5));
             }
             arrayList.add(new to0(1));
@@ -135,23 +135,23 @@ public final class uo0 extends u81 {
             arrayList.add(new to0(6));
             if (!nxVar.O0) {
                 to0 to0Var = new to0(3);
-                to0Var.f30689b = 0;
+                to0Var.f30696b = 0;
                 arrayList.add(to0Var);
-                org.telegram.ui.yw ywVar = nxVar.f39572b1.G3;
+                org.telegram.ui.yw ywVar = nxVar.f39593b1.G3;
                 if (ywVar == null || !ywVar.c()) {
                     arrayList.add(new to0(2));
                 }
                 to0 to0Var2 = new to0(3);
-                to0Var2.f30689b = 1;
+                to0Var2.f30696b = 1;
                 arrayList.add(to0Var2);
                 to0 to0Var3 = new to0(3);
-                to0Var3.f30689b = 2;
+                to0Var3.f30696b = 2;
                 arrayList.add(to0Var3);
                 to0 to0Var4 = new to0(3);
-                to0Var4.f30689b = 3;
+                to0Var4.f30696b = 3;
                 arrayList.add(to0Var4);
                 to0 to0Var5 = new to0(3);
-                to0Var5.f30689b = 4;
+                to0Var5.f30696b = 4;
                 arrayList.add(to0Var5);
             }
         }

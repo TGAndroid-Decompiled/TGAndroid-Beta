@@ -21,7 +21,7 @@ public class s90 extends org.telegram.ui.ActionBar.j5 {
     }
 
     private int getLinkColor() {
-        return i0.b.o(getTextColor(), (int) (Color.alpha(getTextColor()) * 0.1175f));
+        return i0.a.o(getTextColor(), (int) (Color.alpha(getTextColor()) * 0.1175f));
     }
 
     @Override

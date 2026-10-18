@@ -1,10 +1,10 @@
 package c5;
 
-import com.google.android.gms.internal.play_billing.m3;
+import com.google.android.gms.internal.play_billing.n3;
 public interface f0 {
-    public static final int f4733j = 0;
+    public static final int f4734j = 0;
 
     static {
-        com.google.android.gms.internal.play_billing.a0.b(3, new Object[]{"com.android.vending.billing.PURCHASES_UPDATED", m3.PURCHASES_UPDATED_ACTION, "com.android.vending.billing.LOCAL_BROADCAST_PURCHASES_UPDATED", m3.LOCAL_PURCHASES_UPDATED_ACTION, "com.android.vending.billing.ALTERNATIVE_BILLING", m3.ALTERNATIVE_BILLING_ACTION}, null);
+        com.google.android.gms.internal.play_billing.a0.b(3, new Object[]{"com.android.vending.billing.PURCHASES_UPDATED", n3.PURCHASES_UPDATED_ACTION, "com.android.vending.billing.LOCAL_BROADCAST_PURCHASES_UPDATED", n3.LOCAL_PURCHASES_UPDATED_ACTION, "com.android.vending.billing.ALTERNATIVE_BILLING", n3.ALTERNATIVE_BILLING_ACTION}, null);
     }
 }

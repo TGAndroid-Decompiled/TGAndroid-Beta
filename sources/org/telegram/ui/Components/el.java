@@ -5,68 +5,68 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.IMapsProvider;
 public final class el implements Runnable {
-    public final int f25954a;
-    public final rl f25955b;
+    public final int f25961a;
+    public final rl f25962b;
 
     public el(rl rlVar, int i10) {
-        this.f25954a = i10;
-        this.f25955b = rlVar;
+        this.f25961a = i10;
+        this.f25962b = rlVar;
     }
 
     @Override
     public final void run() {
         Location location;
-        switch (this.f25954a) {
+        switch (this.f25961a) {
             case 0:
-                rl.P(this.f25955b);
+                rl.P(this.f25962b);
                 return;
             case 1:
-                this.f25955b.b0();
+                this.f25962b.b0();
                 return;
             case 2:
-                rl rlVar = this.f25955b;
-                double[] dArr = rlVar.f28238b.A2;
+                rl rlVar = this.f25962b;
+                double[] dArr = rlVar.f28245b.A2;
                 rlVar.e0(dArr[0], dArr[1]);
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new el(this.f25955b, 4));
+                AndroidUtilities.runOnUIThread(new el(this.f25962b, 4));
                 return;
             case 4:
-                View view = this.f25955b.M;
+                View view = this.f25962b.M;
                 view.setTag(1);
                 view.animate().alpha(0.0f).setDuration(180L).start();
                 return;
             case 5:
-                rl rlVar2 = this.f25955b;
+                rl rlVar2 = this.f25962b;
                 hg.s0 s0Var = rlVar2.O;
-                if (rlVar2.f29982t0) {
-                    rlVar2.f29982t0 = false;
+                if (rlVar2.f29990t0) {
+                    rlVar2.f29990t0 = false;
                     return;
                 }
                 IMapsProvider.IMap iMap = rlVar2.H;
-                if (iMap != null && (location = rlVar2.f29979r0) != null) {
+                if (iMap != null && (location = rlVar2.f29987r0) != null) {
                     location.setLatitude(iMap.getCameraPosition().target.latitude);
-                    rlVar2.f29979r0.setLongitude(rlVar2.H.getCameraPosition().target.longitude);
+                    rlVar2.f29987r0.setLongitude(rlVar2.H.getCameraPosition().target.longitude);
                 }
-                s0Var.L(rlVar2.f29979r0);
+                s0Var.L(rlVar2.f29987r0);
                 s0Var.I();
                 return;
             case 6:
-                ol olVar = this.f25955b.F;
+                ol olVar = this.f25962b.F;
                 if (olVar != null) {
                     olVar.a();
                     return;
                 }
                 return;
             case 7:
-                View view2 = this.f25955b.M;
+                View view2 = this.f25962b.M;
                 if (view2.getTag() == null) {
                     view2.animate().alpha(0.0f).setDuration(180L).start();
                     return;
                 }
                 return;
             default:
-                this.f25955b.e0(0.0d, 0.0d);
+                this.f25962b.e0(0.0d, 0.0d);
                 return;
         }
     }

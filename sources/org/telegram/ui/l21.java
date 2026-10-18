@@ -10,17 +10,17 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class l21 extends FrameLayout {
-    public final org.telegram.ui.Components.f6 f38727a;
-    public float f38728b;
-    public final Path f38729c;
+    public final org.telegram.ui.Components.f6 f38718a;
+    public float f38719b;
+    public final Path f38720c;
     public Boolean d;
     public final q21 e;
 
     public l21(q21 q21Var, Context context) {
         super(context);
         this.e = q21Var;
-        this.f38727a = new org.telegram.ui.Components.f6(this, 250L, org.telegram.ui.Components.bs.h);
-        this.f38729c = new Path();
+        this.f38718a = new org.telegram.ui.Components.f6(this, 250L, org.telegram.ui.Components.bs.h);
+        this.f38720c = new Path();
     }
 
     @Override
@@ -35,9 +35,9 @@ public final class l21 extends FrameLayout {
         View[] viewArr;
         org.telegram.ui.Components.f61 G;
         q21 q21Var = this.e;
-        View[] viewPages = q21Var.f40296b.getViewPages();
+        View[] viewPages = q21Var.f40302b.getViewPages();
         float f10 = 0.0f;
-        this.f38728b = 0.0f;
+        this.f38719b = 0.0f;
         int length = viewPages.length;
         int i12 = 0;
         while (i12 < length) {
@@ -47,9 +47,9 @@ public final class l21 extends FrameLayout {
             } else {
                 p21 p21Var = (p21) view;
                 FrameLayout frameLayout = p21Var.e;
-                org.telegram.ui.Components.a71 a71Var = p21Var.f39944f;
+                org.telegram.ui.Components.a71 a71Var = p21Var.f39963f;
                 float clamp = Utilities.clamp(1.0f - Math.abs(p21Var.getTranslationX() / p21Var.getMeasuredWidth()), 1.0f, f10);
-                float f11 = this.f38728b;
+                float f11 = this.f38719b;
                 float paddingTop = frameLayout.getPaddingTop();
                 int i13 = 0;
                 while (true) {
@@ -62,14 +62,14 @@ public final class l21 extends FrameLayout {
                     a71Var.V2.getClass();
                     int H = s4.n0.H(childAt);
                     View[] viewArr2 = viewPages;
-                    if (H >= 0 && H < s61Var.f30203x.size() && (G = s61Var.G(H)) != null && G.f44314a == 28) {
+                    if (H >= 0 && H < s61Var.f30210x.size() && (G = s61Var.G(H)) != null && G.f44334a == 28) {
                         paddingTop = childAt.getY() + frameLayout.getPaddingTop();
                     }
                     i13++;
                     viewPages = viewArr2;
                 }
                 viewArr = viewPages;
-                this.f38728b = (paddingTop * clamp) + f11;
+                this.f38719b = (paddingTop * clamp) + f11;
                 if (p21Var.getVisibility() == 0) {
                     ai.n5 n5Var = p21Var.h;
                     float f12 = -n5Var.getHeight();
@@ -80,7 +80,7 @@ public final class l21 extends FrameLayout {
                         }
                         View childAt2 = a71Var.getChildAt(i14);
                         a71Var.V2.getClass();
-                        if (s61Var.G(s4.n0.H(childAt2)).f44314a == 28) {
+                        if (s61Var.G(s4.n0.H(childAt2)).f44334a == 28) {
                             f12 = childAt2.getY() + frameLayout.getPaddingTop();
                             break;
                         }
@@ -93,25 +93,25 @@ public final class l21 extends FrameLayout {
             viewPages = viewArr;
             f10 = 0.0f;
         }
-        if (this.f38728b <= AndroidUtilities.statusBarHeight) {
+        if (this.f38719b <= AndroidUtilities.statusBarHeight) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        float d = this.f38727a.d(f7, false);
+        float d = this.f38718a.d(f7, false);
         float f13 = AndroidUtilities.statusBarHeight;
         float f14 = f13 * d;
-        this.f38728b = Math.max(f13, this.f38728b) - (AndroidUtilities.statusBarHeight * d);
+        this.f38719b = Math.max(f13, this.f38719b) - (AndroidUtilities.statusBarHeight * d);
         RectF rectF = AndroidUtilities.rectTmp;
         i10 = ((org.telegram.ui.ActionBar.f3) q21Var).backgroundPaddingLeft;
-        float f15 = this.f38728b;
+        float f15 = this.f38719b;
         int width = getWidth();
         i11 = ((org.telegram.ui.ActionBar.f3) q21Var).backgroundPaddingLeft;
         rectF.set(i10, f15, width - i11, AndroidUtilities.dp(8.0f) + getHeight());
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), 0, d);
-        canvas.drawRoundRect(rectF, lerp, lerp, q21Var.f40297c);
+        canvas.drawRoundRect(rectF, lerp, lerp, q21Var.f40303c);
         canvas.save();
-        Path path = this.f38729c;
+        Path path = this.f38720c;
         path.rewind();
         path.addRoundRect(rectF, lerp, lerp, Path.Direction.CW);
         canvas.clipPath(path);
@@ -126,12 +126,12 @@ public final class l21 extends FrameLayout {
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
-        if (AndroidUtilities.computePerceivedBrightness(q21Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21057h5)) > 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(q21Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21064h5)) > 0.721f) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(q21Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21265s8), 855638016)) > 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(q21Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21272s8), 855638016)) > 0.721f) {
             z12 = true;
         } else {
             z12 = false;
@@ -145,7 +145,7 @@ public final class l21 extends FrameLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f38728b) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f38719b) {
             this.e.dismiss();
             return true;
         }

@@ -1,11 +1,11 @@
 package mi;
 public final class c {
-    public final String f16940a;
-    public final String f16941b;
+    public final String f16947a;
+    public final String f16948b;
 
     public c(String str, String str2) {
-        this.f16940a = str;
-        this.f16941b = str2;
+        this.f16947a = str;
+        this.f16948b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -13,13 +13,13 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (!this.f16940a.equals(cVar.f16940a) || !this.f16941b.equals(cVar.f16941b)) {
+        if (!this.f16947a.equals(cVar.f16947a) || !this.f16948b.equals(cVar.f16948b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return this.f16941b.hashCode() + (this.f16940a.hashCode() * 31);
+        return this.f16948b.hashCode() + (this.f16947a.hashCode() * 31);
     }
 }

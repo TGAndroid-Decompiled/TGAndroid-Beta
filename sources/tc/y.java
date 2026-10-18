@@ -11,18 +11,18 @@ public final class y extends BufferedOutputStream {
         int i14;
         int length2;
         byte[] bArr;
-        if (xVar.f47015a) {
+        if (xVar.f47037a) {
             i10 = 128;
         } else {
             i10 = 0;
         }
-        if (xVar.f47016b) {
+        if (xVar.f47038b) {
             i11 = 64;
         } else {
             i11 = 0;
         }
         int i15 = i10 | i11;
-        if (xVar.f47017c) {
+        if (xVar.f47039c) {
             i12 = 32;
         } else {
             i12 = 0;
@@ -34,7 +34,7 @@ public final class y extends BufferedOutputStream {
             i13 = 0;
         }
         write(i16 | i13 | (xVar.e & 15));
-        byte[] bArr2 = xVar.f47019g;
+        byte[] bArr2 = xVar.f47041g;
         if (bArr2 == null) {
             length = 0;
         } else {
@@ -48,7 +48,7 @@ public final class y extends BufferedOutputStream {
             i14 = 255;
         }
         write(i14);
-        byte[] bArr3 = xVar.f47019g;
+        byte[] bArr3 = xVar.f47041g;
         if (bArr3 == null) {
             length2 = 0;
         } else {
@@ -67,9 +67,9 @@ public final class y extends BufferedOutputStream {
             write(bArr);
         }
         byte[] bArr4 = new byte[4];
-        k.f46973a.nextBytes(bArr4);
+        k.f46995a.nextBytes(bArr4);
         write(bArr4);
-        byte[] bArr5 = xVar.f47019g;
+        byte[] bArr5 = xVar.f47041g;
         if (bArr5 == null) {
             return;
         }

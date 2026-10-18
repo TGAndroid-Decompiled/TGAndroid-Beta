@@ -1,62 +1,40 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class no0 extends org.telegram.ui.Components.u81 {
-    public final int f39488a;
-    public final Object f39489b;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class no0 extends qo0 {
+    public int G;
+    public final kp0 H;
 
-    public no0(Object obj, int i10) {
-        this.f39488a = i10;
-        this.f39489b = obj;
+    public no0(kp0 kp0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.H = kp0Var;
+        this.G = 0;
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        switch (this.f39488a) {
-            case 0:
-                return;
-            default:
-                if (view instanceof org.telegram.ui.Wallet.h2) {
-                    ((org.telegram.ui.Wallet.h2) view).getClass();
-                    return;
-                }
-                return;
+    public final void a() {
+        kp0 kp0Var = this.H;
+        if (kp0Var.getParentActivity() != null) {
+            AndroidUtilities.setLightStatusBar(kp0Var.getParentActivity(), kp0Var.isLightStatusBar());
         }
-    }
-
-    @Override
-    public final View d(int i10) {
-        switch (this.f39488a) {
-            case 0:
-                jp0 jp0Var = (jp0) this.f39489b;
-                if (i10 == 1) {
-                    return jp0Var.h;
-                }
-                if (i10 == 0) {
-                    return jp0Var.f38254n;
-                }
-                return null;
-            default:
-                return (View) ((org.telegram.ui.Wallet.j2) this.f39489b).f34348c.get(i10);
+        int actionBarButtonColor = getActionBarButtonColor();
+        if (this.G != actionBarButtonColor) {
+            ImageView imageView = kp0Var.J;
+            if (imageView != null) {
+                this.G = actionBarButtonColor;
+                imageView.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
+            }
+            ImageView imageView2 = kp0Var.K;
+            if (imageView2 != null) {
+                this.G = actionBarButtonColor;
+                imageView2.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
+            }
         }
-    }
-
-    @Override
-    public final int e() {
-        switch (this.f39488a) {
-            case 0:
-                return 2;
-            default:
-                return ((org.telegram.ui.Wallet.j2) this.f39489b).f34348c.size();
-        }
-    }
-
-    @Override
-    public final int h(int i10) {
-        int i11 = this.f39488a;
-        return i10;
-    }
-
-    private final void i(View view, int i10, int i11) {
+        kp0Var.G0();
+        kp0Var.A0();
     }
 }

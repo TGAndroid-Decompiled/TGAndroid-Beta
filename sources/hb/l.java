@@ -45,7 +45,7 @@ public final class l extends mb.a {
         if (x() == i10) {
             return;
         }
-        throw new IllegalStateException("Expected " + i0.a.E(i10) + " but was " + i0.a.E(x()) + H());
+        throw new IllegalStateException("Expected " + i2.d.E(i10) + " but was " + i2.d.E(x()) + H());
     }
 
     public final String G(boolean z10) {
@@ -133,14 +133,14 @@ public final class l extends mb.a {
     @Override
     public final void a() {
         F(1);
-        L(((eb.h) J()).f8574a.iterator());
+        L(((eb.h) J()).f8575a.iterator());
         this.H[this.F - 1] = 0;
     }
 
     @Override
     public final void b() {
         F(3);
-        L(((gb.k) ((eb.l) J()).f8576a.entrySet()).iterator());
+        L(((gb.k) ((eb.l) J()).f8577a.entrySet()).iterator());
     }
 
     @Override
@@ -212,7 +212,7 @@ public final class l extends mb.a {
     public final double o() {
         int x10 = x();
         if (x10 != 7 && x10 != 6) {
-            throw new IllegalStateException("Expected " + i0.a.E(7) + " but was " + i0.a.E(x10) + H());
+            throw new IllegalStateException("Expected " + i2.d.E(7) + " but was " + i2.d.E(x10) + H());
         }
         double p5 = ((eb.m) J()).p();
         if (!Double.isNaN(p5) && !Double.isInfinite(p5)) {
@@ -233,10 +233,10 @@ public final class l extends mb.a {
         int parseInt;
         int x10 = x();
         if (x10 != 7 && x10 != 6) {
-            throw new IllegalStateException("Expected " + i0.a.E(7) + " but was " + i0.a.E(x10) + H());
+            throw new IllegalStateException("Expected " + i2.d.E(7) + " but was " + i2.d.E(x10) + H());
         }
         eb.m mVar = (eb.m) J();
-        if (mVar.f8577a instanceof Number) {
+        if (mVar.f8578a instanceof Number) {
             parseInt = mVar.q().intValue();
         } else {
             parseInt = Integer.parseInt(mVar.m());
@@ -256,10 +256,10 @@ public final class l extends mb.a {
         long parseLong;
         int x10 = x();
         if (x10 != 7 && x10 != 6) {
-            throw new IllegalStateException("Expected " + i0.a.E(7) + " but was " + i0.a.E(x10) + H());
+            throw new IllegalStateException("Expected " + i2.d.E(7) + " but was " + i2.d.E(x10) + H());
         }
         eb.m mVar = (eb.m) J();
-        if (mVar.f8577a instanceof Number) {
+        if (mVar.f8578a instanceof Number) {
             parseLong = mVar.q().longValue();
         } else {
             parseLong = Long.parseLong(mVar.m());
@@ -300,7 +300,7 @@ public final class l extends mb.a {
     public final String v() {
         int x10 = x();
         if (x10 != 6 && x10 != 7) {
-            throw new IllegalStateException("Expected " + i0.a.E(6) + " but was " + i0.a.E(x10) + H());
+            throw new IllegalStateException("Expected " + i2.d.E(6) + " but was " + i2.d.E(x10) + H());
         }
         String m10 = ((eb.m) K()).m();
         int i10 = this.F;
@@ -339,7 +339,7 @@ public final class l extends mb.a {
                 return 1;
             }
             if (J2 instanceof eb.m) {
-                Serializable serializable = ((eb.m) J2).f8577a;
+                Serializable serializable = ((eb.m) J2).f8578a;
                 if (serializable instanceof String) {
                     return 6;
                 }

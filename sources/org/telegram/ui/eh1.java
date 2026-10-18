@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class eh1 extends FrameLayout {
-    public float f36541a;
-    public float f36542b;
-    public boolean f36543c;
+    public float f36545a;
+    public float f36546b;
+    public boolean f36547c;
     public long d;
     public final jh1 e;
 
@@ -23,15 +23,15 @@ public final class eh1 extends FrameLayout {
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         jh1 jh1Var = this.e;
         org.telegram.ui.Components.voip.a3 a3Var = jh1Var.v;
-        if (view == a3Var && (jh1Var.f38201n0 || jh1Var.m0)) {
+        if (view == a3Var && (jh1Var.f38217n0 || jh1Var.m0)) {
             return false;
         }
-        if ((view != a3Var && view != jh1Var.f38179c0 && (view != jh1Var.Y || !jh1Var.f38173a0)) || (!jh1Var.f38189g1 && jh1Var.f38193i1 == null)) {
+        if ((view != a3Var && view != jh1Var.f38195c0 && (view != jh1Var.Y || !jh1Var.f38189a0)) || (!jh1Var.f38205g1 && jh1Var.f38209i1 == null)) {
             return super.drawChild(canvas, view, j10);
         }
         canvas.save();
-        float f7 = jh1Var.f38187f1;
-        canvas.scale(f7, f7, jh1Var.f38177b1, jh1Var.f38180c1);
+        float f7 = jh1Var.f38203f1;
+        canvas.scale(f7, f7, jh1Var.f38193b1, jh1Var.f38196c1);
         canvas.translate(jh1Var.Y0, jh1Var.Z0);
         boolean drawChild = super.drawChild(canvas, view, j10);
         canvas.restore();
@@ -43,10 +43,10 @@ public final class eh1 extends FrameLayout {
         jh1 jh1Var = this.e;
         tg1 tg1Var = jh1Var.T0;
         if (motionEvent.getActionMasked() == 1) {
-            jh1Var.f38216y.b(false, false);
+            jh1Var.f38232y.b(false, false);
             jh1Var.v.a();
             AndroidUtilities.cancelRunOnUIThread(tg1Var);
-            if (jh1Var.f38203p0 == 3) {
+            if (jh1Var.f38219p0 == 3) {
                 AndroidUtilities.runOnUIThread(tg1Var, 10000L);
             }
         }
@@ -60,62 +60,62 @@ public final class eh1 extends FrameLayout {
         jh1 jh1Var = this.e;
         tg1 tg1Var = jh1Var.T0;
         if (motionEvent.getActionMasked() == 1) {
-            jh1Var.f38216y.b(false, false);
+            jh1Var.f38232y.b(false, false);
             jh1Var.v.a();
             AndroidUtilities.cancelRunOnUIThread(tg1Var);
-            if (jh1Var.f38203p0 == 3) {
+            if (jh1Var.f38219p0 == 3) {
                 AndroidUtilities.runOnUIThread(tg1Var, 10000L);
             }
         }
-        if (!jh1Var.f38191h1 && !jh1Var.f38174a1 && !jh1Var.f38189g1 && motionEvent.getActionMasked() != 0) {
+        if (!jh1Var.f38207h1 && !jh1Var.f38190a1 && !jh1Var.f38205g1 && motionEvent.getActionMasked() != 0) {
             jh1.i(jh1Var);
             return false;
         }
         if (motionEvent.getActionMasked() == 0) {
-            jh1Var.f38191h1 = false;
-            jh1Var.f38174a1 = false;
-            jh1Var.f38189g1 = false;
+            jh1Var.f38207h1 = false;
+            jh1Var.f38190a1 = false;
+            jh1Var.f38205g1 = false;
         }
         if (jh1Var.m0) {
-            q2Var = jh1Var.f38179c0;
+            q2Var = jh1Var.f38195c0;
         } else {
-            q2Var = jh1Var.f38181d0;
+            q2Var = jh1Var.f38197d0;
         }
         if (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5) {
-            if (motionEvent.getActionMasked() == 2 && jh1Var.f38174a1) {
+            if (motionEvent.getActionMasked() == 2 && jh1Var.f38190a1) {
                 int i10 = -1;
                 int i11 = -1;
                 for (int i12 = 0; i12 < motionEvent.getPointerCount(); i12++) {
-                    if (jh1Var.f38182d1 == motionEvent.getPointerId(i12)) {
+                    if (jh1Var.f38198d1 == motionEvent.getPointerId(i12)) {
                         i10 = i12;
                     }
-                    if (jh1Var.f38184e1 == motionEvent.getPointerId(i12)) {
+                    if (jh1Var.f38200e1 == motionEvent.getPointerId(i12)) {
                         i11 = i12;
                     }
                 }
                 if (i10 != -1 && i11 != -1) {
                     float hypot = ((float) Math.hypot(motionEvent.getX(i11) - motionEvent.getX(i10), motionEvent.getY(i11) - motionEvent.getY(i10))) / jh1Var.X0;
-                    jh1Var.f38187f1 = hypot;
-                    if (hypot > 1.005f && !jh1Var.f38189g1) {
+                    jh1Var.f38203f1 = hypot;
+                    if (hypot > 1.005f && !jh1Var.f38205g1) {
                         jh1Var.X0 = (float) Math.hypot(motionEvent.getX(i11) - motionEvent.getX(i10), motionEvent.getY(i11) - motionEvent.getY(i10));
                         float x10 = (motionEvent.getX(i11) + motionEvent.getX(i10)) / 2.0f;
-                        jh1Var.f38177b1 = x10;
+                        jh1Var.f38193b1 = x10;
                         jh1Var.V0 = x10;
                         float y3 = (motionEvent.getY(i11) + motionEvent.getY(i10)) / 2.0f;
-                        jh1Var.f38180c1 = y3;
+                        jh1Var.f38196c1 = y3;
                         jh1Var.W0 = y3;
-                        jh1Var.f38187f1 = 1.0f;
+                        jh1Var.f38203f1 = 1.0f;
                         jh1Var.Y0 = 0.0f;
                         jh1Var.Z0 = 0.0f;
                         getParent().requestDisallowInterceptTouchEvent(true);
-                        jh1Var.f38189g1 = true;
-                        jh1Var.f38174a1 = true;
+                        jh1Var.f38205g1 = true;
+                        jh1Var.f38190a1 = true;
                     }
                     float x11 = motionEvent.getX(i10);
                     float y10 = motionEvent.getY(i10);
                     float x12 = jh1Var.V0 - ((motionEvent.getX(i11) + x11) / 2.0f);
                     float y11 = jh1Var.W0 - ((motionEvent.getY(i11) + y10) / 2.0f);
-                    float f7 = jh1Var.f38187f1;
+                    float f7 = jh1Var.f38203f1;
                     jh1Var.Y0 = (-x12) / f7;
                     jh1Var.Z0 = (-y11) / f7;
                     invalidate();
@@ -123,7 +123,7 @@ public final class eh1 extends FrameLayout {
                     getParent().requestDisallowInterceptTouchEvent(false);
                     jh1.i(jh1Var);
                 }
-            } else if (motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && motionEvent.getPointerCount() >= 2 && ((jh1Var.f38182d1 == motionEvent.getPointerId(0) && jh1Var.f38184e1 == motionEvent.getPointerId(1)) || (jh1Var.f38182d1 == motionEvent.getPointerId(1) && jh1Var.f38184e1 == motionEvent.getPointerId(0)))) || motionEvent.getActionMasked() == 3)) {
+            } else if (motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && motionEvent.getPointerCount() >= 2 && ((jh1Var.f38198d1 == motionEvent.getPointerId(0) && jh1Var.f38200e1 == motionEvent.getPointerId(1)) || (jh1Var.f38198d1 == motionEvent.getPointerId(1) && jh1Var.f38200e1 == motionEvent.getPointerId(0)))) || motionEvent.getActionMasked() == 3)) {
                 getParent().requestDisallowInterceptTouchEvent(false);
                 jh1.i(jh1Var);
             }
@@ -140,60 +140,60 @@ public final class eh1 extends FrameLayout {
                     rectF.right = Math.min(rectF.right, q2Var.getMeasuredWidth() - AndroidUtilities.dp(90.0f));
                 }
                 boolean contains = rectF.contains(motionEvent.getX(), motionEvent.getY());
-                jh1Var.f38191h1 = contains;
+                jh1Var.f38207h1 = contains;
                 if (!contains) {
                     jh1.i(jh1Var);
                 }
             }
-            if (jh1Var.f38191h1 && !jh1Var.f38174a1 && motionEvent.getPointerCount() == 2) {
+            if (jh1Var.f38207h1 && !jh1Var.f38190a1 && motionEvent.getPointerCount() == 2) {
                 jh1Var.X0 = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
                 float x13 = (motionEvent.getX(1) + motionEvent.getX(0)) / 2.0f;
-                jh1Var.f38177b1 = x13;
+                jh1Var.f38193b1 = x13;
                 jh1Var.V0 = x13;
                 float y12 = (motionEvent.getY(1) + motionEvent.getY(0)) / 2.0f;
-                jh1Var.f38180c1 = y12;
+                jh1Var.f38196c1 = y12;
                 jh1Var.W0 = y12;
-                jh1Var.f38187f1 = 1.0f;
-                jh1Var.f38182d1 = motionEvent.getPointerId(0);
-                jh1Var.f38184e1 = motionEvent.getPointerId(1);
-                jh1Var.f38174a1 = true;
+                jh1Var.f38203f1 = 1.0f;
+                jh1Var.f38198d1 = motionEvent.getPointerId(0);
+                jh1Var.f38200e1 = motionEvent.getPointerId(1);
+                jh1Var.f38190a1 = true;
             }
         }
-        jh1Var.f38207s.invalidate();
+        jh1Var.f38223s.invalidate();
         int action = motionEvent.getAction();
         if (action != 0) {
             if (action != 1) {
                 if (action == 3) {
-                    this.f36543c = false;
+                    this.f36547c = false;
                 }
-            } else if (this.f36543c) {
-                float x14 = motionEvent.getX() - this.f36541a;
-                float y13 = motionEvent.getY() - this.f36542b;
+            } else if (this.f36547c) {
+                float x14 = motionEvent.getX() - this.f36545a;
+                float y13 = motionEvent.getY() - this.f36546b;
                 long currentTimeMillis = System.currentTimeMillis();
                 float f10 = (y13 * y13) + (x14 * x14);
-                float f11 = jh1Var.f38209t0;
+                float f11 = jh1Var.f38225t0;
                 if (f10 < f11 * f11 && currentTimeMillis - this.d < 300 && currentTimeMillis - jh1Var.K0 > 300) {
                     jh1Var.K0 = System.currentTimeMillis();
                     if (jh1Var.C0) {
                         jh1Var.l(false);
-                    } else if (jh1Var.f38218z0) {
-                        jh1Var.z(!jh1Var.f38215x0);
-                        jh1Var.f38204q0 = jh1Var.f38203p0;
-                        if (!jh1Var.f38215x0 && (b3Var = jh1Var.N0) != null && b3Var.V) {
+                    } else if (jh1Var.f38234z0) {
+                        jh1Var.z(!jh1Var.f38231x0);
+                        jh1Var.f38220q0 = jh1Var.f38219p0;
+                        if (!jh1Var.f38231x0 && (b3Var = jh1Var.N0) != null && b3Var.V) {
                             b3Var.e(true);
                         }
                         jh1Var.G();
                     }
                 }
-                this.f36543c = false;
+                this.f36547c = false;
             }
         } else {
-            this.f36541a = motionEvent.getX();
-            this.f36542b = motionEvent.getY();
-            this.f36543c = true;
+            this.f36545a = motionEvent.getX();
+            this.f36546b = motionEvent.getY();
+            this.f36547c = true;
             this.d = System.currentTimeMillis();
         }
-        if (!jh1Var.f38191h1 && !this.f36543c) {
+        if (!jh1Var.f38207h1 && !this.f36547c) {
             return false;
         }
         return true;

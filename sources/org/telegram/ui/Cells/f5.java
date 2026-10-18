@@ -10,12 +10,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class f5 extends FrameLayout {
-    public final org.telegram.ui.Components.h9 f22245a;
-    public final org.telegram.ui.Components.w9 f22246b;
-    public final org.telegram.ui.ActionBar.j5 f22247c;
+    public final org.telegram.ui.Components.h9 f22249a;
+    public final org.telegram.ui.Components.w9 f22250b;
+    public final org.telegram.ui.ActionBar.j5 f22251c;
     public final org.telegram.ui.ActionBar.j5 d;
     public TLRPC.TL_chatInviteImporter e;
-    public boolean f22248f;
+    public boolean f22252f;
 
     public f5(Context context, final e5 e5Var, boolean z10) {
         super(context);
@@ -32,11 +32,11 @@ public final class f5 extends FrameLayout {
         float f13;
         int i16;
         int dp;
-        this.f22245a = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f22249a = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(getContext());
-        this.f22246b = w9Var;
+        this.f22250b = w9Var;
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(getContext());
-        this.f22247c = j5Var;
+        this.f22251c = j5Var;
         org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(getContext());
         this.d = j5Var2;
         w9Var.setRoundRadius(AndroidUtilities.dp(23.0f));
@@ -75,7 +75,7 @@ public final class f5 extends FrameLayout {
         }
         j5Var2.setGravity(i12);
         j5Var2.setMaxLines(1);
-        j5Var2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21374y6, false));
+        j5Var2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21381y6, false));
         j5Var2.setTextSize(14);
         boolean z12 = LocaleController.isRTL;
         if (z12) {
@@ -110,17 +110,17 @@ public final class f5 extends FrameLayout {
         textView.setTextSize(14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final f5 f22136b;
+            public final f5 f22140b;
 
             {
-                this.f22136b = this;
+                this.f22140b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        f5 f5Var = this.f22136b;
+                        f5 f5Var = this.f22140b;
                         e5 e5Var2 = e5Var;
                         if (e5Var2 != null) {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = f5Var.e;
@@ -133,7 +133,7 @@ public final class f5 extends FrameLayout {
                         f5Var.getClass();
                         return;
                     default:
-                        f5 f5Var2 = this.f22136b;
+                        f5 f5Var2 = this.f22140b;
                         e5 e5Var3 = e5Var;
                         if (e5Var3 != null) {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = f5Var2.e;
@@ -164,7 +164,7 @@ public final class f5 extends FrameLayout {
         float measureText = textView.getPaint().measureText(textView.getText().toString()) + (dp2 * 2);
         TextView textView2 = new TextView(getContext());
         int dp3 = AndroidUtilities.dp(16.0f);
-        textView2.setBackground(org.telegram.ui.ActionBar.h6.j0(dp3, dp3, dp3, dp3, 0, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21075i6, false), -16777216));
+        textView2.setBackground(org.telegram.ui.ActionBar.h6.j0(dp3, dp3, dp3, dp3, 0, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21082i6, false), -16777216));
         if (LocaleController.isRTL) {
             i16 = 5;
         } else {
@@ -174,21 +174,21 @@ public final class f5 extends FrameLayout {
         textView2.setMaxLines(1);
         textView2.setPadding(dp2, 0, dp2, 0);
         textView2.setText(LocaleController.getString(R.string.Dismiss));
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21169n6, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21176n6, false));
         textView2.setTextSize(14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final f5 f22136b;
+            public final f5 f22140b;
 
             {
-                this.f22136b = this;
+                this.f22140b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        f5 f5Var = this.f22136b;
+                        f5 f5Var = this.f22140b;
                         e5 e5Var2 = e5Var;
                         if (e5Var2 != null) {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = f5Var.e;
@@ -201,7 +201,7 @@ public final class f5 extends FrameLayout {
                         f5Var.getClass();
                         return;
                     default:
-                        f5 f5Var2 = this.f22136b;
+                        f5 f5Var2 = this.f22140b;
                         e5 e5Var3 = e5Var;
                         if (e5Var3 != null) {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = f5Var2.e;
@@ -229,7 +229,7 @@ public final class f5 extends FrameLayout {
     }
 
     public org.telegram.ui.Components.w9 getAvatarImageView() {
-        return this.f22246b;
+        return this.f22250b;
     }
 
     public TLRPC.TL_chatInviteImporter getImporter() {
@@ -245,7 +245,7 @@ public final class f5 extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f22248f) {
+        if (this.f22252f) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -259,7 +259,7 @@ public final class f5 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21107k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21114k0);
         }
     }
 

@@ -23,10 +23,10 @@ public final class v1 extends c91 {
     @Override
     public final void h() {
         is0 is0Var = this.U;
-        b91 b91Var = is0Var.f50496n;
+        b91 b91Var = is0Var.f50521n;
         if (is0Var.b() && b91Var != null) {
             if (is0Var.J == null) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.q.g(R.string.Gift2NewCollection, new StringBuilder("+ ")));
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.g0.g(R.string.Gift2NewCollection, new StringBuilder("+ ")));
                 yq yqVar = new yq(R.drawable.poll_add_plus, 0);
                 yqVar.spaceScaleX = 0.8f;
                 spannableStringBuilder.setSpan(yqVar, 0, 1, 33);

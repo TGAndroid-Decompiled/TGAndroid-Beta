@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.NotificationCenter;
 public final class yd1 implements View.OnClickListener {
-    public final te1 f43393a;
+    public final te1 f43417a;
 
     public yd1(te1 te1Var) {
-        this.f43393a = te1Var;
+        this.f43417a = te1Var;
     }
 
     @Override
     public final void onClick(View view) {
-        te1 te1Var = this.f43393a;
+        te1 te1Var = this.f43417a;
         if (te1Var.M == 1) {
-            org.telegram.ui.Components.f5.i0(te1Var, -te1Var.f41679a, null, te1Var.g(), null, false, te1Var.J, new xa(this, 5), te1Var.getResourceProvider());
+            org.telegram.ui.Components.f5.i0(te1Var, -te1Var.f41705a, null, te1Var.g(), null, false, te1Var.J, new xa(this, 5), te1Var.getResourceProvider());
             return;
         }
-        te1Var.getMessagesController().addUserToChat(te1Var.f41679a, te1Var.getUserConfig().getCurrentUser(), 0, null, te1Var, false, new rd1(te1Var, 2), new sd1(te1Var));
+        te1Var.getMessagesController().addUserToChat(te1Var.f41705a, te1Var.getUserConfig().getCurrentUser(), 0, null, te1Var, false, new rd1(te1Var, 2), new sd1(te1Var));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
         te1Var.O0(false);
     }

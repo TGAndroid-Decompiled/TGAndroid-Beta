@@ -11,9 +11,9 @@ public enum w {
     EF99(31, "GPU_DURATION", "gpu"),
     TOTAL_DURATION(8, "total");
     
-    public final int f51617a;
-    public final String f51618b;
-    public final int f51619c;
+    public final int f51642a;
+    public final String f51643b;
+    public final int f51644c;
     public long d;
     public double e;
 
@@ -24,8 +24,8 @@ public enum w {
     w(int i10, String str, String str2) {
         this.d = Long.MIN_VALUE;
         this.e = 0.0d;
-        this.f51617a = r4;
-        this.f51618b = str2;
-        this.f51619c = i10;
+        this.f51642a = r4;
+        this.f51643b = str2;
+        this.f51644c = i10;
     }
 }

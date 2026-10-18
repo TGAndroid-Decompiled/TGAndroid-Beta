@@ -3,25 +3,25 @@ package org.telegram.ui;
 import android.util.SparseArray;
 import org.telegram.messenger.MessageObject;
 public final class ui {
-    public boolean f42002a;
-    public final boolean f42003b;
-    public final SparseArray f42004c;
+    public boolean f42017a;
+    public final boolean f42018b;
+    public final SparseArray f42019c;
     public final sn d;
 
     public ui(sn snVar, boolean z10, SparseArray sparseArray) {
         this.d = snVar;
-        this.f42003b = z10;
-        this.f42004c = sparseArray;
+        this.f42018b = z10;
+        this.f42019c = sparseArray;
     }
 
     public final boolean a(int i10) {
         sn snVar = this.d;
         int i11 = i10 - snVar.A0.J;
-        if (i11 >= 0 && i11 < snVar.f41400u6.size()) {
-            MessageObject messageObject = (MessageObject) snVar.f41400u6.get(i11);
+        if (i11 >= 0 && i11 < snVar.f41421u6.size()) {
+            MessageObject messageObject = (MessageObject) snVar.f41421u6.get(i11);
             if (messageObject.contentType == 0) {
-                SparseArray sparseArray = this.f42004c;
-                boolean z10 = this.f42003b;
+                SparseArray sparseArray = this.f42019c;
+                boolean z10 = this.f42018b;
                 if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
                     return true;
                 }

@@ -1,14 +1,14 @@
 package u1;
 
 import android.view.animation.Interpolator;
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 public abstract class b implements Interpolator {
-    public final float[] f47264a;
-    public final float f47265b;
+    public final float[] f47289a;
+    public final float f47290b;
 
     public b(float[] fArr) {
-        this.f47264a = fArr;
-        this.f47265b = 1.0f / (fArr.length - 1);
+        this.f47289a = fArr;
+        this.f47290b = 1.0f / (fArr.length - 1);
     }
 
     @Override
@@ -19,11 +19,11 @@ public abstract class b implements Interpolator {
         if (f7 <= 0.0f) {
             return 0.0f;
         }
-        float[] fArr = this.f47264a;
+        float[] fArr = this.f47289a;
         int min = Math.min((int) ((fArr.length - 1) * f7), fArr.length - 2);
-        float f10 = this.f47265b;
-        float c10 = a6.c(min, f10, f7, f10);
+        float f10 = this.f47290b;
+        float c10 = k3.c(min, f10, f7, f10);
         float f11 = fArr[min];
-        return a6.x(fArr[min + 1], f11, c10, f11);
+        return k3.y(fArr[min + 1], f11, c10, f11);
     }
 }

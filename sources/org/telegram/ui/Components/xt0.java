@@ -14,7 +14,7 @@ public final class xt0 extends mv0 {
         super.l();
         sv0 sv0Var = this.h;
         lu0 W = sv0Var.W(0);
-        if (W != null && W.f28332r.getVisibility() == 0) {
+        if (W != null && W.f28339r.getVisibility() == 0) {
             sv0Var.I.l();
         }
     }

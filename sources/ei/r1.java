@@ -124,22 +124,6 @@ public final class r1 implements et {
     }
 
     @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
     public final void C(TLRPC.Document document) {
     }
 
@@ -149,6 +133,14 @@ public final class r1 implements et {
 
     @Override
     public final void H(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
     }
 
     @Override
@@ -169,6 +161,14 @@ public final class r1 implements et {
 
     @Override
     public final void p(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void s() {
     }
 
     @Override

@@ -1,71 +1,64 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.ca0;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.f61;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-public final class i8 extends e61 {
-    public static final int f34326a = 0;
+import org.telegram.messenger.Utilities;
+public final class i8 implements Utilities.Callback {
+    public final int f34339a = 0;
+    public final n8 f34340b;
+    public final Utilities.Callback f34341c;
+    public final q0 d;
+    public final m0 e;
 
-    static {
-        e61.setup(new e61());
+    public i8(n8 n8Var, Utilities.Callback callback, m0 m0Var, q0 q0Var) {
+        this.f34340b = n8Var;
+        this.f34341c = callback;
+        this.e = m0Var;
+        this.d = q0Var;
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
-        float f7;
-        float f10;
-        j8 j8Var = (j8) view;
-        String charSequence = f61Var.f26140l.toString();
-        long j10 = f61Var.B;
-        int i10 = f61Var.f26153z;
-        boolean z11 = f61Var.f26145q;
-        TextView textView = j8Var.f34367c;
-        TextView textView2 = j8Var.f34366b;
-        textView2.setText(z7.X(charSequence));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (j10 < 0) {
-            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Loading));
-            spannableStringBuilder.setSpan(new ca0(AndroidUtilities.dp(35.0f), textView), 0, spannableStringBuilder.length(), 33);
-        } else {
-            spannableStringBuilder.append((CharSequence) m0.r(j10, false));
+    public final void run(Object obj) {
+        String o10;
+        switch (this.f34339a) {
+            case 0:
+                n8.Y(this.f34340b, this.f34341c, this.e, this.d, (j0) obj);
+                return;
+            default:
+                d0 d0Var = (d0) obj;
+                Utilities.Callback callback = this.f34341c;
+                if (d0Var == null) {
+                    callback.run("ADDRESS_NO_INFO");
+                    return;
+                }
+                byte[] bArr = d0Var.f34116c;
+                q0 q0Var = this.d;
+                if (bArr == null) {
+                    byte[][] m10 = q0Var.m();
+                    if (m10.length <= 0) {
+                        callback.run("STORAGE_NO_PUBLIC_KEY");
+                        return;
+                    }
+                    bArr = m10[0];
+                }
+                if (!q0Var.f(bArr)) {
+                    callback.run("STORAGE_OLD_PUBLIC_KEY");
+                    return;
+                }
+                i8 i8Var = new i8(this.f34340b, callback, this.e, q0Var);
+                if (bArr == null) {
+                    o10 = "";
+                } else {
+                    o10 = q0.o(bArr);
+                }
+                String str = o10;
+                q0.h.execute(new org.telegram.ui.Components.r2(q0Var, q0Var.l(), str, false, (Utilities.Callback) i8Var));
+                return;
         }
-        if (i10 > 0) {
-            spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatSpannable(R.string.WalletPreviousWalletLastUsed, spannableStringBuilder, LocaleController.formatShortDateTime(i10)));
-        }
-        textView.setText(spannableStringBuilder);
-        float f11 = 1.0f;
-        if (z11) {
-            f7 = 0.5f;
-        } else {
-            f7 = 1.0f;
-        }
-        textView2.setAlpha(f7);
-        if (z11) {
-            f10 = 0.5f;
-        } else {
-            f10 = 1.0f;
-        }
-        textView.setAlpha(f10);
-        ImageView imageView = j8Var.d;
-        if (z11) {
-            f11 = 0.5f;
-        }
-        imageView.setAlpha(f11);
     }
 
-    @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new j8(context, d6Var);
+    public i8(n8 n8Var, Utilities.Callback callback, q0 q0Var, m0 m0Var) {
+        this.f34340b = n8Var;
+        this.f34341c = callback;
+        this.d = q0Var;
+        this.e = m0Var;
     }
 }

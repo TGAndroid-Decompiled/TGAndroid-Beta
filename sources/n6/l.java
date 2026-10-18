@@ -6,11 +6,12 @@ import android.text.TextUtils;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
+import org.telegram.ui.Cells.c1;
 import v7.g5;
 public abstract class l {
-    public static final Object f17209a = new Object();
-    public static boolean f17210b;
-    public static int f17211c;
+    public static final Object f17216a = new Object();
+    public static boolean f17217b;
+    public static int f17218c;
 
     public static void a(String str, boolean z10) {
         if (z10) {
@@ -42,7 +43,7 @@ public abstract class l {
             } else {
                 str = "null current looper";
             }
-            throw new IllegalStateException(r.c.h("Must be called on ", handler.getLooper().getThread().getName(), " thread, but got ", str, "."));
+            throw new IllegalStateException(c1.k("Must be called on ", handler.getLooper().getThread().getName(), " thread, but got ", str, "."));
         }
     }
 
@@ -106,7 +107,7 @@ public abstract class l {
     }
 
     public static com.google.android.gms.common.api.f m(Status status) {
-        if (status.f6348c != null) {
+        if (status.f6349c != null) {
             return new com.google.android.gms.common.api.f(status);
         }
         return new com.google.android.gms.common.api.f(status);

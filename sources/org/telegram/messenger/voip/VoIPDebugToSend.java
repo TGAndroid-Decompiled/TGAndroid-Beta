@@ -1,6 +1,6 @@
 package org.telegram.messenger.voip;
 
-import ai.n2;
+import ai.o2;
 import android.text.TextUtils;
 import java.io.File;
 import java.util.HashMap;
@@ -45,7 +45,7 @@ public class VoIPDebugToSend {
     }
 
     public void lambda$done$1(File file, TL_phone.saveCallDebug savecalldebug) {
-        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new n2(29, this, savecalldebug));
+        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new o2(29, this, savecalldebug));
     }
 
     public void lambda$done$2(Data data, File file, TL_phone.saveCallDebug savecalldebug) {
@@ -74,7 +74,7 @@ public class VoIPDebugToSend {
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             savecalldebug.peer = tL_inputPhoneCall;
             tL_inputPhoneCall.access_hash = remove.access_hash;
-            tL_inputPhoneCall.f20337id = remove.callId;
+            tL_inputPhoneCall.f20344id = remove.callId;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new n(this, remove, savecalldebug, 0));
         }
     }

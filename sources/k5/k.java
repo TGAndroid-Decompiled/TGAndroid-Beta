@@ -2,22 +2,22 @@ package k5;
 
 import java.util.Arrays;
 public final class k extends r {
-    public final long f14936a;
-    public final Integer f14937b;
-    public final long f14938c;
+    public final long f14943a;
+    public final Integer f14944b;
+    public final long f14945c;
     public final byte[] d;
     public final String e;
-    public final long f14939f;
-    public final v f14940g;
+    public final long f14946f;
+    public final v f14947g;
 
     public k(long j10, Integer num, long j11, byte[] bArr, String str, long j12, v vVar) {
-        this.f14936a = j10;
-        this.f14937b = num;
-        this.f14938c = j11;
+        this.f14943a = j10;
+        this.f14944b = num;
+        this.f14945c = j11;
         this.d = bArr;
         this.e = str;
-        this.f14939f = j12;
-        this.f14940g = vVar;
+        this.f14946f = j12;
+        this.f14947g = vVar;
     }
 
     public final boolean equals(Object obj) {
@@ -31,16 +31,16 @@ public final class k extends r {
         if (obj instanceof r) {
             r rVar = (r) obj;
             k kVar = (k) rVar;
-            v vVar2 = kVar.f14940g;
+            v vVar2 = kVar.f14947g;
             String str2 = kVar.e;
-            Integer num2 = kVar.f14937b;
-            if (this.f14936a == kVar.f14936a && ((num = this.f14937b) != null ? num.equals(num2) : num2 == null) && this.f14938c == kVar.f14938c) {
+            Integer num2 = kVar.f14944b;
+            if (this.f14943a == kVar.f14943a && ((num = this.f14944b) != null ? num.equals(num2) : num2 == null) && this.f14945c == kVar.f14945c) {
                 if (rVar instanceof k) {
                     bArr = ((k) rVar).d;
                 } else {
                     bArr = kVar.d;
                 }
-                if (Arrays.equals(this.d, bArr) && ((str = this.e) != null ? str.equals(str2) : str2 == null) && this.f14939f == kVar.f14939f && ((vVar = this.f14940g) != null ? vVar.equals(vVar2) : vVar2 == null)) {
+                if (Arrays.equals(this.d, bArr) && ((str = this.e) != null ? str.equals(str2) : str2 == null) && this.f14946f == kVar.f14946f && ((vVar = this.f14947g) != null ? vVar.equals(vVar2) : vVar2 == null)) {
                     return true;
                 }
             }
@@ -51,16 +51,16 @@ public final class k extends r {
     public final int hashCode() {
         int hashCode;
         int hashCode2;
-        long j10 = this.f14936a;
+        long j10 = this.f14943a;
         int i10 = (((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003;
         int i11 = 0;
-        Integer num = this.f14937b;
+        Integer num = this.f14944b;
         if (num == null) {
             hashCode = 0;
         } else {
             hashCode = num.hashCode();
         }
-        long j11 = this.f14938c;
+        long j11 = this.f14945c;
         int hashCode3 = (((((i10 ^ hashCode) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ Arrays.hashCode(this.d)) * 1000003;
         String str = this.e;
         if (str == null) {
@@ -68,9 +68,9 @@ public final class k extends r {
         } else {
             hashCode2 = str.hashCode();
         }
-        long j12 = this.f14939f;
+        long j12 = this.f14946f;
         int i12 = (((hashCode3 ^ hashCode2) * 1000003) ^ ((int) (j12 ^ (j12 >>> 32)))) * 1000003;
-        v vVar = this.f14940g;
+        v vVar = this.f14947g;
         if (vVar != null) {
             i11 = vVar.hashCode();
         }
@@ -78,6 +78,6 @@ public final class k extends r {
     }
 
     public final String toString() {
-        return "LogEvent{eventTimeMs=" + this.f14936a + ", eventCode=" + this.f14937b + ", eventUptimeMs=" + this.f14938c + ", sourceExtension=" + Arrays.toString(this.d) + ", sourceExtensionJsonProto3=" + this.e + ", timezoneOffsetSeconds=" + this.f14939f + ", networkConnectionInfo=" + this.f14940g + "}";
+        return "LogEvent{eventTimeMs=" + this.f14943a + ", eventCode=" + this.f14944b + ", eventUptimeMs=" + this.f14945c + ", sourceExtension=" + Arrays.toString(this.d) + ", sourceExtensionJsonProto3=" + this.e + ", timezoneOffsetSeconds=" + this.f14946f + ", networkConnectionInfo=" + this.f14947g + "}";
     }
 }

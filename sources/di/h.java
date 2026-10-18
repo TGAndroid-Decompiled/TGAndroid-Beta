@@ -32,8 +32,8 @@ public final class h extends wz {
         switch (this.X) {
             case 0:
                 dw0 dw0Var = (dw0) this.Y;
-                dw0Var.f25721b = 100.0f;
-                dw0Var.f25720a = 100.0f;
+                dw0Var.f25728b = 100.0f;
+                dw0Var.f25727a = 100.0f;
                 return dw0Var;
             default:
                 return super.D1(i10);
@@ -46,7 +46,7 @@ public final class h extends wz {
         switch (this.X) {
             case 0:
                 super.U(eVar, y0Var, view, cVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45895a;
+                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45915a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     bVar = new n7.b(collectionItemInfo);
@@ -54,7 +54,7 @@ public final class h extends wz {
                     bVar = null;
                 }
                 if (bVar != null) {
-                    Object obj = bVar.f17254a;
+                    Object obj = bVar.f17261a;
                     if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                         accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
                         return;

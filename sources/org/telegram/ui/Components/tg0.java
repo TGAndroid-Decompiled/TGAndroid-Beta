@@ -19,22 +19,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.LaunchActivity;
 public final class tg0 implements aw0, bw0, org.telegram.ui.ActionBar.a2, GenericProvider, ImageReceiver.ImageReceiverDelegate, LanguageDetector.ExceptionCallback, kd0, FlagSecureReason.FlagSecureCondition {
-    public final int f30543a;
+    public final int f30550a;
 
     public tg0(int i10) {
-        this.f30543a = i10;
+        this.f30550a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f30543a) {
+        switch (this.f30550a) {
             case 1:
                 zg0 zg0Var = (zg0) obj;
-                WindowManager.LayoutParams layoutParams = zg0Var.f32910c;
+                WindowManager.LayoutParams layoutParams = zg0Var.f32917c;
                 zg0Var.L = f7;
                 layoutParams.y = (int) f7;
                 try {
-                    AndroidUtilities.updateViewLayout(zg0Var.f32908b, zg0Var.d, layoutParams);
+                    AndroidUtilities.updateViewLayout(zg0Var.f32915b, zg0Var.d, layoutParams);
                     return;
                 } catch (IllegalArgumentException unused) {
                     zg0Var.N.c();
@@ -42,22 +42,22 @@ public final class tg0 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Generi
                 }
             case 6:
                 sp0 sp0Var = (sp0) obj;
-                sp0Var.f30308n = f7;
+                sp0Var.f30315n = f7;
                 sp0Var.invalidate();
                 return;
             case 17:
                 org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) obj;
-                WindowManager.LayoutParams layoutParams2 = h1Var.f31484c;
+                WindowManager.LayoutParams layoutParams2 = h1Var.f31491c;
                 h1Var.Q = f7;
                 layoutParams2.x = (int) f7;
-                AndroidUtilities.updateViewLayout(h1Var.f31483b, h1Var.d, layoutParams2);
+                AndroidUtilities.updateViewLayout(h1Var.f31490b, h1Var.d, layoutParams2);
                 return;
             default:
                 org.telegram.ui.Components.voip.h1 h1Var2 = (org.telegram.ui.Components.voip.h1) obj;
-                WindowManager.LayoutParams layoutParams3 = h1Var2.f31484c;
+                WindowManager.LayoutParams layoutParams3 = h1Var2.f31491c;
                 h1Var2.R = f7;
                 layoutParams3.y = (int) f7;
-                AndroidUtilities.updateViewLayout(h1Var2.f31483b, h1Var2.d, layoutParams3);
+                AndroidUtilities.updateViewLayout(h1Var2.f31490b, h1Var2.d, layoutParams3);
                 return;
         }
     }
@@ -77,7 +77,7 @@ public final class tg0 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Generi
 
     @Override
     public String e(int i10) {
-        switch (this.f30543a) {
+        switch (this.f30550a) {
             case 24:
                 return String.format("%02d", Integer.valueOf(i10));
             default:
@@ -87,7 +87,7 @@ public final class tg0 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Generi
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f30543a) {
+        switch (this.f30550a) {
             case 3:
                 b2Var.dismiss();
                 return;
@@ -116,7 +116,7 @@ public final class tg0 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Generi
                 b2Var.dismiss();
                 return;
             case 11:
-                int i11 = oy0.f29079u0;
+                int i11 = oy0.f29086u0;
                 return;
             case 12:
                 b2Var.dismiss();
@@ -137,11 +137,11 @@ public final class tg0 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Generi
 
     @Override
     public float get(Object obj) {
-        switch (this.f30543a) {
+        switch (this.f30550a) {
             case 0:
                 return ((zg0) obj).L;
             case 5:
-                return ((sp0) obj).f30308n;
+                return ((sp0) obj).f30315n;
             case 16:
                 return ((org.telegram.ui.Components.voip.h1) obj).Q;
             default:
@@ -156,17 +156,17 @@ public final class tg0 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Generi
 
     @Override
     public Object provide(Object obj) {
-        switch (this.f30543a) {
+        switch (this.f30550a) {
             case 7:
                 Integer num = (Integer) obj;
-                int i10 = dr0.f25651a1;
+                int i10 = dr0.f25658a1;
                 return 0;
             case 26:
                 Void r82 = (Void) obj;
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);

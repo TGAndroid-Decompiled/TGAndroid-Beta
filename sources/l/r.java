@@ -13,13 +13,13 @@ import android.view.SubMenu;
 import android.view.View;
 import java.lang.reflect.Method;
 public final class r extends g.o implements MenuItem {
-    public final l0.a f15799c;
+    public final l0.a f15806c;
     public Method d;
 
     public r(Context context, l0.a aVar) {
         super(context);
         if (aVar != null) {
-            this.f15799c = aVar;
+            this.f15806c = aVar;
             return;
         }
         throw new IllegalArgumentException("Wrapped Object can not be null.");
@@ -27,145 +27,145 @@ public final class r extends g.o implements MenuItem {
 
     @Override
     public final boolean collapseActionView() {
-        return this.f15799c.collapseActionView();
+        return this.f15806c.collapseActionView();
     }
 
     @Override
     public final boolean expandActionView() {
-        return this.f15799c.expandActionView();
+        return this.f15806c.expandActionView();
     }
 
     @Override
     public final ActionProvider getActionProvider() {
-        n b10 = this.f15799c.b();
+        n b10 = this.f15806c.b();
         if (b10 != null) {
-            return b10.f15792a;
+            return b10.f15799a;
         }
         return null;
     }
 
     @Override
     public final View getActionView() {
-        View actionView = this.f15799c.getActionView();
+        View actionView = this.f15806c.getActionView();
         if (actionView instanceof o) {
-            return (View) ((o) actionView).f15794a;
+            return (View) ((o) actionView).f15801a;
         }
         return actionView;
     }
 
     @Override
     public final int getAlphabeticModifiers() {
-        return this.f15799c.getAlphabeticModifiers();
+        return this.f15806c.getAlphabeticModifiers();
     }
 
     @Override
     public final char getAlphabeticShortcut() {
-        return this.f15799c.getAlphabeticShortcut();
+        return this.f15806c.getAlphabeticShortcut();
     }
 
     @Override
     public final CharSequence getContentDescription() {
-        return this.f15799c.getContentDescription();
+        return this.f15806c.getContentDescription();
     }
 
     @Override
     public final int getGroupId() {
-        return this.f15799c.getGroupId();
+        return this.f15806c.getGroupId();
     }
 
     @Override
     public final Drawable getIcon() {
-        return this.f15799c.getIcon();
+        return this.f15806c.getIcon();
     }
 
     @Override
     public final ColorStateList getIconTintList() {
-        return this.f15799c.getIconTintList();
+        return this.f15806c.getIconTintList();
     }
 
     @Override
     public final PorterDuff.Mode getIconTintMode() {
-        return this.f15799c.getIconTintMode();
+        return this.f15806c.getIconTintMode();
     }
 
     @Override
     public final Intent getIntent() {
-        return this.f15799c.getIntent();
+        return this.f15806c.getIntent();
     }
 
     @Override
     public final int getItemId() {
-        return this.f15799c.getItemId();
+        return this.f15806c.getItemId();
     }
 
     @Override
     public final ContextMenu.ContextMenuInfo getMenuInfo() {
-        return this.f15799c.getMenuInfo();
+        return this.f15806c.getMenuInfo();
     }
 
     @Override
     public final int getNumericModifiers() {
-        return this.f15799c.getNumericModifiers();
+        return this.f15806c.getNumericModifiers();
     }
 
     @Override
     public final char getNumericShortcut() {
-        return this.f15799c.getNumericShortcut();
+        return this.f15806c.getNumericShortcut();
     }
 
     @Override
     public final int getOrder() {
-        return this.f15799c.getOrder();
+        return this.f15806c.getOrder();
     }
 
     @Override
     public final SubMenu getSubMenu() {
-        return this.f15799c.getSubMenu();
+        return this.f15806c.getSubMenu();
     }
 
     @Override
     public final CharSequence getTitle() {
-        return this.f15799c.getTitle();
+        return this.f15806c.getTitle();
     }
 
     @Override
     public final CharSequence getTitleCondensed() {
-        return this.f15799c.getTitleCondensed();
+        return this.f15806c.getTitleCondensed();
     }
 
     @Override
     public final CharSequence getTooltipText() {
-        return this.f15799c.getTooltipText();
+        return this.f15806c.getTooltipText();
     }
 
     @Override
     public final boolean hasSubMenu() {
-        return this.f15799c.hasSubMenu();
+        return this.f15806c.hasSubMenu();
     }
 
     @Override
     public final boolean isActionViewExpanded() {
-        return this.f15799c.isActionViewExpanded();
+        return this.f15806c.isActionViewExpanded();
     }
 
     @Override
     public final boolean isCheckable() {
-        return this.f15799c.isCheckable();
+        return this.f15806c.isCheckable();
     }
 
     @Override
     public final boolean isChecked() {
-        return this.f15799c.isChecked();
+        return this.f15806c.isChecked();
     }
 
     @Override
     public final boolean isEnabled() {
-        return this.f15799c.isEnabled();
+        return this.f15806c.isEnabled();
     }
 
     @Override
     public final boolean isVisible() {
-        return this.f15799c.isVisible();
+        return this.f15806c.isVisible();
     }
 
     @Override
@@ -174,7 +174,7 @@ public final class r extends g.o implements MenuItem {
         if (actionProvider == null) {
             nVar = null;
         }
-        this.f15799c.a(nVar);
+        this.f15806c.a(nVar);
         return this;
     }
 
@@ -183,67 +183,67 @@ public final class r extends g.o implements MenuItem {
         if (view instanceof CollapsibleActionView) {
             view = new o(view);
         }
-        this.f15799c.setActionView(view);
+        this.f15806c.setActionView(view);
         return this;
     }
 
     @Override
     public final MenuItem setAlphabeticShortcut(char c10) {
-        this.f15799c.setAlphabeticShortcut(c10);
+        this.f15806c.setAlphabeticShortcut(c10);
         return this;
     }
 
     @Override
     public final MenuItem setCheckable(boolean z10) {
-        this.f15799c.setCheckable(z10);
+        this.f15806c.setCheckable(z10);
         return this;
     }
 
     @Override
     public final MenuItem setChecked(boolean z10) {
-        this.f15799c.setChecked(z10);
+        this.f15806c.setChecked(z10);
         return this;
     }
 
     @Override
     public final MenuItem setContentDescription(CharSequence charSequence) {
-        this.f15799c.setContentDescription(charSequence);
+        this.f15806c.setContentDescription(charSequence);
         return this;
     }
 
     @Override
     public final MenuItem setEnabled(boolean z10) {
-        this.f15799c.setEnabled(z10);
+        this.f15806c.setEnabled(z10);
         return this;
     }
 
     @Override
     public final MenuItem setIcon(Drawable drawable) {
-        this.f15799c.setIcon(drawable);
+        this.f15806c.setIcon(drawable);
         return this;
     }
 
     @Override
     public final MenuItem setIconTintList(ColorStateList colorStateList) {
-        this.f15799c.setIconTintList(colorStateList);
+        this.f15806c.setIconTintList(colorStateList);
         return this;
     }
 
     @Override
     public final MenuItem setIconTintMode(PorterDuff.Mode mode) {
-        this.f15799c.setIconTintMode(mode);
+        this.f15806c.setIconTintMode(mode);
         return this;
     }
 
     @Override
     public final MenuItem setIntent(Intent intent) {
-        this.f15799c.setIntent(intent);
+        this.f15806c.setIntent(intent);
         return this;
     }
 
     @Override
     public final MenuItem setNumericShortcut(char c10) {
-        this.f15799c.setNumericShortcut(c10);
+        this.f15806c.setNumericShortcut(c10);
         return this;
     }
 
@@ -255,7 +255,7 @@ public final class r extends g.o implements MenuItem {
         } else {
             pVar = null;
         }
-        this.f15799c.setOnActionExpandListener(pVar);
+        this.f15806c.setOnActionExpandListener(pVar);
         return this;
     }
 
@@ -267,83 +267,83 @@ public final class r extends g.o implements MenuItem {
         } else {
             qVar = null;
         }
-        this.f15799c.setOnMenuItemClickListener(qVar);
+        this.f15806c.setOnMenuItemClickListener(qVar);
         return this;
     }
 
     @Override
     public final MenuItem setShortcut(char c10, char c11) {
-        this.f15799c.setShortcut(c10, c11);
+        this.f15806c.setShortcut(c10, c11);
         return this;
     }
 
     @Override
     public final void setShowAsAction(int i10) {
-        this.f15799c.setShowAsAction(i10);
+        this.f15806c.setShowAsAction(i10);
     }
 
     @Override
     public final MenuItem setShowAsActionFlags(int i10) {
-        this.f15799c.setShowAsActionFlags(i10);
+        this.f15806c.setShowAsActionFlags(i10);
         return this;
     }
 
     @Override
     public final MenuItem setTitle(CharSequence charSequence) {
-        this.f15799c.setTitle(charSequence);
+        this.f15806c.setTitle(charSequence);
         return this;
     }
 
     @Override
     public final MenuItem setTitleCondensed(CharSequence charSequence) {
-        this.f15799c.setTitleCondensed(charSequence);
+        this.f15806c.setTitleCondensed(charSequence);
         return this;
     }
 
     @Override
     public final MenuItem setTooltipText(CharSequence charSequence) {
-        this.f15799c.setTooltipText(charSequence);
+        this.f15806c.setTooltipText(charSequence);
         return this;
     }
 
     @Override
     public final MenuItem setVisible(boolean z10) {
-        return this.f15799c.setVisible(z10);
+        return this.f15806c.setVisible(z10);
     }
 
     @Override
     public final MenuItem setAlphabeticShortcut(char c10, int i10) {
-        this.f15799c.setAlphabeticShortcut(c10, i10);
+        this.f15806c.setAlphabeticShortcut(c10, i10);
         return this;
     }
 
     @Override
     public final MenuItem setIcon(int i10) {
-        this.f15799c.setIcon(i10);
+        this.f15806c.setIcon(i10);
         return this;
     }
 
     @Override
     public final MenuItem setNumericShortcut(char c10, int i10) {
-        this.f15799c.setNumericShortcut(c10, i10);
+        this.f15806c.setNumericShortcut(c10, i10);
         return this;
     }
 
     @Override
     public final MenuItem setShortcut(char c10, char c11, int i10, int i11) {
-        this.f15799c.setShortcut(c10, c11, i10, i11);
+        this.f15806c.setShortcut(c10, c11, i10, i11);
         return this;
     }
 
     @Override
     public final MenuItem setTitle(int i10) {
-        this.f15799c.setTitle(i10);
+        this.f15806c.setTitle(i10);
         return this;
     }
 
     @Override
     public final MenuItem setActionView(int i10) {
-        l0.a aVar = this.f15799c;
+        l0.a aVar = this.f15806c;
         aVar.setActionView(i10);
         View actionView = aVar.getActionView();
         if (actionView instanceof CollapsibleActionView) {

@@ -11,19 +11,19 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.SvgHelper;
 public final class g1 extends AsyncTask {
-    public final HashMap f42601a = new HashMap();
-    public final org.telegram.ui.Wallet.x f42602b;
-    public Exception f42603c;
+    public final HashMap f42626a = new HashMap();
+    public final org.telegram.ui.Wallet.x f42627b;
+    public Exception f42628c;
 
     public g1(org.telegram.ui.Wallet.x xVar) {
-        this.f42602b = xVar;
+        this.f42627b = xVar;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f42601a.entrySet()) {
+            for (Map.Entry entry : this.f42626a.entrySet()) {
                 if (entry.getKey() != null && entry.getValue() != null) {
                     httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                 }
@@ -40,7 +40,7 @@ public final class g1 extends AsyncTask {
             httpURLConnection.disconnect();
             return null;
         } catch (Exception e) {
-            this.f42603c = e;
+            this.f42628c = e;
             return null;
         }
     }
@@ -48,9 +48,9 @@ public final class g1 extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
-        org.telegram.ui.Wallet.x xVar = this.f42602b;
+        org.telegram.ui.Wallet.x xVar = this.f42627b;
         if (xVar != null) {
-            if (this.f42603c == null) {
+            if (this.f42628c == null) {
                 xVar.run(bitmap);
             } else {
                 xVar.run(null);

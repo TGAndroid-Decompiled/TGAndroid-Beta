@@ -1,11 +1,11 @@
 package yh;
 
-import ai.he;
+import ai.ie;
 import android.content.Context;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-public final class i extends he {
+public final class i extends ie {
     public final n m0;
 
     public i(n nVar, Context context, d6 d6Var) {

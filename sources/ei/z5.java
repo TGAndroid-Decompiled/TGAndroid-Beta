@@ -6,16 +6,16 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 public final class z5 extends rg.d {
     public final Paint h;
-    public long f10201n;
-    public float f10202r;
-    public float f10203s;
+    public long f10203n;
+    public float f10204r;
+    public float f10205s;
     public int v;
-    public int f10204w;
-    public final xa f10205x;
+    public int f10206w;
+    public final xa f10207x;
 
     public z5(xa xaVar, Context context, y5 y5Var) {
         super(context, y5Var);
-        this.f10205x = xaVar;
+        this.f10207x = xaVar;
         Paint paint = new Paint();
         this.h = paint;
         setWillNotDraw(false);
@@ -26,7 +26,7 @@ public final class z5 extends rg.d {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f10205x.f9024m2) {
+        if (this.f10207x.f9025m2) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -40,7 +40,7 @@ public final class z5 extends rg.d {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        xa xaVar = this.f10205x;
+        xa xaVar = this.f10207x;
         z5 z5Var = xaVar.R0;
         if (xaVar.R1 <= 0) {
             xaVar.R1 = z5Var.getMeasuredWidth();

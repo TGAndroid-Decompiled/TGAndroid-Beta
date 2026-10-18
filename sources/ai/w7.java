@@ -2,15 +2,15 @@ package ai;
 
 import org.telegram.messenger.Utilities;
 public final class w7 implements Utilities.Callback2 {
-    public final int f2372a = 0;
-    public final boolean[] f2373b;
-    public final Utilities.Callback2 f2374c;
+    public final int f2375a = 0;
+    public final boolean[] f2376b;
+    public final Utilities.Callback2 f2377c;
     public final Utilities.Callback d;
 
     public w7(Utilities.Callback callback, boolean[] zArr, Utilities.Callback2 callback2) {
         this.d = callback;
-        this.f2373b = zArr;
-        this.f2374c = callback2;
+        this.f2376b = zArr;
+        this.f2377c = callback2;
     }
 
     @Override
@@ -19,14 +19,14 @@ public final class w7 implements Utilities.Callback2 {
         String str2;
         Long l4 = (Long) obj;
         Boolean bool = (Boolean) obj2;
-        switch (this.f2372a) {
+        switch (this.f2375a) {
             case 0:
                 Utilities.Callback callback = this.d;
                 if (callback != null) {
                     callback.run(Boolean.TRUE);
                 }
-                this.f2373b[0] = true;
-                Utilities.Callback2 callback2 = this.f2374c;
+                this.f2376b[0] = true;
+                Utilities.Callback2 callback2 = this.f2377c;
                 if (callback2 != null) {
                     if (bool.booleanValue()) {
                         str = "paid";
@@ -38,8 +38,8 @@ public final class w7 implements Utilities.Callback2 {
                 }
                 return;
             default:
-                this.f2373b[0] = true;
-                Utilities.Callback2 callback22 = this.f2374c;
+                this.f2376b[0] = true;
+                Utilities.Callback2 callback22 = this.f2377c;
                 if (callback22 != null) {
                     if (bool.booleanValue()) {
                         str2 = "paid";
@@ -58,8 +58,8 @@ public final class w7 implements Utilities.Callback2 {
     }
 
     public w7(boolean[] zArr, Utilities.Callback2 callback2, Utilities.Callback callback) {
-        this.f2373b = zArr;
-        this.f2374c = callback2;
+        this.f2376b = zArr;
+        this.f2377c = callback2;
         this.d = callback;
     }
 }

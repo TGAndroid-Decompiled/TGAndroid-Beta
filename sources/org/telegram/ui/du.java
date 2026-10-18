@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 public final class du extends MetricAffectingSpan {
-    public double f36322a;
+    public double f36326a;
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        textPaint.baselineShift += (int) (textPaint.ascent() * this.f36322a);
+        textPaint.baselineShift += (int) (textPaint.ascent() * this.f36326a);
     }
 
     @Override
     public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.baselineShift += (int) (textPaint.ascent() * this.f36322a);
+        textPaint.baselineShift += (int) (textPaint.ascent() * this.f36326a);
     }
 }

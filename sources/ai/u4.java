@@ -4,29 +4,29 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 public final class u4 implements Runnable {
-    public final int f2245a;
-    public final org.telegram.ui.ActionBar.b2 f2246b;
+    public final int f2246a;
+    public final org.telegram.ui.ActionBar.b2 f2247b;
 
     public u4(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        this.f2245a = i10;
-        this.f2246b = b2Var;
+        this.f2246a = i10;
+        this.f2247b = b2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f2245a) {
+        switch (this.f2246a) {
             case 0:
-                this.f2246b.dismiss();
+                this.f2247b.dismiss();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
                     org.telegram.ui.Components.qc Q = org.telegram.ui.Components.xc.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
-                    Q.f29649t = true;
+                    Q.f29655t = true;
                     Q.j();
                     return;
                 }
                 return;
             default:
-                this.f2246b.dismiss();
+                this.f2247b.dismiss();
                 return;
         }
     }

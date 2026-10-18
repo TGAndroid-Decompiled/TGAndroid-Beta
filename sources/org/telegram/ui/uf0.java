@@ -1,23 +1,23 @@
 package org.telegram.ui;
 public final class uf0 implements Runnable {
-    public final int f41976a;
-    public final eg0 f41977b;
+    public final int f41991a;
+    public final eg0 f41992b;
 
     public uf0(eg0 eg0Var, int i10) {
-        this.f41976a = i10;
-        this.f41977b = eg0Var;
+        this.f41991a = i10;
+        this.f41992b = eg0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f41976a) {
+        switch (this.f41991a) {
             case 0:
-                eg0 eg0Var = this.f41977b;
-                mj0 mj0Var = eg0Var.f36521a;
+                eg0 eg0Var = this.f41992b;
+                mj0 mj0Var = eg0Var.f36525a;
                 fg0 fg0Var = eg0Var.V;
-                bg0 bg0Var = eg0Var.f36522b;
+                bg0 bg0Var = eg0Var.f36526b;
                 if (bg0Var != null) {
-                    if (fg0Var.f36908c0) {
+                    if (fg0Var.f36931c0) {
                         mj0Var.clearFocus();
                         bg0Var.clearFocus();
                     } else if (mj0Var.length() != 0) {
@@ -37,18 +37,18 @@ public final class uf0 implements Runnable {
                 }
                 return;
             case 1:
-                eg0 eg0Var2 = this.f41977b;
+                eg0 eg0Var2 = this.f41992b;
                 eg0Var2.postDelayed(new uf0(eg0Var2, 2), 200L);
                 return;
             case 2:
-                this.f41977b.h(null);
+                this.f41992b.h(null);
                 return;
             case 3:
-                this.f41977b.s(true);
+                this.f41992b.s(true);
                 return;
             default:
-                eg0 eg0Var3 = this.f41977b;
-                fg0.T0(eg0Var3.V, eg0Var3.f36522b);
+                eg0 eg0Var3 = this.f41992b;
+                fg0.T0(eg0Var3.V, eg0Var3.f36526b);
                 return;
         }
     }

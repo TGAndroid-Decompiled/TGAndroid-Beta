@@ -1,6 +1,6 @@
 package qg;
 
-import ai.tc;
+import ai.uc;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Path;
@@ -10,7 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
@@ -21,15 +21,15 @@ import org.telegram.ui.Components.c91;
 import org.telegram.ui.t6;
 import w7.z5;
 public final class y extends f3 {
-    public static final int f44727s = 0;
-    public final tc f44728b;
-    public final ImageView f44729c;
+    public static final int f44747s = 0;
+    public final uc f44748b;
+    public final ImageView f44749c;
     public final t6 d;
     public final Path e;
-    public int f44730f;
+    public int f44750f;
     public q0.a h;
-    public v f44731n;
-    public boolean f44732r;
+    public v f44751n;
+    public boolean f44752r;
 
     public y(Context context, d6 d6Var) {
         super(1, context, d6Var, true);
@@ -42,7 +42,7 @@ public final class y extends f3 {
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
         ImageView imageView = new ImageView(context);
-        this.f44729c = imageView;
+        this.f44749c = imageView;
         imageView.setImageResource(R.drawable.picker);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -58,26 +58,26 @@ public final class y extends f3 {
         t6Var.d = Color.alpha(-65536) / 255.0f;
         t6Var.a();
         t6Var.invalidate();
-        tc tcVar = new tc(context, 5);
-        tcVar.setOrientation(1);
+        uc ucVar = new uc(context, 5);
+        ucVar.setOrientation(1);
         u uVar = new u(this, context);
-        tcVar.f2230b = uVar;
-        uVar.a(this.f44730f);
-        tcVar.f2231c = new t(this, context);
-        tcVar.d = new x(this, context);
+        ucVar.f2278b = uVar;
+        uVar.a(this.f44750f);
+        ucVar.f2279c = new t(this, context);
+        ucVar.d = new x(this, context);
         c91 c91Var = new c91(context, this.resourcesProvider);
-        c91Var.setAdapter(new r(tcVar));
-        tcVar.addView(c91Var, z5.l(1.0f, -1, 0));
-        tcVar.addView(t6Var, z5.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
+        c91Var.setAdapter(new r(ucVar));
+        ucVar.addView(c91Var, z5.l(1.0f, -1, 0));
+        ucVar.addView(t6Var, z5.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         linearLayout2.setGravity(16);
         linearLayout2.addView(imageView, z5.n(28, 28));
         linearLayout2.addView(c91Var.n(8, false), z5.p(-1, 40, 1.0f, 16, 12, 0, 12, 0));
         linearLayout2.addView(imageView2, z5.n(28, 28));
-        tcVar.addView(linearLayout2, z5.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
-        this.f44728b = tcVar;
-        linearLayout.addView(tcVar, z5.n(-1, 0));
+        ucVar.addView(linearLayout2, z5.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
+        this.f44748b = ucVar;
+        linearLayout.addView(ucVar, z5.n(-1, 0));
         p pVar = new p(this, context, linearLayout);
         pVar.addView(linearLayout);
         setCustomView(pVar);
@@ -88,7 +88,7 @@ public final class y extends f3 {
         super.dismiss();
         q0.a aVar = this.h;
         if (aVar != null) {
-            aVar.accept(Integer.valueOf(this.f44730f));
+            aVar.accept(Integer.valueOf(this.f44750f));
         }
     }
 
@@ -96,28 +96,28 @@ public final class y extends f3 {
         boolean z10;
         float D;
         View findFocus;
-        if (!this.f44732r) {
+        if (!this.f44752r) {
             if (i11 != 2) {
                 return;
             }
-            this.f44732r = true;
+            this.f44752r = true;
         }
-        tc tcVar = this.f44728b;
-        if (i11 != 5 && (findFocus = tcVar.findFocus()) != null) {
+        uc ucVar = this.f44748b;
+        if (i11 != 5 && (findFocus = ucVar.findFocus()) != null) {
             findFocus.clearFocus();
             AndroidUtilities.hideKeyboard(findFocus);
         }
         if (i11 != 3) {
-            ((u) tcVar.f2230b).a(i10);
+            ((u) ucVar.f2278b).a(i10);
         }
         if (i11 != 0) {
-            t tVar = (t) tcVar.f2231c;
+            t tVar = (t) ucVar.f2279c;
             if (i11 != 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            tVar.f44674n.f44730f = i10;
+            tVar.f44694n.f44750f = i10;
             float[] fArr = tVar.h;
             Color.colorToHSV(i10, fArr);
             if (z10) {
@@ -126,7 +126,7 @@ public final class y extends f3 {
                 if (f10 <= 0.5f) {
                     D = 1.0f - (((1.0f - f10) * 0.22000003f) + 0.78f);
                 } else {
-                    D = a6.D(1.0f, f10, 0.22f, 1.0f);
+                    D = k3.D(1.0f, f10, 0.22f, 1.0f);
                 }
                 tVar.d = f7 - D;
                 tVar.e = fArr[0] / 360.0f;
@@ -140,16 +140,16 @@ public final class y extends f3 {
             t6Var.a();
             t6Var.invalidate();
         }
-        x xVar = (x) tcVar.d;
+        x xVar = (x) ucVar.d;
         xVar.e = true;
-        xVar.f44716a.b();
-        xVar.f44717b.b();
-        xVar.f44718c.b();
+        xVar.f44736a.b();
+        xVar.f44737b.b();
+        xVar.f44738c.b();
         EditTextBoldCursor editTextBoldCursor = xVar.d;
         if (!editTextBoldCursor.isFocused()) {
             int selectionStart = editTextBoldCursor.getSelectionStart();
             int selectionEnd = editTextBoldCursor.getSelectionEnd();
-            StringBuilder sb2 = new StringBuilder(Integer.toHexString(xVar.f44719f.f44730f));
+            StringBuilder sb2 = new StringBuilder(Integer.toHexString(xVar.f44739f.f44750f));
             while (sb2.length() < 8) {
                 sb2.insert(0, "0");
             }
@@ -161,8 +161,8 @@ public final class y extends f3 {
 
     @Override
     public final void show() {
-        if (!this.f44731n.g()) {
-            this.f44729c.setVisibility(8);
+        if (!this.f44751n.g()) {
+            this.f44749c.setVisibility(8);
         }
         super.show();
     }

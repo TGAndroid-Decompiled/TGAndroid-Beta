@@ -7,21 +7,21 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class za implements RequestDelegate {
-    public final int f43705a;
-    public final xb f43706b;
+    public final int f43731a;
+    public final xb f43732b;
 
     public za(xb xbVar, int i10) {
-        this.f43705a = i10;
-        this.f43706b = xbVar;
+        this.f43731a = i10;
+        this.f43732b = xbVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f43705a) {
+        switch (this.f43731a) {
             case 0:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final xb xbVar = this.f43706b;
+                    final xb xbVar = this.f43732b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -39,7 +39,7 @@ public final class za implements RequestDelegate {
                 }
                 return;
             case 1:
-                xb xbVar2 = this.f43706b;
+                xb xbVar2 = this.f43732b;
                 xbVar2.getClass();
                 if (tLObject instanceof Vector) {
                     ArrayList<T> arrayList = ((Vector) tLObject).objects;
@@ -54,12 +54,12 @@ public final class za implements RequestDelegate {
                 }
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new i0(13, this.f43706b, tLObject));
+                AndroidUtilities.runOnUIThread(new i0(13, this.f43732b, tLObject));
                 return;
             case 3:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final xb xbVar3 = this.f43706b;
+                    final xb xbVar3 = this.f43732b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -77,7 +77,7 @@ public final class za implements RequestDelegate {
                 }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new t1(this.f43706b, tL_error, tLObject, 9));
+                AndroidUtilities.runOnUIThread(new t1(this.f43732b, tL_error, tLObject, 9));
                 return;
         }
     }

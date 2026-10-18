@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class p1 extends FrameLayout {
-    public int f31667a;
-    public int f31668b;
-    public int f31669c;
+    public int f31674a;
+    public int f31675b;
+    public int f31676c;
     public int d;
     public boolean e;
 
@@ -30,19 +30,19 @@ public final class p1 extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         if (this.e) {
-            int childCount = (int) (((getChildCount() - this.f31667a) / 2.0f) * ((this.f31669c * 2) + this.f31668b));
+            int childCount = (int) (((getChildCount() - this.f31674a) / 2.0f) * ((this.f31676c * 2) + this.f31675b));
             for (int i15 = 0; i15 < getChildCount(); i15++) {
                 View childAt = getChildAt(i15);
                 if (childAt.getVisibility() != 8) {
-                    int i16 = this.f31669c;
+                    int i16 = this.f31676c;
                     childAt.layout(childCount + i16, 0, childAt.getMeasuredWidth() + i16 + childCount, childAt.getMeasuredHeight());
-                    childCount = childAt.getMeasuredWidth() + (this.f31669c * 2) + childCount;
+                    childCount = childAt.getMeasuredWidth() + (this.f31676c * 2) + childCount;
                 }
             }
             return;
         }
-        if (this.f31667a > 0) {
-            i14 = (getMeasuredWidth() - this.f31668b) / (this.f31667a - 1);
+        if (this.f31674a > 0) {
+            i14 = (getMeasuredWidth() - this.f31675b) / (this.f31674a - 1);
         } else {
             i14 = 0;
         }
@@ -60,18 +60,18 @@ public final class p1 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f31667a = 0;
+        this.f31674a = 0;
         for (int i12 = 0; i12 < getChildCount(); i12++) {
             if (getChildAt(i12).getVisibility() != 8) {
-                this.f31667a++;
+                this.f31674a++;
             }
         }
-        this.f31668b = AndroidUtilities.dp(this.d);
-        this.f31669c = ((size / getChildCount()) - this.f31668b) / 2;
+        this.f31675b = AndroidUtilities.dp(this.d);
+        this.f31676c = ((size / getChildCount()) - this.f31675b) / 2;
         int i13 = 0;
         for (int i14 = 0; i14 < getChildCount(); i14++) {
             if (getChildAt(i14).getVisibility() != 8) {
-                getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(this.f31668b, 1073741824), i11);
+                getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(this.f31675b, 1073741824), i11);
                 if (getChildAt(i14).getMeasuredHeight() > i13) {
                     i13 = getChildAt(i14).getMeasuredHeight();
                 }

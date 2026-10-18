@@ -1,44 +1,333 @@
 package zh;
 
-import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.SweepGradient;
+import android.os.Build;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import w7.z5;
-public final class t extends FrameLayout {
-    public final TextView f52100a;
-    public final TextView f52101b;
-    public final k0 f52102c;
+public abstract class t {
+    public static Bitmap f51880a;
+    public static BitmapShader f51881b;
+    public static final Paint f51882c = new Paint(2);
+    public static final Paint d = new Paint(3);
+    public static final RectF e = new RectF();
+    public static final Matrix f51883f = new Matrix();
+    public static final HashMap f51884g = new HashMap();
+    public static final SweepGradient[] h = new SweepGradient[4];
+    public static int f51885i = -1;
+    public static final Paint f51886j = new Paint(2);
+    public static final Rect f51887k = new Rect();
+    public static final RectF f51888l = new RectF();
+    public static final int[] f51889m = new int[4];
+    public static final int[] f51890n = new int[4];
+    public static final float[] f51891o = new float[4];
+    public static final float[] f51892p = new float[4];
 
-    public t(k0 k0Var, Context context) {
-        super(context);
-        this.f52102c = k0Var;
-        TextView textView = new TextView(context);
-        this.f52100a = textView;
-        textView.setTextColor(k0Var.f52130x);
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setSingleLine();
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(16);
-        addView(textView, z5.a(-1.0f, 15.0f, 8.0f, 15.0f, 0.0f, -1, 51));
-        TextView textView2 = new TextView(context);
-        this.f52101b = textView2;
-        textView2.setTextColor(-1);
-        textView2.setTextSize(1, 13.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setGravity(17);
-        textView2.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-        textView2.setText(LocaleController.getString(R.string.Unlock));
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setColor(620756991);
-        gradientDrawable.setCornerRadius(AndroidUtilities.dp(13.0f));
-        textView2.setBackground(gradientDrawable);
-        textView2.setOnClickListener(new hg.r0(this, 29));
-        addView(textView2, z5.a(26.0f, 0.0f, 4.0f, 12.0f, 0.0f, -2, 21));
+    public static boolean a(Canvas canvas, RectF rectF, float f7, int i10, float f10) {
+        float f11;
+        boolean z10;
+        boolean z11;
+        float f12;
+        float f13;
+        float f14;
+        boolean z12;
+        int i11;
+        int i12;
+        float f15;
+        float f16;
+        RectF rectF2;
+        boolean z13;
+        if (Build.VERSION.SDK_INT >= 29) {
+            float f17 = 0.004f;
+            boolean z14 = true;
+            if (f10 <= 0.004f) {
+                return true;
+            }
+            int i13 = f51885i;
+            SweepGradient[] sweepGradientArr = h;
+            float[][] fArr = v0.f52157a;
+            int i14 = 4;
+            HashMap hashMap = f51884g;
+            if (i13 != 1) {
+                f51885i = 1;
+                hashMap.clear();
+                int i15 = 0;
+                while (i15 < i14) {
+                    float[] fArr2 = fArr[i15];
+                    float f18 = f17;
+                    int[] iArr = new int[73];
+                    float[] fArr3 = new float[73];
+                    int i16 = 0;
+                    for (int i17 = 73; i16 < i17; i17 = 73) {
+                        boolean z15 = z14;
+                        SweepGradient[] sweepGradientArr2 = sweepGradientArr;
+                        double radians = Math.toRadians(i16 * 5);
+                        int i18 = i14;
+                        HashMap hashMap2 = hashMap;
+                        float pow = (float) Math.pow(Math.abs(Math.cos(radians)), fArr2[6]);
+                        if (((float) Math.sin(radians)) < 0.0f) {
+                            f11 = fArr2[11];
+                        } else {
+                            f11 = fArr2[12];
+                        }
+                        float f19 = f11 / 100.0f;
+                        iArr[i16] = ((int) ((Math.max(0.0f, Math.min(1.0f, (((fArr2[5] / 100.0f) - f19) * pow) + f19)) * 255.0f) + 0.5f)) << 24;
+                        fArr3[i16] = i16 / 72.0f;
+                        i16++;
+                        z14 = z15;
+                        sweepGradientArr = sweepGradientArr2;
+                        i14 = i18;
+                        hashMap = hashMap2;
+                    }
+                    sweepGradientArr[i15] = new SweepGradient(0.0f, 0.0f, iArr, fArr3);
+                    i15++;
+                    f17 = f18;
+                    z14 = z14;
+                }
+            }
+            float f20 = f17;
+            boolean z16 = z14;
+            SweepGradient[] sweepGradientArr3 = sweepGradientArr;
+            int i19 = i14;
+            HashMap hashMap3 = hashMap;
+            float[] fArr4 = fArr[i10];
+            float dpf2 = AndroidUtilities.dpf2(fArr4[8]);
+            float f21 = rectF.left + dpf2;
+            float f22 = rectF.top + dpf2;
+            float f23 = rectF.right - dpf2;
+            float f24 = rectF.bottom - dpf2;
+            float f25 = f23 - f21;
+            float f26 = f24 - f22;
+            if (f25 >= 1.0f) {
+                if (f26 >= 1.0f) {
+                    float min = Math.min(Math.max(0.0f, f7 - dpf2), Math.min(f25, f26) / 2.0f);
+                    float dpf22 = AndroidUtilities.dpf2(fArr4[i19]);
+                    float max = Math.max(AndroidUtilities.dpf2(fArr4[0]), AndroidUtilities.dpf2(fArr4[2]));
+                    int ceil = ((int) Math.ceil(dpf22)) + 2;
+                    int ceil2 = ((int) Math.ceil(max + min)) + 1;
+                    int round = Math.round(f25);
+                    int round2 = Math.round(f26);
+                    int i20 = (ceil2 * 2) + 2;
+                    if (round >= i20) {
+                        z10 = z16 ? 1 : 0;
+                    } else {
+                        z10 = false;
+                    }
+                    if (round2 >= i20) {
+                        z11 = z16 ? 1 : 0;
+                    } else {
+                        z11 = false;
+                    }
+                    if (z10) {
+                        round = i20;
+                    }
+                    if (z11) {
+                        round2 = i20;
+                    }
+                    boolean z17 = z11;
+                    long round3 = (((Math.round(4.0f * min) << 32) ^ (i10 << 56)) ^ (round << 16)) ^ round2;
+                    Bitmap bitmap = (Bitmap) hashMap3.get(Long.valueOf(round3));
+                    if (bitmap == null) {
+                        float[] fArr5 = fArr[i10];
+                        int i21 = ceil * 2;
+                        bitmap = Bitmap.createBitmap(round + i21, i21 + round2, Bitmap.Config.ARGB_8888);
+                        Canvas canvas2 = new Canvas(bitmap);
+                        f12 = f21;
+                        float f27 = ceil;
+                        RectF rectF3 = new RectF(f27, f27, round + ceil, round2 + ceil);
+                        float dpf23 = AndroidUtilities.dpf2(fArr5[i19]);
+                        if (dpf23 > 0.05f) {
+                            Matrix matrix = new Matrix();
+                            f13 = f22;
+                            f14 = f23;
+                            matrix.setScale(rectF3.width() / Math.max(1.0f, rectF3.height()), 1.0f);
+                            matrix.postTranslate(rectF3.centerX(), rectF3.centerY());
+                            SweepGradient sweepGradient = sweepGradientArr3[i10];
+                            sweepGradient.setLocalMatrix(matrix);
+                            Paint paint = new Paint(z16 ? 1 : 0);
+                            paint.setStyle(Paint.Style.STROKE);
+                            paint.setStrokeWidth(dpf23);
+                            paint.setShader(sweepGradient);
+                            RectF rectF4 = new RectF(rectF3);
+                            float f28 = (-dpf23) / 2.0f;
+                            rectF4.inset(f28, f28);
+                            float f29 = (dpf23 / 2.0f) + min;
+                            canvas2.drawRoundRect(rectF4, f29, f29, paint);
+                        } else {
+                            f13 = f22;
+                            f14 = f23;
+                        }
+                        Paint paint2 = new Paint(1);
+                        paint2.setColor(-1);
+                        Path path = new Path();
+                        Path path2 = new Path();
+                        RectF rectF5 = new RectF();
+                        int i22 = 0;
+                        boolean z18 = z17;
+                        while (i22 < 2) {
+                            if (i22 == 0) {
+                                f15 = AndroidUtilities.dpf2(fArr5[0]);
+                            } else {
+                                f15 = -AndroidUtilities.dpf2(fArr5[2]);
+                            }
+                            if (i22 == 0) {
+                                f16 = fArr5[1];
+                            } else {
+                                f16 = fArr5[3];
+                            }
+                            int i23 = i22;
+                            float f30 = f16 / 100.0f;
+                            if (f30 <= f20 || Math.abs(f15) < 0.1f) {
+                                rectF2 = rectF3;
+                                z13 = z18;
+                            } else {
+                                path.rewind();
+                                z13 = z18;
+                                Path.Direction direction = Path.Direction.CW;
+                                path.addRoundRect(rectF3, min, min, direction);
+                                rectF5.set(rectF3);
+                                rectF2 = rectF3;
+                                rectF5.offset(0.0f, f15);
+                                path2.rewind();
+                                path2.addRoundRect(rectF5, min, min, direction);
+                                canvas2.save();
+                                u.b(canvas2, path2);
+                                paint2.setAlpha(Math.round(Math.min(1.0f, f30) * 255.0f));
+                                canvas2.drawPath(path, paint2);
+                                canvas2.restore();
+                            }
+                            i22 = i23 + 1;
+                            z18 = z13;
+                            rectF3 = rectF2;
+                        }
+                        z12 = z18;
+                        bitmap.prepareToDraw();
+                        hashMap3.put(Long.valueOf(round3), bitmap);
+                    } else {
+                        f12 = f21;
+                        f13 = f22;
+                        f14 = f23;
+                        z12 = z17;
+                    }
+                    int width = bitmap.getWidth();
+                    int height = bitmap.getHeight();
+                    if (z10) {
+                        i11 = 3;
+                    } else {
+                        i11 = 1;
+                    }
+                    if (z12) {
+                        i12 = 3;
+                    } else {
+                        i12 = 1;
+                    }
+                    int[] iArr2 = f51889m;
+                    iArr2[0] = 0;
+                    float f31 = ceil;
+                    float[] fArr6 = f51891o;
+                    fArr6[0] = f12 - f31;
+                    if (z10) {
+                        iArr2[1] = ceil + ceil2;
+                        iArr2[2] = (width - ceil) - ceil2;
+                        float f32 = ceil2;
+                        fArr6[1] = f12 + f32;
+                        fArr6[2] = f14 - f32;
+                    }
+                    iArr2[i11] = width;
+                    fArr6[i11] = f14 + f31;
+                    int[] iArr3 = f51890n;
+                    iArr3[0] = 0;
+                    float[] fArr7 = f51892p;
+                    fArr7[0] = f13 - f31;
+                    if (z12) {
+                        iArr3[1] = ceil + ceil2;
+                        iArr3[2] = (height - ceil) - ceil2;
+                        float f33 = ceil2;
+                        fArr7[1] = f13 + f33;
+                        fArr7[2] = f24 - f33;
+                    }
+                    iArr3[i12] = height;
+                    fArr7[i12] = f24 + f31;
+                    Paint paint3 = f51886j;
+                    paint3.setAlpha((int) (Math.min(1.0f, f10) * 255.0f));
+                    for (int i24 = 0; i24 < i12; i24++) {
+                        int i25 = 0;
+                        while (i25 < i11) {
+                            int i26 = iArr2[i25];
+                            int i27 = iArr3[i24];
+                            int i28 = i25 + 1;
+                            int i29 = iArr2[i28];
+                            int i30 = i24 + 1;
+                            int i31 = iArr3[i30];
+                            int[] iArr4 = iArr3;
+                            Rect rect = f51887k;
+                            rect.set(i26, i27, i29, i31);
+                            float f34 = fArr6[i25];
+                            float f35 = fArr7[i24];
+                            float f36 = fArr6[i28];
+                            float f37 = fArr7[i30];
+                            RectF rectF6 = f51888l;
+                            rectF6.set(f34, f35, f36, f37);
+                            canvas.drawBitmap(bitmap, rect, rectF6, paint3);
+                            iArr3 = iArr4;
+                            i25 = i28;
+                        }
+                    }
+                } else {
+                    return z16;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static void b(Canvas canvas, RectF rectF, float f7) {
+        float f10 = rectF.left;
+        float f11 = rectF.top;
+        RectF rectF2 = e;
+        rectF2.set(f10, f11, rectF.right, Math.min(rectF.height(), AndroidUtilities.dp(40.0f)) + f11);
+        Paint paint = f51882c;
+        paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, f7)) * 255.0f * 0.3125f));
+        canvas.drawBitmap(d(), (Rect) null, rectF2, paint);
+    }
+
+    public static void c(Canvas canvas, RectF rectF, float f7, float f10) {
+        Bitmap d10 = d();
+        BitmapShader bitmapShader = f51881b;
+        Paint paint = d;
+        if (bitmapShader == null) {
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader2 = new BitmapShader(d10, tileMode, tileMode);
+            f51881b = bitmapShader2;
+            paint.setShader(bitmapShader2);
+        }
+        float width = rectF.width() / d10.getWidth();
+        float min = Math.min(rectF.height(), AndroidUtilities.dp(40.0f)) / d10.getHeight();
+        Matrix matrix = f51883f;
+        matrix.setScale(width, min);
+        matrix.postTranslate(rectF.left, rectF.top);
+        f51881b.setLocalMatrix(matrix);
+        paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, f10)) * 255.0f * 0.3125f));
+        canvas.drawRoundRect(rectF, f7, f7, paint);
+    }
+
+    public static Bitmap d() {
+        if (f51880a == null) {
+            int[] iArr = new int[64];
+            for (int i10 = 0; i10 < 64; i10++) {
+                iArr[i10] = (((int) (((1.0f - ((i10 + 0.5f) / 64.0f)) * 64.0f) + 0.5f)) << 24) | 16777215;
+            }
+            f51880a = Bitmap.createBitmap(iArr, 1, 64, Bitmap.Config.ARGB_8888);
+        }
+        return f51880a;
     }
 }

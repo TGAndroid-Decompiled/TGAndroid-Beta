@@ -24,8 +24,8 @@ public abstract class q5 extends im0 implements p7 {
                 return;
             default:
                 sn snVar = (sn) this.W2;
-                iArr[0] = ((int) snVar.f41377s9) - AndroidUtilities.dp(4.0f);
-                iArr[1] = org.telegram.messenger.q.A(3.0f, snVar.f41433x0.getPaddingBottom(), snVar.f41433x0.getMeasuredHeight());
+                iArr[0] = ((int) snVar.f41398s9) - AndroidUtilities.dp(4.0f);
+                iArr[1] = org.telegram.messenger.g0.A(3.0f, snVar.f41454x0.getPaddingBottom(), snVar.f41454x0.getMeasuredHeight());
                 return;
         }
     }

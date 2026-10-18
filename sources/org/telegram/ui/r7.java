@@ -9,28 +9,28 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 public final class r7 extends j7 {
-    public org.telegram.ui.Cells.r7 f40589n;
-    public final ArrayList f40590r;
-    public org.telegram.ui.Components.zq f40591s;
+    public org.telegram.ui.Cells.r7 f40614n;
+    public final ArrayList f40615r;
+    public org.telegram.ui.Components.zq f40616s;
     public final v7 v;
 
     public r7(v7 v7Var) {
         super(v7Var, 1);
         this.v = v7Var;
-        this.f40590r = new ArrayList();
+        this.f40615r = new ArrayList();
     }
 
     @Override
     public final void F() {
         boolean z10;
         super.F();
-        ArrayList arrayList = this.f40590r;
+        ArrayList arrayList = this.f40615r;
         arrayList.clear();
         int i10 = 0;
         while (true) {
             ArrayList arrayList2 = this.e;
             if (i10 < arrayList2.size()) {
-                String path = ((p7) arrayList2.get(i10)).d.f4427a.getPath();
+                String path = ((p7) arrayList2.get(i10)).d.f4428a.getPath();
                 if (((p7) arrayList2.get(i10)).d.d == 1) {
                     z10 = true;
                 } else {
@@ -47,15 +47,15 @@ public final class r7 extends j7 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         boolean z10;
-        if (this.f40591s == null) {
+        if (this.f40616s == null) {
             org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.X9, false)), org.telegram.ui.ActionBar.h6.R4);
-            this.f40591s = zqVar;
-            zqVar.f32999w = true;
+            this.f40616s = zqVar;
+            zqVar.f33006w = true;
         }
-        org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) b1Var.f45938a;
+        org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) b1Var.f45958a;
         bi.b bVar = ((p7) this.e.get(i10)).d;
         Object tag = s7Var.getTag();
-        ImageReceiver imageReceiver = s7Var.f23026c;
+        ImageReceiver imageReceiver = s7Var.f23030c;
         if (bVar == tag) {
             z10 = true;
         } else {
@@ -64,23 +64,23 @@ public final class r7 extends j7 {
         s7Var.setTag(bVar);
         int max = (int) Math.max(100.0f, AndroidUtilities.getRealScreenSize().x / AndroidUtilities.density);
         int i11 = bVar.d;
-        File file = bVar.f4427a;
+        File file = bVar.f4428a;
         if (i11 == 1) {
-            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), a1.g.k(max, max, "_"), this.f40591s, null, null, 0);
-            s7Var.m(AndroidUtilities.formatFileSize(bVar.f4429c), true);
+            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), a1.g.k(max, max, "_"), this.f40616s, null, null, 0);
+            s7Var.m(AndroidUtilities.formatFileSize(bVar.f4430c), true);
         } else {
-            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), a1.g.k(max, max, "_"), this.f40591s, null, null, 0);
-            s7Var.m(AndroidUtilities.formatFileSize(bVar.f4429c), false);
+            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), a1.g.k(max, max, "_"), this.f40616s, null, null, 0);
+            s7Var.m(AndroidUtilities.formatFileSize(bVar.f4430c), false);
         }
-        s7Var.i(this.v.f42143f.f4438j.contains(bVar), z10);
+        s7Var.i(this.v.f42160f.f4439j.contains(bVar), z10);
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        if (this.f40589n == null) {
-            this.f40589n = new org.telegram.ui.Cells.r7(viewGroup.getContext(), null);
+        if (this.f40614n == null) {
+            this.f40614n = new org.telegram.ui.Cells.r7(viewGroup.getContext(), null);
         }
-        q7 q7Var = new q7(this, viewGroup.getContext(), this.f40589n, this.v.d.getCurrentAccount());
+        q7 q7Var = new q7(this, viewGroup.getContext(), this.f40614n, this.v.d.getCurrentAccount());
         q7Var.setStyle(1);
         return new s4.b1(q7Var);
     }

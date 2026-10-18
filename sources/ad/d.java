@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.Components.yo;
@@ -23,7 +24,7 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.b11;
 import v7.u6;
 import v7.z8;
-import z7.ra;
+import z7.qa;
 public final class d implements p, q, OnFailureListener, l2.i, yo {
     public final int f504a;
     public long f505b;
@@ -185,7 +186,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
     public m2.j g(long j10) {
         c3.j jVar = (c3.j) this.f506c;
         int i10 = (int) j10;
-        return new m2.j(jVar.f4633c[i10], jVar.f4632b[i10], null);
+        return new m2.j(jVar.f4634c[i10], jVar.f4633b[i10], null);
     }
 
     @Override
@@ -241,15 +242,15 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
         n2Var.d = new ArrayList();
         n2Var.e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f506c;
-        n2Var.e = profileActivity.f33639j5;
+        n2Var.e = profileActivity.f33646j5;
         profileActivity.presentFragment((n2) n2Var);
     }
 
     @Override
     public void n() {
         ProfileActivity profileActivity = (ProfileActivity) this.f506c;
-        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f505b, profileActivity.f33621h1);
-        profileActivity.getNotificationsController().muteDialog(this.f505b, profileActivity.f33621h1, z10);
+        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f505b, profileActivity.f33628h1);
+        profileActivity.getNotificationsController().muteDialog(this.f505b, profileActivity.f33628h1, z10);
         if (profileActivity.fragmentView != null) {
             xc.A(profileActivity, z10, null).j();
         }
@@ -273,18 +274,18 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
                     i10 = 13;
                 }
                 long j10 = this.f505b;
-                for (o oVar : ((e6.h) ((androidx.biometric.e) this.f506c).d).f8373c.d) {
+                for (o oVar : ((e6.h) ((androidx.biometric.e) this.f506c).d).f8374c.d) {
                     oVar.b(j10, i10, null);
                 }
                 return;
             case 8:
-                ((z8) this.f506c).f48266b.set(this.f505b);
+                ((z8) this.f506c).f48291b.set(this.f505b);
                 return;
             case 9:
-                ((z8) this.f506c).f48266b.set(this.f505b);
+                ((z8) this.f506c).f48291b.set(this.f505b);
                 return;
             default:
-                ((AtomicLong) ((ra) this.f506c).f51174b).set(this.f505b);
+                ((AtomicLong) ((qa) this.f506c).f51188b).set(this.f505b);
                 return;
         }
     }
@@ -296,7 +297,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
         if (j10 != 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j10);
-            bundle.putLong("topic_id", profileActivity.f33621h1);
+            bundle.putLong("topic_id", profileActivity.f33628h1);
             profileActivity.presentFragment(new b11(bundle, profileActivity.A0));
         }
     }
@@ -337,9 +338,9 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.c1(profileActivity));
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j10 = this.f505b;
-        boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.q.i(j10, profileActivity.f33621h1, sb2), true);
+        boolean z10 = notificationsSettings.getBoolean(g0.i(j10, profileActivity.f33628h1, sb2), true);
         boolean z11 = !z10 ? 1 : 0;
-        notificationsSettings.edit().putBoolean(org.telegram.messenger.q.i(j10, profileActivity.f33621h1, new StringBuilder("sound_enabled_")), z11).apply();
+        notificationsSettings.edit().putBoolean(g0.i(j10, profileActivity.f33628h1, new StringBuilder("sound_enabled_")), z11).apply();
         if (xc.a(profileActivity)) {
             xc.S(z10 ? 1 : 0, profileActivity, profileActivity.A0).j();
         }
@@ -369,19 +370,19 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
 
     @Override
     public long w(long j10) {
-        return ((c3.j) this.f506c).f4631a;
+        return ((c3.j) this.f506c).f4632a;
     }
 
     @Override
     public long x(long j10, long j11) {
-        return ((c3.j) this.f506c).f4631a;
+        return ((c3.j) this.f506c).f4632a;
     }
 
     @Override
     public void y(int i10) {
         ProfileActivity profileActivity = (ProfileActivity) this.f506c;
         if (i10 == 0) {
-            if (profileActivity.getMessagesController().isDialogMuted(this.f505b, profileActivity.f33621h1)) {
+            if (profileActivity.getMessagesController().isDialogMuted(this.f505b, profileActivity.f33628h1)) {
                 n();
             }
             if (xc.a(profileActivity)) {
@@ -390,7 +391,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
             }
             return;
         }
-        profileActivity.getNotificationsController().muteUntil(this.f505b, profileActivity.f33621h1, i10);
+        profileActivity.getNotificationsController().muteUntil(this.f505b, profileActivity.f33628h1, i10);
         if (xc.a(profileActivity)) {
             xc.z(profileActivity, 5, i10, profileActivity.A0).j();
         }

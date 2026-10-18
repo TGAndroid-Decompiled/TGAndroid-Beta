@@ -1,20 +1,32 @@
 package zh;
-public final class o0 {
-    public final String f52071a;
-    public final String f52072b;
-    public final boolean f52073c;
-    public final boolean d;
-    public final boolean e;
-    public final long f52074f;
-    public final boolean f52075g;
 
-    public o0(String str, String str2, boolean z10, boolean z11, boolean z12, long j10, boolean z13) {
-        this.f52071a = str;
-        this.f52072b = str2;
-        this.f52073c = z10;
-        this.d = z11;
-        this.e = z12;
-        this.f52074f = j10;
-        this.f52075g = z13;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+public final class o0 implements SensorEventListener {
+    public final t0 f51818a;
+
+    public o0(t0 t0Var) {
+        this.f51818a = t0Var;
+    }
+
+    @Override
+    public final void onSensorChanged(SensorEvent sensorEvent) {
+        float[] fArr = sensorEvent.values;
+        float f7 = fArr[0];
+        t0 t0Var = this.f51818a;
+        t0Var.I6 = f7;
+        float f10 = fArr[1];
+        t0Var.J6 = f10;
+        float f11 = fArr[2];
+        if (!t0Var.M6) {
+            t0Var.K6 = f7;
+            t0Var.L6 = f10;
+            t0Var.M6 = true;
+        }
+    }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

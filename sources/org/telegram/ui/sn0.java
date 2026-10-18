@@ -1,29 +1,60 @@
 package org.telegram.ui;
 
-import org.json.JSONObject;
-public final class sn0 extends JSONObject {
-    public sn0(fo0 fo0Var, int i10) {
-        switch (i10) {
-            case 3:
-                put("type", "PAYMENT_GATEWAY");
-                Object obj = fo0Var.M0;
-                if (obj != null) {
-                    put("parameters", obj);
-                    return;
-                }
-                JSONObject jSONObject = new JSONObject();
-                jSONObject.put("gateway", "stripe");
-                jSONObject.put("stripe:publishableKey", fo0Var.f36989j0);
-                jSONObject.put("stripe:version", "3.5.0");
-                put("parameters", jSONObject);
-                return;
-            default:
-                put("type", "DIRECT");
-                JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.put("protocolVersion", "ECv2");
-                jSONObject2.put("publicKey", fo0Var.K0);
-                put("parameters", jSONObject2);
-                return;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class sn0 implements eo0 {
+    public final Runnable f41491a;
+    public final go0 f41492b;
+
+    public sn0(go0 go0Var, Runnable runnable) {
+        this.f41492b = go0Var;
+        this.f41491a = runnable;
+    }
+
+    @Override
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        String str3;
+        go0 go0Var = this.f41492b;
+        go0Var.f37292y0 = tL_paymentSavedCredentialsCard;
+        go0Var.f37288w0 = str;
+        go0Var.U0 = z10;
+        go0Var.f37290x0 = str2;
+        go0Var.J0 = tL_inputPaymentCredentialsGooglePay;
+        org.telegram.ui.Cells.c9[] c9VarArr = go0Var.Y;
+        org.telegram.ui.Cells.c9 c9Var = c9VarArr[0];
+        if (c9Var != null) {
+            c9Var.setVisibility(0);
+            org.telegram.ui.Cells.c9 c9Var2 = c9VarArr[0];
+            String str4 = go0Var.f37290x0;
+            if (str4 != null && str4.length() > 1) {
+                str3 = go0Var.f37290x0.substring(0, 1).toUpperCase() + go0Var.f37290x0.substring(1);
+            } else {
+                str3 = go0Var.f37290x0;
+            }
+            c9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
+            org.telegram.ui.Cells.c9 c9Var3 = c9VarArr[1];
+            if (c9Var3 != null) {
+                c9Var3.setVisibility(0);
+            }
         }
+        Runnable runnable = this.f41491a;
+        if (runnable != null) {
+            runnable.run();
+        }
+        return false;
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

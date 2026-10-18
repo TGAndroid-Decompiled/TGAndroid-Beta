@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import r.c;
+import r4.c;
 import ru.noties.jlatexmath.android.R;
 import ru.noties.jlatexmath.awt.Color;
 public class JLatexMathView extends View {

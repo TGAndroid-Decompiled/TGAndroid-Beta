@@ -1,27 +1,27 @@
 package qg;
 
-import ai.tc;
+import ai.uc;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.u81;
 public final class r extends u81 {
-    public final tc f44626a;
+    public final uc f44646a;
 
-    public r(tc tcVar) {
-        this.f44626a = tcVar;
+    public r(uc ucVar) {
+        this.f44646a = ucVar;
     }
 
     @Override
     public final View d(int i10) {
-        tc tcVar = this.f44626a;
+        uc ucVar = this.f44646a;
         if (i10 != 1) {
             if (i10 != 2) {
-                return (u) tcVar.f2230b;
+                return (u) ucVar.f2278b;
             }
-            return (x) tcVar.d;
+            return (x) ucVar.d;
         }
-        return (t) tcVar.f2231c;
+        return (t) ucVar.f2279c;
     }
 
     @Override

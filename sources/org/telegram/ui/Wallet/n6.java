@@ -1,52 +1,25 @@
 package org.telegram.ui.Wallet;
+public final class n6 implements o1.f {
+    public final int f34642a;
+    public final Object f34643b;
 
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.view.MotionEvent;
-public final class n6 extends tg.n {
-    public final p6 f34640f0;
-
-    public n6(p6 p6Var, Context context) {
-        super(context, 1, 4);
-        this.f34640f0 = p6Var;
+    public n6(Object obj, int i10) {
+        this.f34642a = i10;
+        this.f34643b = obj;
     }
 
     @Override
-    public final void i() {
-        p6 p6Var = this.f34640f0;
-        if (p6Var.e == this) {
-            p6.c(p6Var);
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f34642a) {
+            case 0:
+                s6.b((s6) this.f34643b, z10, f7);
+                return;
+            default:
+                o9 o9Var = (o9) this.f34643b;
+                o9Var.X = null;
+                o9Var.Y = 1.0f;
+                o9Var.A0();
+                return;
         }
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        int round = Math.round(Math.min(i10, i11) * 3.5f);
-        surfaceTexture.setDefaultBufferSize(round, round);
-        super.onSurfaceTextureAvailable(surfaceTexture, round, round);
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        int round = Math.round(Math.min(i10, i11) * 3.5f);
-        surfaceTexture.setDefaultBufferSize(round, round);
-        this.f47139y = round;
-        this.f47138x = round;
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int round = Math.round(Math.min(getWidth(), getHeight()) * 3.5f);
-        if (round > 0) {
-            surfaceTexture.setDefaultBufferSize(round, round);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f34640f0.f34747x && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
     }
 }

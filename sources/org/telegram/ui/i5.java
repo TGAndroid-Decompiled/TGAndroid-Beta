@@ -4,14 +4,14 @@ import org.telegram.messenger.R;
 public final class i5 {
     public static final i5 d;
     public static final i5 e;
-    public static final i5 f37741f;
+    public static final i5 f37755f;
     public static final i5 h;
-    public static final i5 f37742n;
-    public static final i5 f37743r;
-    public static final i5[] f37744s;
-    public final String f37745a;
-    public final int f37746b;
-    public final int f37747c;
+    public static final i5 f37756n;
+    public static final i5 f37757r;
+    public static final i5[] f37758s;
+    public final String f37759a;
+    public final int f37760b;
+    public final int f37761c;
 
     static {
         i5 i5Var = new i5(0, R.string.OpenProfile, R.drawable.msg_openprofile, "OPEN_PROFILE", "OpenProfile");
@@ -21,20 +21,20 @@ public final class i5 {
         int i10 = R.string.OpenGroup2;
         int i11 = R.drawable.msg_discussion;
         i5 i5Var3 = new i5(2, i10, i11, "OPEN_GROUP", "OpenGroup2");
-        f37741f = i5Var3;
+        f37755f = i5Var3;
         i5 i5Var4 = new i5(3, R.string.SendMessage, i11, "SEND_MESSAGE", "SendMessage");
         h = i5Var4;
         i5 i5Var5 = new i5(4, R.string.Mention, R.drawable.msg_mention, "MENTION", "Mention");
-        f37742n = i5Var5;
+        f37756n = i5Var5;
         i5 i5Var6 = new i5(5, R.string.AvatarPreviewSearchMessages, R.drawable.msg_search, "SEARCH_MESSAGES", "AvatarPreviewSearchMessages");
-        f37743r = i5Var6;
-        f37744s = new i5[]{i5Var, i5Var2, i5Var3, i5Var4, i5Var5, i5Var6};
+        f37757r = i5Var6;
+        f37758s = new i5[]{i5Var, i5Var2, i5Var3, i5Var4, i5Var5, i5Var6};
     }
 
     public i5(int i10, int i11, int i12, String str, String str2) {
-        this.f37745a = str2;
-        this.f37746b = i11;
-        this.f37747c = i12;
+        this.f37759a = str2;
+        this.f37760b = i11;
+        this.f37761c = i12;
     }
 
     public static i5 valueOf(String str) {
@@ -42,6 +42,6 @@ public final class i5 {
     }
 
     public static i5[] values() {
-        return (i5[]) f37744s.clone();
+        return (i5[]) f37758s.clone();
     }
 }

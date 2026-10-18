@@ -1,49 +1,75 @@
 package ug;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class z0 implements Utilities.Callback {
-    public final int f47842a;
-    public final l1 f47843b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.PrivacyControlActivity;
+public final class z0 implements Runnable {
+    public final int f47867a;
+    public final m1 f47868b;
 
-    public z0(l1 l1Var, int i10) {
-        this.f47842a = i10;
-        this.f47843b = l1Var;
+    public z0(m1 m1Var, int i10) {
+        this.f47867a = i10;
+        this.f47868b = m1Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f47842a) {
+    public final void run() {
+        switch (this.f47867a) {
             case 0:
-                l1 l1Var = this.f47843b;
-                ArrayList arrayList = l1Var.f47738r0;
-                arrayList.clear();
-                arrayList.addAll((List) obj);
-                h1 h1Var = l1Var.Y;
-                if (h1Var.N) {
-                    h1Var.setLoading(false);
-                    if (l1Var.d.G) {
-                        l1Var.e0();
-                        return;
-                    }
+                this.f47868b.c0(true);
+                return;
+            case 1:
+                this.f47868b.f47753d0.setVisibility(8);
+                return;
+            case 2:
+                m1 m1Var = this.f47868b;
+                m1Var.X();
+                m1Var.j0(true, false);
+                return;
+            case 3:
+                g1 g1Var = this.f47868b.Z;
+                g1Var.f50194b.setHintText(LocaleController.getString(R.string.Search), true);
+                return;
+            case 4:
+                g1 g1Var2 = this.f47868b.Z;
+                g1Var2.f50194b.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
+                return;
+            case 5:
+                m1 m1Var2 = this.f47868b;
+                m1Var2.X();
+                m1Var2.j0(true, false);
+                return;
+            case 6:
+                this.f47868b.d0(true);
+                return;
+            case 7:
+                this.f47868b.f47753d0.setVisibility(8);
+                return;
+            case 8:
+                m1 m1Var3 = this.f47868b;
+                m1Var3.X();
+                m1Var3.j0(true, false);
+                return;
+            case 9:
+                n2 n2Var = this.f47868b.f24922n;
+                if (n2Var != 0) {
+                    ?? obj = new Object();
+                    obj.f21559a = true;
+                    n2Var.showAsSheet(new PrivacyControlActivity(11, false), obj);
                     return;
                 }
                 return;
-            case 1:
-                this.f47843b.dismiss(((Boolean) obj).booleanValue());
+            case 10:
+                this.f47868b.i0(true, true);
                 return;
-            case 2:
-                l1.U(this.f47843b, (TL_account.TL_birthday) obj);
+            case 11:
+                this.f47868b.dismiss();
                 return;
             default:
-                l1 l1Var2 = this.f47843b;
-                l1Var2.f47735o0 = (String) obj;
-                p4.s0 s0Var = l1Var2.f47743w0;
-                AndroidUtilities.cancelRunOnUIThread(s0Var);
-                AndroidUtilities.runOnUIThread(s0Var, 350L);
+                m1 m1Var4 = this.f47868b;
+                m1Var4.X();
+                m1Var4.j0(true, false);
                 return;
         }
     }

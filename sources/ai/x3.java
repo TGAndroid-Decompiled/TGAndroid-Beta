@@ -1,37 +1,39 @@
 package ai;
 
-import org.telegram.messenger.BillingController;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.sn;
 public final class x3 implements Runnable {
-    public final int f2420a;
-    public final s0 f2421b;
-    public final org.telegram.ui.Components.zc[] f2422c;
-    public final TL_stars.UniqueStarGiftValueInfo d;
-    public final String e;
+    public final int f2424a;
+    public final k7 f2425b;
+    public final sn f2426c;
+    public final long d;
 
-    public x3(s0 s0Var, org.telegram.ui.Components.zc[] zcVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
-        this.f2420a = i10;
-        this.f2421b = s0Var;
-        this.f2422c = zcVarArr;
-        this.d = uniqueStarGiftValueInfo;
-        this.e = str;
+    public x3(k7 k7Var, sn snVar, long j10, int i10) {
+        this.f2424a = i10;
+        this.f2425b = k7Var;
+        this.f2426c = snVar;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f2420a;
-        String str = this.e;
-        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
-        org.telegram.ui.Components.zc[] zcVarArr = this.f2422c;
-        s0 s0Var = this.f2421b;
+        int i10 = this.f2424a;
+        long j10 = this.d;
+        sn snVar = this.f2426c;
+        k7 k7Var = this.f2425b;
         switch (i10) {
             case 0:
-                s0Var.run(zcVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
+                org.telegram.ui.Components.qc M = org.telegram.ui.Components.xc.a0(snVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, k7Var.Q1(), DialogObject.getShortName(j10))), R.raw.forward);
+                M.f29655t = true;
+                M.j();
                 return;
             default:
-                s0Var.run(zcVarArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
+                org.telegram.ui.Components.qc M2 = org.telegram.ui.Components.xc.a0(snVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, k7Var.Q1(), DialogObject.getShortName(j10))), R.raw.forward);
+                M2.f29655t = true;
+                M2.j();
                 return;
         }
     }

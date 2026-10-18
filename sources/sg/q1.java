@@ -15,7 +15,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.kk;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.xp;
 import org.telegram.ui.Components.yp;
@@ -31,40 +31,40 @@ public class q1 extends ViewGroup {
     public float K;
     public boolean L;
     public boolean M;
-    public final xp f46404a;
-    public final TextView f46405b;
-    public final TextView f46406c;
+    public final xp f46424a;
+    public final TextView f46425b;
+    public final TextView f46426c;
     public final TextView d;
     public final TextView e;
-    public final int f46407f;
+    public final int f46427f;
     public final int h;
-    public rw0 f46408n;
-    public final TextView f46409r;
-    public final int f46410s;
+    public rw0 f46428n;
+    public final TextView f46429r;
+    public final int f46430s;
     public final int v;
-    public int f46411w;
-    public LinearGradient f46412x;
-    public final Paint f46413y;
+    public int f46431w;
+    public LinearGradient f46432x;
+    public final Paint f46433y;
 
     public q1(Context context) {
         super(context);
         int i10;
         int i11;
         int i12;
-        this.f46407f = 12;
+        this.f46427f = 12;
         this.h = 8;
-        this.f46410s = h6.f20986d6;
-        this.v = h6.f20928a7;
-        this.f46413y = new Paint();
+        this.f46430s = h6.f20993d6;
+        this.v = h6.f20935a7;
+        this.f46433y = new Paint();
         this.H = new Matrix();
         xp xpVar = new xp(context, 24, null);
-        this.f46404a = xpVar;
+        this.f46424a = xpVar;
         xpVar.setDrawBackgroundAsArc(10);
-        int i13 = h6.f21040g7;
-        xpVar.b(i13, i13, h6.f21114k7);
+        int i13 = h6.f21047g7;
+        xpVar.b(i13, i13, h6.f21121k7);
         addView(xpVar);
         TextView textView = new TextView(context);
-        this.f46405b = textView;
+        this.f46425b = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(h6.x0(null, h6.G6, false));
         textView.setTypeface(AndroidUtilities.bold());
@@ -76,7 +76,7 @@ public class q1 extends ViewGroup {
         }
         addView(textView, z5.a(-2.0f, 0.0f, 8.0f, 0.0f, 0.0f, -2, i10 | 48));
         TextView textView2 = new TextView(context);
-        this.f46409r = textView2;
+        this.f46429r = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(-1);
         textView2.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
@@ -90,7 +90,7 @@ public class q1 extends ViewGroup {
         TextView textView3 = new TextView(context);
         this.d = textView3;
         textView3.setTextSize(1, 14.0f);
-        int i14 = h6.f21374y6;
+        int i14 = h6.f21381y6;
         textView3.setTextColor(h6.x0(null, i14, false));
         textView3.getPaint().setStrikeThruText(true);
         textView3.setSingleLine();
@@ -107,7 +107,7 @@ public class q1 extends ViewGroup {
         textView4.setSingleLine();
         addView(textView4, z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 8.0f, -2, (LocaleController.isRTL ? 5 : 3) | 80));
         TextView textView5 = new TextView(context);
-        this.f46406c = textView5;
+        this.f46426c = textView5;
         textView5.setTextSize(1, 15.0f);
         textView5.setTextColor(h6.x0(null, i14, false));
         textView5.setSingleLine();
@@ -134,7 +134,7 @@ public class q1 extends ViewGroup {
     }
 
     public final void c(boolean z10, boolean z11) {
-        this.f46404a.a(z10, z11);
+        this.f46424a.a(z10, z11);
     }
 
     public final void d() {
@@ -143,7 +143,7 @@ public class q1 extends ViewGroup {
             q1Var.d();
             return;
         }
-        int x02 = h6.x0(null, this.f46410s, false);
+        int x02 = h6.x0(null, this.f46430s, false);
         int x03 = h6.x0(null, this.v, false);
         if (this.G == x03 && this.F == x02) {
             return;
@@ -151,10 +151,10 @@ public class q1 extends ViewGroup {
         this.F = x02;
         this.G = x03;
         int dp = AndroidUtilities.dp(200.0f);
-        this.f46411w = dp;
+        this.f46431w = dp;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{x03, x02, x02, x03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f46412x = linearGradient;
-        this.f46413y.setShader(linearGradient);
+        this.f46432x = linearGradient;
+        this.f46433y.setShader(linearGradient);
     }
 
     @Override
@@ -163,21 +163,21 @@ public class q1 extends ViewGroup {
         if (this.L) {
             q1 q1Var = this.E;
             if (q1Var != null) {
-                paint = q1Var.f46413y;
+                paint = q1Var.f46433y;
             } else {
-                paint = this.f46413y;
+                paint = this.f46433y;
             }
-            drawChild(canvas, this.f46404a, getDrawingTime());
+            drawChild(canvas, this.f46424a, getDrawingTime());
             d();
             e();
             RectF rectF = AndroidUtilities.rectTmp;
-            TextView textView = this.f46406c;
+            TextView textView = this.f46426c;
             rectF.set(textView.getLeft(), AndroidUtilities.dp(4.0f) + textView.getTop(), textView.getRight(), textView.getBottom() - AndroidUtilities.dp(4.0f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
             TextView textView2 = this.d;
             rectF.set(textView2.getLeft(), AndroidUtilities.dp(3.0f) + textView2.getTop(), textView2.getRight(), textView2.getBottom() - AndroidUtilities.dp(3.0f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-            TextView textView3 = this.f46405b;
+            TextView textView3 = this.f46425b;
             rectF.set(textView3.getLeft(), AndroidUtilities.dp(4.0f) + textView3.getTop(), textView3.getRight(), textView3.getBottom() - AndroidUtilities.dp(4.0f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
             invalidate();
@@ -205,18 +205,18 @@ public class q1 extends ViewGroup {
         int i10 = (int) ((((float) (abs * measuredWidth)) / 400.0f) + this.J);
         this.J = i10;
         if (i10 >= measuredWidth * 4) {
-            this.J = (-this.f46411w) * 2;
+            this.J = (-this.f46431w) * 2;
         }
         Matrix matrix = this.H;
         matrix.setTranslate(this.J + this.K, 0.0f);
-        LinearGradient linearGradient = this.f46412x;
+        LinearGradient linearGradient = this.f46432x;
         if (linearGradient != null) {
             linearGradient.setLocalMatrix(matrix);
         }
     }
 
     public rw0 getTier() {
-        return this.f46408n;
+        return this.f46428n;
     }
 
     @Override
@@ -224,11 +224,11 @@ public class q1 extends ViewGroup {
         super.onDraw(canvas);
         if (this.M) {
             boolean z10 = LocaleController.isRTL;
-            TextView textView = this.f46405b;
+            TextView textView = this.f46425b;
             if (z10) {
-                canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, h6.f21107k0);
+                canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, h6.f21114k0);
             } else {
-                canvas.drawLine(textView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, h6.f21107k0);
+                canvas.drawLine(textView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, h6.f21114k0);
             }
         }
     }
@@ -242,13 +242,13 @@ public class q1 extends ViewGroup {
         int i16 = this.h;
         int paddingLeft = getPaddingLeft() + AndroidUtilities.dp(i16);
         int measuredHeight = getMeasuredHeight();
-        xp xpVar = this.f46404a;
+        xp xpVar = this.f46424a;
         rect.set(paddingLeft, (int) ((measuredHeight - xpVar.getMeasuredHeight()) / 2.0f), 0, 0);
         b(xpVar);
         int measuredHeight2 = getMeasuredHeight();
-        TextView textView = this.f46406c;
+        TextView textView = this.f46426c;
         int measuredHeight3 = (int) ((measuredHeight2 - textView.getMeasuredHeight()) / 2.0f);
-        int i17 = i16 + this.f46407f;
+        int i17 = i16 + this.f46427f;
         int measuredWidth = xpVar.getMeasuredWidth() + AndroidUtilities.dp(i17 + 24);
         TextView textView2 = this.d;
         if (textView2.getVisibility() == 0) {
@@ -260,7 +260,7 @@ public class q1 extends ViewGroup {
         TextView textView3 = this.e;
         int paddingLeft2 = getPaddingLeft() + textView3.getMeasuredWidth() + i18;
         int measuredWidth2 = getMeasuredWidth() - textView.getMeasuredWidth();
-        TextView textView4 = this.f46409r;
+        TextView textView4 = this.f46429r;
         if (paddingLeft2 > measuredWidth2 && textView4.getVisibility() == 0) {
             measuredHeight3 = getPaddingTop() + AndroidUtilities.dp(2.0f);
         }
@@ -269,7 +269,7 @@ public class q1 extends ViewGroup {
         float f7 = i17;
         int paddingLeft3 = getPaddingLeft() + xpVar.getMeasuredWidth() + AndroidUtilities.dp(f7);
         int visibility = textView3.getVisibility();
-        TextView textView5 = this.f46405b;
+        TextView textView5 = this.f46425b;
         if (visibility == 8) {
             paddingTop = (int) ((getMeasuredHeight() - textView5.getMeasuredHeight()) / 2.0f);
         } else {
@@ -298,14 +298,14 @@ public class q1 extends ViewGroup {
         int size = View.MeasureSpec.getSize(i10);
         int dp = AndroidUtilities.dp(58.0f);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824);
-        xp xpVar = this.f46404a;
+        xp xpVar = this.f46424a;
         xpVar.measure(makeMeasureSpec, makeMeasureSpec);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(size - xpVar.getMeasuredWidth(), Integer.MIN_VALUE);
         int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE);
-        TextView textView = this.f46406c;
+        TextView textView = this.f46426c;
         textView.measure(makeMeasureSpec2, makeMeasureSpec3);
-        this.f46405b.measure(View.MeasureSpec.makeMeasureSpec((size - xpVar.getMeasuredWidth()) - textView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-        TextView textView2 = this.f46409r;
+        this.f46425b.measure(View.MeasureSpec.makeMeasureSpec((size - xpVar.getMeasuredWidth()) - textView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+        TextView textView2 = this.f46429r;
         int i12 = 0;
         if (textView2.getVisibility() == 0) {
             textView2.measure(View.MeasureSpec.makeMeasureSpec((size - xpVar.getMeasuredWidth()) - textView.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
@@ -320,7 +320,7 @@ public class q1 extends ViewGroup {
         if (textView3.getVisibility() == 0) {
             i12 = textView3.getMeasuredWidth();
         }
-        int c10 = wh.c(6.0f, measuredWidth - i12, Integer.MIN_VALUE);
+        int c10 = kk.c(6.0f, measuredWidth - i12, Integer.MIN_VALUE);
         int makeMeasureSpec6 = View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE);
         TextView textView4 = this.e;
         textView4.measure(c10, makeMeasureSpec6);
@@ -331,7 +331,7 @@ public class q1 extends ViewGroup {
     }
 
     public void setCirclePaintProvider(GenericProvider<Void, Paint> genericProvider) {
-        this.f46404a.setCirclePaintProvider(genericProvider);
+        this.f46424a.setCirclePaintProvider(genericProvider);
     }
 
     @Override
@@ -345,17 +345,17 @@ public class q1 extends ViewGroup {
         } else {
             f7 = 0.6f;
         }
-        this.f46405b.setAlpha(f7);
+        this.f46425b.setAlpha(f7);
         if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.6f;
         }
-        this.f46406c.setAlpha(f10);
+        this.f46426c.setAlpha(f10);
         if (z10) {
             f11 = 1.0f;
         }
-        this.f46404a.setAlpha(f11);
+        this.f46424a.setAlpha(f11);
     }
 
     public void setGlobalGradientView(q1 q1Var) {
@@ -367,6 +367,6 @@ public class q1 extends ViewGroup {
     }
 
     public void setProgressDelegate(yp ypVar) {
-        this.f46404a.setProgressDelegate(ypVar);
+        this.f46424a.setProgressDelegate(ypVar);
     }
 }

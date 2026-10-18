@@ -6,50 +6,50 @@ import org.telegram.ui.Components.t11;
 import org.telegram.ui.Components.w31;
 import w7.z5;
 public final class n implements Runnable {
-    public final int f45557a;
-    public final m0 f45558b;
+    public final int f45577a;
+    public final m0 f45578b;
 
     public n(m0 m0Var, int i10) {
-        this.f45557a = i10;
-        this.f45558b = m0Var;
+        this.f45577a = i10;
+        this.f45578b = m0Var;
     }
 
     @Override
     public final void run() {
         int e;
-        switch (this.f45557a) {
+        switch (this.f45577a) {
             case 0:
-                m0 m0Var = this.f45558b;
-                t11 t11Var = m0Var.f45492a1;
+                m0 m0Var = this.f45578b;
+                t11 t11Var = m0Var.f45512a1;
                 if (t11Var != null) {
-                    m0Var.f45492a1 = null;
+                    m0Var.f45512a1 = null;
                     m0Var.removeView(t11Var);
                     return;
                 }
                 return;
             case 1:
-                m0 m0Var2 = this.f45558b;
+                m0 m0Var2 = this.f45578b;
                 if (m0Var2.E0 != null) {
                     m0Var2.G0.postRunnable(new n(m0Var2, 3), 200L);
                     return;
                 }
                 return;
             case 2:
-                w1 w1Var = this.f45558b.l1;
+                w1 w1Var = this.f45578b.l1;
                 if (w1Var != null) {
                     w1Var.invalidate();
                     return;
                 }
                 return;
             case 3:
-                m0.a0(this.f45558b);
+                m0.a0(this.f45578b);
                 return;
             default:
-                m0 m0Var3 = this.f45558b;
-                boolean z10 = qg.u0.e(m0Var3.P1).f44699k;
+                m0 m0Var3 = this.f45578b;
+                boolean z10 = qg.u0.e(m0Var3.P1).f44719k;
                 int i10 = 0;
                 while (true) {
-                    List list = qg.l.f44575b;
+                    List list = qg.l.f44595b;
                     if (i10 < list.size()) {
                         qg.l lVar = (qg.l) list.get(i10);
                         if (z10) {

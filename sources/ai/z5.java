@@ -13,41 +13,41 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bs;
 public final class z5 extends View {
-    public final Paint f2523a;
-    public final Paint f2524b;
-    public final Paint f2525c;
+    public final Paint f2532a;
+    public final Paint f2533b;
+    public final Paint f2534c;
     public final RadialGradient[] d;
     public final Matrix e;
-    public final org.telegram.ui.Components.f6 f2526f;
+    public final org.telegram.ui.Components.f6 f2535f;
     public final RadialGradient h;
-    public final Path f2527n;
-    public int f2528r;
-    public int f2529s;
+    public final Path f2536n;
+    public int f2537r;
+    public int f2538s;
 
     public z5(Context context) {
         super(context);
-        this.f2523a = new Paint(1);
-        this.f2524b = new Paint(1);
+        this.f2532a = new Paint(1);
+        this.f2533b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f2525c = paint;
+        this.f2534c = paint;
         this.d = new RadialGradient[2];
         this.e = new Matrix();
-        this.f2526f = new org.telegram.ui.Components.f6(1.0f, this, 0L, 420L, bs.h);
+        this.f2535f = new org.telegram.ui.Components.f6(1.0f, this, 0L, 420L, bs.h);
         this.h = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{0, -1, -1, 0}, new float[]{0.15f, 0.35f, 0.65f, 0.88f}, Shader.TileMode.CLAMP);
-        this.f2527n = new Path();
+        this.f2536n = new Path();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
 
     public final void a(int i10, int i11) {
-        if (this.f2528r == i10 && this.f2529s == i11) {
+        if (this.f2537r == i10 && this.f2538s == i11) {
             return;
         }
         RadialGradient[] radialGradientArr = this.d;
         radialGradientArr[0] = radialGradientArr[1];
-        this.f2528r = i10;
-        this.f2529s = i11;
+        this.f2537r = i10;
+        this.f2538s = i11;
         radialGradientArr[1] = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f2526f.d(0.0f, true);
+        this.f2535f.d(0.0f, true);
         invalidate();
     }
 
@@ -57,24 +57,24 @@ public final class z5 extends View {
         Paint paint;
         float f10 = 1.0f;
         int i10 = 0;
-        float d = this.f2526f.d(1.0f, false);
+        float d = this.f2535f.d(1.0f, false);
         float currentTimeMillis = (((float) (System.currentTimeMillis() % 15000)) / 15000.0f) * 360.0f;
         float f11 = 0.0f;
         if (getAlpha() > 0.0f) {
             invalidate();
         }
         Paint.Style style = Paint.Style.STROKE;
-        Paint paint2 = this.f2524b;
+        Paint paint2 = this.f2533b;
         paint2.setStyle(style);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        Path path = this.f2527n;
+        Path path = this.f2536n;
         path.rewind();
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
         float min = Math.min(getWidth(), getHeight()) / 2.0f;
         int i11 = 0;
         while (i11 < 6) {
-            float c10 = r.c.c(i11, 60.0f, 12.5f, currentTimeMillis);
+            float c10 = r4.c.c(i11, 60.0f, 12.5f, currentTimeMillis);
             path.moveTo(width, height);
             double d10 = ((c10 - 12.5f) / 180.0f) * 3.141592653589793d;
             path.lineTo((((float) Math.cos(d10)) * min) + width, (((float) Math.sin(d10)) * min) + height);
@@ -105,7 +105,7 @@ public final class z5 extends View {
                         matrix.postTranslate(width, height);
                         radialGradientArr[i10].setLocalMatrix(matrix);
                         RadialGradient radialGradient = radialGradientArr[i10];
-                        Paint paint3 = this.f2523a;
+                        Paint paint3 = this.f2532a;
                         paint3.setShader(radialGradient);
                         float f14 = pow * 255.0f;
                         paint3.setAlpha((int) (0.3f * f14));
@@ -125,7 +125,7 @@ public final class z5 extends View {
                 matrix.postTranslate(width, height);
                 RadialGradient radialGradient2 = this.h;
                 radialGradient2.setLocalMatrix(matrix);
-                Paint paint4 = this.f2525c;
+                Paint paint4 = this.f2534c;
                 paint4.setShader(radialGradient2);
                 canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint4);
                 canvas.restore();

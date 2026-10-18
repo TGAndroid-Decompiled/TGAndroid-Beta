@@ -37,7 +37,7 @@ public abstract class a {
     }
 
     public static void b(Canvas canvas, f0 f0Var, int i10, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) f0Var.f8098c, 0, (float[]) f0Var.d, 0, (int[]) f0Var.f8099f, 0, (short[]) f0Var.e, 0, i10 * 6, paint);
+        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) f0Var.f8099c, 0, (float[]) f0Var.d, 0, (int[]) f0Var.f8100f, 0, (short[]) f0Var.e, 0, i10 * 6, paint);
     }
 
     public static k2.b c(AudioManager audioManager, b2.f fVar, n0 n0Var, List list) {
@@ -83,18 +83,11 @@ public abstract class a {
         return accessibilityNodeInfo.getUniqueId();
     }
 
-    public static boolean g() {
-        if (Build.VERSION.SDK_INT >= 29) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean h(AccessibilityNodeInfo accessibilityNodeInfo) {
+    public static boolean g(AccessibilityNodeInfo accessibilityNodeInfo) {
         return accessibilityNodeInfo.isTextSelectable();
     }
 
-    public static void i(ShortcutInfo.Builder builder) {
+    public static void h(ShortcutInfo.Builder builder) {
         builder.setExcludedFromSurfaces(0);
     }
 }

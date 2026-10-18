@@ -14,12 +14,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.iu;
 public final class e implements Runnable {
-    public final int f8915a;
-    public final m f8916b;
+    public final int f8916a;
+    public final m f8917b;
 
     public e(m mVar, int i10) {
-        this.f8915a = i10;
-        this.f8916b = mVar;
+        this.f8916a = i10;
+        this.f8917b = mVar;
     }
 
     @Override
@@ -27,8 +27,8 @@ public final class e implements Runnable {
         float f7;
         int i10;
         int i11;
-        int i12 = this.f8915a;
-        m mVar = this.f8916b;
+        int i12 = this.f8916a;
+        m mVar = this.f8917b;
         switch (i12) {
             case 0:
                 mVar.t();
@@ -36,16 +36,16 @@ public final class e implements Runnable {
             default:
                 boolean z10 = mVar.m0;
                 FrameLayout frameLayout = mVar.J;
-                j jVar = mVar.f9414r;
-                g gVar = mVar.f9401f;
-                if (mVar.f9412p0 != z10) {
-                    mVar.f9412p0 = z10;
-                    ValueAnimator valueAnimator = mVar.f9413q0;
+                j jVar = mVar.f9415r;
+                g gVar = mVar.f9402f;
+                if (mVar.f9413p0 != z10) {
+                    mVar.f9413p0 = z10;
+                    ValueAnimator valueAnimator = mVar.f9414q0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        mVar.f9413q0 = null;
+                        mVar.f9414q0 = null;
                     }
-                    Utilities.Callback callback = mVar.f9407k0;
+                    Utilities.Callback callback = mVar.f9408k0;
                     if (callback != null) {
                         callback.run(Boolean.valueOf(z10));
                     }
@@ -59,36 +59,36 @@ public final class e implements Runnable {
                     } else {
                         gVar.getEditText().scrollBy(0, -gVar.getEditText().getScrollY());
                     }
-                    float f10 = mVar.f9411o0;
+                    float f10 = mVar.f9412o0;
                     if (z10) {
                         f7 = 1.0f;
                     } else {
                         f7 = 0.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-                    mVar.f9413q0 = ofFloat;
+                    mVar.f9414q0 = ofFloat;
                     ofFloat.addUpdateListener(new ah.c0(mVar, 23));
                     if (!z10) {
                         gVar.getEditText().setAllowDrawCursor(false);
                     }
-                    mVar.f9413q0.addListener(new ah.p0(8, mVar, z10));
+                    mVar.f9414q0.addListener(new ah.p0(8, mVar, z10));
                     if (z10) {
-                        mVar.f9413q0.setInterpolator(org.telegram.ui.ActionBar.o1.f21628w);
-                        mVar.f9413q0.setDuration(250L);
+                        mVar.f9414q0.setInterpolator(org.telegram.ui.ActionBar.o1.f21635w);
+                        mVar.f9414q0.setDuration(250L);
                     } else {
-                        mVar.f9413q0.setInterpolator(new u1.a());
-                        mVar.f9413q0.setDuration(420L);
+                        mVar.f9414q0.setInterpolator(new u1.a());
+                        mVar.f9414q0.setDuration(420L);
                     }
-                    mVar.f9413q0.start();
+                    mVar.f9414q0.start();
                     iu editText = gVar.getEditText();
                     if (editText != null && editText.getLayout() != null) {
-                        ObjectAnimator objectAnimator = mVar.f9403g0;
+                        ObjectAnimator objectAnimator = mVar.f9404g0;
                         if (objectAnimator != null) {
                             objectAnimator.cancel();
                         }
                         int scrollY = editText.getScrollY();
                         if (z10) {
-                            i10 = gVar.f29743a.length();
+                            i10 = gVar.f29749a.length();
                         } else {
                             i10 = 0;
                         }
@@ -102,43 +102,43 @@ public final class e implements Runnable {
                             i11 = 0;
                         }
                         ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", scrollY, i11);
-                        mVar.f9403g0 = ofInt;
+                        mVar.f9404g0 = ofInt;
                         ofInt.setDuration(360L);
-                        mVar.f9403g0.setInterpolator(bs.h);
-                        mVar.f9403g0.start();
+                        mVar.f9404g0.setInterpolator(bs.h);
+                        mVar.f9404g0.start();
                     }
                     gVar.setSuggestionsEnabled(z10);
                     if (!z10) {
                         gVar.getEditText().setSpoilersRevealed(false, true);
                     }
                     if (z10 && SharedConfig.getDevicePerformanceClass() >= 1 && !LiteMode.isPowerSaverApplied()) {
-                        if (mVar.f9415r0 == null) {
-                            mVar.f9415r0 = Bitmap.createBitmap((int) (frameLayout.getWidth() / 12.0f), (int) (frameLayout.getHeight() / 12.0f), Bitmap.Config.ARGB_8888);
+                        if (mVar.f9416r0 == null) {
+                            mVar.f9416r0 = Bitmap.createBitmap((int) (frameLayout.getWidth() / 12.0f), (int) (frameLayout.getHeight() / 12.0f), Bitmap.Config.ARGB_8888);
                         }
-                        mVar.f9426y0 = true;
-                        mVar.i(mVar.f9415r0);
-                        mVar.f9426y0 = false;
-                        Bitmap bitmap = mVar.f9415r0;
+                        mVar.f9427y0 = true;
+                        mVar.i(mVar.f9416r0);
+                        mVar.f9427y0 = false;
+                        Bitmap bitmap = mVar.f9416r0;
                         if (bitmap != null && !bitmap.isRecycled()) {
-                            Bitmap bitmap2 = mVar.f9415r0;
+                            Bitmap bitmap2 = mVar.f9416r0;
                             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                            mVar.f9417s0 = new BitmapShader(bitmap2, tileMode, tileMode);
-                            Matrix matrix = mVar.f9418t0;
+                            mVar.f9418s0 = new BitmapShader(bitmap2, tileMode, tileMode);
+                            Matrix matrix = mVar.f9419t0;
                             if (matrix == null) {
-                                mVar.f9418t0 = new Matrix();
+                                mVar.f9419t0 = new Matrix();
                             } else {
                                 matrix.reset();
                             }
-                            mVar.f9417s0.setLocalMatrix(mVar.f9418t0);
-                            if (mVar.f9419u0 == null) {
+                            mVar.f9418s0.setLocalMatrix(mVar.f9419t0);
+                            if (mVar.f9420u0 == null) {
                                 Paint paint = new Paint(3);
-                                mVar.f9419u0 = paint;
+                                mVar.f9420u0 = paint;
                                 paint.setColor(-1);
                             }
-                            mVar.f9419u0.setShader(mVar.f9417s0);
+                            mVar.f9420u0.setShader(mVar.f9418s0);
                             return;
                         }
-                        mVar.f9415r0 = null;
+                        mVar.f9416r0 = null;
                         return;
                     }
                     return;

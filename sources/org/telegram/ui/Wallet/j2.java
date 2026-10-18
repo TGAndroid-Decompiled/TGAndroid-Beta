@@ -9,26 +9,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.no0;
+import org.telegram.ui.oo0;
 public final class j2 extends org.telegram.ui.ActionBar.f3 {
-    public final ei.h1 f34347b;
-    public final ArrayList f34348c;
+    public final ei.h1 f34355b;
+    public final ArrayList f34356c;
     public boolean d;
     public FrameLayout e;
-    public Integer f34349f;
+    public Integer f34357f;
 
     public j2(Context context, org.telegram.ui.ActionBar.d6 d6Var, View... viewArr) {
         super(1, context, d6Var, true);
         List asList = Arrays.asList(viewArr);
         ArrayList arrayList = new ArrayList();
-        this.f34348c = arrayList;
+        this.f34356c = arrayList;
         if (asList != null) {
             arrayList.addAll(asList);
         }
         g2 g2Var = new g2(this, context);
         this.containerView = g2Var;
         ei.h1 h1Var = new ei.h1(this, context, 9);
-        this.f34347b = h1Var;
+        this.f34355b = h1Var;
         int i10 = this.backgroundPaddingLeft;
         h1Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
         g2Var.addView(h1Var, w7.z5.e(-1, -1, 119));
@@ -36,7 +36,7 @@ public final class j2 extends org.telegram.ui.ActionBar.f3 {
 
     @Override
     public final boolean canDismissWithSwipe() {
-        if (this.f34347b.getCurrentPosition() == 0) {
+        if (this.f34355b.getCurrentPosition() == 0) {
             return true;
         }
         return false;
@@ -44,7 +44,7 @@ public final class j2 extends org.telegram.ui.ActionBar.f3 {
 
     @Override
     public final boolean canSwipeToBack(MotionEvent motionEvent) {
-        if (this.f34347b.getCurrentPosition() == 0) {
+        if (this.f34355b.getCurrentPosition() == 0) {
             return true;
         }
         return false;
@@ -53,7 +53,7 @@ public final class j2 extends org.telegram.ui.ActionBar.f3 {
     @Override
     public final void onBackPressed() {
         View[] viewPages;
-        ei.h1 h1Var = this.f34347b;
+        ei.h1 h1Var = this.f34355b;
         if (h1Var.getCurrentPosition() <= 0) {
             super.onBackPressed();
             return;
@@ -67,9 +67,9 @@ public final class j2 extends org.telegram.ui.ActionBar.f3 {
     }
 
     public final void s(i2 i2Var) {
-        this.f34348c.add(i2Var);
+        this.f34356c.add(i2Var);
         if (this.d) {
-            ei.h1 h1Var = this.f34347b;
+            ei.h1 h1Var = this.f34355b;
             h1Var.C(false);
             h1Var.o(false);
         }
@@ -79,17 +79,17 @@ public final class j2 extends org.telegram.ui.ActionBar.f3 {
     public final void show() {
         if (!this.d) {
             this.d = true;
-            this.f34347b.setAdapter(new no0(this, 1));
+            this.f34355b.setAdapter(new oo0(this, 1));
         }
         super.show();
-        Integer num = this.f34349f;
+        Integer num = this.f34357f;
         if (num != null) {
             setOverlayNavBarColor(num.intValue());
         }
     }
 
     public final void t(int i10) {
-        this.f34349f = Integer.valueOf(i10);
+        this.f34357f = Integer.valueOf(i10);
         setBackgroundColor(i10);
         fixNavigationBar(i10);
         ((g2) this.containerView).invalidate();
@@ -107,7 +107,7 @@ public final class j2 extends org.telegram.ui.ActionBar.f3 {
             frameLayout.removeAllViews();
         }
         this.e.addView(linearLayout, w7.z5.e(-1, -2, 80));
-        ei.h1 h1Var = this.f34347b;
+        ei.h1 h1Var = this.f34355b;
         int i10 = this.backgroundPaddingLeft;
         h1Var.setPadding(i10, 0, i10, 0);
         ((g2) this.containerView).requestLayout();

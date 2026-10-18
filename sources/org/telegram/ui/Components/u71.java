@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class u71 extends i2.j {
+public final class u71 extends i2.k {
     public final a81 d;
 
     public u71(Context context, a81 a81Var) {

@@ -7,11 +7,11 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class jk extends org.telegram.ui.Components.nd {
     public final boolean e;
-    public final sn f38222f;
+    public final sn f38238f;
 
     public jk(sn snVar, Context context, boolean z10) {
         super(context);
-        this.f38222f = snVar;
+        this.f38238f = snVar;
         this.e = z10;
     }
 
@@ -24,8 +24,8 @@ public final class jk extends org.telegram.ui.Components.nd {
             i10 = 0;
         }
         int i11 = i10;
-        int i12 = org.telegram.ui.ActionBar.h6.f21327ve;
-        sn snVar = this.f38222f;
+        int i12 = org.telegram.ui.ActionBar.h6.f21334ve;
+        sn snVar = this.f38238f;
         setBackground(org.telegram.ui.ActionBar.h6.X(AndroidUtilities.dp(19.0f), 436207615 & snVar.getThemedColor(i12), i11, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f)));
         getImageView().setColorFilter(new PorterDuffColorFilter(snVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
         getTextView().setTextColor(snVar.getThemedColor(i12));

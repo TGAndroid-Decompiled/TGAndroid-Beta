@@ -15,13 +15,13 @@ public final class b0 extends qg.e1 {
 
     @Override
     public final void g(qg.m mVar) {
-        int indexOf = qg.m.f44585a.indexOf(mVar);
+        int indexOf = qg.m.f44605a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1 || this.E != null) {
             indexOf = i10;
         }
         it0 it0Var = this.F;
-        it0Var.f45523t1.b(indexOf);
+        it0Var.f45543t1.b(indexOf);
         it0Var.o(mVar);
     }
 }

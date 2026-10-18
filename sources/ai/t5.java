@@ -12,12 +12,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 public final class t5 implements Comparator {
-    public final int f2205a;
-    public final Object f2206b;
+    public final int f2202a;
+    public final Object f2203b;
 
     public t5(Object obj, int i10) {
-        this.f2205a = i10;
-        this.f2206b = obj;
+        this.f2202a = i10;
+        this.f2203b = obj;
     }
 
     @Override
@@ -27,13 +27,13 @@ public final class t5 implements Comparator {
         int i10;
         int indexOf;
         int indexOf2;
-        switch (this.f2205a) {
+        switch (this.f2202a) {
             case 0:
-                float[] fArr = ((w5) this.f2206b).f2367r;
+                float[] fArr = ((w5) this.f2203b).f2370r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
             case 1:
-                ci.i7 i7Var = (ci.i7) this.f2206b;
-                int i11 = i7Var.f5493a;
+                ci.i7 i7Var = (ci.i7) this.f2203b;
+                int i11 = i7Var.f5494a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
                 long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
@@ -69,10 +69,10 @@ public final class t5 implements Comparator {
                                 if (peerStories.stories.isEmpty()) {
                                     i10 = 0;
                                 } else {
-                                    i10 = ((TL_stories.StoryItem) i0.a.h(1, peerStories.stories)).date;
+                                    i10 = ((TL_stories.StoryItem) i2.d.h(1, peerStories.stories)).date;
                                 }
                                 if (!peerStories2.stories.isEmpty()) {
-                                    i12 = ((TL_stories.StoryItem) i0.a.h(1, peerStories2.stories)).date;
+                                    i12 = ((TL_stories.StoryItem) i2.d.h(1, peerStories2.stories)).date;
                                 }
                                 return i12 - i10;
                             }
@@ -84,7 +84,7 @@ public final class t5 implements Comparator {
                 }
                 return (K2 ? 1 : 0) - (K ? 1 : 0);
             case 2:
-                ArrayList arrayList = (ArrayList) this.f2206b;
+                ArrayList arrayList = (ArrayList) this.f2203b;
                 MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;
                 MediaController.AlbumEntry albumEntry2 = (MediaController.AlbumEntry) obj2;
                 int i13 = albumEntry.bucketId;
@@ -98,7 +98,7 @@ public final class t5 implements Comparator {
                 }
                 return -1;
             case 3:
-                ki.g6 g6Var = (ki.g6) this.f2206b;
+                ki.g6 g6Var = (ki.g6) this.f2203b;
                 TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) obj;
                 TL_iv.pageTableCell pagetablecell2 = (TL_iv.pageTableCell) obj2;
                 int b10 = g6Var.b(pagetablecell);
@@ -108,13 +108,13 @@ public final class t5 implements Comparator {
                 }
                 return Integer.compare(g6Var.a(pagetablecell), g6Var.a(pagetablecell2));
             case 4:
-                r2.v vVar = (r2.v) this.f2206b;
+                r2.v vVar = (r2.v) this.f2203b;
                 return vVar.b(obj2) - vVar.b(obj);
             case 5:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f2206b;
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f2203b;
                 return sparseIntArray.get(((sg.h) obj).e, Integer.MAX_VALUE) - sparseIntArray.get(((sg.h) obj2).e, Integer.MAX_VALUE);
             default:
-                return ((Collator) this.f2206b).compare((String) obj, (String) obj2);
+                return ((Collator) this.f2203b).compare((String) obj, (String) obj2);
         }
     }
 }

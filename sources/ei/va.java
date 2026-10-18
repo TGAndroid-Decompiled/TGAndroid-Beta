@@ -1,22 +1,14 @@
 package ei;
 public final class va implements zb {
-    public final ai.q f9947a;
+    public final ai.q f9949a;
 
     public va(ai.q qVar) {
-        this.f9947a = qVar;
+        this.f9949a = qVar;
     }
 
     @Override
     public final void A(float f7, boolean z10) {
-        this.f9947a.run(Boolean.FALSE, Float.valueOf(f7));
-    }
-
-    @Override
-    public final void Q() {
-    }
-
-    @Override
-    public final void q() {
+        this.f9949a.run(Boolean.FALSE, Float.valueOf(f7));
     }
 
     @Override
@@ -40,6 +32,10 @@ public final class va implements zb {
     }
 
     @Override
+    public final void Q() {
+    }
+
+    @Override
     public final void S(float f7) {
     }
 
@@ -57,6 +53,10 @@ public final class va implements zb {
 
     @Override
     public final void l(float f7) {
+    }
+
+    @Override
+    public final void q() {
     }
 
     @Override

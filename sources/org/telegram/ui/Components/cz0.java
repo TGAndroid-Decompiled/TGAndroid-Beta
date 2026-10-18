@@ -34,7 +34,7 @@ public final class cz0 extends im0 {
         gz0 gz0Var = this.X2;
         cz0 cz0Var = gz0Var.e;
         previewDelegate = gz0Var.getPreviewDelegate();
-        boolean r10 = q6.r(motionEvent, cz0Var, previewDelegate, this.f27284n2);
+        boolean r10 = q6.r(motionEvent, cz0Var, previewDelegate, this.f27291n2);
         if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
             return false;
         }

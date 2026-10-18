@@ -90,9 +90,9 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void U(float f7) {
         xa xaVar = (xa) this.f310b;
-        qg.u0.e(xaVar.F1).k(String.valueOf(qg.m.f44585a.indexOf(xaVar.O0.getCurrentBrush())), f7);
+        qg.u0.e(xaVar.F1).k(String.valueOf(qg.m.f44605a.indexOf(xaVar.O0.getCurrentBrush())), f7);
         s1 s1Var = xaVar.A1;
-        s1Var.f44669c = f7;
+        s1Var.f44689c = f7;
         xaVar.D0(s1Var, null, false);
     }
 
@@ -101,7 +101,7 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
         hg.j1 j1Var = (hg.j1) this.f310b;
         String str = j1Var.Z;
         if (str != null) {
-            j1Var.U(str, j1Var.f11923c0, j1Var.f11924d0, j1Var.f11921b0, j1Var.f11920a0);
+            j1Var.U(str, j1Var.f11925c0, j1Var.f11926d0, j1Var.f11923b0, j1Var.f11922a0);
         }
     }
 
@@ -114,8 +114,8 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
                     if (qVar.R()) {
                         qVar.W(qVar.q(2131689613));
                     }
-                    y yVar = qVar.f2836l0;
-                    if (!yVar.f2852n) {
+                    y yVar = qVar.f2837l0;
+                    if (!yVar.f2853n) {
                         Log.w("BiometricFragment", "Failure not sent to client. Client is not awaiting a result.");
                     } else {
                         Executor executor = yVar.d;
@@ -124,18 +124,18 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
                         }
                         executor.execute(new androidx.biometric.h(qVar, 0));
                     }
-                    y yVar2 = qVar.f2836l0;
-                    if (yVar2.f2859u == null) {
-                        yVar2.f2859u = new z();
+                    y yVar2 = qVar.f2837l0;
+                    if (yVar2.f2860u == null) {
+                        yVar2.f2860u = new z();
                     }
-                    y.h(yVar2.f2859u, Boolean.FALSE);
+                    y.h(yVar2.f2860u, Boolean.FALSE);
                     return;
                 }
                 return;
             default:
                 t tVar = (t) obj;
                 androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f310b;
-                if (tVar != null && pVar.f3246r0) {
+                if (tVar != null && pVar.f3247r0) {
                     pVar.getClass();
                     throw new IllegalStateException("Fragment " + pVar + " did not return a View from onCreateView() or this was called before onCreateView().");
                 }
@@ -167,7 +167,7 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i10 = q7.a.f44435a;
+                int i10 = q7.a.f44455a;
                 obtain.writeStrongBinder(fVar);
                 q7.a.b(obtain, (GetCredentialRequest) this.f310b);
                 q7.a.b(obtain, gVar);
@@ -184,7 +184,7 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
             sb2.append("=");
             sb2.append(d9.l.f(entry.getValue()));
             while (it.hasNext()) {
-                sb2.append((CharSequence) lVar.f7894a);
+                sb2.append((CharSequence) lVar.f7895a);
                 Map.Entry entry2 = (Map.Entry) it.next();
                 sb2.append(d9.l.f(entry2.getKey()));
                 sb2.append("=");
@@ -215,9 +215,9 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
                 Log.e("BiometricFragment", "Not launching prompt. Client activity was null.");
                 return;
             }
-            y yVar = qVar.f2836l0;
-            yVar.f2845f = lVar;
-            int i10 = lVar.f14283a;
+            y yVar = qVar.f2837l0;
+            yVar.f2846f = lVar;
+            int i10 = lVar.f14290a;
             if (i10 == 0) {
                 if (uVar != null) {
                     i10 = 15;
@@ -226,20 +226,20 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
                 }
             }
             if (Build.VERSION.SDK_INT < 30 && i10 == 15 && uVar == null) {
-                yVar.f2846g = v7.m.a();
+                yVar.f2847g = v7.m.a();
             } else {
-                yVar.f2846g = uVar;
+                yVar.f2847g = uVar;
             }
             if (qVar.Q()) {
-                qVar.f2836l0.f2849k = qVar.q(2131689576);
+                qVar.f2837l0.f2850k = qVar.q(2131689576);
             } else {
-                qVar.f2836l0.f2849k = null;
+                qVar.f2837l0.f2850k = null;
             }
-            if (qVar.Q() && new androidx.biometric.e(new k6.h(k10, 1)).i(255) != 0) {
-                qVar.f2836l0.f2852n = true;
+            if (qVar.Q() && new androidx.biometric.e(new k6.h(k10, 1)).h(255) != 0) {
+                qVar.f2837l0.f2853n = true;
                 qVar.S();
-            } else if (qVar.f2836l0.f2854p) {
-                qVar.f2835k0.postDelayed(new androidx.biometric.p(qVar), 600L);
+            } else if (qVar.f2837l0.f2855p) {
+                qVar.f2836k0.postDelayed(new androidx.biometric.p(qVar), 600L);
             } else {
                 qVar.X();
             }
@@ -261,7 +261,7 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
         try {
             return constructor.newInstance(null);
         } catch (IllegalAccessException e) {
-            r8 r8Var = jb.c.f14365a;
+            r8 r8Var = jb.c.f14372a;
             throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e);
         } catch (InstantiationException e7) {
             throw new RuntimeException("Failed to invoke constructor '" + jb.c.b(constructor) + "' with no args", e7);
@@ -273,12 +273,12 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void g(k6.a aVar) {
         w wVar = (w) this.f310b;
-        wVar.f6513o.lock();
+        wVar.f6514o.lock();
         try {
-            wVar.f6510l = aVar;
+            wVar.f6511l = aVar;
             w.l(wVar);
         } finally {
-            wVar.f6513o.unlock();
+            wVar.f6514o.unlock();
         }
     }
 
@@ -288,9 +288,9 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
         int i10 = xaVar.F1;
         qg.m currentBrush = xaVar.O0.getCurrentBrush();
         if (currentBrush == null) {
-            return qg.u0.e(i10).f44697i;
+            return qg.u0.e(i10).f44717i;
         }
-        return qg.u0.e(i10).f(String.valueOf(qg.m.f44585a.indexOf(currentBrush)), currentBrush.d());
+        return qg.u0.e(i10).f(String.valueOf(qg.m.f44605a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
@@ -298,12 +298,9 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
         return new String[]{"WEB_MESSAGE_LISTENER", "WEB_MESSAGE_ARRAY_BUFFER"};
     }
 
-    public Boolean h() {
-        Bundle bundle = (Bundle) this.f310b;
-        if (bundle.containsKey("firebase_sessions_enabled")) {
-            return Boolean.valueOf(bundle.getBoolean("firebase_sessions_enabled"));
-        }
-        return null;
+    @Override
+    public boolean h() {
+        return true;
     }
 
     @Override
@@ -318,21 +315,21 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
                     Log.w("FragmentManager", "No IntentSenders were started for " + this);
                     return;
                 }
-                String str = f0Var.f3179a;
-                int i10 = f0Var.f3180b;
-                androidx.fragment.app.s f7 = j0Var.f3193c.f(str);
+                String str = f0Var.f3180a;
+                int i10 = f0Var.f3181b;
+                androidx.fragment.app.s f7 = j0Var.f3194c.f(str);
                 if (f7 == null) {
                     Log.w("FragmentManager", "Intent Sender result delivered for unknown Fragment " + str);
                     return;
                 }
-                f7.x(i10, aVar.f2682a, aVar.f2683b);
+                f7.x(i10, aVar.f2683a, aVar.f2684b);
                 return;
             default:
                 ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f310b;
                 androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
-                Intent intent = aVar2.f2683b;
-                int i11 = com.google.android.gms.internal.play_billing.u.e("ProxyBillingActivityV2", intent).f4756a;
+                Intent intent = aVar2.f2684b;
+                int i11 = com.google.android.gms.internal.play_billing.u.e("ProxyBillingActivityV2", intent).f4757a;
                 ResultReceiver resultReceiver = proxyBillingActivityV2.N;
                 if (resultReceiver != null) {
                     if (intent == null) {
@@ -342,7 +339,7 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
                     }
                     resultReceiver.send(i11, extras);
                 }
-                int i12 = aVar2.f2682a;
+                int i12 = aVar2.f2683a;
                 if (i12 != -1 || i11 != 0) {
                     com.google.android.gms.internal.play_billing.u.h("ProxyBillingActivityV2", "External offer dialog finished with resultCode: " + i12 + " and billing's responseCode: " + i11);
                 }
@@ -352,8 +349,18 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public boolean j() {
-        return true;
+    public void j(String str, long j10, long j11, long j12) {
+        e6.o oVar = (e6.o) this.f310b;
+        try {
+            oVar.a(new e6.n(new Status(2103, null, null, null), 1));
+        } catch (IllegalStateException e) {
+            g6.b bVar = e6.h.f8371k;
+            Log.e(bVar.f10845a, bVar.d("Result already set when calling onRequestReplaced", new Object[0]), e);
+        }
+        Iterator it = oVar.f8392q.f8377i.iterator();
+        while (it.hasNext()) {
+            ((e6.g) it.next()).h(str, j10, 2103, j11, j12);
+        }
     }
 
     @Override
@@ -372,15 +379,15 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
     public void n(int i10) {
         k6.a aVar;
         w wVar = (w) this.f310b;
-        Lock lock = wVar.f6513o;
+        Lock lock = wVar.f6514o;
         lock.lock();
         try {
-            if (!wVar.f6512n && (aVar = wVar.f6511m) != null && aVar.c()) {
-                wVar.f6512n = true;
+            if (!wVar.f6513n && (aVar = wVar.f6512m) != null && aVar.c()) {
+                wVar.f6513n = true;
                 wVar.e.onConnectionSuspended(i10);
                 lock.unlock();
             }
-            wVar.f6512n = false;
+            wVar.f6513n = false;
             w.k(wVar, i10);
             lock.unlock();
         } catch (Throwable th2) {
@@ -392,18 +399,18 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void o(Bundle bundle) {
         w wVar = (w) this.f310b;
-        wVar.f6513o.lock();
+        wVar.f6514o.lock();
         try {
-            Bundle bundle2 = wVar.f6509k;
+            Bundle bundle2 = wVar.f6510k;
             if (bundle2 == null) {
-                wVar.f6509k = bundle;
+                wVar.f6510k = bundle;
             } else if (bundle != null) {
                 bundle2.putAll(bundle);
             }
-            wVar.f6510l = k6.a.e;
+            wVar.f6511l = k6.a.e;
             w.l(wVar);
         } finally {
-            wVar.f6513o.unlock();
+            wVar.f6514o.unlock();
         }
     }
 
@@ -419,37 +426,30 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void p(String str, long j10, long j11, long j12) {
-        e6.o oVar = (e6.o) this.f310b;
-        try {
-            oVar.a(new e6.n(new Status(2103, null, null, null), 1));
-        } catch (IllegalStateException e) {
-            g6.b bVar = e6.h.f8370k;
-            Log.e(bVar.f10843a, bVar.d("Result already set when calling onRequestReplaced", new Object[0]), e);
-        }
-        Iterator it = oVar.f8391q.f8376i.iterator();
-        while (it.hasNext()) {
-            ((e6.g) it.next()).h(str, j10, 2103, j11, j12);
-        }
+    public java.lang.Object p(ee.c r7, md.c r8) {
+        throw new UnsupportedOperationException("Method not decompiled: a6.m.p(ee.c, md.c):java.lang.Object");
     }
 
     @Override
-    public java.lang.Object r(ee.c r7, md.c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: a6.m.r(ee.c, md.c):java.lang.Object");
-    }
-
-    @Override
-    public boolean s() {
+    public boolean r() {
         return false;
     }
 
     @Override
-    public void t(java.lang.String r14, long r15, int r17, java.lang.Object r18, long r19, long r21) {
-        throw new UnsupportedOperationException("Method not decompiled: a6.m.t(java.lang.String, long, int, java.lang.Object, long, long):void");
+    public void s(java.lang.String r14, long r15, int r17, java.lang.Object r18, long r19, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: a6.m.s(java.lang.String, long, int, java.lang.Object, long, long):void");
+    }
+
+    public Boolean t() {
+        Bundle bundle = (Bundle) this.f310b;
+        if (bundle.containsKey("firebase_sessions_enabled")) {
+            return Boolean.valueOf(bundle.getBoolean("firebase_sessions_enabled"));
+        }
+        return null;
     }
 
     public void u(e0 e0Var) {
-        ((l5.r) ((i5.f) ((qa.b) this.f310b).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new a1.c(this, 2)).a(new i5.a(null, e0Var, i5.d.f12712a, null), new k2.f0(4));
+        ((l5.r) ((i5.f) ((qa.b) this.f310b).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new a1.c(this, 2)).a(new i5.a(null, e0Var, i5.d.f12710a, null), new k2.f0(4));
     }
 
     public c3.j v() {
@@ -459,8 +459,8 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
         ArrayList arrayList3 = new ArrayList();
         ArrayList arrayList4 = new ArrayList();
         for (c3.j jVar : ((LinkedHashMap) this.f310b).values()) {
-            arrayList.add(jVar.f4632b);
-            arrayList2.add(jVar.f4633c);
+            arrayList.add(jVar.f4633b);
+            arrayList2.add(jVar.f4634c);
             arrayList3.add(jVar.d);
             arrayList4.add(jVar.e);
         }
@@ -569,7 +569,7 @@ public final class m implements bl0, a0, androidx.activity.result.b, WebMessageL
 
     public m(ca.c cVar) {
         this.f309a = 19;
-        this.f310b = new File(cVar.f5048b, "com.crashlytics.settings.json");
+        this.f310b = new File(cVar.f5049b, "com.crashlytics.settings.json");
     }
 
     public m(int i10) {

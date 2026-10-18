@@ -1,97 +1,100 @@
 package zh;
 
+import ai.n1;
+import android.content.Context;
+import android.graphics.Paint;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class q extends s4.g0 {
-    public final k0 f52086c;
+import org.telegram.ui.sa1;
+public final class q extends HorizontalScrollView {
+    public org.telegram.ui.web.m f51832a;
+    public x f51833b;
+    public final sa1 f51834c;
+    public final Paint d;
+    public int e;
+    public float f51835f;
+    public final d0 h;
 
-    public q(k0 k0Var) {
-        this.f52086c = k0Var;
+    public q(d0 d0Var, Context context) {
+        super(context);
+        this.h = d0Var;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.e = -1;
+        this.f51835f = Float.NaN;
+        setHorizontalScrollBarEnabled(false);
+        setOverScrollMode(2);
+        setFillViewport(true);
+        setWillNotDraw(false);
+        sa1 sa1Var = new sa1(this, context, 22);
+        this.f51834c = sa1Var;
+        sa1Var.setOrientation(0);
+        sa1Var.setGravity(16);
+        sa1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
+        addView(sa1Var, new FrameLayout.LayoutParams(-2, -1));
+        paint.setColor(1560281087);
     }
 
-    @Override
-    public final int h() {
-        return this.f52086c.f52128s;
-    }
-
-    @Override
-    public final int j(int i10) {
-        k0 k0Var = this.f52086c;
-        u uVar = (u) k0Var.f52126n.get(k0Var.f(i10));
-        if (uVar.f52106b != null && i10 == uVar.d) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        String str;
-        int i11;
-        k0 k0Var = this.f52086c;
-        u uVar = (u) k0Var.f52126n.get(k0Var.f(i10));
-        int i12 = b1Var.f45941f;
-        View view = b1Var.f45938a;
-        int i13 = 1;
-        int i14 = 0;
-        if (i12 == 0) {
-            t tVar = (t) view;
-            String str2 = uVar.f52106b;
-            if (k0Var.f52129w || uVar.f52105a != 2) {
-                i13 = 0;
+    public final void a(int i10, boolean z10) {
+        if (i10 != this.e && i10 >= 0) {
+            sa1 sa1Var = this.f51834c;
+            if (i10 < sa1Var.getChildCount()) {
+                this.e = i10;
+                if (!z10) {
+                    this.f51835f = Float.NaN;
+                }
+                View childAt = sa1Var.getChildAt(i10);
+                int left = childAt.getLeft() - AndroidUtilities.dp(30.0f);
+                int dp = AndroidUtilities.dp(30.0f) + childAt.getRight();
+                if (left < getScrollX()) {
+                    if (z10) {
+                        smoothScrollTo(left, 0);
+                    } else {
+                        scrollTo(left, 0);
+                    }
+                } else {
+                    if (dp > getWidth() + getScrollX()) {
+                        if (z10) {
+                            smoothScrollTo(dp - getWidth(), 0);
+                        } else {
+                            scrollTo(dp - getWidth(), 0);
+                        }
+                    }
+                }
+                sa1Var.invalidate();
             }
-            TextView textView = tVar.f52101b;
-            TextView textView2 = tVar.f52100a;
-            if (str2 != null) {
-                str = str2.replace('\n', ' ');
+        }
+    }
+
+    @Override
+    public final void draw(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: zh.q.draw(android.graphics.Canvas):void");
+    }
+
+    public void setSections(ArrayList<o> arrayList) {
+        TLRPC.Document document;
+        sa1 sa1Var = this.f51834c;
+        sa1Var.removeAllViews();
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            o oVar = arrayList.get(i10);
+            Context context = getContext();
+            int i11 = oVar.f51815a;
+            if (i11 == 2) {
+                document = (TLRPC.Document) oVar.f51817c.get(0);
             } else {
-                str = null;
+                document = null;
             }
-            textView2.setText(str);
-            textView2.setTextColor(tVar.f52102c.f52130x);
-            if (i13 != 0) {
-                i11 = 0;
-            } else {
-                i11 = 8;
-            }
-            textView.setVisibility(i11);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView2.getLayoutParams();
-            int dp = AndroidUtilities.dp(15.0f);
-            if (i13 != 0) {
-                i14 = AndroidUtilities.dp(6.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(12.0f) + ((int) Math.ceil(textView.getPaint().measureText(textView.getText().toString())));
-            }
-            int i15 = dp + i14;
-            if (layoutParams.rightMargin != i15) {
-                layoutParams.rightMargin = i15;
-                textView2.setLayoutParams(layoutParams);
-                return;
-            }
-            return;
+            p pVar = new p(this.h, context, i11, document);
+            pVar.setOnClickListener(new n1(this, i10, 29));
+            pVar.setContentDescription(oVar.f51816b);
+            sa1Var.addView(pVar, new LinearLayout.LayoutParams(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(30.0f)));
         }
-        ArrayList arrayList = uVar.f52107c;
-        int i16 = i10 - uVar.d;
-        if (uVar.f52106b == null) {
-            i13 = 0;
-        }
-        ((r) view).set((TLRPC.Document) arrayList.get(i16 - i13));
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View rVar;
-        k0 k0Var = this.f52086c;
-        if (i10 == 0) {
-            rVar = new t(k0Var, viewGroup.getContext());
-            rVar.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(44.0f)));
-        } else {
-            rVar = new r(viewGroup.getContext(), k0Var.f52122a);
-            rVar.setLayoutParams(new s4.o0(-1, -2));
-        }
-        return new s4.b1(rVar);
+        this.e = -1;
+        this.f51835f = Float.NaN;
     }
 }

@@ -11,5 +11,5 @@ public interface fb0 {
 
     void b(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10);
 
-    Paint.FontMetricsInt w();
+    Paint.FontMetricsInt s();
 }

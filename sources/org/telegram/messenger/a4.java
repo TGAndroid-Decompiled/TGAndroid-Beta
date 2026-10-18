@@ -1,17 +1,17 @@
 package org.telegram.messenger;
 public final class a4 implements Runnable {
-    public final int f17830a;
-    public final boolean f17831b;
+    public final int f17839a;
+    public final boolean f17840b;
 
     public a4(int i10, boolean z10) {
-        this.f17830a = i10;
-        this.f17831b = z10;
+        this.f17839a = i10;
+        this.f17840b = z10;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f17830a;
-        boolean z10 = this.f17831b;
+        int i10 = this.f17839a;
+        boolean z10 = this.f17840b;
         switch (i10) {
             case 0:
                 FingerprintController.b(z10);

@@ -4,50 +4,50 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class s6 {
-    public final e7 f2147a;
-    public x6 f2148b;
-    public x6 f2149c;
+    public final e7 f2149a;
+    public x6 f2150b;
+    public x6 f2151c;
     public x6 d;
     public o6 h;
-    public o6 f2152i;
-    public o6 f2153j;
-    public o6 f2154k;
-    public TL_stars.TL_starGiftUnique f2155l;
-    public long f2156m;
-    public b2 f2161r;
-    public b2 f2162s;
-    public float f2163t;
-    public boolean f2164u;
+    public o6 f2154i;
+    public o6 f2155j;
+    public o6 f2156k;
+    public TL_stars.TL_starGiftUnique f2157l;
+    public long f2158m;
+    public d2 f2163r;
+    public d2 f2164s;
+    public float f2165t;
+    public boolean f2166u;
     public boolean v;
     public final ArrayList e = new ArrayList();
-    public final ArrayList f2150f = new ArrayList();
-    public final ArrayList f2151g = new ArrayList();
-    public float f2157n = 0.0f;
-    public boolean f2158o = false;
-    public boolean f2159p = false;
-    public boolean f2160q = false;
+    public final ArrayList f2152f = new ArrayList();
+    public final ArrayList f2153g = new ArrayList();
+    public float f2159n = 0.0f;
+    public boolean f2160o = false;
+    public boolean f2161p = false;
+    public boolean f2162q = false;
 
     public s6(e7 e7Var) {
-        this.f2147a = e7Var;
-        e7Var.f1214c.addOnAttachStateChangeListener(new m6(this, 0));
+        this.f2149a = e7Var;
+        e7Var.f1215c.addOnAttachStateChangeListener(new m6(this, 0));
     }
 
     public final void a() {
-        this.f2158o = false;
-        this.f2147a.f1214c.c();
+        this.f2160o = false;
+        this.f2149a.f1215c.c();
         o6 o6Var = this.h;
         if (o6Var != null) {
             o6Var.a();
         }
-        o6 o6Var2 = this.f2152i;
+        o6 o6Var2 = this.f2154i;
         if (o6Var2 != null) {
             o6Var2.a();
         }
-        o6 o6Var3 = this.f2153j;
+        o6 o6Var3 = this.f2155j;
         if (o6Var3 != null) {
             o6Var3.a();
         }
-        o6 o6Var4 = this.f2154k;
+        o6 o6Var4 = this.f2156k;
         if (o6Var4 != null) {
             o6Var4.a();
         }
@@ -55,14 +55,14 @@ public final class s6 {
     }
 
     public final void b() {
-        if (this.f2158o && !this.v) {
+        if (this.f2160o && !this.v) {
             this.v = true;
             AndroidUtilities.runOnUIThread(new l6(this, 1));
         }
     }
 
     public final void c() {
-        if (this.f2158o) {
+        if (this.f2160o) {
             return;
         }
         ArrayList arrayList = this.e;
@@ -74,7 +74,7 @@ public final class s6 {
             ((q6) obj).a();
         }
         arrayList.clear();
-        this.f2150f.clear();
-        this.f2151g.clear();
+        this.f2152f.clear();
+        this.f2153g.clear();
     }
 }

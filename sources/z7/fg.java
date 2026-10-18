@@ -1,25 +1,30 @@
 package z7;
 
+import android.os.IBinder;
+import android.os.IInterface;
 import android.os.Parcel;
-import android.os.Parcelable;
-public final class fg extends a9.a {
-    public final kg V0(x6.b bVar, cg cgVar) {
-        kg createFromParcel;
+public final class fg extends a9.a implements hg {
+    public final eg V0(x6.b bVar, kg kgVar) {
+        eg aVar;
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken(this.f319c);
-        int i10 = t.f51189a;
+        int i10 = t.f51215a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
-        cgVar.writeToParcel(obtain, 0);
-        Parcel P0 = P0(obtain, 3);
-        Parcelable.Creator<kg> creator = kg.CREATOR;
-        if (P0.readInt() == 0) {
-            createFromParcel = null;
+        kgVar.writeToParcel(obtain, 0);
+        Parcel P0 = P0(obtain, 1);
+        IBinder readStrongBinder = P0.readStrongBinder();
+        if (readStrongBinder == null) {
+            aVar = 0;
         } else {
-            createFromParcel = creator.createFromParcel(P0);
+            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.mlkit.vision.segmentation.subject.aidls.ISubjectSegmenter");
+            if (queryLocalInterface instanceof eg) {
+                aVar = (eg) queryLocalInterface;
+            } else {
+                aVar = new a9.a(readStrongBinder, "com.google.mlkit.vision.segmentation.subject.aidls.ISubjectSegmenter", 11);
+            }
         }
-        kg kgVar = createFromParcel;
         P0.recycle();
-        return kgVar;
+        return aVar;
     }
 }

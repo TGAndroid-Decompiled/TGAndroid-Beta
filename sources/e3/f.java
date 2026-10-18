@@ -14,12 +14,12 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class f implements a {
-    public final n0 f8332a;
-    public final int f8333b;
+    public final n0 f8333a;
+    public final int f8334b;
 
     public f(int i10, x1 x1Var) {
-        this.f8333b = i10;
-        this.f8332a = x1Var;
+        this.f8334b = i10;
+        this.f8333a = x1Var;
     }
 
     public static f b(int i10, x xVar) {
@@ -30,12 +30,12 @@ public final class f implements a {
         int i12 = 4;
         s.f(4, "initialCapacity");
         Object[] objArr = new Object[4];
-        int i13 = xVar.f8295c;
+        int i13 = xVar.f8296c;
         int i14 = -2;
         int i15 = 0;
         while (xVar.a() > 8) {
             int o10 = xVar.o();
-            int o11 = xVar.f8294b + xVar.o();
+            int o11 = xVar.f8295b + xVar.o();
             xVar.M(o11);
             if (o10 == 1414744396) {
                 gVar = b(xVar.o(), xVar);
@@ -84,9 +84,9 @@ public final class f implements a {
                                 break;
                             } else {
                                 v vVar = new v();
-                                vVar.f4084y = o12;
-                                vVar.f4085z = o13;
-                                vVar.f4078r = v0.n(str2);
+                                vVar.f4085y = o12;
+                                vVar.f4086z = o13;
+                                vVar.f4079r = v0.n(str2);
                                 gVar = new g(new w(vVar));
                                 break;
                             }
@@ -117,7 +117,7 @@ public final class f implements a {
                                     int o15 = xVar.o();
                                     xVar.O(6);
                                     int t12 = xVar.t();
-                                    String str3 = m0.f8254a;
+                                    String str3 = m0.f8255a;
                                     int D = m0.D(t12, ByteOrder.LITTLE_ENDIAN);
                                     if (xVar.a() > 0) {
                                         i11 = xVar.t();
@@ -125,7 +125,7 @@ public final class f implements a {
                                         i11 = 0;
                                     }
                                     v vVar2 = new v();
-                                    vVar2.f4078r = v0.n(str);
+                                    vVar2.f4079r = v0.n(str);
                                     vVar2.J = t11;
                                     vVar2.K = o15;
                                     if (str.equals("audio/raw") && D != 0) {
@@ -134,7 +134,7 @@ public final class f implements a {
                                     if (str.equals("audio/mp4a-latm") && i11 > 0) {
                                         byte[] bArr = new byte[i11];
                                         xVar.k(0, i11, bArr);
-                                        vVar2.f4081u = n0.y(bArr);
+                                        vVar2.f4082u = n0.y(bArr);
                                     }
                                     gVar = new g(new w(vVar2));
                                     break;
@@ -195,7 +195,7 @@ public final class f implements a {
     }
 
     public final a a(Class cls) {
-        l0 listIterator = this.f8332a.listIterator(0);
+        l0 listIterator = this.f8333a.listIterator(0);
         while (listIterator.hasNext()) {
             a aVar = (a) listIterator.next();
             if (aVar.getClass() == cls) {
@@ -207,6 +207,6 @@ public final class f implements a {
 
     @Override
     public final int getType() {
-        return this.f8333b;
+        return this.f8334b;
     }
 }

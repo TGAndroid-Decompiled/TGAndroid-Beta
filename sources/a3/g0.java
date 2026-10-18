@@ -25,9 +25,9 @@ public final class g0 {
         this.f111g = b0Var;
         ?? obj = new Object();
         int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
-        obj.f8280a = 0;
-        obj.f8281b = -1;
-        obj.f8282c = 0;
+        obj.f8281a = 0;
+        obj.f8282b = -1;
+        obj.f8283c = 0;
         obj.e = new long[highestOneBit];
         obj.d = highestOneBit - 1;
         this.f110f = obj;
@@ -42,15 +42,15 @@ public final class g0 {
         long j12;
         b2.w wVar;
         final qf.b bVar = this.f107a;
-        f fVar = (f) bVar.f44466c;
+        f fVar = (f) bVar.f44486c;
         while (true) {
             e2.s sVar = this.f110f;
-            int i10 = sVar.f8282c;
+            int i10 = sVar.f8283c;
             if (i10 == 0) {
                 return;
             }
             if (i10 != 0) {
-                long j13 = ((long[]) sVar.e)[sVar.f8280a];
+                long j13 = ((long[]) sVar.e)[sVar.f8281a];
                 Long l4 = (Long) this.e.g(j13);
                 a0 a0Var = this.f108b;
                 if (l4 != null && l4.longValue() != this.f115l) {
@@ -82,10 +82,10 @@ public final class g0 {
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ((f) bVar.f44466c).h.onFirstFrameRendered();
+                                        ((f) bVar.f44486c).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((f) bVar.f44466c).h.h();
+                                        ((f) bVar.f44486c).h.h();
                                         return;
                                 }
                             }
@@ -111,10 +111,10 @@ public final class g0 {
                     if (a2Var != null && !a2Var.equals(a2.d) && !a2Var.equals(this.f114k)) {
                         this.f114k = a2Var;
                         b2.v vVar = new b2.v();
-                        vVar.f4084y = a2Var.f3696a;
-                        vVar.f4085z = a2Var.f3697b;
-                        vVar.f4078r = v0.n("video/raw");
-                        bVar.f44465b = new b2.w(vVar);
+                        vVar.f4085y = a2Var.f3697a;
+                        vVar.f4086z = a2Var.f3698b;
+                        vVar.f4079r = v0.n("video/raw");
+                        bVar.f44485b = new b2.w(vVar);
                         fVar.f84i.execute(new a1.f(2, bVar, a2Var));
                     }
                     if (z10) {
@@ -135,16 +135,16 @@ public final class g0 {
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ((f) bVar.f44466c).h.onFirstFrameRendered();
+                                        ((f) bVar.f44486c).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((f) bVar.f44466c).h.h();
+                                        ((f) bVar.f44486c).h.h();
                                         return;
                                 }
                             }
                         });
                     }
-                    b2.w wVar2 = (b2.w) bVar.f44465b;
+                    b2.w wVar2 = (b2.w) bVar.f44485b;
                     if (wVar2 == null) {
                         wVar = new b2.w(new b2.v());
                     } else {

@@ -8,25 +8,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class p6 implements Utilities.Callback2 {
-    public final int f39974a;
-    public final Object f39975b;
-    public final Object f39976c;
+    public final int f39993a;
+    public final Object f39994b;
+    public final Object f39995c;
     public final Object d;
 
     public p6(Object obj, Object obj2, Object obj3, int i10) {
-        this.f39974a = i10;
-        this.f39975b = obj;
-        this.f39976c = obj2;
+        this.f39993a = i10;
+        this.f39994b = obj;
+        this.f39995c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f39974a;
+        int i10 = this.f39993a;
         int i11 = 0;
         Object obj3 = this.d;
-        Object obj4 = this.f39976c;
-        Object obj5 = this.f39975b;
+        Object obj4 = this.f39995c;
+        Object obj5 = this.f39994b;
         switch (i10) {
             case 0:
                 org.telegram.messenger.camera.i iVar = (org.telegram.messenger.camera.i) obj3;
@@ -42,12 +42,12 @@ public final class p6 implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj;
                 TLRPC.WebPage webPage = (TLRPC.WebPage) obj2;
                 if (bool.booleanValue() && !(webPage instanceof TLRPC.TL_webPagePending)) {
-                    Iterator it = snVar.f41303mb.keySet().iterator();
-                    while (it.hasNext() && snVar.f41303mb.size() > 5) {
+                    Iterator it = snVar.f41324mb.keySet().iterator();
+                    while (it.hasNext() && snVar.f41324mb.size() > 5) {
                         it.next();
                         it.remove();
                     }
-                    snVar.f41303mb.put(getwebpagepreview.message, webPage);
+                    snVar.f41324mb.put(getwebpagepreview.message, webPage);
                 }
                 egVar.run(bool, webPage);
                 return;
@@ -133,7 +133,7 @@ public final class p6 implements Utilities.Callback2 {
                                 return;
                         }
                     }
-                }, new ai.g3(eyVar, b2Var, l4, odVar, n2Var, 5));
+                }, new ai.e3(eyVar, b2Var, l4, odVar, n2Var, 5));
                 return;
             default:
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj5;
@@ -144,7 +144,7 @@ public final class p6 implements Utilities.Callback2 {
                 if (passkeys != null) {
                     f3Var.dismiss();
                     while (i11 < passkeys.passkeys.size()) {
-                        if (TextUtils.equals(passkeys.passkeys.get(i11).f20474id, passkey.f20474id)) {
+                        if (TextUtils.equals(passkeys.passkeys.get(i11).f20481id, passkey.f20481id)) {
                             passkeys.passkeys.remove(i11);
                             i11--;
                         }

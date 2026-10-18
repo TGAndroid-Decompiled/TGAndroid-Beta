@@ -36,9 +36,9 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.Cells.c1;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.o9;
-import org.telegram.ui.Cells.t0;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.a6;
 import org.telegram.ui.Components.bp0;
@@ -59,10 +59,10 @@ import y6.e;
 import zf.j;
 import zf.k;
 public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Continuation, u5.a, m, g, c, i {
-    public final int f44304a;
+    public final int f44324a;
 
     public a(int i10) {
-        this.f44304a = i10;
+        this.f44324a = i10;
     }
 
     public static k b0(Editable editable, int i10) {
@@ -72,7 +72,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
                 int i11 = length - 1;
                 if (editable.getSpanFlags(objArr[i11]) == 17) {
                     k kVar = objArr[i11];
-                    if (kVar.f51599a == i10) {
+                    if (kVar.f51624a == i10) {
                         return kVar;
                     }
                 }
@@ -177,7 +177,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
                 k[] kVarArr = (k[]) editable.getSpans(0, editable.length(), k.class);
                 for (int length2 = kVarArr.length - 1; length2 >= 0; length2--) {
                     k kVar = kVarArr[length2];
-                    if (editable.getSpanFlags(kVar) == 17 && ((i10 = kVar.f51599a) == 2 || i10 == 3)) {
+                    if (editable.getSpanFlags(kVar) == 17 && ((i10 = kVar.f51624a) == 2 || i10 == 3)) {
                         obj = kVar;
                         break;
                     }
@@ -215,7 +215,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
     public static y p0(List list) {
         Iterator it = list.iterator();
         while (it.hasNext()) {
-            if (((o0) it.next()).f3890b == null) {
+            if (((o0) it.next()).f3891b == null) {
                 UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException();
                 ?? obj = new Object();
                 obj.n(unsupportedOperationException);
@@ -261,7 +261,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public y2.n J() {
-        return new t(p2.q.f44045n, null);
+        return new t(p2.q.f44065n, null);
     }
 
     @Override
@@ -276,7 +276,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public void L(float f7, boolean z10) {
-        ai.r.f2088b = f7 * 2.0f;
+        ai.r.f2092b = f7 * 2.0f;
     }
 
     @Override
@@ -380,17 +380,17 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public void a() {
-        synchronized (z2.b.f50649a) {
-            Object obj = z2.b.f50650b;
+        synchronized (z2.b.f50674a) {
+            Object obj = z2.b.f50675b;
             synchronized (obj) {
-                if (z2.b.f50651c) {
+                if (z2.b.f50676c) {
                     return;
                 }
                 long a2 = z2.b.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
                     z2.b.d = a2;
-                    z2.b.f50651c = true;
+                    z2.b.f50676c = true;
                 }
             }
         }
@@ -428,7 +428,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public boolean d1(MessageObject messageObject) {
-        return t0.a(messageObject);
+        return c1.a(messageObject);
     }
 
     @Override
@@ -448,7 +448,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public Object f2() {
-        switch (this.f44304a) {
+        switch (this.f44324a) {
             case 9:
                 return new LinkedHashSet();
             default:
@@ -483,7 +483,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public Object j2(z5 z5Var) {
-        switch (this.f44304a) {
+        switch (this.f44324a) {
             case 15:
                 return new rb.h();
             default:
@@ -601,7 +601,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
     }
 
     public a() {
-        this.f44304a = 11;
+        this.f44324a = 11;
         if (Build.VERSION.SDK_INT >= 35) {
         }
     }

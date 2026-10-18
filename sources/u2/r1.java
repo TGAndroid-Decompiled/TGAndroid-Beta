@@ -1,68 +1,21 @@
 package u2;
 
 import e9.x1;
-public final class r1 {
-    public static final r1 d = new r1(new b2.p1[0]);
-    public static final String e;
-    public final int f47440a;
-    public final x1 f47441b;
-    public int f47442c;
+public final class r1 extends b2.w0 {
+    public final e9.n0 f47466c;
 
-    static {
-        String str = e2.m0.f8254a;
-        e = Integer.toString(0, 36);
+    public r1(String str, x1 x1Var) {
+        super(str, null, false, 1);
+        this.f47466c = e9.n0.u(x1Var);
     }
 
-    public r1(b2.p1... p1VarArr) {
-        x1 v = e9.n0.v(p1VarArr);
-        this.f47441b = v;
-        this.f47440a = p1VarArr.length;
-        int i10 = 0;
-        while (i10 < v.d) {
-            int i11 = i10 + 1;
-            for (int i12 = i11; i12 < v.d; i12++) {
-                if (((b2.p1) v.get(i10)).equals(v.get(i12))) {
-                    e2.a.d("TrackGroupArray", "", new IllegalArgumentException("Multiple identical TrackGroups added to one TrackGroupArray."));
-                }
-            }
-            i10 = i11;
+    @Override
+    public final String getMessage() {
+        String message = super.getMessage();
+        e9.n0 n0Var = this.f47466c;
+        if (n0Var.isEmpty()) {
+            return message;
         }
-    }
-
-    public final b2.p1 a(int i10) {
-        return (b2.p1) this.f47441b.get(i10);
-    }
-
-    public final int b(b2.p1 p1Var) {
-        int indexOf = this.f47441b.indexOf(p1Var);
-        if (indexOf >= 0) {
-            return indexOf;
-        }
-        return -1;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && r1.class == obj.getClass()) {
-                r1 r1Var = (r1) obj;
-                if (this.f47440a == r1Var.f47440a && this.f47441b.equals(r1Var.f47441b)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        if (this.f47442c == 0) {
-            this.f47442c = this.f47441b.hashCode();
-        }
-        return this.f47442c;
-    }
-
-    public final String toString() {
-        return this.f47441b.toString();
+        return message + "\nsniff failures: " + n0Var;
     }
 }

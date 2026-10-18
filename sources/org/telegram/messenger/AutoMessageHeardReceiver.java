@@ -12,7 +12,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
     }
 
     public static void lambda$onReceive$1(AccountInstance accountInstance, long j10, int i10, int i11) {
-        AndroidUtilities.runOnUIThread(new u(accountInstance, accountInstance.getMessagesStorage().getUserSync(j10), i10, j10, i11, 0));
+        AndroidUtilities.runOnUIThread(new t(accountInstance, accountInstance.getMessagesStorage().getUserSync(j10), i10, j10, i11, 0));
     }
 
     public static void lambda$onReceive$2(AccountInstance accountInstance, TLRPC.Chat chat, int i10, long j10, int i11) {
@@ -22,7 +22,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
     }
 
     public static void lambda$onReceive$3(AccountInstance accountInstance, long j10, int i10, int i11) {
-        AndroidUtilities.runOnUIThread(new u(accountInstance, accountInstance.getMessagesStorage().getChatSync(-j10), i10, j10, i11, 1));
+        AndroidUtilities.runOnUIThread(new t(accountInstance, accountInstance.getMessagesStorage().getChatSync(-j10), i10, j10, i11, 1));
     }
 
     @Override
@@ -35,11 +35,11 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
             AccountInstance accountInstance = AccountInstance.getInstance(intExtra2);
             if (DialogObject.isUserDialog(longExtra)) {
                 if (accountInstance.getMessagesController().getUser(Long.valueOf(longExtra)) == null) {
-                    Utilities.globalQueue.postRunnable(new t(accountInstance, longExtra, intExtra2, intExtra, 0));
+                    Utilities.globalQueue.postRunnable(new s(accountInstance, longExtra, intExtra2, intExtra, 0));
                     return;
                 }
             } else if (DialogObject.isChatDialog(longExtra) && accountInstance.getMessagesController().getChat(Long.valueOf(-longExtra)) == null) {
-                Utilities.globalQueue.postRunnable(new t(accountInstance, longExtra, intExtra2, intExtra, 1));
+                Utilities.globalQueue.postRunnable(new s(accountInstance, longExtra, intExtra2, intExtra, 1));
                 return;
             }
             MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0L, 0, true, 0);

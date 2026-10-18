@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class yh0 extends s4.g0 {
-    public final Context f43409c;
+    public final Context f43433c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final oi0 e;
 
     public yh0(oi0 oi0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         this.e = oi0Var;
-        this.f43409c = context;
+        this.f43433c = context;
         this.d = d6Var;
     }
 
@@ -28,7 +28,7 @@ public final class yh0 extends s4.g0 {
         ArrayList arrayList = oi0Var.N;
         boolean z10 = true;
         MessageObject messageObject = (MessageObject) arrayList.get((h() - 1) - i10);
-        org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) b1Var.f45938a;
+        org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) b1Var.f45958a;
         MessageObject.GroupedMessages l4 = oi0Var.l(messageObject);
         int i11 = 0;
         if (l4 == null) {
@@ -50,7 +50,7 @@ public final class yh0 extends s4.g0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         oi0 oi0Var = this.e;
-        ni0 ni0Var = new ni0(oi0Var, this.f43409c, oi0Var.f39791c, this.d);
+        ni0 ni0Var = new ni0(oi0Var, this.f43433c, oi0Var.f39812c, this.d);
         ni0Var.setDelegate(new rb.b(17));
         return new s4.b1(ni0Var);
     }

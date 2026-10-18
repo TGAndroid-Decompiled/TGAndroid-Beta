@@ -17,30 +17,30 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.bw0;
 public final class i1 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Continuation, r9.d, i5.e, d9.k, GenericProvider, Utilities.Callback2Return, eh.d {
-    public final int f5482a;
+    public final int f5483a;
 
     public i1(int i10) {
-        this.f5482a = i10;
+        this.f5483a = i10;
     }
 
     @Override
     public Object apply(Object obj) {
-        switch (this.f5482a) {
+        switch (this.f5483a) {
             case 11:
                 xa.e eVar = (xa.e) obj;
                 eVar.getClass();
-                m.g3 g3Var = com.google.firebase.messaging.o.f7657a;
+                m.g3 g3Var = com.google.firebase.messaging.o.f7658a;
                 g3Var.getClass();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
-                    g3Var.z(eVar, byteArrayOutputStream);
+                    g3Var.u(eVar, byteArrayOutputStream);
                 } catch (IOException unused) {
                 }
                 return byteArrayOutputStream.toByteArray();
             case 12:
-                return Integer.valueOf(((d2.b) obj).f7769r);
+                return Integer.valueOf(((d2.b) obj).f7770r);
             default:
-                da.a.f7908b.getClass();
+                da.a.f7909b.getClass();
                 return aa.b.f362a.m((z9.e2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
@@ -48,18 +48,18 @@ public final class i1 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Continu
     @Override
     public void b(Object obj, float f7) {
         p1 p1Var = (p1) obj;
-        switch (this.f5482a) {
+        switch (this.f5483a) {
             case 1:
-                WindowManager.LayoutParams layoutParams = p1Var.f5715c;
+                WindowManager.LayoutParams layoutParams = p1Var.f5716c;
                 p1Var.N = f7;
                 layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(p1Var.f5714b, p1Var.d, layoutParams);
+                AndroidUtilities.updateViewLayout(p1Var.f5715b, p1Var.d, layoutParams);
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = p1Var.f5715c;
+                WindowManager.LayoutParams layoutParams2 = p1Var.f5716c;
                 p1Var.O = f7;
                 layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(p1Var.f5714b, p1Var.d, layoutParams2);
+                AndroidUtilities.updateViewLayout(p1Var.f5715b, p1Var.d, layoutParams2);
                 return;
         }
     }
@@ -73,14 +73,14 @@ public final class i1 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Continu
         float f13;
         float f14;
         float f15;
-        switch (this.f5482a) {
+        switch (this.f5483a) {
             case 17:
                 if (LiteMode.isEnabled(262144)) {
                     f7 = 0.85f;
                 } else {
                     f7 = 0.76f;
                 }
-                return fh.c.m(f7, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Sd, d6Var));
+                return fh.c.m(f7, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Sd, d6Var));
             case 18:
                 if (!LiteMode.isEnabled(256)) {
                     return org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G8, false);
@@ -98,7 +98,7 @@ public final class i1 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Continu
                 } else {
                     f11 = 0.76f;
                 }
-                return fh.c.m(f11, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Zk, d6Var));
+                return fh.c.m(f11, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Zk, d6Var));
             case 20:
                 if (LiteMode.isEnabled(262144)) {
                     f12 = 0.85f;
@@ -113,7 +113,7 @@ public final class i1 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Continu
             case 23:
                 return org.telegram.ui.ActionBar.h6.m1(0.075f, -16777216);
             case 24:
-                return org.telegram.ui.ActionBar.h6.m1(0.88f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var));
+                return org.telegram.ui.ActionBar.h6.m1(0.88f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var));
             case 25:
                 int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G8, false);
                 if (z10) {
@@ -128,24 +128,24 @@ public final class i1 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Continu
                 } else {
                     f14 = 0.76f;
                 }
-                return fh.c.m(f14, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Yk, d6Var));
+                return fh.c.m(f14, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Yk, d6Var));
             case 27:
                 if (LiteMode.isEnabled(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.76f;
                 }
-                return org.telegram.ui.ActionBar.h6.m1(f15, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var));
+                return org.telegram.ui.ActionBar.h6.m1(f15, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var));
             case 28:
-                return org.telegram.ui.ActionBar.h6.m1(0.78f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21057h5, d6Var));
+                return org.telegram.ui.ActionBar.h6.m1(0.78f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
             default:
-                return org.telegram.ui.ActionBar.h6.m1(0.7f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var));
+                return org.telegram.ui.ActionBar.h6.m1(0.7f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var));
         }
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f5482a) {
+        switch (this.f5483a) {
             case 4:
                 b2Var.dismiss();
                 return;
@@ -158,7 +158,7 @@ public final class i1 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Continu
     @Override
     public float get(Object obj) {
         p1 p1Var = (p1) obj;
-        switch (this.f5482a) {
+        switch (this.f5483a) {
             case 0:
                 return p1Var.N;
             default:
@@ -174,7 +174,7 @@ public final class i1 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Continu
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        MediaController.AlbumEntry albumEntry = ei.q3.f9622j0;
+        MediaController.AlbumEntry albumEntry = ei.q3.f9623j0;
         return 0;
     }
 
@@ -193,7 +193,7 @@ public final class i1 implements aw0, bw0, org.telegram.ui.ActionBar.a2, Continu
     @Override
     public Object then(Task task) {
         int i10;
-        switch (this.f5482a) {
+        switch (this.f5483a) {
             case 7:
                 i10 = 403;
                 break;

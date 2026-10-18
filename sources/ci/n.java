@@ -23,23 +23,23 @@ public final class n extends pg.b {
         boolean z10 = this.d;
         vw vwVar = this.e;
         if (z10) {
-            arrayList = vwVar.f5900y;
+            arrayList = vwVar.f5901y;
         } else {
-            arrayList = vwVar.f5898x;
+            arrayList = vwVar.f5899x;
         }
         return arrayList.size();
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        q qVar = (q) b1Var.f45938a;
-        qVar.f5740b = i10;
+        q qVar = (q) b1Var.f45958a;
+        qVar.f5741b = i10;
         boolean z10 = this.d;
         vw vwVar = this.e;
         if (z10) {
-            qVar.setDialogId(((o) vwVar.f5900y.get(i10)).f5682c);
+            qVar.setDialogId(((o) vwVar.f5901y.get(i10)).f5683c);
         } else {
-            qVar.setDialogId(((o) vwVar.f5898x.get(i10)).f5682c);
+            qVar.setDialogId(((o) vwVar.f5899x.get(i10)).f5683c);
         }
     }
 

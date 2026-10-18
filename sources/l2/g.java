@@ -13,7 +13,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class g implements y2.n {
-    public static final Pattern f15838a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
+    public static final Pattern f15845a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
 
     @Override
     public final Object d2(Uri uri, g2.k kVar) {
@@ -21,7 +21,7 @@ public final class g implements y2.n {
         long parseLong;
         String readLine = new BufferedReader(new InputStreamReader(kVar, StandardCharsets.UTF_8)).readLine();
         try {
-            Matcher matcher = f15838a.matcher(readLine);
+            Matcher matcher = f15845a.matcher(readLine);
             if (matcher.matches()) {
                 String group = matcher.group(1);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);

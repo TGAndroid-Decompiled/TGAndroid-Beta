@@ -23,15 +23,11 @@ public abstract class g {
         return ((f7 * f10) / f11) + f12;
     }
 
-    public static int C(int i10, int i11, int i12, int i13) {
-        return ((i10 / i11) * i12) + i13;
-    }
-
-    public static String D(String str, String str2, String str3) {
+    public static String C(String str, String str2, String str3) {
         return str + str2 + str3;
     }
 
-    public static int E(String str) {
+    public static int D(String str) {
         if (str != null) {
             if (str.equals("GET")) {
                 return 1;
@@ -149,7 +145,7 @@ public abstract class g {
             return 0;
         }
         try {
-            return E(str);
+            return D(str);
         } catch (IllegalArgumentException unused) {
             return 0;
         }

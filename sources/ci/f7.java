@@ -1,21 +1,21 @@
 package ci;
 public final class f7 implements Runnable {
-    public final int f5392a;
-    public final h7 f5393b;
+    public final int f5393a;
+    public final h7 f5394b;
 
     public f7(h7 h7Var, int i10) {
-        this.f5392a = i10;
-        this.f5393b = h7Var;
+        this.f5393a = i10;
+        this.f5394b = h7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f5392a) {
+        switch (this.f5393a) {
             case 0:
-                this.f5393b.e();
+                this.f5394b.e();
                 return;
             default:
-                this.f5393b.b();
+                this.f5394b.b();
                 return;
         }
     }

@@ -10,10 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 import s4.y0;
 public final class f {
-    public int f8223a;
-    public int f8224b;
+    public int f8224a;
+    public int f8225b;
     public int d = 7;
-    public Object f8225c = new int[8];
+    public Object f8226c = new int[8];
 
     public static void V(int i10) {
         if ((i10 & 3) == 0) {
@@ -31,9 +31,9 @@ public final class f {
 
     public void A(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.i0)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 0) {
                 if (i10 == 2) {
                     int b10 = hVar.b() + hVar.A();
@@ -51,7 +51,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -59,16 +59,16 @@ public final class f {
     }
 
     public Object B(b1 b1Var, androidx.datastore.preferences.protobuf.m mVar) {
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         int A = hVar.A();
-        if (hVar.f2997a < 100) {
+        if (hVar.f2998a < 100) {
             int e = hVar.e(A);
             Object a2 = b1Var.a();
-            hVar.f2997a++;
+            hVar.f2998a++;
             b1Var.f(a2, this, mVar);
             b1Var.c(a2);
             hVar.a(0);
-            hVar.f2997a--;
+            hVar.f2998a--;
             hVar.d(e);
             return a2;
         }
@@ -82,14 +82,14 @@ public final class f {
 
     public int D() {
         T(5);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).v();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).v();
     }
 
     public void E(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.x)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 2) {
                 if (i10 == 5) {
                     do {
@@ -99,7 +99,7 @@ public final class f {
                         } else {
                             return;
                         }
-                    } while (z10 == this.f8223a);
+                    } while (z10 == this.f8224a);
                     this.d = z10;
                     return;
                 }
@@ -118,14 +118,14 @@ public final class f {
 
     public long F() {
         T(1);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).w();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).w();
     }
 
     public void G(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.i0)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 1) {
                 if (i10 == 2) {
                     int A = hVar.A();
@@ -144,7 +144,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -153,14 +153,14 @@ public final class f {
 
     public int H() {
         T(0);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).x();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).x();
     }
 
     public void I(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.x)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 0) {
                 if (i10 == 2) {
                     int b10 = hVar.b() + hVar.A();
@@ -178,7 +178,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -187,14 +187,14 @@ public final class f {
 
     public long J() {
         T(0);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).y();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).y();
     }
 
     public void K(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.i0)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 0) {
                 if (i10 == 2) {
                     int b10 = hVar.b() + hVar.A();
@@ -212,7 +212,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -221,15 +221,15 @@ public final class f {
 
     public String L() {
         T(2);
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         byte[] bArr = hVar.d;
         int s10 = hVar.s();
         if (s10 > 0) {
             int i10 = hVar.e;
-            int i11 = hVar.f3001g;
+            int i11 = hVar.f3002g;
             if (s10 <= i10 - i11) {
-                String str = new String(bArr, i11, s10, androidx.datastore.preferences.protobuf.z.f3081a);
-                hVar.f3001g += s10;
+                String str = new String(bArr, i11, s10, androidx.datastore.preferences.protobuf.z.f3082a);
+                hVar.f3002g += s10;
                 return str;
             }
         }
@@ -238,19 +238,19 @@ public final class f {
         }
         if (s10 <= hVar.e) {
             hVar.D(s10);
-            String str2 = new String(bArr, hVar.f3001g, s10, androidx.datastore.preferences.protobuf.z.f3081a);
-            hVar.f3001g += s10;
+            String str2 = new String(bArr, hVar.f3002g, s10, androidx.datastore.preferences.protobuf.z.f3082a);
+            hVar.f3002g += s10;
             return str2;
         }
-        return new String(hVar.n(s10), androidx.datastore.preferences.protobuf.z.f3081a);
+        return new String(hVar.n(s10), androidx.datastore.preferences.protobuf.z.f3082a);
     }
 
     public void M(List list, boolean z10) {
         String L;
         int z11;
         int z12;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
-        if ((this.f8223a & 7) == 2) {
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
+        if ((this.f8224a & 7) == 2) {
             if ((list instanceof androidx.datastore.preferences.protobuf.e0) && !z10) {
                 androidx.datastore.preferences.protobuf.e0 e0Var = (androidx.datastore.preferences.protobuf.e0) list;
                 do {
@@ -260,7 +260,7 @@ public final class f {
                     } else {
                         return;
                     }
-                } while (z12 == this.f8223a);
+                } while (z12 == this.f8224a);
                 this.d = z12;
                 return;
             }
@@ -275,7 +275,7 @@ public final class f {
                     return;
                 }
                 z11 = hVar.z();
-            } while (z11 == this.f8223a);
+            } while (z11 == this.f8224a);
             this.d = z11;
             return;
         }
@@ -284,37 +284,37 @@ public final class f {
 
     public String N() {
         T(2);
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         byte[] bArr = hVar.d;
         int s10 = hVar.s();
-        int i10 = hVar.f3001g;
+        int i10 = hVar.f3002g;
         int i11 = hVar.e;
         if (s10 <= i11 - i10 && s10 > 0) {
-            hVar.f3001g = i10 + s10;
+            hVar.f3002g = i10 + s10;
         } else if (s10 == 0) {
             return "";
         } else {
             i10 = 0;
             if (s10 <= i11) {
                 hVar.D(s10);
-                hVar.f3001g = s10;
+                hVar.f3002g = s10;
             } else {
                 bArr = hVar.n(s10);
             }
         }
-        return u1.f3075a.e(i10, s10, bArr);
+        return u1.f3076a.e(i10, s10, bArr);
     }
 
     public int O() {
         T(0);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).A();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).A();
     }
 
     public void P(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.x)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 0) {
                 if (i10 == 2) {
                     int b10 = hVar.b() + hVar.A();
@@ -332,7 +332,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -341,14 +341,14 @@ public final class f {
 
     public long Q() {
         T(0);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).B();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).B();
     }
 
     public void R(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.i0)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 0) {
                 if (i10 == 2) {
                     int b10 = hVar.b() + hVar.A();
@@ -366,7 +366,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -374,14 +374,14 @@ public final class f {
     }
 
     public void S(int i10) {
-        if (((androidx.datastore.preferences.protobuf.h) this.f8225c).b() == i10) {
+        if (((androidx.datastore.preferences.protobuf.h) this.f8226c).b() == i10) {
             return;
         }
         throw androidx.datastore.preferences.protobuf.b0.f();
     }
 
     public void T(int i10) {
-        if ((this.f8223a & 7) == i10) {
+        if ((this.f8224a & 7) == i10) {
             return;
         }
         throw androidx.datastore.preferences.protobuf.b0.b();
@@ -389,30 +389,30 @@ public final class f {
 
     public boolean U() {
         int i10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
-        if (!hVar.c() && (i10 = this.f8223a) != this.f8224b) {
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
+        if (!hVar.c() && (i10 = this.f8224a) != this.f8225b) {
             return hVar.E(i10);
         }
         return false;
     }
 
     public void a(int i10) {
-        int[] iArr = (int[]) this.f8225c;
-        int i11 = this.f8224b;
+        int[] iArr = (int[]) this.f8226c;
+        int i11 = this.f8225b;
         iArr[i11] = i10;
         int i12 = this.d & (i11 + 1);
-        this.f8224b = i12;
-        int i13 = this.f8223a;
+        this.f8225b = i12;
+        int i13 = this.f8224a;
         if (i12 == i13) {
             int length = iArr.length;
             int i14 = length - i13;
             int i15 = length << 1;
             int[] iArr2 = new int[i15];
             System.arraycopy(iArr, i13, iArr2, 0, i14);
-            System.arraycopy((int[]) this.f8225c, 0, iArr2, i14, this.f8223a);
-            this.f8225c = iArr2;
-            this.f8223a = 0;
-            this.f8224b = length;
+            System.arraycopy((int[]) this.f8226c, 0, iArr2, i14, this.f8224a);
+            this.f8226c = iArr2;
+            this.f8224a = 0;
+            this.f8225b = length;
             this.d = i15 - 1;
         }
     }
@@ -422,17 +422,17 @@ public final class f {
             if (i11 >= 0) {
                 int i12 = this.d;
                 int i13 = i12 * 2;
-                int[] iArr = (int[]) this.f8225c;
+                int[] iArr = (int[]) this.f8226c;
                 if (iArr == null) {
                     int[] iArr2 = new int[4];
-                    this.f8225c = iArr2;
+                    this.f8226c = iArr2;
                     Arrays.fill(iArr2, -1);
                 } else if (i13 >= iArr.length) {
                     int[] iArr3 = new int[i12 * 4];
-                    this.f8225c = iArr3;
+                    this.f8226c = iArr3;
                     System.arraycopy(iArr, 0, iArr3, 0, iArr.length);
                 }
-                int[] iArr4 = (int[]) this.f8225c;
+                int[] iArr4 = (int[]) this.f8226c;
                 iArr4[i13] = i10;
                 iArr4[i13 + 1] = i11;
                 this.d++;
@@ -447,24 +447,24 @@ public final class f {
         boolean z11;
         int i10;
         this.d = 0;
-        int[] iArr = (int[]) this.f8225c;
+        int[] iArr = (int[]) this.f8226c;
         int i11 = -1;
         if (iArr != null) {
             Arrays.fill(iArr, -1);
         }
-        s4.n0 n0Var = recyclerView.f3634x;
-        if (recyclerView.f3632w != null && n0Var != null && n0Var.h) {
+        s4.n0 n0Var = recyclerView.f3635x;
+        if (recyclerView.f3633w != null && n0Var != null && n0Var.h) {
             if (z10) {
                 if (!recyclerView.d.h()) {
-                    int h = recyclerView.f3632w.h();
+                    int h = recyclerView.f3633w.h();
                     s4.b0 b0Var = (s4.b0) n0Var;
                     s4.a0 a0Var = b0Var.B;
-                    if (a0Var != null && (i10 = a0Var.f45913a) >= 0) {
-                        z11 = a0Var.f45915c;
+                    if (a0Var != null && (i10 = a0Var.f45933a) >= 0) {
+                        z11 = a0Var.f45935c;
                     } else {
                         b0Var.f1();
                         z11 = b0Var.v;
-                        i10 = b0Var.f45935y;
+                        i10 = b0Var.f45955y;
                         if (i10 == -1) {
                             i10 = z11 ? h - 1 : 0;
                         }
@@ -478,11 +478,11 @@ public final class f {
                     }
                 }
             } else if (!recyclerView.Z()) {
-                int i13 = this.f8223a;
-                int i14 = this.f8224b;
-                y0 y0Var = recyclerView.f3630u0;
+                int i13 = this.f8224a;
+                int i14 = this.f8225b;
+                y0 y0Var = recyclerView.f3631u0;
                 s4.b0 b0Var2 = (s4.b0) n0Var;
-                if (b0Var2.f45926o != 0) {
+                if (b0Var2.f45946o != 0) {
                     i13 = i14;
                 }
                 if (b0Var2.r() != 0 && i13 != 0) {
@@ -491,14 +491,14 @@ public final class f {
                         i11 = 1;
                     }
                     b0Var2.m1(i11, Math.abs(i13), true, y0Var);
-                    b0Var2.A0(y0Var, b0Var2.f45927p, this);
+                    b0Var2.A0(y0Var, b0Var2.f45947p, this);
                 }
             }
             int i15 = this.d;
-            if (i15 > n0Var.f46035i) {
-                n0Var.f46035i = i15;
-                n0Var.f46036j = z10;
-                recyclerView.f3606b.l();
+            if (i15 > n0Var.f46055i) {
+                n0Var.f46055i = i15;
+                n0Var.f46056j = z10;
+                recyclerView.f3607b.l();
             }
         }
     }
@@ -506,32 +506,32 @@ public final class f {
     public int d() {
         int i10 = this.d;
         if (i10 != 0) {
-            this.f8223a = i10;
+            this.f8224a = i10;
             this.d = 0;
         } else {
-            this.f8223a = ((androidx.datastore.preferences.protobuf.h) this.f8225c).z();
+            this.f8224a = ((androidx.datastore.preferences.protobuf.h) this.f8226c).z();
         }
-        int i11 = this.f8223a;
-        if (i11 != 0 && i11 != this.f8224b) {
+        int i11 = this.f8224a;
+        if (i11 != 0 && i11 != this.f8225b) {
             return i11 >>> 3;
         }
         return Integer.MAX_VALUE;
     }
 
     public int e() {
-        return this.f8223a;
+        return this.f8224a;
     }
 
     public boolean f() {
         T(0);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).f();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).f();
     }
 
     public void g(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.d)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 0) {
                 if (i10 == 2) {
                     int b10 = hVar.b() + hVar.A();
@@ -549,7 +549,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -558,27 +558,27 @@ public final class f {
 
     public androidx.datastore.preferences.protobuf.g h() {
         T(2);
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         byte[] bArr = hVar.d;
         int s10 = hVar.s();
         int i10 = hVar.e;
-        int i11 = hVar.f3001g;
+        int i11 = hVar.f3002g;
         if (s10 <= i10 - i11 && s10 > 0) {
             androidx.datastore.preferences.protobuf.g h = androidx.datastore.preferences.protobuf.g.h(i11, s10, bArr);
-            hVar.f3001g += s10;
+            hVar.f3002g += s10;
             return h;
         } else if (s10 == 0) {
-            return androidx.datastore.preferences.protobuf.g.f2991c;
+            return androidx.datastore.preferences.protobuf.g.f2992c;
         } else {
             byte[] o10 = hVar.o(s10);
             if (o10 != null) {
                 return androidx.datastore.preferences.protobuf.g.h(0, o10.length, o10);
             }
-            int i12 = hVar.f3001g;
+            int i12 = hVar.f3002g;
             int i13 = hVar.e;
             int i14 = i13 - i12;
-            hVar.f3002i += i13;
-            hVar.f3001g = 0;
+            hVar.f3003i += i13;
+            hVar.f3002g = 0;
             hVar.e = 0;
             ArrayList p5 = hVar.p(s10 - i14);
             byte[] bArr2 = new byte[s10];
@@ -592,22 +592,22 @@ public final class f {
                 System.arraycopy(bArr3, 0, bArr2, i14, bArr3.length);
                 i14 += bArr3.length;
             }
-            androidx.datastore.preferences.protobuf.g gVar = androidx.datastore.preferences.protobuf.g.f2991c;
+            androidx.datastore.preferences.protobuf.g gVar = androidx.datastore.preferences.protobuf.g.f2992c;
             return new androidx.datastore.preferences.protobuf.g(bArr2);
         }
     }
 
     public void i(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
-        if ((this.f8223a & 7) == 2) {
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
+        if ((this.f8224a & 7) == 2) {
             do {
                 list.add(h());
                 if (hVar.c()) {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -616,14 +616,14 @@ public final class f {
 
     public double j() {
         T(1);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).g();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).g();
     }
 
     public void k(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.k)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 1) {
                 if (i10 == 2) {
                     int A = hVar.A();
@@ -642,7 +642,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -651,14 +651,14 @@ public final class f {
 
     public int l() {
         T(0);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).h();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).h();
     }
 
     public void m(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.x)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 0) {
                 if (i10 == 2) {
                     int b10 = hVar.b() + hVar.A();
@@ -676,7 +676,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -708,7 +708,7 @@ public final class f {
                 throw new RuntimeException("unsupported field type.");
             case 10:
                 T(2);
-                return B(androidx.datastore.preferences.protobuf.y0.f3078c.a(cls), mVar);
+                return B(androidx.datastore.preferences.protobuf.y0.f3079c.a(cls), mVar);
             case 11:
                 return h();
             case 12:
@@ -728,14 +728,14 @@ public final class f {
 
     public int o() {
         T(5);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).i();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).i();
     }
 
     public void p(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.x)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 2) {
                 if (i10 == 5) {
                     do {
@@ -745,7 +745,7 @@ public final class f {
                         } else {
                             return;
                         }
-                    } while (z10 == this.f8223a);
+                    } while (z10 == this.f8224a);
                     this.d = z10;
                     return;
                 }
@@ -764,14 +764,14 @@ public final class f {
 
     public long q() {
         T(1);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).j();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).j();
     }
 
     public void r(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.i0)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 1) {
                 if (i10 == 2) {
                     int A = hVar.A();
@@ -790,7 +790,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -799,14 +799,14 @@ public final class f {
 
     public float s() {
         T(5);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).k();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).k();
     }
 
     public void t(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.s)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 2) {
                 if (i10 == 5) {
                     do {
@@ -816,7 +816,7 @@ public final class f {
                         } else {
                             return;
                         }
-                    } while (z10 == this.f8223a);
+                    } while (z10 == this.f8224a);
                     this.d = z10;
                     return;
                 }
@@ -834,18 +834,18 @@ public final class f {
     }
 
     public Object u(b1 b1Var, androidx.datastore.preferences.protobuf.m mVar) {
-        int i10 = this.f8224b;
-        this.f8224b = ((this.f8223a >>> 3) << 3) | 4;
+        int i10 = this.f8225b;
+        this.f8225b = ((this.f8224a >>> 3) << 3) | 4;
         try {
             Object a2 = b1Var.a();
             b1Var.f(a2, this, mVar);
             b1Var.c(a2);
-            if (this.f8223a == this.f8224b) {
+            if (this.f8224a == this.f8225b) {
                 return a2;
             }
             throw androidx.datastore.preferences.protobuf.b0.e();
         } finally {
-            this.f8224b = i10;
+            this.f8225b = i10;
         }
     }
 
@@ -856,8 +856,8 @@ public final class f {
 
     public void w(List list, b1 b1Var, androidx.datastore.preferences.protobuf.m mVar) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
-        int i10 = this.f8223a;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
+        int i10 = this.f8224a;
         if ((i10 & 7) == 3) {
             do {
                 list.add(u(b1Var, mVar));
@@ -875,14 +875,14 @@ public final class f {
 
     public int x() {
         T(0);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).l();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).l();
     }
 
     public void y(List list) {
         int z10;
-        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8225c;
+        androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f8226c;
         if (!(list instanceof androidx.datastore.preferences.protobuf.x)) {
-            int i10 = this.f8223a & 7;
+            int i10 = this.f8224a & 7;
             if (i10 != 0) {
                 if (i10 == 2) {
                     int b10 = hVar.b() + hVar.A();
@@ -900,7 +900,7 @@ public final class f {
                     return;
                 }
                 z10 = hVar.z();
-            } while (z10 == this.f8223a);
+            } while (z10 == this.f8224a);
             this.d = z10;
             return;
         }
@@ -909,6 +909,6 @@ public final class f {
 
     public long z() {
         T(0);
-        return ((androidx.datastore.preferences.protobuf.h) this.f8225c).m();
+        return ((androidx.datastore.preferences.protobuf.h) this.f8226c).m();
     }
 }

@@ -4,32 +4,32 @@ import android.content.Context;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class l1 implements Runnable {
-    public final int f28043a;
-    public final org.telegram.ui.ActionBar.b2 f28044b;
-    public final Context f28045c;
+    public final int f28050a;
+    public final org.telegram.ui.ActionBar.b2 f28051b;
+    public final Context f28052c;
 
     public l1(int i10, Context context, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f28043a = i10;
-        this.f28044b = b2Var;
-        this.f28045c = context;
+        this.f28050a = i10;
+        this.f28051b = b2Var;
+        this.f28052c = context;
     }
 
     @Override
     public final void run() {
-        switch (this.f28043a) {
+        switch (this.f28050a) {
             case 0:
-                org.telegram.ui.ActionBar.b2 b2Var = this.f28044b;
+                org.telegram.ui.ActionBar.b2 b2Var = this.f28051b;
                 if (b2Var != null) {
                     b2Var.dismiss();
                 }
-                pf.d.r(this.f28045c, LocaleController.getString(R.string.BotWebViewStartPermissionLink));
+                pf.d.r(this.f28052c, LocaleController.getString(R.string.BotWebViewStartPermissionLink));
                 return;
             default:
-                org.telegram.ui.ActionBar.b2 b2Var2 = this.f28044b;
+                org.telegram.ui.ActionBar.b2 b2Var2 = this.f28051b;
                 if (b2Var2 != null) {
                     b2Var2.dismiss();
                 }
-                pf.d.r(this.f28045c, LocaleController.getString(R.string.BotWebViewStartPermissionLink));
+                pf.d.r(this.f28052c, LocaleController.getString(R.string.BotWebViewStartPermissionLink));
                 return;
         }
     }

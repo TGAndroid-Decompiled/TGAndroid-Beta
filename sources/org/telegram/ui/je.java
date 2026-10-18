@@ -13,29 +13,29 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class je extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f38122a;
-    public final org.telegram.ui.Components.z5 f38123b;
-    public final TextView f38124c;
+    public final org.telegram.ui.ActionBar.d6 f38138a;
+    public final org.telegram.ui.Components.z5 f38139b;
+    public final TextView f38140c;
     public final TextView d;
     public final DecimalFormat e;
-    public boolean f38125f;
+    public boolean f38141f;
 
     public je(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f38122a = d6Var;
-        LinearLayout e = org.telegram.messenger.wh.e(context, 1);
+        this.f38138a = d6Var;
+        LinearLayout e = org.telegram.messenger.kk.e(context, 1);
         addView(e, w7.z5.a(-2.0f, 17.0f, 9.0f, 130.0f, 9.0f, -1, 119));
         TextView textView = new TextView(context);
-        this.f38124c = textView;
+        this.f38140c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
-        TextView i10 = com.google.android.gms.internal.cast.a6.i(e, textView, w7.z5.n(-1, -2), context);
+        TextView i10 = com.google.android.gms.internal.play_billing.k3.i(e, textView, w7.z5.n(-1, -2), context);
         this.d = i10;
         i10.setTextSize(1, 13.0f);
-        i10.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21374y6, d6Var));
+        i10.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21381y6, d6Var));
         e.addView(i10, w7.z5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
         org.telegram.ui.Components.z5 z5Var = new org.telegram.ui.Components.z5(context);
-        this.f38123b = z5Var;
+        this.f38139b = z5Var;
         z5Var.setTypeface(AndroidUtilities.bold());
         z5Var.setTextSize(1, 13.0f);
         addView(z5Var, w7.z5.a(-2.0f, 0.0f, 0.0f, 18.0f, 0.0f, -2, 21));
@@ -54,12 +54,12 @@ public final class je extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f38125f) {
-            org.telegram.ui.ActionBar.d6 d6Var = this.f38122a;
+        if (this.f38141f) {
+            org.telegram.ui.ActionBar.d6 d6Var = this.f38138a;
             if (d6Var != null) {
                 paint = d6Var.n("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.h6.f21107k0;
+                paint = org.telegram.ui.ActionBar.h6.f21114k0;
             }
             Paint paint2 = paint;
             if (paint2 != null) {

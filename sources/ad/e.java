@@ -25,7 +25,7 @@ public final class e {
 
     public r a() {
         if (this.f507a == null) {
-            return r.f44205c;
+            return r.f44225c;
         }
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("controlCategories", this.f507a);
@@ -55,7 +55,7 @@ public final class e {
 
     public void c(StringBuilder sb2) {
         String str;
-        if (((Boolean) i0.a.z(1, this.f507a)).booleanValue()) {
+        if (((Boolean) i2.d.A(1, this.f507a)).booleanValue()) {
             str = "</ol>";
         } else {
             str = "</ul>";

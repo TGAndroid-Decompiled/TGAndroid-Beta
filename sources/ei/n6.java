@@ -9,28 +9,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
 public final class n6 implements Runnable {
-    public final int f9517a = 0;
-    public final int f9518b;
-    public final int f9519c;
+    public final int f9518a = 0;
+    public final int f9519b;
+    public final int f9520c;
     public final int d;
     public final Object e;
-    public final Object f9520f;
+    public final Object f9521f;
 
     public n6(int i10, int i11, int i12, Bitmap[] bitmapArr, Utilities.Callback callback) {
-        this.f9518b = i10;
-        this.f9519c = i11;
+        this.f9519b = i10;
+        this.f9520c = i11;
         this.d = i12;
         this.e = bitmapArr;
-        this.f9520f = callback;
+        this.f9521f = callback;
     }
 
     @Override
     public final void run() {
-        switch (this.f9517a) {
+        switch (this.f9518a) {
             case 0:
                 Bitmap[] bitmapArr = (Bitmap[]) this.e;
-                Utilities.Callback callback = (Utilities.Callback) this.f9520f;
-                Bitmap createBitmap = Bitmap.createBitmap(this.f9518b, this.f9519c, Bitmap.Config.ARGB_8888);
+                Utilities.Callback callback = (Utilities.Callback) this.f9521f;
+                Bitmap createBitmap = Bitmap.createBitmap(this.f9519b, this.f9520c, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 Path path = new Path();
                 RectF rectF = new RectF();
@@ -54,16 +54,16 @@ public final class n6 implements Runnable {
                 AndroidUtilities.runOnUIThread(new ci.v7(28, callback, createBitmap));
                 return;
             default:
-                ((MessagesStorage) this.e).lambda$getDialogs$240(this.f9518b, this.f9519c, this.d, (long[]) this.f9520f);
+                ((MessagesStorage) this.e).lambda$getDialogs$240(this.f9519b, this.f9520c, this.d, (long[]) this.f9521f);
                 return;
         }
     }
 
     public n6(MessagesStorage messagesStorage, int i10, int i11, int i12, long[] jArr) {
         this.e = messagesStorage;
-        this.f9518b = i10;
-        this.f9519c = i11;
+        this.f9519b = i10;
+        this.f9520c = i11;
         this.d = i12;
-        this.f9520f = jArr;
+        this.f9521f = jArr;
     }
 }

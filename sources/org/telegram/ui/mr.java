@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import android.graphics.drawable.Drawable;
 public final class mr implements Drawable.Callback {
-    public final int f39235a;
-    public final Drawable f39236b;
+    public final int f39261a;
+    public final Drawable f39262b;
 
     public mr(int i10, Drawable drawable) {
-        this.f39235a = i10;
-        this.f39236b = drawable;
+        this.f39261a = i10;
+        this.f39262b = drawable;
     }
 
     @Override
     public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f39235a) {
+        switch (this.f39261a) {
             case 0:
-                ((nr) this.f39236b).invalidateSelf();
+                ((nr) this.f39262b).invalidateSelf();
                 return;
             default:
-                org.telegram.ui.Cells.x0 x0Var = ((p01) this.f39236b).h;
-                if (x0Var != null) {
-                    x0Var.invalidate();
+                org.telegram.ui.Cells.w0 w0Var = ((p01) this.f39262b).h;
+                if (w0Var != null) {
+                    w0Var.invalidate();
                     return;
                 }
                 return;
@@ -28,9 +28,9 @@ public final class mr implements Drawable.Callback {
 
     @Override
     public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        switch (this.f39235a) {
+        switch (this.f39261a) {
             case 0:
-                ((nr) this.f39236b).scheduleSelf(runnable, j10);
+                ((nr) this.f39262b).scheduleSelf(runnable, j10);
                 return;
             default:
                 return;
@@ -39,9 +39,9 @@ public final class mr implements Drawable.Callback {
 
     @Override
     public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f39235a) {
+        switch (this.f39261a) {
             case 0:
-                ((nr) this.f39236b).unscheduleSelf(runnable);
+                ((nr) this.f39262b).unscheduleSelf(runnable);
                 return;
             default:
                 return;

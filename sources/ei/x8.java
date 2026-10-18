@@ -14,24 +14,24 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.kk;
 import org.telegram.ui.Components.he0;
 import org.telegram.ui.Components.hf;
 import org.telegram.ui.Components.le0;
 public final class x8 extends FrameLayout {
-    public final int f10106a = 0;
-    public final Object f10107b;
-    public final Object f10108c;
+    public final int f10108a = 0;
+    public final Object f10109b;
+    public final Object f10110c;
     public final Object d;
     public Object e;
-    public Object f10109f;
+    public Object f10111f;
     public Object h;
 
     public x8(le0 le0Var, Context context) {
         super(context);
         this.h = le0Var;
-        this.f10107b = new ArrayList(4);
-        this.f10108c = new ArrayList(4);
+        this.f10109b = new ArrayList(4);
+        this.f10110c = new ArrayList(4);
         this.d = new StringBuilder(4);
         for (int i10 = 0; i10 < 4; i10++) {
             TextView textView = new TextView(context);
@@ -43,7 +43,7 @@ public final class x8 extends FrameLayout {
             textView.setPivotX(AndroidUtilities.dp(25.0f));
             textView.setPivotY(AndroidUtilities.dp(25.0f));
             addView(textView, w7.z5.e(50, 50, 51));
-            ((ArrayList) this.f10107b).add(textView);
+            ((ArrayList) this.f10109b).add(textView);
             TextView textView2 = new TextView(context);
             textView2.setTextColor(-1);
             textView2.setTypeface(AndroidUtilities.bold());
@@ -54,21 +54,21 @@ public final class x8 extends FrameLayout {
             textView2.setPivotX(AndroidUtilities.dp(25.0f));
             textView2.setPivotY(AndroidUtilities.dp(25.0f));
             addView(textView2, w7.z5.e(50, 50, 51));
-            ((ArrayList) this.f10108c).add(textView2);
+            ((ArrayList) this.f10110c).add(textView2);
         }
     }
 
     public static void a(x8 x8Var, boolean z10) {
-        ArrayList arrayList = (ArrayList) x8Var.f10108c;
-        ArrayList arrayList2 = (ArrayList) x8Var.f10107b;
+        ArrayList arrayList = (ArrayList) x8Var.f10110c;
+        ArrayList arrayList2 = (ArrayList) x8Var.f10109b;
         StringBuilder sb2 = (StringBuilder) x8Var.d;
         if (sb2.length() == 0) {
             return;
         }
-        hf hfVar = (hf) x8Var.f10109f;
+        hf hfVar = (hf) x8Var.f10111f;
         if (hfVar != null) {
             AndroidUtilities.cancelRunOnUIThread(hfVar);
-            x8Var.f10109f = null;
+            x8Var.f10111f = null;
         }
         AnimatorSet animatorSet = (AnimatorSet) x8Var.e;
         if (animatorSet != null) {
@@ -112,8 +112,8 @@ public final class x8 extends FrameLayout {
     }
 
     public void b(String str) {
-        ArrayList arrayList = (ArrayList) this.f10108c;
-        ArrayList arrayList2 = (ArrayList) this.f10107b;
+        ArrayList arrayList = (ArrayList) this.f10110c;
+        ArrayList arrayList2 = (ArrayList) this.f10109b;
         StringBuilder sb2 = (StringBuilder) this.d;
         if (sb2.length() == 4) {
             return;
@@ -157,12 +157,12 @@ public final class x8 extends FrameLayout {
                 arrayList3.add(ObjectAnimator.ofFloat(textView4, property3, 0.0f));
             }
         }
-        hf hfVar = (hf) this.f10109f;
+        hf hfVar = (hf) this.f10111f;
         if (hfVar != null) {
             AndroidUtilities.cancelRunOnUIThread(hfVar);
         }
         hf hfVar2 = new hf(this, length, 2);
-        this.f10109f = hfVar2;
+        this.f10111f = hfVar2;
         AndroidUtilities.runOnUIThread(hfVar2, 1500L);
         for (int i11 = 0; i11 < length; i11++) {
             TextView textView5 = (TextView) arrayList2.get(i11);
@@ -193,14 +193,14 @@ public final class x8 extends FrameLayout {
     }
 
     public int c(int i10) {
-        return org.telegram.messenger.q.D(30.0f, i10, (getMeasuredWidth() - (AndroidUtilities.dp(30.0f) * ((StringBuilder) this.d).length())) / 2) - AndroidUtilities.dp(10.0f);
+        return org.telegram.messenger.g0.D(30.0f, i10, (getMeasuredWidth() - (AndroidUtilities.dp(30.0f) * ((StringBuilder) this.d).length())) / 2) - AndroidUtilities.dp(10.0f);
     }
 
     public void d(boolean z10) {
         int i10;
         float f7;
         float f10;
-        ImageView imageView = (ImageView) this.f10108c;
+        ImageView imageView = (ImageView) this.f10110c;
         if (z10) {
             i10 = 0;
         } else {
@@ -224,11 +224,11 @@ public final class x8 extends FrameLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f10106a) {
+        switch (this.f10108a) {
             case 0:
                 super.dispatchDraw(canvas);
-                Paint paint = (Paint) this.f10109f;
-                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d7, (org.telegram.ui.ActionBar.d6) this.f10107b));
+                Paint paint = (Paint) this.f10111f;
+                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d7, (org.telegram.ui.ActionBar.d6) this.f10109b));
                 canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -243,14 +243,14 @@ public final class x8 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f10106a) {
+        switch (this.f10108a) {
             case 1:
-                ArrayList arrayList = (ArrayList) this.f10108c;
-                ArrayList arrayList2 = (ArrayList) this.f10107b;
-                hf hfVar = (hf) this.f10109f;
+                ArrayList arrayList = (ArrayList) this.f10110c;
+                ArrayList arrayList2 = (ArrayList) this.f10109b;
+                hf hfVar = (hf) this.f10111f;
                 if (hfVar != null) {
                     AndroidUtilities.cancelRunOnUIThread(hfVar);
-                    this.f10109f = null;
+                    this.f10111f = null;
                 }
                 AnimatorSet animatorSet = (AnimatorSet) this.e;
                 if (animatorSet != null) {
@@ -286,7 +286,7 @@ public final class x8 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f10106a) {
+        switch (this.f10108a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
                 return;
@@ -298,23 +298,23 @@ public final class x8 extends FrameLayout {
 
     public x8(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f10109f = new Paint(1);
-        this.f10107b = d6Var;
+        this.f10111f = new Paint(1);
+        this.f10109b = d6Var;
         TextView textView = new TextView(context);
         this.d = textView;
-        wh.k(20.0f, 1, textView);
+        kk.k(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21092j5, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21099j5, d6Var));
         boolean z10 = LocaleController.isRTL;
         addView(textView, w7.z5.a(-2.0f, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f, -1, 23));
         ImageView imageView = new ImageView(context);
-        this.f10108c = imageView;
+        this.f10110c = imageView;
         org.telegram.ui.ActionBar.g2 g2Var = new org.telegram.ui.ActionBar.g2(false);
         this.e = g2Var;
         imageView.setImageDrawable(g2Var);
         g2Var.a(-1);
         g2Var.b(-1);
-        g2Var.f20864k = 220.0f;
+        g2Var.f20871k = 220.0f;
         addView(imageView, w7.z5.a(24.0f, 16.0f, 0.0f, 16.0f, 0.0f, 24, (LocaleController.isRTL ? 5 : 3) | 16));
         imageView.setOnClickListener(new ah.g0(this, 23));
     }

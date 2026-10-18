@@ -1,10 +1,10 @@
 package n2;
 public final class q {
-    public final byte[] f17061a;
-    public final String f17062b;
+    public final byte[] f17068a;
+    public final String f17069b;
 
     public q(String str, byte[] bArr) {
-        this.f17061a = bArr;
-        this.f17062b = str;
+        this.f17068a = bArr;
+        this.f17069b = str;
     }
 }

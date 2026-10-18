@@ -2,7 +2,7 @@ package org.scilab.forge.jlatexmath;
 public class GraphicsAtom extends Atom {
     private Atom base;
     private int h;
-    private int f17764w;
+    private int f17771w;
     private boolean first = true;
     private int interp = -1;
 

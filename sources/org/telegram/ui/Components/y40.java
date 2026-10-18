@@ -5,35 +5,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
-public final class y40 implements org.telegram.ui.jq0 {
-    public boolean f32545a;
-    public final HashMap f32546b;
-    public final ArrayList f32547c;
+public final class y40 implements org.telegram.ui.kq0 {
+    public boolean f32552a;
+    public final HashMap f32553b;
+    public final ArrayList f32554c;
     public final e50 d;
 
     public y40(e50 e50Var, HashMap hashMap, ArrayList arrayList) {
         this.d = e50Var;
-        this.f32546b = hashMap;
-        this.f32547c = arrayList;
+        this.f32553b = hashMap;
+        this.f32554c = arrayList;
     }
 
     @Override
-    public final boolean e() {
-        return this.d.f25806b.e();
-    }
-
-    @Override
-    public final void h(int i10, boolean z10, boolean z11) {
+    public final void d(int i10, boolean z10, boolean z11) {
         String str;
-        HashMap hashMap = this.f32546b;
+        HashMap hashMap = this.f32553b;
         if (!hashMap.isEmpty()) {
             e50 e50Var = this.d;
-            if (e50Var.f25806b != null && !this.f32545a && !z10) {
-                this.f32545a = true;
+            if (e50Var.f25813b != null && !this.f32552a && !z10) {
+                this.f32552a = true;
                 ArrayList arrayList = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f32547c;
+                    ArrayList arrayList2 = this.f32554c;
                     if (i11 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i11));
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -70,6 +65,11 @@ public final class y40 implements org.telegram.ui.jq0 {
     }
 
     @Override
+    public final boolean e() {
+        return this.d.f25813b.e();
+    }
+
+    @Override
     public final void a() {
     }
 
@@ -78,6 +78,6 @@ public final class y40 implements org.telegram.ui.jq0 {
     }
 
     @Override
-    public final void g() {
+    public final void c() {
     }
 }

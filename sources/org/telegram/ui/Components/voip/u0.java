@@ -15,10 +15,10 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.wc0;
 import w7.z5;
 public final class u0 extends z4.a {
-    public final v0 f31804c;
+    public final v0 f31811c;
 
     public u0(v0 v0Var) {
-        this.f31804c = v0Var;
+        this.f31811c = v0Var;
     }
 
     @Override
@@ -28,15 +28,15 @@ public final class u0 extends z4.a {
 
     @Override
     public final int b() {
-        return this.f31804c.f31822f.length;
+        return this.f31811c.f31829f.length;
     }
 
     @Override
     public final Object e(z4.g gVar, int i10) {
         Bitmap bitmap;
         ImageView imageView;
-        v0 v0Var = this.f31804c;
-        boolean z10 = v0Var.f31828y;
+        v0 v0Var = this.f31811c;
+        boolean z10 = v0Var.f31835y;
         int i11 = 1;
         if (z10 && i10 == 0) {
             ?? frameLayout = new FrameLayout(v0Var.getContext());
@@ -49,7 +49,7 @@ public final class u0 extends z4.a {
             textView.setText(LocaleController.getString(R.string.VoipVideoPrivateScreenSharing));
             textView.setGravity(17);
             textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            org.telegram.messenger.q.m(15.0f, -1, 1, textView);
+            org.telegram.messenger.g0.m(15.0f, -1, 1, textView);
             frameLayout.addView(textView, z5.a(-2.0f, 21.0f, 28.0f, 21.0f, 0.0f, -1, 17));
             imageView = frameLayout;
         } else {

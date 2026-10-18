@@ -1,75 +1,52 @@
 package ig;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import android.app.Activity;
+import ei.e4;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.p6;
-public final class o1 extends EditTextBoldCursor {
-    public final i5 f12979b;
-    public int f12980c;
-    public final p6 d;
-    public final d6 e;
+import org.telegram.ui.ActionBar.n2;
+public final class o1 extends org.telegram.ui.ActionBar.j {
+    public final x1 f12986a;
 
-    public o1(Context context, d6 d6Var) {
-        super(context);
-        this.e = d6Var;
-        this.f12979b = new i5(this);
-        p6 p6Var = new p6(false, true, true);
-        this.d = p6Var;
-        p6Var.n(0.2f, 160L, bs.h);
-        p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.setCallback(this);
-        p6Var.f29192b = 5;
+    public o1(x1 x1Var) {
+        this.f12986a = x1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f12980c < 0) {
-            i10 = h6.f21207p7;
-        } else {
-            i10 = h6.P5;
-        }
-        int a2 = this.f12979b.a(h6.w0(i10, this.e), false);
-        p6 p6Var = this.d;
-        p6Var.u(a2);
-        p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        p6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        p6 p6Var = this.d;
-        if (p6Var != null) {
-            this.f12980c = 32 - charSequence.length();
-            p6Var.a();
-            String str = "";
-            if (this.f12980c <= 4) {
-                str = "" + this.f12980c;
+    public final void b(int i10) {
+        int i11;
+        int i12;
+        d6 d6Var;
+        x1 x1Var = this.f12986a;
+        ArrayList arrayList = x1Var.f13086b;
+        if (i10 == -1) {
+            if (arrayList.isEmpty()) {
+                x1Var.finishFragment();
+            } else {
+                x1.X(x1Var);
             }
-            p6Var.t(str, true, true);
+        } else if (i10 == 1) {
+            if (arrayList.size() == 1) {
+                int intValue = ((Integer) arrayList.get(0)).intValue();
+                i11 = ((n2) x1Var).currentAccount;
+                z1 c10 = a2.f(i11).c(intValue);
+                if (c10 != null) {
+                    Activity parentActivity = x1Var.getParentActivity();
+                    i12 = ((n2) x1Var).currentAccount;
+                    d6Var = ((n2) x1Var).resourceProvider;
+                    x1.d0(parentActivity, i12, null, c10, d6Var, new e4(this, intValue, 2));
+                }
+            }
+        } else if (i10 == 2) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(x1Var.getParentActivity(), 0, x1Var.getResourceProvider());
+            alertDialog$Builder.f20608a.R = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
+            alertDialog$Builder.f20608a.T = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new e1.c(this, 22));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            x1Var.showDialog(alertDialog$Builder.f20608a);
         }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

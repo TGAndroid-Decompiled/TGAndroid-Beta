@@ -1,105 +1,105 @@
 package org.telegram.messenger.voip;
 public final class s implements Runnable {
-    public final int f19904a;
-    public final VoIPService f19905b;
+    public final int f19915a;
+    public final VoIPService f19916b;
 
     public s(VoIPService voIPService, int i10) {
-        this.f19904a = i10;
-        this.f19905b = voIPService;
+        this.f19915a = i10;
+        this.f19916b = voIPService;
     }
 
     @Override
     public final void run() {
-        switch (this.f19904a) {
+        switch (this.f19915a) {
             case 0:
-                this.f19905b.lambda$updateConnectionState$83();
+                VoIPService.J0(this.f19916b);
                 return;
             case 1:
-                this.f19905b.lambda$playConnectedSound$88();
+                VoIPService.X0(this.f19916b);
                 return;
             case 2:
-                this.f19905b.lambda$playStartRecordSound$120();
+                VoIPService.v0(this.f19916b);
                 return;
             case 3:
-                this.f19905b.lambda$playAllowTalkSound$121();
+                VoIPService.J(this.f19916b);
                 return;
             case 4:
-                this.f19905b.lambda$getConnectionAndStartCall$106();
+                VoIPService.T(this.f19916b);
                 return;
             case 5:
-                this.f19905b.lambda$callFailed$115();
+                VoIPService.B0(this.f19916b);
                 return;
             case 6:
-                this.f19905b.lambda$callFailed$116();
+                VoIPService.z(this.f19916b);
                 return;
             case 7:
-                this.f19905b.lambda$callEnded$123();
+                VoIPService.H0(this.f19916b);
                 return;
             case 8:
-                this.f19905b.lambda$callEnded$124();
+                VoIPService.v1(this.f19916b);
                 return;
             case 9:
-                this.f19905b.lambda$callEnded$125();
+                VoIPService.B(this.f19916b);
                 return;
             case 10:
-                this.f19905b.lambda$callEnded$126();
+                VoIPService.e(this.f19916b);
                 return;
             case 11:
-                this.f19905b.lambda$onCallUpdated$16();
+                VoIPService.w1(this.f19916b);
                 return;
             case 12:
-                this.f19905b.lambda$onCallUpdated$17();
+                VoIPService.I(this.f19916b);
                 return;
             case 13:
-                this.f19905b.lambda$onCallUpdated$18();
+                VoIPService.j1(this.f19916b);
                 return;
             case 14:
-                this.f19905b.lambda$setMicMute$0();
+                VoIPService.E(this.f19916b);
                 return;
             case 15:
-                this.f19905b.lambda$endConnectionServiceCall$127();
+                VoIPService.Q0(this.f19916b);
                 return;
             case 16:
-                this.f19905b.lambda$switchToSpeaker$92();
+                VoIPService.b0(this.f19916b);
                 return;
             case 17:
-                this.f19905b.lambda$convertToConferenceCall$30();
+                VoIPService.z0(this.f19916b);
                 return;
             case 18:
-                this.f19905b.lambda$initiateActualEncryptedCall$84();
+                VoIPService.t(this.f19916b);
                 return;
             case 19:
-                this.f19905b.lambda$loadResources$109();
+                VoIPService.u(this.f19916b);
                 return;
             case 20:
-                this.f19905b.lambda$setupCaptureDevice$14();
+                VoIPService.c1(this.f19916b);
                 return;
             case 21:
-                this.f19905b.lambda$startOutgoingCall$8();
+                VoIPService.e1(this.f19916b);
                 return;
             case 22:
-                this.f19905b.lambda$onStartCommand$2();
+                VoIPService.O0(this.f19916b);
                 return;
             case 23:
-                this.f19905b.lambda$onStartCommand$3();
+                VoIPService.n1(this.f19916b);
                 return;
             case 24:
-                this.f19905b.lambda$declineIncomingCall$104();
+                VoIPService.w(this.f19916b);
                 return;
             case 25:
-                this.f19905b.callFailed();
+                VoIPService.r(this.f19916b);
                 return;
             case 26:
-                this.f19905b.lambda$startGroupCheckShortpoll$65();
+                VoIPService.P0(this.f19916b);
                 return;
             case 27:
-                this.f19905b.lambda$onDestroy$99();
+                VoIPService.i1(this.f19916b);
                 return;
             case 28:
-                this.f19905b.lambda$onConnectionStateChanged$117();
+                VoIPService.c(this.f19916b);
                 return;
             default:
-                this.f19905b.lambda$startConnectingSound$89();
+                VoIPService.b1(this.f19916b);
                 return;
         }
     }

@@ -1,41 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class tn0 implements do0 {
-    public final fo0 f41789a;
-
-    public tn0(fo0 fo0Var) {
-        this.f41789a = fo0Var;
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-        this.f41789a.f36971a0 = password;
-    }
-
-    @Override
-    public final void b() {
-        this.f41789a.f36984f0 = null;
-    }
-
-    @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        fo0 fo0Var = this.f41789a;
-        do0 do0Var = fo0Var.T;
-        if (do0Var != null) {
-            do0Var.c(str, str2, z10, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);
+import org.json.JSONObject;
+public final class tn0 extends JSONObject {
+    public tn0(go0 go0Var, int i10) {
+        switch (i10) {
+            case 3:
+                put("type", "PAYMENT_GATEWAY");
+                Object obj = go0Var.M0;
+                if (obj != null) {
+                    put("parameters", obj);
+                    return;
+                }
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("gateway", "stripe");
+                jSONObject.put("stripe:publishableKey", go0Var.f37272j0);
+                jSONObject.put("stripe:version", "3.5.0");
+                put("parameters", jSONObject);
+                return;
+            default:
+                put("type", "DIRECT");
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("protocolVersion", "ECv2");
+                jSONObject2.put("publicKey", go0Var.K0);
+                put("parameters", jSONObject2);
+                return;
         }
-        if (fo0Var.S0) {
-            fo0Var.removeSelfFromStack();
-        }
-        if (fo0Var.T != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

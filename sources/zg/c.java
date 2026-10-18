@@ -8,14 +8,14 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.va;
 import org.telegram.ui.Components.h9;
-import ug.q;
+import ug.r;
 public final class c extends va {
-    public final a f51648a0;
-    public TL_stories.PrepaidGiveaway f51649b0;
+    public final a f51673a0;
+    public TL_stories.PrepaidGiveaway f51674b0;
 
     public c(Context context) {
         super(0, 0, context, false);
-        this.f51648a0 = new a(context);
+        this.f51673a0 = new a(context);
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class c extends va {
     }
 
     public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
-        return this.f51649b0;
+        return this.f51674b0;
     }
 
     @Override
@@ -45,20 +45,20 @@ public final class c extends va {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, h6.f21107k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, h6.f21114k0);
         }
     }
 
     public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f51649b0 = prepaidGiveaway;
+        this.f51674b0 = prepaidGiveaway;
         boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         h9 h9Var = this.E;
         if (z10) {
             h9Var.g(26);
             String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
-            a aVar = this.f51648a0;
-            aVar.f51641f = valueOf;
-            aVar.e = aVar.f51638a.measureText(valueOf);
+            a aVar = this.f51673a0;
+            aVar.f51666f = valueOf;
+            aVar.e = aVar.f51663a.measureText(valueOf);
             aVar.invalidateSelf();
         } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
             h9Var.g(16);
@@ -70,12 +70,12 @@ public final class c extends va {
             } else {
                 h9Var.i(-6631068, -11945404);
             }
-            String valueOf2 = String.valueOf(q.g() * prepaidGiveaway.quantity);
-            a aVar2 = this.f51648a0;
-            aVar2.f51641f = valueOf2;
-            aVar2.e = aVar2.f51638a.measureText(valueOf2);
+            String valueOf2 = String.valueOf(r.g() * prepaidGiveaway.quantity);
+            a aVar2 = this.f51673a0;
+            aVar2.f51666f = valueOf2;
+            aVar2.e = aVar2.f51663a.measureText(valueOf2);
             aVar2.invalidateSelf();
         }
-        this.f23659b.i(this.f51648a0);
+        this.f23666b.i(this.f51673a0);
     }
 }

@@ -8,9 +8,9 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class gf0 extends FrameLayout {
-    public TextView f26558a;
-    public TextView f26559b;
-    public ImageView f26560c;
+    public TextView f26565a;
+    public TextView f26566b;
+    public ImageView f26567c;
     public Switch d;
     public boolean e;
 
@@ -41,30 +41,30 @@ public final class gf0 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21107k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21114k0);
         }
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(13.0f) + this.f26558a.getMeasuredHeight();
-        TextView textView = this.f26559b;
+        int dp = AndroidUtilities.dp(13.0f) + this.f26565a.getMeasuredHeight();
+        TextView textView = this.f26566b;
         textView.layout(textView.getLeft(), dp, textView.getRight(), textView.getMeasuredHeight() + dp);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        TextView textView = this.f26558a;
+        TextView textView = this.f26565a;
         measureChildWithMargins(textView, i10, 0, i11, 0);
-        TextView textView2 = this.f26559b;
+        TextView textView2 = this.f26566b;
         measureChildWithMargins(textView2, i10, 0, i11, 0);
-        measureChildWithMargins(this.f26560c, i10, 0, i11, 0);
+        measureChildWithMargins(this.f26567c, i10, 0, i11, 0);
         Switch r72 = this.d;
         if (r72 != null) {
             measureChildWithMargins(r72, i10, 0, i11, 0);
         }
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.q.y(20.0f, textView2.getMeasuredHeight() + textView.getMeasuredHeight(), AndroidUtilities.dp(64.0f)) + (this.e ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.y(20.0f, textView2.getMeasuredHeight() + textView.getMeasuredHeight(), AndroidUtilities.dp(64.0f)) + (this.e ? 1 : 0));
     }
 
     public void setChecked(boolean z10) {

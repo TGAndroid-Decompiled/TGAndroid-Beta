@@ -4,25 +4,25 @@ import c3.j0;
 import ci.c7;
 public final class v implements i {
     public String e;
-    public j0 f14202f;
-    public boolean f14204i;
-    public int f14206k;
-    public int f14207l;
-    public int f14209n;
-    public int f14210o;
-    public int f14214s;
-    public boolean f14216u;
+    public j0 f14209f;
+    public boolean f14211i;
+    public int f14213k;
+    public int f14214l;
+    public int f14216n;
+    public int f14217o;
+    public int f14221s;
+    public boolean f14223u;
     public int d = 0;
-    public final e2.x f14199a = new e2.x(new byte[15], 2);
-    public final a4.g f14200b = new a4.g();
-    public final e2.x f14201c = new e2.x();
-    public final c7 f14211p = new c7();
-    public int f14212q = -2147483647;
-    public int f14213r = -1;
-    public long f14215t = -1;
-    public boolean f14205j = true;
-    public boolean f14208m = true;
-    public double f14203g = -9.223372036854776E18d;
+    public final e2.x f14206a = new e2.x(new byte[15], 2);
+    public final a4.g f14207b = new a4.g();
+    public final e2.x f14208c = new e2.x();
+    public final c7 f14218p = new c7();
+    public int f14219q = -2147483647;
+    public int f14220r = -1;
+    public long f14222t = -1;
+    public boolean f14212j = true;
+    public boolean f14215m = true;
+    public double f14210g = -9.223372036854776E18d;
     public double h = -9.223372036854776E18d;
 
     @Override
@@ -33,19 +33,19 @@ public final class v implements i {
     @Override
     public final void c() {
         this.d = 0;
-        this.f14207l = 0;
-        this.f14199a.K(2);
-        this.f14209n = 0;
-        this.f14210o = 0;
-        this.f14212q = -2147483647;
-        this.f14213r = -1;
-        this.f14214s = 0;
-        this.f14215t = -1L;
-        this.f14216u = false;
-        this.f14204i = false;
-        this.f14208m = true;
-        this.f14205j = true;
-        this.f14203g = -9.223372036854776E18d;
+        this.f14214l = 0;
+        this.f14206a.K(2);
+        this.f14216n = 0;
+        this.f14217o = 0;
+        this.f14219q = -2147483647;
+        this.f14220r = -1;
+        this.f14221s = 0;
+        this.f14222t = -1L;
+        this.f14223u = false;
+        this.f14211i = false;
+        this.f14215m = true;
+        this.f14212j = true;
+        this.f14210g = -9.223372036854776E18d;
         this.h = -9.223372036854776E18d;
     }
 
@@ -55,20 +55,20 @@ public final class v implements i {
         f0Var.c();
         this.e = (String) f0Var.e;
         f0Var.c();
-        this.f14202f = qVar.j0(f0Var.f14052c, 1);
+        this.f14209f = qVar.j0(f0Var.f14059c, 1);
     }
 
     @Override
     public final void f(int i10, long j10) {
-        this.f14206k = i10;
-        if (!this.f14205j && (this.f14210o != 0 || !this.f14208m)) {
-            this.f14204i = true;
+        this.f14213k = i10;
+        if (!this.f14212j && (this.f14217o != 0 || !this.f14215m)) {
+            this.f14211i = true;
         }
         if (j10 != -9223372036854775807L) {
-            if (this.f14204i) {
+            if (this.f14211i) {
                 this.h = j10;
             } else {
-                this.f14203g = j10;
+                this.f14210g = j10;
             }
         }
     }

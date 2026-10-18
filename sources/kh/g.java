@@ -23,14 +23,14 @@ import org.telegram.ui.mf;
 import org.telegram.ui.re;
 import org.telegram.ui.sn;
 public final class g implements View.OnLongClickListener {
-    public final int f15077a;
-    public final int f15078b;
-    public final FrameLayout f15079c;
+    public final int f15084a;
+    public final int f15085b;
+    public final FrameLayout f15086c;
 
     public g(FrameLayout frameLayout, int i10, int i11) {
-        this.f15077a = i11;
-        this.f15079c = frameLayout;
-        this.f15078b = i10;
+        this.f15084a = i11;
+        this.f15086c = frameLayout;
+        this.f15085b = i10;
     }
 
     @Override
@@ -39,12 +39,12 @@ public final class g implements View.OnLongClickListener {
         boolean z10;
         String string;
         jn0 jn0Var;
-        switch (this.f15077a) {
+        switch (this.f15084a) {
             case 0:
-                b bVar = ((h) this.f15079c).f15085n;
+                b bVar = ((h) this.f15086c).f15092n;
                 if (bVar != null) {
-                    sn snVar = ((re) bVar).f40709b;
-                    int i10 = this.f15078b;
+                    sn snVar = ((re) bVar).f40734b;
+                    int i10 = this.f15085b;
                     if (i10 == 2) {
                         mfVar = new mf(snVar, 8);
                         z10 = true;
@@ -75,7 +75,7 @@ public final class g implements View.OnLongClickListener {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(e1Var);
                     m1 m1Var = new m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                     m1Var.e = true;
-                    m1Var.f21573c = 220;
+                    m1Var.f21580c = 220;
                     m1Var.setOutsideTouchable(true);
                     m1Var.setClippingEnabled(true);
                     m1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -95,7 +95,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     m1Var.showAtLocation(lmVar, 51, (int) width, (int) measuredHeight);
                     snVar.Q8 = m1Var;
-                    snVar.i8(snVar.f41257j1, false);
+                    snVar.i8(snVar.f41278j1, false);
                     snVar.Q8.setOnDismissListener(new f0(snVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
@@ -105,8 +105,8 @@ public final class g implements View.OnLongClickListener {
                 }
                 return false;
             default:
-                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f15079c;
-                if (!scrollSlidingTextTabStrip.f24358n0 && (jn0Var = scrollSlidingTextTabStrip.f24343b) != null && jn0Var.b1(this.f15078b, view)) {
+                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f15086c;
+                if (!scrollSlidingTextTabStrip.f24365n0 && (jn0Var = scrollSlidingTextTabStrip.f24350b) != null && jn0Var.b1(this.f15085b, view)) {
                     return true;
                 }
                 return false;

@@ -3,16 +3,16 @@ package n7;
 import java.io.Serializable;
 import java.util.Comparator;
 public final class h extends x implements Serializable {
-    public final Comparator f17269a;
+    public final Comparator f17276a;
 
     public h(Comparator comparator) {
         comparator.getClass();
-        this.f17269a = comparator;
+        this.f17276a = comparator;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        return this.f17269a.compare(obj, obj2);
+        return this.f17276a.compare(obj, obj2);
     }
 
     @Override
@@ -21,16 +21,16 @@ public final class h extends x implements Serializable {
             return true;
         }
         if (obj instanceof h) {
-            return this.f17269a.equals(((h) obj).f17269a);
+            return this.f17276a.equals(((h) obj).f17276a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f17269a.hashCode();
+        return this.f17276a.hashCode();
     }
 
     public final String toString() {
-        return this.f17269a.toString();
+        return this.f17276a.toString();
     }
 }

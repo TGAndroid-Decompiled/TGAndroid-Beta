@@ -12,30 +12,30 @@ import org.telegram.ui.da0;
 import org.telegram.ui.dq;
 import org.telegram.ui.ey;
 public final class i8 implements Runnable {
-    public final int f18583a = 0;
-    public final boolean f18584b;
-    public final int f18585c;
+    public final int f18594a = 0;
+    public final boolean f18595b;
+    public final int f18596c;
     public final long d;
     public final Object e;
-    public final Object f18586f;
+    public final Object f18597f;
     public final Object h;
-    public final Object f18587n;
-    public final Object f18588r;
-    public final Object f18589s;
+    public final Object f18598n;
+    public final Object f18599r;
+    public final Object f18600s;
     public final Object v;
-    public final Object f18590w;
+    public final Object f18601w;
 
     public i8(MediaDataController mediaDataController, Timer.Task task, a0.h hVar, AtomicInteger atomicInteger, Runnable runnable, int i10, Timer timer, a0.h hVar2, a0.h hVar3, boolean z10, long j10) {
         this.e = mediaDataController;
-        this.f18586f = task;
+        this.f18597f = task;
         this.h = hVar;
-        this.f18589s = atomicInteger;
+        this.f18600s = atomicInteger;
         this.v = runnable;
-        this.f18585c = i10;
-        this.f18590w = timer;
-        this.f18587n = hVar2;
-        this.f18588r = hVar3;
-        this.f18584b = z10;
+        this.f18596c = i10;
+        this.f18601w = timer;
+        this.f18598n = hVar2;
+        this.f18599r = hVar3;
+        this.f18595b = z10;
         this.d = j10;
     }
 
@@ -53,18 +53,18 @@ public final class i8 implements Runnable {
         boolean z18;
         boolean z19;
         boolean z20;
-        int i10 = this.f18583a;
-        Object obj = this.f18590w;
+        int i10 = this.f18594a;
+        Object obj = this.f18601w;
         Object obj2 = this.v;
-        Object obj3 = this.f18589s;
-        Object obj4 = this.f18588r;
-        Object obj5 = this.f18587n;
+        Object obj3 = this.f18600s;
+        Object obj4 = this.f18599r;
+        Object obj5 = this.f18598n;
         Object obj6 = this.h;
-        Object obj7 = this.f18586f;
+        Object obj7 = this.f18597f;
         Object obj8 = this.e;
         switch (i10) {
             case 0:
-                ((MediaDataController) obj8).lambda$loadReplyMessagesForMessages$177((Timer.Task) obj7, (a0.h) obj6, (AtomicInteger) obj3, (Runnable) obj2, this.f18585c, (Timer) obj, (a0.h) obj5, (a0.h) obj4, this.f18584b, this.d);
+                ((MediaDataController) obj8).lambda$loadReplyMessagesForMessages$177((Timer.Task) obj7, (a0.h) obj6, (AtomicInteger) obj3, (Runnable) obj2, this.f18596c, (Timer) obj, (a0.h) obj5, (a0.h) obj4, this.f18595b, this.d);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj8;
@@ -307,13 +307,13 @@ public final class i8 implements Runnable {
                         tL_chatAdminRights2.other = z20;
                     }
                 }
-                boolean z21 = this.f18584b;
-                int i11 = this.f18585c;
+                boolean z21 = this.f18595b;
+                int i11 = this.f18596c;
                 if (z21 && tL_chatAdminRights == null && !TextUtils.isEmpty(str2)) {
-                    MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f20272id, user, 0, str2, eyVar, true, new az0(i11, 5, launchActivity, chat, eyVar), null);
+                    MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f20279id, user, 0, str2, eyVar, true, new az0(i11, 5, launchActivity, chat, eyVar), null);
                     return;
                 }
-                dq dqVar = new dq(user.f20419id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);
+                dq dqVar = new dq(user.f20426id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);
                 dqVar.X0 = new da0(eyVar, i11);
                 ((ActionBarLayout) launchActivity.O()).Q(dqVar, false);
                 return;
@@ -322,15 +322,15 @@ public final class i8 implements Runnable {
 
     public i8(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z10, String str2, int i10, TLRPC.Chat chat, ey eyVar, TLRPC.User user, long j10, String str3) {
         this.e = launchActivity;
-        this.f18586f = str;
+        this.f18597f = str;
         this.h = tL_chatAdminRights;
-        this.f18584b = z10;
-        this.f18587n = str2;
-        this.f18585c = i10;
-        this.f18588r = chat;
-        this.f18589s = eyVar;
+        this.f18595b = z10;
+        this.f18598n = str2;
+        this.f18596c = i10;
+        this.f18599r = chat;
+        this.f18600s = eyVar;
         this.v = user;
         this.d = j10;
-        this.f18590w = str3;
+        this.f18601w = str3;
     }
 }

@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class rg extends j1.b {
-    public final sg f29936o;
+    public final sg f29944o;
 
     public rg(sg sgVar, sg sgVar2) {
         super(sgVar2);
-        this.f29936o = sgVar;
+        this.f29944o = sgVar;
     }
 
     @Override
     public final int g(float f7, float f10) {
-        sg sgVar = this.f29936o;
+        sg sgVar = this.f29944o;
         ChatActivityEnterView chatActivityEnterView = sgVar.V;
-        if (chatActivityEnterView.f24015s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f7, f10)) {
+        if (chatActivityEnterView.f24022s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f7, f10)) {
             return 2;
         }
-        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f23988n4 > 0.1f && sgVar.J.contains(f7, f10)) {
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f23995n4 > 0.1f && sgVar.J.contains(f7, f10)) {
             return 4;
         }
         return -1;
@@ -28,11 +28,11 @@ public final class rg extends j1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f29936o.V;
-        if (chatActivityEnterView.f24015s4) {
+        ChatActivityEnterView chatActivityEnterView = this.f29944o.V;
+        if (chatActivityEnterView.f24022s4) {
             arrayList.add(2);
         }
-        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f23988n4 > 0.1f) {
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f23995n4 > 0.1f) {
             arrayList.add(4);
         }
     }
@@ -46,14 +46,14 @@ public final class rg extends j1.b {
     public final void l(int i10, s0.c cVar) {
         int i11;
         int i12;
-        sg sgVar = this.f29936o;
+        sg sgVar = this.f29944o;
         ChatActivityEnterView chatActivityEnterView = sgVar.V;
         if (i10 == 2) {
             Rect rect = chatActivityEnterView.U3;
             RectF rectF = chatActivityEnterView.S3;
             rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             cVar.h(chatActivityEnterView.U3);
-            if (chatActivityEnterView.f23998p4 > 0.5f) {
+            if (chatActivityEnterView.f24005p4 > 0.5f) {
                 i12 = R.string.AccActionResume;
             } else {
                 i12 = R.string.AccActionPause;

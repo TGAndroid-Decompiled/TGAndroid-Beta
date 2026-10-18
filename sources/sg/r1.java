@@ -1,6 +1,6 @@
 package sg;
 
-import ai.ce;
+import ai.de;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -11,14 +11,14 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.q8;
 import org.telegram.ui.Components.xj0;
 public final class r1 extends q8 {
-    public final ce R;
+    public final de R;
     public final int S;
     public final org.telegram.ui.web.z1 T;
 
     public r1(Context context, int i10, d6 d6Var) {
         super(context, d6Var);
         int i11;
-        this.R = new ce(1, 15);
+        this.R = new de(1, 15);
         this.T = new org.telegram.ui.web.z1(this, 25);
         if (i10 == 1) {
             i11 = h6.fk;
@@ -33,9 +33,9 @@ public final class r1 extends q8 {
         boolean isEnabled = LiteMode.isEnabled(131072);
         org.telegram.ui.web.z1 z1Var = this.T;
         if (isEnabled) {
-            ce ceVar = this.R;
-            ceVar.d();
-            ceVar.a(canvas, h6.x0(null, this.S, false));
+            de deVar = this.R;
+            deVar.d();
+            deVar.a(canvas, h6.x0(null, this.S, false));
             zf.h.d().a(15, z1Var);
         } else {
             zf.h.d().f(z1Var);

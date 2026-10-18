@@ -1,67 +1,40 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class h9 extends ReplacementSpan {
-    public final String f34291a;
-    public final String f34292b;
-    public final boolean f34293c;
-    public float d;
-    public int e;
-    public int f34294f;
-    public j9 h;
-    public j9 f34295n;
-    public final k9 f34296r;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class h9 implements TextWatcher {
+    public boolean f34310a;
+    public final TextView f34311b;
 
-    public h9(k9 k9Var, String str, boolean z10, boolean z11) {
-        String str2;
-        this.f34296r = k9Var;
-        this.f34291a = str;
-        if (z10) {
-            str2 = k9Var.O;
-        } else {
-            str2 = "";
-        }
-        this.f34292b = str2;
-        this.f34293c = z11;
-    }
-
-    public final int a() {
-        int i10 = this.e;
-        return Math.round((k9.R.getInterpolation(this.f34296r.H) * (this.f34294f - i10)) + i10);
+    public h9(ig.a1 a1Var, TextView textView) {
+        this.f34311b = textView;
+        this.f34310a = TextUtils.isEmpty(a1Var.getText());
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        Canvas canvas2;
-        Paint paint2;
-        int i15;
-        float textSize = paint.getTextSize();
-        if (this.f34293c) {
-            paint.setTextSize((28.0f * textSize) / 44.0f);
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        boolean isEmpty = TextUtils.isEmpty(editable);
+        if (isEmpty != this.f34310a) {
+            this.f34310a = isEmpty;
+            if (isEmpty) {
+                i10 = R.string.Remove;
+            } else {
+                i10 = R.string.Add;
+            }
+            this.f34311b.setText(LocaleController.getString(i10));
         }
-        float f10 = f7 - this.d;
-        j9 j9Var = this.f34295n;
-        if (j9Var != null) {
-            paint2 = paint;
-            i15 = i13;
-            canvas2 = canvas;
-            j9Var.b(canvas2, paint2, this.f34292b, f10, i15);
-        } else {
-            canvas2 = canvas;
-            paint2 = paint;
-            i15 = i13;
-        }
-        this.h.b(canvas2, paint2, this.f34291a, f10, i15);
-        paint2.setTextSize(textSize);
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            paint.getFontMetricsInt(fontMetricsInt);
-        }
-        return a();
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

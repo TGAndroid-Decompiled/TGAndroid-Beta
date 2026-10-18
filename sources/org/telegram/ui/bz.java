@@ -6,19 +6,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class bz implements RequestDelegate {
-    public final int f35765a;
-    public final nz f35766b;
+    public final int f35778a;
+    public final nz f35779b;
 
     public bz(nz nzVar, int i10) {
-        this.f35765a = i10;
-        this.f35766b = nzVar;
+        this.f35778a = i10;
+        this.f35779b = nzVar;
     }
 
     @Override
     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f35765a) {
+        switch (this.f35778a) {
             case 0:
-                final nz nzVar = this.f35766b;
+                final nz nzVar = this.f35779b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -27,7 +27,7 @@ public final class bz implements RequestDelegate {
                                 nz nzVar2 = nzVar;
                                 nzVar2.F = 0;
                                 if (tL_error == null) {
-                                    org.telegram.messenger.q.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.xc.a0(nzVar2), R.raw.contact_check, 36);
+                                    org.telegram.messenger.g0.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.xc.a0(nzVar2), R.raw.contact_check, 36);
                                     return;
                                 }
                                 return;
@@ -39,7 +39,7 @@ public final class bz implements RequestDelegate {
                 });
                 return;
             default:
-                final nz nzVar2 = this.f35766b;
+                final nz nzVar2 = this.f35779b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -48,7 +48,7 @@ public final class bz implements RequestDelegate {
                                 nz nzVar22 = nzVar2;
                                 nzVar22.F = 0;
                                 if (tL_error == null) {
-                                    org.telegram.messenger.q.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.xc.a0(nzVar22), R.raw.contact_check, 36);
+                                    org.telegram.messenger.g0.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.xc.a0(nzVar22), R.raw.contact_check, 36);
                                     return;
                                 }
                                 return;

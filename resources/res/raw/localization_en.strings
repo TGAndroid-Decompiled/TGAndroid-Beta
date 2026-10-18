@@ -4882,6 +4882,7 @@ to unlock up to %s similar channels.";
 "ActionRevokedInviteLinkClickable" = "un1 revoked invite link un2";
 "EventLogToggledSignaturesProfilesOff" = "un1 disabled authors' profiles";
 "NewStories_one" = "%d new story";
+"WalletProfileOwnsNoGrams" = "%1$s doesn't own any Grams yet.";
 "OpenChannelPost" = "VIEW POST";
 "Gift2CollectionsAdd" = "Add Gifts";
 "GroupNeedBoostsForCustomWallpaperDescription" = "Your group needs to reach **Level %d** to change group wallpaper to custom photo.
@@ -5464,6 +5465,7 @@ You can switch to actions for the poll.";
 "InviteMessagePremiumBlockedOne" = "**%1$s** only accepts messages and invitations to groups from Contacts and **Premium** users.";
 "InviteMessagePremiumBlockedTwo" = "**%1$s** and **%2$s** only accept messages and invitations to groups from Contacts and **Premium** users.";
 "LiveStoryWatching_one" = "%d watching";
+"WalletProfileOwnsGrams" = "%1$s owns %2$s on the TON Blockchain.";
 "GlobalAttachPhotoRestricted" = "Sending photo isn't allowed in this group.";
 "BusinessHoursCopyFooter" = "In %s timezone";
 "VoipPhoneScreen" = "PHONE SCREEN";

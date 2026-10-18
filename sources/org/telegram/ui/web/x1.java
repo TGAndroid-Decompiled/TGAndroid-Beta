@@ -1,6 +1,6 @@
 package org.telegram.ui.web;
 
-import ai.ga;
+import ai.ha;
 import ai.x8;
 import android.app.Activity;
 import android.content.Context;
@@ -45,15 +45,15 @@ import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.v61;
-import org.telegram.ui.Wallet.t3;
+import org.telegram.ui.Wallet.u3;
 import org.telegram.ui.tr;
 import w7.z5;
 public final class x1 extends v61 implements NotificationCenter.NotificationCenterDelegate {
     public p2 d;
     public final Utilities.Callback e;
-    public long f42807f;
+    public long f42832f;
     public long h;
-    public long f42808n;
+    public long f42833n;
 
     public x1(org.telegram.ui.r rVar) {
         this.e = rVar;
@@ -114,16 +114,16 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
         String string = LocaleController.getString(R.string.BrowserSettingsEnable);
         f61 f61Var = new f61(9);
         f61Var.d = 1;
-        f61Var.f26140l = string;
+        f61Var.f26147l = string;
         f61Var.K(isWebBrowserInAppEnabled);
         arrayList.add(f61Var);
-        i0.a.A(R.string.BrowserSettingsEnableInfo, arrayList);
+        i2.d.B(R.string.BrowserSettingsEnableInfo, arrayList);
         if (!isWebBrowserInAppEnabled) {
             getMessagesController().isWebBrowserUseCustomTabs();
             f61 i10 = f61.i(17, LocaleController.getString(R.string.WebBrowserShowCloseButton));
             i10.K(getMessagesController().isWebBrowserUseCustomTabs());
             arrayList.add(i10);
-            i0.a.A(R.string.WebBrowserShowCloseButtonInfo, arrayList);
+            i2.d.B(R.string.WebBrowserShowCloseButtonInfo, arrayList);
             arrayList.add(f61.t(LocaleController.getString(R.string.BrowserSettingsAlwaysOpenInTitle2)));
             arrayList.size();
             p2 p2Var = this.d;
@@ -131,18 +131,18 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
             f61 f61Var2 = new f61(3);
             f61Var2.d = 16;
             f61Var2.G = p2Var;
-            f61Var2.f26140l = string2;
-            f61Var2.f26145q = true;
+            f61Var2.f26147l = string2;
+            f61Var2.f26152q = true;
             arrayList.add(f61Var2);
             List<TL_account.WebDomainException> webBrowserExceptionsList = getMessagesController().getWebBrowserExceptionsList(false);
             for (TL_account.WebDomainException webDomainException : webBrowserExceptionsList) {
                 String str2 = webDomainException.domain;
                 String str3 = webDomainException.title;
                 long j10 = webDomainException.favicon;
-                int i11 = v1.f42785a;
+                int i11 = v1.f42809a;
                 f61 J = f61.J(v1.class);
-                J.f26140l = str2;
-                J.f26142n = str3;
+                J.f26147l = str2;
+                J.f26149n = str3;
                 J.B = j10;
                 arrayList.add(J);
             }
@@ -150,7 +150,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
             if (!webBrowserExceptionsList.isEmpty()) {
                 arrayList.size();
                 f61 e = f61.e(5, LocaleController.getString(R.string.BrowserSettingsNeverOpenInClearList2));
-                e.f26146r = true;
+                e.f26153r = true;
                 arrayList.add(e);
                 arrayList.add(f61.B(null));
                 return;
@@ -171,17 +171,17 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
         arrayList.size();
         int i13 = R.drawable.menu_clear_cache;
         String string4 = LocaleController.getString(R.string.BrowserSettingsCacheClear);
-        long j12 = this.f42807f;
+        long j12 = this.f42832f;
         if (j12 > 0) {
             str4 = AndroidUtilities.formatFileSize(j12);
         }
         arrayList.add(f61.d(2, i13, string4, str4));
-        i0.a.A(R.string.BrowserSettingsCookiesInfo, arrayList);
-        if (this.f42808n > 0) {
+        i2.d.B(R.string.BrowserSettingsCookiesInfo, arrayList);
+        if (this.f42833n > 0) {
             arrayList.size();
             arrayList.add(f61.c(9, R.drawable.menu_clear_recent, LocaleController.getString(R.string.BrowserSettingsHistoryShow)));
             arrayList.size();
-            arrayList.add(f61.d(7, R.drawable.menu_clear_cache, LocaleController.getString(R.string.BrowserSettingsHistoryClear), LocaleController.formatPluralStringComma("BrowserSettingsHistoryPages", (int) this.f42808n, ',')));
+            arrayList.add(f61.d(7, R.drawable.menu_clear_cache, LocaleController.getString(R.string.BrowserSettingsHistoryClear), LocaleController.formatPluralStringComma("BrowserSettingsHistoryPages", (int) this.f42833n, ',')));
             arrayList.add(f61.B(null));
         }
         arrayList.add(f61.t(LocaleController.getString(R.string.BrowserSettingsNeverOpenInTitle2)));
@@ -191,18 +191,18 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
         f61 f61Var3 = new f61(3);
         f61Var3.d = 15;
         f61Var3.G = p2Var2;
-        f61Var3.f26140l = string5;
-        f61Var3.f26145q = true;
+        f61Var3.f26147l = string5;
+        f61Var3.f26152q = true;
         arrayList.add(f61Var3);
         List<TL_account.WebDomainException> webBrowserExceptionsList2 = getMessagesController().getWebBrowserExceptionsList(true);
         for (TL_account.WebDomainException webDomainException2 : webBrowserExceptionsList2) {
             String str5 = webDomainException2.domain;
             String str6 = webDomainException2.title;
             long j13 = webDomainException2.favicon;
-            int i14 = v1.f42785a;
+            int i14 = v1.f42809a;
             f61 J2 = f61.J(v1.class);
-            J2.f26140l = str5;
-            J2.f26142n = str6;
+            J2.f26147l = str5;
+            J2.f26149n = str6;
             J2.B = j13;
             arrayList.add(J2);
         }
@@ -210,13 +210,13 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
         if (!webBrowserExceptionsList2.isEmpty()) {
             arrayList.size();
             f61 e7 = f61.e(5, LocaleController.getString(R.string.BrowserSettingsNeverOpenInClearList2));
-            e7.f26146r = true;
+            e7.f26153r = true;
             arrayList.add(e7);
             arrayList.add(f61.B(null));
         }
         arrayList.size();
-        arrayList.add(f61.d(6, R.drawable.msg_search, LocaleController.getString(R.string.SearchEngine), m1.a().f42675a));
-        i0.a.A(R.string.BrowserSettingsSearchEngineInfo, arrayList);
+        arrayList.add(f61.d(6, R.drawable.msg_search, LocaleController.getString(R.string.SearchEngine), m1.a().f42702a));
+        i2.d.B(R.string.BrowserSettingsSearchEngineInfo, arrayList);
         if (BuildVars.DEBUG_PRIVATE_VERSION) {
             f61 i15 = f61.i(12, "adaptable colors");
             i15.K(SharedConfig.adaptableColorInBrowser);
@@ -249,7 +249,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
             boolean z11 = !getMessagesController().isWebBrowserUseCustomTabs();
             getMessagesController().toggleWebBrowserUseCustomTabs(z11);
             ((v8) view).setChecked(z11);
-            this.f31190a.W2.N(true);
+            this.f31197a.W2.N(true);
         } else {
             View view2 = null;
             if (i13 == 1) {
@@ -258,42 +258,42 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                 v8 v8Var = (v8) view;
                 v8Var.setChecked(isWebBrowserInAppEnabled);
                 if (isWebBrowserInAppEnabled) {
-                    i12 = h6.f21022f6;
+                    i12 = h6.f21029f6;
                 } else {
-                    i12 = h6.f21003e6;
+                    i12 = h6.f21010e6;
                 }
                 v8Var.b(h6.x0(null, i12, false), isWebBrowserInAppEnabled);
-                this.f31190a.W2.N(true);
+                this.f31197a.W2.N(true);
             } else if (i13 == 10) {
                 getMessagesController().toggleWebBrowserUseCustomTabs(true);
-                this.f31190a.W2.N(true);
+                this.f31197a.W2.N(true);
             } else if (i13 == 11) {
                 getMessagesController().toggleWebBrowserUseCustomTabs(false);
-                this.f31190a.W2.N(true);
+                this.f31197a.W2.N(true);
             } else {
                 String str = "";
                 if (i13 == 2) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
                     String string = LocaleController.getString(R.string.BrowserSettingsCacheClear);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                     b2Var.R = string;
                     int i14 = R.string.BrowserSettingsCacheClearText;
-                    if (this.f42807f != 0) {
-                        str = " (" + AndroidUtilities.formatFileSize(this.f42807f) + ")";
+                    if (this.f42832f != 0) {
+                        str = " (" + AndroidUtilities.formatFileSize(this.f42832f) + ")";
                     }
                     b2Var.T = LocaleController.formatString(i14, str);
                     alertDialog$Builder.k(LocaleController.getString(R.string.Clear), new org.telegram.ui.ActionBar.a2(this) {
-                        public final x1 f42779b;
+                        public final x1 f42804b;
 
                         {
-                            this.f42779b = this;
+                            this.f42804b = this;
                         }
 
                         @Override
                         public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i15) {
                             switch (r2) {
                                 case 0:
-                                    x1 x1Var = this.f42779b;
+                                    x1 x1Var = this.f42804b;
                                     x1Var.getClass();
                                     ApplicationLoader.applicationContext.deleteDatabase("webview.db");
                                     ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
@@ -322,11 +322,11 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                         FileLog.e(e7);
                                     }
                                     m2 b10 = m2.b();
-                                    HashMap hashMap = b10.f42678a;
+                                    HashMap hashMap = b10.f42705a;
                                     if (hashMap == null) {
-                                        b10.f42680c = false;
-                                        b10.f42679b = true;
-                                        b10.f42678a = new HashMap();
+                                        b10.f42707c = false;
+                                        b10.f42706b = true;
+                                        b10.f42705a = new HashMap();
                                     } else {
                                         hashMap.clear();
                                     }
@@ -334,7 +334,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     x1Var.a0();
                                     return;
                                 case 1:
-                                    x1 x1Var2 = this.f42779b;
+                                    x1 x1Var2 = this.f42804b;
                                     x1Var2.getClass();
                                     CookieManager cookieManager = CookieManager.getInstance();
                                     cookieManager.removeAllCookies(null);
@@ -350,9 +350,9 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     x1Var2.a0();
                                     return;
                                 case 2:
-                                    x1 x1Var3 = this.f42779b;
+                                    x1 x1Var3 = this.f42804b;
                                     try {
-                                        c1.f42567c.clear();
+                                        c1.f42592c.clear();
                                         c1.d.clear();
                                         File file4 = new File(FileLoader.getDirectory(4), "webhistory.dat");
                                         if (file4.exists()) {
@@ -361,13 +361,13 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     } catch (Exception e11) {
                                         FileLog.e(e11);
                                     }
-                                    x1Var3.f42808n = 0L;
-                                    x1Var3.f31190a.W2.N(true);
+                                    x1Var3.f42833n = 0L;
+                                    x1Var3.f31197a.W2.N(true);
                                     return;
                                 default:
-                                    x1 x1Var4 = this.f42779b;
+                                    x1 x1Var4 = this.f42804b;
                                     x1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    x1Var4.f31190a.W2.N(true);
+                                    x1Var4.f31197a.W2.N(true);
                                     return;
                             }
                         }
@@ -378,7 +378,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                 } else if (i13 == 3) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
                     String string2 = LocaleController.getString(R.string.BrowserSettingsCookiesClear);
-                    org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f20601a;
+                    org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f20608a;
                     b2Var2.R = string2;
                     int i15 = R.string.BrowserSettingsCookiesClearText;
                     if (this.h != 0) {
@@ -386,17 +386,17 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                     }
                     b2Var2.T = LocaleController.formatString(i15, str);
                     alertDialog$Builder2.k(LocaleController.getString(R.string.Clear), new org.telegram.ui.ActionBar.a2(this) {
-                        public final x1 f42779b;
+                        public final x1 f42804b;
 
                         {
-                            this.f42779b = this;
+                            this.f42804b = this;
                         }
 
                         @Override
                         public final void g(org.telegram.ui.ActionBar.b2 b2Var22, int i152) {
                             switch (r2) {
                                 case 0:
-                                    x1 x1Var = this.f42779b;
+                                    x1 x1Var = this.f42804b;
                                     x1Var.getClass();
                                     ApplicationLoader.applicationContext.deleteDatabase("webview.db");
                                     ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
@@ -425,11 +425,11 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                         FileLog.e(e7);
                                     }
                                     m2 b10 = m2.b();
-                                    HashMap hashMap = b10.f42678a;
+                                    HashMap hashMap = b10.f42705a;
                                     if (hashMap == null) {
-                                        b10.f42680c = false;
-                                        b10.f42679b = true;
-                                        b10.f42678a = new HashMap();
+                                        b10.f42707c = false;
+                                        b10.f42706b = true;
+                                        b10.f42705a = new HashMap();
                                     } else {
                                         hashMap.clear();
                                     }
@@ -437,7 +437,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     x1Var.a0();
                                     return;
                                 case 1:
-                                    x1 x1Var2 = this.f42779b;
+                                    x1 x1Var2 = this.f42804b;
                                     x1Var2.getClass();
                                     CookieManager cookieManager = CookieManager.getInstance();
                                     cookieManager.removeAllCookies(null);
@@ -453,9 +453,9 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     x1Var2.a0();
                                     return;
                                 case 2:
-                                    x1 x1Var3 = this.f42779b;
+                                    x1 x1Var3 = this.f42804b;
                                     try {
-                                        c1.f42567c.clear();
+                                        c1.f42592c.clear();
                                         c1.d.clear();
                                         File file4 = new File(FileLoader.getDirectory(4), "webhistory.dat");
                                         if (file4.exists()) {
@@ -464,13 +464,13 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     } catch (Exception e11) {
                                         FileLog.e(e11);
                                     }
-                                    x1Var3.f42808n = 0L;
-                                    x1Var3.f31190a.W2.N(true);
+                                    x1Var3.f42833n = 0L;
+                                    x1Var3.f31197a.W2.N(true);
                                     return;
                                 default:
-                                    x1 x1Var4 = this.f42779b;
+                                    x1 x1Var4 = this.f42804b;
                                     x1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    x1Var4.f31190a.W2.N(true);
+                                    x1Var4.f31197a.W2.N(true);
                                     return;
                             }
                         }
@@ -486,25 +486,25 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                     while (i16 < size) {
                         Object obj = a2.get(i16);
                         i16++;
-                        j10 = Math.min(j10, ((b1) obj).f42559b);
+                        j10 = Math.min(j10, ((b1) obj).f42584b);
                     }
                     AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
                     String string3 = LocaleController.getString(R.string.BrowserSettingsHistoryClear);
-                    org.telegram.ui.ActionBar.b2 b2Var3 = alertDialog$Builder3.f20601a;
+                    org.telegram.ui.ActionBar.b2 b2Var3 = alertDialog$Builder3.f20608a;
                     b2Var3.R = string3;
                     b2Var3.T = LocaleController.formatString(R.string.BrowserSettingsHistoryClearText, LocaleController.formatDateChat(j10 / 1000));
                     alertDialog$Builder3.k(LocaleController.getString(R.string.Clear), new org.telegram.ui.ActionBar.a2(this) {
-                        public final x1 f42779b;
+                        public final x1 f42804b;
 
                         {
-                            this.f42779b = this;
+                            this.f42804b = this;
                         }
 
                         @Override
                         public final void g(org.telegram.ui.ActionBar.b2 b2Var22, int i152) {
                             switch (r2) {
                                 case 0:
-                                    x1 x1Var = this.f42779b;
+                                    x1 x1Var = this.f42804b;
                                     x1Var.getClass();
                                     ApplicationLoader.applicationContext.deleteDatabase("webview.db");
                                     ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
@@ -533,11 +533,11 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                         FileLog.e(e7);
                                     }
                                     m2 b10 = m2.b();
-                                    HashMap hashMap = b10.f42678a;
+                                    HashMap hashMap = b10.f42705a;
                                     if (hashMap == null) {
-                                        b10.f42680c = false;
-                                        b10.f42679b = true;
-                                        b10.f42678a = new HashMap();
+                                        b10.f42707c = false;
+                                        b10.f42706b = true;
+                                        b10.f42705a = new HashMap();
                                     } else {
                                         hashMap.clear();
                                     }
@@ -545,7 +545,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     x1Var.a0();
                                     return;
                                 case 1:
-                                    x1 x1Var2 = this.f42779b;
+                                    x1 x1Var2 = this.f42804b;
                                     x1Var2.getClass();
                                     CookieManager cookieManager = CookieManager.getInstance();
                                     cookieManager.removeAllCookies(null);
@@ -561,9 +561,9 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     x1Var2.a0();
                                     return;
                                 case 2:
-                                    x1 x1Var3 = this.f42779b;
+                                    x1 x1Var3 = this.f42804b;
                                     try {
-                                        c1.f42567c.clear();
+                                        c1.f42592c.clear();
                                         c1.d.clear();
                                         File file4 = new File(FileLoader.getDirectory(4), "webhistory.dat");
                                         if (file4.exists()) {
@@ -572,13 +572,13 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     } catch (Exception e11) {
                                         FileLog.e(e11);
                                     }
-                                    x1Var3.f42808n = 0L;
-                                    x1Var3.f31190a.W2.N(true);
+                                    x1Var3.f42833n = 0L;
+                                    x1Var3.f31197a.W2.N(true);
                                     return;
                                 default:
-                                    x1 x1Var4 = this.f42779b;
+                                    x1 x1Var4 = this.f42804b;
                                     x1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    x1Var4.f31190a.W2.N(true);
+                                    x1Var4.f31197a.W2.N(true);
                                     return;
                             }
                         }
@@ -594,21 +594,21 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                 } else if (i13 == 5) {
                     AlertDialog$Builder alertDialog$Builder4 = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
                     String string4 = LocaleController.getString(R.string.WebBrowserDeleteAllExceptionsTitle);
-                    org.telegram.ui.ActionBar.b2 b2Var4 = alertDialog$Builder4.f20601a;
+                    org.telegram.ui.ActionBar.b2 b2Var4 = alertDialog$Builder4.f20608a;
                     b2Var4.R = string4;
                     b2Var4.T = LocaleController.getString(R.string.WebBrowserDeleteAllExceptionsMessage);
                     alertDialog$Builder4.k(LocaleController.getString(R.string.Delete), new org.telegram.ui.ActionBar.a2(this) {
-                        public final x1 f42779b;
+                        public final x1 f42804b;
 
                         {
-                            this.f42779b = this;
+                            this.f42804b = this;
                         }
 
                         @Override
                         public final void g(org.telegram.ui.ActionBar.b2 b2Var22, int i152) {
                             switch (r2) {
                                 case 0:
-                                    x1 x1Var = this.f42779b;
+                                    x1 x1Var = this.f42804b;
                                     x1Var.getClass();
                                     ApplicationLoader.applicationContext.deleteDatabase("webview.db");
                                     ApplicationLoader.applicationContext.deleteDatabase("webviewCache.db");
@@ -637,11 +637,11 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                         FileLog.e(e7);
                                     }
                                     m2 b10 = m2.b();
-                                    HashMap hashMap = b10.f42678a;
+                                    HashMap hashMap = b10.f42705a;
                                     if (hashMap == null) {
-                                        b10.f42680c = false;
-                                        b10.f42679b = true;
-                                        b10.f42678a = new HashMap();
+                                        b10.f42707c = false;
+                                        b10.f42706b = true;
+                                        b10.f42705a = new HashMap();
                                     } else {
                                         hashMap.clear();
                                     }
@@ -649,7 +649,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     x1Var.a0();
                                     return;
                                 case 1:
-                                    x1 x1Var2 = this.f42779b;
+                                    x1 x1Var2 = this.f42804b;
                                     x1Var2.getClass();
                                     CookieManager cookieManager = CookieManager.getInstance();
                                     cookieManager.removeAllCookies(null);
@@ -665,9 +665,9 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     x1Var2.a0();
                                     return;
                                 case 2:
-                                    x1 x1Var3 = this.f42779b;
+                                    x1 x1Var3 = this.f42804b;
                                     try {
-                                        c1.f42567c.clear();
+                                        c1.f42592c.clear();
                                         c1.d.clear();
                                         File file4 = new File(FileLoader.getDirectory(4), "webhistory.dat");
                                         if (file4.exists()) {
@@ -676,13 +676,13 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     } catch (Exception e11) {
                                         FileLog.e(e11);
                                     }
-                                    x1Var3.f42808n = 0L;
-                                    x1Var3.f31190a.W2.N(true);
+                                    x1Var3.f42833n = 0L;
+                                    x1Var3.f31197a.W2.N(true);
                                     return;
                                 default:
-                                    x1 x1Var4 = this.f42779b;
+                                    x1 x1Var4 = this.f42804b;
                                     x1Var4.getMessagesController().clearAllWebBrowserExceptions();
-                                    x1Var4.f31190a.W2.N(true);
+                                    x1Var4.f31197a.W2.N(true);
                                     return;
                             }
                         }
@@ -694,8 +694,8 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                     w1 w1Var = (w1) view;
                     String str2 = w1Var.e;
                     i80 F = i80.F((ViewGroup) this.fragmentView, null, w1Var);
-                    F.f27134s = 40;
-                    F.c(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new t3(27, this, str2), false);
+                    F.f27141s = 40;
+                    F.c(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new u3(27, this, str2), false);
                     F.Z();
                 } else {
                     int i17 = f61Var.d;
@@ -708,10 +708,10 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                             int size2 = b10.size();
                             CharSequence[] charSequenceArr = new CharSequence[size2];
                             for (int i18 = 0; i18 < size2; i18++) {
-                                charSequenceArr[i18] = ((m1) b10.get(i18)).f42675a;
+                                charSequenceArr[i18] = ((m1) b10.get(i18)).f42702a;
                                 k6 k6Var = new k6(getParentActivity(), null);
                                 k6Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-                                k6Var.a(h6.x0(null, h6.f21040g7, false), h6.x0(null, h6.E5, false));
+                                k6Var.a(h6.x0(null, h6.f21047g7, false), h6.x0(null, h6.E5, false));
                                 CharSequence charSequence = charSequenceArr[i18];
                                 if (i18 == SharedConfig.searchEngineType) {
                                     z10 = true;
@@ -719,13 +719,13 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                                     z10 = false;
                                 }
                                 k6Var.b(charSequence, z10);
-                                k6Var.setBackground(h6.g0(h6.x0(null, h6.f21075i6, false), 2, -1));
+                                k6Var.setBackground(h6.g0(h6.x0(null, h6.f21082i6, false), 2, -1));
                                 linearLayout.addView(k6Var);
-                                k6Var.setOnClickListener(new ga(i18, view, atomicReference));
+                                k6Var.setOnClickListener(new ha(i18, view, atomicReference));
                             }
                             AlertDialog$Builder alertDialog$Builder5 = new AlertDialog$Builder(getParentActivity());
                             String string5 = LocaleController.getString(R.string.SearchEngine);
-                            org.telegram.ui.ActionBar.b2 b2Var5 = alertDialog$Builder5.f20601a;
+                            org.telegram.ui.ActionBar.b2 b2Var5 = alertDialog$Builder5.f20608a;
                             b2Var5.R = string5;
                             alertDialog$Builder5.n(linearLayout);
                             alertDialog$Builder5.h(LocaleController.getString(R.string.Cancel), null);
@@ -741,7 +741,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                         Activity parentActivity = getParentActivity();
                         d6 resourceProvider = getResourceProvider();
                         x8 x8Var = new x8(10, this, isWebBrowserInAppEnabled2);
-                        Pattern pattern = f5.f26080a;
+                        Pattern pattern = f5.f26087a;
                         Activity findActivity = AndroidUtilities.findActivity(parentActivity);
                         if (findActivity != null) {
                             view2 = findActivity.getCurrentFocus();
@@ -755,7 +755,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                             i10 = R.string.BrowserSettingsAddTitleExternal;
                         }
                         String string6 = LocaleController.getString(i10);
-                        org.telegram.ui.ActionBar.b2 b2Var6 = alertDialog$Builder6.f20601a;
+                        org.telegram.ui.ActionBar.b2 b2Var6 = alertDialog$Builder6.f20608a;
                         b2Var6.R = string6;
                         if (isWebBrowserInAppEnabled2) {
                             i11 = R.string.BrowserSettingsAddText;
@@ -765,7 +765,7 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                         b2Var6.T = LocaleController.getString(i11);
                         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(parentActivity);
                         editTextBoldCursor.setTextSize(1, 16.0f);
-                        int i19 = h6.f21092j5;
+                        int i19 = h6.f21099j5;
                         editTextBoldCursor.setTextColor(h6.w0(i19, resourceProvider));
                         editTextBoldCursor.setHintTextColor(h6.w0(h6.Xh, resourceProvider));
                         editTextBoldCursor.setHint(LocaleController.getString(R.string.BrowserSettingsAddHint));
@@ -787,11 +787,11 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
                         linearLayout2.addView(editTextBoldCursor, z5.k(24.0f, 4.0f, 24.0f, 9.0f, -1, -2));
                         alertDialog$Builder6.c();
                         alertDialog$Builder6.n(linearLayout2);
-                        b2Var6.f20649a = Math.min(AndroidUtilities.dp(320.0f), (AndroidUtilities.displaySize.x * 85) / 100);
+                        b2Var6.f20656a = Math.min(AndroidUtilities.dp(320.0f), (AndroidUtilities.displaySize.x * 85) / 100);
                         alertDialog$Builder6.k(LocaleController.getString(R.string.Done), new org.telegram.ui.Components.s(iVar, 2));
                         alertDialog$Builder6.h(LocaleController.getString(R.string.Cancel), new tr(9));
                         b2VarArr[0] = b2Var6;
-                        b2Var6.f20662h0 = false;
+                        b2Var6.f20669h0 = false;
                         b2Var6.setOnDismissListener(new org.telegram.ui.Components.b1(editTextBoldCursor, 1));
                         b2VarArr[0].setOnShowListener(new org.telegram.ui.Components.f1(0, editTextBoldCursor));
                         b2VarArr[0].show();
@@ -810,8 +810,8 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
         s61 s61Var;
         ArrayList a2 = c1.a(new ig.l0(this, 11));
         if (a2 != null) {
-            this.f42808n = a2.size();
-            u61 u61Var = this.f31190a;
+            this.f42833n = a2.size();
+            u61 u61Var = this.f31197a;
             if (u61Var != null && (s61Var = u61Var.W2) != null && u61Var.G) {
                 s61Var.N(true);
             }
@@ -826,20 +826,20 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
         int themedColor = getThemedColor(h6.N6);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
-        mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(h6.f21114k7), mode));
+        mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(h6.f21121k7), mode));
         p2 p2Var = new p2(mutate, mutate2, 4);
-        p2Var.f33000x = AndroidUtilities.dp(2.0f);
+        p2Var.f33007x = AndroidUtilities.dp(2.0f);
         this.d = p2Var;
         this.fragmentView = super.createView(context);
-        this.f31190a.p1();
-        this.actionBar.setAdaptiveBackground(this.f31190a);
+        this.f31197a.p1();
+        this.actionBar.setAdaptiveBackground(this.f31197a);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         u61 u61Var;
-        if (i10 == NotificationCenter.webBrowserSettingsUpdate && (u61Var = this.f31190a) != null) {
+        if (i10 == NotificationCenter.webBrowserSettingsUpdate && (u61Var = this.f31197a) != null) {
             u61Var.W2.N(true);
         }
     }
@@ -865,8 +865,8 @@ public final class x1 extends v61 implements NotificationCenter.NotificationCent
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
         super.onInsets(i10, i11, i12, i13);
-        u61 u61Var = this.f31190a;
+        u61 u61Var = this.f31197a;
         u61Var.setPadding(0, u61Var.getPaddingTop(), 0, i13);
-        this.f31190a.setClipToPadding(false);
+        this.f31197a.setClipToPadding(false);
     }
 }

@@ -1,53 +1,76 @@
 package ai;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.TopicsController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class b3 implements RequestDelegate {
-    public final int f1014a;
-    public final long f1015b;
-    public final long f1016c;
-    public final Object d;
-    public final Object e;
+import android.view.View;
+public final class b3 implements View.OnClickListener {
+    public final int f1019a;
+    public final k7 f1020b;
+    public final int f1021c;
 
-    public b3(Object obj, Object obj2, long j10, long j11, int i10) {
-        this.f1014a = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f1015b = j10;
-        this.f1016c = j11;
+    public b3(k7 k7Var, int i10, int i11) {
+        this.f1019a = i11;
+        this.f1020b = k7Var;
+        this.f1021c = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f1014a) {
+    public final void onClick(View view) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        switch (this.f1019a) {
             case 0:
-                k7.E0(this.f1015b, this.f1016c, (k7) this.d, (Utilities.Callback) this.e, tLObject, tL_error);
+                k7 k7Var = this.f1020b;
+                int i14 = this.f1021c;
+                k7Var.U0 = i14;
+                h5 h5Var = k7Var.Z;
+                int currentPosition = h5Var.getCurrentPosition();
+                if (i14 > k7Var.U1()) {
+                    i10 = 1;
+                } else {
+                    i10 = -1;
+                }
+                h5Var.D(currentPosition + i10);
                 return;
             case 1:
-                ((MediaDataController) this.d).lambda$getMediaCounts$129((int[]) this.e, this.f1015b, this.f1016c, tLObject, tL_error);
+                k7 k7Var2 = this.f1020b;
+                int i15 = this.f1021c;
+                k7Var2.U0 = i15;
+                h5 h5Var2 = k7Var2.Z;
+                int currentPosition2 = h5Var2.getCurrentPosition();
+                if (i15 > k7Var2.U1()) {
+                    i11 = 1;
+                } else {
+                    i11 = -1;
+                }
+                h5Var2.D(currentPosition2 + i11);
                 return;
             case 2:
-                ((MediaDataController) this.d).lambda$loadPinnedMessageInternal$164(this.f1015b, this.f1016c, (TLRPC.TL_channels_getMessages) this.e, tLObject, tL_error);
-                return;
-            case 3:
-                ((MessagesController) this.d).lambda$requestContactToken$479((Utilities.Callback) this.e, this.f1015b, this.f1016c, tLObject, tL_error);
+                k7 k7Var3 = this.f1020b;
+                int i16 = this.f1021c;
+                k7Var3.U0 = i16;
+                h5 h5Var3 = k7Var3.Z;
+                int currentPosition3 = h5Var3.getCurrentPosition();
+                if (i16 > k7Var3.U1()) {
+                    i12 = 1;
+                } else {
+                    i12 = -1;
+                }
+                h5Var3.D(currentPosition3 + i12);
                 return;
             default:
-                ((TopicsController) this.d).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.e, this.f1015b, this.f1016c, tLObject, tL_error);
+                k7 k7Var4 = this.f1020b;
+                int i17 = this.f1021c;
+                k7Var4.U0 = i17;
+                h5 h5Var4 = k7Var4.Z;
+                int currentPosition4 = h5Var4.getCurrentPosition();
+                if (i17 > k7Var4.U1()) {
+                    i13 = 1;
+                } else {
+                    i13 = -1;
+                }
+                h5Var4.D(currentPosition4 + i13);
                 return;
         }
-    }
-
-    public b3(MediaDataController mediaDataController, long j10, long j11, TLRPC.TL_channels_getMessages tL_channels_getMessages) {
-        this.f1014a = 2;
-        this.d = mediaDataController;
-        this.f1015b = j10;
-        this.f1016c = j11;
-        this.e = tL_channels_getMessages;
     }
 }

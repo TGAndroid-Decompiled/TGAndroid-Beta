@@ -1,6 +1,6 @@
 package ci;
 
-import ai.oa;
+import ai.pa;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
@@ -15,12 +15,12 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 public final class e7 implements RequestDelegate {
-    public final int f5359a;
-    public final h7 f5360b;
+    public final int f5360a;
+    public final h7 f5361b;
 
     public e7(h7 h7Var, int i10) {
-        this.f5359a = i10;
-        this.f5360b = h7Var;
+        this.f5360a = i10;
+        this.f5361b = h7Var;
     }
 
     @Override
@@ -35,18 +35,18 @@ public final class e7 implements RequestDelegate {
         ArrayList arrayList;
         int i12;
         int i13;
-        switch (this.f5359a) {
+        switch (this.f5360a) {
             case 0:
-                h7 h7Var = this.f5360b;
+                h7 h7Var = this.f5361b;
                 long j10 = h7Var.J;
-                String str = h7Var.f5471f;
-                boolean z12 = h7Var.f5469b;
-                ei.a8 a8Var = h7Var.f5470c;
-                int i14 = h7Var.M.f5493a;
+                String str = h7Var.f5472f;
+                boolean z12 = h7Var.f5470b;
+                ei.a8 a8Var = h7Var.f5471c;
+                int i14 = h7Var.M.f5494a;
                 if (tLObject instanceof TLRPC.Updates) {
                     h7Var.I = false;
                     TLRPC.Updates updates3 = (TLRPC.Updates) tLObject;
-                    if (a8Var.f8700b0) {
+                    if (a8Var.f8701b0) {
                         MessagesController.getInstance(i14).lambda$processUpdates$377(updates3, false);
                         AndroidUtilities.runOnUIThread(new f7(h7Var, 1));
                         return;
@@ -60,7 +60,7 @@ public final class e7 implements RequestDelegate {
                             storyItem2.attachPath = h7Var.e;
                             storyItem2.firstFramePath = str;
                             storyItem2.justUploaded = !z12;
-                            int i17 = storyItem2.f20506id;
+                            int i17 = storyItem2.f20513id;
                             if (storyItem == null) {
                                 storyItem = storyItem2;
                             } else {
@@ -101,7 +101,7 @@ public final class e7 implements RequestDelegate {
                                                     i12 = i15;
                                                     int i20 = 0;
                                                     for (TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers = (TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule; i20 < tL_inputPrivacyValueDisallowUsers.users.size(); tL_inputPrivacyValueDisallowUsers = tL_inputPrivacyValueDisallowUsers) {
-                                                        i20 = com.google.android.gms.internal.cast.a6.h(tL_inputPrivacyValueDisallowUsers.users.get(i20).user_id, tL_privacyValueDisallowUsers.users, i20, 1);
+                                                        i20 = com.google.android.gms.internal.play_billing.k3.h(tL_inputPrivacyValueDisallowUsers.users.get(i20).user_id, tL_privacyValueDisallowUsers.users, i20, 1);
                                                         i14 = i14;
                                                         updates3 = updates3;
                                                     }
@@ -117,7 +117,7 @@ public final class e7 implements RequestDelegate {
                                                         TLRPC.TL_privacyValueAllowUsers tL_privacyValueAllowUsers = new TLRPC.TL_privacyValueAllowUsers();
                                                         int i21 = 0;
                                                         for (TLRPC.TL_inputPrivacyValueAllowUsers tL_inputPrivacyValueAllowUsers = (TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule; i21 < tL_inputPrivacyValueAllowUsers.users.size(); tL_inputPrivacyValueAllowUsers = tL_inputPrivacyValueAllowUsers) {
-                                                            i21 = com.google.android.gms.internal.cast.a6.h(tL_inputPrivacyValueAllowUsers.users.get(i21).user_id, tL_privacyValueAllowUsers.users, i21, 1);
+                                                            i21 = com.google.android.gms.internal.play_billing.k3.h(tL_inputPrivacyValueAllowUsers.users.get(i21).user_id, tL_privacyValueAllowUsers.users, i21, 1);
                                                         }
                                                         arrayList3.add(tL_privacyValueAllowUsers);
                                                     }
@@ -154,7 +154,7 @@ public final class e7 implements RequestDelegate {
                                         storyItem.dialogId = UserConfig.getInstance(i11).clientUserId;
                                         storyItem.attachPath = h7Var.e;
                                         storyItem.firstFramePath = str;
-                                        storyItem.f20506id = tL_updateStoryID.f20526id;
+                                        storyItem.f20513id = tL_updateStoryID.f20533id;
                                         storyItem.justUploaded = !z10;
                                         i15 = i10 + 1;
                                         z12 = z10;
@@ -181,7 +181,7 @@ public final class e7 implements RequestDelegate {
                         TLRPC.InputPeer inputPeer = MessagesController.getInstance(i22).getInputPeer(j10);
                         tL_stories_deleteStories.peer = inputPeer;
                         if (inputPeer != null) {
-                            tL_stories_deleteStories.f20509id.add(Integer.valueOf(i16));
+                            tL_stories_deleteStories.f20516id.add(Integer.valueOf(i16));
                             ConnectionsManager.getInstance(i22).sendRequest(tL_stories_deleteStories, new e7(h7Var, 1));
                         }
                     } else {
@@ -189,7 +189,7 @@ public final class e7 implements RequestDelegate {
                             TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
                             tL_updateStory.peer = MessagesController.getInstance(i22).getPeer(j10);
                             tL_updateStory.story = storyItem;
-                            AndroidUtilities.runOnUIThread(new oa(23, h7Var, tL_updateStory));
+                            AndroidUtilities.runOnUIThread(new pa(23, h7Var, tL_updateStory));
                         }
                         TLRPC.MessageMedia messageMedia = storyItem.media;
                         if (messageMedia != null && storyItem.attachPath != null) {
@@ -207,17 +207,17 @@ public final class e7 implements RequestDelegate {
                     }
                 } else if (tLObject instanceof TL_bots.botPreviewMedia) {
                     h7Var.L = (TL_bots.botPreviewMedia) tLObject;
-                } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && a8Var.f8703c0 != null && (w3Var = a8Var.f8705d0) != null) {
+                } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && a8Var.f8704c0 != null && (w3Var = a8Var.f8706d0) != null) {
                     w3Var.run(new g7(h7Var, 0));
-                    a8Var.f8705d0 = null;
+                    a8Var.f8706d0 = null;
                     return;
                 } else if (tL_error != null && !z12) {
-                    AndroidUtilities.runOnUIThread(new oa(24, h7Var, tL_error));
+                    AndroidUtilities.runOnUIThread(new pa(24, h7Var, tL_error));
                 }
                 AndroidUtilities.runOnUIThread(new f7(h7Var, 1));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new n6(this.f5360b.M, 2));
+                AndroidUtilities.runOnUIThread(new n6(this.f5361b.M, 2));
                 return;
         }
     }

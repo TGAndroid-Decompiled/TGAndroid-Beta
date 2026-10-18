@@ -2,10 +2,10 @@ package z9;
 
 import java.util.List;
 public final class y0 extends z1 {
-    public final List f51523a;
+    public final List f51548a;
 
     public y0(List list) {
-        this.f51523a = list;
+        this.f51548a = list;
     }
 
     public final boolean equals(Object obj) {
@@ -13,16 +13,16 @@ public final class y0 extends z1 {
             return true;
         }
         if (obj instanceof z1) {
-            return this.f51523a.equals(((y0) ((z1) obj)).f51523a);
+            return this.f51548a.equals(((y0) ((z1) obj)).f51548a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f51523a.hashCode() ^ 1000003;
+        return this.f51548a.hashCode() ^ 1000003;
     }
 
     public final String toString() {
-        return "RolloutsState{rolloutAssignments=" + this.f51523a + "}";
+        return "RolloutsState{rolloutAssignments=" + this.f51548a + "}";
     }
 }

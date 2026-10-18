@@ -5,50 +5,40 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.camera.CameraView;
-public final class r0 implements BillingController.ProductDetailsResponseListenerLegacy, e2.j, CameraView.CameraViewDelegate {
-    public final int f50508a;
-    public final Object f50509b;
+public final class r0 implements BillingController.ProductDetailsResponseListenerLegacy, e2.j {
+    public final int f50533a;
+    public final Object f50534b;
 
     public r0(Object obj, int i10) {
-        this.f50508a = i10;
-        this.f50509b = obj;
+        this.f50533a = i10;
+        this.f50534b = obj;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f50508a) {
+        switch (this.f50533a) {
             case 1:
-                z3.h hVar = (z3.h) this.f50509b;
+                z3.h hVar = (z3.h) this.f50534b;
                 z3.a aVar = (z3.a) obj;
-                z3.g gVar = new z3.g(aVar.f50657b, sb.a.s2(aVar.f50656a, aVar.f50658c));
-                hVar.f50667c.add(gVar);
-                long j10 = hVar.f50671j;
+                z3.g gVar = new z3.g(aVar.f50682b, sb.a.s2(aVar.f50681a, aVar.f50683c));
+                hVar.f50692c.add(gVar);
+                long j10 = hVar.f50696j;
                 if (j10 == -9223372036854775807L || aVar.d >= j10) {
                     hVar.g(gVar);
                     return;
                 }
                 return;
             default:
-                ((e9.k0) this.f50509b).c((z3.a) obj);
+                ((e9.k0) this.f50534b).c((z3.a) obj);
                 return;
-        }
-    }
-
-    @Override
-    public void onCameraInit() {
-        zh.d0 d0Var = (zh.d0) this.f50509b;
-        if (!d0Var.S && !d0Var.f51952d0 && !d0Var.f51957h0) {
-            d0Var.f51952d0 = true;
-            d0Var.f51951c0.postDelayed(d0Var.f51960k0, 150L);
         }
     }
 
     @Override
     public void onProductDetailsResponse(c5.i iVar, List list) {
         int i10;
-        p1 p1Var = (p1) this.f50509b;
-        ArrayList arrayList = p1Var.f50469n0;
+        p1 p1Var = (p1) this.f50534b;
+        ArrayList arrayList = p1Var.f50494n0;
         Iterator it = list.iterator();
         long j10 = 0;
         while (true) {
@@ -63,7 +53,7 @@ public final class r0 implements BillingController.ProductDetailsResponseListene
                     Object obj = arrayList.get(i10);
                     i10++;
                     sg.k kVar = (sg.k) obj;
-                    if (kVar.h() != null && kVar.h().equals(oVar.f4775c)) {
+                    if (kVar.h() != null && kVar.h().equals(oVar.f4776c)) {
                         kVar.h = oVar;
                         if (kVar.f() > j10) {
                             j10 = kVar.f();
@@ -76,7 +66,7 @@ public final class r0 implements BillingController.ProductDetailsResponseListene
         while (i10 < size2) {
             Object obj2 = arrayList.get(i10);
             i10++;
-            ((sg.k) obj2).f46308g = j10;
+            ((sg.k) obj2).f46328g = j10;
         }
         AndroidUtilities.runOnUIThread(new tg.p(p1Var, 15));
     }

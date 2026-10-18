@@ -8,9 +8,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class r3 extends FrameLayout {
-    public final TextView f40567a;
-    public final TextView f40568b;
-    public boolean f40569c;
+    public final TextView f40592a;
+    public final TextView f40593b;
+    public boolean f40594c;
     public final boolean d;
     public final l4 e;
 
@@ -21,7 +21,7 @@ public final class r3 extends FrameLayout {
         this.d = z10;
         setTag(90);
         TextView textView = new TextView(context);
-        this.f40567a = textView;
+        this.f40592a = textView;
         if (z10) {
             i10 = R.string.PreviewFeedbackAuto;
         } else {
@@ -33,7 +33,7 @@ public final class r3 extends FrameLayout {
         textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         addView(textView, w7.z5.a(34.0f, 0.0f, 10.0f, 0.0f, 0.0f, -1, 51));
         TextView textView2 = new TextView(context);
-        this.f40568b = textView2;
+        this.f40593b = textView2;
         textView2.setTextSize(1, 12.0f);
         textView2.setGravity(19);
         textView2.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);

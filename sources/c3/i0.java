@@ -2,15 +2,15 @@ package c3;
 
 import java.util.Arrays;
 public final class i0 {
-    public final int f4628a;
-    public final byte[] f4629b;
-    public final int f4630c;
+    public final int f4629a;
+    public final byte[] f4630b;
+    public final int f4631c;
     public final int d;
 
     public i0(int i10, int i11, int i12, byte[] bArr) {
-        this.f4628a = i10;
-        this.f4629b = bArr;
-        this.f4630c = i11;
+        this.f4629a = i10;
+        this.f4630b = bArr;
+        this.f4631c = i11;
         this.d = i12;
     }
 
@@ -20,7 +20,7 @@ public final class i0 {
         }
         if (obj != null && i0.class == obj.getClass()) {
             i0 i0Var = (i0) obj;
-            if (this.f4628a == i0Var.f4628a && this.f4630c == i0Var.f4630c && this.d == i0Var.d && Arrays.equals(this.f4629b, i0Var.f4629b)) {
+            if (this.f4629a == i0Var.f4629a && this.f4631c == i0Var.f4631c && this.d == i0Var.d && Arrays.equals(this.f4630b, i0Var.f4630b)) {
                 return true;
             }
         }
@@ -28,6 +28,6 @@ public final class i0 {
     }
 
     public final int hashCode() {
-        return ((((Arrays.hashCode(this.f4629b) + (this.f4628a * 31)) * 31) + this.f4630c) * 31) + this.d;
+        return ((((Arrays.hashCode(this.f4630b) + (this.f4629a * 31)) * 31) + this.f4631c) * 31) + this.d;
     }
 }

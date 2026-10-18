@@ -2,45 +2,45 @@ package si;
 
 import org.telegram.ui.Components.y01;
 public final class h0 implements Runnable {
-    public final int f46628a;
-    public final t0 f46629b;
-    public final p0 f46630c;
+    public final int f46649a;
+    public final s0 f46650b;
+    public final o0 f46651c;
 
-    public h0(t0 t0Var, p0 p0Var, int i10, int i11) {
-        this.f46628a = i11;
-        this.f46629b = t0Var;
-        this.f46630c = p0Var;
+    public h0(s0 s0Var, o0 o0Var, int i10, int i11) {
+        this.f46649a = i11;
+        this.f46650b = s0Var;
+        this.f46651c = o0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46628a) {
+        switch (this.f46649a) {
             case 0:
-                t0 t0Var = this.f46629b;
-                p0 p0Var = this.f46630c;
-                ((y01) t0Var.e).c(p0Var.f46768a);
+                s0 s0Var = this.f46650b;
+                o0 o0Var = this.f46651c;
+                ((y01) s0Var.e).c(o0Var.f46783a);
                 return;
             case 1:
-                t0 t0Var2 = this.f46629b;
-                p0 p0Var2 = this.f46630c;
-                q0 q0Var = t0Var2.e;
-                long j10 = p0Var2.f46768a;
-                y01 y01Var = (y01) q0Var;
+                s0 s0Var2 = this.f46650b;
+                o0 o0Var2 = this.f46651c;
+                p0 p0Var = s0Var2.e;
+                long j10 = o0Var2.f46783a;
+                y01 y01Var = (y01) p0Var;
                 synchronized (y01Var) {
                     y01Var.c(j10);
                 }
                 return;
             default:
-                t0 t0Var3 = this.f46629b;
-                p0 p0Var3 = this.f46630c;
-                ((y01) t0Var3.e).c(p0Var3.f46768a);
+                s0 s0Var3 = this.f46650b;
+                o0 o0Var3 = this.f46651c;
+                ((y01) s0Var3.e).c(o0Var3.f46783a);
                 return;
         }
     }
 
-    public h0(t0 t0Var, p0 p0Var, Exception exc) {
-        this.f46628a = 1;
-        this.f46629b = t0Var;
-        this.f46630c = p0Var;
+    public h0(s0 s0Var, o0 o0Var, Exception exc) {
+        this.f46649a = 1;
+        this.f46650b = s0Var;
+        this.f46651c = o0Var;
     }
 }

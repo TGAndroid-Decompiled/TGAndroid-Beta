@@ -1,6 +1,6 @@
 package rg;
 
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
@@ -9,31 +9,31 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class k2 {
-    public String f45458a;
-    public String f45459b;
-    public String f45460c;
+    public String f45478a;
+    public String f45479b;
+    public String f45480c;
     public CharSequence d;
     public TLRPC.TL_inputStickerSetItem e;
-    public TLRPC.TL_messageMediaDocument f45461f;
-    public TLRPC.InputFile f45462g;
+    public TLRPC.TL_messageMediaDocument f45481f;
+    public TLRPC.InputFile f45482g;
     public boolean h;
-    public long f45463i;
-    public TLRPC.StickerSet f45464j;
-    public TLRPC.Document f45465k;
-    public String f45466l;
-    public Utilities.Callback2 f45467m;
-    public Utilities.Callback f45468n;
-    public boolean f45469o;
-    public ArrayList f45470p;
-    public ArrayList f45471q;
-    public MessageObject f45472r;
-    public VideoEditedInfo f45473s;
-    public float f45474t;
-    public float f45475u;
+    public long f45483i;
+    public TLRPC.StickerSet f45484j;
+    public TLRPC.Document f45485k;
+    public String f45486l;
+    public Utilities.Callback2 f45487m;
+    public Utilities.Callback f45488n;
+    public boolean f45489o;
+    public ArrayList f45490p;
+    public ArrayList f45491q;
+    public MessageObject f45492r;
+    public VideoEditedInfo f45493s;
+    public float f45494t;
+    public float f45495u;
 
     public final void a() {
-        ArrayList arrayList = this.f45471q;
-        ArrayList arrayList2 = this.f45470p;
+        ArrayList arrayList = this.f45491q;
+        ArrayList arrayList2 = this.f45490p;
         int size = arrayList2.size();
         int i10 = 0;
         int i11 = 0;
@@ -62,14 +62,14 @@ public final class k2 {
 
     public final float b() {
         float f7;
-        if (this.f45467m == null) {
+        if (this.f45487m == null) {
             f7 = 0.9f;
         } else {
             f7 = 1.0f;
         }
-        if (this.f45473s == null) {
-            return f7 * this.f45475u;
+        if (this.f45493s == null) {
+            return f7 * this.f45495u;
         }
-        return a6.A(this.f45475u, 0.5f, this.f45474t * 0.5f, f7);
+        return k3.A(this.f45495u, 0.5f, this.f45494t * 0.5f, f7);
     }
 }

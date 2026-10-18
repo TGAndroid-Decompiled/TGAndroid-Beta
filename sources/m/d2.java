@@ -7,19 +7,19 @@ import org.telegram.ui.Components.gz;
 import org.telegram.ui.Components.oz;
 import org.telegram.ui.Components.ty;
 public final class d2 implements View.OnTouchListener {
-    public final int f16169a;
-    public final Object f16170b;
+    public final int f16176a;
+    public final Object f16177b;
 
     public d2(Object obj, int i10) {
-        this.f16169a = i10;
-        this.f16170b = obj;
+        this.f16176a = i10;
+        this.f16177b = obj;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f16169a) {
+        switch (this.f16176a) {
             case 0:
-                e2 e2Var = (e2) this.f16170b;
+                e2 e2Var = (e2) this.f16177b;
                 b2 b2Var = e2Var.G;
                 Handler handler = e2Var.K;
                 y yVar = e2Var.O;
@@ -36,27 +36,27 @@ public final class d2 implements View.OnTouchListener {
                     return false;
                 }
             case 1:
-                ty tyVar = (ty) this.f16170b;
+                ty tyVar = (ty) this.f16177b;
                 if (motionEvent.getAction() == 0) {
-                    tyVar.F.f30755f = true;
+                    tyVar.F.f30762f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    tyVar.F.f30755f = false;
+                    tyVar.F.f30762f = false;
                 }
                 return false;
             case 2:
-                gz gzVar = (gz) this.f16170b;
+                gz gzVar = (gz) this.f16177b;
                 if (motionEvent.getAction() == 0) {
-                    gzVar.G.f30755f = true;
+                    gzVar.G.f30762f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    gzVar.G.f30755f = false;
+                    gzVar.G.f30762f = false;
                 }
                 return false;
             default:
-                oz ozVar = (oz) this.f16170b;
+                oz ozVar = (oz) this.f16177b;
                 if (motionEvent.getAction() == 0) {
-                    ozVar.Q.f30755f = true;
+                    ozVar.Q.f30762f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    ozVar.Q.f30755f = false;
+                    ozVar.Q.f30762f = false;
                 }
                 return false;
         }

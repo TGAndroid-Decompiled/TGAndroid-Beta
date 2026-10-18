@@ -11,22 +11,22 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bs;
 public final class g9 extends Drawable {
-    public int f5428a;
-    public final View f5429b;
-    public final Paint f5430c;
+    public int f5429a;
+    public final View f5430b;
+    public final Paint f5431c;
     public final Paint d;
-    public final org.telegram.ui.Components.f6 f5432g;
+    public final org.telegram.ui.Components.f6 f5433g;
     public boolean h;
-    public Paint f5433i;
+    public Paint f5434i;
     public int e = 255;
-    public final float[] f5431f = new float[15];
-    public final Path f5434j = new Path();
+    public final float[] f5432f = new float[15];
+    public final Path f5435j = new Path();
 
     public g9(View view) {
-        this.f5429b = view;
-        this.f5432g = new org.telegram.ui.Components.f6(view, 350L, bs.h);
+        this.f5430b = view;
+        this.f5433g = new org.telegram.ui.Components.f6(view, 350L, bs.h);
         Paint paint = new Paint(1);
-        this.f5430c = paint;
+        this.f5431c = paint;
         paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);
         Paint paint2 = new Paint(1);
         this.d = paint2;
@@ -34,10 +34,10 @@ public final class g9 extends Drawable {
     }
 
     public final void a() {
-        int i10 = this.f5428a + 1;
-        this.f5428a = i10;
+        int i10 = this.f5429a + 1;
+        this.f5429a = i10;
         if (i10 >= 2) {
-            this.f5428a = 0;
+            this.f5429a = 0;
         }
     }
 
@@ -50,14 +50,14 @@ public final class g9 extends Drawable {
             } else {
                 f7 = 0.0f;
             }
-            this.f5432g.d(f7, true);
+            this.f5433g.d(f7, true);
             return;
         }
-        this.f5429b.invalidate();
+        this.f5430b.invalidate();
     }
 
     public final void c(float f7) {
-        this.f5430c.setShadowLayer(AndroidUtilities.dp(2.0f) / f7, 0.0f, AndroidUtilities.dpf2(0.7f) / f7, i0.b.o(-16777216, 45));
+        this.f5431c.setShadowLayer(AndroidUtilities.dp(2.0f) / f7, 0.0f, AndroidUtilities.dpf2(0.7f) / f7, i0.a.o(-16777216, 45));
     }
 
     @Override
@@ -67,7 +67,7 @@ public final class g9 extends Drawable {
         int i10;
         int i11;
         int i12;
-        float[] fArr = this.f5431f;
+        float[] fArr = this.f5432f;
         int i13 = 0;
         fArr[0] = getBounds().centerX();
         int i14 = 1;
@@ -93,35 +93,35 @@ public final class g9 extends Drawable {
         } else {
             f7 = 0.0f;
         }
-        float d = this.f5432g.d(f7, false);
-        int i18 = this.f5428a;
+        float d = this.f5433g.d(f7, false);
+        int i18 = this.f5429a;
         Paint paint2 = this.d;
         if (i18 == 0) {
             paint2.setColor(-1);
         } else if (i18 == 1) {
-            if (this.f5433i == null) {
+            if (this.f5434i == null) {
                 Paint paint3 = new Paint(1);
-                this.f5433i = paint3;
+                this.f5434i = paint3;
                 paint3.setColor(-16777216);
-                this.f5433i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                this.f5433i.setStrokeWidth(AndroidUtilities.dp(3.0f));
+                this.f5434i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                this.f5434i.setStrokeWidth(AndroidUtilities.dp(3.0f));
             }
-            paint2.setColor(i0.b.o(-16777216, 127));
+            paint2.setColor(i0.a.o(-16777216, 127));
         }
-        if (this.e == 255 && this.f5428a != 1) {
+        if (this.e == 255 && this.f5429a != 1) {
             canvas.save();
         } else {
             canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.e, 31);
         }
-        Path path = this.f5434j;
+        Path path = this.f5435j;
         path.rewind();
         int i19 = 0;
         while (i19 < i15) {
-            if (this.f5428a == i14 && i19 == 0) {
+            if (this.f5429a == i14 && i19 == 0) {
                 i11 = i15;
             } else {
                 if (i19 == 0) {
-                    paint = this.f5430c;
+                    paint = this.f5431c;
                 } else {
                     paint = paint2;
                 }

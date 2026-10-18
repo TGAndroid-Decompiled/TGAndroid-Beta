@@ -1,50 +1,41 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class q4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f34778a;
-    public final TL_wallet.walletTransaction[] f34779b;
-    public final v3 f34780c;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.AndroidUtilities;
+public final class q4 implements TextWatcher {
+    public final String[] f34790a;
+    public final u3 f34791b;
+    public final Runnable[] f34792c;
+    public final org.telegram.messenger.a6 d;
 
-    public q4(int i10, TL_wallet.walletTransaction[] wallettransactionArr, v3 v3Var) {
-        this.f34778a = i10;
-        this.f34779b = wallettransactionArr;
-        this.f34780c = v3Var;
+    public q4(String[] strArr, u3 u3Var, Runnable[] runnableArr, org.telegram.messenger.a6 a6Var) {
+        this.f34790a = strArr;
+        this.f34791b = u3Var;
+        this.f34792c = runnableArr;
+        this.d = a6Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        TL_wallet.walletTransaction[] wallettransactionArr;
-        TL_wallet.walletTransaction wallettransaction;
-        if (i10 == NotificationCenter.walletUpdate || i10 == NotificationCenter.walletTransactionsUpdate) {
-            ArrayList arrayList = m0.w(this.f34778a).A().f34457c;
-            int size = arrayList.size();
-            int i12 = 0;
-            while (true) {
-                wallettransactionArr = this.f34779b;
-                if (i12 < size) {
-                    Object obj = arrayList.get(i12);
-                    i12++;
-                    wallettransaction = (TL_wallet.walletTransaction) obj;
-                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
-                    if (wallettransaction != wallettransaction2) {
-                        if (m0.f0(wallettransaction2, wallettransaction)) {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } else {
-                    wallettransaction = null;
-                    break;
-                }
-            }
-            if (wallettransaction != null) {
-                wallettransactionArr[0] = wallettransaction;
-                this.f34780c.run(wallettransaction);
-            }
+    public final void afterTextChanged(Editable editable) {
+        this.f34790a[0] = editable.toString();
+        this.f34791b.run();
+        Runnable[] runnableArr = this.f34792c;
+        Runnable runnable = runnableArr[0];
+        if (runnable != null) {
+            runnable.run();
+            runnableArr[0] = null;
         }
+        org.telegram.messenger.a6 a6Var = this.d;
+        AndroidUtilities.cancelRunOnUIThread(a6Var);
+        AndroidUtilities.runOnUIThread(a6Var, 1000L);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

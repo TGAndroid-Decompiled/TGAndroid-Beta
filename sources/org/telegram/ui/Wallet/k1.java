@@ -2,23 +2,23 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
 public final class k1 implements Utilities.Callback {
-    public final b2 f34379a;
-    public final boolean[] f34380b;
-    public final ei.d f34381c;
+    public final b2 f34380a;
+    public final boolean[] f34381b;
+    public final ei.d f34382c;
     public final ei.d d;
     public final f2 e;
-    public final j2 f34382f;
-    public final boolean[] f34383g;
+    public final j2 f34383f;
+    public final boolean[] f34384g;
     public final org.telegram.ui.ActionBar.d6 h;
 
     public k1(b2 b2Var, boolean[] zArr, ei.d dVar, ei.d dVar2, f2 f2Var, j2 j2Var, boolean[] zArr2, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f34379a = b2Var;
-        this.f34380b = zArr;
-        this.f34381c = dVar;
+        this.f34380a = b2Var;
+        this.f34381b = zArr;
+        this.f34382c = dVar;
         this.d = dVar2;
         this.e = f2Var;
-        this.f34382f = j2Var;
-        this.f34383g = zArr2;
+        this.f34383f = j2Var;
+        this.f34384g = zArr2;
         this.h = d6Var;
     }
 
@@ -26,12 +26,12 @@ public final class k1 implements Utilities.Callback {
     public final void run(Object obj) {
         ei.d dVar;
         Boolean bool = (Boolean) obj;
-        b2 b2Var = this.f34379a;
-        if (!b2Var.f34028m && !b2Var.f34029n) {
+        b2 b2Var = this.f34380a;
+        if (!b2Var.f34025m && !b2Var.f34026n) {
             boolean booleanValue = bool.booleanValue();
-            boolean[] zArr = this.f34380b;
+            boolean[] zArr = this.f34381b;
             if (booleanValue || zArr[0]) {
-                ei.d dVar2 = this.f34381c;
+                ei.d dVar2 = this.f34382c;
                 dVar2.setEnabled(false);
                 ei.d dVar3 = this.d;
                 dVar3.setEnabled(false);
@@ -41,7 +41,7 @@ public final class k1 implements Utilities.Callback {
                     dVar = dVar2;
                 }
                 dVar.setLoading(true);
-                this.e.e(b2Var, bool.booleanValue(), new q1(dVar2, dVar3, this.f34382f, this.f34383g, this.h, b2Var, zArr));
+                this.e.e(b2Var, bool.booleanValue(), new q1(dVar2, dVar3, this.f34383f, this.f34384g, this.h, b2Var, zArr));
             }
         }
     }

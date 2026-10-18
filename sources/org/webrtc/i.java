@@ -1,23 +1,23 @@
 package org.webrtc;
 public final class i implements Runnable {
-    public final int f43904a;
-    public final int f43905b;
-    public final Object f43906c;
+    public final int f43924a;
+    public final int f43925b;
+    public final Object f43926c;
 
     public i(Object obj, int i10, int i11) {
-        this.f43904a = i11;
-        this.f43906c = obj;
-        this.f43905b = i10;
+        this.f43924a = i11;
+        this.f43926c = obj;
+        this.f43925b = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f43904a) {
+        switch (this.f43924a) {
             case 0:
-                HardwareVideoEncoder.a((HardwareVideoEncoder) this.f43906c, this.f43905b);
+                HardwareVideoEncoder.a((HardwareVideoEncoder) this.f43926c, this.f43925b);
                 return;
             default:
-                SurfaceTextureHelper.b((SurfaceTextureHelper) this.f43906c, this.f43905b);
+                SurfaceTextureHelper.b((SurfaceTextureHelper) this.f43926c, this.f43925b);
                 return;
         }
     }

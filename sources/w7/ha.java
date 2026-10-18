@@ -5,10 +5,10 @@ import java.io.Closeable;
 import java.util.HashMap;
 import java.util.Locale;
 public class ha implements Closeable {
-    public static final HashMap f48725f = new HashMap();
-    public int f48726a;
-    public long f48727b;
-    public long f48728c;
+    public static final HashMap f48750f = new HashMap();
+    public int f48751a;
+    public long f48752b;
+    public long f48753c;
     public long d = 2147483647L;
     public long e = -2147483648L;
 
@@ -16,29 +16,29 @@ public class ha implements Closeable {
     }
 
     public void a() {
-        this.f48727b = SystemClock.elapsedRealtimeNanos() / 1000;
+        this.f48752b = SystemClock.elapsedRealtimeNanos() / 1000;
     }
 
     public void b(long j10) {
         long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos() / 1000;
-        long j11 = this.f48728c;
+        long j11 = this.f48753c;
         if (j11 != 0 && elapsedRealtimeNanos - j11 >= 1000000) {
-            this.f48726a = 0;
-            this.f48727b = 0L;
+            this.f48751a = 0;
+            this.f48752b = 0L;
             this.d = 2147483647L;
             this.e = -2147483648L;
         }
-        this.f48728c = elapsedRealtimeNanos;
-        this.f48726a++;
+        this.f48753c = elapsedRealtimeNanos;
+        this.f48751a++;
         this.d = Math.min(this.d, j10);
         this.e = Math.max(this.e, j10);
-        if (this.f48726a % 50 == 0) {
+        if (this.f48751a % 50 == 0) {
             Locale locale = Locale.US;
             pa.b();
         }
-        if (this.f48726a % 500 == 0) {
-            this.f48726a = 0;
-            this.f48727b = 0L;
+        if (this.f48751a % 500 == 0) {
+            this.f48751a = 0;
+            this.f48752b = 0L;
             this.d = 2147483647L;
             this.e = -2147483648L;
         }
@@ -50,7 +50,7 @@ public class ha implements Closeable {
 
     @Override
     public void close() {
-        long j10 = this.f48727b;
+        long j10 = this.f48752b;
         if (j10 != 0) {
             c(j10);
             return;

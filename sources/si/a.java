@@ -15,13 +15,13 @@ import java.util.concurrent.ExecutorService;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.Components.kd0;
-import u2.a1;
-import u2.r1;
+import u2.q1;
+import u2.z0;
 public final class a implements qa.a, r9.d, d9.k, e2.j, a2, kd0, q3.g, Continuation {
-    public final int f46572a;
+    public final int f46592a;
 
     public a(int i10) {
-        this.f46572a = i10;
+        this.f46592a = i10;
     }
 
     private final java.lang.Object a(com.google.android.gms.internal.cast.z5 r45) {
@@ -30,9 +30,9 @@ public final class a implements qa.a, r9.d, d9.k, e2.j, a2, kd0, q3.g, Continuat
 
     @Override
     public void accept(Object obj) {
-        switch (this.f46572a) {
+        switch (this.f46592a) {
             case 8:
-                ((a1) obj).f47272b.release();
+                ((z0) obj).f47541b.release();
                 return;
             default:
                 ((ExecutorService) obj).shutdown();
@@ -42,25 +42,25 @@ public final class a implements qa.a, r9.d, d9.k, e2.j, a2, kd0, q3.g, Continuat
 
     @Override
     public Object apply(Object obj) {
-        switch (this.f46572a) {
+        switch (this.f46592a) {
             case 6:
                 return ((c3.o) obj).b().getClass().getSimpleName();
             case 7:
-                return e9.n0.u(e9.s.x(((u2.e0) obj).r().f47441b, new a(9)));
+                return e9.n0.u(e9.s.x(((u2.d0) obj).r().f47461b, new a(9)));
             case 9:
-                return Integer.valueOf(((p1) obj).f3905c);
+                return Integer.valueOf(((p1) obj).f3906c);
             case 22:
-                return Long.valueOf(((z3.a) obj).f50657b);
+                return Long.valueOf(((z3.a) obj).f50682b);
             case 23:
-                return Long.valueOf(((z3.a) obj).f50658c);
+                return Long.valueOf(((z3.a) obj).f50683c);
             case 24:
                 return (w3.q) obj;
             default:
-                r1 r1Var = (r1) obj;
-                r1Var.getClass();
+                q1 q1Var = (q1) obj;
+                q1Var.getClass();
                 Bundle bundle = new Bundle();
-                String str = r1.e;
-                x1 x1Var = r1Var.f47441b;
+                String str = q1.e;
+                x1 x1Var = q1Var.f47461b;
                 ArrayList<? extends Parcelable> arrayList = new ArrayList<>(x1Var.d);
                 e9.l0 listIterator = x1Var.listIterator(0);
                 while (listIterator.hasNext()) {
@@ -87,7 +87,7 @@ public final class a implements qa.a, r9.d, d9.k, e2.j, a2, kd0, q3.g, Continuat
 
     @Override
     public String e(int i10) {
-        switch (this.f46572a) {
+        switch (this.f46592a) {
             case 12:
                 return String.valueOf(i10);
             default:
@@ -97,7 +97,7 @@ public final class a implements qa.a, r9.d, d9.k, e2.j, a2, kd0, q3.g, Continuat
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f46572a) {
+        switch (this.f46592a) {
             case 11:
                 return;
             case 14:
@@ -111,7 +111,7 @@ public final class a implements qa.a, r9.d, d9.k, e2.j, a2, kd0, q3.g, Continuat
 
     @Override
     public void h(qa.b bVar) {
-        switch (this.f46572a) {
+        switch (this.f46592a) {
             case 4:
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
@@ -126,19 +126,19 @@ public final class a implements qa.a, r9.d, d9.k, e2.j, a2, kd0, q3.g, Continuat
 
     @Override
     public Object j2(z5 z5Var) {
-        switch (this.f46572a) {
+        switch (this.f46592a) {
             case 5:
                 return a(z5Var);
             default:
                 Set y3 = z5Var.y(ya.a.class);
-                ya.c cVar = ya.c.f50134c;
+                ya.c cVar = ya.c.f50159c;
                 if (cVar == null) {
                     synchronized (ya.c.class) {
                         try {
-                            cVar = ya.c.f50134c;
+                            cVar = ya.c.f50159c;
                             if (cVar == null) {
                                 cVar = new ya.c();
-                                ya.c.f50134c = cVar;
+                                ya.c.f50159c = cVar;
                             }
                         } finally {
                         }
@@ -154,10 +154,10 @@ public final class a implements qa.a, r9.d, d9.k, e2.j, a2, kd0, q3.g, Continuat
         File file;
         if (task.isSuccessful()) {
             x9.b bVar = (x9.b) task.getResult();
-            u9.b bVar2 = u9.b.f47643a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f49687b);
+            u9.b bVar2 = u9.b.f47665a;
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f49712b);
             z10 = true;
-            if (bVar.f49688c.delete()) {
+            if (bVar.f49713c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
@@ -170,7 +170,7 @@ public final class a implements qa.a, r9.d, d9.k, e2.j, a2, kd0, q3.g, Continuat
     }
 
     public a(Object obj, int i10) {
-        this.f46572a = i10;
+        this.f46592a = i10;
     }
 
     private final void d(b2 b2Var, int i10) {

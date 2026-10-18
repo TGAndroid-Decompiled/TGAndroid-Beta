@@ -179,51 +179,31 @@ float wrappedDiffuse(vec3 normal, vec3 lightDirection, float wrap) {
     return clamp((dot(normal, lightDirection) + wrap) / (1.0 + wrap), 0.0, 1.0);
 }
 
-vec3 studioEnvironment(vec3 direction, float roughness) {
+// x^k for large k as a spherical Gaussian: one exp2, accurate near the peak.
+float sphericalGaussian(float x, float k) {
+    return exp2(k * 1.442695 * (max(x, 0.0) - 1.0));
+}
+
+// The studio is gray; only its level is used.
+float studioEnvironment(vec3 direction, float roughness) {
     float horizon = smoothstep(-0.45, 0.72, direction.y);
-    vec3 environment = mix(
-            vec3(0.061),
-            vec3(0.356),
-            horizon
-    );
-
-    float frontalFill = pow(
-            max(dot(
-                    direction,
-                    normalize(vec3(0.0, 0.22, 0.98))
-            ), 0.0),
-            mix(3.6, 1.25, roughness)
-    );
-    float overheadFill = pow(
-            max(dot(
-                    direction,
-                    normalize(vec3(0.0, 0.82, 0.57))
-            ), 0.0),
-            mix(5.0, 1.5, roughness)
-    );
-    environment += vec3(0.284)
-            * frontalFill * 0.9 * STUDIO_FILL_STRENGTH;
-    environment += vec3(0.206)
-            * overheadFill * 0.55 * STUDIO_FILL_STRENGTH;
-
-    float keySoftbox = pow(
-            max(dot(
-                    direction,
-                    normalize(vec3(-0.52, 0.46, 0.72))
-            ), 0.0),
-            mix(18.0, 3.5, roughness)
-    );
-    float rimSoftbox = pow(
-            max(dot(
-                    direction,
-                    normalize(vec3(0.72, 0.12, 0.68))
-            ), 0.0),
-            mix(34.0, 5.5, roughness)
-    );
-    environment += vec3(0.933)
-            * keySoftbox * 2.7 * STUDIO_SOFTBOX_STRENGTH;
-    environment += vec3(0.712)
-            * rimSoftbox * 1.1 * STUDIO_SOFTBOX_STRENGTH;
+    float environment = mix(0.061, 0.356, horizon);
+    // Fill exponents are ~3.4 and ~4.7 at the card's roughness: interpolate between
+    // the neighbouring integer powers, within a few percent where they matter.
+    float frontal = max(dot(direction, normalize(vec3(0.0, 0.22, 0.98))), 0.0);
+    float overhead = max(dot(direction, normalize(vec3(0.0, 0.82, 0.57))), 0.0);
+    float frontal2 = frontal * frontal, overhead2 = overhead * overhead;
+    float frontalExponent = mix(3.6, 1.25, roughness), overheadExponent = mix(5.0, 1.5, roughness);
+    float frontalFill = frontal2 * frontal * mix(1.0, frontal, clamp(frontalExponent - 3.0, 0.0, 1.0));
+    float overheadFill = overhead2 * overhead2 * mix(1.0, overhead, clamp(overheadExponent - 4.0, 0.0, 1.0));
+    environment += 0.284 * frontalFill * 0.9 * STUDIO_FILL_STRENGTH;
+    environment += 0.206 * overheadFill * 0.55 * STUDIO_FILL_STRENGTH;
+    float keySoftbox = sphericalGaussian(dot(direction, normalize(vec3(-0.52, 0.46, 0.72))),
+            mix(18.0, 3.5, roughness));
+    float rimSoftbox = sphericalGaussian(dot(direction, normalize(vec3(0.72, 0.12, 0.68))),
+            mix(34.0, 5.5, roughness));
+    environment += 0.933 * keySoftbox * 2.7 * STUDIO_SOFTBOX_STRENGTH;
+    environment += 0.712 * rimSoftbox * 1.1 * STUDIO_SOFTBOX_STRENGTH;
     return environment;
 }
 
@@ -234,15 +214,6 @@ vec3 acesToneMap(vec3 color) {
             0.0,
             1.0
     );
-}
-
-vec3 srgbEncode(vec3 c) {
-    c = clamp(c, 0.0, 1.0);
-    return mix(c * 12.92, 1.055 * pow(c, vec3(1.0 / 2.4)) - 0.055, step(0.0031308, c));
-}
-
-vec3 srgbDecode(vec3 c) {
-    return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)), step(0.04045, c));
 }
 
 void main() {
@@ -599,10 +570,10 @@ void main() {
     );
     // The 3D lighting adds its own lobe contrast on top.
     giftT = mix(0.40, giftT, GIFT_CONTRAST);
-    vec3 giftColor = srgbDecode(
-            mix(srgbEncode(CARD_GRADIENT_DARK), srgbEncode(CARD_GRADIENT_BRIGHT), giftT)
-                    * (0.80 + 0.20 * giftT)
-    );
+    // Mixed in gamma-2 space: close to sRGB, at three square roots.
+    vec3 giftGamma = mix(sqrt(max(CARD_GRADIENT_DARK, 0.0)), sqrt(max(CARD_GRADIENT_BRIGHT, 0.0)), giftT)
+            * (0.80 + 0.20 * giftT);
+    vec3 giftColor = giftGamma * giftGamma;
     gradientColor = mix(gradientColor, giftColor, giftLook);
     vec3 baseColor = gradientColor * 0.30 / 0.2788;
     float cardColorPeak = max(
@@ -753,47 +724,26 @@ void main() {
     // relying on roughness or creating unbounded hot pixels.
     vec3 radialSlopeDirection =
             -engravingXAxis * radial.x + engravingYAxis * radial.y;
-    vec3 radialTextureNormalA = normalize(
-            normal + radialSlopeDirection * radialMachiningSlope
-    );
-    vec3 radialTextureNormalB = normalize(
-            normal - radialSlopeDirection * radialMachiningSlope
-    );
     float radialNormalExponent = mix(
             28.0,
             70.0,
             1.0 - roughness
     );
-    float radialFlatNormalResponse =
-            radialNormalLight
-            * pow(
-                    radialNormalHalf,
-                    radialNormalExponent
-            );
-    float radialTextureNormalResponse = 0.5 * (
-            max(dot(radialTextureNormalA, lightDirection), 0.0)
-                    * pow(
-                            max(dot(
-                                    radialTextureNormalA,
-                                    radialShineHalfway
-                            ), 0.0),
-                            radialNormalExponent
-                    )
-                    + max(dot(
-                            radialTextureNormalB,
-                            lightDirection
-                    ), 0.0)
-                    * pow(
-                            max(dot(
-                                    radialTextureNormalB,
-                                    radialShineHalfway
-                            ), 0.0),
-                            radialNormalExponent
-                    )
-    );
-    float radialTextureNormalRatio =
-            radialTextureNormalResponse
-                    / max(radialFlatNormalResponse, 0.0001);
+    // The paired groove normals n +/- s*d (d is a unit in-plane direction) share
+    // one length. Their response relative to the flat normal is a ratio of powers,
+    // so the flat power cancels: two exp2 instead of three pow.
+    float slopeInverseLength = inversesqrt(1.0 + radialMachiningSlope * radialMachiningSlope);
+    float slopeLight = dot(radialSlopeDirection, lightDirection) * radialMachiningSlope;
+    float slopeHalf = dot(radialSlopeDirection, radialShineHalfway) * radialMachiningSlope;
+    float flatLight = dot(normal, lightDirection), flatHalf = dot(normal, radialShineHalfway);
+    float halfA = max((flatHalf + slopeHalf) * slopeInverseLength, 0.0);
+    float halfB = max((flatHalf - slopeHalf) * slopeInverseLength, 0.0);
+    float lightScale = slopeInverseLength / max(flatLight, 0.0001);
+    float powerScale = radialNormalExponent * 1.442695 / max(flatHalf, 0.0001);
+    float radialTextureNormalRatio = flatLight > 0.0001 && flatHalf > 0.0001 ? 0.5 * (
+            max(flatLight + slopeLight, 0.0) * lightScale * exp2(powerScale * (halfA - flatHalf))
+                    + max(flatLight - slopeLight, 0.0) * lightScale * exp2(powerScale * (halfB - flatHalf))
+    ) : 0.0;
     float radialDetailSpecularResponse = smoothstep(
             0.015,
             0.28,
@@ -872,16 +822,14 @@ void main() {
     ) * 14.0;
 
     vec3 reflectionDirection = reflect(-viewDirection, normal);
-    vec3 environment = studioEnvironment(
-            reflectionDirection,
-            roughness
-    );
     // Keep reflection motion, but anchor its energy to the resting view.
     // This prevents the top-left softbox from washing out the whole card and
     // the opposite tilt from losing the base material in a dark environment.
-    float referenceEnvironment = max(studioEnvironment(vec3(0.0, 0.0, 1.0), roughness).r, 0.0001);
-    float environmentRatio = environment.r / referenceEnvironment;
-    environment = vec3(referenceEnvironment * 0.82 * clamp(environmentRatio, 0.82, 1.18));
+    // The reference uses the base roughness, so it folds to a constant.
+    float referenceEnvironment = studioEnvironment(vec3(0.0, 0.0, 1.0),
+            mix(0.16, 0.115, ANISOTROPY) * ROUGHNESS_SCALE);
+    vec3 environment = vec3(referenceEnvironment * 0.82 * clamp(
+            studioEnvironment(reflectionDirection, roughness) / referenceEnvironment, 0.82, 1.18));
     vec3 environmentFresnel = mix(
             reflectance,
             grazingReflectance,

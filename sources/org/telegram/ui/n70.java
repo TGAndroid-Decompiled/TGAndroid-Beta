@@ -6,27 +6,27 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
 public final class n70 implements Runnable {
-    public final int f39363a;
-    public final o70 f39364b;
-    public final String f39365c;
+    public final int f39389a;
+    public final o70 f39390b;
+    public final String f39391c;
 
     public n70(o70 o70Var, String str, int i10) {
-        this.f39363a = i10;
-        this.f39364b = o70Var;
-        this.f39365c = str;
+        this.f39389a = i10;
+        this.f39390b = o70Var;
+        this.f39391c = str;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f39363a) {
+        switch (this.f39389a) {
             case 0:
-                Utilities.searchQueue.postRunnable(new n70(this.f39364b, this.f39365c, 1));
+                Utilities.searchQueue.postRunnable(new n70(this.f39390b, this.f39391c, 1));
                 return;
             default:
-                o70 o70Var = this.f39364b;
-                String str = this.f39365c;
-                p70 p70Var = o70Var.f39678b;
+                o70 o70Var = this.f39390b;
+                String str = this.f39391c;
+                p70 p70Var = o70Var.f39699b;
                 String lowerCase = str.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     ArrayList arrayList = new ArrayList();
@@ -54,8 +54,8 @@ public final class n70 implements Runnable {
                 ArrayList arrayList3 = new ArrayList();
                 ArrayList arrayList4 = new ArrayList();
                 int i13 = 0;
-                while (i13 < p70Var.f39983n.f41609w.size()) {
-                    ContactsController.Contact contact = (ContactsController.Contact) p70Var.f39983n.f41609w.get(i13);
+                while (i13 < p70Var.f40002n.f41635w.size()) {
+                    ContactsController.Contact contact = (ContactsController.Contact) p70Var.f40002n.f41635w.get(i13);
                     String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
                     String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
                     if (lowerCase2.equals(translitString2)) {
@@ -66,7 +66,7 @@ public final class n70 implements Runnable {
                     while (true) {
                         if (i14 < i12) {
                             String str2 = strArr[i14];
-                            if (lowerCase2.startsWith(str2) || org.telegram.messenger.wh.w(" ", str2, lowerCase2) || (translitString2 != null && (translitString2.startsWith(str2) || org.telegram.messenger.wh.w(" ", str2, translitString2)))) {
+                            if (lowerCase2.startsWith(str2) || org.telegram.messenger.g0.w(" ", str2, lowerCase2) || (translitString2 != null && (translitString2.startsWith(str2) || org.telegram.messenger.g0.w(" ", str2, translitString2)))) {
                                 i15 = 1;
                             }
                             if (i15 != 0) {

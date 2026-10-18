@@ -12,10 +12,11 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.telegram.ui.Cells.c1;
 import vc.g;
 import w7.n9;
 public abstract class b {
-    public static final c f49788a = new c();
+    public static final c f49813a = new c();
 
     public static HttpURLConnection a(String str, e eVar) {
         Throwable th2;
@@ -28,7 +29,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = eVar.f6922b;
+        String str2 = eVar.f6923b;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -44,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f49788a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f49813a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -76,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f49786a;
-            String str2 = aVar.f49787b;
+            String str = aVar.f49811a;
+            String str2 = aVar.f49812b;
             if (str == null) {
                 encode = null;
             } else {
@@ -93,8 +94,8 @@ public abstract class b {
         return sb2.toString();
     }
 
-    public static u2.c c(java.util.HashMap r7, com.google.android.gms.internal.clearcut.e r8) {
-        throw new UnsupportedOperationException("Method not decompiled: xc.b.c(java.util.HashMap, com.google.android.gms.internal.clearcut.e):u2.c");
+    public static t0.h c(java.util.HashMap r7, com.google.android.gms.internal.clearcut.e r8) {
+        throw new UnsupportedOperationException("Method not decompiled: xc.b.c(java.util.HashMap, com.google.android.gms.internal.clearcut.e):t0.h");
     }
 
     public static LinkedList d(String str, Map map) {
@@ -119,7 +120,7 @@ public abstract class b {
         if (obj instanceof List) {
             List<Object> list = (List) obj;
             LinkedList linkedList = new LinkedList();
-            String u10 = r.c.u(str, "[]");
+            String u10 = r4.c.u(str, "[]");
             if (list.isEmpty()) {
                 linkedList.add(new a(str, ""));
                 return linkedList;
@@ -138,7 +139,7 @@ public abstract class b {
             linkedList3.add(new a(str, obj.toString()));
             return linkedList3;
         } else {
-            throw new g(r.c.h("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
+            throw new g(c1.k("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
         }
     }
 

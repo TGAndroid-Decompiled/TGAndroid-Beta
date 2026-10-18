@@ -94,8 +94,8 @@ public final class d1 {
             View view = d1Var2.v;
             if (view instanceof u1) {
                 ((u1) view).N.b(d1Var2.f702p);
-            } else if (view instanceof org.telegram.ui.Cells.x0) {
-                ((org.telegram.ui.Cells.x0) view).E0.b(d1Var2.f702p);
+            } else if (view instanceof org.telegram.ui.Cells.w0) {
+                ((org.telegram.ui.Cells.w0) view).E0.b(d1Var2.f702p);
             }
         }
     }

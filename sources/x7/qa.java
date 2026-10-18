@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class qa extends e9.j2 {
-    public final e9.e f49543b;
+    public final e9.e f49568b;
 
     public qa(e9.e eVar) {
         super(1);
-        this.f49543b = eVar;
+        this.f49568b = eVar;
     }
 
     @Override
     public final void clear() {
-        this.f49543b.clear();
+        this.f49568b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f49543b.f8435b.entrySet();
+        Set entrySet = this.f49568b.f8436b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class qa extends e9.j2 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f49543b.isEmpty();
+        return this.f49568b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.d(this.f49543b, (byte) 0);
+        return new e9.d(this.f49568b, (byte) 0);
     }
 
     @Override
@@ -47,9 +47,9 @@ public final class qa extends e9.j2 {
         }
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
-        f fVar = (f) this.f49543b.e;
+        f fVar = (f) this.f49568b.e;
         Object key = entry.getKey();
-        j jVar = fVar.f49386c;
+        j jVar = fVar.f49411c;
         jVar.getClass();
         try {
             obj2 = jVar.remove(key);
@@ -96,7 +96,7 @@ public final class qa extends e9.j2 {
                 if (size >= 0) {
                     i10 = size + 1;
                 } else {
-                    throw new IllegalArgumentException(i0.a.j(size, "expectedSize cannot be negative but was: "));
+                    throw new IllegalArgumentException(i2.d.j(size, "expectedSize cannot be negative but was: "));
                 }
             } else if (size < 1073741824) {
                 i10 = (int) Math.ceil(size / 0.75d);
@@ -109,11 +109,11 @@ public final class qa extends e9.j2 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            f fVar = (f) this.f49543b.e;
-            a aVar = fVar.f49372a;
+            f fVar = (f) this.f49568b.e;
+            a aVar = fVar.f49397a;
             if (aVar == null) {
-                aVar = new a(fVar, fVar.f49386c);
-                fVar.f49372a = aVar;
+                aVar = new a(fVar, fVar.f49411c);
+                fVar.f49397a = aVar;
             }
             return aVar.retainAll(hashSet);
         }
@@ -121,6 +121,6 @@ public final class qa extends e9.j2 {
 
     @Override
     public final int size() {
-        return this.f49543b.f8435b.size();
+        return this.f49568b.f8436b.size();
     }
 }

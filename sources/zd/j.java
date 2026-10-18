@@ -1,6 +1,6 @@
 package zd;
 
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 public abstract class j extends i {
     public static boolean b(String str, String str2) {
         kotlin.jvm.internal.i.e(str, "<this>");
@@ -37,9 +37,9 @@ public abstract class j extends i {
         }
         wd.d dVar = new wd.d(i10, length, 1);
         boolean z13 = charSequence instanceof String;
-        int i11 = dVar.f48947c;
-        int i12 = dVar.f48946b;
-        if (z13 && a6.s(string)) {
+        int i11 = dVar.f48972c;
+        int i12 = dVar.f48971b;
+        if (z13 && k3.s(string)) {
             if ((i11 > 0 && i10 <= i12) || (i11 < 0 && i12 <= i10)) {
                 int i13 = i10;
                 while (true) {
@@ -131,7 +131,7 @@ public abstract class j extends i {
             }
             return charSequence.toString();
         }
-        throw new IllegalArgumentException(i0.a.k(i10, "Desired length ", " is less than zero."));
+        throw new IllegalArgumentException(i2.d.k(i10, "Desired length ", " is less than zero."));
     }
 
     public static String g(String str, String str2, String newValue) {

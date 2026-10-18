@@ -1,6 +1,6 @@
 package cf;
 
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,8 +10,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public abstract class b {
-    public static final Map f5120a;
-    public static final Pattern f5121b;
+    public static final Map f5121a;
+    public static final Pattern f5122b;
 
     static {
         HashMap hashMap = new HashMap();
@@ -27,8 +27,8 @@ public abstract class b {
                 } else {
                     bufferedReader.close();
                     hashMap.put("NewLine", "\n");
-                    f5120a = hashMap;
-                    f5121b = Pattern.compile("^&#[Xx]?");
+                    f5121a = hashMap;
+                    f5122b = Pattern.compile("^&#[Xx]?");
                     return;
                 }
             }
@@ -39,7 +39,7 @@ public abstract class b {
 
     public static String a(String str) {
         int i10;
-        Matcher matcher = f5121b.matcher(str);
+        Matcher matcher = f5122b.matcher(str);
         if (matcher.find()) {
             if (matcher.end() == 2) {
                 i10 = 10;
@@ -56,7 +56,7 @@ public abstract class b {
                 return "�";
             }
         }
-        String str2 = (String) f5120a.get(a6.j(1, 1, str));
+        String str2 = (String) f5121a.get(k3.j(1, 1, str));
         if (str2 != null) {
             return str2;
         }

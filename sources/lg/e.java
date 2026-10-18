@@ -26,34 +26,34 @@ public class e extends FrameLayout {
     public final d6 J;
     public final androidx.activity.i K;
     public DecimalFormat L;
-    public boolean f16037a;
-    public final LinearLayout f16038b;
-    public r[] f16039c;
+    public boolean f16044a;
+    public final LinearLayout f16045b;
+    public r[] f16046c;
     public final TextView d;
     public final TextView e;
-    public final ImageView f16040f;
+    public final ImageView f16047f;
     public final RadialProgressView h;
-    public final SimpleDateFormat f16041n;
-    public final SimpleDateFormat f16042r;
-    public final SimpleDateFormat f16043s;
+    public final SimpleDateFormat f16048n;
+    public final SimpleDateFormat f16049r;
+    public final SimpleDateFormat f16050s;
     public final SimpleDateFormat v;
-    public final SimpleDateFormat f16044w;
-    public boolean f16045x;
-    public boolean f16046y;
+    public final SimpleDateFormat f16051w;
+    public boolean f16052x;
+    public boolean f16053y;
 
     public e(Context context, d6 d6Var) {
         super(context);
-        this.f16041n = new SimpleDateFormat("E, ");
-        this.f16042r = new SimpleDateFormat("MMM dd");
-        this.f16043s = new SimpleDateFormat("d MMM yyyy");
+        this.f16048n = new SimpleDateFormat("E, ");
+        this.f16049r = new SimpleDateFormat("MMM dd");
+        this.f16050s = new SimpleDateFormat("d MMM yyyy");
         this.v = new SimpleDateFormat("d MMM");
-        this.f16044w = new SimpleDateFormat(" HH:mm");
+        this.f16051w = new SimpleDateFormat(" HH:mm");
         this.G = true;
         this.K = new androidx.activity.i(this, 23);
         this.J = d6Var;
         setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         LinearLayout linearLayout = new LinearLayout(getContext());
-        this.f16038b = linearLayout;
+        this.f16045b = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
         this.d = textView;
@@ -64,7 +64,7 @@ public class e extends FrameLayout {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
-        this.f16040f = imageView;
+        this.f16047f = imageView;
         imageView.setImageResource(R.drawable.ic_chevron_right_black_18dp);
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
         this.h = radialProgressView;
@@ -87,18 +87,18 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i10 = h6.f21092j5;
+        int i10 = h6.f21099j5;
         d6 d6Var = this.J;
         this.d.setTextColor(h6.w0(i10, d6Var));
         this.e.setTextColor(h6.w0(i10, d6Var));
         int i11 = h6.gj;
-        this.f16040f.setColorFilter(h6.w0(i11, d6Var));
+        this.f16047f.setColorFilter(h6.w0(i11, d6Var));
         this.h.setProgressColor(h6.w0(i11, d6Var));
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
-        this.I = h6.j0(dp, dp, dp, dp, h6.w0(h6.f21057h5, d6Var), h6.w0(h6.f21075i6, d6Var), -16777216);
+        this.I = h6.j0(dp, dp, dp, dp, h6.w0(h6.f21064h5, d6Var), h6.w0(h6.f21082i6, d6Var), -16777216);
         zq zqVar = new zq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        zqVar.f32999w = true;
+        zqVar.f33006w = true;
         setBackground(zqVar);
     }
 
@@ -118,23 +118,23 @@ public class e extends FrameLayout {
             radialProgressView.setVisibility(8);
             return;
         }
-        this.f16040f.animate().setDuration(80L).alpha(1.0f).start();
+        this.f16047f.animate().setDuration(80L).alpha(1.0f).start();
         if (radialProgressView.getVisibility() == 0) {
             radialProgressView.animate().setDuration(80L).alpha(0.0f).setListener(new ah.b(this, 29)).start();
         }
     }
 
     public void setSize(int i10) {
-        LinearLayout linearLayout = this.f16038b;
+        LinearLayout linearLayout = this.f16045b;
         linearLayout.removeAllViews();
-        this.f16039c = new r[i10];
+        this.f16046c = new r[i10];
         for (int i11 = 0; i11 < i10; i11++) {
-            this.f16039c[i11] = new r(this);
-            linearLayout.addView((LinearLayout) this.f16039c[i11].e);
+            this.f16046c[i11] = new r(this);
+            linearLayout.addView((LinearLayout) this.f16046c[i11].e);
         }
     }
 
     public void setUseWeek(boolean z10) {
-        this.f16045x = z10;
+        this.f16052x = z10;
     }
 }

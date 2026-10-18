@@ -34,7 +34,7 @@ public final class fl extends org.telegram.ui.ActionBar.j5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((hp0) this.N0).f37606s.a();
+                ((ip0) this.N0).f37966s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class fl extends org.telegram.ui.ActionBar.j5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((hp0) this.N0).f37606s.b();
+                ((ip0) this.N0).f37966s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class fl extends org.telegram.ui.ActionBar.j5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f33659n != null) {
+                    if (profileActivity.h != null || profileActivity.f33666n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f33659n != null) {
+                        if (profileActivity.f33666n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f33659n);
+                            sb2.append(profileActivity.f33666n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -114,10 +114,10 @@ public final class fl extends org.telegram.ui.ActionBar.j5 {
                 sn snVar = (sn) this.N0;
                 if (this == snVar.D2[0] && snVar.H2[1] != null) {
                     if (snVar.O4 && f7 < 0.0f) {
-                        snVar.f41460z2.setTranslationY(f7 / 2.0f);
+                        snVar.f41481z2.setTranslationY(f7 / 2.0f);
                         return;
                     } else {
-                        snVar.f41460z2.setTranslationY(0.0f);
+                        snVar.f41481z2.setTranslationY(0.0f);
                         return;
                     }
                 }

@@ -1,17 +1,102 @@
 package ig;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-public final class z0 implements InputFilter {
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.messenger.kk;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.xc;
+public final class z0 implements RequestDelegate {
+    public final int f13098a;
+    public final d1 f13099b;
+
+    public z0(d1 d1Var, int i10) {
+        this.f13098a = i10;
+        this.f13099b = d1Var;
+    }
+
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        if (charSequence != null) {
-            String charSequence2 = charSequence.toString();
-            if (charSequence2.contains("\n")) {
-                return charSequence2.replaceAll("\n", "");
-            }
-            return null;
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f13098a) {
+            case 0:
+                final d1 d1Var = this.f13099b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                d1 d1Var2 = d1Var;
+                                d1Var2.f12855b.a(0.0f);
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                if (tL_error2 != null) {
+                                    xc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    kk.q(R.string.UnknownError, xc.a0(d1Var2), null);
+                                    return;
+                                } else {
+                                    d1Var2.finishFragment();
+                                    return;
+                                }
+                            default:
+                                d1 d1Var3 = d1Var;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null) {
+                                    d1Var3.f12855b.a(0.0f);
+                                    xc.d0(tL_error3);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    d1Var3.f12855b.a(0.0f);
+                                    kk.q(R.string.UnknownError, xc.a0(d1Var3), null);
+                                    return;
+                                } else {
+                                    d1Var3.finishFragment();
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
+            default:
+                final d1 d1Var2 = this.f13099b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                d1 d1Var22 = d1Var2;
+                                d1Var22.f12855b.a(0.0f);
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                if (tL_error2 != null) {
+                                    xc.d0(tL_error2);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    kk.q(R.string.UnknownError, xc.a0(d1Var22), null);
+                                    return;
+                                } else {
+                                    d1Var22.finishFragment();
+                                    return;
+                                }
+                            default:
+                                d1 d1Var3 = d1Var2;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null) {
+                                    d1Var3.f12855b.a(0.0f);
+                                    xc.d0(tL_error3);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    d1Var3.f12855b.a(0.0f);
+                                    kk.q(R.string.UnknownError, xc.a0(d1Var3), null);
+                                    return;
+                                } else {
+                                    d1Var3.finishFragment();
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
         }
-        return null;
     }
 }

@@ -28,15 +28,15 @@ import org.telegram.ui.jf1;
 import org.telegram.ui.lz0;
 import org.telegram.ui.s50;
 public final class f implements jf1, org.telegram.ui.ActionBar.a2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, xl0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, qa.a {
-    public final int f1282a;
-    public final long f1283b;
-    public final Object f1284c;
+    public final int f1266a;
+    public final long f1267b;
+    public final Object f1268c;
     public final Object d;
 
     public f(Object obj, long j10, Object obj2, int i10) {
-        this.f1282a = i10;
-        this.f1284c = obj;
-        this.f1283b = j10;
+        this.f1266a = i10;
+        this.f1268c = obj;
+        this.f1267b = j10;
         this.d = obj2;
     }
 
@@ -48,9 +48,9 @@ public final class f implements jf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
     @Override
     public Object apply(Object obj) {
         boolean z10;
-        String str = (String) this.f1284c;
+        String str = (String) this.f1268c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((o5.c) this.d).f17687a;
+        int i10 = ((o5.c) this.d).f17694a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -59,7 +59,7 @@ public final class f implements jf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
                 z10 = false;
             }
             rawQuery.close();
-            long j10 = this.f1283b;
+            long j10 = this.f1267b;
             if (!z10) {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("log_source", str);
@@ -68,7 +68,7 @@ public final class f implements jf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
                 sQLiteDatabase.insert("log_event_dropped", null, contentValues);
                 return null;
             }
-            sQLiteDatabase.execSQL(r.c.f(j10, "UPDATE log_event_dropped SET events_dropped_count = events_dropped_count + ", " WHERE log_source = ? AND reason = ?"), new String[]{str, Integer.toString(i10)});
+            sQLiteDatabase.execSQL(r4.c.g(j10, "UPDATE log_event_dropped SET events_dropped_count = events_dropped_count + ", " WHERE log_source = ? AND reason = ?"), new String[]{str, Integer.toString(i10)});
             return null;
         } catch (Throwable th2) {
             rawQuery.close();
@@ -78,13 +78,13 @@ public final class f implements jf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
 
     @Override
     public void d(float f7, float f10, int i10, View view) {
-        ProfileActivity.a0((ProfileActivity) this.f1284c, (Context) this.d, this.f1283b, view, i10, f7, f10);
+        ProfileActivity.a0((ProfileActivity) this.f1268c, (Context) this.d, this.f1267b, view, i10, f7, f10);
     }
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        ResultCallback resultCallback = (ResultCallback) this.f1284c;
-        long j10 = this.f1283b;
+        ResultCallback resultCallback = (ResultCallback) this.f1268c;
+        long j10 = this.f1267b;
         File file = (File) this.d;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z10 && bitmapSafe != null && !bitmapSafe.bitmap.isRecycled()) {
@@ -113,44 +113,44 @@ public final class f implements jf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f1282a) {
+        switch (this.f1266a) {
             case 1:
-                ei.k9 k9Var = (ei.k9) this.f1284c;
+                ei.k9 k9Var = (ei.k9) this.f1268c;
                 ArrayList arrayList = (ArrayList) this.d;
-                k9Var.d.put(Long.valueOf(this.f1283b), arrayList);
+                k9Var.d.put(Long.valueOf(this.f1267b), arrayList);
                 int size = arrayList.size();
                 int i11 = 0;
                 while (i11 < size) {
                     Object obj = arrayList.get(i11);
                     i11++;
-                    k9Var.f9328b.k(Boolean.TRUE, ((Long) obj).longValue());
+                    k9Var.f9329b.k(Boolean.TRUE, ((Long) obj).longValue());
                 }
                 k9Var.i(true);
                 k9Var.e(true);
                 k9Var.f(true);
                 b2Var.dismiss();
-                k9Var.f9335x.K = true;
+                k9Var.f9336x.K = true;
                 return;
             case 4:
-                xr.R((xr) this.f1284c, (ei.d) this.d, this.f1283b);
+                xr.R((xr) this.f1268c, (ei.d) this.d, this.f1267b);
                 return;
             default:
-                s50 s50Var = (s50) this.f1284c;
-                s50Var.d.getMessagesController().addUserToChat(s50Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) s50Var.f40946i0.O().getFragmentStack().get(s50Var.f40946i0.O().getFragmentStack().size() - 1), new s3(s50Var, this.f1283b, 28));
+                s50 s50Var = (s50) this.f1268c;
+                s50Var.d.getMessagesController().addUserToChat(s50Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) s50Var.f40967i0.O().getFragmentStack().get(s50Var.f40967i0.O().getFragmentStack().size() - 1), new r3(s50Var, this.f1267b, 28));
                 return;
         }
     }
 
     @Override
     public void h(qa.b bVar) {
-        ((u9.a) bVar.get()).d((String) this.f1284c, this.f1283b, (z9.b1) this.d);
+        ((u9.a) bVar.get()).d((String) this.f1268c, this.f1267b, (z9.b1) this.d);
     }
 
     @Override
     public Object j() {
-        ea.b bVar = (ea.b) this.f1284c;
-        long d = ((u5.a) bVar.f8551g).d() + this.f1283b;
-        s5.g gVar = (s5.g) ((s5.d) bVar.f8549c);
+        ea.b bVar = (ea.b) this.f1268c;
+        long d = ((u5.a) bVar.f8552g).d() + this.f1267b;
+        s5.g gVar = (s5.g) ((s5.d) bVar.f8550c);
         gVar.getClass();
         gVar.c(new ci.d1(d, (l5.i) this.d));
         return null;
@@ -158,7 +158,7 @@ public final class f implements jf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
 
     @Override
     public void k(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((x) this.f1284c).h0(true, this.f1283b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
+        ((x) this.f1268c).h0(true, this.f1267b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
     }
 
     @Override
@@ -168,19 +168,19 @@ public final class f implements jf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
 
     @Override
     public void onLoad(ArrayList arrayList) {
-        ((VoIPService) this.f1284c).lambda$createGroupInstance$69(this.f1283b, (int[]) this.d, arrayList);
+        ((VoIPService) this.f1268c).lambda$createGroupInstance$69(this.f1267b, (int[]) this.d, arrayList);
     }
 
     @Override
     public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new m((lz0) this.f1284c, this.f1283b, tL_chatAdminRights, str, z10, (ey) this.d));
+        AndroidUtilities.runOnUIThread(new m((lz0) this.f1268c, this.f1267b, tL_chatAdminRights, str, z10, (ey) this.d));
     }
 
     public f(Object obj, Object obj2, long j10, int i10) {
-        this.f1282a = i10;
-        this.f1284c = obj;
+        this.f1266a = i10;
+        this.f1268c = obj;
         this.d = obj2;
-        this.f1283b = j10;
+        this.f1267b = j10;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package gi;
 
-import ai.ud;
+import ai.vd;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -18,7 +18,7 @@ import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.yq;
 import w7.z5;
 public final class a0 extends hm0 {
-    public ArrayList f11067c;
+    public ArrayList f11069c;
     public ArrayList d;
     public ArrayList e;
 
@@ -28,7 +28,7 @@ public final class a0 extends hm0 {
     }
 
     public final void E(a0.h hVar) {
-        ArrayList arrayList = this.f11067c;
+        ArrayList arrayList = this.f11069c;
         arrayList.clear();
         ArrayList arrayList2 = this.d;
         arrayList2.clear();
@@ -50,13 +50,13 @@ public final class a0 extends hm0 {
 
     @Override
     public final int h() {
-        return this.f11067c.size();
+        return this.f11069c.size();
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        z zVar = (z) b1Var.f45938a;
-        String str = (String) this.f11067c.get(i10);
+        z zVar = (z) b1Var.f45958a;
+        String str = (String) this.f11069c.get(i10);
         if (((Boolean) this.e.get(i10)).booleanValue()) {
             yq yqVar = new yq(R.drawable.mini_ephemeral_hidden_14, 0);
             yqVar.setColorKey(h6.A6);
@@ -64,12 +64,12 @@ public final class a0 extends hm0 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(yqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-            zVar.f11572a.setText(spannableStringBuilder);
+            zVar.f11574a.setText(spannableStringBuilder);
         } else {
-            zVar.f11572a.setText(str);
+            zVar.f11574a.setText(str);
         }
-        zVar.f11573b.setText((CharSequence) this.d.get(i10));
-        zVar.f11574c = str;
+        zVar.f11575b.setText((CharSequence) this.d.get(i10));
+        zVar.f11576c = str;
     }
 
     @Override
@@ -78,20 +78,20 @@ public final class a0 extends hm0 {
         ?? linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-        ud udVar = new ud(context, 3);
-        linearLayout.f11573b = udVar;
-        NotificationCenter.listenEmojiLoading(udVar);
-        udVar.setTextSize(1, 16.0f);
+        vd vdVar = new vd(context, 3);
+        linearLayout.f11575b = vdVar;
+        NotificationCenter.listenEmojiLoading(vdVar);
+        vdVar.setTextSize(1, 16.0f);
         int i11 = h6.G6;
-        udVar.setTextColor(h6.x0(null, i11, false));
-        udVar.setTag(Integer.valueOf(i11));
-        udVar.setMaxLines(2);
-        udVar.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(udVar, z5.p(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.dp(8.0f), 0));
+        vdVar.setTextColor(h6.x0(null, i11, false));
+        vdVar.setTag(Integer.valueOf(i11));
+        vdVar.setMaxLines(2);
+        vdVar.setEllipsize(TextUtils.TruncateAt.END);
+        linearLayout.addView(vdVar, z5.p(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.dp(8.0f), 0));
         TextView textView = new TextView(context);
-        linearLayout.f11572a = textView;
+        linearLayout.f11574a = textView;
         textView.setTextSize(1, 14.0f);
-        int i12 = h6.f21374y6;
+        int i12 = h6.f21381y6;
         textView.setTextColor(h6.x0(null, i12, false));
         textView.setTag(Integer.valueOf(i12));
         linearLayout.addView(textView, z5.o(-2, -2, 0.0f, 16));

@@ -13,27 +13,27 @@ public final class wx0 extends FrameLayout {
     public static int G;
     public boolean E;
     public float F;
-    public final int f32229a;
-    public float f32230b;
-    public boolean f32231c;
+    public final int f32236a;
+    public float f32237b;
+    public boolean f32238c;
     public boolean d;
     public final w9 e;
-    public final ImageView f32232f;
-    public final ai.ud h;
-    public final View f32233n;
-    public boolean f32234r;
-    public final int f32235s;
+    public final ImageView f32239f;
+    public final ai.vd h;
+    public final View f32240n;
+    public boolean f32241r;
+    public final int f32242s;
     public SvgHelper.SvgDrawable v;
-    public boolean f32236w;
-    public ValueAnimator f32237x;
-    public float f32238y;
+    public boolean f32243w;
+    public ValueAnimator f32244x;
+    public float f32245y;
 
     public wx0(Context context, int i10) {
         super(context);
-        this.f32229a = i10;
+        this.f32236a = i10;
         int i11 = G;
         G = i11 + 1;
-        this.f32235s = i11;
+        this.f32242s = i11;
         if (i10 == 2) {
             w9 w9Var = new w9(getContext());
             this.e = w9Var;
@@ -41,13 +41,13 @@ public final class wx0 extends FrameLayout {
             w9Var.setAspectFit(false);
             w9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
             addView(w9Var, w7.z5.e(26, 26, 17));
-            this.f32233n = w9Var;
+            this.f32240n = w9Var;
         } else if (i10 == 1) {
             ImageView imageView = new ImageView(context);
-            this.f32232f = imageView;
+            this.f32239f = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             addView(imageView, w7.z5.e(24, 24, 17));
-            this.f32233n = imageView;
+            this.f32240n = imageView;
         } else {
             w9 w9Var2 = new w9(getContext());
             this.e = w9Var2;
@@ -55,29 +55,29 @@ public final class wx0 extends FrameLayout {
             w9Var2.setAspectFit(true);
             w9Var2.setRoundRadius(AndroidUtilities.dp(6.0f));
             addView(w9Var2, w7.z5.e(26, 26, 17));
-            this.f32233n = w9Var2;
+            this.f32240n = w9Var2;
         }
-        ai.ud udVar = new ai.ud(context, 25);
-        this.h = udVar;
-        udVar.addOnLayoutChangeListener(new y70(this, 1));
-        udVar.setLines(1);
-        udVar.setEllipsize(TextUtils.TruncateAt.END);
-        udVar.setTextSize(1, 11.0f);
-        udVar.setGravity(1);
-        udVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        addView(udVar, w7.z5.a(-2.0f, 8.0f, 0.0f, 8.0f, 10.0f, -1, 81));
-        udVar.setVisibility(8);
+        ai.vd vdVar = new ai.vd(context, 25);
+        this.h = vdVar;
+        vdVar.addOnLayoutChangeListener(new y70(this, 1));
+        vdVar.setLines(1);
+        vdVar.setEllipsize(TextUtils.TruncateAt.END);
+        vdVar.setTextSize(1, 11.0f);
+        vdVar.setGravity(1);
+        vdVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        addView(vdVar, w7.z5.a(-2.0f, 8.0f, 0.0f, 8.0f, 10.0f, -1, 81));
+        vdVar.setVisibility(8);
     }
 
     public final void a(float f7) {
         float f10;
         float f11;
-        int i10 = this.f32229a;
+        int i10 = this.f32236a;
         if (i10 == 2) {
             return;
         }
-        boolean z10 = this.f32234r;
-        View view = this.f32233n;
+        boolean z10 = this.f32241r;
+        View view = this.f32240n;
         if (z10) {
             if (i10 == 1) {
                 f10 = 24.0f;
@@ -89,15 +89,15 @@ public final class wx0 extends FrameLayout {
             } else {
                 f11 = 44.0f;
             }
-            int i11 = gn0.f26594t0;
+            int i11 = gn0.f26601t0;
             float f12 = 1.0f - f7;
             view.setTranslationY((((AndroidUtilities.dp(36.0f - f10) / 2.0f) - (AndroidUtilities.dp(86.0f - f11) / 2.0f)) * f12) - (AndroidUtilities.dp(8.0f) * f7));
             view.setTranslationX(((AndroidUtilities.dp(33.0f - f10) / 2.0f) - (AndroidUtilities.dp(64.0f - f11) / 2.0f)) * f12);
             float max = Math.max(0.0f, (f7 - 0.5f) / 0.5f);
-            ai.ud udVar = this.h;
-            udVar.setAlpha(max);
-            udVar.setTranslationY((-AndroidUtilities.dp(40.0f)) * f12);
-            udVar.setTranslationX((-AndroidUtilities.dp(12.0f)) * f12);
+            ai.vd vdVar = this.h;
+            vdVar.setAlpha(max);
+            vdVar.setTranslationY((-AndroidUtilities.dp(40.0f)) * f12);
+            vdVar.setTranslationX((-AndroidUtilities.dp(12.0f)) * f12);
             view.setPivotX(0.0f);
             view.setPivotY(0.0f);
             float f13 = ((f10 / f11) * f12) + f7;
@@ -120,9 +120,9 @@ public final class wx0 extends FrameLayout {
         float f10;
         float f11;
         int i10;
-        int i11 = this.f32229a;
+        int i11 = this.f32236a;
         if (i11 != 2) {
-            this.f32234r = z10;
+            this.f32241r = z10;
             if (i11 == 1) {
                 f7 = 24.0f;
             } else {
@@ -133,7 +133,7 @@ public final class wx0 extends FrameLayout {
             } else {
                 f10 = 44.0f;
             }
-            View view = this.f32233n;
+            View view = this.f32240n;
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             if (z10) {
                 f11 = f10;
@@ -152,7 +152,7 @@ public final class wx0 extends FrameLayout {
                 i10 = 8;
             }
             this.h.setVisibility(i10);
-            if (i11 != 1 && this.f32236w) {
+            if (i11 != 1 && this.f32243w) {
                 this.e.setRoundRadius(AndroidUtilities.dp(view.getLayoutParams().width / 2.0f));
             }
         }

@@ -18,12 +18,12 @@ import org.telegram.ui.Components.vg;
 import org.telegram.ui.oi0;
 import org.telegram.ui.sn;
 public final class c5 implements View.OnLongClickListener {
-    public final int f8824a;
-    public final Object f8825b;
+    public final int f8825a;
+    public final Object f8826b;
 
     public c5(Object obj, int i10) {
-        this.f8824a = i10;
-        this.f8825b = obj;
+        this.f8825a = i10;
+        this.f8826b = obj;
     }
 
     @Override
@@ -35,19 +35,19 @@ public final class c5 implements View.OnLongClickListener {
         boolean z11;
         int i10;
         int e7;
-        switch (this.f8824a) {
+        switch (this.f8825a) {
             case 0:
-                f6 f6Var = (f6) this.f8825b;
+                f6 f6Var = (f6) this.f8826b;
                 int i11 = f6Var.F1;
                 if (f6Var.I1 != null) {
                     qg.u0 e10 = qg.u0.e(i11);
-                    e10.f44699k = !e10.f44699k;
-                    e10.f44692a.edit().putBoolean("fill_shapes", e10.f44699k).apply();
-                    boolean z12 = qg.u0.e(i11).f44699k;
+                    e10.f44719k = !e10.f44719k;
+                    e10.f44712a.edit().putBoolean("fill_shapes", e10.f44719k).apply();
+                    boolean z12 = qg.u0.e(i11).f44719k;
                     for (int i12 = 0; i12 < f6Var.I1.getItemsCount(); i12++) {
                         View childAt = f6Var.I1.L.getChildAt(i12);
                         if (childAt instanceof c6) {
-                            qg.l lVar = (qg.l) qg.l.f44575b.get(i12);
+                            qg.l lVar = (qg.l) qg.l.f44595b.get(i12);
                             if (z12) {
                                 e = lVar.m();
                             } else {
@@ -59,50 +59,50 @@ public final class c5 implements View.OnLongClickListener {
                 }
                 return true;
             case 1:
-                vb vbVar = (vb) this.f8825b;
-                Activity activity = vbVar.f9951b;
+                vb vbVar = (vb) this.f8826b;
+                Activity activity = vbVar.f9953b;
                 ya yaVar = vbVar.B0;
                 if (yaVar == null || !yaVar.isFrontface()) {
                     return false;
                 }
                 vbVar.o();
                 vbVar.E0.setSelected(true);
-                vbVar.f10005s.e(0.85f, 240L, null);
-                i80 F = i80.F(vbVar.f10001r, vbVar.f9948a, vbVar.E0);
+                vbVar.f10007s.e(0.85f, 240L, null);
+                i80 F = i80.F(vbVar.f10003r, vbVar.f9950a, vbVar.E0);
                 u7 u7Var = new u7(activity, 1);
-                u7Var.d(vbVar.f10005s.f9778o);
+                u7Var.d(vbVar.f10007s.f9780o);
                 u7Var.h = new u9(vbVar, 21);
                 F.q(u7Var);
                 F.o();
                 u7 u7Var2 = new u7(activity, 2);
-                u7Var2.f9901b = 0.65f;
-                u7Var2.f9902c = 1.0f;
-                u7Var2.d(vbVar.f10005s.f9779p);
+                u7Var2.f9903b = 0.65f;
+                u7Var2.f9904c = 1.0f;
+                u7Var2.d(vbVar.f10007s.f9781p);
                 u7Var2.h = new u9(vbVar, 0);
                 F.q(u7Var2);
-                F.f27129p = new t9(vbVar, 1);
-                F.f27134s = 0;
+                F.f27136p = new t9(vbVar, 1);
+                F.f27141s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(46.0f), -AndroidUtilities.dp(4.0f));
                 F.P(-1155851493);
                 F.Z();
                 return true;
             case 2:
-                if (((ki.h1) this.f8825b).length() != 0) {
+                if (((ki.h1) this.f8826b).length() != 0) {
                     return true;
                 }
                 return false;
             case 3:
-                return ki.d2.W((ki.d2) this.f8825b, view);
+                return ki.d2.W((ki.d2) this.f8826b, view);
             case 4:
-                ki.q qVar = ((ki.l) this.f8825b).f15362a;
-                ki.b4 b4Var = qVar.f15443s;
-                org.telegram.ui.ActionBar.d6 d6Var = qVar.f28237a;
-                ti tiVar = qVar.f28238b;
-                ki.w3 w3Var = qVar.f15442r;
-                int i13 = qVar.f15441n;
+                ki.q qVar = ((ki.l) this.f8826b).f15369a;
+                ki.b4 b4Var = qVar.f15450s;
+                org.telegram.ui.ActionBar.d6 d6Var = qVar.f28244a;
+                ti tiVar = qVar.f28245b;
+                ki.w3 w3Var = qVar.f15449r;
+                int i13 = qVar.f15448n;
                 if (!UserConfig.getInstance(i13).isPremium()) {
-                    new sg.x0(tiVar.f30574f0, qVar.getContext(), qVar.f15441n, 43, true).show();
+                    new sg.x0(tiVar.f30581f0, qVar.getContext(), qVar.f15448n, 43, true).show();
                     return true;
                 }
                 if (w3Var.l3() && !w3Var.n3()) {
@@ -113,7 +113,7 @@ public final class c5 implements View.OnLongClickListener {
                     } else {
                         ArrayList<TL_iv.PageBlock> a32 = w3Var.a3();
                         if (!a32.isEmpty()) {
-                            org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30574f0;
+                            org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30581f0;
                             if (n2Var instanceof sn) {
                                 snVar = (sn) n2Var;
                             } else {
@@ -126,15 +126,15 @@ public final class c5 implements View.OnLongClickListener {
                             }
                             oi0 oi0Var2 = new oi0(qVar.getContext(), d6Var);
                             qVar.O = oi0Var2;
-                            oi0Var2.setOnDismissListener(new ai.ab(qVar, 7));
+                            oi0Var2.setOnDismissListener(new ai.bb(qVar, 7));
                             long p12 = tiVar.p1();
                             if (snVar != null) {
-                                messageObject = snVar.f41311n5;
+                                messageObject = snVar.f41332n5;
                             } else {
                                 messageObject = null;
                             }
                             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                            tL_message.f20293id = 0;
+                            tL_message.f20300id = 0;
                             tL_message.out = true;
                             tL_message.peer_id = MessagesController.getInstance(i13).getPeer(p12);
                             tL_message.from_id = MessagesController.getInstance(i13).getPeer(UserConfig.getInstance(i13).getClientUserId());
@@ -158,7 +158,7 @@ public final class c5 implements View.OnLongClickListener {
                             messageObject2.isOutOwnerCached = Boolean.TRUE;
                             messageObject2.generateLayout(null);
                             messageObject2.notime = true;
-                            qVar.O.q(org.telegram.messenger.q.k(messageObject2));
+                            qVar.O.q(org.telegram.messenger.g0.k(messageObject2));
                             vg sendButton = b4Var.getSendButton();
                             sendButton.setScaleX(1.0f);
                             sendButton.setScaleY(1.0f);
@@ -186,7 +186,7 @@ public final class c5 implements View.OnLongClickListener {
                                 } else {
                                     i10 = R.string.ScheduleMessage;
                                 }
-                                F2.c(i14, LocaleController.getString(i10), new ai.s3(qVar, p12, 14), false);
+                                F2.c(i14, LocaleController.getString(i10), new ai.r3(qVar, p12, 14), false);
                                 if (!z11 && p12 > 0) {
                                     F2.c(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new ki.d(qVar, 0), false);
                                 }
@@ -207,20 +207,20 @@ public final class c5 implements View.OnLongClickListener {
                 }
                 return false;
             case 5:
-                ((mg.f) this.f8825b).f16866c.callOnClick();
+                ((mg.f) this.f8826b).f16873c.callOnClick();
                 return true;
             default:
-                rg.m0 m0Var = (rg.m0) this.f8825b;
+                rg.m0 m0Var = (rg.m0) this.f8826b;
                 int i15 = m0Var.P1;
                 if (m0Var.S1 != null) {
                     qg.u0 e11 = qg.u0.e(i15);
-                    e11.f44699k = !e11.f44699k;
-                    e11.f44692a.edit().putBoolean("fill_shapes", e11.f44699k).apply();
-                    boolean z13 = qg.u0.e(i15).f44699k;
+                    e11.f44719k = !e11.f44719k;
+                    e11.f44712a.edit().putBoolean("fill_shapes", e11.f44719k).apply();
+                    boolean z13 = qg.u0.e(i15).f44719k;
                     for (int i16 = 0; i16 < m0Var.S1.getItemsCount(); i16++) {
                         View childAt2 = m0Var.S1.L.getChildAt(i16);
                         if (childAt2 instanceof rg.l0) {
-                            qg.l lVar2 = (qg.l) qg.l.f44575b.get(i16);
+                            qg.l lVar2 = (qg.l) qg.l.f44595b.get(i16);
                             if (z13) {
                                 e7 = lVar2.m();
                             } else {

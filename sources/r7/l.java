@@ -8,32 +8,32 @@ import android.os.Parcelable;
 import w7.f0;
 public final class l extends o6.a {
     public static final Parcelable.Creator<l> CREATOR = new m(0);
-    public final int f45072a;
-    public final IBinder f45073b;
-    public final IBinder f45074c;
+    public final int f45092a;
+    public final IBinder f45093b;
+    public final IBinder f45094c;
     public final PendingIntent d;
     public final String e;
-    public final String f45075f;
+    public final String f45095f;
 
     public l(int i10, IBinder iBinder, IBinder iBinder2, PendingIntent pendingIntent, String str, String str2) {
-        this.f45072a = i10;
-        this.f45073b = iBinder;
-        this.f45074c = iBinder2;
+        this.f45092a = i10;
+        this.f45093b = iBinder;
+        this.f45094c = iBinder2;
         this.d = pendingIntent;
         this.e = Build.VERSION.SDK_INT >= 30 ? null : str;
-        this.f45075f = str2;
+        this.f45095f = str2;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f45072a);
-        f0.f(parcel, 2, this.f45073b);
-        f0.f(parcel, 3, this.f45074c);
+        parcel.writeInt(this.f45092a);
+        f0.f(parcel, 2, this.f45093b);
+        f0.f(parcel, 3, this.f45094c);
         f0.k(parcel, 4, this.d, i10);
         f0.l(parcel, 5, this.e);
-        f0.l(parcel, 6, this.f45075f);
+        f0.l(parcel, 6, this.f45095f);
         f0.r(parcel, q6);
     }
 }

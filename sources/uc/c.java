@@ -1,12 +1,13 @@
 package uc;
 
+import t0.h;
 import vc.g;
 public final class c {
-    public final u2.c f47649a;
-    public final Exception f47650b;
+    public final h f47671a;
+    public final Exception f47672b;
 
-    public c(u2.c cVar, g gVar) {
-        this.f47650b = gVar;
-        this.f47649a = cVar;
+    public c(h hVar, g gVar) {
+        this.f47672b = gVar;
+        this.f47671a = hVar;
     }
 }

@@ -2,65 +2,65 @@ package ec;
 
 import java.util.Arrays;
 public final class a implements Cloneable {
-    public static final int[] f8581c = new int[0];
-    public int f8583b = 0;
-    public int[] f8582a = f8581c;
+    public static final int[] f8582c = new int[0];
+    public int f8584b = 0;
+    public int[] f8583a = f8582c;
 
     public final void a(boolean z10) {
-        c(this.f8583b + 1);
+        c(this.f8584b + 1);
         if (z10) {
-            int[] iArr = this.f8582a;
-            int i10 = this.f8583b;
+            int[] iArr = this.f8583a;
+            int i10 = this.f8584b;
             int i11 = i10 / 32;
             iArr[i11] = (1 << (i10 & 31)) | iArr[i11];
         }
-        this.f8583b++;
+        this.f8584b++;
     }
 
     public final void b(int i10, int i11) {
         if (i11 >= 0 && i11 <= 32) {
-            int i12 = this.f8583b;
+            int i12 = this.f8584b;
             c(i12 + i11);
             for (int i13 = i11 - 1; i13 >= 0; i13--) {
                 if (((1 << i13) & i10) != 0) {
-                    int[] iArr = this.f8582a;
+                    int[] iArr = this.f8583a;
                     int i14 = i12 / 32;
                     iArr[i14] = iArr[i14] | (1 << (i12 & 31));
                 }
                 i12++;
             }
-            this.f8583b = i12;
+            this.f8584b = i12;
             return;
         }
         throw new IllegalArgumentException("Num bits must be between 0 and 32");
     }
 
     public final void c(int i10) {
-        if (i10 > this.f8582a.length * 32) {
+        if (i10 > this.f8583a.length * 32) {
             int[] iArr = new int[(((int) Math.ceil(i10 / 0.75f)) + 31) / 32];
-            int[] iArr2 = this.f8582a;
+            int[] iArr2 = this.f8583a;
             System.arraycopy(iArr2, 0, iArr, 0, iArr2.length);
-            this.f8582a = iArr;
+            this.f8583a = iArr;
         }
     }
 
     public final Object clone() {
-        int i10 = this.f8583b;
+        int i10 = this.f8584b;
         ?? obj = new Object();
-        obj.f8582a = (int[]) this.f8582a.clone();
-        obj.f8583b = i10;
+        obj.f8583a = (int[]) this.f8583a.clone();
+        obj.f8584b = i10;
         return obj;
     }
 
     public final boolean d(int i10) {
-        if (((1 << (i10 & 31)) & this.f8582a[i10 / 32]) != 0) {
+        if (((1 << (i10 & 31)) & this.f8583a[i10 / 32]) != 0) {
             return true;
         }
         return false;
     }
 
     public final int e() {
-        return (this.f8583b + 7) / 8;
+        return (this.f8584b + 7) / 8;
     }
 
     public final boolean equals(Object obj) {
@@ -68,21 +68,21 @@ public final class a implements Cloneable {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f8583b != aVar.f8583b || !Arrays.equals(this.f8582a, aVar.f8582a)) {
+        if (this.f8584b != aVar.f8584b || !Arrays.equals(this.f8583a, aVar.f8583a)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f8582a) + (this.f8583b * 31);
+        return Arrays.hashCode(this.f8583a) + (this.f8584b * 31);
     }
 
     public final String toString() {
         char c10;
-        int i10 = this.f8583b;
+        int i10 = this.f8584b;
         StringBuilder sb2 = new StringBuilder((i10 / 8) + i10 + 1);
-        for (int i11 = 0; i11 < this.f8583b; i11++) {
+        for (int i11 = 0; i11 < this.f8584b; i11++) {
             if ((i11 & 7) == 0) {
                 sb2.append(' ');
             }

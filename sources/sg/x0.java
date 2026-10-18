@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import ci.v4;
 import ci.z3;
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -47,19 +47,19 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
     public int L;
     public int M;
     public z7 N;
-    public final n2 f46505b;
-    public final p0 f46506c;
+    public final n2 f46525b;
+    public final p0 f46526c;
     public final ArrayList d;
     public float e;
-    public float f46507f;
+    public float f46527f;
     public boolean h;
-    public final u0 f46508n;
-    public final rg.k0 f46509r;
-    public int f46510s;
+    public final u0 f46528n;
+    public final rg.k0 f46529r;
+    public int f46530s;
     public final FrameLayout v;
-    public boolean f46511w;
-    public final SvgHelper.SvgDrawable f46512x;
-    public final int f46513y;
+    public boolean f46531w;
+    public final SvgHelper.SvgDrawable f46532x;
+    public final int f46533y;
 
     public x0(Context context, int i10, d6 d6Var) {
         this(null, context, UserConfig.selectedAccount, false, i10, true, null, d6Var);
@@ -76,17 +76,17 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
         int i12 = -1;
         int i13 = 0;
         while (true) {
-            u0Var = this.f46508n;
+            u0Var = this.f46528n;
             if (i13 >= u0Var.getChildCount()) {
                 break;
             }
             w0 w0Var = (w0) u0Var.getChildAt(i13);
-            int i14 = w0Var.f46494a;
-            ViewGroup viewGroup = w0Var.f46497f;
-            if (i14 == this.G && (viewGroup instanceof b) && ((m11 = ((b) viewGroup).f46220c.m(0)) == null || (i11 = m11.getTop()) < 0)) {
+            int i14 = w0Var.f46514a;
+            ViewGroup viewGroup = w0Var.f46517f;
+            if (i14 == this.G && (viewGroup instanceof b) && ((m11 = ((b) viewGroup).f46240c.m(0)) == null || (i11 = m11.getTop()) < 0)) {
                 i11 = 0;
             }
-            if (w0Var.f46494a == this.H && (viewGroup instanceof b) && ((m10 = ((b) viewGroup).f46220c.m(0)) == null || (i12 = m10.getTop()) < 0)) {
+            if (w0Var.f46514a == this.H && (viewGroup instanceof b) && ((m10 = ((b) viewGroup).f46240c.m(0)) == null || (i12 = m10.getTop()) < 0)) {
                 i12 = 0;
             }
             i13++;
@@ -94,27 +94,27 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
         int i15 = this.L;
         if (i11 >= 0) {
             float f10 = 1.0f - this.I;
-            i15 = Math.min(i15, (int) a6.x(1.0f, f10, i15, i11 * f10));
+            i15 = Math.min(i15, (int) k3.y(1.0f, f10, i15, i11 * f10));
         }
         if (i12 >= 0) {
             float f11 = this.I;
-            i15 = Math.min(i15, (int) a6.x(1.0f, f11, this.L, i12 * f11));
+            i15 = Math.min(i15, (int) k3.y(1.0f, f11, this.L, i12 * f11));
         }
         FrameLayout frameLayout = this.v;
-        frameLayout.setAlpha(1.0f - this.f46507f);
+        frameLayout.setAlpha(1.0f - this.f46527f);
         if (this.e == 1.0f) {
             frameLayout.setVisibility(4);
         } else {
             frameLayout.setVisibility(0);
         }
         boolean z11 = this.h;
-        rg.k0 k0Var = this.f46509r;
+        rg.k0 k0Var = this.f46529r;
         if (z11) {
             i10 = k0Var.getMeasuredWidth();
         } else {
             i10 = -k0Var.getMeasuredWidth();
         }
-        k0Var.setTranslationX(i10 * this.f46507f);
+        k0Var.setTranslationX(i10 * this.f46527f);
         if (i15 != this.M) {
             this.M = i15;
             for (int i16 = 0; i16 < u0Var.getChildCount(); i16++) {
@@ -126,7 +126,7 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
             frameLayout.setTranslationY(this.M);
             this.containerView.invalidate();
             int i17 = this.M;
-            if (this.f46513y == 40) {
+            if (this.f46533y == 40) {
                 f7 = 5.0f;
             } else {
                 f7 = 30.0f;
@@ -141,10 +141,10 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
     public final ViewGroup B(Context context, int i10) {
         int i11;
         qw0 qw0Var = (qw0) this.d.get(i10);
-        int i12 = qw0Var.f40508a;
+        int i12 = qw0Var.f40533a;
         if (i12 == 0) {
             b bVar = new b(context, this.resourcesProvider);
-            bVar.f46219b.setOnScrollListener(new r0(this, 1));
+            bVar.f46239b.setOnScrollListener(new r0(this, 1));
             return bVar;
         } else if (i12 != 14 && i12 != 28) {
             if (i12 == 5) {
@@ -153,7 +153,7 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
             if (i12 == 10) {
                 return new n0(context, this.resourcesProvider);
             }
-            return new z1(context, this.f46512x, this.currentAccount, qw0Var.f40508a, this.resourcesProvider);
+            return new z1(context, this.f46532x, this.currentAccount, qw0Var.f40533a, this.resourcesProvider);
         } else {
             if (i12 == 28) {
                 i11 = 1;
@@ -161,18 +161,18 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
                 i11 = 0;
             }
             j jVar = new j(context, i11, this.resourcesProvider);
-            jVar.f46219b.setOnScrollListener(new r0(this, 0));
+            jVar.f46239b.setOnScrollListener(new r0(this, 0));
             return jVar;
         }
     }
 
     public final void C() {
         boolean z10 = this.F;
-        p0 p0Var = this.f46506c;
+        p0 p0Var = this.f46526c;
         if (z10) {
             p0Var.d.setText(LocaleController.getString(R.string.AboutTelegramPremium));
         } else if (this.E) {
-            int i10 = this.f46513y;
+            int i10 = this.f46533y;
             if (i10 == 4) {
                 p0Var.d.setText(LocaleController.getString(R.string.UnlockPremiumReactions));
                 p0Var.setIcon(R.raw.unlock_icon);
@@ -189,7 +189,7 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
 
     public final void D() {
         this.F = true;
-        p0 p0Var = this.f46506c;
+        p0 p0Var = this.f46526c;
         p0Var.h = false;
         p0Var.d(true);
         C();
@@ -199,15 +199,15 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
     public final boolean canDismissWithSwipe() {
         int i10 = 0;
         while (true) {
-            u0 u0Var = this.f46508n;
+            u0 u0Var = this.f46528n;
             if (i10 >= u0Var.getChildCount()) {
                 return true;
             }
             w0 w0Var = (w0) u0Var.getChildAt(i10);
-            if (w0Var.f46494a == this.G) {
-                ViewGroup viewGroup = w0Var.f46497f;
+            if (w0Var.f46514a == this.G) {
+                ViewGroup viewGroup = w0Var.f46517f;
                 if (viewGroup instanceof b) {
-                    return !((b) viewGroup).f46219b.canScrollVertically(-1);
+                    return !((b) viewGroup).f46239b.canScrollVertically(-1);
                 }
             }
             i10++;
@@ -219,7 +219,7 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
         if (i10 != NotificationCenter.billingProductDetailsUpdated && i10 != NotificationCenter.premiumPromoUpdated) {
             if (i10 == NotificationCenter.currentUserPremiumStatusChanged) {
                 boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
-                p0 p0Var = this.f46506c;
+                p0 p0Var = this.f46526c;
                 if (isPremium) {
                     p0Var.b(LocaleController.getString(R.string.OK), false, true);
                     return;
@@ -250,11 +250,11 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         z7 z7Var = new z7(this, getContext(), 7);
         this.N = z7Var;
-        z7Var.setBackgroundColor(getThemedColor(h6.f21057h5));
+        z7Var.setBackgroundColor(getThemedColor(h6.f21064h5));
         this.N.setTitleColor(getThemedColor(h6.G6));
-        this.N.B(getThemedColor(h6.f21393z8), false);
+        this.N.B(getThemedColor(h6.f21400z8), false);
         z7 z7Var2 = this.N;
-        int i10 = h6.f21376y8;
+        int i10 = h6.f21383y8;
         z7Var2.C(getThemedColor(i10), false);
         this.N.C(getThemedColor(i10), true);
         this.N.setCastShadows(true);
@@ -266,13 +266,13 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
         AndroidUtilities.updateViewVisibilityAnimated(this.N, false, 1.0f, false);
         int i11 = this.G;
         ArrayList arrayList = this.d;
-        if (((qw0) arrayList.get(i11)).f40508a == 14) {
+        if (((qw0) arrayList.get(i11)).f40533a == 14) {
             this.N.setTitle(LocaleController.getString(R.string.UpgradedStories));
             this.N.requestLayout();
-        } else if (((qw0) arrayList.get(this.G)).f40508a == 28) {
+        } else if (((qw0) arrayList.get(this.G)).f40533a == 28) {
             this.N.setTitle(LocaleController.getString(R.string.TelegramBusiness));
             this.N.requestLayout();
-        } else if (((qw0) arrayList.get(this.G)).f40508a == 40) {
+        } else if (((qw0) arrayList.get(this.G)).f40533a == 40) {
             this.N.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
             this.N.requestLayout();
         } else {
@@ -283,15 +283,15 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
 
     @Override
     public final boolean onCustomOpenAnimation() {
-        u0 u0Var = this.f46508n;
+        u0 u0Var = this.f46528n;
         if (u0Var.getChildCount() > 0) {
             w0 w0Var = (w0) u0Var.getChildAt(0);
-            ViewGroup viewGroup = w0Var.f46497f;
+            ViewGroup viewGroup = w0Var.f46517f;
             if (viewGroup instanceof n0) {
                 n0 n0Var = (n0) viewGroup;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(w0Var.getMeasuredWidth(), 0.0f);
                 n0Var.setOffset(w0Var.getMeasuredWidth());
-                this.f46511w = true;
+                this.f46531w = true;
                 ofFloat.addUpdateListener(new v4(n0Var, 13));
                 ofFloat.addListener(new ml0(21, this, n0Var));
                 ofFloat.setDuration(500L);
@@ -326,12 +326,12 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
         this.K = 255;
-        this.f46505b = n2Var;
+        this.f46525b = n2Var;
         this.J = rw0Var;
-        fixNavigationBar(getThemedColor(h6.f21057h5));
-        this.f46513y = i11;
+        fixNavigationBar(getThemedColor(h6.f21064h5));
+        this.f46533y = i11;
         this.E = z11;
-        this.f46512x = SvgHelper.getDrawable(AndroidUtilities.readRes(R.raw.star_loader));
+        this.f46532x = SvgHelper.getDrawable(AndroidUtilities.readRes(R.raw.star_loader));
         rg.n2 n2Var2 = new rg.n2(this, getContext(), 3);
         if (!z10 && i11 != 35) {
             PremiumPreviewFragment.n0(i10, arrayList);
@@ -348,7 +348,7 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
             if (i12 >= this.d.size()) {
                 i12 = 0;
                 break;
-            } else if (((qw0) this.d.get(i12)).f40508a == i11) {
+            } else if (((qw0) this.d.get(i12)).f40533a == i11) {
                 break;
             } else {
                 i12++;
@@ -364,44 +364,44 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
         setApplyBottomPadding(false);
         this.useBackgroundTopPadding = false;
         z0 z0Var = new z0(h6.ak, h6.bk, h6.ck, -1, null);
-        z0Var.f46532o = 1.1f;
-        z0Var.f46533p = 1.5f;
-        z0Var.f46534q = -0.2f;
-        z0Var.f46530m = true;
+        z0Var.f46552o = 1.1f;
+        z0Var.f46553p = 1.5f;
+        z0Var.f46554q = -0.2f;
+        z0Var.f46550m = true;
         rg.k0 k0Var = new rg.k0(this, getContext(), z0Var);
-        this.f46509r = k0Var;
+        this.f46529r = k0Var;
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.v = frameLayout;
         frameLayout.setContentDescription(LocaleController.getString(R.string.Close));
         ImageView imageView = new ImageView(getContext());
         imageView.setImageResource(R.drawable.msg_close);
         int dp = AndroidUtilities.dp(12.0f);
-        int o10 = i0.b.o(-1, 40);
-        int o11 = i0.b.o(-1, 100);
+        int o10 = i0.a.o(-1, 40);
+        int o11 = i0.a.o(-1, 100);
         imageView.setBackground(h6.j0(dp, dp, dp, dp, o10, o11, o11));
         frameLayout.addView(imageView, z5.e(24, 24, 17));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final x0 f46403b;
+            public final x0 f46423b;
 
             {
-                this.f46403b = this;
+                this.f46423b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f46403b.dismiss();
+                        this.f46423b.dismiss();
                         return;
                     default:
-                        this.f46403b.dismiss();
+                        this.f46423b.dismiss();
                         return;
                 }
             }
         });
         n2Var2.addView(k0Var, z5.t(-1, -2, 1, 0, 16, 0, 0));
         u0 u0Var = new u0(this, getContext());
-        this.f46508n = u0Var;
+        this.f46528n = u0Var;
         u0Var.setOverScrollMode(2);
         u0Var.setOffscreenPageLimit(0);
         u0Var.setAdapter(new k70(this, 2));
@@ -416,39 +416,39 @@ public final class x0 extends f3 implements NotificationCenter.NotificationCente
         linearLayout.setOrientation(1);
         int i13 = h6.V8;
         int i14 = h6.P9;
-        saVar.f30226n = i13;
-        saVar.f30227r = i14;
+        saVar.f30233n = i13;
+        saVar.f30234r = i14;
         if (!z11) {
             linearLayout.addView(saVar, z5.t(this.d.size() * 11, 5, 1, 0, 0, 0, 10));
         }
         p0 p0Var = new p0(getContext(), d6Var, true);
-        this.f46506c = p0Var;
-        p0Var.f46382r.setOnClickListener(new z3(this, n2Var, z11, qw0Var, 5));
+        this.f46526c = p0Var;
+        p0Var.f46402r.setOnClickListener(new z3(this, n2Var, z11, qw0Var, 5));
         p0Var.e.setOnClickListener(new View.OnClickListener(this) {
-            public final x0 f46403b;
+            public final x0 f46423b;
 
             {
-                this.f46403b = this;
+                this.f46423b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f46403b.dismiss();
+                        this.f46423b.dismiss();
                         return;
                     default:
-                        this.f46403b.dismiss();
+                        this.f46423b.dismiss();
                         return;
                 }
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         frameLayout2.addView(p0Var, z5.a(48.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, 16));
-        frameLayout2.setBackgroundColor(getThemedColor(h6.f21057h5));
+        frameLayout2.setBackgroundColor(getThemedColor(h6.f21064h5));
         linearLayout.addView(frameLayout2, z5.q(-1, 68, 80));
         if (i11 == 40) {
-            p0Var.b(k7.z2(LocaleController.getString(R.string.Understood)), true, false);
+            p0Var.b(k7.B2(LocaleController.getString(R.string.Understood)), true, false);
         } else if (UserConfig.getInstance(i10).isPremium()) {
             p0Var.b(LocaleController.getString(R.string.OK), false, false);
         }

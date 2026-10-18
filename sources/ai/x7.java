@@ -1,15 +1,15 @@
 package ai;
 public final class x7 implements Runnable {
-    public final int f2434a;
-    public final boolean f2435b;
-    public final Object f2436c;
+    public final int f2438a;
+    public final boolean f2439b;
+    public final Object f2440c;
     public final Object d;
 
     public x7(Object obj, Object obj2, boolean z10, int i10) {
-        this.f2434a = i10;
+        this.f2438a = i10;
         this.d = obj;
-        this.f2436c = obj2;
-        this.f2435b = z10;
+        this.f2440c = obj2;
+        this.f2439b = z10;
     }
 
     @Override
@@ -18,9 +18,9 @@ public final class x7 implements Runnable {
     }
 
     public x7(Object obj, boolean z10, Object obj2, int i10) {
-        this.f2434a = i10;
+        this.f2438a = i10;
         this.d = obj;
-        this.f2435b = z10;
-        this.f2436c = obj2;
+        this.f2439b = z10;
+        this.f2440c = obj2;
     }
 }

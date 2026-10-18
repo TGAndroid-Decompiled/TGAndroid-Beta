@@ -1,75 +1,76 @@
 package u2;
 
-import v7.u6;
-public final class w extends i2.a {
-    public final b2.o1 h;
-    public final int f47470i;
-    public final int f47471j;
-    public final int f47472k;
+import android.util.Pair;
+import java.util.HashMap;
+public final class w extends s1 {
+    public final int f47513l;
+    public final HashMap f47514m;
+    public final HashMap f47515n;
 
-    public w(b2.o1 o1Var, int i10) {
-        super(new h1(i10));
-        boolean z10;
-        this.h = o1Var;
-        int h = o1Var.h();
-        this.f47470i = h;
-        this.f47471j = o1Var.o();
-        this.f47472k = i10;
-        if (h > 0) {
-            if (i10 <= Integer.MAX_VALUE / h) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            u6.o("LoopingMediaSource contains too many periods", z10);
+    public w(a aVar) {
+        super(new a0(aVar, false));
+        this.f47513l = Integer.MAX_VALUE;
+        this.f47514m = new HashMap();
+        this.f47515n = new HashMap();
+    }
+
+    @Override
+    public final void A(b2.o1 o1Var) {
+        b2.o1 uVar;
+        int i10 = this.f47513l;
+        if (i10 != Integer.MAX_VALUE) {
+            uVar = new v(o1Var, i10);
+        } else {
+            uVar = new u(o1Var, 0);
+        }
+        n(uVar);
+    }
+
+    @Override
+    public final d0 c(f0 f0Var, androidx.biometric.e eVar, long j10) {
+        int i10 = this.f47513l;
+        a aVar = this.f47479k;
+        if (i10 == Integer.MAX_VALUE) {
+            return aVar.c(f0Var, eVar, j10);
+        }
+        Object obj = f0Var.f47347a;
+        int i11 = i2.a.f12309g;
+        f0 a2 = f0Var.a(((Pair) obj).second);
+        this.f47514m.put(a2, f0Var);
+        d0 c10 = aVar.c(a2, eVar, j10);
+        this.f47515n.put(c10, a2);
+        return c10;
+    }
+
+    @Override
+    public final b2.o1 h() {
+        a0 a0Var = (a0) this.f47479k;
+        int i10 = this.f47513l;
+        if (i10 != Integer.MAX_VALUE) {
+            return new v(a0Var.f47299o, i10);
+        }
+        return new u(a0Var.f47299o, 0);
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final void o(d0 d0Var) {
+        this.f47479k.o(d0Var);
+        f0 f0Var = (f0) this.f47515n.remove(d0Var);
+        if (f0Var != null) {
+            this.f47514m.remove(f0Var);
         }
     }
 
     @Override
-    public final int h() {
-        return this.f47470i * this.f47472k;
-    }
-
-    @Override
-    public final int o() {
-        return this.f47471j * this.f47472k;
-    }
-
-    @Override
-    public final int q(Object obj) {
-        if (!(obj instanceof Integer)) {
-            return -1;
+    public final f0 z(f0 f0Var) {
+        if (this.f47513l != Integer.MAX_VALUE) {
+            return (f0) this.f47514m.get(f0Var);
         }
-        return ((Integer) obj).intValue();
-    }
-
-    @Override
-    public final int r(int i10) {
-        return i10 / this.f47470i;
-    }
-
-    @Override
-    public final int s(int i10) {
-        return i10 / this.f47471j;
-    }
-
-    @Override
-    public final Object t(int i10) {
-        return Integer.valueOf(i10);
-    }
-
-    @Override
-    public final int u(int i10) {
-        return i10 * this.f47470i;
-    }
-
-    @Override
-    public final int v(int i10) {
-        return i10 * this.f47471j;
-    }
-
-    @Override
-    public final b2.o1 x(int i10) {
-        return this.h;
+        return f0Var;
     }
 }

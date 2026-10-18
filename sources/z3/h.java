@@ -17,34 +17,34 @@ import java.util.ArrayList;
 import java.util.List;
 import v7.u6;
 public final class h implements o {
-    public final m f50665a;
-    public final w f50666b;
-    public final ArrayList f50667c;
-    public j0 f50668f;
-    public int f50669g;
+    public final m f50690a;
+    public final w f50691b;
+    public final ArrayList f50692c;
+    public j0 f50693f;
+    public int f50694g;
     public int h;
-    public long[] f50670i;
-    public long f50671j;
-    public byte[] e = m0.f8255b;
+    public long[] f50695i;
+    public long f50696j;
+    public byte[] e = m0.f8256b;
     public final x d = new x();
 
     public h(m mVar, w wVar) {
         w wVar2;
-        this.f50665a = mVar;
+        this.f50690a = mVar;
         if (wVar != null) {
             v a2 = wVar.a();
-            a2.f4078r = v0.n("application/x-media3-cues");
-            a2.f4070j = wVar.f4131s;
+            a2.f4079r = v0.n("application/x-media3-cues");
+            a2.f4071j = wVar.f4132s;
             a2.P = mVar.c();
             wVar2 = new w(a2);
         } else {
             wVar2 = null;
         }
-        this.f50666b = wVar2;
-        this.f50667c = new ArrayList();
+        this.f50691b = wVar2;
+        this.f50692c = new ArrayList();
         this.h = 0;
-        this.f50670i = m0.f8256c;
-        this.f50671j = -9223372036854775807L;
+        this.f50695i = m0.f8257c;
+        this.f50696j = -9223372036854775807L;
     }
 
     @Override
@@ -62,8 +62,8 @@ public final class h implements o {
         }
         u6.p(z10);
         j0 j02 = qVar.j0(0, 3);
-        this.f50668f = j02;
-        w wVar = this.f50666b;
+        this.f50693f = j02;
+        w wVar = this.f50691b;
         if (wVar != null) {
             j02.b(wVar);
             qVar.H();
@@ -82,7 +82,7 @@ public final class h implements o {
             z10 = false;
         }
         u6.p(z10);
-        this.f50671j = j11;
+        this.f50696j = j11;
         if (this.h == 2) {
             this.h = 1;
         }
@@ -93,7 +93,7 @@ public final class h implements o {
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8476b;
+        l0 l0Var = n0.f8477b;
         return x1.e;
     }
 
@@ -103,14 +103,14 @@ public final class h implements o {
     }
 
     public final void g(g gVar) {
-        this.f50668f.getClass();
-        byte[] bArr = gVar.f50664b;
+        this.f50693f.getClass();
+        byte[] bArr = gVar.f50689b;
         int length = bArr.length;
         x xVar = this.d;
         xVar.getClass();
         xVar.L(bArr.length, bArr);
-        this.f50668f.d(length, xVar);
-        this.f50668f.c(gVar.f50663a, 1, length, 0, null);
+        this.f50693f.d(length, xVar);
+        this.f50693f.c(gVar.f50688a, 1, length, 0, null);
     }
 
     @Override
@@ -118,7 +118,7 @@ public final class h implements o {
         if (this.h == 5) {
             return;
         }
-        this.f50665a.reset();
+        this.f50690a.reset();
         this.h = 5;
     }
 

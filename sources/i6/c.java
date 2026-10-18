@@ -10,25 +10,25 @@ import n6.l;
 import w7.f0;
 public final class c extends o6.a {
     public static final Parcelable.Creator<c> CREATOR = new j(9);
-    public final d2 f12725a;
-    public byte[] f12726b;
-    public final int[] f12727c;
+    public final d2 f12723a;
+    public byte[] f12724b;
+    public final int[] f12725c;
     public final String[] d;
     public final int[] e;
-    public final byte[][] f12728f;
+    public final byte[][] f12726f;
     public final k8.a[] h;
-    public final boolean f12729n;
-    public final x1 f12730r;
+    public final boolean f12727n;
+    public final x1 f12728r;
 
     public c(d2 d2Var, x1 x1Var) {
-        this.f12725a = d2Var;
-        this.f12730r = x1Var;
-        this.f12727c = null;
+        this.f12723a = d2Var;
+        this.f12728r = x1Var;
+        this.f12725c = null;
         this.d = null;
         this.e = null;
-        this.f12728f = null;
+        this.f12726f = null;
         this.h = null;
-        this.f12729n = true;
+        this.f12727n = true;
     }
 
     public final boolean equals(Object obj) {
@@ -37,7 +37,7 @@ public final class c extends o6.a {
         }
         if (obj instanceof c) {
             c cVar = (c) obj;
-            if (l.l(this.f12725a, cVar.f12725a) && Arrays.equals(this.f12726b, cVar.f12726b) && Arrays.equals(this.f12727c, cVar.f12727c) && Arrays.equals(this.d, cVar.d) && l.l(this.f12730r, cVar.f12730r) && l.l(null, null) && l.l(null, null) && Arrays.equals(this.e, cVar.e) && Arrays.deepEquals(this.f12728f, cVar.f12728f) && Arrays.equals(this.h, cVar.h) && this.f12729n == cVar.f12729n) {
+            if (l.l(this.f12723a, cVar.f12723a) && Arrays.equals(this.f12724b, cVar.f12724b) && Arrays.equals(this.f12725c, cVar.f12725c) && Arrays.equals(this.d, cVar.d) && l.l(this.f12728r, cVar.f12728r) && l.l(null, null) && l.l(null, null) && Arrays.equals(this.e, cVar.e) && Arrays.deepEquals(this.f12726f, cVar.f12726f) && Arrays.equals(this.h, cVar.h) && this.f12727n == cVar.f12727n) {
                 return true;
             }
         }
@@ -45,15 +45,15 @@ public final class c extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f12725a, this.f12726b, this.f12727c, this.d, this.f12730r, null, null, this.e, this.f12728f, this.h, Boolean.valueOf(this.f12729n)});
+        return Arrays.hashCode(new Object[]{this.f12723a, this.f12724b, this.f12725c, this.d, this.f12728r, null, null, this.e, this.f12726f, this.h, Boolean.valueOf(this.f12727n)});
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("LogEventParcelable[");
-        sb2.append(this.f12725a);
+        sb2.append(this.f12723a);
         sb2.append(", LogEventBytes: ");
-        byte[] bArr = this.f12726b;
+        byte[] bArr = this.f12724b;
         if (bArr == null) {
             str = null;
         } else {
@@ -61,19 +61,19 @@ public final class c extends o6.a {
         }
         sb2.append(str);
         sb2.append(", TestCodes: ");
-        sb2.append(Arrays.toString(this.f12727c));
+        sb2.append(Arrays.toString(this.f12725c));
         sb2.append(", MendelPackages: ");
         sb2.append(Arrays.toString(this.d));
         sb2.append(", LogEvent: ");
-        sb2.append(this.f12730r);
+        sb2.append(this.f12728r);
         sb2.append(", ExtensionProducer: null, VeProducer: null, ExperimentIDs: ");
         sb2.append(Arrays.toString(this.e));
         sb2.append(", ExperimentTokens: ");
-        sb2.append(Arrays.toString(this.f12728f));
+        sb2.append(Arrays.toString(this.f12726f));
         sb2.append(", ExperimentTokensParcelables: ");
         sb2.append(Arrays.toString(this.h));
         sb2.append(", AddPhenotypeExperimentTokens: ");
-        sb2.append(this.f12729n);
+        sb2.append(this.f12727n);
         sb2.append("]");
         return sb2.toString();
     }
@@ -81,27 +81,27 @@ public final class c extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.k(parcel, 2, this.f12725a, i10);
-        f0.c(parcel, 3, this.f12726b);
-        f0.g(parcel, 4, this.f12727c);
+        f0.k(parcel, 2, this.f12723a, i10);
+        f0.c(parcel, 3, this.f12724b);
+        f0.g(parcel, 4, this.f12725c);
         f0.m(parcel, 5, this.d);
         f0.g(parcel, 6, this.e);
-        f0.d(parcel, 7, this.f12728f);
+        f0.d(parcel, 7, this.f12726f);
         f0.s(parcel, 8, 4);
-        parcel.writeInt(this.f12729n ? 1 : 0);
+        parcel.writeInt(this.f12727n ? 1 : 0);
         f0.o(parcel, 9, this.h, i10);
         f0.r(parcel, q6);
     }
 
     public c(d2 d2Var, byte[] bArr, int[] iArr, String[] strArr, int[] iArr2, byte[][] bArr2, boolean z10, k8.a[] aVarArr) {
-        this.f12725a = d2Var;
-        this.f12726b = bArr;
-        this.f12727c = iArr;
+        this.f12723a = d2Var;
+        this.f12724b = bArr;
+        this.f12725c = iArr;
         this.d = strArr;
-        this.f12730r = null;
+        this.f12728r = null;
         this.e = iArr2;
-        this.f12728f = bArr2;
+        this.f12726f = bArr2;
         this.h = aVarArr;
-        this.f12729n = z10;
+        this.f12727n = z10;
     }
 }

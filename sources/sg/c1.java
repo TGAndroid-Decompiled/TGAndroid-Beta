@@ -17,11 +17,11 @@ public final class c1 extends f3 {
     public c1(n2 n2Var) {
         super(n2Var.getParentActivity(), false);
         Activity parentActivity = n2Var.getParentActivity();
-        LinearLayout e = org.telegram.messenger.q.e(parentActivity, 1);
+        LinearLayout e = org.telegram.messenger.g0.e(parentActivity, 1);
         TextView textView = new TextView(parentActivity);
         textView.setGravity(8388611);
-        int i10 = h6.f21092j5;
-        org.telegram.messenger.q.m(20.0f, h6.x0(null, i10, false), 1, textView);
+        int i10 = h6.f21099j5;
+        org.telegram.messenger.g0.m(20.0f, h6.x0(null, i10, false), 1, textView);
         e.addView(textView, z5.a(-2.0f, 21.0f, 16.0f, 21.0f, 0.0f, -1, 0));
         TextView textView2 = new TextView(parentActivity);
         textView2.setGravity(8388611);
@@ -31,15 +31,15 @@ public final class c1 extends f3 {
         TextView textView3 = new TextView(parentActivity);
         textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         textView3.setGravity(17);
-        org.telegram.messenger.q.m(14.0f, h6.x0(null, h6.Sh, false), 1, textView3);
+        org.telegram.messenger.g0.m(14.0f, h6.x0(null, h6.Sh, false), 1, textView3);
         textView3.setBackground(x5.f(new float[]{8.0f}, h6.Oh));
         textView3.setText(LocaleController.getString(R.string.InstallOfficialApp));
         textView3.setOnClickListener(new ah.f(26));
         FrameLayout frameLayout = new FrameLayout(parentActivity);
         frameLayout.addView(textView3, z5.a(48.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, 16));
-        frameLayout.setBackgroundColor(getThemedColor(h6.f21057h5));
+        frameLayout.setBackgroundColor(getThemedColor(h6.f21064h5));
         e.addView(frameLayout, z5.q(-1, 68, 80));
-        org.telegram.messenger.q.n(R.string.SubscribeToPremiumOfficialAppNeeded, textView);
+        org.telegram.messenger.g0.n(R.string.SubscribeToPremiumOfficialAppNeeded, textView);
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SubscribeToPremiumOfficialAppNeededDescription)));
         ScrollView scrollView = new ScrollView(parentActivity);
         scrollView.addView(e);

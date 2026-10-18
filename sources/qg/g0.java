@@ -48,23 +48,23 @@ import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.xl0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.it0;
-import org.telegram.ui.rq0;
+import org.telegram.ui.sq0;
 import rg.m2;
 import rg.o2;
 import w7.s6;
 public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessListener, ImageReceiver.ImageReceiverDelegate, ne.d, t0.e, qa.a, xl0, vh.a, x2.k, Continuation, zf.m, r0.n {
-    public final int f44549a;
-    public final Object f44550b;
+    public final int f44569a;
+    public final Object f44570b;
 
     public g0(Object obj, int i10) {
-        this.f44549a = i10;
-        this.f44550b = obj;
+        this.f44569a = i10;
+        this.f44570b = obj;
     }
 
     @Override
     public r0.k1 B0(View view, r0.k1 k1Var) {
-        ((yh.j0) this.f44550b).h.j(k1Var);
-        return r0.k1.f44852b;
+        ((yh.j0) this.f44570b).h.j(k1Var);
+        return r0.k1.f44872b;
     }
 
     @Override
@@ -74,14 +74,14 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
 
     @Override
     public Typeface a() {
-        return l0.a((Font) this.f44550b);
+        return l0.a((Font) this.f44570b);
     }
 
     @Override
     public x1 b(int i10, b2.p1 p1Var, int[] iArr) {
-        x2.i iVar = (x2.i) this.f44550b;
+        x2.i iVar = (x2.i) this.f44570b;
         e9.k0 t10 = e9.n0.t();
-        for (int i11 = 0; i11 < p1Var.f3903a; i11++) {
+        for (int i11 = 0; i11 < p1Var.f3904a; i11++) {
             t10.c(new x2.f(i10, p1Var, i11, iVar, iArr[i11]));
         }
         return t10.f();
@@ -90,20 +90,20 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
     @Override
     public void c(WebView webView, a5.a aVar, Uri uri, boolean z10, b5.h hVar) {
         b5.h hVar2;
-        qi.i iVar = (qi.i) this.f44550b;
-        if (webView == iVar.f44798o && z10 && uri != null && iVar.f44790f.equals(uri.toString()) && iVar.h(webView)) {
+        qi.i iVar = (qi.i) this.f44570b;
+        if (webView == iVar.f44818o && z10 && uri != null && iVar.f44810f.equals(uri.toString()) && iVar.h(webView)) {
             int i10 = aVar.f280b;
             if (i10 == 0) {
                 aVar.h(0);
                 String str = (String) aVar.f281c;
-                if (!iVar.f44800q && str != null && str.startsWith("tproxy-base64:")) {
-                    synchronized (iVar.f44787a) {
-                        if (!iVar.f44804u && iVar.f44801r && iVar.f44799p == hVar) {
+                if (!iVar.f44820q && str != null && str.startsWith("tproxy-base64:")) {
+                    synchronized (iVar.f44807a) {
+                        if (!iVar.f44824u && iVar.f44821r && iVar.f44819p == hVar) {
                             if (str.length() - 14 > 1398112) {
                                 iVar.f();
                                 return;
                             } else {
-                                iVar.f44794k.execute(new p2.b(4, iVar, str));
+                                iVar.f44814k.execute(new p2.b(4, iVar, str));
                                 return;
                             }
                         }
@@ -112,12 +112,12 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
                 }
                 iVar.g(str, hVar);
             } else if (i10 == 1) {
-                synchronized (iVar.f44787a) {
-                    if (!iVar.f44804u && (hVar2 = iVar.f44799p) != null && hVar2 == hVar) {
+                synchronized (iVar.f44807a) {
+                    if (!iVar.f44824u && (hVar2 = iVar.f44819p) != null && hVar2 == hVar) {
                         aVar.h(1);
                         byte[] bArr = (byte[]) aVar.d;
                         Objects.requireNonNull(bArr);
-                        iVar.f44794k.execute(new p2.b(5, iVar, bArr));
+                        iVar.f44814k.execute(new p2.b(5, iVar, bArr));
                     }
                 }
             }
@@ -126,13 +126,13 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
 
     @Override
     public void d(float f7, float f10, int i10, View view) {
-        ug.x0.R((ug.x0) this.f44550b, view);
+        ug.y0.R((ug.y0) this.f44570b, view);
     }
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         uj0 lottieAnimation;
-        o2 o2Var = (o2) this.f44550b;
+        o2 o2Var = (o2) this.f44570b;
         if (z10 && !z11 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
             o2Var.q(lottieAnimation);
         }
@@ -146,10 +146,10 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
     @Override
     public void e() {
         float f7;
-        it0 it0Var = (it0) this.f44550b;
-        TextView textView = it0Var.f45528y1;
+        it0 it0Var = (it0) this.f44570b;
+        TextView textView = it0Var.f45548y1;
         boolean a2 = it0Var.F0.a();
-        ImageView imageView = it0Var.f45526w1;
+        ImageView imageView = it0Var.f45546w1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f10 = 0.6f;
@@ -170,14 +170,14 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
     }
 
     @Override
-    public boolean f(t0.i iVar, int i10, Bundle bundle) {
+    public boolean f(t0.j jVar, int i10, Bundle bundle) {
         r0.d dVar;
-        m.t tVar = (m.t) this.f44550b;
+        m.t tVar = (m.t) this.f44570b;
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 25 && (i10 & 1) != 0) {
             try {
-                iVar.f46891a.d();
-                Parcelable parcelable = (Parcelable) iVar.f46891a.i();
+                jVar.f46913a.b();
+                Parcelable parcelable = (Parcelable) jVar.f46913a.e();
                 if (bundle == null) {
                     bundle = new Bundle();
                 } else {
@@ -189,17 +189,17 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
                 return false;
             }
         }
-        t0.h hVar = iVar.f46891a;
-        ClipData clipData = new ClipData(hVar.getDescription(), new ClipData.Item(hVar.c()));
+        t0.i iVar = jVar.f46913a;
+        ClipData clipData = new ClipData(iVar.getDescription(), new ClipData.Item(iVar.a()));
         if (i11 >= 31) {
             dVar = new j2.j(clipData, 2);
         } else {
             r0.e eVar = new r0.e();
-            eVar.f44824b = clipData;
-            eVar.f44825c = 2;
+            eVar.f44844b = clipData;
+            eVar.f44845c = 2;
             dVar = eVar;
         }
-        dVar.b(hVar.f());
+        dVar.b(iVar.c());
         dVar.setExtras(bundle);
         if (r0.i0.h(tVar, dVar.build()) != null) {
             return false;
@@ -209,65 +209,65 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f44549a) {
+        switch (this.f44569a) {
             case 8:
-                ((rq0) this.f44550b).run();
+                ((sq0) this.f44570b).run();
                 return;
             case 9:
-                ((rg.a0) this.f44550b).f45300a.f45502f2.r();
+                ((rg.a0) this.f44570b).f45320a.f45522f2.r();
                 return;
             case 19:
-                ((ug.r0) this.f44550b).run();
+                ((ug.s0) this.f44570b).run();
                 return;
             case 20:
-                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f44550b;
+                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f44570b;
                 n2 R = LaunchActivity.R();
                 if (R != null) {
-                    ug.a0.U(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
+                    ug.b0.U(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
                     return;
                 }
                 return;
             case 21:
-                ((w2) this.f44550b).run();
+                ((w2) this.f44570b).run();
                 return;
             case 22:
-                ((ug.r0) this.f44550b).run();
+                ((ug.s0) this.f44570b).run();
                 return;
             default:
-                ((ai.g0) this.f44550b).run();
+                ((ai.g0) this.f44570b).run();
                 return;
         }
     }
 
     @Override
     public void h(qa.b bVar) {
-        u9.a aVar = (u9.a) this.f44550b;
+        u9.a aVar = (u9.a) this.f44570b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
         }
-        aVar.f47642b.set((u9.a) bVar.get());
+        aVar.f47664b.set((u9.a) bVar.get());
     }
 
     @Override
     public void i(long j10) {
-        ((yh.d) this.f44550b).a(j10, true);
+        ((yh.d) this.f44570b).a(j10, true);
     }
 
     @Override
     public Object j() {
         SQLiteDatabase a2;
-        int i10 = this.f44549a;
-        Object obj = this.f44550b;
+        int i10 = this.f44569a;
+        Object obj = this.f44570b;
         switch (i10) {
             case 2:
                 s5.g gVar = (s5.g) ((s5.c) obj);
                 gVar.getClass();
                 int i11 = o5.a.e;
                 com.google.firebase.messaging.r rVar = new com.google.firebase.messaging.r(7, false);
-                rVar.f7663c = null;
+                rVar.f7664c = null;
                 rVar.d = new ArrayList();
                 rVar.e = null;
-                rVar.f7662b = "";
+                rVar.f7663b = "";
                 HashMap hashMap = new HashMap();
                 a2 = gVar.a();
                 a2.beginTransaction();
@@ -279,7 +279,7 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
                 }
             case 3:
                 s5.g gVar2 = (s5.g) ((s5.d) obj);
-                long d = gVar2.f46125b.d() - gVar2.d.d;
+                long d = gVar2.f46145b.d() - gVar2.d.d;
                 a2 = gVar2.a();
                 a2.beginTransaction();
                 try {
@@ -297,20 +297,20 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
                 } finally {
                 }
             case 4:
-                s5.g gVar3 = (s5.g) ((s5.c) ((ea.b) obj).f8552i);
+                s5.g gVar3 = (s5.g) ((s5.c) ((ea.b) obj).f8553i);
                 a2 = gVar3.a();
                 a2.beginTransaction();
                 try {
                     a2.compileStatement("DELETE FROM log_event_dropped").execute();
-                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + gVar3.f46125b.d()).execute();
+                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + gVar3.f46145b.d()).execute();
                     a2.setTransactionSuccessful();
                     return null;
                 } finally {
                 }
             default:
                 com.google.firebase.messaging.r rVar2 = (com.google.firebase.messaging.r) obj;
-                for (l5.i iVar : (Iterable) ((s5.g) ((s5.d) rVar2.f7663c)).c(new r.a(23))) {
-                    ((g3) rVar2.d).U(iVar, 1, false);
+                for (l5.i iVar : (Iterable) ((s5.g) ((s5.d) rVar2.f7664c)).c(new r.a(23))) {
+                    ((g3) rVar2.d).P(iVar, 1, false);
                 }
                 return null;
         }
@@ -318,12 +318,12 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
 
     @Override
     public Object j2(z5 z5Var) {
-        return this.f44550b;
+        return this.f44570b;
     }
 
     @Override
     public Bitmap k(BitmapFactory.Options options) {
-        return BitmapFactory.decodeFile((String) this.f44550b, options);
+        return BitmapFactory.decodeFile((String) this.f44570b, options);
     }
 
     @Override
@@ -333,8 +333,8 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
 
     @Override
     public void onSuccess(Object obj) {
-        int i10 = this.f44549a;
-        Object obj2 = this.f44550b;
+        int i10 = this.f44569a;
+        Object obj2 = this.f44570b;
         switch (i10) {
             case 11:
                 rg.x1 x1Var = (rg.x1) obj2;
@@ -346,14 +346,14 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
                 g4 g4Var = (g4) obj2;
                 bc.b bVar2 = (bc.b) obj;
                 ArrayList arrayList = new ArrayList();
-                for (int i11 = 0; i11 < bVar2.f4248a.size(); i11++) {
-                    bc.a aVar = (bc.a) bVar2.f4248a.get(i11);
+                for (int i11 = 0; i11 < bVar2.f4249a.size(); i11++) {
+                    bc.a aVar = (bc.a) bVar2.f4249a.get(i11);
                     ?? obj3 = new Object();
-                    obj3.f45487a = aVar.f4245a;
-                    obj3.f45488b = aVar.d;
-                    obj3.f45489c = aVar.e;
-                    obj3.d = aVar.f4246b;
-                    obj3.e = aVar.f4247c;
+                    obj3.f45507a = aVar.f4246a;
+                    obj3.f45508b = aVar.d;
+                    obj3.f45509c = aVar.e;
+                    obj3.d = aVar.f4247b;
+                    obj3.e = aVar.f4248c;
                     arrayList.add(obj3);
                 }
                 g4Var.run(arrayList);
@@ -366,35 +366,35 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
                     FileLog.d("objimg: no objects");
                     return;
                 }
-                int i12 = ((yb.a) list.get(0)).f50139c;
+                int i12 = ((yb.a) list.get(0)).f50164c;
                 String str = null;
-                if (s6.f48840a == null) {
-                    s6.f48840a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
+                if (s6.f48865a == null) {
+                    s6.f48865a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
                 }
                 if (i12 >= 0) {
-                    String[] strArr = s6.f48840a;
+                    String[] strArr = s6.f48865a;
                     if (i12 < strArr.length) {
                         str = strArr[i12];
                     }
                 }
-                m2Var.f45536c0 = str;
+                m2Var.f45556c0 = str;
                 StringBuilder sb2 = new StringBuilder("objimg: detected #");
-                sb2.append(((yb.a) list.get(0)).f50139c);
+                sb2.append(((yb.a) list.get(0)).f50164c);
                 sb2.append(" ");
-                sb2.append(m2Var.f45536c0);
+                sb2.append(m2Var.f45556c0);
                 sb2.append(" ");
-                i0.a.v(((yb.a) list.get(0)).f50137a, sb2);
-                Emoji.getEmojiDrawable(m2Var.f45536c0);
+                i2.d.v(((yb.a) list.get(0)).f50162a, sb2);
+                Emoji.getEmojiDrawable(m2Var.f45556c0);
                 return;
         }
     }
 
     @Override
     public void p(Canvas canvas, int i10) {
-        vh.h hVar = (vh.h) this.f44550b;
+        vh.h hVar = (vh.h) this.f44570b;
         hVar.getClass();
         canvas.save();
-        RectF rectF = hVar.f48457r;
+        RectF rectF = hVar.f48482r;
         canvas.translate(-rectF.left, (-rectF.top) + AndroidUtilities.dp(30.0f));
         hVar.e(canvas, true, i10);
         canvas.restore();
@@ -402,13 +402,13 @@ public final class g0 implements j0, a5.b, t5.b, r9.d, u1, a2, y7, OnSuccessList
 
     @Override
     public Object then(Task task) {
-        ((CountDownLatch) this.f44550b).countDown();
+        ((CountDownLatch) this.f44570b).countDown();
         return null;
     }
 
     @Override
     public void u(int i10, float f7, float f10, ne.e eVar) {
-        rh.c.a((rh.c) this.f44550b);
+        rh.c.a((rh.c) this.f44570b);
     }
 
     @Override

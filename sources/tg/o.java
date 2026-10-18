@@ -21,12 +21,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.kk;
 import org.telegram.ui.ActionBar.h6;
 public final class o {
-    public static final String[] f47140e0 = {"models/star.binobj"};
-    public static final String[] f47141f0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
-    public static final String[] f47142g0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
+    public static final String[] f47165e0 = {"models/star.binobj"};
+    public static final String[] f47166f0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
+    public static final String[] f47167g0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
     public int E;
     public int F;
     public boolean J;
@@ -46,35 +46,35 @@ public final class o {
     public final int X;
     public final Bitmap Y;
     public Bitmap Z;
-    public a f47143a;
-    public final int f47144a0;
-    public float f47145b;
-    public final int f47146b0;
-    public float f47147c;
-    public final int[] f47148c0;
+    public a f47168a;
+    public final int f47169a0;
+    public float f47170b;
+    public final int f47171b0;
+    public float f47172c;
+    public final int[] f47173c0;
     public float d;
-    public final int f47150f;
-    public final int f47151g;
+    public final int f47175f;
+    public final int f47176g;
     public final int h;
-    public final FloatBuffer[] f47152i;
-    public final FloatBuffer[] f47153j;
-    public final FloatBuffer[] f47154k;
-    public final int f47155l;
-    public final int f47156m;
-    public final int f47157n;
-    public final int f47158o;
-    public final int f47159p;
-    public final int f47160q;
-    public final int f47161r;
-    public final int f47162s;
-    public final int f47163t;
-    public final int f47164u;
+    public final FloatBuffer[] f47177i;
+    public final FloatBuffer[] f47178j;
+    public final FloatBuffer[] f47179k;
+    public final int f47180l;
+    public final int f47181m;
+    public final int f47182n;
+    public final int f47183o;
+    public final int f47184p;
+    public final int f47185q;
+    public final int f47186r;
+    public final int f47187s;
+    public final int f47188t;
+    public final int f47189u;
     public final int v;
-    public final int f47165w;
-    public float f47166x;
-    public final int[] f47167y;
+    public final int f47190w;
+    public float f47191x;
+    public final int[] f47192y;
     public float e = 1.0f;
-    public float f47168z = 0.0f;
+    public float f47193z = 0.0f;
     public float A = 1.0f;
     public float B = 2.0f;
     public float C = 0.13f;
@@ -82,48 +82,48 @@ public final class o {
     public float G = 0.2f;
     public int H = -1;
     public int I = -1;
-    public float f47149d0 = 0.0f;
+    public float f47174d0 = 0.0f;
 
     public o(Context context, int i10) {
         String[] strArr;
         String str;
         Bitmap bitmap;
         Bitmap bitmap2;
-        this.f47146b0 = i10;
+        this.f47171b0 = i10;
         if (i10 == 4) {
             String glGetString = GLES20.glGetString(7938);
             if (glGetString != null && glGetString.startsWith("OpenGL ES 3")) {
-                this.f47143a = new a(context, 4);
-                this.f47144a0 = 1;
+                this.f47168a = new a(context, 4);
+                this.f47169a0 = 1;
                 return;
             }
             throw new IllegalStateException("Diamond requires OpenGL ES 3");
         }
         int i11 = 2;
         if (i10 == 1) {
-            strArr = f47141f0;
+            strArr = f47166f0;
         } else if (i10 == 3) {
-            strArr = f47142g0;
+            strArr = f47167g0;
         } else if (i10 != 0 && i10 != 2) {
             strArr = new String[0];
         } else {
-            strArr = f47140e0;
+            strArr = f47165e0;
         }
         int length = strArr.length;
-        this.f47144a0 = length;
-        this.f47152i = new FloatBuffer[length];
-        this.f47153j = new FloatBuffer[length];
-        this.f47154k = new FloatBuffer[length];
-        this.f47167y = new int[length];
-        for (int i12 = 0; i12 < this.f47144a0; i12++) {
+        this.f47169a0 = length;
+        this.f47177i = new FloatBuffer[length];
+        this.f47178j = new FloatBuffer[length];
+        this.f47179k = new FloatBuffer[length];
+        this.f47192y = new int[length];
+        for (int i12 = 0; i12 < this.f47169a0; i12++) {
             j6.l lVar = new j6.l(context, strArr[i12]);
-            this.f47152i[i12] = wh.h(ByteBuffer.allocateDirect(((float[]) lVar.d).length * 4));
-            this.f47152i[i12].put((float[]) lVar.d).position(0);
-            this.f47153j[i12] = wh.h(ByteBuffer.allocateDirect(((float[]) lVar.f14285c).length * 4));
-            this.f47153j[i12].put((float[]) lVar.f14285c).position(0);
-            this.f47154k[i12] = wh.h(ByteBuffer.allocateDirect(((float[]) lVar.f14284b).length * 4));
-            this.f47154k[i12].put((float[]) lVar.f14284b).position(0);
-            this.f47167y[i12] = ((float[]) lVar.d).length;
+            this.f47177i[i12] = kk.h(ByteBuffer.allocateDirect(((float[]) lVar.d).length * 4));
+            this.f47177i[i12].put((float[]) lVar.d).position(0);
+            this.f47178j[i12] = kk.h(ByteBuffer.allocateDirect(((float[]) lVar.f14292c).length * 4));
+            this.f47178j[i12].put((float[]) lVar.f14292c).position(0);
+            this.f47179k[i12] = kk.h(ByteBuffer.allocateDirect(((float[]) lVar.f14291b).length * 4));
+            this.f47179k[i12].put((float[]) lVar.f14291b).position(0);
+            this.f47192y[i12] = ((float[]) lVar.d).length;
         }
         this.Y = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(this.Y);
@@ -136,7 +136,7 @@ public final class o {
         GLES20.glTexParameteri(3553, 10241, 9728);
         GLES20.glTexParameteri(3553, 10240, 9728);
         GLUtils.texImage2D(3553, 0, this.Y, 0);
-        this.f47164u = iArr[0];
+        this.f47189u = iArr[0];
         int[] iArr2 = new int[1];
         if (i10 != 0 && i10 != 2) {
             str = "shaders/fragment3.glsl";
@@ -150,23 +150,23 @@ public final class o {
         GLES20.glAttachShader(glCreateProgram, a10);
         GLES20.glLinkProgram(glCreateProgram);
         GLES20.glGetProgramiv(glCreateProgram, 35714, iArr2, 0);
-        this.f47150f = glCreateProgram;
-        FloatBuffer[] floatBufferArr = this.f47152i;
-        FloatBuffer[] floatBufferArr2 = this.f47154k;
-        FloatBuffer[] floatBufferArr3 = this.f47153j;
+        this.f47175f = glCreateProgram;
+        FloatBuffer[] floatBufferArr = this.f47177i;
+        FloatBuffer[] floatBufferArr2 = this.f47179k;
+        FloatBuffer[] floatBufferArr3 = this.f47178j;
         GLES20.glUseProgram(glCreateProgram);
-        this.f47159p = GLES20.glGetAttribLocation(glCreateProgram, "vPosition");
-        this.f47160q = GLES20.glGetAttribLocation(glCreateProgram, "a_TexCoordinate");
-        this.f47161r = GLES20.glGetAttribLocation(glCreateProgram, "a_Normal");
-        this.f47155l = GLES20.glGetUniformLocation(glCreateProgram, "u_Texture");
-        this.f47156m = GLES20.glGetUniformLocation(glCreateProgram, "u_NormalMap");
-        this.f47157n = GLES20.glGetUniformLocation(glCreateProgram, "u_BackgroundTexture");
-        this.f47162s = GLES20.glGetUniformLocation(glCreateProgram, "f_xOffset");
-        this.f47163t = GLES20.glGetUniformLocation(glCreateProgram, "f_alpha");
-        this.f47151g = GLES20.glGetUniformLocation(glCreateProgram, "uMVPMatrix");
+        this.f47184p = GLES20.glGetAttribLocation(glCreateProgram, "vPosition");
+        this.f47185q = GLES20.glGetAttribLocation(glCreateProgram, "a_TexCoordinate");
+        this.f47186r = GLES20.glGetAttribLocation(glCreateProgram, "a_Normal");
+        this.f47180l = GLES20.glGetUniformLocation(glCreateProgram, "u_Texture");
+        this.f47181m = GLES20.glGetUniformLocation(glCreateProgram, "u_NormalMap");
+        this.f47182n = GLES20.glGetUniformLocation(glCreateProgram, "u_BackgroundTexture");
+        this.f47187s = GLES20.glGetUniformLocation(glCreateProgram, "f_xOffset");
+        this.f47188t = GLES20.glGetUniformLocation(glCreateProgram, "f_alpha");
+        this.f47176g = GLES20.glGetUniformLocation(glCreateProgram, "uMVPMatrix");
         this.h = GLES20.glGetUniformLocation(glCreateProgram, "world");
         this.v = GLES20.glGetUniformLocation(glCreateProgram, "white");
-        this.f47165w = GLES20.glGetUniformLocation(glCreateProgram, "golden");
+        this.f47190w = GLES20.glGetUniformLocation(glCreateProgram, "golden");
         this.K = GLES20.glGetUniformLocation(glCreateProgram, "spec1");
         this.L = GLES20.glGetUniformLocation(glCreateProgram, "spec2");
         this.M = GLES20.glGetUniformLocation(glCreateProgram, "u_diffuse");
@@ -181,28 +181,28 @@ public final class o {
         this.V = GLES20.glGetUniformLocation(glCreateProgram, "type");
         this.W = GLES20.glGetUniformLocation(glCreateProgram, "night");
         this.X = GLES20.glGetUniformLocation(glCreateProgram, "time");
-        int i13 = this.f47144a0;
+        int i13 = this.f47169a0;
         int i14 = i13 * 3;
         int[] iArr3 = new int[i14];
-        this.f47148c0 = iArr3;
+        this.f47173c0 = iArr3;
         GLES20.glGenBuffers(i14, iArr3, 0);
         int i15 = 0;
         while (i15 < i13) {
             int i16 = i15 * 3;
-            GLES20.glBindBuffer(34962, this.f47148c0[i16]);
+            GLES20.glBindBuffer(34962, this.f47173c0[i16]);
             floatBufferArr3[i15].position(0);
             GLES20.glBufferData(34962, floatBufferArr3[i15].capacity() * 4, floatBufferArr3[i15], 35044);
-            GLES20.glEnableVertexAttribArray(this.f47160q);
+            GLES20.glEnableVertexAttribArray(this.f47185q);
             floatBufferArr3[i15].clear();
-            GLES20.glBindBuffer(34962, this.f47148c0[i16 + 1]);
+            GLES20.glBindBuffer(34962, this.f47173c0[i16 + 1]);
             floatBufferArr2[i15].position(0);
             GLES20.glBufferData(34962, floatBufferArr2[i15].capacity() * 4, floatBufferArr2[i15], 35044);
-            GLES20.glEnableVertexAttribArray(this.f47161r);
+            GLES20.glEnableVertexAttribArray(this.f47186r);
             floatBufferArr2[i15].clear();
-            GLES20.glBindBuffer(34962, this.f47148c0[i16 + 2]);
+            GLES20.glBindBuffer(34962, this.f47173c0[i16 + 2]);
             floatBufferArr[i15].position(0);
             GLES20.glBufferData(34962, floatBufferArr[i15].capacity() * 4, floatBufferArr[i15], 35044);
-            GLES20.glEnableVertexAttribArray(this.f47159p);
+            GLES20.glEnableVertexAttribArray(this.f47184p);
             floatBufferArr[i15].clear();
             i15++;
             i11 = i11;
@@ -212,11 +212,11 @@ public final class o {
         int[] iArr4 = new int[1];
         GLES20.glGenTextures(1, iArr4, 0);
         int i18 = iArr4[0];
-        this.f47164u = i18;
+        this.f47189u = i18;
         GLES20.glBindTexture(3553, i18);
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glTexParameteri(3553, 10240, 9729);
-        GLES20.glBindTexture(3553, this.f47164u);
+        GLES20.glBindTexture(3553, this.f47189u);
         try {
             bitmap = BitmapFactory.decodeStream(context.getAssets().open("flecks.png"));
         } catch (IOException unused) {
@@ -232,12 +232,12 @@ public final class o {
         int[] iArr6 = new int[1];
         GLES20.glGenTextures(1, iArr6, 0);
         int i19 = iArr6[0];
-        this.f47158o = i19;
+        this.f47183o = i19;
         GLES20.glBindTexture(3553, i19);
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glTexParameteri(3553, 10240, 9729);
-        GLES20.glBindTexture(3553, this.f47158o);
-        int i20 = this.f47146b0;
+        GLES20.glBindTexture(3553, this.f47183o);
+        int i20 = this.f47171b0;
         if (i20 != 0 && i20 != i17) {
             if (i20 == 1) {
                 BitmapFactory.decodeStream(context.getAssets().open("models/coin_border.png"));
@@ -258,14 +258,14 @@ public final class o {
             bitmap2.recycle();
             GLES20.glActiveTexture(33984);
             GLES20.glBindTexture(3553, iArr7[0]);
-            GLES20.glUniform1i(this.f47155l, 0);
+            GLES20.glUniform1i(this.f47180l, 0);
             GLES20.glActiveTexture(33985);
             GLES20.glBindTexture(3553, iArr5[0]);
-            GLES20.glUniform1i(this.f47156m, 1);
+            GLES20.glUniform1i(this.f47181m, 1);
         }
         GLES20.glActiveTexture(33986);
         GLES20.glBindTexture(3553, iArr6[0]);
-        GLES20.glUniform1i(this.f47157n, 2);
+        GLES20.glUniform1i(this.f47182n, 2);
     }
 
     public static String a(Context context, String str) {

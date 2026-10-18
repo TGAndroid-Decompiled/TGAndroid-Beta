@@ -1,192 +1,85 @@
 package ig;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import java.nio.charset.StandardCharsets;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.al;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.p6;
-import org.telegram.ui.Wallet.l9;
-public final class y0 extends EditTextBoldCursor {
-    public final int f13089b = 0;
-    public int f13090c;
-    public final i5 d;
-    public final p6 e;
-    public final NotificationCenter.NotificationCenterDelegate f13091f;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.pc0;
+public final class y0 implements Utilities.Callback5, org.telegram.ui.ActionBar.a2 {
+    public final int f13093a;
+    public final d1 f13094b;
 
-    public y0(b1 b1Var, Activity activity) {
-        super(activity);
-        this.f13091f = b1Var;
-        this.d = new i5(this);
-        p6 p6Var = new p6(false, true, true);
-        this.e = p6Var;
-        p6Var.n(0.2f, 160L, bs.h);
-        p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.setCallback(this);
-        p6Var.f29192b = 5;
+    public y0(d1 d1Var, int i10) {
+        this.f13093a = i10;
+        this.f13094b = d1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        int i11;
-        int i12;
-        switch (this.f13089b) {
-            case 0:
-                super.dispatchDraw(canvas);
-                if (this.f13090c < 0) {
-                    i10 = h6.f21207p7;
-                } else {
-                    i10 = h6.P5;
-                }
-                int a2 = this.d.a(h6.w0(i10, ((b1) this.f13091f).getResourceProvider()), false);
-                p6 p6Var = this.e;
-                p6Var.u(a2);
-                p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-                p6Var.draw(canvas);
-                return;
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f13093a) {
             case 1:
-                super.dispatchDraw(canvas);
-                if (this.f13090c <= 0) {
-                    i11 = h6.f21207p7;
-                } else {
-                    i11 = h6.P5;
-                }
-                int a10 = this.d.a(h6.w0(i11, ((al) this.f13091f).f28237a), false);
-                p6 p6Var2 = this.e;
-                p6Var2.u(a10);
-                int scrollX = getScrollX();
-                int dp = AndroidUtilities.dp(48.0f) + ((getWidth() + scrollX) - getPaddingRight());
-                int height = getHeight() + getScrollY();
-                p6Var2.setBounds(dp - AndroidUtilities.dp(48.0f), height - Math.min(AndroidUtilities.dp(44.0f), getHeight()), dp, height);
-                p6Var2.draw(canvas);
+                this.f13094b.W();
+                return;
+            case 2:
+                this.f13094b.finishFragment();
                 return;
             default:
-                super.dispatchDraw(canvas);
-                if (this.f13090c <= 0) {
-                    i12 = h6.f21207p7;
-                } else {
-                    i12 = h6.P5;
+                d1 d1Var = this.f13094b;
+                d1Var.f12855b.a(1.0f);
+                TLRPC.UserFull userFull = d1Var.getMessagesController().getUserFull(d1Var.getUserConfig().getClientUserId());
+                TL_account.updateBusinessLocation updatebusinesslocation = new TL_account.updateBusinessLocation();
+                if (userFull != null) {
+                    userFull.business_location = null;
+                    userFull.flags2 &= -3;
                 }
-                int a11 = this.d.a(h6.w0(i12, ((l9) this.f13091f).getResourceProvider()), false);
-                p6 p6Var3 = this.e;
-                p6Var3.u(a11);
-                int scrollX2 = getScrollX();
-                int dp2 = AndroidUtilities.dp(48.0f) + ((getWidth() + scrollX2) - getPaddingRight());
-                int height2 = getHeight() + getScrollY();
-                p6Var3.setBounds(dp2 - AndroidUtilities.dp(48.0f), height2 - Math.min(AndroidUtilities.dp(44.0f), getHeight()), dp2, height2);
-                p6Var3.draw(canvas);
+                d1Var.getConnectionsManager().sendRequest(updatebusinesslocation, new z0(d1Var, 1));
                 return;
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String str;
-        String str2;
-        switch (this.f13089b) {
-            case 0:
-                super.onTextChanged(charSequence, i10, i11, i12);
-                p6 p6Var = this.e;
-                if (p6Var != null) {
-                    this.f13090c = 96 - charSequence.length();
-                    p6Var.a();
-                    String str3 = "";
-                    if (this.f13090c <= 12) {
-                        str3 = "" + this.f13090c;
-                    }
-                    p6Var.t(str3, true, true);
-                    return;
-                }
+    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        d1 d1Var = this.f13094b;
+        f61 f61Var = (f61) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        int i10 = f61Var.d;
+        if (i10 != 1 && f61Var.f26141c != d1Var.h) {
+            if (i10 == 2) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(d1Var.getParentActivity());
+                alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
+                alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new y0(d1Var, 3));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                d1Var.showDialog(alertDialog$Builder.f20608a);
+            }
+        } else if (d1Var.f12862x != null && f61Var.f26141c != d1Var.h) {
+            d1Var.f12862x = null;
+            d1Var.f12854a.W2.N(true);
+        } else {
+            pc0 pc0Var = new pc0(8);
+            if (d1Var.f12862x != null) {
+                TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+                tL_channelLocation.address = d1Var.f12863y;
+                tL_channelLocation.geo_point = d1Var.f12862x;
+                pc0Var.A0 = tL_channelLocation;
+            }
+            pc0Var.F0 = new ah.h0(18, d1Var, pc0Var);
+            if (d1Var.f12862x == null && !TextUtils.isEmpty(d1Var.f12863y)) {
+                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(d1Var.getParentActivity(), 3, null);
+                b2Var.f20668g0 = false;
+                b2Var.q(200L);
+                Utilities.searchQueue.postRunnable(new w0(d1Var, pc0Var, b2Var));
                 return;
-            case 1:
-                super.onTextChanged(charSequence, i10, i11, i12);
-                p6 p6Var2 = this.e;
-                if (p6Var2 != null) {
-                    this.f13090c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
-                    p6Var2.a();
-                    int i13 = this.f13090c;
-                    if (i13 <= 100) {
-                        str = Integer.toString(i13);
-                    } else {
-                        str = "";
-                    }
-                    p6Var2.t(str, isAttachedToWindow(), true);
-                    invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.onTextChanged(charSequence, i10, i11, i12);
-                p6 p6Var3 = this.e;
-                if (p6Var3 != null) {
-                    this.f13090c = 960 - charSequence.toString().getBytes(StandardCharsets.UTF_8).length;
-                    p6Var3.a();
-                    int i14 = this.f13090c;
-                    if (i14 <= 100) {
-                        str2 = Integer.toString(i14);
-                    } else {
-                        str2 = "";
-                    }
-                    p6Var3.t(str2, isAttachedToWindow(), true);
-                    invalidate();
-                    return;
-                }
-                return;
+            }
+            d1Var.presentFragment(pc0Var);
         }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        switch (this.f13089b) {
-            case 0:
-                if (drawable != this.e && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            case 1:
-                if (drawable != this.e && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            default:
-                if (drawable != this.e && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-        }
-    }
-
-    public y0(al alVar, Context context) {
-        super(context);
-        this.f13091f = alVar;
-        this.f13090c = 960;
-        this.d = new i5(this);
-        p6 p6Var = new p6(false, true, true);
-        this.e = p6Var;
-        p6Var.n(0.2f, 160L, bs.h);
-        p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.f29192b = 5;
-        p6Var.setCallback(this);
-    }
-
-    public y0(l9 l9Var, Activity activity) {
-        super(activity);
-        this.f13091f = l9Var;
-        this.f13090c = 960;
-        this.d = new i5(this);
-        p6 p6Var = new p6(false, true, true);
-        this.e = p6Var;
-        p6Var.n(0.2f, 160L, bs.h);
-        p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.f29192b = 5;
-        p6Var.setCallback(this);
     }
 }

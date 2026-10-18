@@ -6,12 +6,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 public final class g2 extends AbstractSet {
-    public final Set f8452a;
-    public final Set f8453b;
+    public final Set f8453a;
+    public final Set f8454b;
 
     public g2(Set set, Set set2) {
-        this.f8452a = set;
-        this.f8453b = set2;
+        this.f8453a = set;
+        this.f8454b = set2;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class g2 extends AbstractSet {
 
     @Override
     public final boolean contains(Object obj) {
-        if (this.f8452a.contains(obj) && this.f8453b.contains(obj)) {
+        if (this.f8453a.contains(obj) && this.f8454b.contains(obj)) {
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public final class g2 extends AbstractSet {
 
     @Override
     public final boolean containsAll(Collection collection) {
-        if (this.f8452a.containsAll(collection) && this.f8453b.containsAll(collection)) {
+        if (this.f8453a.containsAll(collection) && this.f8454b.containsAll(collection)) {
             return true;
         }
         return false;
@@ -47,7 +47,7 @@ public final class g2 extends AbstractSet {
 
     @Override
     public final boolean isEmpty() {
-        return Collections.disjoint(this.f8453b, this.f8452a);
+        return Collections.disjoint(this.f8454b, this.f8453a);
     }
 
     @Override
@@ -73,8 +73,8 @@ public final class g2 extends AbstractSet {
     @Override
     public final int size() {
         int i10 = 0;
-        for (Object obj : this.f8452a) {
-            if (this.f8453b.contains(obj)) {
+        for (Object obj : this.f8453a) {
+            if (this.f8454b.contains(obj)) {
                 i10++;
             }
         }

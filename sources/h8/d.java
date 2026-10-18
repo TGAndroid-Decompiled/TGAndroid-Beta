@@ -20,7 +20,7 @@ public abstract class d extends FrameLayout {
         l.e("getMapAsync() must be called on the main thread");
         l.i(fVar, "callback must not be null.");
         j jVar = this.zza;
-        androidx.biometric.e eVar = jVar.f11693a;
+        androidx.biometric.e eVar = jVar.f11695a;
         if (eVar != null) {
             eVar.p(fVar);
         } else {
@@ -35,7 +35,7 @@ public abstract class d extends FrameLayout {
             j jVar = this.zza;
             jVar.getClass();
             jVar.c(bundle, new x6.c(jVar, bundle));
-            if (this.zza.f11693a == null) {
+            if (this.zza.f11695a == null) {
                 j.a(this);
             }
         } finally {
@@ -45,10 +45,10 @@ public abstract class d extends FrameLayout {
 
     public void onDestroy() {
         j jVar = this.zza;
-        androidx.biometric.e eVar = jVar.f11693a;
+        androidx.biometric.e eVar = jVar.f11695a;
         if (eVar != null) {
             try {
-                i8.g gVar = (i8.g) eVar.f2819c;
+                i8.g gVar = (i8.g) eVar.f2820c;
                 gVar.R0(gVar.N0(), 5);
                 return;
             } catch (RemoteException e) {
@@ -60,13 +60,13 @@ public abstract class d extends FrameLayout {
 
     public void onEnterAmbient(Bundle bundle) {
         l.e("onEnterAmbient() must be called on the main thread");
-        androidx.biometric.e eVar = this.zza.f11693a;
+        androidx.biometric.e eVar = this.zza.f11695a;
         if (eVar != null) {
             eVar.getClass();
             try {
                 Bundle bundle2 = new Bundle();
                 i8.d.c(bundle, bundle2);
-                i8.g gVar = (i8.g) eVar.f2819c;
+                i8.g gVar = (i8.g) eVar.f2820c;
                 Parcel N0 = gVar.N0();
                 s7.b.b(N0, bundle2);
                 gVar.R0(N0, 10);
@@ -79,11 +79,11 @@ public abstract class d extends FrameLayout {
 
     public void onExitAmbient() {
         l.e("onExitAmbient() must be called on the main thread");
-        androidx.biometric.e eVar = this.zza.f11693a;
+        androidx.biometric.e eVar = this.zza.f11695a;
         if (eVar != null) {
             eVar.getClass();
             try {
-                i8.g gVar = (i8.g) eVar.f2819c;
+                i8.g gVar = (i8.g) eVar.f2820c;
                 gVar.R0(gVar.N0(), 11);
             } catch (RemoteException e) {
                 throw new RuntimeException(e);
@@ -92,10 +92,10 @@ public abstract class d extends FrameLayout {
     }
 
     public void onLowMemory() {
-        androidx.biometric.e eVar = this.zza.f11693a;
+        androidx.biometric.e eVar = this.zza.f11695a;
         if (eVar != null) {
             try {
-                i8.g gVar = (i8.g) eVar.f2819c;
+                i8.g gVar = (i8.g) eVar.f2820c;
                 gVar.R0(gVar.N0(), 6);
             } catch (RemoteException e) {
                 throw new RuntimeException(e);
@@ -105,10 +105,10 @@ public abstract class d extends FrameLayout {
 
     public void onPause() {
         j jVar = this.zza;
-        androidx.biometric.e eVar = jVar.f11693a;
+        androidx.biometric.e eVar = jVar.f11695a;
         if (eVar != null) {
             try {
-                i8.g gVar = (i8.g) eVar.f2819c;
+                i8.g gVar = (i8.g) eVar.f2820c;
                 gVar.R0(gVar.N0(), 4);
                 return;
             } catch (RemoteException e) {
@@ -126,12 +126,12 @@ public abstract class d extends FrameLayout {
 
     public void onSaveInstanceState(Bundle bundle) {
         j jVar = this.zza;
-        androidx.biometric.e eVar = jVar.f11693a;
+        androidx.biometric.e eVar = jVar.f11695a;
         if (eVar != null) {
             try {
                 Bundle bundle2 = new Bundle();
                 i8.d.c(bundle, bundle2);
-                i8.g gVar = (i8.g) eVar.f2819c;
+                i8.g gVar = (i8.g) eVar.f2820c;
                 Parcel N0 = gVar.N0();
                 s7.b.b(N0, bundle2);
                 Parcel M0 = gVar.M0(N0, 7);
@@ -145,7 +145,7 @@ public abstract class d extends FrameLayout {
                 throw new RuntimeException(e);
             }
         }
-        Bundle bundle3 = jVar.f11694b;
+        Bundle bundle3 = jVar.f11696b;
         if (bundle3 != null) {
             bundle.putAll(bundle3);
         }
@@ -159,10 +159,10 @@ public abstract class d extends FrameLayout {
 
     public void onStop() {
         j jVar = this.zza;
-        androidx.biometric.e eVar = jVar.f11693a;
+        androidx.biometric.e eVar = jVar.f11695a;
         if (eVar != null) {
             try {
-                i8.g gVar = (i8.g) eVar.f2819c;
+                i8.g gVar = (i8.g) eVar.f2820c;
                 gVar.R0(gVar.N0(), 13);
                 return;
             } catch (RemoteException e) {

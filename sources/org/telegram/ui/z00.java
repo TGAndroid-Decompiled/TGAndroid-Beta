@@ -5,10 +5,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class z00 extends org.telegram.ui.Components.hm0 {
-    public final g10 f43511c;
+    public final g10 f43537c;
 
     public z00(g10 g10Var) {
-        this.f43511c = g10Var;
+        this.f43537c = g10Var;
     }
 
     @Override
@@ -18,16 +18,16 @@ public final class z00 extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final int h() {
-        g10 g10Var = this.f43511c;
-        if (g10Var.f37089f.isEmpty()) {
+        g10 g10Var = this.f43537c;
+        if (g10Var.f37059f.isEmpty()) {
             return 0;
         }
-        return g10Var.f37089f.size() + (!g10Var.N ? 1 : 0);
+        return g10Var.f37059f.size() + (!g10Var.N ? 1 : 0);
     }
 
     @Override
     public final int j(int i10) {
-        if (i10 >= this.f43511c.f37089f.size()) {
+        if (i10 >= this.f43537c.f37059f.size()) {
             return 3;
         }
         return 0;
@@ -37,18 +37,18 @@ public final class z00 extends org.telegram.ui.Components.hm0 {
     public final void v(s4.b1 b1Var, int i10) {
         boolean z10;
         boolean z11;
-        if (b1Var.f45941f == 0) {
-            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) b1Var.f45938a;
-            g10 g10Var = this.f43511c;
-            MessageObject messageObject = (MessageObject) g10Var.f37089f.get(i10);
-            r2Var.O = g10Var.f37100p0;
+        if (b1Var.f45961f == 0) {
+            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) b1Var.f45958a;
+            g10 g10Var = this.f43537c;
+            MessageObject messageObject = (MessageObject) g10Var.f37059f.get(i10);
+            r2Var.O = g10Var.f37070p0;
             r2Var.W(messageObject.getDialogId(), messageObject, messageObject.messageOwner.date, false, false);
             if (i10 != h() - 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            r2Var.f22896s2 = z10;
+            r2Var.f22900s2 = z10;
             if (r2Var.getMessage() != null && r2Var.getMessage().getId() == messageObject.getId()) {
                 z11 = true;
             } else {
@@ -75,6 +75,6 @@ public final class z00 extends org.telegram.ui.Components.hm0 {
         } else {
             zVar = new hg.z(2, viewGroup.getContext(), true);
         }
-        return com.google.android.gms.internal.cast.a6.l(zVar, zVar, -1, -2);
+        return com.google.android.gms.internal.play_billing.k3.l(zVar, zVar, -1, -2);
     }
 }

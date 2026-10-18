@@ -1,21 +1,21 @@
 package p2;
 public final class b implements Runnable {
-    public final int f43941a;
-    public final Object f43942b;
-    public final Object f43943c;
+    public final int f43961a;
+    public final Object f43962b;
+    public final Object f43963c;
 
     public b(int i10, Object obj, Object obj2) {
-        this.f43941a = i10;
-        this.f43942b = obj;
-        this.f43943c = obj2;
+        this.f43961a = i10;
+        this.f43962b = obj;
+        this.f43963c = obj2;
     }
 
     private final void a() {
-        r2.c cVar = (r2.c) this.f43942b;
-        b bVar = (b) this.f43943c;
-        cVar.f44928c.C();
-        r2.f fVar = cVar.f44927b;
-        synchronized (fVar.f44938a) {
+        r2.c cVar = (r2.c) this.f43962b;
+        b bVar = (b) this.f43963c;
+        cVar.f44948c.C();
+        r2.f fVar = cVar.f44947b;
+        synchronized (fVar.f44958a) {
             fVar.b();
             bVar.run();
         }
@@ -23,13 +23,13 @@ public final class b implements Runnable {
 
     private final void b() {
         qa.a aVar;
-        r9.p pVar = (r9.p) this.f43942b;
-        qa.b bVar = (qa.b) this.f43943c;
-        if (pVar.f45175b == r9.p.d) {
+        r9.p pVar = (r9.p) this.f43962b;
+        qa.b bVar = (qa.b) this.f43963c;
+        if (pVar.f45195b == r9.p.d) {
             synchronized (pVar) {
-                aVar = pVar.f45174a;
-                pVar.f45174a = null;
-                pVar.f45175b = bVar;
+                aVar = pVar.f45194a;
+                pVar.f45194a = null;
+                pVar.f45195b = bVar;
             }
             aVar.h(bVar);
             return;
@@ -38,14 +38,14 @@ public final class b implements Runnable {
     }
 
     private final void c() {
-        r9.o oVar = (r9.o) this.f43942b;
-        qa.b bVar = (qa.b) this.f43943c;
+        r9.o oVar = (r9.o) this.f43962b;
+        qa.b bVar = (qa.b) this.f43963c;
         synchronized (oVar) {
             try {
-                if (oVar.f45172b == null) {
-                    oVar.f45171a.add(bVar);
+                if (oVar.f45192b == null) {
+                    oVar.f45191a.add(bVar);
                 } else {
-                    oVar.f45172b.add(bVar.get());
+                    oVar.f45192b.add(bVar.get());
                 }
             } catch (Throwable th2) {
                 throw th2;

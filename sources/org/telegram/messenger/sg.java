@@ -7,10 +7,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_iv;
 public final class sg implements Vector.TLDeserializer, org.telegram.ui.ActionBar.a2 {
-    public final int f19503a;
+    public final int f19504a;
 
     public sg(int i10) {
-        this.f19503a = i10;
+        this.f19504a = i10;
     }
 
     public static NotificationChannel a(Object obj) {
@@ -19,7 +19,7 @@ public final class sg implements Vector.TLDeserializer, org.telegram.ui.ActionBa
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        switch (this.f19503a) {
+        switch (this.f19504a) {
             case 2:
                 return TL_iv.RichText.TLdeserialize(inputSerializedData, i10, z10);
             default:

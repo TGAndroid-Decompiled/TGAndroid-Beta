@@ -9,19 +9,19 @@ import android.widget.ViewSwitcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class ag0 implements ViewSwitcher.ViewFactory {
-    public final int f35429a;
-    public final Object f35430b;
+    public final int f35449a;
+    public final Object f35450b;
 
     public ag0(Object obj, int i10) {
-        this.f35429a = i10;
-        this.f35430b = obj;
+        this.f35449a = i10;
+        this.f35450b = obj;
     }
 
     @Override
     public final View makeView() {
         int i10;
-        int i11 = this.f35429a;
-        Object obj = this.f35430b;
+        int i11 = this.f35449a;
+        Object obj = this.f35450b;
         switch (i11) {
             case 0:
                 TextView textView = new TextView((Context) obj);
@@ -41,14 +41,14 @@ public final class ag0 implements ViewSwitcher.ViewFactory {
                 return textView;
             case 1:
                 TextView textView2 = new TextView((Context) obj);
-                com.google.android.gms.internal.cast.a6.o(org.telegram.ui.ActionBar.h6.D6, null, false, textView2, 1);
+                com.google.android.gms.internal.play_billing.k3.o(org.telegram.ui.ActionBar.h6.D6, null, false, textView2, 1);
                 textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
                 textView2.setTextSize(1, 15.0f);
                 return textView2;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
                 Drawable[] drawableArr = PhotoViewer.U8;
-                return new yt0(photoViewer.E, photoViewer.T1, photoViewer.Q, new yq0(photoViewer, 0), new xf0(photoViewer, 1));
+                return new yt0(photoViewer.E, photoViewer.T1, photoViewer.Q, new zq0(photoViewer, 0), new xf0(photoViewer, 1));
         }
     }
 }

@@ -4,14 +4,14 @@ import j$.util.function.Function$CC;
 import java.util.function.Function;
 import org.telegram.messenger.TranslateController;
 public final class fa implements Function {
-    public final int f18356a;
+    public final int f18364a;
 
     public fa(int i10) {
-        this.f18356a = i10;
+        this.f18364a = i10;
     }
 
     public Function andThen(Function function) {
-        int i10 = this.f18356a;
+        int i10 = this.f18364a;
         return Function$CC.$default$andThen(this, function);
     }
 
@@ -22,7 +22,7 @@ public final class fa implements Function {
         Long lambda$new$14;
         int[] lambda$new$15;
         String str;
-        switch (this.f18356a) {
+        switch (this.f18364a) {
             case 0:
                 valueOf = String.valueOf((Long) obj);
                 return valueOf;
@@ -42,7 +42,7 @@ public final class fa implements Function {
     }
 
     public Function compose(Function function) {
-        int i10 = this.f18356a;
+        int i10 = this.f18364a;
         return Function$CC.$default$compose(this, function);
     }
 }

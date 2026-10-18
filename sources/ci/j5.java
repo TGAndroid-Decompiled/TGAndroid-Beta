@@ -16,37 +16,37 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.nm0;
 public final class j5 extends FrameLayout {
-    public final LinearLayout f5534a;
-    public final Paint f5535b;
-    public final TextView f5536c;
+    public final LinearLayout f5535a;
+    public final Paint f5536b;
+    public final TextView f5537c;
     public final TextView d;
     public final RectF e;
-    public float f5537f;
+    public float f5538f;
     public float h;
-    public final RectF f5538n;
-    public float f5539r;
-    public int f5540s;
+    public final RectF f5539n;
+    public float f5540r;
+    public int f5541s;
     public final nm0 v;
-    public ValueAnimator f5541w;
-    public final u5 f5542x;
+    public ValueAnimator f5542w;
+    public final u5 f5543x;
 
     public j5(u5 u5Var, Context context) {
         super(context);
-        this.f5542x = u5Var;
+        this.f5543x = u5Var;
         Paint paint = new Paint(1);
-        this.f5535b = paint;
+        this.f5536b = paint;
         this.e = new RectF();
-        this.f5538n = new RectF();
-        this.f5539r = 1.0f;
-        int i10 = org.telegram.ui.ActionBar.h6.f21075i6;
-        b bVar = u5Var.f6054s;
+        this.f5539n = new RectF();
+        this.f5540r = 1.0f;
+        int i10 = org.telegram.ui.ActionBar.h6.f21082i6;
+        b bVar = u5Var.f6055s;
         paint.setColor(org.telegram.ui.ActionBar.h6.w0(i10, bVar));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         TextView textView = new TextView(context);
-        this.f5536c = textView;
+        this.f5537c = textView;
         textView.setText(LocaleController.getString(R.string.AllViewers));
-        int i11 = org.telegram.ui.ActionBar.h6.f21092j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f21099j5;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, bVar));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -62,13 +62,13 @@ public final class j5 extends FrameLayout {
         linearLayout.addView(textView, w7.z5.t(-2, -2, 0, 13, 0, 0, 0));
         linearLayout.addView(textView2, w7.z5.t(-2, -2, 0, 0, 0, 0, 0));
         LinearLayout linearLayout2 = new LinearLayout(getContext());
-        this.f5534a = linearLayout2;
+        this.f5535a = linearLayout2;
         linearLayout2.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
         linearLayout2.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.h6.w0(i10, bVar)));
         linearLayout2.setOrientation(0);
         nm0 nm0Var = new nm0(getContext());
         this.v = nm0Var;
-        nm0Var.f28800r = true;
+        nm0Var.f28807r = true;
         nm0Var.a(R.drawable.menu_views_reactions3, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -81,127 +81,127 @@ public final class j5 extends FrameLayout {
         addView(linearLayout, w7.z5.d(-2.0f, -2));
         addView(linearLayout2, w7.z5.a(-2.0f, 13.0f, 6.0f, 13.0f, 6.0f, -2, 5));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final j5 f5420b;
+            public final j5 f5421b;
 
             {
-                this.f5420b = this;
+                this.f5421b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        u5 u5Var2 = this.f5420b.f5542x;
+                        u5 u5Var2 = this.f5421b.f5543x;
                         f5 f5Var = u5Var2.O;
-                        if (f5Var.f5388b) {
-                            f5Var.f5388b = false;
+                        if (f5Var.f5389b) {
+                            f5Var.f5389b = false;
                             u5Var2.h(true);
                             u5.b(u5Var2);
                             return;
                         }
                         return;
                     case 1:
-                        u5 u5Var3 = this.f5420b.f5542x;
+                        u5 u5Var3 = this.f5421b.f5543x;
                         f5 f5Var2 = u5Var3.O;
-                        if (!f5Var2.f5388b) {
-                            f5Var2.f5388b = true;
+                        if (!f5Var2.f5389b) {
+                            f5Var2.f5389b = true;
                             u5Var3.h(true);
                             u5.b(u5Var3);
                             return;
                         }
                         return;
                     default:
-                        j5 j5Var = this.f5420b;
-                        u5 u5Var4 = j5Var.f5542x;
-                        i5 i5Var = new i5(j5Var, j5Var.getContext(), u5Var4.f6054s);
-                        u5Var4.f6051f = i5Var;
-                        LinearLayout linearLayout3 = j5Var.f5534a;
-                        i5Var.f26928b = true;
-                        i5Var.f26927a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        j5 j5Var = this.f5421b;
+                        u5 u5Var4 = j5Var.f5543x;
+                        i5 i5Var = new i5(j5Var, j5Var.getContext(), u5Var4.f6055s);
+                        u5Var4.f6052f = i5Var;
+                        LinearLayout linearLayout3 = j5Var.f5535a;
+                        i5Var.f26935b = true;
+                        i5Var.f26934a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final j5 f5420b;
+            public final j5 f5421b;
 
             {
-                this.f5420b = this;
+                this.f5421b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        u5 u5Var2 = this.f5420b.f5542x;
+                        u5 u5Var2 = this.f5421b.f5543x;
                         f5 f5Var = u5Var2.O;
-                        if (f5Var.f5388b) {
-                            f5Var.f5388b = false;
+                        if (f5Var.f5389b) {
+                            f5Var.f5389b = false;
                             u5Var2.h(true);
                             u5.b(u5Var2);
                             return;
                         }
                         return;
                     case 1:
-                        u5 u5Var3 = this.f5420b.f5542x;
+                        u5 u5Var3 = this.f5421b.f5543x;
                         f5 f5Var2 = u5Var3.O;
-                        if (!f5Var2.f5388b) {
-                            f5Var2.f5388b = true;
+                        if (!f5Var2.f5389b) {
+                            f5Var2.f5389b = true;
                             u5Var3.h(true);
                             u5.b(u5Var3);
                             return;
                         }
                         return;
                     default:
-                        j5 j5Var = this.f5420b;
-                        u5 u5Var4 = j5Var.f5542x;
-                        i5 i5Var = new i5(j5Var, j5Var.getContext(), u5Var4.f6054s);
-                        u5Var4.f6051f = i5Var;
-                        LinearLayout linearLayout3 = j5Var.f5534a;
-                        i5Var.f26928b = true;
-                        i5Var.f26927a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        j5 j5Var = this.f5421b;
+                        u5 u5Var4 = j5Var.f5543x;
+                        i5 i5Var = new i5(j5Var, j5Var.getContext(), u5Var4.f6055s);
+                        u5Var4.f6052f = i5Var;
+                        LinearLayout linearLayout3 = j5Var.f5535a;
+                        i5Var.f26935b = true;
+                        i5Var.f26934a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
         });
         linearLayout2.setOnClickListener(new View.OnClickListener(this) {
-            public final j5 f5420b;
+            public final j5 f5421b;
 
             {
-                this.f5420b = this;
+                this.f5421b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        u5 u5Var2 = this.f5420b.f5542x;
+                        u5 u5Var2 = this.f5421b.f5543x;
                         f5 f5Var = u5Var2.O;
-                        if (f5Var.f5388b) {
-                            f5Var.f5388b = false;
+                        if (f5Var.f5389b) {
+                            f5Var.f5389b = false;
                             u5Var2.h(true);
                             u5.b(u5Var2);
                             return;
                         }
                         return;
                     case 1:
-                        u5 u5Var3 = this.f5420b.f5542x;
+                        u5 u5Var3 = this.f5421b.f5543x;
                         f5 f5Var2 = u5Var3.O;
-                        if (!f5Var2.f5388b) {
-                            f5Var2.f5388b = true;
+                        if (!f5Var2.f5389b) {
+                            f5Var2.f5389b = true;
                             u5Var3.h(true);
                             u5.b(u5Var3);
                             return;
                         }
                         return;
                     default:
-                        j5 j5Var = this.f5420b;
-                        u5 u5Var4 = j5Var.f5542x;
-                        i5 i5Var = new i5(j5Var, j5Var.getContext(), u5Var4.f6054s);
-                        u5Var4.f6051f = i5Var;
-                        LinearLayout linearLayout3 = j5Var.f5534a;
-                        i5Var.f26928b = true;
-                        i5Var.f26927a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        j5 j5Var = this.f5421b;
+                        u5 u5Var4 = j5Var.f5543x;
+                        i5 i5Var = new i5(j5Var, j5Var.getContext(), u5Var4.f6055s);
+                        u5Var4.f6052f = i5Var;
+                        LinearLayout linearLayout3 = j5Var.f5535a;
+                        i5Var.f26935b = true;
+                        i5Var.f26934a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -211,11 +211,11 @@ public final class j5 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        if (this.f5542x.T) {
-            int i10 = this.f5540s;
+        if (this.f5543x.T) {
+            int i10 = this.f5541s;
             TextView textView = this.d;
             float f10 = 0.5f;
-            TextView textView2 = this.f5536c;
+            TextView textView2 = this.f5537c;
             if (i10 == 0) {
                 textView2.getHitRect(AndroidUtilities.rectTmp2);
                 f7 = 0.5f;
@@ -225,18 +225,18 @@ public final class j5 extends FrameLayout {
                 f7 = 1.0f;
             }
             Rect rect = AndroidUtilities.rectTmp2;
-            RectF rectF = this.f5538n;
+            RectF rectF = this.f5539n;
             rectF.set(rect);
-            float f11 = this.f5539r;
+            float f11 = this.f5540r;
             if (f11 != 1.0f) {
-                f10 = AndroidUtilities.lerp(this.f5537f, f10, f11);
-                f7 = AndroidUtilities.lerp(this.h, f7, this.f5539r);
-                AndroidUtilities.lerp(this.e, rectF, this.f5539r, rectF);
+                f10 = AndroidUtilities.lerp(this.f5538f, f10, f11);
+                f7 = AndroidUtilities.lerp(this.h, f7, this.f5540r);
+                AndroidUtilities.lerp(this.e, rectF, this.f5540r, rectF);
             }
             textView2.setAlpha(f10);
             textView.setAlpha(f7);
             float height = rectF.height() / 2.0f;
-            canvas.drawRoundRect(rectF, height, height, this.f5535b);
+            canvas.drawRoundRect(rectF, height, height, this.f5536b);
         }
         super.dispatchDraw(canvas);
     }

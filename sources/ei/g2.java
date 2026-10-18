@@ -5,13 +5,13 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.lx0;
 import org.telegram.ui.Components.px0;
 public final class g2 extends px0 {
-    public final boolean f9065x3;
+    public final boolean f9066x3;
     public final h2 y3;
 
     public g2(h2 h2Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         super(context, i10, d6Var);
         this.y3 = h2Var;
-        this.f9065x3 = z10;
+        this.f9066x3 = z10;
     }
 
     @Override
@@ -21,12 +21,12 @@ public final class g2 extends px0 {
 
     @Override
     public final lx0[] C1(lx0[] lx0VarArr) {
-        if (lx0VarArr != null && this.f9065x3) {
+        if (lx0VarArr != null && this.f9066x3) {
             int i10 = 0;
             while (true) {
                 if (i10 < lx0VarArr.length) {
                     lx0 lx0Var = lx0VarArr[i10];
-                    if (lx0Var != null && lx0Var.f28341b) {
+                    if (lx0Var != null && lx0Var.f28348b) {
                         break;
                     }
                     i10++;

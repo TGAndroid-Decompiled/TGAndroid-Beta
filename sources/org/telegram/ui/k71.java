@@ -14,25 +14,25 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public final class k71 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.w9 f38410a;
-    public final mk f38411b;
-    public final org.telegram.ui.Components.voip.h f38412c;
+    public final org.telegram.ui.Components.w9 f38419a;
+    public final mk f38420b;
+    public final org.telegram.ui.Components.voip.h f38421c;
     public final SessionsActivity d;
 
     public k71(SessionsActivity sessionsActivity, Context context) {
         super(context);
         this.d = sessionsActivity;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f38412c = hVar;
+        this.f38421c = hVar;
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f38410a = w9Var;
+        this.f38419a = w9Var;
         addView(w9Var, w7.z5.a(120.0f, 0.0f, 16.0f, 0.0f, 0.0f, 120, 1));
-        hVar.f31470j = false;
-        hVar.f31474n = 1.2f;
+        hVar.f31477j = false;
+        hVar.f31481n = 1.2f;
         w9Var.setOnClickListener(new b8(this, 2));
         int i10 = org.telegram.ui.ActionBar.h6.G6;
         org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        int i11 = org.telegram.ui.ActionBar.h6.f20986d6;
+        int i11 = org.telegram.ui.ActionBar.h6.f20993d6;
         org.telegram.ui.ActionBar.h6.x0(null, i11, false);
         int i12 = org.telegram.ui.ActionBar.h6.Oh;
         org.telegram.ui.ActionBar.h6.x0(null, i12, false);
@@ -67,7 +67,7 @@ public final class k71 extends FrameLayout implements NotificationCenter.Notific
         }
         x90Var.setText(spannableStringBuilder);
         mk mkVar = new mk(this, context, 3);
-        this.f38411b = mkVar;
+        this.f38420b = mkVar;
         mkVar.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         mkVar.setGravity(17);
         mkVar.setTextSize(1, 14.0f);
@@ -107,7 +107,7 @@ public final class k71 extends FrameLayout implements NotificationCenter.Notific
             document = null;
         }
         if (document != null) {
-            svgDrawable = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.h6.f20968c7, 0.2f);
+            svgDrawable = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.h6.f20975c7, 0.2f);
         }
         SvgHelper.SvgDrawable svgDrawable2 = svgDrawable;
         if (svgDrawable2 != null) {
@@ -125,7 +125,7 @@ public final class k71 extends FrameLayout implements NotificationCenter.Notific
             return;
         }
         ImageLocation forDocument = ImageLocation.getForDocument(document);
-        org.telegram.ui.Components.w9 w9Var = this.f38410a;
+        org.telegram.ui.Components.w9 w9Var = this.f38419a;
         w9Var.i(forDocument, "130_130", "tgs", svgDrawable2, tL_messages_stickerSet);
         w9Var.getImageReceiver().setAutoRepeat(2);
     }

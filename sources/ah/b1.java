@@ -62,10 +62,10 @@ public final class b1 extends w9 {
             this.G = true;
             return;
         }
-        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f31014k0) {
+        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f31021k0) {
             this.G = true;
         }
-        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f31014k0) {
+        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f31021k0) {
             d1 d1Var = this.K;
             if (d1Var.f690a == 2 && !d1Var.f711z) {
                 getImageReceiver().getLottieAnimation().N(getImageReceiver().getLottieAnimation().e[0] - 1, false, false);

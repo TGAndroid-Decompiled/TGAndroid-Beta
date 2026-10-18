@@ -94,16 +94,16 @@ public final class pg1 extends org.telegram.ui.Components.c91 {
         qg1 qg1Var = this.V;
         pg0 pg0Var = (pg0) qg1Var;
         if (pg0Var.F != null) {
-            pg0Var.m0(pg0Var.f40427c.getCurrentPosition(), true);
+            pg0Var.m0(pg0Var.f40433c.getCurrentPosition(), true);
             pg0Var.n0(0.0f, false);
         }
         pg0Var.d0();
-        pg1 pg1Var = pg0Var.f40427c;
+        pg1 pg1Var = pg0Var.f40433c;
         if (pg1Var != null) {
             int currentPosition = pg1Var.getCurrentPosition();
-            if (currentPosition != 2 && pg0Var.f40130x) {
+            if (currentPosition != 2 && pg0Var.f40149x) {
                 pg0Var.W(2);
-                pg0Var.f40130x = false;
+                pg0Var.f40149x = false;
             }
             if (currentPosition != 3) {
                 pg0Var.W(3);
@@ -123,7 +123,7 @@ public final class pg1 extends org.telegram.ui.Components.c91 {
         pg0 pg0Var = (pg0) qg1Var;
         boolean z11 = !z10;
         if (pg0Var.F != null) {
-            float positionAnimated = pg0Var.f40427c.getPositionAnimated();
+            float positionAnimated = pg0Var.f40433c.getPositionAnimated();
             pg0Var.n0(positionAnimated, z11);
             if (!z10) {
                 pg0Var.m0(Math.round(positionAnimated), true);
@@ -131,7 +131,7 @@ public final class pg1 extends org.telegram.ui.Components.c91 {
         }
         pg0Var.h0();
         pg0Var.d0();
-        pg0Var.f40426b.invalidate();
+        pg0Var.f40432b.invalidate();
         qg1Var.U();
         qg1Var.checkSystemBarColors();
     }

@@ -1,24 +1,34 @@
 package org.telegram.ui.Wallet;
-public final class j6 implements o1.g {
-    public final int f34358a;
-    public final p6 f34359b;
 
-    public j6(p6 p6Var, int i10) {
-        this.f34358a = i10;
-        this.f34359b = p6Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ti;
+public final class j6 extends AnimatorListenerAdapter {
+    public final ti f34360a;
+    public final s6 f34361b;
+    public final k6 f34362c;
+
+    public j6(k6 k6Var, ti tiVar, s6 s6Var) {
+        this.f34362c = k6Var;
+        this.f34360a = tiVar;
+        this.f34361b = s6Var;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f34358a) {
-            case 0:
-                p6 p6Var = this.f34359b;
-                p6Var.f34731c.setScaleX(f7);
-                p6Var.f34731c.setScaleY(f7);
-                return;
-            default:
-                this.f34359b.P = f10;
-                return;
+    public final void onAnimationCancel(Animator animator) {
+        this.f34362c.a(false);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        this.f34362c.a(true);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        if (this.f34360a != null) {
+            AndroidUtilities.hideKeyboard(this.f34361b);
         }
     }
 }

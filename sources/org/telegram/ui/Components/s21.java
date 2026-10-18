@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class s21 {
-    public long f30169a;
-    public boolean f30170b;
-    public final ArrayList f30171c;
+    public long f30176a;
+    public boolean f30177b;
+    public final ArrayList f30178c;
     public final ArrayList d;
     public final int e;
-    public boolean f30172f;
-    public float f30173g;
+    public boolean f30179f;
+    public float f30180g;
     public float h;
 
     public s21() {
@@ -23,13 +23,13 @@ public final class s21 {
 
     public final void a(float f7, float f10, Canvas canvas, Paint paint, RectF rectF) {
         r21 r21Var;
-        ArrayList arrayList = this.f30171c;
+        ArrayList arrayList = this.f30178c;
         int size = arrayList.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
             r21 r21Var2 = (r21) arrayList.get(i11);
-            paint.setAlpha((int) (r21Var2.f29805f * 255.0f * f10));
-            canvas.drawPoint(r21Var2.f29802a, r21Var2.f29803b, paint);
+            paint.setAlpha((int) (r21Var2.f29813f * 255.0f * f10));
+            canvas.drawPoint(r21Var2.f29810a, r21Var2.f29811b, paint);
         }
         double d = (f7 - 90.0f) * 0.017453292519943295d;
         double sin = Math.sin(d);
@@ -48,29 +48,29 @@ public final class s21 {
             } else {
                 r21Var = new Object();
             }
-            if (this.f30170b && this.f30172f) {
+            if (this.f30177b && this.f30179f) {
                 float f11 = (i12 + 1) / clamp;
-                r21Var.f29802a = AndroidUtilities.lerp(this.f30173g, centerX, f11);
-                r21Var.f29803b = AndroidUtilities.lerp(this.h, centerY, f11);
+                r21Var.f29810a = AndroidUtilities.lerp(this.f30180g, centerX, f11);
+                r21Var.f29811b = AndroidUtilities.lerp(this.h, centerY, f11);
             } else {
-                r21Var.f29802a = centerX;
-                r21Var.f29803b = centerY;
+                r21Var.f29810a = centerX;
+                r21Var.f29811b = centerY;
             }
             double d11 = sin;
             double nextInt = (Utilities.random.nextInt(140) - 70) * 0.017453292519943295d;
             if (nextInt < 0.0d) {
                 nextInt += 6.283185307179586d;
             }
-            r21Var.f29804c = (float) ((Math.cos(nextInt) * d11) - (Math.sin(nextInt) * d10));
+            r21Var.f29812c = (float) ((Math.cos(nextInt) * d11) - (Math.sin(nextInt) * d10));
             r21 r21Var3 = r21Var;
-            r21Var3.d = (float) i0.a.f(nextInt, d10, Math.sin(nextInt) * d11);
-            r21Var3.f29805f = 1.0f;
+            r21Var3.d = (float) i2.d.f(nextInt, d10, Math.sin(nextInt) * d11);
+            r21Var3.f29813f = 1.0f;
             r21Var3.h = 0.0f;
-            if (this.f30170b) {
-                r21Var3.f29806g = Utilities.random.nextInt(200) + 600;
+            if (this.f30177b) {
+                r21Var3.f29814g = Utilities.random.nextInt(200) + 600;
                 r21Var3.e = (Utilities.random.nextFloat() * 20.0f) + 30.0f;
             } else {
-                r21Var3.f29806g = Utilities.random.nextInt(100) + 400;
+                r21Var3.f29814g = Utilities.random.nextInt(100) + 400;
                 r21Var3.e = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
             }
             arrayList.add(r21Var3);
@@ -79,17 +79,17 @@ public final class s21 {
             i10 = 0;
             z10 = true;
         }
-        this.f30172f = z10;
-        this.f30173g = centerX;
+        this.f30179f = z10;
+        this.f30180g = centerX;
         this.h = centerY;
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long min = Math.min(20L, elapsedRealtime - this.f30169a);
+        long min = Math.min(20L, elapsedRealtime - this.f30176a);
         int size2 = arrayList.size();
         int i13 = 0;
         while (i13 < size2) {
             r21 r21Var4 = (r21) arrayList.get(i13);
             float f12 = r21Var4.h;
-            float f13 = r21Var4.f29806g;
+            float f13 = r21Var4.f29814g;
             if (f12 >= f13) {
                 if (arrayList2.size() < this.e) {
                     arrayList2.add(r21Var4);
@@ -98,22 +98,22 @@ public final class s21 {
                 i13--;
                 size2--;
             } else {
-                r21Var4.f29805f = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f12 / f13);
-                float f14 = r21Var4.f29802a;
-                float f15 = r21Var4.f29804c;
+                r21Var4.f29813f = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f12 / f13);
+                float f14 = r21Var4.f29810a;
+                float f15 = r21Var4.f29812c;
                 float f16 = r21Var4.e;
                 float f17 = (float) min;
-                r21Var4.f29802a = a1.g.B(f15 * f16, f17, 200.0f, f14);
-                r21Var4.f29803b = (((r21Var4.d * f16) * f17) / 200.0f) + r21Var4.f29803b;
+                r21Var4.f29810a = a1.g.B(f15 * f16, f17, 200.0f, f14);
+                r21Var4.f29811b = (((r21Var4.d * f16) * f17) / 200.0f) + r21Var4.f29811b;
                 r21Var4.h += f17;
             }
             i13++;
         }
-        this.f30169a = elapsedRealtime;
+        this.f30176a = elapsedRealtime;
     }
 
     public s21(int i10) {
-        this.f30171c = new ArrayList();
+        this.f30178c = new ArrayList();
         this.d = new ArrayList();
         this.e = i10;
         for (int i11 = 0; i11 < i10; i11++) {

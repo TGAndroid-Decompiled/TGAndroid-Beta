@@ -24,7 +24,7 @@ public final class e extends d {
         } else {
             i10 = 3;
         }
-        this.f48975c.setLayoutParams(z5.a(40.0f, 16.0f, 0.0f, 16.0f, 0.0f, 40, i10 | 16));
+        this.f49000c.setLayoutParams(z5.a(40.0f, 16.0f, 0.0f, 16.0f, 0.0f, 40, i10 | 16));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -62,10 +62,10 @@ public final class e extends d {
     }
 
     public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.e.setTextColor(h6.w0(h6.f21242r5, this.f48973a));
+        this.e.setTextColor(h6.w0(h6.f21249r5, this.f48998a));
         boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         l4 l4Var = this.d;
-        h9 h9Var = this.f48974b;
+        h9 h9Var = this.f48999b;
         if (z10) {
             TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
             h9Var.g(26);
@@ -85,7 +85,7 @@ public final class e extends d {
             }
             setSubtitle(LocaleController.formatPluralString("BoostingPreparedGiveawaySubscriptionsPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("Months", tL_prepaidGiveaway.months, new Object[0])));
         }
-        w9 w9Var = this.f48975c;
+        w9 w9Var = this.f49000c;
         w9Var.setImageDrawable(h9Var);
         w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
     }

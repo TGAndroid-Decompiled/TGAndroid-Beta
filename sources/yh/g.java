@@ -6,10 +6,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class g implements org.telegram.ui.ActionBar.a2, GenericProvider, d9.k, Vector.TLDeserializer {
-    public final int f50263a;
+    public final int f50288a;
 
     public g(int i10) {
-        this.f50263a = i10;
+        this.f50288a = i10;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class g implements org.telegram.ui.ActionBar.a2, GenericProvider, d
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f50263a) {
+        switch (this.f50288a) {
             case 0:
                 b2Var.dismiss();
                 return;
@@ -37,7 +37,7 @@ public final class g implements org.telegram.ui.ActionBar.a2, GenericProvider, d
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = g4.f50268k0;
+        int i10 = g4.f50293k0;
         return 0;
     }
 }

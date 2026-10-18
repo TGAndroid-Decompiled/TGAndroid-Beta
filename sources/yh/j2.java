@@ -1,6 +1,6 @@
 package yh;
 
-import ai.x9;
+import ai.y9;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -21,13 +21,13 @@ public final class j2 extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
         super.a(recyclerView, b1Var);
-        b1Var.f45938a.setPressed(false);
+        b1Var.f45958a.setPressed(false);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
         TL_stars.SavedStarGift savedStarGift;
-        View view = b1Var.f45938a;
+        View view = b1Var.f45958a;
         if (view instanceof h1) {
             savedStarGift = ((h1) view).getSavedGift();
         } else {
@@ -41,12 +41,12 @@ public final class j2 extends s4.v {
 
     @Override
     public final boolean j() {
-        return this.e.f50398n;
+        return this.e.f50423n;
     }
 
     @Override
     public final boolean k() {
-        return this.e.f50398n;
+        return this.e.f50423n;
     }
 
     @Override
@@ -54,9 +54,9 @@ public final class j2 extends s4.v {
         TL_stars.SavedStarGift savedStarGift;
         ai.j1 j1Var;
         m2 m2Var = this.e;
-        h2 h2Var = m2Var.f50397f;
-        if (m2Var.e != null && m2Var.f50398n) {
-            View view = b1Var.f45938a;
+        h2 h2Var = m2Var.f50422f;
+        if (m2Var.e != null && m2Var.f50423n) {
+            View view = b1Var.f45958a;
             TL_stars.SavedStarGift savedStarGift2 = null;
             if (view instanceof h1) {
                 savedStarGift = ((h1) view).getSavedGift();
@@ -64,7 +64,7 @@ public final class j2 extends s4.v {
                 savedStarGift = null;
             }
             if (r(savedStarGift)) {
-                View view2 = b1Var2.f45938a;
+                View view2 = b1Var2.f45958a;
                 if (view2 instanceof h1) {
                     savedStarGift2 = ((h1) view2).getSavedGift();
                 }
@@ -77,11 +77,11 @@ public final class j2 extends s4.v {
                         m2Var.e.l(b10, b11);
                         is0Var.e.n(m2Var.e.d);
                     } else {
-                        x9 x9Var = m2Var.e;
-                        if (x9Var.f2453q == null) {
-                            x9Var.f2453q = x9Var.i();
+                        y9 y9Var = m2Var.e;
+                        if (y9Var.f2503q == null) {
+                            y9Var.f2503q = y9Var.i();
                         }
-                        x9Var.l(b10, b11);
+                        y9Var.l(b10, b11);
                     }
                     h2Var.W2.p(b10, b11);
                     h2Var.W2.S();
@@ -90,7 +90,7 @@ public final class j2 extends s4.v {
                         is0Var.f(true);
                     }
                     org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                    if ((U instanceof ProfileActivity) && (j1Var = ((ProfileActivity) U).f33724w0) != null) {
+                    if ((U instanceof ProfileActivity) && (j1Var = ((ProfileActivity) U).f33731w0) != null) {
                         j1Var.a();
                     }
                     return true;
@@ -106,38 +106,38 @@ public final class j2 extends s4.v {
     public final void p(s4.b1 b1Var, int i10) {
         m2 m2Var = this.e;
         if (i10 == 0) {
-            x9 x9Var = m2Var.e;
-            if (x9Var != null) {
-                ArrayList arrayList = x9Var.f2453q;
+            y9 y9Var = m2Var.e;
+            if (y9Var != null) {
+                ArrayList arrayList = y9Var.f2503q;
                 if (arrayList != null) {
-                    ArrayList i11 = x9Var.i();
+                    ArrayList i11 = y9Var.i();
                     if (arrayList.size() == i11.size()) {
                         for (int i12 = 0; i12 < arrayList.size(); i12++) {
                             if (arrayList.get(i12) == i11.get(i12)) {
                             }
                         }
                     }
-                    x9Var.m();
-                    x9Var.f2453q = null;
+                    y9Var.m();
+                    y9Var.f2503q = null;
                     return;
                 }
-                x9Var.f2453q = null;
+                y9Var.f2503q = null;
                 return;
             }
             return;
         }
-        h2 h2Var = m2Var.f50397f;
+        h2 h2Var = m2Var.f50422f;
         if (h2Var != null) {
             h2Var.I0(false);
         }
         if (b1Var != null) {
-            b1Var.f45938a.setPressed(true);
+            b1Var.f45958a.setPressed(true);
         }
     }
 
     public final boolean r(TL_stars.SavedStarGift savedStarGift) {
         m2 m2Var = this.e;
-        if (m2Var.f50398n) {
+        if (m2Var.f50423n) {
             if (m2Var.e == this.d.d) {
                 if (savedStarGift == null || !savedStarGift.pinned_to_top) {
                     return false;

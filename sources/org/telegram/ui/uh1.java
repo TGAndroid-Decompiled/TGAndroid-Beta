@@ -8,38 +8,38 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class uh1 {
-    public String f41992a;
-    public final int f41993b;
-    public final int f41994c;
+    public String f42007a;
+    public final int f42008b;
+    public final int f42009c;
     public final int d;
     public final int e;
-    public int f41995f;
-    public TLRPC.TL_wallPaper f41996g;
+    public int f42010f;
+    public TLRPC.TL_wallPaper f42011g;
     public float h;
-    public final File f41997i;
-    public final boolean f41998j;
-    public final boolean f41999k;
-    public TLRPC.WallPaper f42000l;
-    public Bitmap f42001m;
+    public final File f42012i;
+    public final boolean f42013j;
+    public final boolean f42014k;
+    public TLRPC.WallPaper f42015l;
+    public Bitmap f42016m;
 
     public uh1(int i10, int i11, String str, int i12) {
-        this.f41992a = str;
-        this.f41993b = i10 | (-16777216);
+        this.f42007a = str;
+        this.f42008b = i10 | (-16777216);
         int i13 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f41994c = i13;
-        this.f41995f = i13 == 0 ? 0 : i12;
+        this.f42009c = i13;
+        this.f42010f = i13 == 0 ? 0 : i12;
         this.h = 1.0f;
     }
 
     public final String a() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(String.valueOf(this.f41993b));
-        sb2.append(this.f41994c);
+        sb2.append(String.valueOf(this.f42008b));
+        sb2.append(this.f42009c);
         sb2.append(this.d);
         sb2.append(this.e);
-        sb2.append(this.f41995f);
+        sb2.append(this.f42010f);
         sb2.append(this.h);
-        String str = this.f41992a;
+        String str = this.f42007a;
         if (str == null) {
             str = "";
         }
@@ -51,13 +51,13 @@ public final class uh1 {
         String str;
         String str2;
         String str3 = null;
-        int i10 = this.f41994c;
+        int i10 = this.f42009c;
         if (i10 != 0) {
             str = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i10 >> 16)) & 255), Integer.valueOf(((byte) (i10 >> 8)) & 255), Byte.valueOf((byte) (i10 & 255))).toLowerCase();
         } else {
             str = null;
         }
-        int i11 = this.f41993b;
+        int i11 = this.f42008b;
         String lowerCase = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i11 >> 16)) & 255), Integer.valueOf(((byte) (i11 >> 8)) & 255), Byte.valueOf((byte) (i11 & 255))).toLowerCase();
         int i12 = this.d;
         if (i12 != 0) {
@@ -82,21 +82,21 @@ public final class uh1 {
                 lowerCase = lowerCase + "~" + str + "~" + str2;
             }
         } else if (str != null) {
-            String D = a1.g.D(lowerCase, "-", str);
-            if (this.f41996g != null) {
-                StringBuilder i14 = r.c.i(D, "&rotation=");
-                i14.append(AndroidUtilities.getWallpaperRotation(this.f41995f, true));
+            String C = a1.g.C(lowerCase, "-", str);
+            if (this.f42011g != null) {
+                StringBuilder i14 = r4.c.i(C, "&rotation=");
+                i14.append(AndroidUtilities.getWallpaperRotation(this.f42010f, true));
                 lowerCase = i14.toString();
             } else {
-                StringBuilder i15 = r.c.i(D, "?rotation=");
-                i15.append(AndroidUtilities.getWallpaperRotation(this.f41995f, true));
+                StringBuilder i15 = r4.c.i(C, "?rotation=");
+                i15.append(AndroidUtilities.getWallpaperRotation(this.f42010f, true));
                 lowerCase = i15.toString();
             }
         }
-        if (this.f41996g != null) {
-            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f41996g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
-            if (this.f41998j) {
-                return r.c.u(str4, "&mode=motion");
+        if (this.f42011g != null) {
+            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f42011g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
+            if (this.f42013j) {
+                return r4.c.u(str4, "&mode=motion");
             }
             return str4;
         }
@@ -104,25 +104,25 @@ public final class uh1 {
     }
 
     public uh1(String str, int i10, int i11, int i12, int i13) {
-        this.f41992a = str;
-        this.f41993b = i10 | (-16777216);
-        this.f41994c = i11 == 0 ? 0 : i11 | (-16777216);
+        this.f42007a = str;
+        this.f42008b = i10 | (-16777216);
+        this.f42009c = i11 == 0 ? 0 : i11 | (-16777216);
         this.d = i12 == 0 ? 0 : i12 | (-16777216);
         this.e = i13 != 0 ? i13 | (-16777216) : 0;
         this.h = 1.0f;
-        this.f41999k = true;
+        this.f42014k = true;
     }
 
     public uh1(String str, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, File file) {
-        this.f41992a = str;
-        this.f41993b = i10 | (-16777216);
+        this.f42007a = str;
+        this.f42008b = i10 | (-16777216);
         int i15 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f41994c = i15;
+        this.f42009c = i15;
         this.d = i12 == 0 ? 0 : i12 | (-16777216);
         this.e = i13 != 0 ? i13 | (-16777216) : 0;
-        this.f41995f = i15 == 0 ? 45 : i14;
+        this.f42010f = i15 == 0 ? 45 : i14;
         this.h = f7;
-        this.f41997i = file;
-        this.f41998j = z10;
+        this.f42012i = file;
+        this.f42013j = z10;
     }
 }

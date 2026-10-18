@@ -2,24 +2,24 @@ package org.telegram.messenger.voip;
 
 import org.telegram.messenger.Utilities;
 public final class t implements Utilities.Callback2 {
-    public final int f19908a;
-    public final VoIPService f19909b;
+    public final int f19919a;
+    public final VoIPService f19920b;
 
     public t(VoIPService voIPService, int i10) {
-        this.f19908a = i10;
-        this.f19909b = voIPService;
+        this.f19919a = i10;
+        this.f19920b = voIPService;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         Boolean bool = (Boolean) obj;
         Boolean bool2 = (Boolean) obj2;
-        switch (this.f19908a) {
+        switch (this.f19919a) {
             case 0:
-                this.f19909b.lambda$switchToSpeaker$91(bool, bool2);
+                this.f19920b.lambda$switchToSpeaker$91(bool, bool2);
                 return;
             default:
-                this.f19909b.lambda$toggleSpeakerphoneOrShowRouteSheet$95(bool, bool2);
+                this.f19920b.lambda$toggleSpeakerphoneOrShowRouteSheet$95(bool, bool2);
                 return;
         }
     }

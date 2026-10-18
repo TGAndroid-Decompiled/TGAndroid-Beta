@@ -12,7 +12,7 @@ public abstract class x8 {
             new w8(storyItem).readParams(nativeByteBuffer, true);
             return;
         }
-        throw new RuntimeException(i0.a.j(readInt32, "(story) can't read params version = "));
+        throw new RuntimeException(i2.d.j(readInt32, "(story) can't read params version = "));
     }
 
     public static NativeByteBuffer b(TL_stories.StoryItem storyItem) {

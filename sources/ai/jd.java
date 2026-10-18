@@ -1,97 +1,74 @@
 package ai;
 
 import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.f61;
-import org.telegram.ui.Components.u81;
-public final class jd extends u81 {
-    public final Context f1604a;
-    public final int f1605b;
-    public final boolean f1606c;
+import android.widget.FrameLayout;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.b10;
+public final class jd extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public final a71 f1582a;
+    public final org.telegram.ui.ActionBar.d6 f1583b;
+    public final int f1584c;
     public final int d;
-    public final org.telegram.ui.ActionBar.d6 e;
-    public final long f1607f;
-    public final ArrayList f1608g = new ArrayList();
+    public final boolean e;
+    public final long f1585f;
+    public final id h;
 
-    public jd(Context context, int i10, boolean z10, long j10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f1604a = context;
-        this.f1605b = i10;
-        this.f1606c = z10;
-        this.d = i11;
-        this.e = d6Var;
-        this.f1607f = j10;
-        i();
+    public jd(Context context, boolean z10, long j10, int i10, int i11, int i12, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.d = i10;
+        this.e = z10;
+        this.f1584c = i11;
+        this.f1585f = j10;
+        this.f1583b = d6Var;
+        this.h = new id(j10, i11, i10, z10);
+        a71 a71Var = new a71(context, i11, i12, true, new q(this, 10), new a1.c(this, 11), null, d6Var);
+        this.f1582a = a71Var;
+        addView(a71Var, w7.z5.d(-1.0f, -1));
+        a71Var.setOnScrollListener(new ah.d0(this, 4));
     }
 
     @Override
-    public final View d(int i10) {
-        return new id(this.f1604a, this.f1606c, this.f1607f, i10, this.f1605b, this.d, this.e);
-    }
-
-    @Override
-    public final int e() {
-        return this.f1608g.size();
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        int h = h(i10);
-        if (h != 0) {
-            if (h != 1) {
-                if (h != 2) {
-                    return "";
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.starTransactionsLoaded;
+        a71 a71Var = this.f1582a;
+        if (i10 == i12) {
+            a71Var.W2.N(true);
+            if (a71Var.canScrollVertically(1)) {
+                for (int i13 = 0; i13 < a71Var.getChildCount(); i13++) {
+                    if (!(a71Var.getChildAt(i13) instanceof b10)) {
+                    }
                 }
-                return LocaleController.getString(R.string.StarsTransactionsOutgoing);
-            }
-            return LocaleController.getString(R.string.StarsTransactionsIncoming);
-        }
-        return LocaleController.getString(R.string.StarsTransactionsAll);
-    }
-
-    @Override
-    public final int h(int i10) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.f1608g;
-            if (i10 < arrayList.size()) {
-                return ((f61) arrayList.get(i10)).f26153z;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    public final void i() {
-        ArrayList arrayList = this.f1608g;
-        arrayList.clear();
-        long j10 = this.f1607f;
-        int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        int i11 = this.f1605b;
-        if (i10 == 0) {
-            fa y3 = fa.y(i11, this.f1606c);
-            arrayList.add(f61.C(0));
-            if (y3.O(1)) {
-                arrayList.add(f61.C(1));
-            }
-            if (y3.O(2)) {
-                arrayList.add(f61.C(2));
                 return;
             }
-            return;
-        }
-        k0 g10 = k0.g(i11);
-        arrayList.add(f61.C(0));
-        if (!g10.k(j10).f1558a[1].isEmpty()) {
-            arrayList.add(f61.C(1));
-        }
-        if (!g10.k(j10).f1558a[2].isEmpty()) {
-            arrayList.add(f61.C(2));
+            this.h.run();
+        } else if (i10 == NotificationCenter.botStarsTransactionsLoaded && ((Long) objArr[0]).longValue() == this.f1585f) {
+            a71Var.W2.N(true);
         }
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        int i10 = (this.f1585f > 0L ? 1 : (this.f1585f == 0L ? 0 : -1));
+        int i11 = this.f1584c;
+        if (i10 != 0) {
+            NotificationCenter.getInstance(i11).addObserver(this, NotificationCenter.botStarsTransactionsLoaded);
+        } else {
+            NotificationCenter.getInstance(i11).addObserver(this, NotificationCenter.starTransactionsLoaded);
+        }
+        this.f1582a.W2.N(false);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        int i10 = (this.f1585f > 0L ? 1 : (this.f1585f == 0L ? 0 : -1));
+        int i11 = this.f1584c;
+        if (i10 != 0) {
+            NotificationCenter.getInstance(i11).removeObserver(this, NotificationCenter.botStarsTransactionsLoaded);
+        } else {
+            NotificationCenter.getInstance(i11).removeObserver(this, NotificationCenter.starTransactionsLoaded);
+        }
     }
 }

@@ -1,37 +1,194 @@
 package ai;
 
-import android.text.style.ClickableSpan;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.y90;
-public final class w2 implements Runnable {
-    public final int f2353a;
-    public final ei.x3 f2354b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.dx;
+import org.telegram.ui.ey;
+import org.telegram.ui.ko;
+import org.telegram.ui.sq0;
+import org.telegram.ui.xx;
+public final class w2 implements Utilities.Callback {
+    public final int f2355a;
+    public final long f2356b;
+    public final Object f2357c;
+    public final Object d;
+    public final Object e;
 
-    public w2(ei.x3 x3Var, int i10) {
-        this.f2353a = i10;
-        this.f2354b = x3Var;
+    public w2(ci.i7 i7Var, Utilities.Callback callback, long j10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        this.f2355a = 3;
+        this.f2357c = i7Var;
+        this.e = callback;
+        this.f2356b = j10;
+        this.d = tL_premium_boostsStatus;
     }
 
     @Override
-    public final void run() {
-        switch (this.f2353a) {
+    public final void run(Object obj) {
+        r3 r3Var;
+        int i10 = this.f2355a;
+        long j10 = this.f2356b;
+        Object obj2 = this.e;
+        Object obj3 = this.d;
+        Object obj4 = this.f2357c;
+        switch (i10) {
             case 0:
-                AndroidUtilities.removeFromParent(this.f2354b);
+                k7.x0((k7) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f2356b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             case 1:
-                AndroidUtilities.removeFromParent(this.f2354b);
+                ci.r rVar = (ci.r) obj4;
+                ci.q qVar = (ci.q) obj2;
+                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
+                if (((Boolean) obj).booleanValue()) {
+                    ei.vb D = ei.vb.D(rVar.f5876e0.getParentActivity(), rVar.f5877f);
+                    D.N = j10;
+                    ei.lb lbVar = D.f9959c1;
+                    if (lbVar != null) {
+                        lbVar.setDialogId(j10);
+                    }
+                    D.M = false;
+                    D.Q(ei.qb.c(qVar));
+                    return;
+                }
                 return;
             case 2:
-                this.f2354b.getClass();
+                ci.i7 i7Var = (ci.i7) obj4;
+                Utilities.Callback callback = (Utilities.Callback) obj3;
+                MessagesController messagesController = (MessagesController) obj2;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus == null) {
+                    callback.run(Boolean.FALSE);
+                    return;
+                }
+                ChannelBoostsController boostsController = messagesController.getBoostsController();
+                long j11 = this.f2356b;
+                boostsController.userCanBoostChannel(j11, tL_premium_boostsStatus, new w2(i7Var, callback, j11, tL_premium_boostsStatus));
+                callback.run(Boolean.FALSE);
                 return;
+            case 3:
+                ci.i7 i7Var2 = (ci.i7) obj4;
+                Utilities.Callback callback2 = (Utilities.Callback) obj2;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus2 = (TL_stories.TL_premium_boostsStatus) obj3;
+                ChannelBoostsController.CanApplyBoost canApplyBoost = (ChannelBoostsController.CanApplyBoost) obj;
+                if (canApplyBoost == null) {
+                    callback2.run(Boolean.FALSE);
+                    return;
+                }
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (i7Var2.j(j10)) {
+                    r3Var = new r3(i7Var2, j10, 5);
+                } else {
+                    r3Var = null;
+                }
+                int i11 = sg.j0.V0;
+                if (R != null && tL_premium_boostsStatus2 != null && R.getContext() != null) {
+                    sg.j0 j0Var = new sg.j0(18, R.getCurrentAccount(), R.getContext(), R, R.getResourceProvider());
+                    j0Var.H1(canApplyBoost);
+                    j0Var.G1(tL_premium_boostsStatus2, true);
+                    j0Var.I1(j10);
+                    j0Var.Q0 = r3Var;
+                    j0Var.show();
+                }
+                callback2.run(Boolean.FALSE);
+                return;
+            case 4:
+                ko.Y((ko) obj4, (org.telegram.ui.ActionBar.b2) obj2, (TL_stories.TL_premium_boostsStatus) obj3, this.f2356b, (ChannelBoostsController.CanApplyBoost) obj);
+                return;
+            case 5:
+                dx dxVar = (dx) obj4;
+                org.telegram.ui.ActionBar.n2[] n2VarArr = (org.telegram.ui.ActionBar.n2[]) obj2;
+                Runnable runnable = (Runnable) obj;
+                dxVar.getClass();
+                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
+                ey eyVar = dxVar.f36334b;
+                eyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j10));
+                xx xxVar = eyVar.C2;
+                eyVar.removeSelfFromStack();
+                if (n2VarArr[1] != null) {
+                    n2VarArr[0].removeSelfFromStack();
+                    n2VarArr[1].finishFragment();
+                } else {
+                    n2VarArr[0].finishFragment();
+                }
+                if (xxVar != null) {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(MessagesStorage.TopicKey.of(-j10, 0L));
+                    xxVar.w(eyVar, arrayList, null, false, eyVar.J2, eyVar.K2, eyVar.L2, null);
+                    return;
+                }
+                return;
+            case 6:
+                PhotoViewer photoViewer = (PhotoViewer) obj4;
+                String str = (String) obj3;
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj2;
+                Bitmap bitmap = (Bitmap) obj;
+                Drawable[] drawableArr = PhotoViewer.U8;
+                if (bitmap == null) {
+                    AndroidUtilities.runOnUIThread(new sq0(photoViewer, 16));
+                    return;
+                }
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(new File(str));
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
+                    fileOutputStream.close();
+                    Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    Paint paint = new Paint(3);
+                    canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
+                    float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
+                    canvas.scale(max, max);
+                    canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
+                    AndroidUtilities.runOnUIThread(new z(photoViewer, photoEntry, this.f2356b, str, createBitmap, 13));
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    AndroidUtilities.runOnUIThread(new sq0(photoViewer, 17));
+                    return;
+                }
             default:
-                AndroidUtilities.removeFromParent(this.f2354b);
+                yh.b1 b1Var = (yh.b1) obj3;
+                pf.c cVar = (pf.c) obj;
+                cVar.d();
+                b1Var.J1(j10, new ci.z2((yh.p1) obj4, cVar, (Utilities.Callback) obj2, b1Var, 19));
                 return;
         }
     }
 
-    public w2(ei.x3 x3Var, y90 y90Var, ClickableSpan clickableSpan) {
-        this.f2353a = 2;
-        this.f2354b = x3Var;
+    public w2(Object obj, Object obj2, long j10, Object obj3, int i10) {
+        this.f2355a = i10;
+        this.f2357c = obj;
+        this.d = obj2;
+        this.f2356b = j10;
+        this.e = obj3;
+    }
+
+    public w2(Object obj, Object obj2, Object obj3, long j10, int i10) {
+        this.f2355a = i10;
+        this.f2357c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f2356b = j10;
+    }
+
+    public w2(ko koVar, org.telegram.ui.ActionBar.b2 b2Var, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, long j10) {
+        this.f2355a = 4;
+        this.f2357c = koVar;
+        this.e = b2Var;
+        this.d = tL_premium_boostsStatus;
+        this.f2356b = j10;
     }
 }

@@ -6,20 +6,20 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.u11;
 import org.telegram.ui.s50;
 public final class e1 implements DialogInterface.OnDismissListener {
-    public final int f8950a;
+    public final int f8951a;
 
     public e1(int i10) {
-        this.f8950a = i10;
+        this.f8951a = i10;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f8950a) {
+        switch (this.f8951a) {
             case 0:
                 int i10 = n2.G;
                 return;
             case 1:
-                org.telegram.ui.b.f35522a = false;
+                org.telegram.ui.b.f35545a = false;
                 return;
             case 2:
                 return;
@@ -41,7 +41,7 @@ public final class e1 implements DialogInterface.OnDismissListener {
     }
 
     public e1(boolean[] zArr) {
-        this.f8950a = 2;
+        this.f8951a = 2;
     }
 
     private final void a(DialogInterface dialogInterface) {

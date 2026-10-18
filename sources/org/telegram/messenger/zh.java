@@ -1,27 +1,28 @@
 package org.telegram.messenger;
 
-import android.content.Context;
+import org.telegram.tgnet.TLRPC;
 public final class zh implements Runnable {
-    public final int f20249a;
-    public final SecretChatHelper f20250b;
-    public final Context f20251c;
-    public final org.telegram.ui.ActionBar.b2 d;
+    public final int f20256a;
+    public final SecretChatHelper f20257b;
+    public final TLRPC.EncryptedChat f20258c;
 
-    public zh(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        this.f20249a = i10;
-        this.f20250b = secretChatHelper;
-        this.f20251c = context;
-        this.d = b2Var;
+    public zh(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
+        this.f20256a = i10;
+        this.f20257b = secretChatHelper;
+        this.f20258c = encryptedChat;
     }
 
     @Override
     public final void run() {
-        switch (this.f20249a) {
+        switch (this.f20256a) {
             case 0:
-                this.f20250b.lambda$startSecretChat$27(this.f20251c, this.d);
+                this.f20257b.lambda$processAcceptedSecretChat$18(this.f20258c);
+                return;
+            case 1:
+                this.f20257b.lambda$acceptSecretChat$21(this.f20258c);
                 return;
             default:
-                this.f20250b.lambda$startSecretChat$29(this.f20251c, this.d);
+                this.f20257b.lambda$applyPeerLayer$9(this.f20258c);
                 return;
         }
     }

@@ -7,22 +7,22 @@ import java.util.Collections;
 import java.util.regex.Pattern;
 import v7.u6;
 public final class y implements z3.m {
-    public final e2.x f4687a;
+    public final e2.x f4688a;
 
     public y(int i10) {
         switch (i10) {
             case 1:
-                this.f4687a = new e2.x();
+                this.f4688a = new e2.x();
                 return;
             default:
-                this.f4687a = new e2.x(10);
+                this.f4688a = new e2.x(10);
                 return;
         }
     }
 
     @Override
     public z3.d a(int i10, int i11, byte[] bArr) {
-        return r.c.a(this, bArr, i11);
+        return r4.c.a(this, bArr, i11);
     }
 
     public b2.t0 b(c3.p r12, q3.g r13, int r14) {
@@ -39,7 +39,7 @@ public final class y implements z3.m {
         boolean z10;
         d2.b a2;
         boolean z11;
-        e2.x xVar = this.f4687a;
+        e2.x xVar = this.f4688a;
         xVar.L(i10 + i11, bArr);
         xVar.N(i10);
         ArrayList arrayList = new ArrayList();
@@ -65,9 +65,9 @@ public final class y implements z3.m {
                     int m11 = xVar.m();
                     int m12 = xVar.m();
                     int i13 = m11 - 8;
-                    byte[] bArr2 = xVar.f8293a;
-                    int i14 = xVar.f8294b;
-                    String str = m0.f8254a;
+                    byte[] bArr2 = xVar.f8294a;
+                    int i14 = xVar.f8295b;
+                    String str = m0.f8255a;
                     String str2 = new String(bArr2, i14, i13, StandardCharsets.UTF_8);
                     xVar.O(i13);
                     i12 = (i12 - 8) - i13;
@@ -83,13 +83,13 @@ public final class y implements z3.m {
                     charSequence = "";
                 }
                 if (aVar != null) {
-                    aVar.f7734a = charSequence;
-                    aVar.f7735b = null;
+                    aVar.f7735a = charSequence;
+                    aVar.f7736b = null;
                     a2 = aVar.a();
                 } else {
-                    Pattern pattern = i4.h.f12703a;
+                    Pattern pattern = i4.h.f12701a;
                     i4.g gVar2 = new i4.g();
-                    gVar2.f12697c = charSequence;
+                    gVar2.f12695c = charSequence;
                     a2 = gVar2.a().a();
                 }
                 arrayList.add(a2);

@@ -1,16 +1,12 @@
 package z7;
 public final class ge {
-    public final xa f50829a;
-    public final ta f50830b;
-    public final xe f50831c;
-    public final m d;
-    public final m e;
+    public final hb f50930a;
+    public final Long f50931b;
+    public final we f50932c;
 
-    public ge(com.google.android.gms.internal.cast.z5 z5Var) {
-        this.f50829a = (xa) z5Var.f6883b;
-        this.f50830b = (ta) z5Var.f6884c;
-        this.f50831c = (xe) z5Var.f6882a;
-        this.d = (m) z5Var.d;
-        this.e = (m) z5Var.e;
+    public ge(t0.h hVar) {
+        this.f50930a = (hb) hVar.f46911b;
+        this.f50931b = (Long) hVar.f46912c;
+        this.f50932c = (we) hVar.d;
     }
 }

@@ -98,13 +98,13 @@ public class Utilities {
         long nextLong = random.nextLong();
         ?? random2 = new Random(0L);
         long a2 = v7.r6.a(nextLong);
-        random2.f7826a = a2;
+        random2.f7827a = a2;
         long a10 = v7.r6.a(a2);
-        random2.f7827b = a10;
-        if (random2.f7826a == 0 && a10 == 0) {
+        random2.f7828b = a10;
+        if (random2.f7827a == 0 && a10 == 0) {
             long a11 = v7.r6.a(3735928559L);
-            random2.f7826a = a11;
-            random2.f7827b = v7.r6.a(a11);
+            random2.f7827a = a11;
+            random2.f7828b = v7.r6.a(a11);
         }
         fastRandom = random2;
         stageQueue = new DispatchQueue("stageQueue");
@@ -319,6 +319,8 @@ public class Utilities {
     public static native boolean extractAlpha(Bitmap bitmap, Bitmap bitmap2);
 
     public static native void generateGradient(Bitmap bitmap, int i10, float f7, int[] iArr);
+
+    public static native void generateQrBackdrop(Bitmap bitmap, Bitmap bitmap2, float f7, int i10, float[] fArr, int[] iArr, float[] fArr2);
 
     public static String generateRandomString() {
         return generateRandomString(16);

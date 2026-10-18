@@ -2,22 +2,22 @@ package z9;
 
 import java.util.List;
 public final class m0 extends u1 {
-    public final s1 f51447a;
-    public final List f51448b;
-    public final List f51449c;
+    public final s1 f51472a;
+    public final List f51473b;
+    public final List f51474c;
     public final Boolean d;
     public final t1 e;
-    public final List f51450f;
-    public final int f51451g;
+    public final List f51475f;
+    public final int f51476g;
 
     public m0(s1 s1Var, List list, List list2, Boolean bool, t1 t1Var, List list3, int i10) {
-        this.f51447a = s1Var;
-        this.f51448b = list;
-        this.f51449c = list2;
+        this.f51472a = s1Var;
+        this.f51473b = list;
+        this.f51474c = list2;
         this.d = bool;
         this.e = t1Var;
-        this.f51450f = list3;
-        this.f51451g = i10;
+        this.f51475f = list3;
+        this.f51476g = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -31,12 +31,12 @@ public final class m0 extends u1 {
         }
         if (obj instanceof u1) {
             m0 m0Var = (m0) ((u1) obj);
-            List list4 = m0Var.f51450f;
+            List list4 = m0Var.f51475f;
             t1 t1Var2 = m0Var.e;
             Boolean bool2 = m0Var.d;
-            List list5 = m0Var.f51449c;
-            List list6 = m0Var.f51448b;
-            if (this.f51447a.equals(m0Var.f51447a) && ((list = this.f51448b) != null ? list.equals(list6) : list6 == null) && ((list2 = this.f51449c) != null ? list2.equals(list5) : list5 == null) && ((bool = this.d) != null ? bool.equals(bool2) : bool2 == null) && ((t1Var = this.e) != null ? t1Var.equals(t1Var2) : t1Var2 == null) && ((list3 = this.f51450f) != null ? list3.equals(list4) : list4 == null) && this.f51451g == m0Var.f51451g) {
+            List list5 = m0Var.f51474c;
+            List list6 = m0Var.f51473b;
+            if (this.f51472a.equals(m0Var.f51472a) && ((list = this.f51473b) != null ? list.equals(list6) : list6 == null) && ((list2 = this.f51474c) != null ? list2.equals(list5) : list5 == null) && ((bool = this.d) != null ? bool.equals(bool2) : bool2 == null) && ((t1Var = this.e) != null ? t1Var.equals(t1Var2) : t1Var2 == null) && ((list3 = this.f51475f) != null ? list3.equals(list4) : list4 == null) && this.f51476g == m0Var.f51476g) {
                 return true;
             }
         }
@@ -48,16 +48,16 @@ public final class m0 extends u1 {
         int hashCode2;
         int hashCode3;
         int hashCode4;
-        int hashCode5 = (this.f51447a.hashCode() ^ 1000003) * 1000003;
+        int hashCode5 = (this.f51472a.hashCode() ^ 1000003) * 1000003;
         int i10 = 0;
-        List list = this.f51448b;
+        List list = this.f51473b;
         if (list == null) {
             hashCode = 0;
         } else {
             hashCode = list.hashCode();
         }
         int i11 = (hashCode5 ^ hashCode) * 1000003;
-        List list2 = this.f51449c;
+        List list2 = this.f51474c;
         if (list2 == null) {
             hashCode2 = 0;
         } else {
@@ -78,27 +78,27 @@ public final class m0 extends u1 {
             hashCode4 = t1Var.hashCode();
         }
         int i14 = (i13 ^ hashCode4) * 1000003;
-        List list3 = this.f51450f;
+        List list3 = this.f51475f;
         if (list3 != null) {
             i10 = list3.hashCode();
         }
-        return ((i14 ^ i10) * 1000003) ^ this.f51451g;
+        return ((i14 ^ i10) * 1000003) ^ this.f51476g;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Application{execution=");
-        sb2.append(this.f51447a);
+        sb2.append(this.f51472a);
         sb2.append(", customAttributes=");
-        sb2.append(this.f51448b);
+        sb2.append(this.f51473b);
         sb2.append(", internalKeys=");
-        sb2.append(this.f51449c);
+        sb2.append(this.f51474c);
         sb2.append(", background=");
         sb2.append(this.d);
         sb2.append(", currentProcessDetails=");
         sb2.append(this.e);
         sb2.append(", appProcessDetails=");
-        sb2.append(this.f51450f);
+        sb2.append(this.f51475f);
         sb2.append(", uiOrientation=");
-        return a1.g.n(this.f51451g, "}", sb2);
+        return a1.g.n(this.f51476g, "}", sb2);
     }
 }

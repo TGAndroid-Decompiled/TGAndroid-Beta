@@ -7,15 +7,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 public final class u8 implements ToIntFunction {
-    public final int f2265a;
+    public final int f2266a;
 
     public u8(int i10) {
-        this.f2265a = i10;
+        this.f2266a = i10;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f2265a) {
+        switch (this.f2266a) {
             case 0:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 1:
@@ -39,7 +39,7 @@ public final class u8 implements ToIntFunction {
             case 7:
                 return ((TL_stories.StoryItem) obj).date;
             case 8:
-                return -((TL_stories.StoryItem) i0.a.h(1, ((TL_stories.PeerStories) obj).stories)).date;
+                return -((TL_stories.StoryItem) i2.d.h(1, ((TL_stories.PeerStories) obj).stories)).date;
             case 9:
                 return ((Integer) ((Object[]) obj)[1]).intValue();
             case 10:
@@ -47,16 +47,16 @@ public final class u8 implements ToIntFunction {
             case 11:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 12:
-                return ((TLRPC.Message) obj).f20293id;
+                return ((TLRPC.Message) obj).f20300id;
             case 13:
-                return ((TLRPC.Message) obj).f20293id;
+                return ((TLRPC.Message) obj).f20300id;
             case 14:
                 return ((org.telegram.ui.Components.g6) obj).d;
             case 15:
                 return ((org.telegram.ui.Components.g6) obj).e;
             case 16:
                 cd.c cVar = (cd.c) obj;
-                return cVar.d - cVar.f5104b;
+                return cVar.d - cVar.f5105b;
             case 17:
                 TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) obj;
                 int i10 = messagePeerReaction.date;
@@ -74,7 +74,7 @@ public final class u8 implements ToIntFunction {
             case 19:
                 return ((String) ((Map.Entry) obj).getKey()).hashCode();
             default:
-                return ((zf.d) obj).f51551a;
+                return ((zf.d) obj).f51576a;
         }
     }
 }

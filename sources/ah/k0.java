@@ -57,7 +57,7 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
             case 1:
                 v8 v8Var = (v8) this.f819c;
                 v8Var.getClass();
-                v8Var.f6095y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                v8Var.f6096y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v8Var.invalidate();
                 if (this.f818b) {
                     v8Var.requestLayout();
@@ -69,13 +69,13 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 c6Var.e = floatValue2;
                 if (!this.f818b) {
-                    c6Var.f8828c.setAlpha(1.0f - floatValue2);
+                    c6Var.f8829c.setAlpha(1.0f - floatValue2);
                 }
-                c6Var.f8827b.invalidate();
+                c6Var.f8828b.invalidate();
                 return;
             case 3:
                 u1 u1Var = (u1) this.f819c;
-                u1Var.f23349jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u1Var.f23359jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 u1Var.invalidate();
                 if (this.f818b && u1Var.getParent() != null) {
                     ((View) u1Var.getParent()).invalidate();
@@ -111,8 +111,8 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 e9Var.i0(floatValue4, false);
                 if (this.f818b) {
-                    x8 x8Var = e9Var.f25874a;
-                    x8Var.f25521w = floatValue4;
+                    x8 x8Var = e9Var.f25881a;
+                    x8Var.f25528w = floatValue4;
                     x8Var.invalidate();
                     return;
                 }
@@ -140,15 +140,15 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
             case 9:
                 t2 t2Var = (t2) this.f819c;
                 TextView[] textViewArr = t2Var.h;
-                t2Var.f31798s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                t2Var.f31805s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 t2Var.invalidate();
                 if (this.f818b) {
-                    textViewArr[0].setAlpha(1.0f - t2Var.f31798s);
-                    textViewArr[0].setScaleX(1.0f - t2Var.f31798s);
-                    textViewArr[0].setScaleY(1.0f - t2Var.f31798s);
-                    textViewArr[1].setAlpha(t2Var.f31798s);
-                    textViewArr[1].setScaleX(t2Var.f31798s);
-                    textViewArr[1].setScaleY(t2Var.f31798s);
+                    textViewArr[0].setAlpha(1.0f - t2Var.f31805s);
+                    textViewArr[0].setScaleX(1.0f - t2Var.f31805s);
+                    textViewArr[0].setScaleY(1.0f - t2Var.f31805s);
+                    textViewArr[1].setAlpha(t2Var.f31805s);
+                    textViewArr[1].setScaleX(t2Var.f31805s);
+                    textViewArr[1].setScaleY(t2Var.f31805s);
                     return;
                 }
                 return;
@@ -166,26 +166,26 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 11:
                 z31 z31Var = (z31) this.f819c;
-                z31Var.f43551s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                z31Var.f43542b.invalidate();
-                z31Var.f43544c.invalidate();
+                z31Var.f43577s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z31Var.f43568b.invalidate();
+                z31Var.f43570c.invalidate();
                 if (z31Var.S) {
                     z31Var.N.invalidate();
                 }
                 z31Var.e();
-                TextView textView = z31Var.f43554y;
+                TextView textView = z31Var.f43580y;
                 if (textView != null) {
-                    textView.setAlpha(z31Var.f43551s);
+                    textView.setAlpha(z31Var.f43577s);
                 }
                 if (!z31Var.S && (x31Var = z31Var.N) != null && x31Var.getSeekBarWaveform() != null) {
                     fp0 seekBarWaveform = z31Var.N.getSeekBarWaveform();
                     if (this.f818b) {
-                        bsVar = bs.f25031g;
+                        bsVar = bs.f25038g;
                     } else {
-                        bsVar = bs.f25032i;
+                        bsVar = bs.f25039i;
                     }
-                    seekBarWaveform.L = bsVar.getInterpolation(Utilities.clamp(z31Var.f43551s * 1.25f, 1.0f, 0.0f));
-                    u1 u1Var2 = seekBarWaveform.f26342n;
+                    seekBarWaveform.L = bsVar.getInterpolation(Utilities.clamp(z31Var.f43577s * 1.25f, 1.0f, 0.0f));
+                    u1 u1Var2 = seekBarWaveform.f26349n;
                     if (u1Var2 != null) {
                         u1Var2.invalidate();
                         return;
@@ -198,9 +198,9 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 l0Var.e = floatValue6;
                 if (!this.f818b) {
-                    l0Var.f45480c.setAlpha(1.0f - floatValue6);
+                    l0Var.f45500c.setAlpha(1.0f - floatValue6);
                 }
-                l0Var.f45479b.invalidate();
+                l0Var.f45499b.invalidate();
                 return;
         }
     }

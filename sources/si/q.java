@@ -1,25 +1,25 @@
 package si;
 public final class q implements Runnable {
-    public final int f46771a;
-    public final u f46772b;
+    public final int f46789a;
+    public final u f46790b;
 
     public q(u uVar, int i10) {
-        this.f46771a = i10;
-        this.f46772b = uVar;
+        this.f46789a = i10;
+        this.f46790b = uVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f46771a) {
+        switch (this.f46789a) {
             case 0:
-                u uVar = this.f46772b;
+                u uVar = this.f46790b;
                 if (uVar.W != 0) {
                     uVar.V = true;
                     return;
                 }
                 return;
             default:
-                this.f46772b.c();
+                this.f46790b.c();
                 return;
         }
     }

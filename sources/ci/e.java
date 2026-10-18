@@ -19,17 +19,17 @@ import org.telegram.ui.dd;
 import org.telegram.ui.ff0;
 import org.telegram.ui.t21;
 public final class e implements Utilities.Callback {
-    public final int f5344a;
+    public final int f5345a;
 
     public e(int i10) {
-        this.f5344a = i10;
+        this.f5345a = i10;
     }
 
     @Override
     public final void run(Object obj) {
         MessageObject messageObject;
         MessageObject messageObject2;
-        switch (this.f5344a) {
+        switch (this.f5345a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -44,15 +44,15 @@ public final class e implements Utilities.Callback {
                 return;
             case 3:
                 View view2 = (View) obj;
-                if (view2 instanceof ig.u1) {
-                    ((ig.u1) view2).f13057c.invalidate();
+                if (view2 instanceof ig.w1) {
+                    ((ig.w1) view2).f13076c.invalidate();
                     return;
                 }
                 return;
             case 4:
                 View view3 = (View) obj;
-                if (view3 instanceof ig.u1) {
-                    ((ig.u1) view3).d.a(false, true);
+                if (view3 instanceof ig.w1) {
+                    ((ig.w1) view3).d.a(false, true);
                     return;
                 }
                 return;
@@ -65,11 +65,11 @@ public final class e implements Utilities.Callback {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i10 = org.telegram.ui.ActionBar.l3.f21555r;
+                int i10 = org.telegram.ui.ActionBar.l3.f21562r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i11 = sa.f23059f;
+                int i11 = sa.f23063f;
                 return;
             case 9:
                 dd.Y0((View) obj);
@@ -102,11 +102,11 @@ public final class e implements Utilities.Callback {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.g5) {
                     org.telegram.ui.Cells.g5 g5Var = (org.telegram.ui.Cells.g5) view7;
-                    g5Var.f22291b.invalidate();
-                    g5Var.f22292c.invalidate();
+                    g5Var.f22295b.invalidate();
+                    g5Var.f22296c.invalidate();
                     return;
-                } else if (view7 instanceof ig.u1) {
-                    ((ig.u1) view7).f13057c.invalidate();
+                } else if (view7 instanceof ig.w1) {
+                    ((ig.w1) view7).f13076c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -158,7 +158,7 @@ public final class e implements Utilities.Callback {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                t21.f41567s = false;
+                t21.f41593s = false;
                 for (int i12 = 0; i12 < 4; i12++) {
                     try {
                         MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();
@@ -192,6 +192,6 @@ public final class e implements Utilities.Callback {
     }
 
     public e(dd ddVar) {
-        this.f5344a = 9;
+        this.f5345a = 9;
     }
 }

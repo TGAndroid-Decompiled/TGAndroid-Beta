@@ -16,23 +16,23 @@ import java.util.concurrent.TimeUnit;
 import v0.p;
 import v7.t;
 public final class h implements androidx.emoji2.text.k {
-    public static h f14972b;
-    public final Context f14973a;
+    public static h f14979b;
+    public final Context f14980a;
 
     public h(Context context, int i10) {
         switch (i10) {
             case 1:
-                this.f14973a = context.getApplicationContext();
+                this.f14980a = context.getApplicationContext();
                 return;
             case 2:
-                this.f14973a = context.getApplicationContext();
+                this.f14980a = context.getApplicationContext();
                 return;
             case 3:
                 kotlin.jvm.internal.i.e(context, "context");
-                this.f14973a = context;
+                this.f14980a = context;
                 return;
             default:
-                this.f14973a = context.getApplicationContext();
+                this.f14980a = context.getApplicationContext();
                 return;
         }
     }
@@ -42,10 +42,10 @@ public final class h implements androidx.emoji2.text.k {
             return hVar.d();
         }
         if (obj instanceof v0.n) {
-            for (p pVar : ((v0.n) obj).f47879a) {
+            for (p pVar : ((v0.n) obj).f47904a) {
             }
         }
-        Context ctx = hVar.f14973a;
+        Context ctx = hVar.f14980a;
         kotlin.jvm.internal.i.e(ctx, "ctx");
         if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
             int i10 = Build.VERSION.SDK_INT;
@@ -72,15 +72,15 @@ public final class h implements androidx.emoji2.text.k {
         n6.l.h(context);
         synchronized (h.class) {
             try {
-                if (f14972b == null) {
+                if (f14979b == null) {
                     o.a(context);
-                    f14972b = new h(context, 0);
+                    f14979b = new h(context, 0);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f14972b;
+        return f14979b;
     }
 
     public static final l e(PackageInfo packageInfo, l... lVarArr) {
@@ -113,7 +113,7 @@ public final class h implements androidx.emoji2.text.k {
 
     public v0.j d() {
         String string;
-        Context context = this.f14973a;
+        Context context = this.f14980a;
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
         ArrayList arrayList = new ArrayList();
         ServiceInfo[] serviceInfoArr = packageInfo.services;

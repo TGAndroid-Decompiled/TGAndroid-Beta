@@ -1,6 +1,6 @@
 package ah;
 
-import ai.fa;
+import ai.ga;
 import ai.t5;
 import android.os.Looper;
 import android.text.SpannableString;
@@ -88,14 +88,14 @@ public final class g implements Runnable {
                 pf.d.r(((ai.x) obj).getParentActivity(), LocaleController.getString(i13));
                 return;
             case 2:
-                ConnectionsManager.getInstance(((fa) obj).f1311a).cancelRequest(i13, true);
+                ConnectionsManager.getInstance(((ga) obj).f1354a).cancelRequest(i13, true);
                 return;
             case 3:
-                ((c2.g) obj).f4507b.onAudioFocusChange(i13);
+                ((c2.g) obj).f4508b.onAudioFocusChange(i13);
                 return;
             case 4:
                 i7 i7Var = (i7) obj;
-                ArrayList arrayList3 = i7Var.f5497g;
+                ArrayList arrayList3 = i7Var.f5498g;
                 i7Var.v(arrayList3);
                 t5 t5Var = i7Var.J;
                 Collections.sort(arrayList3, t5Var);
@@ -118,7 +118,7 @@ public final class g implements Runnable {
                 return;
             case 9:
                 vb vbVar = (vb) obj;
-                int i14 = vbVar.f9955c;
+                int i14 = vbVar.f9957c;
                 vbVar.l();
                 vbVar.X1 = false;
                 File file = vbVar.K1.O0;
@@ -127,7 +127,7 @@ public final class g implements Runnable {
                     vbVar.K1.O0 = null;
                 }
                 vbVar.V(vbVar.K1, true);
-                CharSequence[] charSequenceArr = {vbVar.f9957c1.getText()};
+                CharSequence[] charSequenceArr = {vbVar.f9959c1.getText()};
                 if (MessagesController.getInstance(i14).storyEntitiesAllowed()) {
                     arrayList = MediaDataController.getInstance(i14).getEntities(charSequenceArr, true);
                 } else {
@@ -145,8 +145,8 @@ public final class g implements Runnable {
                 } else {
                     z11 = true;
                 }
-                a8Var.f8718k = z11;
-                vbVar.K1.C0 = new SpannableString(vbVar.f9957c1.getText());
+                a8Var.f8719k = z11;
+                vbVar.K1.C0 = new SpannableString(vbVar.f9959c1.getText());
                 vbVar.y();
                 vbVar.x();
                 a8 a8Var2 = vbVar.K1;
@@ -159,14 +159,14 @@ public final class g implements Runnable {
                 vbVar.K1 = (a8) vbVar.H1.get(i13);
                 vbVar.N(0, 1);
                 vbVar.M(0, 1);
-                vbVar.f9960d1.f9367b.W2.N(false);
-                vbVar.f9957c1.setText(vbVar.K1.C0);
+                vbVar.f9962d1.f9368b.W2.N(false);
+                vbVar.f9959c1.setText(vbVar.K1.C0);
                 return;
             case 10:
                 ((hg.h0) obj).m(i13);
                 return;
             case 11:
-                j2.f fVar = ((i2.p0) obj).M;
+                j2.f fVar = ((i2.q0) obj).M;
                 j2.a l4 = fVar.l();
                 fVar.q(l4, 1034, new j2.c(l4, i13, 12, (char) 0));
                 return;
@@ -184,41 +184,41 @@ public final class g implements Runnable {
                 ih.g gVar = (ih.g) obj;
                 gVar.getClass();
                 try {
-                    gVar.f13134a.scrollBy(0, i13);
+                    gVar.f13141a.scrollBy(0, i13);
                     return;
                 } catch (Throwable th2) {
                     FileLog.e(th2);
                     return;
                 }
             case 14:
-                String str = e2.m0.f8254a;
-                e2.c cVar = ((i2.a0) ((k2.u) ((qf.b) obj).f44466c)).f12309a.C;
-                i2.u uVar = new i2.u(i13, 2);
+                String str = e2.m0.f8255a;
+                e2.c cVar = ((i2.b0) ((k2.u) ((qf.b) obj).f44486c)).f12324a.C;
+                i2.v vVar = new i2.v(i13, 2);
                 cVar.getClass();
-                if (Looper.myLooper() == ((e2.i0) cVar.f8206c).f8239a.getLooper()) {
+                if (Looper.myLooper() == ((e2.i0) cVar.f8207c).f8240a.getLooper()) {
                     z12 = true;
                 }
                 u6.p(z12);
-                cVar.f8204a++;
-                cVar.i(new v7(16, cVar, uVar));
+                cVar.f8205a++;
+                cVar.i(new v7(16, cVar, vVar));
                 Integer num = (Integer) cVar.e;
                 cVar.n(Integer.valueOf(i13));
                 return;
             case 15:
                 ki.d0 d0Var = (ki.d0) obj;
-                ki.g0 g0Var = d0Var.f15188f;
-                if (d0Var.f15187c && g0Var.E != null && g0Var.f15105a != null) {
+                ki.g0 g0Var = d0Var.f15195f;
+                if (d0Var.f15194c && g0Var.E != null && g0Var.f15112a != null) {
                     d0Var.d = true;
-                    d0Var.f15185a.setPressed(false);
+                    d0Var.f15192a.setPressed(false);
                     try {
                         d0Var.performHapticFeedback(0);
                     } catch (Exception unused2) {
                     }
                     ki.e0 e0Var = g0Var.E;
-                    ki.a aVar = g0Var.f15105a;
-                    w3 w3Var = ((o3) e0Var).f15417a;
+                    ki.a aVar = g0Var.f15112a;
+                    w3 w3Var = ((o3) e0Var).f15424a;
                     w3Var.p3(false);
-                    w3Var.f15586f3.m(new t3(w3Var, aVar, i13), d0Var);
+                    w3Var.f15593f3.m(new t3(w3Var, aVar, i13), d0Var);
                     return;
                 }
                 return;
@@ -229,86 +229,86 @@ public final class g implements Runnable {
                 ConnectionsManager.lambda$onUpdateConfig$21(i13, (TLRPC.TL_config) obj);
                 return;
             case 18:
-                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f20272id, 0, true);
+                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f20279id, 0, true);
                 return;
             case 19:
-                ((v4) ((org.telegram.ui.g) obj).f37062b).V(i13, true);
+                ((v4) ((org.telegram.ui.g) obj).f37032b).V(i13, true);
                 return;
             case 20:
                 u1 u1Var = (u1) obj;
-                int i15 = u1Var.f23515v7;
+                int i15 = u1Var.f23525v7;
                 if (i13 == i15) {
-                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) u1Var.f23416o7.get(i15);
+                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) u1Var.f23426o7.get(i15);
                     if (e0Var2 != null) {
-                        org.telegram.ui.Cells.z zVar = e0Var2.f22170s;
+                        org.telegram.ui.Cells.z zVar = e0Var2.f22174s;
                         if (zVar != null) {
                             zVar.setState(StateSet.NOTHING);
                         }
                         e0Var2.b(false);
-                        if (!u1Var.f23561y7.scheduled) {
-                            if (e0Var2.f22161j != null) {
+                        if (!u1Var.f23571y7.scheduled) {
+                            if (e0Var2.f22165j != null) {
                                 u1Var.k();
-                            } else if (e0Var2.f22160i != null) {
+                            } else if (e0Var2.f22164i != null) {
                                 u1Var.k();
                                 org.telegram.ui.Cells.l1 l1Var = u1Var.Jc;
                                 if (l1Var != null) {
-                                    l1Var.A1(u1Var, e0Var2.f22160i);
+                                    l1Var.A1(u1Var, e0Var2.f22164i);
                                 }
                             }
                         }
                     }
-                    u1Var.f23515v7 = -1;
+                    u1Var.f23525v7 = -1;
                     u1Var.a3();
                     return;
                 }
                 return;
             case 21:
-                ((fe) obj).f36879f.c(i13);
+                ((fe) obj).f36902f.c(i13);
                 return;
             case 22:
-                sn snVar = ((si) obj).f41118g;
-                if (snVar.f41430wb == i13) {
+                sn snVar = ((si) obj).f41139g;
+                if (snVar.f41451wb == i13) {
                     snVar.Qa();
                     return;
                 }
                 return;
             case 23:
-                sn snVar2 = ((ti) obj).f41758g;
-                if (snVar2.f41430wb == i13) {
+                sn snVar2 = ((ti) obj).f41784g;
+                if (snVar2.f41451wb == i13) {
                     snVar2.Qa();
                     return;
                 }
                 return;
             case 24:
-                ((bj) obj).f35699a.j(this.f738b, 0, true, 0, true, 0);
+                ((bj) obj).f35722a.j(this.f738b, 0, true, 0, true, 0);
                 return;
             case 25:
-                sn snVar3 = ((si) obj).f41118g;
-                if (snVar3.f41430wb == i13) {
+                sn snVar3 = ((si) obj).f41139g;
+                if (snVar3.f41451wb == i13) {
                     snVar3.Qa();
                     return;
                 }
                 return;
             case 26:
-                sn snVar4 = ((ti) obj).f41758g;
-                if (snVar4.f41430wb == i13) {
+                sn snVar4 = ((ti) obj).f41784g;
+                if (snVar4.f41451wb == i13) {
                     snVar4.Qa();
                     return;
                 }
                 return;
             case 27:
-                sn snVar5 = ((ti) obj).f41758g;
-                if (snVar5.f41430wb == i13) {
+                sn snVar5 = ((ti) obj).f41784g;
+                if (snVar5.f41451wb == i13) {
                     snVar5.Qa();
                     return;
                 }
                 return;
             case 28:
                 sn snVar6 = ((lm) obj).J0;
-                snVar6.f41458z0.h1(i13, snVar6.f41450y4);
+                snVar6.f41479z0.h1(i13, snVar6.f41471y4);
                 return;
             default:
-                i11 = ((org.telegram.ui.ActionBar.n2) ((en) obj).f36569a).currentAccount;
+                i11 = ((org.telegram.ui.ActionBar.n2) ((en) obj).f36573a).currentAccount;
                 ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
                 return;
         }

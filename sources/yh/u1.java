@@ -3,16 +3,16 @@ package yh;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.is0;
 public final class u1 implements ne.d, Utilities.Callback2Return {
-    public final is0 f50553a;
+    public final is0 f50578a;
 
     public u1(is0 is0Var) {
-        this.f50553a = is0Var;
+        this.f50578a = is0Var;
     }
 
     @Override
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj2;
-        is0 is0Var = this.f50553a;
+        is0 is0Var = this.f50578a;
         is0Var.i();
         if (((Integer) obj).intValue() == -1) {
             is0Var.h(null, new q1(is0Var, 0));
@@ -23,7 +23,7 @@ public final class u1 implements ne.d, Utilities.Callback2Return {
 
     @Override
     public void u(int i10, float f7, float f10, ne.e eVar) {
-        this.f50553a.l();
+        this.f50578a.l();
     }
 
     @Override

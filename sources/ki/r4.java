@@ -11,12 +11,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.i80;
 public final class r4 implements View.OnClickListener {
-    public final int f15483a;
-    public final u4 f15484b;
+    public final int f15490a;
+    public final u4 f15491b;
 
     public r4(u4 u4Var, int i10) {
-        this.f15483a = i10;
-        this.f15484b = u4Var;
+        this.f15490a = i10;
+        this.f15491b = u4Var;
     }
 
     @Override
@@ -26,17 +26,17 @@ public final class r4 implements View.OnClickListener {
         a aVar;
         a aVar2;
         TL_iv.pageBlockSlideshow pageblockslideshow;
-        switch (this.f15483a) {
+        switch (this.f15490a) {
             case 0:
-                final u4 u4Var = this.f15484b;
+                final u4 u4Var = this.f15491b;
                 ArrayList arrayList = u4Var.E;
                 int indexOf = arrayList.indexOf(view);
-                if (u4Var.N != null && u4Var.f15105a != null) {
+                if (u4Var.N != null && u4Var.f15112a != null) {
                     List m10 = u4Var.m();
                     if (indexOf >= 0 && indexOf < m10.size() && indexOf < arrayList.size()) {
                         final t tVar = (t) m10.get(indexOf);
-                        i80 C = u4Var.N.f15439a.f15586f3.C((View) arrayList.get(indexOf));
-                        boolean z10 = tVar.f15512n;
+                        i80 C = u4Var.N.f15446a.f15593f3.C((View) arrayList.get(indexOf));
+                        boolean z10 = tVar.f15519n;
                         if (z10) {
                             i10 = R.drawable.msg_spoiler_off;
                         } else {
@@ -56,8 +56,8 @@ public final class r4 implements View.OnClickListener {
                                     case 0:
                                         u4 u4Var2 = u4Var;
                                         p3 p3Var = u4Var2.N;
-                                        if (p3Var != null && (aVar3 = u4Var2.f15105a) != null) {
-                                            w3 w3Var = p3Var.f15439a;
+                                        if (p3Var != null && (aVar3 = u4Var2.f15112a) != null) {
+                                            w3 w3Var = p3Var.f15446a;
                                             w3Var.getClass();
                                             t tVar2 = tVar;
                                             if (tVar2 != null) {
@@ -65,19 +65,19 @@ public final class r4 implements View.OnClickListener {
                                                 if (h2Var != null) {
                                                     h2Var.d();
                                                 }
-                                                tVar2.f15512n = !tVar2.f15512n;
+                                                tVar2.f15519n = !tVar2.f15519n;
                                                 TL_iv.PageBlock O3 = w3.O3(aVar3, tVar2);
                                                 if (O3 instanceof TL_iv.pageBlockPhoto) {
-                                                    ((TL_iv.pageBlockPhoto) O3).spoiler = tVar2.f15512n;
+                                                    ((TL_iv.pageBlockPhoto) O3).spoiler = tVar2.f15519n;
                                                 } else if (O3 instanceof TL_iv.pageBlockVideo) {
-                                                    ((TL_iv.pageBlockVideo) O3).spoiler = tVar2.f15512n;
+                                                    ((TL_iv.pageBlockVideo) O3).spoiler = tVar2.f15519n;
                                                 }
                                                 w3Var.o4(aVar3);
                                                 h2 h2Var2 = w3Var.H3;
                                                 if (h2Var2 != null) {
                                                     h2Var2.h();
                                                 }
-                                                w3Var.f15586f3.onContentChanged();
+                                                w3Var.f15593f3.onContentChanged();
                                                 return;
                                             }
                                             return;
@@ -86,8 +86,8 @@ public final class r4 implements View.OnClickListener {
                                     default:
                                         u4 u4Var3 = u4Var;
                                         p3 p3Var2 = u4Var3.N;
-                                        if (p3Var2 != null && (aVar4 = u4Var3.f15105a) != null) {
-                                            w3.O1(aVar4, tVar, p3Var2.f15439a);
+                                        if (p3Var2 != null && (aVar4 = u4Var3.f15112a) != null) {
+                                            w3.O1(aVar4, tVar, p3Var2.f15446a);
                                             return;
                                         }
                                         return;
@@ -103,8 +103,8 @@ public final class r4 implements View.OnClickListener {
                                     case 0:
                                         u4 u4Var2 = u4Var;
                                         p3 p3Var = u4Var2.N;
-                                        if (p3Var != null && (aVar3 = u4Var2.f15105a) != null) {
-                                            w3 w3Var = p3Var.f15439a;
+                                        if (p3Var != null && (aVar3 = u4Var2.f15112a) != null) {
+                                            w3 w3Var = p3Var.f15446a;
                                             w3Var.getClass();
                                             t tVar2 = tVar;
                                             if (tVar2 != null) {
@@ -112,19 +112,19 @@ public final class r4 implements View.OnClickListener {
                                                 if (h2Var != null) {
                                                     h2Var.d();
                                                 }
-                                                tVar2.f15512n = !tVar2.f15512n;
+                                                tVar2.f15519n = !tVar2.f15519n;
                                                 TL_iv.PageBlock O3 = w3.O3(aVar3, tVar2);
                                                 if (O3 instanceof TL_iv.pageBlockPhoto) {
-                                                    ((TL_iv.pageBlockPhoto) O3).spoiler = tVar2.f15512n;
+                                                    ((TL_iv.pageBlockPhoto) O3).spoiler = tVar2.f15519n;
                                                 } else if (O3 instanceof TL_iv.pageBlockVideo) {
-                                                    ((TL_iv.pageBlockVideo) O3).spoiler = tVar2.f15512n;
+                                                    ((TL_iv.pageBlockVideo) O3).spoiler = tVar2.f15519n;
                                                 }
                                                 w3Var.o4(aVar3);
                                                 h2 h2Var2 = w3Var.H3;
                                                 if (h2Var2 != null) {
                                                     h2Var2.h();
                                                 }
-                                                w3Var.f15586f3.onContentChanged();
+                                                w3Var.f15593f3.onContentChanged();
                                                 return;
                                             }
                                             return;
@@ -133,8 +133,8 @@ public final class r4 implements View.OnClickListener {
                                     default:
                                         u4 u4Var3 = u4Var;
                                         p3 p3Var2 = u4Var3.N;
-                                        if (p3Var2 != null && (aVar4 = u4Var3.f15105a) != null) {
-                                            w3.O1(aVar4, tVar, p3Var2.f15439a);
+                                        if (p3Var2 != null && (aVar4 = u4Var3.f15112a) != null) {
+                                            w3.O1(aVar4, tVar, p3Var2.f15446a);
                                             return;
                                         }
                                         return;
@@ -143,9 +143,9 @@ public final class r4 implements View.OnClickListener {
                         }, true);
                         C.a0(0.0f, -AndroidUtilities.dp(38.0f));
                         if (u4Var.H) {
-                            C.f27136u = false;
+                            C.f27143u = false;
                             C.v = true;
-                            C.f27134s = 0;
+                            C.f27141s = 0;
                         }
                         C.Z();
                         return;
@@ -154,28 +154,28 @@ public final class r4 implements View.OnClickListener {
                 }
                 return;
             case 1:
-                u4 u4Var2 = this.f15484b;
+                u4 u4Var2 = this.f15491b;
                 p3 p3Var = u4Var2.N;
-                if (p3Var != null && (aVar = u4Var2.f15105a) != null) {
-                    w3 w3Var = p3Var.f15439a;
+                if (p3Var != null && (aVar = u4Var2.f15112a) != null) {
+                    w3 w3Var = p3Var.f15446a;
                     w3Var.Z3 = aVar;
-                    w3Var.f15586f3.l(0);
+                    w3Var.f15593f3.l(0);
                     return;
                 }
                 return;
             default:
-                u4 u4Var3 = this.f15484b;
+                u4 u4Var3 = this.f15491b;
                 p3 p3Var2 = u4Var3.N;
-                if (p3Var2 != null && (aVar2 = u4Var3.f15105a) != null) {
-                    w3 w3Var2 = p3Var2.f15439a;
+                if (p3Var2 != null && (aVar2 = u4Var3.f15112a) != null) {
+                    w3 w3Var2 = p3Var2.f15446a;
                     w3Var2.getClass();
-                    if (w3.C3(aVar2.f15089b)) {
+                    if (w3.C3(aVar2.f15096b)) {
                         h2 h2Var = w3Var2.H3;
                         if (h2Var != null) {
                             h2Var.d();
                         }
-                        ArrayList<TL_iv.PageBlock> h32 = w3.h3(aVar2.f15089b);
-                        TL_iv.PageBlock pageBlock = aVar2.f15089b;
+                        ArrayList<TL_iv.PageBlock> h32 = w3.h3(aVar2.f15096b);
+                        TL_iv.PageBlock pageBlock = aVar2.f15096b;
                         TL_iv.PageCaption pageCaption = pageBlock.caption;
                         if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
                             TL_iv.pageBlockCollage pageblockcollage = new TL_iv.pageBlockCollage();
@@ -194,7 +194,7 @@ public final class r4 implements View.OnClickListener {
                             pageblockslideshow2.caption = pageCaption;
                             pageblockslideshow = pageblockslideshow2;
                         }
-                        aVar2.f15089b = pageblockslideshow;
+                        aVar2.f15096b = pageblockslideshow;
                         h2 h2Var2 = w3Var2.H3;
                         if (h2Var2 != null) {
                             h2Var2.h();
@@ -202,21 +202,21 @@ public final class r4 implements View.OnClickListener {
                         View A1 = w3Var2.A1(aVar2);
                         if (A1 instanceof u4) {
                             u4 u4Var4 = (u4) A1;
-                            ValueAnimator valueAnimator = u4Var4.f15547i0;
+                            ValueAnimator valueAnimator = u4Var4.f15554i0;
                             if (valueAnimator != null) {
                                 valueAnimator.cancel();
-                                u4Var4.f15547i0 = null;
+                                u4Var4.f15554i0 = null;
                             }
                             if (u4Var4.getParent() != null) {
                                 u4Var4.getParent().requestDisallowInterceptTouchEvent(false);
                             }
-                            VelocityTracker velocityTracker = u4Var4.f15546h0;
+                            VelocityTracker velocityTracker = u4Var4.f15553h0;
                             if (velocityTracker != null) {
                                 velocityTracker.recycle();
-                                u4Var4.f15546h0 = null;
+                                u4Var4.f15553h0 = null;
                             }
                             u4Var4.W = 0;
-                            u4Var4.f15539a0 = 0.0f;
+                            u4Var4.f15546a0 = 0.0f;
                             u4Var4.o(true);
                             u4Var4.requestLayout();
                             u4Var4.invalidate();

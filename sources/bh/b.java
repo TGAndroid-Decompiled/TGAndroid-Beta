@@ -7,18 +7,18 @@ import android.view.ViewGroup;
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
 public final class b {
-    public final gh.a f4358a;
-    public int f4359b;
-    public int f4360c;
+    public final gh.a f4359a;
+    public int f4360b;
+    public int f4361c;
     public re.b d;
     public re.b e;
-    public ih.j f4361f;
-    public ViewGroup f4362g;
+    public ih.j f4362f;
+    public ViewGroup f4363g;
     public ni.e h;
-    public boolean f4363i;
+    public boolean f4364i;
 
     public b(gh.a aVar) {
-        this.f4358a = aVar;
+        this.f4359a = aVar;
     }
 
     public final dh.d a(View view) {
@@ -30,16 +30,16 @@ public final class b {
     }
 
     public final dh.d c(View view, eh.a aVar, boolean z10) {
-        dh.d f7 = this.f4358a.f();
-        if (this.f4363i && Build.VERSION.SDK_INT >= 33 && (f7 instanceof dh.e)) {
+        dh.d f7 = this.f4359a.f();
+        if (this.f4364i && Build.VERSION.SDK_INT >= 33 && (f7 instanceof dh.e)) {
             dh.e eVar = (dh.e) f7;
             eVar.P = new g(eVar.K);
         }
         f7.o(aVar);
-        int i10 = this.f4359b;
-        int i11 = this.f4360c;
+        int i10 = this.f4360b;
+        int i11 = this.f4361c;
         f7.h = i10;
-        f7.f8015i = i11;
+        f7.f8016i = i11;
         re.b bVar = this.e;
         if (bVar != null && view != null) {
             bVar.add(view);
@@ -48,8 +48,8 @@ public final class b {
         if (eVar2 != null && view != null) {
             eVar2.d.add(new ni.d(view, f7));
         }
-        if (this.f4361f != null && this.f4362g != null && view != null) {
-            this.f4361f.d(view, this.f4362g, new h0(2, f7, new WeakReference(view)), z10);
+        if (this.f4362f != null && this.f4363g != null && view != null) {
+            this.f4362f.d(view, this.f4363g, new h0(3, f7, new WeakReference(view)), z10);
         }
         re.b bVar2 = this.d;
         if (bVar2 != null) {
@@ -73,7 +73,7 @@ public final class b {
     }
 
     public final void f(ih.j jVar, ViewGroup viewGroup) {
-        this.f4361f = jVar;
-        this.f4362g = viewGroup;
+        this.f4362f = jVar;
+        this.f4363g = viewGroup;
     }
 }

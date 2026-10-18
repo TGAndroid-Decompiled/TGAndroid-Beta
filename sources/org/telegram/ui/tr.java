@@ -9,16 +9,16 @@ import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class tr implements org.telegram.ui.Components.aw0, org.telegram.ui.Components.bw0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.kd0, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.md0 {
-    public final int f41814a;
+    public final int f41829a;
 
     public tr(int i10) {
-        this.f41814a = i10;
+        this.f41829a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         vr vrVar = (vr) obj;
-        switch (this.f41814a) {
+        switch (this.f41829a) {
             case 1:
                 vrVar.d = f7;
                 if (vrVar.getParent() != null) {
@@ -39,9 +39,9 @@ public final class tr implements org.telegram.ui.Components.aw0, org.telegram.ui
     @Override
     public String e(int i10) {
         int i11;
-        switch (this.f41814a) {
+        switch (this.f41829a) {
             case 6:
-                return i0.a.j(i10, "");
+                return i2.d.j(i10, "");
             case 7:
                 switch (i10) {
                     case 0:
@@ -166,7 +166,7 @@ public final class tr implements org.telegram.ui.Components.aw0, org.telegram.ui
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f41814a) {
+        switch (this.f41829a) {
             case 9:
                 b2Var.dismiss();
                 return;
@@ -182,7 +182,7 @@ public final class tr implements org.telegram.ui.Components.aw0, org.telegram.ui
     @Override
     public float get(Object obj) {
         vr vrVar = (vr) obj;
-        switch (this.f41814a) {
+        switch (this.f41829a) {
             case 0:
                 return vrVar.d;
             default:
@@ -192,12 +192,12 @@ public final class tr implements org.telegram.ui.Components.aw0, org.telegram.ui
 
     @Override
     public void q(org.telegram.ui.Components.od0 od0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.f5.f26080a;
+        Pattern pattern = org.telegram.ui.Components.f5.f26087a;
     }
 
     @Override
     public void run(Exception exc) {
-        switch (this.f41814a) {
+        switch (this.f41829a) {
             case 4:
                 FileLog.e(exc);
                 return;

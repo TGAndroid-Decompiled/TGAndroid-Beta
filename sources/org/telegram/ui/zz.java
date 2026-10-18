@@ -25,88 +25,88 @@ public final class zz extends i00 {
     public final void c() {
         org.telegram.ui.Components.i80 F = org.telegram.ui.Components.i80.F(this.E.d.container, null, this);
         F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
-            public final zz f43505b;
+            public final zz f43531b;
 
             {
-                this.f43505b = this;
+                this.f43531b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        zz zzVar = this.f43505b;
-                        String str = zzVar.f37712x;
+                        zz zzVar = this.f43531b;
+                        String str = zzVar.f37726x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.xc(zzVar.E.d.Z, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f43505b.d();
+                        this.f43531b.d();
                         return;
                     default:
-                        this.f43505b.a();
+                        this.f43531b.a();
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
-            public final zz f43505b;
+            public final zz f43531b;
 
             {
-                this.f43505b = this;
+                this.f43531b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        zz zzVar = this.f43505b;
-                        String str = zzVar.f37712x;
+                        zz zzVar = this.f43531b;
+                        String str = zzVar.f37726x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.xc(zzVar.E.d.Z, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f43505b.d();
+                        this.f43531b.d();
                         return;
                     default:
-                        this.f43505b.a();
+                        this.f43531b.a();
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
-            public final zz f43505b;
+            public final zz f43531b;
 
             {
-                this.f43505b = this;
+                this.f43531b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        zz zzVar = this.f43505b;
-                        String str = zzVar.f37712x;
+                        zz zzVar = this.f43531b;
+                        String str = zzVar.f37726x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.xc(zzVar.E.d.Z, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f43505b.d();
+                        this.f43531b.d();
                         return;
                     default:
-                        this.f43505b.a();
+                        this.f43531b.a();
                         return;
                 }
             }
         }, true);
         if (LocaleController.isRTL) {
-            F.f27116i = 3;
+            F.f27123i = 3;
         }
         F.Z();
     }

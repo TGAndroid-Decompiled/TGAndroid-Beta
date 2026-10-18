@@ -1,6 +1,6 @@
 package gd;
 
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 import df.p;
 import df.s;
 import java.util.regex.Matcher;
@@ -12,11 +12,11 @@ public final class j extends h {
     public final p b() {
         int i10;
         this.d++;
-        p pVar = (p) this.f10996b.d;
+        p pVar = (p) this.f10998b.d;
         if (pVar instanceof s) {
             s sVar = (s) pVar;
-            if (sVar.f7990g.endsWith(" ")) {
-                String str = sVar.f7990g;
+            if (sVar.f7991g.endsWith(" ")) {
+                String str = sVar.f7991g;
                 Matcher matcher = e.matcher(str);
                 if (matcher.find()) {
                     i10 = matcher.end() - matcher.start();
@@ -24,7 +24,7 @@ public final class j extends h {
                     i10 = 0;
                 }
                 if (i10 > 0) {
-                    sVar.f7990g = a6.j(i10, 0, str);
+                    sVar.f7991g = k3.j(i10, 0, str);
                 }
                 if (i10 >= 2) {
                     return new df.g(1);

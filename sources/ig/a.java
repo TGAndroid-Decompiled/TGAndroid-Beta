@@ -12,22 +12,22 @@ import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.f61;
 import org.telegram.ui.sn;
 public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a2 {
-    public final int f12812a;
-    public final c f12813b;
+    public final int f12810a;
+    public final c f12811b;
 
     public a(c cVar, int i10) {
-        this.f12812a = i10;
-        this.f12813b = cVar;
+        this.f12810a = i10;
+        this.f12811b = cVar;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f12812a) {
+        switch (this.f12810a) {
             case 1:
-                this.f12813b.X();
+                this.f12811b.X();
                 return;
             default:
-                this.f12813b.finishFragment();
+                this.f12811b.finishFragment();
                 return;
         }
     }
@@ -39,42 +39,42 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        final c cVar = this.f12813b;
+        final c cVar = this.f12811b;
         if (!cVar.d.h(f61Var)) {
             int i10 = f61Var.d;
-            if (i10 != 2 && f61Var.f44314a != 17) {
+            if (i10 != 2 && f61Var.f44334a != 17) {
                 if (i10 == 1) {
-                    cVar.f12854s = !cVar.f12854s;
-                    cVar.f12850c.W2.N(true);
+                    cVar.f12842s = !cVar.f12842s;
+                    cVar.f12838c.W2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 6) {
                     a0 a0Var = cVar.d;
                     cVar.v = true;
                     a0Var.h = true;
-                    cVar.f12850c.W2.N(true);
+                    cVar.f12838c.W2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 7) {
                     a0 a0Var2 = cVar.d;
                     cVar.v = false;
                     a0Var2.h = false;
-                    cVar.f12850c.W2.N(true);
+                    cVar.f12838c.W2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 3) {
-                    cVar.f12856x = 0;
-                    cVar.f12850c.W2.N(true);
+                    cVar.f12844x = 0;
+                    cVar.f12838c.W2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 4) {
-                    cVar.f12856x = 1;
-                    cVar.f12850c.W2.N(true);
+                    cVar.f12844x = 1;
+                    cVar.f12838c.W2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 5) {
-                    cVar.f12856x = 2;
-                    cVar.f12850c.W2.N(true);
+                    cVar.f12844x = 2;
+                    cVar.f12838c.W2.N(true);
                     cVar.V(true);
                     return;
                 } else if (i10 == 8) {
@@ -124,8 +124,8 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.a
                     });
                     return;
                 } else if (i10 == 10) {
-                    boolean z10 = !cVar.f12855w;
-                    cVar.f12855w = z10;
+                    boolean z10 = !cVar.f12843w;
+                    cVar.f12843w = z10;
                     ((v8) view).setChecked(z10);
                     cVar.V(true);
                     return;

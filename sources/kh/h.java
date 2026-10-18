@@ -14,32 +14,32 @@ import org.telegram.ui.Components.gr;
 import w7.b6;
 import w7.z5;
 public final class h extends FrameLayout implements ne.d {
-    public static final int[] f15080s;
-    public final String[] f15081a;
-    public final d6 f15082b;
-    public final eh.a f15083c;
+    public static final int[] f15087s;
+    public final String[] f15088a;
+    public final d6 f15089b;
+    public final eh.a f15090c;
     public final bh.b d;
     public final androidx.biometric.e[] e;
-    public final l[] f15084f;
+    public final l[] f15091f;
     public a h;
-    public b f15085n;
-    public int f15086r;
+    public b f15092n;
+    public int f15093r;
 
     static {
         int i10 = R.drawable.msg_input_attach2;
         int i11 = R.drawable.pagedown;
-        f15080s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
+        f15087s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
     }
 
     public h(Context context, d6 d6Var, eh.b bVar, bh.b bVar2) {
         super(context);
-        this.f15081a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
+        this.f15088a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
         this.e = new androidx.biometric.e[7];
-        this.f15084f = new l[7];
-        this.f15086r = 83;
+        this.f15091f = new l[7];
+        this.f15093r = 83;
         this.d = bVar2;
-        this.f15083c = bVar;
-        this.f15082b = d6Var;
+        this.f15090c = bVar;
+        this.f15089b = d6Var;
     }
 
     public final void a() {
@@ -51,8 +51,8 @@ public final class h extends FrameLayout implements ne.d {
             if (i11 < eVarArr.length) {
                 androidx.biometric.e eVar = eVarArr[i11];
                 if (eVar != null) {
-                    jh.b bVar = (jh.b) eVar.f2818b;
-                    float f10 = ((ne.b) eVar.f2819c).e;
+                    jh.b bVar = (jh.b) eVar.f2819b;
+                    float f10 = ((ne.b) eVar.f2820c).e;
                     float f11 = ((ne.b) eVar.d).e;
                     if (f10 > 0.0f) {
                         i10 = 0;
@@ -76,7 +76,7 @@ public final class h extends FrameLayout implements ne.d {
     }
 
     public final l b(int i10) {
-        l[] lVarArr = this.f15084f;
+        l[] lVarArr = this.f15091f;
         if (lVarArr[i10] == 0) {
             ?? obj = new Object();
             obj.f592a = 0;
@@ -92,7 +92,7 @@ public final class h extends FrameLayout implements ne.d {
         b(i10).f592a = i11;
         androidx.biometric.e eVar = this.e[i10];
         if (eVar != null) {
-            ((jh.b) eVar.f2818b).a(i11, z10);
+            ((jh.b) eVar.f2819b).a(i11, z10);
             ne.b bVar = (ne.b) eVar.d;
             if (i11 > 0) {
                 z11 = true;
@@ -107,7 +107,7 @@ public final class h extends FrameLayout implements ne.d {
         b(1).f593b = z10;
         androidx.biometric.e eVar = this.e[1];
         if (eVar != null) {
-            ((jh.b) eVar.f2818b).c(z10, true);
+            ((jh.b) eVar.f2819b).c(z10, true);
         }
     }
 
@@ -129,7 +129,7 @@ public final class h extends FrameLayout implements ne.d {
             if (i10 == 0) {
                 interpolator = bs.h;
             } else {
-                interpolator = me.a.f16847a;
+                interpolator = me.a.f16854a;
             }
             if (i10 == 0) {
                 j10 = 300;
@@ -141,7 +141,7 @@ public final class h extends FrameLayout implements ne.d {
             if (i10 == 0) {
                 interpolator2 = bs.h;
             } else {
-                interpolator2 = me.a.f16847a;
+                interpolator2 = me.a.f16854a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i10 == 0) {
@@ -159,11 +159,11 @@ public final class h extends FrameLayout implements ne.d {
             }
             int i16 = i12;
             Context context = getContext();
-            int i17 = f15080s[i10];
-            d6 d6Var = this.f15082b;
+            int i17 = f15087s[i10];
+            d6 d6Var = this.f15089b;
             jh.b bVar3 = new jh.b(context, d6Var);
-            jh.a d = jh.a.d(context, this.d, this.f15083c, d6Var, i17, i16);
-            bVar3.f14510b = d;
+            jh.a d = jh.a.d(context, this.d, this.f15090c, d6Var, i17, i16);
+            bVar3.f14517b = d;
             bVar3.addView(d, z5.e(i11, i11, 80));
             d.setIconPadding(AndroidUtilities.dp(2.0f));
             b6.b(bVar3, 0.13f, 2.0f);
@@ -171,25 +171,25 @@ public final class h extends FrameLayout implements ne.d {
             bVar3.setPivotX(AndroidUtilities.dp(f7));
             bVar3.setPivotY(AndroidUtilities.dp(f7 + 8.0f));
             bVar3.setVisibility(8);
-            bVar3.setContentDescription(this.f15081a[i10]);
+            bVar3.setContentDescription(this.f15088a[i10]);
             bVar3.setOnClickListener(new n1(this, i10, 5));
             bVar3.setOnLongClickListener(new g(this, i10, 0));
             if (i10 == 6) {
-                jh.a aVar = bVar3.f14510b;
+                jh.a aVar = bVar3.f14517b;
                 aVar.h = -1.0f;
                 aVar.a();
             }
             boolean z12 = true;
             if (i10 == 1) {
                 bVar3.d = true;
-                gr grVar = bVar3.f14511c;
+                gr grVar = bVar3.f14518c;
                 if (grVar != null) {
                     grVar.setReverse(true);
                 }
             }
-            addView(bVar3, z5.e(i11, i11 + 8, this.f15086r));
+            addView(bVar3, z5.e(i11, i11 + 8, this.f15093r));
             eVarArr[i10] = new androidx.biometric.e(bVar3, bVar, bVar2, 27);
-            l lVar = this.f15084f[i10];
+            l lVar = this.f15091f[i10];
             if (lVar != null) {
                 bVar3.a(lVar.f592a, false);
                 bVar.a(false, false);
@@ -202,7 +202,7 @@ public final class h extends FrameLayout implements ne.d {
             }
             a();
         }
-        ((ne.b) eVarArr[i10].f2819c).a(z10, z11);
+        ((ne.b) eVarArr[i10].f2820c).a(z10, z11);
     }
 
     @Override
@@ -211,7 +211,7 @@ public final class h extends FrameLayout implements ne.d {
     }
 
     public void setGravity(int i10) {
-        this.f15086r = i10;
+        this.f15093r = i10;
     }
 
     public void setOnClickListener(a aVar) {
@@ -219,7 +219,7 @@ public final class h extends FrameLayout implements ne.d {
     }
 
     public void setOnLongClickListener(b bVar) {
-        this.f15085n = bVar;
+        this.f15092n = bVar;
     }
 
     @Override

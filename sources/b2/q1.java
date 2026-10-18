@@ -3,14 +3,14 @@ package b2;
 import java.util.Collections;
 import java.util.List;
 public final class q1 {
-    public static final String f3929c;
+    public static final String f3930c;
     public static final String d;
-    public final p1 f3930a;
-    public final e9.n0 f3931b;
+    public final p1 f3931a;
+    public final e9.n0 f3932b;
 
     static {
-        String str = e2.m0.f8254a;
-        f3929c = Integer.toString(0, 36);
+        String str = e2.m0.f8255a;
+        f3930c = Integer.toString(0, 36);
         d = Integer.toString(1, 36);
     }
 
@@ -24,7 +24,7 @@ public final class q1 {
         }
         if (obj != null && q1.class == obj.getClass()) {
             q1 q1Var = (q1) obj;
-            if (this.f3930a.equals(q1Var.f3930a) && this.f3931b.equals(q1Var.f3931b)) {
+            if (this.f3931a.equals(q1Var.f3931a) && this.f3932b.equals(q1Var.f3932b)) {
                 return true;
             }
         }
@@ -32,14 +32,14 @@ public final class q1 {
     }
 
     public final int hashCode() {
-        return (this.f3931b.hashCode() * 31) + this.f3930a.hashCode();
+        return (this.f3932b.hashCode() * 31) + this.f3931a.hashCode();
     }
 
     public q1(p1 p1Var, List list) {
-        if (!list.isEmpty() && (((Integer) Collections.min(list)).intValue() < 0 || ((Integer) Collections.max(list)).intValue() >= p1Var.f3903a)) {
+        if (!list.isEmpty() && (((Integer) Collections.min(list)).intValue() < 0 || ((Integer) Collections.max(list)).intValue() >= p1Var.f3904a)) {
             throw new IndexOutOfBoundsException();
         }
-        this.f3930a = p1Var;
-        this.f3931b = e9.n0.u(list);
+        this.f3931a = p1Var;
+        this.f3932b = e9.n0.u(list);
     }
 }

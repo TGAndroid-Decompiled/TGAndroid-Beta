@@ -11,14 +11,14 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import java.lang.ref.WeakReference;
 public abstract class l {
-    public boolean f17101c;
+    public boolean f17108c;
     public o0 e;
-    public final Object f17099a = new Object();
-    public final k f17100b = new k(this);
+    public final Object f17106a = new Object();
+    public final k f17107b = new k(this);
     public WeakReference d = new WeakReference(null);
 
     public final void C(n nVar, Handler handler) {
-        synchronized (this.f17099a) {
+        synchronized (this.f17106a) {
             try {
                 this.d = new WeakReference(nVar);
                 o0 o0Var = this.e;
@@ -36,17 +36,17 @@ public abstract class l {
         long j10;
         boolean z10;
         boolean z11;
-        if (this.f17101c) {
+        if (this.f17108c) {
             boolean z12 = false;
-            this.f17101c = false;
+            this.f17108c = false;
             handler.removeMessages(1);
-            y yVar = nVar.f17108g;
+            y yVar = nVar.f17115g;
             if (yVar == null) {
                 j10 = 0;
             } else {
                 j10 = yVar.e;
             }
-            if (yVar != null && yVar.f17133a == 3) {
+            if (yVar != null && yVar.f17140a == 3) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -73,7 +73,7 @@ public abstract class l {
         KeyEvent keyEvent;
         long j10;
         if (Build.VERSION.SDK_INT < 27) {
-            synchronized (this.f17099a) {
+            synchronized (this.f17106a) {
                 nVar = (n) this.d.get();
                 o0Var = this.e;
             }
@@ -84,10 +84,10 @@ public abstract class l {
                     a(nVar, o0Var);
                     return false;
                 } else if (keyEvent.getRepeatCount() == 0) {
-                    if (this.f17101c) {
+                    if (this.f17108c) {
                         o0Var.removeMessages(1);
-                        this.f17101c = false;
-                        y yVar = nVar.f17108g;
+                        this.f17108c = false;
+                        y yVar = nVar.f17115g;
                         if (yVar == null) {
                             j10 = 0;
                         } else {
@@ -98,7 +98,7 @@ public abstract class l {
                         }
                         return true;
                     }
-                    this.f17101c = true;
+                    this.f17108c = true;
                     o0Var.sendMessageDelayed(o0Var.obtainMessage(1, c10), ViewConfiguration.getDoubleTapTimeout());
                     return true;
                 } else {

@@ -11,37 +11,37 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pd0 implements Runnable {
-    public final int f40076a = 1;
-    public final ud0 f40077b;
-    public final TLRPC.TL_error f40078c;
+    public final int f40095a = 1;
+    public final ud0 f40096b;
+    public final TLRPC.TL_error f40097c;
     public final String d;
     public final String e;
-    public final TLObject f40079f;
+    public final TLObject f40098f;
 
     public pd0(ud0 ud0Var, TLRPC.TL_error tL_error, String str, String str2, TLObject tLObject) {
-        this.f40077b = ud0Var;
-        this.f40078c = tL_error;
+        this.f40096b = ud0Var;
+        this.f40097c = tL_error;
         this.d = str;
         this.e = str2;
-        this.f40079f = tLObject;
+        this.f40098f = tLObject;
     }
 
     @Override
     public final void run() {
         String formatPluralString;
         int i10;
-        int i11 = this.f40076a;
-        TLObject tLObject = this.f40079f;
+        int i11 = this.f40095a;
+        TLObject tLObject = this.f40098f;
         String str = this.e;
         String str2 = this.d;
-        TLRPC.TL_error tL_error = this.f40078c;
-        ud0 ud0Var = this.f40077b;
+        TLRPC.TL_error tL_error = this.f40097c;
+        ud0 ud0Var = this.f40096b;
         switch (i11) {
             case 0:
                 ud0Var.getClass();
                 if (tL_error == null) {
                     TL_account.Password password = (TL_account.Password) tLObject;
-                    ud0Var.f41962s = password;
+                    ud0Var.f41977s = password;
                     TwoStepVerificationActivity.m0(password);
                     ud0Var.o(str2, str);
                     return;
@@ -58,9 +58,9 @@ public final class pd0 implements Runnable {
                 fg0Var.k1(false, true);
                 if (tLObject instanceof TLRPC.auth_Authorization) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fg0Var.getParentActivity());
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new ov(20, ud0Var, tLObject));
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new zu(21, ud0Var, tLObject));
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                     if (isEmpty) {
                         b2Var.T = LocaleController.getString(R.string.YourPasswordReset);
                     } else {
@@ -75,7 +75,7 @@ public final class pd0 implements Runnable {
                     }
                     return;
                 } else if (tL_error != null) {
-                    ud0Var.f41963w = false;
+                    ud0Var.f41978w = false;
                     if (tL_error.text.startsWith("FLOOD_WAIT")) {
                         int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
                         if (intValue < 60) {
@@ -95,9 +95,9 @@ public final class pd0 implements Runnable {
     }
 
     public pd0(ud0 ud0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str, String str2) {
-        this.f40077b = ud0Var;
-        this.f40078c = tL_error;
-        this.f40079f = tLObject;
+        this.f40096b = ud0Var;
+        this.f40097c = tL_error;
+        this.f40098f = tLObject;
         this.d = str;
         this.e = str2;
     }

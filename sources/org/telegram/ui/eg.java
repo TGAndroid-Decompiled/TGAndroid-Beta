@@ -10,28 +10,28 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class eg implements Utilities.Callback2 {
-    public final int f36518a;
-    public final int f36519b;
-    public final Object f36520c;
+    public final int f36522a;
+    public final int f36523b;
+    public final Object f36524c;
     public final Object d;
 
     public eg(Object obj, int i10, TLObject tLObject, int i11) {
-        this.f36518a = i11;
-        this.f36520c = obj;
-        this.f36519b = i10;
+        this.f36522a = i11;
+        this.f36524c = obj;
+        this.f36523b = i10;
         this.d = tLObject;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         TLRPC.Updates updates;
-        int i10 = this.f36518a;
-        int i11 = this.f36519b;
+        int i10 = this.f36522a;
+        int i11 = this.f36523b;
         Object obj3 = this.d;
-        Object obj4 = this.f36520c;
+        Object obj4 = this.f36524c;
         switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ai.tb((sn) obj4, this.f36519b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 17));
+                AndroidUtilities.runOnUIThread(new ai.ub((sn) obj4, this.f36523b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 17));
                 return;
             case 1:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
@@ -49,57 +49,57 @@ public final class eg implements Utilities.Callback2 {
                     }
                     updates = null;
                 }
-                AndroidUtilities.runOnUIThread(new ai.tb(launchActivity, b80Var, tL_error, updates, this.f36519b, 26));
+                AndroidUtilities.runOnUIThread(new ai.ub(launchActivity, b80Var, tL_error, updates, this.f36523b, 26));
                 return;
             case 2:
                 PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
                 TL_account.Passkey passkey = (TL_account.Passkey) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = passkeysActivity.f33224b;
+                ArrayList arrayList = passkeysActivity.f33231b;
                 if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse) {
                     org.telegram.ui.Components.xc.a0(passkeysActivity).e0("FALSE", false);
                     arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
-                    passkeysActivity.f33223a.W2.N(true);
+                    passkeysActivity.f33230a.W2.N(true);
                     return;
                 } else if (tL_error2 != null) {
                     org.telegram.ui.Components.xc.a0(passkeysActivity).f0(tL_error2, false);
                     arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
-                    passkeysActivity.f33223a.W2.N(true);
+                    passkeysActivity.f33230a.W2.N(true);
                     return;
                 } else {
                     return;
                 }
             default:
-                org.telegram.ui.Wallet.w7 w7Var = (org.telegram.ui.Wallet.w7) obj4;
+                org.telegram.ui.Wallet.z7 z7Var = (org.telegram.ui.Wallet.z7) obj4;
                 TL_wallet.card cardVar = (TL_wallet.card) obj3;
                 TL_wallet.card cardVar2 = (TL_wallet.card) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                w7Var.f35044a1 = 0;
+                z7Var.f35180a1 = 0;
                 if (cardVar2 != null) {
-                    org.telegram.ui.Wallet.w7.g0(i11, cardVar2);
-                    if (!w7Var.V0) {
-                        if (w7Var.Y0) {
-                            w7Var.W0 = cardVar2;
-                            w7Var.X0 = org.telegram.ui.Wallet.w7.V(cardVar2);
-                            w7Var.S();
+                    org.telegram.ui.Wallet.z7.g0(i11, cardVar2);
+                    if (!z7Var.V0) {
+                        if (z7Var.Y0) {
+                            z7Var.W0 = cardVar2;
+                            z7Var.X0 = org.telegram.ui.Wallet.z7.V(cardVar2);
+                            z7Var.S();
                             return;
                         }
-                        w7Var.d(cardVar2);
+                        z7Var.d(cardVar2);
                         return;
                     }
                     return;
                 }
                 if (cardVar != null) {
-                    org.telegram.ui.Wallet.w7.g0(i11, cardVar);
+                    org.telegram.ui.Wallet.z7.g0(i11, cardVar);
                 }
-                if (!w7Var.V0) {
+                if (!z7Var.V0) {
                     if (tL_error3 != null) {
-                        org.telegram.ui.Components.xc.a0(w7Var.f35042a).f0(tL_error3, false);
+                        org.telegram.ui.Components.xc.a0(z7Var.f35178a).f0(tL_error3, false);
                     }
-                    w7Var.Y0 = false;
-                    TL_wallet.card cardVar3 = w7Var.W0;
+                    z7Var.Y0 = false;
+                    TL_wallet.card cardVar3 = z7Var.W0;
                     if (cardVar3 != null) {
-                        w7Var.d(cardVar3);
+                        z7Var.d(cardVar3);
                         return;
                     }
                     return;
@@ -109,9 +109,9 @@ public final class eg implements Utilities.Callback2 {
     }
 
     public eg(LaunchActivity launchActivity, b80 b80Var, int i10) {
-        this.f36518a = 1;
-        this.f36520c = launchActivity;
+        this.f36522a = 1;
+        this.f36524c = launchActivity;
         this.d = b80Var;
-        this.f36519b = i10;
+        this.f36523b = i10;
     }
 }

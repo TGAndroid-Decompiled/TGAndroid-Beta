@@ -1,62 +1,45 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.xc;
-public final class q3 implements Utilities.Callback {
-    public final int f34775a;
-    public final ei.d f34776b;
-    public final org.telegram.ui.ActionBar.f3 f34777c;
-    public final org.telegram.ui.ActionBar.d6 d;
+import org.telegram.ui.Components.f61;
+public final class q3 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5, Utilities.Callback5Return {
+    public final m5 f34789a;
 
-    public q3(ei.d dVar, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        this.f34775a = i10;
-        this.f34776b = dVar;
-        this.f34777c = f3Var;
-        this.d = d6Var;
+    public q3(m5 m5Var) {
+        this.f34789a = m5Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        String str = (String) obj;
-        switch (this.f34775a) {
-            case 0:
-                this.f34776b.setLoading(false);
-                boolean isEmpty = TextUtils.isEmpty(str);
-                org.telegram.ui.ActionBar.f3 f3Var = this.f34777c;
-                if (!isEmpty) {
-                    new xc(f3Var.topBulletinContainer, this.d).e0(str, false);
-                    return;
-                } else {
-                    f3Var.dismiss();
-                    return;
-                }
-            case 1:
-                this.f34776b.setLoading(false);
-                org.telegram.ui.ActionBar.f3 f3Var2 = this.f34777c;
-                if (str != null) {
-                    new xc(f3Var2.topBulletinContainer, this.d).e0(str, false);
-                    return;
-                } else {
-                    f3Var2.dismiss();
-                    return;
-                }
-            default:
-                org.telegram.ui.ActionBar.f3 f3Var3 = this.f34777c;
-                if (str != null) {
-                    new xc(f3Var3.topBulletinContainer, this.d).e0(str, false);
-                    return;
-                }
-                this.f34776b.setLoading(false);
-                f3Var3.dismiss();
-                return;
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        m5 m5Var = this.f34789a;
+        m5Var.getClass();
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+            m5Var.getParentActivity().startActivity(intent);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
-    public q3(org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.d6 d6Var, ei.d dVar) {
-        this.f34775a = 2;
-        this.f34777c = f3Var;
-        this.d = d6Var;
-        this.f34776b = dVar;
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(this.f34789a.X((f61) obj, (View) obj2));
+    }
+
+    @Override
+    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        this.f34789a.W((f61) obj, (View) obj2);
     }
 }

@@ -23,7 +23,7 @@ public final class xa0 extends xh.k {
                     }
                     return;
                 } else if (z11) {
-                    bVar.f27435w.J.setText("");
+                    bVar.f27442w.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

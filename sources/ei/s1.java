@@ -1,77 +1,134 @@
 package ei;
 
-import android.app.Activity;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
+import android.graphics.Bitmap;
+import android.widget.TextView;
+import java.io.File;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.bz;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.ke;
-import org.telegram.ui.sn;
-import org.telegram.ui.st;
-import org.telegram.ui.vo;
-public final class s1 implements RequestDelegate {
-    public final int f9764a;
-    public final boolean f9765b;
-    public final Object f9766c;
+import org.telegram.ui.Components.iu;
+import org.telegram.ui.go0;
+import org.telegram.ui.xf1;
+public final class s1 implements Runnable {
+    public final int f9765a;
+    public final boolean f9766b;
+    public final Object f9767c;
     public final Object d;
     public final Object e;
+    public final Object f9768f;
 
-    public s1(t1 t1Var, boolean z10, TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults, String str) {
-        this.f9764a = 0;
-        this.f9766c = t1Var;
-        this.f9765b = z10;
-        this.d = tL_messages_getInlineBotResults;
-        this.e = str;
+    public s1(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, int i10) {
+        this.f9765a = i10;
+        this.f9767c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f9768f = obj4;
+        this.f9766b = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f9764a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new ai.e2((Object) ((t1) this.f9766c), tLObject, this.f9765b, (Object) ((TLRPC.TL_messages_getInlineBotResults) this.d), (Object) ((String) this.e), 1));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new i2.d1((ke) this.f9766c, tL_error, (TwoStepVerificationActivity) this.d, (Activity) this.e, this.f9765b, tLObject, 6));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new ai.e2((sn) this.f9766c, (pf.c) this.d, tLObject, (ai.t3) this.e, this.f9765b, 15));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new i2.d1((vo) this.f9766c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.e, this.f9765b, tL_error, 9));
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new ai.e2((bz) this.f9766c, (String) this.e, this.f9765b, (String) this.d, tLObject));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new i2.d1((st) this.f9766c, tLObject, (d) this.d, this.f9765b, (HashSet) this.e, tL_error, 11));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ei.s1.run():void");
     }
 
-    public s1(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f9764a = i10;
-        this.f9766c = obj;
+    public s1(Object obj, Object obj2, Object obj3, boolean z10, Object obj4, int i10) {
+        this.f9765a = i10;
+        this.f9767c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f9765b = z10;
+        this.f9766b = z10;
+        this.f9768f = obj4;
     }
 
-    public s1(bz bzVar, String str, boolean z10, String str2) {
-        this.f9764a = 4;
-        this.f9766c = bzVar;
-        this.e = str;
-        this.f9765b = z10;
+    public s1(Object obj, Object obj2, TLObject tLObject, Object obj3, boolean z10, int i10) {
+        this.f9765a = i10;
+        this.f9767c = obj;
+        this.e = obj2;
+        this.d = tLObject;
+        this.f9768f = obj3;
+        this.f9766b = z10;
+    }
+
+    public s1(Object obj, Object obj2, boolean z10, Object obj3, Object obj4, int i10) {
+        this.f9765a = i10;
+        this.f9767c = obj;
+        this.d = obj2;
+        this.f9766b = z10;
+        this.e = obj3;
+        this.f9768f = obj4;
+    }
+
+    public s1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLObject tLObject, boolean z10, TLObject tLObject2, Object obj, int i10) {
+        this.f9765a = i10;
+        this.f9767c = notificationCenterDelegate;
+        this.e = tLObject;
+        this.f9766b = z10;
+        this.d = tLObject2;
+        this.f9768f = obj;
+    }
+
+    public s1(TLRPC.payments_GiveawayInfo payments_giveawayinfo, boolean z10, String str, long j10, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f9765a = 24;
+        this.f9767c = payments_giveawayinfo;
+        this.f9766b = z10;
+        this.f9768f = str;
+        this.d = tL_messageMediaGiveaway;
+        this.e = n2Var;
+    }
+
+    public s1(org.telegram.ui.Components.oa oaVar, String str, Bitmap bitmap, boolean z10, Bitmap bitmap2) {
+        this.f9765a = 15;
+        this.f9767c = oaVar;
+        this.f9768f = str;
+        this.d = bitmap;
+        this.f9766b = z10;
+        this.e = bitmap2;
+    }
+
+    public s1(iu iuVar, boolean z10, ai.t tVar, String str, TextView textView) {
+        this.f9765a = 16;
+        this.f9767c = iuVar;
+        this.f9766b = z10;
+        this.d = tVar;
+        this.f9768f = str;
+        this.e = textView;
+    }
+
+    public s1(bz bzVar, String str, boolean z10, String str2, TLObject tLObject) {
+        this.f9765a = 17;
+        this.f9767c = bzVar;
+        this.f9768f = str;
+        this.f9766b = z10;
+        this.e = str2;
+        this.d = tLObject;
+    }
+
+    public s1(go0 go0Var, boolean z10, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
+        this.f9765a = 20;
+        this.f9767c = go0Var;
+        this.f9766b = z10;
+        this.f9768f = str;
         this.d = str2;
+        this.e = updatepasswordsettings;
     }
 
-    public s1(st stVar, d dVar, boolean z10, HashSet hashSet) {
-        this.f9764a = 5;
-        this.f9766c = stVar;
-        this.d = dVar;
-        this.f9765b = z10;
-        this.e = hashSet;
+    public s1(xf1 xf1Var, TLObject tLObject, boolean z10, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.f9765a = 22;
+        this.f9767c = xf1Var;
+        this.d = tLObject;
+        this.f9766b = z10;
+        this.f9768f = str;
+        this.e = passwordinputsettings;
+    }
+
+    public s1(si.s0 s0Var, boolean z10, si.x xVar, si.o0 o0Var, File file) {
+        this.f9765a = 23;
+        this.f9767c = s0Var;
+        this.f9766b = z10;
+        this.d = xVar;
+        this.e = o0Var;
+        this.f9768f = file;
     }
 }

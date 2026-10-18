@@ -1,9 +1,9 @@
 package v7;
 public final class i1 implements ja.d {
-    public static final i1 f48067a = new Object();
+    public static final i1 f48092a = new Object();
 
     static {
-        r.c.s(r.c.k(h.class, new e(1)));
+        r4.c.s(r4.c.k(h.class, new e(1)));
     }
 
     @Override

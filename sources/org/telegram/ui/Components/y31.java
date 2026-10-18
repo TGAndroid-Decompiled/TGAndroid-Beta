@@ -46,74 +46,74 @@ public abstract class y31 {
     public float K;
     public Path L;
     public float[] M;
-    public int f32523a;
-    public int f32524b;
-    public int f32525c;
+    public int f32530a;
+    public int f32531b;
+    public int f32532c;
     public int d;
     public float e;
-    public Paint f32526f;
-    public Paint f32527g;
+    public Paint f32533f;
+    public Paint f32534g;
     public Path h;
-    public boolean f32528i;
-    public final f6 f32529j;
-    public boolean f32530k;
-    public final f6 f32531l;
-    public int f32532m;
-    public final uj0 f32533n;
-    public int f32534o;
-    public final uj0 f32535p;
-    public org.telegram.ui.Cells.z f32536q;
-    public final org.telegram.ui.Cells.u1 f32537r;
-    public final fp0 f32538s;
-    public final Rect f32540u;
+    public boolean f32535i;
+    public final f6 f32536j;
+    public boolean f32537k;
+    public final f6 f32538l;
+    public int f32539m;
+    public final uj0 f32540n;
+    public int f32541o;
+    public final uj0 f32542p;
+    public org.telegram.ui.Cells.z f32543q;
+    public final org.telegram.ui.Cells.u1 f32544r;
+    public final fp0 f32545s;
+    public final Rect f32547u;
     public final Rect v;
-    public final boolean f32542x;
-    public boolean f32543y;
-    public boolean f32544z;
-    public boolean f32541w = false;
+    public final boolean f32549x;
+    public boolean f32550y;
+    public boolean f32551z;
+    public boolean f32548w = false;
     public boolean A = false;
     public final u1.a B = new u1.a();
-    public long f32539t = SystemClock.elapsedRealtime();
+    public long f32546t = SystemClock.elapsedRealtime();
 
     public y31(org.telegram.ui.Cells.u1 u1Var, fp0 fp0Var) {
         boolean z10 = false;
-        this.f32537r = u1Var;
-        this.f32538s = fp0Var;
+        this.f32544r = u1Var;
+        this.f32545s = fp0Var;
         Rect rect = new Rect(0, 0, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
-        this.f32540u = rect;
+        this.f32547u = rect;
         Rect rect2 = new Rect(rect);
         this.v = rect2;
         rect2.inset(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         uj0 uj0Var = new uj0(R.raw.transcribe_out, AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
-        this.f32535p = uj0Var;
+        this.f32542p = uj0Var;
         uj0Var.M(0);
         uj0Var.setCallback(u1Var);
         uj0Var.S(19, new Runnable(this) {
-            public final y31 f31163b;
+            public final y31 f31170b;
 
             {
-                this.f31163b = this;
+                this.f31170b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        y31 y31Var = this.f31163b;
-                        y31Var.f32535p.stop();
-                        uj0 uj0Var2 = y31Var.f32533n;
+                        y31 y31Var = this.f31170b;
+                        y31Var.f32542p.stop();
+                        uj0 uj0Var2 = y31Var.f32540n;
                         uj0Var2.stop();
-                        y31Var.f32544z = true;
-                        y31Var.f32543y = true;
+                        y31Var.f32551z = true;
+                        y31Var.f32550y = true;
                         uj0Var2.M(0);
                         return;
                     default:
-                        y31 y31Var2 = this.f31163b;
-                        y31Var2.f32533n.stop();
-                        uj0 uj0Var3 = y31Var2.f32535p;
+                        y31 y31Var2 = this.f31170b;
+                        y31Var2.f32540n.stop();
+                        uj0 uj0Var3 = y31Var2.f32542p;
                         uj0Var3.stop();
-                        y31Var2.f32544z = false;
-                        y31Var2.f32543y = false;
+                        y31Var2.f32551z = false;
+                        y31Var2.f32550y = false;
                         uj0Var3.M(0);
                         return;
                 }
@@ -121,51 +121,51 @@ public abstract class y31 {
         });
         uj0Var.J(true);
         uj0 uj0Var2 = new uj0(R.raw.transcribe_in, AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
-        this.f32533n = uj0Var2;
+        this.f32540n = uj0Var2;
         uj0Var2.M(0);
         uj0Var2.setCallback(u1Var);
         uj0Var2.R(u1Var);
         uj0Var2.S(19, new Runnable(this) {
-            public final y31 f31163b;
+            public final y31 f31170b;
 
             {
-                this.f31163b = this;
+                this.f31170b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        y31 y31Var = this.f31163b;
-                        y31Var.f32535p.stop();
-                        uj0 uj0Var22 = y31Var.f32533n;
+                        y31 y31Var = this.f31170b;
+                        y31Var.f32542p.stop();
+                        uj0 uj0Var22 = y31Var.f32540n;
                         uj0Var22.stop();
-                        y31Var.f32544z = true;
-                        y31Var.f32543y = true;
+                        y31Var.f32551z = true;
+                        y31Var.f32550y = true;
                         uj0Var22.M(0);
                         return;
                     default:
-                        y31 y31Var2 = this.f31163b;
-                        y31Var2.f32533n.stop();
-                        uj0 uj0Var3 = y31Var2.f32535p;
+                        y31 y31Var2 = this.f31170b;
+                        y31Var2.f32540n.stop();
+                        uj0 uj0Var3 = y31Var2.f32542p;
                         uj0Var3.stop();
-                        y31Var2.f32544z = false;
-                        y31Var2.f32543y = false;
+                        y31Var2.f32551z = false;
+                        y31Var2.f32550y = false;
                         uj0Var3.M(0);
                         return;
                 }
             }
         });
         uj0Var2.J(true);
-        this.f32543y = false;
-        this.f32544z = false;
+        this.f32550y = false;
+        this.f32551z = false;
         if (u1Var.getMessageObject() != null && UserConfig.getInstance(u1Var.getMessageObject().currentAccount).isPremium()) {
             z10 = true;
         }
-        this.f32542x = z10;
+        this.f32549x = z10;
         bs bsVar = bs.h;
-        this.f32531l = new f6(u1Var, 250L, bsVar);
-        this.f32529j = new f6(u1Var, 250L, bsVar);
+        this.f32538l = new f6(u1Var, 250L, bsVar);
+        this.f32536j = new f6(u1Var, 250L, bsVar);
     }
 
     public static void a(Path path, int i10, int i11, int i12, int i13, float f7, float f10) {
@@ -363,7 +363,7 @@ public abstract class y31 {
             TLRPC.InputPeer inputPeer = MessagesController.getInstance(i10).getInputPeer(messageObject.messageOwner.peer_id);
             final long peerDialogId = DialogObject.getPeerDialogId(inputPeer);
             TLRPC.Message message = messageObject.messageOwner;
-            final int i11 = message.f20293id;
+            final int i11 = message.f20300id;
             int i12 = 0;
             if (z10) {
                 if (message.voiceTranscription != null && message.voiceTranscriptionFinal) {
@@ -500,7 +500,7 @@ public abstract class y31 {
         float f12;
         int i10;
         Paint M2;
-        Rect rect = this.f32540u;
+        Rect rect = this.f32547u;
         this.v.set(rect.left - AndroidUtilities.dp(8.0f), rect.top - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f) + rect.right, AndroidUtilities.dp(8.0f) + rect.bottom);
         Path path = this.C;
         if (path == null) {
@@ -518,7 +518,7 @@ public abstract class y31 {
         float f14 = this.e * f7;
         if (f14 > 0.0f) {
             org.telegram.ui.Cells.u1 u1Var = ((org.telegram.ui.Cells.j1) this).R;
-            if (u1Var.f23561y7.shouldDrawWithoutBackground()) {
+            if (u1Var.f23571y7.shouldDrawWithoutBackground()) {
                 M2 = u1Var.M2("paintChatActionBackground");
             } else {
                 M2 = u1Var.M2("paintChatTimeBackground");
@@ -528,35 +528,35 @@ public abstract class y31 {
             u1Var.p0();
             canvas.drawRect(rect, M2);
             if (M2 == u1Var.M2("paintChatActionBackground") && u1Var.R2()) {
-                int alpha2 = org.telegram.ui.ActionBar.h6.f21054h2.getAlpha();
-                org.telegram.ui.ActionBar.h6.f21054h2.setAlpha((int) (alpha2 * f14));
-                canvas.drawRect(rect, org.telegram.ui.ActionBar.h6.f21054h2);
-                org.telegram.ui.ActionBar.h6.f21054h2.setAlpha(alpha2);
+                int alpha2 = org.telegram.ui.ActionBar.h6.f21061h2.getAlpha();
+                org.telegram.ui.ActionBar.h6.f21061h2.setAlpha((int) (alpha2 * f14));
+                canvas.drawRect(rect, org.telegram.ui.ActionBar.h6.f21061h2);
+                org.telegram.ui.ActionBar.h6.f21061h2.setAlpha(alpha2);
             }
             M2.setAlpha(alpha);
         }
-        Paint paint = this.f32526f;
+        Paint paint = this.f32533f;
         if (paint != null) {
             int alpha3 = paint.getAlpha();
-            this.f32526f.setAlpha((int) (alpha3 * f7));
-            canvas.drawRect(rect, this.f32526f);
-            this.f32526f.setAlpha(alpha3);
+            this.f32533f.setAlpha((int) (alpha3 * f7));
+            canvas.drawRect(rect, this.f32533f);
+            this.f32533f.setAlpha(alpha3);
         }
-        org.telegram.ui.Cells.z zVar = this.f32536q;
+        org.telegram.ui.Cells.z zVar = this.f32543q;
         if (zVar != null) {
             zVar.setBounds(rect);
-            this.f32536q.draw(canvas);
+            this.f32543q.draw(canvas);
         }
         canvas.restore();
-        if (this.f32530k) {
+        if (this.f32537k) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
         char c11 = 0;
-        float d = this.f32531l.d(f10, false);
+        float d = this.f32538l.d(f10, false);
         if (d > 0.0f) {
-            long elapsedRealtime = ((float) (SystemClock.elapsedRealtime() - this.f32539t)) * 0.75f;
+            long elapsedRealtime = ((float) (SystemClock.elapsedRealtime() - this.f32546t)) * 0.75f;
             if (this.M == null) {
                 this.M = new float[2];
             }
@@ -588,7 +588,7 @@ public abstract class y31 {
             float max = Math.max(40.0f * d, fArr4[1] - fArr4[c10]);
             float f16 = fArr4[c10];
             float f17 = (1.0f - d) * max;
-            if (this.f32530k) {
+            if (this.f32537k) {
                 f12 = 0.0f;
             } else {
                 f12 = 1.0f;
@@ -638,12 +638,12 @@ public abstract class y31 {
             d(path7, i23, i26, i23, i27, f22, f23, f26 + 180.0f, 360.0f - f26);
             b(this.h, rect.left, rect.top, this.E, 4, f22, f23, 360.0f - this.G, 360.0f - this.F);
             d(this.h, rect.left + this.D, rect.top, rect.centerX(), rect.top, f22, f23, 360.0f - this.F, 360.0f);
-            this.f32527g.setStrokeWidth(AndroidUtilities.dp(1.5f));
-            int alpha4 = this.f32527g.getAlpha();
-            this.f32527g.setAlpha((int) (alpha4 * f7));
-            canvas.drawPath(this.h, this.f32527g);
-            this.f32527g.setAlpha(alpha4);
-            this.f32537r.invalidate();
+            this.f32534g.setStrokeWidth(AndroidUtilities.dp(1.5f));
+            int alpha4 = this.f32534g.getAlpha();
+            this.f32534g.setAlpha((int) (alpha4 * f7));
+            canvas.drawPath(this.h, this.f32534g);
+            this.f32534g.setAlpha(alpha4);
+            this.f32544r.invalidate();
         } else {
             c10 = 0;
             f11 = 1.0f;
@@ -651,21 +651,21 @@ public abstract class y31 {
         canvas.save();
         canvas.translate(AndroidUtilities.dp(-13.0f) + rect.centerX(), AndroidUtilities.dp(-13.0f) + rect.centerY());
         canvas.saveLayerAlpha(0.0f, 0.0f, AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), 255, 31);
-        if (this.f32543y) {
-            uj0 uj0Var = this.f32533n;
-            uj0Var.setAlpha((int) (this.f32532m * f7));
+        if (this.f32550y) {
+            uj0 uj0Var = this.f32540n;
+            uj0Var.setAlpha((int) (this.f32539m * f7));
             uj0Var.draw(canvas);
         } else {
-            uj0 uj0Var2 = this.f32535p;
-            uj0Var2.setAlpha((int) (this.f32534o * f7));
+            uj0 uj0Var2 = this.f32542p;
+            uj0Var2.setAlpha((int) (this.f32541o * f7));
             uj0Var2.draw(canvas);
         }
-        if (this.f32528i && !this.f32543y && !this.f32530k) {
+        if (this.f32535i && !this.f32550y && !this.f32537k) {
             z10 = true;
         } else {
             z10 = c10;
         }
-        float e = this.f32529j.e(z10);
+        float e = this.f32536j.e(z10);
         if (e > 0.0f) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
@@ -681,7 +681,7 @@ public abstract class y31 {
             if (this.I == null) {
                 this.I = new Paint(1);
             }
-            this.I.setColor(this.f32525c);
+            this.I.setColor(this.f32532c);
             int i28 = (int) (e * 255.0f);
             this.I.setAlpha(i28);
             rectF2.set(0.0f, AndroidUtilities.dp(3.33f), AndroidUtilities.dp(6.666f), AndroidUtilities.dp(8.33f));
@@ -702,7 +702,7 @@ public abstract class y31 {
                 paint3.setStyle(Paint.Style.STROKE);
             }
             this.J.setStrokeWidth(AndroidUtilities.dp(f11));
-            this.J.setColor(this.f32525c);
+            this.J.setColor(this.f32532c);
             this.J.setAlpha(i28);
             canvas.drawPath(this.L, this.J);
             canvas.restore();
@@ -712,19 +712,19 @@ public abstract class y31 {
     }
 
     public final int i() {
-        return this.f32540u.height();
+        return this.f32547u.height();
     }
 
     public final void m() {
         boolean z10;
-        org.telegram.ui.Cells.u1 u1Var = this.f32537r;
+        org.telegram.ui.Cells.u1 u1Var = this.f32544r;
         if (u1Var != null) {
-            this.f32541w = false;
-            boolean z11 = this.f32544z;
+            this.f32548w = false;
+            boolean z11 = this.f32551z;
             boolean z12 = !z11;
-            boolean z13 = this.f32542x;
+            boolean z13 = this.f32549x;
             if (!z11) {
-                z10 = !this.f32530k;
+                z10 = !this.f32537k;
                 if ((z13 || e(u1Var.getMessageObject())) && u1Var.getMessageObject().isSent()) {
                     r(true, true);
                 }
@@ -733,7 +733,7 @@ public abstract class y31 {
                 r(false, true);
                 z10 = true;
             }
-            org.telegram.ui.Cells.z zVar = this.f32536q;
+            org.telegram.ui.Cells.z zVar = this.f32543q;
             if (zVar != null) {
                 zVar.setState(StateSet.NOTHING);
                 u1Var.invalidate();
@@ -757,7 +757,7 @@ public abstract class y31 {
                     return;
                 }
                 if (!z11) {
-                    this.f32541w = true;
+                    this.f32548w = true;
                 }
                 w(u1Var.getMessageObject(), z12, u1Var.getDelegate());
             }
@@ -765,7 +765,7 @@ public abstract class y31 {
     }
 
     public final void p(int i10, int i11, int i12, int i13, int i14) {
-        Rect rect = this.f32540u;
+        Rect rect = this.f32547u;
         if (i12 != rect.width() || i13 != rect.height()) {
             float f7 = i12 / 2.0f;
             float f10 = i14;
@@ -783,15 +783,15 @@ public abstract class y31 {
         boolean z10;
         float f10;
         Paint paint;
-        if (this.f32524b != i10) {
+        if (this.f32531b != i10) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f32524b = i10;
-        this.f32525c = i10;
-        int o10 = i0.b.o(i10, (int) (Color.alpha(i10) * 0.156f));
-        this.f32523a = o10;
+        this.f32531b = i10;
+        this.f32532c = i10;
+        int o10 = i0.a.o(i10, (int) (Color.alpha(i10) * 0.156f));
+        this.f32530a = o10;
         this.e = f7;
         float alpha = Color.alpha(i10);
         if (org.telegram.ui.ActionBar.h6.I.q()) {
@@ -799,66 +799,66 @@ public abstract class y31 {
         } else {
             f10 = 0.2f;
         }
-        this.d = org.telegram.ui.ActionBar.h6.v(o10, i0.b.o(i10, (int) (alpha * f10)));
-        if (this.f32526f == null) {
-            this.f32526f = new Paint();
+        this.d = org.telegram.ui.ActionBar.h6.v(o10, i0.a.o(i10, (int) (alpha * f10)));
+        if (this.f32533f == null) {
+            this.f32533f = new Paint();
         }
-        this.f32526f.setColor(this.f32523a);
-        this.f32526f.setAlpha((int) ((1.0f - f7) * paint.getAlpha()));
-        if (z10 || this.f32536q == null) {
+        this.f32533f.setColor(this.f32530a);
+        this.f32533f.setAlpha((int) ((1.0f - f7) * paint.getAlpha()));
+        if (z10 || this.f32543q == null) {
             int dp = AndroidUtilities.dp(8.0f);
             int i11 = this.d;
             org.telegram.ui.Cells.z j02 = org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, 0, i11, i11);
-            this.f32536q = j02;
-            j02.setCallback(this.f32537r);
+            this.f32543q = j02;
+            j02.setCallback(this.f32544r);
         }
         if (z10) {
-            uj0 uj0Var = this.f32533n;
+            uj0 uj0Var = this.f32540n;
             uj0Var.Z = true;
-            uj0Var.Q(this.f32525c, "Artboard Outlines");
+            uj0Var.Q(this.f32532c, "Artboard Outlines");
             uj0Var.o();
             uj0Var.J(true);
             uj0Var.V(0L);
             int alpha2 = Color.alpha(i10);
-            this.f32532m = alpha2;
+            this.f32539m = alpha2;
             uj0Var.setAlpha(alpha2);
-            uj0 uj0Var2 = this.f32535p;
+            uj0 uj0Var2 = this.f32542p;
             uj0Var2.Z = true;
-            uj0Var2.Q(this.f32525c, "Artboard Outlines");
+            uj0Var2.Q(this.f32532c, "Artboard Outlines");
             uj0Var2.o();
             uj0Var2.J(true);
             uj0Var2.V(0L);
             int alpha3 = Color.alpha(i10);
-            this.f32534o = alpha3;
+            this.f32541o = alpha3;
             uj0Var2.setAlpha(alpha3);
         }
-        if (this.f32527g == null) {
+        if (this.f32534g == null) {
             Paint paint2 = new Paint(1);
-            this.f32527g = paint2;
+            this.f32534g = paint2;
             paint2.setStyle(Paint.Style.STROKE);
-            this.f32527g.setStrokeCap(Paint.Cap.ROUND);
+            this.f32534g.setStrokeCap(Paint.Cap.ROUND);
         }
-        this.f32527g.setColor(i10);
+        this.f32534g.setColor(i10);
     }
 
     public final void r(boolean z10, boolean z11) {
-        this.f32530k = z10;
-        fp0 fp0Var = this.f32538s;
-        if (!fp0Var.f26353z && z10 && fp0Var.B.f26093c <= 0.0f) {
+        this.f32537k = z10;
+        fp0 fp0Var = this.f32545s;
+        if (!fp0Var.f26360z && z10 && fp0Var.B.f26100c <= 0.0f) {
             fp0Var.A = SystemClock.elapsedRealtime();
         }
-        fp0Var.f26353z = z10;
-        org.telegram.ui.Cells.u1 u1Var = fp0Var.f26342n;
+        fp0Var.f26360z = z10;
+        org.telegram.ui.Cells.u1 u1Var = fp0Var.f26349n;
         if (u1Var != null) {
             u1Var.invalidate();
         }
-        f6 f6Var = this.f32531l;
+        f6 f6Var = this.f32538l;
         if (!z11) {
-            f6Var.f(this.f32530k, true);
-        } else if (f6Var.f26093c <= 0.0f) {
-            this.f32539t = SystemClock.elapsedRealtime();
+            f6Var.f(this.f32537k, true);
+        } else if (f6Var.f26100c <= 0.0f) {
+            this.f32546t = SystemClock.elapsedRealtime();
         }
-        org.telegram.ui.Cells.u1 u1Var2 = this.f32537r;
+        org.telegram.ui.Cells.u1 u1Var2 = this.f32544r;
         if (u1Var2 != null) {
             u1Var2.invalidate();
         }
@@ -866,50 +866,50 @@ public abstract class y31 {
 
     public final void s(boolean z10, boolean z11) {
         org.telegram.ui.Cells.u1 u1Var;
-        if (this.f32528i != z10 && (u1Var = this.f32537r) != null) {
+        if (this.f32535i != z10 && (u1Var = this.f32544r) != null) {
             u1Var.invalidate();
         }
-        this.f32528i = z10;
+        this.f32535i = z10;
         if (!z11) {
-            this.f32529j.f(z10, true);
+            this.f32536j.f(z10, true);
         }
     }
 
     public final void t(boolean z10, boolean z11) {
-        boolean z12 = this.f32544z;
-        if (!z12 && z10 && this.f32541w) {
-            this.f32541w = false;
+        boolean z12 = this.f32551z;
+        if (!z12 && z10 && this.f32548w) {
+            this.f32548w = false;
             ((org.telegram.ui.Cells.j1) this).R.G3 = true;
         }
-        this.f32544z = z10;
-        uj0 uj0Var = this.f32535p;
-        uj0 uj0Var2 = this.f32533n;
+        this.f32551z = z10;
+        uj0 uj0Var = this.f32542p;
+        uj0 uj0Var2 = this.f32540n;
         if (z11) {
             if (z10 && !z12) {
-                this.f32543y = false;
+                this.f32550y = false;
                 uj0Var2.M(0);
                 uj0Var.M(0);
                 uj0Var.start();
             } else if (!z10 && z12) {
-                this.f32543y = true;
+                this.f32550y = true;
                 uj0Var.M(0);
                 uj0Var2.M(0);
                 uj0Var2.start();
             }
         } else {
-            this.f32543y = z10;
+            this.f32550y = z10;
             uj0Var2.stop();
             uj0Var.stop();
             uj0Var2.M(0);
             uj0Var.M(0);
         }
-        org.telegram.ui.Cells.u1 u1Var = this.f32537r;
+        org.telegram.ui.Cells.u1 u1Var = this.f32544r;
         if (u1Var != null) {
             u1Var.invalidate();
         }
     }
 
     public final int x() {
-        return this.f32540u.width();
+        return this.f32547u.width();
     }
 }

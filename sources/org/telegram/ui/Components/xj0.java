@@ -12,50 +12,50 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public class xj0 extends ImageView {
-    public HashMap f32407a;
-    public uj0 f32408b;
-    public vj0 f32409c;
+    public HashMap f32414a;
+    public uj0 f32415b;
+    public vj0 f32416c;
     public boolean d;
     public boolean e;
-    public boolean f32410f;
+    public boolean f32417f;
     public Integer h;
-    public boolean f32411n;
+    public boolean f32418n;
 
     public xj0(Context context) {
         super(context);
     }
 
     public final void a() {
-        uj0 uj0Var = this.f32408b;
+        uj0 uj0Var = this.f32415b;
         if (uj0Var != null) {
             uj0Var.stop();
         }
-        vj0 vj0Var = this.f32409c;
+        vj0 vj0Var = this.f32416c;
         if (vj0Var != null) {
             vj0Var.onDetachedFromWindow();
-            this.f32409c = null;
+            this.f32416c = null;
         }
-        this.f32408b = null;
+        this.f32415b = null;
         setImageDrawable(null);
     }
 
     public final boolean b() {
-        uj0 uj0Var = this.f32408b;
-        if (uj0Var != null && uj0Var.f31014k0) {
+        uj0 uj0Var = this.f32415b;
+        if (uj0Var != null && uj0Var.f31021k0) {
             return true;
         }
         return false;
     }
 
     public final void d() {
-        uj0 uj0Var = this.f32408b;
-        if (uj0Var != null || this.f32409c != null) {
-            this.f32410f = true;
+        uj0 uj0Var = this.f32415b;
+        if (uj0Var != null || this.f32416c != null) {
+            this.f32417f = true;
             if (this.e) {
                 if (uj0Var != null) {
                     uj0Var.start();
                 }
-                vj0 vj0Var = this.f32409c;
+                vj0 vj0Var = this.f32416c;
                 if (vj0Var != null) {
                     vj0Var.startAnimation();
                 }
@@ -75,14 +75,14 @@ public class xj0 extends ImageView {
         ImageLocation imageLocation;
         String str;
         int i12;
-        vj0 vj0Var = this.f32409c;
+        vj0 vj0Var = this.f32416c;
         if (vj0Var != null) {
             vj0Var.onDetachedFromWindow();
-            this.f32409c = null;
+            this.f32416c = null;
         }
         if (document != null) {
             vj0 vj0Var2 = new vj0(this);
-            this.f32409c = vj0Var2;
+            this.f32416c = vj0Var2;
             vj0Var2.setAllowLoadingOnAttachedOnly(true);
             String str2 = document.localThumbPath;
             if (str2 != null) {
@@ -94,10 +94,10 @@ public class xj0 extends ImageView {
                 str = null;
             }
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            if (this.f32411n) {
-                this.f32409c.setImage(ImageLocation.getForDocument(document), i10 + "_" + i11 + "_lastframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), a1.g.k(i10, i11, "_"), imageLocation, str, null, 0L, null, document, 1);
+            if (this.f32418n) {
+                this.f32416c.setImage(ImageLocation.getForDocument(document), i10 + "_" + i11 + "_lastframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), a1.g.k(i10, i11, "_"), imageLocation, str, null, 0L, null, document, 1);
             } else if ("video/webm".equals(document.mime_type)) {
-                vj0 vj0Var3 = this.f32409c;
+                vj0 vj0Var3 = this.f32416c;
                 ImageLocation forDocument = ImageLocation.getForDocument(document);
                 String str3 = i10 + "_" + i11 + "_g";
                 if (imageLocation == null) {
@@ -105,22 +105,22 @@ public class xj0 extends ImageView {
                 }
                 vj0Var3.setImage(forDocument, str3, imageLocation, str, null, document.size, null, document, 1);
             } else {
-                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.h6.f21149m6, 0.2f);
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.h6.f21156m6, 0.2f);
                 if (svgThumb != null) {
                     svgThumb.overrideWidthAndHeight(512, 512);
                 }
-                this.f32409c.setImage(ImageLocation.getForDocument(document), i10 + "_" + i11 + "", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), a1.g.k(i10, i11, "_"), imageLocation, str, svgThumb, 0L, null, document, 1);
+                this.f32416c.setImage(ImageLocation.getForDocument(document), i10 + "_" + i11 + "", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), a1.g.k(i10, i11, "_"), imageLocation, str, svgThumb, 0L, null, document, 1);
             }
-            this.f32409c.setAspectFit(true);
-            this.f32409c.setParentView(this);
+            this.f32416c.setAspectFit(true);
+            this.f32416c.setParentView(this);
             if (this.d) {
-                this.f32409c.setAutoRepeat(1);
-                this.f32409c.setAllowStartLottieAnimation(true);
-                this.f32409c.setAllowStartAnimation(true);
+                this.f32416c.setAutoRepeat(1);
+                this.f32416c.setAllowStartLottieAnimation(true);
+                this.f32416c.setAllowStartAnimation(true);
             } else {
-                this.f32409c.setAutoRepeat(0);
+                this.f32416c.setAutoRepeat(0);
             }
-            vj0 vj0Var4 = this.f32409c;
+            vj0 vj0Var4 = this.f32416c;
             Integer num = this.h;
             if (num != null) {
                 i12 = num.intValue();
@@ -128,42 +128,42 @@ public class xj0 extends ImageView {
                 i12 = 7;
             }
             vj0Var4.setLayerNum(i12);
-            this.f32409c.clip = false;
+            this.f32416c.clip = false;
             setImageDrawable(new wj0(this, i10, i11));
             if (this.e) {
-                this.f32409c.onAttachedToWindow();
+                this.f32416c.onAttachedToWindow();
             }
         }
     }
 
     public uj0 getAnimatedDrawable() {
-        return this.f32408b;
+        return this.f32415b;
     }
 
     public ImageReceiver getImageReceiver() {
-        return this.f32409c;
+        return this.f32416c;
     }
 
     public final void h(int i10, String str) {
-        if (this.f32407a == null) {
-            this.f32407a = new HashMap();
+        if (this.f32414a == null) {
+            this.f32414a = new HashMap();
         }
-        this.f32407a.put(str, Integer.valueOf(i10));
-        uj0 uj0Var = this.f32408b;
+        this.f32414a.put(str, Integer.valueOf(i10));
+        uj0 uj0Var = this.f32415b;
         if (uj0Var != null) {
             uj0Var.Q(i10, str);
         }
     }
 
     public final void i() {
-        uj0 uj0Var = this.f32408b;
-        if (uj0Var != null || this.f32409c != null) {
-            this.f32410f = false;
+        uj0 uj0Var = this.f32415b;
+        if (uj0Var != null || this.f32416c != null) {
+            this.f32417f = false;
             if (this.e) {
                 if (uj0Var != null) {
                     uj0Var.stop();
                 }
-                vj0 vj0Var = this.f32409c;
+                vj0 vj0Var = this.f32416c;
                 if (vj0Var != null) {
                     vj0Var.stopAnimation();
                 }
@@ -175,18 +175,18 @@ public class xj0 extends ImageView {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.e = true;
-        vj0 vj0Var = this.f32409c;
+        vj0 vj0Var = this.f32416c;
         if (vj0Var != null) {
             vj0Var.onAttachedToWindow();
-            if (this.f32410f) {
-                this.f32409c.startAnimation();
+            if (this.f32417f) {
+                this.f32416c.startAnimation();
             }
         }
-        uj0 uj0Var = this.f32408b;
+        uj0 uj0Var = this.f32415b;
         if (uj0Var != null) {
             uj0Var.setCallback(this);
-            if (this.f32410f) {
-                this.f32408b.start();
+            if (this.f32417f) {
+                this.f32415b.start();
             }
         }
     }
@@ -195,44 +195,44 @@ public class xj0 extends ImageView {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.e = false;
-        uj0 uj0Var = this.f32408b;
+        uj0 uj0Var = this.f32415b;
         if (uj0Var != null) {
             uj0Var.stop();
         }
-        vj0 vj0Var = this.f32409c;
+        vj0 vj0Var = this.f32416c;
         if (vj0Var != null) {
             vj0Var.onDetachedFromWindow();
         }
     }
 
     public void setAnimation(uj0 uj0Var) {
-        if (this.f32408b == uj0Var) {
+        if (this.f32415b == uj0Var) {
             return;
         }
-        vj0 vj0Var = this.f32409c;
+        vj0 vj0Var = this.f32416c;
         if (vj0Var != null) {
             vj0Var.onDetachedFromWindow();
-            this.f32409c = null;
+            this.f32416c = null;
         }
-        this.f32408b = uj0Var;
+        this.f32415b = uj0Var;
         uj0Var.R(this);
         if (this.d) {
-            this.f32408b.K(1);
+            this.f32415b.K(1);
         }
-        HashMap hashMap = this.f32407a;
+        HashMap hashMap = this.f32414a;
         if (hashMap != null) {
-            this.f32408b.Z = true;
+            this.f32415b.Z = true;
             for (Map.Entry entry : hashMap.entrySet()) {
-                uj0 uj0Var2 = this.f32408b;
+                uj0 uj0Var2 = this.f32415b;
                 Integer num = (Integer) entry.getValue();
                 num.getClass();
-                uj0Var2.f31023s.put((String) entry.getKey(), num);
+                uj0Var2.f31030s.put((String) entry.getKey(), num);
                 uj0Var2.G();
             }
-            this.f32408b.o();
+            this.f32415b.o();
         }
-        this.f32408b.J(true);
-        setImageDrawable(this.f32408b);
+        this.f32415b.J(true);
+        setImageDrawable(this.f32415b);
     }
 
     public void setAutoRepeat(boolean z10) {
@@ -242,30 +242,30 @@ public class xj0 extends ImageView {
     @Override
     public void setImageResource(int i10) {
         super.setImageResource(i10);
-        this.f32408b = null;
+        this.f32415b = null;
     }
 
     public void setLayerNum(Integer num) {
         this.h = num;
-        vj0 vj0Var = this.f32409c;
+        vj0 vj0Var = this.f32416c;
         if (vj0Var != null) {
             vj0Var.setLayerNum(num.intValue());
         }
     }
 
     public void setOnAnimationEndListener(Runnable runnable) {
-        uj0 uj0Var = this.f32408b;
+        uj0 uj0Var = this.f32415b;
         if (uj0Var != null) {
-            uj0Var.f31025t0 = runnable;
+            uj0Var.f31032t0 = runnable;
         }
     }
 
     public void setOnlyLastFrame(boolean z10) {
-        this.f32411n = z10;
+        this.f32418n = z10;
     }
 
     public void setProgress(float f7) {
-        uj0 uj0Var = this.f32408b;
+        uj0 uj0Var = this.f32415b;
         if (uj0Var != null) {
             uj0Var.T(f7, true);
         }

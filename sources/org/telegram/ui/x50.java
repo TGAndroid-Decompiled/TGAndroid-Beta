@@ -9,18 +9,18 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class x50 extends org.telegram.ui.Components.hm0 {
-    public ChatObject.Call f42996c;
+    public ChatObject.Call f43016c;
     public final int d;
-    public ArrayList f42997f;
+    public ArrayList f43017f;
     public j30 h;
-    public final s50 f42998n;
+    public final s50 f43018n;
     public final ArrayList e = new ArrayList();
-    public boolean f42999r = false;
+    public boolean f43019r = false;
 
     public x50(ChatObject.Call call, int i10, s50 s50Var) {
-        this.f42996c = call;
+        this.f43016c = call;
         this.d = i10;
-        this.f42998n = s50Var;
+        this.f43018n = s50Var;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class x50 extends org.telegram.ui.Components.hm0 {
 
     public final void E(org.telegram.ui.Components.voip.l lVar, boolean z10) {
         if (z10 && lVar.getRenderer() == null) {
-            lVar.setRenderer(org.telegram.ui.Components.voip.t.c(this.f42997f, this.h, null, null, lVar, lVar.getParticipant(), this.f42996c, this.f42998n));
+            lVar.setRenderer(org.telegram.ui.Components.voip.t.c(this.f43017f, this.h, null, null, lVar, lVar.getParticipant(), this.f43016c, this.f43018n));
         } else if (!z10 && lVar.getRenderer() != null) {
             lVar.getRenderer().setTabletGridView(null);
             lVar.setRenderer(null);
@@ -38,7 +38,7 @@ public final class x50 extends org.telegram.ui.Components.hm0 {
     }
 
     public final int F() {
-        org.telegram.ui.Components.im0 im0Var = this.f42998n.f40967n2;
+        org.telegram.ui.Components.im0 im0Var = this.f43018n.f40988n2;
         int size = this.e.size();
         if (size <= 1) {
             return im0Var.getMeasuredHeight();
@@ -50,12 +50,12 @@ public final class x50 extends org.telegram.ui.Components.hm0 {
     }
 
     public final void G(ArrayList arrayList, j30 j30Var) {
-        this.f42997f = arrayList;
+        this.f43017f = arrayList;
         this.h = j30Var;
     }
 
     public final void H(org.telegram.ui.Components.im0 im0Var, boolean z10, boolean z11) {
-        this.f42999r = z10;
+        this.f43019r = z10;
         if (z11) {
             for (int i10 = 0; i10 < im0Var.getChildCount(); i10++) {
                 View childAt = im0Var.getChildAt(i10);
@@ -70,7 +70,7 @@ public final class x50 extends org.telegram.ui.Components.hm0 {
     }
 
     public final void I(org.telegram.ui.Components.im0 im0Var, boolean z10) {
-        if (this.f42996c == null) {
+        if (this.f43016c == null) {
             return;
         }
         ArrayList arrayList = this.e;
@@ -78,13 +78,13 @@ public final class x50 extends org.telegram.ui.Components.hm0 {
             ArrayList arrayList2 = new ArrayList();
             arrayList2.addAll(arrayList);
             arrayList.clear();
-            arrayList.addAll(this.f42996c.visibleVideoParticipants);
+            arrayList.addAll(this.f43016c.visibleVideoParticipants);
             s4.o.c(new w50(this, arrayList2), true).c(this);
             AndroidUtilities.updateVisibleRows(im0Var);
             return;
         }
         arrayList.clear();
-        arrayList.addAll(this.f42996c.visibleVideoParticipants);
+        arrayList.addAll(this.f43016c.visibleVideoParticipants);
         l();
     }
 
@@ -95,7 +95,7 @@ public final class x50 extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) b1Var.f45938a;
+        org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) b1Var.f45958a;
         ChatObject.VideoParticipant participant = lVar.getParticipant();
         ArrayList arrayList = this.e;
         ChatObject.VideoParticipant videoParticipant = (ChatObject.VideoParticipant) arrayList.get(i10);
@@ -105,13 +105,13 @@ public final class x50 extends org.telegram.ui.Components.hm0 {
         if (size > 1 && size != 2 && (size != 3 || i10 == 0 || i10 == 1)) {
             i11 = 3;
         }
-        lVar.f31548a = i11;
-        lVar.f31549b = this;
+        lVar.f31555a = i11;
+        lVar.f31556b = this;
         if (lVar.getMeasuredHeight() != F()) {
             lVar.requestLayout();
         }
         AccountInstance.getInstance(this.d);
-        MessageObject.getPeerId(this.f42996c.selfPeer);
+        MessageObject.getPeerId(this.f43016c.selfPeer);
         lVar.d = videoParticipant;
         if (participant != null && !participant.equals(videoParticipant) && lVar.e && lVar.getRenderer() != null) {
             E(lVar, false);

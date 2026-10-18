@@ -4,16 +4,16 @@ import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 public final class b1 extends TLObject {
-    public long f42558a;
-    public long f42559b;
-    public String f42560c;
+    public long f42583a;
+    public long f42584b;
+    public String f42585c;
     public l2 d;
 
     @Override
     public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        this.f42558a = inputSerializedData.readInt64(z10);
-        this.f42559b = inputSerializedData.readInt64(z10);
-        this.f42560c = inputSerializedData.readString(z10);
+        this.f42583a = inputSerializedData.readInt64(z10);
+        this.f42584b = inputSerializedData.readInt64(z10);
+        this.f42585c = inputSerializedData.readString(z10);
         l2 l2Var = new l2();
         this.d = l2Var;
         l2Var.readParams(inputSerializedData, z10);
@@ -21,9 +21,9 @@ public final class b1 extends TLObject {
 
     @Override
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeInt64(this.f42558a);
-        outputSerializedData.writeInt64(this.f42559b);
-        String str = this.f42560c;
+        outputSerializedData.writeInt64(this.f42583a);
+        outputSerializedData.writeInt64(this.f42584b);
+        String str = this.f42585c;
         if (str == null) {
             str = "";
         }

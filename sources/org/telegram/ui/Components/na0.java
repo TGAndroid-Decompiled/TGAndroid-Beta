@@ -20,50 +20,50 @@ public final class na0 extends Drawable {
     public LinearGradient C;
     public Matrix D;
     public boolean E;
-    public final TextPaint f28706a;
-    public final Paint f28707b;
-    public final Paint f28708c;
+    public final TextPaint f28713a;
+    public final Paint f28714b;
+    public final Paint f28715c;
     public final Paint d;
     public final Paint e;
-    public final RectF f28709f;
-    public PorterDuffColorFilter f28710g;
+    public final RectF f28716f;
+    public PorterDuffColorFilter f28717g;
     public float h;
-    public final DecelerateInterpolator f28711i;
-    public boolean f28712j;
-    public float f28713k;
-    public int f28714l;
-    public String f28715m;
-    public int f28716n;
-    public float f28717o;
-    public int f28718p;
-    public int f28719q;
-    public float f28720r;
-    public float f28721s;
-    public long f28722t;
-    public boolean f28723u;
+    public final DecelerateInterpolator f28718i;
+    public boolean f28719j;
+    public float f28720k;
+    public int f28721l;
+    public String f28722m;
+    public int f28723n;
+    public float f28724o;
+    public int f28725p;
+    public int f28726q;
+    public float f28727r;
+    public float f28728s;
+    public long f28729t;
+    public boolean f28730u;
     public float v;
-    public float f28724w;
-    public float f28725x;
-    public float f28726y;
-    public float f28727z;
+    public float f28731w;
+    public float f28732x;
+    public float f28733y;
+    public float f28734z;
 
     public na0() {
         TextPaint textPaint = new TextPaint(1);
-        this.f28706a = textPaint;
+        this.f28713a = textPaint;
         Paint paint = new Paint(1);
-        this.f28707b = paint;
-        this.f28708c = new Paint(1);
+        this.f28714b = paint;
+        this.f28715c = new Paint(1);
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.e = paint3;
-        this.f28709f = new RectF();
+        this.f28716f = new RectF();
         this.h = 1.0f;
-        this.f28711i = new DecelerateInterpolator();
-        this.f28713k = 400.0f;
-        this.f28714l = -1;
-        this.f28717o = 1.0f;
-        this.f28720r = 1.0f;
+        this.f28718i = new DecelerateInterpolator();
+        this.f28720k = 400.0f;
+        this.f28721l = -1;
+        this.f28724o = 1.0f;
+        this.f28727r = 1.0f;
         paint.setColor(-1);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
@@ -80,80 +80,80 @@ public final class na0 extends Drawable {
         if (f5Var != null && f5Var.l() && !this.E) {
             Rect bounds = getBounds();
             org.telegram.ui.ActionBar.f5 f5Var2 = this.B;
-            Shader shader = f5Var2.f20806a;
-            Matrix matrix = f5Var2.f20813k;
+            Shader shader = f5Var2.f20813a;
+            Matrix matrix = f5Var2.f20820k;
             matrix.reset();
             this.B.a();
             if (z10) {
-                matrix.postTranslate(-bounds.centerX(), (-this.B.f20820r) + bounds.top);
+                matrix.postTranslate(-bounds.centerX(), (-this.B.f20827r) + bounds.top);
             } else {
-                matrix.postTranslate(0.0f, -this.B.f20820r);
+                matrix.postTranslate(0.0f, -this.B.f20827r);
             }
             shader.setLocalMatrix(matrix);
         }
     }
 
     public final float b() {
-        if (this.f28723u) {
-            return this.f28720r;
+        if (this.f28730u) {
+            return this.f28727r;
         }
         return 1.0f;
     }
 
     public final void c(int i10) {
         int i11 = (-16777216) | i10;
-        this.f28707b.setColor(i11);
+        this.f28714b.setColor(i11);
         this.d.setColor(i11);
         this.e.setColor(i11);
-        this.f28706a.setColor(i11);
-        this.f28710g = new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY);
+        this.f28713a.setColor(i11);
+        this.f28717g = new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY);
     }
 
     public final void d(int i10, boolean z10) {
         int i11;
         int i12;
-        if (this.f28718p == i10 && (i12 = this.f28719q) != i10) {
-            this.f28718p = i12;
-            this.f28720r = 1.0f;
+        if (this.f28725p == i10 && (i12 = this.f28726q) != i10) {
+            this.f28725p = i12;
+            this.f28727r = 1.0f;
         }
         if (z10) {
-            int i13 = this.f28718p;
-            if (i13 != i10 && (i11 = this.f28719q) != i10) {
+            int i13 = this.f28725p;
+            if (i13 != i10 && (i11 = this.f28726q) != i10) {
                 if ((i13 == 0 && i10 == 1) || (i13 == 1 && i10 == 0)) {
-                    this.f28713k = 300.0f;
+                    this.f28720k = 300.0f;
                 } else if (i13 == 2 && (i10 == 3 || i10 == 14)) {
-                    this.f28713k = 400.0f;
+                    this.f28720k = 400.0f;
                 } else if (i13 != 4 && i10 == 6) {
-                    this.f28713k = 360.0f;
+                    this.f28720k = 360.0f;
                 } else if ((i13 == 4 && i10 == 14) || (i13 == 14 && i10 == 4)) {
-                    this.f28713k = 160.0f;
+                    this.f28720k = 160.0f;
                 } else {
-                    this.f28713k = 220.0f;
+                    this.f28720k = 220.0f;
                 }
-                if (this.f28723u) {
-                    this.f28718p = i11;
+                if (this.f28730u) {
+                    this.f28725p = i11;
                 }
-                this.f28723u = true;
-                this.f28719q = i10;
-                this.f28721s = this.f28720r;
-                this.f28720r = 0.0f;
+                this.f28730u = true;
+                this.f28726q = i10;
+                this.f28728s = this.f28727r;
+                this.f28727r = 0.0f;
             } else {
                 return;
             }
-        } else if (this.f28718p == i10) {
+        } else if (this.f28725p == i10) {
             return;
         } else {
-            this.f28723u = false;
-            this.f28719q = i10;
-            this.f28718p = i10;
-            this.f28721s = this.f28720r;
-            this.f28720r = 1.0f;
+            this.f28730u = false;
+            this.f28726q = i10;
+            this.f28725p = i10;
+            this.f28728s = this.f28727r;
+            this.f28727r = 1.0f;
         }
         if (i10 == 3 || i10 == 14) {
             this.v = 112.0f;
-            this.f28725x = 0.0f;
-            this.f28726y = 0.0f;
-            this.f28727z = 0.0f;
+            this.f28732x = 0.0f;
+            this.f28733y = 0.0f;
+            this.f28734z = 0.0f;
         }
         invalidateSelf();
     }
@@ -164,20 +164,20 @@ public final class na0 extends Drawable {
     }
 
     public final void e(float f7, boolean z10) {
-        if (this.f28724w == f7) {
+        if (this.f28731w == f7) {
             return;
         }
         if (!z10) {
-            this.f28725x = f7;
-            this.f28726y = f7;
+            this.f28732x = f7;
+            this.f28733y = f7;
         } else {
-            if (this.f28725x > f7) {
-                this.f28725x = f7;
+            if (this.f28732x > f7) {
+                this.f28732x = f7;
             }
-            this.f28726y = this.f28725x;
+            this.f28733y = this.f28732x;
         }
-        this.f28724w = f7;
-        this.f28727z = 0.0f;
+        this.f28731w = f7;
+        this.f28734z = 0.0f;
         invalidateSelf();
     }
 
@@ -211,7 +211,7 @@ public final class na0 extends Drawable {
         super.invalidateSelf();
         tv tvVar = this.A;
         if (tvVar != null) {
-            ((View) tvVar.f30717b).invalidate();
+            ((View) tvVar.f30724b).invalidate();
         }
     }
 
@@ -221,16 +221,16 @@ public final class na0 extends Drawable {
         float dp = (i12 - i10) / AndroidUtilities.dp(48.0f);
         this.h = dp;
         if (dp < 0.7f) {
-            this.f28707b.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            this.f28714b.setStrokeWidth(AndroidUtilities.dp(2.0f));
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f28707b.setColorFilter(colorFilter);
+        this.f28714b.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
         this.e.setColorFilter(colorFilter);
-        this.f28706a.setColorFilter(colorFilter);
+        this.f28713a.setColorFilter(colorFilter);
     }
 
     @Override

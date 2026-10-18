@@ -15,15 +15,15 @@ import org.telegram.ui.Components.m9;
 import org.telegram.ui.web.z1;
 import w7.z5;
 public final class q extends FrameLayout {
-    public final m9 f45811a;
-    public final TextView f45812b;
-    public k f45813c;
+    public final m9 f45831a;
+    public final TextView f45832b;
+    public k f45833c;
 
     public q(Context context, int i10, d6 d6Var) {
         super(context);
-        this.f45811a = new m9(i10, this, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dpf2(1.0f));
+        this.f45831a = new m9(i10, this, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dpf2(1.0f));
         TextView textView = new TextView(context);
-        this.f45812b = textView;
+        this.f45832b = textView;
         textView.setTextColor(h6.w0(h6.E8, d6Var));
         textView.setLines(1);
         textView.setSingleLine(true);
@@ -35,41 +35,41 @@ public final class q extends FrameLayout {
     }
 
     public final a71 a(n2 n2Var, long j10, int i10, byte[] bArr, int i11, Utilities.Callback callback) {
-        k kVar = this.f45813c;
+        k kVar = this.f45833c;
         if (kVar != null) {
             return kVar;
         }
         p pVar = new p(n2Var.getCurrentAccount(), n2Var.getMessagesController().getInputPeer(j10), i10, bArr, new z1(this, 18), callback);
         AndroidUtilities.runOnUIThread(new z1(pVar, 19), 1000L);
         k kVar2 = new k(n2Var, new j(pVar, 0), i11);
-        this.f45813c = kVar2;
-        kVar2.W2.f30200r = false;
+        this.f45833c = kVar2;
+        kVar2.W2.f30207r = false;
         kVar2.j(new l(this, pVar));
-        return this.f45813c;
+        return this.f45833c;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         int width = getWidth() - AndroidUtilities.dp(11.0f);
-        m9 m9Var = this.f45811a;
-        m9Var.setBounds(width - ((int) m9Var.f28470c.d.f17396f.f17403a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
+        m9 m9Var = this.f45831a;
+        m9Var.setBounds(width - ((int) m9Var.f28477c.d.f17403f.f17410a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
         m9Var.c(canvas);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f45811a.a();
+        this.f45831a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f45811a.b();
+        this.f45831a.b();
     }
 
     public void setText(String str) {
-        this.f45812b.setText(str);
+        this.f45832b.setText(str);
     }
 }

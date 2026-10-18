@@ -37,9 +37,9 @@ public final class y40 extends org.telegram.ui.Components.im0 {
         HashSet hashSet2 = g50Var.H;
         if (g50Var.G == null) {
             hashSet2.clear();
-            hashSet2.addAll(g50Var.f46003q);
+            hashSet2.addAll(g50Var.f46023q);
             hashSet.clear();
-            hashSet.addAll(g50Var.f46002p);
+            hashSet.addAll(g50Var.f46022p);
             g50Var.J = 0.0f;
             g50Var.K = Float.MAX_VALUE;
             if (hashSet2.isEmpty() && hashSet.isEmpty()) {
@@ -50,7 +50,7 @@ public final class y40 extends org.telegram.ui.Components.im0 {
             for (int i15 = 0; i15 < childCount; i15++) {
                 View childAt = y40Var.getChildAt(i15);
                 s4.b1 G = y40Var.G(childAt);
-                if (G != null && (i14 = G.f45941f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
+                if (G != null && (i14 = G.f45961f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
                     g50Var.J = Math.max(g50Var.J, childAt.getY() + childAt.getMeasuredHeight());
                     g50Var.K = Math.min(g50Var.K, Math.max(0.0f, childAt.getY()));
                 }

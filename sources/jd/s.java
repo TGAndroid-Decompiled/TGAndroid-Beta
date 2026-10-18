@@ -3,33 +3,33 @@ package jd;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class s implements Iterator {
-    public int f14388a;
-    public Object f14389b;
-    public int f14390c;
+    public int f14395a;
+    public Object f14396b;
+    public int f14397c;
     public int d;
     public final t e;
 
     public s(t tVar) {
         this.e = tVar;
-        this.f14390c = tVar.d;
-        this.d = tVar.f14393c;
+        this.f14397c = tVar.d;
+        this.d = tVar.f14400c;
     }
 
     public final boolean a() {
-        this.f14388a = 3;
-        int i10 = this.f14390c;
+        this.f14395a = 3;
+        int i10 = this.f14397c;
         if (i10 == 0) {
-            this.f14388a = 2;
+            this.f14395a = 2;
         } else {
             t tVar = this.e;
-            Object[] objArr = tVar.f14391a;
+            Object[] objArr = tVar.f14398a;
             int i11 = this.d;
-            this.f14389b = objArr[i11];
-            this.f14388a = 1;
-            this.d = (i11 + 1) % tVar.f14392b;
-            this.f14390c = i10 - 1;
+            this.f14396b = objArr[i11];
+            this.f14395a = 1;
+            this.d = (i11 + 1) % tVar.f14399b;
+            this.f14397c = i10 - 1;
         }
-        if (this.f14388a == 1) {
+        if (this.f14395a == 1) {
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ public final class s implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        int i10 = this.f14388a;
+        int i10 = this.f14395a;
         if (i10 != 0) {
             if (i10 == 1) {
                 return true;
@@ -52,13 +52,13 @@ public final class s implements Iterator {
 
     @Override
     public final Object next() {
-        int i10 = this.f14388a;
+        int i10 = this.f14395a;
         if (i10 == 1) {
-            this.f14388a = 0;
-            return this.f14389b;
+            this.f14395a = 0;
+            return this.f14396b;
         } else if (i10 != 2 && a()) {
-            this.f14388a = 0;
-            return this.f14389b;
+            this.f14395a = 0;
+            return this.f14396b;
         } else {
             throw new NoSuchElementException();
         }

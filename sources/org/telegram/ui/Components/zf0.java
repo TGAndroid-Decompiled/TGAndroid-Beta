@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 public final class zf0 {
-    public float f32895a = 0.0f;
-    public float f32896b = 25.0f;
-    public float f32897c = 50.0f;
+    public float f32902a = 0.0f;
+    public float f32903b = 25.0f;
+    public float f32904c = 50.0f;
     public float d = 75.0f;
     public float e = 100.0f;
-    public float[] f32898f;
+    public float[] f32905f;
 
     public final float[] a() {
-        float f7 = this.f32895a;
+        float f7 = this.f32902a;
         float f10 = this.e;
         int i10 = 2;
         int i11 = 5;
         char c10 = '\f';
         char c11 = '\r';
-        float[] fArr = {-0.001f, f7 / 100.0f, 0.0f, f7 / 100.0f, 0.25f, this.f32896b / 100.0f, 0.5f, this.f32897c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f10 / 100.0f, 1.001f, f10 / 100.0f};
+        float[] fArr = {-0.001f, f7 / 100.0f, 0.0f, f7 / 100.0f, 0.25f, this.f32903b / 100.0f, 0.5f, this.f32904c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f10 / 100.0f, 1.001f, f10 / 100.0f};
         int i12 = 100;
         ArrayList arrayList = new ArrayList(100);
         ArrayList arrayList2 = new ArrayList(100);
@@ -47,10 +47,10 @@ public final class zf0 {
                 float f19 = i20 * 0.01f;
                 float f20 = f19 * f19;
                 float f21 = f20 * f19;
-                float x10 = ((((((f13 * 3.0f) - f11) - (f15 * 3.0f)) + f17) * f21) + ((((f15 * 4.0f) + ((f11 * 2.0f) - (f13 * 5.0f))) - f17) * f20) + com.google.android.gms.internal.cast.a6.x(f15, f11, f19, f13 * 2.0f)) * 0.5f;
-                float max = Math.max(0.0f, Math.min(1.0f, ((((((f14 * 3.0f) - f12) - (f16 * 3.0f)) + f18) * f21) + ((((4.0f * f16) + ((2.0f * f12) - (5.0f * f14))) - f18) * f20) + com.google.android.gms.internal.cast.a6.x(f16, f12, f19, f14 * 2.0f)) * 0.5f));
-                if (x10 > f11) {
-                    arrayList2.add(Float.valueOf(x10));
+                float y3 = ((((((f13 * 3.0f) - f11) - (f15 * 3.0f)) + f17) * f21) + ((((f15 * 4.0f) + ((f11 * 2.0f) - (f13 * 5.0f))) - f17) * f20) + com.google.android.gms.internal.play_billing.k3.y(f15, f11, f19, f13 * 2.0f)) * 0.5f;
+                float max = Math.max(0.0f, Math.min(1.0f, ((((((f14 * 3.0f) - f12) - (f16 * 3.0f)) + f18) * f21) + ((((4.0f * f16) + ((2.0f * f12) - (5.0f * f14))) - f18) * f20) + com.google.android.gms.internal.play_billing.k3.y(f16, f12, f19, f14 * 2.0f)) * 0.5f));
+                if (y3 > f11) {
+                    arrayList2.add(Float.valueOf(y3));
                     arrayList2.add(Float.valueOf(max));
                 }
                 if ((i20 - 1) % 2 == 0) {
@@ -70,10 +70,10 @@ public final class zf0 {
         }
         arrayList2.add(Float.valueOf(fArr[c10]));
         arrayList2.add(Float.valueOf(fArr[c11]));
-        this.f32898f = new float[arrayList.size()];
+        this.f32905f = new float[arrayList.size()];
         int i21 = 0;
         while (true) {
-            float[] fArr2 = this.f32898f;
+            float[] fArr2 = this.f32905f;
             if (i21 >= fArr2.length) {
                 break;
             }
@@ -89,24 +89,24 @@ public final class zf0 {
     }
 
     public final boolean b() {
-        if (Math.abs(this.f32895a - 0.0f) < 1.0E-5d && Math.abs(this.f32896b - 25.0f) < 1.0E-5d && Math.abs(this.f32897c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.e - 100.0f) < 1.0E-5d) {
+        if (Math.abs(this.f32902a - 0.0f) < 1.0E-5d && Math.abs(this.f32903b - 25.0f) < 1.0E-5d && Math.abs(this.f32904c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.e - 100.0f) < 1.0E-5d) {
             return true;
         }
         return false;
     }
 
     public final void c(InputSerializedData inputSerializedData, boolean z10) {
-        this.f32895a = inputSerializedData.readFloat(z10);
-        this.f32896b = inputSerializedData.readFloat(z10);
-        this.f32897c = inputSerializedData.readFloat(z10);
+        this.f32902a = inputSerializedData.readFloat(z10);
+        this.f32903b = inputSerializedData.readFloat(z10);
+        this.f32904c = inputSerializedData.readFloat(z10);
         this.d = inputSerializedData.readFloat(z10);
         this.e = inputSerializedData.readFloat(z10);
     }
 
     public final void d(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeFloat(this.f32895a);
-        outputSerializedData.writeFloat(this.f32896b);
-        outputSerializedData.writeFloat(this.f32897c);
+        outputSerializedData.writeFloat(this.f32902a);
+        outputSerializedData.writeFloat(this.f32903b);
+        outputSerializedData.writeFloat(this.f32904c);
         outputSerializedData.writeFloat(this.d);
         outputSerializedData.writeFloat(this.e);
     }

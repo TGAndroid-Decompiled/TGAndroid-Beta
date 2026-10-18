@@ -9,6 +9,6 @@ public abstract class i8 {
         if (!(obj instanceof id.e)) {
             return;
         }
-        throw ((id.e) obj).f12773a;
+        throw ((id.e) obj).f12771a;
     }
 }

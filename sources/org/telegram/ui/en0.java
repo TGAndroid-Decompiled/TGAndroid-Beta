@@ -7,45 +7,45 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class en0 implements Runnable {
-    public final int f36570a;
-    public final fo0 f36571b;
-    public final TLRPC.TL_error f36572c;
+    public final int f36574a;
+    public final go0 f36575b;
+    public final TLRPC.TL_error f36576c;
     public final TLObject d;
 
-    public en0(fo0 fo0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f36570a = i10;
-        this.f36571b = fo0Var;
-        this.f36572c = tL_error;
+    public en0(go0 go0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f36574a = i10;
+        this.f36575b = go0Var;
+        this.f36576c = tL_error;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f36570a) {
+        switch (this.f36574a) {
             case 0:
-                fo0 fo0Var = this.f36571b;
-                fo0Var.f36981e0 = false;
-                if (this.f36572c == null) {
+                go0 go0Var = this.f36575b;
+                go0Var.f37264e0 = false;
+                if (this.f36576c == null) {
                     TL_account.Password password = (TL_account.Password) this.d;
-                    fo0Var.f36971a0 = password;
+                    go0Var.f37254a0 = password;
                     if (!TwoStepVerificationActivity.i0(password, false)) {
-                        org.telegram.ui.Components.f5.w0(fo0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
+                        org.telegram.ui.Components.f5.w0(go0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
                         return;
                     }
-                    TLRPC.PaymentForm paymentForm = fo0Var.C0;
-                    if (paymentForm != null && fo0Var.f36971a0.has_password) {
+                    TLRPC.PaymentForm paymentForm = go0Var.C0;
+                    if (paymentForm != null && go0Var.f37254a0.has_password) {
                         paymentForm.password_missing = false;
                         paymentForm.can_save_credentials = true;
-                        fo0Var.K0();
+                        go0Var.K0();
                     }
-                    TwoStepVerificationActivity.m0(fo0Var.f36971a0);
-                    fo0 fo0Var2 = fo0Var.f36984f0;
-                    if (fo0Var2 != null) {
-                        fo0Var2.C0(fo0Var.f36971a0);
+                    TwoStepVerificationActivity.m0(go0Var.f37254a0);
+                    go0 go0Var2 = go0Var.f37267f0;
+                    if (go0Var2 != null) {
+                        go0Var2.C0(go0Var.f37254a0);
                     }
-                    if (!fo0Var.f36971a0.has_password && fo0Var.f36979d0 == null) {
-                        cn0 cn0Var = new cn0(fo0Var, 3);
-                        fo0Var.f36979d0 = cn0Var;
+                    if (!go0Var.f37254a0.has_password && go0Var.f37262d0 == null) {
+                        cn0 cn0Var = new cn0(go0Var, 3);
+                        go0Var.f37262d0 = cn0Var;
                         AndroidUtilities.runOnUIThread(cn0Var, 5000L);
                         return;
                     }
@@ -53,10 +53,10 @@ public final class en0 implements Runnable {
                 }
                 return;
             case 1:
-                fo0.V(this.f36571b, this.f36572c, this.d);
+                go0.V(this.f36575b, this.f36576c, this.d);
                 return;
             default:
-                fo0.X(this.f36571b, this.f36572c, this.d);
+                go0.X(this.f36575b, this.f36576c, this.d);
                 return;
         }
     }

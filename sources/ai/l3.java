@@ -28,40 +28,40 @@ import org.telegram.ui.wk0;
 import org.telegram.ui.xm0;
 import org.telegram.ui.yh1;
 public final class l3 implements Runnable {
-    public final int f1763a;
-    public final Object f1764b;
-    public final Object f1765c;
+    public final int f1752a;
+    public final Object f1753b;
+    public final Object f1754c;
     public final Object d;
     public final Object e;
-    public final Object f1766f;
+    public final Object f1755f;
     public final Object h;
 
     public l3(hg.a1 a1Var, String str, TLRPC.TL_error tL_error, TLObject tLObject, MessagesController messagesController, MessagesStorage messagesStorage) {
-        this.f1763a = 10;
-        this.f1764b = a1Var;
+        this.f1752a = 10;
+        this.f1753b = a1Var;
         this.e = str;
         this.d = tL_error;
-        this.f1765c = tLObject;
-        this.f1766f = messagesController;
+        this.f1754c = tLObject;
+        this.f1755f = messagesController;
         this.h = messagesStorage;
     }
 
     private final void a() {
-        j61.S((j61) this.f1764b, (TLRPC.TL_error) this.d, (TLRPC.InputCheckPasswordSRP) this.f1765c, (TLRPC.User) this.e, (TwoStepVerificationActivity) this.f1766f, (TLRPC.TL_channels_editCreator) this.h);
+        j61.S((j61) this.f1753b, (TLRPC.TL_error) this.d, (TLRPC.InputCheckPasswordSRP) this.f1754c, (TLRPC.User) this.e, (TwoStepVerificationActivity) this.f1755f, (TLRPC.TL_channels_editCreator) this.h);
     }
 
     private final void b() {
         byte[] bArr = (byte[]) this.e;
-        org.telegram.ui.Wallet.c2 c2Var = (org.telegram.ui.Wallet.c2) this.f1766f;
-        byte[] bArr2 = c2Var.f34072b;
+        org.telegram.ui.Wallet.c2 c2Var = (org.telegram.ui.Wallet.c2) this.f1755f;
+        byte[] bArr2 = c2Var.f34080b;
         org.telegram.ui.Wallet.s1 s1Var = (org.telegram.ui.Wallet.s1) this.h;
         TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.d;
-        org.telegram.ui.Wallet.m0 m0Var = ((org.telegram.ui.Wallet.f2) this.f1764b).f34192b;
-        if (TextUtils.equals((String) this.f1765c, m0Var.s()) && Arrays.equals(bArr, m0Var.x())) {
+        org.telegram.ui.Wallet.m0 m0Var = ((org.telegram.ui.Wallet.f2) this.f1753b).f34224b;
+        if (TextUtils.equals((String) this.f1754c, m0Var.s()) && Arrays.equals(bArr, m0Var.x())) {
             TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = new TL_wallet.inputTonConnectOauthSession();
-            inputtonconnectoauthsession.session_id = tonconnectsession.f20530id;
+            inputtonconnectoauthsession.session_id = tonconnectsession.f20537id;
             inputtonconnectoauthsession.challenge_answer = bArr2;
-            inputtonconnectoauthsession.body = c2Var.f34073c;
+            inputtonconnectoauthsession.body = c2Var.f34081c;
             inputtonconnectoauthsession.proof = c2Var.d;
             s1Var.run(inputtonconnectoauthsession, null);
             return;
@@ -71,33 +71,33 @@ public final class l3 implements Runnable {
     }
 
     private final void c() {
-        org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.f1764b;
+        org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.f1753b;
         byte[] bArr = (byte[]) this.e;
-        org.telegram.ui.Wallet.x xVar = (org.telegram.ui.Wallet.x) this.f1766f;
+        org.telegram.ui.Wallet.x xVar = (org.telegram.ui.Wallet.x) this.f1755f;
         TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.h;
         org.telegram.ui.Wallet.c2 c2Var = (org.telegram.ui.Wallet.c2) this.d;
-        org.telegram.ui.Wallet.m0 m0Var = f2Var.f34192b;
-        if (TextUtils.equals((String) this.f1765c, m0Var.s()) && Arrays.equals(bArr, m0Var.x())) {
+        org.telegram.ui.Wallet.m0 m0Var = f2Var.f34224b;
+        if (TextUtils.equals((String) this.f1754c, m0Var.s()) && Arrays.equals(bArr, m0Var.x())) {
             TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
-            tonconnectclosesession.session_id = tonconnectsession.f20530id;
-            tonconnectclosesession.body = c2Var.f34073c;
-            f2Var.f34194f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.d(xVar, 3));
+            tonconnectclosesession.session_id = tonconnectsession.f20537id;
+            tonconnectclosesession.body = c2Var.f34081c;
+            f2Var.f34226f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.d(xVar, 3));
             return;
         }
         xVar.run("Wallet or TON Connect session changed. Open the request again.");
     }
 
     private final void d() {
-        org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.f1764b;
-        String str = (String) this.f1765c;
+        org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.f1753b;
+        String str = (String) this.f1754c;
         Utilities.Callback callback = (Utilities.Callback) this.e;
-        org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) this.f1766f;
+        org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) this.f1755f;
         org.telegram.ui.Wallet.j0 j0Var = (org.telegram.ui.Wallet.j0) this.h;
         TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) this.d;
         if (str != null) {
             callback.run(str);
         } else if (f2Var.y(b2Var) && !f2Var.i(b2Var)) {
-            f2Var.f34194f.sendRequestTyped(sendtransfer, new Object(), new t3(f2Var, callback, b2Var, j0Var, sendtransfer, 6));
+            f2Var.f34226f.sendRequestTyped(sendtransfer, new Object(), new t3(f2Var, callback, b2Var, j0Var, sendtransfer, 6));
         } else {
             callback.run("Request expired or wallet changed");
         }
@@ -105,10 +105,10 @@ public final class l3 implements Runnable {
 
     private final void f() {
         int i10;
-        org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.f1764b;
-        org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) this.f1765c;
+        org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.f1753b;
+        org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) this.f1754c;
         org.telegram.ui.Wallet.j0 j0Var = (org.telegram.ui.Wallet.j0) this.e;
-        org.telegram.ui.Wallet.x xVar = (org.telegram.ui.Wallet.x) this.f1766f;
+        org.telegram.ui.Wallet.x xVar = (org.telegram.ui.Wallet.x) this.f1755f;
         JSONObject jSONObject = (JSONObject) this.h;
         String str = (String) this.d;
         if (f2Var.y(b2Var) && !f2Var.i(b2Var)) {
@@ -124,14 +124,14 @@ public final class l3 implements Runnable {
     }
 
     private final void g() {
-        ((WalletEngine2) this.f1764b).lambda$prepareSendNFT$26((String) this.f1765c, (String) this.e, (String) this.f1766f, (byte[]) this.h, (Utilities.Callback2) this.d);
+        ((WalletEngine2) this.f1753b).lambda$prepareSendNFT$26((String) this.f1754c, (String) this.e, (String) this.f1755f, (byte[]) this.h, (Utilities.Callback2) this.d);
     }
 
     private final void h() {
-        org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f1764b;
-        TLObject tLObject = (TLObject) this.f1765c;
+        org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f1753b;
+        TLObject tLObject = (TLObject) this.f1754c;
         TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) this.e;
-        String str = (String) this.f1766f;
+        String str = (String) this.f1755f;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
         String str2 = (String) this.h;
         org.telegram.ui.ActionBar.d6 d6Var = a1Var.e;
@@ -153,10 +153,10 @@ public final class l3 implements Runnable {
     }
 
     private final void i() {
-        org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f1764b;
-        File file = (File) this.f1765c;
+        org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f1753b;
+        File file = (File) this.f1754c;
         org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.e;
-        String str = (String) this.f1766f;
+        String str = (String) this.f1755f;
         String str2 = (String) this.h;
         String str3 = (String) this.d;
         if (file == null) {
@@ -173,91 +173,91 @@ public final class l3 implements Runnable {
     }
 
     public l3(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f1763a = i10;
-        this.f1764b = obj;
-        this.f1765c = obj2;
+        this.f1752a = i10;
+        this.f1753b = obj;
+        this.f1754c = obj2;
         this.e = obj3;
-        this.f1766f = obj4;
+        this.f1755f = obj4;
         this.h = obj5;
         this.d = obj6;
     }
 
     public l3(TLObject tLObject, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f1763a = i10;
-        this.f1765c = tLObject;
-        this.f1764b = obj;
+        this.f1752a = i10;
+        this.f1754c = tLObject;
+        this.f1753b = obj;
         this.e = obj2;
-        this.f1766f = obj3;
+        this.f1755f = obj3;
         this.h = obj4;
         this.d = obj5;
     }
 
     public l3(TLRPC.TL_error tL_error, Context context, org.telegram.ui.ActionBar.d6 d6Var, ei.d dVar, org.telegram.ui.ActionBar.f3 f3Var, Runnable runnable) {
-        this.f1763a = 14;
+        this.f1752a = 14;
         this.d = tL_error;
-        this.f1764b = context;
-        this.f1765c = d6Var;
+        this.f1753b = context;
+        this.f1754c = d6Var;
         this.e = dVar;
-        this.f1766f = f3Var;
+        this.f1755f = f3Var;
         this.h = runnable;
     }
 
     public l3(sn snVar, pf.c cVar, org.telegram.ui.Cells.u1 u1Var, String str, TLObject tLObject, CharacterStyle characterStyle) {
-        this.f1763a = 13;
-        this.f1764b = snVar;
+        this.f1752a = 13;
+        this.f1753b = snVar;
         this.e = cVar;
-        this.f1766f = u1Var;
+        this.f1755f = u1Var;
         this.h = str;
-        this.f1765c = tLObject;
+        this.f1754c = tLObject;
         this.d = characterStyle;
     }
 
     public l3(xm0 xm0Var, TLRPC.TL_error tL_error, String str, om0 om0Var, TLObject tLObject, TL_account.sendVerifyPhoneCode sendverifyphonecode) {
-        this.f1763a = 16;
-        this.f1764b = xm0Var;
+        this.f1752a = 16;
+        this.f1753b = xm0Var;
         this.d = tL_error;
         this.e = str;
-        this.f1766f = om0Var;
-        this.f1765c = tLObject;
+        this.f1755f = om0Var;
+        this.f1754c = tLObject;
         this.h = sendverifyphonecode;
     }
 
     public l3(q21 q21Var, TLObject tLObject, CharSequence charSequence, TLRPC.TL_error tL_error, byte[] bArr, String str) {
-        this.f1763a = 17;
-        this.f1764b = q21Var;
-        this.f1765c = tLObject;
+        this.f1752a = 17;
+        this.f1753b = q21Var;
+        this.f1754c = tLObject;
         this.e = charSequence;
         this.d = tL_error;
-        this.f1766f = bArr;
+        this.f1755f = bArr;
         this.h = str;
     }
 
     public l3(j61 j61Var, TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TLRPC.User user, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
-        this.f1763a = 19;
-        this.f1764b = j61Var;
+        this.f1752a = 19;
+        this.f1753b = j61Var;
         this.d = tL_error;
-        this.f1765c = inputCheckPasswordSRP;
+        this.f1754c = inputCheckPasswordSRP;
         this.e = user;
-        this.f1766f = twoStepVerificationActivity;
+        this.f1755f = twoStepVerificationActivity;
         this.h = tL_channels_editCreator;
     }
 
     public l3(org.telegram.ui.web.a1 a1Var, TLObject tLObject, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_error tL_error, String str2) {
-        this.f1763a = 25;
-        this.f1764b = a1Var;
-        this.f1765c = tLObject;
+        this.f1752a = 25;
+        this.f1753b = a1Var;
+        this.f1754c = tLObject;
         this.e = tL_messages_requestUrlAuth;
-        this.f1766f = str;
+        this.f1755f = str;
         this.d = tL_error;
         this.h = str2;
     }
 
     public l3(yh.p1 p1Var, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, yh1 yh1Var, Utilities.Callback callback, TLRPC.TL_error tL_error) {
-        this.f1763a = 27;
-        this.f1764b = p1Var;
+        this.f1752a = 27;
+        this.f1753b = p1Var;
         this.e = b2Var;
-        this.f1765c = tLObject;
-        this.f1766f = yh1Var;
+        this.f1754c = tLObject;
+        this.f1755f = yh1Var;
         this.h = callback;
         this.d = tL_error;
     }

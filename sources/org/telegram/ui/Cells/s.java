@@ -9,10 +9,10 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.st;
 public final class s extends LinearLayout {
-    public static final int f22961f = 0;
-    public Paint f22962a;
-    public Paint f22963b;
-    public q f22964c;
+    public static final int f22965f = 0;
+    public Paint f22966a;
+    public Paint f22967b;
+    public q f22968c;
     public TextView d;
     public float e;
 
@@ -21,9 +21,9 @@ public final class s extends LinearLayout {
         TextView textView = this.d;
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false);
         int i10 = org.telegram.ui.ActionBar.h6.I6;
-        textView.setTextColor(i0.b.f(f7, x02, org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
-        Paint paint = this.f22962a;
-        paint.setColor(i0.b.f(f7, i0.b.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.M6, false), 63), org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
+        textView.setTextColor(i0.a.f(f7, x02, org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
+        Paint paint = this.f22966a;
+        paint.setColor(i0.a.f(f7, i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.M6, false), 63), org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
         paint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(AndroidUtilities.lerp(0.5f, 2.0f, f7))));
         invalidate();
     }
@@ -51,12 +51,12 @@ public final class s extends LinearLayout {
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f22962a;
+        Paint paint = this.f22966a;
         float strokeWidth = paint.getStrokeWidth();
         RectF rectF = AndroidUtilities.rectTmp;
-        q qVar = this.f22964c;
+        q qVar = this.f22968c;
         rectF.set(qVar.getLeft() + strokeWidth, qVar.getTop() + strokeWidth, qVar.getRight() - strokeWidth, qVar.getBottom() - strokeWidth);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f22963b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f22967b);
         super.draw(canvas);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
     }

@@ -1,47 +1,307 @@
 package zh;
 
+import android.os.SystemClock;
 import android.text.TextUtils;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.ff0;
-import org.telegram.ui.n9;
-import org.telegram.ui.x9;
-public final class i0 implements x9 {
-    public final int f52028a;
-    public final n2 f52029b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Wallet.s1;
+import org.telegram.ui.iq;
+import yh.u3;
+public final class i0 implements NotificationCenter.NotificationCenterDelegate {
+    public boolean E;
+    public TLRPC.ShareTheme H;
+    public final int f51783a;
+    public final t0 f51784b;
+    public final h0 f51785c;
+    public boolean e;
+    public TLRPC.TL_exportedNoPaidMessagesToken f51786f;
+    public long h;
+    public int f51787n;
+    public TLRPC.TL_exportedContactToken f51788r;
+    public long f51789s;
+    public TLRPC.ShareTheme v;
+    public int f51790w;
+    public boolean f51791x;
+    public boolean f51792y;
+    public int d = 0;
+    public final g0 F = new Runnable(this) {
+        public final i0 f51776b;
 
-    public i0(int i10, n2 n2Var) {
-        this.f52028a = i10;
-        this.f52029b = n2Var;
+        {
+            this.f51776b = this;
+        }
+
+        @Override
+        public final void run() {
+            switch (r2) {
+                case 0:
+                    this.f51776b.j();
+                    return;
+                default:
+                    this.f51776b.i();
+                    return;
+            }
+        }
+    };
+    public final g0 G = new Runnable(this) {
+        public final i0 f51776b;
+
+        {
+            this.f51776b = this;
+        }
+
+        @Override
+        public final void run() {
+            switch (r2) {
+                case 0:
+                    this.f51776b.j();
+                    return;
+                default:
+                    this.f51776b.i();
+                    return;
+            }
+        }
+    };
+
+    public i0(int i10, t0 t0Var, h0 h0Var) {
+        this.f51783a = i10;
+        this.f51784b = t0Var;
+        this.f51785c = h0Var;
     }
 
-    @Override
-    public final void E(String str) {
-        String b10 = pf.d.b(str);
-        if (TextUtils.isEmpty(b10)) {
-            AndroidUtilities.runOnUIThread(new ff0(25));
+    public final void a(TLRPC.ShareTheme shareTheme) {
+        ArrayList<TLRPC.Reaction> arrayList;
+        float f7;
+        this.H = shareTheme;
+        boolean z10 = shareTheme instanceof TLRPC.TL_shareThemeGift;
+        boolean z11 = false;
+        t0 t0Var = this.f51784b;
+        if (z10) {
+            TL_stars.StarGift starGift = ((TLRPC.TL_shareThemeGift) shareTheme).stargift;
+            if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
+                ArrayList arrayList2 = t0Var.f52102v1;
+                int i10 = 0;
+                while (true) {
+                    if (i10 < arrayList2.size()) {
+                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i10)).f20503id == tL_starGiftUnique.f20503id) {
+                            break;
+                        }
+                        i10++;
+                    } else {
+                        i10 = -1;
+                        break;
+                    }
+                }
+                if (i10 < 0) {
+                    arrayList2.add(0, tL_starGiftUnique);
+                    i10 = 0;
+                }
+                q0 q0Var = t0Var.F;
+                if (q0Var.f51836a == 2 && q0Var.f51849q == i10) {
+                    return;
+                }
+                t0Var.f51927d2 = true;
+                t0Var.I.clear();
+                Runnable runnable = t0Var.f51917c2;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                t0Var.M7 = i10;
+                if (t0Var.f51937e2) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                t0Var.O7 = f7;
+                t0Var.P7 = 1.0f;
+                t0Var.I0(t0Var.getWidth() / 2.0f, (t0Var.l() / 2.0f) + t0Var.m(), i10);
+                t0Var.f51927d2 = false;
+                return;
+            }
+        }
+        if (shareTheme instanceof TLRPC.TL_shareThemeEmojiBackdrop) {
+            TLRPC.TL_shareThemeEmojiBackdrop tL_shareThemeEmojiBackdrop = (TLRPC.TL_shareThemeEmojiBackdrop) shareTheme;
+            int i11 = tL_shareThemeEmojiBackdrop.flags;
+            if ((i11 & 1) != 0) {
+                z11 = true;
+            }
+            int i12 = tL_shareThemeEmojiBackdrop.backdrop_id;
+            if ((i11 & 2) != 0) {
+                arrayList = tL_shareThemeEmojiBackdrop.emojis;
+            } else {
+                arrayList = null;
+            }
+            t0Var.e(i12, arrayList, z11);
+            return;
+        }
+        t0Var.d(t0.H9);
+    }
+
+    public final TLRPC.TL_exportedNoPaidMessagesToken b() {
+        int i10 = this.f51783a;
+        String string = MessagesController.getMainSettings(i10).getString("qrNoPaidToken", null);
+        if (TextUtils.isEmpty(string)) {
+            return null;
+        }
+        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = new TLRPC.TL_exportedNoPaidMessagesToken();
+        tL_exportedNoPaidMessagesToken.token = string;
+        tL_exportedNoPaidMessagesToken.url = MessagesController.getMainSettings(i10).getString("qrNoPaidUrl", null);
+        return tL_exportedNoPaidMessagesToken;
+    }
+
+    public final String c(TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken) {
+        h0 h0Var = this.f51785c;
+        String str = h0Var.f51778a;
+        if (TextUtils.isEmpty(tL_exportedNoPaidMessagesToken.url) && str != null && !h0Var.d) {
+            return str + "?free=" + tL_exportedNoPaidMessagesToken.token;
+        } else if (TextUtils.isEmpty(tL_exportedNoPaidMessagesToken.url)) {
+            return null;
         } else {
-            MessagesController.getInstance(this.f52028a).getUserNameResolver().resolve(b10, new m(this.f52029b, 2));
+            return tL_exportedNoPaidMessagesToken.url;
         }
     }
 
-    @Override
-    public final boolean U0(String str, n9 n9Var) {
-        return false;
+    public final TLRPC.InputPeer d() {
+        h0 h0Var = this.f51785c;
+        if (h0Var.e) {
+            return new TLRPC.TL_inputPeerSelf();
+        }
+        TLRPC.InputPeer inputPeer = MessagesController.getInstance(this.f51783a).getInputPeer(h0Var.f51781f);
+        if (inputPeer instanceof TLRPC.TL_inputPeerEmpty) {
+            return null;
+        }
+        return inputPeer;
     }
 
     @Override
-    public final String p0() {
-        return null;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.privacyRulesUpdated) {
+            k();
+        }
     }
 
-    @Override
-    public final void onDismiss() {
+    public final void e() {
+        TLRPC.TL_messages_getShareTheme tL_messages_getShareTheme = new TLRPC.TL_messages_getShareTheme();
+        TLRPC.InputPeer d = d();
+        tL_messages_getShareTheme.peer = d;
+        if (d == null) {
+            return;
+        }
+        ConnectionsManager.getInstance(this.f51783a).sendRequestTyped(tL_messages_getShareTheme, new Object(), new u3(this, 3));
     }
 
-    @Override
-    public final void F0(MrzRecognizer.Result result) {
+    public final void f() {
+        throw new UnsupportedOperationException("Method not decompiled: zh.i0.f():void");
+    }
+
+    public final void g() {
+        this.E = true;
+        int i10 = this.f51783a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.privacyRulesUpdated);
+        AndroidUtilities.cancelRunOnUIThread(this.F);
+        AndroidUtilities.cancelRunOnUIThread(this.G);
+        i();
+        if (this.f51787n != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f51787n, true);
+            this.f51787n = 0;
+        }
+    }
+
+    public final void h(boolean z10, boolean z11) {
+        int i10 = this.f51787n;
+        int i11 = this.f51783a;
+        if (i10 != 0) {
+            ConnectionsManager.getInstance(i11).cancelRequest(this.f51787n, true);
+        }
+        TLRPC.TL_contacts_exportNoPaidMessagesToken tL_contacts_exportNoPaidMessagesToken = new TLRPC.TL_contacts_exportNoPaidMessagesToken();
+        tL_contacts_exportNoPaidMessagesToken.revoke = z10;
+        tL_contacts_exportNoPaidMessagesToken.temporary = z11;
+        int sendRequestTyped = ConnectionsManager.getInstance(i11).sendRequestTyped(tL_contacts_exportNoPaidMessagesToken, new Object(), new iq(this, r6, z11, 1));
+        this.f51787n = sendRequestTyped;
+        int[] iArr = {sendRequestTyped};
+    }
+
+    public final void i() {
+        if (this.v != null) {
+            TLRPC.TL_messages_setShareTheme tL_messages_setShareTheme = new TLRPC.TL_messages_setShareTheme();
+            TLRPC.InputPeer d = d();
+            tL_messages_setShareTheme.peer = d;
+            tL_messages_setShareTheme.theme = this.v;
+            this.v = null;
+            if (d == null) {
+                return;
+            }
+            int i10 = this.f51790w;
+            int i11 = this.f51783a;
+            if (i10 != 0) {
+                ConnectionsManager.getInstance(i11).cancelRequest(this.f51790w, true);
+            }
+            int sendRequestTyped = ConnectionsManager.getInstance(i11).sendRequestTyped(tL_messages_setShareTheme, new Object(), new s1(8, this, r1));
+            this.f51790w = sendRequestTyped;
+            int[] iArr = {sendRequestTyped};
+        }
+    }
+
+    public final void j() {
+        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken;
+        g0 g0Var = this.F;
+        AndroidUtilities.cancelRunOnUIThread(g0Var);
+        if (this.E) {
+            return;
+        }
+        int i10 = this.d;
+        int i11 = this.f51783a;
+        if (i10 == 1 && this.f51787n == 0 && (this.f51786f == null || SystemClock.elapsedRealtime() - this.h >= 30000 || ((tL_exportedNoPaidMessagesToken = this.f51786f) != null && tL_exportedNoPaidMessagesToken.expires != 0 && ConnectionsManager.getInstance(i11).getCurrentTime() >= this.f51786f.expires - 5))) {
+            h(false, true);
+        }
+        if (this.f51785c.d && ((this.f51788r == null || System.currentTimeMillis() / 1000 >= this.f51788r.expires) && SystemClock.elapsedRealtime() - this.f51789s >= 5000)) {
+            this.f51789s = SystemClock.elapsedRealtime();
+            MessagesController.getInstance(i11).requestContactToken(new g(this, 3));
+        }
+        AndroidUtilities.runOnUIThread(g0Var, 1000L);
+    }
+
+    public final void k() {
+        long j10;
+        int i10 = this.f51783a;
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i10).getGlobalPrivacySettings();
+        if (globalPrivacySettings == null) {
+            ContactsController.getInstance(i10).loadGlobalPrivacySetting();
+            j10 = 0;
+        } else {
+            j10 = globalPrivacySettings.noncontact_peers_paid_stars;
+        }
+        t0 t0Var = this.f51784b;
+        t0Var.setFeeStars(j10);
+        if (j10 > 0 && !this.e) {
+            this.e = true;
+            if (!this.f51785c.d && this.d == 0 && MessagesController.getMainSettings(i10).getBoolean("qrNoPaidPermanent", false)) {
+                this.d = 2;
+                t0Var.f52101v0 = true;
+                t0Var.f52112w0 = false;
+                t0Var.B0 = 1.0f;
+                t0Var.D0 = 1.0f;
+                t0Var.C0 = 1.0f;
+                t0Var.F0 = true;
+                t0Var.G0 = 1.0f;
+                t0Var.f52135y2 = null;
+                t0Var.f52144z2 = -1;
+                t0Var.t1(false);
+                t0Var.invalidate();
+                TLRPC.TL_exportedNoPaidMessagesToken b10 = b();
+                this.f51786f = b10;
+                if (b10 != null) {
+                    t0Var.setFreeLink(c(b10));
+                }
+                h(false, false);
+            }
+        }
     }
 }

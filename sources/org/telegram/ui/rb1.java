@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class rb1 extends AnimatorListenerAdapter {
-    public final mc1 f40695a;
+    public final mc1 f40720a;
 
     public rb1(mc1 mc1Var) {
-        this.f40695a = mc1Var;
+        this.f40720a = mc1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         char c10;
-        mc1 mc1Var = this.f40695a;
+        mc1 mc1Var = this.f40720a;
         org.telegram.ui.Components.d91[] d91VarArr = mc1Var.J0;
         if (mc1Var.W0 != null) {
             c10 = 0;

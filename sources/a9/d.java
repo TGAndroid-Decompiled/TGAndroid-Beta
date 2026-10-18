@@ -8,8 +8,8 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 import com.google.android.gms.internal.play_billing.i3;
-import com.google.android.gms.internal.play_billing.m3;
-import com.google.android.gms.internal.play_billing.p3;
+import com.google.android.gms.internal.play_billing.n3;
+import com.google.android.gms.internal.play_billing.q3;
 import j$.util.Objects;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -42,15 +42,15 @@ public final class d implements ServiceConnection {
                 LinkedBlockingDeque linkedBlockingDeque = (LinkedBlockingDeque) rVar.d;
                 sb2.append(linkedBlockingDeque.size());
                 Log.d("SessionLifecycleClient", sb2.toString());
-                rVar.f7663c = new Messenger(iBinder);
+                rVar.f7664c = new Messenger(iBinder);
                 ArrayList arrayList = new ArrayList();
                 linkedBlockingDeque.drainTo(arrayList);
-                be.f0.q(be.f0.b((kd.h) rVar.f7662b), new ab.l(rVar, arrayList, null, 2));
+                be.f0.q(be.f0.b((kd.h) rVar.f7663b), new ab.l(rVar, arrayList, null, 2));
                 return;
             case 2:
                 com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service connected.");
                 c5.d0 d0Var = (c5.d0) this.f323b;
-                int i10 = com.google.android.gms.internal.play_billing.f.f7104b;
+                int i10 = com.google.android.gms.internal.play_billing.f.f7105b;
                 if (iBinder != null) {
                     IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.apps.play.billingtestcompanion.aidl.IBillingOverrideService");
                     if (queryLocalInterface instanceof com.google.android.gms.internal.play_billing.g) {
@@ -61,36 +61,36 @@ public final class d implements ServiceConnection {
                 }
                 d0Var.E = gVar;
                 d0Var.D = 2;
-                int i11 = c5.e0.f4729a;
-                i3 c10 = c5.e0.c(26, m3.BROADCAST_ACTION_UNSPECIFIED);
+                int i11 = c5.e0.f4730a;
+                i3 c10 = c5.e0.c(26, n3.BROADCAST_ACTION_UNSPECIFIED);
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 n4.s sVar = d0Var.h;
                 sVar.getClass();
                 try {
-                    sVar.V(c10, (p3) sVar.f17121b);
+                    sVar.V(c10, (q3) sVar.f17128b);
                     return;
                 } catch (Throwable th2) {
                     com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
                     return;
                 }
             default:
-                int i12 = xf.e.f49800a;
+                int i12 = xf.e.f49825a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof xf.f)) {
                         fVar = (xf.f) queryLocalInterface2;
                     } else {
                         ?? obj = new Object();
-                        obj.f49799a = iBinder;
+                        obj.f49824a = iBinder;
                         fVar = obj;
                     }
                 }
                 xf.c cVar2 = new xf.c(fVar, componentName);
                 if (((pf.b) ((WeakReference) this.f323b).get()) != null) {
-                    pf.d.f44311b = cVar2;
-                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (cVar = pf.d.f44311b) != null) {
+                    pf.d.f44331b = cVar2;
+                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (cVar = pf.d.f44331b) != null) {
                         try {
-                            ((xf.d) ((xf.f) cVar.f49797a)).G0();
+                            ((xf.d) ((xf.f) cVar.f49822a)).G0();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -116,7 +116,7 @@ public final class d implements ServiceConnection {
             case 1:
                 Log.d("SessionLifecycleClient", "Disconnected from SessionLifecycleService");
                 com.google.firebase.messaging.r rVar = (com.google.firebase.messaging.r) this.f323b;
-                rVar.f7663c = null;
+                rVar.f7664c = null;
                 rVar.getClass();
                 return;
             case 2:
@@ -127,7 +127,7 @@ public final class d implements ServiceConnection {
                 return;
             default:
                 if (((pf.b) ((WeakReference) this.f323b).get()) != null) {
-                    pf.d.f44311b = null;
+                    pf.d.f44331b = null;
                     return;
                 }
                 return;

@@ -10,12 +10,12 @@ public abstract class q {
             return;
         }
         m.r3 r3Var = m.r3.v;
-        if (r3Var != null && r3Var.f16310a == view) {
+        if (r3Var != null && r3Var.f16317a == view) {
             m.r3.b(null);
         }
         if (TextUtils.isEmpty(charSequence)) {
-            m.r3 r3Var2 = m.r3.f16309w;
-            if (r3Var2 != null && r3Var2.f16310a == view) {
+            m.r3 r3Var2 = m.r3.f16316w;
+            if (r3Var2 != null && r3Var2.f16317a == view) {
                 r3Var2.a();
             }
             view.setOnLongClickListener(null);

@@ -227,7 +227,7 @@ public class MessageCustomParamsHelper {
             new Params_v1(message).readParams(nativeByteBuffer, true);
             return;
         }
-        throw new RuntimeException(i0.a.j(readInt32, "can't read params version = "));
+        throw new RuntimeException(i2.d.j(readInt32, "can't read params version = "));
     }
 
     public static NativeByteBuffer writeLocalParams(TLRPC.Message message) {

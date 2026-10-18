@@ -1,29 +1,27 @@
 package org.telegram.messenger;
-public final class yh implements Runnable {
-    public final int f20171a;
-    public final SecretChatHelper f20172b;
-    public final long f20173c;
 
-    public yh(SecretChatHelper secretChatHelper, long j10, int i10) {
-        this.f20171a = i10;
-        this.f20172b = secretChatHelper;
-        this.f20173c = j10;
+import android.content.Context;
+public final class yh implements Runnable {
+    public final int f20179a;
+    public final SecretChatHelper f20180b;
+    public final Context f20181c;
+    public final org.telegram.ui.ActionBar.b2 d;
+
+    public yh(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        this.f20179a = i10;
+        this.f20180b = secretChatHelper;
+        this.f20181c = context;
+        this.d = b2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f20171a) {
+        switch (this.f20179a) {
             case 0:
-                this.f20172b.lambda$processDecryptedObject$12(this.f20173c);
-                return;
-            case 1:
-                this.f20172b.lambda$processDecryptedObject$10(this.f20173c);
-                return;
-            case 2:
-                this.f20172b.lambda$processDecryptedObject$11(this.f20173c);
+                this.f20180b.lambda$startSecretChat$27(this.f20181c, this.d);
                 return;
             default:
-                this.f20172b.lambda$processUpdateEncryption$3(this.f20173c);
+                this.f20180b.lambda$startSecretChat$29(this.f20181c, this.d);
                 return;
         }
     }

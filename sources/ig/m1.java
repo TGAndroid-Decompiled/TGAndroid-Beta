@@ -1,52 +1,142 @@
 package ig;
 
-import android.app.Activity;
-import ei.e4;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.widget.TextView;
+import ci.z2;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.n2;
-public final class m1 extends org.telegram.ui.ActionBar.j {
-    public final v1 f12967a;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ey;
+import org.telegram.ui.te1;
+import org.telegram.ui.xx;
+public final class m1 implements org.telegram.ui.ActionBar.a2, xx {
+    public final int f12968a;
+    public final KeyEvent.Callback f12969b;
+    public final Object f12970c;
+    public final Object d;
+    public final Object e;
+    public final Object f12971f;
 
-    public m1(v1 v1Var) {
-        this.f12967a = v1Var;
+    public m1(q1 q1Var, z2 z2Var, int i10, z1 z1Var, TextView textView, Utilities.Callback callback) {
+        this.f12969b = q1Var;
+        this.f12970c = z2Var;
+        this.f12968a = i10;
+        this.d = z1Var;
+        this.e = textView;
+        this.f12971f = callback;
     }
 
     @Override
-    public final void b(int i10) {
+    public boolean D() {
+        return false;
+    }
+
+    @Override
+    public boolean K(ey eyVar) {
+        return false;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         int i11;
-        int i12;
-        d6 d6Var;
-        v1 v1Var = this.f12967a;
-        ArrayList arrayList = v1Var.f13065b;
-        if (i10 == -1) {
-            if (arrayList.isEmpty()) {
-                v1Var.finishFragment();
+        q1 q1Var = (q1) this.f12969b;
+        z2 z2Var = (z2) this.f12970c;
+        z1 z1Var = (z1) this.d;
+        TextView textView = (TextView) this.e;
+        Utilities.Callback callback = (Utilities.Callback) this.f12971f;
+        String obj = q1Var.getText().toString();
+        if (obj.length() > 0 && obj.length() <= 32) {
+            a2 f7 = a2.f(this.f12968a);
+            if (z1Var == null) {
+                i11 = -1;
             } else {
-                v1.X(v1Var);
+                i11 = z1Var.f13100a;
             }
-        } else if (i10 == 1) {
-            if (arrayList.size() == 1) {
-                int intValue = ((Integer) arrayList.get(0)).intValue();
-                i11 = ((n2) v1Var).currentAccount;
-                x1 c10 = y1.f(i11).c(intValue);
-                if (c10 != null) {
-                    Activity parentActivity = v1Var.getParentActivity();
-                    i12 = ((n2) v1Var).currentAccount;
-                    d6Var = ((n2) v1Var).resourceProvider;
-                    v1.d0(parentActivity, i12, null, c10, d6Var, new e4(this, intValue, 2));
-                }
+            z1 d = f7.d(obj);
+            if (d != null && d.f13100a != i11) {
+                AndroidUtilities.shakeView(q1Var);
+                textView.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
+                z2Var.run(Boolean.TRUE);
+                return;
             }
-        } else if (i10 == 2) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(v1Var.getParentActivity(), 0, v1Var.getResourceProvider());
-            alertDialog$Builder.f20601a.R = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
-            alertDialog$Builder.f20601a.T = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new e1.c(this, 22));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            v1Var.showDialog(alertDialog$Builder.f20601a);
+            callback.run(obj);
+            b2Var.dismiss();
+            return;
         }
+        AndroidUtilities.shakeView(q1Var);
+        z2Var.run(Boolean.FALSE);
+    }
+
+    @Override
+    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, te1 te1Var) {
+        String str;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        final LaunchActivity launchActivity = (LaunchActivity) this.f12969b;
+        final TLRPC.User user = (TLRPC.User) this.f12970c;
+        final String str2 = (String) this.d;
+        final String str3 = (String) this.e;
+        final ey eyVar2 = (ey) this.f12971f;
+        Pattern pattern = LaunchActivity.C1;
+        final long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+        final TLRPC.Chat chat = MessagesController.getInstance(launchActivity.O).getChat(Long.valueOf(-j10));
+        final int i12 = this.f12968a;
+        if (chat != null && (chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.add_admins))) {
+            MessagesController.getInstance(i12).checkIsInChat(false, chat, user, new MessagesController.IsInChatCheckedCallback() {
+                @Override
+                public final void run(boolean z12, TLRPC.TL_chatAdminRights tL_chatAdminRights2, String str4) {
+                    Pattern pattern2 = LaunchActivity.C1;
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.i8(LaunchActivity.this, str2, tL_chatAdminRights2, z12, str3, i12, chat, eyVar2, user, j10, str4));
+                }
+            });
+        } else {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
+            String string = LocaleController.getString(R.string.AddBot);
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+            b2Var.R = string;
+            if (chat == null) {
+                str = "";
+            } else {
+                str = chat.title;
+            }
+            b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(user), str));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            alertDialog$Builder.k(LocaleController.getString(R.string.AddBot), new org.telegram.ui.ActionBar.a2() {
+                @Override
+                public final void g(org.telegram.ui.ActionBar.b2 b2Var2, int i13) {
+                    Pattern pattern2 = LaunchActivity.C1;
+                    Bundle h = a1.g.h("scrollToTopOnResume", true);
+                    long j11 = -j10;
+                    h.putLong("chat_id", j11);
+                    sn snVar = new sn(h);
+                    int i14 = i12;
+                    NotificationCenter.getInstance(i14).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+                    MessagesController.getInstance(i14).addUserToChat(j11, user, 0, str3, snVar, null);
+                    ((ActionBarLayout) LaunchActivity.this.O()).S(snVar, true, false);
+                }
+            });
+            alertDialog$Builder.o();
+        }
+        return true;
+    }
+
+    public m1(LaunchActivity launchActivity, int i10, TLRPC.User user, String str, String str2, ey eyVar) {
+        this.f12969b = launchActivity;
+        this.f12968a = i10;
+        this.f12970c = user;
+        this.d = str;
+        this.e = str2;
+        this.f12971f = eyVar;
     }
 }

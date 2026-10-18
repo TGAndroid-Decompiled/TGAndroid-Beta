@@ -1,50 +1,54 @@
 package u2;
+public final class z extends b2.o1 {
+    public final b2.o0 e;
 
-import j$.util.Objects;
-public final class z extends s {
-    public static final Object h = new Object();
-    public final Object f47515f;
-    public final Object f47516g;
-
-    public z(b2.o1 o1Var, Object obj, Object obj2) {
-        super(o1Var);
-        this.f47515f = obj;
-        this.f47516g = obj2;
+    public z(b2.o0 o0Var) {
+        this.e = o0Var;
     }
 
     @Override
     public final int b(Object obj) {
-        Object obj2;
-        if (h.equals(obj) && (obj2 = this.f47516g) != null) {
-            obj = obj2;
+        if (obj == y.h) {
+            return 0;
         }
-        return this.e.b(obj);
+        return -1;
     }
 
     @Override
     public final b2.l1 f(int i10, b2.l1 l1Var, boolean z10) {
-        this.e.f(i10, l1Var, z10);
-        if (Objects.equals(l1Var.f3824b, this.f47516g) && z10) {
-            l1Var.f3824b = h;
+        Integer num;
+        Object obj = null;
+        if (z10) {
+            num = 0;
+        } else {
+            num = null;
         }
+        if (z10) {
+            obj = y.h;
+        }
+        l1Var.h(num, obj, 0, -9223372036854775807L, 0L, b2.c.f3705c, true);
         return l1Var;
     }
 
     @Override
+    public final int h() {
+        return 1;
+    }
+
+    @Override
     public final Object l(int i10) {
-        Object l4 = this.e.l(i10);
-        if (Objects.equals(l4, this.f47516g)) {
-            return h;
-        }
-        return l4;
+        return y.h;
     }
 
     @Override
     public final b2.n1 m(int i10, b2.n1 n1Var, long j10) {
-        this.e.m(i10, n1Var, j10);
-        if (Objects.equals(n1Var.f3870a, this.f47515f)) {
-            n1Var.f3870a = b2.n1.f3861q;
-        }
+        n1Var.b(b2.n1.f3862q, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+        n1Var.f3878k = true;
         return n1Var;
+    }
+
+    @Override
+    public final int o() {
+        return 1;
     }
 }

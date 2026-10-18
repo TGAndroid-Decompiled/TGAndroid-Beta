@@ -3,32 +3,32 @@ package c3;
 import b2.w0;
 import java.util.ArrayList;
 public final class d {
-    public final ArrayList f4597a;
-    public final int f4598b;
-    public final int f4599c;
+    public final ArrayList f4598a;
+    public final int f4599b;
+    public final int f4600c;
     public final int d;
     public final int e;
-    public final int f4600f;
-    public final int f4601g;
+    public final int f4601f;
+    public final int f4602g;
     public final int h;
-    public final int f4602i;
-    public final int f4603j;
-    public final float f4604k;
-    public final String f4605l;
+    public final int f4603i;
+    public final int f4604j;
+    public final float f4605k;
+    public final String f4606l;
 
     public d(ArrayList arrayList, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, float f7, String str) {
-        this.f4597a = arrayList;
-        this.f4598b = i10;
-        this.f4599c = i11;
+        this.f4598a = arrayList;
+        this.f4599b = i10;
+        this.f4600c = i11;
         this.d = i12;
         this.e = i13;
-        this.f4600f = i14;
-        this.f4601g = i15;
+        this.f4601f = i14;
+        this.f4602g = i15;
         this.h = i16;
-        this.f4602i = i17;
-        this.f4603j = i18;
-        this.f4604k = f7;
-        this.f4605l = str;
+        this.f4603i = i17;
+        this.f4604j = i18;
+        this.f4605k = f7;
+        this.f4606l = str;
     }
 
     public static d a(e2.x xVar) {
@@ -50,44 +50,44 @@ public final class d {
                 int A2 = xVar.A() & 31;
                 for (int i18 = 0; i18 < A2; i18++) {
                     int H = xVar.H();
-                    int i19 = xVar.f8294b;
+                    int i19 = xVar.f8295b;
                     xVar.O(H);
-                    byte[] bArr = xVar.f8293a;
+                    byte[] bArr = xVar.f8294a;
                     byte[] bArr2 = new byte[H + 4];
-                    System.arraycopy(e2.g.f8228a, 0, bArr2, 0, 4);
+                    System.arraycopy(e2.g.f8229a, 0, bArr2, 0, 4);
                     System.arraycopy(bArr, i19, bArr2, 4, H);
                     arrayList.add(bArr2);
                 }
                 int A3 = xVar.A();
                 for (int i20 = 0; i20 < A3; i20++) {
                     int H2 = xVar.H();
-                    int i21 = xVar.f8294b;
+                    int i21 = xVar.f8295b;
                     xVar.O(H2);
-                    byte[] bArr3 = xVar.f8293a;
+                    byte[] bArr3 = xVar.f8294a;
                     byte[] bArr4 = new byte[H2 + 4];
-                    System.arraycopy(e2.g.f8228a, 0, bArr4, 0, 4);
+                    System.arraycopy(e2.g.f8229a, 0, bArr4, 0, 4);
                     System.arraycopy(bArr3, i21, bArr4, 4, H2);
                     arrayList.add(bArr4);
                 }
                 if (A2 > 0) {
                     f2.p m10 = f2.q.m(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
                     int i22 = m10.e;
-                    int i23 = m10.f10323f;
-                    int i24 = m10.f10332p;
-                    int i25 = m10.f10333q;
-                    int i26 = m10.f10334r;
-                    int i27 = m10.f10335s;
-                    float f10 = m10.f10324g;
-                    int i28 = m10.f10320a;
-                    int i29 = m10.f10321b;
-                    int i30 = m10.f10322c;
-                    byte[] bArr5 = e2.g.f8228a;
+                    int i23 = m10.f10325f;
+                    int i24 = m10.f10334p;
+                    int i25 = m10.f10335q;
+                    int i26 = m10.f10336r;
+                    int i27 = m10.f10337s;
+                    float f10 = m10.f10326g;
+                    int i28 = m10.f10322a;
+                    int i29 = m10.f10323b;
+                    int i30 = m10.f10324c;
+                    byte[] bArr5 = e2.g.f8229a;
                     str = String.format("avc1.%02X%02X%02X", Integer.valueOf(i28), Integer.valueOf(i29), Integer.valueOf(i30));
                     i15 = i27;
                     f7 = f10;
                     i16 = i25;
                     i17 = i26;
-                    i13 = m10.f10325i + 8;
+                    i13 = m10.f10327i + 8;
                     i14 = i24;
                     i11 = i23;
                     i12 = m10.h + 8;

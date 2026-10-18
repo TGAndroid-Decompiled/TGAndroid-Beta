@@ -4,18 +4,18 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 public final class si0 extends org.telegram.ui.Components.oo {
-    public final wi0 f41119v0;
+    public final wi0 f41140v0;
 
     public si0(wi0 wi0Var, Context context) {
         super(context, null, false, null);
-        this.f41119v0 = wi0Var;
+        this.f41140v0 = wi0Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        wi0 wi0Var = this.f41119v0;
-        wi0Var.W.setImageCoords(wi0Var.f42866b0.getAvatarImageView().getX(), wi0Var.f42866b0.getAvatarImageView().getY(), wi0Var.f42866b0.getAvatarImageView().getWidth(), wi0Var.f42866b0.getAvatarImageView().getHeight());
+        wi0 wi0Var = this.f41140v0;
+        wi0Var.W.setImageCoords(wi0Var.f42890b0.getAvatarImageView().getX(), wi0Var.f42890b0.getAvatarImageView().getY(), wi0Var.f42890b0.getAvatarImageView().getWidth(), wi0Var.f42890b0.getAvatarImageView().getHeight());
         if (wi0Var.Y) {
             canvas.save();
             canvas.scale(0.9f, 0.9f, wi0Var.W.getCenterX(), wi0Var.W.getCenterY());
@@ -34,12 +34,12 @@ public final class si0 extends org.telegram.ui.Components.oo {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f41119v0.W.onAttachedToWindow();
+        this.f41140v0.W.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f41119v0.W.onDetachedFromWindow();
+        this.f41140v0.W.onDetachedFromWindow();
     }
 }

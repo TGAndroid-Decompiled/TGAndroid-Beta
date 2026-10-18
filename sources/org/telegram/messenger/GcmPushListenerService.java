@@ -15,9 +15,9 @@ public class GcmPushListenerService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(com.google.firebase.messaging.p pVar) {
         long parseLong;
-        Bundle bundle = pVar.f7658a;
+        Bundle bundle = pVar.f7659a;
         String string = bundle.getString("from");
-        if (pVar.f7659b == null) {
+        if (pVar.f7660b == null) {
             ?? lVar = new a0.l(0);
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
@@ -28,9 +28,9 @@ public class GcmPushListenerService extends FirebaseMessagingService {
                     }
                 }
             }
-            pVar.f7659b = lVar;
+            pVar.f7660b = lVar;
         }
-        a0.f fVar = pVar.f7659b;
+        a0.f fVar = pVar.f7660b;
         Object obj2 = bundle.get("google.sent_time");
         if (obj2 instanceof Long) {
             parseLong = ((Long) obj2).longValue();

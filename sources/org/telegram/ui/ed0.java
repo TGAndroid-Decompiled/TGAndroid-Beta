@@ -9,24 +9,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ed0 implements RequestDelegate {
-    public final int f36499a;
-    public final od0 f36500b;
-    public final Bundle f36501c;
+    public final int f36503a;
+    public final od0 f36504b;
+    public final Bundle f36505c;
     public final TLRPC.TL_auth_resetLoginEmail d;
 
     public ed0(od0 od0Var, Bundle bundle, TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail, int i10) {
-        this.f36499a = i10;
-        this.f36500b = od0Var;
-        this.f36501c = bundle;
+        this.f36503a = i10;
+        this.f36504b = od0Var;
+        this.f36505c = bundle;
         this.d = tL_auth_resetLoginEmail;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f36499a) {
+        switch (this.f36503a) {
             case 0:
-                final od0 od0Var = this.f36500b;
-                final Bundle bundle = this.f36501c;
+                final od0 od0Var = this.f36504b;
+                final Bundle bundle = this.f36505c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -53,12 +53,12 @@ public final class ed0 implements RequestDelegate {
                                         if (str.contains("TASK_ALREADY_EXISTS")) {
                                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(od0Var2.getContext());
                                             String string = LocaleController.getString(R.string.LoginEmailResetPremiumRequiredTitle);
-                                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                                             b2Var.R = string;
                                             int i13 = R.string.LoginEmailResetPremiumRequiredMessage;
                                             jf.b c10 = jf.b.c();
                                             b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString(i13, LocaleController.addNbsp(c10.b("+" + od0Var2.L))));
-                                            org.telegram.messenger.q.p(R.string.OK, alertDialog$Builder, null);
+                                            org.telegram.messenger.g0.p(R.string.OK, alertDialog$Builder, null);
                                             return;
                                         } else if (!tL_error2.text.contains("PHONE_CODE_EXPIRED")) {
                                             i10 = ((org.telegram.ui.ActionBar.n2) fg0Var).currentAccount;
@@ -80,8 +80,8 @@ public final class ed0 implements RequestDelegate {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
-                                        auth_sentcodetype.email_pattern = od0Var2.f39751y.getString("emailPattern");
-                                        od0Var2.f39750x = true;
+                                        auth_sentcodetype.email_pattern = od0Var2.f39772y.getString("emailPattern");
+                                        od0Var2.f39771x = true;
                                     }
                                     fg0Var2.g1(bundle2, tL_auth_sentCode, true);
                                     return;
@@ -102,8 +102,8 @@ public final class ed0 implements RequestDelegate {
                 });
                 return;
             default:
-                final od0 od0Var2 = this.f36500b;
-                final Bundle bundle2 = this.f36501c;
+                final od0 od0Var2 = this.f36504b;
+                final Bundle bundle2 = this.f36505c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail2 = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -130,12 +130,12 @@ public final class ed0 implements RequestDelegate {
                                         if (str.contains("TASK_ALREADY_EXISTS")) {
                                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(od0Var22.getContext());
                                             String string = LocaleController.getString(R.string.LoginEmailResetPremiumRequiredTitle);
-                                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                                             b2Var.R = string;
                                             int i13 = R.string.LoginEmailResetPremiumRequiredMessage;
                                             jf.b c10 = jf.b.c();
                                             b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString(i13, LocaleController.addNbsp(c10.b("+" + od0Var22.L))));
-                                            org.telegram.messenger.q.p(R.string.OK, alertDialog$Builder, null);
+                                            org.telegram.messenger.g0.p(R.string.OK, alertDialog$Builder, null);
                                             return;
                                         } else if (!tL_error2.text.contains("PHONE_CODE_EXPIRED")) {
                                             i10 = ((org.telegram.ui.ActionBar.n2) fg0Var).currentAccount;
@@ -157,8 +157,8 @@ public final class ed0 implements RequestDelegate {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
-                                        auth_sentcodetype.email_pattern = od0Var22.f39751y.getString("emailPattern");
-                                        od0Var22.f39750x = true;
+                                        auth_sentcodetype.email_pattern = od0Var22.f39772y.getString("emailPattern");
+                                        od0Var22.f39771x = true;
                                     }
                                     fg0Var2.g1(bundle22, tL_auth_sentCode, true);
                                     return;

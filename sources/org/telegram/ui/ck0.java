@@ -10,19 +10,19 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 public final class ck0 extends org.telegram.ui.Components.hm0 {
-    public final Context f35951c;
+    public final Context f35964c;
     public ArrayList d = new ArrayList();
     public ArrayList e = new ArrayList();
-    public bk0 f35952f;
+    public bk0 f35965f;
     public final hg.a2 h;
-    public final NotificationsCustomSettingsActivity f35953n;
+    public final NotificationsCustomSettingsActivity f35966n;
 
     public ck0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, Context context) {
-        this.f35953n = notificationsCustomSettingsActivity;
-        this.f35951c = context;
+        this.f35966n = notificationsCustomSettingsActivity;
+        this.f35964c = context;
         hg.a2 a2Var = new hg.a2(true);
         this.h = a2Var;
-        a2Var.f11793a = new wt(this, 24);
+        a2Var.f11795a = new wt(this, 24);
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class ck0 extends org.telegram.ui.Components.hm0 {
         if (i10 >= 0 && i10 < this.d.size()) {
             return this.d.get(i10);
         }
-        int g10 = com.google.android.gms.internal.cast.a6.g(1, i10, this.d);
+        int g10 = com.google.android.gms.internal.play_billing.k3.g(1, i10, this.d);
         hg.a2 a2Var = this.h;
         ArrayList arrayList = a2Var.e;
         if (g10 >= 0 && g10 < arrayList.size()) {
@@ -44,16 +44,16 @@ public final class ck0 extends org.telegram.ui.Components.hm0 {
     }
 
     public final void F(String str) {
-        if (this.f35952f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f35952f);
-            this.f35952f = null;
+        if (this.f35965f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f35965f);
+            this.f35965f = null;
         }
         if (str == null) {
             this.d.clear();
             this.e.clear();
             this.h.f(null, null);
             hg.a2 a2Var = this.h;
-            int i10 = this.f35953n.f33199s;
+            int i10 = this.f35966n.f33206s;
             boolean z10 = true;
             a2Var.g(null, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
             l();
@@ -61,7 +61,7 @@ public final class ck0 extends org.telegram.ui.Components.hm0 {
         }
         DispatchQueue dispatchQueue = Utilities.searchQueue;
         bk0 bk0Var = new bk0(this, str, 0);
-        this.f35952f = bk0Var;
+        this.f35965f = bk0Var;
         dispatchQueue.postRunnable(bk0Var, 300L);
     }
 
@@ -85,8 +85,8 @@ public final class ck0 extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        int i11 = b1Var.f45941f;
-        View view = b1Var.f45938a;
+        int i11 = b1Var.f45961f;
+        View view = b1Var.f45958a;
         boolean z10 = true;
         if (i11 != 0) {
             if (i11 != 1) {
@@ -107,7 +107,7 @@ public final class ck0 extends org.telegram.ui.Components.hm0 {
             vaVar.setAddButtonVisible(false);
             return;
         }
-        int g10 = com.google.android.gms.internal.cast.a6.g(1, i10, this.d);
+        int g10 = com.google.android.gms.internal.play_billing.k3.g(1, i10, this.d);
         ArrayList arrayList = this.h.e;
         TLObject tLObject = (TLObject) arrayList.get(g10);
         String string = LocaleController.getString("NotificationsOn", R.string.NotificationsOn);
@@ -122,11 +122,11 @@ public final class ck0 extends org.telegram.ui.Components.hm0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View vaVar;
         if (i10 != 0) {
-            vaVar = new org.telegram.ui.Cells.u3(this.f35951c, null);
+            vaVar = new org.telegram.ui.Cells.u3(this.f35964c, null);
             vaVar.setBackgroundColor(0);
             vaVar.setTag(-33024);
         } else {
-            vaVar = new org.telegram.ui.Cells.va(4, 0, this.f35951c, null, false, true);
+            vaVar = new org.telegram.ui.Cells.va(4, 0, this.f35964c, null, false, true);
         }
         return new s4.b1(vaVar);
     }

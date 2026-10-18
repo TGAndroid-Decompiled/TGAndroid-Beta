@@ -12,22 +12,22 @@ import org.telegram.ui.Components.c11;
 import org.telegram.ui.Components.ex;
 import org.telegram.ui.Components.s00;
 import org.telegram.ui.ek0;
-import org.telegram.ui.fo0;
+import org.telegram.ui.go0;
 import org.telegram.ui.jf0;
 import org.telegram.ui.tm0;
 import org.telegram.ui.ua;
 import org.telegram.ui.w61;
 import org.telegram.ui.xo;
 public final class e6 implements RequestDelegate {
-    public final int f5358a;
+    public final int f5359a;
 
     public e6(int i10) {
-        this.f5358a = i10;
+        this.f5359a = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f5358a) {
+        switch (this.f5359a) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ah.j(9));
                 return;
@@ -41,7 +41,7 @@ public final class e6 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ah.j(23));
                 return;
             case 4:
-                int[] iArr = ei.c1.f8808a0;
+                int[] iArr = ei.c1.f8809a0;
                 return;
             case 5:
                 AndroidUtilities.runOnUIThread(new ah.j(17));
@@ -64,7 +64,7 @@ public final class e6 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ah.j(23));
                 return;
             case 12:
-                Pattern pattern = org.telegram.ui.Components.f5.f26080a;
+                Pattern pattern = org.telegram.ui.Components.f5.f26087a;
                 return;
             case 13:
                 int i11 = ex.H0;
@@ -79,7 +79,7 @@ public final class e6 implements RequestDelegate {
                 int i13 = c11.e;
                 return;
             case 17:
-                int i14 = jf0.f38133t0;
+                int i14 = jf0.f38149t0;
                 return;
             case 18:
                 AndroidUtilities.runOnUIThread(new ek0(tLObject, 3));
@@ -88,7 +88,7 @@ public final class e6 implements RequestDelegate {
                 int i15 = tm0.R;
                 return;
             case 20:
-                List list = fo0.f36968g1;
+                List list = go0.f37251g1;
                 return;
             default:
                 int i16 = w61.e;

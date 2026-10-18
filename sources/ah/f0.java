@@ -42,7 +42,7 @@ public final class f0 extends FrameLayout {
         this.f725a = snVar;
         setClipToPadding(false);
         setClipChildren(false);
-        snVar.f41433x0.j(new d0(this, 0));
+        snVar.f41454x0.j(new d0(this, 0));
     }
 
     public final void a(boolean z10) {
@@ -105,7 +105,7 @@ public final class f0 extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new b0(this, 0));
             }
             sn snVar = this.f725a;
-            pj pjVar = snVar.f41433x0;
+            pj pjVar = snVar.f41454x0;
             int[] iArr = this.f734y;
             pjVar.getLocationInWindow(iArr);
             boolean z13 = true;
@@ -176,7 +176,7 @@ public final class f0 extends FrameLayout {
                         if (!z10) {
                             this.f729n = this.f730r;
                         }
-                        float interpolation = (bs.f25030f.getInterpolation(this.f729n) * this.f731s) + y3;
+                        float interpolation = (bs.f25037f.getInterpolation(this.f729n) * this.f731s) + y3;
                         e0 e0Var3 = this.f726b;
                         if (e0Var3 != null) {
                             if (z11 != e0Var3.N) {
@@ -197,8 +197,8 @@ public final class f0 extends FrameLayout {
                             this.f726b.setTranslationY(w7.r.a(interpolation, dp4, dp5));
                             this.f726b.setTranslationX(u1Var.E2(true));
                             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f726b.getLayoutParams();
-                            int b10 = org.telegram.messenger.q.b(32.0f, u1Var.getBackgroundDrawableLeft(), 0);
-                            int b11 = org.telegram.messenger.q.b(32.0f, u1Var.getWidth() - u1Var.getBackgroundDrawableRight(), (int) u1Var.E2(true));
+                            int b10 = org.telegram.messenger.g0.b(32.0f, u1Var.getBackgroundDrawableLeft(), 0);
+                            int b11 = org.telegram.messenger.g0.b(32.0f, u1Var.getWidth() - u1Var.getBackgroundDrawableRight(), (int) u1Var.E2(true));
                             int dp6 = AndroidUtilities.dp(40.0f) * 8;
                             if ((getWidth() - b11) - b10 < dp6) {
                                 if (isOutOwner) {

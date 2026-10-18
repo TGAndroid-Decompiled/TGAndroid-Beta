@@ -3,22 +3,22 @@ package gb;
 import java.util.AbstractSet;
 import java.util.Iterator;
 public final class k extends AbstractSet {
-    public final int f10966a;
-    public final m f10967b;
+    public final int f10968a;
+    public final m f10969b;
 
     public k(m mVar, int i10) {
-        this.f10966a = i10;
-        this.f10967b = mVar;
+        this.f10968a = i10;
+        this.f10969b = mVar;
     }
 
     @Override
     public final void clear() {
-        switch (this.f10966a) {
+        switch (this.f10968a) {
             case 0:
-                this.f10967b.clear();
+                this.f10969b.clear();
                 return;
             default:
-                this.f10967b.clear();
+                this.f10969b.clear();
                 return;
         }
     }
@@ -30,11 +30,11 @@ public final class k extends AbstractSet {
 
     @Override
     public final Iterator iterator() {
-        switch (this.f10966a) {
+        switch (this.f10968a) {
             case 0:
-                return new j(this.f10967b, 0);
+                return new j(this.f10969b, 0);
             default:
-                return new j(this.f10967b, 1);
+                return new j(this.f10969b, 1);
         }
     }
 
@@ -45,11 +45,11 @@ public final class k extends AbstractSet {
 
     @Override
     public final int size() {
-        switch (this.f10966a) {
+        switch (this.f10968a) {
             case 0:
-                return this.f10967b.d;
+                return this.f10969b.d;
             default:
-                return this.f10967b.d;
+                return this.f10969b.d;
         }
     }
 }

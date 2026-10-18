@@ -9,14 +9,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.sv0;
 import org.telegram.ui.gh;
 public final class e4 implements Utilities.Callback {
-    public final int f1203a = 0;
-    public final int f1204b;
-    public final long f1205c;
+    public final int f1204a = 0;
+    public final int f1205b;
+    public final long f1206c;
     public final Object d;
 
     public e4(int i10, long j10, TLRPC.Document document) {
-        this.f1204b = i10;
-        this.f1205c = j10;
+        this.f1205b = i10;
+        this.f1206c = j10;
         this.d = document;
     }
 
@@ -24,15 +24,15 @@ public final class e4 implements Utilities.Callback {
     public final void run(Object obj) {
         Object string;
         TLRPC.StickerSet stickerSet;
-        int i10 = this.f1203a;
-        int i11 = this.f1204b;
-        long j10 = this.f1205c;
+        int i10 = this.f1204a;
+        int i11 = this.f1205b;
+        long j10 = this.f1206c;
         Object obj2 = this.d;
         switch (i10) {
             case 0:
                 TLRPC.Document document = (TLRPC.Document) obj2;
                 if (((Boolean) obj).booleanValue()) {
-                    fa.y(i11, false).Q(j10);
+                    ga.y(i11, false).Q(j10);
                     AndroidUtilities.runOnUIThread(new a3.l0(document, LocaleController.getString(R.string.Gift2MovedToProfile), new o4(j10, 0), 8));
                     return;
                 }
@@ -60,14 +60,14 @@ public final class e4 implements Utilities.Callback {
     }
 
     public e4(int i10, org.telegram.ui.Components.qc qcVar, long j10) {
-        this.f1204b = i10;
+        this.f1205b = i10;
         this.d = qcVar;
-        this.f1205c = j10;
+        this.f1206c = j10;
     }
 
     public e4(sv0 sv0Var, long j10, int i10) {
         this.d = sv0Var;
-        this.f1205c = j10;
-        this.f1204b = i10;
+        this.f1206c = j10;
+        this.f1205b = i10;
     }
 }

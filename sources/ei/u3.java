@@ -1,6 +1,6 @@
 package ei;
 
-import ai.le;
+import ai.me;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
@@ -10,17 +10,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.jw0;
 public final class u3 extends org.telegram.ui.ActionBar.f3 {
-    public final t3 f9886b;
-    public ValueAnimator f9887c;
+    public final t3 f9888b;
+    public ValueAnimator f9889c;
     public o1.k d;
     public Boolean e;
-    public Utilities.Callback f9888f;
+    public Utilities.Callback f9890f;
 
     public u3(Context context, org.telegram.ui.ActionBar.d6 d6Var, String str, float f7) {
         super(1, context, d6Var, false);
         fixNavigationBar(-14737633);
         t3 t3Var = new t3(UserConfig.selectedAccount, context, new ci.b(), f7, str);
-        this.f9886b = t3Var;
+        this.f9888b = t3Var;
         t3Var.G.setVisibility(8);
         t3Var.setMultipleOnClick(false);
         t3Var.setOnBackClickListener(new r3(this, 0));
@@ -34,7 +34,7 @@ public final class u3 extends org.telegram.ui.ActionBar.f3 {
 
     @Override
     public final boolean canDismissWithSwipe() {
-        return !this.f9886b.f9639w;
+        return !this.f9888b.f9640w;
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class u3 extends org.telegram.ui.ActionBar.f3 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f9886b.g()) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f9888b.g()) {
             dismiss();
             return true;
         }
@@ -54,7 +54,7 @@ public final class u3 extends org.telegram.ui.ActionBar.f3 {
 
     public final void o(boolean z10, r3 r3Var) {
         float height;
-        t3 t3Var = this.f9886b;
+        t3 t3Var = this.f9888b;
         float translationY = t3Var.getTranslationY();
         if (z10) {
             height = 0.0f;
@@ -63,21 +63,21 @@ public final class u3 extends org.telegram.ui.ActionBar.f3 {
         }
         this.e = Boolean.valueOf(z10);
         if (z10) {
-            o1.k kVar = new o1.k(t3Var, o1.h.f17538n, height);
+            o1.k kVar = new o1.k(t3Var, o1.h.f17545n, height);
             this.d = kVar;
-            kVar.f17555u.a(0.75f);
-            this.d.f17555u.b(350.0f);
+            kVar.f17562u.a(0.75f);
+            this.d.f17562u.b(350.0f);
             this.d.a(new s3(this, height, r3Var));
             this.d.h();
             return;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(translationY, height);
-        this.f9887c = ofFloat;
+        this.f9889c = ofFloat;
         ofFloat.addUpdateListener(new ah.c0(this, 26));
-        this.f9887c.addListener(new le(4, this, r3Var));
-        this.f9887c.setDuration(450L);
-        this.f9887c.setInterpolator(bs.h);
-        this.f9887c.start();
+        this.f9889c.addListener(new me(4, this, r3Var));
+        this.f9889c.setDuration(450L);
+        this.f9889c.setInterpolator(bs.h);
+        this.f9889c.start();
     }
 
     @Override

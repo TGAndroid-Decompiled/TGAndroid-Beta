@@ -15,7 +15,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -32,54 +32,54 @@ import org.telegram.ui.q80;
 import org.telegram.ui.sn;
 import org.telegram.ui.web.HttpGetFileTask;
 public final class b1 implements Runnable {
-    public final int f11090a = 0;
-    public final TLObject f11091b;
-    public final int f11092c;
+    public final int f11092a = 0;
+    public final TLObject f11093b;
+    public final int f11094c;
     public final long d;
     public final Object e;
-    public final Object f11093f;
+    public final Object f11095f;
     public final Object h;
-    public final Object f11094n;
-    public final Object f11095r;
+    public final Object f11096n;
+    public final Object f11097r;
 
-    public b1(TLObject tLObject, int i10, org.telegram.ui.ActionBar.b2 b2Var, Context context, long j10, d6 d6Var, org.telegram.ui.web.s sVar, ai.s0 s0Var) {
-        this.f11091b = tLObject;
-        this.f11092c = i10;
+    public b1(TLObject tLObject, int i10, org.telegram.ui.ActionBar.b2 b2Var, Context context, long j10, d6 d6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
+        this.f11093b = tLObject;
+        this.f11094c = i10;
         this.e = b2Var;
-        this.f11093f = context;
+        this.f11095f = context;
         this.d = j10;
         this.h = d6Var;
-        this.f11094n = sVar;
-        this.f11095r = s0Var;
+        this.f11096n = tVar;
+        this.f11097r = s0Var;
     }
 
     @Override
     public final void run() {
-        String g10;
+        String h;
         xc a02;
         int i10;
         ey eyVar;
         TLObject tLObject;
         String[] split;
-        switch (this.f11090a) {
+        switch (this.f11092a) {
             case 0:
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.e;
-                Context context = (Context) this.f11093f;
+                Context context = (Context) this.f11095f;
                 d6 d6Var = (d6) this.h;
-                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f11094n;
-                ai.s0 s0Var = (ai.s0) this.f11095r;
-                TLObject tLObject2 = this.f11091b;
+                org.telegram.ui.web.t tVar = (org.telegram.ui.web.t) this.f11096n;
+                ai.s0 s0Var = (ai.s0) this.f11097r;
+                TLObject tLObject2 = this.f11093b;
                 if (tLObject2 instanceof TLRPC.TL_messages_preparedInlineMessage) {
                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) tLObject2;
                     TLRPC.BotInlineMessage botInlineMessage = tL_messages_preparedInlineMessage.result.send_message;
                     boolean z10 = botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaWebPage;
-                    int i11 = this.f11092c;
+                    int i11 = this.f11094c;
                     long j10 = this.d;
                     if (z10) {
                         TLRPC.TL_botInlineMessageMediaWebPage tL_botInlineMessageMediaWebPage = (TLRPC.TL_botInlineMessageMediaWebPage) botInlineMessage;
                         if (!TextUtils.isEmpty(tL_botInlineMessageMediaWebPage.url)) {
                             String str = tL_botInlineMessageMediaWebPage.url;
-                            c1 c1Var = new c1(b2Var, context, i11, j10, tL_messages_preparedInlineMessage, d6Var, sVar, s0Var);
+                            c1 c1Var = new c1(b2Var, context, i11, j10, tL_messages_preparedInlineMessage, d6Var, tVar, s0Var);
                             NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = new NotificationCenter.NotificationCenterDelegate[1];
                             TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
                             getwebpagepreview.message = str;
@@ -89,7 +89,7 @@ public final class b1 implements Runnable {
                         }
                     }
                     File[] fileArr = new File[1];
-                    d1 d1Var = new d1(b2Var, context, i11, j10, tL_messages_preparedInlineMessage, fileArr, d6Var, sVar, s0Var);
+                    d1 d1Var = new d1(b2Var, context, i11, j10, tL_messages_preparedInlineMessage, fileArr, d6Var, tVar, s0Var);
                     TLRPC.WebDocument webDocument = tL_messages_preparedInlineMessage.result.content;
                     if (webDocument != null && !TextUtils.isEmpty(webDocument.url)) {
                         TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
@@ -98,13 +98,13 @@ public final class b1 implements Runnable {
                             String str2 = botInlineResult.content.url;
                             String httpUrlExtension = ImageLoader.getHttpUrlExtension(str2, null);
                             if (TextUtils.isEmpty(httpUrlExtension)) {
-                                g10 = FileLoader.getExtensionByMimeType(tL_messages_preparedInlineMessage.result.content.mime_type);
+                                h = FileLoader.getExtensionByMimeType(tL_messages_preparedInlineMessage.result.content.mime_type);
                             } else {
-                                g10 = r.c.g(".", httpUrlExtension);
+                                h = r4.c.h(".", httpUrlExtension);
                             }
-                            File file = new File(FileLoader.getDirectory(4), Utilities.MD5(str2) + g10);
+                            File file = new File(FileLoader.getDirectory(4), Utilities.MD5(str2) + h);
                             if (!file.exists()) {
-                                HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new ai.n2(17, fileArr, d1Var), null);
+                                HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new ai.o2(17, fileArr, d1Var), null);
                                 httpGetFileTask.setDestFile(file);
                                 httpGetFileTask.setMaxSize(8388608L);
                                 httpGetFileTask.execute(str2);
@@ -122,26 +122,26 @@ public final class b1 implements Runnable {
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) this.e;
-                String str3 = (String) this.f11093f;
+                String str3 = (String) this.f11095f;
                 String str4 = (String) this.h;
-                TLRPC.User user = (TLRPC.User) this.f11094n;
-                String str5 = (String) this.f11095r;
-                ArrayList arrayList = launchActivity.f33153f0;
-                ArrayList arrayList2 = launchActivity.f33149d0;
+                TLRPC.User user = (TLRPC.User) this.f11096n;
+                String str5 = (String) this.f11097r;
+                ArrayList arrayList = launchActivity.f33160f0;
+                ArrayList arrayList2 = launchActivity.f33156d0;
                 ArrayList arrayList3 = launchActivity.E0;
-                TLObject tLObject3 = this.f11091b;
+                TLObject tLObject3 = this.f11093b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
                     TLRPC.TL_attachMenuBotsBot tL_attachMenuBotsBot = (TLRPC.TL_attachMenuBotsBot) tLObject3;
-                    int i12 = this.f11092c;
+                    int i12 = this.f11094c;
                     MessagesController.getInstance(i12).putUsers(tL_attachMenuBotsBot.users, false);
                     TLRPC.TL_attachMenuBot tL_attachMenuBot = tL_attachMenuBotsBot.bot;
                     if (str3 != null) {
                         LaunchActivity.G0(launchActivity, launchActivity.O, tL_attachMenuBot, str3, false);
                         return;
                     }
-                    org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) i0.a.h(1, arrayList2);
+                    org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) i2.d.h(1, arrayList2);
                     if (AndroidUtilities.isTablet() && !(n2Var instanceof sn) && !arrayList.isEmpty()) {
-                        n2Var = (org.telegram.ui.ActionBar.n2) i0.a.h(1, arrayList);
+                        n2Var = (org.telegram.ui.ActionBar.n2) i2.d.h(1, arrayList);
                     }
                     ArrayList arrayList4 = new ArrayList();
                     if (!TextUtils.isEmpty(str4)) {
@@ -190,7 +190,7 @@ public final class b1 implements Runnable {
                                 a02 = xc.a0(n2Var);
                                 i10 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                snVar.ba(user.f20419id, str5, false);
+                                snVar.ba(user.f20426id, str5, false);
                                 return;
                             }
                         } else {
@@ -206,22 +206,22 @@ public final class b1 implements Runnable {
                         return;
                     }
                 } else {
-                    a02 = xc.a0((org.telegram.ui.ActionBar.n2) i0.a.h(1, arrayList2));
+                    a02 = xc.a0((org.telegram.ui.ActionBar.n2) i2.d.h(1, arrayList2));
                     i10 = R.string.BotCantAddToAttachMenu;
                 }
-                wh.q(i10, a02, null);
+                kk.q(i10, a02, null);
                 return;
         }
     }
 
     public b1(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, String str2, TLRPC.User user, String str3, long j10) {
         this.e = launchActivity;
-        this.f11091b = tLObject;
-        this.f11092c = i10;
-        this.f11093f = str;
+        this.f11093b = tLObject;
+        this.f11094c = i10;
+        this.f11095f = str;
         this.h = str2;
-        this.f11094n = user;
-        this.f11095r = str3;
+        this.f11096n = user;
+        this.f11097r = str3;
         this.d = j10;
     }
 }

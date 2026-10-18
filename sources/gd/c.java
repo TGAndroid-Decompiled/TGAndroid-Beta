@@ -1,17 +1,17 @@
 package gd;
 
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 import df.p;
 import java.util.regex.Pattern;
 import v7.f5;
 public final class c extends h {
     public static final Pattern e = Pattern.compile("`+");
-    public static final Pattern f10994f = Pattern.compile("^`+");
+    public static final Pattern f10996f = Pattern.compile("^`+");
 
     @Override
     public final p b() {
         String a2;
-        String a10 = a(f10994f);
+        String a10 = a(f10996f);
         if (a10 == null) {
             return null;
         }
@@ -24,11 +24,11 @@ public final class c extends h {
             }
         } while (!a2.equals(a10));
         df.d dVar = new df.d(0);
-        String replace = this.f10997c.substring(i10, this.d - a10.length()).replace('\n', ' ');
+        String replace = this.f10999c.substring(i10, this.d - a10.length()).replace('\n', ' ');
         if (replace.length() >= 3 && replace.charAt(0) == ' ' && replace.charAt(replace.length() - 1) == ' ') {
             int length = replace.length();
             if (f5.b(' ', replace, 0, length) != length) {
-                replace = a6.j(1, 1, replace);
+                replace = k3.j(1, 1, replace);
             }
         }
         dVar.h = replace;

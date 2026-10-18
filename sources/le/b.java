@@ -25,7 +25,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import hg.z1;
-import i0.c;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.Callable;
@@ -49,7 +48,6 @@ import org.telegram.ui.Cells.fa;
 import org.telegram.ui.Cells.g;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.o9;
-import org.telegram.ui.Cells.t0;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.a6;
 import org.telegram.ui.Components.q71;
@@ -58,10 +56,12 @@ import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.u20;
 import org.telegram.ui.Components.ym0;
 import org.telegram.ui.Components.zg0;
-import org.telegram.ui.Wallet.t9;
+import org.telegram.ui.Wallet.w9;
 import org.telegram.ui.xu0;
+import p6.c;
 import qg.b1;
 import qg.c1;
+import qg.e1;
 import qg.u0;
 import r0.k1;
 import r0.n;
@@ -74,25 +74,24 @@ import s4.o0;
 import s6.e;
 import s6.f;
 import t7.u;
-import u2.e1;
-import u2.f1;
-import u2.r1;
+import u2.d1;
+import u2.q1;
 import v7.i8;
-public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, n, z1, r, m, o, v1, h1, w2.d, Continuation {
-    public final int f16002a;
-    public Object f16003b;
+public final class b implements OnCompleteListener, l, d, o0.a, d1, l1, h, q71, n, z1, r, m, o, v1, h1, w2.d, Continuation {
+    public final int f16009a;
+    public Object f16010b;
 
     public b(int i10, boolean z10) {
-        this.f16002a = i10;
+        this.f16009a = i10;
     }
 
     @Override
     public k1 B0(View view, k1 k1Var) {
-        c defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        ym0 ym0Var = (ym0) this.f16003b;
-        ym0Var.v.setPadding(defaultWindowInsets.f12284a, defaultWindowInsets.f12285b, defaultWindowInsets.f12286c, defaultWindowInsets.d);
-        ym0Var.f32707s.requestLayout();
-        return k1.f44852b;
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+        ym0 ym0Var = (ym0) this.f16010b;
+        ym0Var.v.setPadding(defaultWindowInsets.f12286a, defaultWindowInsets.f12287b, defaultWindowInsets.f12288c, defaultWindowInsets.d);
+        ym0Var.f32714s.requestLayout();
+        return k1.f44872b;
     }
 
     @Override
@@ -102,7 +101,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void E(float f7, int i10) {
-        ((j) this.f16003b).h(f7);
+        ((j) this.f16010b).h(f7);
     }
 
     @Override
@@ -112,7 +111,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void H(bh.a aVar) {
-        aVar.a(((ti) this.f16003b).getThemedColor(h6.f20986d6));
+        aVar.a(((ti) this.f16010b).getThemedColor(h6.f20993d6));
         aVar.b(SharedConfig.chatBlurEnabled());
     }
 
@@ -123,10 +122,10 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void I1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        fa faVar = (fa) this.f16003b;
+        fa faVar = (fa) this.f16010b;
         g gVar = faVar.v;
         if (faVar.a()) {
-            faVar.f22272s = 2;
+            faVar.f22276s = 2;
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
         }
@@ -149,15 +148,15 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public View L(int i10) {
-        return ((n0) this.f16003b).q(i10);
+        return ((n0) this.f16010b).q(i10);
     }
 
     @Override
     public void M0(int i10, u1 u1Var) {
-        fa faVar = (fa) this.f16003b;
+        fa faVar = (fa) this.f16010b;
         g gVar = faVar.v;
         if (faVar.a()) {
-            faVar.f22272s = 2;
+            faVar.f22276s = 2;
             u1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -206,10 +205,10 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void R1(u1 u1Var, int i10, float f7, float f10, boolean z10) {
-        fa faVar = (fa) this.f16003b;
+        fa faVar = (fa) this.f16010b;
         g gVar = faVar.v;
         if (faVar.a()) {
-            faVar.f22272s = 0;
+            faVar.f22276s = 0;
             u1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -228,8 +227,8 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void U(float f7) {
-        w0 w0Var = (w0) this.f16003b;
-        u0.e(w0Var.f45697a).k("-1", f7);
+        w0 w0Var = (w0) this.f16010b;
+        u0.e(w0Var.f45717a).k("-1", f7);
         w0Var.e.setBrushSize(f7);
     }
 
@@ -255,7 +254,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public boolean Z0(int i10, u1 u1Var) {
-        if (i10 == ((fa) this.f16003b).f22272s) {
+        if (i10 == ((fa) this.f16010b).f22276s) {
             return true;
         }
         return false;
@@ -263,31 +262,31 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void a(long j10, int i10, int i11, int i12) {
-        ((MediaCodec) this.f16003b).queueInputBuffer(i10, 0, i11, j10, i12);
+        ((MediaCodec) this.f16010b).queueInputBuffer(i10, 0, i11, j10, i12);
     }
 
     public void a0() {
-        c1 c1Var = ((qg.e1) this.f16003b).d;
+        c1 c1Var = ((e1) this.f16010b).d;
         if (c1Var != null) {
-            b1 b1Var = c1Var.f44505s;
+            b1 b1Var = c1Var.f44525s;
             if (b1Var != null) {
                 c1Var.cancelRunnable(b1Var);
-                c1Var.f44505s = null;
+                c1Var.f44525s = null;
             }
             b1 b1Var2 = new b1(c1Var, 1);
-            c1Var.f44505s = b1Var2;
+            c1Var.f44525s = b1Var2;
             c1Var.postRunnable(b1Var2, 1L);
         }
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f16002a) {
+        switch (this.f16009a) {
             case 15:
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-                p6.a aVar = (p6.a) ((p6.c) obj).u();
+                p6.a aVar = (p6.a) ((c) obj).u();
                 Parcel H0 = aVar.H0();
-                k7.a.c(H0, (n6.o) this.f16003b);
+                k7.a.c(H0, (n6.o) this.f16010b);
                 try {
                     aVar.f318b.transact(1, H0, null, 1);
                     H0.recycle();
@@ -302,7 +301,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
                 e eVar = (e) ((s6.h) obj).u();
                 Parcel H02 = eVar.H0();
                 k7.a.d(H02, fVar);
-                k7.a.c(H02, (s6.a) this.f16003b);
+                k7.a.c(H02, (s6.a) this.f16010b);
                 H02.writeStrongBinder(null);
                 eVar.I0(H02, 2);
                 return;
@@ -311,18 +310,18 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void b(int i10, h2.d dVar, long j10, int i11) {
-        ((MediaCodec) this.f16003b).queueSecureInputBuffer(i10, 0, dVar.f11631i, j10, i11);
+        ((MediaCodec) this.f16010b).queueSecureInputBuffer(i10, 0, dVar.f11633i, j10, i11);
     }
 
     public void b0(androidx.biometric.e eVar) {
-        h8.j jVar = (h8.j) this.f16003b;
-        jVar.f11693a = eVar;
-        Iterator it = jVar.f11695c.iterator();
+        h8.j jVar = (h8.j) this.f16010b;
+        jVar.f11695a = eVar;
+        Iterator it = jVar.f11697c.iterator();
         while (it.hasNext()) {
             ((x6.e) it.next()).b();
         }
-        jVar.f11695c.clear();
-        jVar.f11694b = null;
+        jVar.f11697c.clear();
+        jVar.f11696b = null;
     }
 
     @Override
@@ -332,7 +331,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public boolean c() {
-        return ((fa) this.f16003b).a();
+        return ((fa) this.f16010b).a();
     }
 
     @Override
@@ -342,7 +341,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f16003b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f16010b;
         if (contentProviderClient != null) {
             if (contentProviderClient instanceof AutoCloseable) {
                 contentProviderClient.close();
@@ -361,7 +360,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public boolean d1(MessageObject messageObject) {
-        return t0.a(messageObject);
+        return org.telegram.ui.Cells.c1.a(messageObject);
     }
 
     @Override
@@ -376,9 +375,9 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void f(int i10) {
-        t9 t9Var = (t9) this.f16003b;
-        if (!t9Var.f34910n && i10 == t9Var.I) {
-            t9Var.d0(t9Var.M.getText().toString().trim());
+        w9 w9Var = (w9) this.f16010b;
+        if (!w9Var.f35047n && i10 == w9Var.I) {
+            w9Var.d0(w9Var.M.getText().toString().trim());
         }
     }
 
@@ -390,7 +389,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
     public void g0() {
         q[] qVarArr;
         q[] qVarArr2;
-        k kVar = (k) this.f16003b;
+        k kVar = (k) this.f16010b;
         int i10 = kVar.H - 1;
         kVar.H = i10;
         if (i10 > 0) {
@@ -399,13 +398,13 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
         int i11 = 0;
         for (q qVar : kVar.J) {
             qVar.e();
-            i11 += qVar.Y.f47440a;
+            i11 += qVar.Y.f47460a;
         }
         p1[] p1VarArr = new p1[i11];
         int i12 = 0;
         for (q qVar2 : kVar.J) {
             qVar2.e();
-            int i13 = qVar2.Y.f47440a;
+            int i13 = qVar2.Y.f47460a;
             int i14 = 0;
             while (i14 < i13) {
                 qVar2.e();
@@ -414,17 +413,17 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
                 i12++;
             }
         }
-        kVar.I = new r1(p1VarArr);
+        kVar.I = new q1(p1VarArr);
         kVar.G.h(kVar);
     }
 
     @Override
     public float get() {
-        w0 w0Var = (w0) this.f16003b;
-        int i10 = w0Var.f45697a;
+        w0 w0Var = (w0) this.f16010b;
+        int i10 = w0Var.f45717a;
         qg.m currentBrush = w0Var.e.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f44697i;
+            return u0.e(i10).f44717i;
         }
         return u0.e(i10).f("-1", currentBrush.d());
     }
@@ -436,7 +435,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void invalidate() {
-        ((zg0) this.f16003b).h.invalidate();
+        ((zg0) this.f16010b).h.invalidate();
     }
 
     public boolean j0(android.view.MotionEvent r22) {
@@ -445,7 +444,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public int k() {
-        return ((n0) this.f16003b).G();
+        return ((n0) this.f16010b).G();
     }
 
     @Override
@@ -460,7 +459,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void o(Object obj) {
-        ((g8.c) obj).onLocationAvailability((LocationAvailability) this.f16003b);
+        ((g8.c) obj).onLocationAvailability((LocationAvailability) this.f16010b);
     }
 
     @Override
@@ -470,7 +469,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void onComplete(Task task) {
-        be.m mVar = (be.m) this.f16003b;
+        be.m mVar = (be.m) this.f16010b;
         Exception exception = task.getException();
         if (exception == null) {
             if (task.isCanceled()) {
@@ -491,8 +490,8 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void r(Canvas canvas) {
-        ti tiVar = (ti) this.f16003b;
-        canvas.drawColor(tiVar.getThemedColor(h6.f20986d6));
+        ti tiVar = (ti) this.f16010b;
+        canvas.drawColor(tiVar.getThemedColor(h6.f20993d6));
         if (SharedConfig.chatBlurEnabled()) {
             tiVar.F2.b(canvas, -2);
         }
@@ -500,22 +499,22 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void setParameters(Bundle bundle) {
-        ((MediaCodec) this.f16003b).setParameters(bundle);
+        ((MediaCodec) this.f16010b).setParameters(bundle);
     }
 
     @Override
     public Object then(Task task) {
-        return ((Callable) this.f16003b).call();
+        return ((Callable) this.f16010b).call();
     }
 
     public String toString() {
-        switch (this.f16002a) {
+        switch (this.f16009a) {
             case 22:
                 te.b bVar = te.b.e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
-                stringBuffer.append(((s4.b) this.f16003b).n());
+                stringBuffer.append(((s4.b) this.f16010b).n());
                 stringBuffer.append(")");
                 return stringBuffer.toString();
             default:
@@ -525,13 +524,13 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public void u(int i10, float f7, float f10, ne.e eVar) {
-        ((j) this.f16003b).h(f7);
+        ((j) this.f16010b).h(f7);
     }
 
     @Override
-    public void v(f1 f1Var) {
-        q qVar = (q) f1Var;
-        k kVar = (k) this.f16003b;
+    public void v(u2.e1 e1Var) {
+        q qVar = (q) e1Var;
+        k kVar = (k) this.f16010b;
         kVar.G.v(kVar);
     }
 
@@ -552,7 +551,7 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public Cursor x(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f16003b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f16010b;
         if (contentProviderClient == null) {
             return null;
         }
@@ -571,8 +570,8 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
 
     @Override
     public int z() {
-        n0 n0Var = (n0) this.f16003b;
-        return n0Var.f46040n - n0Var.C();
+        n0 n0Var = (n0) this.f16010b;
+        return n0Var.f46060n - n0Var.C();
     }
 
     @Override
@@ -581,38 +580,38 @@ public final class b implements OnCompleteListener, l, d, o0.a, e1, l1, h, q71, 
     }
 
     public b(Object obj, int i10) {
-        this.f16002a = i10;
-        this.f16003b = obj;
+        this.f16009a = i10;
+        this.f16010b = obj;
     }
 
     public b(s6.g gVar, s6.a aVar) {
-        this.f16002a = 21;
-        this.f16003b = aVar;
+        this.f16009a = 21;
+        this.f16010b = aVar;
     }
 
     public b(int i10) {
-        this.f16002a = i10;
+        this.f16009a = i10;
         switch (i10) {
             case 25:
-                this.f16003b = new u(28);
+                this.f16010b = new u(28);
                 return;
             case 28:
-                this.f16003b = new CopyOnWriteArrayList();
+                this.f16010b = new CopyOnWriteArrayList();
                 return;
             default:
-                this.f16003b = e9.n0.t();
+                this.f16010b = e9.n0.t();
                 return;
         }
     }
 
     public b(Context context, Uri uri) {
-        this.f16002a = 5;
-        this.f16003b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+        this.f16009a = 5;
+        this.f16010b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
     }
 
     public b(Context context, u20 u20Var) {
-        this.f16002a = 9;
-        this.f16003b = new t20(context, u20Var);
+        this.f16009a = 9;
+        this.f16010b = new t20(context, u20Var);
     }
 
     @Override

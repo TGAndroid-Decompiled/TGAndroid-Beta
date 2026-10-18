@@ -38,33 +38,33 @@ import org.telegram.ui.of0;
 import org.telegram.ui.sn;
 import org.telegram.ui.xe0;
 public final class s9 implements RequestDelegate {
-    public final int f2170a;
-    public final Object f2171b;
-    public final Object f2172c;
+    public final int f2172a;
+    public final Object f2173b;
+    public final Object f2174c;
     public final Object d;
     public final Object e;
-    public final Object f2173f;
+    public final Object f2175f;
 
     public s9(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f2170a = i10;
-        this.f2171b = obj;
-        this.f2172c = obj2;
+        this.f2172a = i10;
+        this.f2173b = obj;
+        this.f2174c = obj2;
         this.d = obj3;
         this.e = obj4;
-        this.f2173f = obj5;
+        this.f2175f = obj5;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f2170a;
-        Object obj = this.f2173f;
+        int i10 = this.f2172a;
+        Object obj = this.f2175f;
         Object obj2 = this.d;
-        Object obj3 = this.f2172c;
-        Object obj4 = this.f2171b;
+        Object obj3 = this.f2174c;
+        Object obj4 = this.f2173b;
         Object obj5 = this.e;
         switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new u7((fa) obj4, tLObject, (MessageObject) obj3, (TLRPC.InputInvoice) obj2, (Utilities.Callback) obj5, (org.telegram.ui.Components.xc) obj, tL_error));
+                AndroidUtilities.runOnUIThread(new u7((ga) obj4, tLObject, (MessageObject) obj3, (TLRPC.InputInvoice) obj2, (Utilities.Callback) obj5, (org.telegram.ui.Components.xc) obj, tL_error));
                 return;
             case 1:
                 AndroidUtilities.runOnUIThread(new l3((int[]) obj4, tLObject, (MessagesController) obj3, (TLRPC.User[]) obj2, (ei.qc) obj5, (ei.oc) obj, 8));
@@ -127,7 +127,7 @@ public final class s9 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new l3((j61) obj4, tL_error, (TLRPC.InputCheckPasswordSRP) obj3, (TLRPC.User) obj2, (TwoStepVerificationActivity) obj5, (TLRPC.TL_channels_editCreator) obj));
                 return;
             case 13:
-                AndroidUtilities.runOnUIThread(new u7(tL_error, (ug.t) obj4, tLObject, (MessagesController) obj3, (TLRPC.TL_inputInvoicePremiumGiftCode) obj2, (org.telegram.ui.ActionBar.n2) obj5, (ug.t) obj, 15));
+                AndroidUtilities.runOnUIThread(new u7(tL_error, (ug.u) obj4, tLObject, (MessagesController) obj3, (TLRPC.TL_inputInvoicePremiumGiftCode) obj2, (org.telegram.ui.ActionBar.n2) obj5, (ug.u) obj, 15));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new u7(tL_error, (Utilities.Callback) obj5, tLObject, (MessagesController) obj4, (TLRPC.TL_inputInvoicePremiumGiftCode) obj3, (org.telegram.ui.ActionBar.n2) obj2, (Utilities.Callback) obj));
@@ -136,20 +136,20 @@ public final class s9 implements RequestDelegate {
     }
 
     public s9(Utilities.Callback callback, MessagesController messagesController, TLRPC.TL_inputInvoicePremiumGiftCode tL_inputInvoicePremiumGiftCode, org.telegram.ui.ActionBar.n2 n2Var, Utilities.Callback callback2) {
-        this.f2170a = 14;
+        this.f2172a = 14;
         this.e = callback;
-        this.f2171b = messagesController;
-        this.f2172c = tL_inputInvoicePremiumGiftCode;
+        this.f2173b = messagesController;
+        this.f2174c = tL_inputInvoicePremiumGiftCode;
         this.d = n2Var;
-        this.f2173f = callback2;
+        this.f2175f = callback2;
     }
 
     public s9(en enVar, org.telegram.ui.ActionBar.b2 b2Var, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject) {
-        this.f2170a = 5;
-        this.f2171b = enVar;
+        this.f2172a = 5;
+        this.f2173b = enVar;
         this.d = b2Var;
         this.e = hashSet;
-        this.f2173f = tL_inputGroupCallInviteMessage;
-        this.f2172c = messageObject;
+        this.f2175f = tL_inputGroupCallInviteMessage;
+        this.f2174c = messageObject;
     }
 }

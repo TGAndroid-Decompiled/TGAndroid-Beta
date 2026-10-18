@@ -20,7 +20,7 @@ public abstract class ya0 extends j71 {
     public ya0(org.telegram.ui.ActionBar.n2 n2Var, long j10) {
         super(n2Var.getParentActivity(), n2Var.getCurrentAccount(), n2Var.getResourceProvider());
         this.T = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i10 = org.telegram.ui.ActionBar.h6.f20928a7;
+        int i10 = org.telegram.ui.ActionBar.h6.f20935a7;
         setBackgroundColor(getThemedColor(i10));
         this.L = i10;
         this.K = i10;
@@ -32,15 +32,15 @@ public abstract class ya0 extends j71 {
         this.U = xa0Var;
         xa0Var.B = false;
         setDimBehindAlpha(75);
-        this.f27435w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
-        xh.f fVar = xa0Var.f49882f;
-        this.f27431f = fVar;
+        this.f27442w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        xh.f fVar = xa0Var.f49907f;
+        this.f27438f = fVar;
         this.e = fVar;
         this.d.setAdapter(fVar);
         this.d.p1();
         ai.u1 u1Var = this.d;
-        xa0Var.f49891p = u1Var;
-        u1Var.setOnItemClickListener(new ai.va(xa0Var, 22));
+        xa0Var.f49916p = u1Var;
+        u1Var.setOnItemClickListener(new ai.wa(xa0Var, 22));
         s4.r0 onScrollListener = u1Var.getOnScrollListener();
         if (onScrollListener == null) {
             u1Var.setOnScrollListener(xa0Var.D);
@@ -67,9 +67,9 @@ public abstract class ya0 extends j71 {
         int action = motionEvent.getAction();
         xa0 xa0Var = this.U;
         if (action == 0) {
-            this.Y = this.f27437y;
+            this.Y = this.f27444y;
             xa0Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f27437y - this.Y) < this.T && !this.Z) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f27444y - this.Y) < this.T && !this.Z) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
@@ -108,7 +108,7 @@ public abstract class ya0 extends j71 {
     @Override
     public final void J(int i10) {
         super.J(i10);
-        this.V.setTranslationY(this.f27430c.getMeasuredHeight() + i10);
+        this.V.setTranslationY(this.f27437c.getMeasuredHeight() + i10);
         float f7 = i10;
         this.W.setTranslationY(f7);
         this.X.setTranslationY(f7);
@@ -124,8 +124,8 @@ public abstract class ya0 extends j71 {
             } else {
                 i10 = 0;
             }
-            if (this.f27437y != i10) {
-                this.f27437y = i10;
+            if (this.f27444y != i10) {
+                this.f27444y = i10;
                 J(i10);
                 return;
             }
@@ -136,7 +136,7 @@ public abstract class ya0 extends j71 {
 
     @Override
     public final void onBackPressed() {
-        xh.j jVar = this.U.f49894s;
+        xh.j jVar = this.U.f49919s;
         if (jVar != null) {
             jVar.e(false);
         } else {
@@ -147,10 +147,10 @@ public abstract class ya0 extends j71 {
     @Override
     public final void show() {
         xa0 xa0Var = this.U;
-        if (xa0Var.f49880b && this.f27437y == 0) {
-            this.f27437y = AndroidUtilities.dp(8.0f);
+        if (xa0Var.f49905b && this.f27444y == 0) {
+            this.f27444y = AndroidUtilities.dp(8.0f);
         }
         super.show();
-        xa0Var.f49880b = false;
+        xa0Var.f49905b = false;
     }
 }

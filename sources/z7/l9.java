@@ -1,3 +1,124 @@
 package z7;
-public abstract class l9 {
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+public final class l9 extends e9.j2 {
+    public final e9.e f51137b;
+
+    public l9(e9.e eVar) {
+        super(2);
+        this.f51137b = eVar;
+    }
+
+    @Override
+    public final void clear() {
+        this.f51137b.clear();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        Set entrySet = this.f51137b.f8436b.entrySet();
+        entrySet.getClass();
+        try {
+            return entrySet.contains(obj);
+        } catch (ClassCastException | NullPointerException unused) {
+            return false;
+        }
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        return this.f51137b.isEmpty();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new e9.d(this.f51137b, (char) 0);
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        Object obj2;
+        if (!contains(obj)) {
+            return false;
+        }
+        Map.Entry entry = (Map.Entry) obj;
+        entry.getClass();
+        Object key = entry.getKey();
+        d dVar = ((mg) this.f51137b.e).f51152c;
+        dVar.getClass();
+        try {
+            obj2 = dVar.remove(key);
+        } catch (ClassCastException | NullPointerException unused) {
+            obj2 = null;
+        }
+        Collection collection = (Collection) obj2;
+        if (collection != null) {
+            collection.size();
+            collection.clear();
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        try {
+            if (collection != null) {
+                return w7.g9.a(this, collection);
+            }
+            throw null;
+        } catch (UnsupportedOperationException unused) {
+            boolean z10 = false;
+            for (Object obj : collection) {
+                z10 |= remove(obj);
+            }
+            return z10;
+        }
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        int i10;
+        try {
+            if (collection != null) {
+                return super.retainAll(collection);
+            }
+            throw null;
+        } catch (UnsupportedOperationException unused) {
+            int size = collection.size();
+            if (size < 3) {
+                if (size >= 0) {
+                    i10 = size + 1;
+                } else {
+                    throw new IllegalArgumentException(i2.d.j(size, "expectedSize cannot be negative but was: "));
+                }
+            } else if (size < 1073741824) {
+                i10 = (int) Math.ceil(size / 0.75d);
+            } else {
+                i10 = Integer.MAX_VALUE;
+            }
+            HashSet hashSet = new HashSet(i10);
+            for (Object obj : collection) {
+                if (contains(obj) && (obj instanceof Map.Entry)) {
+                    hashSet.add(((Map.Entry) obj).getKey());
+                }
+            }
+            mg mgVar = (mg) this.f51137b.e;
+            fd fdVar = mgVar.f51138a;
+            if (fdVar == null) {
+                fdVar = new fd(mgVar, mgVar.f51152c);
+                mgVar.f51138a = fdVar;
+            }
+            return fdVar.retainAll(hashSet);
+        }
+    }
+
+    @Override
+    public final int size() {
+        return this.f51137b.f8436b.size();
+    }
 }

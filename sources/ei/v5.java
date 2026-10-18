@@ -12,13 +12,13 @@ public final class v5 extends qg.e1 {
 
     @Override
     public final void g(qg.m mVar) {
-        int indexOf = qg.m.f44585a.indexOf(mVar);
+        int indexOf = qg.m.f44605a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1) {
             indexOf = i10;
         }
         xa xaVar = this.E;
-        xaVar.f9020k1.b(indexOf);
+        xaVar.f9021k1.b(indexOf);
         xaVar.o(mVar);
     }
 }

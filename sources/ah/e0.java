@@ -20,7 +20,7 @@ public final class e0 extends cl0 {
         if (!isEnabled()) {
             float f7 = this.l1;
             if (f7 != 0.0f) {
-                this.l1 = org.telegram.ui.Cells.t0.v((float) min, 150.0f, f7, 0.0f);
+                this.l1 = org.telegram.ui.Cells.c1.v((float) min, 150.0f, f7, 0.0f);
                 invalidate();
                 if (this.l1 == 0.0f) {
                     setVisibility(8);
@@ -32,7 +32,7 @@ public final class e0 extends cl0 {
         if (isEnabled()) {
             float f10 = this.l1;
             if (f10 != 1.0f) {
-                this.l1 = org.telegram.ui.Cells.t0.c((float) min, 150.0f, f10, 1.0f);
+                this.l1 = org.telegram.ui.Cells.c1.c((float) min, 150.0f, f10, 1.0f);
                 invalidate();
             }
         }

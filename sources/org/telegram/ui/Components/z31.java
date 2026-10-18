@@ -8,22 +8,22 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class z31 extends View {
-    public float f32831a;
-    public final Paint f32832b;
-    public final Paint f32833c;
+    public float f32838a;
+    public final Paint f32839b;
+    public final Paint f32840c;
     public Drawable d;
     public boolean e;
-    public int f32834f;
+    public int f32841f;
     public final RectF h;
 
     public z31(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f32832b = paint;
+        this.f32839b = paint;
         Paint paint2 = new Paint(1);
-        this.f32833c = paint2;
+        this.f32840c = paint2;
         this.e = true;
-        this.f32834f = 0;
+        this.f32841f = 0;
         this.h = new RectF();
         paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.P9, false));
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
@@ -65,34 +65,34 @@ public final class z31 extends View {
         float f7;
         Canvas canvas2 = canvas;
         if (this.e) {
-            if (this.f32834f == 0) {
+            if (this.f32841f == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z10) {
-                f7 = this.f32831a;
+                f7 = this.f32838a;
             } else {
                 f7 = 1.0f;
             }
             float dp = AndroidUtilities.dp((f7 * 26.0f) + 6.0f);
             RectF rectF = this.h;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas2.drawRoundRect(rectF, dp, dp, this.f32832b);
+            canvas2.drawRoundRect(rectF, dp, dp, this.f32839b);
         }
-        int i10 = this.f32834f;
-        Paint paint = this.f32833c;
+        int i10 = this.f32841f;
+        Paint paint = this.f32840c;
         if (i10 != 0) {
             if (i10 == 1) {
                 float dp2 = AndroidUtilities.dp(21.0f);
                 float width = getWidth() - AndroidUtilities.dp(21.0f);
                 float height = getHeight() / 2.0f;
                 canvas2.save();
-                canvas2.translate((-AndroidUtilities.dp(2.0f)) * this.f32831a, 0.0f);
-                canvas2.rotate(this.f32831a * 90.0f, getWidth() / 2.0f, getHeight() / 2.0f);
-                canvas2.drawLine(dp2 + ((width - dp2) * this.f32831a), height, width, height, paint);
-                int dp3 = AndroidUtilities.dp((this.f32831a * (-1.0f)) + 9.0f);
-                int dp4 = AndroidUtilities.dp((this.f32831a * 7.0f) + 9.0f);
+                canvas2.translate((-AndroidUtilities.dp(2.0f)) * this.f32838a, 0.0f);
+                canvas2.rotate(this.f32838a * 90.0f, getWidth() / 2.0f, getHeight() / 2.0f);
+                canvas2.drawLine(dp2 + ((width - dp2) * this.f32838a), height, width, height, paint);
+                int dp3 = AndroidUtilities.dp((this.f32838a * (-1.0f)) + 9.0f);
+                int dp4 = AndroidUtilities.dp((this.f32838a * 7.0f) + 9.0f);
                 double d = width;
                 double d10 = dp3;
                 double d11 = height;
@@ -103,17 +103,17 @@ public final class z31 extends View {
                 canvas.restore();
             }
         } else {
-            float max = (Math.max(0.4f, this.f32831a) - 0.4f) / 0.6f;
+            float max = (Math.max(0.4f, this.f32838a) - 0.4f) / 0.6f;
             if (max != 0.0f) {
-                float C = (org.telegram.messenger.wh.C(21.0f, 2, getWidth()) * max) + AndroidUtilities.dp(21.0f);
+                float B = (org.telegram.messenger.kk.B(21.0f, 2, getWidth()) * max) + AndroidUtilities.dp(21.0f);
                 float height2 = getHeight() / 2.0f;
-                canvas.drawLine(AndroidUtilities.dp(21.0f), height2, C, height2, paint);
+                canvas.drawLine(AndroidUtilities.dp(21.0f), height2, B, height2, paint);
                 double dp5 = AndroidUtilities.dp(9.0f) * max;
-                float cos = (float) (C - (Math.cos(0.7853981633974483d) * dp5));
+                float cos = (float) (B - (Math.cos(0.7853981633974483d) * dp5));
                 float sin = (float) (Math.sin(0.7853981633974483d) * dp5);
                 canvas2 = canvas;
-                canvas2.drawLine(C, height2, cos, height2 - sin, paint);
-                canvas2.drawLine(C, height2, cos, height2 + sin, paint);
+                canvas2.drawLine(B, height2, cos, height2 - sin, paint);
+                canvas2.drawLine(B, height2, cos, height2 + sin, paint);
             } else {
                 canvas2 = canvas;
             }
@@ -128,12 +128,12 @@ public final class z31 extends View {
 
     @Override
     public void setBackgroundColor(int i10) {
-        this.f32832b.setColor(i10);
+        this.f32839b.setColor(i10);
         invalidate();
     }
 
     public void setColor(int i10) {
-        this.f32833c.setColor(i10);
+        this.f32840c.setColor(i10);
         invalidate();
     }
 
@@ -142,7 +142,7 @@ public final class z31 extends View {
     }
 
     public void setProgress(float f7) {
-        this.f32831a = f7;
+        this.f32838a = f7;
         invalidate();
     }
 
@@ -152,7 +152,7 @@ public final class z31 extends View {
     }
 
     public void setTransformType(int i10) {
-        this.f32834f = i10;
+        this.f32841f = i10;
         invalidate();
     }
 

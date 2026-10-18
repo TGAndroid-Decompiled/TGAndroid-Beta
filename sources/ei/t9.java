@@ -1,11 +1,11 @@
 package ei;
 public final class t9 implements Runnable {
-    public final int f9862a;
-    public final vb f9863b;
+    public final int f9864a;
+    public final vb f9865b;
 
     public t9(vb vbVar, int i10) {
-        this.f9862a = i10;
-        this.f9863b = vbVar;
+        this.f9864a = i10;
+        this.f9865b = vbVar;
     }
 
     @Override

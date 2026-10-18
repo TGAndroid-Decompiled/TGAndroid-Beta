@@ -17,28 +17,28 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class pf extends ng {
     public boolean e;
-    public float f29278f;
+    public float f29285f;
     public float h;
-    public boolean f29279n;
-    public final ChatActivityEnterView f29280r;
+    public boolean f29286n;
+    public final ChatActivityEnterView f29287r;
 
     public pf(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(chatActivityEnterView, context, d6Var);
-        this.f29280r = chatActivityEnterView;
+        this.f29287r = chatActivityEnterView;
         this.e = true;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ChatActivityEnterView chatActivityEnterView = this.f29280r;
+        ChatActivityEnterView chatActivityEnterView = this.f29287r;
         View view = chatActivityEnterView.J4;
         if (view != null) {
             setWindowView(view);
             return;
         }
         org.telegram.ui.sn snVar = chatActivityEnterView.P2;
-        if (snVar != null && snVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.P2.getParentLayout()).f20545b) {
+        if (snVar != null && snVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.P2.getParentLayout()).f20552b) {
             setWindowView(chatActivityEnterView.P2.getParentLayout().getWindow().getDecorView());
         } else {
             setWindowView(chatActivityEnterView.O2.getWindow().getDecorView());
@@ -50,7 +50,7 @@ public final class pf extends ng {
         super.onDraw(canvas);
         if (getLayout() != null && this.e) {
             this.e = false;
-            this.f29280r.I(true);
+            this.f29287r.I(true);
         }
     }
 
@@ -58,7 +58,7 @@ public final class pf extends ng {
     public final void onMeasure(int i10, int i11) {
         boolean z10;
         super.onMeasure(i10, i11);
-        ChatActivityEnterView chatActivityEnterView = this.f29280r;
+        ChatActivityEnterView chatActivityEnterView = this.f29287r;
         if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
             boolean z11 = false;
             if (chatActivityEnterView.E0.getLineCount() > 2 && chatActivityEnterView.E0.getText() != null && !TextUtils.isEmpty(chatActivityEnterView.E0.getText().toString().trim())) {
@@ -78,7 +78,7 @@ public final class pf extends ng {
     public final boolean onTextContextMenuItem(int i10) {
         ClipData primaryClip;
         if (i10 == 16908322) {
-            ChatActivityEnterView chatActivityEnterView = this.f29280r;
+            ChatActivityEnterView chatActivityEnterView = this.f29287r;
             if (chatActivityEnterView.E0 != null) {
                 try {
                     ClipboardManager clipboardManager = (ClipboardManager) chatActivityEnterView.getContext().getSystemService("clipboard");
@@ -116,7 +116,7 @@ public final class pf extends ng {
                                         oj0[] oj0VarArr2 = (oj0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), oj0.class);
                                         for (int i11 = 0; i11 < oj0VarArr2.length; i11++) {
                                             spannableStringBuilder.removeSpan(oj0VarArr2[i11]);
-                                            spannableStringBuilder.removeSpan(oj0VarArr2[i11].f28984a);
+                                            spannableStringBuilder.removeSpan(oj0VarArr2[i11].f28991a);
                                         }
                                     } else {
                                         pj0.a(spannableStringBuilder);
@@ -139,20 +139,20 @@ public final class pf extends ng {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ChatActivityEnterView chatActivityEnterView = this.f29280r;
+        ChatActivityEnterView chatActivityEnterView = this.f29287r;
         if (chatActivityEnterView.t()) {
             if (motionEvent.getAction() == 0) {
-                this.f29278f = motionEvent.getX();
+                this.f29285f = motionEvent.getX();
                 this.h = motionEvent.getY();
-                this.f29279n = true;
-            } else if (this.f29279n && motionEvent.getAction() == 2) {
-                if (Math.abs(motionEvent.getX() - this.f29278f) > AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.h) > AndroidUtilities.touchSlop) {
-                    this.f29279n = false;
+                this.f29286n = true;
+            } else if (this.f29286n && motionEvent.getAction() == 2) {
+                if (Math.abs(motionEvent.getX() - this.f29285f) > AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.h) > AndroidUtilities.touchSlop) {
+                    this.f29286n = false;
                 }
-            } else if (this.f29279n) {
+            } else if (this.f29286n) {
                 if (chatActivityEnterView.Z2 != null) {
-                    int i10 = org.telegram.ui.ActionBar.h6.f21328vf;
-                    int i11 = ChatActivityEnterView.f23904n5;
+                    int i10 = org.telegram.ui.ActionBar.h6.f21335vf;
+                    int i11 = ChatActivityEnterView.f23911n5;
                     setHandlesColor(chatActivityEnterView.g0(i10));
                     chatActivityEnterView.Z2.m1();
                 }
@@ -162,11 +162,11 @@ public final class pf extends ng {
                     chatActivityEnterView.E0.requestFocus();
                 }
             }
-            return this.f29279n;
+            return this.f29286n;
         }
         if (motionEvent.getAction() == 0 && chatActivityEnterView.Z2 != null) {
-            int i12 = org.telegram.ui.ActionBar.h6.f21328vf;
-            int i13 = ChatActivityEnterView.f23904n5;
+            int i12 = org.telegram.ui.ActionBar.h6.f21335vf;
+            int i13 = ChatActivityEnterView.f23911n5;
             setHandlesColor(chatActivityEnterView.g0(i12));
             chatActivityEnterView.Z2.m1();
         }
@@ -176,6 +176,6 @@ public final class pf extends ng {
     @Override
     public final void setOffsetY(float f7) {
         super.setOffsetY(f7);
-        this.f29280r.f24045y1.invalidate();
+        this.f29287r.f24052y1.invalidate();
     }
 }

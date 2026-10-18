@@ -9,17 +9,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.kk;
 import org.telegram.ui.Components.j61;
 import org.telegram.ui.Components.l11;
 import org.telegram.ui.Components.x90;
 public abstract class y6 extends LinearLayout {
-    public TextView f23837a;
-    public x90 f23838b;
-    public TextView f23839c;
+    public TextView f23844a;
+    public x90 f23845b;
+    public TextView f23846c;
     public TextView d;
     public int e;
-    public int f23840f;
+    public int f23847f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -27,14 +27,14 @@ public abstract class y6 extends LinearLayout {
     }
 
     public void setType(int i10) {
-        int i11 = this.f23840f;
-        TextView textView = this.f23839c;
-        x90 x90Var = this.f23838b;
-        TextView textView2 = this.f23837a;
+        int i11 = this.f23847f;
+        TextView textView = this.f23846c;
+        x90 x90Var = this.f23845b;
+        TextView textView2 = this.f23844a;
         TextView textView3 = this.d;
         this.e = i10;
         if (i10 == 0) {
-            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, wh.g(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, jf.b.c())));
+            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, kk.g(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, jf.b.c())));
             String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf("**");

@@ -3,32 +3,32 @@ package org.telegram.ui.Components;
 import android.content.DialogInterface;
 import org.telegram.messenger.AndroidUtilities;
 public final class f1 implements DialogInterface.OnShowListener {
-    public final int f26028a;
-    public final EditTextBoldCursor f26029b;
+    public final int f26035a;
+    public final EditTextBoldCursor f26036b;
 
     public f1(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f26028a = i10;
-        this.f26029b = editTextBoldCursor;
+        this.f26035a = i10;
+        this.f26036b = editTextBoldCursor;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f26028a) {
+        switch (this.f26035a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = this.f26029b;
+                EditTextBoldCursor editTextBoldCursor = this.f26036b;
                 editTextBoldCursor.requestFocus();
                 AndroidUtilities.showKeyboard(editTextBoldCursor);
                 return;
             case 1:
-                EditTextBoldCursor editTextBoldCursor2 = this.f26029b;
+                EditTextBoldCursor editTextBoldCursor2 = this.f26036b;
                 editTextBoldCursor2.requestFocus();
                 AndroidUtilities.showKeyboard(editTextBoldCursor2);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new r1(0, this.f26029b));
+                AndroidUtilities.runOnUIThread(new r1(0, this.f26036b));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new r1(5, this.f26029b));
+                AndroidUtilities.runOnUIThread(new r1(5, this.f26036b));
                 return;
         }
     }

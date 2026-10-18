@@ -17,14 +17,14 @@ import org.telegram.ui.Components.dw0;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.ProfileActivity;
 public final class ka implements Utilities.Callback2 {
-    public final int f9337a;
-    public final boolean f9338b;
-    public final Object f9339c;
+    public final int f9338a;
+    public final boolean f9339b;
+    public final Object f9340c;
 
     public ka(int i10, Object obj, boolean z10) {
-        this.f9337a = i10;
-        this.f9339c = obj;
-        this.f9338b = z10;
+        this.f9338a = i10;
+        this.f9340c = obj;
+        this.f9339b = z10;
     }
 
     @Override
@@ -34,27 +34,27 @@ public final class ka implements Utilities.Callback2 {
         dw0 dw0Var;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         String str;
-        switch (this.f9337a) {
+        switch (this.f9338a) {
             case 0:
-                vb vbVar = (vb) this.f9339c;
+                vb vbVar = (vb) this.f9340c;
                 Bitmap bitmap = (Bitmap) obj2;
-                int i10 = vbVar.f9955c;
-                if (obj != null && vbVar.f9997p2 == null && !vbVar.W && vbVar.I()) {
+                int i10 = vbVar.f9957c;
+                if (obj != null && vbVar.f9999p2 == null && !vbVar.W && vbVar.I()) {
                     int i11 = 0;
-                    if (this.f9338b) {
+                    if (this.f9339b) {
                         if (vbVar.K1 != null) {
                             vbVar.t();
-                            vbVar.K1.f8716j = true;
+                            vbVar.K1.f8717j = true;
                             if (obj instanceof MediaController.PhotoEntry) {
-                                xa xaVar = vbVar.f10016v1;
+                                xa xaVar = vbVar.f10018v1;
                                 xaVar.d0(xaVar.j0(((MediaController.PhotoEntry) obj).path, false));
                             } else if (obj instanceof TLObject) {
-                                xa xaVar2 = vbVar.f10016v1;
+                                xa xaVar2 = vbVar.f10018v1;
                                 TLObject tLObject = (TLObject) obj;
-                                xaVar2.f9022l2 = true;
+                                xaVar2.f9023l2 = true;
                                 z5 z5Var = xaVar2.R0;
                                 if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
-                                    f7 = closestPhotoSizeWithSize.f20297w / closestPhotoSizeWithSize.h;
+                                    f7 = closestPhotoSizeWithSize.f20304w / closestPhotoSizeWithSize.h;
                                 } else {
                                     f7 = 1.0f;
                                 }
@@ -84,8 +84,8 @@ public final class ka implements Utilities.Callback2 {
                         } else {
                             z10 = false;
                         }
-                        z6Var.f10223n0 = -1.0f;
-                        z6Var.f10224o0 = z10;
+                        z6Var.f10225n0 = -1.0f;
+                        z6Var.f10226o0 = z10;
                         z6Var.invalidate();
                         vbVar.e(false);
                         boolean z11 = obj instanceof MediaController.PhotoEntry;
@@ -97,8 +97,8 @@ public final class ka implements Utilities.Callback2 {
                             vbVar.O1 = i11;
                             a8 l4 = a8.l(photoEntry);
                             l4.M0 = bitmap;
-                            l4.J0 = vbVar.f10015v0;
-                            l4.K0 = vbVar.f10019w0;
+                            l4.J0 = vbVar.f10017v0;
+                            l4.K0 = vbVar.f10021w0;
                             l4.A();
                             vbVar.L1 = true;
                             if (vbVar.A0.j()) {
@@ -119,12 +119,12 @@ public final class ka implements Utilities.Callback2 {
                         } else if (obj instanceof a8) {
                             a8 a8Var = (a8) obj;
                             if (a8Var.L == null && !a8Var.v()) {
-                                vbVar.f9963e1.c(R.raw.error, "Failed to load draft");
-                                MessagesController.getInstance(i10).getStoriesController().f5511w.b(a8Var);
+                                vbVar.f9965e1.c(R.raw.error, "Failed to load draft");
+                                MessagesController.getInstance(i10).getStoriesController().f5512w.b(a8Var);
                                 return;
                             }
-                            a8Var.J0 = vbVar.f10015v0;
-                            a8Var.K0 = vbVar.f10019w0;
+                            a8Var.J0 = vbVar.f10017v0;
+                            a8Var.K0 = vbVar.f10021w0;
                             vbVar.O1 = a8Var.K ? 1 : 0;
                             a8Var.M0 = bitmap;
                             vbVar.L1 = false;
@@ -140,8 +140,8 @@ public final class ka implements Utilities.Callback2 {
                     }
                     ua uaVar = vbVar.M0;
                     if (uaVar != null) {
-                        vbVar.f9985l2 = uaVar.e.e0();
-                        vbVar.f9987m2 = vbVar.M0.getSelectedAlbum();
+                        vbVar.f9987l2 = uaVar.e.e0();
+                        vbVar.f9989m2 = vbVar.M0.getSelectedAlbum();
                         return;
                     }
                     return;
@@ -149,20 +149,20 @@ public final class ka implements Utilities.Callback2 {
                 return;
             case 1:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
-                hi.k0.n((hi.k0) this.f9339c, this.f9338b, (TLRPC.TL_error) obj2);
+                hi.k0.n((hi.k0) this.f9340c, this.f9339b, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                ProfileActivity profileActivity = (ProfileActivity) this.f9339c;
+                ProfileActivity profileActivity = (ProfileActivity) this.f9340c;
                 Integer num = (Integer) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (!profileActivity.M3()) {
                     if (xc.a(profileActivity)) {
                         int intValue = num.intValue();
-                        boolean z12 = this.f9338b;
+                        boolean z12 = this.f9339b;
                         if (intValue == 1) {
                             xc.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            xc.l(DialogObject.getShortName(profileActivity.f33607f1), profileActivity, z12).j();
+                            xc.l(DialogObject.getShortName(profileActivity.f33614f1), profileActivity, z12).j();
                         } else if (tL_error != null) {
                             xc.d0(tL_error);
                         }
@@ -176,15 +176,15 @@ public final class ka implements Utilities.Callback2 {
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.e0 e0Var = (org.telegram.ui.Wallet.e0) this.f9339c;
+                org.telegram.ui.Wallet.e0 e0Var = (org.telegram.ui.Wallet.e0) this.f9340c;
                 TL_wallet.nftItems nftitems = (TL_wallet.nftItems) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = e0Var.f34147b;
-                ArrayList arrayList2 = e0Var.f34148c;
-                e0Var.f34154l = -1;
-                e0Var.f34152j = false;
-                e0Var.f34151i = false;
-                boolean z13 = this.f9338b;
+                ArrayList arrayList = e0Var.f34161b;
+                ArrayList arrayList2 = e0Var.f34162c;
+                e0Var.f34168l = -1;
+                e0Var.f34166j = false;
+                e0Var.f34165i = false;
+                boolean z13 = this.f9339b;
                 if (nftitems != null) {
                     if (z13) {
                         arrayList.clear();
@@ -210,9 +210,9 @@ public final class ka implements Utilities.Callback2 {
                         }
                     }
                     String str2 = nftitems.next_offset;
-                    e0Var.f34149f = str2;
+                    e0Var.f34163f = str2;
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    e0Var.f34150g = isEmpty;
+                    e0Var.f34164g = isEmpty;
                     e0Var.h = true;
                     if (isEmpty) {
                         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
@@ -225,7 +225,7 @@ public final class ka implements Utilities.Callback2 {
                     e0Var.h();
                 } else {
                     if (z13) {
-                        e0Var.f34150g = false;
+                        e0Var.f34164g = false;
                         e0Var.h = false;
                     }
                     if (tL_error2 == null) {
@@ -233,7 +233,7 @@ public final class ka implements Utilities.Callback2 {
                     } else {
                         str = tL_error2.text;
                     }
-                    e0Var.f34153k = str;
+                    e0Var.f34167k = str;
                 }
                 e0Var.g();
                 return;

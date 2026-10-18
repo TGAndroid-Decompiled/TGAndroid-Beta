@@ -18,22 +18,22 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.h6;
 public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
     public e0 E;
-    public final int f15265n;
-    public final org.telegram.ui.ActionBar.d6 f15266r;
-    public final HorizontalScrollView f15267s;
+    public final int f15272n;
+    public final org.telegram.ui.ActionBar.d6 f15273r;
+    public final HorizontalScrollView f15274s;
     public final LinearLayout v;
-    public final z1 f15268w;
-    public final TextView f15269x;
-    public final ArrayList f15270y;
+    public final z1 f15275w;
+    public final TextView f15276x;
+    public final ArrayList f15277y;
 
     public g0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f15270y = new ArrayList();
-        this.f15265n = i10;
-        this.f15266r = d6Var;
+        this.f15277y = new ArrayList();
+        this.f15272n = i10;
+        this.f15273r = d6Var;
         g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f15267s = horizontalScrollView;
+        this.f15274s = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         LinearLayout linearLayout = new LinearLayout(context);
         this.v = linearLayout;
@@ -43,14 +43,14 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
         z1 z1Var = new z1(context, R.drawable.msg_add, d6Var);
         z1Var.e = 19;
         z1Var.d();
-        this.f15268w = z1Var;
+        this.f15275w = z1Var;
         z1Var.setSelected(true);
         z1Var.setContentDescription(LocaleController.getString(R.string.Add));
         z1Var.setOnClickListener(new View.OnClickListener(this) {
-            public final g0 f15163b;
+            public final g0 f15170b;
 
             {
-                this.f15163b = this;
+                this.f15170b = this;
             }
 
             @Override
@@ -59,22 +59,22 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                 a aVar2;
                 switch (r2) {
                     case 0:
-                        g0 g0Var = this.f15163b;
+                        g0 g0Var = this.f15170b;
                         e0 e0Var = g0Var.E;
-                        if (e0Var != null && (aVar = g0Var.f15105a) != null) {
-                            w3 w3Var = ((o3) e0Var).f15417a;
+                        if (e0Var != null && (aVar = g0Var.f15112a) != null) {
+                            w3 w3Var = ((o3) e0Var).f15424a;
                             w3Var.p3(false);
-                            w3Var.f15586f3.m(new t3(w3Var, aVar, -1), view);
+                            w3Var.f15593f3.m(new t3(w3Var, aVar, -1), view);
                             return;
                         }
                         return;
                     default:
-                        g0 g0Var2 = this.f15163b;
+                        g0 g0Var2 = this.f15170b;
                         e0 e0Var2 = g0Var2.E;
-                        if (e0Var2 != null && (aVar2 = g0Var2.f15105a) != null) {
-                            w3 w3Var2 = ((o3) e0Var2).f15417a;
+                        if (e0Var2 != null && (aVar2 = g0Var2.f15112a) != null) {
+                            w3 w3Var2 = ((o3) e0Var2).f15424a;
                             w3Var2.p3(false);
-                            w3Var2.f15586f3.m(new t3(w3Var2, aVar2, -1), view);
+                            w3Var2.f15593f3.m(new t3(w3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
@@ -83,7 +83,7 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
         });
         addView(z1Var, w7.z5.e(38, 38, 21));
         TextView textView = new TextView(context);
-        this.f15269x = textView;
+        this.f15276x = textView;
         textView.setText(LocaleController.getString(R.string.RichEditorAddButton));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -91,10 +91,10 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
         textView.setCompoundDrawablePadding(AndroidUtilities.dp(7.0f));
         textView.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final g0 f15163b;
+            public final g0 f15170b;
 
             {
-                this.f15163b = this;
+                this.f15170b = this;
             }
 
             @Override
@@ -103,22 +103,22 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                 a aVar2;
                 switch (r2) {
                     case 0:
-                        g0 g0Var = this.f15163b;
+                        g0 g0Var = this.f15170b;
                         e0 e0Var = g0Var.E;
-                        if (e0Var != null && (aVar = g0Var.f15105a) != null) {
-                            w3 w3Var = ((o3) e0Var).f15417a;
+                        if (e0Var != null && (aVar = g0Var.f15112a) != null) {
+                            w3 w3Var = ((o3) e0Var).f15424a;
                             w3Var.p3(false);
-                            w3Var.f15586f3.m(new t3(w3Var, aVar, -1), view);
+                            w3Var.f15593f3.m(new t3(w3Var, aVar, -1), view);
                             return;
                         }
                         return;
                     default:
-                        g0 g0Var2 = this.f15163b;
+                        g0 g0Var2 = this.f15170b;
                         e0 e0Var2 = g0Var2.E;
-                        if (e0Var2 != null && (aVar2 = g0Var2.f15105a) != null) {
-                            w3 w3Var2 = ((o3) e0Var2).f15417a;
+                        if (e0Var2 != null && (aVar2 = g0Var2.f15112a) != null) {
+                            w3 w3Var2 = ((o3) e0Var2).f15424a;
                             w3Var2.p3(false);
-                            w3Var2.f15586f3.m(new t3(w3Var2, aVar2, -1), view);
+                            w3Var2.f15593f3.m(new t3(w3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
@@ -147,7 +147,7 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
 
     @Override
     public final void d() {
-        this.f15268w.d();
+        this.f15275w.d();
         j();
         i();
     }
@@ -162,10 +162,10 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
 
     public final void j() {
         int i10 = h6.Oh;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f15266r;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f15273r;
         int w02 = h6.w0(i10, d6Var);
-        int v = h6.v(h6.w0(h6.f20986d6, d6Var), h6.m1(0.1f, w02));
-        TextView textView = this.f15269x;
+        int v = h6.v(h6.w0(h6.f20993d6, d6Var), h6.m1(0.1f, w02));
+        TextView textView = this.f15276x;
         textView.setTextColor(w02);
         textView.setBackground(h6.a0(v, h6.m1(0.16f, w02), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(19.0f)));
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_add).mutate();
@@ -183,14 +183,14 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
         int i15;
         int i16;
         int size = View.MeasureSpec.getSize(i10);
-        ArrayList arrayList = this.f15270y;
+        ArrayList arrayList = this.f15277y;
         int size2 = arrayList.size();
         if (size2 > 0 && size2 < 8) {
             i12 = AndroidUtilities.dp(45.0f);
         } else {
             i12 = 0;
         }
-        HorizontalScrollView horizontalScrollView = this.f15267s;
+        HorizontalScrollView horizontalScrollView = this.f15274s;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) horizontalScrollView.getLayoutParams();
         if (layoutParams.rightMargin != i12) {
             layoutParams.rightMargin = i12;
@@ -207,7 +207,7 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                 for (int i19 = 0; i19 < size3; i19++) {
                     d0 d0Var = (d0) arrayList.get(i19);
                     d0Var.getClass();
-                    int max3 = Math.max(AndroidUtilities.dp(34.0f), d0Var.f15185a.getPreferredWidth());
+                    int max3 = Math.max(AndroidUtilities.dp(34.0f), d0Var.f15192a.getPreferredWidth());
                     iArr[i19] = max3;
                     i18 += max3;
                 }
@@ -252,13 +252,13 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                         int i30 = iArr[i29];
                         d0 d0Var2 = (d0) arrayList.get(i29);
                         d0Var2.getClass();
-                        i28 += i30 - Math.max(AndroidUtilities.dp(34.0f), d0Var2.f15185a.getMinWidth());
+                        i28 += i30 - Math.max(AndroidUtilities.dp(34.0f), d0Var2.f15192a.getMinWidth());
                     }
                     if (i28 <= 0) {
                         for (int i31 = 0; i31 < size3; i31++) {
                             d0 d0Var3 = (d0) arrayList.get(i31);
                             d0Var3.getClass();
-                            iArr[i31] = Math.max(AndroidUtilities.dp(34.0f), d0Var3.f15185a.getMinWidth());
+                            iArr[i31] = Math.max(AndroidUtilities.dp(34.0f), d0Var3.f15192a.getMinWidth());
                         }
                     } else {
                         int min = Math.min(i18 - max2, i28);
@@ -268,7 +268,7 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                             int i34 = iArr[i32];
                             d0 d0Var4 = (d0) arrayList.get(i32);
                             d0Var4.getClass();
-                            int max4 = i34 - Math.max(AndroidUtilities.dp(34.0f), d0Var4.f15185a.getMinWidth());
+                            int max4 = i34 - Math.max(AndroidUtilities.dp(34.0f), d0Var4.f15192a.getMinWidth());
                             if (i32 == i17) {
                                 i14 = min - i33;
                                 i13 = min;
@@ -287,7 +287,7 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                 for (int i35 = 0; i35 < size3; i35++) {
                     d0 d0Var5 = (d0) arrayList.get(i35);
                     int i36 = iArr[i35];
-                    RichMessageLayout.RichButton richButton = d0Var5.f15185a;
+                    RichMessageLayout.RichButton richButton = d0Var5.f15192a;
                     richButton.width = Math.max(AndroidUtilities.dp(34.0f), i36);
                     LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) d0Var5.getLayoutParams();
                     if (layoutParams2 != null) {
@@ -302,7 +302,7 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.y5 {
             }
         }
         if (size2 > 0) {
-            dp = ((d0) arrayList.get(0)).f15185a.getHeight();
+            dp = ((d0) arrayList.get(0)).f15192a.getHeight();
             dp2 = AndroidUtilities.dp(8.0f);
         } else {
             dp = AndroidUtilities.dp(SharedConfig.fontSize + 18);

@@ -6,33 +6,33 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class zn0 extends EditTextBoldCursor {
-    public final i5 f32971b;
-    public int f32972c;
+    public final i5 f32978b;
+    public int f32979c;
     public final p6 d;
     public final org.telegram.ui.ActionBar.d6 e;
 
     public zn0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.e = d6Var;
-        this.f32971b = new i5(this);
+        this.f32978b = new i5(this);
         p6 p6Var = new p6(false, true, true);
         this.d = p6Var;
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
         p6Var.setCallback(this);
-        p6Var.f29192b = 5;
+        p6Var.f29199b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f32972c < 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f21207p7;
+        if (this.f32979c < 0) {
+            i10 = org.telegram.ui.ActionBar.h6.f21214p7;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.P5;
         }
-        int a2 = this.f32971b.a(org.telegram.ui.ActionBar.h6.w0(i10, this.e), false);
+        int a2 = this.f32978b.a(org.telegram.ui.ActionBar.h6.w0(i10, this.e), false);
         p6 p6Var = this.d;
         p6Var.u(a2);
         p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
@@ -49,11 +49,11 @@ public final class zn0 extends EditTextBoldCursor {
         super.onTextChanged(charSequence, i10, i11, i12);
         p6 p6Var = this.d;
         if (p6Var != null) {
-            this.f32972c = 12 - charSequence.length();
+            this.f32979c = 12 - charSequence.length();
             p6Var.a();
             String str = "";
-            if (this.f32972c <= 4) {
-                str = "" + this.f32972c;
+            if (this.f32979c <= 4) {
+                str = "" + this.f32979c;
             }
             p6Var.t(str, true, true);
         }

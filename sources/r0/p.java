@@ -3,14 +3,14 @@ package r0;
 import android.view.View;
 import android.view.ViewTreeObserver;
 public final class p implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
-    public final View f44858a;
-    public ViewTreeObserver f44859b;
-    public final Runnable f44860c;
+    public final View f44878a;
+    public ViewTreeObserver f44879b;
+    public final Runnable f44880c;
 
     public p(View view, Runnable runnable) {
-        this.f44858a = view;
-        this.f44859b = view.getViewTreeObserver();
-        this.f44860c = runnable;
+        this.f44878a = view;
+        this.f44879b = view.getViewTreeObserver();
+        this.f44880c = runnable;
     }
 
     public static void a(View view, Runnable runnable) {
@@ -25,29 +25,29 @@ public final class p implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
 
     @Override
     public final boolean onPreDraw() {
-        boolean isAlive = this.f44859b.isAlive();
-        View view = this.f44858a;
+        boolean isAlive = this.f44879b.isAlive();
+        View view = this.f44878a;
         if (isAlive) {
-            this.f44859b.removeOnPreDrawListener(this);
+            this.f44879b.removeOnPreDrawListener(this);
         } else {
             view.getViewTreeObserver().removeOnPreDrawListener(this);
         }
         view.removeOnAttachStateChangeListener(this);
-        this.f44860c.run();
+        this.f44880c.run();
         return true;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        this.f44859b = view.getViewTreeObserver();
+        this.f44879b = view.getViewTreeObserver();
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        boolean isAlive = this.f44859b.isAlive();
-        View view2 = this.f44858a;
+        boolean isAlive = this.f44879b.isAlive();
+        View view2 = this.f44878a;
         if (isAlive) {
-            this.f44859b.removeOnPreDrawListener(this);
+            this.f44879b.removeOnPreDrawListener(this);
         } else {
             view2.getViewTreeObserver().removeOnPreDrawListener(this);
         }

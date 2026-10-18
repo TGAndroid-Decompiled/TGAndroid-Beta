@@ -29,7 +29,7 @@ public final class f40 extends bb {
         org.telegram.ui.qz0 Q2 = Q(activity, AndroidUtilities.dp(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21391z6, d6Var));
+        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21398z6, d6Var));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -43,7 +43,7 @@ public final class f40 extends bb {
         TextView textView = new TextView(activity);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
-        org.telegram.messenger.wh.j(20.0f, R.string.GuardBotReplaceTitle, 1, textView);
+        org.telegram.messenger.kk.j(20.0f, R.string.GuardBotReplaceTitle, 1, textView);
         int i10 = org.telegram.ui.ActionBar.h6.G6;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         linearLayout.addView(textView, w7.z5.t(-1, -2, 17, 20, 0, 20, 6));
@@ -92,7 +92,7 @@ public final class f40 extends bb {
     public final hm0 x(im0 im0Var) {
         s61 s61Var = new s61(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
         this.Y = s61Var;
-        s61Var.f30200r = false;
+        s61Var.f30207r = false;
         return s61Var;
     }
 }

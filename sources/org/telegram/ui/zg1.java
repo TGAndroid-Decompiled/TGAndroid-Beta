@@ -3,15 +3,15 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.webrtc.RendererCommon;
 public final class zg1 implements RendererCommon.RendererEvents {
-    public final jh1 f43747a;
+    public final jh1 f43773a;
 
     public zg1(jh1 jh1Var) {
-        this.f43747a = jh1Var;
+        this.f43773a = jh1Var;
     }
 
     @Override
     public final void onFirstFrameRendered() {
-        jh1 jh1Var = this.f43747a;
+        jh1 jh1Var = this.f43773a;
         com.google.android.gms.internal.cast.p pVar = jh1Var.l1;
         if (pVar != null) {
             pVar.run();

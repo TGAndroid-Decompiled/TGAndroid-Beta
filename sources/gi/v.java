@@ -1,12 +1,12 @@
 package gi;
 public final class v {
-    public boolean f11504a;
-    public boolean f11505b;
-    public boolean f11506c;
+    public boolean f11506a;
+    public boolean f11507b;
+    public boolean f11508c;
     public boolean d;
     public String e;
-    public long f11507f;
-    public int f11508g;
+    public long f11509f;
+    public int f11510g;
     public int h;
-    public String f11509i;
+    public String f11511i;
 }

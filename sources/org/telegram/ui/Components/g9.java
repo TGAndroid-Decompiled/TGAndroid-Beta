@@ -14,42 +14,42 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public abstract class g9 extends FrameLayout {
-    public r5 f26510a;
-    public r5 f26511b;
-    public w9 f26512c;
+    public r5 f26517a;
+    public r5 f26518b;
+    public w9 f26519c;
     public w9 d;
     public x20 e;
-    public x20 f26513f;
+    public x20 f26520f;
     public final TextView h;
-    public final TLRPC.TL_emojiList f26514n;
-    public final int f26515r;
-    public int f26516s;
+    public final TLRPC.TL_emojiList f26521n;
+    public final int f26522r;
+    public int f26523s;
     public int v;
-    public float f26517w;
-    public boolean f26518x;
-    public final f9 f26519y;
+    public float f26524w;
+    public boolean f26525x;
+    public final f9 f26526y;
 
     public g9(Context context) {
         super(context);
         int i10 = UserConfig.selectedAccount;
-        this.f26515r = i10;
-        this.f26516s = 0;
+        this.f26522r = i10;
+        this.f26523s = 0;
         this.v = 0;
-        this.f26517w = 1.0f;
-        this.f26519y = new f9((rm) this);
+        this.f26524w = 1.0f;
+        this.f26526y = new f9((rm) this);
         TLRPC.TL_emojiList a2 = a(i10);
-        this.f26514n = a2;
-        this.f26512c = new w9(context);
+        this.f26521n = a2;
+        this.f26519c = new w9(context);
         this.d = new w9(context);
-        addView(this.f26512c, w7.z5.e(50, 50, 1));
+        addView(this.f26519c, w7.z5.e(50, 50, 1));
         addView(this.d, w7.z5.e(50, 50, 1));
         if (!a2.document_id.isEmpty()) {
             r5 r5Var = new r5(4, i10, a2.document_id.get(0).longValue());
-            this.f26510a = r5Var;
-            this.f26512c.setAnimatedEmojiDrawable(r5Var);
+            this.f26517a = r5Var;
+            this.f26519c.setAnimatedEmojiDrawable(r5Var);
             b();
         }
-        int[] iArr = e9.f25872c0[this.f26516s];
+        int[] iArr = e9.f25879c0[this.f26523s];
         int i11 = iArr[0];
         int i12 = iArr[1];
         int i13 = iArr[2];
@@ -80,11 +80,11 @@ public abstract class g9 extends FrameLayout {
                 TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i11);
                 TLRPC.Document document = stickerSetCovered.cover;
                 if (document != null) {
-                    tL_emojiList2.document_id.add(Long.valueOf(document.f20278id));
+                    tL_emojiList2.document_id.add(Long.valueOf(document.f20285id));
                 } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                     TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered;
                     if (!tL_stickerSetFullCovered.documents.isEmpty()) {
-                        tL_emojiList2.document_id.add(Long.valueOf(tL_stickerSetFullCovered.documents.get(0).f20278id));
+                        tL_emojiList2.document_id.add(Long.valueOf(tL_stickerSetFullCovered.documents.get(0).f20285id));
                     }
                 }
             }
@@ -92,7 +92,7 @@ public abstract class g9 extends FrameLayout {
             for (int i12 = 0; i12 < stickerSets.size(); i12++) {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSets.get(i12);
                 if (!tL_messages_stickerSet.documents.isEmpty()) {
-                    tL_emojiList2.document_id.add(Long.valueOf(tL_messages_stickerSet.documents.get(Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size())).f20278id));
+                    tL_emojiList2.document_id.add(Long.valueOf(tL_messages_stickerSet.documents.get(Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size())).f20285id));
                 }
             }
         }
@@ -100,18 +100,18 @@ public abstract class g9 extends FrameLayout {
     }
 
     public final void b() {
-        if (this.f26518x) {
+        if (this.f26525x) {
             return;
         }
         int i10 = this.v + 1;
-        TLRPC.TL_emojiList tL_emojiList = this.f26514n;
+        TLRPC.TL_emojiList tL_emojiList = this.f26521n;
         if (i10 > tL_emojiList.document_id.size() - 1) {
-            this.f26518x = true;
+            this.f26525x = true;
             return;
         }
-        r5 r5Var = new r5(4, this.f26515r, tL_emojiList.document_id.get(i10).longValue());
-        this.f26511b = r5Var;
-        r5Var.f29843m = true;
+        r5 r5Var = new r5(4, this.f26522r, tL_emojiList.document_id.get(i10).longValue());
+        this.f26518b = r5Var;
+        r5Var.f29851m = true;
         r5Var.v();
     }
 
@@ -122,39 +122,39 @@ public abstract class g9 extends FrameLayout {
         if (x20Var != null) {
             x20Var.b(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         }
-        x20 x20Var2 = this.f26513f;
+        x20 x20Var2 = this.f26520f;
         if (x20Var2 != null) {
             x20Var2.b(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         }
-        float f7 = this.f26517w;
+        float f7 = this.f26524w;
         if (f7 == 1.0f) {
-            this.e.f32285c.setAlpha(255);
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.e.f32285c);
-            this.f26512c.setAlpha(1.0f);
-            this.f26512c.setScaleX(1.0f);
-            this.f26512c.setScaleY(1.0f);
+            this.e.f32292c.setAlpha(255);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.e.f32292c);
+            this.f26519c.setAlpha(1.0f);
+            this.f26519c.setScaleX(1.0f);
+            this.f26519c.setScaleY(1.0f);
             this.d.setAlpha(0.0f);
         } else {
-            float interpolation = bs.f25030f.getInterpolation(f7);
-            this.e.f32285c.setAlpha(255);
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.e.f32285c);
-            this.f26513f.f32285c.setAlpha((int) (255.0f * interpolation));
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f26513f.f32285c);
-            this.f26517w += 0.064f;
+            float interpolation = bs.f25037f.getInterpolation(f7);
+            this.e.f32292c.setAlpha(255);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.e.f32292c);
+            this.f26520f.f32292c.setAlpha((int) (255.0f * interpolation));
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f26520f.f32292c);
+            this.f26524w += 0.064f;
             float f10 = 1.0f - interpolation;
-            this.f26512c.setAlpha(f10);
-            this.f26512c.setScaleX(f10);
-            this.f26512c.setScaleY(f10);
-            this.f26512c.setPivotY(0.0f);
+            this.f26519c.setAlpha(f10);
+            this.f26519c.setScaleX(f10);
+            this.f26519c.setScaleY(f10);
+            this.f26519c.setPivotY(0.0f);
             this.d.setAlpha(interpolation);
             this.d.setScaleX(interpolation);
             this.d.setScaleY(interpolation);
             this.d.setPivotY(w9Var.getMeasuredHeight());
-            if (this.f26517w > 1.0f) {
-                this.f26517w = 1.0f;
-                this.e = this.f26513f;
-                w9 w9Var2 = this.f26512c;
-                this.f26512c = this.d;
+            if (this.f26524w > 1.0f) {
+                this.f26524w = 1.0f;
+                this.e = this.f26520f;
+                w9 w9Var2 = this.f26519c;
+                this.f26519c = this.d;
                 this.d = w9Var2;
             }
             invalidate();
@@ -163,29 +163,29 @@ public abstract class g9 extends FrameLayout {
     }
 
     public r5 getAnimatedEmoji() {
-        return this.f26510a;
+        return this.f26517a;
     }
 
     public a9 getBackgroundGradient() {
         ?? obj = new Object();
-        int[] iArr = e9.f25872c0[this.f26516s];
-        obj.f24543c = iArr[0];
+        int[] iArr = e9.f25879c0[this.f26523s];
+        obj.f24550c = iArr[0];
         obj.d = iArr[1];
         obj.e = iArr[2];
-        obj.f24544f = iArr[3];
+        obj.f24551f = iArr[3];
         return obj;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.f26519y, 1000L);
+        AndroidUtilities.runOnUIThread(this.f26526y, 1000L);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f26519y);
+        AndroidUtilities.cancelRunOnUIThread(this.f26526y);
     }
 
     @Override
@@ -194,13 +194,13 @@ public abstract class g9 extends FrameLayout {
         int top = this.h.getTop();
         int i12 = (int) (top * 0.7f);
         int i13 = (int) ((top - i12) * 0.7f);
-        ViewGroup.LayoutParams layoutParams = this.f26512c.getLayoutParams();
-        this.f26512c.getLayoutParams().height = i12;
+        ViewGroup.LayoutParams layoutParams = this.f26519c.getLayoutParams();
+        this.f26519c.getLayoutParams().height = i12;
         layoutParams.width = i12;
         ViewGroup.LayoutParams layoutParams2 = this.d.getLayoutParams();
         this.d.getLayoutParams().height = i12;
         layoutParams2.width = i12;
-        ((FrameLayout.LayoutParams) this.f26512c.getLayoutParams()).topMargin = i13;
+        ((FrameLayout.LayoutParams) this.f26519c.getLayoutParams()).topMargin = i13;
         ((FrameLayout.LayoutParams) this.d.getLayoutParams()).topMargin = i13;
     }
 }

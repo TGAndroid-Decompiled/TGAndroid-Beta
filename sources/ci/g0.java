@@ -1,6 +1,6 @@
 package ci;
 
-import ai.oa;
+import ai.pa;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,25 +13,25 @@ import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.wl0;
 import org.telegram.ui.qa0;
 public final class g0 implements wl0 {
-    public final int f5411a;
-    public final Object f5412b;
-    public final Object f5413c;
+    public final int f5412a;
+    public final Object f5413b;
+    public final Object f5414c;
     public final Object d;
 
     public g0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f5411a = i10;
-        this.f5412b = obj;
-        this.f5413c = obj2;
+        this.f5412a = i10;
+        this.f5413b = obj;
+        this.f5414c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void a(int i10, View view) {
-        int i11 = this.f5411a;
+        int i11 = this.f5412a;
         boolean z10 = true;
         Object obj = this.d;
-        Object obj2 = this.f5413c;
-        Object obj3 = this.f5412b;
+        Object obj2 = this.f5414c;
+        Object obj3 = this.f5413b;
         switch (i11) {
             case 0:
                 n2 n2Var = (n2) obj3;
@@ -40,12 +40,12 @@ public final class g0 implements wl0 {
                 i80 F = i80.F((ViewGroup) obj2, new b(), view);
                 F.p(15, -1, LocaleController.formatString(R.string.LiveStoryMessageSent, LocaleController.formatDateTime(v0Var.d, true)));
                 F.k();
-                F.c(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new oa(9, (aa) obj, v0Var), false);
-                F.l(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new oa(10, n2Var, q0Var), !v0Var.e);
+                F.c(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new pa(9, (aa) obj, v0Var), false);
+                F.l(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new pa(10, n2Var, q0Var), !v0Var.e);
                 if (n2Var.M != UserConfig.getInstance(n2Var.N).getClientUserId() && !n2Var.f()) {
                     z10 = false;
                 }
-                F.l(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new oa(11, n2Var, v0Var), z10);
+                F.l(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new pa(11, n2Var, v0Var), z10);
                 F.Z();
                 return;
             case 1:
@@ -65,10 +65,10 @@ public final class g0 implements wl0 {
                     return;
                 } else if (!w7.g6.a(qa0Var)) {
                     s4.c0 c0Var = new s4.c0(context);
-                    c0Var.f46079a = i10;
+                    c0Var.f46099a = i10;
                     tVar.W2.w0(c0Var);
                     w7.g6.b(qa0Var);
-                    int i12 = org.telegram.ui.Cells.s.f22961f;
+                    int i12 = org.telegram.ui.Cells.s.f22965f;
                     sVar.b(true, true);
                     for (int i13 = 0; i13 < tVar.getChildCount(); i13++) {
                         org.telegram.ui.Cells.s sVar2 = (org.telegram.ui.Cells.s) tVar.getChildAt(i13);

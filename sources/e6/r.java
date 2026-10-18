@@ -9,23 +9,23 @@ import org.telegram.ui.Components.hq;
 import org.telegram.ui.ek0;
 import org.telegram.ui.fz;
 public final class r extends TimerTask {
-    public final int f8394a;
-    public final Object f8395b;
+    public final int f8395a;
+    public final Object f8396b;
 
     public r(Object obj, int i10) {
-        this.f8394a = i10;
-        this.f8395b = obj;
+        this.f8395a = i10;
+        this.f8396b = obj;
     }
 
     @Override
     public final void run() {
         BasePendingResult basePendingResult;
-        switch (this.f8394a) {
+        switch (this.f8395a) {
             case 0:
-                c cVar = (c) this.f8395b;
+                c cVar = (c) this.f8396b;
                 ArrayDeque arrayDeque = cVar.h;
-                if (!arrayDeque.isEmpty() && cVar.f8354k == null && cVar.f8348b != 0) {
-                    h hVar = cVar.f8349c;
+                if (!arrayDeque.isEmpty() && cVar.f8355k == null && cVar.f8349b != 0) {
+                    h hVar = cVar.f8350c;
                     int[] e = g6.a.e(arrayDeque);
                     hVar.getClass();
                     n6.l.e("Must be called from the main thread.");
@@ -36,7 +36,7 @@ public final class r extends TimerTask {
                         h.x(kVar);
                         basePendingResult = kVar;
                     }
-                    cVar.f8354k = basePendingResult;
+                    cVar.f8355k = basePendingResult;
                     basePendingResult.i(new q(cVar, 1));
                     arrayDeque.clear();
                     return;
@@ -56,7 +56,7 @@ public final class r extends TimerTask {
                 return;
             default:
                 try {
-                    Socket socket = ((tc.q) this.f8395b).f47020a.f46994a.f46989g;
+                    Socket socket = ((tc.q) this.f8396b).f47042a.f47016a.f47011g;
                     if (socket != null) {
                         socket.close();
                         return;

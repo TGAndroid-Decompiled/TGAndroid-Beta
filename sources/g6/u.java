@@ -3,39 +3,39 @@ package g6;
 import com.google.android.gms.internal.cast.a0;
 import java.util.concurrent.atomic.AtomicReference;
 public final class u extends g {
-    public final AtomicReference f10882b;
-    public final a0 f10883c;
+    public final AtomicReference f10884b;
+    public final a0 f10885c;
 
     public u(v vVar) {
-        this.f10882b = new AtomicReference(vVar);
-        this.f10883c = new a0(vVar.f17180r, 0);
+        this.f10884b = new AtomicReference(vVar);
+        this.f10885c = new a0(vVar.f17187r, 0);
     }
 
     @Override
     public final void A0(String str, byte[] bArr) {
-        if (((v) this.f10882b.get()) == null) {
+        if (((v) this.f10884b.get()) == null) {
             return;
         }
-        v.f10884n0.b("IGNORING: Receive (type=binary, ns=%s) <%d bytes>", str, Integer.valueOf(bArr.length));
+        v.f10886n0.b("IGNORING: Receive (type=binary, ns=%s) <%d bytes>", str, Integer.valueOf(bArr.length));
     }
 
     @Override
     public final void P(int i10) {
         v vVar = null;
-        v vVar2 = (v) this.f10882b.getAndSet(null);
+        v vVar2 = (v) this.f10884b.getAndSet(null);
         if (vVar2 != null) {
-            vVar2.f10894h0 = -1;
-            vVar2.f10895i0 = -1;
+            vVar2.f10896h0 = -1;
+            vVar2.f10897i0 = -1;
             vVar2.U = null;
-            vVar2.f10888b0 = null;
-            vVar2.f10892f0 = 0.0d;
+            vVar2.f10890b0 = null;
+            vVar2.f10894f0 = 0.0d;
             vVar2.I();
-            vVar2.f10889c0 = false;
-            vVar2.f10893g0 = null;
+            vVar2.f10891c0 = false;
+            vVar2.f10895g0 = null;
             vVar = vVar2;
         }
         if (vVar != null) {
-            v.f10884n0.b("ICastDeviceControllerListener.onDisconnected: %d", Integer.valueOf(i10));
+            v.f10886n0.b("ICastDeviceControllerListener.onDisconnected: %d", Integer.valueOf(i10));
             if (i10 != 0) {
                 int i11 = vVar.R.get();
                 n6.a0 a0Var = vVar.v;
@@ -46,26 +46,26 @@ public final class u extends g {
 
     @Override
     public final void T(String str, String str2) {
-        v vVar = (v) this.f10882b.get();
+        v vVar = (v) this.f10884b.get();
         if (vVar == null) {
             return;
         }
-        v.f10884n0.b("Receive (type=text, ns=%s) %s", str, str2);
-        this.f10883c.post(new c5.v(vVar, str, str2, 6));
+        v.f10886n0.b("Receive (type=text, ns=%s) %s", str, str2);
+        this.f10885c.post(new c5.v(vVar, str, str2, 6));
     }
 
     @Override
     public final void X(int i10) {
-        if (((v) this.f10882b.get()) == null) {
+        if (((v) this.f10884b.get()) == null) {
             return;
         }
-        synchronized (v.f10885o0) {
+        synchronized (v.f10887o0) {
         }
     }
 
     @Override
     public final void Y(long j10) {
-        v vVar = (v) this.f10882b.get();
+        v vVar = (v) this.f10884b.get();
         if (vVar == null) {
             return;
         }
@@ -74,73 +74,73 @@ public final class u extends g {
 
     @Override
     public final void c(int i10) {
-        if (((v) this.f10882b.get()) == null) {
+        if (((v) this.f10884b.get()) == null) {
             return;
         }
-        synchronized (v.f10886p0) {
+        synchronized (v.f10888p0) {
         }
     }
 
     @Override
     public final void m(c6.d dVar, String str, String str2, boolean z10) {
-        v vVar = (v) this.f10882b.get();
+        v vVar = (v) this.f10884b.get();
         if (vVar == null) {
             return;
         }
         vVar.U = dVar;
-        vVar.f10896j0 = dVar.f4828a;
-        vVar.f10897k0 = str2;
-        vVar.f10888b0 = str;
-        synchronized (v.f10885o0) {
+        vVar.f10898j0 = dVar.f4829a;
+        vVar.f10899k0 = str2;
+        vVar.f10890b0 = str;
+        synchronized (v.f10887o0) {
         }
     }
 
     @Override
     public final void t0(d dVar) {
-        v vVar = (v) this.f10882b.get();
+        v vVar = (v) this.f10884b.get();
         if (vVar == null) {
             return;
         }
-        v.f10884n0.b("onDeviceStatusChanged", new Object[0]);
-        this.f10883c.post(new j9.u(14, vVar, dVar));
+        v.f10886n0.b("onDeviceStatusChanged", new Object[0]);
+        this.f10885c.post(new j9.u(14, vVar, dVar));
     }
 
     @Override
     public final void y0(c cVar) {
-        v vVar = (v) this.f10882b.get();
+        v vVar = (v) this.f10884b.get();
         if (vVar == null) {
             return;
         }
-        v.f10884n0.b("onApplicationStatusChanged", new Object[0]);
-        this.f10883c.post(new j9.u(15, vVar, cVar));
+        v.f10886n0.b("onApplicationStatusChanged", new Object[0]);
+        this.f10885c.post(new j9.u(15, vVar, cVar));
     }
 
     @Override
     public final void zzd(int i10) {
-        v vVar = (v) this.f10882b.get();
+        v vVar = (v) this.f10884b.get();
         if (vVar != null) {
-            vVar.f10896j0 = null;
-            vVar.f10897k0 = null;
-            synchronized (v.f10886p0) {
+            vVar.f10898j0 = null;
+            vVar.f10899k0 = null;
+            synchronized (v.f10888p0) {
             }
             if (vVar.W != null) {
-                this.f10883c.post(new androidx.emoji2.text.j(vVar, i10, 2));
+                this.f10885c.post(new androidx.emoji2.text.j(vVar, i10, 2));
             }
         }
     }
 
     @Override
     public final void zzg(int i10) {
-        if (((v) this.f10882b.get()) == null) {
+        if (((v) this.f10884b.get()) == null) {
             return;
         }
-        synchronized (v.f10886p0) {
+        synchronized (v.f10888p0) {
         }
     }
 
     @Override
     public final void zzm(int i10, long j10) {
-        v vVar = (v) this.f10882b.get();
+        v vVar = (v) this.f10884b.get();
         if (vVar == null) {
             return;
         }
@@ -149,7 +149,7 @@ public final class u extends g {
 
     @Override
     public final void zzn() {
-        v.f10884n0.b("Deprecated callback: \"onStatusreceived\"", new Object[0]);
+        v.f10886n0.b("Deprecated callback: \"onStatusreceived\"", new Object[0]);
     }
 
     @Override

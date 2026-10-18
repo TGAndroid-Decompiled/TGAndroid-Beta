@@ -1,9 +1,9 @@
 package z7;
 public final class q4 implements ja.d {
-    public static final q4 f51158a = new Object();
+    public static final q4 f51182a = new Object();
 
     static {
-        r.c.s(r.c.n(w.class, new s(1)));
+        r4.c.s(r4.c.n(w.class, new s(1)));
     }
 
     @Override

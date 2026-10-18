@@ -4,15 +4,15 @@ import android.view.MotionEvent;
 import android.widget.Scroller;
 import org.telegram.messenger.Utilities;
 public final class ob1 implements org.telegram.ui.Components.bp0, org.telegram.ui.Components.r20 {
-    public final mc1 f39704a;
+    public final mc1 f39725a;
 
     public ob1(mc1 mc1Var) {
-        this.f39704a = mc1Var;
+        this.f39725a = mc1Var;
     }
 
     @Override
     public void L(float f7, boolean z10) {
-        mc1 mc1Var = this.f39704a;
+        mc1 mc1Var = this.f39725a;
         mc1Var.l1 = f7;
         mc1Var.k1();
     }
@@ -29,7 +29,7 @@ public final class ob1 implements org.telegram.ui.Components.bp0, org.telegram.u
 
     @Override
     public boolean onDown(MotionEvent motionEvent) {
-        Scroller scroller = this.f39704a.f39104c;
+        Scroller scroller = this.f39725a.f39129c;
         if (scroller != null) {
             scroller.abortAnimation();
             return true;
@@ -39,12 +39,12 @@ public final class ob1 implements org.telegram.ui.Components.bp0, org.telegram.u
 
     @Override
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        mc1 mc1Var = this.f39704a;
-        Scroller scroller = mc1Var.f39104c;
+        mc1 mc1Var = this.f39725a;
+        Scroller scroller = mc1Var.f39129c;
         if (scroller != null) {
             scroller.abortAnimation();
-            mc1Var.f39104c.fling((int) mc1Var.X1, 0, Math.round(-f7), Math.round(f10), 0, (int) mc1Var.W1, 0, Integer.MAX_VALUE);
-            mc1Var.f39159x0.postInvalidate();
+            mc1Var.f39129c.fling((int) mc1Var.X1, 0, Math.round(-f7), Math.round(f10), 0, (int) mc1Var.W1, 0, Integer.MAX_VALUE);
+            mc1Var.f39184x0.postInvalidate();
             return true;
         }
         return true;
@@ -52,14 +52,14 @@ public final class ob1 implements org.telegram.ui.Components.bp0, org.telegram.u
 
     @Override
     public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        mc1 mc1Var = this.f39704a;
-        Scroller scroller = mc1Var.f39104c;
+        mc1 mc1Var = this.f39725a;
+        Scroller scroller = mc1Var.f39129c;
         if (scroller != null) {
             scroller.abortAnimation();
         }
         mc1Var.X1 = Utilities.clamp(mc1Var.X1 + f7, mc1Var.W1, 0.0f);
         mc1Var.V0();
-        mc1Var.f39159x0.invalidate();
+        mc1Var.f39184x0.invalidate();
         return true;
     }
 

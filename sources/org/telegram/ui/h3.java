@@ -14,37 +14,37 @@ import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class h3 extends bu0 {
-    public final int[] f37411a = new int[2];
-    public final List f37412b;
-    public final l4 f37413c;
+    public final int[] f37429a = new int[2];
+    public final List f37430b;
+    public final l4 f37431c;
 
     public h3(l4 l4Var, List list) {
-        this.f37413c = l4Var;
-        this.f37412b = list;
+        this.f37431c = l4Var;
+        this.f37430b = list;
     }
 
     @Override
     public final void D() {
-        this.f37413c.n();
+        this.f37431c.n();
     }
 
     @Override
     public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         if (i10 >= 0) {
-            List list = this.f37412b;
+            List list = this.f37430b;
             if (i10 < list.size()) {
-                l4 l4Var = this.f37413c;
-                int[] iArr = this.f37411a;
-                ImageReceiver d02 = d0(l4Var.f38779u0[0].f39633b, (TL_iv.PageBlock) list.get(i10), iArr);
+                l4 l4Var = this.f37431c;
+                int[] iArr = this.f37429a;
+                ImageReceiver d02 = d0(l4Var.f38770u0[0].f39654b, (TL_iv.PageBlock) list.get(i10), iArr);
                 if (d02 != null) {
                     lu0 lu0Var = new lu0();
-                    lu0Var.f38938b = iArr[0];
-                    lu0Var.f38939c = iArr[1];
-                    lu0Var.d = l4Var.f38779u0[0].f39633b;
-                    lu0Var.f38937a = d02;
+                    lu0Var.f38962b = iArr[0];
+                    lu0Var.f38963c = iArr[1];
+                    lu0Var.d = l4Var.f38770u0[0].f39654b;
+                    lu0Var.f38961a = d02;
                     lu0Var.e = d02.getBitmapSafe();
                     lu0Var.h = d02.getRoundRadius(true);
-                    lu0Var.f38943j = l4Var.I0;
+                    lu0Var.f38967j = l4Var.I0;
                     return lu0Var;
                 }
                 return null;
@@ -85,11 +85,11 @@ public final class h3 extends bu0 {
         } else if (view instanceof z2) {
             z2 z2Var = (z2) view;
             ImageReceiver imageReceiver = z2Var.e;
-            TextureView textureView = z2Var.f43521n;
+            TextureView textureView = z2Var.f43547n;
             if (z2Var.L == pageBlock) {
                 view.getLocationInWindow(iArr);
-                l4 l4Var = this.f37413c;
-                if (z2Var == l4Var.f36092x && (videoPlayerHolderBase = l4Var.f36091w) != null && videoPlayerHolderBase.firstFrameRendered && textureView.getSurfaceTexture() != null) {
+                l4 l4Var = this.f37431c;
+                if (z2Var == l4Var.f36113x && (videoPlayerHolderBase = l4Var.f36112w) != null && videoPlayerHolderBase.firstFrameRendered && textureView.getSurfaceTexture() != null) {
                     if (Build.VERSION.SDK_INT >= 24) {
                         Surface surface = new Surface(textureView.getSurfaceTexture());
                         Bitmap createBitmap = Bitmap.createBitmap(textureView.getMeasuredWidth(), textureView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
@@ -106,24 +106,24 @@ public final class h3 extends bu0 {
             }
             return null;
         } else if (view instanceof m1) {
-            ImageReceiver d02 = d0(((m1) view).f38972a, pageBlock, iArr);
+            ImageReceiver d02 = d0(((m1) view).f38997a, pageBlock, iArr);
             if (d02 != null) {
                 return d02;
             }
             return null;
         } else if (view instanceof s2) {
-            ImageReceiver d03 = d0(((s2) view).f40863a, pageBlock, iArr);
+            ImageReceiver d03 = d0(((s2) view).f40884a, pageBlock, iArr);
             if (d03 != null) {
                 return d03;
             }
             return null;
         } else if (view instanceof a2) {
             org.telegram.ui.Components.sl0 sl0Var2 = ((a2) view).d;
-            if (sl0Var2 != null && (e03 = e0(sl0Var2.f45938a, pageBlock, iArr)) != null) {
+            if (sl0Var2 != null && (e03 = e0(sl0Var2.f45958a, pageBlock, iArr)) != null) {
                 return e03;
             }
             return null;
-        } else if ((view instanceof d2) && (sl0Var = ((d2) view).d) != null && (e02 = e0(sl0Var.f45938a, pageBlock, iArr)) != null) {
+        } else if ((view instanceof d2) && (sl0Var = ((d2) view).d) != null && (e02 = e0(sl0Var.f45958a, pageBlock, iArr)) != null) {
             return e02;
         } else {
             return null;

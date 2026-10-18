@@ -4,14 +4,14 @@ import android.graphics.SurfaceTexture;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class m extends Thread {
-    public final SurfaceTexture f47122a;
-    public volatile boolean f47123b;
-    public boolean f47124c;
+    public final SurfaceTexture f47144a;
+    public volatile boolean f47145b;
+    public boolean f47146c;
     public final n d;
 
     public m(n nVar, SurfaceTexture surfaceTexture) {
         this.d = nVar;
-        this.f47122a = surfaceTexture;
+        this.f47144a = surfaceTexture;
     }
 
     public final void a() {
@@ -22,16 +22,16 @@ public final class m extends Thread {
     public final void run() {
         synchronized (this.d.d) {
             try {
-                if (this.f47123b) {
+                if (this.f47145b) {
                     return;
                 }
                 n nVar = this.d;
-                nVar.f47129c = this.f47122a;
+                nVar.f47151c = this.f47144a;
                 nVar.H = true;
                 try {
                     a();
                 } catch (Exception e) {
-                    if (!this.f47123b) {
+                    if (!this.f47145b) {
                         FileLog.e(e);
                         AndroidUtilities.runOnUIThread(new l(this, 0));
                     }

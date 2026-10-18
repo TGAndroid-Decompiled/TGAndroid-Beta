@@ -9,34 +9,34 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public abstract class un0 extends FrameLayout {
-    public final View f31053a;
-    public final ImageView f31054b;
-    public final ImageView f31055c;
+    public final View f31060a;
+    public final ImageView f31061b;
+    public final ImageView f31062c;
     public final ei.f2 d;
     public final ei.e2 e;
-    public final org.telegram.ui.ActionBar.d6 f31056f;
+    public final org.telegram.ui.ActionBar.d6 f31063f;
 
     public un0(Context context, float f7, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f31056f = d6Var;
+        this.f31063f = d6Var;
         View view = new View(context);
-        this.f31053a = view;
+        this.f31060a = view;
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.O5, d6Var)));
         addView(view, w7.z5.i(-1.0f, 36.0f, 8388659, f7, 11.0f, f7, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f31054b = imageView;
+        this.f31061b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.smiles_inputsearch);
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Q5, d6Var), PorterDuff.Mode.MULTIPLY));
         addView(imageView, w7.z5.i(36.0f, 36.0f, 8388659, f7 + 2.0f, 11.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f31055c = imageView2;
+        this.f31062c = imageView2;
         imageView2.setScaleType(scaleType);
         ei.f2 f2Var = new ei.f2(3, this);
         this.d = f2Var;
         imageView2.setImageDrawable(f2Var);
-        f2Var.f29396f = AndroidUtilities.dp(7.0f);
+        f2Var.f29403f = AndroidUtilities.dp(7.0f);
         imageView2.setScaleX(0.1f);
         imageView2.setScaleY(0.1f);
         imageView2.setAlpha(0.0f);
@@ -70,7 +70,7 @@ public abstract class un0 extends FrameLayout {
     }
 
     public View getSearchBackground() {
-        return this.f31053a;
+        return this.f31060a;
     }
 
     public EditTextBoldCursor getSearchEditText() {

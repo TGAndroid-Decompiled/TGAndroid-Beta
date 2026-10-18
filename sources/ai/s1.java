@@ -63,14 +63,14 @@ public final class s1 extends e7 {
             if (org.telegram.ui.ActionBar.h6.C1(background, i10, false)) {
                 w1Var.invalidate();
             }
-            int f7 = i0.b.f(0.33f, i10, -1);
+            int f7 = i0.a.f(0.33f, i10, -1);
             float[] fArr = this.B0;
             Color.colorToHSV(f7, fArr);
             fArr[1] = Math.min(1.0f, fArr[1] * 1.1f);
             fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
             int HSVToColor = Color.HSVToColor(fArr);
             if (q6Var.getSizeableBackground() instanceof t6) {
-                ((t6) q6Var.getSizeableBackground()).f2208b.setColor(HSVToColor);
+                ((t6) q6Var.getSizeableBackground()).f2205b.setColor(HSVToColor);
                 q6Var.invalidate();
             } else if (org.telegram.ui.ActionBar.h6.C1(q6Var.getSizeableBackground(), HSVToColor, false)) {
                 q6Var.invalidate();

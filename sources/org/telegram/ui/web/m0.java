@@ -1,6 +1,6 @@
 package org.telegram.ui.web;
 
-import ai.ab;
+import ai.bb;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -31,29 +31,29 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d6;
 public final class m0 extends WebViewClient {
-    public boolean f42672a = true;
-    public final l0 f42673b = new l0(this, 0);
-    public final boolean f42674c;
+    public boolean f42699a = true;
+    public final l0 f42700b = new l0(this, 0);
+    public final boolean f42701c;
     public final Context d;
     public final x0 e;
 
     public m0(x0 x0Var, boolean z10, Context context) {
         this.e = x0Var;
-        this.f42674c = z10;
+        this.f42701c = z10;
         this.d = context;
     }
 
     @Override
     public final void doUpdateVisitedHistory(WebView webView, String str, boolean z10) {
         b1 b1Var;
-        boolean z11 = this.f42674c;
+        boolean z11 = this.f42701c;
         x0 x0Var = this.e;
-        if (!z11 && ((b1Var = x0Var.e) == null || !TextUtils.equals(b1Var.f42560c, str))) {
+        if (!z11 && ((b1Var = x0Var.e) == null || !TextUtils.equals(b1Var.f42585c, str))) {
             ?? tLObject = new TLObject();
             x0Var.e = tLObject;
-            tLObject.f42558a = Utilities.fastRandom.nextLong();
-            x0Var.e.f42559b = System.currentTimeMillis();
-            x0Var.e.f42560c = a1.u(x0Var.getUrl());
+            tLObject.f42583a = Utilities.fastRandom.nextLong();
+            x0Var.e.f42584b = System.currentTimeMillis();
+            x0Var.e.f42585c = a1.u(x0Var.getUrl());
             x0Var.e.d = l2.a(x0Var);
             c1.c(x0Var.e);
         }
@@ -70,7 +70,7 @@ public final class m0 extends WebViewClient {
         a1 a1Var;
         x0 x0Var = this.e;
         x0Var.c("onPageCommitVisible " + str);
-        boolean z10 = this.f42674c;
+        boolean z10 = this.f42701c;
         if (z10 && !a.a.a("DOCUMENT_START_SCRIPT") && (a1Var = x0Var.Q) != null) {
             boolean z11 = a1.P0;
             if (a1Var.q()) {
@@ -92,9 +92,9 @@ public final class m0 extends WebViewClient {
     public final void onPageFinished(WebView webView, String str) {
         a1 a1Var;
         x0 x0Var = this.e;
-        x0Var.f42798b = true;
+        x0Var.f42823b = true;
         x0Var.c("onPageFinished");
-        boolean z10 = this.f42674c;
+        boolean z10 = this.f42701c;
         if (z10 && !a.a.a("DOCUMENT_START_SCRIPT") && (a1Var = x0Var.Q) != null) {
             boolean z11 = a1.P0;
             if (a1Var.q()) {
@@ -137,13 +137,13 @@ public final class m0 extends WebViewClient {
         x0 x0Var = this.e;
         x0Var.c("onReceivedError: " + webResourceError.getErrorCode() + " " + ((Object) webResourceError.getDescription()));
         if (x0Var.Q != null && (webResourceRequest == null || webResourceRequest.isForMainFrame())) {
-            AndroidUtilities.cancelRunOnUIThread(this.f42673b);
-            x0Var.f42802r = null;
-            x0Var.f42803s = false;
+            AndroidUtilities.cancelRunOnUIThread(this.f42700b);
+            x0Var.f42827r = null;
+            x0Var.f42828s = false;
             x0Var.v = false;
             x0Var.M = false;
             x0Var.J = false;
-            x0Var.f42801n = (webResourceRequest == null || webResourceRequest.getUrl() == null) ? x0Var.getUrl() : webResourceRequest.getUrl().toString();
+            x0Var.f42826n = (webResourceRequest == null || webResourceRequest.getUrl() == null) ? x0Var.getUrl() : webResourceRequest.getUrl().toString();
             a1 a1Var = x0Var.Q;
             x0Var.K = null;
             a1Var.H();
@@ -183,9 +183,9 @@ public final class m0 extends WebViewClient {
         x0Var.c(sb3);
         if (x0Var.Q != null) {
             if ((webResourceRequest == null || webResourceRequest.isForMainFrame()) && webResourceResponse != null && TextUtils.isEmpty(webResourceResponse.getMimeType())) {
-                AndroidUtilities.cancelRunOnUIThread(this.f42673b);
-                x0Var.f42802r = null;
-                x0Var.f42803s = false;
+                AndroidUtilities.cancelRunOnUIThread(this.f42700b);
+                x0Var.f42827r = null;
+                x0Var.f42828s = false;
                 x0Var.v = false;
                 x0Var.M = false;
                 x0Var.J = false;
@@ -194,7 +194,7 @@ public final class m0 extends WebViewClient {
                 } else {
                     url2 = x0Var.getUrl();
                 }
-                x0Var.f42801n = url2;
+                x0Var.f42826n = url2;
                 a1 a1Var = x0Var.Q;
                 x0Var.K = null;
                 a1Var.H();
@@ -264,10 +264,10 @@ public final class m0 extends WebViewClient {
                 d6Var = a1Var.e;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
-            alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20601a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new l0(this, 2));
+            alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20608a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new l0(this, 2));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.f20601a.setOnDismissListener(new ab(this, 10));
+            alertDialog$Builder.f20608a.setOnDismissListener(new bb(this, 10));
             alertDialog$Builder.o();
             return true;
         } catch (Exception e) {
@@ -288,10 +288,10 @@ public final class m0 extends WebViewClient {
         x0Var.c(sb3);
         if (webResourceRequest != null && a1.p(webResourceRequest.getUrl())) {
             x0Var.c("proxying ton");
-            this.f42672a = false;
+            this.f42699a = false;
             return a1.M(webResourceRequest.getMethod(), webResourceRequest.getUrl().toString(), webResourceRequest.getRequestHeaders());
         }
-        if (!this.f42674c && x0Var.f42800f != null && this.f42672a) {
+        if (!this.f42701c && x0Var.f42825f != null && this.f42699a) {
             try {
                 httpURLConnection = (HttpURLConnection) new URL(webResourceRequest.getUrl().toString()).openConnection();
             } catch (Exception e) {
@@ -345,7 +345,7 @@ public final class m0 extends WebViewClient {
                         }
                     }
                 }
-                this.f42672a = false;
+                this.f42699a = false;
                 return new WebResourceResponse(contentType, contentEncoding, httpURLConnection.getResponseCode(), httpURLConnection.getResponseMessage(), hashMap, httpURLConnection.getInputStream());
             } catch (Exception e7) {
                 e = e7;
@@ -354,11 +354,11 @@ public final class m0 extends WebViewClient {
                 if (httpURLConnection2 != null) {
                     httpURLConnection2.disconnect();
                 }
-                this.f42672a = false;
+                this.f42699a = false;
                 return super.shouldInterceptRequest(webView, webResourceRequest);
             }
         }
-        this.f42672a = false;
+        this.f42699a = false;
         return super.shouldInterceptRequest(webView, webResourceRequest);
     }
 
@@ -370,8 +370,8 @@ public final class m0 extends WebViewClient {
             Context context = this.d;
             x0 x0Var = this.e;
             if (startsWith) {
-                if (x0Var.f42800f != null) {
-                    g0 g0Var2 = x0Var.Q.f42518c;
+                if (x0Var.f42825f != null) {
+                    g0 g0Var2 = x0Var.Q.f42542c;
                     if (g0Var2 != null) {
                         g0Var2.j();
                     } else {
@@ -386,12 +386,12 @@ public final class m0 extends WebViewClient {
                 return true;
             }
             Uri parse = Uri.parse(str);
-            boolean z10 = this.f42674c;
+            boolean z10 = this.f42701c;
             if (!z10) {
                 if (pf.d.k(context, str, true)) {
                     x0Var.c("shouldOverrideUrlLoading(" + str + ") = true (openInExternalBrowser)");
-                    if (!x0Var.f42798b && !x0Var.canGoBack()) {
-                        g0 g0Var3 = x0Var.Q.f42518c;
+                    if (!x0Var.f42823b && !x0Var.canGoBack()) {
+                        g0 g0Var3 = x0Var.Q.f42542c;
                         if (g0Var3 != null) {
                             g0Var3.j();
                             return true;
@@ -425,8 +425,8 @@ public final class m0 extends WebViewClient {
                 if (z10 || !"1".equals(parse.getQueryParameter("embed")) || !"t.me".equals(parse.getAuthority())) {
                     if (MessagesController.getInstance(x0Var.Q.M).webAppAllowedProtocols != null && MessagesController.getInstance(x0Var.Q.M).webAppAllowedProtocols.contains(parse.getScheme())) {
                         a1 a1Var = x0Var.Q;
-                        if (x0Var.f42800f != null) {
-                            g0 g0Var4 = a1Var.f42518c;
+                        if (x0Var.f42825f != null) {
+                            g0 g0Var4 = a1Var.f42542c;
                             if (g0Var4 != null) {
                                 g0Var4.j();
                             } else {
@@ -436,12 +436,12 @@ public final class m0 extends WebViewClient {
                                     x0Var.U = null;
                                 }
                             }
-                            a1 a1Var2 = x0Var.f42800f.Q;
-                            if (a1Var2 != null && (g0Var = a1Var2.f42518c) != null) {
+                            a1 a1Var2 = x0Var.f42825f.Q;
+                            if (a1Var2 != null && (g0Var = a1Var2.f42542c) != null) {
                                 g0Var.b();
                             }
                         }
-                        a1Var.G(parse, null, !a1Var.f42532o0, false, false);
+                        a1Var.G(parse, null, !a1Var.f42556o0, false, false);
                     }
                     x0Var.c("shouldOverrideUrlLoading(" + str + ") = true");
                     return true;

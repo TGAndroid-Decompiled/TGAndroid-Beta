@@ -1,100 +1,93 @@
 package zh;
 
-import java.io.File;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class z implements NotificationCenter.NotificationCenterDelegate {
-    public final int f52167a;
-    public final TLRPC.Document f52168b;
-    public final TLRPC.Document f52169c;
-    public final int d;
-    public final boolean e;
-    public final v0 f52170f;
-    public final v0 h;
-    public boolean f52171n;
-    public boolean f52172r;
-    public boolean f52173s;
-    public boolean v;
-    public boolean f52174w;
+import android.content.res.ColorStateList;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.view.View;
+import j$.util.function.Consumer$CC;
+import java.util.WeakHashMap;
+import java.util.function.Consumer;
+import org.telegram.messenger.AndroidUtilities;
+public final class z implements Consumer {
+    public final f0 f52193a;
+    public final m f52194b;
 
-    public z(int i10, TLRPC.Document document, TLRPC.Document document2, TL_stars.TL_starGiftUnique tL_starGiftUnique, int i11, boolean z10, v0 v0Var, v0 v0Var2) {
-        boolean z11;
-        this.f52167a = i10;
-        this.f52168b = document;
-        this.f52169c = document2;
-        this.d = i11;
-        this.e = z10;
-        this.f52170f = v0Var;
-        this.h = v0Var2;
-        if (document2 == null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.v = z11;
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoaded);
-        FileLoader fileLoader = FileLoader.getInstance(i10);
-        if (document2 != null && !b(document2).exists()) {
-            fileLoader.loadFile(document2, tL_starGiftUnique, 3, 1);
-        }
-        if (!b(document).exists()) {
-            fileLoader.loadFile(document, tL_starGiftUnique, 3, 1);
-        }
-        a();
-    }
-
-    public final void a() {
-        if (!this.f52171n) {
-            TLRPC.Document document = this.f52169c;
-            if (document != null && !this.f52172r && b(document).exists()) {
-                this.f52172r = true;
-                final File b10 = b(this.f52169c);
-                Utilities.globalQueue.postRunnable(new Runnable(this) {
-                    public final z f52143b;
-
-                    {
-                        this.f52143b = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        throw new UnsupportedOperationException("Method not decompiled: zh.y.run():void");
-                    }
-                });
-            }
-            if (!this.f52173s && b(this.f52168b).exists()) {
-                this.f52173s = true;
-                final File b11 = b(this.f52168b);
-                Utilities.globalQueue.postRunnable(new Runnable(this) {
-                    public final z f52143b;
-
-                    {
-                        this.f52143b = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        throw new UnsupportedOperationException("Method not decompiled: zh.y.run():void");
-                    }
-                });
-            }
-            if ((this.f52169c == null || this.f52172r) && this.f52173s) {
-                NotificationCenter.getInstance(this.f52167a).removeObserver(this, NotificationCenter.fileLoaded);
-            }
-        }
-    }
-
-    public final File b(TLRPC.Document document) {
-        return FileLoader.getInstance(this.f52167a).getPathToAttach(document, true);
+    public z(f0 f0Var, m mVar) {
+        this.f52193a = f0Var;
+        this.f52194b = mVar;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.fileLoaded) {
-            a();
+    public final void accept(Object obj) {
+        c cVar;
+        float f7;
+        float f10;
+        float[] fArr;
+        z zVar = this;
+        Canvas canvas = (Canvas) obj;
+        f0 f0Var = zVar.f52193a;
+        c cVar2 = f0Var.f51771x;
+        RectF rectF = cVar2.M;
+        WeakHashMap weakHashMap = cVar2.N;
+        Paint paint = cVar2.f51693c;
+        long b10 = c.b();
+        int i10 = 0;
+        while (true) {
+            m mVar = zVar.f52194b;
+            if (i10 >= mVar.getChildCount()) {
+                break;
+            }
+            View childAt = mVar.getChildAt(i10);
+            if ((childAt instanceof l) && childAt.getVisibility() == 0) {
+                if (!weakHashMap.containsKey(childAt)) {
+                    weakHashMap.put(childAt, Boolean.TRUE);
+                    GradientDrawable gradientDrawable = new GradientDrawable();
+                    gradientDrawable.setColor(-1);
+                    gradientDrawable.setCornerRadius(AndroidUtilities.dp(10.0f));
+                    f10 = 2.5f;
+                    f7 = 10.0f;
+                    childAt.setBackground(new RippleDrawable(ColorStateList.valueOf(788529151), null, new InsetDrawable((Drawable) gradientDrawable, (int) AndroidUtilities.dpf2(2.5f))));
+                } else {
+                    f7 = 10.0f;
+                    f10 = 2.5f;
+                }
+                String key = ((l) childAt).getKey();
+                if (key != null && (fArr = (float[]) cVar2.f51698n.get(key)) != null) {
+                    float c10 = c.c(fArr, b10);
+                    if (c10 > 0.004f) {
+                        float translationX = childAt.getTranslationX() + childAt.getLeft();
+                        float translationY = childAt.getTranslationY() + childAt.getTop();
+                        float dpf2 = (int) AndroidUtilities.dpf2(f10);
+                        cVar = cVar2;
+                        rectF.set(translationX + dpf2, translationY + dpf2, (translationX + childAt.getWidth()) - dpf2, (translationY + childAt.getHeight()) - dpf2);
+                        if (!childAt.isPressed()) {
+                            paint.setColor(788529151);
+                            paint.setAlpha((int) (Color.alpha(788529151) * c10));
+                            canvas.drawRoundRect(rectF, AndroidUtilities.dp(f7), AndroidUtilities.dp(f7), paint);
+                        }
+                        i10++;
+                        zVar = this;
+                        cVar2 = cVar;
+                    }
+                }
+            }
+            cVar = cVar2;
+            i10++;
+            zVar = this;
+            cVar2 = cVar;
         }
+        if (!f0Var.d.I.isEmpty()) {
+            f0Var.f51771x.invalidate();
+        }
+    }
+
+    public Consumer andThen(Consumer consumer) {
+        return Consumer$CC.$default$andThen(this, consumer);
     }
 }

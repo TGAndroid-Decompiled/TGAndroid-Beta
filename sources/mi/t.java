@@ -4,8 +4,8 @@ import com.google.android.gms.internal.play_billing.s0;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class t {
-    public static final HashMap f16980b;
-    public final int[] f16981a;
+    public static final HashMap f16987b;
+    public final int[] f16988a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -33,20 +33,20 @@ public final class t {
         a(hashMap, 256, "bold");
         a(hashMap, 512, "italic");
         a(hashMap, 257, "important");
-        f16980b = hashMap;
+        f16987b = hashMap;
     }
 
     public t(String[] strArr) {
-        this.f16981a = new int[strArr.length];
+        this.f16988a = new int[strArr.length];
         for (int i10 = 0; i10 < strArr.length; i10++) {
             int i11 = 0;
             for (String str : strArr[i10].split("\\s+")) {
-                Integer num = (Integer) f16980b.get(str);
+                Integer num = (Integer) f16987b.get(str);
                 if (num != null) {
                     i11 = ((i11 & 255) == 0 ? i11 | (num.intValue() & 255) : i11) | (num.intValue() & (-256));
                 }
             }
-            this.f16981a[i10] = i11;
+            this.f16988a[i10] = i11;
         }
     }
 
@@ -58,7 +58,7 @@ public final class t {
 
     public final int[] b(s0 s0Var) {
         int i10;
-        int[] iArr = (int[]) s0Var.f7210c;
+        int[] iArr = (int[]) s0Var.f7211c;
         int length = iArr.length / 5;
         if (length == 0) {
             return new int[0];
@@ -67,7 +67,7 @@ public final class t {
         int[] iArr3 = new int[length];
         int[] iArr4 = new int[length];
         ?? obj = new Object();
-        obj.f16979b = new int[48];
+        obj.f16986b = new int[48];
         int i11 = -1;
         int i12 = 0;
         int i13 = 0;
@@ -94,7 +94,7 @@ public final class t {
                 i10 = iArr2[i18];
             }
             int i19 = iArr[i14 + 2];
-            int[] iArr5 = this.f16981a;
+            int[] iArr5 = this.f16988a;
             int i20 = iArr5[i19];
             int i21 = iArr5[iArr[i14 + 3]];
             int i22 = i21 & 255;
@@ -117,6 +117,6 @@ public final class t {
             i13 = iArr3[i11];
             i11--;
         }
-        return Arrays.copyOf(obj.f16979b, obj.f16978a);
+        return Arrays.copyOf(obj.f16986b, obj.f16985a);
     }
 }

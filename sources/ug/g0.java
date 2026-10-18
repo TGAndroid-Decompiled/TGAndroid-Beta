@@ -1,54 +1,22 @@
 package ug;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.text.TextPaint;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.w9;
-import w7.z5;
-public final class g0 extends FrameLayout {
-    public static final int f47697f = 0;
-    public final w9 f47698a;
-    public final f0 f47699b;
-    public final Paint f47700c;
-    public boolean d;
-    public final h9 e;
-
-    public g0(Context context, float f7) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f47700c = paint;
-        this.d = true;
-        this.e = new h9((d6) null);
-        w9 w9Var = new w9(getContext());
-        this.f47698a = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(f7));
-        ?? view = new View(context);
-        TextPaint textPaint = new TextPaint(1);
-        view.f47695a = textPaint;
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        int i10 = h6.f20928a7;
-        textPaint.setColor(h6.x0(null, i10, false));
-        textPaint.setTextSize(AndroidUtilities.dp(11.5f));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        this.f47699b = view;
-        view.setAlpha(0.0f);
-        addView(w9Var, z5.a(-1.0f, 5.0f, 5.0f, 5.0f, 5.0f, -1, 0));
-        addView((View) view, z5.a(26.0f, 0.0f, 0.0f, 1.0f, 3.0f, 26, 85));
-        paint.setColor(h6.x0(null, i10, false));
-    }
+public final class g0 extends View {
+    public TextPaint f47723a;
+    public int f47724b;
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.d) {
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f47700c);
-        }
-        super.dispatchDraw(canvas);
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = getMeasuredWidth() / 2.0f;
+        float measuredHeight = getMeasuredHeight() / 2.0f;
+        TextPaint textPaint = this.f47723a;
+        canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, textPaint);
+        sg.a1.d().f(-AndroidUtilities.dp(10.0f), 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(1.5f), sg.a1.d().e());
+        float descent = textPaint.descent();
+        canvas.drawText("+" + this.f47724b, measuredWidth, (int) (measuredHeight - ((textPaint.ascent() + descent) / 2.0f)), textPaint);
     }
 }

@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.tl.TL_iv;
 public final class i1 extends g.o {
-    public final m1 f37718c;
+    public final m1 f37732c;
 
     public i1(m1 m1Var) {
-        this.f37718c = m1Var;
+        this.f37732c = m1Var;
     }
 
     @Override
     public final int i(int i10) {
-        m1 m1Var = this.f37718c;
-        ArrayList<TL_iv.PageBlock> arrayList = m1Var.f38978s.items;
-        return ((MessageObject.GroupedMessagePosition) m1Var.v.f38716b.get(arrayList.get((arrayList.size() - i10) - 1))).spanSize;
+        m1 m1Var = this.f37732c;
+        ArrayList<TL_iv.PageBlock> arrayList = m1Var.f39003s.items;
+        return ((MessageObject.GroupedMessagePosition) m1Var.v.f38707b.get(arrayList.get((arrayList.size() - i10) - 1))).spanSize;
     }
 }

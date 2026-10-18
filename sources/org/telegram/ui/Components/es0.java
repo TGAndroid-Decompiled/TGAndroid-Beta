@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.view.animation.Interpolator;
 public final class es0 implements Interpolator {
-    public final int f25993a;
+    public final int f26000a;
 
     @Override
     public final float getInterpolation(float f7) {
-        switch (this.f25993a) {
+        switch (this.f26000a) {
             case 0:
             case 1:
             case 2:

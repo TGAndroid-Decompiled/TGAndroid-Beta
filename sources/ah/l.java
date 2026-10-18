@@ -37,7 +37,7 @@ public final class l implements Runnable {
                     x xVar = a0Var.f643c;
                     xVar.setTranslationY(xVar.getMeasuredHeight());
                     a0Var.f643c.animate().setListener(null).cancel();
-                    a0Var.f643c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(bs.f25030f).setUpdateListener(new n(a0Var, 0)).setListener(new z(0)).start();
+                    a0Var.f643c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(bs.f25037f).setUpdateListener(new n(a0Var, 0)).setListener(new z(0)).start();
                     return;
                 }
                 return;

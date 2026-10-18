@@ -4,19 +4,19 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class fk0 extends org.telegram.ui.Components.hm0 {
-    public final Context f36947c;
+    public final Context f36970c;
     public final NotificationsSettingsActivity d;
 
     public fk0(NotificationsSettingsActivity notificationsSettingsActivity, Context context) {
         this.d = notificationsSettingsActivity;
-        this.f36947c = context;
+        this.f36970c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
         int b10 = b1Var.b();
         NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (b10 != notificationsSettingsActivity.f33211x && b10 != notificationsSettingsActivity.f33212y && b10 != notificationsSettingsActivity.E && b10 != notificationsSettingsActivity.K && b10 != notificationsSettingsActivity.M && b10 != notificationsSettingsActivity.S && b10 != notificationsSettingsActivity.N && b10 != notificationsSettingsActivity.L && b10 != notificationsSettingsActivity.R && b10 != notificationsSettingsActivity.F && b10 != notificationsSettingsActivity.G && b10 != notificationsSettingsActivity.O && b10 != notificationsSettingsActivity.f33208r && b10 != notificationsSettingsActivity.f33209s && b10 != notificationsSettingsActivity.T && b10 != notificationsSettingsActivity.J) {
+        if (b10 != notificationsSettingsActivity.f33218x && b10 != notificationsSettingsActivity.f33219y && b10 != notificationsSettingsActivity.E && b10 != notificationsSettingsActivity.K && b10 != notificationsSettingsActivity.M && b10 != notificationsSettingsActivity.S && b10 != notificationsSettingsActivity.N && b10 != notificationsSettingsActivity.L && b10 != notificationsSettingsActivity.R && b10 != notificationsSettingsActivity.F && b10 != notificationsSettingsActivity.G && b10 != notificationsSettingsActivity.O && b10 != notificationsSettingsActivity.f33215r && b10 != notificationsSettingsActivity.f33216s && b10 != notificationsSettingsActivity.T && b10 != notificationsSettingsActivity.J) {
             return true;
         }
         return false;
@@ -47,11 +47,11 @@ public final class fk0 extends org.telegram.ui.Components.hm0 {
         int i26;
         int i27;
         NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (i10 != notificationsSettingsActivity.K && i10 != notificationsSettingsActivity.M && i10 != notificationsSettingsActivity.S && i10 != notificationsSettingsActivity.G && i10 != notificationsSettingsActivity.N && i10 != notificationsSettingsActivity.E && i10 != notificationsSettingsActivity.f33211x && i10 != notificationsSettingsActivity.f33208r) {
+        if (i10 != notificationsSettingsActivity.K && i10 != notificationsSettingsActivity.M && i10 != notificationsSettingsActivity.S && i10 != notificationsSettingsActivity.G && i10 != notificationsSettingsActivity.N && i10 != notificationsSettingsActivity.E && i10 != notificationsSettingsActivity.f33218x && i10 != notificationsSettingsActivity.f33215r) {
             i11 = notificationsSettingsActivity.inappSoundRow;
             if (i10 != i11) {
                 i12 = notificationsSettingsActivity.inappVibrateRow;
-                if (i10 != i12 && i10 != notificationsSettingsActivity.f33210w) {
+                if (i10 != i12 && i10 != notificationsSettingsActivity.f33217w) {
                     i13 = notificationsSettingsActivity.inappPreviewRow;
                     if (i10 != i13) {
                         i14 = notificationsSettingsActivity.contactJoinedRow;
@@ -82,8 +82,8 @@ public final class fk0 extends org.telegram.ui.Components.hm0 {
                                                                         if (i10 != i26) {
                                                                             i27 = notificationsSettingsActivity.reactionsRow;
                                                                             if (i10 != i27) {
-                                                                                if (i10 != notificationsSettingsActivity.J && i10 != notificationsSettingsActivity.f33212y && i10 != notificationsSettingsActivity.L && i10 != notificationsSettingsActivity.R && i10 != notificationsSettingsActivity.F && i10 != notificationsSettingsActivity.O && i10 != notificationsSettingsActivity.T) {
-                                                                                    if (i10 == notificationsSettingsActivity.f33209s) {
+                                                                                if (i10 != notificationsSettingsActivity.J && i10 != notificationsSettingsActivity.f33219y && i10 != notificationsSettingsActivity.L && i10 != notificationsSettingsActivity.R && i10 != notificationsSettingsActivity.F && i10 != notificationsSettingsActivity.O && i10 != notificationsSettingsActivity.T) {
+                                                                                    if (i10 == notificationsSettingsActivity.f33216s) {
                                                                                         return 6;
                                                                                     }
                                                                                     return 5;
@@ -141,7 +141,7 @@ public final class fk0 extends org.telegram.ui.Components.hm0 {
         org.telegram.ui.ActionBar.d6 d6Var4;
         org.telegram.ui.ActionBar.d6 d6Var5;
         NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        Context context = this.f36947c;
+        Context context = this.f36970c;
         if (i10 == 0) {
             d6Var = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
             l4Var = new org.telegram.ui.Cells.l4(context, d6Var);
@@ -151,7 +151,7 @@ public final class fk0 extends org.telegram.ui.Components.hm0 {
         } else if (i10 != 2) {
             if (i10 == 3) {
                 d6Var3 = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
-                l4Var = new org.telegram.ui.Cells.i5(21, 64, this.f36947c, d6Var3, true);
+                l4Var = new org.telegram.ui.Cells.i5(21, 64, this.f36970c, d6Var3, true);
             } else if (i10 != 4) {
                 if (i10 != 5) {
                     d6Var5 = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
@@ -161,7 +161,7 @@ public final class fk0 extends org.telegram.ui.Components.hm0 {
                     l4Var = new org.telegram.ui.Cells.ba(context, 0, d6Var4);
                 }
             } else {
-                l4Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.t0) null);
+                l4Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c1) null);
             }
         } else {
             l4Var = new org.telegram.ui.Cells.c9(context);

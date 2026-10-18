@@ -9,16 +9,16 @@ public final class ka extends ra {
     public ka(la laVar, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity, d6Var);
         this.K = laVar;
-        this.f40672a = true;
+        this.f40697a = true;
     }
 
     @Override
     public final String getUsernameEditable() {
         switch (this.J) {
             case 0:
-                return ((la) this.K).f38839c.f41936r;
+                return ((la) this.K).f38830c.f41951r;
             default:
-                ei.e2 e2Var = ((wo) this.K).f42901c.Y2.f43435a;
+                ei.e2 e2Var = ((wo) this.K).f42924c.Y2.f43458a;
                 if (e2Var == null) {
                     return null;
                 }

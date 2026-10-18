@@ -1,91 +1,66 @@
 package ai;
 
-import org.telegram.messenger.FactCheckController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bz;
+import org.telegram.messenger.AndroidUtilities;
 public final class e2 implements Runnable {
-    public final int f1195a;
-    public final Object f1196b;
-    public final boolean f1197c;
-    public final Object d;
-    public final Object e;
-    public final Object f1198f;
+    public final int f1197a;
+    public final k7 f1198b;
+    public final long f1199c;
 
-    public e2(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, int i10) {
-        this.f1195a = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f1196b = obj3;
-        this.f1198f = obj4;
-        this.f1197c = z10;
+    public e2(k7 k7Var, long j10, int i10) {
+        this.f1197a = i10;
+        this.f1198b = k7Var;
+        this.f1199c = j10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.e2.run():void");
-    }
-
-    public e2(Object obj, Object obj2, Object obj3, boolean z10, Object obj4, int i10) {
-        this.f1195a = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f1196b = obj3;
-        this.f1197c = z10;
-        this.f1198f = obj4;
-    }
-
-    public e2(Object obj, Object obj2, boolean z10, Object obj3, Object obj4, int i10) {
-        this.f1195a = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f1197c = z10;
-        this.f1196b = obj3;
-        this.f1198f = obj4;
-    }
-
-    public e2(Object obj, TLObject tLObject, boolean z10, Object obj2, Object obj3, int i10) {
-        this.f1195a = i10;
-        this.d = obj;
-        this.f1196b = tLObject;
-        this.f1197c = z10;
-        this.e = obj2;
-        this.f1198f = obj3;
-    }
-
-    public e2(Object obj, boolean z10, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f1195a = i10;
-        this.d = obj;
-        this.f1197c = z10;
-        this.e = obj2;
-        this.f1196b = obj3;
-        this.f1198f = obj4;
-    }
-
-    public e2(FactCheckController factCheckController, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f1195a = 5;
-        this.d = factCheckController;
-        this.f1196b = tLObject;
-        this.e = tL_textWithEntities;
-        this.f1197c = z10;
-        this.f1198f = b2Var;
-    }
-
-    public e2(TLRPC.payments_GiveawayInfo payments_giveawayinfo, boolean z10, String str, long j10, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f1195a = 25;
-        this.d = payments_giveawayinfo;
-        this.f1197c = z10;
-        this.e = str;
-        this.f1196b = tL_messageMediaGiveaway;
-        this.f1198f = n2Var;
-    }
-
-    public e2(bz bzVar, String str, boolean z10, String str2, TLObject tLObject) {
-        this.f1195a = 18;
-        this.d = bzVar;
-        this.e = str;
-        this.f1197c = z10;
-        this.f1198f = str2;
-        this.f1196b = tLObject;
+        switch (this.f1197a) {
+            case 0:
+                this.f1198b.o2(this.f1199c);
+                return;
+            case 1:
+                this.f1198b.o2(this.f1199c);
+                return;
+            case 2:
+                k7 k7Var = this.f1198b;
+                d2 d2Var = k7Var.f1690u1;
+                k7Var.O2(1, true, null);
+                if (this.f1199c > 0) {
+                    AndroidUtilities.cancelRunOnUIThread(d2Var);
+                    AndroidUtilities.runOnUIThread(d2Var);
+                    return;
+                }
+                return;
+            case 3:
+                this.f1198b.o2(this.f1199c);
+                return;
+            case 4:
+                this.f1198b.o2(this.f1199c);
+                return;
+            case 5:
+                k7.s0(this.f1198b, this.f1199c);
+                return;
+            case 6:
+                k7.p0(this.f1198b, this.f1199c);
+                return;
+            case 7:
+                this.f1198b.o2(this.f1199c);
+                return;
+            case 8:
+                k7.V(this.f1198b, this.f1199c);
+                return;
+            case 9:
+                this.f1198b.o2(this.f1199c);
+                return;
+            case 10:
+                k7.p1(this.f1198b, this.f1199c);
+                return;
+            case 11:
+                this.f1198b.o2(this.f1199c);
+                return;
+            default:
+                k7.I0(this.f1198b, this.f1199c);
+                return;
+        }
     }
 }

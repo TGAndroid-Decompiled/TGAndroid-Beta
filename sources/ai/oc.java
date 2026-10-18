@@ -1,46 +1,62 @@
 package ai;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RadialGradient;
+import android.graphics.RectF;
 import android.widget.LinearLayout;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.bu0;
-import org.telegram.ui.lu0;
-public final class oc extends bu0 {
-    public final org.telegram.ui.Components.w9 f1983a;
-    public final LinearLayout f1984b;
-    public final long f1985c;
+import org.telegram.messenger.AndroidUtilities;
+public final class oc extends LinearLayout {
+    public final Path f1973a;
+    public final Matrix f1974b;
+    public final RadialGradient f1975c;
+    public final Paint d;
+    public final org.telegram.ui.Components.p5 e;
 
-    public oc(org.telegram.ui.Components.w9 w9Var, LinearLayout linearLayout, long j10) {
-        this.f1983a = w9Var;
-        this.f1984b = linearLayout;
-        this.f1985c = j10;
+    public oc(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.p5 p5Var) {
+        super(context);
+        this.f1974b = matrix;
+        this.f1975c = radialGradient;
+        this.d = paint;
+        this.e = p5Var;
+        this.f1973a = new Path();
     }
 
     @Override
-    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        org.telegram.ui.Components.w9 w9Var = this.f1983a;
-        ImageReceiver imageReceiver = w9Var.getImageReceiver();
-        int[] iArr = new int[2];
-        w9Var.getLocationInWindow(iArr);
-        lu0 lu0Var = new lu0();
-        lu0Var.f38938b = iArr[0];
-        lu0Var.f38939c = iArr[1];
-        lu0Var.d = this.f1984b;
-        lu0Var.f38946m = null;
-        lu0Var.f38937a = imageReceiver;
-        if (z10) {
-            lu0Var.e = imageReceiver.getBitmapSafe();
-        }
-        lu0Var.h = imageReceiver.getRoundRadius(true);
-        lu0Var.f38940f = this.f1985c;
-        lu0Var.f38943j = 0;
-        lu0Var.f38942i = 0;
-        return lu0Var;
+    public final void dispatchDraw(Canvas canvas) {
+        float dp = AndroidUtilities.dp(10.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, AndroidUtilities.dp(2.0f) + 1, getWidth(), getHeight() + dp);
+        Path path = this.f1973a;
+        path.rewind();
+        path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        Matrix matrix = this.f1974b;
+        matrix.reset();
+        matrix.postTranslate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
+        this.f1975c.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
+        canvas.save();
+        canvas.translate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
+        m1.a(canvas, 0, this.e, getWidth(), AndroidUtilities.dp(180.0f), 1.0f, 1.0f);
+        canvas.restore();
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final boolean L() {
-        return true;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.e.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.e.b();
     }
 }

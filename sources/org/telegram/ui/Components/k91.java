@@ -13,37 +13,37 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 public final class k91 extends FrameLayout {
-    public static final int f27807f = 0;
-    public final org.telegram.ui.ActionBar.d6 f27808a;
-    public final pm0 f27809b;
-    public final RectF f27810c;
+    public static final int f27814f = 0;
+    public final org.telegram.ui.ActionBar.d6 f27815a;
+    public final pm0 f27816b;
+    public final RectF f27817c;
     public final RectF d;
     public final Path e;
 
     public k91(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         pm0 pm0Var = new pm0(this);
-        this.f27809b = pm0Var;
-        this.f27810c = new RectF();
+        this.f27816b = pm0Var;
+        this.f27817c = new RectF();
         this.d = new RectF();
         this.e = new Path();
         setWillNotDraw(false);
-        this.f27808a = d6Var;
+        this.f27815a = d6Var;
         int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.il, d6Var);
         pm0Var.B = w02;
         pm0Var.A = w02;
-        pm0Var.f29383z = w02;
-        pm0Var.f29381x = org.telegram.ui.ActionBar.h6.m1(0.1f, w02);
-        pm0Var.f29368j = false;
-        pm0Var.f29367i = false;
+        pm0Var.f29390z = w02;
+        pm0Var.f29388x = org.telegram.ui.ActionBar.h6.m1(0.1f, w02);
+        pm0Var.f29375j = false;
+        pm0Var.f29374i = false;
         pm0Var.k();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        RectF rectF = this.f27810c;
+        RectF rectF = this.f27817c;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        pm0 pm0Var = this.f27809b;
+        pm0 pm0Var = this.f27816b;
         float[] fArr = pm0Var.e;
         float dp = AndroidUtilities.dp(10.0f);
         fArr[7] = dp;
@@ -61,7 +61,7 @@ public final class k91 extends FrameLayout {
         path.addRoundRect(rectF, fArr2, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(path);
-        this.f27809b.d(canvas, rectF, 1.0f, false, false);
+        this.f27816b.d(canvas, rectF, 1.0f, false, false);
         RectF rectF2 = this.d;
         rectF2.set(0.0f, 0.0f, AndroidUtilities.dp(3.0f), getHeight());
         pm0Var.e(canvas, rectF2, 1.0f);
@@ -80,7 +80,7 @@ public final class k91 extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
         String str = webPage.site_name;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27808a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27815a;
         if (str != null) {
             TextView textView = new TextView(getContext());
             textView.setTypeface(AndroidUtilities.bold());
@@ -96,7 +96,7 @@ public final class k91 extends FrameLayout {
             textView2.setTypeface(AndroidUtilities.bold());
             textView2.setText(webPage.title);
             textView2.setTextSize(1, 14.0f);
-            textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21092j5, d6Var));
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21099j5, d6Var));
             textView2.setSingleLine(true);
             textView2.setEllipsize(TextUtils.TruncateAt.END);
             linearLayout.addView(textView2, w7.z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
@@ -105,7 +105,7 @@ public final class k91 extends FrameLayout {
             TextView textView3 = new TextView(getContext());
             textView3.setText(webPage.description);
             textView3.setTextSize(1, 13.0f);
-            textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21092j5, d6Var));
+            textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21099j5, d6Var));
             textView3.setMaxLines(4);
             textView3.setEllipsize(TextUtils.TruncateAt.END);
             linearLayout.addView(textView3, w7.z5.n(-1, -2));
@@ -119,7 +119,7 @@ public final class k91 extends FrameLayout {
         if (z10) {
             w9 w9Var = new w9(getContext());
             w9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
-            w9Var.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21092j5, d6Var))));
+            w9Var.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21099j5, d6Var))));
             addView(w9Var, w7.z5.a(48.0f, 0.0f, 5.0f, 0.0f, 1.0f, 48, 53));
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, 40);
             w9Var.k(ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, AndroidUtilities.dp(36.0f), false, closestPhotoSizeWithSize, true), webPage.photo), "48_48", ImageLocation.getForObject(closestPhotoSizeWithSize, webPage.photo), "48_48_b", 0L, null, webPage, 1);

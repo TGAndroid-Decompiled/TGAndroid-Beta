@@ -27,12 +27,12 @@ public final class gl extends org.telegram.ui.Components.w9 {
                 if (((org.telegram.ui.Components.ap) this.J).h) {
                     path.rewind();
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(this.f32033a.getImageX(), this.f32033a.getImageY(), this.f32033a.getImageX2(), this.f32033a.getImageY2());
+                    rectF.set(this.f32040a.getImageX(), this.f32040a.getImageY(), this.f32040a.getImageX2(), this.f32040a.getImageY2());
                     path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Path.Direction.CW);
                     canvas.save();
                     canvas.clipPath(path);
-                    gVar.h(i0.b.o(-1, (int) (Color.alpha(-1) * 0.325f)));
-                    gVar.setBounds((int) this.f32033a.getImageX(), (int) this.f32033a.getImageY(), (int) this.f32033a.getImageX2(), (int) this.f32033a.getImageY2());
+                    gVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
+                    gVar.setBounds((int) this.f32040a.getImageX(), (int) this.f32040a.getImageY(), (int) this.f32040a.getImageX2(), (int) this.f32040a.getImageY2());
                     gVar.draw(canvas);
                     invalidate();
                     canvas.restore();
@@ -53,11 +53,11 @@ public final class gl extends org.telegram.ui.Components.w9 {
                 wh.g gVar = (wh.g) this.I;
                 Path path = (Path) this.H;
                 super.onDraw(canvas);
-                if (this.f32038r) {
+                if (this.f32045r) {
                     canvas.save();
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                    int[] roundRadius = this.f32033a.getRoundRadius();
+                    int[] roundRadius = this.f32040a.getRoundRadius();
                     float f7 = roundRadius[0];
                     fArr[1] = f7;
                     fArr[0] = f7;
@@ -73,7 +73,7 @@ public final class gl extends org.telegram.ui.Components.w9 {
                     path.rewind();
                     path.addRoundRect(rectF, fArr, Path.Direction.CW);
                     canvas.clipPath(path);
-                    gVar.h(i0.b.o(-1, (int) (Color.alpha(-1) * 0.325f)));
+                    gVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
                     gVar.setBounds(0, 0, getWidth(), getHeight());
                     gVar.draw(canvas);
                     canvas.restore();
@@ -89,9 +89,9 @@ public final class gl extends org.telegram.ui.Components.w9 {
                 org.telegram.ui.Components.voip.h hVar = (org.telegram.ui.Components.voip.h) this.I;
                 super.onDraw(canvas);
                 org.telegram.ui.Components.m60 m60Var = (org.telegram.ui.Components.m60) this.J;
-                if (m60Var.f28449x0) {
+                if (m60Var.f28456x0) {
                     int i10 = m60Var.X0;
-                    hVar.f31467f = i10;
+                    hVar.f31474f = i10;
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     float f13 = i10;
                     rectF2.set(0.0f, 0.0f, f13, f13);
@@ -106,13 +106,13 @@ public final class gl extends org.telegram.ui.Components.w9 {
             case 3:
                 org.telegram.ui.Components.voip.h hVar2 = (org.telegram.ui.Components.voip.h) this.I;
                 super.onDraw(canvas);
-                if (((org.telegram.ui.Components.l60) this.J).f28092l0) {
+                if (((org.telegram.ui.Components.l60) this.J).f28099l0) {
                     float min = Math.min(getWidth(), getHeight()) * 0.5f;
                     RectF rectF3 = AndroidUtilities.rectTmp;
                     rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
                     canvas.drawRoundRect(rectF3, min, min, (Paint) this.H);
                     rectF3.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-                    hVar2.f31467f = getWidth();
+                    hVar2.f31474f = getWidth();
                     hVar2.a(min, canvas, rectF3, null);
                     invalidate();
                     return;

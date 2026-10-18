@@ -9,29 +9,29 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class mt0 extends bu0 {
-    public final ImageReceiver.BitmapHolder f39246a;
-    public final ju0 f39247b;
-    public final MessageObject f39248c;
+    public final ImageReceiver.BitmapHolder f39272a;
+    public final ju0 f39273b;
+    public final MessageObject f39274c;
     public final MediaController.PhotoEntry d;
     public final boolean e;
-    public final boolean f39249f;
-    public final PhotoViewer f39250g;
+    public final boolean f39275f;
+    public final PhotoViewer f39276g;
 
     public mt0(PhotoViewer photoViewer, ju0 ju0Var, MessageObject messageObject, MediaController.PhotoEntry photoEntry, boolean z10, boolean z11) {
-        this.f39250g = photoViewer;
-        this.f39247b = ju0Var;
-        this.f39248c = messageObject;
+        this.f39276g = photoViewer;
+        this.f39273b = ju0Var;
+        this.f39274c = messageObject;
         this.d = photoEntry;
         this.e = z10;
-        this.f39249f = z11;
-        this.f39246a = photoViewer.C4.getBitmapSafe();
+        this.f39275f = z11;
+        this.f39272a = photoViewer.C4.getBitmapSafe();
     }
 
     @Override
     public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        ju0 ju0Var = this.f39247b;
+        ju0 ju0Var = this.f39273b;
         if (ju0Var != null) {
-            return ju0Var.E(this.f39248c, null, 0, z10, false);
+            return ju0Var.E(this.f39274c, null, 0, z10, false);
         }
         return null;
     }
@@ -47,15 +47,15 @@ public final class mt0 extends bu0 {
 
     @Override
     public final MessageObject V() {
-        return this.f39248c;
+        return this.f39274c;
     }
 
     public final void d0(VideoEditedInfo videoEditedInfo, boolean z10, int i10, boolean z11, boolean z12) {
         MessageObject messageObject;
-        PhotoViewer photoViewer = this.f39250g;
+        PhotoViewer photoViewer = this.f39276g;
         if (photoViewer.l4 != null) {
             in inVar = null;
-            MessageObject messageObject2 = this.f39248c;
+            MessageObject messageObject2 = this.f39274c;
             if (z11) {
                 messageObject = messageObject2;
             } else {
@@ -68,8 +68,8 @@ public final class mt0 extends bu0 {
             }
             if (z11 || messageObject2 == null) {
                 sn snVar = photoViewer.l4;
-                messageObject2 = snVar.f41311n5;
-                inVar = snVar.f41285l5;
+                messageObject2 = snVar.f41332n5;
+                inVar = snVar.f41306l5;
             }
             in inVar2 = inVar;
             MessageObject messageObject3 = messageObject2;
@@ -79,7 +79,7 @@ public final class mt0 extends bu0 {
                     String str = photoEntry.path;
                     long a2 = photoViewer.l4.a();
                     sn snVar2 = photoViewer.l4;
-                    SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, null, null, a2, messageObject3, snVar2.X3, null, inVar2, photoEntry.entities, photoEntry.ttl, messageObject, z10, i10, 0, z12, photoEntry.hasSpoiler, photoEntry.caption, snVar2.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41225g5);
+                    SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, null, null, a2, messageObject3, snVar2.X3, null, inVar2, photoEntry.entities, photoEntry.ttl, messageObject, z10, i10, 0, z12, photoEntry.hasSpoiler, photoEntry.caption, snVar2.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41246g5);
                     return;
                 }
                 MessageObject messageObject4 = messageObject;
@@ -87,7 +87,7 @@ public final class mt0 extends bu0 {
                 String str2 = photoEntry.path;
                 long a10 = photoViewer.l4.a();
                 sn snVar3 = photoViewer.l4;
-                SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, null, null, a10, messageObject3, snVar3.X3, null, inVar2, photoEntry.entities, photoEntry.ttl, messageObject4, z10, i10, 0, z12, photoEntry.hasSpoiler, photoEntry.caption, snVar3.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41225g5);
+                SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, null, null, a10, messageObject3, snVar3.X3, null, inVar2, photoEntry.entities, photoEntry.ttl, messageObject4, z10, i10, 0, z12, photoEntry.hasSpoiler, photoEntry.caption, snVar3.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41246g5);
                 return;
             }
             MessageObject messageObject5 = messageObject;
@@ -97,14 +97,14 @@ public final class mt0 extends bu0 {
                 String str4 = photoEntry.thumbPath;
                 long a11 = photoViewer.l4.a();
                 sn snVar4 = photoViewer.l4;
-                SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, a11, messageObject3, snVar4.X3, null, inVar2, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, messageObject5, videoEditedInfo, z10, i10, 0, 0, z12, photoEntry.caption, snVar4.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41225g5);
+                SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, a11, messageObject3, snVar4.X3, null, inVar2, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, messageObject5, videoEditedInfo, z10, i10, 0, 0, z12, photoEntry.caption, snVar4.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41246g5);
             } else if (photoEntry.path != null) {
                 AccountInstance accountInstance4 = photoViewer.l4.getAccountInstance();
                 String str5 = photoEntry.path;
                 String str6 = photoEntry.thumbPath;
                 long a12 = photoViewer.l4.a();
                 sn snVar5 = photoViewer.l4;
-                SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, a12, messageObject3, snVar5.X3, null, inVar2, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, messageObject5, videoEditedInfo, z10, i10, 0, 0, z12, photoEntry.caption, snVar5.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41225g5);
+                SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, a12, messageObject3, snVar5.X3, null, inVar2, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, messageObject5, videoEditedInfo, z10, i10, 0, 0, z12, photoEntry.caption, snVar5.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41246g5);
             }
         }
     }
@@ -116,7 +116,7 @@ public final class mt0 extends bu0 {
 
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
-        return this.f39246a;
+        return this.f39272a;
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class mt0 extends bu0 {
 
     @Override
     public final boolean p() {
-        if (this.f39247b != null && this.e) {
+        if (this.f39273b != null && this.e) {
             return true;
         }
         return false;
@@ -134,7 +134,7 @@ public final class mt0 extends bu0 {
 
     @Override
     public final boolean r() {
-        if (this.f39247b != null && this.f39249f) {
+        if (this.f39273b != null && this.f39275f) {
             return true;
         }
         return false;

@@ -10,15 +10,15 @@ public enum v1 extends a2 {
         StringBuilder sb2 = kVar.h;
         int p5 = aVar.p("]]>");
         String[] strArr = aVar.h;
-        char[] cArr = aVar.f10515a;
+        char[] cArr = aVar.f10517a;
         if (p5 != -1) {
             c10 = a.c(cArr, strArr, aVar.e, p5);
             aVar.e += p5;
         } else {
             aVar.b();
             int i10 = aVar.e;
-            c10 = a.c(cArr, strArr, i10, aVar.f10517c - i10);
-            aVar.e = aVar.f10517c;
+            c10 = a.c(cArr, strArr, i10, aVar.f10519c - i10);
+            aVar.e = aVar.f10519c;
         }
         sb2.append(c10);
         if (!aVar.k("]]>") && !aVar.j()) {
@@ -26,8 +26,8 @@ public enum v1 extends a2 {
         }
         String sb3 = sb2.toString();
         ?? fVar = new f2.f(5, 1);
-        fVar.f10555c = sb3;
+        fVar.f10557c = sb3;
         kVar.g(fVar);
-        kVar.f10568c = a2.f10520a;
+        kVar.f10570c = a2.f10522a;
     }
 }

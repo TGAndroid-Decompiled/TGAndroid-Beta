@@ -4,19 +4,19 @@ import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class ub1 extends w7.w5 {
-    public final int f41947a;
-    public final NotificationCenter.NotificationCenterDelegate f41948b;
+    public final int f41962a;
+    public final NotificationCenter.NotificationCenterDelegate f41963b;
 
     public ub1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f41947a = i10;
-        this.f41948b = notificationCenterDelegate;
+        this.f41962a = i10;
+        this.f41963b = notificationCenterDelegate;
     }
 
     @Override
     public void a() {
-        switch (this.f41947a) {
+        switch (this.f41962a) {
             case 1:
-                ((jh1) this.f41948b).v.invalidate();
+                ((jh1) this.f41963b).v.invalidate();
                 return;
             default:
                 return;
@@ -26,7 +26,7 @@ public final class ub1 extends w7.w5 {
     @Override
     public void b(int i10, int i11) {
         boolean z10;
-        switch (this.f41947a) {
+        switch (this.f41962a) {
             case 0:
                 Point point = AndroidUtilities.displaySize;
                 boolean z11 = false;
@@ -39,7 +39,7 @@ public final class ub1 extends w7.w5 {
                     z11 = true;
                 }
                 if (z10 == z11) {
-                    ((mc1) this.f41948b).f39159x0.invalidate();
+                    ((mc1) this.f41963b).f39184x0.invalidate();
                     return;
                 }
                 return;

@@ -78,16 +78,16 @@ public final class h {
             df.p pVar = (df.p) rVar2.e;
             mVar.e = pVar;
             if (pVar != null) {
-                pVar.f7988f = mVar;
+                pVar.f7989f = mVar;
             }
-            mVar.f7988f = rVar2;
+            mVar.f7989f = rVar2;
             rVar2.e = mVar;
-            df.p pVar2 = (df.p) rVar2.f7986b;
-            mVar.f7986b = pVar2;
+            df.p pVar2 = (df.p) rVar2.f7987b;
+            mVar.f7987b = pVar2;
             if (((df.p) mVar.e) == null) {
-                pVar2.f7987c = mVar;
+                pVar2.f7988c = mVar;
             }
-            String str = mVar.f7983g;
+            String str = mVar.f7984g;
             LinkedHashMap linkedHashMap = this.f580m;
             if (!linkedHashMap.containsKey(str)) {
                 linkedHashMap.put(str, mVar);
@@ -170,7 +170,7 @@ public final class h {
     }
 
     public final ff.a h() {
-        return (ff.a) i0.a.h(1, this.f581n);
+        return (ff.a) i2.d.h(1, this.f581n);
     }
 
     public final void i(java.lang.String r23) {

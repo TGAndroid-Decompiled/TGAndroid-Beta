@@ -1,9 +1,9 @@
 package yh;
 
-import ai.ga;
+import ai.ha;
 import ai.s8;
 import ai.v9;
-import ai.x9;
+import ai.y9;
 import android.app.Activity;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
@@ -60,51 +60,51 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
     public int Q;
     public m7 R;
     public ViewGroup S;
-    public final org.telegram.ui.ActionBar.n2 f50492a;
-    public final int f50493b;
-    public final long f50494c;
-    public final x9 d;
+    public final org.telegram.ui.ActionBar.n2 f50517a;
+    public final int f50518b;
+    public final long f50519c;
+    public final y9 d;
     public final v9 e;
-    public final d6 f50495f;
+    public final d6 f50520f;
     public final v1 h;
-    public final b91 f50496n;
-    public final FrameLayout f50497r;
-    public final SpannableStringBuilder f50498s;
+    public final b91 f50521n;
+    public final FrameLayout f50522r;
+    public final SpannableStringBuilder f50523s;
     public final SpannableStringBuilder v;
-    public final ei.d f50499w;
-    public int f50500x;
-    public final LinearLayout f50501y;
+    public final ei.d f50524w;
+    public int f50525x;
+    public final LinearLayout f50526y;
 
     public q2(int r27, long r28, android.content.Context r30, org.telegram.ui.ActionBar.n2 r31, org.telegram.ui.ActionBar.d6 r32) {
         throw new UnsupportedOperationException("Method not decompiled: yh.q2.<init>(int, long, android.content.Context, org.telegram.ui.ActionBar.n2, org.telegram.ui.ActionBar.d6):void");
     }
 
-    public static void j(org.telegram.ui.ActionBar.e1 e1Var, x9 x9Var, Runnable runnable, int i10) {
-        e1Var.setOnClickListener(new ga(x9Var, i10, runnable, 23));
-        e1Var.setOnLongClickListener(new ya(x9Var, i10, runnable));
+    public static void j(org.telegram.ui.ActionBar.e1 e1Var, y9 y9Var, Runnable runnable, int i10) {
+        e1Var.setOnClickListener(new ha(y9Var, i10, runnable, 23));
+        e1Var.setOnLongClickListener(new ya(y9Var, i10, runnable));
     }
 
     public final void a() {
-        x9 x9Var;
+        y9 y9Var;
         m2 currentPage = getCurrentPage();
-        if (currentPage != null && (x9Var = currentPage.e) != null && currentPage.d) {
-            int i10 = x9Var.d;
-            new l4(this.f50492a, this.f50494c, i10, new gi.g4(this, i10, currentPage, 5)).show();
+        if (currentPage != null && (y9Var = currentPage.e) != null && currentPage.d) {
+            int i10 = y9Var.d;
+            new l4(this.f50517a, this.f50519c, i10, new gi.g4(this, i10, currentPage, 5)).show();
         }
     }
 
     public final boolean b() {
         v9 v9Var = this.e;
-        if (!v9Var.h() || v9Var.d().size() >= MessagesController.getInstance(this.f50493b).config.stargiftsCollectionsLimit.get()) {
+        if (!v9Var.h() || v9Var.d().size() >= MessagesController.getInstance(this.f50518b).config.stargiftsCollectionsLimit.get()) {
             return false;
         }
         return true;
     }
 
     public final boolean c() {
-        long j10 = this.f50494c;
+        long j10 = this.f50519c;
         int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        int i11 = this.f50493b;
+        int i11 = this.f50518b;
         if (i10 >= 0) {
             if (j10 != 0 && j10 != UserConfig.getInstance(i11).getClientUserId()) {
                 return false;
@@ -115,7 +115,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public final boolean d() {
-        if (this.f50494c >= 0 || this.d.h == null) {
+        if (this.f50519c >= 0 || this.d.h == null) {
             return false;
         }
         return true;
@@ -126,9 +126,9 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
         int i12;
         int i13;
         int i14 = NotificationCenter.starUserGiftsLoaded;
-        LinearLayout linearLayout = this.f50501y;
-        ei.d dVar = this.f50499w;
-        long j10 = this.f50494c;
+        LinearLayout linearLayout = this.f50526y;
+        ei.d dVar = this.f50524w;
+        long j10 = this.f50519c;
         int i15 = 8;
         if (i10 == i14) {
             if (((Long) objArr[0]).longValue() == j10) {
@@ -142,7 +142,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
                     i15 = 0;
                 }
                 linearLayout.setVisibility(i15);
-                this.f50500x = 60;
+                this.f50525x = 60;
                 Boolean bool = this.d.h;
                 if (bool != null) {
                     this.F.a(bool.booleanValue(), true);
@@ -164,7 +164,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
                 i15 = 0;
             }
             linearLayout.setVisibility(i15);
-            this.f50500x = 60;
+            this.f50525x = 60;
             setVisibleHeight(this.Q);
         }
     }
@@ -189,14 +189,14 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
             }
             if (i10 >= 0 && tL_starGiftCollection != null) {
                 this.M = 0;
-                this.f50496n.d(tL_starGiftCollection.collection_id, i10 + 1);
+                this.f50521n.d(tL_starGiftCollection.collection_id, i10 + 1);
             }
         }
     }
 
     public final void f(boolean z10) {
         v1 v1Var = this.h;
-        if (v1Var != null && this.f50496n != null) {
+        if (v1Var != null && this.f50521n != null) {
             v1Var.o(z10);
             e();
         }
@@ -207,22 +207,22 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
             return true;
         }
         m2 currentPage = getCurrentPage();
-        if (currentPage != null && currentPage.f50398n) {
+        if (currentPage != null && currentPage.f50423n) {
             return true;
         }
         return false;
     }
 
     public int getBottomOffset() {
-        FrameLayout frameLayout = this.f50497r;
-        float translationY = frameLayout.getTranslationY() - org.telegram.messenger.q.B(this.f50500x, Math.max(AndroidUtilities.dp(240.0f), this.Q) + (-frameLayout.getTop()), 1);
+        FrameLayout frameLayout = this.f50522r;
+        float translationY = frameLayout.getTranslationY() - org.telegram.messenger.g0.B(this.f50525x, Math.max(AndroidUtilities.dp(240.0f), this.Q) + (-frameLayout.getTop()), 1);
         if (this.Q < AndroidUtilities.dp(240.0f)) {
-            translationY += Math.min(AndroidUtilities.dp(240.0f) - this.Q, AndroidUtilities.dp(this.f50500x));
+            translationY += Math.min(AndroidUtilities.dp(240.0f) - this.Q, AndroidUtilities.dp(this.f50525x));
         }
-        return (int) (AndroidUtilities.dp(this.f50500x) - translationY);
+        return (int) (AndroidUtilities.dp(this.f50525x) - translationY);
     }
 
-    public x9 getCurrentList() {
+    public y9 getCurrentList() {
         m2 currentPage = getCurrentPage();
         if (currentPage != null) {
             return currentPage.e;
@@ -233,7 +233,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
     public im0 getCurrentListView() {
         m2 currentPage = getCurrentPage();
         if (currentPage != null) {
-            return currentPage.f50397f;
+            return currentPage.f50422f;
         }
         return null;
     }
@@ -248,20 +248,20 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
 
     public int getGiftsCount() {
         int i10;
-        x9 x9Var;
+        y9 y9Var;
         int i11;
         m2 currentPage = getCurrentPage();
-        x9 x9Var2 = this.d;
-        if (currentPage != null && (x9Var = currentPage.e) != x9Var2) {
-            if (x9Var != null && (i11 = x9Var.f2450n) > 0) {
+        y9 y9Var2 = this.d;
+        if (currentPage != null && (y9Var = currentPage.e) != y9Var2) {
+            if (y9Var != null && (i11 = y9Var.f2500n) > 0) {
                 return i11;
             }
-        } else if (x9Var2 != null && (i10 = x9Var2.f2450n) > 0) {
+        } else if (y9Var2 != null && (i10 = y9Var2.f2500n) > 0) {
             return i10;
         }
-        long j10 = this.f50494c;
+        long j10 = this.f50519c;
         int i12 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        int i13 = this.f50493b;
+        int i13 = this.f50518b;
         if (i12 >= 0) {
             TLRPC.UserFull userFull = MessagesController.getInstance(i13).getUserFull(j10);
             if (userFull == null) {
@@ -278,15 +278,15 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
 
     public long getLastEmojisHash() {
         long j10 = 0;
-        x9 x9Var = this.d;
-        if (x9Var != null && !x9Var.f2448l.isEmpty()) {
+        y9 y9Var = this.d;
+        if (y9Var != null && !y9Var.f2498l.isEmpty()) {
             HashSet hashSet = new HashSet();
             int i10 = 0;
-            for (int i11 = 0; i10 < 3 && i11 < x9Var.f2448l.size(); i11++) {
-                TLRPC.Document document = ((TL_stars.SavedStarGift) x9Var.f2448l.get(i11)).gift.getDocument();
+            for (int i11 = 0; i10 < 3 && i11 < y9Var.f2498l.size(); i11++) {
+                TLRPC.Document document = ((TL_stars.SavedStarGift) y9Var.f2498l.get(i11)).gift.getDocument();
                 if (document != null) {
-                    hashSet.add(Long.valueOf(document.f20278id));
-                    j10 = Objects.hash(Long.valueOf(j10), Long.valueOf(document.f20278id));
+                    hashSet.add(Long.valueOf(document.f20285id));
+                    j10 = Objects.hash(Long.valueOf(j10), Long.valueOf(document.f20285id));
                     i10++;
                 }
             }
@@ -309,7 +309,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public float getTabsVisibility() {
-        b91 b91Var = this.f50496n;
+        b91 b91Var = this.f50521n;
         if (b91Var != null) {
             return b91Var.getAlpha();
         }
@@ -328,25 +328,25 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
             view = null;
         }
         org.telegram.ui.ActionBar.b2[] b2VarArr = new org.telegram.ui.ActionBar.b2[1];
-        d6 d6Var = this.f50495f;
+        d6 d6Var = this.f50520f;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
         if (str != null) {
-            alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.Gift2EditCollectionNameTitle);
+            alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.Gift2EditCollectionNameTitle);
         } else {
-            alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.Gift2NewCollectionTitle);
-            alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.Gift2NewCollectionText);
+            alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.Gift2NewCollectionTitle);
+            alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.Gift2NewCollectionText);
         }
         y1 y1Var = new y1(this, context, d6Var);
         y1Var.lineYFix = true;
         y1Var.setOnEditorActionListener(new z1(y1Var, callback, b2VarArr, view));
-        MediaDataController.getInstance(this.f50493b).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
+        MediaDataController.getInstance(this.f50518b).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
         y1Var.setTextSize(1, 18.0f);
-        y1Var.setTextColor(h6.w0(h6.f21092j5, d6Var));
+        y1Var.setTextColor(h6.w0(h6.f21099j5, d6Var));
         y1Var.setHintColor(h6.w0(h6.Xh, d6Var));
         y1Var.setHintText(LocaleController.getString(R.string.Gift2NewCollectionHint));
         y1Var.setFocusable(true);
         y1Var.setInputType(147457);
-        y1Var.setLineColors(h6.w0(h6.f21113k6, d6Var), h6.w0(h6.f21130l6, d6Var), h6.w0(h6.f21207p7, d6Var));
+        y1Var.setLineColors(h6.w0(h6.f21120k6, d6Var), h6.w0(h6.f21137l6, d6Var), h6.w0(h6.f21214p7, d6Var));
         y1Var.setImeOptions(6);
         y1Var.setBackgroundDrawable(null);
         y1Var.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
@@ -357,25 +357,25 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
         linearLayout.addView(y1Var, z5.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder.c();
         alertDialog$Builder.n(linearLayout);
-        alertDialog$Builder.f20601a.f20649a = AndroidUtilities.dp(292.0f);
+        alertDialog$Builder.f20608a.f20656a = AndroidUtilities.dp(292.0f);
         if (str != null) {
             i10 = R.string.Edit;
         } else {
             i10 = R.string.Create;
         }
-        alertDialog$Builder.k(LocaleController.getString(i10), new org.telegram.ui.web.c0(21, y1Var, callback));
+        alertDialog$Builder.k(LocaleController.getString(i10), new org.telegram.ui.web.m(22, y1Var, callback));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new g(1));
-        b2VarArr[0] = alertDialog$Builder.f20601a;
+        b2VarArr[0] = alertDialog$Builder.f20608a;
         i80 i80Var = this.I;
-        if (i80Var != null && (d80Var = i80Var.f27124m) != null) {
+        if (i80Var != null && (d80Var = i80Var.f27131m) != null) {
             d80Var.setSoftInputMode(48);
         }
-        AndroidUtilities.requestAdjustNothing(findActivity, this.f50492a.getClassGuid());
+        AndroidUtilities.requestAdjustNothing(findActivity, this.f50517a.getClassGuid());
         b2VarArr[0].setOnDismissListener(new gi.r0(this, y1Var, findActivity, 6));
         b2VarArr[0].setOnShowListener(new ig.r(3, y1Var));
         b2VarArr[0].show();
         org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-        b2Var.f20662h0 = false;
+        b2Var.f20669h0 = false;
         b2Var.d(-1);
         y1Var.setSelection(y1Var.getText().length());
     }
@@ -389,7 +389,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public final boolean k(int i10) {
-        x9 x9Var;
+        y9 y9Var;
         if (i10 == 0) {
             return false;
         }
@@ -398,12 +398,12 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
             v9 v9Var = this.e;
             if (i11 < v9Var.d().size()) {
                 if (i11 >= 0 && i11 < v9Var.d().size()) {
-                    x9Var = v9Var.e(((TL_stars.TL_starGiftCollection) v9Var.d().get(i11)).collection_id);
+                    y9Var = v9Var.e(((TL_stars.TL_starGiftCollection) v9Var.d().get(i11)).collection_id);
                 } else {
-                    x9Var = null;
+                    y9Var = null;
                 }
-                if (x9Var != null) {
-                    return x9Var.f2448l.isEmpty();
+                if (y9Var != null) {
+                    return y9Var.f2498l.isEmpty();
                 }
             }
         }
@@ -436,8 +436,8 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
                 }
                 nextPositionAlpha = ((v1Var.getNextPositionAlpha() * f10) + currentPositionAlpha) * (AndroidUtilities.dp(68.0f) + 2);
             }
-            FrameLayout frameLayout = this.f50497r;
-            float B = nextPositionAlpha + org.telegram.messenger.q.B(this.f50500x, (-frameLayout.getTop()) + this.Q, 1);
+            FrameLayout frameLayout = this.f50522r;
+            float B = nextPositionAlpha + org.telegram.messenger.g0.B(this.f50525x, (-frameLayout.getTop()) + this.Q, 1);
             int i10 = 0;
             if (this.Q > AndroidUtilities.dp(184.0f)) {
                 z10 = true;
@@ -458,10 +458,10 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
             if (this.e.h() && v1Var.getPositionAnimated() >= 0.5f) {
                 spannableStringBuilder = this.v;
             } else {
-                spannableStringBuilder = this.f50498s;
+                spannableStringBuilder = this.f50523s;
             }
-            this.f50499w.g(spannableStringBuilder, true, true);
-            qc qcVar = qc.f29632w;
+            this.f50524w.g(spannableStringBuilder, true, true);
+            qc qcVar = qc.f29638w;
             if (qcVar != null && (ubVar = qcVar.e) != null) {
                 ubVar.updatePosition();
             }
@@ -469,34 +469,34 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public final void m() {
-        ei.d dVar = this.f50499w;
+        ei.d dVar = this.f50524w;
         dVar.j();
         int dp = AndroidUtilities.dp(19.0f);
         int i10 = h6.Oh;
-        d6 d6Var = this.f50495f;
+        d6 d6Var = this.f50520f;
         dVar.setBackground(h6.c0(dp, ((is0) this).U.X0(h6.w0(i10, d6Var))));
         View[] viewPages = this.h.getViewPages();
         if (viewPages != null) {
             for (View view : viewPages) {
                 if (view != null) {
                     m2 m2Var = (m2) view;
-                    d6 d6Var2 = m2Var.f50396c;
-                    if (m2Var.f50400s != null) {
-                        m2Var.f50401w.setTextColor(h6.w0(h6.G6, d6Var2));
-                        TextView textView = m2Var.f50402x;
+                    d6 d6Var2 = m2Var.f50421c;
+                    if (m2Var.f50425s != null) {
+                        m2Var.f50426w.setTextColor(h6.w0(h6.G6, d6Var2));
+                        TextView textView = m2Var.f50427x;
                         int i11 = h6.Oh;
                         textView.setTextColor(h6.w0(i11, d6Var2));
-                        m2Var.f50402x.setBackground(h6.Z(h6.m1(0.1f, h6.w0(i11, d6Var2)), 4, 4));
+                        m2Var.f50427x.setBackground(h6.Z(h6.m1(0.1f, h6.w0(i11, d6Var2)), 4, 4));
                     } else {
                         m2Var.F.setTextColor(h6.w0(h6.G6, d6Var2));
-                        m2Var.G.setTextColor(h6.w0(h6.f21374y6, d6Var2));
+                        m2Var.G.setTextColor(h6.w0(h6.f21381y6, d6Var2));
                         m2Var.H.j();
                     }
                 }
             }
         }
-        this.E.setTextColor(h6.w0(h6.f21092j5, d6Var));
-        this.f50501y.setBackground(h6.Z(h6.w0(h6.f21075i6, d6Var), 24, 24));
+        this.E.setTextColor(h6.w0(h6.f21099j5, d6Var));
+        this.f50526y.setBackground(h6.Z(h6.w0(h6.f21082i6, d6Var), 24, 24));
     }
 
     public final void n() {
@@ -521,7 +521,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
         float f7;
         View[] viewPages;
         float f10;
-        b91 b91Var = this.f50496n;
+        b91 b91Var = this.f50521n;
         if (b91Var == null) {
             return;
         }
@@ -553,7 +553,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        int i10 = this.f50493b;
+        int i10 = this.f50518b;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.starUserGiftsLoaded);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.starUserGiftCollectionsLoaded);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.updateInterfaces);
@@ -563,14 +563,14 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
         }
         f(false);
         n();
-        x9 x9Var = this.d;
-        if (x9Var != null) {
-            x9Var.f2451o = true;
-            x9Var.a();
+        y9 y9Var = this.d;
+        if (y9Var != null) {
+            y9Var.f2501o = true;
+            y9Var.a();
         }
         v9 v9Var = this.e;
         if (v9Var != null) {
-            v9Var.f2333j = true;
+            v9Var.f2335j = true;
             v9Var.i();
         }
     }
@@ -583,17 +583,17 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
             currentPage.e();
         }
         super.onDetachedFromWindow();
-        int i10 = this.f50493b;
+        int i10 = this.f50518b;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.starUserGiftCollectionsLoaded);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.updateInterfaces);
-        x9 x9Var = this.d;
-        if (x9Var != null) {
-            x9Var.f2451o = false;
+        y9 y9Var = this.d;
+        if (y9Var != null) {
+            y9Var.f2501o = false;
         }
         v9 v9Var = this.e;
         if (v9Var != null) {
-            v9Var.f2333j = false;
+            v9Var.f2335j = false;
         }
     }
 
@@ -613,7 +613,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
             for (View view : this.h.getViewPages()) {
                 if (view instanceof m2) {
                     m2 m2Var = (m2) view;
-                    h2 h2Var = m2Var.f50397f;
+                    h2 h2Var = m2Var.f50422f;
                     int paddingTop = h2Var.getPaddingTop();
                     h2Var.setPadding(AndroidUtilities.dp(9.0f), this.K, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(86.0f));
                     AndroidUtilities.doOnLayout(h2Var, new s1(m2Var, paddingTop - h2Var.getPaddingTop(), 0));
@@ -635,7 +635,7 @@ public abstract class q2 extends FrameLayout implements NotificationCenter.Notif
         if (this.L != z10) {
             this.L = z10;
             p(g());
-            this.f50496n.setReordering(z10);
+            this.f50521n.setReordering(z10);
             if (z10) {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U instanceof ProfileActivity) {

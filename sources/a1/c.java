@@ -2,13 +2,13 @@ package a1;
 
 import ab.e0;
 import ab.f0;
-import ai.fa;
+import ai.ga;
 import ai.h1;
-import ai.id;
-import ai.ld;
+import ai.jd;
 import ai.m7;
+import ai.md;
 import ai.r0;
-import ai.sc;
+import ai.tc;
 import ai.u1;
 import ai.u6;
 import android.content.Intent;
@@ -64,13 +64,13 @@ import org.telegram.ui.Components.hs0;
 import org.telegram.ui.Components.xl0;
 import org.telegram.ui.Components.yl0;
 import org.telegram.ui.Wallet.s1;
-import org.telegram.ui.eo0;
+import org.telegram.ui.fo0;
 import r0.k1;
 import r0.n;
 import s4.l0;
 import wh.k;
 import zf.m;
-public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Utilities.Callback5, eo0, yl0, Utilities.Callback2Return, xl0, q7, u9, k, n, Continuation, OnCompleteListener {
+public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Utilities.Callback5, fo0, yl0, Utilities.Callback2Return, xl0, q7, u9, k, n, Continuation, OnCompleteListener {
     public final int f34a;
     public final Object f35b;
 
@@ -84,21 +84,21 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         int a2;
         aa aaVar = (aa) this.f35b;
         int i10 = 0;
-        i0.c defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) aaVar.v.getLayoutParams();
-        if (!aaVar.f5182c) {
+        if (!aaVar.f5183c) {
             i10 = k1Var.d();
         }
         marginLayoutParams.topMargin = i10;
-        if (aaVar.f5182c) {
-            a2 = k1Var.f44853a.f(2).d;
+        if (aaVar.f5183c) {
+            a2 = k1Var.f44873a.f(2).d;
         } else {
             a2 = k1Var.a();
         }
         marginLayoutParams.bottomMargin = a2;
-        marginLayoutParams.leftMargin = defaultWindowInsets.f12284a;
-        marginLayoutParams.rightMargin = defaultWindowInsets.f12286c;
-        o9 o9Var = aaVar.f5216s;
+        marginLayoutParams.leftMargin = defaultWindowInsets.f12286a;
+        marginLayoutParams.rightMargin = defaultWindowInsets.f12288c;
+        o9 o9Var = aaVar.f5217s;
         if (o9Var != null) {
             o9Var.requestLayout();
         }
@@ -106,7 +106,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         if (p9Var != null) {
             p9Var.requestLayout();
         }
-        return k1.f44852b;
+        return k1.f44872b;
     }
 
     @Override
@@ -116,7 +116,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
             long j10 = i10;
             if (h1Var.I != j10) {
                 h1Var.I = j10;
-                h1Var.f1409r.setText(h1.p(j10));
+                h1Var.f1398r.setText(h1.p(j10));
             }
             h1Var.o(true);
         }
@@ -138,7 +138,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         String m10 = f0.f399b.m((e0) obj);
         kotlin.jvm.internal.i.d(m10, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
         Log.d("EventGDTLogger", "Session Event: ".concat(m10));
-        byte[] bytes = m10.getBytes(zd.a.f51530a);
+        byte[] bytes = m10.getBytes(zd.a.f51555a);
         kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
         return bytes;
     }
@@ -177,12 +177,12 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
                     return;
                 }
             default:
-                sc scVar = (sc) this.f35b;
+                tc tcVar = (tc) this.f35b;
                 if (i10 == 1) {
-                    scVar.run(Boolean.TRUE, null);
+                    tcVar.run(Boolean.TRUE, null);
                     return;
                 } else if (i10 != 3) {
-                    scVar.run(Boolean.FALSE, null);
+                    tcVar.run(Boolean.FALSE, null);
                     return;
                 } else {
                     return;
@@ -198,9 +198,9 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         int i12;
         int i13;
         n2 n2Var = (n2) this.f35b;
-        u1 u1Var = n2Var.f6135c;
-        ArrayList arrayList = n2Var.f6143r;
-        w0 w0Var = ((u0) view).f6035f;
+        u1 u1Var = n2Var.f6136c;
+        ArrayList arrayList = n2Var.f6144r;
+        w0 w0Var = ((u0) view).f6036f;
         int i14 = n2Var.N;
         int currentTime = ConnectionsManager.getInstance(i14).getCurrentTime();
         HashSet hashSet = new HashSet();
@@ -208,13 +208,13 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         int i16 = 0;
         while (true) {
             j10 = 0;
-            if (i16 >= w0Var.f6102f.size()) {
+            if (i16 >= w0Var.f6103f.size()) {
                 break;
             }
-            v0 v0Var = (v0) w0Var.f6102f.get(i16);
-            long j12 = v0Var.f6070g;
+            v0 v0Var = (v0) w0Var.f6103f.get(i16);
+            long j12 = v0Var.f6071g;
             if (j12 > 0 && currentTime - v0Var.d <= u.b(i14, (int) j12, 0)) {
-                hashSet.add(Integer.valueOf(v0Var.f6066a));
+                hashSet.add(Integer.valueOf(v0Var.f6067a));
             }
             i16++;
         }
@@ -226,13 +226,13 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         int i18 = 0;
         while (i17 < arrayList.size()) {
             v0 v0Var2 = (v0) arrayList.get(i17);
-            if (!v0Var2.f6067b && v0Var2.e && v0Var2.f6070g < j10) {
+            if (!v0Var2.f6068b && v0Var2.e && v0Var2.f6071g < j10) {
                 j11 = j10;
             } else {
-                if (hashSet.contains(Integer.valueOf(v0Var2.f6066a))) {
+                if (hashSet.contains(Integer.valueOf(v0Var2.f6067a))) {
                     j11 = j10;
-                    if (n2Var.f6145w != w0Var.f6100b || (i13 = n2Var.f6146x) == 0 || v0Var2.f6066a < i13) {
-                        i11 = v0Var2.f6066a;
+                    if (n2Var.f6146w != w0Var.f6101b || (i13 = n2Var.f6147x) == 0 || v0Var2.f6067a < i13) {
+                        i11 = v0Var2.f6067a;
                         break;
                     }
                 } else {
@@ -250,9 +250,9 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
             while (true) {
                 if (i15 < arrayList.size()) {
                     v0 v0Var3 = (v0) arrayList.get(i15);
-                    if (v0Var3.f6067b || !v0Var3.e || v0Var3.f6070g >= j11) {
-                        if (hashSet.contains(Integer.valueOf(v0Var3.f6066a))) {
-                            i12 = v0Var3.f6066a;
+                    if (v0Var3.f6068b || !v0Var3.e || v0Var3.f6071g >= j11) {
+                        if (hashSet.contains(Integer.valueOf(v0Var3.f6067a))) {
+                            i12 = v0Var3.f6067a;
                             i18 = i19;
                             break;
                         }
@@ -271,9 +271,9 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         if (i12 < 0) {
             return;
         }
-        n2Var.f6145w = w0Var.f6100b;
-        n2Var.f6146x = i12;
-        n2Var.f6147y = true;
+        n2Var.f6146w = w0Var.f6101b;
+        n2Var.f6147x = i12;
+        n2Var.f6148y = true;
         l0 itemAnimator = u1Var.getItemAnimator();
         u1Var.setItemAnimator(null);
         n2Var.d.i1(i18, u1Var.getHeight() / 2, true);
@@ -321,10 +321,10 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     public void o(wh.g gVar, float f7, float f10) {
         r8 r8Var;
         q8 q8Var = (q8) this.f35b;
-        if (!q8Var.v.f5938x) {
-            gVar.f49081q = new p8(q8Var, 2);
+        if (!q8Var.v.f5939x) {
+            gVar.f49106q = new p8(q8Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(r8Var.getHeight(), 2.0d) + Math.pow(r8Var.getWidth(), 2.0d));
-            ArrayList arrayList = q8Var.f5855i;
+            ArrayList arrayList = q8Var.f5856i;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -342,7 +342,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
                 b0.b((Intent) this.f35b);
                 return;
             case 25:
-                ((d0) this.f35b).f7631b.trySetResult(null);
+                ((d0) this.f35b).f7632b.trySetResult(null);
                 return;
             default:
                 ((ScheduledFuture) this.f35b).cancel(false);
@@ -364,7 +364,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
                 y yVar = (y) obj;
                 if (((FirebaseMessaging) this.f35b).e.q() && yVar.h.a() != null) {
                     synchronized (yVar) {
-                        z10 = yVar.f7687g;
+                        z10 = yVar.f7688g;
                     }
                     if (!z10) {
                         yVar.h(0L);
@@ -389,7 +389,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
                 hs0 hs0Var = (hs0) this.f35b;
                 Integer num = (Integer) obj2;
                 if (((Integer) obj).intValue() == -1) {
-                    new di.u(hs0Var.f8070a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new r0(hs0Var, 10)).show();
+                    new di.u(hs0Var.f8071a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new r0(hs0Var, 10)).show();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;
@@ -424,9 +424,9 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
 
     @Override
     public void u(int i10, float f7, float f10, ne.e eVar) {
-        View view = ((m7) this.f35b).f1833b;
-        if (view instanceof org.telegram.ui.Cells.x0) {
-            ((org.telegram.ui.Cells.x0) view).N();
+        View view = ((m7) this.f35b).f1823b;
+        if (view instanceof org.telegram.ui.Cells.w0) {
+            ((org.telegram.ui.Cells.w0) view).N();
         } else {
             view.invalidate();
         }
@@ -436,18 +436,18 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
     public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         switch (this.f34a) {
             case 7:
-                fa.b((fa) this.f35b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
+                ga.b((ga) this.f35b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
                 return;
             default:
-                id idVar = (id) this.f35b;
+                jd jdVar = (jd) this.f35b;
                 f61 f61Var = (f61) obj;
                 View view = (View) obj2;
                 ((Integer) obj3).intValue();
                 ((Float) obj4).floatValue();
                 ((Float) obj5).floatValue();
-                idVar.getClass();
+                jdVar.getClass();
                 if (f61Var.G instanceof TL_stars.StarsTransaction) {
-                    ld.i1(idVar.getContext(), false, 0L, idVar.f1532c, (TL_stars.StarsTransaction) f61Var.G, idVar.f1531b);
+                    md.i1(jdVar.getContext(), false, 0L, jdVar.f1584c, (TL_stars.StarsTransaction) f61Var.G, jdVar.f1583b);
                     return;
                 }
                 return;

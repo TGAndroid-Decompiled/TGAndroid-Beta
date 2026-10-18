@@ -4,40 +4,40 @@ import android.text.TextUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ko0 extends s4.r0 {
-    public final int f27947a;
-    public final org.telegram.ui.ey f27948b;
-    public final org.telegram.ui.nx f27949c;
+    public final int f27954a;
+    public final org.telegram.ui.ey f27955b;
+    public final org.telegram.ui.nx f27956c;
 
     public ko0(org.telegram.ui.nx nxVar, org.telegram.ui.ey eyVar, int i10) {
-        this.f27947a = i10;
-        this.f27949c = nxVar;
-        this.f27948b = eyVar;
+        this.f27954a = i10;
+        this.f27956c = nxVar;
+        this.f27955b = eyVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
-        switch (this.f27947a) {
+        switch (this.f27954a) {
             case 0:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f27948b.getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(this.f27955b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 1:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f27948b.getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(this.f27955b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             case 2:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f27948b.getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(this.f27955b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
             default:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f27948b.getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(this.f27955b.getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
@@ -49,21 +49,21 @@ public final class ko0 extends s4.r0 {
         org.telegram.ui.px pxVar;
         int i12;
         im0 im0Var;
-        switch (this.f27947a) {
+        switch (this.f27954a) {
             case 0:
-                org.telegram.ui.nx nxVar = this.f27949c;
-                nxVar.f31352o0.V();
+                org.telegram.ui.nx nxVar = this.f27956c;
+                nxVar.f31359o0.V();
                 nxVar.S(i10, i11);
                 return;
             case 1:
-                org.telegram.ui.nx nxVar2 = this.f27949c;
-                nxVar2.f31359v0.W();
+                org.telegram.ui.nx nxVar2 = this.f27956c;
+                nxVar2.f31366v0.W();
                 nxVar2.S(i10, i11);
                 return;
             case 2:
-                org.telegram.ui.nx nxVar3 = this.f27949c;
-                oo0 oo0Var = nxVar3.f31340b0;
-                s4.b0 b0Var = nxVar3.f31341c0;
+                org.telegram.ui.nx nxVar3 = this.f27956c;
+                oo0 oo0Var = nxVar3.f31347b0;
+                s4.b0 b0Var = nxVar3.f31348c0;
                 int L0 = b0Var.L0();
                 int N0 = b0Var.N0();
                 int abs = Math.abs(b0Var.N0() - L0) + 1;
@@ -74,14 +74,14 @@ public final class ko0 extends s4.r0 {
                 nxVar3.S(i10, i11);
                 return;
             default:
-                org.telegram.ui.nx nxVar4 = this.f27949c;
-                qo0 qo0Var = nxVar4.f31348j0;
-                if (qo0Var.Y && !qo0Var.W && !TextUtils.isEmpty(qo0Var.f25365b0) && (im0Var = qo0Var.d) != null) {
+                org.telegram.ui.nx nxVar4 = this.f27956c;
+                qo0 qo0Var = nxVar4.f31355j0;
+                if (qo0Var.Y && !qo0Var.W && !TextUtils.isEmpty(qo0Var.f25372b0) && (im0Var = qo0Var.d) != null) {
                     int i13 = 0;
                     while (true) {
                         if (i13 < im0Var.getChildCount()) {
                             if (im0Var.getChildAt(i13) instanceof b10) {
-                                if (qo0Var.Y && !qo0Var.W && !TextUtils.isEmpty(qo0Var.f25365b0)) {
+                                if (qo0Var.Y && !qo0Var.W && !TextUtils.isEmpty(qo0Var.f25372b0)) {
                                     qo0Var.V(true);
                                 }
                             } else {

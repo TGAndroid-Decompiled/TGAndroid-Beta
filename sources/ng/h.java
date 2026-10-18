@@ -12,53 +12,53 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.cp0;
 import org.telegram.ui.Components.s6;
 public final class h extends FrameLayout {
-    public cp0 f17455a;
-    public float f17456b;
-    public float f17457c;
+    public cp0 f17462a;
+    public float f17463b;
+    public float f17464c;
     public float d;
     public s6 e;
-    public String f17458f;
+    public String f17465f;
     public TextPaint h;
-    public int f17459n;
+    public int f17466n;
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f17455a.invalidate();
+        this.f17462a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         TextPaint textPaint = this.h;
         textPaint.setColor(h6.x0(null, h6.G6, false));
-        canvas.drawText(this.f17458f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), textPaint);
+        canvas.drawText(this.f17465f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), textPaint);
         textPaint.setColor(h6.x0(null, h6.I6, false));
         String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.d));
-        canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - textPaint.measureText(format), this.f17455a.getY() + AndroidUtilities.dp(23.0f), textPaint);
+        canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - textPaint.measureText(format), this.f17462a.getY() + AndroidUtilities.dp(23.0f), textPaint);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f17455a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+        this.f17462a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         int size = View.MeasureSpec.getSize(i10);
-        if (this.f17459n != size) {
-            cp0 cp0Var = this.f17455a;
+        if (this.f17466n != size) {
+            cp0 cp0Var = this.f17462a;
             float floatValue = ((Float) this.e.get(null)).floatValue();
-            float f7 = this.f17456b;
-            cp0Var.setProgress((floatValue - f7) / (this.f17457c - f7));
-            this.f17459n = size;
+            float f7 = this.f17463b;
+            cp0Var.setProgress((floatValue - f7) / (this.f17464c - f7));
+            this.f17466n = size;
         }
     }
 
     @Override
     public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f17455a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f17462a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
             return false;
         }
         return true;

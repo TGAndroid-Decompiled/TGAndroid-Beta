@@ -9,17 +9,17 @@ import android.util.Log;
 import java.util.concurrent.atomic.AtomicBoolean;
 import n6.k0;
 public class e {
-    public static final int f14966a;
-    public static final e f14967b;
+    public static final int f14973a;
+    public static final e f14974b;
 
     static {
-        AtomicBoolean atomicBoolean = g.f14969a;
-        f14966a = 12451000;
-        f14967b = new Object();
+        AtomicBoolean atomicBoolean = g.f14976a;
+        f14973a = 12451000;
+        f14974b = new Object();
     }
 
     public static int a(Context context) {
-        AtomicBoolean atomicBoolean = g.f14969a;
+        AtomicBoolean atomicBoolean = g.f14976a;
         try {
             return context.getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
         } catch (PackageManager.NameNotFoundException unused) {
@@ -33,19 +33,19 @@ public class e {
             if (i10 != 3) {
                 return null;
             }
-            int i11 = k0.f17208a;
+            int i11 = k0.f17215a;
             Uri fromParts = Uri.fromParts("package", "com.google.android.gms", null);
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(fromParts);
             return intent;
         } else if (context != null && u6.b.f(context)) {
-            int i12 = k0.f17208a;
+            int i12 = k0.f17215a;
             Intent intent2 = new Intent("com.google.android.clockwork.home.UPDATE_ANDROID_WEAR_ACTION");
             intent2.setPackage("com.google.android.wearable.app");
             return intent2;
         } else {
             StringBuilder sb2 = new StringBuilder("gcore_");
-            sb2.append(f14966a);
+            sb2.append(f14973a);
             sb2.append("-");
             if (!TextUtils.isEmpty(str)) {
                 sb2.append(str);
@@ -62,7 +62,7 @@ public class e {
                 }
             }
             String sb3 = sb2.toString();
-            int i13 = k0.f17208a;
+            int i13 = k0.f17215a;
             Intent intent3 = new Intent("android.intent.action.VIEW");
             Uri.Builder appendQueryParameter = Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.gms");
             if (!TextUtils.isEmpty(sb3)) {
@@ -76,7 +76,7 @@ public class e {
     }
 
     public int c(Context context) {
-        return d(context, f14966a);
+        return d(context, f14973a);
     }
 
     public int d(Context context, int i10) {

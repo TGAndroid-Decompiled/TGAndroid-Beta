@@ -1,43 +1,29 @@
 package zh;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-public final class k0 extends x {
-    public final m0 M;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class k0 implements Runnable {
+    public final int f51797a;
+    public final Object f51798b;
+    public final Object f51799c;
 
-    public k0(m0 m0Var, Activity activity, int i10, j0 j0Var) {
-        super(activity, i10, j0Var);
-        this.M = m0Var;
+    public k0(int i10, Object obj, Object obj2) {
+        this.f51797a = i10;
+        this.f51798b = obj;
+        this.f51799c = obj2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        m0 m0Var = this.M;
-        float min = Math.min(getHeight(), m0Var.v - (getTranslationY() + getTop()));
-        c cVar = m0Var.f52066x;
-        if (cVar != null) {
-            cVar.G = min;
+    public final void run() {
+        switch (this.f51797a) {
+            case 0:
+                ((Utilities.Callback) this.f51798b).run((e) this.f51799c);
+                return;
+            default:
+                ((MessagesController) this.f51798b).lambda$processUpdates$377((TLRPC.Updates) ((TLObject) this.f51799c), false);
+                return;
         }
-        m0Var.I = min;
-        if (cVar != null) {
-            cVar.U = m0Var.f52064s - cVar.getLeft();
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        m0 m0Var = this.M;
-        b1 b1Var = m0Var.d;
-        if (b1Var != null && (b1Var.l1 > 0.5f || b1Var.f51777k1 > 0.5f)) {
-            if (motionEvent.getActionMasked() == 1) {
-                b1 b1Var2 = m0Var.d;
-                b1Var2.l1 = 0.0f;
-                b1Var2.invalidate();
-            }
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
     }
 }

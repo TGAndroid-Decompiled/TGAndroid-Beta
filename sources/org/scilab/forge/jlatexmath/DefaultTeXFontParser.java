@@ -7,12 +7,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.telegram.ui.Cells.c1;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import r.c;
 import ru.noties.jlatexmath.JLatexMathAndroid;
 import ru.noties.jlatexmath.awt.Font;
 public class DefaultTeXFontParser {
@@ -215,7 +215,7 @@ public class DefaultTeXFontParser {
                         if (this.parsedTextStyles.get(attrValueAndCheckIfNotNull2)[intValue] != null) {
                             strArr[intValue] = attrValueAndCheckIfNotNull2;
                         } else {
-                            throw new XMLResourceParseException(c.h("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
+                            throw new XMLResourceParseException(c1.k("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
                         }
                     } else {
                         throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "textStyle", g.p("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));

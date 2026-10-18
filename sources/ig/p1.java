@@ -1,10 +1,74 @@
 package ig;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-public final class p1 implements InputFilter {
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.Components.jw0;
+import org.telegram.ui.Components.tz;
+public final class p1 extends jw0 {
+    public final int f12993w0;
+
+    public p1(Context context, d5 d5Var, int i10) {
+        super(context, d5Var);
+        this.f12993w0 = i10;
+    }
+
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        return String.valueOf(charSequence).replaceAll("[^\\d_\\p{L}\\x{200c}\\x{00b7}\\x{0d80}-\\x{0dff}]", "");
+    public boolean P() {
+        switch (this.f12993w0) {
+            case 2:
+                return false;
+            case 3:
+                return false;
+            case 4:
+            default:
+                return super.P();
+            case 5:
+                return false;
+        }
+    }
+
+    @Override
+    public void addView(View view) {
+        switch (this.f12993w0) {
+            case 4:
+                if (view instanceof tz) {
+                    ViewGroup.LayoutParams layoutParams = ((tz) view).getLayoutParams();
+                    if (layoutParams == null) {
+                        layoutParams = new FrameLayout.LayoutParams(-1, -2);
+                    }
+                    if (layoutParams instanceof FrameLayout.LayoutParams) {
+                        ((FrameLayout.LayoutParams) layoutParams).gravity = 87;
+                    }
+                    view.setLayoutParams(layoutParams);
+                }
+                super.addView(view);
+                return;
+            default:
+                super.addView(view);
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: ig.p1.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f12993w0) {
+            case 0:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

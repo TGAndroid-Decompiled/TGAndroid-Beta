@@ -4,20 +4,20 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.MessageObject;
 public final class wc1 implements org.telegram.ui.Components.bl0 {
-    public final sn f42487a;
-    public final MessageObject f42488b;
-    public final org.telegram.ui.Components.cl0 f42489c;
+    public final sn f42511a;
+    public final MessageObject f42512b;
+    public final org.telegram.ui.Components.cl0 f42513c;
     public final ad1 d;
 
     public wc1(ad1 ad1Var, sn snVar, MessageObject messageObject, org.telegram.ui.Components.cl0 cl0Var) {
         this.d = ad1Var;
-        this.f42487a = snVar;
-        this.f42488b = messageObject;
-        this.f42489c = cl0Var;
+        this.f42511a = snVar;
+        this.f42512b = messageObject;
+        this.f42513c = cl0Var;
     }
 
     @Override
-    public final boolean j() {
+    public final boolean h() {
         return true;
     }
 
@@ -32,7 +32,7 @@ public final class wc1 implements org.telegram.ui.Components.bl0 {
     }
 
     @Override
-    public final boolean s() {
+    public final boolean r() {
         return false;
     }
 

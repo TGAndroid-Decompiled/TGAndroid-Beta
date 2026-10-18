@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class ek extends org.telegram.ui.Components.dp {
-    public final sn f36559f;
+    public final sn f36563f;
 
     public ek(sn snVar, Context context) {
         super(context);
-        this.f36559f = snVar;
+        this.f36563f = snVar;
     }
 
     @Override
     public final void a(boolean z10) {
-        sn snVar = this.f36559f;
+        sn snVar = this.f36563f;
         snVar.w7();
         snVar.u7();
         snVar.x7();
         snVar.y7();
-        xk xkVar = snVar.f41168bb;
+        xk xkVar = snVar.f41189bb;
         if (xkVar != null) {
             xkVar.setTranslationY(snVar.w9 + getCurrentHeight());
         }

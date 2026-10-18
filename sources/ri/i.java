@@ -1,15 +1,15 @@
 package ri;
 public final class i {
-    public static final i f45833a;
-    public static final i f45834b;
-    public static final i[] f45835c;
+    public static final i f45853a;
+    public static final i f45854b;
+    public static final i[] f45855c;
 
     static {
         ?? r02 = new Enum("DISABLED", 0);
-        f45833a = r02;
+        f45853a = r02;
         ?? r12 = new Enum("RNNOISE", 1);
-        f45834b = r12;
-        f45835c = new i[]{r02, r12};
+        f45854b = r12;
+        f45855c = new i[]{r02, r12};
     }
 
     public static i valueOf(String str) {
@@ -17,6 +17,6 @@ public final class i {
     }
 
     public static i[] values() {
-        return (i[]) f45835c.clone();
+        return (i[]) f45855c.clone();
     }
 }

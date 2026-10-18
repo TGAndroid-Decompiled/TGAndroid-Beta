@@ -19,9 +19,9 @@ public abstract class i {
             return 0;
         }
         int c10 = c(aVar);
-        int max = Math.max(0, aVar.f15090c);
+        int max = Math.max(0, aVar.f15097c);
         if (max > 0) {
-            i10 = AndroidUtilities.dp(i0.a.g(max, 1, 24, 28));
+            i10 = AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(max, 1, 24, 28));
         }
         return c10 + i10;
     }
@@ -31,12 +31,12 @@ public abstract class i {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f15095k.size();
+            size = aVar.f15102k.size();
         }
         if (size <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(i0.a.g(size, 1, 16, 12));
+        return AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(size, 1, 16, 12));
     }
 
     public static int d(ki.a aVar) {
@@ -44,11 +44,11 @@ public abstract class i {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f15095k.size();
+            size = aVar.f15102k.size();
         }
         if (size <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(i0.a.g(size, 1, 16, 8));
+        return AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(size, 1, 16, 8));
     }
 }

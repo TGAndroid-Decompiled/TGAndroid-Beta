@@ -1,18 +1,18 @@
 package w7;
 public final class ya extends sa {
-    public final transient Object[] f48888c;
+    public final transient Object[] f48913c;
     public final transient int d;
     public final transient int e = 1;
 
     public ya(int i10, Object[] objArr) {
-        this.f48888c = objArr;
+        this.f48913c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
         f8.a(i10, this.e);
-        Object obj = this.f48888c[i10 + i10 + this.d];
+        Object obj = this.f48913c[i10 + i10 + this.d];
         obj.getClass();
         return obj;
     }

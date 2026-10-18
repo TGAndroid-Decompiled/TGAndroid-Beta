@@ -12,20 +12,20 @@ public final class a implements gf.a {
     @Override
     public final void b(s sVar, s sVar2, int i10) {
         p pVar = new p();
-        for (p pVar2 = (p) sVar.f7988f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f7988f) {
+        for (p pVar2 = (p) sVar.f7989f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f7989f) {
             pVar.b(pVar2);
         }
         pVar.g();
-        p pVar3 = (p) sVar.f7988f;
-        pVar.f7988f = pVar3;
+        p pVar3 = (p) sVar.f7989f;
+        pVar.f7989f = pVar3;
         if (pVar3 != null) {
             pVar3.e = pVar;
         }
         pVar.e = sVar;
-        sVar.f7988f = pVar;
-        p pVar4 = (p) sVar.f7986b;
-        pVar.f7986b = pVar4;
-        if (((p) pVar.f7988f) == null) {
+        sVar.f7989f = pVar;
+        p pVar4 = (p) sVar.f7987b;
+        pVar.f7987b = pVar4;
+        if (((p) pVar.f7989f) == null) {
             pVar4.d = pVar;
         }
     }

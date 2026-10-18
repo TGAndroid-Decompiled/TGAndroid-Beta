@@ -1,57 +1,23 @@
 package ug;
 
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.text.TextPaint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h6;
-public final class k1 extends ReplacementSpan {
-    public final TextPaint f47717a;
-    public final Paint f47718b;
-    public final RectF f47719c;
-    public final boolean d;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class k1 extends s4.m0 {
+    public final m1 f47740a;
 
-    public k1(int i10, boolean z10) {
-        TextPaint textPaint = new TextPaint(1);
-        this.f47717a = textPaint;
-        Paint paint = new Paint(1);
-        this.f47718b = paint;
-        this.f47719c = new RectF();
-        this.d = z10;
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
-        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        textPaint.setColor(i10);
-        paint.setColor(h6.m1(0.08f, i10));
+    public k1(m1 m1Var) {
+        this.f47740a = m1Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        TextPaint textPaint = this.f47717a;
-        float measureText = textPaint.measureText(charSequence, i10, i11);
-        float f10 = (i12 + i14) / 2.0f;
-        RectF rectF = this.f47719c;
-        rectF.set(f7, f10 - AndroidUtilities.dp(9.5f), f7 + measureText + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(9.5f) + f10);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f47718b);
-        if (this.d) {
-            int color = textPaint.getColor();
-            int m12 = h6.m1(0.0f, color);
-            float dp = f7 + AndroidUtilities.dp(4.0f);
-            textPaint.setShader(new LinearGradient(dp, 0.0f, dp + measureText, 0.0f, new int[]{color, m12, m12, color}, new float[]{0.17f, 0.41f, 0.59f, 0.87f}, Shader.TileMode.CLAMP));
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
+        super.a(rect, view, recyclerView, y0Var);
+        recyclerView.getClass();
+        int R = RecyclerView.R(view);
+        m1 m1Var = this.f47740a;
+        if (R == m1Var.f47756g0.size()) {
+            rect.bottom = m1Var.f47765q0;
         }
-        Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
-        canvas.drawText(charSequence, i10, i11, f7 + AndroidUtilities.dp(4.0f), f10 - ((fontMetrics.ascent + fontMetrics.descent) / 2.0f), textPaint);
-        textPaint.setShader(null);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            paint.getFontMetricsInt(fontMetricsInt);
-        }
-        return AndroidUtilities.dp(11.0f) + ((int) Math.ceil(this.f47717a.measureText(charSequence, i10, i11)));
     }
 }

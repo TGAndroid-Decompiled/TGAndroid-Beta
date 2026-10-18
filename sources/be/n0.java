@@ -1,10 +1,10 @@
 package be;
 public abstract class n0 {
-    public static final ie.e f4305a = ie.e.d;
-    public static final ie.d f4306b;
+    public static final ie.e f4306a = ie.e.d;
+    public static final ie.d f4307b;
 
     static {
-        int i10 = g2.f4292c;
-        f4306b = ie.d.f12797c;
+        int i10 = g2.f4293c;
+        f4307b = ie.d.f12795c;
     }
 }

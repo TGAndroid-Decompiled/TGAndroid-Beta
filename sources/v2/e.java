@@ -10,21 +10,21 @@ import c3.s;
 import v7.u6;
 public final class e implements q {
     public static final s v = new Object();
-    public final o f47899a;
-    public final int f47900b;
-    public final w f47901c;
+    public final o f47924a;
+    public final int f47925b;
+    public final w f47926c;
     public final SparseArray d = new SparseArray();
-    public final d e = d.f47898a;
-    public boolean f47902f;
+    public final d e = d.f47923a;
+    public boolean f47927f;
     public n2.e h;
-    public long f47903n;
-    public c0 f47904r;
-    public w[] f47905s;
+    public long f47928n;
+    public c0 f47929r;
+    public w[] f47930s;
 
     public e(o oVar, int i10, w wVar) {
-        this.f47899a = oVar;
-        this.f47900b = i10;
-        this.f47901c = wVar;
+        this.f47924a = oVar;
+        this.f47925b = i10;
+        this.f47926c = wVar;
     }
 
     @Override
@@ -36,31 +36,31 @@ public final class e implements q {
             wVar.getClass();
             wVarArr[i10] = wVar;
         }
-        this.f47905s = wVarArr;
+        this.f47930s = wVarArr;
     }
 
     public final c3.j a() {
-        c0 c0Var = this.f47904r;
+        c0 c0Var = this.f47929r;
         if (c0Var instanceof c3.j) {
             return (c3.j) c0Var;
         }
         if (c0Var instanceof u3.e) {
-            return ((u3.e) c0Var).f47531a;
+            return ((u3.e) c0Var).f47553a;
         }
         return null;
     }
 
     public final void b(n2.e eVar, long j10, long j11) {
         this.h = eVar;
-        this.f47903n = j11;
-        boolean z10 = this.f47902f;
-        o oVar = this.f47899a;
+        this.f47928n = j11;
+        boolean z10 = this.f47927f;
+        o oVar = this.f47924a;
         if (!z10) {
             oVar.c(this);
             if (j10 != -9223372036854775807L) {
                 oVar.d(0L, j10);
             }
-            this.f47902f = true;
+            this.f47927f = true;
             return;
         }
         if (j10 == -9223372036854775807L) {
@@ -73,11 +73,11 @@ public final class e implements q {
             if (i10 < sparseArray.size()) {
                 c cVar = (c) sparseArray.valueAt(i10);
                 if (eVar == null) {
-                    cVar.f47896f = cVar.f47895c;
+                    cVar.f47921f = cVar.f47920c;
                 } else {
-                    cVar.f47897g = j11;
-                    j0 r02 = eVar.r0(cVar.f47893a);
-                    cVar.f47896f = r02;
+                    cVar.f47922g = j11;
+                    j0 r02 = eVar.r0(cVar.f47918a);
+                    cVar.f47921f = r02;
                     w wVar = cVar.e;
                     if (wVar != null) {
                         r02.b(wVar);
@@ -92,7 +92,7 @@ public final class e implements q {
 
     @Override
     public final void g0(c0 c0Var) {
-        this.f47904r = c0Var;
+        this.f47929r = c0Var;
     }
 
     @Override
@@ -102,26 +102,26 @@ public final class e implements q {
         SparseArray sparseArray = this.d;
         c cVar = (c) sparseArray.get(i10);
         if (cVar == null) {
-            if (this.f47905s == null) {
+            if (this.f47930s == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             u6.p(z10);
-            if (i11 == this.f47900b) {
-                wVar = this.f47901c;
+            if (i11 == this.f47925b) {
+                wVar = this.f47926c;
             } else {
                 wVar = null;
             }
             cVar = new c(i10, i11, wVar, this.e);
             n2.e eVar = this.h;
-            long j10 = this.f47903n;
+            long j10 = this.f47928n;
             if (eVar == null) {
-                cVar.f47896f = cVar.f47895c;
+                cVar.f47921f = cVar.f47920c;
             } else {
-                cVar.f47897g = j10;
+                cVar.f47922g = j10;
                 j0 r02 = eVar.r0(i11);
-                cVar.f47896f = r02;
+                cVar.f47921f = r02;
                 w wVar2 = cVar.e;
                 if (wVar2 != null) {
                     r02.b(wVar2);

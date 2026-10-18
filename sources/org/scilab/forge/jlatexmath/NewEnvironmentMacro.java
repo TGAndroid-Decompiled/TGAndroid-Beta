@@ -2,7 +2,7 @@ package org.scilab.forge.jlatexmath;
 
 import a1.g;
 import java.util.HashMap;
-import r.c;
+import r4.c;
 public class NewEnvironmentMacro extends NewCommandMacro {
     public static void addNewEnvironment(String str, String str2, String str3, int i10) {
         String u10 = c.u(str, "@env");

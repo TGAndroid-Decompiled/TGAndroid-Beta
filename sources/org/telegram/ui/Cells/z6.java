@@ -5,17 +5,17 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class z6 extends View {
-    public int f23872a;
-    public final int f23873b;
-    public boolean f23874c;
+    public int f23879a;
+    public final int f23880b;
+    public boolean f23881c;
     public boolean d;
 
     public z6(Context context) {
-        this(context, (t0) null);
+        this(context, (c1) null);
     }
 
     private int getBackgroundResId() {
-        boolean z10 = this.f23874c;
+        boolean z10 = this.f23881c;
         if (z10 && this.d) {
             return R.drawable.greydivider;
         }
@@ -30,23 +30,23 @@ public final class z6 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f23872a), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f23879a), 1073741824));
     }
 
     public void setSize(int i10) {
-        this.f23872a = i10;
+        this.f23879a = i10;
     }
 
     public z6(Context context, Object obj) {
-        this(context, (t0) null);
+        this(context, (c1) null);
     }
 
-    public z6(Context context, t0 t0Var) {
+    public z6(Context context, c1 c1Var) {
         super(context);
-        this.f23874c = true;
+        this.f23881c = true;
         this.d = true;
-        this.f23872a = 12;
-        int i10 = this.f23873b;
+        this.f23879a = 12;
+        int i10 = this.f23880b;
         if (i10 == 0) {
             setBackground(null);
         } else {
@@ -56,10 +56,10 @@ public final class z6 extends View {
 
     public z6(Context context, int i10, int i11) {
         super(context);
-        this.f23874c = true;
+        this.f23881c = true;
         this.d = true;
-        this.f23873b = i10;
-        this.f23872a = 12;
+        this.f23880b = i10;
+        this.f23879a = 12;
         if (i10 == 0) {
             setBackground(null);
         } else {

@@ -1,22 +1,68 @@
 package i2;
+public final class j implements v0 {
+    public final s1 f12465a;
+    public final q0 f12466b;
+    public b f12467c;
+    public v0 d;
+    public boolean e = true;
+    public boolean f12468f;
 
-import android.content.Context;
-import ci.p4;
-public class j {
-    public final Context f12469a;
-    public final l5.j f12470b;
-    public int f12471c = 0;
-
-    public j(Context context) {
-        this.f12469a = context;
-        this.f12470b = new l5.j(context);
+    public j(q0 q0Var, e2.g0 g0Var) {
+        this.f12466b = q0Var;
+        this.f12465a = new s1(g0Var);
     }
 
-    public k2.t0 a(Context context) {
-        return new p4(context).a();
+    @Override
+    public final long a() {
+        if (this.e) {
+            return this.f12465a.a();
+        }
+        v0 v0Var = this.d;
+        v0Var.getClass();
+        return v0Var.a();
     }
 
-    public final i2.b[] b(android.os.Handler r23, i2.a0 r24, i2.a0 r25, i2.a0 r26, i2.a0 r27) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.j.b(android.os.Handler, i2.a0, i2.a0, i2.a0, i2.a0):i2.b[]");
+    @Override
+    public final boolean b() {
+        if (this.e) {
+            this.f12465a.getClass();
+            return false;
+        }
+        v0 v0Var = this.d;
+        v0Var.getClass();
+        return v0Var.b();
+    }
+
+    public final void c(b bVar) {
+        v0 v0Var;
+        v0 i10 = bVar.i();
+        if (i10 != null && i10 != (v0Var = this.d)) {
+            if (v0Var == null) {
+                this.d = i10;
+                this.f12467c = bVar;
+                i10.f((b2.z0) this.f12465a.e);
+                return;
+            }
+            throw new m(2, new IllegalStateException("Multiple renderer media clocks enabled."), 1000);
+        }
+    }
+
+    @Override
+    public final void f(b2.z0 z0Var) {
+        v0 v0Var = this.d;
+        if (v0Var != null) {
+            v0Var.f(z0Var);
+            z0Var = this.d.h();
+        }
+        this.f12465a.f(z0Var);
+    }
+
+    @Override
+    public final b2.z0 h() {
+        v0 v0Var = this.d;
+        if (v0Var != null) {
+            return v0Var.h();
+        }
+        return (b2.z0) this.f12465a.e;
     }
 }

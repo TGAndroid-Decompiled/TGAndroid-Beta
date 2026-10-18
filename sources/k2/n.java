@@ -1,14 +1,14 @@
 package k2;
 public final class n {
-    public int f14751a;
-    public int f14752b;
-    public int f14753c;
+    public int f14758a;
+    public int f14759b;
+    public int f14760c;
     public boolean d;
     public boolean e;
-    public int f14754f;
-    public b2.f f14755g;
+    public int f14761f;
+    public b2.f f14762g;
     public int h;
-    public int f14756i;
-    public boolean f14757j;
-    public boolean f14758k;
+    public int f14763i;
+    public boolean f14764j;
+    public boolean f14765k;
 }

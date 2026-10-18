@@ -19,18 +19,18 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class wa1 extends org.telegram.ui.Components.hm0 {
-    public final Context f42473c;
+    public final Context f42497c;
     public boolean d = true;
     public final ThemeActivity e;
 
     public wa1(ThemeActivity themeActivity, Context context) {
         this.e = themeActivity;
-        this.f42473c = context;
+        this.f42497c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45941f;
+        int i10 = b1Var.f45961f;
         if (i10 == 0 || i10 == 1 || i10 == 4 || i10 == 7 || i10 == 10 || i10 == 11 || i10 == 12 || i10 == 14 || i10 == 18 || i10 == 20 || i10 == 21) {
             return true;
         }
@@ -59,19 +59,19 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
         int i23;
         int i24;
         ThemeActivity themeActivity = this.e;
-        if (i10 != themeActivity.f33883a0 && i10 != themeActivity.K && i10 != themeActivity.f33885b0 && i10 != themeActivity.Y && i10 != themeActivity.P && i10 != themeActivity.Q && i10 != themeActivity.M && i10 != themeActivity.L) {
-            if (i10 != themeActivity.f33891f0 && i10 != themeActivity.Z && i10 != themeActivity.f33909v0 && i10 != themeActivity.A0 && i10 != themeActivity.G0) {
-                if (i10 != themeActivity.f33904r0 && i10 != themeActivity.V && i10 != themeActivity.f33887c0 && i10 != themeActivity.O && i10 != themeActivity.f33893h0 && i10 != themeActivity.f33899n0 && i10 != themeActivity.f33896k0 && i10 != themeActivity.J && i10 != themeActivity.I0 && i10 != themeActivity.f33916z0 && i10 != themeActivity.B0 && i10 != themeActivity.C0 && i10 != themeActivity.D0) {
+        if (i10 != themeActivity.f33890a0 && i10 != themeActivity.K && i10 != themeActivity.f33892b0 && i10 != themeActivity.Y && i10 != themeActivity.P && i10 != themeActivity.Q && i10 != themeActivity.M && i10 != themeActivity.L) {
+            if (i10 != themeActivity.f33898f0 && i10 != themeActivity.Z && i10 != themeActivity.f33916v0 && i10 != themeActivity.A0 && i10 != themeActivity.G0) {
+                if (i10 != themeActivity.f33911r0 && i10 != themeActivity.V && i10 != themeActivity.f33894c0 && i10 != themeActivity.O && i10 != themeActivity.f33900h0 && i10 != themeActivity.f33906n0 && i10 != themeActivity.f33903k0 && i10 != themeActivity.J && i10 != themeActivity.I0 && i10 != themeActivity.f33923z0 && i10 != themeActivity.B0 && i10 != themeActivity.C0 && i10 != themeActivity.D0) {
                     if (i10 != themeActivity.R && i10 != themeActivity.S && i10 != themeActivity.T && i10 != themeActivity.U) {
-                        if (i10 != themeActivity.W && i10 != themeActivity.f33888d0 && i10 != themeActivity.f33892g0 && i10 != themeActivity.f33912x && i10 != themeActivity.f33894i0 && i10 != themeActivity.f33910w && i10 != themeActivity.f33897l0 && i10 != themeActivity.f33895j0 && i10 != themeActivity.f33907t0 && i10 != themeActivity.f33911w0 && i10 != themeActivity.H0 && i10 != themeActivity.E0 && i10 != themeActivity.F0) {
-                            if (i10 == themeActivity.f33889e0) {
+                        if (i10 != themeActivity.W && i10 != themeActivity.f33895d0 && i10 != themeActivity.f33899g0 && i10 != themeActivity.f33919x && i10 != themeActivity.f33901i0 && i10 != themeActivity.f33917w && i10 != themeActivity.f33904l0 && i10 != themeActivity.f33902j0 && i10 != themeActivity.f33914t0 && i10 != themeActivity.f33918w0 && i10 != themeActivity.H0 && i10 != themeActivity.E0 && i10 != themeActivity.F0) {
+                            if (i10 == themeActivity.f33896e0) {
                                 return 6;
                             }
                             if (i10 != themeActivity.X && i10 != themeActivity.G && i10 != themeActivity.E) {
                                 i11 = themeActivity.raiseToListenRow;
                                 if (i10 != i11) {
                                     i12 = themeActivity.pauseOnRecordRow;
-                                    if (i10 != i12 && i10 != themeActivity.f33914y && i10 != themeActivity.f33906s0) {
+                                    if (i10 != i12 && i10 != themeActivity.f33921y && i10 != themeActivity.f33913s0) {
                                         i13 = themeActivity.pauseOnMediaRow;
                                         if (i10 != i13 && i10 != themeActivity.F) {
                                             i14 = themeActivity.sensitiveContentRow;
@@ -85,27 +85,27 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                                     if (i10 != i16) {
                                                         i17 = themeActivity.browserRow;
                                                         if (i10 != i17) {
-                                                            if (i10 == themeActivity.f33900o0) {
+                                                            if (i10 == themeActivity.f33907o0) {
                                                                 return 11;
                                                             }
-                                                            if (i10 != themeActivity.f33902q0) {
+                                                            if (i10 != themeActivity.f33909q0) {
                                                                 i18 = themeActivity.bubbleRadiusRow;
                                                                 if (i10 != i18) {
                                                                     i19 = themeActivity.backgroundRow;
-                                                                    if (i10 != i19 && i10 != themeActivity.f33915y0) {
+                                                                    if (i10 != i19 && i10 != themeActivity.f33922y0) {
                                                                         i20 = themeActivity.createNewThemeRow;
                                                                         if (i10 != i20) {
                                                                             i21 = themeActivity.liteModeRow;
                                                                             if (i10 != i21) {
                                                                                 i22 = themeActivity.stickersRow;
                                                                                 if (i10 != i22) {
-                                                                                    if (i10 == themeActivity.f33908u0) {
+                                                                                    if (i10 == themeActivity.f33915u0) {
                                                                                         return 15;
                                                                                     }
-                                                                                    if (i10 == themeActivity.f33913x0) {
+                                                                                    if (i10 == themeActivity.f33920x0) {
                                                                                         return 16;
                                                                                     }
-                                                                                    if (i10 == themeActivity.f33901p0) {
+                                                                                    if (i10 == themeActivity.f33908p0) {
                                                                                         return 17;
                                                                                     }
                                                                                     if (i10 != themeActivity.H && i10 != themeActivity.I) {
@@ -180,8 +180,8 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
         int i23;
         String string3;
         String string4;
-        int i24 = b1Var.f45941f;
-        View view = b1Var.f45938a;
+        int i24 = b1Var.f45961f;
+        View view = b1Var.f45958a;
         ThemeActivity themeActivity = this.e;
         boolean z11 = false;
         boolean z12 = true;
@@ -207,7 +207,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                                             }
                                                             return;
                                                         }
-                                                        if (org.telegram.ui.ActionBar.h6.f21182o != 0) {
+                                                        if (org.telegram.ui.ActionBar.h6.f21189o != 0) {
                                                             z11 = true;
                                                         }
                                                         if (z11) {
@@ -216,7 +216,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                                             string3 = LocaleController.getString("AutoNightThemeOff", R.string.AutoNightThemeOff);
                                                         }
                                                         if (z11) {
-                                                            int i25 = org.telegram.ui.ActionBar.h6.f21182o;
+                                                            int i25 = org.telegram.ui.ActionBar.h6.f21189o;
                                                             if (i25 == 1) {
                                                                 string4 = LocaleController.getString("AutoNightScheduled", R.string.AutoNightScheduled);
                                                             } else if (i25 == 3) {
@@ -224,13 +224,13 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                                             } else {
                                                                 string4 = LocaleController.getString("AutoNightAdaptive", R.string.AutoNightAdaptive);
                                                             }
-                                                            string3 = a1.g.D(string4, " ", string3);
+                                                            string3 = a1.g.C(string4, " ", string3);
                                                         }
                                                         i5Var.b(LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), string3, R.drawable.menu_night_mode_24, z11, 0, false, true, false);
                                                         return;
                                                     case 11:
                                                         if (this.d) {
-                                                            themeActivity.f33886c.y1(themeActivity.f33884b.getMeasuredWidth());
+                                                            themeActivity.f33893c.y1(themeActivity.f33891b.getMeasuredWidth());
                                                             this.d = false;
                                                             return;
                                                         }
@@ -244,7 +244,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                                             indexOf = ya1Var.h() - 1;
                                                         }
                                                         if (indexOf != -1) {
-                                                            ((s4.b0) im0Var.getLayoutManager()).h1(indexOf, (themeActivity.f33884b.getMeasuredWidth() / 2) - AndroidUtilities.dp(42.0f));
+                                                            ((s4.b0) im0Var.getLayoutManager()).h1(indexOf, (themeActivity.f33891b.getMeasuredWidth() / 2) - AndroidUtilities.dp(42.0f));
                                                             return;
                                                         }
                                                         return;
@@ -252,7 +252,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                                         return;
                                                 }
                                             }
-                                            ((oo0) view).set(themeActivity.getUserConfig().getCurrentUser());
+                                            ((po0) view).set(themeActivity.getUserConfig().getCurrentUser());
                                             return;
                                         }
                                         org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) view;
@@ -282,7 +282,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                     }
                                     q8Var.m(i27, string5, z11);
                                     return;
-                                } else if (i10 != themeActivity.f33915y0) {
+                                } else if (i10 != themeActivity.f33922y0) {
                                     i18 = themeActivity.createNewThemeRow;
                                     if (i10 != i18) {
                                         i19 = themeActivity.liteModeRow;
@@ -292,9 +292,9 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                                 q8Var.e(org.telegram.ui.ActionBar.h6.J5, org.telegram.ui.ActionBar.h6.G6);
                                                 q8Var.m(R.drawable.msg2_sticker, LocaleController.getString(R.string.StickersName), false);
                                                 q8Var.setSubtitle(LocaleController.getString(R.string.StickersNameInfo2));
-                                                q8Var.f22787s = 64;
+                                                q8Var.f22791s = 64;
                                                 q8Var.v = 60;
-                                                q8Var.f22788w = 20;
+                                                q8Var.f22792w = 20;
                                                 return;
                                             }
                                             return;
@@ -303,8 +303,8 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                         q8Var.m(R.drawable.msg2_animations, LocaleController.getString(R.string.LiteMode), true);
                                         q8Var.setSubtitle(LocaleController.getString(R.string.LiteModeInfo));
                                         q8Var.v = 60;
-                                        q8Var.f22787s = 64;
-                                        q8Var.f22788w = 20;
+                                        q8Var.f22791s = 64;
+                                        q8Var.f22792w = 20;
                                         return;
                                     }
                                     q8Var.setSubtitle(null);
@@ -322,7 +322,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                             }
                             org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) view;
                             if (i10 == themeActivity.X) {
-                                v8Var.f(LocaleController.getString("AutoNightLocation", R.string.AutoNightLocation), org.telegram.ui.ActionBar.h6.f21200p, true);
+                                v8Var.f(LocaleController.getString("AutoNightLocation", R.string.AutoNightLocation), org.telegram.ui.ActionBar.h6.f21207p, true);
                                 return;
                             } else if (i10 == themeActivity.N) {
                                 v8Var.f(LocaleController.getString("EnableAnimations", R.string.EnableAnimations), MessagesController.getGlobalMainSettings().getBoolean("view_animations", true), true);
@@ -342,12 +342,12 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                         if (i10 == i15) {
                                             v8Var.f(LocaleController.getString(R.string.PauseMusicOnMedia), SharedConfig.pauseMusicOnMedia, true);
                                             return;
-                                        } else if (i10 != themeActivity.f33914y) {
+                                        } else if (i10 != themeActivity.f33921y) {
                                             i16 = themeActivity.sensitiveContentRow;
                                             if (i10 == i16) {
                                                 v8Var.g(LocaleController.getString(R.string.ShowSensitiveContent), LocaleController.getString(R.string.ShowSensitiveContentInfo), themeActivity.getMessagesController().showSensitiveContent(), true, true);
                                                 return;
-                                            } else if (i10 == themeActivity.f33906s0) {
+                                            } else if (i10 == themeActivity.f33913s0) {
                                                 v8Var.f(LocaleController.getString("BlurInChat", R.string.BlurInChat), SharedConfig.chatBlurEnabled(), true);
                                                 return;
                                             } else {
@@ -369,43 +369,43 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                                 return;
                             }
                         }
-                        ((org.telegram.ui.Cells.k0) view).setProgress(org.telegram.ui.ActionBar.h6.f21217q);
+                        ((org.telegram.ui.Cells.k0) view).setProgress(org.telegram.ui.ActionBar.h6.f21224q);
                         return;
                     }
                     org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
                     if (i10 == themeActivity.W) {
                         l4Var.setText(LocaleController.getString("AutoNightSchedule", R.string.AutoNightSchedule));
                         return;
-                    } else if (i10 == themeActivity.f33888d0) {
+                    } else if (i10 == themeActivity.f33895d0) {
                         l4Var.setText(LocaleController.getString("AutoNightBrightness", R.string.AutoNightBrightness));
                         return;
-                    } else if (i10 == themeActivity.f33892g0) {
+                    } else if (i10 == themeActivity.f33899g0) {
                         l4Var.setText(LocaleController.getString("AutoNightPreferred", R.string.AutoNightPreferred));
                         return;
-                    } else if (i10 == themeActivity.f33912x) {
+                    } else if (i10 == themeActivity.f33919x) {
                         l4Var.setText(LocaleController.getString("SETTINGS", R.string.SETTINGS));
                         return;
-                    } else if (i10 == themeActivity.f33894i0) {
-                        if (themeActivity.f33890f == 3) {
+                    } else if (i10 == themeActivity.f33901i0) {
+                        if (themeActivity.f33897f == 3) {
                             l4Var.setText(LocaleController.getString("BuildMyOwnTheme", R.string.BuildMyOwnTheme));
                             return;
                         } else {
                             l4Var.setText(LocaleController.getString("ColorTheme", R.string.ColorTheme));
                             return;
                         }
-                    } else if (i10 == themeActivity.f33910w) {
+                    } else if (i10 == themeActivity.f33917w) {
                         l4Var.setText(LocaleController.getString("TextSizeHeader", R.string.TextSizeHeader));
                         return;
-                    } else if (i10 == themeActivity.f33897l0) {
+                    } else if (i10 == themeActivity.f33904l0) {
                         l4Var.setText(LocaleController.getString("ChatList", R.string.ChatList));
                         return;
-                    } else if (i10 == themeActivity.f33895j0) {
+                    } else if (i10 == themeActivity.f33902j0) {
                         l4Var.setText(LocaleController.getString("BubbleRadius", R.string.BubbleRadius));
                         return;
-                    } else if (i10 == themeActivity.f33907t0) {
+                    } else if (i10 == themeActivity.f33914t0) {
                         l4Var.setText(LocaleController.getString("ChatListSwipeGesture", R.string.ChatListSwipeGesture));
                         return;
-                    } else if (i10 == themeActivity.f33911w0) {
+                    } else if (i10 == themeActivity.f33918w0) {
                         l4Var.setText(LocaleController.getString("SelectTheme", R.string.SelectTheme));
                         return;
                     } else if (i10 == themeActivity.H0) {
@@ -424,21 +424,21 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 org.telegram.ui.Cells.ga gaVar = (org.telegram.ui.Cells.ga) view;
                 if (i10 == themeActivity.R) {
                     String string6 = LocaleController.getString("AutoNightDisabled", R.string.AutoNightDisabled);
-                    if (org.telegram.ui.ActionBar.h6.f21182o == 0) {
+                    if (org.telegram.ui.ActionBar.h6.f21189o == 0) {
                         z11 = true;
                     }
                     gaVar.a(string6, z11, true);
                     return;
                 } else if (i10 == themeActivity.S) {
                     String string7 = LocaleController.getString("AutoNightScheduled", R.string.AutoNightScheduled);
-                    if (org.telegram.ui.ActionBar.h6.f21182o == 1) {
+                    if (org.telegram.ui.ActionBar.h6.f21189o == 1) {
                         z11 = true;
                     }
                     gaVar.a(string7, z11, true);
                     return;
                 } else if (i10 == themeActivity.T) {
                     String string8 = LocaleController.getString("AutoNightAdaptive", R.string.AutoNightAdaptive);
-                    if (org.telegram.ui.ActionBar.h6.f21182o == 2) {
+                    if (org.telegram.ui.ActionBar.h6.f21189o == 2) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -450,7 +450,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                     return;
                 } else if (i10 == themeActivity.U) {
                     String string9 = LocaleController.getString("AutoNightSystemDefault", R.string.AutoNightSystemDefault);
-                    if (org.telegram.ui.ActionBar.h6.f21182o != 3) {
+                    if (org.telegram.ui.ActionBar.h6.f21189o != 3) {
                         z12 = false;
                     }
                     gaVar.a(string9, z12, false);
@@ -461,13 +461,13 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
             }
             org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
             d9Var.setFixedSize(0);
-            if (i10 == themeActivity.f33891f0) {
-                d9Var.setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (org.telegram.ui.ActionBar.h6.f21217q * 100.0f))));
+            if (i10 == themeActivity.f33898f0) {
+                d9Var.setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (org.telegram.ui.ActionBar.h6.f21224q * 100.0f))));
                 return;
             } else if (i10 == themeActivity.Z) {
                 d9Var.setText(ThemeActivity.y0());
                 return;
-            } else if (i10 == themeActivity.f33909v0) {
+            } else if (i10 == themeActivity.f33916v0) {
                 d9Var.setText(LocaleController.getString("ChatListSwipeGestureInfo", R.string.ChatListSwipeGestureInfo));
                 return;
             } else if (i10 == themeActivity.G0) {
@@ -482,21 +482,21 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
         org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) view;
         i11 = themeActivity.nightThemeRow;
         if (i10 == i11) {
-            if (org.telegram.ui.ActionBar.h6.f21182o != 0 && org.telegram.ui.ActionBar.h6.J != null) {
+            if (org.telegram.ui.ActionBar.h6.f21189o != 0 && org.telegram.ui.ActionBar.h6.J != null) {
                 baVar.c(LocaleController.getString(R.string.AutoNightTheme), org.telegram.ui.ActionBar.h6.A0(), false, false);
             } else {
                 baVar.c(LocaleController.getString(R.string.AutoNightTheme), LocaleController.getString(R.string.AutoNightThemeOff), false, false);
             }
-        } else if (i10 == themeActivity.f33883a0) {
-            int i30 = org.telegram.ui.ActionBar.h6.f21236r;
+        } else if (i10 == themeActivity.f33890a0) {
+            int i30 = org.telegram.ui.ActionBar.h6.f21243r;
             int i31 = i30 / 60;
             baVar.c(LocaleController.getString("AutoNightFrom", R.string.AutoNightFrom), String.format("%02d:%02d", Integer.valueOf(i31), Integer.valueOf(i30 - (i31 * 60))), false, true);
-        } else if (i10 == themeActivity.f33885b0) {
-            int i32 = org.telegram.ui.ActionBar.h6.f21256s;
+        } else if (i10 == themeActivity.f33892b0) {
+            int i32 = org.telegram.ui.ActionBar.h6.f21263s;
             int i33 = i32 / 60;
             baVar.c(LocaleController.getString("AutoNightTo", R.string.AutoNightTo), String.format("%02d:%02d", Integer.valueOf(i33), Integer.valueOf(i32 - (i33 * 60))), false, false);
         } else if (i10 == themeActivity.Y) {
-            baVar.c(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), org.telegram.ui.ActionBar.h6.f21331w, false, false);
+            baVar.c(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), org.telegram.ui.ActionBar.h6.f21338w, false, false);
         } else if (i10 == themeActivity.Q) {
             int i34 = MessagesController.getGlobalMainSettings().getInt("sortContactsBy", 0);
             if (i34 == 0) {
@@ -526,7 +526,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
             baVar.c(string10, string, z13, z12);
             themeActivity.O0 = false;
         } else if (i10 == themeActivity.L) {
-            baVar.c(LocaleController.getString(R.string.SearchEngine), org.telegram.ui.web.m1.a().f42675a, themeActivity.P0, false);
+            baVar.c(LocaleController.getString(R.string.SearchEngine), org.telegram.ui.web.m1.a().f42702a, themeActivity.P0, false);
         } else if (i10 == themeActivity.M) {
             String string11 = LocaleController.getString(R.string.MicrophoneForVoiceMessages);
             if (SharedConfig.recordViaSco) {
@@ -558,7 +558,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
         int i18 = 4;
         int i19 = 5;
         ThemeActivity themeActivity = this.e;
-        Context context = this.f42473c;
+        Context context = this.f42497c;
         switch (i10) {
             case 1:
                 i5Var = new org.telegram.ui.Cells.ba(context);
@@ -567,14 +567,14 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 i5Var = new org.telegram.ui.Cells.d9(context);
                 break;
             case 3:
-                i5Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.t0) null);
+                i5Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c1) null);
                 break;
             case 4:
                 frameLayout = new FrameLayout(context);
                 frameLayout.setWillNotDraw(false);
                 TextView textView = new TextView(context);
-                frameLayout.f22307a = textView;
-                org.telegram.messenger.wh.u(textView, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false), 1, 16.0f, 1);
+                frameLayout.f22311a = textView;
+                org.telegram.messenger.kk.u(textView, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false), 1, 16.0f, 1);
                 textView.setMaxLines(1);
                 textView.setSingleLine(true);
                 textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -601,7 +601,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 }
                 frameLayout.addView(textView, w7.z5.a(-1.0f, f7, 0.0f, f10, 0.0f, -1, i20));
                 ImageView imageView = new ImageView(context);
-                frameLayout.f22308b = imageView;
+                frameLayout.f22312b = imageView;
                 imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Mh, false), PorterDuff.Mode.MULTIPLY));
                 imageView.setImageResource(R.drawable.sticker_added);
                 if (LocaleController.isRTL) {
@@ -624,12 +624,12 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 break;
             case 9:
                 frameLayout = new sa1(context);
-                frameLayout.f41051b = new org.telegram.ui.Cells.z0[2];
+                frameLayout.f41072b = new org.telegram.ui.Cells.y0[2];
                 frameLayout.setOrientation(0);
                 frameLayout.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(21.0f), 0);
                 int i21 = 0;
                 while (true) {
-                    ?? r32 = (org.telegram.ui.Cells.z0[]) frameLayout.f41051b;
+                    ?? r32 = (org.telegram.ui.Cells.y0[]) frameLayout.f41072b;
                     if (i21 >= r32.length) {
                         i5Var = frameLayout;
                         break;
@@ -640,11 +640,11 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                             z10 = false;
                         }
                         ?? frameLayout2 = new FrameLayout(context);
-                        frameLayout2.f23858c = new RectF();
+                        frameLayout2.f23836c = new RectF();
                         TextPaint textPaint = new TextPaint(1);
                         frameLayout2.d = textPaint;
                         frameLayout2.setWillNotDraw(false);
-                        frameLayout2.f23857b = z10;
+                        frameLayout2.f23835b = z10;
                         if (z10) {
                             i13 = R.string.ChatListExpanded;
                         } else {
@@ -652,39 +652,39 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                         }
                         frameLayout2.setContentDescription(LocaleController.getString(i13));
                         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-                        org.telegram.ui.Cells.y0 y0Var = new org.telegram.ui.Cells.y0(frameLayout2, context);
-                        frameLayout2.f23856a = y0Var;
-                        y0Var.setSize(AndroidUtilities.dp(20.0f));
-                        frameLayout2.addView(y0Var, w7.z5.a(22.0f, 0.0f, 26.0f, 10.0f, 0.0f, 22, 53));
+                        org.telegram.ui.Cells.x0 x0Var = new org.telegram.ui.Cells.x0(frameLayout2, context);
+                        frameLayout2.f23834a = x0Var;
+                        x0Var.setSize(AndroidUtilities.dp(20.0f));
+                        frameLayout2.addView(x0Var, w7.z5.a(22.0f, 0.0f, 26.0f, 10.0f, 0.0f, 22, 53));
                         if ((z10 && SharedConfig.useThreeLinesLayout) || (!z10 && !SharedConfig.useThreeLinesLayout)) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
-                        y0Var.a(z11, false);
+                        x0Var.a(z11, false);
                         r32[i21] = frameLayout2;
-                        org.telegram.ui.Cells.z0 z0Var = ((org.telegram.ui.Cells.z0[]) frameLayout.f41051b)[i21];
+                        org.telegram.ui.Cells.y0 y0Var = ((org.telegram.ui.Cells.y0[]) frameLayout.f41072b)[i21];
                         if (i21 == 1) {
                             i14 = 10;
                         } else {
                             i14 = 0;
                         }
-                        frameLayout.addView(z0Var, w7.z5.m(0.5f, -1, -1, i14, 0, 0));
-                        ((org.telegram.ui.Cells.z0[]) frameLayout.f41051b)[i21].setOnClickListener(new ci.h2(3, frameLayout, z10));
+                        frameLayout.addView(y0Var, w7.z5.m(0.5f, -1, -1, i14, 0, 0));
+                        ((org.telegram.ui.Cells.y0[]) frameLayout.f41072b)[i21].setOnClickListener(new ci.h2(3, frameLayout, z10));
                         i21++;
                     }
                 }
                 break;
             case 10:
-                i5Var = new org.telegram.ui.Cells.i5(21, 60, this.f42473c, null, true);
+                i5Var = new org.telegram.ui.Cells.i5(21, 60, this.f42497c, null, true);
                 break;
             case 11:
                 this.d = true;
-                ta1 ta1Var = new ta1(this, this.f42473c, themeActivity, themeActivity.f33890f, themeActivity.e, themeActivity.d);
-                themeActivity.f33886c = ta1Var;
+                ta1 ta1Var = new ta1(this, this.f42497c, themeActivity, themeActivity.f33897f, themeActivity.e, themeActivity.d);
+                themeActivity.f33893c = ta1Var;
                 ta1Var.setDrawDivider(themeActivity.v);
-                themeActivity.f33886c.setFocusable(false);
-                View view = themeActivity.f33886c;
+                themeActivity.f33893c.setFocusable(false);
+                View view = themeActivity.f33893c;
                 view.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(148.0f)));
                 i5Var = view;
                 break;
@@ -701,7 +701,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 ya1 ya1Var = new ya1(themeActivity, context);
                 ua1Var.setAdapter(ya1Var);
                 ua1Var.setOnItemClickListener(new pa1(this, ya1Var, ua1Var, 0));
-                ua1Var.setOnItemLongClickListener(new fr0(17, this, ya1Var));
+                ua1Var.setOnItemLongClickListener(new gn0(18, this, ya1Var));
                 ua1Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(62.0f)));
                 i5Var = ua1Var;
                 break;
@@ -717,23 +717,23 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 i15 = ((org.telegram.ui.ActionBar.n2) themeActivity).currentAccount;
                 ?? frameLayout3 = new FrameLayout(context);
                 Paint paint = new Paint(1);
-                frameLayout3.f28609a = paint;
-                frameLayout3.f28610b = new Paint(1);
+                frameLayout3.f28616a = paint;
+                frameLayout3.f28617b = new Paint(1);
                 Paint paint2 = new Paint(1);
-                frameLayout3.f28611c = paint2;
+                frameLayout3.f28618c = paint2;
                 Paint paint3 = new Paint(1);
                 frameLayout3.d = paint3;
                 frameLayout3.e = new RectF();
                 int i22 = 6;
                 frameLayout3.h = r14;
-                frameLayout3.f28613n = r15;
-                frameLayout3.f28614r = new org.telegram.ui.Components.uj0[6];
+                frameLayout3.f28620n = r15;
+                frameLayout3.f28621r = new org.telegram.ui.Components.uj0[6];
                 frameLayout3.v = new org.telegram.ui.Components.xj0[2];
                 float f11 = 1.0f;
-                frameLayout3.f28617x = 1.0f;
+                frameLayout3.f28624x = 1.0f;
                 String[] strArr = {LocaleController.getString(R.string.SwipeSettingsPin), LocaleController.getString(R.string.SwipeSettingsRead), LocaleController.getString(R.string.SwipeSettingsArchive), LocaleController.getString(R.string.SwipeSettingsMute), LocaleController.getString(R.string.SwipeSettingsDelete), LocaleController.getString(R.string.SwipeSettingsFolders)};
-                int i23 = org.telegram.ui.ActionBar.h6.f20970c9;
-                int[] iArr = {i23, i23, i23, i23, org.telegram.ui.ActionBar.h6.Y5, org.telegram.ui.ActionBar.h6.f20989d9};
+                int i23 = org.telegram.ui.ActionBar.h6.f20977c9;
+                int[] iArr = {i23, i23, i23, i23, org.telegram.ui.ActionBar.h6.Y5, org.telegram.ui.ActionBar.h6.f20996d9};
                 Paint.Style style = Paint.Style.STROKE;
                 paint.setStyle(style);
                 paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
@@ -745,7 +745,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 paint3.setStrokeCap(cap);
                 paint3.setStrokeWidth(AndroidUtilities.dp(2.0f));
                 org.telegram.ui.Components.lz0 lz0Var = new org.telegram.ui.Components.lz0(frameLayout3, context);
-                frameLayout3.f28612f = lz0Var;
+                frameLayout3.f28619f = lz0Var;
                 lz0Var.setMinValue(0);
                 lz0Var.setDrawDividers(false);
                 boolean isEmpty = MessagesController.getInstance(i15).dialogFilters.isEmpty();
@@ -764,23 +764,23 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 lz0Var.setValue(SharedConfig.getChatSwipeAction(i15));
                 frameLayout3.addView(lz0Var, w7.z5.a(-1.0f, 21.0f, 0.0f, 21.0f, 0.0f, 132, 5));
                 frameLayout3.setWillNotDraw(false);
-                frameLayout3.f28615s = 0;
+                frameLayout3.f28622s = 0;
                 for (int i24 = 0; i24 < 2; i24++) {
                     frameLayout3.v[i24] = new ImageView(context);
                     frameLayout3.addView(frameLayout3.v[i24], w7.z5.a(28.0f, 0.0f, 0.0f, 184.0f, 0.0f, 28, 21));
                 }
-                org.telegram.ui.Components.uj0 a2 = frameLayout3.a(frameLayout3.f28612f.getValue());
+                org.telegram.ui.Components.uj0 a2 = frameLayout3.a(frameLayout3.f28619f.getValue());
                 if (a2 != null) {
                     frameLayout3.v[0].setImageDrawable(a2);
                     a2.M(a2.e[0] - 1);
                 }
                 AndroidUtilities.updateViewVisibilityAnimated(frameLayout3.v[0], true, 0.5f, false);
                 AndroidUtilities.updateViewVisibilityAnimated(frameLayout3.v[1], false, 0.5f, false);
-                if (frameLayout3.f28612f.getValue() != 5) {
+                if (frameLayout3.f28619f.getValue() != 5) {
                     f11 = 0.0f;
                 }
-                frameLayout3.f28616w = f11;
-                frameLayout3.F = frameLayout3.f28612f.getValue();
+                frameLayout3.f28623w = f11;
+                frameLayout3.F = frameLayout3.f28619f.getValue();
                 i5Var = frameLayout3;
                 break;
             case 16:
@@ -790,7 +790,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 i5Var = faVar;
                 break;
             case 17:
-                View tuVar = new tu(themeActivity.f33890f, context, themeActivity);
+                View tuVar = new tu(themeActivity.f33897f, context, themeActivity);
                 tuVar.setFocusable(false);
                 tuVar.setLayoutParams(new s4.o0(-1, -2));
                 i5Var = tuVar;
@@ -818,7 +818,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
                 break;
             case 21:
                 i17 = ((org.telegram.ui.ActionBar.n2) themeActivity).currentAccount;
-                frameLayout = new oo0(i17, 0L, this.f42473c, themeActivity.getResourceProvider());
+                frameLayout = new po0(i17, 0L, this.f42497c, themeActivity.getResourceProvider());
                 i5Var = frameLayout;
                 break;
         }
@@ -828,9 +828,9 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
     @Override
     public final void y(s4.b1 b1Var) {
         boolean z10;
-        if (b1Var.f45941f == 4) {
-            org.telegram.ui.Cells.ga gaVar = (org.telegram.ui.Cells.ga) b1Var.f45938a;
-            if (b1Var.b() == org.telegram.ui.ActionBar.h6.f21182o) {
+        if (b1Var.f45961f == 4) {
+            org.telegram.ui.Cells.ga gaVar = (org.telegram.ui.Cells.ga) b1Var.f45958a;
+            if (b1Var.b() == org.telegram.ui.ActionBar.h6.f21189o) {
                 z10 = true;
             } else {
                 z10 = false;

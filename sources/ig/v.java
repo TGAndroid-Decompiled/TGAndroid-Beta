@@ -1,6 +1,7 @@
 package ig;
 
-import ai.ab;
+import ai.bb;
+import ai.o2;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +22,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -105,32 +106,32 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
             alertDialog$Builder = new AlertDialog$Builder(activity, 0, d6Var);
         }
         String string = LocaleController.getString(R.string.BusinessLinksRenameTitle);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
         b2Var.R = string;
         s sVar = new s(activity, d6Var);
         MediaDataController.getInstance(i10).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
         sVar.setInputType(49153);
         sVar.setTextSize(1, 18.0f);
         sVar.setText(tL_businessChatLink.title);
-        int i11 = h6.f21092j5;
+        int i11 = h6.f21099j5;
         sVar.setTextColor(h6.w0(i11, d6Var));
         sVar.setHintColor(h6.w0(h6.Xh, d6Var));
         sVar.setCursorColor(h6.x0(null, h6.Wd, false));
         sVar.setHintText(LocaleController.getString(R.string.BusinessLinksNamePlaceholder));
         sVar.setSingleLine(true);
         sVar.setFocusable(true);
-        sVar.setLineColors(h6.w0(h6.f21113k6, d6Var), h6.w0(h6.f21130l6, d6Var), h6.w0(h6.f21207p7, d6Var));
+        sVar.setLineColors(h6.w0(h6.f21120k6, d6Var), h6.w0(h6.f21137l6, d6Var), h6.w0(h6.f21214p7, d6Var));
         sVar.setImeOptions(6);
         sVar.setBackgroundDrawable(null);
         sVar.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
-        LinearLayout e = org.telegram.messenger.q.e(activity, 1);
+        LinearLayout e = org.telegram.messenger.g0.e(activity, 1);
         TextView textView = new TextView(activity);
-        wh.o(i11, d6Var, textView, 1, 16.0f);
+        kk.o(i11, d6Var, textView, 1, 16.0f);
         textView.setText(LocaleController.getString(R.string.BusinessLinksRenameMessage));
         e.addView(textView, z5.k(24.0f, 5.0f, 24.0f, 12.0f, -1, -2));
         e.addView(sVar, z5.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder.n(e);
-        b2Var.f20649a = AndroidUtilities.dp(292.0f);
+        b2Var.f20656a = AndroidUtilities.dp(292.0f);
         sVar.setOnEditorActionListener(new p(sVar, i10, tL_businessChatLink, b2VarArr, view2, 0));
         alertDialog$Builder.k(LocaleController.getString(R.string.Done), new hg.b2(sVar, i10, tL_businessChatLink, 2));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new fh.b(24));
@@ -141,13 +142,13 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
             d.setOnShowListener(new r(0, sVar));
             d.q(250L);
         } else {
-            b2Var.O = new ai.n2(22, view2, sVar);
+            b2Var.O = new o2(22, view2, sVar);
             b2VarArr[0] = b2Var;
-            b2Var.setOnDismissListener(new ab(sVar, 5));
+            b2Var.setOnDismissListener(new bb(sVar, 5));
             b2VarArr[0].setOnShowListener(new n(view2, sVar, 0));
             b2VarArr[0].show();
         }
-        b2VarArr[0].f20662h0 = false;
+        b2VarArr[0].f20669h0 = false;
         sVar.setSelection(sVar.getText().length());
     }
 
@@ -158,18 +159,18 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
         String string2 = LocaleController.getString(R.string.BusinessLinksInfo);
         int i10 = R.raw.biz_links;
         f61 f61Var = new f61(2);
-        f61Var.f26140l = string;
-        f61Var.f26143o = string2;
-        f61Var.f26139k = i10;
+        f61Var.f26147l = string;
+        f61Var.f26150o = string2;
+        f61Var.f26146k = i10;
         arrayList.add(f61Var);
         s61Var.U();
         y d10 = y.d(this.currentAccount);
-        if (d10.f13087b.size() < MessagesController.getInstance(d10.f13086a).businessChatLinksLimit) {
+        if (d10.f13091b.size() < MessagesController.getInstance(d10.f13090a).businessChatLinksLimit) {
             f61 c10 = f61.c(1, R.drawable.menu_link_create, LocaleController.getString(R.string.BusinessLinksAdd));
-            c10.f26145q = true;
+            c10.f26152q = true;
             arrayList.add(c10);
         }
-        ArrayList arrayList2 = y.d(this.currentAccount).f13087b;
+        ArrayList arrayList2 = y.d(this.currentAccount).f13091b;
         int size = arrayList2.size();
         int i11 = 0;
         int i12 = 0;
@@ -177,7 +178,7 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
             Object obj = arrayList2.get(i12);
             i12++;
             ?? obj2 = new Object();
-            obj2.f13051a = (TL_account.TL_businessChatLink) obj;
+            obj2.f13047a = (TL_account.TL_businessChatLink) obj;
             f61 f61Var2 = new f61(29);
             f61Var2.G = obj2;
             arrayList.add(f61Var2);
@@ -193,7 +194,7 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
         ArrayList<TLRPC.PrivacyRule> privacyRules = ContactsController.getInstance(this.currentAccount).getPrivacyRules(6);
         ArrayList<TLRPC.PrivacyRule> privacyRules2 = ContactsController.getInstance(this.currentAccount).getPrivacyRules(7);
         if (!TextUtils.isEmpty(currentUser.phone) && privacyRules != null && privacyRules2 != null && (a0(privacyRules) != 1 || a0(privacyRules2) != 2)) {
-            StringBuilder i13 = r.c.i(s10, "+");
+            StringBuilder i13 = r4.c.i(s10, "+");
             i13.append(currentUser.phone);
             arrayList3.add(i13.toString());
         }
@@ -211,8 +212,8 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
                 String str = (String) obj3;
                 int indexOf = formatString.indexOf(str);
                 if (indexOf > -1) {
-                    n4 n4Var = new n4(r.c.g("https://", str), (l11) null);
-                    n4Var.f28651f = this;
+                    n4 n4Var = new n4(r4.c.h("https://", str), (l11) null);
+                    n4Var.f28658f = this;
                     spannableString.setSpan(n4Var, indexOf, str.length() + indexOf, 33);
                 }
             }
@@ -233,37 +234,37 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
             TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
             createbusinesschatlink.link = tL_inputBusinessChatLink;
             tL_inputBusinessChatLink.message = "";
-            ConnectionsManager.getInstance(d10.f13086a).sendRequest(createbusinesschatlink, new x(d10, 1));
-        } else if (f61Var.f44314a == 29) {
+            ConnectionsManager.getInstance(d10.f13090a).sendRequest(createbusinesschatlink, new x(d10, 1));
+        } else if (f61Var.f44334a == 29) {
             Object obj = f61Var.G;
             if (obj instanceof u) {
-                Bundle j10 = org.telegram.ui.Cells.t0.j(6, "chatMode");
-                j10.putString("business_link", ((u) obj).f13051a.link);
-                presentFragment(new sn(j10));
+                Bundle i10 = org.telegram.ui.Cells.c1.i(6, "chatMode");
+                i10.putString("business_link", ((u) obj).f13047a.link);
+                presentFragment(new sn(i10));
             }
         }
     }
 
     @Override
     public final boolean X(f61 f61Var, View view) {
-        if (f61Var.f44314a == 29) {
+        if (f61Var.f44334a == 29) {
             Object obj = f61Var.G;
             if (obj instanceof u) {
-                final TL_account.TL_businessChatLink tL_businessChatLink = ((u) obj).f13051a;
+                final TL_account.TL_businessChatLink tL_businessChatLink = ((u) obj).f13047a;
                 i80 H = i80.H(this, view);
                 H.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new bc(tL_businessChatLink, 18), false);
                 H.c(R.drawable.msg_share, LocaleController.getString(R.string.LinkActionShare), new Runnable(this) {
-                    public final v f12975b;
+                    public final v f12980b;
 
                     {
-                        this.f12975b = this;
+                        this.f12980b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                v vVar = this.f12975b;
+                                v vVar = this.f12980b;
                                 vVar.getClass();
                                 Intent intent = new Intent(vVar.getParentActivity(), LaunchActivity.class);
                                 intent.setAction("android.intent.action.SEND");
@@ -272,20 +273,20 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
                                 vVar.startActivityForResult(intent, 500);
                                 return;
                             case 1:
-                                v.Y(this.f12975b, tL_businessChatLink);
+                                v.Y(this.f12980b, tL_businessChatLink);
                                 return;
                             default:
-                                v vVar2 = this.f12975b;
+                                v vVar2 = this.f12980b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vVar2.getParentActivity(), 0, vVar2.getResourceProvider());
-                                alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
-                                alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
-                                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new ah.h0(16, vVar2, tL_businessChatLink));
+                                alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
+                                alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
+                                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new ah.h0(17, vVar2, tL_businessChatLink));
                                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                                 vVar2.showDialog(b2Var);
                                 TextView textView = (TextView) b2Var.d(-1);
                                 if (textView != null) {
-                                    textView.setTextColor(vVar2.getThemedColor(h6.f21224q7));
+                                    textView.setTextColor(vVar2.getThemedColor(h6.f21231q7));
                                     return;
                                 }
                                 return;
@@ -293,17 +294,17 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
                     }
                 }, false);
                 H.c(R.drawable.msg_edit, LocaleController.getString(R.string.Rename), new Runnable(this) {
-                    public final v f12975b;
+                    public final v f12980b;
 
                     {
-                        this.f12975b = this;
+                        this.f12980b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                v vVar = this.f12975b;
+                                v vVar = this.f12980b;
                                 vVar.getClass();
                                 Intent intent = new Intent(vVar.getParentActivity(), LaunchActivity.class);
                                 intent.setAction("android.intent.action.SEND");
@@ -312,20 +313,20 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
                                 vVar.startActivityForResult(intent, 500);
                                 return;
                             case 1:
-                                v.Y(this.f12975b, tL_businessChatLink);
+                                v.Y(this.f12980b, tL_businessChatLink);
                                 return;
                             default:
-                                v vVar2 = this.f12975b;
+                                v vVar2 = this.f12980b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vVar2.getParentActivity(), 0, vVar2.getResourceProvider());
-                                alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
-                                alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
-                                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new ah.h0(16, vVar2, tL_businessChatLink));
+                                alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
+                                alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
+                                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new ah.h0(17, vVar2, tL_businessChatLink));
                                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                                 vVar2.showDialog(b2Var);
                                 TextView textView = (TextView) b2Var.d(-1);
                                 if (textView != null) {
-                                    textView.setTextColor(vVar2.getThemedColor(h6.f21224q7));
+                                    textView.setTextColor(vVar2.getThemedColor(h6.f21231q7));
                                     return;
                                 }
                                 return;
@@ -333,17 +334,17 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
                     }
                 }, false);
                 H.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable(this) {
-                    public final v f12975b;
+                    public final v f12980b;
 
                     {
-                        this.f12975b = this;
+                        this.f12980b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                v vVar = this.f12975b;
+                                v vVar = this.f12980b;
                                 vVar.getClass();
                                 Intent intent = new Intent(vVar.getParentActivity(), LaunchActivity.class);
                                 intent.setAction("android.intent.action.SEND");
@@ -352,27 +353,27 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
                                 vVar.startActivityForResult(intent, 500);
                                 return;
                             case 1:
-                                v.Y(this.f12975b, tL_businessChatLink);
+                                v.Y(this.f12980b, tL_businessChatLink);
                                 return;
                             default:
-                                v vVar2 = this.f12975b;
+                                v vVar2 = this.f12980b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vVar2.getParentActivity(), 0, vVar2.getResourceProvider());
-                                alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
-                                alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
-                                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new ah.h0(16, vVar2, tL_businessChatLink));
+                                alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
+                                alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
+                                alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new ah.h0(17, vVar2, tL_businessChatLink));
                                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
                                 vVar2.showDialog(b2Var);
                                 TextView textView = (TextView) b2Var.d(-1);
                                 if (textView != null) {
-                                    textView.setTextColor(vVar2.getThemedColor(h6.f21224q7));
+                                    textView.setTextColor(vVar2.getThemedColor(h6.f21231q7));
                                     return;
                                 }
                                 return;
                         }
                     }
                 }, true);
-                H.W(this.f31190a.V0(view, false));
+                H.W(this.f31197a.V0(view, false));
                 H.Z();
                 return true;
             }
@@ -383,9 +384,9 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
     @Override
     public final View createView(Context context) {
         super.createView(context);
-        this.f31190a.p1();
-        u61 u61Var = this.f31190a;
-        u61Var.W2.f30200r = false;
+        this.f31197a.p1();
+        u61 u61Var = this.f31197a;
+        u61Var.W2.f30207r = false;
         this.actionBar.A(u61Var, true);
         return this.fragmentView;
     }
@@ -395,9 +396,9 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
         s61 s61Var;
         if (i10 != NotificationCenter.businessLinksUpdated && i10 != NotificationCenter.privacyRulesUpdated) {
             if (i10 == NotificationCenter.businessLinkCreated) {
-                Bundle j10 = org.telegram.ui.Cells.t0.j(6, "chatMode");
-                j10.putString("business_link", ((TL_account.TL_businessChatLink) objArr[0]).link);
-                presentFragment(new sn(j10));
+                Bundle i12 = org.telegram.ui.Cells.c1.i(6, "chatMode");
+                i12.putString("business_link", ((TL_account.TL_businessChatLink) objArr[0]).link);
+                presentFragment(new sn(i12));
                 return;
             } else if (i10 == NotificationCenter.needDeleteBusinessLink) {
                 y.d(this.currentAccount).a(this, ((TL_account.TL_businessChatLink) objArr[0]).link);
@@ -406,7 +407,7 @@ public final class v extends v61 implements NotificationCenter.NotificationCente
                 return;
             }
         }
-        u61 u61Var = this.f31190a;
+        u61 u61Var = this.f31197a;
         if (u61Var != null && (s61Var = u61Var.W2) != null) {
             s61Var.N(true);
         }

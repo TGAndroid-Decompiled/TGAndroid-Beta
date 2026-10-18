@@ -39,99 +39,99 @@ public final class z0 {
     public final String X;
     public final String Y;
     public final long Z;
-    public long f10161a;
-    public final long f10162a0;
-    public final long f10163b;
-    public final float f10164b0;
-    public final String f10165c;
-    public final float f10166c0;
+    public long f10163a;
+    public final long f10164a0;
+    public final long f10165b;
+    public final float f10166b0;
+    public final String f10167c;
+    public final float f10168c0;
     public final String d;
-    public final float f10167d0;
+    public final float f10169d0;
     public final boolean e;
-    public final float f10168e0;
-    public final String f10169f;
-    public final TLRPC.InputPeer f10170f0;
-    public final boolean f10171g;
-    public final long f10172g0;
+    public final float f10170e0;
+    public final String f10171f;
+    public final TLRPC.InputPeer f10172f0;
+    public final boolean f10173g;
+    public final long f10174g0;
     public final boolean h;
-    public final String f10173h0;
-    public final long f10174i;
-    public final TLRPC.InputMedia f10175i0;
-    public final long f10176j;
-    public final t f10177j0;
-    public final int f10178k;
-    public final ArrayList f10179k0;
-    public final int f10180l;
-    public final int f10181m;
-    public final int f10182n;
-    public final MediaController.CropState f10183o;
-    public final int f10184p;
-    public final int f10185q;
-    public final long f10186r;
-    public final float[] f10187s;
-    public final int f10188t;
-    public final int f10189u;
+    public final String f10175h0;
+    public final long f10176i;
+    public final TLRPC.InputMedia f10177i0;
+    public final long f10178j;
+    public final t f10179j0;
+    public final int f10180k;
+    public final ArrayList f10181k0;
+    public final int f10182l;
+    public final int f10183m;
+    public final int f10184n;
+    public final MediaController.CropState f10185o;
+    public final int f10186p;
+    public final int f10187q;
+    public final long f10188r;
+    public final float[] f10189s;
+    public final int f10190t;
+    public final int f10191u;
     public final String v;
-    public final ArrayList f10190w;
-    public final ArrayList f10191x;
-    public final String f10192y;
-    public final String f10193z;
+    public final ArrayList f10192w;
+    public final ArrayList f10193x;
+    public final String f10194y;
+    public final String f10195z;
 
     public z0(a8 a8Var) {
         float[] fArr = new float[9];
-        this.f10187s = fArr;
+        this.f10189s = fArr;
         ArrayList arrayList = new ArrayList();
-        this.f10191x = arrayList;
+        this.f10193x = arrayList;
         this.V = 1.0f;
         this.W = 1.0f;
-        this.f10167d0 = 1.0f;
-        this.f10168e0 = 1.0f;
-        this.f10161a = a8Var.f8699b;
-        this.f10163b = a8Var.d;
+        this.f10169d0 = 1.0f;
+        this.f10170e0 = 1.0f;
+        this.f10163a = a8Var.f8700b;
+        this.f10165b = a8Var.d;
         File file = a8Var.O0;
-        this.f10165c = file == null ? "" : file.toString();
+        this.f10167c = file == null ? "" : file.toString();
         File file2 = a8Var.N0;
         this.d = file2 == null ? "" : file2.toString();
         this.e = a8Var.K;
         File file3 = a8Var.L;
-        this.f10169f = file3 == null ? "" : file3.toString();
-        this.f10171g = a8Var.M;
+        this.f10171f = file3 == null ? "" : file3.toString();
+        this.f10173g = a8Var.M;
         this.h = a8Var.Y;
         float f7 = a8Var.Z;
-        long j10 = a8Var.f8713h0;
-        this.f10174i = f7 * ((float) j10);
-        this.f10176j = a8Var.f8697a0 * ((float) j10);
-        this.f10178k = a8Var.Q;
-        this.f10180l = a8Var.R;
-        this.f10181m = a8Var.f8719k0;
-        this.f10182n = a8Var.f8721l0;
-        this.f10183o = a8Var.m0;
-        this.f10184p = a8Var.f8715i0;
-        this.f10185q = a8Var.f8717j0;
-        this.f10186r = j10;
-        a8Var.f8724n0.getValues(fArr);
-        this.f10188t = a8Var.A0;
-        this.f10189u = a8Var.B0;
+        long j10 = a8Var.f8714h0;
+        this.f10176i = f7 * ((float) j10);
+        this.f10178j = a8Var.f8698a0 * ((float) j10);
+        this.f10180k = a8Var.Q;
+        this.f10182l = a8Var.R;
+        this.f10183m = a8Var.f8720k0;
+        this.f10184n = a8Var.f8722l0;
+        this.f10185o = a8Var.m0;
+        this.f10186p = a8Var.f8716i0;
+        this.f10187q = a8Var.f8718j0;
+        this.f10188r = j10;
+        a8Var.f8725n0.getValues(fArr);
+        this.f10190t = a8Var.A0;
+        this.f10191u = a8Var.B0;
         CharSequence[] charSequenceArr = {a8Var.C0};
-        this.f10190w = a8Var.D0 ? MediaDataController.getInstance(a8Var.f8696a).getEntities(charSequenceArr, true) : null;
+        this.f10192w = a8Var.D0 ? MediaDataController.getInstance(a8Var.f8697a).getEntities(charSequenceArr, true) : null;
         CharSequence charSequence = charSequenceArr[0];
         this.v = charSequence == null ? "" : charSequence.toString();
         arrayList.addAll(a8Var.F0);
         File file4 = a8Var.P0;
-        this.f10192y = file4 == null ? "" : file4.toString();
+        this.f10194y = file4 == null ? "" : file4.toString();
         File file5 = a8Var.R0;
-        this.f10193z = file5 == null ? "" : file5.toString();
+        this.f10195z = file5 == null ? "" : file5.toString();
         this.A = a8Var.S0;
         this.B = a8Var.T0;
         this.C = a8Var.U0;
         File file6 = a8Var.Z0;
         this.D = file6 != null ? file6.toString() : "";
-        this.E = a8Var.f8698a1;
+        this.E = a8Var.f8699a1;
         this.F = a8Var.I0;
-        this.M = a8Var.f8740w;
-        this.N = a8Var.f8742x;
-        this.O = a8Var.f8744y;
-        this.P = a8Var.f8746z;
+        this.M = a8Var.f8741w;
+        this.N = a8Var.f8743x;
+        this.O = a8Var.f8745y;
+        this.P = a8Var.f8747z;
         this.Q = a8Var.A;
         this.R = a8Var.B;
         this.S = a8Var.C;
@@ -139,29 +139,29 @@ public final class z0 {
         this.U = a8Var.E;
         this.V = a8Var.F;
         this.W = a8Var.G;
-        File file7 = a8Var.f8726o0;
+        File file7 = a8Var.f8727o0;
         this.X = file7 != null ? file7.getAbsolutePath() : null;
-        this.Y = a8Var.f8728p0;
-        this.Z = a8Var.f8730q0;
-        this.f10162a0 = a8Var.f8732r0;
-        this.f10164b0 = a8Var.f8734s0;
-        this.f10166c0 = a8Var.f8736t0;
-        this.f10167d0 = a8Var.f8738u0;
-        this.f10168e0 = a8Var.P;
-        this.f10170f0 = a8Var.f8739v0;
-        this.f10172g0 = a8Var.J0;
-        this.f10173h0 = a8Var.K0;
-        this.f10175i0 = a8Var.L0;
-        this.f10177j0 = a8Var.S;
-        this.f10179k0 = VideoEditedInfo.Part.toParts(a8Var);
+        this.Y = a8Var.f8729p0;
+        this.Z = a8Var.f8731q0;
+        this.f10164a0 = a8Var.f8733r0;
+        this.f10166b0 = a8Var.f8735s0;
+        this.f10168c0 = a8Var.f8737t0;
+        this.f10169d0 = a8Var.f8739u0;
+        this.f10170e0 = a8Var.P;
+        this.f10172f0 = a8Var.f8740v0;
+        this.f10174g0 = a8Var.J0;
+        this.f10175h0 = a8Var.K0;
+        this.f10177i0 = a8Var.L0;
+        this.f10179j0 = a8Var.S;
+        this.f10181k0 = VideoEditedInfo.Part.toParts(a8Var);
     }
 
     public final a8 a() {
         a8 a8Var = new a8();
-        a8Var.f8699b = this.f10161a;
-        a8Var.f8702c = true;
-        a8Var.d = this.f10163b;
-        String str = this.f10165c;
+        a8Var.f8700b = this.f10163a;
+        a8Var.f8703c = true;
+        a8Var.d = this.f10165b;
+        String str = this.f10167c;
         if (!TextUtils.isEmpty(str)) {
             a8Var.O0 = new File(str);
         }
@@ -170,51 +170,51 @@ public final class z0 {
             a8Var.N0 = new File(str2);
         }
         a8Var.K = this.e;
-        String str3 = this.f10169f;
+        String str3 = this.f10171f;
         if (str3 != null) {
             a8Var.L = new File(str3);
         }
-        a8Var.M = this.f10171g;
+        a8Var.M = this.f10173g;
         a8Var.Y = this.h;
-        long j10 = this.f10186r;
-        a8Var.f8713h0 = j10;
+        long j10 = this.f10188r;
+        a8Var.f8714h0 = j10;
         if (j10 > 0) {
-            a8Var.Z = ((float) this.f10174i) / ((float) j10);
-            a8Var.f8697a0 = ((float) this.f10176j) / ((float) j10);
+            a8Var.Z = ((float) this.f10176i) / ((float) j10);
+            a8Var.f8698a0 = ((float) this.f10178j) / ((float) j10);
         } else {
             a8Var.Z = 0.0f;
-            a8Var.f8697a0 = 1.0f;
+            a8Var.f8698a0 = 1.0f;
         }
-        a8Var.Q = this.f10178k;
-        a8Var.R = this.f10180l;
-        a8Var.f8719k0 = this.f10181m;
-        a8Var.f8721l0 = this.f10182n;
-        a8Var.m0 = this.f10183o;
-        a8Var.f8715i0 = this.f10184p;
-        a8Var.f8717j0 = this.f10185q;
-        a8Var.f8724n0.setValues(this.f10187s);
-        a8Var.A0 = this.f10188t;
-        a8Var.B0 = this.f10189u;
+        a8Var.Q = this.f10180k;
+        a8Var.R = this.f10182l;
+        a8Var.f8720k0 = this.f10183m;
+        a8Var.f8722l0 = this.f10184n;
+        a8Var.m0 = this.f10185o;
+        a8Var.f8716i0 = this.f10186p;
+        a8Var.f8718j0 = this.f10187q;
+        a8Var.f8725n0.setValues(this.f10189s);
+        a8Var.A0 = this.f10190t;
+        a8Var.B0 = this.f10191u;
         String str4 = this.v;
         if (str4 != null) {
             SpannableString spannableString = new SpannableString(str4);
-            if (org.telegram.ui.ActionBar.h6.f21185o2 == null) {
+            if (org.telegram.ui.ActionBar.h6.f21192o2 == null) {
                 org.telegram.ui.ActionBar.h6.P();
             }
-            CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, org.telegram.ui.ActionBar.h6.f21185o2.getFontMetricsInt(), true);
-            MessageObject.addEntitiesToText(replaceEmoji, this.f10190w, true, false, true, false);
-            a8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, this.f10190w, org.telegram.ui.ActionBar.h6.f21185o2.getFontMetricsInt());
+            CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, org.telegram.ui.ActionBar.h6.f21192o2.getFontMetricsInt(), true);
+            MessageObject.addEntitiesToText(replaceEmoji, this.f10192w, true, false, true, false);
+            a8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, this.f10192w, org.telegram.ui.ActionBar.h6.f21192o2.getFontMetricsInt());
         } else {
             a8Var.C0 = "";
         }
         ArrayList arrayList = a8Var.F0;
         arrayList.clear();
-        arrayList.addAll(this.f10191x);
-        String str5 = this.f10192y;
+        arrayList.addAll(this.f10193x);
+        String str5 = this.f10194y;
         if (str5 != null) {
             a8Var.P0 = new File(str5);
         }
-        String str6 = this.f10193z;
+        String str6 = this.f10195z;
         if (str6 != null) {
             a8Var.R0 = new File(str6);
         }
@@ -225,18 +225,18 @@ public final class z0 {
         if (str7 != null) {
             a8Var.Z0 = new File(str7);
         }
-        a8Var.f8698a1 = this.E;
+        a8Var.f8699a1 = this.E;
         a8Var.I0 = this.F;
-        a8Var.f8711g = this.G;
-        a8Var.f8709f = this.H;
+        a8Var.f8712g = this.G;
+        a8Var.f8710f = this.H;
         a8Var.e = this.I;
         a8Var.J = this.L;
         a8Var.I = this.K;
         a8Var.H = this.J;
-        a8Var.f8740w = this.M;
-        a8Var.f8742x = this.N;
-        a8Var.f8744y = this.O;
-        a8Var.f8746z = this.P;
+        a8Var.f8741w = this.M;
+        a8Var.f8743x = this.N;
+        a8Var.f8745y = this.O;
+        a8Var.f8747z = this.P;
         a8Var.A = this.Q;
         a8Var.B = this.R;
         a8Var.C = this.S;
@@ -246,21 +246,21 @@ public final class z0 {
         a8Var.G = this.W;
         String str8 = this.X;
         if (str8 != null) {
-            a8Var.f8726o0 = new File(str8);
+            a8Var.f8727o0 = new File(str8);
         }
-        a8Var.f8728p0 = this.Y;
-        a8Var.f8730q0 = this.Z;
-        a8Var.f8732r0 = this.f10162a0;
-        a8Var.f8734s0 = this.f10164b0;
-        a8Var.f8736t0 = this.f10166c0;
-        a8Var.f8738u0 = this.f10167d0;
-        a8Var.P = this.f10168e0;
-        a8Var.f8739v0 = this.f10170f0;
-        a8Var.J0 = this.f10172g0;
-        a8Var.K0 = this.f10173h0;
-        a8Var.L0 = this.f10175i0;
-        a8Var.S = this.f10177j0;
-        a8Var.T = VideoEditedInfo.Part.toStoryEntries(this.f10179k0);
+        a8Var.f8729p0 = this.Y;
+        a8Var.f8731q0 = this.Z;
+        a8Var.f8733r0 = this.f10164a0;
+        a8Var.f8735s0 = this.f10166b0;
+        a8Var.f8737t0 = this.f10168c0;
+        a8Var.f8739u0 = this.f10169d0;
+        a8Var.P = this.f10170e0;
+        a8Var.f8740v0 = this.f10172f0;
+        a8Var.J0 = this.f10174g0;
+        a8Var.K0 = this.f10175h0;
+        a8Var.L0 = this.f10177i0;
+        a8Var.S = this.f10179j0;
+        a8Var.T = VideoEditedInfo.Part.toStoryEntries(this.f10181k0);
         return a8Var;
     }
 
@@ -271,36 +271,36 @@ public final class z0 {
         int size4;
         ArrayList arrayList;
         nativeByteBuffer.writeInt32(-1318387531);
-        nativeByteBuffer.writeInt64(this.f10163b);
-        nativeByteBuffer.writeString(this.f10165c);
+        nativeByteBuffer.writeInt64(this.f10165b);
+        nativeByteBuffer.writeString(this.f10167c);
         nativeByteBuffer.writeBool(this.e);
-        nativeByteBuffer.writeString(this.f10169f);
-        nativeByteBuffer.writeBool(this.f10171g);
+        nativeByteBuffer.writeString(this.f10171f);
+        nativeByteBuffer.writeBool(this.f10173g);
         nativeByteBuffer.writeBool(this.h);
-        nativeByteBuffer.writeInt64(this.f10174i);
-        nativeByteBuffer.writeInt64(this.f10176j);
-        nativeByteBuffer.writeInt32(this.f10178k);
-        nativeByteBuffer.writeInt32(this.f10180l);
-        nativeByteBuffer.writeInt32(this.f10181m);
-        nativeByteBuffer.writeInt32(this.f10182n);
-        nativeByteBuffer.writeInt32(this.f10184p);
-        nativeByteBuffer.writeInt32(this.f10185q);
-        nativeByteBuffer.writeInt64(this.f10186r);
+        nativeByteBuffer.writeInt64(this.f10176i);
+        nativeByteBuffer.writeInt64(this.f10178j);
+        nativeByteBuffer.writeInt32(this.f10180k);
+        nativeByteBuffer.writeInt32(this.f10182l);
+        nativeByteBuffer.writeInt32(this.f10183m);
+        nativeByteBuffer.writeInt32(this.f10184n);
+        nativeByteBuffer.writeInt32(this.f10186p);
+        nativeByteBuffer.writeInt32(this.f10187q);
+        nativeByteBuffer.writeInt64(this.f10188r);
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            float[] fArr = this.f10187s;
+            float[] fArr = this.f10189s;
             if (i11 >= fArr.length) {
                 break;
             }
             nativeByteBuffer.writeFloat(fArr[i11]);
             i11++;
         }
-        nativeByteBuffer.writeInt32(this.f10188t);
-        nativeByteBuffer.writeInt32(this.f10189u);
+        nativeByteBuffer.writeInt32(this.f10190t);
+        nativeByteBuffer.writeInt32(this.f10191u);
         nativeByteBuffer.writeString(this.v);
         nativeByteBuffer.writeInt32(481674261);
-        ArrayList arrayList2 = this.f10190w;
+        ArrayList arrayList2 = this.f10192w;
         if (arrayList2 == null) {
             size = 0;
         } else {
@@ -313,7 +313,7 @@ public final class z0 {
             }
         }
         nativeByteBuffer.writeInt32(481674261);
-        ArrayList arrayList3 = this.f10191x;
+        ArrayList arrayList3 = this.f10193x;
         if (arrayList3 == null) {
             size2 = 0;
         } else {
@@ -326,7 +326,7 @@ public final class z0 {
             }
         }
         nativeByteBuffer.writeBool(false);
-        nativeByteBuffer.writeString(this.f10192y);
+        nativeByteBuffer.writeString(this.f10194y);
         nativeByteBuffer.writeInt64(this.A);
         nativeByteBuffer.writeInt32(481674261);
         ArrayList arrayList4 = this.B;
@@ -376,7 +376,7 @@ public final class z0 {
         nativeByteBuffer.writeInt64(this.L);
         nativeByteBuffer.writeInt64(this.K);
         nativeByteBuffer.writeInt64(this.J);
-        nativeByteBuffer.writeString(this.f10193z);
+        nativeByteBuffer.writeString(this.f10195z);
         nativeByteBuffer.writeBool(this.M);
         TLRPC.TL_error tL_error = this.N;
         if (tL_error == null) {
@@ -411,7 +411,7 @@ public final class z0 {
             nativeByteBuffer.writeFloat(this.V);
             nativeByteBuffer.writeFloat(this.W);
         }
-        TLRPC.InputPeer inputPeer = this.f10170f0;
+        TLRPC.InputPeer inputPeer = this.f10172f0;
         if (inputPeer != null) {
             inputPeer.serializeToStream(nativeByteBuffer);
         } else {
@@ -424,28 +424,28 @@ public final class z0 {
             nativeByteBuffer.writeInt32(1137015880);
             nativeByteBuffer.writeString(str6);
             nativeByteBuffer.writeInt64(this.Z);
-            nativeByteBuffer.writeInt64(this.f10162a0);
-            nativeByteBuffer.writeFloat(this.f10164b0);
-            nativeByteBuffer.writeFloat(this.f10166c0);
-            nativeByteBuffer.writeFloat(this.f10167d0);
+            nativeByteBuffer.writeInt64(this.f10164a0);
+            nativeByteBuffer.writeFloat(this.f10166b0);
+            nativeByteBuffer.writeFloat(this.f10168c0);
+            nativeByteBuffer.writeFloat(this.f10169d0);
         }
-        nativeByteBuffer.writeFloat(this.f10168e0);
-        nativeByteBuffer.writeInt64(this.f10172g0);
-        String str7 = this.f10173h0;
+        nativeByteBuffer.writeFloat(this.f10170e0);
+        nativeByteBuffer.writeInt64(this.f10174g0);
+        String str7 = this.f10175h0;
         if (str7 != null) {
             str = str7;
         }
         nativeByteBuffer.writeString(str);
-        TLRPC.InputMedia inputMedia = this.f10175i0;
+        TLRPC.InputMedia inputMedia = this.f10177i0;
         if (inputMedia == null) {
             nativeByteBuffer.writeInt32(1450380236);
         } else {
             inputMedia.serializeToStream(nativeByteBuffer);
         }
-        t tVar = this.f10177j0;
-        if (tVar != null && tVar.e.size() > 1 && (arrayList = this.f10179k0) != null && arrayList.size() > 1) {
+        t tVar = this.f10179j0;
+        if (tVar != null && tVar.e.size() > 1 && (arrayList = this.f10181k0) != null && arrayList.size() > 1) {
             nativeByteBuffer.writeInt32(-559038737);
-            nativeByteBuffer.writeString(tVar.f9827a);
+            nativeByteBuffer.writeString(tVar.f9829a);
             int size5 = arrayList.size();
             while (i10 < size5) {
                 Object obj = arrayList.get(i10);
@@ -455,7 +455,7 @@ public final class z0 {
         } else {
             nativeByteBuffer.writeInt32(1450380236);
         }
-        MediaController.CropState cropState = this.f10183o;
+        MediaController.CropState cropState = this.f10185o;
         if (cropState == null) {
             nativeByteBuffer.writeInt32(1450380236);
         } else {
@@ -471,47 +471,47 @@ public final class z0 {
 
     public z0(NativeByteBuffer nativeByteBuffer) {
         int readInt32;
-        this.f10187s = new float[9];
-        this.f10191x = new ArrayList();
+        this.f10189s = new float[9];
+        this.f10193x = new ArrayList();
         this.V = 1.0f;
         this.W = 1.0f;
-        this.f10167d0 = 1.0f;
-        this.f10168e0 = 1.0f;
+        this.f10169d0 = 1.0f;
+        this.f10170e0 = 1.0f;
         if (nativeByteBuffer.readInt32(true) == -1318387531) {
-            this.f10163b = nativeByteBuffer.readInt64(true);
+            this.f10165b = nativeByteBuffer.readInt64(true);
             String readString = nativeByteBuffer.readString(true);
-            this.f10165c = readString;
+            this.f10167c = readString;
             if (readString != null && readString.length() == 0) {
-                this.f10165c = null;
+                this.f10167c = null;
             }
             this.e = nativeByteBuffer.readBool(true);
             String readString2 = nativeByteBuffer.readString(true);
-            this.f10169f = readString2;
+            this.f10171f = readString2;
             if (readString2 != null && readString2.length() == 0) {
-                this.f10169f = null;
+                this.f10171f = null;
             }
-            this.f10171g = nativeByteBuffer.readBool(true);
+            this.f10173g = nativeByteBuffer.readBool(true);
             this.h = nativeByteBuffer.readBool(true);
-            this.f10174i = nativeByteBuffer.readInt64(true);
-            this.f10176j = nativeByteBuffer.readInt64(true);
-            this.f10178k = nativeByteBuffer.readInt32(true);
-            this.f10180l = nativeByteBuffer.readInt32(true);
-            this.f10181m = nativeByteBuffer.readInt32(true);
-            this.f10182n = nativeByteBuffer.readInt32(true);
-            this.f10184p = nativeByteBuffer.readInt32(true);
-            this.f10185q = nativeByteBuffer.readInt32(true);
-            this.f10186r = nativeByteBuffer.readInt64(true);
+            this.f10176i = nativeByteBuffer.readInt64(true);
+            this.f10178j = nativeByteBuffer.readInt64(true);
+            this.f10180k = nativeByteBuffer.readInt32(true);
+            this.f10182l = nativeByteBuffer.readInt32(true);
+            this.f10183m = nativeByteBuffer.readInt32(true);
+            this.f10184n = nativeByteBuffer.readInt32(true);
+            this.f10186p = nativeByteBuffer.readInt32(true);
+            this.f10187q = nativeByteBuffer.readInt32(true);
+            this.f10188r = nativeByteBuffer.readInt64(true);
             int i10 = 0;
             while (true) {
-                float[] fArr = this.f10187s;
+                float[] fArr = this.f10189s;
                 if (i10 >= fArr.length) {
                     break;
                 }
                 fArr[i10] = nativeByteBuffer.readFloat(true);
                 i10++;
             }
-            this.f10188t = nativeByteBuffer.readInt32(true);
-            this.f10189u = nativeByteBuffer.readInt32(true);
+            this.f10190t = nativeByteBuffer.readInt32(true);
+            this.f10191u = nativeByteBuffer.readInt32(true);
             String readString3 = nativeByteBuffer.readString(true);
             this.v = readString3;
             if (readString3 != null && readString3.length() == 0) {
@@ -520,22 +520,22 @@ public final class z0 {
             if (nativeByteBuffer.readInt32(true) == 481674261) {
                 int readInt322 = nativeByteBuffer.readInt32(true);
                 for (int i11 = 0; i11 < readInt322; i11++) {
-                    if (this.f10190w == null) {
-                        this.f10190w = new ArrayList();
+                    if (this.f10192w == null) {
+                        this.f10192w = new ArrayList();
                     }
-                    this.f10190w.add(TLRPC.MessageEntity.TLdeserialize(nativeByteBuffer, nativeByteBuffer.readInt32(true), true));
+                    this.f10192w.add(TLRPC.MessageEntity.TLdeserialize(nativeByteBuffer, nativeByteBuffer.readInt32(true), true));
                 }
                 if (nativeByteBuffer.readInt32(true) == 481674261) {
                     int readInt323 = nativeByteBuffer.readInt32(true);
-                    this.f10191x.clear();
+                    this.f10193x.clear();
                     for (int i12 = 0; i12 < readInt323; i12++) {
-                        this.f10191x.add(TLRPC.InputPrivacyRule.TLdeserialize(nativeByteBuffer, nativeByteBuffer.readInt32(true), true));
+                        this.f10193x.add(TLRPC.InputPrivacyRule.TLdeserialize(nativeByteBuffer, nativeByteBuffer.readInt32(true), true));
                     }
                     nativeByteBuffer.readBool(true);
                     String readString4 = nativeByteBuffer.readString(true);
-                    this.f10192y = readString4;
+                    this.f10194y = readString4;
                     if (readString4 != null && readString4.length() == 0) {
-                        this.f10192y = null;
+                        this.f10194y = null;
                     }
                     this.A = nativeByteBuffer.readInt64(true);
                     if (nativeByteBuffer.readInt32(true) == 481674261) {
@@ -587,9 +587,9 @@ public final class z0 {
                             }
                             if (nativeByteBuffer.remaining() > 0) {
                                 String readString6 = nativeByteBuffer.readString(true);
-                                this.f10193z = readString6;
+                                this.f10195z = readString6;
                                 if (readString6 != null && readString6.length() == 0) {
-                                    this.f10193z = null;
+                                    this.f10195z = null;
                                 }
                             }
                             if (nativeByteBuffer.remaining() > 0) {
@@ -617,40 +617,40 @@ public final class z0 {
                                 this.W = nativeByteBuffer.readFloat(true);
                             }
                             if (nativeByteBuffer.remaining() > 0) {
-                                this.f10170f0 = TLRPC.InputPeer.TLdeserialize(nativeByteBuffer, nativeByteBuffer.readInt32(true), true);
+                                this.f10172f0 = TLRPC.InputPeer.TLdeserialize(nativeByteBuffer, nativeByteBuffer.readInt32(true), true);
                             }
                             if (nativeByteBuffer.remaining() > 0 && nativeByteBuffer.readInt32(true) == 1137015880) {
                                 this.X = nativeByteBuffer.readString(true);
                                 this.Z = nativeByteBuffer.readInt64(true);
-                                this.f10162a0 = nativeByteBuffer.readInt64(true);
-                                this.f10164b0 = nativeByteBuffer.readFloat(true);
-                                this.f10166c0 = nativeByteBuffer.readFloat(true);
-                                this.f10167d0 = nativeByteBuffer.readFloat(true);
+                                this.f10164a0 = nativeByteBuffer.readInt64(true);
+                                this.f10166b0 = nativeByteBuffer.readFloat(true);
+                                this.f10168c0 = nativeByteBuffer.readFloat(true);
+                                this.f10169d0 = nativeByteBuffer.readFloat(true);
                             }
                             if (nativeByteBuffer.remaining() > 0) {
-                                this.f10168e0 = nativeByteBuffer.readFloat(true);
+                                this.f10170e0 = nativeByteBuffer.readFloat(true);
                             }
                             if (nativeByteBuffer.remaining() > 0) {
-                                this.f10172g0 = nativeByteBuffer.readInt64(true);
-                                this.f10173h0 = nativeByteBuffer.readString(true);
+                                this.f10174g0 = nativeByteBuffer.readInt64(true);
+                                this.f10175h0 = nativeByteBuffer.readString(true);
                                 int readInt328 = nativeByteBuffer.readInt32(true);
                                 if (readInt328 != 1450380236) {
-                                    this.f10175i0 = TLRPC.InputMedia.TLdeserialize(nativeByteBuffer, readInt328, true);
+                                    this.f10177i0 = TLRPC.InputMedia.TLdeserialize(nativeByteBuffer, readInt328, true);
                                 }
                             }
                             if (nativeByteBuffer.remaining() > 0 && nativeByteBuffer.readInt32(true) == -559038737) {
-                                this.f10177j0 = new t(nativeByteBuffer.readString(true));
-                                this.f10179k0 = new ArrayList();
-                                for (int i15 = 0; i15 < this.f10177j0.e.size(); i15++) {
+                                this.f10179j0 = new t(nativeByteBuffer.readString(true));
+                                this.f10181k0 = new ArrayList();
+                                for (int i15 = 0; i15 < this.f10179j0.e.size(); i15++) {
                                     VideoEditedInfo.Part part = new VideoEditedInfo.Part();
                                     part.readParams(nativeByteBuffer, true);
-                                    part.part = (s) this.f10177j0.e.get(i15);
-                                    this.f10179k0.add(part);
+                                    part.part = (s) this.f10179j0.e.get(i15);
+                                    this.f10181k0.add(part);
                                 }
                             }
                             if (nativeByteBuffer.remaining() > 0 && nativeByteBuffer.readInt32(true) == 1151577037) {
                                 MediaController.CropState cropState = new MediaController.CropState();
-                                this.f10183o = cropState;
+                                this.f10185o = cropState;
                                 cropState.readParams(nativeByteBuffer, true);
                             }
                             if (nativeByteBuffer.remaining() <= 0 || (readInt32 = nativeByteBuffer.readInt32(true)) != 448771445) {

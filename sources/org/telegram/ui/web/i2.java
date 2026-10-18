@@ -10,25 +10,25 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 public final class i2 implements Runnable {
-    public final int f42632a;
-    public final m2 f42633b;
+    public final int f42657a;
+    public final m2 f42658b;
 
     public i2(m2 m2Var, int i10) {
-        this.f42632a = i10;
-        this.f42633b = m2Var;
+        this.f42657a = i10;
+        this.f42658b = m2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f42632a) {
+        switch (this.f42657a) {
             case 0:
-                final m2 m2Var = this.f42633b;
+                final m2 m2Var = this.f42658b;
                 if (!m2Var.d) {
                     m2Var.d = true;
                     long currentTimeMillis = System.currentTimeMillis();
                     final ArrayList arrayList = new ArrayList();
-                    for (l2 l2Var : m2Var.f42678a.values()) {
-                        if (!TextUtils.isEmpty(l2Var.f42666b) && currentTimeMillis - l2Var.f42665a <= 604800000) {
+                    for (l2 l2Var : m2Var.f42705a.values()) {
+                        if (!TextUtils.isEmpty(l2Var.f42691b) && currentTimeMillis - l2Var.f42690a <= 604800000) {
                             arrayList.add(0, l2Var);
                             if (arrayList.size() >= 100) {
                                 Utilities.globalQueue.postRunnable(new Runnable() {
@@ -43,11 +43,11 @@ public final class i2 implements Runnable {
                                                     ArrayList arrayList2 = arrayList;
                                                     if (i10 < arrayList2.size()) {
                                                         l2 l2Var2 = (l2) arrayList2.get(i10);
-                                                        m2Var2.f42678a.put(l2Var2.f42666b, l2Var2);
+                                                        m2Var2.f42705a.put(l2Var2.f42691b, l2Var2);
                                                         i10++;
                                                     } else {
-                                                        m2Var2.f42679b = true;
-                                                        m2Var2.f42680c = false;
+                                                        m2Var2.f42706b = true;
+                                                        m2Var2.f42707c = false;
                                                         return;
                                                     }
                                                 }
@@ -65,7 +65,7 @@ public final class i2 implements Runnable {
                                                     }
                                                 }
                                                 k2 k2Var = new k2();
-                                                k2Var.f42659a.addAll(arrayList);
+                                                k2Var.f42684a.addAll(arrayList);
                                                 SerializedData serializedData = new SerializedData(k2Var.getObjectSize());
                                                 k2Var.serializeToStream(serializedData);
                                                 try {
@@ -96,11 +96,11 @@ public final class i2 implements Runnable {
                                         ArrayList arrayList2 = arrayList;
                                         if (i10 < arrayList2.size()) {
                                             l2 l2Var2 = (l2) arrayList2.get(i10);
-                                            m2Var2.f42678a.put(l2Var2.f42666b, l2Var2);
+                                            m2Var2.f42705a.put(l2Var2.f42691b, l2Var2);
                                             i10++;
                                         } else {
-                                            m2Var2.f42679b = true;
-                                            m2Var2.f42680c = false;
+                                            m2Var2.f42706b = true;
+                                            m2Var2.f42707c = false;
                                             return;
                                         }
                                     }
@@ -118,7 +118,7 @@ public final class i2 implements Runnable {
                                         }
                                     }
                                     k2 k2Var = new k2();
-                                    k2Var.f42659a.addAll(arrayList);
+                                    k2Var.f42684a.addAll(arrayList);
                                     SerializedData serializedData = new SerializedData(k2Var.getObjectSize());
                                     k2Var.serializeToStream(serializedData);
                                     try {
@@ -137,10 +137,10 @@ public final class i2 implements Runnable {
                 }
                 return;
             case 1:
-                final m2 m2Var2 = this.f42633b;
+                final m2 m2Var2 = this.f42658b;
                 File file = new File(FileLoader.getDirectory(4), "webmetacache.dat");
                 if (!file.exists()) {
-                    m2Var2.f42679b = true;
+                    m2Var2.f42706b = true;
                     return;
                 }
                 final ArrayList arrayList2 = new ArrayList();
@@ -148,7 +148,7 @@ public final class i2 implements Runnable {
                     SerializedData serializedData = new SerializedData(file);
                     k2 k2Var = new k2();
                     k2Var.readParams(serializedData, true);
-                    arrayList2.addAll(k2Var.f42659a);
+                    arrayList2.addAll(k2Var.f42684a);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -164,11 +164,11 @@ public final class i2 implements Runnable {
                                     ArrayList arrayList22 = arrayList2;
                                     if (i10 < arrayList22.size()) {
                                         l2 l2Var2 = (l2) arrayList22.get(i10);
-                                        m2Var22.f42678a.put(l2Var2.f42666b, l2Var2);
+                                        m2Var22.f42705a.put(l2Var2.f42691b, l2Var2);
                                         i10++;
                                     } else {
-                                        m2Var22.f42679b = true;
-                                        m2Var22.f42680c = false;
+                                        m2Var22.f42706b = true;
+                                        m2Var22.f42707c = false;
                                         return;
                                     }
                                 }
@@ -186,7 +186,7 @@ public final class i2 implements Runnable {
                                     }
                                 }
                                 k2 k2Var2 = new k2();
-                                k2Var2.f42659a.addAll(arrayList2);
+                                k2Var2.f42684a.addAll(arrayList2);
                                 SerializedData serializedData2 = new SerializedData(k2Var2.getObjectSize());
                                 k2Var2.serializeToStream(serializedData2);
                                 try {
@@ -203,7 +203,7 @@ public final class i2 implements Runnable {
                 });
                 return;
             default:
-                this.f42633b.d = false;
+                this.f42658b.d = false;
                 return;
         }
     }

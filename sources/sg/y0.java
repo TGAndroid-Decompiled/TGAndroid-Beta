@@ -5,8 +5,8 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 public final class y0 extends BitmapDrawable {
-    public int[] f46518a;
-    public Drawable f46519b;
+    public int[] f46538a;
+    public Drawable f46539b;
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {

@@ -12,10 +12,10 @@ import k2.q0;
 import k2.t0;
 import k2.x;
 public final class e implements o {
-    public final int f13933a;
+    public final int f13940a;
 
     public e(int i10) {
-        this.f13933a = i10;
+        this.f13940a = i10;
     }
 
     public static AudioDescriptor b(Object obj) {
@@ -26,7 +26,7 @@ public final class e implements o {
     public void invoke(Object obj) {
         long j10;
         x xVar;
-        switch (this.f13933a) {
+        switch (this.f13940a) {
             case 0:
                 ((b) obj).getClass();
                 return;
@@ -102,37 +102,37 @@ public final class e implements o {
             case 26:
             default:
                 p0 p0Var = (p0) obj;
-                t0 t0Var = p0Var.f14771b;
-                if (p0Var.equals(t0Var.f14803j) && (xVar = t0Var.f14807n) != null && t0Var.O) {
+                t0 t0Var = p0Var.f14778b;
+                if (p0Var.equals(t0Var.f14810j) && (xVar = t0Var.f14814n) != null && t0Var.O) {
                     xVar.T();
                     return;
                 }
                 return;
             case 27:
                 p0 p0Var2 = (p0) obj;
-                t0 t0Var2 = p0Var2.f14771b;
-                if (p0Var2.equals(t0Var2.f14803j) && t0Var2.f14807n != null) {
-                    q0 q0Var = t0Var2.f14809p;
-                    int i10 = q0Var.f14776b;
+                t0 t0Var2 = p0Var2.f14778b;
+                if (p0Var2.equals(t0Var2.f14810j) && t0Var2.f14814n != null) {
+                    q0 q0Var = t0Var2.f14816p;
+                    int i10 = q0Var.f14783b;
                     if (i10 != -1) {
-                        long j11 = ((k2.o) q0Var.e).f14764f / i10;
-                        i0 i0Var = t0Var2.f14813t;
+                        long j11 = ((k2.o) q0Var.e).f14771f / i10;
+                        i0 i0Var = t0Var2.f14820t;
                         i0Var.getClass();
-                        j10 = m0.Y(i0Var.f14689a.getSampleRate(), j11);
+                        j10 = m0.Y(i0Var.f14696a.getSampleRate(), j11);
                     } else {
                         j10 = -9223372036854775807L;
                     }
-                    t0Var2.f14807n.s(((k2.o) t0Var2.f14809p.e).f14764f, m0.h0(j10), SystemClock.elapsedRealtime() - t0Var2.W);
+                    t0Var2.f14814n.s(((k2.o) t0Var2.f14816p.e).f14771f, m0.h0(j10), SystemClock.elapsedRealtime() - t0Var2.W);
                     return;
                 }
                 return;
             case 28:
                 p0 p0Var3 = (p0) obj;
                 p0Var3.getClass();
-                t0.f14794c0.getAndDecrement();
-                x xVar2 = p0Var3.f14771b.f14807n;
+                t0.f14801c0.getAndDecrement();
+                x xVar2 = p0Var3.f14778b.f14814n;
                 if (xVar2 != 0) {
-                    int i11 = p0Var3.f14770a.f14761a;
+                    int i11 = p0Var3.f14777a.f14768a;
                     xVar2.S(new Object());
                     return;
                 }
@@ -141,34 +141,34 @@ public final class e implements o {
     }
 
     public e(a aVar, float f7) {
-        this.f13933a = 22;
+        this.f13940a = 22;
     }
 
     public e(a aVar, int i10) {
-        this.f13933a = i10;
+        this.f13940a = i10;
     }
 
     public e(a aVar, int i10, int i11) {
-        this.f13933a = i11;
+        this.f13940a = i11;
     }
 
     public e(a aVar, long j10) {
-        this.f13933a = 13;
+        this.f13940a = 13;
     }
 
-    public e(a aVar, w wVar, i2.e eVar, int i10) {
-        this.f13933a = i10;
+    public e(a aVar, w wVar, i2.f fVar, int i10) {
+        this.f13940a = i10;
     }
 
     public e(a aVar, o0 o0Var, int i10) {
-        this.f13933a = 21;
+        this.f13940a = 21;
     }
 
     public e(a aVar, Object obj, int i10) {
-        this.f13933a = i10;
+        this.f13940a = i10;
     }
 
     public e(a aVar, boolean z10, int i10) {
-        this.f13933a = i10;
+        this.f13940a = i10;
     }
 }

@@ -9,7 +9,7 @@ import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import e2.n0;
-import ig.c2;
+import ig.e2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
@@ -212,9 +212,9 @@ public class VideoPlayerHolderBase {
         }
         a81 a81Var2 = new a81(false, z10);
         this.videoPlayer = a81Var2;
-        a81Var2.f24540y = this.allowMultipleInstances;
+        a81Var2.f24547y = this.allowMultipleInstances;
         a81Var2.J = new AnonymousClass2();
-        this.videoPlayer.f24526c = true;
+        this.videoPlayer.f24533c = true;
     }
 
     public void lambda$loopBack$9() {
@@ -362,7 +362,7 @@ public class VideoPlayerHolderBase {
         boolean y3 = a81Var.y();
         if (z10) {
             a81 a81Var2 = this.videoPlayer;
-            if (a81Var2.f24525b0) {
+            if (a81Var2.f24532b0) {
                 a81Var2.B();
                 long n10 = this.videoPlayer.n();
                 this.videoPlayer.H();
@@ -619,7 +619,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.cancelRunnable(this.initRunnable);
         this.dispatchQueue.cancelRunnable(this.progressRunnable);
         this.initRunnable = null;
-        this.dispatchQueue.postRunnable(new c2(this, document, runnable, 16));
+        this.dispatchQueue.postRunnable(new e2(this, document, runnable, 16));
         Bitmap bitmap = this.playerStubBitmap;
         if (bitmap != null) {
             AndroidUtilities.recycleBitmap(bitmap);

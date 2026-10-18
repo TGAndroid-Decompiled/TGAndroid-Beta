@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.ui.Components.db0;
 public final class v0 implements MediaDataController.KeywordResultCallback, org.telegram.ui.Cells.e2 {
-    public final j1 f12078a;
+    public final j1 f12080a;
 
     public v0(j1 j1Var) {
-        this.f12078a = j1Var;
+        this.f12080a = j1Var;
     }
 
     @Override
     public void run(ArrayList arrayList, String str) {
         boolean z10;
-        j1 j1Var = this.f12078a;
+        j1 j1Var = this.f12080a;
         j1Var.N = arrayList;
         j1Var.I = null;
         j1Var.A0 = null;
-        j1Var.f11948x = null;
-        j1Var.f11950y = null;
+        j1Var.f11950x = null;
+        j1Var.f11952y = null;
         j1Var.J = null;
         j1Var.Q = null;
         j1Var.M = null;

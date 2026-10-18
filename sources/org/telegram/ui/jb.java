@@ -5,19 +5,19 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class jb extends bu0 {
-    public final xb f38108a;
+    public final xb f38124a;
 
     public jb(xb xbVar) {
-        this.f38108a = xbVar;
+        this.f38124a = xbVar;
     }
 
     @Override
     public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        org.telegram.ui.Cells.x0 x0Var;
+        org.telegram.ui.Cells.w0 w0Var;
         MessageObject messageObject2;
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject3;
-        xb xbVar = this.f38108a;
+        xb xbVar = this.f38124a;
         int childCount = xbVar.v.getChildCount();
         int i11 = 0;
         while (true) {
@@ -30,10 +30,10 @@ public final class jb extends bu0 {
                 if (messageObject != null && (messageObject3 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && messageObject3.getId() == messageObject.getId()) {
                     imageReceiver = u1Var.getPhotoImage();
                 }
-            } else if ((childAt instanceof org.telegram.ui.Cells.x0) && (messageObject2 = (x0Var = (org.telegram.ui.Cells.x0) childAt).getMessageObject()) != null) {
+            } else if ((childAt instanceof org.telegram.ui.Cells.w0) && (messageObject2 = (w0Var = (org.telegram.ui.Cells.w0) childAt).getMessageObject()) != null) {
                 if (messageObject != null) {
                     if (messageObject2.getId() == messageObject.getId()) {
-                        imageReceiver = x0Var.getPhotoImage();
+                        imageReceiver = w0Var.getPhotoImage();
                     }
                 } else if (fileLocation != null && messageObject2.photoThumbs != null) {
                     int i12 = 0;
@@ -43,7 +43,7 @@ public final class jb extends bu0 {
                         }
                         TLRPC.FileLocation fileLocation2 = messageObject2.photoThumbs.get(i12).location;
                         if (fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.local_id == fileLocation.local_id) {
-                            imageReceiver = x0Var.getPhotoImage();
+                            imageReceiver = w0Var.getPhotoImage();
                             break;
                         }
                         i12++;
@@ -54,13 +54,13 @@ public final class jb extends bu0 {
                 int[] iArr = new int[2];
                 childAt.getLocationInWindow(iArr);
                 lu0 lu0Var = new lu0();
-                lu0Var.f38938b = iArr[0];
-                lu0Var.f38939c = iArr[1];
+                lu0Var.f38962b = iArr[0];
+                lu0Var.f38963c = iArr[1];
                 lu0Var.d = xbVar.v;
-                lu0Var.f38937a = imageReceiver;
+                lu0Var.f38961a = imageReceiver;
                 lu0Var.e = imageReceiver.getBitmapSafe();
                 lu0Var.h = imageReceiver.getRoundRadius(true);
-                lu0Var.f38945l = true;
+                lu0Var.f38969l = true;
                 return lu0Var;
             }
             i11++;

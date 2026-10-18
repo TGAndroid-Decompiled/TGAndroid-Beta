@@ -1,51 +1,78 @@
 package ai;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
 public final class h3 implements Runnable {
-    public final int f1417a = 1;
-    public final k7 f1418b;
-    public final TLObject f1419c;
-    public final long d;
-    public final long e;
-    public final TLRPC.TL_error f1420f;
-    public final long h;
-    public final Object f1421n;
+    public final int f1406a;
+    public final k7 f1407b;
+    public final TL_stars.TL_starGiftUnique f1408c;
+    public final ag.a d;
+    public final Runnable e;
 
-    public h3(k7 k7Var, TLObject tLObject, long j10, long j11, Utilities.Callback callback, TLRPC.TL_error tL_error, long j12) {
-        this.f1418b = k7Var;
-        this.f1419c = tLObject;
-        this.d = j10;
-        this.e = j11;
-        this.f1421n = callback;
-        this.f1420f = tL_error;
-        this.h = j12;
+    public h3(k7 k7Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, ag.a aVar, Runnable runnable, int i10) {
+        this.f1406a = i10;
+        this.f1407b = k7Var;
+        this.f1408c = tL_starGiftUnique;
+        this.d = aVar;
+        this.e = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f1417a) {
+        boolean z10;
+        int i10 = this.f1406a;
+        ag.c cVar = ag.c.f635a;
+        ag.c cVar2 = ag.c.f636b;
+        Runnable runnable = this.e;
+        ag.a aVar = this.d;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f1408c;
+        k7 k7Var = this.f1407b;
+        boolean z11 = false;
+        switch (i10) {
             case 0:
-                long j10 = this.h;
-                TLRPC.TL_error tL_error = this.f1420f;
-                k7.i1(this.f1418b, (org.telegram.ui.ActionBar.b2) this.f1421n, this.f1419c, this.d, this.e, j10, tL_error);
+                tL_starGiftUnique.flags |= 16;
+                if (aVar.f631a == cVar2) {
+                    z11 = true;
+                }
+                tL_starGiftUnique.resale_ton_only = z11;
+                ArrayList<TL_stars.StarsAmount> arrayList = new ArrayList<>();
+                tL_starGiftUnique.resell_amount = arrayList;
+                arrayList.add(aVar.e(cVar).o());
+                tL_starGiftUnique.resell_amount.add(aVar.e(cVar2).o());
+                k7Var.f1661f0.setResellPrice(aVar);
+                yh.b2 b2Var = k7Var.f1672k1;
+                if (b2Var != null) {
+                    b2Var.run();
+                }
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                TLRPC.TL_error tL_error2 = this.f1420f;
-                long j11 = this.h;
-                k7.R(this.f1418b, this.f1419c, this.d, this.e, (Utilities.Callback) this.f1421n, tL_error2, j11);
+                k7Var.getClass();
+                tL_starGiftUnique.flags |= 16;
+                if (aVar.f631a == cVar2) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                tL_starGiftUnique.resale_ton_only = z10;
+                ArrayList<TL_stars.StarsAmount> arrayList2 = new ArrayList<>();
+                tL_starGiftUnique.resell_amount = arrayList2;
+                arrayList2.add(aVar.e(cVar).o());
+                tL_starGiftUnique.resell_amount.add(aVar.e(cVar2).o());
+                k7Var.f1661f0.setResellPrice(aVar);
+                yh.b2 b2Var2 = k7Var.f1672k1;
+                if (b2Var2 != null) {
+                    b2Var2.run();
+                }
+                if (runnable != null) {
+                    runnable.run();
+                }
+                i2.d.s(R.string.Gift2ResaleEnable, new Object[]{k7Var.Q1()}, k7Var.getBulletinFactory(), R.raw.contact_check, 36);
                 return;
         }
-    }
-
-    public h3(k7 k7Var, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, long j10, long j11, long j12, TLRPC.TL_error tL_error) {
-        this.f1418b = k7Var;
-        this.f1421n = b2Var;
-        this.f1419c = tLObject;
-        this.d = j10;
-        this.e = j11;
-        this.h = j12;
-        this.f1420f = tL_error;
     }
 }

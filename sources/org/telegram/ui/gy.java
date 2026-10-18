@@ -17,35 +17,35 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class gy extends View implements NotificationCenter.NotificationCenterDelegate {
-    public final Paint f37356a;
-    public final Paint f37357b;
-    public final int f37358c;
+    public final Paint f37374a;
+    public final Paint f37375b;
+    public final int f37376c;
     public final ArrayList d;
     public float e;
-    public float f37359f;
+    public float f37377f;
     public float h;
-    public final ImageReceiver f37360n;
-    public final ImageReceiver f37361r;
-    public final org.telegram.ui.Components.uj0 f37362s;
+    public final ImageReceiver f37378n;
+    public final ImageReceiver f37379r;
+    public final org.telegram.ui.Components.uj0 f37380s;
     public final org.telegram.ui.Components.uj0 v;
-    public boolean f37363w;
-    public int f37364x;
-    public boolean f37365y;
+    public boolean f37381w;
+    public int f37382x;
+    public boolean f37383y;
 
     public gy(Context context, int i10) {
         super(context);
-        this.f37356a = new Paint(1);
-        this.f37357b = new Paint(1);
+        this.f37374a = new Paint(1);
+        this.f37375b = new Paint(1);
         this.d = new ArrayList();
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f37360n = imageReceiver;
+        this.f37378n = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.f37361r = imageReceiver2;
-        this.f37358c = i10;
+        this.f37379r = imageReceiver2;
+        this.f37376c = i10;
         imageReceiver.ignoreNotifications = true;
         imageReceiver2.ignoreNotifications = true;
         org.telegram.ui.Components.uj0 uj0Var = new org.telegram.ui.Components.uj0(R.raw.download_progress, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        this.f37362s = uj0Var;
+        this.f37380s = uj0Var;
         org.telegram.ui.Components.uj0 uj0Var2 = new org.telegram.ui.Components.uj0(R.raw.download_finish, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.v = uj0Var2;
         imageReceiver.setImageBitmap(uj0Var);
@@ -56,15 +56,15 @@ public final class gy extends View implements NotificationCenter.NotificationCen
     }
 
     public final void a() {
-        int i10 = org.telegram.ui.ActionBar.h6.f21321v8;
-        this.f37362s.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i10, false), PorterDuff.Mode.SRC_IN));
+        int i10 = org.telegram.ui.ActionBar.h6.f21328v8;
+        this.f37380s.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i10, false), PorterDuff.Mode.SRC_IN));
         this.v.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i10, false), PorterDuff.Mode.SRC));
         invalidate();
     }
 
     public final void b() {
         ArrayList arrayList;
-        int i10 = this.f37358c;
+        int i10 = this.f37376c;
         DownloadController downloadController = DownloadController.getInstance(i10);
         HashMap hashMap = new HashMap();
         int i11 = 0;
@@ -73,7 +73,7 @@ public final class gy extends View implements NotificationCenter.NotificationCen
             if (i11 >= arrayList.size()) {
                 break;
             }
-            hashMap.put(((fy) arrayList.get(i11)).f37055c, (fy) arrayList.get(i11));
+            hashMap.put(((fy) arrayList.get(i11)).f37025c, (fy) arrayList.get(i11));
             DownloadController.getInstance(i10).removeLoadingFileObserver((DownloadController.FileDownloadProgressListener) arrayList.get(i11));
             i11++;
         }
@@ -89,21 +89,21 @@ public final class gy extends View implements NotificationCenter.NotificationCen
                 arrayList.add(fyVar);
             }
         }
-        if (arrayList.size() == 0 && !this.f37365y) {
+        if (arrayList.size() == 0 && !this.f37383y) {
             if (DownloadController.getInstance(i10).hasUnviewedDownloads()) {
                 this.e = 1.0f;
-                this.f37359f = 1.0f;
-                this.f37363w = true;
+                this.f37377f = 1.0f;
+                this.f37381w = true;
                 return;
             }
             this.e = 0.0f;
-            this.f37359f = 0.0f;
-            this.f37363w = false;
+            this.f37377f = 0.0f;
+            this.f37381w = false;
         }
     }
 
     public final void c() {
-        MessagesStorage.getInstance(this.f37358c);
+        MessagesStorage.getInstance(this.f37376c);
         int i10 = 0;
         long j10 = 0;
         long j11 = 0;
@@ -112,8 +112,8 @@ public final class gy extends View implements NotificationCenter.NotificationCen
             if (i10 >= arrayList.size()) {
                 break;
             }
-            j10 += ((fy) arrayList.get(i10)).f37053a;
-            j11 += ((fy) arrayList.get(i10)).f37054b;
+            j10 += ((fy) arrayList.get(i10)).f37023a;
+            j11 += ((fy) arrayList.get(i10)).f37024b;
             i10++;
         }
         if (j10 == 0) {
@@ -127,7 +127,7 @@ public final class gy extends View implements NotificationCenter.NotificationCen
         } else if (f7 < 0.0f) {
             this.e = 0.0f;
         }
-        this.h = ((this.e - this.f37359f) * 16.0f) / 150.0f;
+        this.h = ((this.e - this.f37377f) * 16.0f) / 150.0f;
         invalidate();
     }
 
@@ -143,9 +143,9 @@ public final class gy extends View implements NotificationCenter.NotificationCen
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         b();
-        NotificationCenter.getInstance(this.f37358c).addObserver(this, NotificationCenter.onDownloadingFilesChanged);
-        this.f37360n.onAttachedToWindow();
-        this.f37361r.onAttachedToWindow();
+        NotificationCenter.getInstance(this.f37376c).addObserver(this, NotificationCenter.onDownloadingFilesChanged);
+        this.f37378n.onAttachedToWindow();
+        this.f37379r.onAttachedToWindow();
     }
 
     @Override
@@ -155,15 +155,15 @@ public final class gy extends View implements NotificationCenter.NotificationCen
         while (true) {
             ArrayList arrayList = this.d;
             int size = arrayList.size();
-            int i11 = this.f37358c;
+            int i11 = this.f37376c;
             if (i10 < size) {
                 DownloadController.getInstance(i11).removeLoadingFileObserver((DownloadController.FileDownloadProgressListener) arrayList.get(i10));
                 i10++;
             } else {
                 arrayList.clear();
                 NotificationCenter.getInstance(i11).removeObserver(this, NotificationCenter.onDownloadingFilesChanged);
-                this.f37360n.onDetachedFromWindow();
-                this.f37361r.onDetachedFromWindow();
+                this.f37378n.onDetachedFromWindow();
+                this.f37379r.onDetachedFromWindow();
                 return;
             }
         }
@@ -173,15 +173,15 @@ public final class gy extends View implements NotificationCenter.NotificationCen
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (getAlpha() != 0.0f) {
-            int i10 = this.f37364x;
-            int i11 = org.telegram.ui.ActionBar.h6.f21321v8;
+            int i10 = this.f37382x;
+            int i11 = org.telegram.ui.ActionBar.h6.f21328v8;
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
-            ImageReceiver imageReceiver = this.f37361r;
-            ImageReceiver imageReceiver2 = this.f37360n;
-            Paint paint = this.f37356a;
-            Paint paint2 = this.f37357b;
+            ImageReceiver imageReceiver = this.f37379r;
+            ImageReceiver imageReceiver2 = this.f37378n;
+            Paint paint = this.f37374a;
+            Paint paint2 = this.f37375b;
             if (i10 != x02) {
-                this.f37364x = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
+                this.f37382x = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
                 paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
                 paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
                 int x03 = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
@@ -190,16 +190,16 @@ public final class gy extends View implements NotificationCenter.NotificationCen
                 imageReceiver.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i11, false), mode));
                 paint2.setAlpha(100);
             }
-            float f7 = this.f37359f;
+            float f7 = this.f37377f;
             float f10 = this.e;
             if (f7 != f10) {
                 float f11 = this.h;
                 float f12 = f7 + f11;
-                this.f37359f = f12;
+                this.f37377f = f12;
                 if (f11 > 0.0f && f12 > f10) {
-                    this.f37359f = f10;
+                    this.f37377f = f10;
                 } else if (f11 < 0.0f && f12 < f10) {
-                    this.f37359f = f10;
+                    this.f37377f = f10;
                 } else {
                     invalidate();
                 }
@@ -213,27 +213,27 @@ public final class gy extends View implements NotificationCenter.NotificationCen
             float f14 = measuredHeight + dp2;
             rectF.set(dp3, f13, getMeasuredWidth() - dp3, f14);
             canvas.drawRoundRect(rectF, dp2, dp2, paint2);
-            rectF.set(dp3, f13, ((getMeasuredWidth() - (2.0f * dp3)) * this.f37359f) + dp3, f14);
+            rectF.set(dp3, f13, ((getMeasuredWidth() - (2.0f * dp3)) * this.f37377f) + dp3, f14);
             canvas.drawRoundRect(rectF, dp2, dp2, paint);
             canvas.save();
             canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f13);
             if (this.e != 1.0f) {
-                this.f37363w = false;
+                this.f37381w = false;
             }
-            if (this.f37363w) {
+            if (this.f37381w) {
                 imageReceiver.draw(canvas);
             } else {
                 imageReceiver2.draw(canvas);
             }
-            if (this.e == 1.0f && !this.f37363w && this.f37362s.f31001a0 == 0) {
+            if (this.e == 1.0f && !this.f37381w && this.f37380s.f31008a0 == 0) {
                 org.telegram.ui.Components.uj0 uj0Var = this.v;
                 uj0Var.N(0, false, false);
                 uj0Var.start();
-                this.f37363w = true;
+                this.f37381w = true;
             }
             canvas.restore();
             if (getAlpha() != 0.0f) {
-                this.f37365y = true;
+                this.f37383y = true;
             }
         }
     }
@@ -244,14 +244,14 @@ public final class gy extends View implements NotificationCenter.NotificationCen
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
         int dp = AndroidUtilities.dp(15.0f);
         float f7 = dp;
-        this.f37360n.setImageCoords(f7, f7, getMeasuredWidth() - i12, getMeasuredHeight() - i12);
-        this.f37361r.setImageCoords(f7, f7, getMeasuredWidth() - i12, getMeasuredHeight() - (dp * 2));
+        this.f37378n.setImageCoords(f7, f7, getMeasuredWidth() - i12, getMeasuredHeight() - i12);
+        this.f37379r.setImageCoords(f7, f7, getMeasuredWidth() - i12, getMeasuredHeight() - (dp * 2));
     }
 
     @Override
     public void setAlpha(float f7) {
         if (f7 == 0.0f) {
-            this.f37365y = false;
+            this.f37383y = false;
         }
         super.setAlpha(f7);
     }
@@ -259,7 +259,7 @@ public final class gy extends View implements NotificationCenter.NotificationCen
     @Override
     public void setVisibility(int i10) {
         if (i10 != 0) {
-            this.f37365y = false;
+            this.f37383y = false;
         }
         super.setVisibility(i10);
     }

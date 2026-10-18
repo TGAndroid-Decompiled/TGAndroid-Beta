@@ -10,11 +10,11 @@ public final class b9 extends im0 {
     public int X2;
     public final org.telegram.ui.z7 Y2;
     public a9 Z2;
-    public final e9 f24841a3;
+    public final e9 f24848a3;
 
     public b9(e9 e9Var, Activity activity) {
         super(activity, null);
-        this.f24841a3 = e9Var;
+        this.f24848a3 = e9Var;
         this.V2 = new ArrayList();
         this.W2 = 200;
         this.X2 = -1;
@@ -25,30 +25,30 @@ public final class b9 extends im0 {
             ?? obj = new Object();
             int i11 = this.W2;
             this.W2 = i11 + 1;
-            obj.f24541a = i11;
-            int[] iArr = e9.f25872c0[i10];
-            obj.f24543c = iArr[0];
+            obj.f24548a = i11;
+            int[] iArr = e9.f25879c0[i10];
+            obj.f24550c = iArr[0];
             obj.d = iArr[1];
             obj.e = iArr[2];
-            obj.f24544f = iArr[3];
+            obj.f24551f = iArr[3];
             this.V2.add(obj);
         }
         for (int i12 = 0; i12 < 30; i12++) {
             ?? obj2 = new Object();
             int i13 = this.W2;
             this.W2 = i13 + 1;
-            obj2.f24541a = i13;
-            int[] iArr2 = e9.f25873d0[i12];
-            obj2.f24543c = iArr2[0];
+            obj2.f24548a = i13;
+            int[] iArr2 = e9.f25880d0[i12];
+            obj2.f24550c = iArr2[0];
             obj2.d = iArr2[1];
             obj2.e = 0;
-            obj2.f24544f = 0;
-            obj2.f24542b = true;
+            obj2.f24551f = 0;
+            obj2.f24549b = true;
             this.V2.add(obj2);
         }
         setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         setClipToPadding(false);
-        this.f27268f1 = true;
+        this.f27275f1 = true;
         setOnItemClickListener(new j(this, 2));
         org.telegram.ui.z7 z7Var = new org.telegram.ui.z7(this, 2);
         this.Y2 = z7Var;
@@ -59,7 +59,7 @@ public final class b9 extends im0 {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10) / this.Y2.h();
-        e9 e9Var = this.f24841a3;
+        e9 e9Var = this.f24848a3;
         e9Var.P = size;
         if (size < AndroidUtilities.dp(39.0f)) {
             e9Var.P = AndroidUtilities.dp(39.0f);
@@ -75,7 +75,7 @@ public final class b9 extends im0 {
             ArrayList arrayList = this.V2;
             if (i10 < arrayList.size()) {
                 if (((a9) arrayList.get(i10)).equals(a9Var)) {
-                    this.X2 = ((a9) arrayList.get(i10)).f24541a;
+                    this.X2 = ((a9) arrayList.get(i10)).f24548a;
                     break;
                 }
                 i10++;

@@ -1,6 +1,6 @@
 package m4;
 
-import ai.ub;
+import ai.vb;
 import android.content.Context;
 import android.os.Binder;
 import android.os.Bundle;
@@ -19,30 +19,30 @@ import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import java.util.Set;
 public final class i1 extends Binder implements m {
-    public final WeakReference f16557a;
-    public final qi.e f16558b;
-    public final Set f16559c;
+    public final WeakReference f16564a;
+    public final qi.e f16565b;
+    public final Set f16566c;
     public w1 d;
     public c2 e;
-    public int f16560f;
-    public h1 f16561i;
+    public int f16567f;
+    public h1 f16568i;
 
     public i1(f0 f0Var) {
         attachInterface(this, "androidx.media3.session.IMediaSession");
-        this.f16557a = new WeakReference(f0Var);
-        this.f16558b = new qi.e(f0Var);
-        this.f16559c = DesugarCollections.synchronizedSet(new HashSet());
-        this.d = w1.f8526r;
+        this.f16564a = new WeakReference(f0Var);
+        this.f16565b = new qi.e(f0Var);
+        this.f16566c = DesugarCollections.synchronizedSet(new HashSet());
+        this.d = w1.f8527r;
         this.e = c2.h;
     }
 
     public static j9.y I0(f0 f0Var, v vVar, int i10, g1 g1Var, e2.j jVar) {
         if (f0Var.j()) {
-            return j9.w.f14356b;
+            return j9.w.f14363b;
         }
         j9.y yVar = (j9.y) g1Var.e(f0Var, vVar, i10);
         ?? obj = new Object();
-        yVar.a(new ai.y0(f0Var, (Object) obj, jVar, yVar, 28), j9.r.f14351a);
+        yVar.a(new ai.y0(f0Var, (Object) obj, jVar, yVar, 28), j9.r.f14358a);
         return obj;
     }
 
@@ -51,7 +51,7 @@ public final class i1 extends Binder implements m {
             u uVar = vVar.d;
             uVar.getClass();
             uVar.j(i10, s1Var);
-            f0Var.f16514c.a(true, true);
+            f0Var.f16521c.a(true, true);
         } catch (RemoteException e) {
             e2.a.m("MediaSessionStub", "Failed to send result to controller " + vVar, e);
         }
@@ -62,15 +62,15 @@ public final class i1 extends Binder implements m {
     }
 
     public final void F0(l lVar, Bundle bundle) {
-        WeakReference weakReference = this.f16557a;
+        WeakReference weakReference = this.f16564a;
         f0 f0Var = (f0) weakReference.get();
         if (lVar != null && bundle != null && f0Var != null) {
             try {
-                Context context = f0Var.f16515f;
+                Context context = f0Var.f16522f;
                 i a2 = i.a(bundle);
                 int callingUid = Binder.getCallingUid();
                 int callingPid = Binder.getCallingPid();
-                String str = a2.f16554c;
+                String str = a2.f16561c;
                 String[] packagesForUid = context.getPackageManager().getPackagesForUid(callingUid);
                 if (packagesForUid != null && packagesForUid.length != 0) {
                     for (String str2 : packagesForUid) {
@@ -88,13 +88,13 @@ public final class i1 extends Binder implements m {
                 try {
                     n4.t tVar = new n4.t(str, callingPid, callingUid);
                     boolean b10 = n4.w.a(context).b(tVar);
-                    int i10 = a2.f16552a;
-                    int i11 = a2.f16553b;
+                    int i10 = a2.f16559a;
+                    int i11 = a2.f16560b;
                     v vVar = new v(tVar, i10, i11, b10, new d1(lVar, i11), a2.e);
                     f0 f0Var2 = (f0) weakReference.get();
                     if (f0Var2 != null && !f0Var2.j()) {
-                        this.f16559c.add(vVar);
-                        e2.m0.W(f0Var2.f16520l, new ai.y0(this, vVar, f0Var2, lVar, 27));
+                        this.f16566c.add(vVar);
+                        e2.m0.W(f0Var2.f16527l, new ai.y0(this, vVar, f0Var2, lVar, 27));
                         return;
                     }
                     w7.w.a(lVar);
@@ -120,14 +120,14 @@ public final class i1 extends Binder implements m {
     public final void H0(l lVar, int i10, o1 o1Var, int i11, g1 g1Var) {
         long clearCallingIdentity = Binder.clearCallingIdentity();
         try {
-            f0 f0Var = (f0) this.f16557a.get();
+            f0 f0Var = (f0) this.f16564a.get();
             if (f0Var != null && !f0Var.j()) {
-                v q6 = this.f16558b.q(lVar.asBinder());
+                v q6 = this.f16565b.q(lVar.asBinder());
                 if (q6 == null) {
                     Binder.restoreCallingIdentity(clearCallingIdentity);
                     return;
                 }
-                e2.m0.W(f0Var.f16520l, new x0(this, q6, o1Var, f0Var, i10, i11, g1Var));
+                e2.m0.W(f0Var.f16527l, new y0(this, q6, o1Var, f0Var, i10, i11, g1Var));
                 Binder.restoreCallingIdentity(clearCallingIdentity);
             }
         } finally {
@@ -144,7 +144,7 @@ public final class i1 extends Binder implements m {
 
     public final int K0(v vVar, m1 m1Var, int i10) {
         if (m1Var.o0(17)) {
-            qi.e eVar = this.f16558b;
+            qi.e eVar = this.f16565b;
             if (!eVar.x(vVar, 17) && eVar.x(vVar, 16)) {
                 return m1Var.n0() + i10;
             }
@@ -157,11 +157,11 @@ public final class i1 extends Binder implements m {
         Bundle o10 = e2.m0.o(bundle2);
         if (lVar != null && bundle != null && o10 != null) {
             try {
-                int i11 = bundle.getInt(o1.f16648f, 0);
+                int i11 = bundle.getInt(o1.f16655f, 0);
                 if (i11 != 0) {
                     o1Var = new o1(i11);
                 } else {
-                    String string = bundle.getString(o1.f16649g);
+                    String string = bundle.getString(o1.f16656g);
                     string.getClass();
                     Bundle o11 = e2.m0.o(bundle.getBundle(o1.h));
                     if (o11 == null) {
@@ -169,17 +169,17 @@ public final class i1 extends Binder implements m {
                     }
                     o1Var = new o1(string, o11);
                 }
-                if (d.j(o1Var.f16651b)) {
+                if (d.j(o1Var.f16658b)) {
                     long clearCallingIdentity = Binder.clearCallingIdentity();
                     try {
-                        f0 f0Var = (f0) this.f16557a.get();
+                        f0 f0Var = (f0) this.f16564a.get();
                         if (f0Var != null && !f0Var.j()) {
-                            v q6 = this.f16558b.q(lVar.asBinder());
+                            v q6 = this.f16565b.q(lVar.asBinder());
                             if (q6 == null) {
                                 Binder.restoreCallingIdentity(clearCallingIdentity);
                                 return;
                             }
-                            e2.m0.W(f0Var.f16520l, new ub(this, q6, o1Var, f0Var, i10, lVar, 2));
+                            e2.m0.W(f0Var.f16527l, new vb(this, q6, o1Var, f0Var, i10, lVar, 2));
                             Binder.restoreCallingIdentity(clearCallingIdentity);
                             return;
                         }
@@ -196,11 +196,11 @@ public final class i1 extends Binder implements m {
     }
 
     public final void M0(v vVar, int i10) {
-        O0(vVar, i10, 1, Q0(new ah.h0(28, this, vVar)));
+        O0(vVar, i10, 1, Q0(new ah.h0(29, this, vVar)));
     }
 
     public final void N0(l lVar, int i10, int i11, j5.b bVar) {
-        v q6 = this.f16558b.q(lVar.asBinder());
+        v q6 = this.f16565b.q(lVar.asBinder());
         if (q6 != null) {
             O0(q6, i10, i11, bVar);
         }
@@ -209,9 +209,9 @@ public final class i1 extends Binder implements m {
     public final void O0(v vVar, int i10, int i11, g1 g1Var) {
         long clearCallingIdentity = Binder.clearCallingIdentity();
         try {
-            f0 f0Var = (f0) this.f16557a.get();
+            f0 f0Var = (f0) this.f16564a.get();
             if (f0Var != null && !f0Var.j()) {
-                e2.m0.W(f0Var.f16520l, new ki.h0(this, vVar, i11, f0Var, i10, g1Var));
+                e2.m0.W(f0Var.f16527l, new ki.h0(this, vVar, i11, f0Var, i10, g1Var));
                 Binder.restoreCallingIdentity(clearCallingIdentity);
             }
         } finally {
@@ -223,20 +223,20 @@ public final class i1 extends Binder implements m {
         if (lVar == null) {
             return;
         }
-        N0(lVar, i10, 26, Q0(new i2.w(3, z10)));
+        N0(lVar, i10, 26, Q0(new i2.x(3, z10)));
     }
 
     public final void S0(l lVar, int i10, int i11) {
         if (lVar != null && i11 >= 0) {
-            N0(lVar, i10, 25, Q0(new i2.u(i11, 6)));
+            N0(lVar, i10, 25, Q0(new i2.v(i11, 6)));
         }
     }
 
     public final void T0(l lVar, int i10, Bundle bundle, boolean z10) {
         v q6;
-        if (lVar != null && bundle != null && (q6 = this.f16558b.q(lVar.asBinder())) != null) {
+        if (lVar != null && bundle != null && (q6 = this.f16565b.q(lVar.asBinder())) != null) {
             try {
-                O0(q6, i10, 31, new z0(new y0(0, new ci.f(2, b2.o0.a(q6.f16754c, bundle), z10), new v0(8)), 1));
+                O0(q6, i10, 31, new z0(new w0(1, new ci.f(2, b2.o0.a(q6.f16761c, bundle), z10), new v0(8)), 1));
             } catch (RuntimeException e) {
                 e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e);
             }
@@ -245,9 +245,9 @@ public final class i1 extends Binder implements m {
 
     public final void U0(l lVar, int i10, Bundle bundle, long j10) {
         v q6;
-        if (lVar != null && bundle != null && (q6 = this.f16558b.q(lVar.asBinder())) != null) {
+        if (lVar != null && bundle != null && (q6 = this.f16565b.q(lVar.asBinder())) != null) {
             try {
-                O0(q6, i10, 31, new z0(new y0(0, new ci.d1(b2.o0.a(q6.f16754c, bundle), j10, 2), new v0(8)), 1));
+                O0(q6, i10, 31, new z0(new w0(1, new ci.d1(b2.o0.a(q6.f16761c, bundle), j10, 2), new v0(8)), 1));
             } catch (RuntimeException e) {
                 e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e);
             }
@@ -256,16 +256,16 @@ public final class i1 extends Binder implements m {
 
     public final void V0(l lVar, int i10, IBinder iBinder, boolean z10) {
         v q6;
-        if (lVar != null && iBinder != null && (q6 = this.f16558b.q(lVar.asBinder())) != null) {
+        if (lVar != null && iBinder != null && (q6 = this.f16565b.q(lVar.asBinder())) != null) {
             try {
                 e9.n0 a2 = b2.h.a(iBinder);
                 e9.k0 t10 = e9.n0.t();
                 for (int i11 = 0; i11 < a2.size(); i11++) {
                     Bundle bundle = (Bundle) a2.get(i11);
                     bundle.getClass();
-                    t10.c(b2.o0.a(q6.f16754c, bundle));
+                    t10.c(b2.o0.a(q6.f16761c, bundle));
                 }
-                O0(q6, i10, 20, new z0(new y0(0, new ci.f(4, t10.f(), z10), new v0(8)), 1));
+                O0(q6, i10, 20, new z0(new w0(1, new ci.f(4, t10.f(), z10), new v0(8)), 1));
             } catch (RuntimeException e) {
                 e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e);
             }
@@ -275,16 +275,16 @@ public final class i1 extends Binder implements m {
     public final void W0(l lVar, int i10, IBinder iBinder, int i11, long j10) {
         v q6;
         if (lVar != null && iBinder != null) {
-            if ((i11 == -1 || i11 >= 0) && (q6 = this.f16558b.q(lVar.asBinder())) != null) {
+            if ((i11 == -1 || i11 >= 0) && (q6 = this.f16565b.q(lVar.asBinder())) != null) {
                 try {
                     e9.n0 a2 = b2.h.a(iBinder);
                     e9.k0 t10 = e9.n0.t();
                     for (int i12 = 0; i12 < a2.size(); i12++) {
                         Bundle bundle = (Bundle) a2.get(i12);
                         bundle.getClass();
-                        t10.c(b2.o0.a(q6.f16754c, bundle));
+                        t10.c(b2.o0.a(q6.f16761c, bundle));
                     }
-                    O0(q6, i10, 20, new z0(new y0(0, new j2.d(t10.f(), i11, j10, 2), new v0(8)), 1));
+                    O0(q6, i10, 20, new z0(new w0(1, new j2.d(t10.f(), i11, j10, 2), new v0(8)), 1));
                 } catch (RuntimeException e) {
                     e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e);
                 }
@@ -294,33 +294,33 @@ public final class i1 extends Binder implements m {
 
     public final void X0(l lVar, int i10, float f7) {
         if (lVar != null && f7 >= 0.0f && f7 <= 1.0f) {
-            N0(lVar, i10, 24, Q0(new i2.t(f7, 2)));
+            N0(lVar, i10, 24, Q0(new i2.u(f7, 2)));
         }
     }
 
     public final k1 Y0(k1 k1Var) {
         w1 w1Var;
-        e9.n0 n0Var = k1Var.F.f4090a;
+        e9.n0 n0Var = k1Var.F.f4091a;
         ?? aVar = new a5.a(4, 5);
         a5.a aVar2 = new a5.a(4, 5);
         for (int i10 = 0; i10 < n0Var.size(); i10++) {
-            b2.p1 p1Var = ((b2.u1) n0Var.get(i10)).f4062b;
+            b2.p1 p1Var = ((b2.u1) n0Var.get(i10)).f4063b;
             String str = (String) this.d.get(p1Var);
             if (str == null) {
                 StringBuilder sb2 = new StringBuilder();
-                int i11 = this.f16560f;
-                this.f16560f = i11 + 1;
-                String str2 = e2.m0.f8254a;
+                int i11 = this.f16567f;
+                this.f16567f = i11 + 1;
+                String str2 = e2.m0.f8255a;
                 sb2.append(Integer.toString(i11, 36));
                 sb2.append("-");
-                sb2.append(p1Var.f3904b);
+                sb2.append(p1Var.f3905b);
                 str = sb2.toString();
             }
             aVar.I(p1Var, str);
-            aVar2.x(p1Var.f3904b, str);
+            aVar2.x(p1Var.f3905b, str);
         }
         if (aVar.f280b == 0) {
-            w1Var = w1.f8526r;
+            w1Var = w1.f8527r;
         } else {
             w1Var = new w1(aVar.f280b, (Object[]) aVar.f281c);
         }
@@ -329,7 +329,7 @@ public final class i1 extends Binder implements m {
         e9.k0 t10 = e9.n0.t();
         for (int i12 = 0; i12 < n0Var.size(); i12++) {
             b2.u1 u1Var = (b2.u1) n0Var.get(i12);
-            t10.c(new b2.u1(Z0(u1Var.f4062b), u1Var.f4063c, u1Var.d, u1Var.e));
+            t10.c(new b2.u1(Z0(u1Var.f4063b), u1Var.f4064c, u1Var.d, u1Var.e));
         }
         k1 a2 = k1Var.a(new v1(t10.f()));
         b2.t1 t1Var = a2.G;
@@ -340,7 +340,7 @@ public final class i1 extends Binder implements m {
         m2 it = t1Var.H.values().iterator();
         while (it.hasNext()) {
             b2.q1 q1Var = (b2.q1) it.next();
-            c10.a(new b2.q1(Z0(q1Var.f3930a), q1Var.f3931b));
+            c10.a(new b2.q1(Z0(q1Var.f3931a), q1Var.f3932b));
         }
         return a2.d(c10.b());
     }
@@ -349,18 +349,18 @@ public final class i1 extends Binder implements m {
         String str;
         String str2 = (String) this.d.get(p1Var);
         if (str2 == null) {
-            str2 = p1Var.f3904b;
+            str2 = p1Var.f3905b;
         }
         int i10 = 0;
         while (true) {
-            int i11 = p1Var.f3903a;
+            int i11 = p1Var.f3904a;
             b2.w[] wVarArr = p1Var.d;
             if (i10 < i11) {
-                if (wVarArr[i10].f4125m != null) {
+                if (wVarArr[i10].f4126m != null) {
                     b2.w[] wVarArr2 = new b2.w[i11];
-                    for (int i12 = 0; i12 < p1Var.f3903a; i12++) {
+                    for (int i12 = 0; i12 < p1Var.f3904a; i12++) {
                         b2.w wVar = wVarArr[i12];
-                        String str3 = wVar.f4125m;
+                        String str3 = wVar.f4126m;
                         if (str3 != null) {
                             str = (String) this.e.get(str3);
                         } else {
@@ -368,7 +368,7 @@ public final class i1 extends Binder implements m {
                         }
                         if (str != null) {
                             b2.v a2 = wVar.a();
-                            a2.f4072l = str;
+                            a2.f4073l = str;
                             wVarArr2[i12] = new b2.w(a2);
                         } else {
                             wVarArr2[i12] = wVar;
@@ -453,7 +453,7 @@ public final class i1 extends Binder implements m {
                 int readInt = parcel.readInt();
                 boolean z10 = parcel.readInt() != 0;
                 if (F0 != null) {
-                    N0(F0, readInt, 1, Q0(new i2.w(2, z10)));
+                    N0(F0, readInt, 1, Q0(new i2.x(2, z10)));
                     return true;
                 }
                 break;
@@ -466,13 +466,13 @@ public final class i1 extends Binder implements m {
                         s1 a14 = s1.a(bundle);
                         long clearCallingIdentity = Binder.clearCallingIdentity();
                         try {
-                            qi.e eVar = this.f16558b;
+                            qi.e eVar = this.f16565b;
                             IBinder asBinder = F02.asBinder();
-                            synchronized (eVar.f44777a) {
+                            synchronized (eVar.f44797a) {
                                 v q23 = eVar.q(asBinder);
-                                hVar = q23 != null ? (h) ((a0.f) eVar.f44779c).get(q23) : null;
+                                hVar = q23 != null ? (h) ((a0.f) eVar.f44799c).get(q23) : null;
                             }
-                            com.google.android.gms.common.api.internal.u uVar = hVar != null ? hVar.f16537b : null;
+                            com.google.android.gms.common.api.internal.u uVar = hVar != null ? hVar.f16544b : null;
                             if (uVar != null) {
                                 uVar.i(readInt2, a14);
                             }
@@ -502,7 +502,7 @@ public final class i1 extends Binder implements m {
                 int readInt4 = parcel.readInt();
                 int readInt5 = parcel.readInt();
                 if (F05 != null && (readInt5 == 2 || readInt5 == 0 || readInt5 == 1)) {
-                    i1Var.N0(F05, readInt4, 15, Q0(new i2.u(readInt5, 5)));
+                    i1Var.N0(F05, readInt4, 15, Q0(new i2.v(readInt5, 5)));
                     return true;
                 }
                 break;
@@ -512,7 +512,7 @@ public final class i1 extends Binder implements m {
                 int readInt6 = parcel.readInt();
                 boolean z11 = parcel.readInt() != 0;
                 if (F06 != null) {
-                    i1Var.N0(F06, readInt6, 14, Q0(new i2.w(4, z11)));
+                    i1Var.N0(F06, readInt6, 14, Q0(new i2.x(4, z11)));
                     return true;
                 }
                 break;
@@ -578,7 +578,7 @@ public final class i1 extends Binder implements m {
                 i1Var = this;
                 l F012 = p.F0(parcel.readStrongBinder());
                 int readInt20 = parcel.readInt();
-                if (F012 != null && (q6 = i1Var.f16558b.q(F012.asBinder())) != null) {
+                if (F012 != null && (q6 = i1Var.f16565b.q(F012.asBinder())) != null) {
                     i1Var.M0(q6, readInt20);
                     return true;
                 }
@@ -587,7 +587,7 @@ public final class i1 extends Binder implements m {
                 i1Var = this;
                 l F013 = p.F0(parcel.readStrongBinder());
                 int readInt21 = parcel.readInt();
-                if (F013 != null && (q10 = i1Var.f16558b.q(F013.asBinder())) != null) {
+                if (F013 != null && (q10 = i1Var.f16565b.q(F013.asBinder())) != null) {
                     i1Var.O0(q10, readInt21, 1, Q0(new k2.f0(15)));
                     return true;
                 }
@@ -608,7 +608,7 @@ public final class i1 extends Binder implements m {
                 Bundle bundle2 = (Bundle) w7.u.a(parcel, Bundle.CREATOR);
                 if (F015 != null && bundle2 != null) {
                     try {
-                        i1Var.N0(F015, readInt23, 13, Q0(new j5.b(new b2.z0(bundle2.getFloat(b2.z0.e, 1.0f), bundle2.getFloat(b2.z0.f4154f, 1.0f)), 14)));
+                        i1Var.N0(F015, readInt23, 13, Q0(new j5.b(new b2.z0(bundle2.getFloat(b2.z0.e, 1.0f), bundle2.getFloat(b2.z0.f4155f, 1.0f)), 14)));
                     } catch (RuntimeException e7) {
                         e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for PlaybackParameters", e7);
                     }
@@ -620,7 +620,7 @@ public final class i1 extends Binder implements m {
                 int readInt24 = parcel.readInt();
                 float readFloat = parcel.readFloat();
                 if (F016 != null && readFloat > 0.0f) {
-                    i1Var.N0(F016, readInt24, 13, Q0(new i2.t(readFloat, 1)));
+                    i1Var.N0(F016, readInt24, 13, Q0(new i2.u(readFloat, 1)));
                     return true;
                 }
                 break;
@@ -629,10 +629,10 @@ public final class i1 extends Binder implements m {
                 l F017 = p.F0(parcel.readStrongBinder());
                 int readInt25 = parcel.readInt();
                 Bundle bundle3 = (Bundle) w7.u.a(parcel, Bundle.CREATOR);
-                if (F017 != null && bundle3 != null && (q11 = i1Var.f16558b.q(F017.asBinder())) != null) {
+                if (F017 != null && bundle3 != null && (q11 = i1Var.f16565b.q(F017.asBinder())) != null) {
                     try {
-                        final b2.o0 a15 = b2.o0.a(q11.f16754c, bundle3);
-                        i1Var.O0(q11, readInt25, 20, new z0(new y0(1, new g1() {
+                        final b2.o0 a15 = b2.o0.a(q11.f16761c, bundle3);
+                        i1Var.O0(q11, readInt25, 20, new z0(new w0(2, new g1() {
                             @Override
                             public final Object e(f0 f0Var, v vVar, int i12) {
                                 switch (r2) {
@@ -656,10 +656,10 @@ public final class i1 extends Binder implements m {
                 int readInt26 = parcel.readInt();
                 int readInt27 = parcel.readInt();
                 Bundle bundle4 = (Bundle) w7.u.a(parcel, Bundle.CREATOR);
-                if (F018 != null && bundle4 != null && readInt27 >= 0 && (q12 = i1Var.f16558b.q(F018.asBinder())) != null) {
+                if (F018 != null && bundle4 != null && readInt27 >= 0 && (q12 = i1Var.f16565b.q(F018.asBinder())) != null) {
                     try {
-                        final b2.o0 a16 = b2.o0.a(q12.f16754c, bundle4);
-                        i1Var.O0(q12, readInt26, 20, new z0(new y0(1, new g1() {
+                        final b2.o0 a16 = b2.o0.a(q12.f16761c, bundle4);
+                        i1Var.O0(q12, readInt26, 20, new z0(new w0(2, new g1() {
                             @Override
                             public final Object e(f0 f0Var, v vVar, int i12) {
                                 switch (r2) {
@@ -682,16 +682,16 @@ public final class i1 extends Binder implements m {
                 l F019 = p.F0(parcel.readStrongBinder());
                 int readInt28 = parcel.readInt();
                 IBinder readStrongBinder = parcel.readStrongBinder();
-                if (F019 != null && readStrongBinder != null && (q13 = i1Var.f16558b.q(F019.asBinder())) != null) {
+                if (F019 != null && readStrongBinder != null && (q13 = i1Var.f16565b.q(F019.asBinder())) != null) {
                     try {
                         e9.n0 a17 = b2.h.a(readStrongBinder);
                         e9.k0 t10 = e9.n0.t();
                         for (int i12 = 0; i12 < a17.size(); i12++) {
                             Bundle bundle5 = (Bundle) a17.get(i12);
                             bundle5.getClass();
-                            t10.c(b2.o0.a(q13.f16754c, bundle5));
+                            t10.c(b2.o0.a(q13.f16761c, bundle5));
                         }
-                        i1Var.O0(q13, readInt28, 20, new z0(new y0(1, new i2.x(3, t10.f()), new k2.f0(27)), 1));
+                        i1Var.O0(q13, readInt28, 20, new z0(new w0(2, new i2.y(3, t10.f()), new k2.f0(27)), 1));
                     } catch (RuntimeException e12) {
                         e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e12);
                     }
@@ -703,16 +703,16 @@ public final class i1 extends Binder implements m {
                 int readInt29 = parcel.readInt();
                 int readInt30 = parcel.readInt();
                 IBinder readStrongBinder2 = parcel.readStrongBinder();
-                if (F020 != null && readStrongBinder2 != null && readInt30 >= 0 && (q14 = i1Var.f16558b.q(F020.asBinder())) != null) {
+                if (F020 != null && readStrongBinder2 != null && readInt30 >= 0 && (q14 = i1Var.f16565b.q(F020.asBinder())) != null) {
                     try {
                         e9.n0 a18 = b2.h.a(readStrongBinder2);
                         e9.k0 t11 = e9.n0.t();
                         for (int i13 = 0; i13 < a18.size(); i13++) {
                             Bundle bundle6 = (Bundle) a18.get(i13);
                             bundle6.getClass();
-                            t11.c(b2.o0.a(q14.f16754c, bundle6));
+                            t11.c(b2.o0.a(q14.f16761c, bundle6));
                         }
-                        i1Var.O0(q14, readInt29, 20, new z0(new y0(1, new i2.x(2, t11.f()), new r0(i1Var, readInt30, 3)), 1));
+                        i1Var.O0(q14, readInt29, 20, new z0(new w0(2, new i2.y(2, t11.f()), new r0(i1Var, readInt30, 3)), 1));
                     } catch (RuntimeException e13) {
                         e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e13);
                     }
@@ -723,9 +723,9 @@ public final class i1 extends Binder implements m {
                 l F021 = p.F0(parcel.readStrongBinder());
                 int readInt31 = parcel.readInt();
                 Bundle bundle7 = (Bundle) w7.u.a(parcel, Bundle.CREATOR);
-                if (F021 != null && bundle7 != null && (q15 = i1Var.f16558b.q(F021.asBinder())) != null) {
+                if (F021 != null && bundle7 != null && (q15 = i1Var.f16565b.q(F021.asBinder())) != null) {
                     try {
-                        i1Var.O0(q15, readInt31, 19, Q0(new i2.r(b2.r0.b(q15.f16754c, bundle7))));
+                        i1Var.O0(q15, readInt31, 19, Q0(new i2.s(b2.r0.b(q15.f16761c, bundle7))));
                     } catch (RuntimeException e14) {
                         e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaMetadata", e14);
                     }
@@ -735,7 +735,7 @@ public final class i1 extends Binder implements m {
                 i1Var = this;
                 l F022 = p.F0(parcel.readStrongBinder());
                 int readInt32 = parcel.readInt();
-                if (F022 != null && (q16 = i1Var.f16558b.q(F022.asBinder())) != null) {
+                if (F022 != null && (q16 = i1Var.f16565b.q(F022.asBinder())) != null) {
                     i1Var.O0(q16, readInt32, 3, Q0(new v0(0)));
                     return true;
                 }
@@ -747,9 +747,9 @@ public final class i1 extends Binder implements m {
                 if (F023 != null) {
                     long clearCallingIdentity2 = Binder.clearCallingIdentity();
                     try {
-                        f0 f0Var = (f0) i1Var.f16557a.get();
+                        f0 f0Var = (f0) i1Var.f16564a.get();
                         if (f0Var != null && !f0Var.j()) {
-                            e2.m0.W(f0Var.f16520l, new z(2, i1Var, F023));
+                            e2.m0.W(f0Var.f16527l, new z(2, i1Var, F023));
                             return true;
                         }
                         return true;
@@ -799,7 +799,7 @@ public final class i1 extends Binder implements m {
             case 3040:
                 l F028 = p.F0(parcel.readStrongBinder());
                 int readInt39 = parcel.readInt();
-                if (F028 != null && (q17 = this.f16558b.q(F028.asBinder())) != null) {
+                if (F028 != null && (q17 = this.f16565b.q(F028.asBinder())) != null) {
                     O0(q17, readInt39, 11, Q0(new k2.f0(19)));
                     return true;
                 }
@@ -807,7 +807,7 @@ public final class i1 extends Binder implements m {
             case 3041:
                 l F029 = p.F0(parcel.readStrongBinder());
                 int readInt40 = parcel.readInt();
-                if (F029 != null && (q18 = this.f16558b.q(F029.asBinder())) != null) {
+                if (F029 != null && (q18 = this.f16565b.q(F029.asBinder())) != null) {
                     O0(q18, readInt40, 12, Q0(new k2.f0(23)));
                     return true;
                 }
@@ -833,7 +833,7 @@ public final class i1 extends Binder implements m {
                 int readInt43 = parcel.readInt();
                 Surface surface = (Surface) w7.u.a(parcel, Surface.CREATOR);
                 if (F032 != null) {
-                    N0(F032, readInt43, 27, Q0(new ah.h0(29, this, surface)));
+                    N0(F032, readInt43, 27, Q0(new w0(0, this, surface)));
                     return true;
                 }
                 break;
@@ -842,11 +842,11 @@ public final class i1 extends Binder implements m {
                 if (F033 != null) {
                     long clearCallingIdentity3 = Binder.clearCallingIdentity();
                     try {
-                        f0 f0Var2 = (f0) this.f16557a.get();
+                        f0 f0Var2 = (f0) this.f16564a.get();
                         if (f0Var2 != null && !f0Var2.j()) {
-                            v q24 = this.f16558b.q(F033.asBinder());
+                            v q24 = this.f16565b.q(F033.asBinder());
                             if (q24 != null) {
-                                e2.m0.W(f0Var2.f16520l, new z(3, this, q24));
+                                e2.m0.W(f0Var2.f16527l, new z(3, this, q24));
                             }
                             return true;
                         }
@@ -858,7 +858,7 @@ public final class i1 extends Binder implements m {
             case 3046:
                 l F034 = p.F0(parcel.readStrongBinder());
                 int readInt44 = parcel.readInt();
-                if (F034 != null && (q19 = this.f16558b.q(F034.asBinder())) != null) {
+                if (F034 != null && (q19 = this.f16565b.q(F034.asBinder())) != null) {
                     O0(q19, readInt44, 7, Q0(new k2.f0(20)));
                     return true;
                 }
@@ -866,7 +866,7 @@ public final class i1 extends Binder implements m {
             case 3047:
                 l F035 = p.F0(parcel.readStrongBinder());
                 int readInt45 = parcel.readInt();
-                if (F035 != null && (q20 = this.f16558b.q(F035.asBinder())) != null) {
+                if (F035 != null && (q20 = this.f16565b.q(F035.asBinder())) != null) {
                     O0(q20, readInt45, 9, Q0(new k2.f0(24)));
                     return true;
                 }
@@ -877,7 +877,7 @@ public final class i1 extends Binder implements m {
                 Bundle bundle8 = (Bundle) w7.u.a(parcel, Bundle.CREATOR);
                 if (F036 != null && bundle8 != null) {
                     try {
-                        N0(F036, readInt46, 29, Q0(new ah.h0(27, this, b2.t1.b(bundle8))));
+                        N0(F036, readInt46, 29, Q0(new ah.h0(28, this, b2.t1.b(bundle8))));
                         break;
                     } catch (RuntimeException e15) {
                         e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for TrackSelectionParameters", e15);
@@ -932,7 +932,7 @@ public final class i1 extends Binder implements m {
                 int readInt52 = parcel.readInt();
                 int readInt53 = parcel.readInt();
                 if (F040 != null) {
-                    N0(F040, readInt52, 34, Q0(new i2.u(readInt53, 4)));
+                    N0(F040, readInt52, 34, Q0(new i2.v(readInt53, 4)));
                     return true;
                 }
                 break;
@@ -941,7 +941,7 @@ public final class i1 extends Binder implements m {
                 int readInt54 = parcel.readInt();
                 int readInt55 = parcel.readInt();
                 if (F041 != null) {
-                    N0(F041, readInt54, 34, Q0(new i2.u(readInt55, 3)));
+                    N0(F041, readInt54, 34, Q0(new i2.v(readInt55, 3)));
                     return true;
                 }
                 break;
@@ -965,10 +965,10 @@ public final class i1 extends Binder implements m {
                 int readInt58 = parcel.readInt();
                 int readInt59 = parcel.readInt();
                 Bundle bundle11 = (Bundle) w7.u.a(parcel, Bundle.CREATOR);
-                if (F043 != null && bundle11 != null && readInt59 >= 0 && (q21 = this.f16558b.q(F043.asBinder())) != null) {
+                if (F043 != null && bundle11 != null && readInt59 >= 0 && (q21 = this.f16565b.q(F043.asBinder())) != null) {
                     try {
-                        final b2.o0 a19 = b2.o0.a(q21.f16754c, bundle11);
-                        O0(q21, readInt58, 20, new z0(new y0(1, new g1() {
+                        final b2.o0 a19 = b2.o0.a(q21.f16761c, bundle11);
+                        O0(q21, readInt58, 20, new z0(new w0(2, new g1() {
                             @Override
                             public final Object e(f0 f0Var3, v vVar, int i122) {
                                 switch (r2) {
@@ -994,16 +994,16 @@ public final class i1 extends Binder implements m {
                 int readInt61 = parcel.readInt();
                 int readInt62 = parcel.readInt();
                 IBinder readStrongBinder3 = parcel.readStrongBinder();
-                if (F044 != null && readStrongBinder3 != null && readInt61 >= 0 && readInt62 >= readInt61 && (q22 = this.f16558b.q(F044.asBinder())) != null) {
+                if (F044 != null && readStrongBinder3 != null && readInt61 >= 0 && readInt62 >= readInt61 && (q22 = this.f16565b.q(F044.asBinder())) != null) {
                     try {
                         e9.n0 a20 = b2.h.a(readStrongBinder3);
                         e9.k0 t12 = e9.n0.t();
                         for (int i14 = 0; i14 < a20.size(); i14++) {
                             Bundle bundle12 = (Bundle) a20.get(i14);
                             bundle12.getClass();
-                            t12.c(b2.o0.a(q22.f16754c, bundle12));
+                            t12.c(b2.o0.a(q22.f16761c, bundle12));
                         }
-                        O0(q22, readInt60, 20, new z0(new y0(1, new j5.b(t12.f(), 13), new q0(this, readInt61, readInt62)), 1));
+                        O0(q22, readInt60, 20, new z0(new w0(2, new j5.b(t12.f(), 13), new q0(this, readInt61, readInt62)), 1));
                         break;
                     } catch (RuntimeException e19) {
                         e2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e19);

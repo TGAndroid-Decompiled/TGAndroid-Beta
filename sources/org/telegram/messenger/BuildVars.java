@@ -81,7 +81,7 @@ public class BuildVars {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ArrayList arrayList2 = (ArrayList) ((c5.n) obj).f4772b.f310b;
+                ArrayList arrayList2 = (ArrayList) ((c5.n) obj).f4773b.f310b;
                 int size2 = arrayList2.size();
                 int i11 = 0;
                 while (i11 < size2) {
@@ -89,7 +89,7 @@ public class BuildVars {
                     i11++;
                     c5.m mVar = (c5.m) obj2;
                     for (String str : MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency) {
-                        if (Objects.equals(mVar.f4770c, str)) {
+                        if (Objects.equals(mVar.f4771c, str)) {
                             return true;
                         }
                     }

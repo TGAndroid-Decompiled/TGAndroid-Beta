@@ -12,28 +12,28 @@ public final class ly0 extends s4.b0 {
     @Override
     public final int o0(int i10, qf.e eVar, s4.y0 y0Var) {
         ProfileActivity profileActivity = this.I;
-        View m10 = profileActivity.f33583c.m(0);
+        View m10 = profileActivity.f33590c.m(0);
         if (m10 != null && !profileActivity.G0) {
             int top = m10.getTop() - profileActivity.T3();
-            boolean z10 = profileActivity.f33676p2;
+            boolean z10 = profileActivity.f33683p2;
             boolean z11 = true;
             if (!z10 && top > i10) {
-                if (!profileActivity.f33667o0.X0.isEmpty() && profileActivity.f33606f0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f33669o2 && !AndroidUtilities.isTablet()) || profileActivity.J0)) {
+                if (!profileActivity.f33674o0.X0.isEmpty() && profileActivity.f33613f0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f33676o2 && !AndroidUtilities.isTablet()) || profileActivity.J0)) {
                     if (profileActivity.K2 != null) {
                         z11 = false;
                     }
-                    profileActivity.f33676p2 = z11;
+                    profileActivity.f33683p2 = z11;
                 }
             } else if (z10) {
                 if (i10 >= top) {
-                    profileActivity.f33676p2 = false;
-                } else if (profileActivity.f33568a.getScrollState() == 1 && !profileActivity.f33682q2) {
+                    profileActivity.f33683p2 = false;
+                } else if (profileActivity.f33575a.getScrollState() == 1 && !profileActivity.f33689q2) {
                     i10 /= 2;
                 }
             }
             i10 = top;
         }
-        if (profileActivity.P1 && !profileActivity.f33568a.P0) {
+        if (profileActivity.P1 && !profileActivity.f33575a.P0) {
             return 0;
         }
         return super.o0(i10, eVar, y0Var);
@@ -41,7 +41,7 @@ public final class ly0 extends s4.b0 {
 
     @Override
     public final boolean y0() {
-        if (this.I.f33687r0 != null) {
+        if (this.I.f33694r0 != null) {
             return true;
         }
         return false;

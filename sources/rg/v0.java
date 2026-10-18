@@ -6,15 +6,15 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ht0;
 public final class v0 implements qg.d1 {
-    public final w0 f45686a;
+    public final w0 f45706a;
 
     public v0(w0 w0Var) {
-        this.f45686a = w0Var;
+        this.f45706a = w0Var;
     }
 
     @Override
     public final void a() {
-        w0 w0Var = this.f45686a;
+        w0 w0Var = this.f45706a;
         w0Var.e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new i6(w0Var, 16)).setInterpolator(bs.h);
     }
 
@@ -25,9 +25,9 @@ public final class v0 implements qg.d1 {
 
     @Override
     public final void e() {
-        w0 w0Var = this.f45686a;
-        w0Var.f45698b.f44706a.e();
-        w0Var.f45704w.setViewHidden(false);
+        w0 w0Var = this.f45706a;
+        w0Var.f45718b.f44726a.e();
+        w0Var.f45724w.setViewHidden(false);
         PhotoViewer photoViewer = ((ht0) w0Var).K;
         Drawable[] drawableArr = PhotoViewer.U8;
         photoViewer.X2(true, true);
@@ -35,7 +35,7 @@ public final class v0 implements qg.d1 {
 
     @Override
     public final void f() {
-        this.f45686a.f45704w.setViewHidden(true);
+        this.f45706a.f45724w.setViewHidden(true);
     }
 
     @Override

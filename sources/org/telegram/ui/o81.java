@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class o81 implements ch.a {
-    public final RectF f39687a = new RectF();
-    public final y8 f39688b;
-    public final r91 f39689c;
+    public final RectF f39708a = new RectF();
+    public final y8 f39709b;
+    public final r91 f39710c;
 
     public o81(r91 r91Var, y8 y8Var) {
-        this.f39689c = r91Var;
-        this.f39688b = y8Var;
+        this.f39710c = r91Var;
+        this.f39709b = y8Var;
     }
 
     @Override
     public final void e(bh.a aVar, RectF rectF) {
-        aVar.f4356a = true;
+        aVar.f4357a = true;
     }
 
     @Override
@@ -22,21 +22,21 @@ public final class o81 implements ch.a {
         bh.l lVar;
         ec ecVar;
         ec ecVar2;
-        r91 r91Var = this.f39689c;
+        r91 r91Var = this.f39710c;
         r91Var.fragmentView.getMeasuredWidth();
         r91Var.fragmentView.getMeasuredHeight();
-        canvas.drawColor(r91Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6));
+        canvas.drawColor(r91Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20993d6));
         for (int i10 = 0; i10 < 3; i10++) {
             if (i10 == 0) {
                 lVar = r91Var.T;
                 ecVar = r91Var.S;
-            } else if (i10 == 1 && (ecVar2 = r91Var.f40650j0) != null) {
+            } else if (i10 == 1 && (ecVar2 = r91Var.f40675j0) != null) {
                 lVar = ecVar2.G;
                 ecVar = ecVar2;
             } else {
-                ke keVar = r91Var.f40651k0;
+                ke keVar = r91Var.f40676k0;
                 if (keVar != null) {
-                    lVar = keVar.f38479b1;
+                    lVar = keVar.f38488b1;
                     ecVar = keVar;
                 } else {
                     lVar = null;
@@ -44,8 +44,8 @@ public final class o81 implements ch.a {
                 }
             }
             if (lVar != null && ecVar != null) {
-                y8 y8Var = this.f39688b;
-                RectF rectF2 = this.f39687a;
+                y8 y8Var = this.f39709b;
+                RectF rectF2 = this.f39708a;
                 ih.j.c(ecVar, y8Var, rectF2);
                 if (rectF2.right > 0.0f) {
                     r91Var.fragmentView.getMeasuredWidth();

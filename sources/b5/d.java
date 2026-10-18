@@ -32,9 +32,9 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.z9;
 public abstract class d {
-    public static int f4199a;
-    public static AtomicInteger f4200b;
-    public static boolean f4201c;
+    public static int f4200a;
+    public static AtomicInteger f4201b;
+    public static boolean f4202c;
     public static int d;
     public static g2 e;
 
@@ -44,10 +44,10 @@ public abstract class d {
         if (e7 == null) {
             return;
         }
-        if (f4200b == null) {
-            f4200b = new AtomicInteger(0);
+        if (f4201b == null) {
+            f4201b = new AtomicInteger(0);
         }
-        f4200b.incrementAndGet();
+        f4201b.incrementAndGet();
         double d10 = f7;
         n6.l.e("Must be called from the main thread.");
         if (!e7.w()) {
@@ -65,7 +65,7 @@ public abstract class d {
     }
 
     public static void C() {
-        int i10 = f4199a;
+        int i10 = f4200a;
         if (i10 == 0) {
             PhotoViewer.t1().i3();
         } else if (i10 == 1) {
@@ -90,13 +90,13 @@ public abstract class d {
     }
 
     public static Person E(m0 m0Var) {
-        Person.Builder name = new Person.Builder().setName(m0Var.f8132a);
-        IconCompat iconCompat = m0Var.f8133b;
+        Person.Builder name = new Person.Builder().setName(m0Var.f8133a);
+        IconCompat iconCompat = m0Var.f8134b;
         Icon icon = null;
         if (iconCompat != null) {
             icon = iconCompat.m(null);
         }
-        return name.setIcon(icon).setUri(m0Var.f8134c).setKey(m0Var.d).setBot(m0Var.e).setImportant(m0Var.f8135f).build();
+        return name.setIcon(icon).setUri(m0Var.f8135c).setKey(m0Var.d).setBot(m0Var.e).setImportant(m0Var.f8136f).build();
     }
 
     public static void a(Notification.Builder builder, Person person) {
@@ -105,14 +105,14 @@ public abstract class d {
 
     public static void b(int i10) {
         d6.a c10;
-        f4199a = i10;
-        if (!f4201c) {
+        f4200a = i10;
+        if (!f4202c) {
             try {
                 if (f() == null || (c10 = d6.a.c(f())) == null) {
                     return;
                 }
                 c10.b().a(new com.google.android.gms.internal.cast.a(i10));
-                f4201c = true;
+                f4202c = true;
             } catch (Exception e7) {
                 FileLog.e(e7);
             }
@@ -165,7 +165,7 @@ public abstract class d {
                 d6.a c11 = d6.a.c(f());
                 if (c11 != null && (c10 = c11.b().c()) != null && c10.b()) {
                     n6.l.e("Must be called from the main thread.");
-                    return c10.f7856j;
+                    return c10.f7857j;
                 }
             } catch (Exception e7) {
                 FileLog.e(e7);
@@ -279,10 +279,10 @@ public abstract class d {
         if (e7 == null) {
             return;
         }
-        if (f4200b == null) {
-            f4200b = new AtomicInteger(0);
+        if (f4201b == null) {
+            f4201b = new AtomicInteger(0);
         }
-        f4200b.incrementAndGet();
+        f4201b.incrementAndGet();
         e7.q(new c6.p(j10)).b(new z9(3));
     }
 
@@ -295,10 +295,10 @@ public abstract class d {
         BasePendingResult basePendingResult2;
         e6.h e7 = e();
         if (e7 != null && z10 != e7.m()) {
-            if (f4200b == null) {
-                f4200b = new AtomicInteger(0);
+            if (f4201b == null) {
+                f4201b = new AtomicInteger(0);
             }
-            f4200b.incrementAndGet();
+            f4201b.incrementAndGet();
             if (z10) {
                 n6.l.e("Must be called from the main thread.");
                 if (!e7.w()) {
@@ -333,10 +333,10 @@ public abstract class d {
         if (e7 == null) {
             return;
         }
-        if (f4200b == null) {
-            f4200b = new AtomicInteger(0);
+        if (f4201b == null) {
+            f4201b = new AtomicInteger(0);
         }
-        f4200b.incrementAndGet();
+        f4201b.incrementAndGet();
         double d10 = f7;
         n6.l.e("Must be called from the main thread.");
         if (!e7.w()) {

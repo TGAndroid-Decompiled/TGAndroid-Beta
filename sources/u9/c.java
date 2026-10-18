@@ -14,7 +14,7 @@ import kotlin.jvm.internal.i;
 import z9.t0;
 import z9.t1;
 public final class c {
-    public static final c f47644a = new Object();
+    public static final c f47666a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -32,7 +32,7 @@ public final class c {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = o.f14385a;
+            list = o.f14392a;
         }
         ArrayList f7 = g.f(list);
         ArrayList arrayList = new ArrayList();
@@ -55,10 +55,10 @@ public final class c {
             r rVar = new r(13, false);
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                rVar.f7662b = str2;
+                rVar.f7663b = str2;
                 rVar.d = Integer.valueOf(runningAppProcessInfo.pid);
                 rVar.e = Integer.valueOf(runningAppProcessInfo.importance);
-                rVar.f7663c = Boolean.valueOf(i.a(runningAppProcessInfo.processName, str));
+                rVar.f7664c = Boolean.valueOf(i.a(runningAppProcessInfo.processName, str));
                 arrayList2.add(rVar.c());
             } else {
                 throw new NullPointerException("Null processName");
@@ -79,7 +79,7 @@ public final class c {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((t0) ((t1) obj)).f51498b == myPid) {
+                if (((t0) ((t1) obj)).f51523b == myPid) {
                     break;
                 }
             } else {
@@ -98,10 +98,10 @@ public final class c {
             }
             i.e(processName, "processName");
             r rVar = new r(13, false);
-            rVar.f7662b = processName;
+            rVar.f7663b = processName;
             rVar.d = Integer.valueOf(myPid);
             rVar.e = 0;
-            rVar.f7663c = false;
+            rVar.f7664c = false;
             return rVar.c();
         }
         return t1Var;

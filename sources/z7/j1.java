@@ -1,12 +1,12 @@
 package z7;
 public final class j1 {
-    public final i1 f50935a;
-    public final Integer f50936b;
-    public final na f50937c;
+    public final i1 f51098a;
+    public final Integer f51099b;
+    public final ma f51100c;
 
-    public j1(u2.c cVar) {
-        this.f50935a = (i1) cVar.f47282b;
-        this.f50936b = (Integer) cVar.f47283c;
-        this.f50937c = (na) cVar.d;
+    public j1(t0.h hVar) {
+        this.f51098a = (i1) hVar.f46911b;
+        this.f51099b = (Integer) hVar.f46912c;
+        this.f51100c = (ma) hVar.d;
     }
 }

@@ -149,7 +149,7 @@ public class DispatchQueuePoolBackground {
         if (updateTaskCollection == null) {
             ArrayList<ArrayList<Runnable>> arrayList = freeCollections;
             if (!arrayList.isEmpty()) {
-                updateTaskCollection = (ArrayList) i0.a.z(1, arrayList);
+                updateTaskCollection = (ArrayList) i2.d.A(1, arrayList);
             } else {
                 updateTaskCollection = new ArrayList<>(100);
             }

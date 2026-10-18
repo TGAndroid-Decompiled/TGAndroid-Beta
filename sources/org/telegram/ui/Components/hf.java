@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class hf implements Runnable {
-    public final int f26876a;
-    public int f26877b;
-    public final KeyEvent.Callback f26878c;
+    public final int f26883a;
+    public int f26884b;
+    public final KeyEvent.Callback f26885c;
 
     public hf(KeyEvent.Callback callback, int i10, int i11) {
-        this.f26876a = i11;
-        this.f26878c = callback;
-        this.f26877b = i10;
+        this.f26883a = i11;
+        this.f26885c = callback;
+        this.f26884b = i10;
     }
 
     @Override
@@ -24,22 +24,22 @@ public final class hf implements Runnable {
         boolean z10;
         boolean z11;
         int max;
-        int i10 = this.f26876a;
-        KeyEvent.Callback callback = this.f26878c;
+        int i10 = this.f26883a;
+        KeyEvent.Callback callback = this.f26885c;
         switch (i10) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) callback;
                 dg dgVar = chatActivityEnterView.U0;
-                if (dgVar != null && (currentPage = dgVar.getCurrentPage()) != this.f26877b) {
-                    this.f26877b = currentPage;
-                    boolean z12 = chatActivityEnterView.f24041x3;
+                if (dgVar != null && (currentPage = dgVar.getCurrentPage()) != this.f26884b) {
+                    this.f26884b = currentPage;
+                    boolean z12 = chatActivityEnterView.f24048x3;
                     int i11 = 2;
                     if (currentPage != 1 && currentPage != 2) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    chatActivityEnterView.f24041x3 = z10;
+                    chatActivityEnterView.f24048x3 = z10;
                     boolean z13 = chatActivityEnterView.y3;
                     if (currentPage == 0) {
                         z11 = true;
@@ -47,7 +47,7 @@ public final class hf implements Runnable {
                         z11 = false;
                     }
                     chatActivityEnterView.y3 = z11;
-                    if (chatActivityEnterView.f24051z3) {
+                    if (chatActivityEnterView.f24058z3) {
                         if (chatActivityEnterView.R1 != 0) {
                             if (currentPage != 0) {
                                 i11 = 1;
@@ -58,7 +58,7 @@ public final class hf implements Runnable {
                             chatActivityEnterView.l1(false, true, false, true);
                         }
                     }
-                    if (z12 != chatActivityEnterView.f24041x3 || z13 != chatActivityEnterView.y3) {
+                    if (z12 != chatActivityEnterView.f24048x3 || z13 != chatActivityEnterView.y3) {
                         chatActivityEnterView.I(true);
                         return;
                     }
@@ -66,9 +66,9 @@ public final class hf implements Runnable {
                 }
                 return;
             case 1:
-                int i12 = this.f26877b;
+                int i12 = this.f26884b;
                 wp wpVar = (wp) callback;
-                s4.n0 layoutManager = wpVar.f32184w.getLayoutManager();
+                s4.n0 layoutManager = wpVar.f32191w.getLayoutManager();
                 if (layoutManager != null) {
                     if (i12 > wpVar.Q) {
                         max = Math.min(i12 + 1, wpVar.h.d.size() - 1);
@@ -76,24 +76,24 @@ public final class hf implements Runnable {
                         max = Math.max(i12 - 1, 0);
                     }
                     qp qpVar = wpVar.H;
-                    qpVar.f46079a = max;
+                    qpVar.f46099a = max;
                     layoutManager.w0(qpVar);
                 }
                 wpVar.Q = i12;
                 return;
             default:
-                int i13 = this.f26877b;
+                int i13 = this.f26884b;
                 ei.x8 x8Var = (ei.x8) callback;
-                if (((hf) x8Var.f10109f) == this) {
+                if (((hf) x8Var.f10111f) == this) {
                     ArrayList arrayList = new ArrayList();
-                    TextView textView = (TextView) ((ArrayList) x8Var.f10107b).get(i13);
+                    TextView textView = (TextView) ((ArrayList) x8Var.f10109b).get(i13);
                     Property property = View.SCALE_X;
                     arrayList.add(ObjectAnimator.ofFloat(textView, property, 0.0f));
                     Property property2 = View.SCALE_Y;
                     arrayList.add(ObjectAnimator.ofFloat(textView, property2, 0.0f));
                     Property property3 = View.ALPHA;
                     arrayList.add(ObjectAnimator.ofFloat(textView, property3, 0.0f));
-                    TextView textView2 = (TextView) ((ArrayList) x8Var.f10108c).get(i13);
+                    TextView textView2 = (TextView) ((ArrayList) x8Var.f10110c).get(i13);
                     arrayList.add(ObjectAnimator.ofFloat(textView2, property, 1.0f));
                     arrayList.add(ObjectAnimator.ofFloat(textView2, property2, 1.0f));
                     arrayList.add(ObjectAnimator.ofFloat(textView2, property3, 1.0f));
@@ -110,8 +110,8 @@ public final class hf implements Runnable {
     }
 
     public hf(ChatActivityEnterView chatActivityEnterView) {
-        this.f26876a = 0;
-        this.f26878c = chatActivityEnterView;
-        this.f26877b = -1;
+        this.f26883a = 0;
+        this.f26885c = chatActivityEnterView;
+        this.f26884b = -1;
     }
 }

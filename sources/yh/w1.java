@@ -1,7 +1,7 @@
 package yh;
 
 import ai.v9;
-import ai.x9;
+import ai.y9;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.view.View;
@@ -17,19 +17,19 @@ import org.telegram.ui.Components.a6;
 import org.telegram.ui.Components.is0;
 import org.telegram.ui.Components.u81;
 public final class w1 extends u81 {
-    public final int f50585a;
-    public final d6 f50586b;
-    public final is0 f50587c;
+    public final int f50610a;
+    public final d6 f50611b;
+    public final is0 f50612c;
 
     public w1(is0 is0Var, int i10, d6 d6Var) {
-        this.f50587c = is0Var;
-        this.f50585a = i10;
-        this.f50586b = d6Var;
+        this.f50612c = is0Var;
+        this.f50610a = i10;
+        this.f50611b = d6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        is0 is0Var = this.f50587c;
+        is0 is0Var = this.f50612c;
         r1 r1Var = is0Var.N;
         v9 v9Var = is0Var.e;
         ArrayList arrayList2 = new ArrayList();
@@ -77,7 +77,7 @@ public final class w1 extends u81 {
             if (currentPage.d) {
                 i10 = v9Var.f(currentPage.e.d) + 1;
             }
-            is0Var.f50496n.e(0.0f, i10, i10);
+            is0Var.f50521n.e(0.0f, i10, i10);
         }
         AndroidUtilities.cancelRunOnUIThread(r1Var);
         AndroidUtilities.runOnUIThread(r1Var, 1000L);
@@ -85,37 +85,37 @@ public final class w1 extends u81 {
 
     @Override
     public final void b(View view, int i10, int i11) {
-        x9 x9Var;
+        y9 y9Var;
         boolean z10;
-        is0 is0Var = this.f50587c;
+        is0 is0Var = this.f50612c;
         v9 v9Var = is0Var.e;
         m2 m2Var = (m2) view;
         int i12 = 0;
         if (i11 == 0) {
-            x9Var = is0Var.d;
+            y9Var = is0Var.d;
             z10 = false;
         } else {
             int i13 = i10 - 1;
             if (i13 >= 0) {
                 if (i13 < v9Var.d().size()) {
-                    x9Var = v9Var.e(((TL_stars.TL_starGiftCollection) v9Var.d().get(i13)).collection_id);
+                    y9Var = v9Var.e(((TL_stars.TL_starGiftCollection) v9Var.d().get(i13)).collection_id);
                     z10 = true;
                 }
             } else {
                 v9Var.getClass();
             }
-            x9Var = null;
+            y9Var = null;
             z10 = true;
         }
         m2Var.d = z10;
-        m2Var.e = x9Var;
-        if (x9Var != null) {
-            x9Var.a();
+        m2Var.e = y9Var;
+        if (y9Var != null) {
+            y9Var.a();
         }
         m2Var.f(false);
         LinearLayout linearLayout = m2Var.E;
         if (linearLayout != null) {
-            if (!m2Var.f50394a.e.h()) {
+            if (!m2Var.f50419a.e.h()) {
                 i12 = 8;
             }
             linearLayout.setVisibility(i12);
@@ -137,12 +137,12 @@ public final class w1 extends u81 {
         if (i10 == -1) {
             return null;
         }
-        return new m2(this.f50587c, this.f50585a, this.f50586b);
+        return new m2(this.f50612c, this.f50610a, this.f50611b);
     }
 
     @Override
     public final int e() {
-        return this.f50587c.e.d().size() + 1;
+        return this.f50612c.e.d().size() + 1;
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class w1 extends u81 {
         if (i10 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f50587c.e.d().get(i10 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f50612c.e.d().get(i10 - 1)).collection_id;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class w1 extends u81 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.Gift2CollectionAll);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f50587c.e.d().get(i10 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f50612c.e.d().get(i10 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }

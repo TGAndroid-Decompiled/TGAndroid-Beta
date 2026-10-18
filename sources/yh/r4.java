@@ -1,7 +1,7 @@
 package yh;
 
 import org.telegram.tgnet.TLRPC;
-public final class r4 implements org.telegram.ui.Cells.u0 {
+public final class r4 implements org.telegram.ui.Cells.t0 {
     @Override
     public final org.telegram.ui.ActionBar.n2 L0() {
         return null;
@@ -23,7 +23,7 @@ public final class r4 implements org.telegram.ui.Cells.u0 {
     }
 
     @Override
-    public final boolean h2(org.telegram.ui.Cells.x0 x0Var, float f7, float f10) {
+    public final boolean h2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
         return false;
     }
 
@@ -32,15 +32,15 @@ public final class r4 implements org.telegram.ui.Cells.u0 {
     }
 
     @Override
-    public final void b0(org.telegram.ui.Cells.x0 x0Var) {
+    public final void b0(org.telegram.ui.Cells.w0 w0Var) {
     }
 
     @Override
-    public final void k0(org.telegram.ui.Cells.x0 x0Var) {
+    public final void k0(org.telegram.ui.Cells.w0 w0Var) {
     }
 
     @Override
-    public final void r0(org.telegram.ui.Cells.x0 x0Var) {
+    public final void r0(org.telegram.ui.Cells.w0 w0Var) {
     }
 
     @Override
@@ -48,30 +48,30 @@ public final class r4 implements org.telegram.ui.Cells.u0 {
     }
 
     @Override
-    public final void t1(org.telegram.ui.Cells.x0 x0Var) {
+    public final void t1(org.telegram.ui.Cells.w0 w0Var) {
     }
 
     @Override
-    public final void X(org.telegram.ui.Cells.x0 x0Var, int i10) {
+    public final void X(org.telegram.ui.Cells.w0 w0Var, int i10) {
     }
 
     @Override
-    public final void X1(org.telegram.ui.Cells.x0 x0Var, String str) {
+    public final void X1(org.telegram.ui.Cells.w0 w0Var, String str) {
     }
 
     @Override
-    public final void C1(org.telegram.ui.Cells.x0 x0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
+    public final void C1(org.telegram.ui.Cells.w0 w0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
     }
 
     @Override
-    public final void c1(org.telegram.ui.Cells.x0 x0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
+    public final void c1(org.telegram.ui.Cells.w0 w0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
     }
 
     @Override
-    public final void g0(org.telegram.ui.Cells.x0 x0Var, int i10, int i11) {
+    public final void g0(org.telegram.ui.Cells.w0 w0Var, int i10, int i11) {
     }
 
     @Override
-    public final void k2(org.telegram.ui.Cells.x0 x0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+    public final void k2(org.telegram.ui.Cells.w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 }

@@ -7,16 +7,16 @@ import org.telegram.ui.Components.iv0;
 import org.telegram.ui.Components.ku0;
 import org.telegram.ui.Components.ql0;
 public final class i extends iv0 {
-    public final r f8041o3;
+    public final r f8042o3;
 
     public i(r rVar, Context context) {
         super(context);
-        this.f8041o3 = rVar;
+        this.f8042o3 = rVar;
     }
 
     @Override
     public final boolean A1() {
-        return this.f8041o3.f8057b;
+        return this.f8042o3.f8058b;
     }
 
     @Override
@@ -36,10 +36,10 @@ public final class i extends iv0 {
             }
         }
         float f7 = i11;
-        r rVar = this.f8041o3;
+        r rVar = this.f8042o3;
         o oVar = rVar.J;
-        if (rVar.f8057b) {
-            ku0 ku0Var = rVar.f8061r;
+        if (rVar.f8058b) {
+            ku0 ku0Var = rVar.f8062r;
             int i13 = 0;
             for (int i14 = 0; i14 < ku0Var.getChildCount(); i14++) {
                 int bottom2 = ku0Var.getChildAt(i14).getBottom() - ku0Var.getPaddingTop();
@@ -47,7 +47,7 @@ public final class i extends iv0 {
                     i13 = bottom2;
                 }
             }
-            f7 = AndroidUtilities.lerp(f7, i13, rVar.f8058c);
+            f7 = AndroidUtilities.lerp(f7, i13, rVar.f8059c);
         }
         if (rVar.v.h() <= 0) {
             i10 = 8;
@@ -58,23 +58,23 @@ public final class i extends iv0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f8041o3.e;
+        return this.f8042o3.e;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f8041o3.f8058c;
+        return this.f8042o3.f8059c;
     }
 
     @Override
     public final int getColumnsCount() {
-        return this.f8041o3.d;
+        return this.f8042o3.d;
     }
 
     @Override
     public final ql0 getMovingAdapter() {
-        r rVar = this.f8041o3;
-        if (rVar.G.f46093y == 0 && !rVar.W.G.C1) {
+        r rVar = this.f8042o3;
+        if (rVar.G.f46113y == 0 && !rVar.W.G.C1) {
             return rVar.v;
         }
         return null;
@@ -82,11 +82,11 @@ public final class i extends iv0 {
 
     @Override
     public final ql0 getSupportingAdapter() {
-        return this.f8041o3.f8063w;
+        return this.f8042o3.f8064w;
     }
 
     @Override
     public final ku0 getSupportingListView() {
-        return this.f8041o3.f8061r;
+        return this.f8042o3.f8062r;
     }
 }

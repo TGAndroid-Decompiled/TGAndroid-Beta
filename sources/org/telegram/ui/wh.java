@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class wh extends AnimatorListenerAdapter {
-    public final rn f42854a;
-    public final boolean f42855b;
-    public final org.telegram.ui.ActionBar.j5 f42856c;
+    public final rn f42878a;
+    public final boolean f42879b;
+    public final org.telegram.ui.ActionBar.j5 f42880c;
     public final boolean d;
-    public final ai.ud e;
-    public final boolean f42857f;
+    public final ai.vd e;
+    public final boolean f42881f;
     public final sn h;
 
-    public wh(sn snVar, rn rnVar, boolean z10, org.telegram.ui.ActionBar.j5 j5Var, boolean z11, ai.ud udVar, boolean z12) {
+    public wh(sn snVar, rn rnVar, boolean z10, org.telegram.ui.ActionBar.j5 j5Var, boolean z11, ai.vd vdVar, boolean z12) {
         this.h = snVar;
-        this.f42854a = rnVar;
-        this.f42855b = z10;
-        this.f42856c = j5Var;
+        this.f42878a = rnVar;
+        this.f42879b = z10;
+        this.f42880c = j5Var;
         this.d = z11;
-        this.e = udVar;
-        this.f42857f = z12;
+        this.e = vdVar;
+        this.f42881f = z12;
     }
 
     @Override
@@ -35,20 +35,20 @@ public final class wh extends AnimatorListenerAdapter {
         snVar.D2[0].setTranslationX(0.0f);
         snVar.D2[1].setTranslationX(0.0f);
         snVar.F2.setTranslationX(snVar.G2 + 0.0f);
-        rn rnVar = this.f42854a;
+        rn rnVar = this.f42878a;
         rnVar.setTranslationY(0.0f);
-        boolean z10 = this.f42855b;
+        boolean z10 = this.f42879b;
         if (!z10) {
             rnVar.setTranslationY(0.0f);
         }
-        org.telegram.ui.ActionBar.j5 j5Var = this.f42856c;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f42880c;
         if (!z10) {
             j5Var.setTranslationY(0.0f);
         }
         boolean z11 = this.d;
-        ai.ud udVar = this.e;
+        ai.vd vdVar = this.e;
         if (!z11) {
-            udVar.setTranslationY(0.0f);
+            vdVar.setTranslationY(0.0f);
         }
         snVar.C2[0].setTranslationX(0.0f);
         snVar.C2[1].setTranslationX(0.0f);
@@ -63,11 +63,11 @@ public final class wh extends AnimatorListenerAdapter {
         j5VarArr[1] = j5Var2;
         j5VarArr[0] = j5Var;
         j5Var2.setVisibility(4);
-        ai.ud[] udVarArr = snVar.E2;
-        ai.ud udVar2 = udVarArr[0];
-        udVarArr[1] = udVar2;
-        udVarArr[0] = udVar;
-        udVar2.setVisibility(4);
+        ai.vd[] vdVarArr = snVar.E2;
+        ai.vd vdVar2 = vdVarArr[0];
+        vdVarArr[1] = vdVar2;
+        vdVarArr[0] = vdVar;
+        vdVar2.setVisibility(4);
         rn[] rnVarArr = snVar.C2;
         rn rnVar2 = rnVarArr[0];
         if (rnVar != rnVar2) {
@@ -75,7 +75,7 @@ public final class wh extends AnimatorListenerAdapter {
             rnVarArr[0] = rnVar;
             rnVar2.setVisibility(4);
         }
-        if (this.f42857f) {
+        if (this.f42881f) {
             snVar.B2[1].setImageBitmap(null);
             snVar.B2[1].setVisibility(4);
         }

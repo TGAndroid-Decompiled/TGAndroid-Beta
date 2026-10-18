@@ -2,28 +2,28 @@ package ai;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class g8 implements Runnable {
-    public final int f1368a;
-    public final sc f1369b;
+    public final int f1349a;
+    public final tc f1350b;
 
-    public g8(sc scVar, int i10) {
-        this.f1368a = i10;
-        this.f1369b = scVar;
+    public g8(tc tcVar, int i10) {
+        this.f1349a = i10;
+        this.f1350b = tcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f1368a) {
+        switch (this.f1349a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new g8(this.f1369b, 3));
+                AndroidUtilities.runOnUIThread(new g8(this.f1350b, 3));
                 return;
             case 1:
-                this.f1369b.run(Boolean.FALSE, "PRODUCT_NOT_FOUND");
+                this.f1350b.run(Boolean.FALSE, "PRODUCT_NOT_FOUND");
                 return;
             case 2:
-                this.f1369b.run(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
+                this.f1350b.run(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
                 return;
             default:
-                this.f1369b.run(Boolean.FALSE, null);
+                this.f1350b.run(Boolean.FALSE, null);
                 return;
         }
     }

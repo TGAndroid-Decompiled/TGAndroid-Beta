@@ -1,6 +1,6 @@
 package sg;
 
-import ai.yd;
+import ai.zd;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -9,7 +9,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -27,15 +27,15 @@ import org.telegram.ui.sa1;
 import rg.n2;
 import w7.z5;
 public final class k1 extends hm0 {
-    public final l1 f46312c;
+    public final l1 f46332c;
 
     public k1(l1 l1Var) {
-        this.f46312c = l1Var;
+        this.f46332c = l1Var;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45941f == 1) {
+        if (b1Var.f45961f == 1) {
             return true;
         }
         return false;
@@ -43,20 +43,20 @@ public final class k1 extends hm0 {
 
     @Override
     public final int h() {
-        return this.f46312c.f46328f0;
+        return this.f46332c.f46348f0;
     }
 
     @Override
     public final int j(int i10) {
-        l1 l1Var = this.f46312c;
-        if (i10 != l1Var.f46329g0) {
-            if (i10 >= l1Var.f46330h0 && i10 < l1Var.f46331i0) {
+        l1 l1Var = this.f46332c;
+        if (i10 != l1Var.f46349g0) {
+            if (i10 >= l1Var.f46350h0 && i10 < l1Var.f46351i0) {
                 return l1Var.Y();
             }
-            if (i10 >= l1Var.f46332j0 && i10 < l1Var.f46333k0) {
+            if (i10 >= l1Var.f46352j0 && i10 < l1Var.f46353k0) {
                 return 1;
             }
-            if (i10 == l1Var.f46334l0) {
+            if (i10 == l1Var.f46354l0) {
                 return 2;
             }
             if (i10 == l1Var.m0) {
@@ -65,7 +65,7 @@ public final class k1 extends hm0 {
             if (i10 == 0) {
                 return 4;
             }
-            if (i10 == l1Var.f46335n0) {
+            if (i10 == l1Var.f46355n0) {
                 return 5;
             }
             return 0;
@@ -75,18 +75,18 @@ public final class k1 extends hm0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        View view = b1Var.f45938a;
-        l1 l1Var = this.f46312c;
-        int i11 = l1Var.f46332j0;
-        if (i10 >= i11 && i10 < l1Var.f46333k0) {
+        View view = b1Var.f45958a;
+        l1 l1Var = this.f46332c;
+        int i11 = l1Var.f46352j0;
+        if (i10 >= i11 && i10 < l1Var.f46353k0) {
             aw0 aw0Var = (aw0) view;
             qw0 qw0Var = (qw0) l1Var.X.get(i10 - i11);
             boolean z10 = true;
-            if (i10 == l1Var.f46333k0 - 1) {
+            if (i10 == l1Var.f46353k0 - 1) {
                 z10 = false;
             }
             aw0Var.a(qw0Var, z10);
-        } else if (i10 >= l1Var.f46330h0 && i10 < l1Var.f46331i0) {
+        } else if (i10 >= l1Var.f46350h0 && i10 < l1Var.f46351i0) {
             l1Var.Z(view);
         }
     }
@@ -101,10 +101,10 @@ public final class k1 extends hm0 {
         d6 d6Var3;
         d6 d6Var4;
         Context context = viewGroup.getContext();
-        l1 l1Var = this.f46312c;
+        l1 l1Var = this.f46332c;
         View a02 = l1Var.a0(context, i10);
         if (a02 != null) {
-            return a6.l(a02, a02, -1, -2);
+            return k3.l(a02, a02, -1, -2);
         }
         if (i10 != 0) {
             if (i10 != 2) {
@@ -118,40 +118,40 @@ public final class k1 extends hm0 {
                             wg.d0 d0Var = new wg.d0(context, d6Var3);
                             d0Var.setBackground(true);
                             String string = LocaleController.getString("GiftPremiumPrivacyPolicyAndTerms", R.string.GiftPremiumPrivacyPolicyAndTerms);
-                            int i12 = h6.f21045gc;
+                            int i12 = h6.f21052gc;
                             d0Var.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(string, i12, 0, new Runnable(this) {
-                                public final k1 f46276b;
+                                public final k1 f46296b;
 
                                 {
-                                    this.f46276b = this;
+                                    this.f46296b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r2) {
                                         case 0:
-                                            pf.d.r(this.f46276b.f46312c.f46341t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
+                                            pf.d.r(this.f46296b.f46332c.f46361t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
                                             return;
                                         default:
-                                            pf.d.r(this.f46276b.f46312c.f46341t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
+                                            pf.d.r(this.f46296b.f46332c.f46361t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
                                             return;
                                     }
                                 }
                             }), AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumPrivacyPolicy", R.string.GiftPremiumPrivacyPolicy), i12, 0, new Runnable(this) {
-                                public final k1 f46276b;
+                                public final k1 f46296b;
 
                                 {
-                                    this.f46276b = this;
+                                    this.f46296b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r2) {
                                         case 0:
-                                            pf.d.r(this.f46276b.f46312c.f46341t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
+                                            pf.d.r(this.f46296b.f46332c.f46361t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
                                             return;
                                         default:
-                                            pf.d.r(this.f46276b.f46312c.f46341t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
+                                            pf.d.r(this.f46296b.f46332c.f46361t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
                                             return;
                                     }
                                 }
@@ -165,25 +165,25 @@ public final class k1 extends hm0 {
                     hw0Var = new j1(context, 0);
                 }
             } else {
-                hw0Var = new z6(context, l1Var.getThemedColor(h6.f20928a7), 0);
+                hw0Var = new z6(context, l1Var.getThemedColor(h6.f20935a7), 0);
             }
         } else {
             sa1 sa1Var = new sa1(this, context, 20);
-            l1Var.f46340s0 = sa1Var;
+            l1Var.f46360s0 = sa1Var;
             sa1Var.setOrientation(1);
             View view = l1Var.B0;
             if (view == null) {
-                l1Var.f46339r0 = new yd(context, 1, 0, 3);
+                l1Var.f46359r0 = new zd(context, 1, 0, 3);
                 Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 int i13 = h6.Mj;
-                canvas.drawColor(i0.b.f(0.5f, l1Var.getThemedColor(i13), l1Var.getThemedColor(h6.f21057h5)));
-                l1Var.f46339r0.setBackgroundBitmap(createBitmap);
-                tg.g gVar = l1Var.f46339r0.f47127b;
-                gVar.f47111z = i13;
+                canvas.drawColor(i0.a.f(0.5f, l1Var.getThemedColor(i13), l1Var.getThemedColor(h6.f21064h5)));
+                l1Var.f46359r0.setBackgroundBitmap(createBitmap);
+                tg.g gVar = l1Var.f46359r0.f47149b;
+                gVar.f47133z = i13;
                 gVar.A = h6.Lj;
                 gVar.b();
-                sa1Var.addView(l1Var.f46339r0, z5.q(160, 160, 1));
+                sa1Var.addView(l1Var.f46359r0, z5.q(160, 160, 1));
             } else {
                 if (view.getParent() != null) {
                     ((ViewGroup) l1Var.B0.getParent()).removeView(l1Var.B0);
@@ -194,9 +194,9 @@ public final class k1 extends hm0 {
                 FrameLayout frameLayout = new FrameLayout(context);
                 l1Var.N0 = frameLayout;
                 frameLayout.setClipChildren(false);
-                Integer num = l1Var.f46342u0;
+                Integer num = l1Var.f46362u0;
                 if (num == null) {
-                    intValue = l1Var.getThemedColor(h6.f21319v6);
+                    intValue = l1Var.getThemedColor(h6.f21326v6);
                 } else {
                     intValue = num.intValue();
                 }
@@ -240,15 +240,15 @@ public final class k1 extends hm0 {
             }
             sa1Var.addView(l1Var.P0, z5.p(-1, -2, 0.0f, 0, 24, 9, 24, 20));
             l1Var.b0(false);
-            l1Var.f46338q0 = new gi.f(context, 5);
+            l1Var.f46358q0 = new gi.f(context, 5);
             n2 n2Var = new n2(this, context, 4);
             n2Var.setClipChildren(false);
-            n2Var.addView(l1Var.f46338q0);
+            n2Var.addView(l1Var.f46358q0);
             n2Var.addView(sa1Var);
-            yd ydVar = l1Var.f46339r0;
+            zd zdVar = l1Var.f46359r0;
             hw0Var = n2Var;
-            if (ydVar != null) {
-                ydVar.setStarParticlesView(l1Var.f46338q0);
+            if (zdVar != null) {
+                zdVar.setStarParticlesView(l1Var.f46358q0);
                 hw0Var = n2Var;
             }
         }

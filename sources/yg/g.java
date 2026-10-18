@@ -6,51 +6,51 @@ import android.view.View;
 import ei.n9;
 import java.util.ArrayList;
 public final class g extends AnimatorListenerAdapter {
-    public final int f50165a;
-    public final ArrayList f50166b;
-    public final n9 f50167c;
+    public final int f50190a;
+    public final ArrayList f50191b;
+    public final n9 f50192c;
 
     public g(n9 n9Var, ArrayList arrayList, int i10) {
-        this.f50165a = i10;
-        this.f50167c = n9Var;
-        this.f50166b = arrayList;
+        this.f50190a = i10;
+        this.f50192c = n9Var;
+        this.f50191b = arrayList;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f50165a) {
+        switch (this.f50190a) {
             case 0:
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f50166b;
+                    ArrayList arrayList = this.f50191b;
                     int size = arrayList.size();
-                    n9 n9Var = this.f50167c;
+                    n9 n9Var = this.f50192c;
                     if (i10 < size) {
                         n9Var.removeView((View) arrayList.get(i10));
                         i10++;
                     } else {
                         n9Var.getClass();
                         n9Var.h.clear();
-                        n9Var.f9526b = null;
-                        n9Var.f9527c = false;
-                        ((h) n9Var.f9529n).f50169b.setAllowDrawCursor(true);
+                        n9Var.f9527b = null;
+                        n9Var.f9528c = false;
+                        ((h) n9Var.f9530n).f50194b.setAllowDrawCursor(true);
                         return;
                     }
                 }
             default:
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f50166b;
+                    ArrayList arrayList2 = this.f50191b;
                     int size2 = arrayList2.size();
-                    n9 n9Var2 = this.f50167c;
+                    n9 n9Var2 = this.f50192c;
                     if (i11 < size2) {
                         n9Var2.removeView((View) arrayList2.get(i11));
                         i11++;
                     } else {
                         n9Var2.h.clear();
-                        n9Var2.f9526b = null;
-                        n9Var2.f9527c = false;
-                        ((h) n9Var2.f9529n).f50169b.setAllowDrawCursor(true);
+                        n9Var2.f9527b = null;
+                        n9Var2.f9528c = false;
+                        ((h) n9Var2.f9530n).f50194b.setAllowDrawCursor(true);
                         return;
                     }
                 }

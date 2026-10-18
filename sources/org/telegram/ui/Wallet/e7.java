@@ -1,19 +1,30 @@
 package org.telegram.ui.Wallet;
 
-import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.Wallet.WalletEngine2;
-public final class e7 {
-    public final CountDownLatch f34169a = new CountDownLatch(1);
-    public int f34170b;
-    public byte[] f34171c;
-    public WalletEngine2.HttpTransport.HostException d;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.Utilities;
+public final class e7 implements Runnable {
+    public final int f34203a;
+    public final AtomicBoolean f34204b;
+    public final Utilities.Callback2 f34205c;
 
-    public final synchronized void a(byte[] bArr, WalletEngine2.HttpTransport.HostException hostException) {
-        if (this.f34169a.getCount() == 0) {
-            return;
+    public e7(AtomicBoolean atomicBoolean, Utilities.Callback2 callback2, int i10) {
+        this.f34203a = i10;
+        this.f34204b = atomicBoolean;
+        this.f34205c = callback2;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f34203a) {
+            case 0:
+                WalletEngine2.lambda$emulateSend$17(this.f34204b, this.f34205c);
+                return;
+            case 1:
+                WalletEngine2.lambda$emulateSendNFT$21(this.f34204b, this.f34205c);
+                return;
+            default:
+                WalletEngine2.lambda$emulateSendNFT$22(this.f34204b, this.f34205c);
+                return;
         }
-        this.f34171c = bArr;
-        this.d = hostException;
-        this.f34169a.countDown();
     }
 }

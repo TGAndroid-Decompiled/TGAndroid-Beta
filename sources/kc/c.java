@@ -6,8 +6,8 @@ import ec.h;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 public abstract class c {
-    public static final int[] f15007a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, -1, -1, 37, 38, -1, -1, -1, -1, 39, 40, -1, 41, 42, 43, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 44, -1, -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, -1, -1, -1, -1, -1};
-    public static final Charset f15008b = StandardCharsets.ISO_8859_1;
+    public static final int[] f15014a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, -1, -1, 37, 38, -1, -1, -1, -1, 39, 40, -1, 41, 42, 43, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 44, -1, -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, -1, -1, -1, -1, -1};
+    public static final Charset f15015b = StandardCharsets.ISO_8859_1;
 
     public static void a(java.lang.String r8, ic.e r9, ec.a r10, java.nio.charset.Charset r11) {
         throw new UnsupportedOperationException("Method not decompiled: kc.c.a(java.lang.String, ic.e, ec.a, java.nio.charset.Charset):void");
@@ -18,7 +18,7 @@ public abstract class c {
     }
 
     public static boolean c(String str) {
-        byte[] bytes = str.getBytes(h.f8603b);
+        byte[] bytes = str.getBytes(h.f8604b);
         int length = bytes.length;
         if (length % 2 != 0) {
             return false;
@@ -34,11 +34,11 @@ public abstract class c {
 
     public static boolean d(int i10, ic.f fVar, ic.c cVar) {
         int i11 = fVar.d;
-        b0 b0Var = fVar.f12768c[cVar.ordinal()];
-        int i12 = b0Var.f4702b;
+        b0 b0Var = fVar.f12766c[cVar.ordinal()];
+        int i12 = b0Var.f4703b;
         int i13 = 0;
-        for (u0 u0Var : (u0[]) b0Var.f4703c) {
-            i13 += u0Var.f4056a;
+        for (u0 u0Var : (u0[]) b0Var.f4704c) {
+            i13 += u0Var.f4057a;
         }
         if (i11 - (i13 * i12) < (i10 + 7) / 8) {
             return false;

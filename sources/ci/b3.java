@@ -36,7 +36,7 @@ public final class b3 extends ti {
             case 2:
                 sn snVar = (sn) notificationCenterDelegate;
                 b3 b3Var2 = snVar.J1;
-                if (b3Var2 != null && (b3Var2.isShowing() || this.f30631x0)) {
+                if (b3Var2 != null && (b3Var2.isShowing() || this.f30638x0)) {
                     Activity parentActivity = snVar.getParentActivity();
                     i10 = ((org.telegram.ui.ActionBar.n2) snVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
@@ -45,7 +45,7 @@ public final class b3 extends ti {
                 snVar.Y9(false, true);
                 lm lmVar = snVar.X0;
                 if (lmVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f44844a;
+                    WeakHashMap weakHashMap = r0.i0.f44864a;
                     r0.y.c(lmVar);
                     return;
                 }
@@ -67,9 +67,9 @@ public final class b3 extends ti {
                 if (b3Var != null) {
                     b3Var.setFocusable(false);
                 }
-                v2 v2Var = q4Var.f5768b2;
+                v2 v2Var = q4Var.f5769b2;
                 if (v2Var != null && v2Var.getEditField() != null) {
-                    q4Var.f5768b2.getEditField().requestFocus();
+                    q4Var.f5769b2.getEditField().requestFocus();
                     return;
                 }
                 return;
@@ -87,7 +87,7 @@ public final class b3 extends ti {
                 return;
             default:
                 sn snVar = (sn) this.T2;
-                boolean z10 = this.f30631x0;
+                boolean z10 = this.f30638x0;
                 boolean M = this.B0.M();
                 if (!M) {
                     snVar.D3 = false;

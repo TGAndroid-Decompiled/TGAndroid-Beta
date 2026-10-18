@@ -3,17 +3,17 @@ package sg;
 import android.view.View;
 import java.util.ArrayList;
 public final class b0 implements View.OnClickListener {
-    public final c0 f46221a;
+    public final c0 f46241a;
 
     public b0(c0 c0Var) {
-        this.f46221a = c0Var;
+        this.f46241a = c0Var;
     }
 
     @Override
     public final void onClick(View view) {
         ArrayList arrayList = new ArrayList();
         arrayList.add(((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel());
-        j0 j0Var = this.f46221a.f46232c;
+        j0 j0Var = this.f46241a.f46252c;
         int i10 = j0.V0;
         j0Var.E1(arrayList);
     }

@@ -8,26 +8,26 @@ import org.telegram.ui.Components.cj;
 import org.telegram.ui.Components.ml;
 import org.telegram.ui.Components.ti;
 public final class e implements ml, cj {
-    public final q f15233a;
-    public final ti f15234b;
+    public final q f15240a;
+    public final ti f15241b;
 
     public e(q qVar, ti tiVar) {
-        this.f15233a = qVar;
-        this.f15234b = tiVar;
+        this.f15240a = qVar;
+        this.f15241b = tiVar;
     }
 
     @Override
     public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j10) {
-        q qVar = this.f15233a;
+        q qVar = this.f15240a;
         qVar.getClass();
-        ti tiVar = this.f15234b;
+        ti tiVar = this.f15241b;
         if (messageMedia != null && messageMedia.geo != null) {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f20492w = 600;
+            pageblockmap.f20499w = 600;
             pageblockmap.h = 400;
-            qVar.f15442r.S1(pageblockmap);
+            qVar.f15449r.S1(pageblockmap);
             qVar.Y(true);
             tiVar.dismiss(true);
             return;
@@ -38,8 +38,8 @@ public final class e implements ml, cj {
     @Override
     public void i(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
         if (!arrayList.isEmpty()) {
-            this.f15233a.f15442r.c2((MessageObject) arrayList.get(0));
+            this.f15240a.f15449r.c2((MessageObject) arrayList.get(0));
         }
-        this.f15234b.dismiss(true);
+        this.f15241b.dismiss(true);
     }
 }

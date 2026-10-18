@@ -5,42 +5,42 @@ import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.n9;
 public final class q0 implements g1 {
-    public final t0 f15447a;
+    public final t0 f15454a;
 
     public q0(t0 t0Var) {
-        this.f15447a = t0Var;
+        this.f15454a = t0Var;
     }
 
     @Override
     public final void D(CharSequence charSequence) {
-        d3 d3Var = this.f15447a.h;
+        d3 d3Var = this.f15454a.h;
         if (d3Var != null && charSequence != null && charSequence.length() > 0) {
-            d3Var.f15225a.u4(charSequence.toString());
+            d3Var.f15232a.u4(charSequence.toString());
         }
     }
 
     @Override
     public final void M(Editable editable) {
-        t0 t0Var = this.f15447a;
-        a aVar = t0Var.f15516f;
+        t0 t0Var = this.f15454a;
+        a aVar = t0Var.f15523f;
         if (aVar != null) {
-            aVar.f15103s = true;
-            aVar.f15102r = t0Var.d.E;
+            aVar.f15110s = true;
+            aVar.f15109r = t0Var.d.E;
         }
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f15089b;
+            TL_iv.PageBlock pageBlock = aVar.f15096b;
             if (pageBlock instanceof TL_iv.pageBlockDetails) {
                 ((TL_iv.pageBlockDetails) pageBlock).title = e6.f(editable);
             }
         }
         d3 d3Var = t0Var.h;
-        if (d3Var != null && t0Var.f15516f != null) {
-            w3 w3Var = d3Var.f15225a;
+        if (d3Var != null && t0Var.f15523f != null) {
+            w3 w3Var = d3Var.f15232a;
             h2 h2Var = w3Var.H3;
             if (h2Var != null) {
                 h2Var.g();
             }
-            w3Var.f15586f3.onContentChanged();
+            w3Var.f15593f3.onContentChanged();
         }
     }
 
@@ -58,8 +58,8 @@ public final class q0 implements g1 {
     public final void V(h1 h1Var, int i10, int i11) {
         d3 d3Var;
         n9 textSelectionHelper;
-        t0 t0Var = this.f15447a;
-        if (!t0Var.f15517n && i10 != i11 && (d3Var = t0Var.h) != null && (textSelectionHelper = d3Var.f15225a.getTextSelectionHelper()) != null) {
+        t0 t0Var = this.f15454a;
+        if (!t0Var.f15524n && i10 != i11 && (d3Var = t0Var.h) != null && (textSelectionHelper = d3Var.f15232a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.x() || textSelectionHelper.W != t0Var) {
                 t0Var.post(new gi.m4(this, h1Var, i11, textSelectionHelper, i10, 2));
             }
@@ -68,20 +68,20 @@ public final class q0 implements g1 {
 
     @Override
     public final void c(h1 h1Var) {
-        d3 d3Var = this.f15447a.h;
+        d3 d3Var = this.f15454a.h;
         if (d3Var != null) {
-            w3 w3Var = d3Var.f15225a;
+            w3 w3Var = d3Var.f15232a;
             w3.N1(w3Var, h1Var);
-            w3Var.f15586f3.n(h1Var, true);
+            w3Var.f15593f3.n(h1Var, true);
         }
     }
 
     @Override
     public final boolean f() {
-        t0 t0Var = this.f15447a;
+        t0 t0Var = this.f15454a;
         d3 d3Var = t0Var.h;
-        if (d3Var != null && t0Var.f15516f != null) {
-            return d3Var.f15225a.T4();
+        if (d3Var != null && t0Var.f15523f != null) {
+            return d3Var.f15232a.T4();
         }
         return false;
     }
@@ -92,16 +92,16 @@ public final class q0 implements g1 {
         w3 w3Var;
         ArrayList arrayList;
         int indexOf;
-        t0 t0Var = this.f15447a;
+        t0 t0Var = this.f15454a;
         d3 d3Var = t0Var.h;
-        if (d3Var != null && (aVar = t0Var.f15516f) != null && (indexOf = (arrayList = (w3Var = d3Var.f15225a).f15594j3).indexOf(aVar)) >= 0) {
-            TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f15089b;
+        if (d3Var != null && (aVar = t0Var.f15523f) != null && (indexOf = (arrayList = (w3Var = d3Var.f15232a).f15601j3).indexOf(aVar)) >= 0) {
+            TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f15096b;
             if (!pageblockdetails.open) {
                 pageblockdetails.open = true;
                 w3Var.W2.N(true);
             }
             int i10 = indexOf + 1;
-            if (i10 < arrayList.size() && !((a) arrayList.get(i10)).f15093i && !w3.y3((a) arrayList.get(i10))) {
+            if (i10 < arrayList.size() && !((a) arrayList.get(i10)).f15100i && !w3.y3((a) arrayList.get(i10))) {
                 w3Var.post(new o2(w3Var, (a) arrayList.get(i10), 24));
             }
         }
@@ -110,18 +110,18 @@ public final class q0 implements g1 {
     @Override
     public final void m() {
         a aVar;
-        t0 t0Var = this.f15447a;
+        t0 t0Var = this.f15454a;
         d3 d3Var = t0Var.h;
-        if (d3Var != null && (aVar = t0Var.f15516f) != null) {
+        if (d3Var != null && (aVar = t0Var.f15523f) != null) {
             d3Var.a(aVar);
         }
     }
 
     @Override
-    public final boolean q(h1 h1Var) {
-        t0 t0Var = this.f15447a;
-        if (t0Var.h != null && t0Var.f15516f != null && h1Var.length() == 0) {
-            t0Var.h.a(t0Var.f15516f);
+    public final boolean w(h1 h1Var) {
+        t0 t0Var = this.f15454a;
+        if (t0Var.h != null && t0Var.f15523f != null && h1Var.length() == 0) {
+            t0Var.h.a(t0Var.f15523f);
             return true;
         }
         return false;

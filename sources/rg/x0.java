@@ -3,7 +3,7 @@ package rg;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 import ei.r5;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -17,11 +17,11 @@ public final class x0 extends im0 {
     public final ArrayList X2;
     public final ArrayList Y2;
     public final ArrayList Z2;
-    public final r5 f45724a3;
+    public final r5 f45744a3;
 
     public x0(r5 r5Var, Context context, com.google.firebase.messaging.l lVar) {
         super(context, lVar);
-        this.f45724a3 = r5Var;
+        this.f45744a3 = r5Var;
         this.V2 = new ArrayList();
         this.W2 = new ArrayList();
         this.X2 = new ArrayList();
@@ -68,7 +68,7 @@ public final class x0 extends im0 {
                     if (currentMessagesGroup2 == null || currentMessagesGroup2 != groupedMessages) {
                         MessageObject.GroupedMessagePosition currentPosition = u1Var.getCurrentPosition();
                         kb0 backgroundDrawable = u1Var.getBackgroundDrawable();
-                        if ((backgroundDrawable.f27826f || u1Var.g3()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
+                        if ((backgroundDrawable.f27833f || u1Var.g3()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
                             int y3 = (int) u1Var.getY();
                             canvas.save();
                             if (currentPosition == null) {
@@ -85,10 +85,10 @@ public final class x0 extends im0 {
                                             kb0 backgroundDrawable2 = u1Var2.getBackgroundDrawable();
                                             int min = Math.min(y3, (int) u1Var2.getY());
                                             int max = Math.max(measuredHeight, u1Var2.getMeasuredHeight() + ((int) u1Var2.getY()));
-                                            long j11 = backgroundDrawable2.f27831l;
+                                            long j11 = backgroundDrawable2.f27838l;
                                             if (j11 > j10) {
                                                 float x10 = u1Var2.getX() + backgroundDrawable2.h;
-                                                f16 = u1Var2.getY() + backgroundDrawable2.f27828i;
+                                                f16 = u1Var2.getY() + backgroundDrawable2.f27835i;
                                                 f7 = x10;
                                                 j10 = j11;
                                             }
@@ -97,28 +97,28 @@ public final class x0 extends im0 {
                                         }
                                     }
                                 }
-                                backgroundDrawable.f27829j = f7;
-                                backgroundDrawable.f27830k = f16 - y3;
+                                backgroundDrawable.f27836j = f7;
+                                backgroundDrawable.f27837k = f16 - y3;
                                 i13 = measuredHeight - y3;
                             }
                             int i16 = i13 + y3;
                             canvas.clipRect(0, y3, getMeasuredWidth(), i16);
-                            backgroundDrawable.f27824b = null;
-                            backgroundDrawable.f27823a.setColor(h6.w0(h6.Hc, this.f27284n2));
+                            backgroundDrawable.f27831b = null;
+                            backgroundDrawable.f27830a.setColor(h6.w0(h6.Hc, this.f27291n2));
                             backgroundDrawable.setBounds(0, y3, getMeasuredWidth(), i16);
                             backgroundDrawable.draw(canvas);
                             canvas.restore();
                         }
                         groupedMessages = currentMessagesGroup2;
                     }
-                } else if (childAt instanceof org.telegram.ui.Cells.x0) {
-                    org.telegram.ui.Cells.x0 x0Var = (org.telegram.ui.Cells.x0) childAt;
-                    if (x0Var.K()) {
+                } else if (childAt instanceof org.telegram.ui.Cells.w0) {
+                    org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) childAt;
+                    if (w0Var.K()) {
                         canvas.save();
-                        canvas.translate(x0Var.getX(), x0Var.getY() + x0Var.getPaddingTop());
-                        canvas.scale(x0Var.getScaleX(), x0Var.getScaleY(), x0Var.getMeasuredWidth() / 2.0f, x0Var.getMeasuredHeight() / 2.0f);
-                        x0Var.A(canvas, true);
-                        x0Var.C(canvas, true);
+                        canvas.translate(w0Var.getX(), w0Var.getY() + w0Var.getPaddingTop());
+                        canvas.scale(w0Var.getScaleX(), w0Var.getScaleY(), w0Var.getMeasuredWidth() / 2.0f, w0Var.getMeasuredHeight() / 2.0f);
+                        w0Var.A(canvas, true);
+                        w0Var.C(canvas, true);
                         canvas.restore();
                     }
                 }
@@ -214,7 +214,7 @@ public final class x0 extends im0 {
                     }
                     if (z12) {
                         canvas.save();
-                        canvas.scale(groupedMessages2.transitionParams.cell.getScaleX(), groupedMessages2.transitionParams.cell.getScaleY(), a6.z(f19, f17, f10, f17), a6.z(f22, f21, f10, f21));
+                        canvas.scale(groupedMessages2.transitionParams.cell.getScaleX(), groupedMessages2.transitionParams.cell.getScaleY(), k3.z(f19, f17, f10, f17), k3.z(f22, f21, f10, f21));
                     }
                     MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages2.transitionParams;
                     ArrayList arrayList2 = arrayList;
@@ -325,7 +325,7 @@ public final class x0 extends im0 {
                     }
                     canvas.clipRect(f24 + AndroidUtilities.dp(8.0f), f25 + AndroidUtilities.dp(8.0f), f26 - AndroidUtilities.dp(8.0f), f27 - AndroidUtilities.dp(8.0f));
                 }
-                if (u1Var7.getTransitionParams().f23154v0) {
+                if (u1Var7.getTransitionParams().f23158v0) {
                     canvas.translate(E23, y11);
                     u1Var7.setInvalidatesParent(true);
                     u1Var7.I1(f13, canvas, z11);
@@ -368,7 +368,7 @@ public final class x0 extends im0 {
                         }
                         canvas.clipRect(f28 + AndroidUtilities.dp(f11), f29 + AndroidUtilities.dp(f11), f30 - AndroidUtilities.dp(f11), f31 - AndroidUtilities.dp(f11));
                     }
-                    if (u1Var8.getTransitionParams().f23154v0) {
+                    if (u1Var8.getTransitionParams().f23158v0) {
                         canvas.translate(E25, y12);
                         u1Var8.setInvalidatesParent(true);
                         u1Var8.d2(canvas, f12, null);

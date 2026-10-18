@@ -1,6 +1,6 @@
 package f5;
 
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 public final class g extends com.googlecode.mp4parser.c {
     public static final le.b e;
 
@@ -15,7 +15,7 @@ public final class g extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        a6.p(te.a.b(e, this, this));
+        k3.p(te.a.b(e, this, this));
         return "DataEntryUrlBox[]";
     }
 }

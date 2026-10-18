@@ -9,17 +9,17 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class p41 implements org.telegram.ui.Components.zl0 {
-    public final int f39956a;
-    public final Context f39957b;
-    public final org.telegram.ui.ActionBar.d6 f39958c;
+    public final int f39975a;
+    public final Context f39976b;
+    public final org.telegram.ui.ActionBar.d6 f39977c;
     public final Integer d;
     public final z51 e;
 
     public p41(z51 z51Var, int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, Integer num) {
         this.e = z51Var;
-        this.f39956a = i10;
-        this.f39957b = context;
-        this.f39958c = d6Var;
+        this.f39975a = i10;
+        this.f39976b = context;
+        this.f39977c = d6Var;
         this.d = num;
     }
 
@@ -27,8 +27,8 @@ public final class p41 implements org.telegram.ui.Components.zl0 {
     public final boolean mo17d(float f7, float f10, int i10, View view) {
         z51 z51Var = this.e;
         int i11 = z51Var.V;
-        int i12 = this.f39956a;
-        if (i12 != 11 && i12 != 13 && z51Var.f43597h1) {
+        int i12 = this.f39975a;
+        if (i12 != 11 && i12 != 13 && z51Var.f43623h1) {
             boolean z10 = view instanceof i51;
             if (z10 && (i12 == 1 || i12 == 8)) {
                 z51Var.l();
@@ -37,7 +37,7 @@ public final class p41 implements org.telegram.ui.Components.zl0 {
                 } catch (Exception unused) {
                 }
                 i51 i51Var = (i51) view;
-                if (!i51Var.f37754s && !UserConfig.getInstance(i11).isPremium()) {
+                if (!i51Var.f37768s && !UserConfig.getInstance(i11).isPremium()) {
                     org.telegram.ui.Components.a6 a6Var = i51Var.e;
                     TLRPC.Document document = a6Var.document;
                     if (document == null) {
@@ -49,23 +49,23 @@ public final class p41 implements org.telegram.ui.Components.zl0 {
                 z51Var.S0 = i51Var;
                 z51Var.U0 = 0.0f;
                 z51Var.T0 = false;
-                if (i51Var.f37754s) {
+                if (i51Var.f37768s) {
                     z51Var.setBigReactionAnimatedEmoji(null);
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i11).getReactionsMap().get(z51Var.S0.f37756x.f785f);
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i11).getReactionsMap().get(z51Var.S0.f37770x.f785f);
                     if (tL_availableReaction != null) {
-                        z51Var.V0.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_pcache", null, null, null, 0L, "tgs", z51Var.S0.f37756x, 0);
+                        z51Var.V0.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_pcache", null, null, null, 0L, "tgs", z51Var.S0.f37770x, 0);
                     }
                 } else {
                     z51Var.setBigReactionAnimatedEmoji(new org.telegram.ui.Components.r5(4, i11, z51Var.S0.e.documentId));
                 }
-                z51Var.f43596h0.invalidate();
+                z51Var.f43622h0.invalidate();
                 z51Var.m();
                 return true;
             } else if (z10) {
                 i51 i51Var2 = (i51) view;
                 if (i51Var2.e != null && (i12 == 0 || i12 == 12 || i12 == 9 || i12 == 10)) {
                     TL_stars.TL_starGiftUnique tL_starGiftUnique = i51Var2.v;
-                    o41 o41Var = new o41(this, this.f39957b, z51Var.T1, z51Var, i51Var2, this.f39958c, view, tL_starGiftUnique);
+                    o41 o41Var = new o41(this, this.f39976b, z51Var.T1, z51Var, i51Var2, this.f39977c, view, tL_starGiftUnique);
                     z51Var.X0 = o41Var;
                     o41Var.show();
                     try {
@@ -88,7 +88,7 @@ public final class p41 implements org.telegram.ui.Components.zl0 {
             ofFloat.addUpdateListener(new e11(this, 6));
             ofFloat.addListener(new bc0(this, 24));
             ofFloat.setDuration(150L);
-            ofFloat.setInterpolator(org.telegram.ui.Components.bs.f25030f);
+            ofFloat.setInterpolator(org.telegram.ui.Components.bs.f25037f);
             ofFloat.start();
         }
     }

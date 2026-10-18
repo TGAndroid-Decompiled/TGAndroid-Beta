@@ -5,16 +5,16 @@ import java.util.regex.Pattern;
 public final class b {
     public static final Pattern d = Pattern.compile("\\s+");
     public static final y0 e = y0.t(2, "auto", "none");
-    public static final y0 f10361f = y0.t(3, "dot", "sesame", "circle");
-    public static final y0 f10362g = y0.t(2, "filled", "open");
+    public static final y0 f10363f = y0.t(3, "dot", "sesame", "circle");
+    public static final y0 f10364g = y0.t(2, "filled", "open");
     public static final y0 h = y0.t(3, "after", "before", "outside");
-    public final int f10363a;
-    public final int f10364b;
-    public final int f10365c;
+    public final int f10365a;
+    public final int f10366b;
+    public final int f10367c;
 
     public b(int i10, int i11, int i12) {
-        this.f10363a = i10;
-        this.f10364b = i11;
-        this.f10365c = i12;
+        this.f10365a = i10;
+        this.f10366b = i11;
+        this.f10367c = i12;
     }
 }

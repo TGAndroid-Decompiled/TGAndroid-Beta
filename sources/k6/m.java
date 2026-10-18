@@ -2,15 +2,15 @@ package k6;
 
 import java.util.Arrays;
 public final class m extends l {
-    public final byte[] f14978c;
+    public final byte[] f14985c;
 
     public m(byte[] bArr) {
         super(Arrays.copyOfRange(bArr, 0, 25));
-        this.f14978c = bArr;
+        this.f14985c = bArr;
     }
 
     @Override
     public final byte[] L0() {
-        return this.f14978c;
+        return this.f14985c;
     }
 }

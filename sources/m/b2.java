@@ -2,21 +2,21 @@ package m;
 
 import java.util.WeakHashMap;
 public final class b2 implements Runnable {
-    public final int f16154a;
-    public final e2 f16155b;
+    public final int f16161a;
+    public final e2 f16162b;
 
     public b2(e2 e2Var, int i10) {
-        this.f16154a = i10;
-        this.f16155b = e2Var;
+        this.f16161a = i10;
+        this.f16162b = e2Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f16154a;
-        e2 e2Var = this.f16155b;
+        int i10 = this.f16161a;
+        e2 e2Var = this.f16162b;
         switch (i10) {
             case 0:
-                s1 s1Var = e2Var.f16180c;
+                s1 s1Var = e2Var.f16187c;
                 if (s1Var != null) {
                     s1Var.setListSelectionHidden(true);
                     s1Var.requestLayout();
@@ -24,10 +24,10 @@ public final class b2 implements Runnable {
                 }
                 return;
             default:
-                s1 s1Var2 = e2Var.f16180c;
+                s1 s1Var2 = e2Var.f16187c;
                 if (s1Var2 != null) {
-                    WeakHashMap weakHashMap = r0.i0.f44844a;
-                    if (s1Var2.isAttachedToWindow() && e2Var.f16180c.getCount() > e2Var.f16180c.getChildCount() && e2Var.f16180c.getChildCount() <= e2Var.f16186x) {
+                    WeakHashMap weakHashMap = r0.i0.f44864a;
+                    if (s1Var2.isAttachedToWindow() && e2Var.f16187c.getCount() > e2Var.f16187c.getChildCount() && e2Var.f16187c.getChildCount() <= e2Var.f16193x) {
                         e2Var.O.setInputMethodMode(2);
                         e2Var.g();
                         return;

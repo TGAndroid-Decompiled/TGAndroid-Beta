@@ -6,7 +6,7 @@ public abstract class b9 {
         long d = dVar.d(i10);
         List e = dVar.e(d);
         if (!e.isEmpty()) {
-            if (i10 != dVar.h() - 1) {
+            if (i10 != dVar.i() - 1) {
                 long d10 = dVar.d(i10 + 1) - dVar.d(i10);
                 if (d10 > 0) {
                     jVar.accept(new z3.a(d, d10, e));

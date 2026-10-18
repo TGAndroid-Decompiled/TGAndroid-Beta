@@ -9,12 +9,12 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class qv implements View.OnLongClickListener {
-    public final int f40504a;
-    public final ey f40505b;
+    public final int f40529a;
+    public final ey f40530b;
 
     public qv(ey eyVar, int i10) {
-        this.f40504a = i10;
-        this.f40505b = eyVar;
+        this.f40529a = i10;
+        this.f40530b = eyVar;
     }
 
     @Override
@@ -23,9 +23,9 @@ public final class qv implements View.OnLongClickListener {
         boolean z11;
         int i10;
         int i11;
-        switch (this.f40504a) {
+        switch (this.f40529a) {
             case 0:
-                ey eyVar = this.f40505b;
+                ey eyVar = this.f40530b;
                 ArrayList arrayList = eyVar.I2;
                 if (eyVar.getParentActivity() == null) {
                     return false;
@@ -77,8 +77,8 @@ public final class qv implements View.OnLongClickListener {
                 } else {
                     i10 = R.string.SendAsFile;
                 }
-                H.l(i14, LocaleController.getString(i10), new dv(eyVar, 20), z10);
-                H.c(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new dv(eyVar, 21), false);
+                H.l(i14, LocaleController.getString(i10), new ev(eyVar, 20), z10);
+                H.c(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new ev(eyVar, 21), false);
                 int i15 = R.drawable.msg_calendar2;
                 if (z12) {
                     i11 = R.string.SetReminder;
@@ -89,14 +89,14 @@ public final class qv implements View.OnLongClickListener {
                 H.Z();
                 return true;
             case 1:
-                ey eyVar2 = this.f40505b;
+                ey eyVar2 = this.f40530b;
                 eyVar2.p4(eyVar2.I2, 104, true, true, null);
                 return true;
             case 2:
-                this.f40505b.n4(view);
+                this.f40530b.n4(view);
                 return true;
             default:
-                ey eyVar3 = this.f40505b;
+                ey eyVar3 = this.f40530b;
                 eyVar3.getContactsController().loadGlobalPrivacySetting();
                 eyVar3.I4();
                 return true;

@@ -5,9 +5,9 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 public final class u11 extends FrameLayout {
     public static final int e = 0;
-    public float f30856a;
-    public float f30857b;
-    public boolean f30858c;
+    public float f30863a;
+    public float f30864b;
+    public boolean f30865c;
     public final ThemeEditorView d;
 
     public u11(ThemeEditorView themeEditorView, Activity activity) {

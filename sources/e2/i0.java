@@ -4,16 +4,16 @@ import android.os.Handler;
 import java.util.ArrayList;
 import v7.u6;
 public final class i0 {
-    public static final ArrayList f8238b = new ArrayList(50);
-    public final Handler f8239a;
+    public static final ArrayList f8239b = new ArrayList(50);
+    public final Handler f8240a;
 
     public i0(Handler handler) {
-        this.f8239a = handler;
+        this.f8240a = handler;
     }
 
     public static h0 c() {
         h0 h0Var;
-        ArrayList arrayList = f8238b;
+        ArrayList arrayList = f8239b;
         synchronized (arrayList) {
             try {
                 if (arrayList.isEmpty()) {
@@ -30,18 +30,18 @@ public final class i0 {
 
     public final h0 a(int i10) {
         h0 c10 = c();
-        c10.f8235a = this.f8239a.obtainMessage(i10);
+        c10.f8236a = this.f8240a.obtainMessage(i10);
         return c10;
     }
 
     public final h0 b(int i10, Object obj) {
         h0 c10 = c();
-        c10.f8235a = this.f8239a.obtainMessage(i10, obj);
+        c10.f8236a = this.f8240a.obtainMessage(i10, obj);
         return c10;
     }
 
     public final boolean d(Runnable runnable) {
-        return this.f8239a.post(runnable);
+        return this.f8240a.post(runnable);
     }
 
     public final void e(int i10) {
@@ -52,10 +52,10 @@ public final class i0 {
             z10 = false;
         }
         u6.g(z10);
-        this.f8239a.removeMessages(i10);
+        this.f8240a.removeMessages(i10);
     }
 
     public final boolean f(int i10) {
-        return this.f8239a.sendEmptyMessage(i10);
+        return this.f8240a.sendEmptyMessage(i10);
     }
 }

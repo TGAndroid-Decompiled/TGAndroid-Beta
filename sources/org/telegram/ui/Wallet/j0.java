@@ -4,12 +4,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class j0 implements AutoCloseable {
-    public final byte[] f34343a;
-    public boolean f34344b;
+    public final byte[] f34351a;
+    public boolean f34352b;
 
     public j0(byte[] bArr) {
         if (bArr != null) {
-            this.f34343a = (byte[]) bArr.clone();
+            this.f34351a = (byte[]) bArr.clone();
             return;
         }
         throw new IllegalArgumentException("Missing recovery phrase");
@@ -73,7 +73,7 @@ public final class j0 implements AutoCloseable {
     }
 
     public final void a() {
-        if (!this.f34344b) {
+        if (!this.f34352b) {
             return;
         }
         throw new IllegalStateException("Recovery phrase is closed");
@@ -81,18 +81,18 @@ public final class j0 implements AutoCloseable {
 
     public final synchronized j0 b() {
         a();
-        return new j0(this.f34343a);
+        return new j0(this.f34351a);
     }
 
     public final synchronized byte[] c() {
         a();
-        return (byte[]) this.f34343a.clone();
+        return (byte[]) this.f34351a.clone();
     }
 
     @Override
     public final synchronized void close() {
-        Arrays.fill(this.f34343a, (byte) 0);
-        this.f34344b = true;
+        Arrays.fill(this.f34351a, (byte) 0);
+        this.f34352b = true;
     }
 
     public final synchronized boolean e() {
@@ -111,9 +111,9 @@ public final class j0 implements AutoCloseable {
             a();
             arrayList = new ArrayList();
             int i10 = 0;
-            while (i10 < this.f34343a.length) {
+            while (i10 < this.f34351a.length) {
                 while (true) {
-                    byte[] bArr = this.f34343a;
+                    byte[] bArr = this.f34351a;
                     if (i10 >= bArr.length || !f(bArr[i10])) {
                         break;
                     }
@@ -121,14 +121,14 @@ public final class j0 implements AutoCloseable {
                 }
                 int i11 = i10;
                 while (true) {
-                    byte[] bArr2 = this.f34343a;
+                    byte[] bArr2 = this.f34351a;
                     if (i11 >= bArr2.length || f(bArr2[i11])) {
                         break;
                     }
                     i11++;
                 }
                 if (i11 > i10) {
-                    arrayList.add(new String(this.f34343a, i10, i11 - i10, StandardCharsets.UTF_8));
+                    arrayList.add(new String(this.f34351a, i10, i11 - i10, StandardCharsets.UTF_8));
                 }
                 i10 = i11;
             }
@@ -143,7 +143,7 @@ public final class j0 implements AutoCloseable {
         a();
         i10 = 0;
         boolean z10 = false;
-        for (byte b10 : this.f34343a) {
+        for (byte b10 : this.f34351a) {
             if (f(b10)) {
                 z10 = false;
             } else if (!z10) {

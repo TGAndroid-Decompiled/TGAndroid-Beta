@@ -7,25 +7,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class wf implements org.telegram.ui.Components.lk0 {
-    public final int f42825a;
-    public final sn f42826b;
-    public final boolean f42827c;
+    public final int f42849a;
+    public final sn f42850b;
+    public final boolean f42851c;
     public final MessageObject d;
 
     public wf(sn snVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f42825a = i10;
-        this.f42826b = snVar;
-        this.f42827c = z10;
+        this.f42849a = i10;
+        this.f42850b = snVar;
+        this.f42851c = z10;
         this.d = messageObject;
     }
 
     @Override
     public final void c(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f42825a) {
+        switch (this.f42849a) {
             case 0:
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final sn snVar = this.f42826b;
-                    if (j10 != snVar.getUserConfig().getClientUserId() && this.f42827c) {
+                    final sn snVar = this.f42850b;
+                    if (j10 != snVar.getUserConfig().getClientUserId() && this.f42851c) {
                         final ArrayList arrayList = new ArrayList(1);
                         arrayList.add(this.d);
                         TLObject userOrChat = snVar.getMessagesController().getUserOrChat(j10);
@@ -79,9 +79,9 @@ public final class wf implements org.telegram.ui.Components.lk0 {
                 }
                 return;
             default:
-                final sn snVar2 = this.f42826b;
+                final sn snVar2 = this.f42850b;
                 snVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != snVar2.getUserConfig().getClientUserId() && this.f42827c) {
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != snVar2.getUserConfig().getClientUserId() && this.f42851c) {
                     final ArrayList arrayList3 = new ArrayList(1);
                     arrayList3.add(this.d);
                     TLObject userOrChat2 = snVar2.getMessagesController().getUserOrChat(j10);

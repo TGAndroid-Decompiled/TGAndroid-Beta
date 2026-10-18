@@ -172,121 +172,114 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public int Z;
     public final gc Z0;
     public AnimatorSet Z1;
-    public final ci.b f9948a;
-    public int f9949a0;
-    public final kc f9950a1;
+    public final ci.b f9950a;
+    public int f9951a0;
+    public final kc f9952a1;
     public boolean a2;
-    public final Activity f9951b;
-    public int f9952b0;
-    public final k6 f9953b1;
-    public boolean f9954b2;
-    public final int f9955c;
-    public final RectF f9956c0;
-    public final lb f9957c1;
-    public boolean f9958c2;
+    public final Activity f9953b;
+    public int f9954b0;
+    public final k6 f9955b1;
+    public boolean f9956b2;
+    public final int f9957c;
+    public final RectF f9958c0;
+    public final lb f9959c1;
+    public boolean f9960c2;
     public boolean d;
-    public final RectF f9959d0;
-    public final ma f9960d1;
-    public boolean f9961d2;
+    public final RectF f9961d0;
+    public final ma f9962d1;
+    public boolean f9963d2;
     public boolean e;
-    public final Path f9962e0;
-    public final u0 f9963e1;
-    public Runnable f9964e2;
-    public final WindowManager f9965f;
-    public int f9966f0;
-    public uj0 f9967f1;
-    public AnimatorSet f9968f2;
-    public int f9969g0;
-    public final xj0 f9970g1;
-    public z9 f9971g2;
+    public final Path f9964e0;
+    public final u0 f9965e1;
+    public Runnable f9966e2;
+    public final WindowManager f9967f;
+    public int f9968f0;
+    public uj0 f9969f1;
+    public AnimatorSet f9970f2;
+    public int f9971g0;
+    public final xj0 f9972g1;
+    public z9 f9973g2;
     public final WindowManager.LayoutParams h;
-    public final hb f9972h0;
-    public uj0 f9973h1;
-    public boolean f9974h2;
-    public final FrameLayout f9975i0;
-    public ImageView f9976i1;
-    public AnimatorSet f9977i2;
-    public final LinearLayout f9978j0;
-    public final g6 f9979j1;
-    public ValueAnimator f9980j2;
-    public final FrameLayout f9981k0;
-    public final x3 f9982k1;
-    public boolean f9983k2;
-    public final ah.x f9984l0;
+    public final hb f9974h0;
+    public uj0 f9975h1;
+    public boolean f9976h2;
+    public final FrameLayout f9977i0;
+    public ImageView f9978i1;
+    public AnimatorSet f9979i2;
+    public final LinearLayout f9980j0;
+    public final g6 f9981j1;
+    public ValueAnimator f9982j2;
+    public final FrameLayout f9983k0;
+    public final x3 f9984k1;
+    public boolean f9985k2;
+    public final ah.x f9986l0;
     public final x3 l1;
-    public s4.a0 f9985l2;
+    public s4.a0 f9987l2;
     public final FrameLayout m0;
-    public final x3 f9986m1;
-    public MediaController.AlbumEntry f9987m2;
-    public final ub f9988n;
-    public final q2 f9989n0;
-    public final x3 f9990n1;
-    public ValueAnimator f9991n2;
-    public final t7 f9992o0;
-    public final l6 f9993o1;
-    public o1.k f9994o2;
-    public final org.telegram.ui.ActionBar.j5 f9995p0;
-    public final jc f9996p1;
-    public Boolean f9997p2;
-    public r9 f9998q0;
-    public p f9999q1;
-    public da f10000q2;
-    public final nb f10001r;
-    public final org.telegram.ui.Components.ja f10002r0;
-    public fb f10003r1;
-    public AnimatorSet f10004r2;
-    public final s2 f10005s;
-    public final q6 f10006s0;
-    public gb f10007s1;
-    public boolean f10008s2;
-    public final ai.hc f10009t0;
-    public final gc f10010t1;
-    public int f10011t2;
-    public boolean f10012u0;
-    public final d f10013u1;
-    public ArrayList f10014u2;
+    public final x3 f9988m1;
+    public MediaController.AlbumEntry f9989m2;
+    public final ub f9990n;
+    public final q2 f9991n0;
+    public final x3 f9992n1;
+    public ValueAnimator f9993n2;
+    public final t7 f9994o0;
+    public final l6 f9995o1;
+    public o1.k f9996o2;
+    public final org.telegram.ui.ActionBar.j5 f9997p0;
+    public final jc f9998p1;
+    public Boolean f9999p2;
+    public r9 f10000q0;
+    public p f10001q1;
+    public da f10002q2;
+    public final nb f10003r;
+    public final org.telegram.ui.Components.ja f10004r0;
+    public fb f10005r1;
+    public AnimatorSet f10006r2;
+    public final s2 f10007s;
+    public final q6 f10008s0;
+    public gb f10009s1;
+    public boolean f10010s2;
+    public final ai.ic f10011t0;
+    public final gc f10012t1;
+    public int f10013t2;
+    public boolean f10014u0;
+    public final d f10015u1;
+    public ArrayList f10016u2;
     public boolean v;
-    public long f10015v0;
-    public xa f10016v1;
-    public FrameLayout f10017v2;
-    public long f10018w;
-    public String f10019w0;
-    public qg.e1 f10020w1;
-    public boolean f10021w2;
-    public mb f10022x;
-    public TLRPC.InputPeer f10023x0;
-    public View f10024x1;
-    public t9 f10025x2;
-    public final pa0 f10026y;
-    public p9 f10027y0;
-    public View f10028y1;
-    public ah.g f10029y2;
-    public t f10030z0;
-    public View f10031z1;
-    public boolean f10032z2;
+    public long f10017v0;
+    public xa f10018v1;
+    public FrameLayout f10019v2;
+    public long f10020w;
+    public String f10021w0;
+    public qg.e1 f10022w1;
+    public boolean f10023w2;
+    public mb f10024x;
+    public TLRPC.InputPeer f10025x0;
+    public View f10026x1;
+    public t9 f10027x2;
+    public final pa0 f10028y;
+    public p9 f10029y0;
+    public View f10030y1;
+    public ah.g f10031y2;
+    public t f10032z0;
+    public View f10033z1;
+    public boolean f10034z2;
 
     public vb(Activity activity, int i10) {
-        pa0 pa0Var;
         int i11;
-        int i12;
-        int i13;
-        float f7;
-        int i14;
-        boolean z10;
-        float f10;
         ci.b bVar = new ci.b();
-        this.f9948a = bVar;
-        this.f10018w = 0L;
+        this.f9950a = bVar;
+        this.f10020w = 0L;
         this.H = new RectF();
         this.M = true;
         this.P = new AnimationNotificationsLocker();
-        this.f9956c0 = new RectF();
-        this.f9959d0 = new RectF();
-        this.f9962e0 = new Path();
+        this.f9958c0 = new RectF();
+        this.f9961d0 = new RectF();
+        this.f9964e0 = new Path();
         new Rect();
-        this.f9966f0 = 0;
-        this.f9969g0 = -1;
-        this.f10027y0 = new p9();
+        this.f9968f0 = 0;
+        this.f9971g0 = -1;
+        this.f10029y0 = new p9();
         this.H1 = null;
         this.I1 = null;
         this.J1 = null;
@@ -298,18 +291,13 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         this.U1 = -3;
         this.W1 = false;
         qa qaVar = new qa(this);
-        this.f9961d2 = true;
-        this.f9983k2 = true;
-        this.f10011t2 = -1;
-        this.f9951b = activity;
-        this.f9955c = i10;
+        this.f9963d2 = true;
+        this.f9985k2 = true;
+        this.f10013t2 = -1;
+        this.f9953b = activity;
+        this.f9957c = i10;
         LaunchActivity launchActivity = LaunchActivity.H1;
-        if (launchActivity != null) {
-            pa0Var = new pa0(launchActivity, true);
-        } else {
-            pa0Var = null;
-        }
-        this.f10026y = pa0Var;
+        this.f10028y = launchActivity != null ? new pa0(launchActivity, true) : null;
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         this.h = layoutParams;
         layoutParams.height = -1;
@@ -321,78 +309,73 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         layoutParams.flags = -2013200128;
         layoutParams.softInputMode = 16;
         WindowManager windowManager = (WindowManager) activity.getSystemService("window");
-        this.f9965f = windowManager;
+        this.f9967f = windowManager;
         ub ubVar = new ub(this, activity);
-        this.f9988n = ubVar;
+        this.f9990n = ubVar;
         ca caVar = new ca(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f44844a;
+        WeakHashMap weakHashMap = r0.i0.f44864a;
         r0.a0.i(ubVar, caVar);
-        this.f9988n.setFocusable(true);
-        this.f9988n.setImportantForAccessibility(2);
-        s2 s2Var = new s2(activity, windowManager, this.f9988n, layoutParams);
-        this.f10005s = s2Var;
+        this.f9990n.setFocusable(true);
+        this.f9990n.setImportantForAccessibility(2);
+        s2 s2Var = new s2(activity, windowManager, this.f9990n, layoutParams);
+        this.f10007s = s2Var;
         s2Var.a(new bb(this));
-        this.f9988n.addView(this.f10005s.f9768b, new ViewGroup.LayoutParams(-1, -1));
-        ub ubVar2 = this.f9988n;
+        this.f9990n.addView(this.f10007s.f9770b, new ViewGroup.LayoutParams(-1, -1));
+        ub ubVar2 = this.f9990n;
         nb nbVar = new nb(this, activity);
-        this.f10001r = nbVar;
+        this.f10003r = nbVar;
         ubVar2.addView(nbVar);
-        nb nbVar2 = this.f10001r;
+        nb nbVar2 = this.f10003r;
         hb hbVar = new hb(this, activity);
-        this.f9972h0 = hbVar;
+        this.f9974h0 = hbVar;
         nbVar2.addView(hbVar);
-        this.f10001r.addView(this.f10005s.f9769c, new ViewGroup.LayoutParams(-1, -1));
-        this.f10002r0 = new org.telegram.ui.Components.ja(this.f9972h0);
-        this.f10006s0 = new Object();
-        nb nbVar3 = this.f10001r;
+        this.f10003r.addView(this.f10007s.f9771c, new ViewGroup.LayoutParams(-1, -1));
+        this.f10004r0 = new org.telegram.ui.Components.ja(this.f9974h0);
+        this.f10008s0 = new Object();
+        nb nbVar3 = this.f10003r;
         FrameLayout frameLayout = new FrameLayout(activity);
-        this.f9975i0 = frameLayout;
+        this.f9977i0 = frameLayout;
         nbVar3.addView(frameLayout);
-        nb nbVar4 = this.f10001r;
+        nb nbVar4 = this.f10003r;
         FrameLayout frameLayout2 = new FrameLayout(activity);
-        this.f9981k0 = frameLayout2;
+        this.f9983k0 = frameLayout2;
         nbVar4.addView(frameLayout2);
-        nb nbVar5 = this.f10001r;
+        nb nbVar5 = this.f10003r;
         ah.x xVar = new ah.x(this, activity, 4);
-        this.f9984l0 = xVar;
+        this.f9986l0 = xVar;
         nbVar5.addView(xVar);
-        this.f9984l0.setVisibility(8);
-        this.f9984l0.setAlpha(0.0f);
-        nb nbVar6 = this.f10001r;
+        this.f9986l0.setVisibility(8);
+        this.f9986l0.setAlpha(0.0f);
+        nb nbVar6 = this.f10003r;
         FrameLayout frameLayout3 = new FrameLayout(activity);
         this.m0 = frameLayout3;
         nbVar6.addView(frameLayout3);
-        org.telegram.ui.Components.qc.a(this.f9988n, new o8(2));
-        ib ibVar = new ib(this, activity, this.f10002r0, this.f10001r, bVar);
+        org.telegram.ui.Components.qc.a(this.f9990n, new o8(2));
+        ib ibVar = new ib(this, activity, this.f10004r0, this.f10003r, bVar);
         this.A0 = ibVar;
-        ub ubVar3 = this.f9988n;
+        ub ubVar3 = this.f9990n;
         Objects.requireNonNull(ubVar3);
         ibVar.setCancelGestures(new com.google.firebase.messaging.s(ubVar3, 23));
         this.A0.setResetState(new t9(this, 13));
-        this.f9972h0.addView(this.A0, w7.z5.e(-1, -1, 119));
+        this.f9974h0.addView(this.A0, w7.z5.e(-1, -1, 119));
         this.A0.setOnClickListener(new v9(this, 12));
-        hb hbVar2 = this.f9972h0;
-        int i15 = this.J;
-        if (i15 != 1 && i15 != 0) {
-            i11 = -14737633;
-        } else {
-            i11 = 0;
-        }
-        hbVar2.setBackgroundColor(i11);
-        hb hbVar3 = this.f9972h0;
-        ci.o1 o1Var = zf.i0.f51593a;
-        hbVar3.setOutlineProvider(new zf.h0(0, AndroidUtilities.dp(12.0f)));
-        this.f9972h0.setClipToOutline(true);
+        hb hbVar2 = this.f9974h0;
+        int i12 = this.J;
+        hbVar2.setBackgroundColor((i12 == 1 || i12 == 0) ? 0 : -14737633);
+        hb hbVar3 = this.f9974h0;
+        ci.o1 o1Var = zf.j0.f51621a;
+        hbVar3.setOutlineProvider(new zf.i0(0, AndroidUtilities.dp(12.0f)));
+        this.f9974h0.setClipToOutline(true);
         t9 t9Var = new t9(this, 14);
         ?? view = new View(activity);
-        view.f24579a = new TextPaint(1);
-        view.f24580b = new TextPaint(1);
+        view.f24586a = new TextPaint(1);
+        view.f24587b = new TextPaint(1);
         bs bsVar = bs.h;
-        view.f24585s = new org.telegram.ui.Components.f6((View) view, 0L, 350L, bsVar);
+        view.f24592s = new org.telegram.ui.Components.f6((View) view, 0L, 350L, bsVar);
         view.I = new rc0(view, 7);
-        view.f24587x = t9Var;
+        view.f24594x = t9Var;
         this.C1 = view;
-        jb jbVar = new jb(this, activity, this.f10002r0, this.f10006s0);
+        jb jbVar = new jb(this, activity, this.f10004r0, this.f10008s0);
         this.X0 = jbVar;
         jbVar.setCollageView(this.A0);
         jb jbVar2 = this.X0;
@@ -401,26 +384,26 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         this.X0.setVisibility(8);
         jb jbVar3 = this.X0;
         jbVar3.N = new t9(this, 17);
-        this.f9972h0.addView(jbVar3, w7.z5.e(-1, -1, 119));
-        this.f9972h0.addView(this.C1, w7.z5.e(-1, -1, 119));
-        ub ubVar4 = this.f9988n;
-        lb lbVar = new lb(this, activity, ubVar4, ubVar4, this.f10001r, bVar, this.f10002r0);
-        this.f9957c1 = lbVar;
+        this.f9974h0.addView(jbVar3, w7.z5.e(-1, -1, 119));
+        this.f9974h0.addView(this.C1, w7.z5.e(-1, -1, 119));
+        ub ubVar4 = this.f9990n;
+        lb lbVar = new lb(this, activity, ubVar4, ubVar4, this.f10003r, bVar, this.f10004r0);
+        this.f9959c1 = lbVar;
         lbVar.setAccount(i10);
-        this.f9957c1.setUiBlurBitmap(new ca(this, 6));
-        org.telegram.ui.Components.qc.a(this.f9984l0, new ah.m0(this, 4));
-        this.f9957c1.setOnHeightUpdate(new u9(this, 13));
-        this.f9957c1.setOnPeriodUpdate(new u9(this, 4));
+        this.f9959c1.setUiBlurBitmap(new ca(this, 6));
+        org.telegram.ui.Components.qc.a(this.f9986l0, new ah.m0(this, 4));
+        this.f9959c1.setOnHeightUpdate(new u9(this, 13));
+        this.f9959c1.setOnPeriodUpdate(new u9(this, 4));
         long j10 = this.N;
         if (j10 != 0) {
-            this.f9957c1.setDialogId(j10);
+            this.f9959c1.setDialogId(j10);
         }
-        this.f9957c1.setOnPremiumHint(new u9(this, 5));
-        this.f9957c1.setOnKeyboardOpen(new u9(this, 6));
-        ai.hc hcVar = new ai.hc(this, activity, 1);
-        this.f10009t0 = hcVar;
-        this.f10001r.addView(hcVar);
-        gc gcVar = new gc(activity, this.f10001r, this.f9972h0, bVar, this.f10002r0);
+        this.f9959c1.setOnPremiumHint(new u9(this, 5));
+        this.f9959c1.setOnKeyboardOpen(new u9(this, 6));
+        ai.ic icVar = new ai.ic(this, activity, 1);
+        this.f10011t0 = icVar;
+        this.f10003r.addView(icVar);
+        gc gcVar = new gc(activity, this.f10003r, this.f9974h0, bVar, this.f10004r0);
         this.Z0 = gcVar;
         gcVar.setOnTimelineClick(new t9(this, 10));
         this.Z0.setOnHeightChange(new t9(this, 11));
@@ -430,242 +413,215 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         this.Z0.setMaxCount(1);
         FrameLayout frameLayout4 = new FrameLayout(activity);
         this.Y0 = frameLayout4;
-        float f11 = 388;
-        frameLayout4.addView(this.Z0, w7.z5.a(f11, 0.0f, 0.0f, 0.0f, 0.0f, -1, 87));
+        float f7 = 388;
+        frameLayout4.addView(this.Z0, w7.z5.a(f7, 0.0f, 0.0f, 0.0f, 0.0f, -1, 87));
         kc kcVar = new kc(activity);
-        this.f9950a1 = kcVar;
+        this.f9952a1 = kcVar;
         kcVar.setVisibility(8);
-        this.f9950a1.a(false);
-        this.Y0.addView(this.f9950a1, w7.z5.a(25.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 55));
-        this.f9984l0.addView(this.Y0, w7.z5.a(413, 0.0f, 0.0f, 0.0f, 68.0f, -1, 87));
-        this.f9984l0.addView(this.f9957c1, w7.z5.a(-1.0f, 0.0f, 200.0f, 0.0f, 0.0f, -1, 87));
+        this.f9952a1.a(false);
+        this.Y0.addView(this.f9952a1, w7.z5.a(25.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 55));
+        this.f9986l0.addView(this.Y0, w7.z5.a(413, 0.0f, 0.0f, 0.0f, 68.0f, -1, 87));
+        this.f9986l0.addView(this.f9959c1, w7.z5.a(-1.0f, 0.0f, 200.0f, 0.0f, 0.0f, -1, 87));
         this.A0.setTimelineView(this.Z0);
         this.A0.setPreviewView(this.X0);
-        gc gcVar2 = new gc(activity, this.f10001r, this.f9972h0, bVar, this.f10002r0);
-        this.f10010t1 = gcVar2;
+        gc gcVar2 = new gc(activity, this.f10003r, this.f9974h0, bVar, this.f10004r0);
+        this.f10012t1 = gcVar2;
         gcVar2.X0 = true;
         gcVar2.setVisibility(8);
-        this.f10010t1.setAlpha(0.0f);
-        this.f9984l0.addView(this.f10010t1, w7.z5.a(f11, 0.0f, 0.0f, 0.0f, 6.0f, -1, 87));
-        ma maVar = new ma(this, activity, bVar, this.f10002r0);
-        this.f9960d1 = maVar;
+        this.f10012t1.setAlpha(0.0f);
+        this.f9986l0.addView(this.f10012t1, w7.z5.a(f7, 0.0f, 0.0f, 0.0f, 6.0f, -1, 87));
+        ma maVar = new ma(this, activity, bVar, this.f10004r0);
+        this.f9962d1 = maVar;
         maVar.setVisibility(8);
-        this.f9984l0.addView(this.f9960d1, w7.z5.e(-1, -2, 85));
+        this.f9986l0.addView(this.f9962d1, w7.z5.e(-1, -2, 85));
         ?? imageView = new ImageView(activity);
-        this.f9989n0 = imageView;
+        this.f9991n0 = imageView;
         imageView.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
-        q2 q2Var = this.f9989n0;
+        q2 q2Var = this.f9991n0;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         q2Var.setScaleType(scaleType);
-        this.f9989n0.setImageResource(R.drawable.msg_photo_back);
-        q2 q2Var2 = this.f9989n0;
+        this.f9991n0.setImageResource(R.drawable.msg_photo_back);
+        q2 q2Var2 = this.f9991n0;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         q2Var2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        this.f9989n0.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
-        this.f9989n0.setOnClickListener(new v9(this, 1));
-        this.f9975i0.addView(this.f9989n0, w7.z5.e(56, 56, 51));
-        this.f10005s.a(this.f9989n0);
+        this.f9991n0.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
+        this.f9991n0.setOnClickListener(new v9(this, 1));
+        this.f9977i0.addView(this.f9991n0, w7.z5.e(56, 56, 51));
+        this.f10007s.a(this.f9991n0);
         t7 t7Var = new t7(activity, i10);
-        this.f9992o0 = t7Var;
+        this.f9994o0 = t7Var;
         t7Var.a(false, false);
-        this.f9992o0.setOnClickListener(new ai.p(16, this, activity));
-        this.f9975i0.addView(this.f9992o0, w7.z5.a(56.0f, 50.0f, 0.0f, 50.0f, 0.0f, -1, 51));
+        this.f9994o0.setOnClickListener(new ai.p(16, this, activity));
+        this.f9977i0.addView(this.f9994o0, w7.z5.a(56.0f, 50.0f, 0.0f, 50.0f, 0.0f, -1, 51));
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(activity);
-        this.f9995p0 = j5Var;
+        this.f9997p0 = j5Var;
         j5Var.setTextSize(20);
-        this.f9995p0.setGravity(19);
-        this.f9995p0.setTextColor(-1);
-        this.f9995p0.setTypeface(AndroidUtilities.bold());
-        this.f9995p0.l(LocaleController.getString(R.string.RecorderNewStory), false);
-        this.f9995p0.getPaint().setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, 1.0f, 1073741824);
-        this.f9995p0.setAlpha(0.0f);
-        this.f9995p0.setVisibility(8);
-        this.f9995p0.setEllipsizeByGradient(true);
-        this.f9995p0.setRightPadding(AndroidUtilities.dp(144.0f));
-        this.f9975i0.addView(this.f9995p0, w7.z5.a(56.0f, 71.0f, 0.0f, 0.0f, 0.0f, -1, 55));
+        this.f9997p0.setGravity(19);
+        this.f9997p0.setTextColor(-1);
+        this.f9997p0.setTypeface(AndroidUtilities.bold());
+        this.f9997p0.l(LocaleController.getString(R.string.RecorderNewStory), false);
+        this.f9997p0.getPaint().setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, 1.0f, 1073741824);
+        this.f9997p0.setAlpha(0.0f);
+        this.f9997p0.setVisibility(8);
+        this.f9997p0.setEllipsizeByGradient(true);
+        this.f9997p0.setRightPadding(AndroidUtilities.dp(144.0f));
+        this.f9977i0.addView(this.f9997p0, w7.z5.a(56.0f, 71.0f, 0.0f, 0.0f, 0.0f, -1, 55));
         LinearLayout linearLayout = new LinearLayout(activity);
-        this.f9978j0 = linearLayout;
+        this.f9980j0 = linearLayout;
         linearLayout.setOrientation(0);
-        this.f9978j0.setGravity(5);
-        this.f9975i0.addView(this.f9978j0, w7.z5.a(56.0f, 0.0f, 0.0f, 8.0f, 0.0f, -1, 7));
+        this.f9980j0.setGravity(5);
+        this.f9977i0.addView(this.f9980j0, w7.z5.a(56.0f, 0.0f, 0.0f, 8.0f, 0.0f, -1, 7));
         u9 u9Var = new u9(this, 7);
-        ub ubVar5 = this.f9988n;
+        ub ubVar5 = this.f9990n;
         ?? imageView2 = new ImageView(activity);
-        imageView2.f9882w = true;
-        imageView2.f9883x = true;
+        imageView2.f9884w = true;
+        imageView2.f9885x = true;
         imageView2.h = u9Var;
-        imageView2.f9875a = i10;
-        imageView2.f9876b = ubVar5;
+        imageView2.f9877a = i10;
+        imageView2.f9878b = ubVar5;
         imageView2.setScaleType(scaleType);
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
         imageView2.setVisibility(8);
         imageView2.setAlpha(0.0f);
         imageView2.setOnClickListener(new ah.g0(imageView2, 20));
-        imageView2.f9878f = new dq(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(2.0f), -1);
+        imageView2.f9880f = new dq(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(2.0f), -1);
         imageView2.d();
-        this.f9963e1 = imageView2;
+        this.f9965e1 = imageView2;
         x3 x3Var = new x3(activity, 1);
         x3Var.l(1.0f, -71.0f);
         x3Var.d = 2000L;
         x3Var.U = false;
         x3Var.H.r(true, false);
-        this.f9982k1 = x3Var;
+        this.f9984k1 = x3Var;
         x3Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        this.f9975i0.addView(this.f9982k1, w7.z5.a(-1.0f, 0.0f, 52.0f, 0.0f, 0.0f, -1, 48));
+        this.f9977i0.addView(this.f9984k1, w7.z5.a(-1.0f, 0.0f, 52.0f, 0.0f, 0.0f, -1, 48));
         ?? imageView3 = new ImageView(activity);
-        this.f9970g1 = imageView3;
+        this.f9972g1 = imageView3;
         imageView3.setScaleType(scaleType);
-        xj0 xj0Var = this.f9970g1;
+        xj0 xj0Var = this.f9972g1;
         a8 a8Var = this.K1;
-        if (a8Var != null && a8Var.Y) {
-            i12 = R.drawable.media_unmute;
-        } else {
-            i12 = R.drawable.media_mute;
-        }
-        xj0Var.setImageResource(i12);
-        this.f9970g1.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        this.f9970g1.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
-        this.f9970g1.setOnClickListener(new v9(this, 2));
-        this.f9970g1.setVisibility(8);
-        this.f9970g1.setAlpha(0.0f);
+        xj0Var.setImageResource((a8Var == null || !a8Var.Y) ? R.drawable.media_mute : R.drawable.media_unmute);
+        this.f9972g1.setColorFilter(new PorterDuffColorFilter(-1, mode));
+        this.f9972g1.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
+        this.f9972g1.setOnClickListener(new v9(this, 2));
+        this.f9972g1.setVisibility(8);
+        this.f9972g1.setAlpha(0.0f);
         g6 g6Var = new g6(activity);
-        this.f9979j1 = g6Var;
+        this.f9981j1 = g6Var;
         g6Var.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
-        this.f9979j1.setVisibility(8);
-        this.f9979j1.setAlpha(0.0f);
-        this.f9979j1.setOnClickListener(new v9(this, 3));
-        this.f9978j0.addView(this.f9979j1, w7.z5.q(46, 56, 53));
-        this.f9978j0.addView(this.f9970g1, w7.z5.q(46, 56, 53));
-        this.f9978j0.addView(this.f9963e1, w7.z5.e(46, 56, 53));
-        hc hcVar2 = new hc(activity);
-        this.E0 = hcVar2;
-        hcVar2.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
+        this.f9981j1.setVisibility(8);
+        this.f9981j1.setAlpha(0.0f);
+        this.f9981j1.setOnClickListener(new v9(this, 3));
+        this.f9980j0.addView(this.f9981j1, w7.z5.q(46, 56, 53));
+        this.f9980j0.addView(this.f9972g1, w7.z5.q(46, 56, 53));
+        this.f9980j0.addView(this.f9965e1, w7.z5.e(46, 56, 53));
+        hc hcVar = new hc(activity);
+        this.E0 = hcVar;
+        hcVar.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
         this.E0.setOnClickListener(new v9(this, 4));
         this.E0.setOnLongClickListener(new c5(this, 1));
         this.E0.setVisibility(8);
         this.E0.setAlpha(0.0f);
-        this.f10005s.a(this.E0);
-        this.f9975i0.addView(this.E0, w7.z5.e(56, 56, 53));
-        ic icVar = new ic(activity, R.drawable.media_dual_camera2_shadow, R.drawable.media_dual_camera2);
-        this.F0 = icVar;
-        icVar.setContentDescription(LocaleController.getString(R.string.AccDescrDualCameraOn));
+        this.f10007s.a(this.E0);
+        this.f9977i0.addView(this.E0, w7.z5.e(56, 56, 53));
+        ic icVar2 = new ic(activity, R.drawable.media_dual_camera2_shadow, R.drawable.media_dual_camera2);
+        this.F0 = icVar2;
+        icVar2.setContentDescription(LocaleController.getString(R.string.AccDescrDualCameraOn));
         this.F0.setOnClickListener(new v9(this, 5));
         boolean q6 = c1.q(activity);
-        ic icVar2 = this.F0;
-        if (q6) {
-            i13 = 0;
-        } else {
-            i13 = 8;
-        }
-        icVar2.setVisibility(i13);
-        ic icVar3 = this.F0;
-        if (q6) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        icVar3.setAlpha(f7);
-        this.f10005s.a(this.F0);
-        this.f9975i0.addView(this.F0, w7.z5.e(56, 56, 53));
-        ?? hcVar3 = new hc(activity);
-        this.G0 = hcVar3;
-        hcVar3.setContentDescription(LocaleController.getString(R.string.AccDescrCollage));
+        this.F0.setVisibility(q6 ? 0 : 8);
+        this.F0.setAlpha(q6 ? 1.0f : 0.0f);
+        this.f10007s.a(this.F0);
+        this.f9977i0.addView(this.F0, w7.z5.e(56, 56, 53));
+        ?? hcVar2 = new hc(activity);
+        this.G0 = hcVar2;
+        hcVar2.setContentDescription(LocaleController.getString(R.string.AccDescrCollage));
         this.G0.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
-        if (this.f10030z0 == null) {
-            i14 = 6;
-            this.f10030z0 = (t) t.a().get(6);
+        if (this.f10032z0 == null) {
+            i11 = 6;
+            this.f10032z0 = (t) t.a().get(6);
         } else {
-            i14 = 6;
+            i11 = 6;
         }
-        this.G0.setOnClickListener(new v9(this, i14));
-        this.G0.a(new u(this.f10030z0, false), false);
+        this.G0.setOnClickListener(new v9(this, i11));
+        this.G0.a(new u(this.f10032z0, false), false);
         this.G0.setSelected(false);
         this.G0.setVisibility(0);
         this.G0.setAlpha(1.0f);
-        this.f10005s.a(this.G0);
-        this.f9975i0.addView(this.G0, w7.z5.e(56, 56, 53));
-        hc hcVar4 = new hc(activity);
-        this.H0 = hcVar4;
-        hcVar4.setContentDescription(LocaleController.getString(R.string.AccDescrCollageClose));
+        this.f10007s.a(this.G0);
+        this.f9977i0.addView(this.G0, w7.z5.e(56, 56, 53));
+        hc hcVar3 = new hc(activity);
+        this.H0 = hcVar3;
+        hcVar3.setContentDescription(LocaleController.getString(R.string.AccDescrCollageClose));
         this.H0.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
         this.H0.a(new u(new t("../../.."), true), false);
         this.H0.setVisibility(8);
         this.H0.setAlpha(0.0f);
         this.H0.setOnClickListener(new v9(this, 7));
-        this.f10005s.a(this.H0);
-        this.f9975i0.addView(this.H0, w7.z5.e(56, 56, 53));
-        y yVar = new y(activity, this.f10005s);
+        this.f10007s.a(this.H0);
+        this.f9977i0.addView(this.H0, w7.z5.e(56, 56, 53));
+        y yVar = new y(activity, this.f10007s);
         this.I0 = yVar;
-        yVar.f10120a.u0(6);
+        yVar.f10122a.u0(6);
         this.I0.setSelected((t) null);
         this.I0.setOnLayoutClick(new u9(this, 8));
-        this.f9975i0.addView(this.I0, w7.z5.e(-1, 56, 53));
+        this.f9977i0.addView(this.I0, w7.z5.e(-1, 56, 53));
         x3 x3Var2 = new x3(activity, 1);
         x3Var2.l(1.0f, -20.0f);
         x3Var2.d = 5000L;
         x3Var2.i(true);
         x3Var2.s(LocaleController.getString(R.string.StoryCameraDualHint));
-        x3Var2.f10081l0 = new ah.j(14);
+        x3Var2.f10083l0 = new ah.j(14);
         this.l1 = x3Var2;
         x3Var2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        this.f9975i0.addView(this.l1, w7.z5.a(-1.0f, 0.0f, 52.0f, 0.0f, 0.0f, -1, 48));
+        this.f9977i0.addView(this.l1, w7.z5.a(-1.0f, 0.0f, 52.0f, 0.0f, 0.0f, -1, 48));
         x3 x3Var3 = new x3(activity, 2);
         x3Var3.l(0.0f, 28.0f);
         x3Var3.d = 5000L;
         x3Var3.p(true);
-        this.f9986m1 = x3Var3;
-        this.f9975i0.addView(x3Var3, w7.z5.a(-1.0f, 0.0f, 0.0f, 52.0f, 0.0f, -1, 48));
+        this.f9988m1 = x3Var3;
+        this.f9977i0.addView(x3Var3, w7.z5.a(-1.0f, 0.0f, 0.0f, 52.0f, 0.0f, -1, 48));
         x3 x3Var4 = new x3(activity, 1);
         x3Var4.l(1.0f, -20.0f);
         x3Var4.d = 5000L;
         x3Var4.s(LocaleController.getString(R.string.StoryCollageRemoveGrid));
-        this.f9990n1 = x3Var4;
+        this.f9992n1 = x3Var4;
         x3Var4.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        this.f9975i0.addView(this.f9990n1, w7.z5.a(-1.0f, 0.0f, 52.0f, 0.0f, 0.0f, -1, 48));
+        this.f9977i0.addView(this.f9992n1, w7.z5.a(-1.0f, 0.0f, 52.0f, 0.0f, 0.0f, -1, 48));
         ?? view2 = new View(activity);
         Paint paint = new Paint(1);
-        view2.f9390a = paint;
+        view2.f9391a = paint;
         Paint paint2 = new Paint(1);
-        view2.f9391b = paint2;
+        view2.f9392b = paint2;
         view2.e = new org.telegram.ui.Components.f6((View) view2, 0L, 250L, bsVar);
         paint2.setColor(-907224);
         paint.setColor(1056964608);
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
-        view2.f9392c = p6Var;
+        view2.f9393c = p6Var;
         p6Var.n(0.3f, 250L, bsVar);
         p6Var.w(AndroidUtilities.dp(13.0f));
         p6Var.u(-1);
         p6Var.x(AndroidUtilities.bold());
         p6Var.setCallback(view2);
-        p6Var.f29192b = 1;
+        p6Var.f29199b = 1;
         view2.a(0L, false);
         this.J0 = view2;
         h0(false, false);
-        this.f9975i0.addView(this.J0, w7.z5.a(45.0f, 56.0f, 0.0f, 56.0f, 0.0f, -1, 55));
-        this.f10005s.a(this.J0);
+        this.f9977i0.addView(this.J0, w7.z5.a(45.0f, 56.0f, 0.0f, 56.0f, 0.0f, -1, 55));
+        this.f10007s.a(this.J0);
         MediaController.loadGalleryPhotosAlbums(0);
         z6 z6Var = new z6(activity);
         this.O0 = z6Var;
         z6Var.setDelegate(qaVar);
         z6 z6Var2 = this.O0;
-        if (this.O1 == 1) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        z6Var2.f10223n0 = -1.0f;
-        z6Var2.f10224o0 = z10;
+        boolean z10 = this.O1 == 1;
+        z6Var2.f10225n0 = -1.0f;
+        z6Var2.f10226o0 = z10;
         z6Var2.invalidate();
-        this.f9981k0.addView(this.O0, w7.z5.e(-1, 100, 87));
-        this.f10005s.a(this.O0);
-        z6 z6Var3 = this.O0;
-        if (this.A0.j()) {
-            f10 = this.A0.getFilledProgress();
-        } else {
-            f10 = 0.0f;
-        }
-        z6Var3.e(f10, true);
+        this.f9983k0.addView(this.O0, w7.z5.e(-1, 100, 87));
+        this.f10007s.a(this.O0);
+        this.O0.e(this.A0.j() ? this.A0.getFilledProgress() : 0.0f, true);
         d dVar = new d(activity, bVar, true);
         this.P0 = dVar;
         dVar.setRoundRadius(24);
@@ -675,7 +631,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         this.P0.setScaleX(0.8f);
         this.P0.setScaleY(0.8f);
         this.P0.setVisibility(8);
-        this.f9981k0.addView(this.P0, w7.z5.a(48.0f, 20.0f, 20.0f, 20.0f, 20.0f, -1, 87));
+        this.f9983k0.addView(this.P0, w7.z5.a(48.0f, 20.0f, 20.0f, 20.0f, 20.0f, -1, 87));
         this.P0.setOnClickListener(new v9(this, 8));
         x3 x3Var5 = new x3(activity, 3);
         x3Var5.p(true);
@@ -684,26 +640,26 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         x3Var5.d = 5000L;
         x3Var5.K = Layout.Alignment.ALIGN_CENTER;
         this.W0 = x3Var5;
-        this.f9981k0.addView(x3Var5, w7.z5.a(-1.0f, 0.0f, 0.0f, 0.0f, 100.0f, -1, 80));
+        this.f9983k0.addView(x3Var5, w7.z5.a(-1.0f, 0.0f, 0.0f, 0.0f, 100.0f, -1, 80));
         w91 w91Var = new w91(activity);
         this.V0 = w91Var;
         w91Var.M = false;
         w91Var.setAlpha(0.0f);
-        this.f9981k0.addView(this.V0, w7.z5.a(50.0f, 0.0f, 0.0f, 0.0f, 108.0f, -1, 81));
+        this.f9983k0.addView(this.V0, w7.z5.a(50.0f, 0.0f, 0.0f, 0.0f, 108.0f, -1, 81));
         this.V0.setDelegate(new ca(this, 4));
         w91 w91Var2 = this.V0;
         this.T1 = 0.0f;
         w91Var2.b(0.0f, false);
         j7 j7Var = new j7(activity, i10, new t9(this, 12));
         this.D0 = j7Var;
-        j7Var.f9261c = new u9(this, 9);
-        this.f9981k0.addView(j7Var, w7.z5.a(80.0f, 0.0f, 0.0f, 0.0f, 90.0f, -1, 87));
+        j7Var.f9262c = new u9(this, 9);
+        this.f9983k0.addView(j7Var, w7.z5.a(80.0f, 0.0f, 0.0f, 0.0f, 90.0f, -1, 87));
         na naVar = new na(this, activity);
         this.Q0 = naVar;
         naVar.setOnSwitchModeListener(new u9(this, 10));
         this.Q0.setOnSwitchingModeListener(new u9(this, 11));
         this.m0.addView(this.Q0, w7.z5.e(-1, 48, 55));
-        this.f10005s.a(this.Q0);
+        this.f10007s.a(this.Q0);
         ?? imageView4 = new ImageView(activity);
         this.R0 = imageView4;
         imageView4.setContentDescription(LocaleController.getString(R.string.AccDescrSwitchCamera));
@@ -712,7 +668,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         this.R0.setColorFilter(new PorterDuffColorFilter(-1, mode));
         this.R0.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
         this.m0.addView(this.R0, w7.z5.a(24.0f, 20.0f, 0.0f, 20.0f, 4.0f, 24, 19));
-        this.f10005s.a(this.R0);
+        this.f10007s.a(this.R0);
         this.R0.setOnClickListener(new v9(this, 9));
         ?? imageView5 = new ImageView(activity);
         this.S0 = imageView5;
@@ -722,33 +678,33 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         this.S0.setColorFilter(new PorterDuffColorFilter(-1, mode));
         this.S0.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
         this.m0.addView(this.S0, w7.z5.a(24.0f, 20.0f, 0.0f, 20.0f, 4.0f, 24, 21));
-        this.f10005s.a(this.S0);
+        this.f10007s.a(this.S0);
         this.S0.setOnClickListener(new v9(this, 10));
         v3 v3Var = new v3(activity);
         this.T0 = v3Var;
         this.m0.addView(v3Var, w7.z5.a(32.0f, 8.0f, 0.0f, 8.0f, 8.0f, -1, 17));
-        this.f10005s.a(this.T0);
+        this.f10007s.a(this.T0);
         v3 v3Var2 = new v3(activity);
         this.U0 = v3Var2;
-        v3Var2.f9933a.t(LocaleController.getString(R.string.StoryCollageReorderHint), false, true);
+        v3Var2.f9935a.t(LocaleController.getString(R.string.StoryCollageReorderHint), false, true);
         v3Var2.invalidate();
         this.U0.setAlpha(0.0f);
         this.m0.addView(this.U0, w7.z5.a(32.0f, 8.0f, 0.0f, 8.0f, 8.0f, -1, 17));
-        this.f10005s.a(this.U0);
+        this.f10007s.a(this.U0);
         d dVar2 = new d(activity, bVar, true);
         dVar2.setRoundRadius(24);
-        this.f10013u1 = dVar2;
+        this.f10015u1 = dVar2;
         dVar2.setVisibility(8);
-        this.f10013u1.setAlpha(0.0f);
-        this.f10013u1.g(LocaleController.getString(R.string.StoryCoverSave), false, true);
-        this.f10013u1.setOnClickListener(new v9(this, 11));
-        this.m0.addView(this.f10013u1, w7.z5.a(48.0f, 10.0f, 10.0f, 10.0f, 10.0f, -1, 119));
+        this.f10015u1.setAlpha(0.0f);
+        this.f10015u1.g(LocaleController.getString(R.string.StoryCoverSave), false, true);
+        this.f10015u1.setOnClickListener(new v9(this, 11));
+        this.m0.addView(this.f10015u1, w7.z5.a(48.0f, 10.0f, 10.0f, 10.0f, 10.0f, -1, 119));
         ?? frameLayout5 = new FrameLayout(activity);
-        frameLayout5.f9317b = new ArrayList();
+        frameLayout5.f9318b = new ArrayList();
         frameLayout5.e = true;
         frameLayout5.h = true;
         View view3 = new View(activity);
-        frameLayout5.f9316a = view3;
+        frameLayout5.f9317a = view3;
         view3.setBackground(new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{1711276032, 0}));
         frameLayout5.addView(view3, w7.z5.e(-1, -1, 119));
         frameLayout5.a(0, R.drawable.media_draw, LocaleController.getString(R.string.AccDescrPaint));
@@ -760,28 +716,28 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         frameLayout5.d = string;
         frameLayout5.e = true;
         j6 j6Var = new j6(frameLayout5, activity, string, true);
-        frameLayout5.f9318c = j6Var;
+        frameLayout5.f9319c = j6Var;
         j6Var.setContentDescription(LocaleController.getString(R.string.Send));
-        frameLayout5.addView(frameLayout5.f9318c, w7.z5.d(-2.0f, -2));
+        frameLayout5.addView(frameLayout5.f9319c, w7.z5.d(-2.0f, -2));
         frameLayout5.e();
-        this.f9953b1 = frameLayout5;
+        this.f9955b1 = frameLayout5;
         frameLayout5.setVisibility(8);
-        this.f9953b1.setOnClickListener(new u9(this, 12));
-        this.m0.addView(this.f9953b1, w7.z5.e(-1, 52, 23));
+        this.f9955b1.setOnClickListener(new u9(this, 12));
+        this.m0.addView(this.f9955b1, w7.z5.e(-1, 52, 23));
         jc jcVar = new jc(activity);
-        this.f9996p1 = jcVar;
+        this.f9998p1 = jcVar;
         jcVar.setAlpha(0.0f);
-        this.f9996p1.setVisibility(8);
-        this.f9972h0.addView(this.f9996p1, w7.z5.a(120.0f, 0.0f, 0.0f, 0.0f, 16.0f, -1, 81));
+        this.f9998p1.setVisibility(8);
+        this.f9974h0.addView(this.f9998p1, w7.z5.a(120.0f, 0.0f, 0.0f, 0.0f, 16.0f, -1, 81));
         l6 l6Var = new l6(activity, i10, bVar);
-        this.f9993o1 = l6Var;
-        this.f9972h0.addView(l6Var, w7.z5.e(-1, -1, 119));
+        this.f9995o1 = l6Var;
+        this.f9974h0.addView(l6Var, w7.z5.e(-1, -1, 119));
         l0(false);
     }
 
     public static vb D(Activity activity, int i10) {
         vb vbVar = F2;
-        if (vbVar != null && (vbVar.f9951b != activity || vbVar.f9955c != i10)) {
+        if (vbVar != null && (vbVar.f9953b != activity || vbVar.f9957c != i10)) {
             vbVar.p(false);
             F2 = null;
         }
@@ -801,7 +757,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (yaVar != null && yaVar.getTextureView() != null) {
             Bitmap bitmap = vbVar.B0.getTextureView().getBitmap();
             if (bitmap == null) {
-                vbVar.f9958c2 = false;
+                vbVar.f9960c2 = false;
                 return;
             }
             int width = bitmap.getWidth() / 12;
@@ -818,34 +774,34 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             if (f7 / 100.0f < 0.22f) {
                 z10 = true;
             }
-            vbVar.f9958c2 = z10;
+            vbVar.f9960c2 = z10;
             return;
         }
-        vbVar.f9958c2 = false;
+        vbVar.f9960c2 = false;
     }
 
     public static void b(vb vbVar) {
-        ValueAnimator valueAnimator = vbVar.f9980j2;
+        ValueAnimator valueAnimator = vbVar.f9982j2;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            vbVar.f9980j2 = null;
+            vbVar.f9982j2 = null;
         }
-        vbVar.f9983k2 = false;
-        nb nbVar = vbVar.f10001r;
-        float f7 = nbVar.f9531a;
-        float f10 = nbVar.f9532b;
+        vbVar.f9985k2 = false;
+        nb nbVar = vbVar.f10003r;
+        float f7 = nbVar.f9532a;
+        float f10 = nbVar.f9533b;
         nbVar.getAlpha();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-        vbVar.f9980j2 = ofFloat;
+        vbVar.f9982j2 = ofFloat;
         ofFloat.addUpdateListener(new ja(vbVar, f7, f10, 0));
-        vbVar.f9980j2.setDuration(340L);
-        vbVar.f9980j2.setInterpolator(bs.h);
-        vbVar.f9980j2.addListener(new ta(vbVar, 0));
-        vbVar.f9980j2.start();
+        vbVar.f9982j2.setDuration(340L);
+        vbVar.f9982j2.setInterpolator(bs.h);
+        vbVar.f9982j2.addListener(new ta(vbVar, 0));
+        vbVar.f9982j2.start();
     }
 
     public static boolean c(vb vbVar) {
-        Activity activity = vbVar.f9951b;
+        Activity activity = vbVar.f9953b;
         if (activity != null && activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
             activity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 112);
             return false;
@@ -888,7 +844,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (yaVar != null && yaVar.getCameraSession() != null) {
             if (this.B0.isFrontface() && !this.B0.getCameraSession().hasFlashModes()) {
                 o();
-                return (String) this.f10014u2.get(this.f10011t2);
+                return (String) this.f10016u2.get(this.f10013t2);
             }
             return this.B0.getCameraSession().getCurrentFlashMode();
         }
@@ -897,9 +853,9 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
 
     public final v0 C() {
         if (this.N0 == null) {
-            v0 v0Var = new v0(this.f9951b);
+            v0 v0Var = new v0(this.f9953b);
             this.N0 = v0Var;
-            this.f9981k0.addView(v0Var, w7.z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 78.0f, -1, 87));
+            this.f9983k0.addView(v0Var, w7.z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 78.0f, -1, 87));
         }
         return this.N0;
     }
@@ -910,11 +866,11 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (yaVar != null && yaVar.getCameraSession() != null) {
             if (this.B0.isFrontface() && !this.B0.getCameraSession().hasFlashModes()) {
                 o();
-                ArrayList arrayList = this.f10014u2;
-                if (this.f10011t2 + 1 >= arrayList.size()) {
+                ArrayList arrayList = this.f10016u2;
+                if (this.f10013t2 + 1 >= arrayList.size()) {
                     i10 = 0;
                 } else {
-                    i10 = this.f10011t2 + 1;
+                    i10 = this.f10013t2 + 1;
                 }
                 return (String) arrayList.get(i10);
             }
@@ -924,51 +880,51 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final ImageView F() {
-        if (this.f9976i1 == null) {
+        if (this.f9978i1 == null) {
             uj0 uj0Var = new uj0(R.raw.sun_outline, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-            this.f9973h1 = uj0Var;
+            this.f9975h1 = uj0Var;
             uj0Var.h = true;
             a8 a8Var = this.K1;
-            if (a8Var != null && a8Var.f8745y0) {
+            if (a8Var != null && a8Var.f8746y0) {
                 uj0Var.M(35);
-                this.f9973h1.P(36);
+                this.f9975h1.P(36);
             } else {
                 uj0Var.P(0);
-                this.f9973h1.M(0);
+                this.f9975h1.M(0);
             }
-            this.f9973h1.Z = true;
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.J9, this.f9948a);
-            this.f9973h1.Q(w02, "Sunny");
-            this.f9973h1.Q(w02, "Path 6");
-            this.f9973h1.Q(w02, "Path");
-            this.f9973h1.Q(w02, "Path 5");
-            this.f9973h1.o();
-            ImageView imageView = new ImageView(this.f9951b);
-            this.f9976i1 = imageView;
+            this.f9975h1.Z = true;
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.J9, this.f9950a);
+            this.f9975h1.Q(w02, "Sunny");
+            this.f9975h1.Q(w02, "Path 6");
+            this.f9975h1.Q(w02, "Path");
+            this.f9975h1.Q(w02, "Path 5");
+            this.f9975h1.o();
+            ImageView imageView = new ImageView(this.f9953b);
+            this.f9978i1 = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.f9976i1.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-            this.f9976i1.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
-            this.f9976i1.setOnClickListener(new v9(this, 0));
-            this.f9976i1.setVisibility(8);
-            this.f9976i1.setImageDrawable(this.f9973h1);
-            this.f9976i1.setAlpha(0.0f);
-            this.f9978j0.addView(this.f9976i1, 0, w7.z5.q(46, 56, 53));
+            this.f9978i1.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+            this.f9978i1.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
+            this.f9978i1.setOnClickListener(new v9(this, 0));
+            this.f9978i1.setVisibility(8);
+            this.f9978i1.setImageDrawable(this.f9975h1);
+            this.f9978i1.setAlpha(0.0f);
+            this.f9980j0.addView(this.f9978i1, 0, w7.z5.q(46, 56, 53));
         }
-        return this.f9976i1;
+        return this.f9978i1;
     }
 
     public final void G() {
-        xa xaVar = this.f10016v1;
+        xa xaVar = this.f10018v1;
         if (xaVar == null) {
             return;
         }
-        this.f10017v2 = null;
+        this.f10019v2 = null;
         xaVar.getTopLayout().setAlpha(0.0f);
-        this.f10016v1.getTopLayout().setTranslationY(-AndroidUtilities.dp(16.0f));
-        this.f10016v1.getBottomLayout().setAlpha(0.0f);
-        this.f10016v1.getBottomLayout().setTranslationY(AndroidUtilities.dp(48.0f));
-        this.f10016v1.getWeightChooserView().setTranslationX(-AndroidUtilities.dp(32.0f));
-        this.f10016v1.setVisibility(8);
+        this.f10018v1.getTopLayout().setTranslationY(-AndroidUtilities.dp(16.0f));
+        this.f10018v1.getBottomLayout().setAlpha(0.0f);
+        this.f10018v1.getBottomLayout().setTranslationY(AndroidUtilities.dp(48.0f));
+        this.f10018v1.getWeightChooserView().setTranslationX(-AndroidUtilities.dp(32.0f));
+        this.f10018v1.setVisibility(8);
     }
 
     public final boolean H() {
@@ -987,7 +943,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public final boolean I() {
         ua uaVar;
         if (!this.W && (uaVar = this.M0) != null) {
-            if (uaVar.getTranslationY() < (this.f9988n.getMeasuredHeight() - ((int) (AndroidUtilities.displaySize.y * 0.35f))) - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight)) {
+            if (uaVar.getTranslationY() < (this.f9990n.getMeasuredHeight() - ((int) (AndroidUtilities.displaySize.y * 0.35f))) - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight)) {
                 return true;
             }
             return false;
@@ -1001,18 +957,18 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
 
     public final void K(Runnable runnable, long j10) {
         if (!this.S1 && this.K1 != null) {
-            z9 z9Var = this.f9971g2;
+            z9 z9Var = this.f9973g2;
             if (z9Var != null) {
                 AndroidUtilities.cancelRunOnUIThread(z9Var);
             }
-            this.f9974h2 = true;
+            this.f9976h2 = true;
             this.S1 = true;
-            this.f9971g2 = new z9(this, runnable, 1);
+            this.f9973g2 = new z9(this, runnable, 1);
             this.X0.setAlpha(0.0f);
             this.X0.setVisibility(0);
-            this.X0.n(this.K1, this.f9971g2, j10);
+            this.X0.n(this.K1, this.f9973g2, j10);
             this.X0.p(this.K1, false);
-            AndroidUtilities.runOnUIThread(this.f9971g2, 800L);
+            AndroidUtilities.runOnUIThread(this.f9973g2, 800L);
         }
     }
 
@@ -1039,28 +995,28 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             c0(false);
         }
         if (i10 == 2) {
-            this.f10010t1.setVisibility(8);
+            this.f10012t1.setVisibility(8);
             if (i11 == 1) {
                 i17 = 0;
             } else {
                 i17 = 8;
             }
-            this.f9984l0.setVisibility(i17);
-            this.f9957c1.setVisibility(8);
-            this.f10013u1.setVisibility(8);
+            this.f9986l0.setVisibility(i17);
+            this.f9959c1.setVisibility(8);
+            this.f10015u1.setVisibility(8);
         }
         if (i10 == 1) {
-            this.f9953b1.setVisibility(8);
+            this.f9955b1.setVisibility(8);
             if (i11 == 2) {
                 i14 = 0;
             } else {
                 i14 = 8;
             }
-            this.f9984l0.setVisibility(i14);
-            this.f9970g1.setVisibility(8);
-            this.f9979j1.setVisibility(8);
-            this.f9963e1.setVisibility(8);
-            ImageView imageView = this.f9976i1;
+            this.f9986l0.setVisibility(i14);
+            this.f9972g1.setVisibility(8);
+            this.f9981j1.setVisibility(8);
+            this.f9965e1.setVisibility(8);
+            ImageView imageView = this.f9978i1;
             if (imageView != null) {
                 imageView.setVisibility(8);
             }
@@ -1080,18 +1036,18 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 i16 = 8;
             }
-            this.f9995p0.setVisibility(i16);
+            this.f9997p0.setVisibility(i16);
             v();
-            this.f9996p1.setAlpha(0.0f);
-            this.f9996p1.setVisibility(8);
-            this.f9950a1.setVisibility(8);
+            this.f9998p1.setAlpha(0.0f);
+            this.f9998p1.setVisibility(8);
+            this.f9952a1.setVisibility(8);
             this.H1 = null;
             this.I1 = null;
             this.J1 = null;
         }
         if (i11 == 1) {
             a8 a8Var = this.K1;
-            if (a8Var == null || !a8Var.f8723n) {
+            if (a8Var == null || !a8Var.f8724n) {
                 t();
                 G();
             }
@@ -1105,24 +1061,24 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             this.X0.x(5, false);
             this.X0.x(7, false);
             a8 a8Var2 = this.K1;
-            if (a8Var2 != null && a8Var2.f8713h0 >= 30000) {
+            if (a8Var2 != null && a8Var2.f8714h0 >= 30000) {
                 i13 = 0;
             } else {
                 i13 = 8;
             }
-            this.f9950a1.setVisibility(i13);
-            this.f9984l0.setAlpha(1.0f);
-            this.f9984l0.setTranslationY(0.0f);
+            this.f9952a1.setVisibility(i13);
+            this.f9986l0.setAlpha(1.0f);
+            this.f9986l0.setTranslationY(0.0f);
             a8 a8Var3 = this.K1;
             if (a8Var3 == null || a8Var3.J0 == 0) {
                 i18 = 0;
             }
-            this.f9957c1.setVisibility(i18);
+            this.f9959c1.setVisibility(i18);
         }
         if (i11 == 0 && this.V1) {
             C().setVisibility(0);
             v0 C = C();
-            C.f9927r.d(0.0f, true);
+            C.f9929r.d(0.0f, true);
             C.a(true);
             com.google.firebase.messaging.s sVar = C.h;
             if (sVar != null) {
@@ -1136,24 +1092,24 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         this.V1 = false;
         ag0 ag0Var2 = this.C1;
         if (ag0Var2 != null) {
-            if (i11 == 1 && ((i12 = this.f9969g0) == -1 || i12 == 1)) {
+            if (i11 == 1 && ((i12 = this.f9971g0) == -1 || i12 == 1)) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             ag0Var2.setAllowTouch(z11);
         }
-        lb lbVar = this.f9957c1;
+        lb lbVar = this.f9959c1;
         if (lbVar != null) {
             if (i11 != 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            lbVar.f9400e0 = z10;
+            lbVar.f9401e0 = z10;
         }
         if (i11 == 1) {
-            int i19 = this.f9955c;
+            int i19 = this.f9957c;
             MediaDataController.getInstance(i19).checkStickers(0);
             MediaDataController.getInstance(i19).loadRecents(0, false, true, false);
             MediaDataController.getInstance(i19).loadRecents(2, false, true, false);
@@ -1235,7 +1191,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             }
         }
         String str2 = "";
-        int i18 = this.f9955c;
+        int i18 = this.f9957c;
         if (i11 != 1 && i10 != 1) {
             j10 = 0;
         } else {
@@ -1244,9 +1200,9 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 a8Var = null;
             }
-            this.f9963e1.setEntry(a8Var);
+            this.f9965e1.setEntry(a8Var);
             if (this.O1 == 1) {
-                this.f9970g1.setVisibility(0);
+                this.f9972g1.setVisibility(0);
                 a8 a8Var10 = this.K1;
                 if (a8Var10 != null && a8Var10.Y) {
                     z13 = true;
@@ -1254,88 +1210,88 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     z13 = false;
                 }
                 e0(z13, false);
-                this.f9979j1.setVisibility(0);
+                this.f9981j1.setVisibility(0);
                 this.X0.x(-9982, false);
-                ((ah0) this.f9979j1.f9072c).a(this.X0.k(), false);
-                this.f9995p0.setRightPadding(AndroidUtilities.dp(144.0f));
+                ((ah0) this.f9981j1.f9073c).a(this.X0.k(), false);
+                this.f9997p0.setRightPadding(AndroidUtilities.dp(144.0f));
             } else {
                 a8 a8Var11 = this.K1;
-                if (a8Var11 != null && !TextUtils.isEmpty(a8Var11.f8744y)) {
-                    this.f9970g1.setVisibility(8);
-                    this.f9979j1.setVisibility(0);
-                    ((ah0) this.f9979j1.f9072c).a(true, false);
-                    this.f9995p0.setRightPadding(AndroidUtilities.dp(48.0f));
+                if (a8Var11 != null && !TextUtils.isEmpty(a8Var11.f8745y)) {
+                    this.f9972g1.setVisibility(8);
+                    this.f9981j1.setVisibility(0);
+                    ((ah0) this.f9981j1.f9073c).a(true, false);
+                    this.f9997p0.setRightPadding(AndroidUtilities.dp(48.0f));
                 } else {
-                    this.f9995p0.setRightPadding(AndroidUtilities.dp(48.0f));
+                    this.f9997p0.setRightPadding(AndroidUtilities.dp(48.0f));
                 }
             }
-            this.f9963e1.setVisibility(0);
+            this.f9965e1.setVisibility(0);
             a8 a8Var12 = this.K1;
-            if (a8Var12 != null && a8Var12.f8737u) {
+            if (a8Var12 != null && a8Var12.f8738u) {
                 F().setVisibility(0);
                 n0(false);
             } else {
-                ImageView imageView = this.f9976i1;
+                ImageView imageView = this.f9978i1;
                 if (imageView != null) {
                     imageView.setVisibility(8);
                 }
             }
-            this.f9953b1.setVisibility(0);
+            this.f9955b1.setVisibility(0);
             this.X0.setVisibility(0);
             a8 a8Var13 = this.K1;
-            if ((a8Var13 != null && a8Var13.J0 != 0) || this.f10015v0 != 0) {
+            if ((a8Var13 != null && a8Var13.J0 != 0) || this.f10017v0 != 0) {
                 i12 = 8;
             } else {
                 i12 = 0;
             }
-            this.f9957c1.setVisibility(i12);
+            this.f9959c1.setVisibility(i12);
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.Y0.getLayoutParams();
             a8 a8Var14 = this.K1;
-            if ((a8Var14 != null && a8Var14.J0 != 0) || this.f10015v0 != 0) {
+            if ((a8Var14 != null && a8Var14.J0 != 0) || this.f10017v0 != 0) {
                 f7 = 12.0f;
             } else {
                 f7 = 68.0f;
             }
             layoutParams.bottomMargin = AndroidUtilities.dp(f7);
             this.Y0.setLayoutParams(layoutParams);
-            this.f9984l0.setVisibility(0);
-            this.f9984l0.clearFocus();
+            this.f9986l0.setVisibility(0);
+            this.f9986l0.clearFocus();
             a8 a8Var15 = this.K1;
             if (a8Var15 == null) {
                 i13 = 86400;
             } else {
                 i13 = a8Var15.I0;
             }
-            this.f9957c1.A(i13, false);
-            if (!MessagesController.getInstance(i18).premiumFeaturesBlocked() && ((a8Var2 = this.K1) == null || !a8Var2.f8711g)) {
+            this.f9959c1.A(i13, false);
+            if (!MessagesController.getInstance(i18).premiumFeaturesBlocked() && ((a8Var2 = this.K1) == null || !a8Var2.f8712g)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f9957c1.setPeriodVisible(z10);
+            this.f9959c1.setPeriodVisible(z10);
             a8 a8Var16 = this.K1;
-            if (a8Var16 != null && a8Var16.f8726o0 != null) {
+            if (a8Var16 != null && a8Var16.f8727o0 != null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            this.f9957c1.setHasRoundVideo(z11);
-            lb lbVar = this.f9957c1;
+            this.f9959c1.setHasRoundVideo(z11);
+            lb lbVar = this.f9959c1;
             if (lbVar == null) {
                 j10 = 0;
             } else {
                 a8 a8Var17 = this.K1;
-                if (a8Var17 == null || !a8Var17.f8723n) {
+                if (a8Var17 == null || !a8Var17.f8724n) {
                     j10 = 0;
                     lbVar.v(null, null);
                 } else {
-                    TLRPC.Peer peer = a8Var17.f8729q;
+                    TLRPC.Peer peer = a8Var17.f8730q;
                     if (peer instanceof TLRPC.TL_peerUser) {
                         j10 = 0;
                         String userName = UserObject.getUserName(MessagesController.getInstance(i18).getUser(Long.valueOf(peer.user_id)));
                         a8 a8Var18 = this.K1;
                         append = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) userName);
-                        a8Var18.f8727p = append;
+                        a8Var18.f8728p = append;
                     } else {
                         j10 = 0;
                         TLRPC.Chat chat = MessagesController.getInstance(i18).getChat(Long.valueOf(-DialogObject.getPeerDialogId(peer)));
@@ -1346,9 +1302,9 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                         }
                         a8 a8Var19 = this.K1;
                         append = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) str);
-                        a8Var19.f8727p = append;
+                        a8Var19.f8728p = append;
                     }
-                    String str3 = this.K1.f8733s;
+                    String str3 = this.K1.f8734s;
                     boolean isEmpty = TextUtils.isEmpty(str3);
                     String str4 = str3;
                     if (isEmpty) {
@@ -1356,7 +1312,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                         spannableString.setSpan(new CharacterStyle(), 0, spannableString.length(), 33);
                         str4 = spannableString;
                     }
-                    this.f9957c1.v(append, str4);
+                    this.f9959c1.v(append, str4);
                 }
             }
             a8 a8Var20 = this.K1;
@@ -1366,23 +1322,23 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 z12 = true;
             }
             gc gcVar = this.Z0;
-            boolean z22 = gcVar.f9103j0;
-            gcVar.f9103j0 = z12;
-            gcVar.f9101i0.f(z12, true);
+            boolean z22 = gcVar.f9104j0;
+            gcVar.f9104j0 = z12;
+            gcVar.f9102i0.f(z12, true);
             gcVar.invalidate();
         }
         if (i11 == 2 || i10 == 2) {
-            this.f9995p0.setVisibility(0);
-            this.f10010t1.setVisibility(0);
+            this.f9997p0.setVisibility(0);
+            this.f10012t1.setVisibility(0);
             a8 a8Var21 = this.K1;
-            if (a8Var21 != null && a8Var21.f8700b0) {
-                this.f9995p0.l(LocaleController.getString(R.string.RecorderEditCover), false);
+            if (a8Var21 != null && a8Var21.f8701b0) {
+                this.f9997p0.l(LocaleController.getString(R.string.RecorderEditCover), false);
             }
-            this.f9984l0.setVisibility(0);
-            this.f10013u1.setVisibility(0);
+            this.f9986l0.setVisibility(0);
+            this.f10015u1.setVisibility(0);
         }
         if (i11 == 2) {
-            this.f9995p0.l(LocaleController.getString(R.string.RecorderEditCover), false);
+            this.f9997p0.l(LocaleController.getString(R.string.RecorderEditCover), false);
         }
         if (i11 == 1) {
             this.N1 = false;
@@ -1392,7 +1348,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 z16 = false;
             }
-            if (a8Var22 != null && a8Var22.f8711g) {
+            if (a8Var22 != null && a8Var22.f8712g) {
                 z17 = true;
             } else {
                 z17 = false;
@@ -1406,30 +1362,30 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             }
             String string = LocaleController.getString(i14);
             boolean z23 = !z16;
-            k6 k6Var = this.f9953b1;
+            k6 k6Var = this.f9955b1;
             if (!TextUtils.equals(string, k6Var.d) || z23 != k6Var.e) {
-                k6Var.removeView(k6Var.f9318c);
+                k6Var.removeView(k6Var.f9319c);
                 Context context = k6Var.getContext();
                 k6Var.d = string;
                 k6Var.e = z23;
                 j6 j6Var = new j6(k6Var, context, string, z23);
-                k6Var.f9318c = j6Var;
+                k6Var.f9319c = j6Var;
                 j6Var.setContentDescription(string);
-                k6Var.addView(k6Var.f9318c, w7.z5.d(-2.0f, -2));
+                k6Var.addView(k6Var.f9319c, w7.z5.d(-2.0f, -2));
                 k6Var.e();
             }
-            this.f10010t1.setVisibility(8);
-            this.f10013u1.setVisibility(8);
-            if (!this.f9974h2) {
+            this.f10012t1.setVisibility(8);
+            this.f10015u1.setVisibility(8);
+            if (!this.f9976h2) {
                 a8 a8Var23 = this.K1;
-                if (a8Var23 != null && a8Var23.f8737u) {
+                if (a8Var23 != null && a8Var23.f8738u) {
                     this.X0.l(a8Var23);
                 } else {
                     this.X0.set(a8Var23);
                 }
             }
-            this.f9974h2 = false;
-            iu editText = this.f9957c1.f9401f.getEditText();
+            this.f9976h2 = false;
+            iu editText = this.f9959c1.f9402f.getEditText();
             if (MessagesController.getInstance(i18).storyEntitiesAllowed()) {
                 t9Var = null;
             } else {
@@ -1441,20 +1397,20 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 i15 = 0;
             }
-            this.f9960d1.setVisibility(i15);
+            this.f9962d1.setVisibility(i15);
             ArrayList arrayList = this.H1;
             if (arrayList != null) {
                 ArrayList arrayList2 = this.J1;
                 ArrayList arrayList3 = this.I1;
-                ma maVar = this.f9960d1;
+                ma maVar = this.f9962d1;
                 maVar.c(false, false);
-                maVar.f9368c = arrayList;
+                maVar.f9369c = arrayList;
                 maVar.d = arrayList2;
                 maVar.e = arrayList3;
-                maVar.f9373w = new d11(Integer.toString(arrayList.size()), 20.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+                maVar.f9374w = new d11(Integer.toString(arrayList.size()), 20.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
                 maVar.K = new d11(LocaleController.formatPluralStringComma("HintViewStoriesMultiple", arrayList.size()), 14.0f, null);
-                maVar.f9367b.W2.N(false);
-                this.f9960d1.setSelected(this.H1.indexOf(this.K1));
+                maVar.f9368b.W2.N(false);
+                this.f9962d1.setSelected(this.H1.indexOf(this.K1));
             }
             if (!z16 && !z17 && this.H1 == null && ((a8Var8 = this.K1) == null || (!a8Var8.v() && this.K1.K))) {
                 i16 = 3;
@@ -1464,74 +1420,74 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             this.Z0.setMaxCount(i16);
             if (i10 != 2) {
                 a8 a8Var24 = this.K1;
-                if (a8Var24 != null && (a8Var24.f8702c || a8Var24.f8711g || this.f10012u0)) {
+                if (a8Var24 != null && (a8Var24.f8703c || a8Var24.f8712g || this.f10014u0)) {
                     if (a8Var24.P0 != null) {
                         y();
                         t();
                         G();
                     }
                     a8 a8Var25 = this.K1;
-                    if (a8Var25.K && a8Var25.f8698a1 != null && (textureView = this.X0.getTextureView()) != null) {
+                    if (a8Var25.K && a8Var25.f8699a1 != null && (textureView = this.X0.getTextureView()) != null) {
                         textureView.setDelegate(new ca(this, 7));
                     }
-                    this.f9957c1.setText(this.K1.C0);
+                    this.f9959c1.setText(this.K1.C0);
                 } else if (i10 != 2) {
-                    lb lbVar2 = this.f9957c1;
+                    lb lbVar2 = this.f9959c1;
                     lbVar2.V = true;
-                    lbVar2.f9401f.setText("");
+                    lbVar2.f9402f.setText("");
                 }
             }
             a8 a8Var26 = this.K1;
-            if (a8Var26 != null && ((a8Var26.f8737u && !a8Var26.K) || a8Var26.v())) {
+            if (a8Var26 != null && ((a8Var26.f8738u && !a8Var26.K) || a8Var26.v())) {
                 z18 = false;
             } else {
                 z18 = true;
             }
-            this.f9953b1.d(4, z18);
-            if (BuildVars.DEBUG_PRIVATE_VERSION && (a8Var7 = this.K1) != null && !a8Var7.f8737u && !a8Var7.v()) {
+            this.f9955b1.d(4, z18);
+            if (BuildVars.DEBUG_PRIVATE_VERSION && (a8Var7 = this.K1) != null && !a8Var7.f8738u && !a8Var7.v()) {
                 z19 = true;
             } else {
                 z19 = false;
             }
-            this.f9953b1.d(3, z19);
-            if (!this.N1 && !this.f9957c1.o()) {
+            this.f9955b1.d(3, z19);
+            if (!this.N1 && !this.f9959c1.o()) {
                 ci.i7 storiesController = MessagesController.getInstance(i18).getStoriesController();
                 int A = A();
                 ci.c7 o10 = storiesController.o();
-                if (o10 == null || !o10.a(storiesController.f5493a, A) || ((a8Var6 = this.K1) != null && (a8Var6.f8711g || a8Var6.J0 != j10))) {
+                if (o10 == null || !o10.a(storiesController.f5494a, A) || ((a8Var6 = this.K1) != null && (a8Var6.f8712g || a8Var6.J0 != j10))) {
                     z20 = true;
-                    this.f9953b1.setShareEnabled(z20);
+                    this.f9955b1.setShareEnabled(z20);
                     a8Var4 = this.K1;
                     if (a8Var4 == null && a8Var4.Y) {
                         i17 = R.drawable.media_unmute;
                     } else {
                         i17 = R.drawable.media_mute;
                     }
-                    this.f9970g1.setImageResource(i17);
+                    this.f9972g1.setImageResource(i17);
                     this.X0.setVisibility(0);
                     this.Z0.setVisibility(0);
-                    this.f9995p0.setVisibility(0);
-                    this.f9995p0.setTranslationX(0.0f);
+                    this.f9997p0.setVisibility(0);
+                    this.f9997p0.setTranslationX(0.0f);
                     a8Var5 = this.K1;
                     if (a8Var5 == null && a8Var5.J0 != j10) {
-                        this.f9995p0.l("", false);
-                    } else if (a8Var5 == null && a8Var5.f8711g) {
-                        this.f9995p0.l(LocaleController.getString(R.string.RecorderEditStory), false);
-                    } else if (a8Var5 == null && a8Var5.f8737u) {
-                        this.f9995p0.l(LocaleController.getString(R.string.RecorderRepost), false);
-                    } else if (a8Var5 == null && a8Var5.f8723n) {
+                        this.f9997p0.l("", false);
+                    } else if (a8Var5 == null && a8Var5.f8712g) {
+                        this.f9997p0.l(LocaleController.getString(R.string.RecorderEditStory), false);
+                    } else if (a8Var5 == null && a8Var5.f8738u) {
+                        this.f9997p0.l(LocaleController.getString(R.string.RecorderRepost), false);
+                    } else if (a8Var5 == null && a8Var5.f8724n) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                        org.telegram.ui.l5 l5Var = new org.telegram.ui.l5(this.f9995p0, 32.0f, i18);
-                        this.f9995p0.setTranslationX(-AndroidUtilities.dp(6.0f));
+                        org.telegram.ui.l5 l5Var = new org.telegram.ui.l5(this.f9997p0, 32.0f, i18);
+                        this.f9997p0.setTranslationX(-AndroidUtilities.dp(6.0f));
                         SpannableString spannableString2 = new SpannableString("a");
                         spannableString2.setSpan(l5Var, 0, 1, 33);
-                        if (this.K1.f8729q instanceof TLRPC.TL_peerUser) {
-                            TLRPC.User user = MessagesController.getInstance(i18).getUser(Long.valueOf(this.K1.f8729q.user_id));
+                        if (this.K1.f8730q instanceof TLRPC.TL_peerUser) {
+                            TLRPC.User user = MessagesController.getInstance(i18).getUser(Long.valueOf(this.K1.f8730q.user_id));
                             l5Var.e(user);
                             spannableStringBuilder.append((CharSequence) spannableString2).append((CharSequence) "  ");
                             spannableStringBuilder.append((CharSequence) UserObject.getUserName(user));
                         } else {
-                            TLRPC.Chat chat2 = MessagesController.getInstance(i18).getChat(Long.valueOf(-DialogObject.getPeerDialogId(this.K1.f8729q)));
+                            TLRPC.Chat chat2 = MessagesController.getInstance(i18).getChat(Long.valueOf(-DialogObject.getPeerDialogId(this.K1.f8730q)));
                             l5Var.b(chat2);
                             spannableStringBuilder.append((CharSequence) spannableString2).append((CharSequence) "  ");
                             if (chat2 != null) {
@@ -1539,24 +1495,24 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                             }
                             spannableStringBuilder.append((CharSequence) str2);
                         }
-                        this.f9995p0.l(spannableStringBuilder, false);
+                        this.f9997p0.l(spannableStringBuilder, false);
                     } else {
-                        this.f9995p0.l(LocaleController.getString(R.string.RecorderNewStory), false);
+                        this.f9997p0.l(LocaleController.getString(R.string.RecorderNewStory), false);
                     }
                     z21 = true;
                 }
             }
             z20 = false;
-            this.f9953b1.setShareEnabled(z20);
+            this.f9955b1.setShareEnabled(z20);
             a8Var4 = this.K1;
             if (a8Var4 == null) {
             }
             i17 = R.drawable.media_mute;
-            this.f9970g1.setImageResource(i17);
+            this.f9972g1.setImageResource(i17);
             this.X0.setVisibility(0);
             this.Z0.setVisibility(0);
-            this.f9995p0.setVisibility(0);
-            this.f9995p0.setTranslationX(0.0f);
+            this.f9997p0.setVisibility(0);
+            this.f9997p0.setTranslationX(0.0f);
             a8Var5 = this.K1;
             if (a8Var5 == null) {
             }
@@ -1566,35 +1522,35 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             }
             if (a8Var5 == null) {
             }
-            this.f9995p0.l(LocaleController.getString(R.string.RecorderNewStory), false);
+            this.f9997p0.l(LocaleController.getString(R.string.RecorderNewStory), false);
             z21 = true;
         }
         if (i10 == z21) {
-            lb lbVar3 = this.f9957c1;
+            lb lbVar3 = this.f9959c1;
             i80 i80Var = lbVar3.V0;
             if (i80Var != null) {
                 i80Var.u();
                 lbVar3.V0 = null;
             }
-            this.f9982k1.e(z21);
-            ma maVar2 = this.f9960d1;
+            this.f9984k1.e(z21);
+            ma maVar2 = this.f9962d1;
             if (maVar2.M) {
                 maVar2.c(false, z21);
             }
         }
         if (i11 == 2 && (a8Var3 = this.K1) != null) {
-            if (a8Var3.f8707e0 < j10) {
-                a8Var3.f8707e0 = j10;
+            if (a8Var3.f8708e0 < j10) {
+                a8Var3.f8708e0 = j10;
             }
-            this.M1 = a8Var3.f8707e0;
+            this.M1 = a8Var3.f8708e0;
             if (this.X0.getDuration() < 100) {
-                duration = this.K1.f8713h0;
+                duration = this.K1.f8714h0;
             } else {
                 duration = this.X0.getDuration();
             }
             a8 a8Var27 = this.K1;
-            if (a8Var27.f8713h0 <= 0) {
-                a8Var27.f8713h0 = duration;
+            if (a8Var27.f8714h0 <= 0) {
+                a8Var27.f8714h0 = duration;
             }
             File file = a8Var27.Z0;
             if (file == null) {
@@ -1602,41 +1558,41 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             }
             String absolutePath = file.getAbsolutePath();
             a8 a8Var28 = this.K1;
-            this.f10010t1.o(false, absolutePath, a8Var28.f8713h0, a8Var28.P);
+            this.f10012t1.o(false, absolutePath, a8Var28.f8714h0, a8Var28.P);
             a8 a8Var29 = this.K1;
             float f10 = (float) duration;
             long j11 = a8Var29.Z * f10;
-            long j12 = a8Var29.f8697a0 * f10;
-            gc gcVar2 = this.f10010t1;
+            long j12 = a8Var29.f8698a0 * f10;
+            gc gcVar2 = this.f10012t1;
             gcVar2.Z0 = j11;
-            gcVar2.f9083a1 = j12;
+            gcVar2.f9084a1 = j12;
             ac acVar = gcVar2.h;
             if (acVar != null) {
                 ac.a(acVar, true);
             }
             ai.q qVar = new ai.q(this, 19);
-            this.f10010t1.setDelegate(new va(qVar));
+            this.f10012t1.setDelegate(new va(qVar));
             float max = (((float) this.M1) / ((float) Math.max(1L, duration))) * 0.96f;
-            this.f10010t1.setVideoLeft(max);
-            this.f10010t1.setVideoRight(0.04f + max);
+            this.f10012t1.setVideoLeft(max);
+            this.f10012t1.setVideoRight(0.04f + max);
             qVar.run(Boolean.TRUE, Float.valueOf(max));
         }
         ag0 ag0Var = this.C1;
         if (ag0Var != null) {
             ag0Var.setAllowTouch(false);
         }
-        x3 x3Var2 = this.f9986m1;
+        x3 x3Var2 = this.f9988m1;
         boolean z24 = true;
         if (x3Var2 != null) {
             x3Var2.e(true);
         }
         org.telegram.ui.Components.qc.e();
-        lb lbVar4 = this.f9957c1;
+        lb lbVar4 = this.f9959c1;
         if (lbVar4 != null) {
-            g gVar = lbVar4.f9401f;
+            g gVar = lbVar4.f9402f;
             gVar.d();
             gVar.k(true);
-            this.f9957c1.f9400e0 = true;
+            this.f9959c1.f9401e0 = true;
         }
         jb jbVar = this.X0;
         if (jbVar != null) {
@@ -1647,7 +1603,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             }
             jbVar.x(8, z15);
         }
-        xa xaVar = this.f10016v1;
+        xa xaVar = this.f10018v1;
         if (xaVar != null) {
             if (i11 != 1) {
                 z14 = true;
@@ -1656,7 +1612,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             }
             xaVar.setCoverPreview(z14);
         }
-        x3 x3Var3 = this.f9990n1;
+        x3 x3Var3 = this.f9992n1;
         if (x3Var3 != null) {
             x3Var3.e(true);
         }
@@ -1670,47 +1626,47 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public final void O() {
         qg.c1 c1Var;
         int i10;
-        if (this.f9966f0 == 0) {
+        if (this.f9968f0 == 0) {
             ValueAnimator valueAnimator = this.E;
             if (valueAnimator != null && valueAnimator.isRunning()) {
-                this.f10025x2 = new t9(this, 3);
+                this.f10027x2 = new t9(this, 3);
             } else {
                 Y(false);
             }
         }
-        lb lbVar = this.f9957c1;
+        lb lbVar = this.f9959c1;
         if (lbVar != null) {
-            lbVar.f9401f.s();
+            lbVar.f9402f.s();
         }
         z6 z6Var = this.O0;
         if (z6Var != null) {
             z6Var.h();
         }
-        l6 l6Var = this.f9993o1;
+        l6 l6Var = this.f9995o1;
         if (l6Var != null) {
-            ci.i7 storiesController = MessagesController.getInstance(l6Var.f9378a).getStoriesController();
-            TL_stories.PeerStories peerStories = (TL_stories.PeerStories) storiesController.f5498i.f(UserConfig.getInstance(storiesController.f5493a).clientUserId);
+            ci.i7 storiesController = MessagesController.getInstance(l6Var.f9379a).getStoriesController();
+            TL_stories.PeerStories peerStories = (TL_stories.PeerStories) storiesController.f5499i.f(UserConfig.getInstance(storiesController.f5494a).clientUserId);
             if (peerStories != null) {
                 i10 = peerStories.stories.size();
             } else {
                 i10 = 0;
             }
-            l6Var.f9379b = storiesController.f5494b.m() + i10 + 1;
-            l6Var.f9380c.invalidate();
+            l6Var.f9380b = storiesController.f5495b.m() + i10 + 1;
+            l6Var.f9381c.invalidate();
         }
-        xa xaVar = this.f10016v1;
+        xa xaVar = this.f10018v1;
         if (xaVar != null && (c1Var = xaVar.O0.d) != null) {
-            c1Var.postRunnable(c1Var.f44506w);
+            c1Var.postRunnable(c1Var.f44526w);
         }
         jb jbVar = this.X0;
         if (jbVar != null) {
             jbVar.x(0, false);
         }
-        a1 a1Var = MessagesController.getInstance(this.f9955c).getStoriesController().f5511w;
-        if (!a1Var.f8676c && !a1Var.d) {
+        a1 a1Var = MessagesController.getInstance(this.f9957c).getStoriesController().f5512w;
+        if (!a1Var.f8677c && !a1Var.d) {
             a1Var.d = true;
             x0 x0Var = new x0(a1Var, 1);
-            MessagesStorage messagesStorage = MessagesStorage.getInstance(a1Var.f8674a);
+            MessagesStorage messagesStorage = MessagesStorage.getInstance(a1Var.f8675a);
             messagesStorage.getStorageQueue().postRunnable(new ai.x7((Object) messagesStorage, false, (Object) x0Var, 3));
         }
     }
@@ -1727,32 +1683,32 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         int i16;
         xa xaVar2;
         if (i11 == 0) {
-            this.f9989n0.setVisibility(8);
+            this.f9991n0.setVisibility(8);
         }
-        if (i10 == 0 && (xaVar2 = this.f10016v1) != null) {
+        if (i10 == 0 && (xaVar2 = this.f10018v1) != null) {
             xaVar2.setVisibility(8);
         }
         if (i10 == -1) {
-            this.f9957c1.setVisibility(8);
+            this.f9959c1.setVisibility(8);
             if (i11 == 2) {
                 i12 = 0;
             } else {
                 i12 = 8;
             }
-            this.f9970g1.setVisibility(i12);
+            this.f9972g1.setVisibility(i12);
             if (i11 == 2) {
                 i13 = 0;
             } else {
                 i13 = 8;
             }
-            this.f9979j1.setVisibility(i13);
+            this.f9981j1.setVisibility(i13);
             if (i11 == 2) {
                 i14 = 0;
             } else {
                 i14 = 8;
             }
-            this.f9963e1.setVisibility(i14);
-            ImageView imageView = this.f9976i1;
+            this.f9965e1.setVisibility(i14);
+            ImageView imageView = this.f9978i1;
             if (imageView != null) {
                 if (i11 == 2) {
                     i16 = 0;
@@ -1767,7 +1723,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 i15 = 8;
             }
             this.Z0.setVisibility(i15);
-            this.f9995p0.setVisibility(8);
+            this.f9997p0.setVisibility(8);
         }
         boolean z11 = true;
         if (i11 == -1) {
@@ -1776,8 +1732,8 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             z10 = false;
         }
         this.X0.setAllowCropping(z10);
-        if ((i11 == 0 || i10 == 0) && (xaVar = this.f10016v1) != null) {
-            xaVar.f9006d1.setLayerType(0, null);
+        if ((i11 == 0 || i10 == 0) && (xaVar = this.f10018v1) != null) {
+            xaVar.f9007d1.setLayerType(0, null);
         }
         ag0 ag0Var = this.C1;
         if (ag0Var != null) {
@@ -1787,32 +1743,32 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             ag0Var.setAllowTouch(z11);
         }
         if (i11 == 3) {
-            fb fbVar2 = this.f10003r1;
+            fb fbVar2 = this.f10005r1;
             if (fbVar2 != null) {
                 fbVar2.setAppearProgress(1.0f);
             }
-        } else if (i10 == 3 && (fbVar = this.f10003r1) != null) {
+        } else if (i10 == 3 && (fbVar = this.f10005r1) != null) {
             fbVar.setVisibility(8);
-            this.f10003r1.setAppearProgress(0.0f);
-            fb fbVar3 = this.f10003r1;
-            fbVar3.f9229x = null;
-            g0 g0Var = fbVar3.f9224f;
+            this.f10005r1.setAppearProgress(0.0f);
+            fb fbVar3 = this.f10005r1;
+            fbVar3.f9230x = null;
+            g0 g0Var = fbVar3.f9225f;
             g0Var.L = null;
             g0Var.d = null;
             g0Var.J = false;
             fbVar3.d.setVisibility(8);
-            fbVar3.f9221a.setCropEditorDrawing(null);
+            fbVar3.f9222a.setCropEditorDrawing(null);
         }
         if (i11 == 4) {
-            gb gbVar2 = this.f10007s1;
+            gb gbVar2 = this.f10009s1;
             if (gbVar2 != null) {
                 gbVar2.setAppearProgress(1.0f);
             }
-        } else if (i10 == 4 && (gbVar = this.f10007s1) != null) {
+        } else if (i10 == 4 && (gbVar = this.f10009s1) != null) {
             gbVar.setVisibility(8);
-            this.f10007s1.setAppearProgress(0.0f);
-            gb gbVar3 = this.f10007s1;
-            gbVar3.f9429b = null;
+            this.f10009s1.setAppearProgress(0.0f);
+            gb gbVar3 = this.f10009s1;
+            gbVar3.f9430b = null;
             g0 g0Var2 = gbVar3.h;
             g0Var2.L = null;
             g0Var2.d = null;
@@ -1828,26 +1784,26 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (this.d) {
             return;
         }
-        int i10 = this.f9955c;
+        int i10 = this.f9957c;
         if (MessagesController.getInstance(i10).isFrozen()) {
             org.telegram.ui.b.b(i10);
             return;
         }
         int i11 = 0;
-        this.f10012u0 = false;
+        this.f10014u0 = false;
         this.e = false;
         this.B2 = false;
-        this.f10006s0.f9649g = false;
-        WindowManager windowManager = this.f9965f;
-        if (windowManager != null && (ubVar = this.f9988n) != null && ubVar.getParent() == null) {
-            ub ubVar2 = this.f9988n;
+        this.f10008s0.f9650g = false;
+        WindowManager windowManager = this.f9967f;
+        if (windowManager != null && (ubVar = this.f9990n) != null && ubVar.getParent() == null) {
+            ub ubVar2 = this.f9990n;
             WindowManager.LayoutParams layoutParams = this.h;
             AndroidUtilities.setPreferredMaxRefreshRate(windowManager, ubVar2, layoutParams);
-            windowManager.addView(this.f9988n, layoutParams);
+            windowManager.addView(this.f9990n, layoutParams);
             f0();
         }
         this.A0.setCameraThumb(z());
-        if (this.f10015v0 == 0 && (o10 = MessagesController.getInstance(i10).getStoriesController().o()) != null && o10.a(i10, 1)) {
+        if (this.f10017v0 == 0 && (o10 = MessagesController.getInstance(i10).getStoriesController().o()) != null && o10.a(i10, 1)) {
             g0(o10, true);
         }
         J(0, false);
@@ -1855,32 +1811,32 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         RectF rectF = this.H;
         if (pbVar != null) {
             this.F = pbVar;
-            this.J = pbVar.f9665a;
-            rectF.set(pbVar.f9667c);
-            this.G = pbVar.f9666b;
+            this.J = pbVar.f9666a;
+            rectF.set(pbVar.f9668c);
+            this.G = pbVar.f9667b;
             this.F.e();
         } else {
             this.J = 0;
             rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
             this.G = AndroidUtilities.dp(8.0f);
         }
-        this.f10001r.c();
+        this.f10003r.c();
         int i12 = this.J;
         if (i12 != 1 && i12 != 0) {
             i11 = -14737633;
         }
-        this.f9972h0.setBackgroundColor(i11);
-        this.f10001r.setTranslationX(0.0f);
-        this.f10001r.setTranslationY(0.0f);
-        this.f10001r.b(0.0f);
-        this.f10001r.setScaleX(1.0f);
-        this.f10001r.setScaleY(1.0f);
+        this.f9974h0.setBackgroundColor(i11);
+        this.f10003r.setTranslationX(0.0f);
+        this.f10003r.setTranslationY(0.0f);
+        this.f10003r.b(0.0f);
+        this.f10003r.setScaleX(1.0f);
+        this.f10003r.setScaleY(1.0f);
         this.K = 0.0f;
-        AndroidUtilities.lockOrientation(this.f9951b, 1);
+        AndroidUtilities.lockOrientation(this.f9953b, 1);
         f(1.0f, true, new t9(this, 6));
         d();
-        this.f10015v0 = 0L;
-        this.f10019w0 = "";
+        this.f10017v0 = 0L;
+        this.f10021w0 = "";
     }
 
     public final void R(ob obVar, a8 a8Var, long j10) {
@@ -1889,38 +1845,38 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (this.d) {
             return;
         }
-        int i11 = this.f9955c;
+        int i11 = this.f9957c;
         if (MessagesController.getInstance(i11).isFrozen()) {
             org.telegram.ui.b.b(i11);
             return;
         }
-        this.f10012u0 = false;
+        this.f10014u0 = false;
         this.e = false;
         this.B2 = false;
-        WindowManager windowManager = this.f9965f;
-        if (windowManager != null && (ubVar = this.f9988n) != null && ubVar.getParent() == null) {
-            ub ubVar2 = this.f9988n;
+        WindowManager windowManager = this.f9967f;
+        if (windowManager != null && (ubVar = this.f9990n) != null && ubVar.getParent() == null) {
+            ub ubVar2 = this.f9990n;
             WindowManager.LayoutParams layoutParams = this.h;
             AndroidUtilities.setPreferredMaxRefreshRate(windowManager, ubVar2, layoutParams);
-            windowManager.addView(this.f9988n, layoutParams);
+            windowManager.addView(this.f9990n, layoutParams);
             f0();
         }
         this.K1 = a8Var;
         this.O1 = a8Var.K ? 1 : 0;
-        this.f10006s0.f9649g = false;
+        this.f10008s0.f9650g = false;
         RectF rectF = this.H;
         if (obVar != null) {
             this.F = obVar;
-            this.J = obVar.f9665a;
-            rectF.set(obVar.f9667c);
-            this.G = obVar.f9666b;
+            this.J = obVar.f9666a;
+            rectF.set(obVar.f9668c);
+            this.G = obVar.f9667b;
             this.F.e();
         } else {
             this.J = 0;
             rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
             this.G = AndroidUtilities.dp(8.0f);
         }
-        this.f10001r.c();
+        this.f10003r.c();
         int i12 = this.J;
         int i13 = 1;
         if (i12 != 1 && i12 != 0) {
@@ -1928,28 +1884,28 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         } else {
             i10 = 0;
         }
-        this.f9972h0.setBackgroundColor(i10);
-        this.f10001r.setTranslationX(0.0f);
-        this.f10001r.setTranslationY(0.0f);
-        this.f10001r.b(0.0f);
-        this.f10001r.setScaleX(1.0f);
-        this.f10001r.setScaleY(1.0f);
+        this.f9974h0.setBackgroundColor(i10);
+        this.f10003r.setTranslationX(0.0f);
+        this.f10003r.setTranslationY(0.0f);
+        this.f10003r.b(0.0f);
+        this.f10003r.setScaleX(1.0f);
+        this.f10003r.setScaleY(1.0f);
         this.K = 0.0f;
-        AndroidUtilities.lockOrientation(this.f9951b, 1);
+        AndroidUtilities.lockOrientation(this.f9953b, 1);
         a8 a8Var2 = this.K1;
         if (a8Var2 != null) {
-            this.f9957c1.setText(a8Var2.C0);
+            this.f9959c1.setText(a8Var2.C0);
         }
         K(new la(this, 0), j10);
-        if (this.K1.f8700b0) {
+        if (this.K1.f8701b0) {
             i13 = 2;
         }
         J(i13, false);
         k0(-1, false, false);
-        this.f9953b1.b(false, false);
+        this.f9955b1.b(false, false);
         d();
-        this.f10015v0 = 0L;
-        this.f10019w0 = "";
+        this.f10017v0 = 0L;
+        this.f10021w0 = "";
     }
 
     public final void S() {
@@ -1958,7 +1914,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (jbVar != null) {
             jbVar.x(4, true);
         }
-        lb lbVar = this.f9957c1;
+        lb lbVar = this.f9959c1;
         if (lbVar != null && (i80Var = lbVar.V0) != null) {
             i80Var.u();
             lbVar.V0 = null;
@@ -1977,20 +1933,20 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (this.d) {
             return;
         }
-        int i12 = this.f9955c;
+        int i12 = this.f9957c;
         if (MessagesController.getInstance(i12).isFrozen()) {
             org.telegram.ui.b.b(i12);
             return;
         }
-        this.f10012u0 = true;
+        this.f10014u0 = true;
         this.e = false;
         this.B2 = false;
-        WindowManager windowManager = this.f9965f;
-        if (windowManager != null && (ubVar = this.f9988n) != null && ubVar.getParent() == null) {
-            ub ubVar2 = this.f9988n;
+        WindowManager windowManager = this.f9967f;
+        if (windowManager != null && (ubVar = this.f9990n) != null && ubVar.getParent() == null) {
+            ub ubVar2 = this.f9990n;
             WindowManager.LayoutParams layoutParams = this.h;
             AndroidUtilities.setPreferredMaxRefreshRate(windowManager, ubVar2, layoutParams);
-            windowManager.addView(this.f9988n, layoutParams);
+            windowManager.addView(this.f9990n, layoutParams);
             f0();
         }
         this.K1 = a8Var;
@@ -2002,69 +1958,69 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             i10 = 0;
         }
         this.O1 = i10;
-        if (a8Var2 != null && a8Var2.f8737u && i10 == 1) {
+        if (a8Var2 != null && a8Var2.f8738u && i10 == 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f10006s0.f9649g = z10;
-        if (this.f10015v0 == 0 && (o10 = MessagesController.getInstance(i12).getStoriesController().o()) != null && o10.a(i12, 1)) {
+        this.f10008s0.f9650g = z10;
+        if (this.f10017v0 == 0 && (o10 = MessagesController.getInstance(i12).getStoriesController().o()) != null && o10.a(i12, 1)) {
             g0(o10, true);
         }
         RectF rectF = this.H;
         if (obVar != null) {
             this.F = obVar;
-            this.J = obVar.f9665a;
-            rectF.set(obVar.f9667c);
-            this.G = obVar.f9666b;
+            this.J = obVar.f9666a;
+            rectF.set(obVar.f9668c);
+            this.G = obVar.f9667b;
             this.F.e();
         } else {
             this.J = 0;
             rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
             this.G = AndroidUtilities.dp(8.0f);
         }
-        this.f10001r.c();
+        this.f10003r.c();
         int i13 = this.J;
         if (i13 != 1 && i13 != 0) {
             i11 = -14737633;
         } else {
             i11 = 0;
         }
-        this.f9972h0.setBackgroundColor(i11);
-        this.f10001r.setTranslationX(0.0f);
-        this.f10001r.setTranslationY(0.0f);
-        this.f10001r.b(0.0f);
-        this.f10001r.setScaleX(1.0f);
-        this.f10001r.setScaleY(1.0f);
+        this.f9974h0.setBackgroundColor(i11);
+        this.f10003r.setTranslationX(0.0f);
+        this.f10003r.setTranslationY(0.0f);
+        this.f10003r.b(0.0f);
+        this.f10003r.setScaleX(1.0f);
+        this.f10003r.setScaleY(1.0f);
         this.K = 0.0f;
-        AndroidUtilities.lockOrientation(this.f9951b, 1);
+        AndroidUtilities.lockOrientation(this.f9953b, 1);
         a8 a8Var3 = this.K1;
         if (a8Var3 != null) {
-            this.f9957c1.setText(a8Var3.C0);
+            this.f9959c1.setText(a8Var3.C0);
         }
-        this.f9953b1.b(true, false);
+        this.f9955b1.b(true, false);
         J(1, false);
         k0(-1, false, false);
         f(1.0f, true, new t9(this, 6));
         d();
-        this.f10015v0 = 0L;
-        this.f10019w0 = "";
+        this.f10017v0 = 0L;
+        this.f10021w0 = "";
     }
 
     public final void U() {
-        qg.e1 e1Var = this.f10020w1;
+        qg.e1 e1Var = this.f10022w1;
         if (e1Var != null) {
             e1Var.bringToFront();
         }
-        View view = this.f10024x1;
+        View view = this.f10026x1;
         if (view != null) {
             view.bringToFront();
         }
-        View view2 = this.f10028y1;
+        View view2 = this.f10030y1;
         if (view2 != null) {
             view2.bringToFront();
         }
-        View view3 = this.f10031z1;
+        View view3 = this.f10033z1;
         if (view3 != null) {
             view3.bringToFront();
         }
@@ -2072,7 +2028,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (view4 != null) {
             view4.bringToFront();
         }
-        jc jcVar = this.f9996p1;
+        jc jcVar = this.f9998p1;
         if (jcVar != null) {
             jcVar.bringToFront();
         }
@@ -2088,11 +2044,11 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (tf0Var != null) {
             tf0Var.bringToFront();
         }
-        l6 l6Var = this.f9993o1;
+        l6 l6Var = this.f9995o1;
         if (l6Var != null) {
             l6Var.bringToFront();
         }
-        p pVar = this.f9999q1;
+        p pVar = this.f10001q1;
         if (pVar != null) {
             pVar.bringToFront();
         }
@@ -2135,7 +2091,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             canvas.restore();
             Paint paint = new Paint(2);
             p71 textureView = this.X0.getTextureView();
-            if (a8Var.K && !a8Var.f8737u && textureView != null) {
+            if (a8Var.K && !a8Var.f8738u && textureView != null) {
                 Bitmap bitmap = textureView.getBitmap();
                 Matrix transform = textureView.getTransform(null);
                 if (transform != null) {
@@ -2174,26 +2130,26 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     FileLog.e(e7);
                 }
             }
-            xa xaVar = this.f10016v1;
+            xa xaVar = this.f10018v1;
             if (xaVar != null && xaVar.R0 != null) {
                 canvas.save();
                 canvas.scale(f7, f7);
-                xa xaVar2 = this.f10016v1;
+                xa xaVar2 = this.f10018v1;
                 xaVar2.I0 = true;
                 z5 z5Var = xaVar2.R0;
-                z5Var.f45341a = true;
+                z5Var.f45361a = true;
                 z5Var.draw(canvas);
-                xa xaVar3 = this.f10016v1;
-                xaVar3.R0.f45341a = false;
+                xa xaVar3 = this.f10018v1;
+                xaVar3.R0.f45361a = false;
                 xaVar3.I0 = false;
                 canvas.restore();
             }
             Bitmap createScaledBitmap = Bitmap.createScaledBitmap(createBitmap, 40, 22, true);
-            File w9 = a8.w(this.f9955c, "jpg");
+            File w9 = a8.w(this.f9957c, "jpg");
             if (z10) {
                 a8Var2 = a8Var;
                 z11 = z10;
-                Utilities.searchQueue.postRunnable(new ai.e2(this, createBitmap, z11, w9, a8Var2, 2));
+                Utilities.searchQueue.postRunnable(new s1(this, createBitmap, z11, w9, a8Var2, 1));
             } else {
                 a8Var2 = a8Var;
                 z11 = z10;
@@ -2212,7 +2168,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             if (!z11) {
                 a8Var2.N0 = w9;
             }
-            a8Var2.f8701b1 = createScaledBitmap;
+            a8Var2.f8702b1 = createScaledBitmap;
         }
     }
 
@@ -2222,24 +2178,24 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         char c10;
         View[] viewPages;
         m61[] m61VarArr;
-        r9 r9Var = this.f9998q0;
+        r9 r9Var = this.f10000q0;
         BitmapDrawable bitmapDrawable = null;
         if (r9Var != null) {
             r9Var.dismiss();
-            this.f9998q0 = null;
+            this.f10000q0 = null;
         }
         if (this.N1) {
-            u0 u0Var = this.f9963e1;
+            u0 u0Var = this.f9965e1;
             u0Var.getClass();
             u0Var.c(R.raw.error, LocaleController.getString("VideoConvertFail"));
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
-            j6 j6Var = this.f9953b1.f9318c;
+            j6 j6Var = this.f9955b1.f9319c;
             int i10 = -this.U1;
             this.U1 = i10;
             AndroidUtilities.shakeViewSpring(j6Var, i10);
             return;
         }
-        lb lbVar = this.f9957c1;
+        lb lbVar = this.f9959c1;
         if (lbVar != null && lbVar.o()) {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
             org.telegram.ui.Components.q6 q6Var = lbVar.v;
@@ -2250,20 +2206,20 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             return;
         }
         a8 a8Var = this.K1;
-        int i12 = this.f9955c;
-        if ((a8Var == null || (!a8Var.f8711g && a8Var.J0 == 0)) && (o10 = MessagesController.getInstance(i12).storiesController.o()) != null && o10.a(i12, A())) {
+        int i12 = this.f9957c;
+        if ((a8Var == null || (!a8Var.f8712g && a8Var.J0 == 0)) && (o10 = MessagesController.getInstance(i12).storiesController.o()) != null && o10.a(i12, A())) {
             g0(o10, false);
             return;
         }
         this.K1.D0 = MessagesController.getInstance(i12).storyEntitiesAllowed();
-        ci.b bVar = this.f9948a;
+        ci.b bVar = this.f9950a;
         char c11 = 1;
         if (lbVar != null && !this.K1.D0) {
             CharSequence text = lbVar.getText();
             if (text instanceof Spannable) {
                 Spannable spannable = (Spannable) text;
                 if (((m11[]) spannable.getSpans(0, text.length(), m11.class)).length > 0 || ((URLSpan[]) spannable.getSpans(0, text.length(), URLSpan.class)).length > 0) {
-                    new xc(this.f9988n, bVar).Q(R.raw.voip_invite, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryPremiumFormatting), org.telegram.ui.ActionBar.h6.f21045gc, 0, new t9(this, 27), bVar)).k(true);
+                    new xc(this.f9990n, bVar).Q(R.raw.voip_invite, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryPremiumFormatting), org.telegram.ui.ActionBar.h6.f21052gc, 0, new t9(this, 27), bVar)).k(true);
                     int i13 = -this.U1;
                     this.U1 = i13;
                     AndroidUtilities.shakeViewSpring(lbVar, i13);
@@ -2272,15 +2228,15 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             }
         }
         a8 a8Var2 = this.K1;
-        if (!a8Var2.f8711g && a8Var2.J0 == 0) {
+        if (!a8Var2.f8712g && a8Var2.J0 == 0) {
             if (this.N != 0) {
-                a8Var2.f8739v0 = MessagesController.getInstance(i12).getInputPeer(this.N);
+                a8Var2.f8740v0 = MessagesController.getInstance(i12).getInputPeer(this.N);
             }
             jb jbVar = this.X0;
             jbVar.x(3, true);
-            r9 r9Var2 = new r9(this.f9951b, this.K1.I0, bVar);
+            r9 r9Var2 = new r9(this.f9953b, this.K1.I0, bVar);
             r9Var2.r1(this.K1.E0);
-            r9Var2.q1(this.K1.f8739v0);
+            r9Var2.q1(this.K1.f8740v0);
             r9Var2.F = this.M;
             r9Var2.U = new u9(this, 14);
             r9Var2.f1(!this.A0.j());
@@ -2321,7 +2277,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                             TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(charSequence);
                             if (userOrChat instanceof TLRPC.User) {
                                 TLRPC.User user2 = (TLRPC.User) userOrChat;
-                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f20419id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
+                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f20426id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
                                     arrayList2.add(charSequence);
                                 }
                             }
@@ -2337,7 +2293,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     TLObject userOrChat2 = MessagesController.getInstance(i12).getUserOrChat(charSequence2);
                     if (userOrChat2 instanceof TLRPC.User) {
                         TLRPC.User user3 = (TLRPC.User) userOrChat2;
-                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f20419id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
+                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f20426id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
                             arrayList2.add(charSequence2);
                         }
                     }
@@ -2349,30 +2305,30 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             r9Var2.W = new u9(this, 15);
             r9Var2.X = new u9(this, 16);
             r9Var2.T = new ca(this, 10);
-            this.f9998q0 = r9Var2;
+            this.f10000q0 = r9Var2;
             a8 a8Var3 = this.K1;
             if (a8Var3.K) {
-                if (jbVar != null && !a8Var3.f8710f0 && this.f9966f0 != 2) {
-                    a8Var3.f8707e0 = jbVar.getCurrentPosition();
+                if (jbVar != null && !a8Var3.f8711f0 && this.f9968f0 != 2) {
+                    a8Var3.f8708e0 = jbVar.getCurrentPosition();
                     Utilities.Callback u9Var = new u9(this, 17);
-                    View view = this.f10020w1;
-                    View view2 = this.f10031z1;
+                    View view = this.f10022w1;
+                    View view2 = this.f10033z1;
                     View[] viewArr = new View[3];
                     viewArr[0] = jbVar;
                     viewArr[c10] = view;
                     viewArr[2] = view2;
                     jbVar.h(u9Var, viewArr);
                 }
-                r9 r9Var3 = this.f9998q0;
-                Bitmap bitmap = this.K1.f8712g0;
+                r9 r9Var3 = this.f10000q0;
+                Bitmap bitmap = this.K1.f8713g0;
                 t9 t9Var = new t9(this, 20);
                 if (bitmap != null) {
                     r9Var3.getClass();
                     bitmapDrawable = new BitmapDrawable(bitmap);
                 }
-                r9Var3.f9747b0 = bitmapDrawable;
-                r9Var3.f9749c0 = t9Var;
-                h1 h1Var = r9Var3.f9746b;
+                r9Var3.f9748b0 = bitmapDrawable;
+                r9Var3.f9750c0 = t9Var;
+                h1 h1Var = r9Var3.f9747b;
                 if (h1Var != null) {
                     for (View view3 : h1Var.getViewPages()) {
                         if (view3 instanceof k9) {
@@ -2383,11 +2339,11 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     }
                 }
             }
-            this.f9998q0.setOnDismissListener(new ha(this, 0));
-            this.f9998q0.show();
+            this.f10000q0.setOnDismissListener(new ha(this, 0));
+            this.f10000q0.show();
             return;
         }
-        a8Var2.f8720l = false;
+        a8Var2.f8721l = false;
         h(null);
         o0();
     }
@@ -2397,9 +2353,9 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         RectF rectF = this.H;
         if (qbVar != null) {
             this.F = qbVar;
-            this.J = qbVar.f9665a;
-            rectF.set(qbVar.f9667c);
-            this.G = qbVar.f9666b;
+            this.J = qbVar.f9666a;
+            rectF.set(qbVar.f9668c);
+            this.G = qbVar.f9667b;
         } else {
             this.F = null;
             this.J = 0;
@@ -2410,21 +2366,21 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (i11 != 1 && i11 != 0) {
             i10 = -14737633;
         }
-        this.f9972h0.setBackgroundColor(i10);
+        this.f9974h0.setBackgroundColor(i10);
     }
 
     public final void Y(boolean z10) {
         boolean z11;
-        if (!this.f10021w2 || z10) {
-            this.f10008s2 = false;
-            Activity activity = this.f9951b;
+        if (!this.f10023w2 || z10) {
+            this.f10010s2 = false;
+            Activity activity = this.f9953b;
             if (activity != null) {
                 if (activity.checkSelfPermission("android.permission.CAMERA") != 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                this.f10008s2 = z11;
+                this.f10010s2 = z11;
                 if (z11) {
                     Drawable mutate = activity.getResources().getDrawable(R.drawable.story_camera).mutate();
                     mutate.setColorFilter(new PorterDuffColorFilter(1040187391, PorterDuff.Mode.MULTIPLY));
@@ -2432,22 +2388,22 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     int dp = AndroidUtilities.dp(64.0f);
                     int dp2 = AndroidUtilities.dp(64.0f);
                     zqVar.e = dp;
-                    zqVar.f32995f = dp2;
+                    zqVar.f33002f = dp2;
                     this.A0.setCameraThumb(zqVar);
                     if (activity.shouldShowRequestPermissionRationale("android.permission.CAMERA")) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, this.f9948a);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, this.f9950a);
                         alertDialog$Builder.m(R.raw.permission_request_camera, 72, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-                        alertDialog$Builder.f20601a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
+                        alertDialog$Builder.f20608a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
                         alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new ca(this, 13));
                         alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                        alertDialog$Builder.f20601a.show();
+                        alertDialog$Builder.f20608a.show();
                         return;
                     }
                     activity.requestPermissions(new String[]{"android.permission.CAMERA"}, 111);
-                    this.f10021w2 = true;
+                    this.f10023w2 = true;
                 }
             }
-            if (!this.f10008s2) {
+            if (!this.f10010s2) {
                 if (CameraController.getInstance().isCameraInitied()) {
                     q();
                 } else {
@@ -2502,7 +2458,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             layoutParams.flags &= -129;
         }
         try {
-            this.f9965f.updateViewLayout(this.f9988n, layoutParams);
+            this.f9967f.updateViewLayout(this.f9990n, layoutParams);
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -2510,7 +2466,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
 
     public final void d() {
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.albumsDidLoad);
-        int i10 = this.f9955c;
+        int i10 = this.f9957c;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.storiesDraftsUpdated);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.storiesLimitUpdate);
     }
@@ -2549,16 +2505,16 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             this.E0.setContentDescription(LocaleController.getString(R.string.AccDescrCameraFlashOff));
         }
         hc hcVar = this.E0;
-        if (hcVar.f9175n != i10) {
-            hcVar.f9175n = i10;
-            ValueAnimator valueAnimator = hcVar.f9176r;
+        if (hcVar.f9176n != i10) {
+            hcVar.f9176n = i10;
+            ValueAnimator valueAnimator = hcVar.f9177r;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                hcVar.f9176r = null;
+                hcVar.f9177r = null;
             }
             hcVar.setDrawable(i10);
         }
-        if (this.f9966f0 == 0 && !this.I0.e && this.Y1 != null && !H()) {
+        if (this.f9968f0 == 0 && !this.I0.e && this.Y1 != null && !H()) {
             z10 = true;
         }
         b0(this.E0, z10, true);
@@ -2577,13 +2533,13 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             if (z6Var != null) {
                 z6Var.h();
             }
-            if (this.f9987m2 != null && MediaController.allMediaAlbums != null) {
+            if (this.f9989m2 != null && MediaController.allMediaAlbums != null) {
                 for (int i12 = 0; i12 < MediaController.allMediaAlbums.size(); i12++) {
                     MediaController.AlbumEntry albumEntry = MediaController.allMediaAlbums.get(i12);
                     int i13 = albumEntry.bucketId;
-                    MediaController.AlbumEntry albumEntry2 = this.f9987m2;
+                    MediaController.AlbumEntry albumEntry2 = this.f9989m2;
                     if (i13 == albumEntry2.bucketId && albumEntry.videoOnly == albumEntry2.videoOnly) {
-                        this.f9987m2 = albumEntry;
+                        this.f9989m2 = albumEntry;
                         return;
                     }
                 }
@@ -2594,18 +2550,18 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 z6Var2.h();
             }
         } else if (i10 == NotificationCenter.storiesLimitUpdate) {
-            int i14 = this.f9966f0;
-            int i15 = this.f9955c;
+            int i14 = this.f9968f0;
+            int i15 = this.f9957c;
             if (i14 == 1) {
-                if (!this.N1 && !this.f9957c1.o()) {
+                if (!this.N1 && !this.f9959c1.o()) {
                     ci.i7 storiesController = MessagesController.getInstance(i15).getStoriesController();
                     int A = A();
                     ci.c7 o11 = storiesController.o();
-                    if (o11 == null || !o11.a(storiesController.f5493a, A) || ((a8Var = this.K1) != null && (a8Var.f8711g || a8Var.J0 != 0))) {
+                    if (o11 == null || !o11.a(storiesController.f5494a, A) || ((a8Var = this.K1) != null && (a8Var.f8712g || a8Var.J0 != 0))) {
                         z10 = true;
                     }
                 }
-                this.f9953b1.setShareEnabled(z10);
+                this.f9955b1.setShareEnabled(z10);
             } else if (i14 == 0 && (o10 = MessagesController.getInstance(i15).getStoriesController().o()) != null && o10.a(i15, 1)) {
                 a8 a8Var2 = this.K1;
                 if (a8Var2 == null || a8Var2.J0 == 0) {
@@ -2621,7 +2577,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         int i10;
         v0 v0Var;
         this.K0 = z10;
-        Boolean bool = this.f9997p2;
+        Boolean bool = this.f9999p2;
         if (bool == null || bool.booleanValue() != z10) {
             if (this.M0 == null) {
                 if (z10) {
@@ -2632,18 +2588,18 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 }
             }
             if (this.M0.U) {
-                this.f10000q2 = new da(this, z10, 0);
+                this.f10002q2 = new da(this, z10, 0);
                 return;
             }
-            ValueAnimator valueAnimator = this.f9991n2;
+            ValueAnimator valueAnimator = this.f9993n2;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f9991n2 = null;
+                this.f9993n2 = null;
             }
-            o1.k kVar = this.f9994o2;
+            o1.k kVar = this.f9996o2;
             if (kVar != null) {
                 kVar.c();
-                this.f9994o2 = null;
+                this.f9996o2 = null;
             }
             if (this.M0 == null) {
                 if (z10) {
@@ -2661,7 +2617,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 v0Var.a(false);
             }
             int i11 = 4;
-            nb nbVar = this.f10001r;
+            nb nbVar = this.f10003r;
             if (nbVar != null) {
                 if (z10) {
                     i10 = 4;
@@ -2675,9 +2631,9 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 i11 = 0;
             }
             uaVar2.setImportantForAccessibility(i11);
-            this.f9997p2 = Boolean.valueOf(z10);
+            this.f9999p2 = Boolean.valueOf(z10);
             float translationY = this.M0.getTranslationY();
-            ub ubVar = this.f9988n;
+            ub ubVar = this.f9990n;
             if (z10) {
                 height = 0.0f;
             } else {
@@ -2686,64 +2642,64 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             Math.max(1, ubVar.getHeight());
             ua uaVar3 = this.M0;
             uaVar3.K = !z10;
-            if (this.f9980j2 == null) {
+            if (this.f9982j2 == null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            this.f9983k2 = z11;
+            this.f9985k2 = z11;
             if (z10) {
-                o1.k kVar2 = new o1.k(uaVar3, o1.h.f17538n, height);
-                this.f9994o2 = kVar2;
-                kVar2.f17555u.a(0.75f);
-                this.f9994o2.f17555u.b(350.0f);
-                this.f9994o2.a(new ea(this, height, 0));
-                this.f9994o2.h();
+                o1.k kVar2 = new o1.k(uaVar3, o1.h.f17545n, height);
+                this.f9996o2 = kVar2;
+                kVar2.f17562u.a(0.75f);
+                this.f9996o2.f17562u.b(350.0f);
+                this.f9996o2.a(new ea(this, height, 0));
+                this.f9996o2.h();
             } else {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(translationY, height);
-                this.f9991n2 = ofFloat;
+                this.f9993n2 = ofFloat;
                 ofFloat.addUpdateListener(new fa(this, 0));
-                this.f9991n2.addListener(new ta(this, 1));
-                this.f9991n2.setDuration(450L);
-                this.f9991n2.setInterpolator(bs.h);
-                this.f9991n2.start();
+                this.f9993n2.addListener(new ta(this, 1));
+                this.f9993n2.setDuration(450L);
+                this.f9993n2.setInterpolator(bs.h);
+                this.f9993n2.start();
             }
             if (!z10 && !this.S1) {
-                this.f9985l2 = null;
+                this.f9987l2 = null;
             }
-            if (!z10 && this.f9966f0 == 0 && !this.f10008s2) {
+            if (!z10 && this.f9968f0 == 0 && !this.f10010s2) {
                 q();
             }
         }
     }
 
     public final void e0(boolean z10, boolean z11) {
-        if (this.f9967f1 == null) {
+        if (this.f9969f1 == null) {
             uj0 uj0Var = new uj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-            this.f9967f1 = uj0Var;
+            this.f9969f1 = uj0Var;
             uj0Var.F *= 1.5f;
         }
-        this.f9970g1.setAnimation(this.f9967f1);
+        this.f9972g1.setAnimation(this.f9969f1);
         int i10 = 20;
         if (!z11) {
-            uj0 uj0Var2 = this.f9967f1;
+            uj0 uj0Var2 = this.f9969f1;
             if (!z10) {
                 i10 = 0;
             }
             uj0Var2.N(i10, false, false);
         } else if (z10) {
-            uj0 uj0Var3 = this.f9967f1;
-            if (uj0Var3.f31001a0 > 20) {
+            uj0 uj0Var3 = this.f9969f1;
+            if (uj0Var3.f31008a0 > 20) {
                 uj0Var3.N(0, false, false);
             }
-            this.f9967f1.P(20);
-            this.f9967f1.start();
+            this.f9969f1.P(20);
+            this.f9969f1.start();
         } else {
-            uj0 uj0Var4 = this.f9967f1;
-            int i11 = uj0Var4.f31001a0;
+            uj0 uj0Var4 = this.f9969f1;
+            int i11 = uj0Var4.f31008a0;
             if (i11 != 0 && i11 < 43) {
                 uj0Var4.P(43);
-                this.f9967f1.start();
+                this.f9969f1.start();
             }
         }
     }
@@ -2754,7 +2710,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             valueAnimator.cancel();
             this.E = null;
         }
-        nb nbVar = this.f10001r;
+        nb nbVar = this.f10003r;
         if (z10) {
             this.P.lock();
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
@@ -2766,7 +2722,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             if (f7 < 1.0f && this.v) {
                 this.E.setDuration(250L);
                 this.E.setInterpolator(bs.h);
-            } else if (f7 <= 0.0f && nbVar.f9531a >= AndroidUtilities.dp(20.0f)) {
+            } else if (f7 <= 0.0f && nbVar.f9532a >= AndroidUtilities.dp(20.0f)) {
                 if (f7 < 0.0f && this.O) {
                     this.E.setDuration(200L);
                     this.E.setInterpolator(bs.h);
@@ -2786,14 +2742,14 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         this.I = f7;
         j();
         nbVar.invalidate();
-        this.f9988n.invalidate();
+        this.f9990n.invalidate();
         runnable.run();
         n();
     }
 
     public final void f0() {
         OnBackInvokedDispatcher findOnBackInvokedDispatcher;
-        if (Build.VERSION.SDK_INT < 33 || (findOnBackInvokedDispatcher = this.f9988n.findOnBackInvokedDispatcher()) == null) {
+        if (Build.VERSION.SDK_INT < 33 || (findOnBackInvokedDispatcher = this.f9990n.findOnBackInvokedDispatcher()) == null) {
             return;
         }
         findOnBackInvokedDispatcher.registerOnBackInvokedCallback(0, new androidx.activity.r(this, 2));
@@ -2812,11 +2768,11 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             if (x3Var != null) {
                 x3Var.e(true);
             }
-            x3 x3Var2 = this.f9986m1;
+            x3 x3Var2 = this.f9988m1;
             if (x3Var2 != null) {
                 x3Var2.e(true);
             }
-            x3 x3Var3 = this.f9982k1;
+            x3 x3Var3 = this.f9984k1;
             if (x3Var3 != null) {
                 x3Var3.e(true);
             }
@@ -2825,7 +2781,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 x3Var4.e(true);
             }
         }
-        if (this.a2 == z10 && this.f9954b2 == H()) {
+        if (this.a2 == z10 && this.f9956b2 == H()) {
             return;
         }
         AnimatorSet animatorSet = this.Z1;
@@ -2834,7 +2790,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             this.Z1 = null;
         }
         this.a2 = z10;
-        this.f9954b2 = H();
+        this.f9956b2 = H();
         if (z10 && (yVar = this.I0) != null && yVar.e) {
             yVar.a(false, z11);
         }
@@ -2849,34 +2805,34 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.Z1 = animatorSet2;
             Property property = View.ALPHA;
-            if (z10 && this.f9966f0 == 0 && !H()) {
+            if (z10 && this.f9968f0 == 0 && !H()) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(v3Var2, property, f10);
             Property property2 = View.TRANSLATION_Y;
-            if (z10 && this.f9966f0 == 0 && !H()) {
+            if (z10 && this.f9968f0 == 0 && !H()) {
                 dp3 = 0.0f;
             } else {
                 dp3 = AndroidUtilities.dp(16.0f);
             }
             ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(v3Var2, property2, dp3);
-            if (z10 || this.f9966f0 != 0 || !H()) {
+            if (z10 || this.f9968f0 != 0 || !H()) {
                 f11 = 0.0f;
             }
             ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(v3Var, property, f11);
-            if (!z10 && this.f9966f0 == 0 && H()) {
+            if (!z10 && this.f9968f0 == 0 && H()) {
                 dp4 = 0.0f;
             } else {
                 dp4 = AndroidUtilities.dp(16.0f);
             }
             ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(v3Var, property2, dp4);
-            if (z10 || this.f9966f0 != 0 || H()) {
+            if (z10 || this.f9968f0 != 0 || H()) {
                 f12 = 0.0f;
             }
             ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(naVar, property, f12);
-            if (z10 || this.f9966f0 != 0 || H()) {
+            if (z10 || this.f9968f0 != 0 || H()) {
                 f13 = AndroidUtilities.dp(16.0f);
             }
             animatorSet2.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ObjectAnimator.ofFloat(naVar, property2, f13));
@@ -2885,47 +2841,47 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             this.Z1.start();
             return;
         }
-        if (z10 && this.f9966f0 == 0 && !H()) {
+        if (z10 && this.f9968f0 == 0 && !H()) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         v3Var2.setAlpha(f7);
-        if (z10 && this.f9966f0 == 0 && !H()) {
+        if (z10 && this.f9968f0 == 0 && !H()) {
             dp = 0.0f;
         } else {
             dp = AndroidUtilities.dp(16.0f);
         }
         v3Var2.setTranslationY(dp);
-        if (z10 || this.f9966f0 != 0 || !H()) {
+        if (z10 || this.f9968f0 != 0 || !H()) {
             f11 = 0.0f;
         }
         v3Var.setAlpha(f11);
-        if (!z10 && this.f9966f0 == 0 && H()) {
+        if (!z10 && this.f9968f0 == 0 && H()) {
             dp2 = 0.0f;
         } else {
             dp2 = AndroidUtilities.dp(16.0f);
         }
         v3Var.setTranslationY(dp2);
-        if (z10 || this.f9966f0 != 0 || H()) {
+        if (z10 || this.f9968f0 != 0 || H()) {
             f12 = 0.0f;
         }
         naVar.setAlpha(f12);
-        if (z10 || this.f9966f0 != 0 || H()) {
+        if (z10 || this.f9968f0 != 0 || H()) {
             f13 = AndroidUtilities.dp(16.0f);
         }
         naVar.setTranslationY(f13);
     }
 
     public final void g0(ci.c7 c7Var, boolean z10) {
-        if (this.f10032z2) {
+        if (this.f10034z2) {
             return;
         }
-        sg.j0 j0Var = new sg.j0(c7Var.b(), this.f9955c, this.f9951b, new za(this, 0), null);
+        sg.j0 j0Var = new sg.j0(c7Var.b(), this.f9957c, this.f9953b, new za(this, 0), null);
         j0Var.X = A();
         j0Var.setOnDismissListener(new w80(2, this, z10));
         this.X0.x(7, true);
-        this.f10032z2 = true;
+        this.f10034z2 = true;
         j0Var.show();
     }
 
@@ -2937,7 +2893,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         Bitmap.CompressFormat compressFormat;
         cg0 cg0Var = this.B1;
         if (cg0Var != null && (a8Var = this.K1) != null) {
-            a8Var.f8716j = cg0Var.d() | a8Var.f8716j;
+            a8Var.f8717j = cg0Var.d() | a8Var.f8717j;
             a8 a8Var2 = this.K1;
             cg0 cg0Var2 = this.B1;
             File file = a8Var2.Z0;
@@ -2946,7 +2902,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 a8Var2.Z0 = null;
             }
             MediaController.SavedFilterState savedFilterState = cg0Var2.getSavedFilterState();
-            a8Var2.f8698a1 = savedFilterState;
+            a8Var2.f8699a1 = savedFilterState;
             if (!a8Var2.K) {
                 if (savedFilterState.isEmpty()) {
                     if (runnable != null) {
@@ -2971,12 +2927,12 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                         if (i10 == 2) {
                             f10 = -1.0f;
                         }
-                        matrix.postScale(f7, f10, a8Var2.f8719k0 / 2.0f, a8Var2.f8721l0 / 2.0f);
+                        matrix.postScale(f7, f10, a8Var2.f8720k0 / 2.0f, a8Var2.f8722l0 / 2.0f);
                         matrix.postRotate(-a8Var2.Q);
                         Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-                        a8Var2.f8724n0.preScale(a8Var2.f8719k0 / createBitmap.getWidth(), a8Var2.f8721l0 / createBitmap.getHeight());
-                        a8Var2.f8719k0 = createBitmap.getWidth();
-                        a8Var2.f8721l0 = createBitmap.getHeight();
+                        a8Var2.f8725n0.preScale(a8Var2.f8720k0 / createBitmap.getWidth(), a8Var2.f8722l0 / createBitmap.getHeight());
+                        a8Var2.f8720k0 = createBitmap.getWidth();
+                        a8Var2.f8722l0 = createBitmap.getHeight();
                         bitmap.recycle();
                         File file2 = a8Var2.Z0;
                         if (file2 != null && file2.exists()) {
@@ -2988,7 +2944,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                             z10 = false;
                         }
                         boolean z11 = z10;
-                        int i11 = a8Var2.f8696a;
+                        int i11 = a8Var2.f8697a;
                         if (!z11) {
                             str = "jpg";
                         }
@@ -3008,7 +2964,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                             createBitmap.recycle();
                         } else {
                             runnable2 = runnable;
-                            Utilities.themeQueue.postRunnable(new ai.y3(a8Var2, createBitmap, z11, runnable2, 4));
+                            Utilities.themeQueue.postRunnable(new ai.x9(a8Var2, createBitmap, z11, runnable2, 3));
                         }
                     }
                 }
@@ -3031,8 +2987,8 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void h0(boolean z10, boolean z11) {
-        if (this.f9961d2 != z10) {
-            this.f9961d2 = z10;
+        if (this.f9963d2 != z10) {
+            this.f9963d2 = z10;
             float f7 = 0.0f;
             if (z11) {
                 ViewPropertyAnimator animate = this.J0.animate();
@@ -3054,19 +3010,19 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void i() {
-        if (this.K1 != null && this.D1 != null && this.f9972h0.getMeasuredWidth() > 0 && this.f9972h0.getMeasuredHeight() > 0) {
+        if (this.K1 != null && this.D1 != null && this.f9974h0.getMeasuredWidth() > 0 && this.f9974h0.getMeasuredHeight() > 0) {
             Matrix matrix = new Matrix();
             matrix.reset();
             int i10 = this.K1.Q;
             if (i10 != 0) {
-                matrix.postRotate(-i10, this.f9972h0.getMeasuredWidth() / 2.0f, this.f9972h0.getMeasuredHeight() / 2.0f);
+                matrix.postRotate(-i10, this.f9974h0.getMeasuredWidth() / 2.0f, this.f9974h0.getMeasuredHeight() / 2.0f);
                 if ((this.K1.Q / 90) % 2 == 1) {
-                    matrix.postScale(this.f9972h0.getMeasuredWidth() / this.f9972h0.getMeasuredHeight(), this.f9972h0.getMeasuredHeight() / this.f9972h0.getMeasuredWidth(), this.f9972h0.getMeasuredWidth() / 2.0f, this.f9972h0.getMeasuredHeight() / 2.0f);
+                    matrix.postScale(this.f9974h0.getMeasuredWidth() / this.f9974h0.getMeasuredHeight(), this.f9974h0.getMeasuredHeight() / this.f9974h0.getMeasuredWidth(), this.f9974h0.getMeasuredWidth() / 2.0f, this.f9974h0.getMeasuredHeight() / 2.0f);
                 }
             }
-            matrix.postScale((1.0f / this.f9972h0.getMeasuredWidth()) * this.K1.f8719k0, (1.0f / this.f9972h0.getMeasuredHeight()) * this.K1.f8721l0);
-            matrix.postConcat(this.K1.f8724n0);
-            matrix.postScale(this.f9972h0.getMeasuredWidth() / this.K1.f8715i0, this.f9972h0.getMeasuredHeight() / this.K1.f8717j0);
+            matrix.postScale((1.0f / this.f9974h0.getMeasuredWidth()) * this.K1.f8720k0, (1.0f / this.f9974h0.getMeasuredHeight()) * this.K1.f8722l0);
+            matrix.postConcat(this.K1.f8725n0);
+            matrix.postScale(this.f9974h0.getMeasuredWidth() / this.K1.f8716i0, this.f9974h0.getMeasuredHeight() / this.K1.f8718j0);
             this.D1.setTransform(matrix);
             this.D1.invalidate();
         }
@@ -3078,18 +3034,18 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         w91 w91Var = this.V0;
         if ((w91Var.getTag() != null && z10) || (w91Var.getTag() == null && !z10)) {
             if (z10) {
-                Runnable runnable = this.f9964e2;
+                Runnable runnable = this.f9966e2;
                 if (runnable != null) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
                 }
                 t9 t9Var = new t9(this, 25);
-                this.f9964e2 = t9Var;
+                this.f9966e2 = t9Var;
                 AndroidUtilities.runOnUIThread(t9Var, 2000L);
                 return;
             }
             return;
         }
-        AnimatorSet animatorSet = this.f9968f2;
+        AnimatorSet animatorSet = this.f9970f2;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
@@ -3100,12 +3056,12 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         }
         w91Var.setTag(num);
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f9968f2 = animatorSet2;
+        this.f9970f2 = animatorSet2;
         animatorSet2.setDuration(180L);
         if (z10) {
             w91Var.setVisibility(0);
         }
-        AnimatorSet animatorSet3 = this.f9968f2;
+        AnimatorSet animatorSet3 = this.f9970f2;
         Property property = View.ALPHA;
         if (z10) {
             f7 = 1.0f;
@@ -3113,11 +3069,11 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             f7 = 0.0f;
         }
         animatorSet3.playTogether(ObjectAnimator.ofFloat(w91Var, property, f7));
-        this.f9968f2.addListener(new ah.p0(14, this, z10));
-        this.f9968f2.start();
+        this.f9970f2.addListener(new ah.p0(14, this, z10));
+        this.f9970f2.start();
         if (z10) {
             t9 t9Var2 = new t9(this, 26);
-            this.f9964e2 = t9Var2;
+            this.f9966e2 = t9Var2;
             AndroidUtilities.runOnUIThread(t9Var2, 2000L);
         }
     }
@@ -3125,49 +3081,49 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public final void j() {
         ci.r3 r3Var;
         if (this.J == 1) {
-            RectF rectF = this.f9959d0;
-            rectF.set(this.f9972h0.getLeft(), this.f9972h0.getTop(), this.f9972h0.getMeasuredWidth(), this.f9972h0.getMeasuredHeight());
-            rectF.offset(this.f10001r.getX(), this.f10001r.getY());
+            RectF rectF = this.f9961d0;
+            rectF.set(this.f9974h0.getLeft(), this.f9974h0.getTop(), this.f9974h0.getMeasuredWidth(), this.f9974h0.getMeasuredHeight());
+            rectF.offset(this.f10003r.getX(), this.f10003r.getY());
             float f7 = this.I;
             RectF rectF2 = this.H;
-            RectF rectF3 = this.f9956c0;
+            RectF rectF3 = this.f9958c0;
             AndroidUtilities.lerp(rectF2, rectF, f7, rectF3);
-            this.f9972h0.setAlpha(this.I);
+            this.f9974h0.setAlpha(this.I);
             float f10 = rectF3.left;
-            hb hbVar = this.f9972h0;
-            hbVar.setTranslationX((f10 - hbVar.getLeft()) - this.f10001r.getX());
+            hb hbVar = this.f9974h0;
+            hbVar.setTranslationX((f10 - hbVar.getLeft()) - this.f10003r.getX());
             float f11 = rectF3.top;
-            hb hbVar2 = this.f9972h0;
-            hbVar2.setTranslationY((f11 - hbVar2.getTop()) - this.f10001r.getY());
+            hb hbVar2 = this.f9974h0;
+            hbVar2.setTranslationY((f11 - hbVar2.getTop()) - this.f10003r.getY());
             qb qbVar = this.F;
-            if (qbVar != null && (r3Var = qbVar.f9668f) != null) {
+            if (qbVar != null && (r3Var = qbVar.f9669f) != null) {
                 r3Var.setTranslationX((rectF.left - rectF2.left) * this.I);
-                this.F.f9668f.setTranslationY((rectF.top - rectF2.top) * this.I);
+                this.F.f9669f.setTranslationY((rectF.top - rectF2.top) * this.I);
             }
-            this.f9972h0.setScaleX(rectF3.width() / this.f9972h0.getMeasuredWidth());
-            this.f9972h0.setScaleY(rectF3.height() / this.f9972h0.getMeasuredHeight());
-            this.f9975i0.setAlpha(this.I);
-            this.f9981k0.setAlpha(this.I);
-            this.f9984l0.setAlpha(this.I);
-            if (this.f9966f0 == 2) {
-                this.f10013u1.setAlpha(this.I);
+            this.f9974h0.setScaleX(rectF3.width() / this.f9974h0.getMeasuredWidth());
+            this.f9974h0.setScaleY(rectF3.height() / this.f9974h0.getMeasuredHeight());
+            this.f9977i0.setAlpha(this.I);
+            this.f9983k0.setAlpha(this.I);
+            this.f9986l0.setAlpha(this.I);
+            if (this.f9968f0 == 2) {
+                this.f10015u1.setAlpha(this.I);
             }
         }
     }
 
     public final void j0() {
-        r9 r9Var = this.f9998q0;
+        r9 r9Var = this.f10000q0;
         if (r9Var != null) {
             r9Var.dismiss();
-            this.f9998q0 = null;
+            this.f10000q0 = null;
         }
-        r9 r9Var2 = new r9(this.f9951b, 86400, this.f9948a);
+        r9 r9Var2 = new r9(this.f9953b, 86400, this.f9950a);
         r9Var2.p1();
-        r9Var2.r1(this.f10027y0);
-        TLRPC.InputPeer inputPeer = this.f10023x0;
+        r9Var2.r1(this.f10029y0);
+        TLRPC.InputPeer inputPeer = this.f10025x0;
         if (inputPeer == null) {
             if (this.N != 0) {
-                inputPeer = MessagesController.getInstance(this.f9955c).getInputPeer(this.N);
+                inputPeer = MessagesController.getInstance(this.f9957c).getInputPeer(this.N);
             } else {
                 inputPeer = new TLRPC.TL_inputPeerSelf();
             }
@@ -3180,7 +3136,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         r9Var2.l1(false);
         r9Var2.W = new u9(this, 19);
         r9Var2.T = new ca(this, 12);
-        this.f9998q0 = r9Var2;
+        this.f10000q0 = r9Var2;
         r9Var2.show();
     }
 
@@ -3194,7 +3150,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
 
     public final void l() {
         a8 a8Var;
-        if (this.f10016v1 != null && (a8Var = this.K1) != null && a8Var.f8737u) {
+        if (this.f10018v1 != null && (a8Var = this.K1) != null && a8Var.f8738u) {
             File file = a8Var.W0;
             if (file != null) {
                 try {
@@ -3204,8 +3160,8 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 }
                 this.K1.W0 = null;
             }
-            this.K1.W0 = a8.w(this.f9955c, "webp");
-            xa xaVar = this.f10016v1;
+            this.K1.W0 = a8.w(this.f9957c, "webp");
+            xa xaVar = this.f10018v1;
             a8 a8Var2 = this.K1;
             ArrayList arrayList = a8Var2.T0;
             boolean z10 = true;
@@ -3251,7 +3207,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         boolean z16;
         ya yaVar;
         boolean z17 = false;
-        if (this.f9966f0 == 0 && this.O1 == 1 && !this.I0.e && !H()) {
+        if (this.f9968f0 == 0 && this.O1 == 1 && !this.I0.e && !H()) {
             z11 = true;
         } else {
             z11 = false;
@@ -3264,20 +3220,20 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         } else {
             z12 = true;
         }
-        b0(this.f9989n0, z12, z10);
-        if (!this.a2 && this.O1 != -1 && this.f9966f0 == 0 && this.Y1 != null && !this.I0.e && !H()) {
+        b0(this.f9991n0, z12, z10);
+        if (!this.a2 && this.O1 != -1 && this.f9968f0 == 0 && this.Y1 != null && !this.I0.e && !H()) {
             z13 = true;
         } else {
             z13 = false;
         }
         b0(this.E0, z13, z10);
-        if (!this.a2 && this.O1 != -1 && this.f9966f0 == 0 && (yaVar = this.B0) != null && yaVar.f8809a && !this.I0.e && !this.A0.j()) {
+        if (!this.a2 && this.O1 != -1 && this.f9968f0 == 0 && (yaVar = this.B0) != null && yaVar.f8810a && !this.I0.e && !this.A0.j()) {
             z14 = true;
         } else {
             z14 = false;
         }
         b0(this.F0, z14, z10);
-        if (!this.a2 && this.O1 != -1 && this.f9966f0 == 0 && !this.I0.e) {
+        if (!this.a2 && this.O1 != -1 && this.f9968f0 == 0 && !this.I0.e) {
             z15 = true;
         } else {
             z15 = false;
@@ -3291,20 +3247,20 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         }
         this.O0.e(f7, z10);
         boolean z18 = this.I0.e;
-        x3 x3Var = this.f9990n1;
+        x3 x3Var = this.f9992n1;
         if (z18) {
             x3Var.u();
         } else {
             x3Var.e(true);
         }
         g(this.a2, z10);
-        if (this.O1 == -1 && this.f9966f0 == 0) {
+        if (this.O1 == -1 && this.f9968f0 == 0) {
             z16 = true;
         } else {
             z16 = false;
         }
         AndroidUtilities.updateViewShow(this.S0, z16);
-        if (this.O1 == -1 && this.f9966f0 == 0) {
+        if (this.O1 == -1 && this.f9968f0 == 0) {
             z17 = true;
         }
         AndroidUtilities.updateViewShow(this.R0, z17);
@@ -3319,10 +3275,10 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         float alpha3 = (this.G0.getAlpha() * AndroidUtilities.dp(46.0f)) + alpha2;
         this.E0.setTranslationX(-alpha3);
         float alpha4 = this.E0.getAlpha();
-        this.f9989n0.setTranslationX(0.0f);
-        float alpha5 = this.f9989n0.getAlpha();
+        this.f9991n0.setTranslationX(0.0f);
+        float alpha5 = this.f9991n0.getAlpha();
         float dp = (alpha4 * AndroidUtilities.dp(46.0f)) + alpha3 + AndroidUtilities.dp(8.0f);
-        v vVar = this.I0.f10120a;
+        v vVar = this.I0.f10122a;
         vVar.setPadding((int) ((alpha5 * AndroidUtilities.dp(46.0f)) + 0.0f + AndroidUtilities.dp(8.0f)), 0, (int) dp, 0);
         vVar.invalidate();
     }
@@ -3337,7 +3293,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (z10 == this.A2) {
             return;
         }
-        pa0 pa0Var = this.f10026y;
+        pa0 pa0Var = this.f10028y;
         if (pa0Var != null) {
             pa0Var.a(!z10);
         }
@@ -3346,17 +3302,17 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
 
     public final void n0(boolean z10) {
         int i10;
-        uj0 uj0Var = this.f9973h1;
+        uj0 uj0Var = this.f9975h1;
         if (uj0Var != null) {
             int[] iArr = uj0Var.e;
             int i11 = 0;
             if (z10) {
                 a8 a8Var = this.K1;
-                if (a8Var != null && a8Var.f8745y0) {
+                if (a8Var != null && a8Var.f8746y0) {
                     i11 = iArr[0];
                 }
                 uj0Var.P(i11);
-                uj0 uj0Var2 = this.f9973h1;
+                uj0 uj0Var2 = this.f9975h1;
                 if (uj0Var2 != null) {
                     uj0Var2.start();
                     return;
@@ -3364,14 +3320,14 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 return;
             }
             a8 a8Var2 = this.K1;
-            if (a8Var2 != null && a8Var2.f8745y0) {
+            if (a8Var2 != null && a8Var2.f8746y0) {
                 i10 = iArr[0] - 1;
             } else {
                 i10 = 0;
             }
             uj0Var.N(i10, false, true);
-            this.f9973h1.P(i10);
-            ImageView imageView = this.f9976i1;
+            this.f9975h1.P(i10);
+            ImageView imageView = this.f9978i1;
             if (imageView != null) {
                 imageView.invalidate();
             }
@@ -3379,21 +3335,21 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void o() {
-        if (this.f10011t2 < 0) {
-            this.f10011t2 = MessagesController.getGlobalMainSettings().getInt("frontflash", 1);
+        if (this.f10013t2 < 0) {
+            this.f10013t2 = MessagesController.getGlobalMainSettings().getInt("frontflash", 1);
             ArrayList arrayList = new ArrayList();
-            this.f10014u2 = arrayList;
+            this.f10016u2 = arrayList;
             arrayList.add("off");
-            this.f10014u2.add("auto");
-            this.f10014u2.add("on");
+            this.f10016u2.add("auto");
+            this.f10016u2.add("on");
             float f7 = MessagesController.getGlobalMainSettings().getFloat("frontflash_warmth", 0.9f);
-            s2 s2Var = this.f10005s;
-            s2Var.f9778o = f7;
-            s2Var.f9777n = s2.f(f7);
+            s2 s2Var = this.f10007s;
+            s2Var.f9780o = f7;
+            s2Var.f9779n = s2.f(f7);
             s2Var.g();
             float f10 = MessagesController.getGlobalMainSettings().getFloat("frontflash_intensity", 1.0f);
-            s2 s2Var2 = this.f10005s;
-            s2Var2.f9779p = f10;
+            s2 s2Var2 = this.f10007s;
+            s2Var2.f9781p = f10;
             s2Var2.i();
         }
     }
@@ -3404,13 +3360,13 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         }
         this.W1 = true;
         t9 t9Var = new t9(this, 2);
-        xa xaVar = this.f10016v1;
+        xa xaVar = this.f10018v1;
         a8 a8Var = this.K1;
         if (xaVar != null && a8Var != null) {
             a8Var.f();
             boolean t02 = xaVar.t0();
             boolean z10 = xaVar.O0.getPainting().E;
-            Utilities.searchQueue.postRunnable(new w9(this, xaVar, a8Var.f8715i0, a8Var.f8717j0, a8Var, z10, t02, t9Var, 1));
+            Utilities.searchQueue.postRunnable(new w9(this, xaVar, a8Var.f8716i0, a8Var.f8718j0, a8Var, z10, t02, t9Var, 1));
             return;
         }
         t9Var.run();
@@ -3419,16 +3375,16 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public final void p(boolean z10) {
         jb jbVar;
         if (this.d) {
-            r9 r9Var = this.f9998q0;
+            r9 r9Var = this.f10000q0;
             if (r9Var != null) {
                 r9Var.dismiss();
-                this.f9998q0 = null;
+                this.f10000q0 = null;
             }
             a8 a8Var = this.K1;
             long j10 = 0;
             if (a8Var != null && !a8Var.h) {
-                if ((this.v && a8Var.f8711g) || a8Var.f8699b != 0) {
-                    a8Var.f8716j = false;
+                if ((this.v && a8Var.f8712g) || a8Var.f8700b != 0) {
+                    a8Var.f8717j = false;
                 }
                 a8Var.i(false);
             }
@@ -3439,18 +3395,18 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     return;
                 }
                 this.e = true;
-                a81 a81Var = jbVar.f9739y;
+                a81 a81Var = jbVar.f9740y;
                 if (a81Var != null) {
                     a81Var.B();
-                    jbVar.f9739y.H();
-                    jbVar.f9739y = null;
+                    jbVar.f9740y.H();
+                    jbVar.f9740y = null;
                 }
-                a81 a81Var2 = jbVar.f9737x;
+                a81 a81Var2 = jbVar.f9738x;
                 if (a81Var2 != null) {
                     j10 = a81Var2.n();
-                    jbVar.f9737x.B();
-                    jbVar.f9737x.H();
-                    jbVar.f9737x = null;
+                    jbVar.f9738x.B();
+                    jbVar.f9738x.H();
+                    jbVar.f9738x = null;
                 }
                 a81 a81Var3 = jbVar.e;
                 if (a81Var3 != null) {
@@ -3459,7 +3415,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     jbVar.e.H();
                     jbVar.e = null;
                 }
-                callback4.run(Long.valueOf(j10), new da(this, z10, 2), Boolean.valueOf(this.v), Long.valueOf(this.f10018w));
+                callback4.run(Long.valueOf(j10), new da(this, z10, 2), Boolean.valueOf(this.v), Long.valueOf(this.f10020w));
                 return;
             }
             jb jbVar2 = this.X0;
@@ -3469,11 +3425,11 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             f(0.0f, z10, new t9(this, 23));
             int i10 = this.J;
             if (i10 == 1 || i10 == 0) {
-                this.f9988n.setBackgroundColor(0);
-                this.f9953b1.b(false, true);
+                this.f9990n.setBackgroundColor(0);
+                this.f9955b1.b(false, true);
             }
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.albumsDidLoad);
-            int i11 = this.f9955c;
+            int i11 = this.f9957c;
             NotificationCenter.getInstance(i11).removeObserver(this, NotificationCenter.storiesDraftsUpdated);
             NotificationCenter.getInstance(i11).removeObserver(this, NotificationCenter.storiesLimitUpdate);
         }
@@ -3482,8 +3438,8 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public final boolean p0() {
         ya yaVar;
         if ((this.P1 || this.Q1) && (yaVar = this.B0) != null && yaVar.isFrontface()) {
-            int i10 = this.f10011t2;
-            if (i10 == 2 || (i10 == 1 && this.f9958c2)) {
+            int i10 = this.f10013t2;
+            if (i10 == 2 || (i10 == 1 && this.f9960c2)) {
                 return true;
             }
             return false;
@@ -3493,28 +3449,28 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
 
     public final void q() {
         boolean z10;
-        Activity activity = this.f9951b;
+        Activity activity = this.f9953b;
         if (this.B0 == null && activity != null) {
             this.B0 = new ya(this, activity, MessagesController.getGlobalMainSettings().getBoolean("stories_camera", false));
             z6 z6Var = this.O0;
             float f7 = 0.0f;
             if (z6Var != null) {
-                z6Var.f10216g0 = 0.0f;
-                z6Var.f10217h0.d(0.0f, true);
+                z6Var.f10218g0 = 0.0f;
+                z6Var.f10219h0.d(0.0f, true);
             }
             this.B0.recordHevc = !this.A0.j();
             this.B0.setThumbDrawable(z());
             this.B0.initTexture();
             this.B0.setDelegate(new ca(this, 0));
             ic icVar = this.F0;
-            if (this.B0.f8809a && this.f9966f0 == 0) {
+            if (this.B0.f8810a && this.f9968f0 == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             b0(icVar, z10, true);
             z zVar = this.G0;
-            if (!this.B0.f8809a) {
+            if (!this.B0.f8810a) {
                 f7 = AndroidUtilities.dp(46.0f);
             }
             zVar.setTranslationX(f7);
@@ -3522,7 +3478,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             if (MessagesController.getGlobalMainSettings().getInt("storyhint2", 0) < 1) {
                 this.W0.u();
                 MessagesController.getGlobalMainSettings().edit().putInt("storyhint2", MessagesController.getGlobalMainSettings().getInt("storyhint2", 0) + 1).apply();
-            } else if ((!c1.q(this.B0.getContext()) || !MessagesController.getGlobalMainSettings().getBoolean("dualcam", c1.p(ApplicationLoader.applicationContext, false))) && this.B0.f8809a && MessagesController.getGlobalMainSettings().getInt("storydualhint", 0) < 2) {
+            } else if ((!c1.q(this.B0.getContext()) || !MessagesController.getGlobalMainSettings().getBoolean("dualcam", c1.p(ApplicationLoader.applicationContext, false))) && this.B0.f8810a && MessagesController.getGlobalMainSettings().getInt("storydualhint", 0) < 2) {
                 this.l1.u();
             }
             if (this.C0 == null) {
@@ -3563,11 +3519,11 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 int orientation = this.X0.getOrientation();
                 a8 a8Var2 = this.K1;
                 if (a8Var2 != null) {
-                    savedFilterState = a8Var2.f8698a1;
+                    savedFilterState = a8Var2.f8699a1;
                 }
-                cg0 cg0Var = new cg0(this.f9951b, textureView, bitmap, null, orientation, savedFilterState, null, 0, false, false, this.f10002r0, this.f9948a);
+                cg0 cg0Var = new cg0(this.f9953b, textureView, bitmap, null, orientation, savedFilterState, null, 0, false, false, this.f10004r0, this.f9950a);
                 this.B1 = cg0Var;
-                this.f10001r.addView(cg0Var);
+                this.f10003r.addView(cg0Var);
                 ag0 ag0Var = this.C1;
                 if (ag0Var != null) {
                     ag0Var.setFilterView(this.B1);
@@ -3587,12 +3543,12 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 rf0 blurControl = this.B1.getBlurControl();
                 this.E1 = blurControl;
                 if (blurControl != null) {
-                    this.f9972h0.addView(blurControl);
+                    this.f9974h0.addView(blurControl);
                 }
                 tf0 curveControl = this.B1.getCurveControl();
                 this.F1 = curveControl;
                 if (curveControl != null) {
-                    this.f9972h0.addView(curveControl);
+                    this.f9974h0.addView(curveControl);
                 }
                 U();
                 this.B1.getDoneTextView().setOnClickListener(new v9(this, 13));
@@ -3600,7 +3556,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 this.B1.getToolsView().setVisibility(8);
                 this.B1.getToolsView().setAlpha(0.0f);
                 this.B1.getToolsView().setTranslationY(AndroidUtilities.dp(186.0f));
-                this.B1.f25216i0.setVisibility(0);
+                this.B1.f25223i0.setVisibility(0);
             }
         }
     }
@@ -3619,13 +3575,13 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 return;
             }
         }
-        if (this.f9951b == null) {
+        if (this.f9953b == null) {
             return;
         }
         if (this.M0 != null) {
             v();
         }
-        MediaController.AlbumEntry albumEntry = this.f9987m2;
+        MediaController.AlbumEntry albumEntry = this.f9989m2;
         boolean z13 = !z10;
         ib ibVar2 = this.A0;
         if (ibVar2 != null && ibVar2.j()) {
@@ -3633,21 +3589,21 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         } else {
             z11 = false;
         }
-        ua uaVar = new ua(this, this.f9955c, this.f9951b, this.f9948a, albumEntry, z10, z13, z11);
+        ua uaVar = new ua(this, this.f9957c, this.f9953b, this.f9950a, albumEntry, z10, z13, z11);
         this.M0 = uaVar;
         uaVar.G.setVisibility(8);
         this.M0.setMultipleOnClick(this.A0.j());
         this.M0.setMaxCount(Math.min(10, t.b() - this.A0.getFilledCount()));
         this.M0.setOnBackClickListener(new la(this, 1));
         this.M0.setOnSelectListener(new ka(0, this, z10));
-        this.M0.setOnSelectMultipleListener(new ai.i2(this, 2));
-        s4.a0 a0Var = this.f9985l2;
+        this.M0.setOnSelectMultipleListener(new ai.j2(this, 2));
+        s4.a0 a0Var = this.f9987l2;
         if (a0Var != null) {
             a3 a3Var = this.M0.e;
             a3Var.B = a0Var;
             a3Var.l0();
         }
-        this.f9988n.addView(this.M0, w7.z5.e(-1, -1, 119));
+        this.f9990n.addView(this.M0, w7.z5.e(-1, -1, 119));
     }
 
     public final void t() {
@@ -3657,12 +3613,12 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public final void u(boolean z10) {
         v6 v6Var = this.C0;
         if (v6Var != null) {
-            v6Var.f9940f = null;
+            v6Var.f9942f = null;
             Utilities.globalQueue.cancelRunnable(v6Var.h);
             this.C0 = null;
             ib ibVar = this.A0;
             if (ibVar != null) {
-                ibVar.f8922c.a(null);
+                ibVar.f8923c.a(null);
             }
         }
         j7 j7Var = this.D0;
@@ -3692,19 +3648,19 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (uaVar == null) {
             return;
         }
-        this.f9988n.removeView(uaVar);
+        this.f9990n.removeView(uaVar);
         this.M0 = null;
-        ValueAnimator valueAnimator = this.f9991n2;
+        ValueAnimator valueAnimator = this.f9993n2;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f9991n2 = null;
+            this.f9993n2 = null;
         }
-        o1.k kVar = this.f9994o2;
+        o1.k kVar = this.f9996o2;
         if (kVar != null) {
             kVar.c();
-            this.f9994o2 = null;
+            this.f9996o2 = null;
         }
-        this.f9997p2 = null;
+        this.f9999p2 = null;
     }
 
     public final void x() {
@@ -3714,36 +3670,36 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         }
         cg0Var.e();
         this.C1.setFilterView(null);
-        this.f10001r.removeView(this.B1);
+        this.f10003r.removeView(this.B1);
         TextureView textureView = this.D1;
         if (textureView != null) {
-            this.f9972h0.removeView(textureView);
+            this.f9974h0.removeView(textureView);
             this.D1 = null;
         }
         this.X0.o(null, null);
         rf0 rf0Var = this.E1;
         if (rf0Var != null) {
-            this.f9972h0.removeView(rf0Var);
+            this.f9974h0.removeView(rf0Var);
             this.E1 = null;
         }
         tf0 tf0Var = this.F1;
         if (tf0Var != null) {
-            this.f9972h0.removeView(tf0Var);
+            this.f9974h0.removeView(tf0Var);
             this.F1 = null;
         }
         this.B1 = null;
     }
 
     public final void y() {
-        xa xaVar = this.f10016v1;
+        xa xaVar = this.f10018v1;
         if (xaVar != null) {
             xaVar.R0.removeAllViews();
-            xa xaVar2 = this.f10016v1;
+            xa xaVar2 = this.f10018v1;
             xaVar2.O0.h();
             xaVar2.R0.setVisibility(8);
             xaVar2.Q0.setVisibility(8);
             xaVar2.E0.postRunnable(new ah.j(12));
-            o5 o5Var = xaVar2.f9021k2;
+            o5 o5Var = xaVar2.f9022k2;
             if (o5Var != null) {
                 o5Var.dismiss();
             }
@@ -3751,31 +3707,31 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             if (yVar != null) {
                 yVar.dismiss();
             }
-            this.f10001r.removeView(this.f10016v1);
-            this.f10016v1 = null;
-            qg.e1 e1Var = this.f10020w1;
+            this.f10003r.removeView(this.f10018v1);
+            this.f10018v1 = null;
+            qg.e1 e1Var = this.f10022w1;
             if (e1Var != null) {
-                this.f9972h0.removeView(e1Var);
-                this.f10020w1 = null;
+                this.f9974h0.removeView(e1Var);
+                this.f10022w1 = null;
             }
-            View view = this.f10028y1;
+            View view = this.f10030y1;
             if (view != null) {
-                this.f9972h0.removeView(view);
-                this.f10028y1 = null;
+                this.f9974h0.removeView(view);
+                this.f10030y1 = null;
             }
-            View view2 = this.f10024x1;
+            View view2 = this.f10026x1;
             if (view2 != null) {
-                this.f9972h0.removeView(view2);
-                this.f10024x1 = null;
+                this.f9974h0.removeView(view2);
+                this.f10026x1 = null;
             }
-            View view3 = this.f10031z1;
+            View view3 = this.f10033z1;
             if (view3 != null) {
-                this.f9972h0.removeView(view3);
-                this.f10031z1 = null;
+                this.f9974h0.removeView(view3);
+                this.f10033z1 = null;
             }
             View view4 = this.A1;
             if (view4 != null) {
-                this.f9972h0.removeView(view4);
+                this.f9974h0.removeView(view4);
                 this.A1 = null;
             }
         }
@@ -3791,6 +3747,6 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (bitmap != null) {
             return new BitmapDrawable(bitmap);
         }
-        return this.f9951b.getResources().getDrawable(R.drawable.icplaceholder);
+        return this.f9953b.getResources().getDrawable(R.drawable.icplaceholder);
     }
 }

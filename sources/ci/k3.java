@@ -10,15 +10,15 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.y50;
 public final class k3 implements y50 {
-    public final q4 f5562a;
+    public final q4 f5563a;
 
     public k3(q4 q4Var) {
-        this.f5562a = q4Var;
+        this.f5563a = q4Var;
     }
 
     @Override
     public final long a() {
-        return this.f5562a.B1;
+        return this.f5563a.B1;
     }
 
     @Override
@@ -28,17 +28,17 @@ public final class k3 implements y50 {
 
     @Override
     public final int getClassGuid() {
-        return this.f5562a.f5845z2;
+        return this.f5563a.f5846z2;
     }
 
     @Override
     public final View getFragmentView() {
-        return this.f5562a;
+        return this.f5563a;
     }
 
     @Override
     public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.f5562a.getContext());
+        return AndroidUtilities.findActivity(this.f5563a.getContext());
     }
 
     @Override
@@ -48,8 +48,8 @@ public final class k3 implements y50 {
         boolean z12;
         AccountInstance accountInstance3;
         AccountInstance accountInstance4;
-        q4 q4Var = this.f5562a;
-        TL_stories.StoryItem storyItem = q4Var.O1.f5690a;
+        q4 q4Var = this.f5563a;
+        TL_stories.StoryItem storyItem = q4Var.O1.f5691a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             storyItem.dialogId = q4Var.B1;
             if (photoEntry.isVideo) {

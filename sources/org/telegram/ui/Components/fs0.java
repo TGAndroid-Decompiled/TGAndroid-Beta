@@ -15,7 +15,7 @@ public final class fs0 extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
         super.a(recyclerView, b1Var);
-        b1Var.f45938a.setPressed(false);
+        b1Var.f45958a.setPressed(false);
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class fs0 extends s4.v {
             pv0Var = null;
         }
         if (k() && pv0Var != null && pv0Var.M(b1Var.b())) {
-            lu0 lu0Var = this.e.f30364k0[0];
+            lu0 lu0Var = this.e.f30371k0[0];
             if (lu0Var != null) {
                 rs0Var = lu0Var.h;
             }
@@ -47,7 +47,7 @@ public final class fs0 extends s4.v {
         sv0 sv0Var = this.e;
         if (!sv0Var.C1) {
             ns0 ns0Var = sv0Var.W;
-            if (ns0Var == null || !ns0Var.f37111w) {
+            if (ns0Var == null || !ns0Var.f37081w) {
                 return false;
             }
             return true;
@@ -71,14 +71,14 @@ public final class fs0 extends s4.v {
         }
         int b10 = b1Var.b();
         int b11 = b1Var2.b();
-        ArrayList arrayList2 = pv0Var.f29438y;
-        if (!pv0Var.h && (a7Var = pv0Var.f29435s) != null && b10 >= 0 && b10 < a7Var.f5151i.size() && b11 >= 0 && b11 < pv0Var.f29435s.f5151i.size()) {
-            if (!(pv0Var.f29435s instanceof ci.t6) && pv0Var.f29433n <= 0) {
-                arrayList = new ArrayList(pv0Var.f29435s.f5150g);
+        ArrayList arrayList2 = pv0Var.f29445y;
+        if (!pv0Var.h && (a7Var = pv0Var.f29442s) != null && b10 >= 0 && b10 < a7Var.f5152i.size() && b11 >= 0 && b11 < pv0Var.f29442s.f5152i.size()) {
+            if (!(pv0Var.f29442s instanceof ci.t6) && pv0Var.f29440n <= 0) {
+                arrayList = new ArrayList(pv0Var.f29442s.f5151g);
             } else {
                 arrayList = new ArrayList();
-                for (int i10 = 0; i10 < pv0Var.f29435s.f5151i.size(); i10++) {
-                    arrayList.add(Integer.valueOf(((MessageObject) pv0Var.f29435s.f5151i.get(i10)).getId()));
+                for (int i10 = 0; i10 < pv0Var.f29442s.f5152i.size(); i10++) {
+                    arrayList.add(Integer.valueOf(((MessageObject) pv0Var.f29442s.f5152i.get(i10)).getId()));
                 }
             }
             if (!pv0Var.E) {
@@ -86,11 +86,11 @@ public final class fs0 extends s4.v {
                 arrayList2.addAll(arrayList);
                 pv0Var.E = true;
             }
-            MessageObject messageObject = (MessageObject) pv0Var.f29435s.f5151i.get(b10);
-            MessageObject messageObject2 = (MessageObject) pv0Var.f29435s.f5151i.get(b11);
+            MessageObject messageObject = (MessageObject) pv0Var.f29442s.f5152i.get(b10);
+            MessageObject messageObject2 = (MessageObject) pv0Var.f29442s.f5152i.get(b11);
             arrayList.remove(Integer.valueOf(messageObject.getId()));
             arrayList.add(Utilities.clamp(b11, arrayList.size(), 0), Integer.valueOf(messageObject.getId()));
-            pv0Var.f29435s.C(arrayList, false);
+            pv0Var.f29442s.C(arrayList, false);
             pv0Var.p(b10, b11);
         }
         return true;
@@ -109,14 +109,14 @@ public final class fs0 extends s4.v {
             ku0 ku0Var2 = this.d;
             if (ku0Var2 != null && (ku0Var2.getAdapter() instanceof pv0)) {
                 pv0 pv0Var = (pv0) this.d.getAdapter();
-                ArrayList arrayList2 = pv0Var.f29438y;
-                if (!pv0Var.h && (a7Var = pv0Var.f29435s) != null && pv0Var.E) {
-                    if (!(a7Var instanceof ci.t6) && pv0Var.f29433n <= 0) {
-                        arrayList = a7Var.f5150g;
+                ArrayList arrayList2 = pv0Var.f29445y;
+                if (!pv0Var.h && (a7Var = pv0Var.f29442s) != null && pv0Var.E) {
+                    if (!(a7Var instanceof ci.t6) && pv0Var.f29440n <= 0) {
+                        arrayList = a7Var.f5151g;
                     } else {
                         arrayList = new ArrayList();
-                        for (int i11 = 0; i11 < pv0Var.f29435s.f5151i.size(); i11++) {
-                            arrayList.add(Integer.valueOf(((MessageObject) pv0Var.f29435s.f5151i.get(i11)).getId()));
+                        for (int i11 = 0; i11 < pv0Var.f29442s.f5152i.size(); i11++) {
+                            arrayList.add(Integer.valueOf(((MessageObject) pv0Var.f29442s.f5152i.get(i11)).getId()));
                         }
                     }
                     if (arrayList2.size() != arrayList.size()) {
@@ -138,7 +138,7 @@ public final class fs0 extends s4.v {
                         }
                     }
                     if (z10) {
-                        pv0Var.f29435s.C(arrayList, true);
+                        pv0Var.f29442s.C(arrayList, true);
                     }
                     pv0Var.E = false;
                 }
@@ -155,7 +155,7 @@ public final class fs0 extends s4.v {
             ku0Var4.I0(false);
         }
         if (b1Var != null) {
-            b1Var.f45938a.setPressed(true);
+            b1Var.f45958a.setPressed(true);
         }
     }
 

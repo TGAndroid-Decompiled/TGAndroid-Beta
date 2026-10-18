@@ -8,19 +8,19 @@ import android.os.Build;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class u40 implements org.telegram.ui.Components.bl0 {
-    public final Path f41878a = new Path();
-    public final Paint f41879b;
-    public final s50 f41880c;
+    public final Path f41893a = new Path();
+    public final Paint f41894b;
+    public final s50 f41895c;
 
     public u40(s50 s50Var) {
-        this.f41880c = s50Var;
+        this.f41895c = s50Var;
         Paint paint = new Paint(1);
-        this.f41879b = paint;
+        this.f41894b = paint;
         paint.setColor(-14603467);
     }
 
     @Override
-    public final boolean j() {
+    public final boolean h() {
         return false;
     }
 
@@ -45,7 +45,7 @@ public final class u40 implements org.telegram.ui.Components.bl0 {
             tL_messageEntityCustomEmoji.length = str.length();
             tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
         }
-        s50 s50Var = this.f41880c;
+        s50 s50Var = this.f41895c;
         s50Var.B1(tL_textWithEntities);
         r30 r30Var = s50Var.H;
         if (r30Var.m()) {
@@ -63,18 +63,18 @@ public final class u40 implements org.telegram.ui.Components.bl0 {
     @Override
     public final void m(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
         int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        Paint paint = this.f41879b;
+        Paint paint = this.f41894b;
         if (i11 > 0) {
             canvas.drawRoundRect(rectF, f7, f7, paint);
         } else {
             canvas.drawRect(rectF, paint);
         }
         if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-            s50 s50Var = this.f41880c;
+            s50 s50Var = this.f41895c;
             if (s50Var.Q2 != null) {
                 canvas.save();
                 if (i11 > 0) {
-                    Path path = this.f41878a;
+                    Path path = this.f41893a;
                     path.rewind();
                     path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                     path.close();
@@ -92,7 +92,7 @@ public final class u40 implements org.telegram.ui.Components.bl0 {
     }
 
     @Override
-    public final boolean s() {
+    public final boolean r() {
         return true;
     }
 

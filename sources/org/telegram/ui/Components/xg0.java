@@ -9,14 +9,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.PhotoViewer;
 public final class xg0 extends u20 {
-    public float f32393a;
-    public float f32394b;
-    public final int f32395c;
+    public float f32400a;
+    public float f32401b;
+    public final int f32402c;
     public final zg0 d;
 
     public xg0(zg0 zg0Var, int i10) {
         this.d = zg0Var;
-        this.f32395c = i10;
+        this.f32402c = i10;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class xg0 extends u20 {
         zg0 zg0Var = this.d;
         PhotoViewer photoViewer = zg0Var.V;
         if (photoViewer != null) {
-            if ((photoViewer.F2 != null || zg0Var.f32923r != null) && !zg0Var.f32911c0 && !zg0Var.Y && !zg0Var.f32925w && !zg0Var.f32924s.isInProgress() && zg0Var.f32915f0) {
+            if ((photoViewer.F2 != null || zg0Var.f32930r != null) && !zg0Var.f32918c0 && !zg0Var.Y && !zg0Var.f32932w && !zg0Var.f32931s.isInProgress() && zg0Var.f32922f0) {
                 long l4 = zg0Var.l();
                 long m10 = zg0Var.m();
                 if (l4 != -9223372036854775807L && m10 >= 15000) {
@@ -45,7 +45,7 @@ public final class xg0 extends u20 {
         zg0 zg0Var = this.d;
         PhotoViewer photoViewer = zg0Var.V;
         r71 r71Var = zg0Var.Q;
-        if (photoViewer != null && ((photoViewer.F2 != null || zg0Var.f32923r != null) && !zg0Var.f32911c0 && !zg0Var.Y && !zg0Var.f32925w && !zg0Var.f32924s.isInProgress() && zg0Var.f32915f0)) {
+        if (photoViewer != null && ((photoViewer.F2 != null || zg0Var.f32930r != null) && !zg0Var.f32918c0 && !zg0Var.Y && !zg0Var.f32932w && !zg0Var.f32931s.isInProgress() && zg0Var.f32922f0)) {
             zg0Var.V.getClass();
             if (motionEvent.getX() >= zg0Var.t() * zg0Var.J * 0.5f) {
                 z10 = true;
@@ -77,10 +77,10 @@ public final class xg0 extends u20 {
                     if (z11) {
                         r71Var.e(true);
                         r71Var.d(!z10);
-                        long j11 = r71Var.f29872o + 10000;
-                        r71Var.f29872o = j11;
-                        r71Var.f29873p = LocaleController.formatPluralString("Seconds", (int) (j11 / 1000), new Object[0]);
-                        kg0 kg0Var = zg0Var.f32923r;
+                        long j11 = r71Var.f29880o + 10000;
+                        r71Var.f29880o = j11;
+                        r71Var.f29881p = LocaleController.formatPluralString("Seconds", (int) (j11 / 1000), new Object[0]);
+                        kg0 kg0Var = zg0Var.f32930r;
                         if (kg0Var != null) {
                             kg0Var.i(j10);
                         } else {
@@ -91,7 +91,7 @@ public final class xg0 extends u20 {
                         }
                         r71Var.g(0L);
                         zg0Var.Z = ((float) j10) / ((float) m10);
-                        ci.i3 i3Var = zg0Var.f32909b0;
+                        ci.i3 i3Var = zg0Var.f32916b0;
                         if (i3Var != null) {
                             i3Var.invalidate();
                         }
@@ -102,9 +102,9 @@ public final class xg0 extends u20 {
                         if (!zg0Var.E) {
                             zg0Var.E = true;
                             zg0Var.y(true);
-                            if (!zg0Var.f32918i0) {
-                                zg0Var.f32918i0 = true;
-                                AndroidUtilities.runOnUIThread(zg0Var.f32919j0, 2500L);
+                            if (!zg0Var.f32925i0) {
+                                zg0Var.f32925i0 = true;
+                                AndroidUtilities.runOnUIThread(zg0Var.f32926j0, 2500L);
                             }
                         }
                     }
@@ -122,13 +122,13 @@ public final class xg0 extends u20 {
             for (int i10 = 1; i10 < zg0Var.e.getChildCount(); i10++) {
                 View childAt = zg0Var.e.getChildAt(i10);
                 if (childAt.dispatchTouchEvent(motionEvent)) {
-                    zg0Var.f32927y = childAt;
+                    zg0Var.f32934y = childAt;
                     return true;
                 }
             }
         }
-        this.f32393a = zg0Var.K;
-        this.f32394b = zg0Var.L;
+        this.f32400a = zg0Var.K;
+        this.f32401b = zg0Var.L;
         return true;
     }
 
@@ -137,13 +137,13 @@ public final class xg0 extends u20 {
         float dp;
         float f11;
         zg0 zg0Var = this.d;
-        if (zg0Var.f32925w && !zg0Var.f32926x) {
+        if (zg0Var.f32932w && !zg0Var.f32933x) {
             o1.k kVar = zg0Var.M;
-            kVar.f17545a = f7;
+            kVar.f17552a = f7;
             float f12 = zg0Var.K;
-            kVar.f17546b = f12;
-            kVar.f17547c = true;
-            o1.l lVar = kVar.f17555u;
+            kVar.f17553b = f12;
+            kVar.f17554c = true;
+            o1.l lVar = kVar.f17562u;
             int i10 = zg0Var.H;
             float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
             int i11 = AndroidUtilities.displaySize.x;
@@ -152,13 +152,13 @@ public final class xg0 extends u20 {
             } else {
                 dp = AndroidUtilities.dp(16.0f);
             }
-            lVar.f17561i = dp;
+            lVar.f17568i = dp;
             zg0Var.M.h();
             o1.k kVar2 = zg0Var.N;
-            kVar2.f17545a = f7;
-            kVar2.f17546b = zg0Var.L;
-            kVar2.f17547c = true;
-            kVar2.f17555u.f17561i = w7.r.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - zg0Var.I) - AndroidUtilities.dp(16.0f));
+            kVar2.f17552a = f7;
+            kVar2.f17553b = zg0Var.L;
+            kVar2.f17554c = true;
+            kVar2.f17562u.f17568i = w7.r.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - zg0Var.I) - AndroidUtilities.dp(16.0f));
             zg0Var.N.h();
             return true;
         }
@@ -169,66 +169,66 @@ public final class xg0 extends u20 {
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         float dp;
         zg0 zg0Var = this.d;
-        if (!zg0Var.f32925w && zg0Var.F == null && !zg0Var.f32926x) {
+        if (!zg0Var.f32932w && zg0Var.F == null && !zg0Var.f32933x) {
             float abs = Math.abs(f7);
-            float f11 = this.f32395c;
+            float f11 = this.f32402c;
             if (abs >= f11 || Math.abs(f10) >= f11) {
-                zg0Var.f32925w = true;
+                zg0Var.f32932w = true;
                 zg0Var.M.c();
                 zg0Var.N.c();
-                zg0Var.f32915f0 = false;
+                zg0Var.f32922f0 = false;
                 zg0Var.i();
-                AndroidUtilities.cancelRunOnUIThread(zg0Var.f32917h0);
+                AndroidUtilities.cancelRunOnUIThread(zg0Var.f32924h0);
             }
         }
-        if (zg0Var.f32925w) {
+        if (zg0Var.f32932w) {
             float f12 = zg0Var.K;
-            float rawX = (motionEvent2.getRawX() + this.f32393a) - motionEvent.getRawX();
-            zg0Var.L = (motionEvent2.getRawY() + this.f32394b) - motionEvent.getRawY();
+            float rawX = (motionEvent2.getRawX() + this.f32400a) - motionEvent.getRawX();
+            zg0Var.L = (motionEvent2.getRawY() + this.f32401b) - motionEvent.getRawY();
             int i10 = zg0Var.H;
             if (rawX > (-i10) * 0.25f && rawX < AndroidUtilities.displaySize.x - (i10 * 0.75f)) {
-                boolean z10 = zg0Var.f32912d0;
+                boolean z10 = zg0Var.f32919d0;
                 if (z10) {
                     if (z10) {
                         zg0Var.M.a(new ei.ea(this, rawX, 2));
                         o1.k kVar = zg0Var.M;
-                        kVar.f17546b = f12;
-                        kVar.f17547c = true;
-                        kVar.f17555u.f17561i = rawX;
+                        kVar.f17553b = f12;
+                        kVar.f17554c = true;
+                        kVar.f17562u.f17568i = rawX;
                         kVar.h();
                     }
-                    zg0Var.f32912d0 = false;
+                    zg0Var.f32919d0 = false;
                     return true;
                 }
                 o1.k kVar2 = zg0Var.M;
-                if (kVar2.f17548f) {
-                    kVar2.f17555u.f17561i = rawX;
+                if (kVar2.f17555f) {
+                    kVar2.f17562u.f17568i = rawX;
                 } else {
-                    WindowManager.LayoutParams layoutParams = zg0Var.f32910c;
+                    WindowManager.LayoutParams layoutParams = zg0Var.f32917c;
                     zg0Var.K = rawX;
                     layoutParams.x = (int) rawX;
-                    ((SharedPreferences) zg0Var.n().f14559b).edit().putFloat("x", rawX).apply();
+                    ((SharedPreferences) zg0Var.n().f14566b).edit().putFloat("x", rawX).apply();
                 }
-                zg0Var.f32910c.y = (int) zg0Var.L;
-                ((SharedPreferences) zg0Var.n().f14559b).edit().putFloat("y", zg0Var.L).apply();
-                AndroidUtilities.updateViewLayout(zg0Var.f32908b, zg0Var.d, zg0Var.f32910c);
+                zg0Var.f32917c.y = (int) zg0Var.L;
+                ((SharedPreferences) zg0Var.n().f14566b).edit().putFloat("y", zg0Var.L).apply();
+                AndroidUtilities.updateViewLayout(zg0Var.f32915b, zg0Var.d, zg0Var.f32917c);
                 return true;
             }
-            if (!zg0Var.f32912d0) {
+            if (!zg0Var.f32919d0) {
                 o1.k kVar3 = zg0Var.M;
-                kVar3.f17546b = f12;
-                kVar3.f17547c = true;
-                o1.l lVar = kVar3.f17555u;
+                kVar3.f17553b = f12;
+                kVar3.f17554c = true;
+                o1.l lVar = kVar3.f17562u;
                 int i11 = AndroidUtilities.displaySize.x;
                 if ((i10 / 2.0f) + rawX >= i11 / 2.0f) {
                     dp = i11 - AndroidUtilities.dp(16.0f);
                 } else {
                     dp = AndroidUtilities.dp(16.0f) - zg0Var.H;
                 }
-                lVar.f17561i = dp;
+                lVar.f17568i = dp;
                 zg0Var.M.h();
             }
-            zg0Var.f32912d0 = true;
+            zg0Var.f32919d0 = true;
         }
         return true;
     }
@@ -237,18 +237,18 @@ public final class xg0 extends u20 {
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
         zg0 zg0Var = this.d;
         ValueAnimator valueAnimator = zg0Var.F;
-        ug0 ug0Var = zg0Var.f32919j0;
+        ug0 ug0Var = zg0Var.f32926j0;
         if (valueAnimator == null) {
-            if (zg0Var.f32918i0) {
+            if (zg0Var.f32925i0) {
                 AndroidUtilities.cancelRunOnUIThread(ug0Var);
-                zg0Var.f32918i0 = false;
+                zg0Var.f32925i0 = false;
             }
             boolean z10 = !zg0Var.E;
             zg0Var.E = z10;
             zg0Var.y(z10);
-            if (zg0Var.E && !zg0Var.f32918i0) {
+            if (zg0Var.E && !zg0Var.f32925i0) {
                 AndroidUtilities.runOnUIThread(ug0Var, 2500L);
-                zg0Var.f32918i0 = true;
+                zg0Var.f32925i0 = true;
             }
         }
         return true;

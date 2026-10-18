@@ -1,109 +1,55 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.view.View;
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-public final class cq0 extends org.telegram.ui.Components.jw0 {
-    public int f35973w0;
-    public boolean f35974x0;
-    public int f35975y0;
-    public final kq0 f35976z0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+public final class cq0 extends org.telegram.ui.ActionBar.g5 {
+    public final ek0 f35988r = new ek0(this, 12);
+    public final lq0 f35989s;
 
-    public cq0(kq0 kq0Var, Context context) {
-        super(context, null);
-        this.f35976z0 = kq0Var;
+    public cq0(lq0 lq0Var) {
+        this.f35989s = lq0Var;
     }
 
     @Override
-    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cq0.onLayout(boolean, int, int, int, int):void");
+    public final boolean b() {
+        this.f35989s.finishFragment();
+        return false;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        org.telegram.ui.Components.qu quVar;
-        int size = View.MeasureSpec.getSize(i11);
-        int size2 = View.MeasureSpec.getSize(i10);
-        boolean isTablet = AndroidUtilities.isTablet();
-        kq0 kq0Var = this.f35976z0;
-        if (isTablet) {
-            kq0Var.f38647g0 = 4;
-        } else {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                kq0Var.f38647g0 = 4;
-            } else {
-                kq0Var.f38647g0 = 3;
+    public final void p(ei.e2 e2Var) {
+        this.f35989s.b0(e2Var);
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        int i10;
+        if (editText.getText().length() == 0) {
+            lq0 lq0Var = this.f35989s;
+            lq0Var.f38919f.clear();
+            lq0Var.h.clear();
+            lq0Var.v = null;
+            lq0Var.f38934s = true;
+            lq0Var.f38932r = false;
+            if (lq0Var.f38941x != 0) {
+                i10 = ((org.telegram.ui.ActionBar.n2) lq0Var).currentAccount;
+                ConnectionsManager.getInstance(i10).cancelRequest(lq0Var.f38941x, true);
+                lq0Var.f38941x = 0;
             }
-        }
-        this.f35974x0 = true;
-        int dp = ((size2 - AndroidUtilities.dp(4.0f)) - AndroidUtilities.dp(4.0f)) / kq0Var.f38647g0;
-        kq0Var.R = dp;
-        if (this.f35975y0 != dp) {
-            this.f35975y0 = dp;
-            AndroidUtilities.runOnUIThread(new ek0(this, 13));
-        }
-        if (kq0Var.Y) {
-            kq0Var.M.y1(1);
-        } else {
-            kq0Var.M.y1(Math.max(1, ((kq0Var.f38647g0 - 1) * AndroidUtilities.dp(2.0f)) + (kq0Var.R * kq0Var.f38647g0)));
-        }
-        this.f35974x0 = false;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int size3 = View.MeasureSpec.getSize(i10);
-        int size4 = View.MeasureSpec.getSize(makeMeasureSpec);
-        setMeasuredDimension(size3, size4);
-        int R = R();
-        if (AndroidUtilities.dp(20.0f) >= 0 && !AndroidUtilities.isInMultiwindow && kq0Var.f38643d0 != null && kq0Var.Z.getParent() == this) {
-            size4 -= kq0Var.f38643d0.getEmojiPadding();
-            makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size4, 1073741824);
-        }
-        int i12 = size4;
-        int i13 = makeMeasureSpec;
-        if (R > AndroidUtilities.dp(20.0f) && (quVar = kq0Var.f38643d0) != null) {
-            this.f35974x0 = true;
-            quVar.j();
-            this.f35974x0 = false;
-        }
-        org.telegram.ui.Components.qu quVar2 = kq0Var.f38643d0;
-        if (quVar2 != null && quVar2.e) {
-            kq0Var.fragmentView.setTranslationY(0.0f);
-            kq0Var.K.setTranslationY(0.0f);
-            kq0Var.N.setTranslationY(0.0f);
-        }
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                org.telegram.ui.Components.qu quVar3 = kq0Var.f38643d0;
-                if (quVar3 != null && quVar3.l(childAt)) {
-                    if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                    } else if (AndroidUtilities.isTablet()) {
-                        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(size3, 1073741824);
-                        if (AndroidUtilities.isTablet()) {
-                            f7 = 200.0f;
-                        } else {
-                            f7 = 320.0f;
-                        }
-                        childAt.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f7), getPaddingTop() + (i12 - AndroidUtilities.statusBarHeight)), 1073741824));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (i12 - AndroidUtilities.statusBarHeight), 1073741824));
-                    }
-                } else {
-                    measureChildWithMargins(childAt, i10, 0, i13, 0);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f35974x0) {
+            lq0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
+            lq0Var.N.e(false, true);
+            lq0Var.j0();
             return;
         }
-        super.requestLayout();
+        ek0 ek0Var = this.f35988r;
+        AndroidUtilities.cancelRunOnUIThread(ek0Var);
+        AndroidUtilities.runOnUIThread(ek0Var, 1200L);
+    }
+
+    @Override
+    public final void n() {
     }
 }

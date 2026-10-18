@@ -17,11 +17,11 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.LaunchActivity;
 public abstract class d0 {
-    public static ng.i f48632a;
+    public static ng.i f48657a;
 
     public static void a(LaunchActivity launchActivity, boolean z10, boolean z11) {
         boolean z12;
-        ng.i iVar = f48632a;
+        ng.i iVar = f48657a;
         if (iVar != null) {
             z12 = true;
         } else {
@@ -30,15 +30,15 @@ public abstract class d0 {
         if (z10 != z12) {
             if (z10) {
                 ?? frameLayout = new FrameLayout(launchActivity);
-                frameLayout.f17465r = new ng.c(frameLayout, 3);
+                frameLayout.f17472r = new ng.c(frameLayout, 3);
                 frameLayout.E = new ArrayList();
                 ng.f fVar = new ng.f(frameLayout);
                 frameLayout.e = launchActivity.getSharedPreferences("floating_debug", 0);
                 frameLayout.F = ViewConfiguration.get(launchActivity).getScaledTouchSlop();
                 k0.b bVar = new k0.b(launchActivity, fVar);
-                ((GestureDetector) bVar.f14559b).setIsLongpressEnabled(false);
+                ((GestureDetector) bVar.f14566b).setIsLongpressEnabled(false);
                 ah.v vVar = new ah.v(frameLayout, launchActivity, bVar, 5);
-                frameLayout.f17460a = vVar;
+                frameLayout.f17467a = vVar;
                 ImageView imageView = new ImageView(launchActivity);
                 imageView.setImageResource(R.drawable.device_phone_android);
                 imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.O9, false), PorterDuff.Mode.SRC_IN));
@@ -46,38 +46,38 @@ public abstract class d0 {
                 vVar.setVisibility(8);
                 frameLayout.addView(vVar, z5.d(56.0f, 56));
                 LinearLayout linearLayout = new LinearLayout(launchActivity);
-                frameLayout.f17467w = linearLayout;
+                frameLayout.f17474w = linearLayout;
                 linearLayout.setOrientation(1);
                 linearLayout.setVisibility(8);
                 TextView textView = new TextView(launchActivity);
-                frameLayout.f17468x = textView;
+                frameLayout.f17475x = textView;
                 textView.setTextSize(1, 20.0f);
                 textView.setText(LocaleController.getString(R.string.DebugMenu));
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f));
                 linearLayout.addView(textView, z5.n(-1, -2));
                 im0 im0Var = new im0(launchActivity, null);
-                frameLayout.f17469y = im0Var;
+                frameLayout.f17476y = im0Var;
                 im0Var.setLayoutManager(new s4.b0());
                 im0Var.setAdapter(new ng.g((ng.i) frameLayout, launchActivity));
-                im0Var.setOnItemClickListener(new ai.va(frameLayout, 17));
+                im0Var.setOnItemClickListener(new ai.wa(frameLayout, 17));
                 linearLayout.addView(im0Var, z5.l(1.0f, -1, 0));
                 frameLayout.addView(linearLayout, z5.a(-1.0f, 8.0f, 8.0f, 8.0f, 8.0f, -1, 0));
                 frameLayout.d();
                 frameLayout.setFitsSystemWindows(true);
                 frameLayout.setWillNotDraw(false);
-                f48632a = frameLayout;
-                launchActivity.f33185w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
-                ng.i iVar2 = f48632a;
-                iVar2.f17460a.setVisibility(0);
+                f48657a = frameLayout;
+                launchActivity.f33192w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
+                ng.i iVar2 = f48657a;
+                iVar2.f17467a.setVisibility(0);
                 o1.k kVar = new o1.k(new o1.j(0.0f));
-                kVar.f17555u = org.telegram.ui.Cells.t0.l(1000.0f, 750.0f, 0.75f);
+                kVar.f17562u = org.telegram.ui.Cells.c1.l(1000.0f, 750.0f, 0.75f);
                 kVar.b(new ci.l8(2, iVar2));
                 kVar.h();
             } else {
                 iVar.getClass();
-                launchActivity.f33185w0.removeView(f48632a);
-                f48632a = null;
+                launchActivity.f33192w0.removeView(f48657a);
+                f48657a = null;
             }
             if (z11) {
                 SharedConfig.isFloatingDebugActive = z10;

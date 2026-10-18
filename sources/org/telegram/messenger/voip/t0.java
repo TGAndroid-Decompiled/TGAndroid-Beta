@@ -5,28 +5,28 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.webrtc.VideoSink;
 public final class t0 implements Runnable {
-    public final int f19910a;
-    public final boolean f19911b;
-    public final Object f19912c;
+    public final int f19921a;
+    public final boolean f19922b;
+    public final Object f19923c;
     public final Object d;
     public final Object e;
 
     public t0(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f19910a = i10;
-        this.f19912c = obj;
+        this.f19921a = i10;
+        this.f19923c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f19911b = z10;
+        this.f19922b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19910a) {
+        switch (this.f19921a) {
             case 0:
-                ((VoIPService.AnonymousClass5) this.f19912c).lambda$onFrame$0((String) this.d, (VideoSink) this.e, this.f19911b);
+                ((VoIPService.AnonymousClass5) this.f19923c).lambda$onFrame$0((String) this.d, (VideoSink) this.e, this.f19922b);
                 return;
             default:
-                ((VoIPService) this.f19912c).lambda$acknowledgeCall$12((TLObject) this.d, (TLRPC.TL_error) this.e, this.f19911b);
+                ((VoIPService) this.f19923c).lambda$acknowledgeCall$12((TLObject) this.d, (TLRPC.TL_error) this.e, this.f19922b);
                 return;
         }
     }

@@ -1,27 +1,39 @@
 package org.telegram.ui.Wallet;
 
-import android.view.View;
-public final class g3 implements Runnable {
-    public final int f34224a;
-    public final k3 f34225b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.u61;
+public final class g3 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f34266a;
+    public final Object f34267b;
 
-    public g3(k3 k3Var, int i10) {
-        this.f34224a = i10;
-        this.f34225b = k3Var;
+    public g3(Object obj, int i10) {
+        this.f34266a = i10;
+        this.f34267b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34224a) {
+    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
+        u61 u61Var;
+        switch (this.f34266a) {
             case 0:
-                org.telegram.ui.Cells.x0 x0Var = this.f34225b.f34385a;
-                if (x0Var.getParent() instanceof View) {
-                    ((View) x0Var.getParent()).invalidate();
+                l3 l3Var = (l3) this.f34267b;
+                l3Var.getClass();
+                if (i10 == NotificationCenter.userInfoDidLoad && i11 == l3Var.f34486w0 && l3Var.f34488x0 != 0 && objArr.length > 1) {
+                    Object obj = objArr[0];
+                    if ((obj instanceof Long) && ((Long) obj).longValue() == l3Var.f34488x0) {
+                        l3Var.p(l3.h((TLRPC.UserFull) objArr[1]), true);
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                this.f34225b.s();
+                w9 w9Var = (w9) this.f34267b;
+                if (!w9Var.f35047n && (u61Var = w9Var.f31197a) != null) {
+                    u61Var.W2.N(true);
+                    return;
+                }
                 return;
         }
     }

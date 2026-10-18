@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Trace;
 import b2.w;
 import h2.h;
-import i2.i0;
+import i2.j0;
 import java.util.ArrayDeque;
 import v7.u6;
 public final class g extends i2.b {
@@ -22,20 +22,20 @@ public final class g extends i2.b {
     public c T;
     public h U;
     public e V;
-    public i0 W;
+    public j0 W;
     public Bitmap X;
     public boolean Y;
     public j5.c Z;
-    public j5.c f44375a0;
-    public int f44376b0;
-    public boolean f44377c0;
+    public j5.c f44395a0;
+    public int f44396b0;
+    public boolean f44397c0;
 
     public g(b bVar) {
         super(4);
         this.I = bVar;
-        this.V = e.f44371a;
+        this.V = e.f44391a;
         this.J = new h(0, 0);
-        this.N = f.f44372c;
+        this.N = f.f44392c;
         this.K = new ArrayDeque();
         this.P = -9223372036854775807L;
         this.O = -9223372036854775807L;
@@ -58,7 +58,7 @@ public final class g extends i2.b {
     }
 
     public final void H() {
-        if (!this.f44377c0) {
+        if (!this.f44397c0) {
             return;
         }
         w wVar = this.S;
@@ -66,15 +66,15 @@ public final class g extends i2.b {
         b bVar = this.I;
         bVar.getClass();
         int c10 = b.c(wVar);
-        if (c10 != i0.a.c(4, 0, 0, 0) && c10 != i0.a.c(3, 0, 0, 0)) {
+        if (c10 != i2.d.c(4, 0, 0, 0) && c10 != i2.d.c(3, 0, 0, 0)) {
             throw d(new Exception("Provided decoder factory can't create decoder for format."), this.S, false, 4005);
         }
         c cVar = this.T;
         if (cVar != null) {
             cVar.release();
         }
-        this.T = new c(bVar.f44368a);
-        this.f44377c0 = false;
+        this.T = new c(bVar.f44388a);
+        this.f44397c0 = false;
     }
 
     public final void I() {
@@ -95,7 +95,7 @@ public final class g extends i2.b {
             if (i10 != 23) {
                 return;
             }
-            this.W = (i0) obj;
+            this.W = (j0) obj;
             return;
         }
         if (obj instanceof e) {
@@ -104,7 +104,7 @@ public final class g extends i2.b {
             eVar = null;
         }
         if (eVar == null) {
-            eVar = e.f44371a;
+            eVar = e.f44391a;
         }
         this.V = eVar;
     }
@@ -134,7 +134,7 @@ public final class g extends i2.b {
     @Override
     public final void n() {
         this.S = null;
-        this.N = f.f44372c;
+        this.N = f.f44392c;
         this.K.clear();
         I();
         this.V.getClass();
@@ -152,7 +152,7 @@ public final class g extends i2.b {
         this.L = false;
         this.X = null;
         this.Z = null;
-        this.f44375a0 = null;
+        this.f44395a0 = null;
         this.Y = false;
         this.U = null;
         c cVar = this.T;
@@ -174,24 +174,24 @@ public final class g extends i2.b {
     }
 
     @Override
-    public final void u(b2.w[] r5, long r6, long r8, u2.g0 r10) {
-        throw new UnsupportedOperationException("Method not decompiled: q2.g.u(b2.w[], long, long, u2.g0):void");
+    public final void u(b2.w[] r5, long r6, long r8, u2.f0 r10) {
+        throw new UnsupportedOperationException("Method not decompiled: q2.g.u(b2.w[], long, long, u2.f0):void");
     }
 
     @Override
     public final void x(long j10, long j11) {
         if (!this.M) {
             if (this.S == null) {
-                qf.b bVar = this.f12315c;
+                qf.b bVar = this.f12316c;
                 bVar.z();
                 h hVar = this.J;
                 hVar.clear();
                 int w9 = w(bVar, hVar, 2);
                 if (w9 == -5) {
-                    w wVar = (w) bVar.f44466c;
+                    w wVar = (w) bVar.f44486c;
                     wVar.getClass();
                     this.S = wVar;
-                    this.f44377c0 = true;
+                    this.f44397c0 = true;
                 } else if (w9 == -4) {
                     u6.p(hVar.isEndOfStream());
                     this.L = true;

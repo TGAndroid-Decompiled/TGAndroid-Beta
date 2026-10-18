@@ -1,35 +1,67 @@
 package ai;
 
-import android.view.animation.Interpolator;
-import org.telegram.messenger.wh;
-public final class ae implements Interpolator {
-    public final int f983a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.la0;
+public final class ae extends AnimatorListenerAdapter {
+    public final ah.g1 f984a;
+    public final View f985b;
+    public final ci.q0[] f986c;
+    public final boolean[] d;
+    public final RectF e;
+    public final Runnable f987f;
+    public final le h;
 
-    public ae(int i10) {
-        this.f983a = i10;
+    public ae(le leVar, ah.g1 g1Var, View view, ci.q0[] q0VarArr, boolean[] zArr, RectF rectF, Runnable runnable) {
+        this.h = leVar;
+        this.f984a = g1Var;
+        this.f985b = view;
+        this.f986c = q0VarArr;
+        this.d = zArr;
+        this.e = rectF;
+        this.f987f = runnable;
     }
 
     @Override
-    public final float getInterpolation(float f7) {
-        switch (this.f983a) {
-            case 0:
-                return (float) Math.pow(f7, 2.0d);
-            case 1:
-                if (f7 < 0.33f) {
-                    return (f7 / 0.33f) * 0.1f;
-                }
-                float f10 = f7 - 0.33f;
-                if (f10 < 0.33f) {
-                    return wh.y(f10, 0.34f, 0.15f, 0.1f);
-                }
-                return (((f10 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
-            case 2:
-                return f7 * f7 * f7 * f7 * f7;
-            case 3:
-            case 4:
-            default:
-                float f11 = f7 - 1.0f;
-                return (f11 * f11 * f11 * f11 * f11) + 1.0f;
+    public final void onAnimationEnd(Animator animator) {
+        la0 la0Var;
+        le leVar = this.h;
+        zd zdVar = leVar.K;
+        zdVar.setVisibility(4);
+        zdVar.setPaused(true);
+        ah.g1 g1Var = this.f984a;
+        if (g1Var != null) {
+            g1Var.f757l = true;
+        }
+        View view = this.f985b;
+        if (view != null) {
+            view.invalidate();
+        }
+        ci.q0 q0Var = this.f986c[0];
+        if (q0Var != null) {
+            q0Var.setDrawStar(true);
+        }
+        super/*org.telegram.ui.ActionBar.f3*/.dismissInternal();
+        boolean[] zArr = this.d;
+        if (!zArr[0]) {
+            zArr[0] = true;
+            RectF rectF = this.e;
+            LaunchActivity.c0(rectF.centerX(), rectF.centerY(), 1.5f);
+            try {
+                leVar.container.performHapticFeedback(0, 1);
+            } catch (Exception unused) {
+            }
+            Runnable runnable = this.f987f;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+        LaunchActivity launchActivity = LaunchActivity.H1;
+        if (launchActivity != null && (la0Var = launchActivity.f33194x0) != null) {
+            la0Var.c(true);
         }
     }
 }

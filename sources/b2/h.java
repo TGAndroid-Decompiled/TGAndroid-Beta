@@ -7,16 +7,16 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import java.util.List;
 public final class h extends Binder {
-    public final e9.n0 f3772a;
+    public final e9.n0 f3773a;
 
     public h(List list) {
-        this.f3772a = e9.n0.u(list);
+        this.f3773a = e9.n0.u(list);
     }
 
     public static e9.n0 a(IBinder iBinder) {
         int readInt;
         if (iBinder instanceof h) {
-            return ((h) iBinder).f3772a;
+            return ((h) iBinder).f3773a;
         }
         e9.k0 t10 = e9.n0.t();
         int i10 = 0;
@@ -61,10 +61,10 @@ public final class h extends Binder {
         if (parcel2 == null) {
             return false;
         }
-        e9.n0 n0Var = this.f3772a;
+        e9.n0 n0Var = this.f3773a;
         int size = n0Var.size();
         int readInt = parcel.readInt();
-        while (readInt < size && parcel2.dataSize() < m.f3828a) {
+        while (readInt < size && parcel2.dataSize() < m.f3829a) {
             parcel2.writeInt(1);
             parcel2.writeBundle((Bundle) n0Var.get(readInt));
             readInt++;

@@ -1,8 +1,8 @@
 package be;
 public final class f extends md.c {
-    public Object[] f4277a;
-    public int f4278b;
-    public int f4279c;
+    public Object[] f4278a;
+    public int f4279b;
+    public int f4280c;
     public Object d;
     public int e;
 

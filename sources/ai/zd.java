@@ -1,67 +1,75 @@
 package ai;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.la0;
-public final class zd extends AnimatorListenerAdapter {
-    public final ah.g1 f2557a;
-    public final View f2558b;
-    public final ci.q0[] f2559c;
-    public final boolean[] d;
-    public final RectF e;
-    public final Runnable f2560f;
-    public final ke h;
+import android.content.Context;
+public final class zd extends tg.n {
+    public final int f2561i0;
 
-    public zd(ke keVar, ah.g1 g1Var, View view, ci.q0[] q0VarArr, boolean[] zArr, RectF rectF, Runnable runnable) {
-        this.h = keVar;
-        this.f2557a = g1Var;
-        this.f2558b = view;
-        this.f2559c = q0VarArr;
-        this.d = zArr;
-        this.e = rectF;
-        this.f2560f = runnable;
+    public zd(Context context, int i10, int i11, int i12) {
+        super(context, i10, i11);
+        this.f2561i0 = i12;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        la0 la0Var;
-        ke keVar = this.h;
-        yd ydVar = keVar.K;
-        ydVar.setVisibility(4);
-        ydVar.setPaused(true);
-        ah.g1 g1Var = this.f2557a;
-        if (g1Var != null) {
-            g1Var.f757l = true;
+    public void onAttachedToWindow() {
+        switch (this.f2561i0) {
+            case 1:
+                super.onAttachedToWindow();
+                setPaused(false);
+                return;
+            case 2:
+                super.onAttachedToWindow();
+                setPaused(false);
+                return;
+            case 3:
+                super.onAttachedToWindow();
+                setPaused(false);
+                return;
+            case 4:
+                super.onAttachedToWindow();
+                setPaused(false);
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
         }
-        View view = this.f2558b;
-        if (view != null) {
-            view.invalidate();
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        switch (this.f2561i0) {
+            case 1:
+                super.onDetachedFromWindow();
+                setPaused(true);
+                return;
+            case 2:
+                super.onDetachedFromWindow();
+                setPaused(true);
+                return;
+            case 3:
+                super.onDetachedFromWindow();
+                setPaused(true);
+                return;
+            case 4:
+                super.onDetachedFromWindow();
+                setPaused(true);
+                return;
+            default:
+                super.onDetachedFromWindow();
+                return;
         }
-        ci.q0 q0Var = this.f2559c[0];
-        if (q0Var != null) {
-            q0Var.setDrawStar(true);
+    }
+
+    @Override
+    public void p() {
+        switch (this.f2561i0) {
+            case 0:
+                return;
+            default:
+                super.p();
+                return;
         }
-        super/*org.telegram.ui.ActionBar.f3*/.dismissInternal();
-        boolean[] zArr = this.d;
-        if (!zArr[0]) {
-            zArr[0] = true;
-            RectF rectF = this.e;
-            LaunchActivity.c0(rectF.centerX(), rectF.centerY(), 1.5f);
-            try {
-                keVar.container.performHapticFeedback(0, 1);
-            } catch (Exception unused) {
-            }
-            Runnable runnable = this.f2560f;
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
-        LaunchActivity launchActivity = LaunchActivity.H1;
-        if (launchActivity != null && (la0Var = launchActivity.f33187x0) != null) {
-            la0Var.c(true);
-        }
+    }
+
+    private final void r() {
     }
 }

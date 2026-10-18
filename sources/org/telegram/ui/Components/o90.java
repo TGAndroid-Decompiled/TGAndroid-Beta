@@ -13,13 +13,13 @@ public final class o90 extends k9 {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int g10;
-        int min = Math.min(3, ((q90) this.e.d).f29604w);
+        int v;
+        int min = Math.min(3, ((q90) this.e.d).f29610w);
         if (min == 0) {
-            g10 = 0;
+            v = 0;
         } else {
-            g10 = i0.a.g(min, 1, 20, 32);
+            v = com.google.android.gms.internal.play_billing.k3.v(min, 1, 20, 32);
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(g10), 1073741824), i11);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(v), 1073741824), i11);
     }
 }

@@ -15,8 +15,8 @@ public final class l extends b {
                     return false;
                 }
                 boolean z10 = a5.c.f282a;
-                if (m.f4209b.b()) {
-                    return n.f4211a.getStatics().isMultiProcessEnabled();
+                if (m.f4210b.b()) {
+                    return n.f4212a.getStatics().isMultiProcessEnabled();
                 }
                 throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
             default:

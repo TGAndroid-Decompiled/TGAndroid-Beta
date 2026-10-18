@@ -6,37 +6,37 @@ import org.telegram.ui.Components.nn;
 import org.telegram.ui.Components.qy;
 import org.telegram.ui.Components.we0;
 import org.telegram.ui.ey;
-import org.telegram.ui.lv;
+import org.telegram.ui.mv;
 import org.telegram.ui.rj0;
 public final class q1 implements Runnable {
-    public final int f19311a = 0;
-    public final boolean f19312b;
-    public final boolean f19313c;
+    public final int f19316a = 0;
+    public final boolean f19317b;
+    public final boolean f19318c;
     public final boolean d;
     public final Object e;
-    public final Object f19314f;
+    public final Object f19319f;
 
     public q1(ContactsController contactsController, HashMap hashMap, boolean z10, boolean z11, boolean z12) {
         this.e = contactsController;
-        this.f19314f = hashMap;
-        this.f19312b = z10;
-        this.f19313c = z11;
+        this.f19319f = hashMap;
+        this.f19317b = z10;
+        this.f19318c = z11;
         this.d = z12;
     }
 
     @Override
     public final void run() {
-        switch (this.f19311a) {
+        switch (this.f19316a) {
             case 0:
-                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f19314f, this.f19312b, this.f19313c, this.d);
+                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f19319f, this.f19317b, this.f19318c, this.d);
                 return;
             default:
                 ey eyVar = (ey) this.e;
-                Activity activity = (Activity) this.f19314f;
+                Activity activity = (Activity) this.f19319f;
                 if (eyVar.getParentActivity() != null) {
-                    eyVar.f36708t2 = false;
-                    boolean z10 = this.f19312b;
-                    boolean z11 = this.f19313c;
+                    eyVar.f36731t2 = false;
+                    boolean z10 = this.f19317b;
+                    boolean z11 = this.f19318c;
                     boolean z12 = this.d;
                     if (z10 || z11 || z12) {
                         eyVar.A0 = true;
@@ -44,7 +44,7 @@ public final class q1 implements Runnable {
                             we0.e(new String[]{"android.permission.POST_NOTIFICATIONS"}, new nn(1, new qy(8, eyVar, activity)));
                             return;
                         } else if (z11 && eyVar.U1 && eyVar.getUserConfig().syncContacts && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
-                            org.telegram.ui.ActionBar.b2 b2Var = org.telegram.ui.Components.f5.v(activity, new lv(eyVar, 0)).f20601a;
+                            org.telegram.ui.ActionBar.b2 b2Var = org.telegram.ui.Components.f5.v(activity, new mv(eyVar, 0)).f20608a;
                             eyVar.T1 = b2Var;
                             eyVar.showDialog(b2Var);
                             return;
@@ -69,9 +69,9 @@ public final class q1 implements Runnable {
 
     public q1(ey eyVar, boolean z10, boolean z11, boolean z12, Activity activity) {
         this.e = eyVar;
-        this.f19312b = z10;
-        this.f19313c = z11;
+        this.f19317b = z10;
+        this.f19318c = z11;
         this.d = z12;
-        this.f19314f = activity;
+        this.f19319f = activity;
     }
 }

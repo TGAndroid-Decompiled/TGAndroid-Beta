@@ -15,7 +15,7 @@ public final class ux extends sz {
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 0) {
-            this.d.f30756f0 = false;
+            this.d.f30763f0 = false;
         }
         super.a(recyclerView, i10);
     }
@@ -27,13 +27,13 @@ public final class ux extends sz {
         ty tyVar = tzVar.S;
         rx rxVar = tzVar.Q;
         tzVar.U(rxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = tzVar.f30770j2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = tzVar.f30777j2) != null) {
             fVar.f(i10, i11);
         }
         super.b(recyclerView, i10, i11);
-        if (tyVar != null && tzVar.P.getAdapter() == tyVar && !tyVar.f30736x.a() && !tyVar.f30736x.f30405a.E) {
+        if (tyVar != null && tzVar.P.getAdapter() == tyVar && !tyVar.f30743x.a() && !tyVar.f30743x.f30412a.E) {
             if (rxVar.N0() + 20 > tyVar.h()) {
-                sy syVar = tyVar.f30736x;
+                sy syVar = tyVar.f30743x;
                 Objects.requireNonNull(syVar);
                 AndroidUtilities.runOnUIThread(new zw(syVar, 1));
             }

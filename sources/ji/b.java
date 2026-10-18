@@ -1,7 +1,7 @@
 package ji;
 
 import ai.p;
-import ai.tc;
+import ai.uc;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.widget.TextView;
@@ -25,7 +25,7 @@ import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.yq;
 import w7.z5;
 public final class b extends bb {
-    public final tc X;
+    public final uc X;
     public s61 Y;
 
     public b(Context context, TLRPC.Chat chat, Runnable runnable) {
@@ -52,12 +52,12 @@ public final class b extends bb {
         dVar2.setText(LocaleController.getString(i10));
         dVar2.e();
         dVar2.setOnClickListener(new p(22, this, runnable));
-        tc tcVar = new tc(context, 3);
-        TextView textView = (TextView) tcVar.d;
-        TextView textView2 = (TextView) tcVar.f2231c;
-        this.X = tcVar;
-        tcVar.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((w9) tcVar.f2230b).e(chat, new h9(chat));
+        uc ucVar = new uc(context, 3);
+        TextView textView = (TextView) ucVar.d;
+        TextView textView2 = (TextView) ucVar.f2279c;
+        this.X = ucVar;
+        ucVar.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
+        ((w9) ucVar.f2278b).e(chat, new h9(chat));
         textView2.setText(DialogObject.getName(chat));
         int i13 = h6.G6;
         textView2.setTextColor(getThemedColor(i13));
@@ -86,7 +86,7 @@ public final class b extends bb {
     public final hm0 x(im0 im0Var) {
         s61 s61Var = new s61(this.d, getContext(), this.currentAccount, 0, true, new o(this, 12), this.resourcesProvider);
         this.Y = s61Var;
-        s61Var.f30200r = false;
+        s61Var.f30207r = false;
         return s61Var;
     }
 }

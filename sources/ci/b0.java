@@ -6,19 +6,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.qc;
 public final class b0 implements Runnable {
-    public final int f5237a;
-    public final n2 f5238b;
+    public final int f5238a;
+    public final n2 f5239b;
 
     public b0(n2 n2Var, int i10) {
-        this.f5237a = i10;
-        this.f5238b = n2Var;
+        this.f5238a = i10;
+        this.f5239b = n2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f5237a) {
+        switch (this.f5238a) {
             case 0:
-                n2 n2Var = this.f5238b;
+                n2 n2Var = this.f5239b;
                 if (n2Var.O != null && !n2Var.U) {
                     AndroidUtilities.cancelRunOnUIThread(n2Var.V);
                     n2Var.U = true;
@@ -29,8 +29,8 @@ public final class b0 implements Runnable {
                 }
                 return;
             case 1:
-                n2 n2Var2 = this.f5238b;
-                AndroidUtilities.cancelRunOnUIThread(n2Var2.f6137d0);
+                n2 n2Var2 = this.f5239b;
+                AndroidUtilities.cancelRunOnUIThread(n2Var2.f6138d0);
                 qc qcVar = n2Var2.W;
                 if (qcVar != null) {
                     qcVar.b();
@@ -46,9 +46,9 @@ public final class b0 implements Runnable {
                 n2Var2.j();
                 return;
             default:
-                n2 n2Var3 = this.f5238b;
+                n2 n2Var3 = this.f5239b;
                 n2Var3.e.N(true);
-                n2Var3.f6142n.N(true);
+                n2Var3.f6143n.N(true);
                 return;
         }
     }

@@ -1,36 +1,48 @@
 package z7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class lg extends o6.a {
-    public static final Parcelable.Creator<lg> CREATOR = new eg(3);
-    public final boolean f51110a;
-    public final boolean f51111b;
-    public final boolean f51112c;
-    public final boolean d;
-    public final boolean e;
+import java.util.Map;
+import java.util.Set;
+public abstract class lg implements k {
+    public transient fd f51138a;
+    public transient e9.e f51139b;
 
-    public lg(boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        this.f51110a = z10;
-        this.f51111b = z11;
-        this.f51112c = z12;
-        this.d = z13;
-        this.e = z14;
+    public final Map a() {
+        e9.e eVar = this.f51139b;
+        if (eVar == null) {
+            mg mgVar = (mg) this;
+            e9.e eVar2 = new e9.e(mgVar, mgVar.f51152c, 2);
+            this.f51139b = eVar2;
+            return eVar2;
+        }
+        return eVar;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f51110a ? 1 : 0);
-        w7.f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f51111b ? 1 : 0);
-        w7.f0.s(parcel, 3, 4);
-        parcel.writeInt(this.f51112c ? 1 : 0);
-        w7.f0.s(parcel, 4, 4);
-        parcel.writeInt(this.d ? 1 : 0);
-        w7.f0.s(parcel, 5, 4);
-        parcel.writeInt(this.e ? 1 : 0);
-        w7.f0.r(parcel, q6);
+    public final Set b() {
+        fd fdVar = this.f51138a;
+        if (fdVar == null) {
+            mg mgVar = (mg) this;
+            fd fdVar2 = new fd(mgVar, mgVar.f51152c);
+            this.f51138a = fdVar2;
+            return fdVar2;
+        }
+        return fdVar;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof k)) {
+            return false;
+        }
+        return a().equals(((lg) ((k) obj)).a());
+    }
+
+    public final int hashCode() {
+        return ((e9.e) a()).f8436b.hashCode();
+    }
+
+    public final String toString() {
+        return ((e9.e) a()).f8436b.toString();
     }
 }

@@ -2,11 +2,11 @@ package be;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class t1 extends kotlin.jvm.internal.h implements td.q {
-    public static final t1 f4323a = new kotlin.jvm.internal.h(3, v1.class, "onAwaitInternalProcessResFunc", "onAwaitInternalProcessResFunc(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;", 0);
+    public static final t1 f4324a = new kotlin.jvm.internal.h(3, v1.class, "onAwaitInternalProcessResFunc", "onAwaitInternalProcessResFunc(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;", 0);
 
     @Override
     public final Object b(Object obj, Object obj2, md.c cVar) {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = v1.f4333a;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = v1.f4334a;
         ((v1) obj).getClass();
         return cVar;
     }

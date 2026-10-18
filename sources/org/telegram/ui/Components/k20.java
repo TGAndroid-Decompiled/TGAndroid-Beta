@@ -27,20 +27,20 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
     public final sa1 G;
     public j20 H;
     public int I;
-    public final ne.b f27707a;
-    public final ne.b f27708b;
-    public final ne.e f27709c;
+    public final ne.b f27714a;
+    public final ne.b f27715b;
+    public final ne.e f27716c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final ImageView e;
-    public final ImageView f27710f;
+    public final ImageView f27717f;
     public final LinearLayout h;
-    public boolean f27711n;
-    public final ei.e2 f27712r;
-    public dh.d f27713s;
+    public boolean f27718n;
+    public final ei.e2 f27719r;
+    public dh.d f27720s;
     public Drawable v;
-    public boolean f27714w;
-    public boolean f27715x;
-    public Runnable f27716y;
+    public boolean f27721w;
+    public boolean f27722x;
+    public Runnable f27723y;
 
     public k20(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -49,14 +49,14 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
         int i12;
         int i13;
         bs bsVar = bs.h;
-        this.f27707a = new ne.b(0, this, bsVar, 380L, false);
-        this.f27708b = new ne.b(1, this, bsVar, 380L, true);
-        this.f27709c = new ne.e(2, this, me.a.f16847a, 280L);
+        this.f27714a = new ne.b(0, this, bsVar, 380L, false);
+        this.f27715b = new ne.b(1, this, bsVar, 380L, true);
+        this.f27716c = new ne.e(2, this, me.a.f16854a, 280L);
         this.E = new AnimationNotificationsLocker();
         this.F = new ArrayList();
         this.d = d6Var;
         ei.e2 e2Var = new ei.e2(this, context, 4);
-        this.f27712r = e2Var;
+        this.f27719r = e2Var;
         e2Var.setTextSize(1, 15.0f);
         e2Var.setCursorWidth(1.5f);
         e2Var.setInputType(e2Var.getInputType() | 176);
@@ -99,7 +99,7 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
         }
         addView(linearLayout, w7.z5.a(-1.0f, 32.0f, 0.0f, 32.0f, 0.0f, -2, i12 | 16));
         ImageView imageView2 = new ImageView(context);
-        this.f27710f = imageView2;
+        this.f27717f = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.miniplayer_close);
         imageView2.setVisibility(8);
@@ -126,7 +126,7 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
 
     public final void b() {
         int i10;
-        int max = Math.max(AndroidUtilities.dp(6.0f) + ((int) this.f27709c.e), AndroidUtilities.dp(48.0f));
+        int max = Math.max(AndroidUtilities.dp(6.0f) + ((int) this.f27716c.e), AndroidUtilities.dp(48.0f));
         int measuredWidth = this.h.getMeasuredWidth() + AndroidUtilities.dp(48.0f);
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -138,7 +138,7 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
             max = measuredWidth;
         }
         Rect rect = AndroidUtilities.rectTmp2;
-        ei.e2 e2Var = this.f27712r;
+        ei.e2 e2Var = this.f27719r;
         rect.set(i10, 0, e2Var.getMeasuredWidth() - max, e2Var.getMeasuredHeight());
         e2Var.setClipBounds(rect);
         e2Var.setPadding(i10, 0, max, 0);
@@ -173,12 +173,12 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
         } else {
             q6 = org.telegram.ui.ActionBar.h6.I.q();
         }
-        if (this.f27714w) {
-            c02 = org.telegram.ui.ActionBar.h6.e0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var));
+        if (this.f27721w) {
+            c02 = org.telegram.ui.ActionBar.h6.e0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var));
         } else {
             int dp = AndroidUtilities.dp(20.0f);
-            if (this.f27715x) {
-                m12 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var);
+            if (this.f27722x) {
+                m12 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var);
             } else {
                 int i10 = org.telegram.ui.ActionBar.h6.G6;
                 if (q6) {
@@ -196,15 +196,15 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         this.e.setColorFilter(m13, mode);
         int m14 = org.telegram.ui.ActionBar.h6.m1(0.6f, org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
-        ImageView imageView = this.f27710f;
+        ImageView imageView = this.f27717f;
         imageView.setColorFilter(m14, mode);
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21075i6, d6Var), 1, AndroidUtilities.dp(17.0f)));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21082i6, d6Var), 1, AndroidUtilities.dp(17.0f)));
         int m15 = org.telegram.ui.ActionBar.h6.m1(0.5f, org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
-        ei.e2 e2Var = this.f27712r;
+        ei.e2 e2Var = this.f27719r;
         e2Var.setHintTextColor(m15);
         e2Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         e2Var.setCursorColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Yh, d6Var));
-        dh.d dVar = this.f27713s;
+        dh.d dVar = this.f27720s;
         if (dVar != null) {
             dVar.v();
         }
@@ -217,7 +217,7 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
                 if (u0Var.getIconView() != null) {
                     u0Var.getIconView().setColorFilter(org.telegram.ui.ActionBar.h6.m1(0.6f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var)), PorterDuff.Mode.MULTIPLY);
                 }
-                childAt.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21075i6, d6Var), 1, AndroidUtilities.dp(17.0f)));
+                childAt.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21082i6, d6Var), 1, AndroidUtilities.dp(17.0f)));
             }
         }
         sa1 sa1Var = this.G;
@@ -238,10 +238,10 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
             drawable.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
             this.v.draw(canvas);
         }
-        dh.d dVar = this.f27713s;
+        dh.d dVar = this.f27720s;
         if (dVar != null) {
             dVar.setBounds(getPaddingLeft() - AndroidUtilities.dp(4.0f), getPaddingTop() - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + (getWidth() - getPaddingRight()), AndroidUtilities.dp(4.0f) + (getHeight() - getPaddingBottom()));
-            this.f27713s.draw(canvas);
+            this.f27720s.draw(canvas);
         }
         super.dispatchDraw(canvas);
         canvas.restore();
@@ -266,14 +266,14 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
         int i11;
         ArrayList arrayList = this.F;
         boolean isEmpty = arrayList.isEmpty();
-        this.f27708b.a(isEmpty, true);
+        this.f27715b.a(isEmpty, true);
         ArrayList arrayList2 = new ArrayList(arrayList);
         TransitionSet transitionSet = new TransitionSet();
         ChangeBounds changeBounds = new ChangeBounds();
         changeBounds.setDuration(150L);
         transitionSet.addTransition(new org.telegram.ui.ActionBar.m0(1).setDuration(150L)).addTransition(changeBounds);
         transitionSet.setOrdering(0);
-        transitionSet.setInterpolator((TimeInterpolator) bs.f25031g);
+        transitionSet.setInterpolator((TimeInterpolator) bs.f25038g);
         transitionSet.addListener((Transition.TransitionListener) new i20(this));
         sa1 sa1Var = this.G;
         TransitionManager.beginDelayedTransition(sa1Var, transitionSet);
@@ -289,7 +289,7 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
             hg.o0 o0Var = (hg.o0) arrayList2.get(i13);
             o0Var.getClass();
             org.telegram.ui.ActionBar.t0 t0Var = new org.telegram.ui.ActionBar.t0(getContext(), this.d);
-            t0Var.f21716r = true;
+            t0Var.f21723r = true;
             t0Var.a();
             t0Var.setData(o0Var);
             t0Var.setOnClickListener(new ca(14, this, t0Var));
@@ -334,7 +334,7 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
             }
             f();
             j20 j20Var = this.H;
-            if (j20Var != null && (nxVar = ((org.telegram.ui.jx) j20Var).f38360b.C0) != null) {
+            if (j20Var != null && (nxVar = ((org.telegram.ui.jx) j20Var).f38369b.C0) != null) {
                 nxVar.Q(false);
             }
         }
@@ -354,9 +354,9 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
         boolean z10;
         int i10;
         int i11 = (int) (f7 * 255.0f);
-        dh.d dVar = this.f27713s;
+        dh.d dVar = this.f27720s;
         boolean z11 = true;
-        if (dVar != null && dVar.f8018l != i11) {
+        if (dVar != null && dVar.f8019l != i11) {
             dVar.setAlpha(i11);
             z10 = true;
         } else {
@@ -374,18 +374,18 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
     }
 
     public void setCloseButtonOnClickListener(Runnable runnable) {
-        this.f27716y = runnable;
+        this.f27723y = runnable;
     }
 
     public void setCloseButtonVisible(boolean z10) {
         boolean z11;
-        this.f27711n = z10;
-        if (!z10 && this.f27712r.length() <= 0) {
+        this.f27718n = z10;
+        if (!z10 && this.f27719r.length() <= 0) {
             z11 = false;
         } else {
             z11 = true;
         }
-        this.f27707a.a(z11, true);
+        this.f27714a.a(z11, true);
     }
 
     public void setSearchFiltersListener(j20 j20Var) {
@@ -395,13 +395,13 @@ public class k20 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.
     public void setupBlurredBackground(dh.d dVar) {
         dVar.q(AndroidUtilities.dp(20.0f));
         dVar.p(AndroidUtilities.dp(4.0f));
-        this.f27713s = dVar;
+        this.f27720s = dVar;
     }
 
     @Override
     public final void u(int i10, float f7, float f10, ne.e eVar) {
         if (i10 == 0) {
-            ImageView imageView = this.f27710f;
+            ImageView imageView = this.f27717f;
             h20.d(imageView, f7);
             imageView.setRotation((1.0f - f7) * 90.0f);
         } else if (i10 == 1) {

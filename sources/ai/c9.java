@@ -18,51 +18,51 @@ import org.telegram.ui.fg0;
 import org.telegram.ui.of0;
 import org.telegram.ui.xm0;
 public final class c9 implements Runnable {
-    public final int f1097a;
-    public final int f1098b;
-    public final Object f1099c;
+    public final int f1081a;
+    public final int f1082b;
+    public final Object f1083c;
     public final Object d;
     public final Object e;
-    public final Object f1100f;
+    public final Object f1084f;
     public final Object h;
-    public final Object f1101n;
-    public final Object f1102r;
-    public final Object f1103s;
+    public final Object f1085n;
+    public final Object f1086r;
+    public final Object f1087s;
 
-    public c9(fa faVar, boolean[] zArr, MessageObject messageObject, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, boolean[] zArr2, int i10, Utilities.Callback callback, Utilities.Callback callback2) {
-        this.f1097a = 0;
-        this.f1099c = faVar;
+    public c9(ga gaVar, boolean[] zArr, MessageObject messageObject, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, boolean[] zArr2, int i10, Utilities.Callback callback, Utilities.Callback callback2) {
+        this.f1081a = 0;
+        this.f1083c = gaVar;
         this.d = zArr;
-        this.f1100f = messageObject;
+        this.f1084f = messageObject;
         this.h = inputInvoice;
-        this.f1101n = tL_payments_paymentFormStars;
+        this.f1085n = tL_payments_paymentFormStars;
         this.e = zArr2;
-        this.f1098b = i10;
-        this.f1102r = callback;
-        this.f1103s = callback2;
+        this.f1082b = i10;
+        this.f1086r = callback;
+        this.f1087s = callback2;
     }
 
     @Override
     public final void run() {
         String formatPluralStringComma;
-        int i10 = this.f1097a;
-        int i11 = this.f1098b;
-        Object obj = this.f1103s;
-        Object obj2 = this.f1102r;
-        Object obj3 = this.f1101n;
+        int i10 = this.f1081a;
+        int i11 = this.f1082b;
+        Object obj = this.f1087s;
+        Object obj2 = this.f1086r;
+        Object obj3 = this.f1085n;
         Object obj4 = this.h;
-        Object obj5 = this.f1100f;
+        Object obj5 = this.f1084f;
         Object obj6 = this.e;
         Object obj7 = this.d;
-        Object obj8 = this.f1099c;
+        Object obj8 = this.f1083c;
         switch (i10) {
             case 0:
-                fa faVar = (fa) obj8;
+                ga gaVar = (ga) obj8;
                 ((boolean[]) obj7)[0] = true;
-                faVar.a0((MessageObject) obj5, (TLRPC.InputInvoice) obj4, (TLRPC.TL_payments_paymentFormStars) obj3, new d9(faVar, (boolean[]) obj6, this.f1098b, (Utilities.Callback) obj2, (Utilities.Callback) obj));
+                gaVar.a0((MessageObject) obj5, (TLRPC.InputInvoice) obj4, (TLRPC.TL_payments_paymentFormStars) obj3, new d9(gaVar, (boolean[]) obj6, this.f1082b, (Utilities.Callback) obj2, (Utilities.Callback) obj));
                 return;
             case 1:
-                ((MessagesController) obj8).lambda$processLoadedDialogFilters$23((TLRPC.messages_Dialogs) obj7, (ArrayList) obj6, (TLRPC.messages_Dialogs) obj5, this.f1098b, (ArrayList) obj4, (ArrayList) obj3, (ArrayList) obj2, (Runnable) obj);
+                ((MessagesController) obj8).lambda$processLoadedDialogFilters$23((TLRPC.messages_Dialogs) obj7, (ArrayList) obj6, (TLRPC.messages_Dialogs) obj5, this.f1082b, (ArrayList) obj4, (ArrayList) obj3, (ArrayList) obj2, (Runnable) obj);
                 return;
             case 2:
                 LaunchActivity launchActivity = (LaunchActivity) obj8;
@@ -78,7 +78,7 @@ public final class c9 implements Runnable {
                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject;
                     if (!tL_messages_chats.chats.isEmpty()) {
                         MessagesController.getInstance(launchActivity.O).putChats(tL_messages_chats.chats, false);
-                        iArr[0] = launchActivity.z0(this.f1098b, b80Var, num, num2, l4, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
+                        iArr[0] = launchActivity.z0(this.f1082b, b80Var, num, num2, l4, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
                         return;
                     }
                 }
@@ -120,10 +120,10 @@ public final class c9 implements Runnable {
                 String str4 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
                 fg0 fg0Var = of0Var.v;
-                ei.d dVar = of0Var.f39764b;
+                ei.d dVar = of0Var.f39785b;
                 FileLog.d("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    dVar.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, lVar.f4763a), false, true);
+                    dVar.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, lVar.f4764a), false, true);
                     if (i11 == 7) {
                         formatPluralStringComma = LocaleController.getString(R.string.SMSFeePurchaseText);
                     } else {
@@ -148,28 +148,28 @@ public final class c9 implements Runnable {
     }
 
     public c9(Object obj, TLObject tLObject, Object obj2, Object obj3, int i10, Object obj4, Object obj5, Serializable serializable, Object obj6, int i11) {
-        this.f1097a = i11;
-        this.f1099c = obj;
+        this.f1081a = i11;
+        this.f1083c = obj;
         this.d = tLObject;
         this.e = obj2;
-        this.f1100f = obj3;
-        this.f1098b = i10;
+        this.f1084f = obj3;
+        this.f1082b = i10;
         this.h = obj4;
-        this.f1101n = obj5;
-        this.f1102r = serializable;
-        this.f1103s = obj6;
+        this.f1085n = obj5;
+        this.f1086r = serializable;
+        this.f1087s = obj6;
     }
 
     public c9(LaunchActivity launchActivity, Object obj, Object obj2, int i10, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i11) {
-        this.f1097a = i11;
-        this.f1099c = launchActivity;
+        this.f1081a = i11;
+        this.f1083c = launchActivity;
         this.d = obj;
         this.e = obj2;
-        this.f1098b = i10;
-        this.f1100f = obj3;
+        this.f1082b = i10;
+        this.f1084f = obj3;
         this.h = obj4;
-        this.f1101n = obj5;
-        this.f1102r = obj6;
-        this.f1103s = obj7;
+        this.f1085n = obj5;
+        this.f1086r = obj6;
+        this.f1087s = obj7;
     }
 }

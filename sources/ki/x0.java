@@ -12,17 +12,17 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.m9;
 import org.telegram.ui.Cells.n9;
 public final class x0 extends a0 implements org.telegram.ui.ActionBar.y5, m9 {
-    public final org.telegram.ui.ActionBar.d6 f15631n;
-    public final Paint f15632r;
-    public final Paint f15633s;
+    public final org.telegram.ui.ActionBar.d6 f15638n;
+    public final Paint f15639r;
+    public final Paint f15640s;
     public s2 v;
-    public boolean f15634w;
+    public boolean f15641w;
 
     public x0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f15632r = new Paint(1);
-        this.f15633s = new Paint(1);
-        this.f15631n = d6Var;
+        this.f15639r = new Paint(1);
+        this.f15640s = new Paint(1);
+        this.f15638n = d6Var;
         setWillNotDraw(false);
         d();
     }
@@ -30,9 +30,9 @@ public final class x0 extends a0 implements org.telegram.ui.ActionBar.y5, m9 {
     @Override
     public final void d() {
         int i10 = h6.vk;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f15631n;
-        this.f15632r.setColor(h6.w0(i10, d6Var));
-        this.f15633s.setColor(h6.w0(h6.f21310uf, d6Var));
+        org.telegram.ui.ActionBar.d6 d6Var = this.f15638n;
+        this.f15639r.setColor(h6.w0(i10, d6Var));
+        this.f15640s.setColor(h6.w0(h6.f21317uf, d6Var));
     }
 
     @Override
@@ -43,10 +43,10 @@ public final class x0 extends a0 implements org.telegram.ui.ActionBar.y5, m9 {
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
         int i10;
-        if (this.f15634w) {
+        if (this.f15641w) {
             i10 = 0;
         } else {
-            i10 = this.f15107c;
+            i10 = this.f15114c;
         }
         int h = (h() - i10) / 4;
         arrayList.add(w7.j.a((i10 + h) - AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f) + (h() - h), AndroidUtilities.dp(12.0f)));
@@ -57,14 +57,14 @@ public final class x0 extends a0 implements org.telegram.ui.ActionBar.y5, m9 {
     }
 
     public a getRow() {
-        return this.f15105a;
+        return this.f15112a;
     }
 
     public final int h() {
         int i10;
         int measuredWidth = getMeasuredWidth();
-        if (this.f15634w) {
-            i10 = this.f15107c;
+        if (this.f15641w) {
+            i10 = this.f15114c;
         } else {
             i10 = 0;
         }
@@ -76,32 +76,32 @@ public final class x0 extends a0 implements org.telegram.ui.ActionBar.y5, m9 {
         int i10;
         Canvas canvas2;
         n9 textSelectionHelper;
-        if (this.f15634w) {
+        if (this.f15641w) {
             i10 = 0;
         } else {
-            i10 = this.f15107c;
+            i10 = this.f15114c;
         }
         int h = (h() - i10) / 4;
         int i11 = i10 + h;
         int h10 = h() - h;
         s2 s2Var = this.v;
-        if (s2Var != null && (textSelectionHelper = s2Var.f15494a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
+        if (s2Var != null && (textSelectionHelper = s2Var.f15501a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f22656p0 && R <= textSelectionHelper.f22659s0) {
+            if (R >= 0 && R >= textSelectionHelper.f22660p0 && R <= textSelectionHelper.f22663s0) {
                 canvas2 = canvas;
-                canvas2.drawRoundRect(i11 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + h10, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f15633s);
+                canvas2.drawRoundRect(i11 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + h10, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f15640s);
                 float dp = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(i11, dp, h10, AndroidUtilities.dp(1.0f) + dp);
-                canvas2.drawRoundRect(rectF, AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), this.f15632r);
+                canvas2.drawRoundRect(rectF, AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), this.f15639r);
             }
         }
         canvas2 = canvas;
         float dp2 = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(i11, dp2, h10, AndroidUtilities.dp(1.0f) + dp2);
-        canvas2.drawRoundRect(rectF2, AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), this.f15632r);
+        canvas2.drawRoundRect(rectF2, AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), this.f15639r);
     }
 
     @Override

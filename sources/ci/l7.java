@@ -11,23 +11,23 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.uj0;
 public final class l7 extends View {
-    public final String f5591a;
-    public final String f5592b;
-    public final uj0 f5593c;
+    public final String f5592a;
+    public final String f5593b;
+    public final uj0 f5594c;
     public final Paint d;
     public final TextPaint e;
-    public final TextPaint f5594f;
+    public final TextPaint f5595f;
     public final RectF h;
-    public float f5595n;
-    public final Rect f5596r;
+    public float f5596n;
+    public final Rect f5597r;
 
     public l7(Context context, int i10, String str, String str2) {
         super(context);
-        this.f5596r = new Rect();
-        this.f5591a = str;
-        this.f5592b = str2;
+        this.f5597r = new Rect();
+        this.f5592a = str;
+        this.f5593b = str2;
         uj0 uj0Var = new uj0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
-        this.f5593c = uj0Var;
+        this.f5594c = uj0Var;
         uj0Var.K(1);
         uj0Var.R(this);
         Paint paint = new Paint(1);
@@ -39,7 +39,7 @@ public final class l7 extends View {
         textPaint.setTextSize(TypedValue.applyDimension(1, 16.0f, getResources().getDisplayMetrics()));
         textPaint.setTypeface(AndroidUtilities.bold());
         TextPaint textPaint2 = new TextPaint(1);
-        this.f5594f = textPaint2;
+        this.f5595f = textPaint2;
         textPaint2.setColor(-1761607681);
         textPaint2.setTextSize(TypedValue.applyDimension(1, 14.0f, getResources().getDisplayMetrics()));
         this.h = new RectF();
@@ -49,31 +49,31 @@ public final class l7 extends View {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int dp = AndroidUtilities.dp(40.0f);
-        int dp2 = (int) ((AndroidUtilities.dp(8.0f) * this.f5595n) + AndroidUtilities.dp(36.0f));
+        int dp2 = (int) ((AndroidUtilities.dp(8.0f) * this.f5596n) + AndroidUtilities.dp(36.0f));
         int i10 = dp2 / 2;
         int i11 = dp - i10;
         int measuredHeight = (getMeasuredHeight() / 2) - i10;
-        uj0 uj0Var = this.f5593c;
+        uj0 uj0Var = this.f5594c;
         uj0Var.setBounds(i11, measuredHeight, i11 + dp2, dp2 + measuredHeight);
         uj0Var.draw(canvas);
-        if (this.f5595n > 0.0f) {
-            float dpf2 = (1.0f - this.f5595n) * AndroidUtilities.dpf2(4.0f);
+        if (this.f5596n > 0.0f) {
+            float dpf2 = (1.0f - this.f5596n) * AndroidUtilities.dpf2(4.0f);
             float f7 = dpf2 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f7;
             float measuredHeight2 = getMeasuredHeight() - f7;
             RectF rectF = this.h;
             rectF.set(dpf2, dpf2, measuredWidth, measuredHeight2);
-            int i12 = (int) (this.f5595n * 30.0f);
+            int i12 = (int) (this.f5596n * 30.0f);
             Paint paint = this.d;
             paint.setAlpha(i12);
             canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), paint);
             canvas.save();
-            float f10 = this.f5595n;
+            float f10 = this.f5596n;
             canvas.scale((f10 * 0.05f) + 1.0f, (f10 * 0.05f) + 1.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
         }
-        canvas.drawText(this.f5591a, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dpf2(4.0f), this.e);
-        canvas.drawText(this.f5592b, AndroidUtilities.dpf2(80.0f), AndroidUtilities.dpf2(18.0f) + (getMeasuredHeight() / 2.0f), this.f5594f);
-        if (this.f5595n > 0.0f) {
+        canvas.drawText(this.f5592a, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dpf2(4.0f), this.e);
+        canvas.drawText(this.f5593b, AndroidUtilities.dpf2(80.0f), AndroidUtilities.dpf2(18.0f) + (getMeasuredHeight() / 2.0f), this.f5595f);
+        if (this.f5596n > 0.0f) {
             canvas.restore();
         }
     }
@@ -86,6 +86,6 @@ public final class l7 extends View {
         int i12 = dp2 / 2;
         int i13 = dp - i12;
         int measuredHeight = (getMeasuredHeight() / 2) - i12;
-        this.f5593c.setBounds(i13, measuredHeight, i13 + dp2, dp2 + measuredHeight);
+        this.f5594c.setBounds(i13, measuredHeight, i13 + dp2, dp2 + measuredHeight);
     }
 }

@@ -1,21 +1,78 @@
 package u2;
+public abstract class s1 extends l {
+    public final a f47479k;
 
-import e9.x1;
-public final class s1 extends b2.w0 {
-    public final e9.n0 f47446c;
+    public s1(a aVar) {
+        this.f47479k = aVar;
+    }
 
-    public s1(String str, x1 x1Var) {
-        super(str, null, false, 1);
-        this.f47446c = e9.n0.u(x1Var);
+    public abstract void A(b2.o1 o1Var);
+
+    public final void B() {
+        y(null, this.f47479k);
+    }
+
+    public void C() {
+        B();
     }
 
     @Override
-    public final String getMessage() {
-        String message = super.getMessage();
-        e9.n0 n0Var = this.f47446c;
-        if (n0Var.isEmpty()) {
-            return message;
-        }
-        return message + "\nsniff failures: " + n0Var;
+    public boolean a(b2.o0 o0Var) {
+        return this.f47479k.a(o0Var);
+    }
+
+    @Override
+    public b2.o1 h() {
+        return this.f47479k.h();
+    }
+
+    @Override
+    public final b2.o0 i() {
+        return this.f47479k.i();
+    }
+
+    @Override
+    public boolean j() {
+        return this.f47479k.j();
+    }
+
+    @Override
+    public final void m(g2.c0 c0Var) {
+        this.f47398j = c0Var;
+        this.f47397i = e2.m0.q(null);
+        C();
+    }
+
+    @Override
+    public void t(b2.o0 o0Var) {
+        this.f47479k.t(o0Var);
+    }
+
+    @Override
+    public final f0 u(Object obj, f0 f0Var) {
+        Void r12 = (Void) obj;
+        return z(f0Var);
+    }
+
+    @Override
+    public final long v(Object obj, long j10) {
+        Void r12 = (Void) obj;
+        return j10;
+    }
+
+    @Override
+    public final int w(int i10, Object obj) {
+        Void r22 = (Void) obj;
+        return i10;
+    }
+
+    @Override
+    public final void x(Object obj, a aVar, b2.o1 o1Var) {
+        Void r12 = (Void) obj;
+        A(o1Var);
+    }
+
+    public f0 z(f0 f0Var) {
+        return f0Var;
     }
 }

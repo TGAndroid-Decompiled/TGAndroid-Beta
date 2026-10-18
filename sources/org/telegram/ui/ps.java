@@ -19,18 +19,18 @@ public final class ps extends hg.e {
         boolean z10 = false;
         X(false);
         ContactsActivity contactsActivity = this.L;
-        org.telegram.ui.Components.im0 im0Var = contactsActivity.f33071f;
+        org.telegram.ui.Components.im0 im0Var = contactsActivity.f33078f;
         if (im0Var != null && im0Var.getAdapter() == this) {
             int h = h();
             if (contactsActivity.H) {
-                org.telegram.ui.Components.im0 im0Var2 = contactsActivity.f33071f;
+                org.telegram.ui.Components.im0 im0Var2 = contactsActivity.f33078f;
                 if (h != 2) {
                     z10 = true;
                 }
                 im0Var2.setFastScrollVisible(z10);
                 return;
             }
-            org.telegram.ui.Components.im0 im0Var3 = contactsActivity.f33071f;
+            org.telegram.ui.Components.im0 im0Var3 = contactsActivity.f33078f;
             if (h != 0) {
                 z10 = true;
             }

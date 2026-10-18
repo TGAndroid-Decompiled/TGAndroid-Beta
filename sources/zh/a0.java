@@ -1,20 +1,40 @@
 package zh;
+public final class a0 implements Runnable {
+    public final int f51680a;
+    public final f0 f51681b;
 
-import android.graphics.Bitmap;
-public final class a0 {
-    public final Bitmap f51655a;
-    public final int f51656b;
-    public final int f51657c;
-    public final int d;
-    public final int e;
-    public final int f51658f;
+    public a0(f0 f0Var, int i10) {
+        this.f51680a = i10;
+        this.f51681b = f0Var;
+    }
 
-    public a0(Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f51655a = bitmap;
-        this.f51656b = i10;
-        this.f51657c = i10 + 4;
-        this.d = i11;
-        this.e = i12;
-        this.f51658f = i13;
+    @Override
+    public final void run() {
+        switch (this.f51680a) {
+            case 0:
+                f0 f0Var = this.f51681b;
+                if (f0Var.h == null && f0Var.d != null && !f0Var.isFinished && f0Var.getParentActivity() != null) {
+                    f0Var.b0(f0Var.d.H0(), 0.0f, true);
+                    f0Var.h.setVisibility(4);
+                    c cVar = f0Var.f51771x;
+                    if (cVar != null) {
+                        cVar.setVisibility(4);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                f0 f0Var2 = this.f51681b;
+                c cVar2 = f0Var2.f51771x;
+                if (cVar2 != null) {
+                    cVar2.invalidate();
+                }
+                f0Var2.h0();
+                return;
+            default:
+                this.f51681b.f0();
+                return;
+        }
     }
 }

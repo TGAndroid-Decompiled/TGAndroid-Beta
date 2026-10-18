@@ -2,19 +2,19 @@ package ai;
 
 import org.telegram.messenger.Utilities;
 public final class d9 implements Utilities.Callback {
-    public final int f1170a = 0;
-    public final fa f1171b;
-    public final boolean[] f1172c;
+    public final int f1163a = 0;
+    public final ga f1164b;
+    public final boolean[] f1165c;
     public final int d;
     public final Utilities.Callback e;
-    public final Utilities.Callback f1173f;
+    public final Utilities.Callback f1166f;
 
-    public d9(fa faVar, int i10, Utilities.Callback callback, boolean[] zArr, Utilities.Callback callback2) {
-        this.f1171b = faVar;
+    public d9(ga gaVar, int i10, Utilities.Callback callback, boolean[] zArr, Utilities.Callback callback2) {
+        this.f1164b = gaVar;
         this.d = i10;
         this.e = callback;
-        this.f1172c = zArr;
-        this.f1173f = callback2;
+        this.f1165c = zArr;
+        this.f1166f = callback2;
     }
 
     @Override
@@ -22,17 +22,17 @@ public final class d9 implements Utilities.Callback {
         String str;
         String str2;
         Boolean bool = (Boolean) obj;
-        switch (this.f1170a) {
+        switch (this.f1163a) {
             case 0:
                 if (this.d > 0) {
-                    this.f1171b.S();
+                    this.f1164b.S();
                 }
                 Utilities.Callback callback = this.e;
                 if (callback != null) {
                     callback.run(Boolean.TRUE);
                 }
-                this.f1172c[0] = true;
-                Utilities.Callback callback2 = this.f1173f;
+                this.f1165c[0] = true;
+                Utilities.Callback callback2 = this.f1166f;
                 if (callback2 != null) {
                     if (bool.booleanValue()) {
                         str = "paid";
@@ -44,9 +44,9 @@ public final class d9 implements Utilities.Callback {
                 }
                 return;
             default:
-                this.f1172c[0] = true;
+                this.f1165c[0] = true;
                 if (this.d > 0) {
-                    this.f1171b.S();
+                    this.f1164b.S();
                 }
                 Utilities.Callback callback3 = this.e;
                 if (callback3 != null) {
@@ -57,7 +57,7 @@ public final class d9 implements Utilities.Callback {
                     }
                     callback3.run(str2);
                 }
-                Utilities.Callback callback4 = this.f1173f;
+                Utilities.Callback callback4 = this.f1166f;
                 if (callback4 != null) {
                     callback4.run(Boolean.TRUE);
                     return;
@@ -66,11 +66,11 @@ public final class d9 implements Utilities.Callback {
         }
     }
 
-    public d9(fa faVar, boolean[] zArr, int i10, Utilities.Callback callback, Utilities.Callback callback2) {
-        this.f1171b = faVar;
-        this.f1172c = zArr;
+    public d9(ga gaVar, boolean[] zArr, int i10, Utilities.Callback callback, Utilities.Callback callback2) {
+        this.f1164b = gaVar;
+        this.f1165c = zArr;
         this.d = i10;
         this.e = callback;
-        this.f1173f = callback2;
+        this.f1166f = callback2;
     }
 }

@@ -7,16 +7,16 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 public abstract class g {
-    public static final a0.j f17519a = new a0.j(16);
-    public static final ThreadPoolExecutor f17520b;
-    public static final Object f17521c;
+    public static final a0.j f17526a = new a0.j(16);
+    public static final ThreadPoolExecutor f17527b;
+    public static final Object f17528c;
     public static final l d;
 
     static {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(0, 1, 10000, TimeUnit.MILLISECONDS, new LinkedBlockingDeque(), (ThreadFactory) new Object());
         threadPoolExecutor.allowCoreThreadTimeOut(true);
-        f17520b = threadPoolExecutor;
-        f17521c = new Object();
+        f17527b = threadPoolExecutor;
+        f17528c = new Object();
         d = new l(0);
     }
 

@@ -7,15 +7,15 @@ import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 public final class b extends p {
-    public final int f16850g;
+    public final int f16857g;
 
     public b(d dVar, p pVar, String str, int i10) {
         super(dVar, pVar, str);
-        this.f16850g = i10;
+        this.f16857g = i10;
     }
 
     public static void h(StringBuffer stringBuffer, p pVar) {
-        p pVar2 = (p) pVar.f7987c;
+        p pVar2 = (p) pVar.f7988c;
         if (pVar2 != null) {
             h(stringBuffer, pVar2);
             stringBuffer.append("/");
@@ -24,12 +24,12 @@ public final class b extends p {
     }
 
     public long i() {
-        return ((of.a) ((d) this.f7986b)).e();
+        return ((of.a) ((d) this.f7987b)).e();
     }
 
     public boolean j() {
         long j10;
-        b bVar = (b) this.f7988f;
+        b bVar = (b) this.f7989f;
         if (bVar != null) {
             j10 = bVar.i();
         } else {
@@ -80,23 +80,23 @@ public final class b extends p {
 
     @Override
     public final String toString() {
-        switch (this.f16850g) {
+        switch (this.f16857g) {
             case 0:
                 StringBuffer stringBuffer = new StringBuffer();
                 h(stringBuffer, this);
                 stringBuffer.append("[off=");
-                long j10 = ((d) ((p) this.f7987c).f7986b).f7628b;
-                d dVar = (d) this.f7986b;
-                stringBuffer.append(j10 - dVar.f7628b);
+                long j10 = ((d) ((p) this.f7988c).f7987b).f7629b;
+                d dVar = (d) this.f7987b;
+                stringBuffer.append(j10 - dVar.f7629b);
                 stringBuffer.append(",pos=");
-                stringBuffer.append(dVar.f7628b);
+                stringBuffer.append(dVar.f7629b);
                 stringBuffer.append(",len=");
                 of.a aVar = (of.a) dVar;
-                stringBuffer.append(aVar.e() + aVar.f7628b);
+                stringBuffer.append(aVar.e() + aVar.f7629b);
                 stringBuffer.append("]");
                 return stringBuffer.toString();
             default:
-                return g.r(new StringBuilder("mp4[pos="), ((d) this.f7986b).f7628b, "]");
+                return g.r(new StringBuilder("mp4[pos="), ((d) this.f7987b).f7629b, "]");
         }
     }
 }

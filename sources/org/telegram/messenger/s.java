@@ -1,31 +1,39 @@
 package org.telegram.messenger;
-
-import java.io.File;
-import org.telegram.messenger.AudioRecorderV2Controller;
 public final class s implements Runnable {
-    public final int f19453a;
-    public final AudioRecorderV2Controller.AnonymousClass2 f19454b;
-    public final long f19455c;
-    public final AudioRecorderV2Controller.Listener d;
-    public final File e;
+    public final int f19454a;
+    public final Object f19455b;
+    public final long f19456c;
+    public final int d;
+    public final int e;
 
-    public s(AudioRecorderV2Controller.AnonymousClass2 anonymousClass2, long j10, AudioRecorderV2Controller.Listener listener, File file, int i10) {
-        this.f19453a = i10;
-        this.f19454b = anonymousClass2;
-        this.f19455c = j10;
-        this.d = listener;
-        this.e = file;
+    public s(AccountInstance accountInstance, long j10, int i10, int i11, int i12) {
+        this.f19454a = i12;
+        this.f19455b = accountInstance;
+        this.f19456c = j10;
+        this.d = i10;
+        this.e = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f19453a) {
+        switch (this.f19454a) {
             case 0:
-                AudioRecorderV2Controller.AnonymousClass2.a(this.f19454b, this.f19455c, this.d, this.e);
+                AutoMessageHeardReceiver.a((AccountInstance) this.f19455b, this.f19456c, this.d, this.e);
+                return;
+            case 1:
+                AutoMessageHeardReceiver.b((AccountInstance) this.f19455b, this.f19456c, this.d, this.e);
                 return;
             default:
-                AudioRecorderV2Controller.AnonymousClass2.b(this.f19454b, this.f19455c, this.d, this.e);
+                ((MediaController) this.f19455b).lambda$startRecordingV2$23(this.d, this.f19456c, this.e);
                 return;
         }
+    }
+
+    public s(MediaController mediaController, int i10, long j10, int i11) {
+        this.f19454a = 2;
+        this.f19455b = mediaController;
+        this.d = i10;
+        this.f19456c = j10;
+        this.e = i11;
     }
 }

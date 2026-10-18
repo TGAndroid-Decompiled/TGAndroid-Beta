@@ -21,46 +21,46 @@ public class c9 extends View {
     public long F;
     public final Path G;
     public final androidx.fragment.app.d H;
-    public final org.telegram.ui.Components.f6 f5294a;
-    public final TL_stories.MediaArea f5295b;
-    public final Paint f5296c;
+    public final org.telegram.ui.Components.f6 f5295a;
+    public final TL_stories.MediaArea f5296b;
+    public final Paint f5297c;
     public final Paint d;
     public LinearGradient e;
-    public LinearGradient f5297f;
+    public LinearGradient f5298f;
     public final Matrix h;
-    public final org.telegram.ui.Cells.z f5298n;
-    public final yc f5299r;
-    public final boolean f5300s;
+    public final org.telegram.ui.Cells.z f5299n;
+    public final yc f5300r;
+    public final boolean f5301s;
     public final boolean v;
-    public final boolean f5301w;
-    public final boolean f5302x;
-    public final boolean f5303y;
+    public final boolean f5302w;
+    public final boolean f5303x;
+    public final boolean f5304y;
 
     public c9(Context context, View view, TL_stories.MediaArea mediaArea) {
         super(context);
         boolean z10;
         boolean z11;
         boolean z12 = true;
-        this.f5296c = new Paint(1);
+        this.f5297c = new Paint(1);
         Paint paint = new Paint(1);
         this.d = paint;
         this.h = new Matrix();
         org.telegram.ui.Cells.z g02 = org.telegram.ui.ActionBar.h6.g0(1174405119, 2, -1);
-        this.f5298n = g02;
-        this.f5299r = new yc(this);
-        this.f5300s = false;
+        this.f5299n = g02;
+        this.f5300r = new yc(this);
+        this.f5301s = false;
         this.v = false;
         this.E = false;
         this.G = new Path();
         this.H = new androidx.fragment.app.d(this, 25);
-        this.f5295b = mediaArea;
+        this.f5296b = mediaArea;
         boolean z13 = mediaArea instanceof TL_stories.TL_mediaAreaGeoPoint;
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && !(mediaArea instanceof TL_stories.TL_mediaAreaUrl)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f5300s = z10;
+        this.f5301s = z10;
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue)) {
             z11 = false;
         } else {
@@ -70,16 +70,16 @@ public class c9 extends View {
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && (mediaArea.coordinates.flags & 1) == 0) {
             z12 = false;
         }
-        this.f5301w = z12;
-        this.f5303y = z12;
-        this.f5302x = z12;
-        this.f5294a = new org.telegram.ui.Components.f6(view, 0L, 120L, new LinearInterpolator());
+        this.f5302w = z12;
+        this.f5304y = z12;
+        this.f5303x = z12;
+        this.f5295a = new org.telegram.ui.Components.f6(view, 0L, 120L, new LinearInterpolator());
         paint.setStyle(Paint.Style.STROKE);
         g02.setCallback(this);
     }
 
     public final void b(Canvas canvas) {
-        if (!this.f5303y) {
+        if (!this.f5304y) {
             return;
         }
         float innerRadius = getInnerRadius();
@@ -92,7 +92,7 @@ public class c9 extends View {
         canvas.clipPath(path);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Cells.z zVar = this.f5298n;
+        org.telegram.ui.Cells.z zVar = this.f5299n;
         zVar.setBounds(0, 0, width, height);
         zVar.draw(canvas);
         canvas.restore();
@@ -101,13 +101,13 @@ public class c9 extends View {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        org.telegram.ui.Cells.z zVar = this.f5298n;
-        yc ycVar = this.f5299r;
+        org.telegram.ui.Cells.z zVar = this.f5299n;
+        yc ycVar = this.f5300r;
         if (action == 0) {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                ycVar.f32604f = new uu(1, view);
+                ycVar.f32611f = new uu(1, view);
             }
             ycVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
@@ -123,7 +123,7 @@ public class c9 extends View {
     public float getInnerRadius() {
         TL_stories.MediaArea mediaArea;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates;
-        if ((getParent() instanceof View) && (mediaArea = this.f5295b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
+        if ((getParent() instanceof View) && (mediaArea = this.f5296b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
             if ((mediaAreaCoordinates.flags & 1) != 0) {
                 return (float) (((mediaAreaCoordinates.radius / 100.0d) * getWidth()) / getScaleX());
             }
@@ -151,13 +151,13 @@ public class c9 extends View {
             matrix.postTranslate(measuredWidth2, 0.0f);
             this.e.setLocalMatrix(matrix);
             LinearGradient linearGradient = this.e;
-            Paint paint = this.f5296c;
+            Paint paint = this.f5297c;
             paint.setShader(linearGradient);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             canvas.drawRoundRect(rectF, innerRadius, innerRadius, paint);
-            this.f5297f.setLocalMatrix(matrix);
-            LinearGradient linearGradient2 = this.f5297f;
+            this.f5298f.setLocalMatrix(matrix);
+            LinearGradient linearGradient2 = this.f5298f;
             Paint paint2 = this.d;
             paint2.setShader(linearGradient2);
             float dpf2 = AndroidUtilities.dpf2(1.5f);
@@ -172,7 +172,7 @@ public class c9 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f5298n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f5299n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

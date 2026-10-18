@@ -10,12 +10,12 @@ public final class t0 extends u0 {
         this.e = windowInsetsAnimation;
     }
 
-    public static i0.c e(WindowInsetsAnimation.Bounds bounds) {
-        return i0.c.c(bounds.getUpperBound());
+    public static i0.b e(WindowInsetsAnimation.Bounds bounds) {
+        return i0.b.c(bounds.getUpperBound());
     }
 
-    public static i0.c f(WindowInsetsAnimation.Bounds bounds) {
-        return i0.c.c(bounds.getLowerBound());
+    public static i0.b f(WindowInsetsAnimation.Bounds bounds) {
+        return i0.b.c(bounds.getLowerBound());
     }
 
     public static void g(ViewGroup viewGroup, qh.e eVar) {

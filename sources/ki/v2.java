@@ -1,42 +1,42 @@
 package ki;
 public final class v2 implements Runnable {
-    public final int f15566a;
-    public final h1 f15567b;
-    public final int f15568c;
+    public final int f15573a;
+    public final h1 f15574b;
+    public final int f15575c;
 
     public v2(h1 h1Var, int i10, int i11) {
-        this.f15566a = i11;
-        this.f15567b = h1Var;
-        this.f15568c = i10;
+        this.f15573a = i11;
+        this.f15574b = h1Var;
+        this.f15575c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f15566a) {
+        switch (this.f15573a) {
             case 0:
-                h1 h1Var = this.f15567b;
+                h1 h1Var = this.f15574b;
                 h1Var.r();
-                h1Var.setSelection(Math.max(0, Math.min(this.f15568c, h1Var.length())));
+                h1Var.setSelection(Math.max(0, Math.min(this.f15575c, h1Var.length())));
                 return;
             case 1:
-                h1 h1Var2 = this.f15567b;
+                h1 h1Var2 = this.f15574b;
                 h1Var2.r();
-                h1Var2.setSelection(Math.max(0, Math.min(this.f15568c, h1Var2.length())));
+                h1Var2.setSelection(Math.max(0, Math.min(this.f15575c, h1Var2.length())));
                 return;
             case 2:
-                h1 h1Var3 = this.f15567b;
+                h1 h1Var3 = this.f15574b;
                 h1Var3.r();
-                h1Var3.setSelection(Math.max(0, Math.min(this.f15568c, h1Var3.length())));
+                h1Var3.setSelection(Math.max(0, Math.min(this.f15575c, h1Var3.length())));
                 return;
             case 3:
-                h1 h1Var4 = this.f15567b;
+                h1 h1Var4 = this.f15574b;
                 h1Var4.r();
-                h1Var4.setSelection(Math.min(this.f15568c, h1Var4.length()));
+                h1Var4.setSelection(Math.min(this.f15575c, h1Var4.length()));
                 return;
             default:
-                h1 h1Var5 = this.f15567b;
+                h1 h1Var5 = this.f15574b;
                 h1Var5.r();
-                h1Var5.setSelection(Math.max(0, Math.min(this.f15568c, h1Var5.length())));
+                h1Var5.setSelection(Math.max(0, Math.min(this.f15575c, h1Var5.length())));
                 return;
         }
     }

@@ -7,15 +7,15 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class c10 implements org.telegram.ui.Cells.l7 {
-    public final d10 f35789a;
+    public final d10 f35802a;
 
     public c10(d10 d10Var) {
-        this.f35789a = d10Var;
+        this.f35802a = d10Var;
     }
 
     @Override
     public final void a(String str, boolean z10) {
-        g10 g10Var = this.f35789a.v;
+        g10 g10Var = this.f35802a.v;
         if (z10) {
             org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) g10Var.K, (org.telegram.ui.ActionBar.d6) null, false);
             f3Var.fixNavigationBar();
@@ -28,19 +28,19 @@ public final class c10 implements org.telegram.ui.Cells.l7 {
             g10Var.L.showDialog(f3Var);
             return;
         }
-        SpannableStringBuilder[] spannableStringBuilderArr = g10.f37080s0;
+        SpannableStringBuilder[] spannableStringBuilderArr = g10.f37050s0;
         g10Var.g(str);
     }
 
     @Override
     public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
-        g10 g10Var = this.f35789a.v;
-        SpannableStringBuilder[] spannableStringBuilderArr = g10.f37080s0;
-        org.telegram.ui.Components.cv.J(g10Var.L, messageObject, g10Var.f37091g0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+        g10 g10Var = this.f35802a.v;
+        SpannableStringBuilder[] spannableStringBuilderArr = g10.f37050s0;
+        org.telegram.ui.Components.cv.J(g10Var.L, messageObject, g10Var.f37061g0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
     }
 
     @Override
     public final boolean c() {
-        return !this.f35789a.v.f37099o0.g();
+        return !this.f35802a.v.f37069o0.g();
     }
 }

@@ -1,70 +1,45 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class hq0 implements org.telegram.ui.Cells.r5 {
-    public final iq0 f37613a;
+public final class hq0 extends org.telegram.ui.Components.b10 {
+    public final int U;
 
-    public hq0(iq0 iq0Var) {
-        this.f37613a = iq0Var;
+    public hq0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.U = i10;
     }
 
-    public final void a() {
-        sn snVar;
-        TLRPC.Chat chat;
-        kq0 kq0Var = this.f37613a.d;
-        if (kq0Var.I && (snVar = kq0Var.U) != null && (chat = snVar.e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && kq0Var.W != 2) {
-            org.telegram.ui.Components.f5.t0(kq0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
-            if (kq0Var.W == 1) {
-                kq0Var.W = 2;
-            }
+    @Override
+    public int getColumnsCount() {
+        switch (this.U) {
+            case 0:
+                return 3;
+            default:
+                return super.getColumnsCount();
         }
     }
 
     @Override
-    public final void c(org.telegram.ui.Cells.s5 s5Var) {
-        boolean z10;
-        int intValue = ((Integer) s5Var.getTag()).intValue();
-        kq0 kq0Var = this.f37613a.d;
-        MediaController.AlbumEntry albumEntry = kq0Var.J;
-        int i10 = -1;
-        int i11 = 1;
-        if (albumEntry != null) {
-            MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
-            boolean containsKey = kq0Var.f38639b.containsKey(Integer.valueOf(photoEntry.imageId));
-            z10 = !containsKey;
-            if (!containsKey && kq0Var.H > 0 && kq0Var.f38639b.size() >= kq0Var.H) {
-                a();
-                return;
-            }
-            if (kq0Var.e && !containsKey) {
-                i10 = kq0Var.f38641c.size();
-            }
-            s5Var.b(i10, z10, true);
-            kq0Var.Y(intValue, photoEntry);
-        } else {
-            AndroidUtilities.hideKeyboard(kq0Var.getParentActivity().getCurrentFocus());
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) kq0Var.f38645f.get(intValue);
-            boolean containsKey2 = kq0Var.f38639b.containsKey(searchImage.f17789id);
-            z10 = !containsKey2;
-            if (!containsKey2 && kq0Var.H > 0 && kq0Var.f38639b.size() >= kq0Var.H) {
-                a();
-                return;
-            }
-            if (kq0Var.e && !containsKey2) {
-                i10 = kq0Var.f38641c.size();
-            }
-            s5Var.b(i10, z10, true);
-            kq0Var.Y(intValue, searchImage);
+    public int getViewType() {
+        switch (this.U) {
+            case 0:
+                return 2;
+            default:
+                return super.getViewType();
         }
-        if (!z10) {
-            i11 = 2;
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.U) {
+            case 1:
+                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
-        kq0Var.i0(i11);
-        kq0Var.f38661s0.a();
     }
 }

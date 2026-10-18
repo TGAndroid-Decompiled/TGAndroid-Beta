@@ -11,10 +11,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.kd0, Utilities.Callback2Return, org.telegram.ui.Components.mw0, q3.g, g2.g, qg.j0 {
-    public final int f37572a;
+    public final int f37590a;
 
     public hk0(int i10) {
-        this.f37572a = i10;
+        this.f37590a = i10;
     }
 
     public static AudioRecordingConfiguration c(Object obj) {
@@ -27,7 +27,7 @@ public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
 
     @Override
     public Typeface a() {
-        switch (this.f37572a) {
+        switch (this.f37590a) {
             case 24:
                 return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
             case 25:
@@ -75,7 +75,7 @@ public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37572a) {
+        switch (this.f37590a) {
             case 0:
                 b2Var.dismiss();
                 return;
@@ -129,7 +129,7 @@ public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj2;
         if (((Integer) obj).intValue() == 0) {
-            return ai.ld.Y0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
+            return ai.md.Y0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
         }
         return LocaleController.formatNumber(num.intValue(), ',');
     }

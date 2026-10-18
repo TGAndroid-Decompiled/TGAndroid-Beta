@@ -9,7 +9,7 @@ import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.s61;
 public final class y extends e61 {
-    public static final int f15650a = 0;
+    public static final int f15657a = 0;
 
     static {
         e61.setup(new e61());
@@ -23,7 +23,7 @@ public final class y extends e61 {
     @Override
     public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         z zVar = new z(context, i10, d6Var);
-        zVar.setBackground(new a2(h6.w0(h6.f20986d6, d6Var)));
+        zVar.setBackground(new a2(h6.w0(h6.f20993d6, d6Var)));
         return zVar;
     }
 

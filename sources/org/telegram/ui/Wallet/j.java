@@ -17,22 +17,22 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.b80;
 import org.telegram.ui.it0;
 public final class j implements Runnable {
-    public final int f34340a;
-    public final int f34341b;
-    public final Object f34342c;
+    public final int f34348a;
+    public final int f34349b;
+    public final Object f34350c;
 
     public j(int i10, Object obj, int i11) {
-        this.f34340a = i11;
-        this.f34341b = i10;
-        this.f34342c = obj;
+        this.f34348a = i11;
+        this.f34349b = i10;
+        this.f34350c = obj;
     }
 
     @Override
     public final void run() {
         CharSequence text;
-        int i10 = this.f34340a;
-        Object obj = this.f34342c;
-        final int i11 = this.f34341b;
+        int i10 = this.f34348a;
+        Object obj = this.f34350c;
+        final int i11 = this.f34349b;
         switch (i10) {
             case 0:
                 m0 m0Var = (m0) obj;
@@ -56,24 +56,24 @@ public final class j implements Runnable {
                 b0Var.a();
                 return;
             case 2:
-                p6 p6Var = (p6) obj;
-                if (p6Var.f34744r && !p6Var.f34747x && i11 == p6Var.f34741k0) {
-                    p6Var.postDelayed(p6Var.f34742l0, 500L);
+                s6 s6Var = (s6) obj;
+                if (s6Var.f34914r && !s6Var.f34917x && i11 == s6Var.f34911k0) {
+                    s6Var.postDelayed(s6Var.f34912l0, 500L);
                     return;
                 }
                 return;
             case 3:
-                z7 z7Var = (z7) obj;
-                ArrayList arrayList = z7Var.v;
+                c8 c8Var = (c8) obj;
+                ArrayList arrayList = c8Var.v;
                 try {
-                    ClipboardManager clipboardManager = (ClipboardManager) z7Var.getParentActivity().getSystemService("clipboard");
+                    ClipboardManager clipboardManager = (ClipboardManager) c8Var.getParentActivity().getSystemService("clipboard");
                     if (clipboardManager != null && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() != 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
                         String[] split = text.toString().trim().toLowerCase().split("\\s+");
                         for (int i12 = 0; i11 < arrayList.size() && i12 < split.length; i12++) {
-                            ((ia) arrayList.get(i11)).setText(split[i12]);
+                            ((la) arrayList.get(i11)).setText(split[i12]);
                             i11++;
                         }
-                        z7Var.Y();
+                        c8Var.Y();
                         return;
                     }
                     return;
@@ -81,10 +81,10 @@ public final class j implements Runnable {
                     return;
                 }
             case 4:
-                t9 t9Var = (t9) obj;
-                if (!t9Var.f34910n && i11 == t9Var.I) {
-                    t9Var.K = false;
-                    t9Var.f31190a.W2.N(true);
+                w9 w9Var = (w9) obj;
+                if (!w9Var.f35047n && i11 == w9Var.I) {
+                    w9Var.K = false;
+                    w9Var.f31197a.W2.N(true);
                     return;
                 }
                 return;
@@ -123,7 +123,7 @@ public final class j implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 jVar.P = duration;
-                duration.setInterpolator(bs.f25030f);
+                duration.setInterpolator(bs.f25037f);
                 jVar.P.addUpdateListener(new rg.f(jVar, 5));
                 jVar.P.addListener(new rg.g(jVar, 2));
                 jVar.P.start();
@@ -132,7 +132,7 @@ public final class j implements Runnable {
                 it0 it0Var = (it0) obj;
                 qg.s1 s1Var = it0Var.K1;
                 it0Var.t0(s1Var, null);
-                qg.u0.e(i11).j(s1Var.f44669c);
+                qg.u0.e(i11).j(s1Var.f44689c);
                 return;
             case 8:
                 rg.m2 m2Var = (rg.m2) obj;
@@ -141,7 +141,7 @@ public final class j implements Runnable {
                 m2Var.h();
                 return;
             case 9:
-                x90 x90Var = ((ug.p0) obj).e;
+                x90 x90Var = ((ug.q0) obj).e;
                 try {
                     if (x90Var.getLayout().getLineForOffset(i11) == 0) {
                         x90Var.getEditableText().insert(i11, "\n");
@@ -161,8 +161,8 @@ public final class j implements Runnable {
     }
 
     public j(Object obj, int i10, int i11) {
-        this.f34340a = i11;
-        this.f34342c = obj;
-        this.f34341b = i10;
+        this.f34348a = i11;
+        this.f34350c = obj;
+        this.f34349b = i10;
     }
 }

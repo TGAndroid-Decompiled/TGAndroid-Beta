@@ -1,9 +1,9 @@
 package org.telegram.messenger.camera;
 
-import ai.e2;
+import ai.m4;
 import ai.t0;
 import ai.x7;
-import ai.y3;
+import ai.x9;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
@@ -14,8 +14,8 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Base64;
 import e2.o0;
+import ei.s1;
 import hg.x0;
-import i2.d1;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -358,7 +358,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             AndroidUtilities.runOnUIThread(new c(this, 2));
         } catch (Exception e) {
             FileLog.e(e, !"APP_PAUSED".equals(e.getMessage()));
-            AndroidUtilities.runOnUIThread(new y3(this, z10, e, runnable, 9));
+            AndroidUtilities.runOnUIThread(new x9(this, z10, e, runnable, 8));
         }
     }
 
@@ -485,7 +485,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             } else if (obj instanceof Camera2Session) {
                 ((Camera2Session) obj).setRecordingVideo(true);
             }
-            AndroidUtilities.runOnUIThread(new e2(this, iCameraView, file, z10, runnable, 13));
+            AndroidUtilities.runOnUIThread(new s1(this, iCameraView, file, z10, runnable, 12));
         } catch (Exception e7) {
             FileLog.e(e7);
         }
@@ -846,7 +846,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             this.recordingCurrentCameraView = iCameraView;
             this.onVideoTakeCallback = videoTakeCallback;
             this.recordedFile = file.getAbsolutePath();
-            this.threadPool.execute(new d1(this, obj, iCameraView, file, z11, runnable, 5));
+            this.threadPool.execute(new m4(this, obj, iCameraView, file, z11, runnable, 6));
         } else if (obj instanceof CameraSession) {
             CameraSession cameraSession = (CameraSession) obj;
             CameraInfo cameraInfo = cameraSession.cameraInfo;

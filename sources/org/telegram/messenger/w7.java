@@ -20,20 +20,20 @@ import org.telegram.ui.ru;
 import org.telegram.ui.sn;
 import org.telegram.ui.tu;
 public final class w7 implements Runnable {
-    public final int f19958a = 0;
-    public final boolean f19959b;
-    public final int f19960c;
+    public final int f19970a = 0;
+    public final boolean f19971b;
+    public final int f19972c;
     public final int d;
     public final Object e;
-    public final Object f19961f;
+    public final Object f19973f;
     public final Object h;
 
     public w7(MediaDataController mediaDataController, int i10, TLObject tLObject, org.telegram.ui.ActionBar.n2 n2Var, boolean z10, int i11) {
         this.e = mediaDataController;
-        this.f19960c = i10;
-        this.f19961f = tLObject;
+        this.f19972c = i10;
+        this.f19973f = tLObject;
         this.h = n2Var;
-        this.f19959b = z10;
+        this.f19971b = z10;
         this.d = i11;
     }
 
@@ -46,25 +46,25 @@ public final class w7 implements Runnable {
         Activity activity;
         uj0 uj0Var;
         float f7;
-        int i13 = this.f19958a;
-        boolean z10 = this.f19959b;
+        int i13 = this.f19970a;
+        boolean z10 = this.f19971b;
         int i14 = this.d;
-        int i15 = this.f19960c;
+        int i15 = this.f19972c;
         Window window = null;
         Object obj = this.h;
-        Object obj2 = this.f19961f;
+        Object obj2 = this.f19973f;
         Object obj3 = this.e;
         switch (i13) {
             case 0:
-                ((MediaDataController) obj3).lambda$toggleStickerSets$118(this.f19960c, (TLObject) obj2, (org.telegram.ui.ActionBar.n2) obj, this.f19959b, this.d);
+                ((MediaDataController) obj3).lambda$toggleStickerSets$118(this.f19972c, (TLObject) obj2, (org.telegram.ui.ActionBar.n2) obj, this.f19971b, this.d);
                 return;
             case 1:
-                ((SendMessagesHelper) obj3).lambda$performSendMessageRequest$102(this.f19959b, (TLRPC.Message) obj2, this.f19960c, (ArrayList) obj, this.d);
+                ((SendMessagesHelper) obj3).lambda$performSendMessageRequest$102(this.f19971b, (TLRPC.Message) obj2, this.f19972c, (ArrayList) obj, this.d);
                 return;
             case 2:
                 ArrayList arrayList = (ArrayList) obj2;
                 ArrayList arrayList2 = (ArrayList) obj;
-                sn snVar = ((org.telegram.ui.hl) obj3).f37574b;
+                sn snVar = ((org.telegram.ui.hl) obj3).f37592b;
                 if (z10) {
                     i10 = ((org.telegram.ui.ActionBar.n2) snVar).currentAccount;
                     MessagesController.getNotificationsSettings(i10).edit().remove("pin_" + snVar.T5).commit();
@@ -83,7 +83,7 @@ public final class w7 implements Runnable {
                 org.telegram.ui.Components.oa oaVar = (org.telegram.ui.Components.oa) obj3;
                 Bitmap bitmap = (Bitmap) obj2;
                 String str = (String) obj;
-                Paint paint = oaVar.f28904c;
+                Paint paint = oaVar.f28911c;
                 int i16 = oaVar.d;
                 if (bitmap != null && !bitmap.isRecycled()) {
                     float width = bitmap.getWidth() / bitmap.getHeight();
@@ -127,7 +127,7 @@ public final class w7 implements Runnable {
                         canvas.drawRect(f12, f10, f14, f13, paint);
                         canvas.drawRect(0.0f, f13, f14, i19 + i16, paint);
                     }
-                    AndroidUtilities.runOnUIThread(new ai.e2(oaVar, str, createBitmap, this.f19959b, bitmap, 16));
+                    AndroidUtilities.runOnUIThread(new ei.s1(oaVar, str, createBitmap, this.f19971b, bitmap));
                     return;
                 }
                 return;
@@ -135,7 +135,7 @@ public final class w7 implements Runnable {
                 ru ruVar = (ru) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
-                tu tuVar = ruVar.f40814c;
+                tu tuVar = ruVar.f40835c;
                 tuVar.b();
                 org.telegram.ui.Cells.q8 q8Var = tuVar.e;
                 tuVar.d();
@@ -147,7 +147,7 @@ public final class w7 implements Runnable {
                 ofFloat.addListener(new org.telegram.ui.w0(ruVar, x02, 1));
                 ofFloat.setDuration(350L);
                 ofFloat.start();
-                int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20928a7, false);
+                int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20935a7, false);
                 if (context instanceof Activity) {
                     activity = (Activity) context;
                 } else {
@@ -163,7 +163,7 @@ public final class w7 implements Runnable {
                     }
                     ValueAnimator valueAnimator2 = tuVar.h;
                     if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-                        i14 = tuVar.f41827n;
+                        i14 = tuVar.f41842n;
                     }
                     int i20 = i14;
                     ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -194,37 +194,37 @@ public final class w7 implements Runnable {
 
     public w7(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, int i10, ArrayList arrayList, int i11) {
         this.e = sendMessagesHelper;
-        this.f19959b = z10;
-        this.f19961f = message;
-        this.f19960c = i10;
+        this.f19971b = z10;
+        this.f19973f = message;
+        this.f19972c = i10;
         this.h = arrayList;
         this.d = i11;
     }
 
     public w7(org.telegram.ui.hl hlVar, boolean z10, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
         this.e = hlVar;
-        this.f19959b = z10;
-        this.f19961f = arrayList;
+        this.f19971b = z10;
+        this.f19973f = arrayList;
         this.h = arrayList2;
-        this.f19960c = i10;
+        this.f19972c = i10;
         this.d = i11;
     }
 
     public w7(org.telegram.ui.Components.oa oaVar, Bitmap bitmap, int i10, int i11, String str, boolean z10) {
         this.e = oaVar;
-        this.f19961f = bitmap;
-        this.f19960c = i10;
+        this.f19973f = bitmap;
+        this.f19972c = i10;
         this.d = i11;
         this.h = str;
-        this.f19959b = z10;
+        this.f19971b = z10;
     }
 
     public w7(ru ruVar, int i10, Context context, int i11, boolean z10, org.telegram.ui.ActionBar.n2 n2Var) {
         this.e = ruVar;
-        this.f19960c = i10;
-        this.f19961f = context;
+        this.f19972c = i10;
+        this.f19973f = context;
         this.d = i11;
-        this.f19959b = z10;
+        this.f19971b = z10;
         this.h = n2Var;
     }
 }

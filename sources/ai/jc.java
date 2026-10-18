@@ -1,96 +1,55 @@
 package ai;
 
-import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import org.telegram.messenger.AndroidUtilities;
-public final class jc extends sg.w1 {
-    public Paint[] f1601n;
-    public final int f1602r;
-    public final int f1603s;
+import android.view.KeyEvent;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.ti;
+public final class jc implements Utilities.CallbackReturn {
+    public final int f1580a;
+    public final KeyEvent.Callback f1581b;
 
-    public jc(Context context, int i10, int i11) {
-        super(context);
-        this.f1602r = i10;
-        this.f1603s = i11;
-        c();
+    public jc(KeyEvent.Callback callback, int i10) {
+        this.f1580a = i10;
+        this.f1581b = callback;
     }
 
     @Override
-    public final void a() {
-        int i10;
-        int f7;
-        float f10;
-        int i11;
-        int i12;
-        sg.v1 v1Var = new sg.v1(this.f1602r);
-        this.f46499a = v1Var;
-        v1Var.O = 105;
-        int i13 = 0;
-        v1Var.M = false;
-        v1Var.G = false;
-        v1Var.K = true;
-        v1Var.H = true;
-        v1Var.J = false;
-        v1Var.f46479m = true;
-        v1Var.h = true;
-        int i14 = this.f1603s;
-        if (i14 == 1) {
-            v1Var.f46477k = AndroidUtilities.dp(24.0f);
-        }
-        if (i14 == 2) {
-            i10 = 40;
-        } else {
-            i10 = 20;
-        }
-        this.f1601n = new Paint[i10];
-        while (true) {
-            Paint[] paintArr = this.f1601n;
-            if (i13 >= paintArr.length) {
-                break;
-            }
-            paintArr[i13] = new Paint(1);
-            if (i14 == 2) {
-                if (i13 >= 20) {
-                    f10 = (i13 - 20) / 19.0f;
-                    i11 = -1005568;
-                    i12 = -2062336;
-                } else if (i13 % 5 == 0) {
-                    f7 = -2340;
-                } else {
-                    f10 = i13 / 19.0f;
-                    i11 = -10645;
-                    i12 = -20165;
+    public final Object run(Object obj) {
+        switch (this.f1580a) {
+            case 0:
+                kc kcVar = (kc) this.f1581b;
+                return kcVar.f1721n[((Integer) obj).intValue() % kcVar.f1721n.length];
+            case 1:
+                MessageObject messageObject = (MessageObject) obj;
+                ((ei.s7) this.f1581b).f9810r0 = messageObject;
+                return Boolean.valueOf(MediaController.getInstance().setPlaylist(org.telegram.messenger.g0.k(messageObject), messageObject, 0L));
+            case 2:
+                fi.c cVar = (fi.c) this.f1581b;
+                return cVar.f10605n[((Integer) obj).intValue() % cVar.f10605n.length];
+            case 3:
+                return new org.telegram.ui.Wallet.u3(26, (org.telegram.ui.n0) this.f1581b, (Integer) obj);
+            case 4:
+                rg.m0 m0Var = (rg.m0) this.f1581b;
+                if (((Integer) obj).intValue() == 2) {
+                    ti tiVar = new ti(m0Var.getContext(), new rg.w(m0Var), false, false, false, m0Var.Q1);
+                    tiVar.drawNavigationBar = true;
+                    tiVar.P1(LocaleController.getString(R.string.AddImage));
+                    tiVar.f30573c2 = new rg.x(m0Var, tiVar);
+                    tiVar.setOnDismissListener(new ei.e1(7));
+                    tiVar.N1(1, false);
+                    tiVar.t1();
+                    MediaController.forceBroadcastNewPhotos = true;
+                    tiVar.f30593j0.f0();
+                    tiVar.show();
                 }
-                f7 = i0.b.f(f10, i11, i12);
-            } else {
-                f7 = i0.b.f(i13 / (this.f1601n.length - 1), -371690, -14281);
-            }
-            this.f1601n[i13].setColorFilter(new PorterDuffColorFilter(f7, PorterDuff.Mode.SRC_IN));
-            i13++;
+                return Boolean.TRUE;
+            default:
+                Paint[] paintArr = ((wg.r) this.f1581b).h;
+                return paintArr[((Integer) obj).intValue() % paintArr.length];
         }
-        sg.v1 v1Var2 = this.f46499a;
-        v1Var2.f46478l = new ic(this, 0);
-        v1Var2.f46484r = 17;
-        v1Var2.f46485s = 18;
-        v1Var2.f46486t = 19;
-        if (i14 == 2) {
-            v1Var2.N = true;
-            v1Var2.f46484r = 9;
-            v1Var2.f46485s = 11;
-            v1Var2.f46486t = 13;
-            v1Var2.f46481o = 1.6f;
-            v1Var2.f46489x = 1400L;
-            v1Var2.f46490y = 1600;
-            v1Var2.L = true;
-        }
-        v1Var2.Q = org.telegram.ui.ActionBar.h6.G6;
-        v1Var2.c();
-    }
-
-    @Override
-    public final int getStarsRectWidth() {
-        return getMeasuredWidth();
     }
 }

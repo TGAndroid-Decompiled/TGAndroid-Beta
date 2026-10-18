@@ -1,102 +1,84 @@
 package zh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import com.google.android.gms.internal.cast.a6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.r5;
-public final class v extends View {
-    public final r5 f52111a;
-    public final Drawable f52112b;
-    public float f52113c;
-    public boolean d;
+import android.graphics.Bitmap;
+import android.widget.FrameLayout;
+import com.google.android.gms.internal.vision.t2;
+import com.google.android.gms.internal.vision.x1;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraView;
+import w7.z5;
+public final class v implements Runnable {
+    public final int f52155a;
+    public final w f52156b;
 
-    public v(k0 k0Var, Context context, int i10, TLRPC.Document document) {
-        super(context);
-        int i11;
-        if (document != null) {
-            this.f52111a = r5.m(k0Var.f52122a, 5, document);
-            this.f52112b = null;
-            return;
-        }
-        this.f52111a = null;
-        if (i10 == 0) {
-            i11 = R.drawable.emoji_tabs_faves;
-        } else {
-            i11 = R.drawable.msg_emoji_recent;
-        }
-        Drawable mutate = context.getDrawable(i11).mutate();
-        this.f52112b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
+    public v(w wVar, int i10) {
+        this.f52155a = i10;
+        this.f52156b = wVar;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        r5 r5Var = this.f52111a;
-        if (r5Var != null) {
-            r5Var.a(this);
+    public final void run() {
+        switch (this.f52155a) {
+            case 0:
+                w wVar = this.f52156b;
+                wVar.f();
+                f0 f0Var = (f0) wVar.f52161a.f16010b;
+                FrameLayout frameLayout = f0Var.f51756f;
+                if (frameLayout != null) {
+                    frameLayout.removeView(wVar);
+                }
+                if (f0Var.E == wVar) {
+                    f0Var.E = null;
+                }
+                t0 t0Var = f0Var.d;
+                if (t0Var != null) {
+                    t0Var.setScanHidden(false);
+                    return;
+                }
+                return;
+            case 1:
+                w wVar2 = this.f52156b;
+                r8.n nVar = wVar2.f52166c0;
+                if (nVar != null) {
+                    nVar.X0();
+                    wVar2.f52166c0 = null;
+                }
+                Bitmap bitmap = wVar2.f52168e0;
+                if (bitmap != null) {
+                    bitmap.recycle();
+                    wVar2.f52168e0 = null;
+                }
+                wVar2.W.quitSafely();
+                return;
+            case 2:
+                w wVar3 = this.f52156b;
+                try {
+                    Context context = ApplicationLoader.applicationContext;
+                    ?? obj = new Object();
+                    obj.f7392a = 256;
+                    wVar3.f52166c0 = new r8.n(new t2(context, (x1) obj));
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                }
+                wVar3.f52167d0 = new a6.i(23);
+                return;
+            default:
+                w wVar4 = this.f52156b;
+                if (!wVar4.Q && !wVar4.P && wVar4.f52163b == null && CameraView.isCameraAllowed()) {
+                    CameraController.getInstance().initCamera(null);
+                    CameraView cameraView = new CameraView(wVar4.getContext(), false);
+                    cameraView.setUseMaxPreview(true);
+                    cameraView.setOptimizeForBarcode(true);
+                    cameraView.setAlpha(0.0f);
+                    cameraView.setDelegate(new org.telegram.ui.web.m(26, wVar4, cameraView));
+                    wVar4.f52163b = cameraView;
+                    wVar4.addView(cameraView, 0, z5.d(-1.0f, -1));
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        r5 r5Var = this.f52111a;
-        if (r5Var != null) {
-            r5Var.o(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        if (this.d) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float f10 = this.f52113c;
-        if (f10 != f7) {
-            if (Math.abs(f10 - f7) >= 0.02f) {
-                float f11 = this.f52113c;
-                f7 = a6.x(f7, f11, 0.35f, f11);
-            }
-            this.f52113c = f7;
-            invalidate();
-        }
-        float interpolation = (1.0f - (bs.f25031g.getInterpolation(this.f52113c) * 0.15f)) * AndroidUtilities.dp(26.0f);
-        float f12 = interpolation / 2.0f;
-        int width = (int) ((getWidth() / 2.0f) - f12);
-        int height = (int) ((getHeight() / 2.0f) - f12);
-        Drawable drawable = this.f52111a;
-        if (drawable == null) {
-            drawable = this.f52112b;
-        }
-        if (drawable != null) {
-            drawable.setBounds(width, height, (int) (width + interpolation), (int) (height + interpolation));
-            x.b(canvas, drawable);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            this.d = true;
-            invalidate();
-        } else if (actionMasked == 1 || actionMasked == 3) {
-            this.d = false;
-            invalidate();
-        }
-        return super.onTouchEvent(motionEvent);
     }
 }

@@ -1,28 +1,32 @@
 package zh;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-public final class e0 implements a2 {
-    public final m0 f51978a;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class e0 extends ViewOutlineProvider {
+    public final int f51724a;
+    public final f0 f51725b;
 
-    public e0(m0 m0Var) {
-        this.f51978a = m0Var;
+    public e0(f0 f0Var, int i10) {
+        this.f51724a = i10;
+        this.f51725b = f0Var;
     }
 
     @Override
-    public void g(b2 b2Var, int i10) {
-        m0 m0Var = this.f51978a;
-        m0Var.getClass();
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            m0Var.getParentActivity().startActivity(intent);
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f51724a) {
+            case 0:
+                float translationY = view.getTranslationY() + view.getTop();
+                float translationX = view.getTranslationX() + view.getLeft();
+                f0 f0Var = this.f51725b;
+                outline.setRoundRect(Math.round(f0Var.f51764n - translationX), Math.round(f0Var.f51768r - translationY), Math.round(f0Var.f51769s - translationX), Math.round(f0Var.v - translationY), f0Var.f51770w);
+                return;
+            default:
+                int height = view.getHeight();
+                f0 f0Var2 = this.f51725b;
+                int i10 = f0Var2.Z;
+                outline.setRoundRect(f0Var2.Y, i10, view.getWidth() - f0Var2.Y, view.getHeight() - f0Var2.f51749a0, ((height - i10) - f0Var2.f51749a0) / 2.0f);
+                return;
         }
     }
 }

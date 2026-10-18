@@ -1,6 +1,6 @@
 package org.telegram.messenger.voip;
 
-import ai.s3;
+import ai.r3;
 import android.content.Intent;
 import android.graphics.Point;
 import android.media.projection.MediaProjection;
@@ -188,7 +188,7 @@ public class VideoCapturerDevice {
                 if (this.videoCapturer == null) {
                     this.videoCapturer = camera1Enumerator.createCapturer(str2, new AnonymousClass2());
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new s3(this, j10, 19));
+                    this.handler.post(new r3(this, j10, 19));
                     return;
                 }
                 FileLog.d("VideoCapturerDevice init(" + j10 + "): videoCapturer.switchCamera CAMERA");
@@ -260,7 +260,7 @@ public class VideoCapturerDevice {
             sb2.append(j10);
             sb2.append(", ");
             sb2.append(i10);
-            i0.a.v("): videoCapturer.startCapture", sb2);
+            i2.d.v("): videoCapturer.startCapture", sb2);
             this.videoCapturer.startCapture(1280, 720, 30);
             return;
         }
@@ -282,7 +282,7 @@ public class VideoCapturerDevice {
     private static native CapturerObserver nativeGetJavaVideoCapturerObserver(long j10);
 
     private void onDestroy() {
-        org.telegram.messenger.q.r(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
+        i2.d.x(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
         this.nativePtr = 0L;
         AndroidUtilities.runOnUIThread(new i(this, 1));
     }

@@ -5,24 +5,24 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class a30 implements Runnable {
-    public final s50 f35282a;
+    public final s50 f35302a;
 
     public a30(s50 s50Var) {
-        this.f35282a = s50Var;
+        this.f35302a = s50Var;
     }
 
     @Override
     public final void run() {
         int i10;
-        s50 s50Var = this.f35282a;
+        s50 s50Var = this.f35302a;
         org.telegram.ui.ActionBar.j5 j5Var = s50Var.U;
         x40 x40Var = s50Var.V;
         if (x40Var != null && !s50Var.isDismissed()) {
-            ChatObject.Call call = s50Var.f40913a1;
+            ChatObject.Call call = s50Var.f40934a1;
             if (call != null) {
                 i10 = call.call.schedule_date;
             } else {
-                i10 = s50Var.f40956k2;
+                i10 = s50Var.f40977k2;
             }
             if (i10 != 0) {
                 int currentTime = i10 - s50Var.d.getConnectionsManager().getCurrentTime();
@@ -36,7 +36,7 @@ public final class a30 implements Runnable {
                     }
                 }
                 s50Var.W.l(LocaleController.formatStartsTime(i10, 3), false);
-                AndroidUtilities.runOnUIThread(s50Var.f41006w2, 1000L);
+                AndroidUtilities.runOnUIThread(s50Var.f41027w2, 1000L);
             }
         }
     }

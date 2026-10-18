@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class k10 extends FrameLayout {
-    public org.telegram.ui.Components.xj0 f38374a;
+    public org.telegram.ui.Components.xj0 f38383a;
 
     @Override
     public final void onMeasure(int i10, int i11) {

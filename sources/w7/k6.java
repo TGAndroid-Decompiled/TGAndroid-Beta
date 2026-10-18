@@ -2,7 +2,7 @@ package w7;
 
 import org.telegram.messenger.DispatchQueue;
 public abstract class k6 {
-    public static DispatchQueue f48749a;
+    public static DispatchQueue f48774a;
 
     public static void a(int i10, int i11, int[] iArr, int[] iArr2) {
         int i12;

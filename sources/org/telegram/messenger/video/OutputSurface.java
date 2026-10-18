@@ -41,7 +41,7 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         if (EGL14.eglGetError() == 12288) {
             return;
         }
-        throw new RuntimeException(r.c.g("EGL error encountered (see log) at: ", str));
+        throw new RuntimeException(r4.c.h("EGL error encountered (see log) at: ", str));
     }
 
     public void awaitNewImage() {

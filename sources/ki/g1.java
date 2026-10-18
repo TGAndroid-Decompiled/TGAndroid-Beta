@@ -22,5 +22,5 @@ public interface g1 {
 
     void m();
 
-    boolean q(h1 h1Var);
+    boolean w(h1 h1Var);
 }

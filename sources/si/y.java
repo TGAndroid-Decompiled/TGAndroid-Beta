@@ -1,13 +1,13 @@
 package si;
 
 import android.opengl.GLES20;
-import org.telegram.ui.Wallet.x5;
-public class y extends x5 {
-    public final int e;
+import org.telegram.ui.Wallet.z5;
+public class y extends z5 {
+    public final int f46899f;
 
     public y() {
         super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", d0.F);
-        this.e = GLES20.glGetUniformLocation(this.f35131a, "texOffset");
+        this.f46899f = GLES20.glGetUniformLocation(this.f35172a, "texOffset");
     }
 
     public y(String str, int i10) {
@@ -15,10 +15,10 @@ public class y extends x5 {
         switch (i10) {
             case 1:
                 super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", str);
-                this.e = GLES20.glGetUniformLocation(this.f35131a, "texOffset");
+                this.f46899f = GLES20.glGetUniformLocation(this.f35172a, "texOffset");
                 return;
             default:
-                this.e = GLES20.glGetUniformLocation(this.f35131a, "uTextureMatrix");
+                this.f46899f = GLES20.glGetUniformLocation(this.f35172a, "uTextureMatrix");
                 return;
         }
     }

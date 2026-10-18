@@ -20,8 +20,8 @@ public abstract class c {
     }
 
     public static void a(WebView webView, String str, Set set, b bVar) {
-        if (m.f4210c.b()) {
-            c(webView).f4212a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new ue.a(new a6.m(bVar, 8)));
+        if (m.f4211c.b()) {
+            c(webView).f4213a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new ue.a(new a6.m(bVar, 8)));
             return;
         }
         throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
@@ -36,12 +36,12 @@ public abstract class c {
             WeakHashMap weakHashMap = f283b;
             o oVar = (o) weakHashMap.get(webView);
             if (oVar == null) {
-                o oVar2 = new o(n.f4211a.createWebView(webView));
+                o oVar2 = new o(n.f4212a.createWebView(webView));
                 weakHashMap.put(webView, oVar2);
                 return oVar2;
             }
             return oVar;
         }
-        return new o(n.f4211a.createWebView(webView));
+        return new o(n.f4212a.createWebView(webView));
     }
 }

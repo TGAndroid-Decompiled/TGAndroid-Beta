@@ -89,23 +89,23 @@ public final class t implements Runnable {
                 } else {
                     i10 = R.string.Gift2ActionWearOffDone;
                 }
-                k7Var.I2(k7Var.f1684j1, AndroidUtilities.replaceTags(LocaleController.formatString(i10, k7Var.P1())), true);
+                k7Var.L2(k7Var.f1670j1, AndroidUtilities.replaceTags(LocaleController.formatString(i10, k7Var.Q1())), true);
                 return;
             case 3:
                 k7 k7Var2 = ((h5) obj).T;
-                TL_stars.SavedStarGift U1 = k7Var2.U1(z10);
-                if (U1 != null) {
-                    k7Var2.f1674e1 = true;
-                    k7Var2.C2(U1, k7Var2.G0);
+                TL_stars.SavedStarGift V1 = k7Var2.V1(z10);
+                if (V1 != null) {
+                    k7Var2.f1660e1 = true;
+                    k7Var2.F2(V1, k7Var2.G0);
                 } else {
-                    TL_stars.TL_starGiftUnique V1 = k7Var2.V1(z10);
-                    if (V1 != null) {
-                        k7Var2.f1674e1 = true;
-                        k7Var2.A2(V1.slug, V1, k7Var2.G0);
+                    TL_stars.TL_starGiftUnique W1 = k7Var2.W1(z10);
+                    if (W1 != null) {
+                        k7Var2.f1660e1 = true;
+                        k7Var2.D2(W1.slug, W1, k7Var2.G0);
                     }
                 }
                 k7Var2.U0 = -1;
-                qc qcVar = qc.f29632w;
+                qc qcVar = qc.f29638w;
                 if (qcVar != null) {
                     qcVar.c(0L, false);
                     return;
@@ -115,10 +115,10 @@ public final class t implements Runnable {
                 di.r rVar = (di.r) obj;
                 hs0 hs0Var = rVar.W;
                 if (z10) {
-                    new di.u(hs0Var.f8070a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new ai.r0(hs0Var, 10)).show();
+                    new di.u(hs0Var.f8071a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new ai.r0(hs0Var, 10)).show();
                     return;
                 } else {
-                    hs0Var.b(rVar.f8056a.E);
+                    hs0Var.b(rVar.f8057a.E);
                     return;
                 }
             case 5:
@@ -131,7 +131,7 @@ public final class t implements Runnable {
                     return;
                 }
             case 6:
-                c4 c4Var = ((d4) obj).f8886b;
+                c4 c4Var = ((d4) obj).f8887b;
                 if (!z10) {
                     i13 = 8;
                 }
@@ -158,7 +158,7 @@ public final class t implements Runnable {
             case 9:
                 xa xaVar = (xa) obj;
                 if (!z10) {
-                    xaVar.A2.f9979j1.setVisibility(8);
+                    xaVar.A2.f9981j1.setVisibility(8);
                     return;
                 } else {
                     xaVar.getClass();
@@ -166,8 +166,8 @@ public final class t implements Runnable {
                 }
             case 10:
                 d3 d3Var = (d3) obj;
-                b3 b3Var = d3Var.f11167y;
-                v2 v2Var = d3Var.f11165x;
+                b3 b3Var = d3Var.f11169y;
+                v2 v2Var = d3Var.f11167x;
                 if (v2Var.getWebView() != null) {
                     v2Var.getWebView().animate().cancel();
                     v2Var.getWebView().animate().alpha(0.0f).start();
@@ -182,17 +182,17 @@ public final class t implements Runnable {
                 if (!z10) {
                     v2Var.s(d3Var.G, d3Var.H);
                 }
-                NotificationCenter.getInstance(v2Var.M).doOnIdle(new org.telegram.ui.web.s(v2Var, 2));
+                NotificationCenter.getInstance(v2Var.M).doOnIdle(new org.telegram.ui.web.t(v2Var, 2));
                 return;
             case 11:
                 ((hi.s0) obj).f(z10, false);
                 return;
             case 12:
-                String str = e2.m0.f8254a;
-                i2.g0 g0Var = ((i2.a0) ((k2.u) ((qf.b) obj).f44466c)).f12309a;
-                if (g0Var.f12382d0 != z10) {
-                    g0Var.f12382d0 = z10;
-                    g0Var.f12397m.e(23, new i2.w(1, z10));
+                String str = e2.m0.f8255a;
+                i2.h0 h0Var = ((i2.b0) ((k2.u) ((qf.b) obj).f44486c)).f12324a;
+                if (h0Var.f12386d0 != z10) {
+                    h0Var.f12386d0 = z10;
+                    h0Var.f12401m.e(23, new i2.x(1, z10));
                     return;
                 }
                 return;
@@ -236,7 +236,7 @@ public final class t implements Runnable {
                 pf.d.r(context, LocaleController.getString(i11));
                 return;
             case 24:
-                gz0 gz0Var = ((jm) obj).f38229c.f41185d1;
+                gz0 gz0Var = ((jm) obj).f38245c.f41206d1;
                 if (gz0Var != null && z10) {
                     gz0Var.setVisibility(8);
                     return;
@@ -244,8 +244,8 @@ public final class t implements Runnable {
                 return;
             case 25:
                 ko koVar = (ko) obj;
-                koVar.f38614x0.autotranslation = z10;
-                koVar.getMessagesController().putChat(koVar.f38614x0, false);
+                koVar.f38622x0.autotranslation = z10;
+                koVar.getMessagesController().putChat(koVar.f38622x0, false);
                 return;
             case 26:
                 wp wpVar = (wp) obj;
@@ -255,19 +255,19 @@ public final class t implements Runnable {
                     if (wpVar.M != null) {
                         wpVar.P = true;
                         if (!wpVar.x()) {
-                            wallPaper = wpVar.f32181n.h;
+                            wallPaper = wpVar.f32188n.h;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        org.telegram.ui.ActionBar.c4 c4Var2 = wpVar.M.f31889a;
-                        if (c4Var2.f20719a) {
-                            wpVar.f32181n.k(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                        org.telegram.ui.ActionBar.c4 c4Var2 = wpVar.M.f31896a;
+                        if (c4Var2.f20726a) {
+                            wpVar.f32188n.k(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            wpVar.f32181n.k(c4Var2, wallPaper2, false, Boolean.valueOf(z10), false);
+                            wpVar.f32188n.k(c4Var2, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (upVar.d != null) {
                         while (i13 < upVar.d.size()) {
-                            ((vp) upVar.d.get(i13)).f31891c = z10 ? 1 : 0;
+                            ((vp) upVar.d.get(i13)).f31898c = z10 ? 1 : 0;
                             i13++;
                         }
                         upVar.l();
@@ -285,12 +285,12 @@ public final class t implements Runnable {
                 return;
             case 28:
                 k10 k10Var = (k10) obj;
-                k10Var.S(k10Var.f27694y0, z10);
+                k10Var.S(k10Var.f27701y0, z10);
                 return;
             default:
                 k40 k40Var = (k40) obj;
                 if (!z10) {
-                    k40Var.f27738r.setVisibility(8);
+                    k40Var.f27745r.setVisibility(8);
                     return;
                 } else {
                     k40Var.getClass();

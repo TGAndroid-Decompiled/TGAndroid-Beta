@@ -15,27 +15,27 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.f51;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 public final class f51 implements Runnable {
-    public final int f26084a = 2;
-    public final Object f26085b;
-    public final Object f26086c;
+    public final int f26091a = 2;
+    public final Object f26092b;
+    public final Object f26093c;
     public final Object d;
     public final Object e;
-    public final Object f26087f;
+    public final Object f26094f;
     public final Object h;
-    public final Object f26088n;
-    public final Object f26089r;
-    public final Object f26090s;
+    public final Object f26095n;
+    public final Object f26096r;
+    public final Object f26097s;
 
-    public f51(TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.f3[] f3VarArr, Context context, int[] iArr, org.telegram.ui.ActionBar.d6 d6Var, boolean[] zArr, TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr, ai.ub ubVar) {
+    public f51(TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.f3[] f3VarArr, Context context, int[] iArr, org.telegram.ui.ActionBar.d6 d6Var, boolean[] zArr, TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr, ai.vb vbVar) {
         this.d = tL_urlAuthResultRequest;
-        this.f26087f = f3Var;
+        this.f26094f = f3Var;
         this.h = f3VarArr;
-        this.f26088n = context;
-        this.f26085b = iArr;
-        this.f26086c = d6Var;
+        this.f26095n = context;
+        this.f26092b = iArr;
+        this.f26093c = d6Var;
         this.e = zArr;
-        this.f26089r = inputtonconnectoauthsessionArr;
-        this.f26090s = ubVar;
+        this.f26096r = inputtonconnectoauthsessionArr;
+        this.f26097s = vbVar;
     }
 
     @Override
@@ -45,17 +45,17 @@ public final class f51 implements Runnable {
         View view;
         String A;
         String str;
-        switch (this.f26084a) {
+        switch (this.f26091a) {
             case 0:
                 final org.telegram.ui.tk tkVar = (org.telegram.ui.tk) this.d;
                 boolean[] zArr = (boolean[]) this.e;
-                String str2 = (String) this.f26087f;
-                LinearLayout linearLayout = (LinearLayout) this.f26088n;
-                ArrayList arrayList = (ArrayList) this.f26085b;
+                String str2 = (String) this.f26094f;
+                LinearLayout linearLayout = (LinearLayout) this.f26095n;
+                ArrayList arrayList = (ArrayList) this.f26092b;
                 String str3 = (String) this.h;
-                final TranslateController translateController = (TranslateController) this.f26089r;
-                final org.telegram.ui.ActionBar.m1 m1Var = (org.telegram.ui.ActionBar.m1) this.f26090s;
-                ArrayList arrayList2 = (ArrayList) this.f26086c;
+                final TranslateController translateController = (TranslateController) this.f26096r;
+                final org.telegram.ui.ActionBar.m1 m1Var = (org.telegram.ui.ActionBar.m1) this.f26097s;
+                ArrayList arrayList2 = (ArrayList) this.f26093c;
                 boolean z12 = false;
                 if (!zArr[0]) {
                     if (str2 != null && (A = r41.A(r41.F(str2, null, null))) != null) {
@@ -90,13 +90,13 @@ public final class f51 implements Runnable {
                                         switch (r5) {
                                             case 0:
                                                 org.telegram.ui.tk tkVar2 = tkVar;
-                                                translateController.setDialogTranslateTo(tkVar2.f27077b, str4);
+                                                translateController.setDialogTranslateTo(tkVar2.f27084b, str4);
                                                 m1Var.d(true);
                                                 tkVar2.b();
                                                 return;
                                             default:
                                                 org.telegram.ui.tk tkVar3 = tkVar;
-                                                translateController.setDialogTranslateTo(tkVar3.f27077b, str4);
+                                                translateController.setDialogTranslateTo(tkVar3.f27084b, str4);
                                                 m1Var.d(true);
                                                 tkVar3.b();
                                                 return;
@@ -135,13 +135,13 @@ public final class f51 implements Runnable {
                                         switch (r5) {
                                             case 0:
                                                 org.telegram.ui.tk tkVar2 = tkVar;
-                                                translateController.setDialogTranslateTo(tkVar2.f27077b, str5);
+                                                translateController.setDialogTranslateTo(tkVar2.f27084b, str5);
                                                 m1Var.d(true);
                                                 tkVar2.b();
                                                 return;
                                             default:
                                                 org.telegram.ui.tk tkVar3 = tkVar;
-                                                translateController.setDialogTranslateTo(tkVar3.f27077b, str5);
+                                                translateController.setDialogTranslateTo(tkVar3.f27084b, str5);
                                                 m1Var.d(true);
                                                 tkVar3.b();
                                                 return;
@@ -159,59 +159,59 @@ public final class f51 implements Runnable {
                 return;
             case 1:
                 NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) this.d;
-                ArrayList arrayList3 = (ArrayList) this.f26087f;
+                ArrayList arrayList3 = (ArrayList) this.f26094f;
                 ArrayList arrayList4 = (ArrayList) this.h;
-                ArrayList arrayList5 = (ArrayList) this.f26088n;
-                ArrayList arrayList6 = (ArrayList) this.f26089r;
-                ArrayList arrayList7 = (ArrayList) this.f26090s;
-                notificationsCustomSettingsActivity.getMessagesController().putUsers((ArrayList) this.f26085b, true);
-                notificationsCustomSettingsActivity.getMessagesController().putChats((ArrayList) this.f26086c, true);
+                ArrayList arrayList5 = (ArrayList) this.f26095n;
+                ArrayList arrayList6 = (ArrayList) this.f26096r;
+                ArrayList arrayList7 = (ArrayList) this.f26097s;
+                notificationsCustomSettingsActivity.getMessagesController().putUsers((ArrayList) this.f26092b, true);
+                notificationsCustomSettingsActivity.getMessagesController().putChats((ArrayList) this.f26093c, true);
                 notificationsCustomSettingsActivity.getMessagesController().putEncryptedChats((ArrayList) this.e, true);
-                int i15 = notificationsCustomSettingsActivity.f33199s;
+                int i15 = notificationsCustomSettingsActivity.f33206s;
                 if (i15 == 1) {
-                    notificationsCustomSettingsActivity.f33200w = arrayList3;
+                    notificationsCustomSettingsActivity.f33207w = arrayList3;
                 } else if (i15 == 0) {
-                    notificationsCustomSettingsActivity.f33200w = arrayList4;
+                    notificationsCustomSettingsActivity.f33207w = arrayList4;
                 } else if (i15 == 3) {
-                    notificationsCustomSettingsActivity.f33200w = arrayList5;
+                    notificationsCustomSettingsActivity.f33207w = arrayList5;
                     notificationsCustomSettingsActivity.v = arrayList6;
                 } else {
-                    notificationsCustomSettingsActivity.f33200w = arrayList7;
+                    notificationsCustomSettingsActivity.f33207w = arrayList7;
                 }
                 notificationsCustomSettingsActivity.l0(true);
                 return;
             case 2:
                 TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.d;
-                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f26087f;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f26094f;
                 org.telegram.ui.ActionBar.f3[] f3VarArr = (org.telegram.ui.ActionBar.f3[]) this.h;
-                Context context = (Context) this.f26088n;
-                int[] iArr = (int[]) this.f26085b;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f26086c;
+                Context context = (Context) this.f26095n;
+                int[] iArr = (int[]) this.f26092b;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f26093c;
                 boolean[] zArr2 = (boolean[]) this.e;
-                TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f26089r;
-                ai.ub ubVar = (ai.ub) this.f26090s;
+                TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f26096r;
+                ai.vb vbVar = (ai.vb) this.f26097s;
                 if (!tL_urlAuthResultRequest.request_wallet) {
-                    org.telegram.ui.wk0.f42888a = f3Var;
+                    org.telegram.ui.wk0.f42912a = f3Var;
                     f3Var.show();
                     return;
                 }
-                org.telegram.ui.Wallet.k2 B = org.telegram.ui.Wallet.f2.B(context, iArr[0], null, tL_urlAuthResultRequest, d6Var, new org.telegram.ui.n80(f3VarArr, zArr2, inputtonconnectoauthsessionArr, tL_urlAuthResultRequest, f3Var, ubVar, 2), new org.telegram.ui.zg0(6, f3VarArr, zArr2));
+                org.telegram.ui.Wallet.k2 B = org.telegram.ui.Wallet.f2.B(context, iArr[0], null, tL_urlAuthResultRequest, d6Var, new org.telegram.ui.n80(f3VarArr, zArr2, inputtonconnectoauthsessionArr, tL_urlAuthResultRequest, f3Var, vbVar, 2), new org.telegram.ui.zg0(6, f3VarArr, zArr2));
                 f3VarArr[0] = B;
-                org.telegram.ui.wk0.f42888a = B;
+                org.telegram.ui.wk0.f42912a = B;
                 return;
             case 3:
                 org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.d;
                 org.telegram.ui.Wallet.j0 j0Var = (org.telegram.ui.Wallet.j0) this.e;
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.h;
-                String str6 = (String) this.f26087f;
-                byte[] bArr = (byte[]) this.f26088n;
-                JSONArray jSONArray = (JSONArray) this.f26085b;
-                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest2 = (TLRPC.TL_urlAuthResultRequest) this.f26086c;
-                TL_wallet.tonConnectChallenge tonconnectchallenge = (TL_wallet.tonConnectChallenge) this.f26089r;
-                org.telegram.ui.Wallet.s1 s1Var = (org.telegram.ui.Wallet.s1) this.f26090s;
+                String str6 = (String) this.f26094f;
+                byte[] bArr = (byte[]) this.f26095n;
+                JSONArray jSONArray = (JSONArray) this.f26092b;
+                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest2 = (TLRPC.TL_urlAuthResultRequest) this.f26093c;
+                TL_wallet.tonConnectChallenge tonconnectchallenge = (TL_wallet.tonConnectChallenge) this.f26096r;
+                org.telegram.ui.Wallet.s1 s1Var = (org.telegram.ui.Wallet.s1) this.f26097s;
                 f2Var.getClass();
                 try {
-                    AndroidUtilities.runOnUIThread(new ai.l3(f2Var, str6, bArr, org.telegram.ui.Wallet.f2.q(j0Var, tonconnectsession, str6, bArr, jSONArray, tL_urlAuthResultRequest2.domain, null, tonconnectchallenge, f2Var.f34194f.getCurrentTime()), s1Var, tonconnectsession, 20));
+                    AndroidUtilities.runOnUIThread(new ai.l3(f2Var, str6, bArr, org.telegram.ui.Wallet.f2.q(j0Var, tonconnectsession, str6, bArr, jSONArray, tL_urlAuthResultRequest2.domain, null, tonconnectchallenge, f2Var.f34226f.getCurrentTime()), s1Var, tonconnectsession, 20));
                     return;
                 } catch (Exception e) {
                     s1Var.run(null, org.telegram.ui.Wallet.f2.h("prepare OAuth connect", e));
@@ -219,20 +219,20 @@ public final class f51 implements Runnable {
                 }
             default:
                 final org.telegram.ui.Wallet.f2 f2Var2 = (org.telegram.ui.Wallet.f2) this.d;
-                final String str7 = (String) this.f26087f;
+                final String str7 = (String) this.f26094f;
                 final byte[] bArr2 = (byte[]) this.e;
                 final TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) this.h;
-                String str8 = ((org.telegram.ui.Wallet.c2) this.f26088n).f34071a;
-                final org.telegram.ui.Wallet.s1 s1Var2 = (org.telegram.ui.Wallet.s1) this.f26085b;
-                final org.telegram.ui.Wallet.j0 j0Var2 = (org.telegram.ui.Wallet.j0) this.f26086c;
-                final JSONArray jSONArray2 = (JSONArray) this.f26089r;
-                final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest3 = (TLRPC.TL_urlAuthResultRequest) this.f26090s;
-                org.telegram.ui.Wallet.m0 m0Var = f2Var2.f34192b;
+                String str8 = ((org.telegram.ui.Wallet.c2) this.f26095n).f34079a;
+                final org.telegram.ui.Wallet.s1 s1Var2 = (org.telegram.ui.Wallet.s1) this.f26092b;
+                final org.telegram.ui.Wallet.j0 j0Var2 = (org.telegram.ui.Wallet.j0) this.f26093c;
+                final JSONArray jSONArray2 = (JSONArray) this.f26096r;
+                final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest3 = (TLRPC.TL_urlAuthResultRequest) this.f26097s;
+                org.telegram.ui.Wallet.m0 m0Var = f2Var2.f34224b;
                 if (TextUtils.equals(str7, m0Var.s()) && Arrays.equals(bArr2, m0Var.x()) && ((str = tonconnectsession2.client_id) == null || str8.equalsIgnoreCase(str))) {
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
-                    tonconnectregisterkey.session_id = tonconnectsession2.f20530id;
+                    tonconnectregisterkey.session_id = tonconnectsession2.f20537id;
                     tonconnectregisterkey.client_id = str8;
-                    f2Var2.f34194f.sendRequestTyped(tonconnectregisterkey, new Object(), new Utilities.Callback2() {
+                    f2Var2.f34226f.sendRequestTyped(tonconnectregisterkey, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj, Object obj2) {
                             f2 f2Var3 = f2.this;
@@ -263,48 +263,48 @@ public final class f51 implements Runnable {
     public f51(org.telegram.ui.tk tkVar, boolean[] zArr, String str, LinearLayout linearLayout, ArrayList arrayList, String str2, TranslateController translateController, org.telegram.ui.ActionBar.m1 m1Var, ArrayList arrayList2) {
         this.d = tkVar;
         this.e = zArr;
-        this.f26087f = str;
-        this.f26088n = linearLayout;
-        this.f26085b = arrayList;
+        this.f26094f = str;
+        this.f26095n = linearLayout;
+        this.f26092b = arrayList;
         this.h = str2;
-        this.f26089r = translateController;
-        this.f26090s = m1Var;
-        this.f26086c = arrayList2;
+        this.f26096r = translateController;
+        this.f26097s = m1Var;
+        this.f26093c = arrayList2;
     }
 
     public f51(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8) {
         this.d = notificationsCustomSettingsActivity;
-        this.f26085b = arrayList;
-        this.f26086c = arrayList2;
+        this.f26092b = arrayList;
+        this.f26093c = arrayList2;
         this.e = arrayList3;
-        this.f26087f = arrayList4;
+        this.f26094f = arrayList4;
         this.h = arrayList5;
-        this.f26088n = arrayList6;
-        this.f26089r = arrayList7;
-        this.f26090s = arrayList8;
+        this.f26095n = arrayList6;
+        this.f26096r = arrayList7;
+        this.f26097s = arrayList8;
     }
 
     public f51(org.telegram.ui.Wallet.f2 f2Var, String str, byte[] bArr, TL_wallet.tonConnectSession tonconnectsession, org.telegram.ui.Wallet.c2 c2Var, org.telegram.ui.Wallet.s1 s1Var, org.telegram.ui.Wallet.j0 j0Var, JSONArray jSONArray, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest) {
         this.d = f2Var;
-        this.f26087f = str;
+        this.f26094f = str;
         this.e = bArr;
         this.h = tonconnectsession;
-        this.f26088n = c2Var;
-        this.f26085b = s1Var;
-        this.f26086c = j0Var;
-        this.f26089r = jSONArray;
-        this.f26090s = tL_urlAuthResultRequest;
+        this.f26095n = c2Var;
+        this.f26092b = s1Var;
+        this.f26093c = j0Var;
+        this.f26096r = jSONArray;
+        this.f26097s = tL_urlAuthResultRequest;
     }
 
     public f51(org.telegram.ui.Wallet.f2 f2Var, org.telegram.ui.Wallet.j0 j0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, JSONArray jSONArray, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, TL_wallet.tonConnectChallenge tonconnectchallenge, org.telegram.ui.Wallet.s1 s1Var) {
         this.d = f2Var;
         this.e = j0Var;
         this.h = tonconnectsession;
-        this.f26087f = str;
-        this.f26088n = bArr;
-        this.f26085b = jSONArray;
-        this.f26086c = tL_urlAuthResultRequest;
-        this.f26089r = tonconnectchallenge;
-        this.f26090s = s1Var;
+        this.f26094f = str;
+        this.f26095n = bArr;
+        this.f26092b = jSONArray;
+        this.f26093c = tL_urlAuthResultRequest;
+        this.f26096r = tonconnectchallenge;
+        this.f26097s = s1Var;
     }
 }

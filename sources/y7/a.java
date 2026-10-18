@@ -1,5 +1,5 @@
 package y7;
 
-import u2.c;
-public final class a extends c {
+import t0.h;
+public final class a extends h {
 }

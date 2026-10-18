@@ -1,13 +1,24 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public interface do0 {
-    void a(TL_account.Password password);
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class do0 extends ClickableSpan {
+    public final go0 f36259a;
 
-    void b();
+    public do0(go0 go0Var) {
+        this.f36259a = go0Var;
+    }
 
-    boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard);
+    @Override
+    public final void onClick(View view) {
+        go0 go0Var = this.f36259a;
+        go0Var.presentFragment(new xf1(6, go0Var.f37254a0));
+    }
 
-    void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo);
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(false);
+    }
 }

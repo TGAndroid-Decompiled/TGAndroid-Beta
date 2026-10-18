@@ -12,33 +12,33 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.i5;
 import org.telegram.ui.Components.p6;
 public final class s extends EditTextBoldCursor {
-    public final i5 f13025b;
-    public int f13026c;
+    public final i5 f13007b;
+    public int f13008c;
     public final p6 d;
     public final d6 e;
 
     public s(Context context, d6 d6Var) {
         super(context);
         this.e = d6Var;
-        this.f13025b = new i5(this);
+        this.f13007b = new i5(this);
         p6 p6Var = new p6(false, true, true);
         this.d = p6Var;
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
         p6Var.setCallback(this);
-        p6Var.f29192b = 5;
+        p6Var.f29199b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f13026c < 0) {
-            i10 = h6.f21207p7;
+        if (this.f13008c < 0) {
+            i10 = h6.f21214p7;
         } else {
             i10 = h6.P5;
         }
-        int a2 = this.f13025b.a(h6.w0(i10, this.e), false);
+        int a2 = this.f13007b.a(h6.w0(i10, this.e), false);
         p6 p6Var = this.d;
         p6Var.u(a2);
         p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
@@ -55,11 +55,11 @@ public final class s extends EditTextBoldCursor {
         super.onTextChanged(charSequence, i10, i11, i12);
         p6 p6Var = this.d;
         if (p6Var != null) {
-            this.f13026c = 32 - charSequence.length();
+            this.f13008c = 32 - charSequence.length();
             p6Var.a();
             String str = "";
-            if (this.f13026c <= 4) {
-                str = "" + this.f13026c;
+            if (this.f13008c <= 4) {
+                str = "" + this.f13008c;
             }
             p6Var.t(str, true, true);
         }

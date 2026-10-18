@@ -3,25 +3,25 @@ package n7;
 import j$.util.Objects;
 public final class y extends n {
     public static final y e = new y(0, new Object[0]);
-    public final transient Object[] f17321c;
+    public final transient Object[] f17328c;
     public final transient int d;
 
     public y(int i10, Object[] objArr) {
-        this.f17321c = objArr;
+        this.f17328c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
         a.e(i10, this.d);
-        Object obj = this.f17321c[i10];
+        Object obj = this.f17328c[i10];
         Objects.requireNonNull(obj);
         return obj;
     }
 
     @Override
     public final int h(Object[] objArr) {
-        Object[] objArr2 = this.f17321c;
+        Object[] objArr2 = this.f17328c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
@@ -39,7 +39,7 @@ public final class y extends n {
 
     @Override
     public final Object[] p() {
-        return this.f17321c;
+        return this.f17328c;
     }
 
     @Override

@@ -8,21 +8,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 public final class q extends r {
-    public static final q f44045n;
+    public static final q f44065n;
     public final List d;
     public final List e;
-    public final List f44046f;
-    public final List f44047g;
+    public final List f44066f;
+    public final List f44067g;
     public final List h;
-    public final List f44048i;
-    public final b2.w f44049j;
-    public final List f44050k;
-    public final Map f44051l;
-    public final List f44052m;
+    public final List f44068i;
+    public final b2.w f44069j;
+    public final List f44070k;
+    public final Map f44071l;
+    public final List f44072m;
 
     static {
         List list = Collections.EMPTY_LIST;
-        f44045n = new q("", list, list, list, list, list, list, null, list, false, Collections.EMPTY_MAP, list);
+        f44065n = new q("", list, list, list, list, list, list, null, list, false, Collections.EMPTY_MAP, list);
     }
 
     public q(String str, List list, List list2, List list3, List list4, List list5, List list6, b2.w wVar, List list7, boolean z10, Map map, List list8) {
@@ -30,7 +30,7 @@ public final class q extends r {
         List list9;
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < list2.size(); i10++) {
-            Uri uri = ((p) list2.get(i10)).f44040a;
+            Uri uri = ((p) list2.get(i10)).f44060a;
             if (!arrayList.contains(uri)) {
                 arrayList.add(uri);
             }
@@ -41,24 +41,24 @@ public final class q extends r {
         b(arrayList, list6);
         this.d = DesugarCollections.unmodifiableList(arrayList);
         this.e = DesugarCollections.unmodifiableList(list2);
-        this.f44046f = DesugarCollections.unmodifiableList(list3);
-        this.f44047g = DesugarCollections.unmodifiableList(list4);
+        this.f44066f = DesugarCollections.unmodifiableList(list3);
+        this.f44067g = DesugarCollections.unmodifiableList(list4);
         this.h = DesugarCollections.unmodifiableList(list5);
-        this.f44048i = DesugarCollections.unmodifiableList(list6);
-        this.f44049j = wVar;
+        this.f44068i = DesugarCollections.unmodifiableList(list6);
+        this.f44069j = wVar;
         if (list7 != null) {
             list9 = DesugarCollections.unmodifiableList(list7);
         } else {
             list9 = null;
         }
-        this.f44050k = list9;
-        this.f44051l = DesugarCollections.unmodifiableMap(map);
-        this.f44052m = DesugarCollections.unmodifiableList(list8);
+        this.f44070k = list9;
+        this.f44071l = DesugarCollections.unmodifiableMap(map);
+        this.f44072m = DesugarCollections.unmodifiableList(list8);
     }
 
     public static void b(ArrayList arrayList, List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
-            Uri uri = ((o) list.get(i10)).f44037a;
+            Uri uri = ((o) list.get(i10)).f44057a;
             if (!arrayList.contains(uri)) {
                 arrayList.add(uri);
             }
@@ -73,7 +73,7 @@ public final class q extends r {
             while (true) {
                 if (i12 < list2.size()) {
                     i1 i1Var = (i1) list2.get(i12);
-                    if (i1Var.f3789b == i10 && i1Var.f3790c == i11) {
+                    if (i1Var.f3790b == i10 && i1Var.f3791c == i11) {
                         arrayList.add(obj);
                         break;
                     }
@@ -88,6 +88,6 @@ public final class q extends r {
     public final Object a(List list) {
         ArrayList c10 = c(0, this.e, list);
         List list2 = Collections.EMPTY_LIST;
-        return new q(this.f44053a, this.f44054b, c10, list2, c(1, this.f44047g, list), c(2, this.h, list), list2, this.f44049j, this.f44050k, this.f44055c, this.f44051l, this.f44052m);
+        return new q(this.f44073a, this.f44074b, c10, list2, c(1, this.f44067g, list), c(2, this.h, list), list2, this.f44069j, this.f44070k, this.f44075c, this.f44071l, this.f44072m);
     }
 }

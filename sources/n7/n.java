@@ -9,7 +9,7 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class n extends i implements List, RandomAccess, j$.util.List {
-    public static final j f17290b = new j(y.e, 0);
+    public static final j f17297b = new j(y.e, 0);
 
     public static y s(int i10, Object[] objArr) {
         if (i10 == 0) {
@@ -26,7 +26,7 @@ public abstract class n extends i implements List, RandomAccess, j$.util.List {
         int length = objArr2.length;
         for (int i10 = 0; i10 < length; i10++) {
             if (objArr2[i10] == null) {
-                throw new NullPointerException(i0.a.j(i10, "at index "));
+                throw new NullPointerException(i2.d.j(i10, "at index "));
             }
         }
         return s(length, objArr2);
@@ -190,7 +190,7 @@ public abstract class n extends i implements List, RandomAccess, j$.util.List {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f17290b;
+                return f17297b;
             }
             return new j(this, i10);
         }

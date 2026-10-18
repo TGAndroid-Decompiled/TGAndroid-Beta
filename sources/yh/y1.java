@@ -11,21 +11,21 @@ import org.telegram.ui.Components.i5;
 import org.telegram.ui.Components.iu;
 import org.telegram.ui.Components.p6;
 public final class y1 extends iu {
-    public final i5 f50607c;
+    public final i5 f50632c;
     public int d;
     public final p6 e;
-    public final q2 f50608f;
+    public final q2 f50633f;
 
     public y1(q2 q2Var, Context context, d6 d6Var) {
         super(context, d6Var);
-        this.f50608f = q2Var;
-        this.f50607c = new i5(this);
+        this.f50633f = q2Var;
+        this.f50632c = new i5(this);
         p6 p6Var = new p6(false, true, true);
         this.e = p6Var;
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
         p6Var.setCallback(this);
-        p6Var.f29192b = 5;
+        p6Var.f29199b = 5;
     }
 
     @Override
@@ -33,11 +33,11 @@ public final class y1 extends iu {
         int i10;
         super.dispatchDraw(canvas);
         if (this.d < 0) {
-            i10 = h6.f21207p7;
+            i10 = h6.f21214p7;
         } else {
             i10 = h6.P5;
         }
-        int a2 = this.f50607c.a(h6.w0(i10, this.f50608f.f50495f), false);
+        int a2 = this.f50632c.a(h6.w0(i10, this.f50633f.f50520f), false);
         p6 p6Var = this.e;
         p6Var.u(a2);
         p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());

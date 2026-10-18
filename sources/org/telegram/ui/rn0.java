@@ -1,60 +1,58 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class rn0 implements do0 {
-    public final Runnable f40773a;
-    public final fo0 f40774b;
+import org.telegram.messenger.AndroidUtilities;
+public final class rn0 extends org.telegram.ui.ActionBar.j {
+    public final go0 f40798a;
 
-    public rn0(fo0 fo0Var, Runnable runnable) {
-        this.f40774b = fo0Var;
-        this.f40773a = runnable;
+    public rn0(go0 go0Var) {
+        this.f40798a = go0Var;
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        String str3;
-        fo0 fo0Var = this.f40774b;
-        fo0Var.f37009y0 = tL_paymentSavedCredentialsCard;
-        fo0Var.f37005w0 = str;
-        fo0Var.U0 = z10;
-        fo0Var.f37007x0 = str2;
-        fo0Var.J0 = tL_inputPaymentCredentialsGooglePay;
-        org.telegram.ui.Cells.c9[] c9VarArr = fo0Var.Y;
-        org.telegram.ui.Cells.c9 c9Var = c9VarArr[0];
-        if (c9Var != null) {
-            c9Var.setVisibility(0);
-            org.telegram.ui.Cells.c9 c9Var2 = c9VarArr[0];
-            String str4 = fo0Var.f37007x0;
-            if (str4 != null && str4.length() > 1) {
-                str3 = fo0Var.f37007x0.substring(0, 1).toUpperCase() + fo0Var.f37007x0.substring(1);
-            } else {
-                str3 = fo0Var.f37007x0;
+    public final void b(int i10) {
+        go0 go0Var = this.f40798a;
+        if (i10 == -1) {
+            if (!go0Var.P0) {
+                go0Var.finishFragment();
             }
-            c9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
-            org.telegram.ui.Cells.c9 c9Var3 = c9VarArr[1];
-            if (c9Var3 != null) {
-                c9Var3.setVisibility(0);
+        } else if (i10 == 1 && !go0Var.P0) {
+            if (go0Var.f37285u0 != 3) {
+                AndroidUtilities.hideKeyboard(go0Var.getParentActivity().getCurrentFocus());
             }
+            int i11 = go0Var.f37285u0;
+            if (i11 != 0) {
+                int i12 = 0;
+                if (i11 != 1) {
+                    if (i11 != 2) {
+                        if (i11 != 3) {
+                            if (i11 == 6) {
+                                go0Var.A0(false);
+                                return;
+                            }
+                            return;
+                        }
+                        go0.k0(go0Var);
+                        return;
+                    }
+                    go0.j0(go0Var);
+                    return;
+                }
+                while (true) {
+                    org.telegram.ui.Cells.j6[] j6VarArr = go0Var.h;
+                    if (i12 >= j6VarArr.length) {
+                        break;
+                    } else if (j6VarArr[i12].f22488b.f24344f) {
+                        go0Var.G0 = go0Var.E0.shipping_options.get(i12);
+                        break;
+                    } else {
+                        i12++;
+                    }
+                }
+                go0Var.t0();
+                return;
+            }
+            go0Var.D0(true);
+            go0.m0(go0Var);
         }
-        Runnable runnable = this.f40773a;
-        if (runnable != null) {
-            runnable.run();
-        }
-        return false;
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void b() {
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

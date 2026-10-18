@@ -2,50 +2,50 @@ package o;
 
 import java.util.Iterator;
 public final class b extends e implements Iterator {
-    public c f17494a;
-    public c f17495b;
-    public final int f17496c;
+    public c f17501a;
+    public c f17502b;
+    public final int f17503c;
 
     public b(c cVar, c cVar2, int i10) {
-        this.f17496c = i10;
-        this.f17494a = cVar2;
-        this.f17495b = cVar;
+        this.f17503c = i10;
+        this.f17501a = cVar2;
+        this.f17502b = cVar;
     }
 
     @Override
     public final void a(c cVar) {
         c cVar2;
         c cVar3 = null;
-        if (this.f17494a == cVar && cVar == this.f17495b) {
-            this.f17495b = null;
-            this.f17494a = null;
+        if (this.f17501a == cVar && cVar == this.f17502b) {
+            this.f17502b = null;
+            this.f17501a = null;
         }
-        c cVar4 = this.f17494a;
+        c cVar4 = this.f17501a;
         if (cVar4 == cVar) {
-            switch (this.f17496c) {
+            switch (this.f17503c) {
                 case 0:
                     cVar2 = cVar4.d;
                     break;
                 default:
-                    cVar2 = cVar4.f17499c;
+                    cVar2 = cVar4.f17506c;
                     break;
             }
-            this.f17494a = cVar2;
+            this.f17501a = cVar2;
         }
-        c cVar5 = this.f17495b;
+        c cVar5 = this.f17502b;
         if (cVar5 == cVar) {
-            c cVar6 = this.f17494a;
+            c cVar6 = this.f17501a;
             if (cVar5 != cVar6 && cVar6 != null) {
                 cVar3 = b(cVar5);
             }
-            this.f17495b = cVar3;
+            this.f17502b = cVar3;
         }
     }
 
     public final c b(c cVar) {
-        switch (this.f17496c) {
+        switch (this.f17503c) {
             case 0:
-                return cVar.f17499c;
+                return cVar.f17506c;
             default:
                 return cVar.d;
         }
@@ -53,7 +53,7 @@ public final class b extends e implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f17495b != null) {
+        if (this.f17502b != null) {
             return true;
         }
         return false;
@@ -62,14 +62,14 @@ public final class b extends e implements Iterator {
     @Override
     public final Object next() {
         c cVar;
-        c cVar2 = this.f17495b;
-        c cVar3 = this.f17494a;
+        c cVar2 = this.f17502b;
+        c cVar3 = this.f17501a;
         if (cVar2 != cVar3 && cVar3 != null) {
             cVar = b(cVar2);
         } else {
             cVar = null;
         }
-        this.f17495b = cVar;
+        this.f17502b = cVar;
         return cVar2;
     }
 }

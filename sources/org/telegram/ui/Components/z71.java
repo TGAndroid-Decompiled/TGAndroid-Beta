@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FourierTransform;
 public final class z71 {
-    public final ByteBuffer f32856c;
+    public final ByteBuffer f32863c;
     public long e;
-    public final a81 f32857f;
-    public final FourierTransform.FFT f32854a = new FourierTransform.FFT(1024, 48000.0f);
-    public final float[] f32855b = new float[1024];
+    public final a81 f32864f;
+    public final FourierTransform.FFT f32861a = new FourierTransform.FFT(1024, 48000.0f);
+    public final float[] f32862b = new float[1024];
     public int d = 0;
 
     public z71(a81 a81Var) {
-        this.f32857f = a81Var;
+        this.f32864f = a81Var;
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
-        this.f32856c = allocateDirect;
+        this.f32863c = allocateDirect;
         allocateDirect.position(0);
     }
 }

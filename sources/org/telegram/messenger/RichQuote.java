@@ -49,6 +49,16 @@ public class RichQuote {
             this.last = sliced2;
         }
 
+        public int formattedOffset(int i10, int i11) {
+            int i12;
+            TL_iv.RichText slice;
+            Sliced slicer = slicer(i10);
+            if (i10 == this.fromIndex && (i12 = this.fromOffset) > 0 && (slice = this.first.slice(0, i12)) != null) {
+                i11 += RichQuote.flatLength(slice);
+            }
+            return RichQuote.flatToFormatted(this.layout, this.nodes.get(i10), slicer.flags, i11, false);
+        }
+
         public TL_iv.RichText fragment(int i10) {
             int i11;
             int startOffset = startOffset(i10);
@@ -438,7 +448,7 @@ public class RichQuote {
         return sb2.toString();
     }
 
-    private static int flatToFormatted(RichMessageLayout richMessageLayout, TL_iv.RichText richText, int i10, int i11, boolean z10) {
+    public static int flatToFormatted(RichMessageLayout richMessageLayout, TL_iv.RichText richText, int i10, int i11, boolean z10) {
         IdentityHashMap<TL_iv.RichText, int[]> identityHashMap = new IdentityHashMap<>();
         CharSequence formatTextRecording = richMessageLayout.formatTextRecording(richText, i10, identityHashMap);
         int flatToFormatted = flatToFormatted(richText, identityHashMap, i11, z10, new int[]{0});
@@ -446,8 +456,10 @@ public class RichQuote {
     }
 
     public static RichQuote fromSelection(MessageObject messageObject, int i10, int i11) {
+        int intValue;
+        int intValue2;
         Sliced of2;
-        RichQuote richQuote = null;
+        int formattedOffset;
         if (!canQuote(messageObject)) {
             return null;
         }
@@ -460,81 +472,73 @@ public class RichQuote {
         }
         Position resolve = resolve(richMessageLayout, Math.min(i10, i11), true, identityHashMap);
         Position resolve2 = resolve(richMessageLayout, Math.max(i10, i11), false, identityHashMap);
-        if (resolve == null || resolve2 == null) {
-            return null;
-        }
-        int intValue = ((Integer) identityHashMap.get(resolve.root.text)).intValue();
-        int intValue2 = ((Integer) identityHashMap.get(resolve2.root.text)).intValue();
-        if (intValue > intValue2 || (intValue == intValue2 && resolve.offset >= resolve2.offset)) {
-            return null;
-        }
-        Sliced of3 = Sliced.of(richMessageLayout, resolve);
-        if (intValue == intValue2) {
-            of2 = of3;
-        } else {
-            of2 = Sliced.of(richMessageLayout, resolve2);
-        }
-        if (of3 == null || of2 == null) {
-            return null;
-        }
-        Range range = new Range(richMessageLayout, collectNodes, intValue, resolve.offset, of3, intValue2, resolve2.offset, of2);
-        int i14 = range.toIndex;
-        int i15 = range.fromIndex;
-        if ((i14 - i15) + 1 > 32) {
-            range.setEnd(i15 + 31, Integer.MAX_VALUE);
-        }
-        int i16 = 0;
-        loop1: while (i16 < 8) {
-            int i17 = range.toIndex;
-            int i18 = range.fromIndex;
-            if (i17 < i18) {
-                break;
+        if (resolve != null && resolve2 != null && (intValue = ((Integer) identityHashMap.get(resolve.root.text)).intValue()) <= (intValue2 = ((Integer) identityHashMap.get(resolve2.root.text)).intValue()) && (intValue != intValue2 || resolve.offset < resolve2.offset)) {
+            Sliced of3 = Sliced.of(richMessageLayout, resolve);
+            if (intValue == intValue2) {
+                of2 = of3;
+            } else {
+                of2 = Sliced.of(richMessageLayout, resolve2);
             }
-            int i19 = 0;
-            while (i18 <= range.toIndex) {
-                String flatText = flatText(range.fragment(i18));
-                int codePointCount = flatText.codePointCount(0, flatText.length()) + i19;
-                if (codePointCount > i12) {
-                    int i20 = i12 - i19;
-                    RichQuote richQuote2 = richQuote;
-                    int offsetByCodePoints = flatText.offsetByCodePoints(0, Math.max(0, i20)) + range.startOffset(i18);
-                    if (i20 > 0 && (i18 != range.toIndex || offsetByCodePoints < range.toOffset)) {
-                        range.setEnd(i18, offsetByCodePoints);
-                    } else {
-                        range.setEnd(i18 - 1, Integer.MAX_VALUE);
+            if (of3 != null && of2 != null) {
+                Range range = new Range(richMessageLayout, collectNodes, intValue, resolve.offset, of3, intValue2, resolve2.offset, of2);
+                int i14 = range.toIndex;
+                int i15 = range.fromIndex;
+                if ((i14 - i15) + 1 > 32) {
+                    range.setEnd(i15 + 31, Integer.MAX_VALUE);
+                }
+                loop1: for (int i16 = 0; i16 < 8; i16++) {
+                    int i17 = range.toIndex;
+                    int i18 = range.fromIndex;
+                    if (i17 < i18) {
+                        break;
                     }
-                    i16++;
-                    richQuote = richQuote2;
-                } else {
-                    i18++;
-                    i19 = codePointCount;
+                    int i19 = 0;
+                    while (i18 <= range.toIndex) {
+                        String flatText = flatText(range.fragment(i18));
+                        int codePointCount = flatText.codePointCount(0, flatText.length()) + i19;
+                        if (codePointCount > i12) {
+                            int i20 = i12 - i19;
+                            if (i20 <= 0) {
+                                formattedOffset = -1;
+                            } else {
+                                formattedOffset = range.formattedOffset(i18, flatText.offsetByCodePoints(0, i20));
+                            }
+                            if (i20 > 0 && formattedOffset > range.startOffset(i18) && (i18 != range.toIndex || formattedOffset < range.toOffset)) {
+                                range.setEnd(i18, formattedOffset);
+                            } else {
+                                range.setEnd(i18 - 1, Integer.MAX_VALUE);
+                            }
+                        } else {
+                            i18++;
+                            i19 = codePointCount;
+                        }
+                    }
+                    break loop1;
+                }
+                if (range.toIndex < range.fromIndex) {
+                    return null;
+                }
+                ArrayList arrayList = new ArrayList();
+                for (int i21 = range.fromIndex; i21 <= range.toIndex; i21++) {
+                    TL_iv.RichText withoutButtons = withoutButtons(range.fragment(i21));
+                    if (withoutButtons != null && flatLength(withoutButtons) > 0) {
+                        arrayList.add(withoutButtons);
+                    }
+                }
+                if (!arrayList.isEmpty() && arrayList.size() <= 32) {
+                    int i22 = 0;
+                    for (int i23 = 0; i23 < intValue; i23++) {
+                        i22 += flatLength(collectNodes.get(i23)) + 1;
+                    }
+                    TL_iv.RichText slice = of3.slice(0, resolve.offset);
+                    if (slice != null) {
+                        i22 += flatLength(slice);
+                    }
+                    return new RichQuote(arrayList, i22);
                 }
             }
-            break loop1;
         }
-        RichQuote richQuote3 = richQuote;
-        if (range.toIndex < range.fromIndex) {
-            return richQuote3;
-        }
-        ArrayList arrayList = new ArrayList();
-        for (int i21 = range.fromIndex; i21 <= range.toIndex; i21++) {
-            TL_iv.RichText withoutButtons = withoutButtons(range.fragment(i21));
-            if (withoutButtons != null && flatLength(withoutButtons) > 0) {
-                arrayList.add(withoutButtons);
-            }
-        }
-        if (!arrayList.isEmpty() && arrayList.size() <= 32) {
-            int i22 = 0;
-            for (int i23 = 0; i23 < intValue; i23++) {
-                i22 += flatLength(collectNodes.get(i23)) + 1;
-            }
-            TL_iv.RichText slice = of3.slice(0, resolve.offset);
-            if (slice != null) {
-                i22 += flatLength(slice);
-            }
-            return new RichQuote(arrayList, i22);
-        }
-        return richQuote3;
+        return null;
     }
 
     private static CharSequence getText(org.telegram.ui.Cells.y9 y9Var) {
@@ -719,14 +723,16 @@ public class RichQuote {
     }
 
     public static class Sliced {
+        final int flags;
         final int length;
         final IdentityHashMap<TL_iv.RichText, int[]> ranges;
         final TL_iv.RichText root;
 
-        public Sliced(TL_iv.RichText richText, IdentityHashMap<TL_iv.RichText, int[]> identityHashMap, int i10) {
+        public Sliced(TL_iv.RichText richText, IdentityHashMap<TL_iv.RichText, int[]> identityHashMap, int i10, int i11) {
             this.root = richText;
             this.ranges = identityHashMap;
             this.length = i10;
+            this.flags = i11;
         }
 
         public static Sliced of(RichMessageLayout richMessageLayout, Position position) {
@@ -735,7 +741,7 @@ public class RichQuote {
             CharSequence formatTextRecording = richMessageLayout.formatTextRecording(quoteRootSpan.text, quoteRootSpan.flags, identityHashMap);
             int spanEnd = ((Spanned) position.text).getSpanEnd(position.root) - position.textStart;
             if (formatTextRecording.length() == spanEnd && TextUtils.regionMatches(formatTextRecording, 0, position.text, position.textStart, spanEnd)) {
-                return new Sliced(position.root.text, identityHashMap, formatTextRecording.length());
+                return new Sliced(position.root.text, identityHashMap, formatTextRecording.length(), position.root.flags);
             }
             FileLog.e("RichQuote: laid out text doesn't match the formatted one");
             return null;
@@ -743,7 +749,7 @@ public class RichQuote {
 
         public static Sliced ofNode(RichMessageLayout richMessageLayout, TL_iv.RichText richText) {
             IdentityHashMap<TL_iv.RichText, int[]> identityHashMap = new IdentityHashMap<>();
-            return new Sliced(richText, identityHashMap, richMessageLayout.formatTextRecording(richText, 0, identityHashMap).length());
+            return new Sliced(richText, identityHashMap, richMessageLayout.formatTextRecording(richText, 0, identityHashMap).length(), 0);
         }
 
         public TL_iv.RichText slice(int i10, int i11) {

@@ -12,21 +12,21 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 public final class v9 {
-    public final int f2327a;
-    public final long f2328b;
-    public boolean f2329c;
+    public final int f2329a;
+    public final long f2330b;
+    public boolean f2331c;
     public boolean d;
-    public x9 f2331g;
-    public boolean f2333j;
-    public boolean f2334k;
+    public y9 f2333g;
+    public boolean f2335j;
+    public boolean f2336k;
     public final ArrayList e = new ArrayList();
-    public final ArrayList f2330f = new ArrayList();
+    public final ArrayList f2332f = new ArrayList();
     public final HashMap h = new HashMap();
-    public int f2332i = -1;
+    public int f2334i = -1;
 
     public v9(int i10, long j10) {
-        this.f2327a = i10;
-        this.f2328b = j10;
+        this.f2329a = i10;
+        this.f2330b = j10;
         i();
     }
 
@@ -34,13 +34,13 @@ public final class v9 {
         if (arrayList.isEmpty()) {
             return;
         }
-        x9 e = e(i10);
+        y9 e = e(i10);
         int i11 = 0;
-        long j10 = this.f2328b;
-        int i12 = this.f2327a;
+        long j10 = this.f2330b;
+        int i12 = this.f2329a;
         if (e != null) {
-            e.f2448l.addAll(0, arrayList);
-            e.f2450n = arrayList.size() + e.f2450n;
+            e.f2498l.addAll(0, arrayList);
+            e.f2500n = arrayList.size() + e.f2500n;
             NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(j10), e);
             n(i10);
         }
@@ -71,27 +71,27 @@ public final class v9 {
     }
 
     public final void b(String str, Utilities.Callback callback) {
-        if (this.f2334k) {
+        if (this.f2336k) {
             return;
         }
-        this.f2334k = true;
+        this.f2336k = true;
         TL_stars.TL_starGiftCollection tL_starGiftCollection = new TL_stars.TL_starGiftCollection();
         tL_starGiftCollection.collection_id = -1;
         tL_starGiftCollection.title = str;
         this.e.add(tL_starGiftCollection);
         j();
-        int i10 = this.f2327a;
-        long j10 = this.f2328b;
-        x9 x9Var = new x9(i10, j10, false);
-        x9Var.f2442c = true;
-        x9Var.d = -1;
-        x9Var.f2450n = 0;
-        x9Var.f2446j = true;
-        this.h.put(-1, x9Var);
+        int i10 = this.f2329a;
+        long j10 = this.f2330b;
+        y9 y9Var = new y9(i10, j10, false);
+        y9Var.f2492c = true;
+        y9Var.d = -1;
+        y9Var.f2500n = 0;
+        y9Var.f2496j = true;
+        this.h.put(-1, y9Var);
         TL_stars.createStarGiftCollection createstargiftcollection = new TL_stars.createStarGiftCollection();
         createstargiftcollection.peer = MessagesController.getInstance(i10).getInputPeer(j10);
         createstargiftcollection.title = str;
-        ConnectionsManager.getInstance(i10).sendRequest(createstargiftcollection, new x2(this, tL_starGiftCollection, x9Var, callback, 4));
+        ConnectionsManager.getInstance(i10).sendRequest(createstargiftcollection, new y2(this, tL_starGiftCollection, y9Var, callback, 4));
     }
 
     public final TL_stars.TL_starGiftCollection c(int i10) {
@@ -114,11 +114,11 @@ public final class v9 {
         if (h()) {
             return this.e;
         }
-        return this.f2330f;
+        return this.f2332f;
     }
 
-    public final x9 e(int i10) {
-        return (x9) this.h.get(Integer.valueOf(i10));
+    public final y9 e(int i10) {
+        return (y9) this.h.get(Integer.valueOf(i10));
     }
 
     public final int f(int i10) {
@@ -137,21 +137,21 @@ public final class v9 {
     }
 
     public final void g() {
-        if (this.f2332i != -1) {
-            ConnectionsManager.getInstance(this.f2327a).cancelRequest(this.f2332i, true);
-            this.f2332i = -1;
+        if (this.f2334i != -1) {
+            ConnectionsManager.getInstance(this.f2329a).cancelRequest(this.f2334i, true);
+            this.f2334i = -1;
         }
-        this.f2329c = false;
+        this.f2331c = false;
         this.d = false;
-        if (this.f2333j) {
+        if (this.f2335j) {
             i();
         }
     }
 
     public final boolean h() {
-        long j10 = this.f2328b;
+        long j10 = this.f2330b;
         int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        int i11 = this.f2327a;
+        int i11 = this.f2329a;
         if (i10 >= 0) {
             if (j10 != 0 && j10 != UserConfig.getInstance(i11).getClientUserId()) {
                 return false;
@@ -162,11 +162,11 @@ public final class v9 {
     }
 
     public final void i() {
-        if (!this.f2329c && !this.d) {
-            this.f2329c = true;
+        if (!this.f2331c && !this.d) {
+            this.f2331c = true;
             TL_stars.getStarGiftCollections getstargiftcollections = new TL_stars.getStarGiftCollections();
-            int i10 = this.f2327a;
-            getstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(this.f2328b);
+            int i10 = this.f2329a;
+            getstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(this.f2330b);
             ArrayList arrayList = this.e;
             int size = arrayList.size();
             long j10 = 0;
@@ -177,12 +177,12 @@ public final class v9 {
                 j10 = MediaDataController.calcHash(j10, ((TL_stars.TL_starGiftCollection) obj).hash);
             }
             getstargiftcollections.hash = j10;
-            this.f2332i = ConnectionsManager.getInstance(i10).sendRequest(getstargiftcollections, new t9(this, 0));
+            this.f2334i = ConnectionsManager.getInstance(i10).sendRequest(getstargiftcollections, new t9(this, 0));
         }
     }
 
     public final void j() {
-        ArrayList arrayList = this.f2330f;
+        ArrayList arrayList = this.f2332f;
         arrayList.clear();
         int i10 = 0;
         while (true) {
@@ -207,11 +207,11 @@ public final class v9 {
         if (arrayList.isEmpty()) {
             return;
         }
-        x9 e = e(i10);
+        y9 e = e(i10);
         char c11 = 1;
         boolean z11 = false;
         if (e != null) {
-            ArrayList arrayList2 = e.f2448l;
+            ArrayList arrayList2 = e.f2498l;
             if (!arrayList2.isEmpty()) {
                 int i11 = 0;
                 while (i11 < arrayList2.size()) {
@@ -220,9 +220,9 @@ public final class v9 {
                     while (true) {
                         if (i12 >= arrayList.size()) {
                             break;
-                        } else if (fa.k(savedStarGift2, (TL_stars.SavedStarGift) arrayList.get(i12))) {
+                        } else if (ga.k(savedStarGift2, (TL_stars.SavedStarGift) arrayList.get(i12))) {
                             arrayList2.remove(i11);
-                            e.f2450n = Math.max(0, e.f2450n - 1);
+                            e.f2500n = Math.max(0, e.f2500n - 1);
                             i11--;
                             break;
                         } else {
@@ -235,9 +235,9 @@ public final class v9 {
         }
         n(i10);
         TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
-        int i13 = this.f2327a;
+        int i13 = this.f2329a;
         MessagesController messagesController = MessagesController.getInstance(i13);
-        long j10 = this.f2328b;
+        long j10 = this.f2330b;
         updatestargiftcollection.peer = messagesController.getInputPeer(j10);
         updatestargiftcollection.collection_id = i10;
         updatestargiftcollection.flags |= 2;
@@ -281,31 +281,31 @@ public final class v9 {
     }
 
     public final void l(TL_stars.SavedStarGift savedStarGift, int i10, boolean z10) {
-        for (x9 x9Var : this.h.values()) {
-            x9Var.o(savedStarGift, i10, z10);
+        for (y9 y9Var : this.h.values()) {
+            y9Var.o(savedStarGift, i10, z10);
         }
-        x9 x9Var2 = this.f2331g;
-        if (x9Var2 != null) {
-            x9Var2.o(savedStarGift, i10, z10);
+        y9 y9Var2 = this.f2333g;
+        if (y9Var2 != null) {
+            y9Var2.o(savedStarGift, i10, z10);
         }
     }
 
     public final void m(TL_stars.SavedStarGift savedStarGift, boolean z10) {
-        for (x9 x9Var : this.h.values()) {
-            x9Var.p(savedStarGift, z10);
+        for (y9 y9Var : this.h.values()) {
+            y9Var.p(savedStarGift, z10);
         }
-        x9 x9Var2 = this.f2331g;
-        if (x9Var2 != null) {
-            x9Var2.p(savedStarGift, z10);
+        y9 y9Var2 = this.f2333g;
+        if (y9Var2 != null) {
+            y9Var2.p(savedStarGift, z10);
         }
     }
 
     public final void n(int i10) {
         TL_stars.SavedStarGift savedStarGift;
-        x9 e = e(i10);
+        y9 e = e(i10);
         TL_stars.TL_starGiftCollection c10 = c(i10);
         if (e != null) {
-            ArrayList arrayList = e.f2448l;
+            ArrayList arrayList = e.f2498l;
             if (c10 != null) {
                 if (arrayList.isEmpty()) {
                     savedStarGift = null;
@@ -319,7 +319,7 @@ public final class v9 {
                     c10.flags |= 1;
                     c10.icon = savedStarGift.gift.getDocument();
                 }
-                NotificationCenter.getInstance(this.f2327a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(this.f2328b), this);
+                NotificationCenter.getInstance(this.f2329a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(this.f2330b), this);
             }
         }
     }

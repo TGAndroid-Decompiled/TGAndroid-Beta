@@ -1,30 +1,41 @@
 package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
 public final class w6 implements Runnable {
-    public final int f35039a;
-    public final WalletEngine2 f35040b;
-    public final Utilities.Callback2 f35041c;
-    public final TL_wallet.walletTransaction d;
-    public final String e;
+    public final int f35037a;
+    public final Utilities.Callback2 f35038b;
 
-    public w6(WalletEngine2 walletEngine2, Utilities.Callback2 callback2, TL_wallet.walletTransaction wallettransaction, String str, int i10) {
-        this.f35039a = i10;
-        this.f35040b = walletEngine2;
-        this.f35041c = callback2;
-        this.d = wallettransaction;
-        this.e = str;
+    public w6(int i10, Utilities.Callback2 callback2) {
+        this.f35037a = i10;
+        this.f35038b = callback2;
     }
 
     @Override
     public final void run() {
-        switch (this.f35039a) {
+        switch (this.f35037a) {
             case 0:
-                this.f35040b.lambda$previewTonConnect$1(this.f35041c, this.d, this.e);
+                this.f35038b.run(null, "Wallet engine is closed");
+                return;
+            case 1:
+                this.f35038b.run(null, "NO_WALLET_ENGINE");
+                return;
+            case 2:
+                this.f35038b.run(null, "NO_WALLET_ENGINE");
+                return;
+            case 3:
+                this.f35038b.run(null, "Recovery phrase is required");
+                return;
+            case 4:
+                this.f35038b.run(null, "Transaction hash is required");
+                return;
+            case 5:
+                this.f35038b.run(null, "NO_WALLET_ENGINE");
+                return;
+            case 6:
+                this.f35038b.run(null, "NO_WALLET_ENGINE");
                 return;
             default:
-                this.f35040b.lambda$emulateRotateKey$29(this.f35041c, this.d, this.e);
+                this.f35038b.run(null, "NO_WALLET_ENGINE");
                 return;
         }
     }

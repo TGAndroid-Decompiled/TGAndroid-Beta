@@ -3,10 +3,10 @@ package c3;
 import android.os.Parcel;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class l0 implements com.google.android.gms.common.api.internal.r {
-    public final String[] f4649a;
+    public final String[] f4650a;
 
     public l0(g6.r rVar, String[] strArr) {
-        this.f4649a = strArr;
+        this.f4650a = strArr;
     }
 
     @Override
@@ -15,11 +15,11 @@ public final class l0 implements com.google.android.gms.common.api.internal.r {
         g6.i iVar = (g6.i) ((g6.s) obj).u();
         Parcel N0 = iVar.N0();
         com.google.android.gms.internal.cast.v.d(N0, qVar);
-        N0.writeStringArray(this.f4649a);
+        N0.writeStringArray(this.f4650a);
         iVar.S0(N0, 7);
     }
 
     public l0(String[] strArr) {
-        this.f4649a = strArr;
+        this.f4650a = strArr;
     }
 }

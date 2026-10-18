@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import v7.s6;
 public abstract class v0 {
-    public static final ArrayList f4086a = new ArrayList();
-    public static final Pattern f4087b = Pattern.compile("^mp4a\\.([a-zA-Z0-9]{2})(?:\\.([0-9]{1,2}))?$");
+    public static final ArrayList f4087a = new ArrayList();
+    public static final Pattern f4088b = Pattern.compile("^mp4a\\.([a-zA-Z0-9]{2})(?:\\.([0-9]{1,2}))?$");
 
     public static boolean a(String str, String str2) {
         u0 f7;
@@ -330,7 +330,7 @@ public abstract class v0 {
                                 if (!c10.startsWith("vp8") && !c10.startsWith("vp08")) {
                                     if (c10.startsWith("mp4a")) {
                                         if (c10.startsWith("mp4a.") && (f7 = f(c10)) != null) {
-                                            str2 = e(f7.f4056a);
+                                            str2 = e(f7.f4057a);
                                         }
                                         if (str2 == null) {
                                             return "audio/mp4a-latm";
@@ -377,7 +377,7 @@ public abstract class v0 {
                                                             return "application/cea-708";
                                                         }
                                                         if (!c10.contains("eia608") && !c10.contains("cea608")) {
-                                                            ArrayList arrayList = f4086a;
+                                                            ArrayList arrayList = f4087a;
                                                             if (arrayList.size() > 0) {
                                                                 arrayList.get(0).getClass();
                                                                 throw new ClassCastException();
@@ -487,7 +487,7 @@ public abstract class v0 {
 
     public static u0 f(String str) {
         int i10;
-        Matcher matcher = f4087b.matcher(str);
+        Matcher matcher = f4088b.matcher(str);
         if (matcher.matches()) {
             String group = matcher.group(1);
             group.getClass();
@@ -533,7 +533,7 @@ public abstract class v0 {
                 if ("application/x-camera-motion".equals(str)) {
                     return 6;
                 }
-                ArrayList arrayList = f4086a;
+                ArrayList arrayList = f4087a;
                 if (arrayList.size() <= 0) {
                     return -1;
                 }

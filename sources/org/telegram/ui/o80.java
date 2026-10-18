@@ -6,15 +6,15 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class o80 implements Utilities.Callback {
-    public final int f39684a;
-    public final LaunchActivity f39685b;
-    public final b80 f39686c;
+    public final int f39705a;
+    public final LaunchActivity f39706b;
+    public final b80 f39707c;
     public final Long d;
 
     public o80(LaunchActivity launchActivity, b80 b80Var, Long l4, int i10) {
-        this.f39684a = i10;
-        this.f39685b = launchActivity;
-        this.f39686c = b80Var;
+        this.f39705a = i10;
+        this.f39706b = launchActivity;
+        this.f39707c = b80Var;
         this.d = l4;
     }
 
@@ -26,10 +26,10 @@ public final class o80 implements Utilities.Callback {
         org.telegram.ui.Components.xc X2;
         int i12;
         int i13;
-        int i14 = this.f39684a;
+        int i14 = this.f39705a;
         Long l4 = this.d;
-        b80 b80Var = this.f39686c;
-        LaunchActivity launchActivity = this.f39685b;
+        b80 b80Var = this.f39707c;
+        LaunchActivity launchActivity = this.f39706b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i14) {
             case 0:
@@ -65,7 +65,7 @@ public final class o80 implements Utilities.Callback {
                 } else {
                     return;
                 }
-                org.telegram.messenger.q.q(i11, X, i10, 36);
+                org.telegram.messenger.g0.q(i11, X, i10, 36);
                 return;
             default:
                 Pattern pattern2 = LaunchActivity.C1;
@@ -100,7 +100,7 @@ public final class o80 implements Utilities.Callback {
                 } else {
                     return;
                 }
-                org.telegram.messenger.q.q(i13, X2, i12, 36);
+                org.telegram.messenger.g0.q(i13, X2, i12, 36);
                 return;
         }
     }

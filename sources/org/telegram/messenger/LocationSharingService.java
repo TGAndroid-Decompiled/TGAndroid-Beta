@@ -134,10 +134,10 @@ public class LocationSharingService extends Service implements NotificationCente
                 qVar.E.when = System.currentTimeMillis();
                 e0.q qVar2 = this.builder;
                 qVar2.E.icon = R.drawable.live_loc;
-                qVar2.f8147g = activity;
+                qVar2.f8148g = activity;
                 NotificationsController.checkOtherNotificationsChannel();
                 e0.q qVar3 = this.builder;
-                qVar3.f8163y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+                qVar3.f8164y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
                 qVar3.g(LocaleController.getString(R.string.AppName));
                 this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, StopLiveLocationReceiver.class), 167772160));
             }

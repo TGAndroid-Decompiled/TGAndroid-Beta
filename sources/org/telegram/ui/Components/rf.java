@@ -5,15 +5,15 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class rf implements TextWatcher {
-    public boolean f29922a;
-    public boolean f29923b;
-    public String f29924c;
+    public boolean f29930a;
+    public boolean f29931b;
+    public String f29932c;
     public boolean d;
     public boolean e;
-    public final ChatActivityEnterView f29925f;
+    public final ChatActivityEnterView f29933f;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f29925f = chatActivityEnterView;
+        this.f29933f = chatActivityEnterView;
     }
 
     @Override
@@ -23,8 +23,8 @@ public final class rf implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (!this.d && this.f29925f.F2) {
-            this.f29924c = charSequence.toString();
+        if (!this.d && this.f29933f.F2) {
+            this.f29932c = charSequence.toString();
         }
     }
 
@@ -39,7 +39,7 @@ public final class rf implements TextWatcher {
         boolean z15;
         boolean z16;
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f29925f;
+            ChatActivityEnterView chatActivityEnterView = this.f29933f;
             dg dgVar = chatActivityEnterView.U0;
             if (dgVar == null) {
                 currentPage = MessagesController.getGlobalEmojiSettings().getInt("selected_page", 0);
@@ -95,7 +95,7 @@ public final class rf implements TextWatcher {
                 return;
             }
             if (chatActivityEnterView.B2 && !chatActivityEnterView.C0 && !chatActivityEnterView.D0 && !chatActivityEnterView.R2 && !chatActivityEnterView.X1 && chatActivityEnterView.Z1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f29923b = true;
+                this.f29931b = true;
             }
             chatActivityEnterView.X1 = false;
             chatActivityEnterView.I(true);
@@ -114,9 +114,9 @@ public final class rf implements TextWatcher {
                 ogVar.g1(charSequence, z11, false);
             }
             if (chatActivityEnterView.S2 != 2 && i12 - i11 > 1) {
-                this.f29922a = true;
+                this.f29930a = true;
             }
-            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f23952h2 && trimmedString.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
+            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f23959h2 && trimmedString.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
                 chatActivityEnterView.C2 = System.currentTimeMillis();
                 og ogVar2 = chatActivityEnterView.Z2;
                 if (ogVar2 != null) {

@@ -5,8 +5,8 @@ import b2.t0;
 import b2.v;
 import b2.w;
 import java.util.Map;
-import u2.c1;
-public final class p extends c1 {
+import u2.b1;
+public final class p extends b1 {
     public final Map J;
     public b2.s K;
 
@@ -20,21 +20,21 @@ public final class p extends c1 {
         b2.s sVar;
         b2.s sVar2 = this.K;
         if (sVar2 == null) {
-            sVar2 = wVar.f4134w;
+            sVar2 = wVar.f4135w;
         }
-        if (sVar2 != null && (sVar = (b2.s) this.J.get(sVar2.f3984c)) != null) {
+        if (sVar2 != null && (sVar = (b2.s) this.J.get(sVar2.f3985c)) != null) {
             sVar2 = sVar;
         }
-        t0 t0Var = wVar.f4124l;
+        t0 t0Var = wVar.f4125l;
         t0 t0Var2 = null;
         if (t0Var != null) {
-            s0[] s0VarArr = t0Var.f4010a;
+            s0[] s0VarArr = t0Var.f4011a;
             int length = s0VarArr.length;
             int i10 = 0;
             while (true) {
                 if (i10 < length) {
                     s0 s0Var = s0VarArr[i10];
-                    if ((s0Var instanceof q3.m) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.m) s0Var).f44401b)) {
+                    if ((s0Var instanceof q3.m) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.m) s0Var).f44421b)) {
                         break;
                     }
                     i10++;
@@ -54,20 +54,20 @@ public final class p extends c1 {
                     t0Var2 = new t0(s0VarArr2);
                 }
             }
-            if (sVar2 == wVar.f4134w || t0Var != wVar.f4124l) {
+            if (sVar2 == wVar.f4135w || t0Var != wVar.f4125l) {
                 v a2 = wVar.a();
                 a2.v = sVar2;
-                a2.f4071k = t0Var;
+                a2.f4072k = t0Var;
                 wVar = new w(a2);
             }
             return super.r(wVar);
         }
         t0Var = t0Var2;
-        if (sVar2 == wVar.f4134w) {
+        if (sVar2 == wVar.f4135w) {
         }
         v a22 = wVar.a();
         a22.v = sVar2;
-        a22.f4071k = t0Var;
+        a22.f4072k = t0Var;
         wVar = new w(a22);
         return super.r(wVar);
     }

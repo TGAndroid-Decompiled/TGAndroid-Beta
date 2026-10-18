@@ -3,16 +3,16 @@ package w7;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 public final class qa extends a9.o implements ListIterator {
-    public final int f48825b;
-    public int f48826c;
+    public final int f48850b;
+    public int f48851c;
     public final sa d;
 
     public qa(sa saVar, int i10) {
         super(7);
         int size = saVar.size();
         if (i10 >= 0 && i10 <= size) {
-            this.f48825b = size;
-            this.f48826c = i10;
+            this.f48850b = size;
+            this.f48851c = i10;
             this.d = saVar;
             return;
         }
@@ -30,7 +30,7 @@ public final class qa extends a9.o implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f48826c < this.f48825b) {
+        if (this.f48851c < this.f48850b) {
             return true;
         }
         return false;
@@ -38,7 +38,7 @@ public final class qa extends a9.o implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f48826c > 0) {
+        if (this.f48851c > 0) {
             return true;
         }
         return false;
@@ -47,8 +47,8 @@ public final class qa extends a9.o implements ListIterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i10 = this.f48826c;
-            this.f48826c = i10 + 1;
+            int i10 = this.f48851c;
+            this.f48851c = i10 + 1;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -56,14 +56,14 @@ public final class qa extends a9.o implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f48826c;
+        return this.f48851c;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i10 = this.f48826c - 1;
-            this.f48826c = i10;
+            int i10 = this.f48851c - 1;
+            this.f48851c = i10;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -71,7 +71,7 @@ public final class qa extends a9.o implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f48826c - 1;
+        return this.f48851c - 1;
     }
 
     @Override

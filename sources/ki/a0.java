@@ -5,24 +5,24 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public abstract class a0 extends FrameLayout implements l4 {
-    public a f15105a;
-    public final j5.c f15106b;
-    public int f15107c;
+    public a f15112a;
+    public final j5.c f15113b;
+    public int f15114c;
     public int d;
     public int e;
-    public int f15108f;
+    public int f15115f;
     public int h;
 
     public a0(Context context) {
         super(context);
         ?? obj = new Object();
-        obj.f14251a = Long.MIN_VALUE;
-        obj.f14252b = -1;
-        this.f15106b = obj;
+        obj.f14258a = Long.MIN_VALUE;
+        obj.f14259b = -1;
+        this.f15113b = obj;
     }
 
     public final void c(a aVar) {
-        this.f15106b.a(aVar, new j5.b(this, 2));
+        this.f15113b.a(aVar, new j5.b(this, 2));
     }
 
     public int e() {
@@ -34,27 +34,27 @@ public abstract class a0 extends FrameLayout implements l4 {
         int i11;
         int i12;
         int i13;
-        int d = w7.i.d(this.f15105a);
+        int d = w7.i.d(this.f15112a);
         int i14 = 0;
         if (i10 <= 0 && d <= 0) {
             e = 0;
         } else {
             e = e();
         }
-        a aVar = this.f15105a;
-        if (aVar != null && aVar.f15098n) {
-            if (aVar.f15096l <= 0) {
+        a aVar = this.f15112a;
+        if (aVar != null && aVar.f15105n) {
+            if (aVar.f15103l <= 0) {
                 i11 = 0;
             } else {
-                i11 = AndroidUtilities.dp(i0.a.g(i13, 1, 16, 10));
+                i11 = AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(i13, 1, 16, 10));
             }
         } else {
             i11 = this.e;
         }
-        a aVar2 = this.f15105a;
-        if (aVar2 != null && aVar2.f15099o) {
-            if (aVar2.f15097m > 0) {
-                i14 = AndroidUtilities.dp(i0.a.g(i12, 1, 16, 10));
+        a aVar2 = this.f15112a;
+        if (aVar2 != null && aVar2.f15106o) {
+            if (aVar2.f15104m > 0) {
+                i14 = AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(i12, 1, 16, 10));
             }
         } else {
             i14 = this.h;
@@ -62,7 +62,7 @@ public abstract class a0 extends FrameLayout implements l4 {
         int i15 = i10 + e;
         int i16 = d + e;
         int i17 = this.d;
-        int i18 = this.f15108f;
+        int i18 = this.f15115f;
         if (LocaleController.isRTL) {
             setPadding(i17 + i16, i11, i18 + i15, i14);
         } else {
@@ -73,9 +73,9 @@ public abstract class a0 extends FrameLayout implements l4 {
     public final void g(int i10, int i11, int i12, int i13) {
         this.d = i10;
         this.e = i11;
-        this.f15108f = i12;
+        this.f15115f = i12;
         this.h = i13;
-        int i14 = this.f15107c;
+        int i14 = this.f15114c;
         if (LocaleController.isRTL) {
             setPadding(i10, i11, i12 + i14, i13);
         } else {

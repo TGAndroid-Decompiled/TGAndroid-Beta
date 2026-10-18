@@ -4,23 +4,23 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class x5 {
-    public static RectF f48877a;
+    public static RectF f48902a;
 
     public static void a(Path path, RectF rectF, float f7) {
         if (path == null) {
             return;
         }
-        if (f48877a == null) {
-            f48877a = new RectF();
+        if (f48902a == null) {
+            f48902a = new RectF();
         }
         float f10 = 2.0f * f7;
         path.rewind();
-        f48877a.set(0.0f, -rectF.height(), f10, (-rectF.height()) + f10);
-        path.arcTo(f48877a, 180.0f, 90.0f);
-        f48877a.set(rectF.width() - f10, -rectF.height(), rectF.width(), (-rectF.height()) + f10);
-        path.arcTo(f48877a, 270.0f, 90.0f);
-        f48877a.set(rectF.width() - f10, -f10, rectF.width(), 0.0f);
-        path.arcTo(f48877a, 0.0f, 90.0f);
+        f48902a.set(0.0f, -rectF.height(), f10, (-rectF.height()) + f10);
+        path.arcTo(f48902a, 180.0f, 90.0f);
+        f48902a.set(rectF.width() - f10, -rectF.height(), rectF.width(), (-rectF.height()) + f10);
+        path.arcTo(f48902a, 270.0f, 90.0f);
+        f48902a.set(rectF.width() - f10, -f10, rectF.width(), 0.0f);
+        path.arcTo(f48902a, 0.0f, 90.0f);
         path.quadTo(f7, 0.0f, f7, 0.0f);
         path.cubicTo(AndroidUtilities.dp(7.62f), AndroidUtilities.dp(-0.5f), AndroidUtilities.dp(5.807f), AndroidUtilities.dp(-1.502f), AndroidUtilities.dp(6.02f), AndroidUtilities.dp(-1.386f));
         path.cubicTo(AndroidUtilities.dp(4.814f), AndroidUtilities.dp(-0.81f), AndroidUtilities.dp(2.706f), AndroidUtilities.dp(-0.133f), AndroidUtilities.dp(3.6f), AndroidUtilities.dp(-0.44f));

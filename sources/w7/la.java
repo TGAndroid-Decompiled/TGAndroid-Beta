@@ -4,34 +4,34 @@ import android.content.Context;
 import com.google.android.gms.tasks.Task;
 import java.util.HashMap;
 public final class la {
-    public static ua f48769j;
-    public static final za f48770k;
-    public final String f48771a;
-    public final String f48772b;
-    public final ka f48773c;
+    public static ua f48794j;
+    public static final za f48795k;
+    public final String f48796a;
+    public final String f48797b;
+    public final ka f48798c;
     public final rb.k d;
     public final Task e;
-    public final Task f48774f;
-    public final String f48775g;
+    public final Task f48799f;
+    public final String f48800g;
     public final int h;
-    public final HashMap f48776i = new HashMap();
+    public final HashMap f48801i = new HashMap();
 
     static {
         Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
         objArr[0].getClass();
         objArr[1].getClass();
-        f48770k = new za(objArr);
+        f48795k = new za(objArr);
     }
 
     public la(Context context, rb.k kVar, ka kaVar) {
         int i10;
         new HashMap();
-        this.f48771a = context.getPackageName();
-        this.f48772b = rb.c.a(context);
+        this.f48796a = context.getPackageName();
+        this.f48797b = rb.c.a(context);
         this.d = kVar;
-        this.f48773c = kaVar;
+        this.f48798c = kaVar;
         pa.b();
-        this.f48775g = "vision-common";
+        this.f48800g = "vision-common";
         rb.f a2 = rb.f.a();
         c5.x xVar = new c5.x(this, 6);
         a2.getClass();
@@ -40,8 +40,8 @@ public final class la {
         kVar.getClass();
         t7.p pVar = new t7.p(kVar, 2);
         a10.getClass();
-        this.f48774f = rb.f.b(pVar);
-        za zaVar = f48770k;
+        this.f48799f = rb.f.b(pVar);
+        za zaVar = f48795k;
         if (zaVar.containsKey("vision-common")) {
             i10 = y6.e.d(context, (String) zaVar.get("vision-common"), false);
         } else {

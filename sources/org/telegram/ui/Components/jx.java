@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessagesController;
 public final class jx implements z4.e {
-    public final boolean f27640a;
-    public final tz f27641b;
+    public final boolean f27647a;
+    public final tz f27648b;
 
     public jx(tz tzVar, boolean z10) {
-        this.f27641b = tzVar;
-        this.f27640a = z10;
+        this.f27648b = tzVar;
+        this.f27647a = z10;
     }
 
     @Override
@@ -18,18 +18,18 @@ public final class jx implements z4.e {
         int i12;
         int i13;
         int i14;
-        tz tzVar = this.f27641b;
+        tz tzVar = this.f27648b;
         gz gzVar3 = tzVar.G0;
-        gz gzVar4 = tzVar.f30782o0;
+        gz gzVar4 = tzVar.f30789o0;
         gz gzVar5 = tzVar.V;
         fx fxVar = tzVar.C0;
         ax axVar = tzVar.D0;
-        yx yxVar = tzVar.f30785p0;
-        uw uwVar = tzVar.f30762h0;
+        yx yxVar = tzVar.f30792p0;
+        uw uwVar = tzVar.f30769h0;
         ey eyVar = tzVar.P;
         int i15 = 2;
         boolean z10 = true;
-        if (tzVar.f30813x0 == null || tzVar.f30759g0 == null) {
+        if (tzVar.f30820x0 == null || tzVar.f30766g0 == null) {
             f10 = 0.0f;
         } else {
             int i16 = 8;
@@ -86,7 +86,7 @@ public final class jx implements z4.e {
         tzVar.getMeasuredWidth();
         tzVar.getPaddingLeft();
         tzVar.getPaddingRight();
-        uy uyVar = tzVar.f30800t1;
+        uy uyVar = tzVar.f30807t1;
         if (uyVar != null) {
             if (i10 == 1) {
                 if (i11 == 0) {
@@ -136,7 +136,7 @@ public final class jx implements z4.e {
     public final void b(int i10) {
         boolean z10;
         int i11;
-        tz tzVar = this.f27641b;
+        tz tzVar = this.f27648b;
         gx gxVar = tzVar.h;
         boolean z11 = false;
         if (gxVar != null) {
@@ -159,18 +159,18 @@ public final class jx implements z4.e {
             z10 = false;
         }
         tzVar.L(z10, true);
-        if (i10 == 2 && (this.f27640a || tzVar.f30805v0)) {
+        if (i10 == 2 && (this.f27647a || tzVar.f30812v0)) {
             z11 = true;
         }
         tzVar.Q(z11, true);
-        if (tzVar.f30800t1.z()) {
+        if (tzVar.f30807t1.z()) {
             if (i10 == 0) {
                 rw rwVar = tzVar.V;
                 if (rwVar != null) {
                     rwVar.d.requestFocus();
                 }
             } else if (i10 == 1) {
-                xw xwVar = tzVar.f30782o0;
+                xw xwVar = tzVar.f30789o0;
                 if (xwVar != null) {
                     xwVar.d.requestFocus();
                 }

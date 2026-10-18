@@ -7,22 +7,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class t extends o6.a {
     public static final Parcelable.Creator<t> CREATOR = new v(20);
-    public final String f4914a;
-    public final String f4915b;
+    public final String f4915a;
+    public final String f4916b;
 
     public t(String str, String str2) {
-        this.f4914a = str;
-        this.f4915b = str2;
+        this.f4915a = str;
+        this.f4916b = str2;
     }
 
     public final JSONObject b() {
         JSONObject jSONObject = new JSONObject();
         try {
-            String str = this.f4914a;
+            String str = this.f4915a;
             if (str != null) {
                 jSONObject.put("adTagUrl", str);
             }
-            String str2 = this.f4915b;
+            String str2 = this.f4916b;
             if (str2 != null) {
                 jSONObject.put("adsResponse", str2);
             }
@@ -39,21 +39,21 @@ public final class t extends o6.a {
             return false;
         }
         t tVar = (t) obj;
-        if (g6.a.d(this.f4914a, tVar.f4914a) && g6.a.d(this.f4915b, tVar.f4915b)) {
+        if (g6.a.d(this.f4915a, tVar.f4915a) && g6.a.d(this.f4916b, tVar.f4916b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4914a, this.f4915b});
+        return Arrays.hashCode(new Object[]{this.f4915a, this.f4916b});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.l(parcel, 2, this.f4914a);
-        w7.f0.l(parcel, 3, this.f4915b);
+        w7.f0.l(parcel, 2, this.f4915a);
+        w7.f0.l(parcel, 3, this.f4916b);
         w7.f0.r(parcel, q6);
     }
 }

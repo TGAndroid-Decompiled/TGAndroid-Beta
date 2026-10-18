@@ -4,428 +4,257 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.text.InputFilter;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
-import j$.time.DayOfWeek;
-import j$.time.format.TextStyle;
-import java.util.ArrayList;
-import java.util.Calendar;
+import ci.k4;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.wh;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Cells.i5;
-import org.telegram.ui.Cells.q8;
 import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.as;
 import org.telegram.ui.Components.dq;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.xc;
 import w7.z5;
 public final class d1 extends n2 implements NotificationCenter.NotificationCenterDelegate {
-    public a71 f12867a;
-    public as f12868b;
-    public org.telegram.ui.ActionBar.u0 f12869c;
+    public boolean E;
+    public int F;
+    public boolean G;
+    public a71 f12854a;
+    public as f12855b;
+    public org.telegram.ui.ActionBar.u0 f12856c;
     public boolean d;
-    public boolean e;
-    public ArrayList[] f12870f;
-    public ArrayList[] h;
-    public String f12871n;
-    public String f12872r;
+    public FrameLayout e;
+    public a1 f12857f;
+    public FrameLayout h;
+    public c1 f12858n;
+    public oq f12859r;
+    public k4 f12860s;
+    public boolean v;
+    public TLRPC.TL_businessLocation f12861w;
+    public TLRPC.GeoPoint f12862x;
+    public String f12863y;
 
     public d1() {
         super(null);
-        this.f12870f = null;
-        this.h = new ArrayList[]{new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList()};
+        this.F = -4;
     }
 
-    public static void U(d1 d1Var, TLRPC.TL_error tL_error, TLObject tLObject) {
-        if (tL_error != null) {
-            d1Var.f12868b.a(0.0f);
-            xc.d0(tL_error);
-        } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-            if (d1Var.getParentActivity() != null) {
-                d1Var.f12868b.a(0.0f);
-                wh.q(R.string.UnknownError, xc.a0(d1Var), null);
-            }
-        } else if (!d1Var.isFinished && !d1Var.finishing) {
-            d1Var.finishFragment();
-        }
-    }
-
-    public static void V(d1 d1Var, ArrayList arrayList) {
-        String string = LocaleController.getString(R.string.BusinessHours);
-        String string2 = LocaleController.getString(R.string.BusinessHoursInfo);
-        int i10 = R.raw.biz_clock;
-        f61 f61Var = new f61(2);
-        f61Var.f26140l = string;
-        f61Var.f26143o = string2;
-        f61Var.f26139k = i10;
-        arrayList.add(f61Var);
-        f61 i11 = f61.i(-1, LocaleController.getString(R.string.BusinessHoursShow));
-        i11.K(d1Var.e);
-        arrayList.add(i11);
-        arrayList.add(f61.A(-100, null));
-        if (d1Var.e) {
-            i0.a.p(R.string.BusinessHours, arrayList);
-            int i12 = 0;
-            while (true) {
-                ArrayList[] arrayListArr = d1Var.h;
-                if (i12 < arrayListArr.length) {
-                    if (arrayListArr[i12] == null) {
-                        arrayListArr[i12] = new ArrayList();
-                    }
-                    String displayName = DayOfWeek.values()[i12].getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-                    String a02 = a0(d1Var.h[i12]);
-                    f61 f61Var2 = new f61(5);
-                    f61Var2.d = i12;
-                    f61Var2.f26140l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    f61Var2.f26141m = a02;
-                    f61Var2.K(!d1Var.h[i12].isEmpty());
-                    arrayList.add(f61Var2);
-                    i12++;
+    public final void U(boolean z10) {
+        float f7;
+        float f10;
+        boolean z11;
+        float f11;
+        float f12;
+        if (this.f12856c != null) {
+            boolean V = V();
+            this.f12856c.setEnabled(V);
+            float f13 = 0.0f;
+            if (z10) {
+                ViewPropertyAnimator animate = this.f12856c.animate();
+                if (V) {
+                    f11 = 1.0f;
                 } else {
-                    arrayList.add(f61.A(-101, null));
-                    arrayList.add(f61.f(LocaleController.getString(R.string.BusinessHoursTimezone), d2.b(d1Var.currentAccount).d(d1Var.f12872r, false), -2));
-                    arrayList.add(f61.A(-102, null));
-                    return;
+                    f11 = 0.0f;
                 }
-            }
-        }
-    }
-
-    public static void W(d1 d1Var, View view, String str) {
-        d2 b10 = d2.b(d1Var.currentAccount);
-        d1Var.f12872r = str;
-        ((q8) view).u(b10.d(str, false), true);
-        d1Var.Y(true);
-    }
-
-    public static ArrayList[] Z(ArrayList arrayList) {
-        int i10;
-        ArrayList[] arrayListArr = new ArrayList[7];
-        for (int i11 = 0; i11 < 7; i11++) {
-            arrayListArr[i11] = new ArrayList();
-        }
-        for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen = (TL_account.TL_businessWeeklyOpen) arrayList.get(i12);
-            int i13 = tL_businessWeeklyOpen.start_minute;
-            int i14 = i13 % 1440;
-            arrayListArr[(i13 / 1440) % 7].add(new c1(i14, (tL_businessWeeklyOpen.end_minute - i13) + i14));
-        }
-        int i15 = 0;
-        while (i15 < 7) {
-            int i16 = i15 * 1440;
-            int i17 = i15 + 1;
-            int i18 = i17 * 1440;
-            int i19 = i16;
-            for (int i20 = 0; i20 < arrayList.size(); i20++) {
-                TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2 = (TL_account.TL_businessWeeklyOpen) arrayList.get(i20);
-                if (tL_businessWeeklyOpen2.start_minute <= i19 && (i10 = tL_businessWeeklyOpen2.end_minute) >= i19) {
-                    i19 = i10 + 1;
+                ViewPropertyAnimator alpha = animate.alpha(f11);
+                if (V) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.0f;
                 }
-            }
-            if (i19 >= i18) {
-                int i21 = (i15 + 6) % 7;
-                if (!arrayListArr[i21].isEmpty() && ((c1) i0.a.h(1, arrayListArr[i21])).f12860b >= 1440) {
-                    ((c1) i0.a.h(1, arrayListArr[i21])).f12860b = 1439;
+                ViewPropertyAnimator scaleX = alpha.scaleX(f12);
+                if (V) {
+                    f13 = 1.0f;
                 }
-                int min = Math.min((i19 - i16) - 1, 2879);
-                ArrayList arrayList2 = arrayListArr[(i15 + 8) % 7];
-                if (min >= 1440 && !arrayList2.isEmpty() && ((c1) arrayList2.get(0)).f12859a < min - 1440) {
-                    min = ((c1) arrayList2.get(0)).f12859a + 1439;
-                }
-                arrayListArr[i15].clear();
-                arrayListArr[i15].add(new c1(0, min));
+                scaleX.scaleY(f13).setDuration(180L).start();
             } else {
-                int i22 = i17 % 7;
-                if (!arrayListArr[i15].isEmpty() && !arrayListArr[i22].isEmpty()) {
-                    c1 c1Var = (c1) i0.a.h(1, arrayListArr[i15]);
-                    c1 c1Var2 = (c1) arrayListArr[i22].get(0);
-                    int i23 = c1Var.f12860b;
-                    if (i23 > 1440 && i23 - 1439 == c1Var2.f12859a) {
-                        c1Var.f12860b = 1439;
-                        c1Var2.f12859a = 0;
-                    }
+                org.telegram.ui.ActionBar.u0 u0Var = this.f12856c;
+                if (V) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                u0Var.setAlpha(f7);
+                org.telegram.ui.ActionBar.u0 u0Var2 = this.f12856c;
+                if (V) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                u0Var2.setScaleX(f10);
+                org.telegram.ui.ActionBar.u0 u0Var3 = this.f12856c;
+                if (V) {
+                    f13 = 1.0f;
+                }
+                u0Var3.setScaleY(f13);
+            }
+            a71 a71Var = this.f12854a;
+            if (a71Var != null && a71Var.W2 != null) {
+                boolean z12 = this.G;
+                if (this.f12861w != null && (this.f12862x != null || !TextUtils.isEmpty(this.f12863y))) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                if (z12 != z11) {
+                    this.f12854a.W2.N(true);
                 }
             }
-            i15 = i17;
         }
-        return arrayListArr;
     }
 
-    public static String a0(ArrayList arrayList) {
-        if (arrayList.isEmpty()) {
-            return LocaleController.getString(R.string.BusinessHoursDayClosed);
+    public final boolean V() {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        String str;
+        boolean z14;
+        boolean z15;
+        TLRPC.GeoPoint geoPoint;
+        if (this.f12862x == null && TextUtils.isEmpty(this.f12863y)) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
-        if (c0(arrayList)) {
-            return LocaleController.getString(R.string.BusinessHoursDayFullOpened);
+        if (this.f12861w != null) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
-        String str = "";
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            c1 c1Var = (c1) arrayList.get(i10);
-            if (i10 > 0) {
-                str = r.c.u(str, "\n");
-            }
-            StringBuilder u10 = a1.g.u(str);
-            u10.append(c1.a(c1Var.f12859a));
-            u10.append(" - ");
-            u10.append(c1.a(c1Var.f12860b));
-            str = u10.toString();
+        if (z10 != z11) {
+            return true;
         }
-        return str;
-    }
-
-    public static boolean c0(ArrayList arrayList) {
-        if (arrayList == null || arrayList.isEmpty()) {
-            return false;
+        if (this.f12862x == null && TextUtils.isEmpty(this.f12863y)) {
+            z12 = false;
+        } else {
+            z12 = true;
         }
-        int i10 = 0;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            c1 c1Var = (c1) arrayList.get(i11);
-            if (i10 < c1Var.f12859a) {
-                return false;
-            }
-            i10 = c1Var.f12860b;
+        TLRPC.TL_businessLocation tL_businessLocation = this.f12861w;
+        if (tL_businessLocation != null && !(tL_businessLocation.geo_point instanceof TLRPC.TL_geoPointEmpty)) {
+            z13 = true;
+        } else {
+            z13 = false;
         }
-        if (i10 != 1439 && i10 != 1440) {
+        if (z12 != z13) {
+            return true;
+        }
+        String str2 = this.f12863y;
+        if (tL_businessLocation != null) {
+            str = tL_businessLocation.address;
+        } else {
+            str = "";
+        }
+        if (!TextUtils.equals(str2, str)) {
+            return true;
+        }
+        TLRPC.GeoPoint geoPoint2 = this.f12862x;
+        if (geoPoint2 != null) {
+            z14 = true;
+        } else {
+            z14 = false;
+        }
+        TLRPC.TL_businessLocation tL_businessLocation2 = this.f12861w;
+        if (tL_businessLocation2 != null && tL_businessLocation2.geo_point != null) {
+            z15 = true;
+        } else {
+            z15 = false;
+        }
+        if (z14 != z15) {
+            return true;
+        }
+        if (geoPoint2 == null || (tL_businessLocation2 != null && (geoPoint = tL_businessLocation2.geo_point) != null && ((geoPoint instanceof TLRPC.TL_geoPointEmpty) || (geoPoint2.lat == geoPoint.lat && geoPoint2._long == geoPoint._long)))) {
             return false;
         }
         return true;
     }
 
-    public static String f0(int i10, TLRPC.User user, TL_account.TL_businessWorkHours tL_businessWorkHours) {
-        int i11;
-        if (tL_businessWorkHours == null) {
-            return null;
+    public final void W() {
+        boolean z10;
+        String trim;
+        if (this.f12855b.f24710c > 0.0f) {
+            return;
         }
-        ArrayList[] Z = Z(tL_businessWorkHours.weekly_open);
-        StringBuilder sb2 = new StringBuilder();
-        if (user != null) {
-            sb2.append(LocaleController.formatString(R.string.BusinessHoursCopyHeader, UserObject.getUserName(user)));
-            sb2.append("\n");
+        if (this.f12862x == null && TextUtils.isEmpty(this.f12863y)) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        for (int i12 = 0; i12 < 7; i12++) {
-            ArrayList arrayList = Z[i12];
-            String displayName = DayOfWeek.values()[i12].getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-            sb2.append(displayName.substring(0, 1).toUpperCase() + displayName.substring(1));
-            sb2.append(": ");
-            if (c0(arrayList)) {
-                sb2.append(LocaleController.getString(R.string.BusinessHoursProfileOpen));
-            } else if (arrayList.isEmpty()) {
-                sb2.append(LocaleController.getString(R.string.BusinessHoursProfileClose));
+        if (!z10) {
+            if (!V()) {
+                finishFragment();
+                return;
+            }
+            String str = this.f12863y;
+            if (str == null) {
+                trim = "";
             } else {
-                for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    if (i13 > 0) {
-                        sb2.append(", ");
-                    }
-                    c1 c1Var = (c1) arrayList.get(i13);
-                    sb2.append(c1.a(c1Var.f12859a));
-                    sb2.append(" - ");
-                    sb2.append(c1.a(c1Var.f12860b));
-                }
+                trim = str.trim();
             }
-            sb2.append("\n");
-        }
-        TLRPC.TL_timezone a2 = d2.b(i10).a(tL_businessWorkHours.timezone_id);
-        int rawOffset = Calendar.getInstance().getTimeZone().getRawOffset() / 1000;
-        if (a2 == null) {
-            i11 = 0;
-        } else {
-            i11 = a2.utc_offset;
-        }
-        if ((rawOffset - i11) / 60 != 0 && a2 != null) {
-            int i14 = R.string.BusinessHoursCopyFooter;
-            d2.b(i10);
-            sb2.append(LocaleController.formatString(i14, d2.e(a2, true)));
-        }
-        return sb2.toString();
-    }
-
-    public final void X(int i10) {
-        c1 c1Var;
-        c1 c1Var2 = null;
-        if (this.h[i10].isEmpty()) {
-            c1Var = null;
-        } else {
-            c1Var = (c1) i0.a.h(1, this.h[i10]);
-        }
-        if (c1Var != null) {
-            int i11 = (i10 + 6) % 7;
-            if (!this.h[i11].isEmpty()) {
-                c1Var2 = (c1) i0.a.h(1, this.h[i11]);
-            }
-            if (c1Var2 != null && c1Var2.f12860b > 1439) {
-                c1Var2.f12860b = 1439;
-                if (c1Var2.f12859a >= 1439) {
-                    this.h[i11].remove(c1Var2);
-                }
-                View z12 = this.f12867a.z1(i11);
-                if (z12 instanceof i5) {
-                    ((i5) z12).setValue(a0(this.h[i11]));
-                } else {
-                    this.f12867a.W2.N(true);
-                }
+            if (TextUtils.isEmpty(trim) || trim.length() > 96) {
+                BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                a1 a1Var = this.f12857f;
+                int i10 = -this.F;
+                this.F = i10;
+                AndroidUtilities.shakeViewSpring(a1Var, i10);
+                return;
             }
         }
-    }
-
-    public final void Y(boolean z10) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        if (this.f12869c == null) {
-            return;
-        }
-        boolean b02 = b0();
-        this.f12869c.setEnabled(b02);
-        float f13 = 0.0f;
-        if (z10) {
-            ViewPropertyAnimator animate = this.f12869c.animate();
-            if (b02) {
-                f11 = 1.0f;
-            } else {
-                f11 = 0.0f;
-            }
-            ViewPropertyAnimator alpha = animate.alpha(f11);
-            if (b02) {
-                f12 = 1.0f;
-            } else {
-                f12 = 0.0f;
-            }
-            ViewPropertyAnimator scaleX = alpha.scaleX(f12);
-            if (b02) {
-                f13 = 1.0f;
-            }
-            scaleX.scaleY(f13).setDuration(180L).start();
-            return;
-        }
-        org.telegram.ui.ActionBar.u0 u0Var = this.f12869c;
-        if (b02) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        u0Var.setAlpha(f7);
-        org.telegram.ui.ActionBar.u0 u0Var2 = this.f12869c;
-        if (b02) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        u0Var2.setScaleX(f10);
-        org.telegram.ui.ActionBar.u0 u0Var3 = this.f12869c;
-        if (b02) {
-            f13 = 1.0f;
-        }
-        u0Var3.setScaleY(f13);
-    }
-
-    public final boolean b0() {
-        throw new UnsupportedOperationException("Method not decompiled: ig.d1.b0():boolean");
-    }
-
-    @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessHours));
-        this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 16));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = h6.f21321v8;
-        mutate.setColorFilter(new PorterDuffColorFilter(h6.x0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        this.f12868b = new as(mutate, new dq(h6.x0(null, i10, false)));
-        this.f12869c = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f12868b);
-        Y(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20928a7, false));
-        a71 a71Var = new a71(this, new hg.o(this, 8), new e1.c(this, 20), null);
-        this.f12867a = a71Var;
-        a71Var.p1();
-        a71 a71Var2 = this.f12867a;
-        a71Var2.W2.f30200r = false;
-        frameLayout.addView(a71Var2, z5.d(-1.0f, -1));
-        this.actionBar.A(this.f12867a, true);
-        e0();
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    public final void d0() {
-        if (this.f12868b.f24703c > 0.0f) {
-            return;
-        }
-        if (!b0()) {
-            finishFragment();
-            return;
-        }
-        this.f12868b.a(1.0f);
+        this.f12855b.a(1.0f);
         TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        TL_account.updateBusinessWorkHours updatebusinessworkhours = new TL_account.updateBusinessWorkHours();
-        ArrayList[] arrayListArr = this.h;
-        ArrayList arrayList = new ArrayList();
-        if (arrayListArr != null) {
-            for (int i10 = 0; i10 < arrayListArr.length; i10++) {
-                if (arrayListArr[i10] != null) {
-                    for (int i11 = 0; i11 < arrayListArr[i10].size(); i11++) {
-                        c1 c1Var = (c1) arrayListArr[i10].get(i11);
-                        TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen = new TL_account.TL_businessWeeklyOpen();
-                        int i12 = i10 * 1440;
-                        tL_businessWeeklyOpen.start_minute = c1Var.f12859a + i12;
-                        tL_businessWeeklyOpen.end_minute = i12 + c1Var.f12860b;
-                        arrayList.add(tL_businessWeeklyOpen);
-                    }
-                }
+        TL_account.updateBusinessLocation updatebusinesslocation = new TL_account.updateBusinessLocation();
+        if (!z10) {
+            if (this.f12862x != null) {
+                updatebusinesslocation.flags |= 2;
+                TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
+                updatebusinesslocation.geo_point = tL_inputGeoPoint;
+                TLRPC.GeoPoint geoPoint = this.f12862x;
+                tL_inputGeoPoint.lat = geoPoint.lat;
+                tL_inputGeoPoint._long = geoPoint._long;
             }
-        }
-        if (this.e && !arrayList.isEmpty()) {
-            TL_account.TL_businessWorkHours tL_businessWorkHours = new TL_account.TL_businessWorkHours();
-            tL_businessWorkHours.timezone_id = this.f12872r;
-            tL_businessWorkHours.weekly_open.addAll(arrayList);
-            updatebusinessworkhours.flags |= 1;
-            updatebusinessworkhours.business_work_hours = tL_businessWorkHours;
+            updatebusinesslocation.flags |= 1;
+            updatebusinesslocation.address = this.f12863y;
             if (userFull != null) {
-                userFull.flags2 |= 1;
-                userFull.business_work_hours = tL_businessWorkHours;
+                userFull.flags2 |= 2;
+                TLRPC.TL_businessLocation tL_businessLocation = new TLRPC.TL_businessLocation();
+                userFull.business_location = tL_businessLocation;
+                tL_businessLocation.address = this.f12863y;
+                if (this.f12862x != null) {
+                    tL_businessLocation.flags = 1 | tL_businessLocation.flags;
+                    tL_businessLocation.geo_point = new TLRPC.TL_geoPoint();
+                    TLRPC.GeoPoint geoPoint2 = userFull.business_location.geo_point;
+                    TLRPC.GeoPoint geoPoint3 = this.f12862x;
+                    geoPoint2.lat = geoPoint3.lat;
+                    geoPoint2._long = geoPoint3._long;
+                }
             }
         } else if (userFull != null) {
-            userFull.flags2 &= -2;
-            userFull.business_work_hours = null;
+            userFull.flags2 &= -3;
+            userFull.business_location = null;
         }
-        getConnectionsManager().sendRequest(updatebusinessworkhours, new ai.h(this, 20));
+        getConnectionsManager().sendRequest(updatebusinesslocation, new z0(this, 0));
         getMessagesStorage().updateUserInfo(userFull, false);
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+    public final void X() {
         s61 s61Var;
-        if (i10 == NotificationCenter.userInfoDidLoad) {
-            e0();
-        } else if (i10 == NotificationCenter.timezonesUpdated) {
-            if (this.f12870f == null) {
-                this.f12872r = d2.b(this.currentAccount).c();
-            }
-            a71 a71Var = this.f12867a;
-            if (a71Var != null && (s61Var = a71Var.W2) != null) {
-                s61Var.N(true);
-            }
-        }
-    }
-
-    public final void e0() {
-        boolean z10;
-        s61 s61Var;
-        if (this.d) {
+        if (this.v) {
             return;
         }
         TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
@@ -433,44 +262,140 @@ public final class d1 extends n2 implements NotificationCenter.NotificationCente
             getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
             return;
         }
-        TL_account.TL_businessWorkHours tL_businessWorkHours = userFull.business_work_hours;
-        if (tL_businessWorkHours != null) {
-            z10 = true;
+        TLRPC.TL_businessLocation tL_businessLocation = userFull.business_location;
+        this.f12861w = tL_businessLocation;
+        if (tL_businessLocation != null) {
+            this.f12862x = tL_businessLocation.geo_point;
+            this.f12863y = tL_businessLocation.address;
         } else {
-            z10 = false;
+            this.f12862x = null;
+            this.f12863y = "";
         }
-        this.e = z10;
-        if (z10) {
-            String str = tL_businessWorkHours.timezone_id;
-            this.f12872r = str;
-            this.f12871n = str;
-            this.f12870f = Z(tL_businessWorkHours.weekly_open);
-            this.h = Z(userFull.business_work_hours.weekly_open);
-        } else {
-            String c10 = d2.b(this.currentAccount).c();
-            this.f12872r = c10;
-            this.f12871n = c10;
-            this.f12870f = null;
-            this.h = new ArrayList[7];
-            int i10 = 0;
-            while (true) {
-                ArrayList[] arrayListArr = this.h;
-                if (i10 >= arrayListArr.length) {
-                    break;
-                }
-                arrayListArr[i10] = new ArrayList();
-                if (i10 >= 0 && i10 < 5) {
-                    this.h[i10].add(new c1(0, 1439));
-                }
-                i10++;
-            }
+        a1 a1Var = this.f12857f;
+        if (a1Var != null) {
+            this.d = true;
+            a1Var.setText(this.f12863y);
+            a1 a1Var2 = this.f12857f;
+            a1Var2.setSelection(a1Var2.getText().length());
+            this.d = false;
         }
-        a71 a71Var = this.f12867a;
+        Y();
+        a71 a71Var = this.f12854a;
         if (a71Var != null && (s61Var = a71Var.W2) != null) {
             s61Var.N(true);
         }
-        Y(false);
-        this.d = true;
+        this.v = true;
+    }
+
+    public final void Y() {
+        k4 k4Var;
+        int measuredWidth;
+        c1 c1Var = this.f12858n;
+        if (c1Var != null && (k4Var = this.f12860s) != null) {
+            if (this.f12862x != null) {
+                c1Var.setAlpha(0.0f);
+                this.f12858n.setTranslationY(-AndroidUtilities.dp(12.0f));
+                if (this.f12860s.getMeasuredWidth() <= 0) {
+                    measuredWidth = AndroidUtilities.displaySize.x;
+                } else {
+                    measuredWidth = this.f12860s.getMeasuredWidth();
+                }
+                float f7 = AndroidUtilities.density;
+                int i10 = (int) (measuredWidth / f7);
+                int min = Math.min(2, (int) Math.ceil(f7));
+                k4 k4Var2 = this.f12860s;
+                TLRPC.GeoPoint geoPoint = this.f12862x;
+                k4Var2.n(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint.lat, geoPoint._long, 0L, min * i10, min * 240, 15, min)), a1.g.m(i10, "_240"), this.f12859r, null);
+                return;
+            }
+            k4Var.setImageBitmap(null);
+        }
+    }
+
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessLocation));
+        this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 15));
+        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        int i10 = h6.f21328v8;
+        mutate.setColorFilter(new PorterDuffColorFilter(h6.x0(null, i10, false), PorterDuff.Mode.MULTIPLY));
+        this.f12855b = new as(mutate, new dq(h6.x0(null, i10, false)));
+        this.f12856c = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f12855b);
+        U(false);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20935a7, false));
+        a1 a1Var = new a1(this, getParentActivity());
+        this.f12857f = a1Var;
+        a1Var.setTextSize(1, 17.0f);
+        this.f12857f.setHintTextColor(h6.x0(null, h6.H6, false));
+        a1 a1Var2 = this.f12857f;
+        int i11 = h6.G6;
+        a1Var2.setTextColor(h6.x0(null, i11, false));
+        this.f12857f.setBackgroundDrawable(null);
+        int i12 = 5;
+        this.f12857f.setMaxLines(5);
+        this.f12857f.setSingleLine(false);
+        this.f12857f.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
+        a1 a1Var3 = this.f12857f;
+        if (!LocaleController.isRTL) {
+            i12 = 3;
+        }
+        a1Var3.setGravity(i12 | 48);
+        this.f12857f.setInputType(180225);
+        this.f12857f.setHint(LocaleController.getString(R.string.BusinessLocationAddress));
+        this.f12857f.setCursorColor(h6.x0(null, i11, false));
+        this.f12857f.setCursorSize(AndroidUtilities.dp(19.0f));
+        this.f12857f.setCursorWidth(1.5f);
+        this.f12857f.addTextChangedListener(new ai.u(this, 4));
+        this.f12857f.setFilters(new InputFilter[]{new Object()});
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.e = frameLayout2;
+        frameLayout2.addView(this.f12857f, z5.a(-1.0f, 21.0f, 15.0f, 21.0f, 15.0f, -1, 48));
+        FrameLayout frameLayout3 = this.e;
+        int i13 = h6.f20993d6;
+        frameLayout3.setBackgroundColor(getThemedColor(i13));
+        a1 a1Var4 = this.f12857f;
+        if (a1Var4 != null) {
+            this.d = true;
+            a1Var4.setText(this.f12863y);
+            a1 a1Var5 = this.f12857f;
+            a1Var5.setSelection(a1Var5.getText().length());
+            this.d = false;
+        }
+        this.f12860s = new k4(this, context, 1);
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(R.raw.map_placeholder, h6.Pb, 0.2f);
+        svgThumb.setColorKey(i11, getResourceProvider());
+        svgThumb.setAspectCenter(true);
+        svgThumb.setParent(this.f12860s.getImageReceiver());
+        oq oqVar = new oq(svgThumb);
+        this.f12859r = oqVar;
+        oqVar.setCallback(this.f12860s);
+        this.f12860s.setBackgroundColor(getThemedColor(i13));
+        this.f12858n = new c1(this, context);
+        FrameLayout frameLayout4 = new FrameLayout(context);
+        this.h = frameLayout4;
+        frameLayout4.addView(this.f12860s, z5.d(-1.0f, -1));
+        this.h.addView(this.f12858n, z5.a(-2.0f, 0.0f, -31.0f, 0.0f, 0.0f, -2, 17));
+        Y();
+        a71 a71Var = new a71(this, new hg.o(this, 7), new y0(this, 0), null);
+        this.f12854a = a71Var;
+        a71Var.p1();
+        a71 a71Var2 = this.f12854a;
+        a71Var2.W2.f30207r = false;
+        frameLayout.addView(a71Var2, z5.d(-1.0f, -1));
+        this.actionBar.A(this.f12854a, true);
+        X();
+        this.fragmentView = frameLayout;
+        return frameLayout;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.userInfoDidLoad) {
+            X();
+        }
     }
 
     @Override
@@ -479,9 +404,34 @@ public final class d1 extends n2 implements NotificationCenter.NotificationCente
     }
 
     @Override
+    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        return !V();
+    }
+
+    @Override
+    public final boolean onBackPressed(boolean z10) {
+        boolean z11;
+        if (this.f12862x == null && TextUtils.isEmpty(this.f12863y)) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (V() && !z11) {
+            if (z10) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+                alertDialog$Builder.f20608a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f20608a.T = LocaleController.getString(R.string.BusinessLocationUnsavedChanges);
+                alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new y0(this, 1));
+                alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new y0(this, 2));
+                showDialog(alertDialog$Builder.f20608a);
+            }
+            return false;
+        }
+        return super.onBackPressed(z10);
+    }
+
+    @Override
     public final boolean onFragmentCreate() {
-        d2.b(this.currentAccount).g();
-        this.f12872r = d2.b(this.currentAccount).c();
         getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
         return super.onFragmentCreate();
     }
@@ -490,12 +440,11 @@ public final class d1 extends n2 implements NotificationCenter.NotificationCente
     public final void onFragmentDestroy() {
         getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
         super.onFragmentDestroy();
-        d0();
     }
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f12867a.setPadding(0, 0, 0, i13);
-        this.f12867a.setClipToPadding(false);
+        this.f12854a.setPadding(0, 0, 0, i13);
+        this.f12854a.setClipToPadding(false);
     }
 }

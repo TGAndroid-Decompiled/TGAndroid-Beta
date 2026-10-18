@@ -21,7 +21,7 @@ public final class ak0 extends pg.b {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45941f;
+        int i10 = b1Var.f45961f;
         if (i10 != 0 && i10 != 4) {
             return true;
         }
@@ -38,7 +38,7 @@ public final class ak0 extends pg.b {
         if (i10 >= 0) {
             NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.e;
             if (i10 < notificationsCustomSettingsActivity.I.size()) {
-                return ((zj0) notificationsCustomSettingsActivity.I.get(i10)).f44314a;
+                return ((zj0) notificationsCustomSettingsActivity.I.get(i10)).f44334a;
             }
             return 5;
         }
@@ -54,22 +54,22 @@ public final class ak0 extends pg.b {
             zj0 zj0Var = (zj0) arrayList.get(i10);
             boolean z11 = true;
             int i11 = i10 + 1;
-            if (i11 < arrayList.size() && ((zj0) arrayList.get(i11)).f44314a != 4) {
+            if (i11 < arrayList.size() && ((zj0) arrayList.get(i11)).f44334a != 4) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int i12 = b1Var.f45941f;
-            View view = b1Var.f45938a;
+            int i12 = b1Var.f45961f;
+            View view = b1Var.f45958a;
             switch (i12) {
                 case 0:
                     ((org.telegram.ui.Cells.l4) view).setText(zj0Var.e);
                     return;
                 case 1:
-                    ((org.telegram.ui.Cells.v8) view).f("" + ((Object) zj0Var.e), zj0Var.f43755i, z10);
+                    ((org.telegram.ui.Cells.v8) view).f("" + ((Object) zj0Var.e), zj0Var.f43781i, z10);
                     return;
                 case 2:
-                    ((org.telegram.ui.Cells.va) view).g(zj0Var.f43754g, null, z10);
+                    ((org.telegram.ui.Cells.va) view).g(zj0Var.f43780g, null, z10);
                     return;
                 case 3:
                     ((org.telegram.ui.Cells.x8) view).b(zj0Var.h, "" + ((Object) zj0Var.e), z10);
@@ -85,27 +85,27 @@ public final class ak0 extends pg.b {
                     d9Var.setText(zj0Var.e);
                     return;
                 case 5:
-                    ((org.telegram.ui.Cells.ba) view).c(zj0Var.e, zj0Var.f43753f, false, z10);
+                    ((org.telegram.ui.Cells.ba) view).c(zj0Var.e, zj0Var.f43779f, false, z10);
                     return;
                 case 6:
                     org.telegram.ui.Cells.i5 i5Var = (org.telegram.ui.Cells.i5) view;
                     i5Var.setDrawLine(true);
-                    i5Var.setChecked(zj0Var.f43755i);
-                    i5Var.b(zj0Var.e, zj0Var.f43753f, zj0Var.d, zj0Var.f43755i, 0, false, z10, true);
+                    i5Var.setChecked(zj0Var.f43781i);
+                    i5Var.b(zj0Var.e, zj0Var.f43779f, zj0Var.d, zj0Var.f43781i, 0, false, z10, true);
                     return;
                 case 7:
                     org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) view;
                     if (zj0Var.d == 0) {
-                        q8Var.e(-1, org.telegram.ui.ActionBar.h6.f21207p7);
+                        q8Var.e(-1, org.telegram.ui.ActionBar.h6.f21214p7);
                         q8Var.i("" + ((Object) zj0Var.e), z10);
                         return;
                     }
-                    q8Var.e(org.telegram.ui.ActionBar.h6.f21319v6, org.telegram.ui.ActionBar.h6.f21302u6);
+                    q8Var.e(org.telegram.ui.ActionBar.h6.f21326v6, org.telegram.ui.ActionBar.h6.f21309u6);
                     q8Var.m(zj0Var.d, "" + ((Object) zj0Var.e), z10);
                     return;
                 case 8:
                     yj0 yj0Var = (yj0) view;
-                    yj0Var.e(org.telegram.ui.ActionBar.h6.f21319v6, org.telegram.ui.ActionBar.h6.f21302u6);
+                    yj0Var.e(org.telegram.ui.ActionBar.h6.f21326v6, org.telegram.ui.ActionBar.h6.f21309u6);
                     CharSequence charSequence = zj0Var.e;
                     if (zj0Var.d != 1) {
                         z11 = false;
@@ -116,7 +116,7 @@ public final class ak0 extends pg.b {
                     } else {
                         f7 = 180.0f;
                     }
-                    org.telegram.messenger.wh.t(animate.rotation(f7), org.telegram.ui.Components.bs.h, 340L);
+                    org.telegram.messenger.kk.t(animate.rotation(f7), org.telegram.ui.Components.bs.h, 340L);
                     yj0Var.i(charSequence, z10);
                     return;
                 default:
@@ -164,7 +164,7 @@ public final class ak0 extends pg.b {
                 ImageView imageView = new ImageView(context);
                 q8Var.R = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
-                imageView.setColorFilter(new PorterDuffColorFilter(notificationsCustomSettingsActivity.getThemedColor(org.telegram.ui.ActionBar.h6.f21319v6), PorterDuff.Mode.SRC_IN));
+                imageView.setColorFilter(new PorterDuffColorFilter(notificationsCustomSettingsActivity.getThemedColor(org.telegram.ui.ActionBar.h6.f21326v6), PorterDuff.Mode.SRC_IN));
                 imageView.setImageResource(R.drawable.msg_expand);
                 if (LocaleController.isRTL) {
                     i11 = 3;
@@ -186,11 +186,11 @@ public final class ak0 extends pg.b {
         ArrayList arrayList2;
         NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.e;
         ArrayList arrayList3 = notificationsCustomSettingsActivity.I;
-        int i10 = notificationsCustomSettingsActivity.f33199s;
-        if (i10 == 3 || ((arrayList2 = notificationsCustomSettingsActivity.f33200w) != null && arrayList2.isEmpty())) {
+        int i10 = notificationsCustomSettingsActivity.f33206s;
+        if (i10 == 3 || ((arrayList2 = notificationsCustomSettingsActivity.f33207w) != null && arrayList2.isEmpty())) {
             if (i10 == 3) {
-                Boolean bool = notificationsCustomSettingsActivity.f33197n;
-                if (bool != null && !bool.booleanValue() && ((arrayList = notificationsCustomSettingsActivity.f33200w) == null || arrayList.isEmpty())) {
+                Boolean bool = notificationsCustomSettingsActivity.f33204n;
+                if (bool != null && !bool.booleanValue() && ((arrayList = notificationsCustomSettingsActivity.f33207w) == null || arrayList.isEmpty())) {
                     isGlobalNotificationsEnabled = false;
                 } else {
                     isGlobalNotificationsEnabled = true;
@@ -199,14 +199,14 @@ public final class ak0 extends pg.b {
                 isGlobalNotificationsEnabled = notificationsCustomSettingsActivity.getNotificationsController().isGlobalNotificationsEnabled(i10);
             }
             int b10 = b1Var.b();
-            View view = b1Var.f45938a;
+            View view = b1Var.f45958a;
             if (b10 >= 0 && b10 < arrayList3.size()) {
                 zj0Var = (zj0) arrayList3.get(b10);
             } else {
                 zj0Var = null;
             }
-            if (zj0Var == null || zj0Var.f43752c != 102) {
-                int i11 = b1Var.f45941f;
+            if (zj0Var == null || zj0Var.f43778c != 102) {
+                int i11 = b1Var.f45961f;
                 if (i11 != 0) {
                     if (i11 != 1) {
                         if (i11 != 3) {

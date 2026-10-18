@@ -45,31 +45,31 @@ import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.v30;
 import r0.a0;
 import s4.k;
-import ug.s0;
+import ug.t0;
 import w7.b6;
 import w7.z5;
 public final class f extends bb implements ne.d {
-    public static final int f47854r0 = 0;
+    public static final int f47879r0 = 0;
     public final ne.e X;
     public final ne.b Y;
     public final HashMap Z;
-    public final ArrayList f47855a0;
-    public final ArrayList f47856b0;
-    public String f47857c0;
-    public s61 f47858d0;
-    public final ei.d f47859e0;
-    public final n f47860f0;
-    public final n5 f47861g0;
-    public final o20 f47862h0;
-    public final u3 f47863i0;
-    public final HashMap f47864j0;
-    public l2.f f47865k0;
-    public int f47866l0;
+    public final ArrayList f47880a0;
+    public final ArrayList f47881b0;
+    public String f47882c0;
+    public s61 f47883d0;
+    public final ei.d f47884e0;
+    public final n f47885f0;
+    public final n5 f47886g0;
+    public final o20 f47887h0;
+    public final u3 f47888i0;
+    public final HashMap f47889j0;
+    public l2.f f47890k0;
+    public int f47891l0;
     public final int m0;
-    public final FrameLayout f47867n0;
-    public HashSet f47868o0;
-    public final Rect f47869p0;
-    public v30 f47870q0;
+    public final FrameLayout f47892n0;
+    public HashSet f47893o0;
+    public final Rect f47894p0;
+    public v30 f47895q0;
 
     public f(Context context, d6 d6Var) {
         super(context, d6Var, true);
@@ -78,14 +78,14 @@ public final class f extends bb implements ne.d {
         this.X = new ne.e(3, this, bsVar, 350L);
         this.Y = new ne.b(4, this, bsVar, 320L, false);
         this.Z = new HashMap();
-        this.f47855a0 = new ArrayList();
-        this.f47856b0 = new ArrayList();
-        this.f47864j0 = new HashMap();
-        this.f47869p0 = new Rect();
+        this.f47880a0 = new ArrayList();
+        this.f47881b0 = new ArrayList();
+        this.f47889j0 = new HashMap();
+        this.f47894p0 = new Rect();
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
-        this.f24918w = false;
+        this.f24925w = false;
         this.m0 = MessagesController.getInstance(this.currentAccount).config.pollCountriesMax.get();
         AndroidUtilities.enableEdgeToEdge(getWindow());
         im0 im0Var = this.d;
@@ -95,13 +95,13 @@ public final class f extends bb implements ne.d {
         this.d.j(new kv(this, 21));
         this.d.setOnItemClickListener(new c(context, d6Var, this));
         ei.d dVar = new ei.d(context, d6Var, true);
-        this.f47859e0 = dVar;
+        this.f47884e0 = dVar;
         dVar.e();
         dVar.setCountFilled(true);
         dVar.setText(LocaleController.getString(R.string.Save));
         dVar.setOnClickListener(new a(this, 0));
         n nVar = new n(this, context);
-        this.f47860f0 = nVar;
+        this.f47885f0 = nVar;
         nVar.setTextColor(getThemedColor(h6.Sh));
         nVar.setText(LocaleController.getString(R.string.Save));
         nVar.setTypeface(AndroidUtilities.bold());
@@ -114,20 +114,20 @@ public final class f extends bb implements ne.d {
         nVar.setOnClickListener(new a(this, 1));
         k20 k20Var = new k20(context, d6Var);
         String string = LocaleController.getString(R.string.PollV2SearchHint);
-        e2 e2Var = k20Var.f27712r;
+        e2 e2Var = k20Var.f27719r;
         e2Var.setHint(string);
         e2Var.addTextChangedListener(new u(this, 21));
         o20 o20Var = new o20(context, this.currentAccount);
-        this.f47862h0 = o20Var;
+        this.f47887h0 = o20Var;
         o20Var.setDelegate(new b(this));
         n5 n5Var = new n5(context, d6Var, this);
-        this.f47861g0 = n5Var;
+        this.f47886g0 = n5Var;
         int i11 = this.backgroundPaddingLeft;
         n5Var.setPadding(i11, 0, i11, 0);
         n5Var.addView(k20Var, z5.a(40.0f, 10.0f, 0.0f, 10.0f, 0.0f, -1, 48));
         n5Var.addView(o20Var, z5.a(144.0f, -3.0f, 40.0f, -3.0f, 0.0f, -1, 48));
         u3 u3Var = new u3(context, 18, d6Var);
-        this.f47863i0 = u3Var;
+        this.f47888i0 = u3Var;
         u3Var.setTranslationY(AndroidUtilities.dp(48.0f));
         u3Var.c(LocaleController.getString(R.string.SearchCountriesTitle), LocaleController.getString(R.string.DeselectAll), new a(this, 2));
         n5Var.addView(u3Var, z5.e(-1, 32, 48));
@@ -137,14 +137,14 @@ public final class f extends bb implements ne.d {
         frameLayout.addView(dVar, z5.d(48.0f, -1));
         this.containerView.addView(frameLayout, z5.e(-1, -2, 80));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f47867n0 = frameLayout2;
+        this.f47892n0 = frameLayout2;
         frameLayout2.setTranslationY((-AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(68.0f));
         this.containerView.addView(frameLayout2, z5.e(-1, 150, 80));
         k kVar = new k();
         kVar.n(350L);
         kVar.o(bsVar);
         kVar.C = false;
-        kVar.f45972m = false;
+        kVar.f45992m = false;
         this.d.setItemAnimator(kVar);
         this.d.i(new d(this, d6Var));
         l0 l0Var = new l0(this, 21);
@@ -161,13 +161,13 @@ public final class f extends bb implements ne.d {
     }
 
     public static void Q(f fVar, Pair pair) {
-        HashMap hashMap = fVar.f47864j0;
+        HashMap hashMap = fVar.f47889j0;
         HashMap hashMap2 = fVar.Z;
         hashMap2.putAll((Map) pair.first);
-        ArrayList arrayList = fVar.f47855a0;
+        ArrayList arrayList = fVar.f47880a0;
         arrayList.addAll((Collection) pair.second);
-        Map.EL.forEach(hashMap2, new s0(fVar, 1));
-        HashSet hashSet = fVar.f47868o0;
+        Map.EL.forEach(hashMap2, new t0(fVar, 1));
+        HashSet hashSet = fVar.f47893o0;
         if (hashSet != null) {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
@@ -191,13 +191,13 @@ public final class f extends bb implements ne.d {
                 if (tL_help_country != null) {
                     v30 v30Var = new v30(fVar.getContext(), tL_help_country);
                     v30Var.setOnClickListener(new a(fVar, 3));
-                    fVar.f47862h0.a(v30Var);
+                    fVar.f47887h0.a(v30Var);
                     hashMap.put(tL_help_country.iso2, v30Var);
                 }
             }
         }
-        fVar.f47858d0.N(true);
-        fVar.f47859e0.b(hashMap.size(), true);
+        fVar.f47883d0.N(true);
+        fVar.f47884e0.b(hashMap.size(), true);
     }
 
     @Override
@@ -209,7 +209,7 @@ public final class f extends bb implements ne.d {
         boolean z10;
         int dp = AndroidUtilities.dp(56.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) this.X.e);
         int measuredHeight = (this.containerView.getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(34.0f);
-        Rect rect = this.f47869p0;
+        Rect rect = this.f47894p0;
         if (rect.top == dp && rect.bottom == measuredHeight) {
             z10 = false;
         } else {
@@ -239,7 +239,7 @@ public final class f extends bb implements ne.d {
             i10++;
         }
         float max = Math.max(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f7 + AndroidUtilities.dp(8.0f));
-        n5 n5Var = this.f47861g0;
+        n5 n5Var = this.f47886g0;
         if (n5Var.getTranslationY() != max) {
             n5Var.setTranslationY(max);
             im0Var.invalidate();
@@ -248,21 +248,21 @@ public final class f extends bb implements ne.d {
 
     public final void T(View view) {
         v30 v30Var = (v30) view;
-        if (v30Var.f31161y) {
-            this.f47870q0 = null;
-            this.f47862h0.c(v30Var);
+        if (v30Var.f31168y) {
+            this.f47895q0 = null;
+            this.f47887h0.c(v30Var);
             String countryIso2 = v30Var.getCountryIso2();
-            HashMap hashMap = this.f47864j0;
+            HashMap hashMap = this.f47889j0;
             hashMap.remove(countryIso2);
-            this.f47859e0.b(hashMap.size(), true);
-            this.f47858d0.N(true);
+            this.f47884e0.b(hashMap.size(), true);
+            this.f47883d0.N(true);
             return;
         }
-        v30 v30Var2 = this.f47870q0;
+        v30 v30Var2 = this.f47895q0;
         if (v30Var2 != null) {
             v30Var2.a();
         }
-        this.f47870q0 = v30Var;
+        this.f47895q0 = v30Var;
         v30Var.b();
     }
 
@@ -277,18 +277,18 @@ public final class f extends bb implements ne.d {
     public final void u(int i10, float f7, float f10, ne.e eVar) {
         if (i10 == 3) {
             R();
-            this.f47863i0.setTranslationY(AndroidUtilities.dp(48.0f) + f7);
-            this.f47861g0.invalidate();
+            this.f47888i0.setTranslationY(AndroidUtilities.dp(48.0f) + f7);
+            this.f47886g0.invalidate();
         } else if (i10 == 4) {
-            h20.d(this.f47860f0, f7);
+            h20.d(this.f47885f0, f7);
         }
     }
 
     @Override
     public final hm0 x(im0 im0Var) {
         s61 s61Var = new s61(im0Var, getContext(), this.currentAccount, 0, true, new o(this, 19), this.resourcesProvider);
-        this.f47858d0 = s61Var;
-        s61Var.f30200r = false;
+        this.f47883d0 = s61Var;
+        s61Var.f30207r = false;
         return s61Var;
     }
 

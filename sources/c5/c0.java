@@ -1,12 +1,12 @@
 package c5;
 
-import com.google.android.gms.internal.play_billing.h4;
+import com.google.android.gms.internal.play_billing.i4;
 public final class c0 extends b8.b {
-    public final h4 f4726b;
+    public final i4 f4727b;
 
-    public c0(h4 h4Var) {
+    public c0(i4 i4Var) {
         super(3);
         attachInterface(this, "com.google.android.apps.play.billingtestcompanion.aidl.IBillingOverrideServiceCallback");
-        this.f4726b = h4Var;
+        this.f4727b = i4Var;
     }
 }

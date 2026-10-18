@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class r21 {
-    public float f29802a;
-    public float f29803b;
-    public float f29804c;
+    public float f29810a;
+    public float f29811b;
+    public float f29812c;
     public float d;
     public float e;
-    public float f29805f;
-    public float f29806g;
+    public float f29813f;
+    public float f29814g;
     public float h;
 }

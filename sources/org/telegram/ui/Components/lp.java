@@ -16,43 +16,43 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.vh1;
 public final class lp implements ri {
-    public final ti f28292a;
-    public final TL_stories.TL_premium_boostsStatus f28293b;
-    public final org.telegram.ui.ActionBar.d6 f28294c;
+    public final ti f28299a;
+    public final TL_stories.TL_premium_boostsStatus f28300b;
+    public final org.telegram.ui.ActionBar.d6 f28301c;
     public final org.telegram.ui.g d;
     public final long e;
-    public final org.telegram.ui.hc f28295f;
+    public final org.telegram.ui.hc f28302f;
     public final org.telegram.ui.dd h;
 
     public lp(ti tiVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.g gVar, long j10, org.telegram.ui.hc hcVar, org.telegram.ui.dd ddVar) {
-        this.f28292a = tiVar;
-        this.f28293b = tL_premium_boostsStatus;
-        this.f28294c = d6Var;
+        this.f28299a = tiVar;
+        this.f28300b = tL_premium_boostsStatus;
+        this.f28301c = d6Var;
         this.d = gVar;
         this.e = j10;
-        this.f28295f = hcVar;
+        this.f28302f = hcVar;
         this.h = ddVar;
     }
 
     @Override
     public final void O(Object obj) {
         kp kpVar = new kp(obj, null, true, 1);
-        kpVar.V1 = this.f28293b;
-        kpVar.f39097a.f39086a = this.f28294c;
-        kpVar.f39140p1 = this.d;
+        kpVar.V1 = this.f28300b;
+        kpVar.f39122a.f39111a = this.f28301c;
+        kpVar.f39165p1 = this.d;
         kpVar.c1(this.e);
-        kpVar.I1 = new jp(this.f28292a, this.f28295f, 1);
+        kpVar.I1 = new jp(this.f28299a, this.f28302f, 1);
         ?? obj2 = new Object();
-        obj2.f21552a = true;
+        obj2.f21559a = true;
         obj2.e = true;
         this.h.showAsSheet(kpVar, obj2);
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        ti tiVar = this.f28292a;
+        ti tiVar = this.f28299a;
         try {
-            HashMap<Object, Object> selectedPhotos = tiVar.f30586j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = tiVar.f30593j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -66,16 +66,16 @@ public final class lp implements ri {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     kp kpVar = new kp(new vh1(file, file, ""), loadBitmap, false, 0);
-                    kpVar.V1 = this.f28293b;
-                    kpVar.f39097a.f39086a = this.f28294c;
-                    kpVar.f39140p1 = this.d;
+                    kpVar.V1 = this.f28300b;
+                    kpVar.f39122a.f39111a = this.f28301c;
+                    kpVar.f39165p1 = this.d;
                     kpVar.F1 = false;
                     kpVar.E1 = false;
-                    kpVar.f39136n1 = 0.2f;
+                    kpVar.f39161n1 = 0.2f;
                     kpVar.c1(this.e);
-                    kpVar.I1 = new jp(tiVar, this.f28295f, 0);
+                    kpVar.I1 = new jp(tiVar, this.f28302f, 0);
                     ?? obj = new Object();
-                    obj.f21552a = true;
+                    obj.f21559a = true;
                     obj.e = true;
                     this.h.showAsSheet(kpVar, obj);
                     tiVar.dismiss();

@@ -147,8 +147,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i10);
                 try {
                     bg.c cVar = new bg.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f4350b;
-                    cVar.f4347a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f4351b;
+                    cVar.f4348a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j10 = mixedSoundInfo.startTime;
                     int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
                     if (i11 > 0) {
@@ -246,8 +246,8 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder m10 = i0.a.m("source size ", i10, "x", i11, "    dest size ");
-        i0.a.w(m10, i12, "x", i13, "   rotated ");
+        StringBuilder m10 = i2.d.m("source size ", i10, "x", i11, "    dest size ");
+        i2.d.w(m10, i12, "x", i13, "   rotated ");
         m10.append(z11);
         m10.append("   ratio ");
         m10.append(f10);
@@ -408,8 +408,8 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder m10 = i0.a.m("HDR source size ", i10, "x", i11, "    dest size ");
-        i0.a.w(m10, i12, "x", i13, "   rotated ");
+        StringBuilder m10 = i2.d.m("HDR source size ", i10, "x", i11, "    dest size ");
+        i2.d.w(m10, i12, "x", i13, "   rotated ");
         m10.append(z11);
         m10.append("   ratio ");
         m10.append(f10);

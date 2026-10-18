@@ -10,7 +10,7 @@ public final class h extends zq {
     public final Drawable E;
     public final Drawable F;
     public final vw G;
-    public int f5441y;
+    public int f5442y;
 
     public h(vw vwVar, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super(drawable, drawable2);
@@ -24,21 +24,21 @@ public final class h extends zq {
         int i10;
         int i11;
         vw vwVar = this.G;
-        int i12 = vwVar.f5870b;
+        int i12 = vwVar.f5871b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f21265s8;
+            i10 = org.telegram.ui.ActionBar.h6.f21272s8;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.M8;
         }
         int f7 = vwVar.f(i10);
-        if (this.f5441y != f7) {
-            this.f5441y = f7;
+        if (this.f5442y != f7) {
+            this.f5442y = f7;
             if (i12 == 0) {
                 i11 = org.telegram.ui.ActionBar.h6.A8;
             } else {
                 i11 = org.telegram.ui.ActionBar.h6.P8;
             }
-            int f10 = i0.b.f(0.1f, vwVar.f(i11), f7);
+            int f10 = i0.a.f(0.1f, vwVar.f(i11), f7);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             this.E.setColorFilter(new PorterDuffColorFilter(f10, mode));
             this.F.setColorFilter(new PorterDuffColorFilter(f7, mode));

@@ -11,16 +11,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import r.c;
+import r4.c;
 import z3.d;
 import z3.l;
 import z3.m;
 public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f8336a = new StringBuilder();
-    public final ArrayList f8337b = new ArrayList();
-    public final x f8338c = new x();
+    public final StringBuilder f8337a = new StringBuilder();
+    public final ArrayList f8338b = new ArrayList();
+    public final x f8339c = new x();
 
     public static d2.b b(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.b(android.text.Spanned, java.lang.String):d2.b");
@@ -63,8 +63,8 @@ public final class a implements m {
         String n10;
         String str;
         a aVar = this;
-        long j10 = lVar.f50676a;
-        x xVar = aVar.f8338c;
+        long j10 = lVar.f50701a;
+        x xVar = aVar.f8339c;
         xVar.L(i10 + i11, bArr);
         xVar.N(i10);
         Charset J = xVar.J();
@@ -72,7 +72,7 @@ public final class a implements m {
             J = StandardCharsets.UTF_8;
         }
         long j11 = -9223372036854775807L;
-        if (j10 != -9223372036854775807L && lVar.f50677b) {
+        if (j10 != -9223372036854775807L && lVar.f50702b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -96,10 +96,10 @@ public final class a implements m {
                 if (matcher.matches()) {
                     long d10 = d(matcher, 1);
                     long d11 = d(matcher, 6);
-                    StringBuilder sb2 = aVar.f8336a;
+                    StringBuilder sb2 = aVar.f8337a;
                     sb2.setLength(0);
                     long j12 = j11;
-                    ArrayList arrayList2 = aVar.f8337b;
+                    ArrayList arrayList2 = aVar.f8338b;
                     arrayList2.clear();
                     for (String n12 = xVar.n(J); !TextUtils.isEmpty(n12); n12 = xVar.n(J)) {
                         if (sb2.length() > 0) {

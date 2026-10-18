@@ -1,102 +1,273 @@
 package ai;
 
-import android.content.Context;
-import android.text.SpannableString;
-import android.text.TextUtils;
+import android.app.Activity;
 import android.view.View;
-import android.widget.TextView;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.ca0;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.f61;
+import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-public final class wc extends e61 {
-    public static final int f2387a = 0;
+import org.telegram.ui.a20;
+import org.telegram.ui.z10;
+public final class wc extends z10 {
+    public final int K0 = 0;
+    public final b2.u0 L0;
+    public final a20 M0;
 
-    static {
-        e61.setup(new e61());
-    }
-
-    public static f61 a(int i10, int i11, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
-        String formatCurrency;
-        f61 J = f61.J(wc.class);
-        J.d = i10;
-        J.f26153z = i11;
-        long j10 = tL_starsTopupOption.stars;
-        J.B = j10;
-        J.f26140l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j10);
-        if (tL_starsTopupOption.loadingStorePrice) {
-            formatCurrency = null;
-        } else {
-            formatCurrency = BillingController.getInstance().formatCurrency(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
-        }
-        J.f26141m = formatCurrency;
-        J.G = tL_starsTopupOption;
-        return J;
+    public wc(fi.g gVar, Activity activity) {
+        super(gVar, activity);
+        this.M0 = gVar;
+        this.L0 = new Object();
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
-        float f7;
-        xc xcVar = (xc) view;
-        int i10 = f61Var.f26153z;
-        CharSequence charSequence = f61Var.f26140l;
-        CharSequence charSequence2 = f61Var.f26141m;
-        org.telegram.ui.Components.q6 q6Var = xcVar.e;
-        TextView textView = xcVar.d;
-        boolean equals = TextUtils.equals(textView.getText(), charSequence);
-        xcVar.f2462n = i10;
-        if (!equals) {
-            xcVar.f2463r.d(i10, true);
+    public final void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
+        org.telegram.ui.ActionBar.k kVar;
+        int i13;
+        int max;
+        org.telegram.ui.ActionBar.k kVar2;
+        int i14;
+        int max2;
+        switch (this.K0) {
+            case 0:
+                md mdVar = (md) this.M0;
+                if (viewGroup == mdVar.f35290c && mdVar.R.isAttachedToWindow()) {
+                    kVar = ((org.telegram.ui.ActionBar.n2) mdVar).actionBar;
+                    boolean z10 = kVar.f21500n0;
+                    int top = (((View) mdVar.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+                    int bottom = ((View) mdVar.R.getParent()).getBottom();
+                    boolean z11 = false;
+                    if (i11 < 0) {
+                        if ((mdVar.f35290c.getHeight() - mdVar.f35290c.getPaddingBottom()) - bottom >= 0) {
+                            im0 currentListView = mdVar.R.getCurrentListView();
+                            int L0 = ((s4.b0) currentListView.getLayoutManager()).L0();
+                            int i15 = -1;
+                            if (L0 != -1) {
+                                s4.b1 K = currentListView.K(L0);
+                                if (K != null) {
+                                    i15 = K.f45958a.getTop();
+                                }
+                                int paddingTop = currentListView.getPaddingTop();
+                                if (i15 != paddingTop || L0 != 0) {
+                                    if (L0 != 0) {
+                                        max = i11;
+                                    } else {
+                                        max = Math.max(i11, i15 - paddingTop);
+                                    }
+                                    iArr[1] = max;
+                                    currentListView.scrollBy(0, i11);
+                                    z11 = true;
+                                }
+                            }
+                        }
+                        if (z10) {
+                            if (!z11 && top < 0) {
+                                iArr[1] = i11 - Math.max(top, i11);
+                                return;
+                            } else {
+                                iArr[1] = i11;
+                                return;
+                            }
+                        }
+                        return;
+                    } else if (z10) {
+                        im0 currentListView2 = mdVar.R.getCurrentListView();
+                        iArr[1] = i11;
+                        if (top > 0) {
+                            iArr[1] = 0;
+                        }
+                        if (currentListView2 != null && (i13 = iArr[1]) > 0) {
+                            currentListView2.scrollBy(0, i13);
+                            return;
+                        }
+                        return;
+                    } else if (i11 > 0) {
+                        im0 currentListView3 = mdVar.R.getCurrentListView();
+                        if ((mdVar.f35290c.getHeight() - mdVar.f35290c.getPaddingBottom()) - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
+                            iArr[1] = i11;
+                            mdVar.f35290c.B0();
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            default:
+                fi.g gVar = (fi.g) this.M0;
+                if (viewGroup == gVar.f35290c && gVar.R.isAttachedToWindow()) {
+                    kVar2 = ((org.telegram.ui.ActionBar.n2) gVar).actionBar;
+                    boolean z12 = kVar2.f21500n0;
+                    int top2 = (((View) gVar.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+                    int bottom2 = ((View) gVar.R.getParent()).getBottom();
+                    boolean z13 = false;
+                    if (i11 < 0) {
+                        if (gVar.f35290c.getHeight() - bottom2 >= 0) {
+                            im0 currentListView4 = gVar.R.getCurrentListView();
+                            int L02 = ((s4.b0) currentListView4.getLayoutManager()).L0();
+                            int i16 = -1;
+                            if (L02 != -1) {
+                                s4.b1 K2 = currentListView4.K(L02);
+                                if (K2 != null) {
+                                    i16 = K2.f45958a.getTop();
+                                }
+                                int paddingTop2 = currentListView4.getPaddingTop();
+                                if (i16 != paddingTop2 || L02 != 0) {
+                                    if (L02 != 0) {
+                                        max2 = i11;
+                                    } else {
+                                        max2 = Math.max(i11, i16 - paddingTop2);
+                                    }
+                                    iArr[1] = max2;
+                                    currentListView4.scrollBy(0, i11);
+                                    z13 = true;
+                                }
+                            }
+                        }
+                        if (z12) {
+                            if (!z13 && top2 < 0) {
+                                iArr[1] = i11 - Math.max(top2, i11);
+                                return;
+                            } else {
+                                iArr[1] = i11;
+                                return;
+                            }
+                        }
+                        return;
+                    } else if (z12) {
+                        im0 currentListView5 = gVar.R.getCurrentListView();
+                        iArr[1] = i11;
+                        if (top2 > 0) {
+                            iArr[1] = 0;
+                        }
+                        if (currentListView5 != null && (i14 = iArr[1]) > 0) {
+                            currentListView5.scrollBy(0, i14);
+                            return;
+                        }
+                        return;
+                    } else if (i11 > 0) {
+                        im0 currentListView6 = gVar.R.getCurrentListView();
+                        if (gVar.f35290c.getHeight() - bottom2 >= 0 && currentListView6 != null && !currentListView6.canScrollVertically(1)) {
+                            iArr[1] = i11;
+                            gVar.f35290c.B0();
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
         }
-        textView.setText(charSequence);
-        if (charSequence2 == null) {
-            if (xcVar.f2461f == null) {
-                SpannableString spannableString = new SpannableString("x");
-                xcVar.f2461f = spannableString;
-                spannableString.setSpan(new ca0(AndroidUtilities.dp(55.0f), q6Var), 0, xcVar.f2461f.length(), 33);
-            }
-            charSequence2 = xcVar.f2461f;
-        }
-        q6Var.setText(charSequence2);
-        if (LocaleController.isRTL) {
-            f7 = -1.0f;
-        } else {
-            f7 = 1.0f;
-        }
-        if (equals) {
-            textView.animate().translationX(f7 * (i10 - 1) * AndroidUtilities.dp(2.66f)).setDuration(320L).setInterpolator(bs.h).start();
-        } else {
-            textView.setTranslationX(f7 * (i10 - 1) * AndroidUtilities.dp(2.66f));
-        }
-        xcVar.h = z10;
-        xcVar.invalidate();
     }
 
     @Override
-    public final boolean contentsEquals(f61 f61Var, f61 f61Var2) {
-        if (f61Var.f26153z == f61Var2.f26153z && f61Var.d == f61Var2.d && TextUtils.equals(f61Var.f26141m, f61Var2.f26141m)) {
-            return true;
-        }
-        return false;
+    public final void b(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
+        int i15 = this.K0;
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new xc(context, d6Var);
+    public final void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        switch (this.K0) {
+            case 0:
+                md mdVar = (md) this.M0;
+                try {
+                    if (viewGroup == mdVar.f35290c && mdVar.R.isAttachedToWindow()) {
+                        im0 currentListView = mdVar.R.getCurrentListView();
+                        if ((mdVar.f35290c.getHeight() - mdVar.f35290c.getPaddingBottom()) - ((View) mdVar.R.getParent()).getBottom() >= 0) {
+                            iArr[1] = i13;
+                            currentListView.scrollBy(0, i13);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                    AndroidUtilities.runOnUIThread(new a3.d(this, 23));
+                    return;
+                }
+            default:
+                fi.g gVar = (fi.g) this.M0;
+                try {
+                    if (viewGroup == gVar.f35290c && gVar.R.isAttachedToWindow()) {
+                        im0 currentListView2 = gVar.R.getCurrentListView();
+                        if (gVar.f35290c.getHeight() - ((View) gVar.R.getParent()).getBottom() >= 0) {
+                            iArr[1] = i13;
+                            currentListView2.scrollBy(0, i13);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Throwable th3) {
+                    FileLog.e(th3);
+                    AndroidUtilities.runOnUIThread(new ei.bc(this, 1));
+                    return;
+                }
+        }
     }
 
     @Override
-    public final boolean equals(f61 f61Var, f61 f61Var2) {
-        if (f61Var.d == f61Var2.d) {
-            return true;
+    public final void n(int i10, View view) {
+        switch (this.K0) {
+            case 0:
+                this.L0.f4057a = 0;
+                return;
+            default:
+                this.L0.f4057a = 0;
+                return;
         }
-        return false;
+    }
+
+    @Override
+    public final void onStopNestedScroll(View view) {
+        int i10 = this.K0;
+    }
+
+    @Override
+    public final boolean p(View view, View view2, int i10, int i11) {
+        switch (this.K0) {
+            case 0:
+                if (i10 == 2) {
+                    return true;
+                }
+                return false;
+            default:
+                if (i10 == 2) {
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public final void s(View view, View view2, int i10, int i11) {
+        switch (this.K0) {
+            case 0:
+                this.L0.f4057a = i10;
+                return;
+            default:
+                this.L0.f4057a = i10;
+                return;
+        }
+    }
+
+    public wc(md mdVar, Activity activity) {
+        super(mdVar, activity);
+        this.M0 = mdVar;
+        this.L0 = new Object();
+    }
+
+    private final void e0(View view) {
+    }
+
+    private final void f0(View view) {
+    }
+
+    private final void c0(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
+    }
+
+    private final void d0(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
     }
 }

@@ -6,19 +6,19 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class l41 extends FrameLayout {
-    public final int f38787a;
+    public final int f38778a;
 
     public l41(Context context, int i10) {
         super(context);
-        this.f38787a = i10;
+        this.f38778a = i10;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f38787a) {
+        switch (this.f38778a) {
             case 6:
-                org.telegram.ui.ActionBar.h6.f21072i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.h6.f21072i3.getIntrinsicHeight());
-                org.telegram.ui.ActionBar.h6.f21072i3.draw(canvas);
+                org.telegram.ui.ActionBar.h6.f21079i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.h6.f21079i3.getIntrinsicHeight());
+                org.telegram.ui.ActionBar.h6.f21079i3.draw(canvas);
                 super.dispatchDraw(canvas);
                 return;
             default:
@@ -29,7 +29,7 @@ public final class l41 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f38787a) {
+        switch (this.f38778a) {
             case 9:
                 return super.drawChild(canvas, view, j10);
             case 10:
@@ -42,7 +42,7 @@ public final class l41 extends FrameLayout {
 
     @Override
     public boolean hasOverlappingRendering() {
-        switch (this.f38787a) {
+        switch (this.f38778a) {
             case 8:
                 return false;
             default:
@@ -52,10 +52,10 @@ public final class l41 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f38787a) {
+        switch (this.f38778a) {
             case 5:
                 super.onDraw(canvas);
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.h6.f21107k0);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.h6.f21114k0);
                 return;
             default:
                 super.onDraw(canvas);
@@ -65,7 +65,7 @@ public final class l41 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f38787a) {
+        switch (this.f38778a) {
             case 2:
                 int childCount = getChildCount();
                 int i14 = 0;
@@ -88,9 +88,9 @@ public final class l41 extends FrameLayout {
     @Override
     public void onMeasure(int i10, int i11) {
         int i12;
-        switch (this.f38787a) {
+        switch (this.f38778a) {
             case 0:
-                super.onMeasure(i10, org.telegram.messenger.wh.D(36.0f, View.MeasureSpec.getSize(i11), 1073741824));
+                super.onMeasure(i10, org.telegram.messenger.kk.C(36.0f, View.MeasureSpec.getSize(i11), 1073741824));
                 return;
             case 1:
                 super.onMeasure(i10, i11);

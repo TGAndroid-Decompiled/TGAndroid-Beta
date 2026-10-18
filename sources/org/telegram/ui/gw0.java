@@ -10,6 +10,6 @@ public final class gw0 extends q51 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f33509s0 = null;
+        this.e.f33516s0 = null;
     }
 }

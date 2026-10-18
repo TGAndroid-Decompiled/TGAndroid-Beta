@@ -70,22 +70,22 @@ public abstract class d {
                     break;
                 }
             }
-            if (i12 == 1 && x6.f48878a == null) {
+            if (i12 == 1 && x6.f48903a == null) {
                 int i14 = Build.VERSION.SDK_INT;
                 if (i14 < 37) {
                     int d10 = d(true);
                     if (i14 < 35) {
-                        x6.f48878a = Boolean.valueOf(z10);
+                        x6.f48903a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     } else {
-                        x6.f48878a = Boolean.valueOf(z10);
+                        x6.f48903a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     }
                 }
                 z10 = false;
-                x6.f48878a = Boolean.valueOf(z10);
+                x6.f48903a = Boolean.valueOf(z10);
                 if (z10) {
                 }
             }
@@ -100,9 +100,9 @@ public abstract class d {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             v vVar = new v();
-            vVar.f4078r = v0.n("video/avc");
+            vVar.f4079r = v0.n("video/avc");
             w wVar = new w(vVar);
-            String str = wVar.f4131s;
+            String str = wVar.f4132s;
             if (str != null) {
                 List e7 = r2.w.e(str, z10, false);
                 String c10 = r2.w.c(wVar);
@@ -135,10 +135,10 @@ public abstract class d {
     public static e9.x1 e(f fVar) {
         e9.k0 t10 = e9.n0.t();
         e9.q0 q0Var = k2.b.h;
-        e9.y0 y0Var = q0Var.f8489b;
+        e9.y0 y0Var = q0Var.f8490b;
         if (y0Var == null) {
             y0Var = q0Var.c();
-            q0Var.f8489b = y0Var;
+            q0Var.f8490b = y0Var;
         }
         m2 it = y0Var.iterator();
         while (it.hasNext()) {

@@ -1,15 +1,15 @@
 package i5;
 public final class a {
-    public final Integer f12707a;
-    public final Object f12708b;
-    public final d f12709c;
+    public final Integer f12705a;
+    public final Object f12706b;
+    public final d f12707c;
     public final b d;
 
     public a(Integer num, Object obj, d dVar, b bVar) {
-        this.f12707a = num;
+        this.f12705a = num;
         if (obj != null) {
-            this.f12708b = obj;
-            this.f12709c = dVar;
+            this.f12706b = obj;
+            this.f12707c = dVar;
             this.d = bVar;
             return;
         }
@@ -24,10 +24,10 @@ public final class a {
         if (obj instanceof a) {
             a aVar = (a) obj;
             b bVar2 = aVar.d;
-            Integer num = aVar.f12707a;
-            Integer num2 = this.f12707a;
+            Integer num = aVar.f12705a;
+            Integer num2 = this.f12705a;
             if (num2 != null ? num2.equals(num) : num == null) {
-                if (this.f12708b.equals(aVar.f12708b) && this.f12709c.equals(aVar.f12709c) && ((bVar = this.d) != null ? bVar.equals(bVar2) : bVar2 == null)) {
+                if (this.f12706b.equals(aVar.f12706b) && this.f12707c.equals(aVar.f12707c) && ((bVar = this.d) != null ? bVar.equals(bVar2) : bVar2 == null)) {
                     return true;
                 }
             }
@@ -38,13 +38,13 @@ public final class a {
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        Integer num = this.f12707a;
+        Integer num = this.f12705a;
         if (num == null) {
             hashCode = 0;
         } else {
             hashCode = num.hashCode();
         }
-        int hashCode2 = (((((hashCode ^ 1000003) * 1000003) ^ this.f12708b.hashCode()) * 1000003) ^ this.f12709c.hashCode()) * 1000003;
+        int hashCode2 = (((((hashCode ^ 1000003) * 1000003) ^ this.f12706b.hashCode()) * 1000003) ^ this.f12707c.hashCode()) * 1000003;
         b bVar = this.d;
         if (bVar != null) {
             i10 = bVar.hashCode();
@@ -53,6 +53,6 @@ public final class a {
     }
 
     public final String toString() {
-        return "Event{code=" + this.f12707a + ", payload=" + this.f12708b + ", priority=" + this.f12709c + ", productData=" + this.d + "}";
+        return "Event{code=" + this.f12705a + ", payload=" + this.f12706b + ", priority=" + this.f12707c + ", productData=" + this.d + "}";
     }
 }

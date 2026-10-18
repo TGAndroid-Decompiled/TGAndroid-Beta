@@ -8,28 +8,28 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class p implements TextView.OnEditorActionListener {
-    public final int f12981a;
-    public final int f12982b;
-    public final org.telegram.ui.ActionBar.b2[] f12983c;
+    public final int f12987a;
+    public final int f12988b;
+    public final org.telegram.ui.ActionBar.b2[] f12989c;
     public final View d;
     public final EditTextBoldCursor e;
-    public final Object f12984f;
+    public final Object f12990f;
 
     public p(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.b2[] b2VarArr, View view, int i11) {
-        this.f12981a = i11;
+        this.f12987a = i11;
         this.e = editTextBoldCursor;
-        this.f12982b = i10;
-        this.f12984f = obj;
-        this.f12983c = b2VarArr;
+        this.f12988b = i10;
+        this.f12990f = obj;
+        this.f12989c = b2VarArr;
         this.d = view;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f12981a) {
+        switch (this.f12987a) {
             case 0:
                 s sVar = (s) this.e;
-                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f12984f;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f12990f;
                 if (i10 != 6) {
                     return false;
                 }
@@ -37,7 +37,7 @@ public final class p implements TextView.OnEditorActionListener {
                 if (obj.length() > 32) {
                     AndroidUtilities.shakeView(sVar);
                 } else {
-                    y d = y.d(this.f12982b);
+                    y d = y.d(this.f12988b);
                     TL_account.TL_businessChatLink c10 = d.c(tL_businessChatLink.link);
                     if (c10 != null) {
                         TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
@@ -46,7 +46,7 @@ public final class p implements TextView.OnEditorActionListener {
                         tL_inputBusinessChatLink.title = obj;
                         d.b(c10, tL_inputBusinessChatLink, null);
                     }
-                    org.telegram.ui.ActionBar.b2[] b2VarArr = this.f12983c;
+                    org.telegram.ui.ActionBar.b2[] b2VarArr = this.f12989c;
                     org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
                     if (b2Var != null) {
                         b2Var.dismiss();
@@ -61,17 +61,17 @@ public final class p implements TextView.OnEditorActionListener {
                 }
                 return true;
             default:
-                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f12984f;
+                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f12990f;
                 if (i10 != 6) {
                     return false;
                 }
                 EditTextBoldCursor editTextBoldCursor = this.e;
                 String obj2 = editTextBoldCursor.getText().toString();
-                if (obj2.length() > this.f12982b) {
+                if (obj2.length() > this.f12988b) {
                     AndroidUtilities.shakeView(editTextBoldCursor);
                 } else {
                     stringCallback.run(obj2);
-                    org.telegram.ui.ActionBar.b2 b2Var2 = this.f12983c[0];
+                    org.telegram.ui.ActionBar.b2 b2Var2 = this.f12989c[0];
                     if (b2Var2 != null) {
                         b2Var2.dismiss();
                     }

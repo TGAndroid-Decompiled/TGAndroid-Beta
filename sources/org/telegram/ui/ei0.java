@@ -12,16 +12,16 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class ei0 implements org.telegram.ui.Components.bl0 {
-    public final org.telegram.ui.ActionBar.n2 f36548a;
-    public final oi0 f36549b;
+    public final org.telegram.ui.ActionBar.n2 f36552a;
+    public final oi0 f36553b;
 
     public ei0(oi0 oi0Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f36549b = oi0Var;
-        this.f36548a = n2Var;
+        this.f36553b = oi0Var;
+        this.f36552a = n2Var;
     }
 
     @Override
-    public final boolean j() {
+    public final boolean h() {
         return true;
     }
 
@@ -43,10 +43,10 @@ public final class ei0 implements org.telegram.ui.Components.bl0 {
         ah.i1 i1Var3;
         ah.i1 i1Var4 = i1Var;
         if (i1Var4 != null) {
-            oi0 oi0Var = this.f36549b;
-            ci0 ci0Var = oi0Var.f39794e0;
-            ai0 ai0Var = oi0Var.f39788a0;
-            int i10 = oi0Var.f39791c;
+            oi0 oi0Var = this.f36553b;
+            ci0 ci0Var = oi0Var.f39815e0;
+            ai0 ai0Var = oi0Var.f39809a0;
+            int i10 = oi0Var.f39812c;
             if (ci0Var != null) {
                 if (!UserConfig.getInstance(i10).isPremium() && i1Var4.d) {
                     z12 = true;
@@ -79,20 +79,20 @@ public final class ei0 implements org.telegram.ui.Components.bl0 {
                                 z15 = false;
                             }
                             u1Var2.X3(messageObject, l4, z15, false, false, false);
-                            ci0 ci0Var2 = oi0Var.f39794e0;
+                            ci0 ci0Var2 = oi0Var.f39815e0;
                             if (z14) {
                                 i1Var3 = null;
                             } else {
                                 i1Var3 = i1Var4;
                             }
                             ci0Var2.setSelectedReactionAnimated(i1Var3);
-                            if (oi0Var.f39794e0.getReactionsWindow() != null && oi0Var.f39794e0.getReactionsWindow().f879m != null) {
-                                ah.n0 n0Var = oi0Var.f39794e0.getReactionsWindow().f879m;
+                            if (oi0Var.f39815e0.getReactionsWindow() != null && oi0Var.f39815e0.getReactionsWindow().f879m != null) {
+                                ah.n0 n0Var = oi0Var.f39815e0.getReactionsWindow().f879m;
                                 if (z14) {
                                     i1Var4 = null;
                                 }
                                 n0Var.setSelectedReaction(i1Var4);
-                                oi0Var.f39794e0.getReactionsWindow().f870a.invalidate();
+                                oi0Var.f39815e0.getReactionsWindow().f870a.invalidate();
                             }
                         } else {
                             j10 = j11;
@@ -116,7 +116,7 @@ public final class ei0 implements org.telegram.ui.Components.bl0 {
                     } else {
                         return;
                     }
-                } else if (oi0Var.f39802l0 != null) {
+                } else if (oi0Var.f39823l0 != null) {
                     long j13 = i1Var4.f784c;
                     if (j13 == oi0Var.I) {
                         oi0Var.I = 0L;
@@ -144,20 +144,20 @@ public final class ei0 implements org.telegram.ui.Components.bl0 {
                                 p5Var.g(null, true);
                             }
                         }
-                        ci0 ci0Var3 = oi0Var.f39794e0;
+                        ci0 ci0Var3 = oi0Var.f39815e0;
                         if (z13) {
                             i1Var2 = null;
                         } else {
                             i1Var2 = i1Var4;
                         }
                         ci0Var3.setSelectedReactionAnimated(i1Var2);
-                        if (oi0Var.f39794e0.getReactionsWindow() != null && oi0Var.f39794e0.getReactionsWindow().f879m != null) {
-                            ah.n0 n0Var2 = oi0Var.f39794e0.getReactionsWindow().f879m;
+                        if (oi0Var.f39815e0.getReactionsWindow() != null && oi0Var.f39815e0.getReactionsWindow().f879m != null) {
+                            ah.n0 n0Var2 = oi0Var.f39815e0.getReactionsWindow().f879m;
                             if (z13) {
                                 i1Var4 = null;
                             }
                             n0Var2.setSelectedReaction(i1Var4);
-                            oi0Var.f39794e0.getReactionsWindow().f870a.invalidate();
+                            oi0Var.f39815e0.getReactionsWindow().f870a.invalidate();
                         }
                     }
                     ai0Var.c();
@@ -168,11 +168,11 @@ public final class ei0 implements org.telegram.ui.Components.bl0 {
                         if (j14 != 0) {
                             tL_message.flags2 |= 4;
                         }
-                        oi0Var.f39788a0.d(null, 0, null, new MessageObject(i10, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
+                        oi0Var.f39809a0.d(null, 0, null, new MessageObject(i10, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
                     }
                 }
-                if (z12 && (n2Var = this.f36548a) != null) {
-                    new org.telegram.ui.Components.xc(oi0Var.G, oi0Var.f39789b).Q(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.AnimatedEffectPremium), new di0(0, n2Var))).j();
+                if (z12 && (n2Var = this.f36552a) != null) {
+                    new org.telegram.ui.Components.xc(oi0Var.G, oi0Var.f39810b).Q(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.AnimatedEffectPremium), new di0(0, n2Var))).j();
                 }
                 oi0Var.H.invalidate();
             }
@@ -180,7 +180,7 @@ public final class ei0 implements org.telegram.ui.Components.bl0 {
     }
 
     @Override
-    public final boolean s() {
+    public final boolean r() {
         return false;
     }
 

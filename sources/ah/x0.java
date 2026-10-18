@@ -19,10 +19,10 @@ public abstract class x0 {
 
     public static void a() {
         hf.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
-        CountDownLatch countDownLatch = cacheOutQueue.f11786b;
+        CountDownLatch countDownLatch = cacheOutQueue.f11788b;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            cacheOutQueue.f11786b = null;
+            cacheOutQueue.f11788b = null;
         }
         f903b = false;
         e = false;

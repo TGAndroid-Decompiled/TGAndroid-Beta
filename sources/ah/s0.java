@@ -54,7 +54,7 @@ public final class s0 extends FrameLayout {
         d6 d6Var = t0Var.f885s;
         mutate.setColorFilter(new PorterDuffColorFilter(h6.w0(i10, d6Var), PorterDuff.Mode.MULTIPLY));
         if (t0Var.f890y == 2) {
-            paint.setColor(i0.b.f(0.13f, -16777216, -1));
+            paint.setColor(i0.a.f(0.13f, -16777216, -1));
         } else {
             paint.setColor(h6.w0(h6.G8, d6Var));
         }
@@ -70,10 +70,10 @@ public final class s0 extends FrameLayout {
         super.invalidate();
         t0 t0Var = this.f866w;
         cl0 cl0Var = t0Var.f880n;
-        if (t0Var.f890y != 1 && (cl0Var == null || cl0Var.getDelegate() == null || !cl0Var.getDelegate().s())) {
+        if (t0Var.f890y != 1 && (cl0Var == null || cl0Var.getDelegate() == null || !cl0Var.getDelegate().r())) {
             return;
         }
-        t0Var.f879m.f43592f0.invalidate();
+        t0Var.f879m.f43618f0.invalidate();
     }
 
     @Override

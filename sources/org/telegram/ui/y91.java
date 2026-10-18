@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.MessageObject;
 public final class y91 extends org.telegram.ui.Components.e61 {
-    public static final int f43370b = 0;
-    public org.telegram.ui.Cells.r7 f43371a;
+    public static final int f43394b = 0;
+    public org.telegram.ui.Cells.r7 f43395a;
 
     static {
         org.telegram.ui.Components.e61.setup(new org.telegram.ui.Components.e61());
@@ -33,18 +33,18 @@ public final class y91 extends org.telegram.ui.Components.e61 {
 
     @Override
     public final View createView(Context context, org.telegram.ui.Components.im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        if (this.f43371a == null) {
-            this.f43371a = new org.telegram.ui.Cells.r7(context, d6Var);
+        if (this.f43395a == null) {
+            this.f43395a = new org.telegram.ui.Cells.r7(context, d6Var);
         }
-        org.telegram.ui.Cells.s7 s7Var = new org.telegram.ui.Cells.s7(context, this.f43371a, i10);
-        s7Var.f23051w0 = true;
-        s7Var.f23028d0 = true;
+        org.telegram.ui.Cells.s7 s7Var = new org.telegram.ui.Cells.s7(context, this.f43395a, i10);
+        s7Var.f23055w0 = true;
+        s7Var.f23032d0 = true;
         return s7Var;
     }
 
     @Override
     public final boolean equals(org.telegram.ui.Components.f61 f61Var, org.telegram.ui.Components.f61 f61Var2) {
-        if (f61Var.f26145q == f61Var2.f26145q && f61Var.e == f61Var2.e && f61Var.B == f61Var2.B) {
+        if (f61Var.f26152q == f61Var2.f26152q && f61Var.e == f61Var2.e && f61Var.B == f61Var2.B) {
             return true;
         }
         return false;

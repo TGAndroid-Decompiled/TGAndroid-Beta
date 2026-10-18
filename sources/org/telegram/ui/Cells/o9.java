@@ -16,13 +16,13 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 public abstract class o9 extends aa {
-    public final SparseArray f22731p0 = new SparseArray();
-    public boolean f22732q0;
-    public boolean f22733r0;
-    public boolean f22734s0;
-    public boolean f22735t0;
-    public boolean f22736u0;
-    public boolean f22737v0;
+    public final SparseArray f22735p0 = new SparseArray();
+    public boolean f22736q0;
+    public boolean f22737r0;
+    public boolean f22738s0;
+    public boolean f22739t0;
+    public boolean f22740u0;
+    public boolean f22741v0;
 
     @Override
     public final boolean C() {
@@ -30,9 +30,9 @@ public abstract class o9 extends aa {
         RichMessageLayout richMessageLayout;
         CharSequence r10;
         String str;
-        if (this.f22736u0 && (v9Var = this.W) != null && ((u1) v9Var).getMessageObject() != null && (richMessageLayout = ((u1) this.W).getMessageObject().richLayout) != null && !richMessageLayout.textBlocks.isEmpty() && (r10 = r()) != null && r10.length() != 0) {
+        if (this.f22740u0 && (v9Var = this.W) != null && ((u1) v9Var).getMessageObject() != null && (richMessageLayout = ((u1) this.W).getMessageObject().richLayout) != null && !richMessageLayout.textBlocks.isEmpty() && (r10 = r()) != null && r10.length() != 0) {
             try {
-                str = richMessageLayout.getSelectionHtml(this.f22011u, this.v);
+                str = richMessageLayout.getSelectionHtml(this.f22016u, this.v);
             } catch (Exception e) {
                 FileLog.e(e);
                 str = null;
@@ -51,7 +51,7 @@ public abstract class o9 extends aa {
         if (v9Var != null && ((u1) v9Var).g3() && !z10) {
             u1 u1Var = (u1) this.W;
             int id2 = u1Var.getMessageObject().getId();
-            SparseArray sparseArray = this.f22731p0;
+            SparseArray sparseArray = this.f22735p0;
             Animator animator = (Animator) sparseArray.get(id2);
             if (animator != null) {
                 animator.removeAllListeners();
@@ -77,17 +77,17 @@ public abstract class o9 extends aa {
         } else {
             z10 = true;
         }
-        this.f22012w = u1Var.getMessageObject().getId();
+        this.f22017w = u1Var.getMessageObject().getId();
         try {
             int i10 = u1Var.getMessageObject().messageOwner.edit_date;
         } catch (Exception unused) {
         }
         this.U = 0.0f;
-        this.f22732q0 = this.f22733r0;
-        this.f22734s0 = this.f22735t0;
-        this.f22736u0 = this.f22737v0;
-        int i11 = this.f22012w;
-        SparseArray sparseArray = this.f22731p0;
+        this.f22736q0 = this.f22737r0;
+        this.f22738s0 = this.f22739t0;
+        this.f22740u0 = this.f22741v0;
+        int i11 = this.f22017w;
+        SparseArray sparseArray = this.f22735p0;
         Animator animator = (Animator) sparseArray.get(i11);
         if (animator != null) {
             animator.removeAllListeners();
@@ -97,7 +97,7 @@ public abstract class o9 extends aa {
         ofFloat.addUpdateListener(new ah.k0(4, this, z10));
         ofFloat.setDuration(250L);
         ofFloat.start();
-        sparseArray.put(this.f22012w, ofFloat);
+        sparseArray.put(this.f22017w, ofFloat);
         if (!z10) {
             u1Var.setSelectedBackgroundProgress(0.0f);
         }
@@ -109,27 +109,27 @@ public abstract class o9 extends aa {
             int i10 = messageObject.messageOwner.edit_date;
         } catch (Exception unused) {
         }
-        if (this.f22012w == messageObject.getId()) {
+        if (this.f22017w == messageObject.getId()) {
             f(true);
         }
     }
 
     public final void X(boolean z10, StaticLayout staticLayout, Canvas canvas) {
-        if (!this.f22732q0) {
+        if (!this.f22736q0) {
             return;
         }
-        Paint paint = this.f22006p;
-        Paint paint2 = this.f22004o;
+        Paint paint = this.f22011p;
+        Paint paint2 = this.f22009o;
         if (z10) {
             int i10 = org.telegram.ui.ActionBar.h6.Vb;
             paint2.setColor(t(i10));
             paint.setColor(t(i10));
         } else {
-            int i11 = org.telegram.ui.ActionBar.h6.f21310uf;
+            int i11 = org.telegram.ui.ActionBar.h6.f21317uf;
             paint2.setColor(t(i11));
             paint.setColor(t(i11));
         }
-        h(canvas, staticLayout, this.f22011u, this.v, true, true, 0.0f);
+        h(canvas, staticLayout, this.f22016u, this.v, true, true, 0.0f);
     }
 
     public final void Y(MessageObject messageObject, RichMessageLayout richMessageLayout, Canvas canvas) {
@@ -137,16 +137,16 @@ public abstract class o9 extends aa {
         y9 y9Var;
         Canvas canvas2;
         boolean z10;
-        if (this.f22736u0 && richMessageLayout != null && (v9Var = this.W) != null && ((u1) v9Var).getMessageObject() != null && ((u1) this.W).getMessageObject().getId() == messageObject.getId()) {
+        if (this.f22740u0 && richMessageLayout != null && (v9Var = this.W) != null && ((u1) v9Var).getMessageObject() != null && ((u1) this.W).getMessageObject().getId() == messageObject.getId()) {
             boolean isOutOwner = messageObject.isOutOwner();
-            Paint paint = this.f22006p;
-            Paint paint2 = this.f22004o;
+            Paint paint = this.f22011p;
+            Paint paint2 = this.f22009o;
             if (isOutOwner) {
                 int i10 = org.telegram.ui.ActionBar.h6.Vb;
                 paint2.setColor(t(i10));
                 paint.setColor(t(i10));
             } else {
-                int i11 = org.telegram.ui.ActionBar.h6.f21310uf;
+                int i11 = org.telegram.ui.ActionBar.h6.f21317uf;
                 paint2.setColor(t(i11));
                 paint.setColor(t(i11));
             }
@@ -156,11 +156,11 @@ public abstract class o9 extends aa {
                 if (layout != null && layout.getText() != null) {
                     int intValue = richMessageLayout.textBlockCharOffsets.get(i12).intValue();
                     int length = layout.getText().length();
-                    int clamp = Utilities.clamp(this.f22011u - intValue, length, 0);
+                    int clamp = Utilities.clamp(this.f22016u - intValue, length, 0);
                     int clamp2 = Utilities.clamp(this.v - intValue, length, 0);
                     if (clamp != clamp2) {
                         boolean z11 = true;
-                        if (this.f22011u >= intValue) {
+                        if (this.f22016u >= intValue) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -190,26 +190,26 @@ public abstract class o9 extends aa {
             return;
         }
         this.W = u1Var;
-        this.f22012w = u1Var.getMessageObject().getId();
+        this.f22017w = u1Var.getMessageObject().getId();
         if (((u1) this.W).getMessageObject().type == 36 && ((u1) this.W).getMessageObject().richLayout != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f22736u0 = z10;
+        this.f22740u0 = z10;
         if (z10) {
-            this.f22732q0 = false;
-            this.f22734s0 = false;
+            this.f22736q0 = false;
+            this.f22738s0 = false;
         }
-        this.f22011u = i10;
+        this.f22016u = i10;
         this.v = i11;
         w();
         w7.j0 j0Var = this.D;
         if (j0Var != null) {
             j0Var.a(true);
         }
-        this.f21990g = 0.0f;
-        this.f21988f = 0.0f;
+        this.f21995g = 0.0f;
+        this.f21993f = 0.0f;
         this.e = false;
         z9 z9Var = this.C;
         if (z9Var != null) {
@@ -224,25 +224,25 @@ public abstract class o9 extends aa {
         this.X = u1Var;
         MessageObject messageObject = u1Var.getMessageObject();
         t1 t1Var = u1Var.Zc;
-        boolean z10 = this.f22733r0;
+        boolean z10 = this.f22737r0;
         Rect rect = this.B;
         if (z10 && u1Var.getDescriptionlayout() != null) {
-            int i10 = this.f21984c;
+            int i10 = this.f21989c;
             rect.set(i10, this.d, u1Var.getDescriptionlayout().getWidth() + i10, u1Var.getDescriptionlayout().getHeight() + this.d);
-        } else if (this.f22735t0 && u1Var.getFactCheckLayout() != null) {
-            int i11 = this.f21984c;
+        } else if (this.f22739t0 && u1Var.getFactCheckLayout() != null) {
+            int i11 = this.f21989c;
             rect.set(i11, this.d, u1Var.getFactCheckLayout().getWidth() + i11, u1Var.getFactCheckLayout().getHeight() + this.d);
-        } else if (this.f22737v0 && messageObject != null && (richMessageLayout = messageObject.richLayout) != null && !richMessageLayout.textBlocks.isEmpty()) {
+        } else if (this.f22741v0 && messageObject != null && (richMessageLayout = messageObject.richLayout) != null && !richMessageLayout.textBlocks.isEmpty()) {
             RichMessageLayout richMessageLayout2 = messageObject.richLayout;
-            int i12 = this.f21984c;
+            int i12 = this.f21989c;
             rect.set(i12, this.d, richMessageLayout2.getMinWidth() + i12, richMessageLayout2.getHeight() + this.d);
         } else if (u1Var.P2() && u1Var.getCaptionLayout().textLayoutBlocks.size() > 0) {
-            MessageObject.TextLayoutBlock textLayoutBlock = (MessageObject.TextLayoutBlock) i0.a.h(1, u1Var.getCaptionLayout().textLayoutBlocks);
-            int i13 = this.f21984c;
+            MessageObject.TextLayoutBlock textLayoutBlock = (MessageObject.TextLayoutBlock) i2.d.h(1, u1Var.getCaptionLayout().textLayoutBlocks);
+            int i13 = this.f21989c;
             rect.set(i13, this.d, textLayoutBlock.textLayout.getWidth() + i13, (int) (textLayoutBlock.textYOffset(u1Var.getCaptionLayout().textLayoutBlocks, t1Var) + this.d + textLayoutBlock.padTop + textLayoutBlock.textLayout.getHeight()));
         } else if (messageObject != null && (arrayList = messageObject.textLayoutBlocks) != null && arrayList.size() > 0) {
-            MessageObject.TextLayoutBlock textLayoutBlock2 = (MessageObject.TextLayoutBlock) i0.a.h(1, messageObject.textLayoutBlocks);
-            int i14 = this.f21984c;
+            MessageObject.TextLayoutBlock textLayoutBlock2 = (MessageObject.TextLayoutBlock) i2.d.h(1, messageObject.textLayoutBlocks);
+            int i14 = this.f21989c;
             rect.set(i14, this.d, textLayoutBlock2.textLayout.getWidth() + i14, (int) (textLayoutBlock2.textYOffset(messageObject.textLayoutBlocks, t1Var) + this.d + textLayoutBlock2.padTop + textLayoutBlock2.textLayout.getHeight()));
         } else {
             this.X = null;
@@ -250,20 +250,20 @@ public abstract class o9 extends aa {
     }
 
     public final void b0(int i10, int i11) {
-        if (this.f21980a == i10 && this.f21982b == i11) {
+        if (this.f21985a == i10 && this.f21987b == i11) {
             return;
         }
-        this.f21980a = i10;
-        this.f21982b = i11;
+        this.f21985a = i10;
+        this.f21987b = i11;
         w();
     }
 
     @Override
     public final void f(boolean z10) {
         super.f(z10);
-        this.f22732q0 = false;
-        this.f22734s0 = false;
-        this.f22736u0 = false;
+        this.f22736q0 = false;
+        this.f22738s0 = false;
+        this.f22740u0 = false;
     }
 
     @Override
@@ -286,22 +286,22 @@ public abstract class o9 extends aa {
         }
         u1 u1Var = (u1) v9Var;
         if (u1Var == null) {
-            q9Var.f22792b = null;
+            q9Var.f22796b = null;
             return;
         }
         MessageObject messageObject = u1Var.getMessageObject();
         int i17 = 0;
-        if (this.f22732q0) {
-            q9Var.f22792b = u1Var.getDescriptionlayout();
-            q9Var.f22793c = 0.0f;
+        if (this.f22736q0) {
+            q9Var.f22796b = u1Var.getDescriptionlayout();
+            q9Var.f22797c = 0.0f;
             q9Var.d = 0.0f;
-            q9Var.f22791a = 0;
-        } else if (this.f22734s0) {
-            q9Var.f22792b = u1Var.getFactCheckLayout();
-            q9Var.f22793c = 0.0f;
+            q9Var.f22795a = 0;
+        } else if (this.f22738s0) {
+            q9Var.f22796b = u1Var.getFactCheckLayout();
+            q9Var.f22797c = 0.0f;
             q9Var.d = 0.0f;
-            q9Var.f22791a = 0;
-        } else if (this.f22736u0) {
+            q9Var.f22795a = 0;
+        } else if (this.f22740u0) {
             if (messageObject != null) {
                 richMessageLayout = messageObject.richLayout;
             } else {
@@ -324,18 +324,18 @@ public abstract class o9 extends aa {
                 if (i17 < 0) {
                     i17 = richMessageLayout.textBlocks.size() - 1;
                 }
-                q9Var.f22792b = richMessageLayout.textBlocks.get(i17).getLayout();
-                q9Var.f22793c = y9Var.getY();
+                q9Var.f22796b = richMessageLayout.textBlocks.get(i17).getLayout();
+                q9Var.f22797c = y9Var.getY();
                 q9Var.d = y9Var.getX();
-                q9Var.f22791a = richMessageLayout.textBlockCharOffsets.get(i17).intValue();
+                q9Var.f22795a = richMessageLayout.textBlockCharOffsets.get(i17).intValue();
                 return;
             }
-            q9Var.f22792b = null;
+            q9Var.f22796b = null;
         } else if (u1Var.P2()) {
             MessageObject.TextLayoutBlocks captionLayout = u1Var.getCaptionLayout();
             if (captionLayout.textLayoutBlocks.size() == 1) {
-                q9Var.f22792b = captionLayout.textLayoutBlocks.get(0).textLayout;
-                q9Var.f22793c = textLayoutBlock2.padTop;
+                q9Var.f22796b = captionLayout.textLayoutBlocks.get(0).textLayout;
+                q9Var.f22797c = textLayoutBlock2.padTop;
                 MessageObject.TextLayoutBlock textLayoutBlock3 = captionLayout.textLayoutBlocks.get(0);
                 if (textLayoutBlock3.quote) {
                     i15 = AndroidUtilities.dp(10.0f);
@@ -352,15 +352,15 @@ public abstract class o9 extends aa {
                 if (textLayoutBlock3.code && !textLayoutBlock3.quote) {
                     q9Var.d = f7 + AndroidUtilities.dp(8.0f);
                 }
-                q9Var.f22791a = 0;
+                q9Var.f22795a = 0;
                 return;
             }
             for (int i18 = 0; i18 < captionLayout.textLayoutBlocks.size(); i18++) {
                 MessageObject.TextLayoutBlock textLayoutBlock4 = captionLayout.textLayoutBlocks.get(i18);
                 int i19 = i10 - textLayoutBlock4.charactersOffset;
                 if (i19 >= 0 && i19 <= textLayoutBlock4.textLayout.getText().length()) {
-                    q9Var.f22792b = textLayoutBlock4.textLayout;
-                    q9Var.f22793c = textLayoutBlock4.textYOffset(captionLayout.textLayoutBlocks) + textLayoutBlock4.padTop;
+                    q9Var.f22796b = textLayoutBlock4.textLayout;
+                    q9Var.f22797c = textLayoutBlock4.textYOffset(captionLayout.textLayoutBlocks) + textLayoutBlock4.padTop;
                     if (textLayoutBlock4.quote) {
                         i14 = AndroidUtilities.dp(10.0f);
                     } else {
@@ -374,18 +374,18 @@ public abstract class o9 extends aa {
                     if (textLayoutBlock4.code && !textLayoutBlock4.quote) {
                         q9Var.d = f10 + AndroidUtilities.dp(8.0f);
                     }
-                    q9Var.f22791a = textLayoutBlock4.charactersOffset;
+                    q9Var.f22795a = textLayoutBlock4.charactersOffset;
                     return;
                 }
             }
-            q9Var.f22792b = null;
+            q9Var.f22796b = null;
         } else {
             ArrayList<MessageObject.TextLayoutBlock> arrayList = messageObject.textLayoutBlocks;
             if (arrayList == null) {
-                q9Var.f22792b = null;
+                q9Var.f22796b = null;
             } else if (arrayList.size() == 1) {
-                q9Var.f22792b = messageObject.textLayoutBlocks.get(0).textLayout;
-                q9Var.f22793c = textLayoutBlock.padTop;
+                q9Var.f22796b = messageObject.textLayoutBlocks.get(0).textLayout;
+                q9Var.f22797c = textLayoutBlock.padTop;
                 MessageObject.TextLayoutBlock textLayoutBlock5 = messageObject.textLayoutBlocks.get(0);
                 if (textLayoutBlock5.quote) {
                     i12 = AndroidUtilities.dp(10.0f);
@@ -402,14 +402,14 @@ public abstract class o9 extends aa {
                 if (textLayoutBlock5.code && !textLayoutBlock5.quote) {
                     q9Var.d = f11 + AndroidUtilities.dp(8.0f);
                 }
-                q9Var.f22791a = 0;
+                q9Var.f22795a = 0;
             } else {
                 for (int i20 = 0; i20 < messageObject.textLayoutBlocks.size(); i20++) {
                     MessageObject.TextLayoutBlock textLayoutBlock6 = messageObject.textLayoutBlocks.get(i20);
                     int i21 = i10 - textLayoutBlock6.charactersOffset;
                     if (i21 >= 0 && i21 <= textLayoutBlock6.textLayout.getText().length()) {
-                        q9Var.f22792b = textLayoutBlock6.textLayout;
-                        q9Var.f22793c = textLayoutBlock6.textYOffset(messageObject.textLayoutBlocks) + textLayoutBlock6.padTop;
+                        q9Var.f22796b = textLayoutBlock6.textLayout;
+                        q9Var.f22797c = textLayoutBlock6.textYOffset(messageObject.textLayoutBlocks) + textLayoutBlock6.padTop;
                         if (textLayoutBlock6.quote) {
                             i11 = AndroidUtilities.dp(10.0f);
                         } else {
@@ -423,11 +423,11 @@ public abstract class o9 extends aa {
                         if (textLayoutBlock6.code && !textLayoutBlock6.quote) {
                             q9Var.d = f12 + AndroidUtilities.dp(8.0f);
                         }
-                        q9Var.f22791a = textLayoutBlock6.charactersOffset;
+                        q9Var.f22795a = textLayoutBlock6.charactersOffset;
                         return;
                     }
                 }
-                q9Var.f22792b = null;
+                q9Var.f22796b = null;
             }
         }
     }
@@ -444,11 +444,11 @@ public abstract class o9 extends aa {
         v9 v9Var = this.W;
         if (v9Var != null && ((u1) v9Var).getMessageObject() != null) {
             MessageObject messageObject = ((u1) this.W).getMessageObject();
-            if (this.f22732q0) {
+            if (this.f22736q0) {
                 layout = ((u1) this.W).getDescriptionlayout();
-            } else if (this.f22734s0) {
+            } else if (this.f22738s0) {
                 layout = ((u1) this.W).getFactCheckLayout();
-            } else if (this.f22736u0) {
+            } else if (this.f22740u0) {
                 if (messageObject != null) {
                     richMessageLayout = messageObject.richLayout;
                 } else {
@@ -478,13 +478,13 @@ public abstract class o9 extends aa {
     public final CharSequence s(v9 v9Var, boolean z10) {
         u1 u1Var = (u1) v9Var;
         if (u1Var != null && u1Var.getMessageObject() != null) {
-            if (!z10 ? this.f22732q0 : this.f22733r0) {
+            if (!z10 ? this.f22736q0 : this.f22737r0) {
                 return u1Var.getDescriptionlayout().getText();
             }
-            if (!z10 ? this.f22734s0 : this.f22735t0) {
+            if (!z10 ? this.f22738s0 : this.f22739t0) {
                 return u1Var.getFactCheckLayout().getText();
             }
-            if (!z10 ? this.f22736u0 : this.f22737v0) {
+            if (!z10 ? this.f22740u0 : this.f22741v0) {
                 RichMessageLayout richMessageLayout = u1Var.getMessageObject().richLayout;
                 if (richMessageLayout != null) {
                     return richMessageLayout.joinedText;
@@ -508,7 +508,7 @@ public abstract class o9 extends aa {
         }
         v9 v9Var2 = this.W;
         if (v9Var2 != null) {
-            if (this.f22734s0 || this.f22735t0) {
+            if (this.f22738s0 || this.f22739t0) {
                 ((u1) v9Var2).a3();
             }
         }

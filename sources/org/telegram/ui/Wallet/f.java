@@ -14,18 +14,18 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class f {
-    public final int f34181a;
-    public final m0 f34182b;
-    public boolean f34183c;
+    public final int f34213a;
+    public final m0 f34214b;
+    public boolean f34215c;
     public TL_wallet.currencyRates d;
     public String e = "en";
-    public String f34184f;
+    public String f34216f;
 
     public f(m0 m0Var) {
-        this.f34182b = m0Var;
-        this.f34181a = m0Var.f34551a;
+        this.f34214b = m0Var;
+        this.f34213a = m0Var.f34530a;
         try {
-            this.f34184f = ApplicationLoader.applicationContext.getSharedPreferences("gram_wallet", 0).getString("currency", g());
+            this.f34216f = ApplicationLoader.applicationContext.getSharedPreferences("gram_wallet", 0).getString("currency", g());
         } catch (Exception e) {
             FileLog.e("[gram-wallet] failed to load currency prefs", e);
         }
@@ -108,11 +108,11 @@ public final class f {
     public final TL_wallet.currencyRates f() {
         String str;
         if (this.d == null) {
-            if (this.f34183c) {
+            if (this.f34215c) {
                 return null;
             }
-            this.f34183c = true;
-            ConnectionsManager.getInstance(this.f34181a).sendRequestTyped(new TL_wallet.getCurrencyRates(), new Object(), new d(this, 0));
+            this.f34215c = true;
+            ConnectionsManager.getInstance(this.f34213a).sendRequestTyped(new TL_wallet.getCurrencyRates(), new Object(), new d(this, 0));
         } else {
             Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
             if (currentLocale == null || TextUtils.isEmpty(currentLocale.getLanguage())) {
@@ -141,7 +141,7 @@ public final class f {
     }
 
     public final String g() {
-        String str = this.f34184f;
+        String str = this.f34216f;
         if (str == null) {
             return "USD";
         }

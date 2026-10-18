@@ -12,10 +12,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class lg0 implements Comparator {
-    public final int f38874a;
+    public final int f38865a;
 
     public lg0(int i10) {
-        this.f38874a = i10;
+        this.f38865a = i10;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class lg0 implements Comparator {
         int i10;
         int i11;
         e9.v1 a2;
-        switch (this.f38874a) {
+        switch (this.f38865a) {
             case 0:
                 int i12 = (UserConfig.getInstance(((Integer) obj).intValue()).loginTime > UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 1 : (UserConfig.getInstance(((Integer) obj).intValue()).loginTime == UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 0 : -1));
                 if (i12 > 0) {
@@ -51,14 +51,14 @@ public final class lg0 implements Comparator {
                 return (int) (((View) obj).getY() - ((View) obj2).getY());
             case 5:
                 if (obj instanceof n01) {
-                    i10 = ((n01) obj).f39293g;
+                    i10 = ((n01) obj).f39319g;
                 } else if (obj instanceof MessagesController.FaqSearchResult) {
                     i10 = ((MessagesController.FaqSearchResult) obj).num;
                 } else {
                     i10 = 0;
                 }
                 if (obj2 instanceof n01) {
-                    i11 = ((n01) obj2).f39293g;
+                    i11 = ((n01) obj2).f39319g;
                 } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                     i11 = ((MessagesController.FaqSearchResult) obj2).num;
                 } else {
@@ -92,7 +92,7 @@ public final class lg0 implements Comparator {
                 }
                 return 0;
             case 9:
-                return Integer.compare(((org.telegram.ui.Wallet.i0) obj2).f34301b, ((org.telegram.ui.Wallet.i0) obj).f34301b);
+                return Integer.compare(((org.telegram.ui.Wallet.i0) obj2).f34319b, ((org.telegram.ui.Wallet.i0) obj).f34319b);
             case 10:
                 return Integer.compare(((TL_wallet.walletTransaction) obj2).date, ((TL_wallet.walletTransaction) obj).date);
             case 11:
@@ -105,17 +105,17 @@ public final class lg0 implements Comparator {
                 }
                 return 0;
             case 12:
-                return (int) (((org.telegram.ui.web.j) obj2).f42636c - ((org.telegram.ui.web.j) obj).f42636c);
+                return (int) (((org.telegram.ui.web.j) obj2).f42661c - ((org.telegram.ui.web.j) obj).f42661c);
             case 13:
-                return (int) (((org.telegram.ui.web.j) obj2).f42636c - ((org.telegram.ui.web.j) obj).f42636c);
+                return (int) (((org.telegram.ui.web.j) obj2).f42661c - ((org.telegram.ui.web.j) obj).f42661c);
             case 14:
-                return ((p2.f) obj).f43966a.compareTo(((p2.f) obj2).f43966a);
+                return ((p2.f) obj).f43986a.compareTo(((p2.f) obj2).f43986a);
             case 15:
-                return (int) ((((sg.o1) obj).f46367a * 100.0f) - (((sg.o1) obj2).f46367a * 100.0f));
+                return (int) ((((sg.o1) obj).f46387a * 100.0f) - (((sg.o1) obj2).f46387a * 100.0f));
             case 16:
                 return ((String) obj).compareTo((String) obj2);
             case 17:
-                return ((b2.w) obj2).f4122j - ((b2.w) obj).f4122j;
+                return ((b2.w) obj2).f4123j - ((b2.w) obj).f4123j;
             case 18:
                 Integer num = (Integer) obj;
                 Integer num2 = (Integer) obj2;
@@ -130,7 +130,7 @@ public final class lg0 implements Comparator {
                     return num.intValue() - num2.intValue();
                 }
             case 19:
-                return Integer.compare(((x2.f) ((List) obj).get(0)).f49161f, ((x2.f) ((List) obj2).get(0)).f49161f);
+                return Integer.compare(((x2.f) ((List) obj).get(0)).f49186f, ((x2.f) ((List) obj2).get(0)).f49186f);
             case 20:
                 List list = (List) obj;
                 List list2 = (List) obj2;
@@ -145,30 +145,30 @@ public final class lg0 implements Comparator {
                 x2.m mVar = (x2.m) obj;
                 x2.m mVar2 = (x2.m) obj2;
                 boolean z10 = mVar.e;
-                int i17 = mVar.f49181s;
-                if (z10 && mVar.f49179n) {
-                    a2 = x2.n.f49185l;
+                int i17 = mVar.f49206s;
+                if (z10 && mVar.f49204n) {
+                    a2 = x2.n.f49210l;
                 } else {
-                    a2 = x2.n.f49185l.a();
+                    a2 = x2.n.f49210l.a();
                 }
-                boolean z11 = mVar.f49178f.F;
-                e9.b0 b0Var = e9.b0.f8417a;
+                boolean z11 = mVar.f49203f.F;
+                e9.b0 b0Var = e9.b0.f8418a;
                 if (z11) {
-                    b0Var = b0Var.b(Integer.valueOf(i17), Integer.valueOf(mVar2.f49181s), x2.n.f49185l.a());
+                    b0Var = b0Var.b(Integer.valueOf(i17), Integer.valueOf(mVar2.f49206s), x2.n.f49210l.a());
                 }
                 e9.b0 b10 = b0Var.c(mVar.O, mVar2.O).b(Integer.valueOf(mVar.v), Integer.valueOf(mVar2.v), a2);
                 if (mVar.K && mVar.M) {
                     b10 = b10.a(mVar.N, mVar2.N);
                 }
-                return b10.c(mVar.L, mVar2.L).b(Integer.valueOf(i17), Integer.valueOf(mVar2.f49181s), a2).e();
+                return b10.c(mVar.L, mVar2.L).b(Integer.valueOf(i17), Integer.valueOf(mVar2.f49206s), a2).e();
             case 25:
                 return Long.compare(((File) obj2).lastModified(), ((File) obj).lastModified());
             case 26:
-                return ((z9.d0) ((z9.h1) obj)).f51362a.compareTo(((z9.d0) ((z9.h1) obj2)).f51362a);
+                return ((z9.d0) ((z9.h1) obj)).f51387a.compareTo(((z9.d0) ((z9.h1) obj2)).f51387a);
             case 27:
-                return ((y2.p) obj).f49954a - ((y2.p) obj2).f49954a;
+                return ((y2.p) obj).f49979a - ((y2.p) obj2).f49979a;
             case 28:
-                return Float.compare(((y2.p) obj).f49956c, ((y2.p) obj2).f49956c);
+                return Float.compare(((y2.p) obj).f49981c, ((y2.p) obj2).f49981c);
             default:
                 RectF rectF = (RectF) obj;
                 RectF rectF2 = (RectF) obj2;

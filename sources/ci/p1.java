@@ -40,25 +40,25 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
     public androidx.fragment.app.d U;
     public ei.d4 V;
     public boolean W;
-    public float f5713a;
-    public WindowManager f5714b;
-    public WindowManager.LayoutParams f5715c;
+    public float f5714a;
+    public WindowManager f5715b;
+    public WindowManager.LayoutParams f5716c;
     public n1 d;
     public m1 e;
-    public ei.d4 f5716f;
+    public ei.d4 f5717f;
     public FrameLayout h;
-    public org.telegram.ui.Components.w9 f5717n;
-    public un f5718r;
-    public boolean f5719s;
+    public org.telegram.ui.Components.w9 f5718n;
+    public un f5719r;
+    public boolean f5720s;
     public h1 v;
-    public int f5720w;
-    public ScaleGestureDetector f5721x;
-    public k0.b f5722y;
+    public int f5721w;
+    public ScaleGestureDetector f5722x;
+    public k0.b f5723y;
 
     static {
         ?? obj = new Object();
-        obj.f5713a = 1.4f;
-        obj.f5719s = true;
+        obj.f5714a = 1.4f;
+        obj.f5720s = true;
         obj.M = 1.0f;
         obj.U = new androidx.fragment.app.d((Object) obj, 9);
         Z = obj;
@@ -72,7 +72,7 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
     public final void a(com.google.android.gms.internal.cast.p pVar) {
         i();
         this.W = true;
-        this.f5714b.removeView(this.d);
+        this.f5715b.removeView(this.d);
         this.d.invalidate();
     }
 
@@ -80,17 +80,17 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
     public final void b(com.google.android.gms.internal.cast.p pVar) {
         rf.d dVar = this.L;
         if (dVar != null && dVar.h.c()) {
-            WindowManager.LayoutParams layoutParams = this.f5715c;
-            int width = ((Rect) this.L.h.f14759a).width();
+            WindowManager.LayoutParams layoutParams = this.f5716c;
+            int width = ((Rect) this.L.h.f14766a).width();
             this.J = width;
             layoutParams.width = width;
-            WindowManager.LayoutParams layoutParams2 = this.f5715c;
-            int height = ((Rect) this.L.h.f14759a).height();
+            WindowManager.LayoutParams layoutParams2 = this.f5716c;
+            int height = ((Rect) this.L.h.f14766a).height();
             this.K = height;
             layoutParams2.height = height;
         }
         this.W = false;
-        this.f5714b.addView(this.d, this.f5715c);
+        this.f5715b.addView(this.d, this.f5716c);
         this.d.invalidate();
         ei.d4 d4Var = this.V;
         if (d4Var != null) {
@@ -120,9 +120,9 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
 
     @Override
     public final Bitmap e() {
-        ei.d4 d4Var = this.f5716f;
+        ei.d4 d4Var = this.f5717f;
         if (d4Var != null && d4Var.a()) {
-            return this.f5716f.getBitmap();
+            return this.f5717f.getBitmap();
         }
         return null;
     }
@@ -134,7 +134,7 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
 
     @Override
     public final View h() {
-        ei.d4 d4Var = new ei.d4(this.f5716f.getContext(), this.f5720w);
+        ei.d4 d4Var = new ei.d4(this.f5717f.getContext(), this.f5721w);
         this.V = d4Var;
         return d4Var;
     }
@@ -149,37 +149,37 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
             if (d4Var != null) {
                 this.v.s(d4Var.getSink());
             } else {
-                this.v.s(this.f5716f.getSink());
+                this.v.s(this.f5717f.getSink());
             }
         }
-        if (this.f5719s) {
-            this.f5718r.animate().cancel();
-            ViewPropertyAnimator duration = this.f5718r.animate().alpha(0.0f).setDuration(150L);
-            bs bsVar = bs.f25030f;
+        if (this.f5720s) {
+            this.f5719r.animate().cancel();
+            ViewPropertyAnimator duration = this.f5719r.animate().alpha(0.0f).setDuration(150L);
+            bs bsVar = bs.f25037f;
             duration.setInterpolator(bsVar).start();
-            this.f5717n.animate().cancel();
-            this.f5717n.animate().alpha(0.0f).setDuration(150L).setInterpolator(bsVar).start();
-            this.f5716f.animate().cancel();
-            this.f5716f.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
-            this.f5719s = false;
+            this.f5718n.animate().cancel();
+            this.f5718n.animate().alpha(0.0f).setDuration(150L).setInterpolator(bsVar).start();
+            this.f5717f.animate().cancel();
+            this.f5717f.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
+            this.f5720s = false;
         }
         if (this.J == n() * this.M && this.K == m() * this.M) {
             return;
         }
-        WindowManager.LayoutParams layoutParams = this.f5715c;
+        WindowManager.LayoutParams layoutParams = this.f5716c;
         int n10 = (int) (n() * this.M);
         this.J = n10;
         layoutParams.width = n10;
-        WindowManager.LayoutParams layoutParams2 = this.f5715c;
+        WindowManager.LayoutParams layoutParams2 = this.f5716c;
         int m10 = (int) (m() * this.M);
         this.K = m10;
         layoutParams2.height = m10;
-        AndroidUtilities.updateViewLayout(this.f5714b, this.d, this.f5715c);
+        AndroidUtilities.updateViewLayout(this.f5715b, this.d, this.f5716c);
         o1.k kVar = this.P;
         float f10 = this.N;
-        kVar.f17546b = f10;
-        kVar.f17547c = true;
-        o1.l lVar = kVar.f17555u;
+        kVar.f17553b = f10;
+        kVar.f17554c = true;
+        o1.l lVar = kVar.f17562u;
         float B = a1.g.B(n(), this.M, 2.0f, f10);
         float f11 = AndroidUtilities.displaySize.x;
         if (B >= f11 / 2.0f) {
@@ -187,12 +187,12 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
         } else {
             dp = AndroidUtilities.dp(16.0f);
         }
-        lVar.f17561i = dp;
+        lVar.f17568i = dp;
         this.P.h();
         o1.k kVar2 = this.Q;
-        kVar2.f17546b = this.O;
-        kVar2.f17547c = true;
-        kVar2.f17555u.f17561i = w7.r.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (m() * this.M)) - AndroidUtilities.dp(16.0f));
+        kVar2.f17553b = this.O;
+        kVar2.f17554c = true;
+        kVar2.f17562u.f17568i = w7.r.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (m() * this.M)) - AndroidUtilities.dp(16.0f));
         this.Q.h();
     }
 
@@ -200,7 +200,7 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
         if (this.S) {
             this.S = false;
             AndroidUtilities.runOnUIThread(new ah.j(6), 100L);
-            NotificationCenter.getInstance(this.f5720w).removeObserver(this, NotificationCenter.liveStoryUpdated);
+            NotificationCenter.getInstance(this.f5721w).removeObserver(this, NotificationCenter.liveStoryUpdated);
             ValueAnimator valueAnimator = this.I;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -211,7 +211,7 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
             }
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(bs.f25030f);
+            animatorSet.setInterpolator(bs.f25037f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(this.d, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.1f));
             animatorSet.addListener(new ah.p0(3, this, z10));
             animatorSet.start();
@@ -227,7 +227,7 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
         if (this.R == null) {
             this.R = Float.valueOf(1.7777778f);
             Point point = AndroidUtilities.displaySize;
-            this.f5713a = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / n();
+            this.f5714a = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / n();
         }
         return this.R.floatValue();
     }
@@ -264,7 +264,7 @@ public final class p1 implements NotificationCenter.NotificationCenterDelegate, 
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(200L);
         this.I = duration;
-        duration.setInterpolator(bs.f25030f);
+        duration.setInterpolator(bs.f25037f);
         this.I.addUpdateListener(new ah.c0(this, 14));
         this.I.addListener(new ah.b(this, 8));
         this.I.start();

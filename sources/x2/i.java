@@ -10,7 +10,7 @@ import e2.m0;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Map;
-import u2.r1;
+import u2.q1;
 import v7.b8;
 public final class i extends t1 {
     public static final i F0 = new i(new h());
@@ -38,13 +38,13 @@ public final class i extends t1 {
     public final boolean C0;
     public final SparseArray D0;
     public final SparseBooleanArray E0;
-    public final boolean f49164w0;
-    public final boolean f49165x0;
-    public final boolean f49166y0;
-    public final boolean f49167z0;
+    public final boolean f49189w0;
+    public final boolean f49190x0;
+    public final boolean f49191y0;
+    public final boolean f49192z0;
 
     static {
-        String str = m0.f8254a;
+        String str = m0.f8255a;
         G0 = Integer.toString(1000, 36);
         H0 = Integer.toString(1001, 36);
         I0 = Integer.toString(1002, 36);
@@ -68,10 +68,10 @@ public final class i extends t1 {
 
     public i(h hVar) {
         super(hVar);
-        this.f49164w0 = hVar.J;
-        this.f49165x0 = hVar.K;
-        this.f49166y0 = hVar.L;
-        this.f49167z0 = hVar.M;
+        this.f49189w0 = hVar.J;
+        this.f49190x0 = hVar.K;
+        this.f49191y0 = hVar.L;
+        this.f49192z0 = hVar.M;
         this.A0 = hVar.N;
         this.B0 = hVar.O;
         this.C0 = hVar.P;
@@ -87,16 +87,16 @@ public final class i extends t1 {
     @Override
     public final Bundle c() {
         Bundle c10 = super.c();
-        c10.putBoolean(G0, this.f49164w0);
+        c10.putBoolean(G0, this.f49189w0);
         c10.putBoolean(H0, false);
-        c10.putBoolean(I0, this.f49165x0);
+        c10.putBoolean(I0, this.f49190x0);
         c10.putBoolean(U0, false);
-        c10.putBoolean(J0, this.f49166y0);
+        c10.putBoolean(J0, this.f49191y0);
         c10.putBoolean(K0, false);
         c10.putBoolean(L0, false);
         c10.putBoolean(M0, false);
         c10.putBoolean(V0, false);
-        c10.putBoolean(Y0, this.f49167z0);
+        c10.putBoolean(Y0, this.f49192z0);
         c10.putBoolean(W0, this.A0);
         c10.putBoolean(N0, this.B0);
         c10.putBoolean(O0, false);
@@ -112,7 +112,7 @@ public final class i extends t1 {
                 int keyAt = sparseArray2.keyAt(i10);
                 for (Map.Entry entry : ((Map) sparseArray2.valueAt(i10)).entrySet()) {
                     if (entry.getValue() == null) {
-                        arrayList2.add((r1) entry.getKey());
+                        arrayList2.add((q1) entry.getKey());
                         arrayList.add(Integer.valueOf(keyAt));
                     } else {
                         throw new ClassCastException();
@@ -146,7 +146,7 @@ public final class i extends t1 {
         if (this != obj) {
             if (obj != null && i.class == obj.getClass()) {
                 i iVar = (i) obj;
-                if (super.equals(iVar) && this.f49164w0 == iVar.f49164w0 && this.f49165x0 == iVar.f49165x0 && this.f49166y0 == iVar.f49166y0 && this.f49167z0 == iVar.f49167z0 && this.A0 == iVar.A0 && this.B0 == iVar.B0 && this.C0 == iVar.C0) {
+                if (super.equals(iVar) && this.f49189w0 == iVar.f49189w0 && this.f49190x0 == iVar.f49190x0 && this.f49191y0 == iVar.f49191y0 && this.f49192z0 == iVar.f49192z0 && this.A0 == iVar.A0 && this.B0 == iVar.B0 && this.C0 == iVar.C0) {
                     SparseBooleanArray sparseBooleanArray = iVar.E0;
                     SparseBooleanArray sparseBooleanArray2 = this.E0;
                     int size = sparseBooleanArray2.size();
@@ -170,9 +170,9 @@ public final class i extends t1 {
                                             Map map2 = (Map) sparseArray.valueAt(indexOfKey);
                                             if (map2.size() == map.size()) {
                                                 for (Map.Entry entry : map.entrySet()) {
-                                                    r1 r1Var = (r1) entry.getKey();
-                                                    if (map2.containsKey(r1Var)) {
-                                                        if (!Objects.equals(entry.getValue(), map2.get(r1Var))) {
+                                                    q1 q1Var = (q1) entry.getKey();
+                                                    if (map2.containsKey(q1Var)) {
+                                                        if (!Objects.equals(entry.getValue(), map2.get(q1Var))) {
                                                         }
                                                     }
                                                 }
@@ -193,6 +193,6 @@ public final class i extends t1 {
 
     @Override
     public final int hashCode() {
-        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f49164w0 ? 1 : 0)) * 961) + (this.f49165x0 ? 1 : 0)) * 961) + (this.f49166y0 ? 1 : 0)) * 28629151) + (this.f49167z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
+        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f49189w0 ? 1 : 0)) * 961) + (this.f49190x0 ? 1 : 0)) * 961) + (this.f49191y0 ? 1 : 0)) * 28629151) + (this.f49192z0 ? 1 : 0)) * 31) + (this.A0 ? 1 : 0)) * 31) + (this.B0 ? 1 : 0)) * 961) + (this.C0 ? 1 : 0)) * 31;
     }
 }

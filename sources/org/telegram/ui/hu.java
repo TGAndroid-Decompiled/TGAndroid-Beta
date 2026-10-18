@@ -21,14 +21,14 @@ public final class hu extends pg.b {
     public final boolean D(s4.b1 b1Var) {
         switch (this.d) {
             case 0:
-                eu euVar = (eu) ((ju) this.e).f38336a3.get(b1Var.b());
-                int i10 = euVar.f44314a;
+                eu euVar = (eu) ((ju) this.e).f38345a3.get(b1Var.b());
+                int i10 = euVar.f44334a;
                 if (i10 != 5 && (i10 != 2 || euVar.h == -1)) {
                     return false;
                 }
                 return true;
             default:
-                int i11 = b1Var.f45941f;
+                int i11 = b1Var.f45961f;
                 if (i11 != 4 && i11 != 3 && i11 != 5) {
                     return false;
                 }
@@ -40,9 +40,9 @@ public final class hu extends pg.b {
     public final int h() {
         switch (this.d) {
             case 0:
-                return ((ju) this.e).f38336a3.size();
+                return ((ju) this.e).f38345a3.size();
             default:
-                return ((sb0) this.e).f41061s.size();
+                return ((sb0) this.e).f41082s.size();
         }
     }
 
@@ -50,11 +50,11 @@ public final class hu extends pg.b {
     public final int j(int i10) {
         switch (this.d) {
             case 0:
-                return ((eu) ((ju) this.e).f38336a3.get(i10)).f44314a;
+                return ((eu) ((ju) this.e).f38345a3.get(i10)).f44334a;
             default:
                 sb0 sb0Var = (sb0) this.e;
-                if (i10 >= 0 && i10 < sb0Var.f41061s.size()) {
-                    return ((mb0) sb0Var.f41061s.get(i10)).f44314a;
+                if (i10 >= 0 && i10 < sb0Var.f41082s.size()) {
+                    return ((mb0) sb0Var.f41082s.get(i10)).f44334a;
                 }
                 return 2;
         }
@@ -74,8 +74,8 @@ public final class hu extends pg.b {
         switch (i11) {
             case 0:
                 ju juVar = (ju) obj;
-                nu nuVar = juVar.f38348m3;
-                org.telegram.ui.ActionBar.d6 d6Var = juVar.f27284n2;
+                nu nuVar = juVar.f38357m3;
+                org.telegram.ui.ActionBar.d6 d6Var = juVar.f27291n2;
                 if (i10 != 0) {
                     if (i10 != 1) {
                         if (i10 != 3) {
@@ -86,30 +86,30 @@ public final class hu extends pg.b {
                                             q8Var = new cu(nuVar, juVar.getContext());
                                         } else {
                                             View unVar = new org.telegram.ui.Components.un(juVar.getContext(), 14);
-                                            int i12 = org.telegram.ui.ActionBar.h6.f20986d6;
-                                            int i13 = ju.f38335n3;
-                                            unVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i12, juVar.f27284n2));
+                                            int i12 = org.telegram.ui.ActionBar.h6.f20993d6;
+                                            int i13 = ju.f38344n3;
+                                            unVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i12, juVar.f27291n2));
                                             q8Var = unVar;
                                         }
                                     } else {
                                         ?? view2 = new View(juVar.getContext());
-                                        view2.f38934a = new Path();
+                                        view2.f38958a = new Path();
                                         Paint paint = new Paint(1);
-                                        view2.f38935b = paint;
-                                        view2.f38936c = true;
+                                        view2.f38959b = paint;
+                                        view2.f38960c = true;
                                         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(-0.66f), 251658240);
-                                        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+                                        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
                                         q8Var = view2;
                                     }
                                 } else {
                                     org.telegram.ui.Cells.q8 q8Var2 = new org.telegram.ui.Cells.q8(juVar.getContext());
-                                    q8Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21207p7, d6Var));
-                                    q8Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var));
+                                    q8Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21214p7, d6Var));
+                                    q8Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var));
                                     q8Var = q8Var2;
                                 }
                             } else {
                                 View l4Var = new org.telegram.ui.Cells.l4(juVar.getContext());
-                                l4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var));
+                                l4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var));
                                 q8Var = l4Var;
                             }
                         } else {
@@ -119,10 +119,10 @@ public final class hu extends pg.b {
                         Context context = juVar.getContext();
                         ?? frameLayout = new FrameLayout(context);
                         TextView textView = new TextView(context);
-                        frameLayout.f39251a = textView;
+                        frameLayout.f39277a = textView;
                         textView.setGravity(17);
                         textView.setTextSize(1, 13.0f);
-                        textView.setTextColor(nuVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21374y6));
+                        textView.setTextColor(nuVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21381y6));
                         frameLayout.addView(textView, w7.z5.a(-2.0f, 24.0f, 0.0f, 24.0f, 14.0f, -1, 119));
                         frameLayout.setTag(-33024);
                         q8Var = frameLayout;
@@ -130,10 +130,10 @@ public final class hu extends pg.b {
                 } else {
                     Context context2 = juVar.getContext();
                     int[] iArr = nu.e;
-                    gu guVar = new gu(this, context2, iArr.length, iArr, nu.f39552f);
-                    juVar.f38347l3 = guVar;
+                    gu guVar = new gu(this, context2, iArr.length, iArr, nu.f39574f);
+                    juVar.f38356l3 = guVar;
                     guVar.setInterceptTouch(false);
-                    View view3 = juVar.f38347l3;
+                    View view3 = juVar.f38356l3;
                     view3.setTag(-33024);
                     q8Var = view3;
                 }

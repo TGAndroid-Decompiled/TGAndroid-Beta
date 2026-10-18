@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class w91 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final StickersActivity f42467a;
+    public final StickersActivity f42491a;
 
     public w91(StickersActivity stickersActivity) {
-        this.f42467a = stickersActivity;
+        this.f42491a = stickersActivity;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class w91 implements Utilities.Callback5, Utilities.Callback5Return
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        StickersActivity.U(this.f42467a, (org.telegram.ui.Components.f61) obj, (View) obj2);
+        StickersActivity.U(this.f42491a, (org.telegram.ui.Components.f61) obj, (View) obj2);
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class w91 implements Utilities.Callback5, Utilities.Callback5Return
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        StickersActivity stickersActivity = this.f42467a;
-        if (stickersActivity.f33849x.isEmpty() && (f61Var.G instanceof TLRPC.TL_messages_stickerSet)) {
+        StickersActivity stickersActivity = this.f42491a;
+        if (stickersActivity.f33856x.isEmpty() && (f61Var.G instanceof TLRPC.TL_messages_stickerSet)) {
             stickersActivity.n0((org.telegram.ui.Cells.l8) view);
             z10 = true;
         } else {

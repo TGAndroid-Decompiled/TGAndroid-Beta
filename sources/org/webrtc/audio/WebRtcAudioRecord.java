@@ -10,6 +10,7 @@ import android.media.AudioTimestamp;
 import android.os.Build;
 import android.os.Process;
 import com.google.firebase.messaging.h;
+import i2.d;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
@@ -206,7 +207,7 @@ public class WebRtcAudioRecord {
                 i11 = 4;
                 if (i10 != 4) {
                     if (i10 != 13) {
-                        throw new IllegalArgumentException(i0.a.j(i10, "Bad audio format "));
+                        throw new IllegalArgumentException(d.j(i10, "Bad audio format "));
                     }
                 }
             }
@@ -264,7 +265,7 @@ public class WebRtcAudioRecord {
                 return -1;
             }
         }
-        reportWebRtcAudioRecordInitError(i0.a.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+        reportWebRtcAudioRecordInitError(d.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         return -1;
     }
 

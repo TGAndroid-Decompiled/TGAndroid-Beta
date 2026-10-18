@@ -10,6 +10,6 @@ public final class z11 extends q51 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f35556n = null;
+        this.e.f35579n = null;
     }
 }

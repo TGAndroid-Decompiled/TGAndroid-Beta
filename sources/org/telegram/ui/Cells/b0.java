@@ -8,23 +8,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.wh;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.d11;
 import org.telegram.ui.Components.w21;
 public abstract class b0 extends View {
-    public final org.telegram.ui.ActionBar.d6 f22027a;
-    public final c0 f22028b;
-    public final w21 f22029c;
+    public final org.telegram.ui.ActionBar.d6 f22032a;
+    public final c0 f22033b;
+    public final w21 f22034c;
     public int d;
     public float e;
 
     public b0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f22027a = d6Var;
-        this.f22028b = new c0(context, i10, d6Var);
+        this.f22032a = d6Var;
+        this.f22033b = new c0(context, i10, d6Var);
         w21 w21Var = new w21(i10, this, d6Var, true);
-        this.f22029c = w21Var;
+        this.f22034c = w21Var;
         w21Var.e = new d11("", 14.0f, AndroidUtilities.bold());
     }
 
@@ -42,32 +42,32 @@ public abstract class b0 extends View {
         super.onDraw(canvas);
         int sideMenuWidth = getSideMenuWidth();
         int measuredWidth = getMeasuredWidth();
-        c0 c0Var = this.f22028b;
+        c0 c0Var = this.f22033b;
         int i10 = ((measuredWidth - c0Var.h) + sideMenuWidth) / 2;
         int dp = AndroidUtilities.dp(34.0f);
         int measuredWidth2 = getMeasuredWidth();
         float f7 = sideMenuWidth;
         float f10 = f7 / 2.0f;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f22027a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f22032a;
         if (d6Var != null) {
             d6Var.d(f10, this.e, measuredWidth2, this.d);
         } else {
             org.telegram.ui.ActionBar.h6.q(f10, this.e, measuredWidth2, this.d);
         }
-        this.f22029c.c(canvas, getWidth(), f7, 0.0f, 1.0f, 1.0f, false);
-        c0Var.setBounds(i10, dp, c0Var.h + i10, c0Var.f22077i + dp);
+        this.f22034c.c(canvas, getWidth(), f7, 0.0f, 1.0f, 1.0f, false);
+        c0Var.setBounds(i10, dp, c0Var.h + i10, c0Var.f22083i + dp);
         c0Var.draw(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), wh.D(40.0f, this.f22028b.f22077i, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), kk.C(40.0f, this.f22033b.f22083i, 1073741824));
     }
 
     public void setDialogId(long j10) {
-        c0 c0Var = this.f22028b;
+        c0 c0Var = this.f22033b;
         d11 d11Var = c0Var.d;
-        TLRPC.User user = MessagesController.getInstance(c0Var.f22073b).getUser(Long.valueOf(j10));
+        TLRPC.User user = MessagesController.getInstance(c0Var.f22079b).getUser(Long.valueOf(j10));
         d11 d11Var2 = c0Var.e;
         d11Var2.n(1);
         d11Var2.q(9999.0f);
@@ -76,13 +76,13 @@ public abstract class b0 extends View {
         d11Var2.n(4);
         float f7 = (int) (AndroidUtilities.displaySize.x * 0.95f);
         d11Var2.q(Math.min(f7, b10));
-        if (d11Var2.f25436b.getLineCount() > 2) {
+        if (d11Var2.f25443b.getLineCount() > 2) {
             d11Var2.q(Math.min(f7, b10 * 1.2f));
         }
         float min = Math.min(Math.max(Math.max(0.0f, d11Var2.b()), d11Var.b()) + AndroidUtilities.dp(32.0f), f7);
         float j11 = d11Var.j();
         float j12 = d11Var2.j();
         c0Var.h = (int) min;
-        c0Var.f22077i = (int) (j12 + j11 + AndroidUtilities.dp(17.0f) + 0.0f + AndroidUtilities.dp(70.0f) + AndroidUtilities.dp(14.0f) + AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(5.0f));
+        c0Var.f22083i = (int) (j12 + j11 + AndroidUtilities.dp(17.0f) + 0.0f + AndroidUtilities.dp(70.0f) + AndroidUtilities.dp(14.0f) + AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(5.0f));
     }
 }

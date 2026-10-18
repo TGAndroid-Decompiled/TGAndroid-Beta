@@ -17,22 +17,22 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.ui.ActionBar.h6;
 public final class a extends Drawable {
-    public static SvgHelper.SvgDrawable f17725j;
-    public static final int[] f17726k = {7322096, 16766590, 13338331, 9367192, 16749490, 16478047};
-    public static final SparseArray f17727l;
-    public final SvgHelper.SvgDrawable f17728a;
-    public LinearGradient f17729b;
+    public static SvgHelper.SvgDrawable f17732j;
+    public static final int[] f17733k = {7322096, 16766590, 13338331, 9367192, 16749490, 16478047};
+    public static final SparseArray f17734l;
+    public final SvgHelper.SvgDrawable f17735a;
+    public LinearGradient f17736b;
     public int e;
-    public final Paint f17731f;
-    public final Paint f17732g;
+    public final Paint f17738f;
+    public final Paint f17739g;
     public int[] h;
-    public final Matrix f17730c = new Matrix();
+    public final Matrix f17737c = new Matrix();
     public final ArrayList d = new ArrayList();
-    public int f17733i = -1;
+    public int f17740i = -1;
 
     static {
         SparseArray sparseArray = new SparseArray();
-        f17727l = sparseArray;
+        f17734l = sparseArray;
         sparseArray.put(7322096, new int[]{-16687423, -11814913});
         sparseArray.put(16766590, new int[]{-1419264, -9380});
         sparseArray.put(13338331, new int[]{-6014789, -1737985});
@@ -42,16 +42,16 @@ public final class a extends Drawable {
     }
 
     public a(int i10) {
-        if (f17725j == null) {
-            f17725j = SvgHelper.getDrawable(R.raw.topic_bubble, -1);
+        if (f17732j == null) {
+            f17732j = SvgHelper.getDrawable(R.raw.topic_bubble, -1);
         }
-        SvgHelper.SvgDrawable clone = f17725j.clone();
-        this.f17728a = clone;
+        SvgHelper.SvgDrawable clone = f17732j.clone();
+        this.f17735a = clone;
         clone.copyCommandFromPosition(0);
         Paint paint = new Paint(1);
-        this.f17732g = paint;
+        this.f17739g = paint;
         Paint paint2 = new Paint(1);
-        this.f17731f = paint2;
+        this.f17738f = paint2;
         paint2.setStrokeWidth(AndroidUtilities.dp(1.0f));
         paint2.setStyle(Paint.Style.STROKE);
         clone.setPaint(paint, 1);
@@ -66,12 +66,12 @@ public final class a extends Drawable {
 
     public final void b(int i10) {
         int[] iArr;
-        int i11 = this.f17733i;
+        int i11 = this.f17740i;
         if (i11 == i10 && i11 == -1) {
             return;
         }
-        this.f17733i = i10;
-        int[] iArr2 = f17726k;
+        this.f17740i = i10;
+        int[] iArr2 = f17733k;
         int a2 = a(iArr2[0], i10);
         this.e = 0;
         for (int i12 = 0; i12 < 6; i12++) {
@@ -81,31 +81,31 @@ public final class a extends Drawable {
                 a2 = a10;
             }
         }
-        int[] iArr3 = (int[]) f17727l.get(iArr2[this.e]);
+        int[] iArr3 = (int[]) f17734l.get(iArr2[this.e]);
         if (h6.I.q()) {
-            iArr = new int[]{i0.b.f(0.2f, iArr3[0], -1), i0.b.f(0.2f, iArr3[1], -1)};
+            iArr = new int[]{i0.a.f(0.2f, iArr3[0], -1), i0.a.f(0.2f, iArr3[1], -1)};
         } else {
             iArr = iArr3;
         }
         this.h = iArr;
         Paint paint = new Paint(1);
         LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);
-        this.f17729b = linearGradient;
-        linearGradient.setLocalMatrix(this.f17730c);
-        paint.setShader(this.f17729b);
-        this.f17728a.setPaint(paint, 0);
-        this.f17732g.setColor(i0.b.f(0.1f, iArr[1], -1));
-        this.f17731f.setColor(i0.b.f(0.1f, iArr[0], -16777216));
+        this.f17736b = linearGradient;
+        linearGradient.setLocalMatrix(this.f17737c);
+        paint.setShader(this.f17736b);
+        this.f17735a.setPaint(paint, 0);
+        this.f17739g.setColor(i0.a.f(0.1f, iArr[1], -1));
+        this.f17738f.setColor(i0.a.f(0.1f, iArr[0], -16777216));
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Matrix matrix = this.f17730c;
+        Matrix matrix = this.f17737c;
         matrix.reset();
         matrix.setScale(1.0f, getBounds().height() / 100.0f);
-        this.f17729b.setLocalMatrix(matrix);
+        this.f17736b.setLocalMatrix(matrix);
         Rect bounds = getBounds();
-        SvgHelper.SvgDrawable svgDrawable = this.f17728a;
+        SvgHelper.SvgDrawable svgDrawable = this.f17735a;
         svgDrawable.setBounds(bounds);
         svgDrawable.draw(canvas);
     }
@@ -142,7 +142,7 @@ public final class a extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f17728a.setAlpha(i10);
+        this.f17735a.setAlpha(i10);
     }
 
     @Override

@@ -14,7 +14,7 @@ public final class ie1 extends pg.b {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45941f;
+        int i10 = b1Var.f45961f;
         if (i10 != 0 && i10 != 3) {
             return false;
         }
@@ -24,7 +24,7 @@ public final class ie1 extends pg.b {
     public final ArrayList F() {
         te1 te1Var = this.d;
         te1Var.getClass();
-        return te1Var.f41682b;
+        return te1Var.f41708b;
     }
 
     @Override
@@ -37,12 +37,12 @@ public final class ie1 extends pg.b {
         if (i10 == h() - 1) {
             return 2;
         }
-        return ((ke1) this.d.f41682b.get(i10)).f44314a;
+        return ((ke1) this.d.f41708b.get(i10)).f44334a;
     }
 
     @Override
     public final void l() {
-        this.d.f41685c = h();
+        this.d.f41711c = h();
         super.l();
     }
 
@@ -67,14 +67,14 @@ public final class ie1 extends pg.b {
             org.telegram.ui.Components.b10 b10Var = new org.telegram.ui.Components.b10(viewGroup.getContext(), null);
             b10Var.setViewType(24);
             b10Var.setIsSingleCell(true);
-            b10Var.f24767w = true;
+            b10Var.f24774w = true;
             return new s4.b1(b10Var);
         }
         qe1 qe1Var = new qe1(te1Var, viewGroup.getContext(), false);
         if (i10 == 3) {
             i11 = ((org.telegram.ui.ActionBar.n2) te1Var).currentAccount;
-            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -te1Var.f41679a);
-            qe1Var.setForumIcon(og.d.d(og.a.f17726k[0], ""));
+            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -te1Var.f41705a);
+            qe1Var.setForumIcon(og.d.d(og.a.f17733k[0], ""));
             if (!isBotForumWithEditableTopics) {
                 i12 = R.string.BotForumAskForStartOffNewChatTitle;
             } else {
@@ -89,8 +89,8 @@ public final class ie1 extends pg.b {
             qe1Var.setCustomMessage(LocaleController.getString(i13));
         }
         z10 = ((org.telegram.ui.ActionBar.n2) te1Var).inPreviewMode;
-        qe1Var.f22854k0 = z10;
-        qe1Var.setArchivedPullAnimation(te1Var.f41719w);
+        qe1Var.f22858k0 = z10;
+        qe1Var.setArchivedPullAnimation(te1Var.f41745w);
         return new s4.b1(qe1Var);
     }
 }

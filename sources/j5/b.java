@@ -1,6 +1,6 @@
 package j5;
 
-import ai.y3;
+import ai.x9;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -36,6 +36,7 @@ import java.util.concurrent.Executor;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import k5.m;
+import ki.a0;
 import ki.c3;
 import ki.c6;
 import ki.d2;
@@ -83,7 +84,6 @@ import org.telegram.ui.Components.voip.k1;
 import org.telegram.ui.Components.voip.t;
 import org.telegram.ui.ey;
 import org.telegram.ui.te1;
-import org.telegram.ui.web.a0;
 import org.telegram.ui.web.a1;
 import org.telegram.ui.web.x0;
 import org.telegram.ui.xx;
@@ -92,12 +92,12 @@ import p4.r0;
 import r9.r;
 import w7.l6;
 public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, g1, e2.j, e1, k, ne.d, r9.d, Vector.TLDeserializer, GlGenericDrawer.TextureCallback, k1, a5.b {
-    public final int f14249a;
-    public final Object f14250b;
+    public final int f14256a;
+    public final Object f14257b;
 
     public b(Object obj, int i10) {
-        this.f14249a = i10;
-        this.f14250b = obj;
+        this.f14256a = i10;
+        this.f14257b = obj;
     }
 
     @Override
@@ -107,41 +107,41 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
 
     @Override
     public void F() {
-        switch (this.f14249a) {
+        switch (this.f14256a) {
             case 3:
-                t0 t0Var = (t0) this.f14250b;
+                t0 t0Var = (t0) this.f14257b;
                 h1 h1Var = t0Var.d;
-                ki.a aVar = t0Var.f15516f;
+                ki.a aVar = t0Var.f15523f;
                 if (aVar != null) {
-                    aVar.f15103s = true;
-                    aVar.f15102r = h1Var.E;
+                    aVar.f15110s = true;
+                    aVar.f15109r = h1Var.E;
                 }
                 if (aVar != null) {
-                    TL_iv.PageBlock pageBlock = aVar.f15089b;
+                    TL_iv.PageBlock pageBlock = aVar.f15096b;
                     if (pageBlock instanceof TL_iv.pageBlockDetails) {
                         ((TL_iv.pageBlockDetails) pageBlock).title = e6.f(h1Var.getText());
                     }
                 }
                 d3 d3Var = t0Var.h;
-                if (d3Var != null && t0Var.f15516f != null) {
-                    w3.P1(d3Var.f15225a);
+                if (d3Var != null && t0Var.f15523f != null) {
+                    w3.P1(d3Var.f15232a);
                     return;
                 }
                 return;
             case 8:
-                ((g5) this.f14250b).h();
+                ((g5) this.f14257b).h();
                 return;
             default:
-                o5 o5Var = (o5) this.f14250b;
-                ki.a aVar2 = o5Var.f15105a;
+                o5 o5Var = (o5) this.f14257b;
+                ki.a aVar2 = o5Var.f15112a;
                 if (aVar2 != null) {
-                    aVar2.f15103s = true;
-                    aVar2.f15102r = o5Var.f15425r.E;
+                    aVar2.f15110s = true;
+                    aVar2.f15109r = o5Var.f15432r.E;
                 }
                 o5Var.u();
                 c3 c3Var = o5Var.E;
-                if (c3Var != null && o5Var.f15105a != null) {
-                    w3.P1(c3Var.f15169a);
+                if (c3Var != null && o5Var.f15112a != null) {
+                    w3.P1(c3Var.f15176a);
                     return;
                 }
                 return;
@@ -155,31 +155,31 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
 
     @Override
     public Object a(i iVar) {
-        f0 f0Var = (f0) this.f14250b;
-        f0Var.f16523o.post(new z(0, f0Var, iVar));
+        f0 f0Var = (f0) this.f14257b;
+        f0Var.f16530o.post(new z(0, f0Var, iVar));
         return "onPlayRequested";
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f14249a) {
+        switch (this.f14256a) {
             case 14:
-                ((m1) obj).f((z0) this.f14250b);
+                ((m1) obj).f((z0) this.f14257b);
                 return;
             default:
-                ((n2.k) obj).a((oa.d) this.f14250b);
+                ((n2.k) obj).a((oa.d) this.f14257b);
                 return;
         }
     }
 
     @Override
     public Object apply(Object obj) {
-        switch (this.f14249a) {
+        switch (this.f14256a) {
             case 17:
                 Bitmap bitmap = (Bitmap) obj;
                 int height = bitmap.getHeight();
                 int width = bitmap.getWidth();
-                i9.a aVar = (i9.a) ((s) this.f14250b).f17122c;
+                i9.a aVar = (i9.a) ((s) this.f14257b).f17129c;
                 if (aVar.a(Math.max(height, width))) {
                     if (aVar.a(height)) {
                         height--;
@@ -193,7 +193,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
             default:
                 Bitmap bitmap2 = (Bitmap) obj;
                 int width2 = bitmap2.getWidth();
-                int i10 = ((b0) this.f14250b).f4702b;
+                int i10 = ((b0) this.f14257b).f4703b;
                 if (width2 > i10 || bitmap2.getHeight() > i10) {
                     float f7 = i10;
                     float width3 = bitmap2.getWidth();
@@ -207,23 +207,23 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
 
     @Override
     public void b(u uVar, int i10) {
-        uVar.c(i10, (b1) this.f14250b);
+        uVar.c(i10, (b1) this.f14257b);
     }
 
     @Override
     public void c(WebView webView, a5.a aVar, Uri uri, boolean z10, h hVar) {
         String uri2;
-        x0 x0Var = (x0) this.f14250b;
+        x0 x0Var = (x0) this.f14257b;
         a1 a1Var = x0Var.Q;
         if (webView == x0Var && a1Var != null) {
-            if (webView == a1Var.f42514a && aVar.f280b == 0) {
+            if (webView == a1Var.f42538a && aVar.f280b == 0) {
                 if (uri == null) {
                     uri2 = null;
                 } else {
                     uri2 = uri.toString();
                 }
                 String k10 = a1.k(uri2);
-                if (a1Var.f42539t0 && (TextUtils.isEmpty(a1Var.F0) || !TextUtils.equals(a1Var.F0, k10) || !TextUtils.equals(a1Var.F0, a1Var.getOriginHost()))) {
+                if (a1Var.f42563t0 && (TextUtils.isEmpty(a1Var.F0) || !TextUtils.equals(a1Var.F0, k10) || !TextUtils.equals(a1Var.F0, a1Var.getOriginHost()))) {
                     a1Var.g("onBotWebMessage ignored: untrusted origin");
                     return;
                 }
@@ -235,7 +235,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
                         JSONObject jSONObject = new JSONObject(str);
                         String string = jSONObject.getString("eventType");
                         if (!string.isEmpty() && string.length() <= 128) {
-                            AndroidUtilities.runOnUIThread(new a0(a1Var, webView, f7, string, jSONObject.optString("eventData", null), 2));
+                            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.b0(a1Var, webView, f7, string, jSONObject.optString("eventData", null), 2));
                             return;
                         }
                         a1Var.g("onBotWebMessage ignored: invalid event type");
@@ -254,52 +254,52 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
 
     @Override
     public void d(m1 m1Var, v vVar) {
-        ((e2.j) this.f14250b).accept(m1Var);
+        ((e2.j) this.f14257b).accept(m1Var);
     }
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
         TLRPC.PhotoSize lambda$readParams$0;
         TLRPC.PhotoSize lambda$readParams$02;
-        switch (this.f14249a) {
+        switch (this.f14256a) {
             case 23:
-                lambda$readParams$0 = ((TLRPC.TL_stickerSet) this.f14250b).lambda$readParams$0(inputSerializedData, i10, z10);
+                lambda$readParams$0 = ((TLRPC.TL_stickerSet) this.f14257b).lambda$readParams$0(inputSerializedData, i10, z10);
                 return lambda$readParams$0;
             default:
-                lambda$readParams$02 = ((TLRPC.TL_stickerSet_layer143) this.f14250b).lambda$readParams$0(inputSerializedData, i10, z10);
+                lambda$readParams$02 = ((TLRPC.TL_stickerSet_layer143) this.f14257b).lambda$readParams$0(inputSerializedData, i10, z10);
                 return lambda$readParams$02;
         }
     }
 
     @Override
     public Object e(f0 f0Var, v vVar, int i10) {
-        int i11 = this.f14249a;
-        Object obj = this.f14250b;
+        int i11 = this.f14256a;
+        Object obj = this.f14257b;
         switch (i11) {
             case 13:
                 return f0Var.l(vVar, (n0) obj);
             default:
                 e1 e1Var = (e1) obj;
-                w wVar = w.f14356b;
+                w wVar = w.f14363b;
                 if (!f0Var.j()) {
-                    e1Var.d(f0Var.f16528t, vVar);
+                    e1Var.d(f0Var.f16535t, vVar);
                     i1.P0(f0Var, vVar, i10, new s1(0));
                 }
-                return w.f14356b;
+                return w.f14363b;
         }
     }
 
     public c f(e eVar) {
         InputStream inputStream;
-        d dVar = (d) this.f14250b;
-        URL url = (URL) eVar.f2818b;
+        d dVar = (d) this.f14257b;
+        URL url = (URL) eVar.f2819b;
         String c10 = l6.c("CctTransportBackend");
         if (Log.isLoggable(c10, 4)) {
             Log.i(c10, String.format("Making request to: %s", url));
         }
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setConnectTimeout(30000);
-        httpURLConnection.setReadTimeout(dVar.f14258g);
+        httpURLConnection.setReadTimeout(dVar.f14265g);
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setInstanceFollowRedirects(false);
         httpURLConnection.setRequestMethod("POST");
@@ -315,13 +315,13 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
             OutputStream outputStream = httpURLConnection.getOutputStream();
             try {
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
-                t1 t1Var = dVar.f14254a;
+                t1 t1Var = dVar.f14261a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
-                la.d dVar2 = (la.d) t1Var.f15519b;
-                la.e eVar2 = new la.e(bufferedWriter, dVar2.f15981a, dVar2.f15982b, dVar2.f15983c, dVar2.d);
-                eVar2.h((k5.i) eVar.f2819c);
+                la.d dVar2 = (la.d) t1Var.f15526b;
+                la.e eVar2 = new la.e(bufferedWriter, dVar2.f15988a, dVar2.f15989b, dVar2.f15990c, dVar2.d);
+                eVar2.h((k5.i) eVar.f2820c);
                 eVar2.j();
-                eVar2.f15985b.flush();
+                eVar2.f15992b.flush();
                 gZIPOutputStream.close();
                 if (outputStream != null) {
                     outputStream.close();
@@ -345,7 +345,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
                         } else {
                             inputStream = inputStream2;
                         }
-                        c cVar = new c(responseCode, null, m.a(new BufferedReader(new InputStreamReader(inputStream))).f14945a);
+                        c cVar = new c(responseCode, null, m.a(new BufferedReader(new InputStreamReader(inputStream))).f14952a);
                         if (inputStream != null) {
                             inputStream.close();
                         }
@@ -396,30 +396,30 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f14249a) {
+        switch (this.f14256a) {
             case 6:
-                ((y3) this.f14250b).run();
+                ((x9) this.f14257b).run();
                 return;
             default:
-                ((a0) this.f14250b).run();
+                ((org.telegram.ui.web.b0) this.f14257b).run();
                 return;
         }
     }
 
     @Override
     public i80 h(h1 h1Var) {
-        return i80.H((d2) ((ag.b) this.f14250b).f634b, h1Var);
+        return i80.H((d2) ((ag.b) this.f14257b).f634b, h1Var);
     }
 
     public void i(int i10) {
-        ki.a0 a0Var = (ki.a0) this.f14250b;
-        a0Var.f15107c = i10;
+        a0 a0Var = (a0) this.f14257b;
+        a0Var.f15114c = i10;
         a0Var.f(i10);
     }
 
     @Override
     public Object j2(z5 z5Var) {
-        return new oa.c((Context) z5Var.a(Context.class), ((l9.h) z5Var.a(l9.h.class)).d(), z5Var.y(oa.d.class), z5Var.b(ya.b.class), (Executor) z5Var.f((r) this.f14250b));
+        return new oa.c((Context) z5Var.a(Context.class), ((l9.h) z5Var.a(l9.h.class)).d(), z5Var.y(oa.d.class), z5Var.b(ya.b.class), (Executor) z5Var.f((r) this.f14257b));
     }
 
     @Override
@@ -429,7 +429,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
         Integer num = (Integer) obj3;
         Float f7 = (Float) obj4;
         Float f10 = (Float) obj5;
-        if (((w3[]) this.f14250b)[0] != null) {
+        if (((w3[]) this.f14257b)[0] != null) {
             num.intValue();
             f7.floatValue();
             f10.floatValue();
@@ -441,12 +441,12 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
 
     @Override
     public void u(int i10, float f7, float f10, ne.e eVar) {
-        ((Switch) this.f14250b).invalidate();
+        ((Switch) this.f14257b).invalidate();
     }
 
     @Override
     public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, te1 te1Var) {
-        i4 i4Var = (i4) this.f14250b;
+        i4 i4Var = (i4) this.f14257b;
         if (arrayList.isEmpty() || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId <= 0) {
             return false;
         }
@@ -456,13 +456,13 @@ public final class b implements gu, o0, Utilities.Callback5, a2, xx, p5, j, e0, 
     }
 
     public b(p4.t0 t0Var, r0 r0Var) {
-        this.f14249a = 29;
-        this.f14250b = t0Var;
+        this.f14256a = 29;
+        this.f14257b = t0Var;
     }
 
     @Override
     public void run(Bitmap bitmap, int i10) {
-        t tVar = (t) this.f14250b;
+        t tVar = (t) this.f14257b;
         if (bitmap == null || bitmap.getPixel(0, 0) == 0) {
             return;
         }

@@ -1,31 +1,78 @@
 package ai;
 
-import android.view.View;
-public final class ra implements View.OnClickListener {
-    public final int f2119a;
-    public final org.telegram.ui.ActionBar.f3[] f2120b;
+import android.content.Context;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import androidx.profileinstaller.ProfileInstallerInitializer;
+import java.util.Random;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ra implements Runnable {
+    public final int f2120a;
+    public final Context f2121b;
 
-    public ra(org.telegram.ui.ActionBar.f3[] f3VarArr, int i10) {
-        this.f2119a = i10;
-        this.f2120b = f3VarArr;
+    public ra(Context context, int i10) {
+        this.f2120a = i10;
+        this.f2121b = context;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f2119a) {
+    public final void run() {
+        Handler handler;
+        switch (this.f2120a) {
             case 0:
-                this.f2120b[0].dismiss();
+                pf.d.r(this.f2121b, LocaleController.getString(R.string.StarsTOSLink));
                 return;
             case 1:
-                org.telegram.ui.ActionBar.f3 f3Var = this.f2120b[0];
-                if (f3Var != null) {
-                    f3Var.dismiss();
-                    return;
+                new o0(this.f2121b).show();
+                return;
+            case 2:
+                pf.d.r(this.f2121b, LocaleController.getString(R.string.StarsTOSLink));
+                return;
+            case 3:
+                pf.d.r(this.f2121b, LocaleController.getString(R.string.StarsTOSLink));
+                return;
+            case 4:
+                pf.d.r(this.f2121b, LocaleController.getString(R.string.PaidContentInfoLink));
+                return;
+            case 5:
+                pf.d.r(this.f2121b, LocaleController.getString(R.string.StarsSubscribeInfoLink));
+                return;
+            case 6:
+                pf.d.r(this.f2121b, LocaleController.getString(R.string.StarsReactionTermsLink));
+                return;
+            case 7:
+                new o0(this.f2121b).show();
+                return;
+            case 8:
+                pf.d.r(this.f2121b, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
+                return;
+            case 9:
+                if (Build.VERSION.SDK_INT >= 28) {
+                    handler = r4.h.a(Looper.getMainLooper());
+                } else {
+                    handler = new Handler(Looper.getMainLooper());
                 }
+                handler.postDelayed(new ra(this.f2121b, 10), new Random().nextInt(Math.max(1000, 1)) + 5000);
+                return;
+            case 10:
+                new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new ra(this.f2121b, 11));
+                return;
+            case 11:
+                r4.e.s(this.f2121b, new a3.b(2), r4.e.f45039a, false);
                 return;
             default:
-                this.f2120b[0].dismiss();
+                new o0(this.f2121b).show();
                 return;
         }
+    }
+
+    public ra(ProfileInstallerInitializer profileInstallerInitializer, Context context) {
+        this.f2120a = 9;
+        this.f2121b = context;
     }
 }

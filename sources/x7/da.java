@@ -4,42 +4,42 @@ import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import z7.jb;
-import z7.ng;
-import z7.yf;
+import z7.ib;
+import z7.mg;
+import z7.xf;
 public final class da implements Runnable {
-    public final int f49369a = 0;
-    public final long f49370b;
-    public final Object f49371c;
+    public final int f49394a = 0;
+    public final long f49395b;
+    public final Object f49396c;
     public final Object d;
 
     public da(fa faVar, r0 r0Var, long j10) {
-        this.f49371c = faVar;
+        this.f49396c = faVar;
         this.d = r0Var;
-        this.f49370b = j10;
+        this.f49395b = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f49369a) {
+        switch (this.f49394a) {
             case 0:
-                fa faVar = (fa) this.f49371c;
+                fa faVar = (fa) this.f49396c;
                 r0 r0Var = (r0) this.d;
-                HashMap hashMap = faVar.f49406j;
+                HashMap hashMap = faVar.f49431j;
                 o7 o7Var = o7.AGGREGATED_ON_DEVICE_IMAGE_LABEL_DETECTION;
                 if (!hashMap.containsKey(o7Var)) {
                     j jVar = new j();
                     ?? obj = new Object();
                     if (jVar.isEmpty()) {
-                        obj.f49386c = jVar;
+                        obj.f49411c = jVar;
                         hashMap.put(o7Var, obj);
                     } else {
                         throw new IllegalArgumentException();
                     }
                 }
                 f fVar = (f) hashMap.get(o7Var);
-                Long valueOf = Long.valueOf(this.f49370b);
-                j jVar2 = fVar.f49386c;
+                Long valueOf = Long.valueOf(this.f49395b);
+                j jVar2 = fVar.f49411c;
                 Collection collection = (Collection) jVar2.get(r0Var);
                 if (collection == null) {
                     ArrayList arrayList = new ArrayList(3);
@@ -54,28 +54,28 @@ public final class da implements Runnable {
                 }
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 if (faVar.c(o7Var, elapsedRealtime)) {
-                    faVar.f49405i.put(o7Var, Long.valueOf(elapsedRealtime));
-                    rb.m.f45225a.execute(new p4.s0(faVar, 10));
+                    faVar.f49430i.put(o7Var, Long.valueOf(elapsedRealtime));
+                    rb.m.f45245a.execute(new p4.s0(faVar, 10));
                     return;
                 }
                 return;
             default:
-                yf yfVar = (yf) this.f49371c;
-                jb jbVar = jb.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
+                xf xfVar = (xf) this.f49396c;
+                ib ibVar = ib.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
                 z7.i1 i1Var = (z7.i1) this.d;
-                HashMap hashMap2 = yfVar.f51291j;
-                if (!hashMap2.containsKey(jbVar)) {
+                HashMap hashMap2 = xfVar.f51299j;
+                if (!hashMap2.containsKey(ibVar)) {
                     z7.d dVar = new z7.d();
                     ?? obj2 = new Object();
                     if (dVar.isEmpty()) {
-                        obj2.f51136c = dVar;
-                        hashMap2.put(jbVar, obj2);
+                        obj2.f51152c = dVar;
+                        hashMap2.put(ibVar, obj2);
                     } else {
                         throw new IllegalArgumentException();
                     }
                 }
-                Long valueOf2 = Long.valueOf(this.f49370b);
-                z7.d dVar2 = ((ng) hashMap2.get(jbVar)).f51136c;
+                Long valueOf2 = Long.valueOf(this.f49395b);
+                z7.d dVar2 = ((mg) hashMap2.get(ibVar)).f51152c;
                 Collection collection2 = (Collection) dVar2.get(i1Var);
                 if (collection2 == null) {
                     ArrayList arrayList2 = new ArrayList(3);
@@ -88,19 +88,19 @@ public final class da implements Runnable {
                     collection2.add(valueOf2);
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                if (yfVar.d(jbVar, elapsedRealtime2)) {
-                    yfVar.f51290i.put(jbVar, Long.valueOf(elapsedRealtime2));
-                    rb.m.f45225a.execute(new p4.s0(yfVar));
+                if (xfVar.d(ibVar, elapsedRealtime2)) {
+                    xfVar.f51298i.put(ibVar, Long.valueOf(elapsedRealtime2));
+                    rb.m.f45245a.execute(new p4.s0(xfVar));
                     return;
                 }
                 return;
         }
     }
 
-    public da(yf yfVar, z7.i1 i1Var, long j10) {
-        jb jbVar = jb.UNKNOWN_EVENT;
-        this.f49371c = yfVar;
+    public da(xf xfVar, z7.i1 i1Var, long j10) {
+        ib ibVar = ib.UNKNOWN_EVENT;
+        this.f49396c = xfVar;
         this.d = i1Var;
-        this.f49370b = j10;
+        this.f49395b = j10;
     }
 }

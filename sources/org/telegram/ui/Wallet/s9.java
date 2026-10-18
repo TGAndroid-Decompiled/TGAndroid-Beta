@@ -1,63 +1,54 @@
 package org.telegram.ui.Wallet;
 
+import android.content.Intent;
 import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MrzRecognizer;
-public final class s9 implements org.telegram.ui.x9 {
-    public final t9 f34881a;
+import java.util.ArrayList;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.u61;
+public final class s9 implements hg.f0, org.telegram.ui.ActionBar.a2 {
+    public final w9 f34921a;
 
-    public s9(t9 t9Var) {
-        this.f34881a = t9Var;
+    public s9(w9 w9Var) {
+        this.f34921a = w9Var;
     }
 
     @Override
-    public final void E(String str) {
-        String trim;
-        t9 t9Var = this.f34881a;
-        if (!t9Var.isFinished && t9Var.M != null) {
-            if (str == null) {
-                trim = "";
-            } else {
-                try {
-                    trim = str.trim();
-                } catch (Throwable unused) {
-                    AndroidUtilities.runOnUIThread(new n(t9Var, 16));
-                    return;
+    public void b(a0.h hVar, ArrayList arrayList) {
+        w9 w9Var = this.f34921a;
+        ArrayList arrayList2 = w9Var.f35048r;
+        if (!w9Var.f35047n) {
+            arrayList2.clear();
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                hg.g0 g0Var = (hg.g0) obj;
+                TLObject tLObject = g0Var.f11869a;
+                if ((tLObject instanceof TLRPC.User) && w9.b0((TLRPC.User) tLObject)) {
+                    arrayList2.add((TLRPC.User) g0Var.f11869a);
                 }
             }
-            Uri parse = Uri.parse(trim);
-            if ("ton".equalsIgnoreCase(parse.getScheme()) && "transfer".equalsIgnoreCase(parse.getAuthority()) && parse.getPathSegments().size() == 1) {
-                String str2 = parse.getPathSegments().get(0);
-                if (!WalletEngine2.isValidRecipientAddress(str2)) {
-                    AndroidUtilities.runOnUIThread(new n(t9Var, 16));
-                    return;
-                }
-                t9Var.M.setText(str2);
-                ei.e2 e2Var = t9Var.M;
-                e2Var.setSelection(e2Var.length());
-                AndroidUtilities.hideKeyboard(t9Var.M);
-                t9Var.f0(str2, null);
-                return;
+            u61 u61Var = w9Var.f31197a;
+            if (u61Var != null) {
+                u61Var.W2.N(true);
             }
-            AndroidUtilities.runOnUIThread(new n(t9Var, 16));
         }
     }
 
     @Override
-    public final boolean U0(String str, org.telegram.ui.n9 n9Var) {
-        return false;
-    }
-
-    @Override
-    public final String p0() {
-        return null;
-    }
-
-    @Override
-    public final void onDismiss() {
-    }
-
-    @Override
-    public final void F0(MrzRecognizer.Result result) {
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        w9 w9Var = this.f34921a;
+        w9Var.getClass();
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+            w9Var.getParentActivity().startActivity(intent);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 }

@@ -27,8 +27,8 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements eb.v {
     @Override
     public <R> eb.u create(final eb.g gVar, final lb.a<R> aVar) {
         eb.a aVar2 = this.exclusionStrategy;
-        Class cls = aVar.f15988a;
-        Class cls2 = aVar.f15988a;
+        Class cls = aVar.f15995a;
+        Class cls2 = aVar.f15995a;
         if (aVar2.shouldSkipClass(cls.getClass())) {
             return null;
         }
@@ -70,7 +70,7 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements eb.v {
                         gb.d.l(jsonTree, bVar);
                         return;
                     }
-                    gb.m mVar = jsonTree.h().f8576a;
+                    gb.m mVar = jsonTree.h().f8577a;
                     if (!mVar.containsKey(RuntimeClassNameTypeAdapterFactory.this.typeFieldName)) {
                         eb.l lVar = new eb.l();
                         lVar.n(RuntimeClassNameTypeAdapterFactory.this.typeFieldName, new eb.m(simpleName));

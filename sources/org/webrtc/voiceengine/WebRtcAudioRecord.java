@@ -6,7 +6,7 @@ import android.media.AudioRecord;
 import android.media.projection.MediaProjection;
 import android.os.Build;
 import android.os.Process;
-import i0.a;
+import i2.d;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
@@ -283,7 +283,7 @@ public class WebRtcAudioRecord {
                 releaseAudioResources(false);
                 return -1;
             }
-            reportWebRtcAudioRecordInitError(a.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(d.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
             return -1;
         }
         return -1;
@@ -477,7 +477,7 @@ public class WebRtcAudioRecord {
                     return;
                 }
             }
-            reportWebRtcAudioRecordInitError(a.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(d.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         }
     }
 

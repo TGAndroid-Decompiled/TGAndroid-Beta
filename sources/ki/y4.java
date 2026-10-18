@@ -1,11 +1,11 @@
 package ki;
 public final class y4 implements Runnable {
-    public final int f15658a;
-    public final a5 f15659b;
+    public final int f15665a;
+    public final a5 f15666b;
 
     public y4(a5 a5Var, int i10) {
-        this.f15658a = i10;
-        this.f15659b = a5Var;
+        this.f15665a = i10;
+        this.f15666b = a5Var;
     }
 
     @Override

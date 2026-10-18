@@ -6,18 +6,18 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class li extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f28237a;
-    public final ti f28238b;
-    public im0 f28239c;
+    public final org.telegram.ui.ActionBar.d6 f28244a;
+    public final ti f28245b;
+    public im0 f28246c;
     public im0 d;
     public int e;
-    public boolean f28240f;
+    public boolean f28247f;
     public boolean h;
 
     public li(Context context, org.telegram.ui.ActionBar.d6 d6Var, ti tiVar) {
         super(context);
-        this.f28237a = d6Var;
-        this.f28238b = tiVar;
+        this.f28244a = d6Var;
+        this.f28245b = tiVar;
     }
 
     public abstract void B(int i10, int i11);

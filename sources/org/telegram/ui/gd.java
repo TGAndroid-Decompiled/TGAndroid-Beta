@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class gd implements View.OnClickListener {
-    public final int f37217a;
-    public final od f37218b;
+    public final int f37187a;
+    public final od f37188b;
 
     public gd(od odVar, int i10) {
-        this.f37217a = i10;
-        this.f37218b = odVar;
+        this.f37187a = i10;
+        this.f37188b = odVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
-        switch (this.f37217a) {
+        switch (this.f37187a) {
             case 0:
-                od.X(this.f37218b, view);
+                od.X(this.f37188b, view);
                 return;
             case 1:
-                od odVar = this.f37218b;
+                od odVar = this.f37188b;
                 org.telegram.ui.Components.e50 e50Var = odVar.v;
-                if (odVar.f39740x != null) {
+                if (odVar.f39761x != null) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -31,21 +31,21 @@ public final class gd implements View.OnClickListener {
                 odVar.h.d();
                 return;
             case 2:
-                od odVar2 = this.f37218b;
-                if (!odVar2.f39723j0) {
+                od odVar2 = this.f37188b;
+                if (!odVar2.f39744j0) {
                     odVar2.f0();
                     return;
-                } else if (odVar2.f39711a0) {
-                    odVar2.f39711a0 = false;
+                } else if (odVar2.f39732a0) {
+                    odVar2.f39732a0 = false;
                     odVar2.h0();
                     return;
                 } else {
                     return;
                 }
             default:
-                od odVar3 = this.f37218b;
-                if (!odVar3.f39711a0) {
-                    odVar3.f39711a0 = true;
+                od odVar3 = this.f37188b;
+                if (!odVar3.f39732a0) {
+                    odVar3.f39732a0 = true;
                     odVar3.h0();
                     return;
                 }

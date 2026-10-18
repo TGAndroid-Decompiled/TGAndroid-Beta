@@ -11,60 +11,60 @@ import android.os.HandlerThread;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class q {
-    public final Context f47171a;
-    public final Handler f47172b;
-    public final int f47173c;
+    public final Context f47196a;
+    public final Handler f47197b;
+    public final int f47198c;
     public final int e;
-    public EGLConfig f47180m;
-    public a f47181n;
-    public a f47182o;
-    public a f47183p;
-    public long f47184q;
-    public long f47185r;
-    public int f47186s;
-    public final ArrayList f47174f = new ArrayList();
-    public volatile s[] f47175g = new s[0];
+    public EGLConfig f47205m;
+    public a f47206n;
+    public a f47207o;
+    public a f47208p;
+    public long f47209q;
+    public long f47210r;
+    public int f47211s;
+    public final ArrayList f47199f = new ArrayList();
+    public volatile s[] f47200g = new s[0];
     public final AtomicBoolean h = new AtomicBoolean();
-    public final int[] f47176i = new int[2];
-    public EGLDisplay f47177j = EGL14.EGL_NO_DISPLAY;
-    public EGLContext f47178k = EGL14.EGL_NO_CONTEXT;
-    public EGLSurface f47179l = EGL14.EGL_NO_SURFACE;
+    public final int[] f47201i = new int[2];
+    public EGLDisplay f47202j = EGL14.EGL_NO_DISPLAY;
+    public EGLContext f47203k = EGL14.EGL_NO_CONTEXT;
+    public EGLSurface f47204l = EGL14.EGL_NO_SURFACE;
     public final int d = 378;
 
     public q(Context context, int i10) {
-        this.f47171a = context;
+        this.f47196a = context;
         this.e = i10;
-        this.f47173c = Math.max(1, Math.min(192, Math.round(context.getResources().getDisplayMetrics().density * 42.0f)));
+        this.f47198c = Math.max(1, Math.min(192, Math.round(context.getResources().getDisplayMetrics().density * 42.0f)));
         HandlerThread handlerThread = new HandlerThread("WalletDiamondTextures");
         handlerThread.start();
-        this.f47172b = new Handler(handlerThread.getLooper());
+        this.f47197b = new Handler(handlerThread.getLooper());
     }
 
     public final void a() {
         EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-        this.f47177j = eglGetDisplay;
+        this.f47202j = eglGetDisplay;
         int[] iArr = new int[2];
         if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
             int[] iArr2 = new int[1];
-            if (EGL14.eglChooseConfig(this.f47177j, new int[]{12352, 64, 12339, 5, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12344}, 0, eGLConfigArr, 0, 1, iArr2, 0) && iArr2[0] != 0) {
+            if (EGL14.eglChooseConfig(this.f47202j, new int[]{12352, 64, 12339, 5, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12344}, 0, eGLConfigArr, 0, 1, iArr2, 0) && iArr2[0] != 0) {
                 EGLConfig eGLConfig = eGLConfigArr[0];
-                this.f47180m = eGLConfig;
-                this.f47178k = EGL14.eglCreateContext(this.f47177j, eGLConfig, EGL14.EGL_NO_CONTEXT, new int[]{12440, 3, 12344}, 0);
-                EGLSurface eglCreatePbufferSurface = EGL14.eglCreatePbufferSurface(this.f47177j, this.f47180m, new int[]{12375, 1, 12374, 1, 12344}, 0);
-                this.f47179l = eglCreatePbufferSurface;
-                if (EGL14.eglMakeCurrent(this.f47177j, eglCreatePbufferSurface, eglCreatePbufferSurface, this.f47178k)) {
-                    Context context = this.f47171a;
+                this.f47205m = eGLConfig;
+                this.f47203k = EGL14.eglCreateContext(this.f47202j, eGLConfig, EGL14.EGL_NO_CONTEXT, new int[]{12440, 3, 12344}, 0);
+                EGLSurface eglCreatePbufferSurface = EGL14.eglCreatePbufferSurface(this.f47202j, this.f47205m, new int[]{12375, 1, 12374, 1, 12344}, 0);
+                this.f47204l = eglCreatePbufferSurface;
+                if (EGL14.eglMakeCurrent(this.f47202j, eglCreatePbufferSurface, eglCreatePbufferSurface, this.f47203k)) {
+                    Context context = this.f47196a;
                     a aVar = new a(context, 2);
                     int i10 = this.e;
                     aVar.C = i10;
-                    this.f47181n = aVar;
+                    this.f47206n = aVar;
                     a aVar2 = new a(context, 2);
                     aVar2.C = i10;
-                    this.f47182o = aVar2;
-                    this.f47185r = 0L;
-                    this.f47184q = 0L;
-                    this.f47186s = 0;
+                    this.f47207o = aVar2;
+                    this.f47210r = 0L;
+                    this.f47209q = 0L;
+                    this.f47211s = 0;
                     return;
                 }
                 throw new IllegalStateException("Wallet EGL context failed");
@@ -75,36 +75,36 @@ public final class q {
     }
 
     public final void b() {
-        a aVar = this.f47181n;
+        a aVar = this.f47206n;
         if (aVar != null) {
             aVar.b();
         }
-        a aVar2 = this.f47182o;
+        a aVar2 = this.f47207o;
         if (aVar2 != null) {
             aVar2.b();
         }
-        a aVar3 = this.f47183p;
+        a aVar3 = this.f47208p;
         if (aVar3 != null) {
             aVar3.b();
         }
-        this.f47183p = null;
-        this.f47182o = null;
-        this.f47181n = null;
-        EGLDisplay eGLDisplay = this.f47177j;
+        this.f47208p = null;
+        this.f47207o = null;
+        this.f47206n = null;
+        EGLDisplay eGLDisplay = this.f47202j;
         EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
         EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-        EGL14.eglDestroySurface(this.f47177j, this.f47179l);
-        EGL14.eglDestroyContext(this.f47177j, this.f47178k);
-        EGL14.eglTerminate(this.f47177j);
+        EGL14.eglDestroySurface(this.f47202j, this.f47204l);
+        EGL14.eglDestroyContext(this.f47202j, this.f47203k);
+        EGL14.eglTerminate(this.f47202j);
         EGL14.eglReleaseThread();
-        this.f47177j = EGL14.EGL_NO_DISPLAY;
-        this.f47178k = EGL14.EGL_NO_CONTEXT;
-        this.f47179l = EGL14.EGL_NO_SURFACE;
+        this.f47202j = EGL14.EGL_NO_DISPLAY;
+        this.f47203k = EGL14.EGL_NO_CONTEXT;
+        this.f47204l = EGL14.EGL_NO_SURFACE;
     }
 
     public final void c() {
         if (this.h.compareAndSet(false, true)) {
-            this.f47172b.post(new p(this, 0));
+            this.f47197b.post(new p(this, 0));
         }
     }
 }

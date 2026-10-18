@@ -1,11 +1,11 @@
 package ki;
 public final class b implements Runnable {
-    public final int f15127a;
-    public final w3 f15128b;
+    public final int f15134a;
+    public final w3 f15135b;
 
     public b(w3 w3Var, int i10) {
-        this.f15127a = i10;
-        this.f15128b = w3Var;
+        this.f15134a = i10;
+        this.f15135b = w3Var;
     }
 
     @Override

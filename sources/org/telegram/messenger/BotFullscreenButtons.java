@@ -284,7 +284,7 @@ public class BotFullscreenButtons extends View {
             f7 = 18.0f;
             dp = 0.0f;
         } else {
-            float f16 = d11Var.f25437c;
+            float f16 = d11Var.f25444c;
             f7 = 18.0f;
             if (this.verifiedBackground != null) {
                 f10 = 30.0f;
@@ -294,7 +294,7 @@ public class BotFullscreenButtons extends View {
             dp = f16 + AndroidUtilities.dp(f10);
         }
         float min = Math.min(dp4, dp);
-        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.f25437c, this.backText.f25437c, e) + AndroidUtilities.dp(12.0f), min, e7), this.insets.top + AndroidUtilities.dp(38.0f));
+        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.f25444c, this.backText.f25444c, e) + AndroidUtilities.dp(12.0f), min, e7), this.insets.top + AndroidUtilities.dp(38.0f));
         RectF rectF9 = this.closeRect;
         RectF rectF10 = this.leftMenu;
         float f17 = rectF10.left;
@@ -319,7 +319,7 @@ public class BotFullscreenButtons extends View {
             }
             RenderNode c10 = b.c(this.parentRenderNode);
             f11 = 16.0f;
-            this.blurNode.setPosition(0, 0, q.b(16.0f, c10.getWidth(), 1), Math.max(1, (int) Math.min(this.insets.top + AndroidUtilities.dp(46.0f), c10.getHeight())));
+            this.blurNode.setPosition(0, 0, g0.b(16.0f, c10.getWidth(), 1), Math.max(1, (int) Math.min(this.insets.top + AndroidUtilities.dp(46.0f), c10.getHeight())));
             RecordingCanvas beginRecording = this.blurNode.beginRecording();
             beginRecording.translate(-AndroidUtilities.dp(8.0f), 0.0f);
             beginRecording.drawRenderNode(c10);
@@ -357,7 +357,7 @@ public class BotFullscreenButtons extends View {
         canvas2.saveLayerAlpha(dp5, f19, f20, f21, 255, 31);
         if (e7 > 0.0f && this.previewText != null) {
             canvas2.save();
-            canvas2.translate(com.google.android.gms.internal.cast.a6.D(1.0f, e7, min, this.leftMenu.left + AndroidUtilities.dp(30.0f)), this.leftMenu.centerY());
+            canvas2.translate(com.google.android.gms.internal.play_billing.k3.D(1.0f, e7, min, this.leftMenu.left + AndroidUtilities.dp(30.0f)), this.leftMenu.centerY());
             d11 d11Var2 = this.previewText;
             float f22 = this.leftMenu.right;
             if (this.verifiedBackground != null) {
@@ -365,7 +365,7 @@ public class BotFullscreenButtons extends View {
             } else {
                 f15 = f12;
             }
-            d11Var2.f25447p = ((f22 - AndroidUtilities.dp(f15)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f;
+            d11Var2.f25454p = ((f22 - AndroidUtilities.dp(f15)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f;
             f14 = 1.0f;
             d11Var2.c(0.0f, 0.0f, e7, -1, canvas);
             f13 = e7;

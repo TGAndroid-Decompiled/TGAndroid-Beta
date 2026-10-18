@@ -5,21 +5,21 @@ import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.y9;
 public final class j5 implements y9 {
-    public final Layout f15338a;
-    public final int f15339b;
-    public final int f15340c;
+    public final Layout f15345a;
+    public final int f15346b;
+    public final int f15347c;
     public final o5 d;
 
     public j5(o5 o5Var, Layout layout, int i10, int i11) {
         this.d = o5Var;
-        this.f15338a = layout;
-        this.f15339b = i10;
-        this.f15340c = i11;
+        this.f15345a = layout;
+        this.f15346b = i10;
+        this.f15347c = i11;
     }
 
     @Override
     public final Layout getLayout() {
-        return this.f15338a;
+        return this.f15345a;
     }
 
     @Override
@@ -40,9 +40,9 @@ public final class j5 implements y9 {
     @Override
     public final CharSequence getText() {
         TL_iv.RichText richText;
-        a aVar = this.d.f15105a;
+        a aVar = this.d.f15112a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f15089b;
+            TL_iv.PageBlock pageBlock = aVar.f15096b;
             if ((pageBlock instanceof TL_iv.pageBlockTable) && (richText = ((TL_iv.pageBlockTable) pageBlock).title) != null) {
                 return e6.r(richText, null, true);
             }
@@ -53,11 +53,11 @@ public final class j5 implements y9 {
 
     @Override
     public final int getX() {
-        return this.f15339b;
+        return this.f15346b;
     }
 
     @Override
     public final int getY() {
-        return this.f15340c;
+        return this.f15347c;
     }
 }

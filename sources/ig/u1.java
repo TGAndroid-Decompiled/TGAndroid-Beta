@@ -3,212 +3,88 @@ package ig;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.BitmapDrawable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
+import android.graphics.Path;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.kk;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.c61;
-import org.telegram.ui.Components.d11;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.xp;
 import w7.z5;
 public final class u1 extends FrameLayout {
-    public final h9 f13055a;
-    public final ImageReceiver f13056b;
-    public final wh.n f13057c;
-    public final xp d;
-    public final ImageView e;
-    public final d6 f13058f;
-    public boolean h;
-    public final int[] f13059n;
-    public boolean f13060r;
+    public final h9 f13050a;
+    public final ImageReceiver f13051b;
+    public final TextView f13052c;
+    public final TextView d;
+    public final xp e;
+    public final Path f13053f;
+    public final Paint h;
+    public final d6 f13054n;
+    public final int[] f13055r;
+    public boolean f13056s;
 
-    public u1(Context context, d6 d6Var, boolean z10) {
+    public u1(Context context, d6 d6Var) {
         super(context);
-        int i10;
         float f7;
-        int i11;
-        this.f13055a = new h9((d6) null);
-        this.f13056b = new ImageReceiver(this);
-        this.f13059n = new int[1];
-        this.f13058f = d6Var;
+        float f10;
+        float f11;
+        float f12;
+        this.f13050a = new h9((d6) null);
+        this.f13051b = new ImageReceiver(this);
+        this.f13053f = new Path();
+        this.h = new Paint(1);
+        this.f13055r = new int[1];
+        this.f13054n = d6Var;
         setWillNotDraw(false);
+        TextView textView = new TextView(context);
+        this.f13052c = textView;
+        textView.setSingleLine();
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        textView.setTextColor(h6.w0(h6.G6, d6Var));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 16.0f);
+        boolean z10 = LocaleController.isRTL;
         if (z10) {
-            i10 = 42;
+            f7 = 40.0f;
         } else {
-            i10 = 16;
+            f7 = 78.0f;
         }
-        wh.n nVar = new wh.n(context);
-        this.f13057c = nVar;
-        nVar.setLines(2);
-        nVar.setEllipsize(TextUtils.TruncateAt.END);
-        nVar.setTextColor(h6.w0(h6.f21391z6, d6Var));
-        nVar.setTextSize(1, 14.0f);
+        if (z10) {
+            f10 = 78.0f;
+        } else {
+            f10 = 40.0f;
+        }
+        addView(textView, z5.a(-2.0f, f7, 10.33f, f10, 0.0f, -1, 7));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setLines(2);
+        textView2.setEllipsize(truncateAt);
+        kk.o(h6.f21398z6, d6Var, textView2, 1, 15.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
-            f7 = i10;
+            f11 = 40.0f;
         } else {
-            f7 = 64.0f;
+            f11 = 78.0f;
         }
-        addView(nVar, z5.a(-2.0f, f7, 7.0f, z11 ? 64.0f : i10, 0.0f, -1, 7));
-        if (z10) {
-            ImageView imageView = new ImageView(context);
-            this.e = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setImageResource(R.drawable.list_reorder);
-            imageView.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.Uh, false), PorterDuff.Mode.MULTIPLY));
-            imageView.setAlpha(0.0f);
-            if (LocaleController.isRTL) {
-                i11 = 3;
-            } else {
-                i11 = 5;
-            }
-            addView(imageView, z5.e(50, 50, i11 | 112));
+        if (z11) {
+            f12 = 78.0f;
         } else {
-            this.e = null;
+            f12 = 40.0f;
         }
+        addView(textView2, z5.a(-2.0f, f11, 32.0f, f12, 0.0f, -1, 7));
         xp xpVar = new xp(getContext(), 21, d6Var);
-        this.d = xpVar;
-        xpVar.b(-1, h6.f20986d6, h6.f21114k7);
+        this.e = xpVar;
+        xpVar.b(-1, h6.f20993d6, h6.f21121k7);
         xpVar.setDrawUnchecked(false);
         xpVar.setDrawBackgroundAsArc(3);
         addView(xpVar, z5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
-    }
-
-    public final void a(x1 x1Var, String str, boolean z10) {
-        boolean z11;
-        TLRPC.WebPage webPage;
-        TLRPC.Photo photo;
-        long j10;
-        String str2;
-        ImageLocation imageLocation;
-        TLRPC.Photo photo2;
-        int[] iArr;
-        int length;
-        String str3 = str;
-        if (x1Var != null) {
-            z11 = x1Var.f13084g;
-        } else {
-            z11 = false;
-        }
-        this.h = z11;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (str3 != null && str3.length() > 0 && !str3.startsWith("/")) {
-            str3 = "/".concat(str3);
-        }
-        spannableStringBuilder.append((CharSequence) "/").append((CharSequence) x1Var.f13081b);
-        spannableStringBuilder.setSpan(new c61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
-        int i10 = h6.G6;
-        d6 d6Var = this.f13058f;
-        spannableStringBuilder.setSpan(new ForegroundColorSpan(h6.w0(i10, d6Var)), 0, spannableStringBuilder.length(), 33);
-        if (str3 != null) {
-            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(h6.w0(h6.f21189o6, d6Var));
-            if (str3.length() <= 0) {
-                length = 1;
-            } else {
-                length = str3.length();
-            }
-            spannableStringBuilder.setSpan(foregroundColorSpan, 0, Math.min(length, spannableStringBuilder.length()), 33);
-        }
-        MessageObject messageObject = x1Var.e;
-        wh.n nVar = this.f13057c;
-        if (messageObject != null) {
-            spannableStringBuilder.append((CharSequence) " ");
-            CharSequence charSequence = x1Var.e.caption;
-            if (TextUtils.isEmpty(charSequence)) {
-                charSequence = x1Var.e.messageText;
-            }
-            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableStringBuilder(charSequence), nVar.getPaint().getFontMetricsInt(), false);
-            TLRPC.Message message = x1Var.e.messageOwner;
-            if (message != null) {
-                MessageObject.replaceAnimatedEmoji(replaceEmoji, message.entities, nVar.getPaint().getFontMetricsInt());
-            }
-            spannableStringBuilder.append(replaceEmoji);
-        }
-        if (x1Var.a() > 1) {
-            spannableStringBuilder.append((CharSequence) "  ");
-            int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(80.0f);
-            int i11 = t1.d;
-            SpannableString spannableString = new SpannableString("+");
-            t1 t1Var = new t1(x1Var.a() - 1);
-            this.f13059n[0] = (int) (((d11) t1Var.f13050c).f25437c + AndroidUtilities.dp(10.0f));
-            spannableString.setSpan(t1Var, 0, spannableString.length(), 33);
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, nVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
-            if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
-                spannableStringBuilder2.append((CharSequence) "  ");
-            }
-            spannableStringBuilder2.append((CharSequence) spannableString);
-            spannableStringBuilder = spannableStringBuilder2;
-        }
-        nVar.setText(spannableStringBuilder);
-        int i12 = UserConfig.selectedAccount;
-        TLRPC.MessageMedia media = MessageObject.getMedia(x1Var.e);
-        long j11 = 0;
-        ImageReceiver imageReceiver = this.f13056b;
-        if (media != null && (photo2 = media.photo) != null) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, AndroidUtilities.dp(36.0f), true, null, true);
-            ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, media.photo);
-            MessageObject messageObject2 = x1Var.e;
-            BitmapDrawable bitmapDrawable = messageObject2.strippedThumb;
-            if (closestPhotoSizeWithSize != null) {
-                j11 = closestPhotoSizeWithSize.size;
-            }
-            imageReceiver.setImage(forObject, "36_36", bitmapDrawable, j11, (String) null, messageObject2, 0);
-            imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
-        } else if (media != null && media.document != null && (x1Var.e.isVideo() || x1Var.e.isSticker())) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(media.document.thumbs, AndroidUtilities.dp(36.0f), true, null, true);
-            if (closestPhotoSizeWithSize2 == null) {
-                ImageLocation forDocument = ImageLocation.getForDocument(media.document);
-                j10 = media.document.size;
-                imageLocation = forDocument;
-                str2 = "g";
-            } else {
-                ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize2, media.document);
-                j10 = closestPhotoSizeWithSize2.size;
-                str2 = "36_36";
-                imageLocation = forObject2;
-            }
-            long j12 = j10;
-            MessageObject messageObject3 = x1Var.e;
-            imageReceiver.setImage(imageLocation, str2, messageObject3.strippedThumb, j12, (String) null, messageObject3, 0);
-            imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
-        } else if (media != null && (webPage = media.webpage) != null && (photo = webPage.photo) != null) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), true, null, true);
-            ImageLocation forObject3 = ImageLocation.getForObject(closestPhotoSizeWithSize3, media.webpage.photo);
-            BitmapDrawable bitmapDrawable2 = x1Var.e.strippedThumb;
-            if (closestPhotoSizeWithSize3 != null) {
-                j11 = closestPhotoSizeWithSize3.size;
-            }
-            imageReceiver.setImage(forObject3, "36_36", bitmapDrawable2, j11, (String) null, media.webpage, 0);
-            imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
-        } else {
-            TLRPC.User currentUser = UserConfig.getInstance(i12).getCurrentUser();
-            h9 h9Var = this.f13055a;
-            h9Var.r(currentUser);
-            imageReceiver.setForUserOrChat(UserConfig.getInstance(i12).getCurrentUser(), h9Var);
-            imageReceiver.setRoundRadius(AndroidUtilities.dp(36.0f));
-        }
-        this.f13060r = z10;
-        invalidate();
     }
 
     @Override
@@ -216,26 +92,27 @@ public final class u1 extends FrameLayout {
         int dp;
         float f7;
         if (LocaleController.isRTL) {
-            dp = getMeasuredWidth() - AndroidUtilities.dp(51.0f);
+            dp = getMeasuredWidth() - AndroidUtilities.dp(65.0f);
         } else {
-            dp = AndroidUtilities.dp(15.0f);
+            dp = AndroidUtilities.dp(9.0f);
         }
         float f10 = dp;
-        ImageReceiver imageReceiver = this.f13056b;
-        imageReceiver.setImageCoords(f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
+        ImageReceiver imageReceiver = this.f13051b;
+        imageReceiver.setImageCoords(f10, AndroidUtilities.dp(11.33f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        if (this.f13060r) {
-            Paint U0 = h6.U0("paintDivider", this.f13058f);
+        canvas.drawPath(this.f13053f, this.h);
+        if (this.f13056s) {
+            Paint U0 = h6.U0("paintDivider", this.f13054n);
             if (U0 == null) {
-                U0 = h6.f21107k0;
+                U0 = h6.f21114k0;
             }
             Paint paint = U0;
-            float f11 = 64.0f;
+            float f11 = 78.0f;
             if (LocaleController.isRTL) {
                 f7 = 0.0f;
             } else {
-                f7 = 64.0f;
+                f7 = 78.0f;
             }
             float dp2 = AndroidUtilities.dp(f7);
             float measuredHeight = getMeasuredHeight() - 1;
@@ -249,17 +126,31 @@ public final class u1 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f13060r ? 1 : 0), 1073741824));
-    }
-
-    public void setReorder(boolean z10) {
-        float f7;
-        ViewPropertyAnimator animate = this.e.animate();
-        if (z10 && !this.h) {
-            f7 = 1.0f;
+        float measuredWidth;
+        int i12;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f13056s ? 1 : 0), 1073741824));
+        Paint.Style style = Paint.Style.STROKE;
+        Paint paint = this.h;
+        paint.setStyle(style);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
+        paint.setColor(h6.m1(0.85f, h6.w0(h6.f21398z6, this.f13054n)));
+        Path path = this.f13053f;
+        path.rewind();
+        float measuredHeight = getMeasuredHeight() / 2.0f;
+        if (LocaleController.isRTL) {
+            measuredWidth = AndroidUtilities.dpf2(29.66f);
         } else {
-            f7 = 0.0f;
+            measuredWidth = getMeasuredWidth() - AndroidUtilities.dpf2(24.33f);
         }
-        animate.alpha(f7).start();
+        path.moveTo(measuredWidth, measuredHeight - AndroidUtilities.dpf2(5.66f));
+        if (LocaleController.isRTL) {
+            i12 = -1;
+        } else {
+            i12 = 1;
+        }
+        path.lineTo((AndroidUtilities.dpf2(5.33f) * i12) + measuredWidth, measuredHeight);
+        path.lineTo(measuredWidth, AndroidUtilities.dpf2(5.66f) + measuredHeight);
     }
 }

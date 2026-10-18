@@ -15,19 +15,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 public final class w0 {
-    public final CountDownLatch f35024a = new CountDownLatch(1);
-    public volatile boolean f35025b;
-    public String f35026c;
+    public final CountDownLatch f35015a = new CountDownLatch(1);
+    public volatile boolean f35016b;
+    public String f35017c;
     public String d;
     public LaunchActivity e;
-    public boolean f35027f;
-    public int f35028g;
+    public boolean f35018f;
+    public int f35019g;
     public CancellationSignal h;
-    public AlertDialog f35029i;
+    public AlertDialog f35020i;
 
     public final void a() {
-        if (!this.f35027f && f()) {
-            this.f35027f = true;
+        if (!this.f35018f && f()) {
+            this.f35018f = true;
             e();
             try {
                 KeyguardManager keyguardManager = (KeyguardManager) this.e.getSystemService("keyguard");
@@ -39,12 +39,12 @@ public final class w0 {
                     c("AUTH_UNAVAILABLE");
                     return;
                 }
-                int i10 = w7.h6.f48723a;
+                int i10 = w7.h6.f48748a;
                 int i11 = i10 + 1;
-                w7.h6.f48723a = i11;
-                this.f35028g = i10;
+                w7.h6.f48748a = i11;
+                this.f35019g = i10;
                 if (i11 > 22399) {
-                    w7.h6.f48723a = 22336;
+                    w7.h6.f48748a = 22336;
                 }
                 this.e.startActivityForResult(intent, i10);
             } catch (Exception e) {
@@ -58,39 +58,39 @@ public final class w0 {
         FingerprintManager fingerprintManager = (FingerprintManager) this.e.getSystemService("fingerprint");
         if (fingerprintManager != null && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
             this.h = new CancellationSignal();
-            this.f35029i = new AlertDialog.Builder(this.e).setTitle(LocaleController.getString(R.string.WalletUnlock)).setMessage(LocaleController.getString(R.string.WalletTouchFingerprint)).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener(this) {
-                public final w0 f34858b;
+            this.f35020i = new AlertDialog.Builder(this.e).setTitle(LocaleController.getString(R.string.WalletUnlock)).setMessage(LocaleController.getString(R.string.WalletTouchFingerprint)).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener(this) {
+                public final w0 f34865b;
 
                 {
-                    this.f34858b = this;
+                    this.f34865b = this;
                 }
 
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f34858b.c("AUTH_CANCELED");
+                            this.f34865b.c("AUTH_CANCELED");
                             return;
                         default:
-                            this.f34858b.a();
+                            this.f34865b.a();
                             return;
                     }
                 }
             }).setPositiveButton(LocaleController.getString(R.string.WalletUseDevicePasscode), new DialogInterface.OnClickListener(this) {
-                public final w0 f34858b;
+                public final w0 f34865b;
 
                 {
-                    this.f34858b = this;
+                    this.f34865b = this;
                 }
 
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f34858b.c("AUTH_CANCELED");
+                            this.f34865b.c("AUTH_CANCELED");
                             return;
                         default:
-                            this.f34858b.a();
+                            this.f34865b.a();
                             return;
                     }
                 }
@@ -107,11 +107,11 @@ public final class w0 {
     }
 
     public final void c(String str) {
-        CountDownLatch countDownLatch = this.f35024a;
+        CountDownLatch countDownLatch = this.f35015a;
         if (countDownLatch.getCount() == 0) {
             return;
         }
-        this.f35026c = str;
+        this.f35017c = str;
         countDownLatch.countDown();
     }
 
@@ -130,18 +130,18 @@ public final class w0 {
             FileLog.e(e);
         }
         try {
-            AlertDialog alertDialog = this.f35029i;
+            AlertDialog alertDialog = this.f35020i;
             if (alertDialog != null) {
                 alertDialog.dismiss();
             }
         } catch (Exception e7) {
             FileLog.e(e7);
         }
-        this.f35029i = null;
+        this.f35020i = null;
     }
 
     public final boolean f() {
-        if (!this.f35025b && this.f35024a.getCount() != 0) {
+        if (!this.f35016b && this.f35015a.getCount() != 0) {
             return true;
         }
         return false;

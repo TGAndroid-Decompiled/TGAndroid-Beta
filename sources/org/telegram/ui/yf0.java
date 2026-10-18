@@ -18,19 +18,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class yf0 implements RequestDelegate {
-    public final int f43400a;
-    public final eg0 f43401b;
+    public final int f43424a;
+    public final eg0 f43425b;
 
     public yf0(eg0 eg0Var, int i10) {
-        this.f43400a = i10;
-        this.f43401b = eg0Var;
+        this.f43424a = i10;
+        this.f43425b = eg0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f43400a) {
+        switch (this.f43424a) {
             case 0:
-                final eg0 eg0Var = this.f43401b;
+                final eg0 eg0Var = this.f43425b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,7 +39,7 @@ public final class yf0 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 eg0 eg0Var2 = eg0Var;
-                                mj0 mj0Var = eg0Var2.f36521a;
+                                mj0 mj0Var = eg0Var2.f36525a;
                                 HashMap hashMap = eg0Var2.G;
                                 ArrayList arrayList = eg0Var2.E;
                                 HashMap hashMap2 = eg0Var2.F;
@@ -55,13 +55,13 @@ public final class yf0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f38677a = str;
+                                                obj.f38669a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f38678b = str2;
+                                                obj.f38670b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f38677a = str2;
+                                                    obj.f38669a = str2;
                                                 }
-                                                obj.f38679c = tL_help_countryCode.country_code;
+                                                obj.f38671c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -92,7 +92,7 @@ public final class yf0 implements RequestDelegate {
                                                         if (list2.size() > 1) {
                                                             String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
                                                             if (string != null) {
-                                                                ktVar = (kt) r.c.e(1, list2);
+                                                                ktVar = (kt) r4.c.f(1, list2);
                                                                 int size = arrayList.size();
                                                                 int i14 = 0;
                                                                 while (true) {
@@ -106,7 +106,7 @@ public final class yf0 implements RequestDelegate {
                                                                     }
                                                                 }
                                                             } else {
-                                                                ktVar = (kt) r.c.e(1, list2);
+                                                                ktVar = (kt) r4.c.f(1, list2);
                                                             }
                                                             ktVar2 = ktVar;
                                                         } else {
@@ -154,7 +154,7 @@ public final class yf0 implements RequestDelegate {
                 });
                 return;
             default:
-                final eg0 eg0Var2 = this.f43401b;
+                final eg0 eg0Var2 = this.f43425b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -163,7 +163,7 @@ public final class yf0 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 eg0 eg0Var22 = eg0Var2;
-                                mj0 mj0Var = eg0Var22.f36521a;
+                                mj0 mj0Var = eg0Var22.f36525a;
                                 HashMap hashMap = eg0Var22.G;
                                 ArrayList arrayList = eg0Var22.E;
                                 HashMap hashMap2 = eg0Var22.F;
@@ -179,13 +179,13 @@ public final class yf0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f38677a = str;
+                                                obj.f38669a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f38678b = str2;
+                                                obj.f38670b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f38677a = str2;
+                                                    obj.f38669a = str2;
                                                 }
-                                                obj.f38679c = tL_help_countryCode.country_code;
+                                                obj.f38671c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -216,7 +216,7 @@ public final class yf0 implements RequestDelegate {
                                                         if (list2.size() > 1) {
                                                             String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
                                                             if (string != null) {
-                                                                ktVar = (kt) r.c.e(1, list2);
+                                                                ktVar = (kt) r4.c.f(1, list2);
                                                                 int size = arrayList.size();
                                                                 int i14 = 0;
                                                                 while (true) {
@@ -230,7 +230,7 @@ public final class yf0 implements RequestDelegate {
                                                                     }
                                                                 }
                                                             } else {
-                                                                ktVar = (kt) r.c.e(1, list2);
+                                                                ktVar = (kt) r4.c.f(1, list2);
                                                             }
                                                             ktVar2 = ktVar;
                                                         } else {

@@ -14,34 +14,34 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.vf1;
 import w7.z5;
 public final class l0 extends LinearLayout {
-    public final TextView f45478a;
-    public final k0 f45479b;
-    public ImageView f45480c;
+    public final TextView f45498a;
+    public final k0 f45499b;
+    public ImageView f45500c;
     public ImageView d;
     public float e;
-    public boolean f45481f;
+    public boolean f45501f;
     public ValueAnimator h;
-    public final ImageView f45482n;
-    public final m0 f45483r;
+    public final ImageView f45502n;
+    public final m0 f45503r;
 
     public l0(m0 m0Var, Context context) {
         super(context);
-        this.f45483r = m0Var;
+        this.f45503r = m0Var;
         setOrientation(0);
-        int i10 = h6.f21075i6;
+        int i10 = h6.f21082i6;
         fh.a aVar = m0Var.Q1;
         setBackground(h6.g0(h6.w0(i10, aVar), 2, -1));
         k0 k0Var = new k0(this, context);
-        this.f45479b = k0Var;
+        this.f45499b = k0Var;
         addView(k0Var, z5.t(-2, -2, 19, 16, 0, 16, 0));
         ImageView imageView = new ImageView(context);
-        this.f45480c = imageView;
+        this.f45500c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.f45480c;
+        ImageView imageView2 = this.f45500c;
         int i11 = h6.E8;
         imageView2.setColorFilter(h6.w0(i11, aVar));
-        k0Var.addView(this.f45480c, z5.e(-2, -2, 17));
+        k0Var.addView(this.f45500c, z5.e(-2, -2, 17));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
         imageView3.setScaleType(scaleType);
@@ -49,15 +49,15 @@ public final class l0 extends LinearLayout {
         this.d.setVisibility(8);
         k0Var.addView(this.d, z5.e(-2, -2, 17));
         TextView textView = new TextView(context);
-        this.f45478a = textView;
+        this.f45498a = textView;
         textView.setTextColor(h6.w0(i11, aVar));
         textView.setTextSize(1, 16.0f);
         addView(textView, z5.t(-2, -2, 19, 0, 0, 16, 0));
         ImageView imageView4 = new ImageView(context);
-        this.f45482n = imageView4;
+        this.f45502n = imageView4;
         imageView4.setImageResource(R.drawable.msg_text_check);
         imageView4.setScaleType(scaleType);
-        imageView4.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21059h7, aVar), PorterDuff.Mode.MULTIPLY));
+        imageView4.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21066h7, aVar), PorterDuff.Mode.MULTIPLY));
         imageView4.setVisibility(8);
         addView(imageView4, z5.n(50, -1));
     }
@@ -71,7 +71,7 @@ public final class l0 extends LinearLayout {
                 a(i10, false, false);
                 return;
             }
-            this.f45481f = z10;
+            this.f45501f = z10;
             this.d.setImageResource(i10);
             this.d.setVisibility(0);
             this.d.setAlpha(1.0f);
@@ -84,7 +84,7 @@ public final class l0 extends LinearLayout {
             this.h.start();
             return;
         }
-        this.f45480c.setImageResource(i10);
+        this.f45500c.setImageResource(i10);
     }
 
     @Override
@@ -94,7 +94,7 @@ public final class l0 extends LinearLayout {
 
     @Override
     public final boolean performClick() {
-        m0 m0Var = this.f45483r;
+        m0 m0Var = this.f45503r;
         org.telegram.ui.ActionBar.m1 m1Var = m0Var.R1;
         if (m1Var != null && m1Var.isShowing()) {
             m0Var.R1.d(true);
@@ -114,10 +114,10 @@ public final class l0 extends LinearLayout {
         } else {
             i10 = 8;
         }
-        this.f45482n.setVisibility(i10);
+        this.f45502n.setVisibility(i10);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f45478a.setText(charSequence);
+        this.f45498a.setText(charSequence);
     }
 }

@@ -12,16 +12,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Cells.u1;
 public final class i extends View {
-    public final HashMap f48462a;
-    public final ArrayList f48463b;
-    public final ArrayList f48464c;
+    public final HashMap f48487a;
+    public final ArrayList f48488b;
+    public final ArrayList f48489c;
     public final int d;
 
     public i(Activity activity) {
         super(activity);
-        this.f48462a = new HashMap();
-        this.f48463b = new ArrayList();
-        this.f48464c = new ArrayList();
+        this.f48487a = new HashMap();
+        this.f48488b = new ArrayList();
+        this.f48489c = new ArrayList();
         this.d = UserConfig.selectedAccount;
     }
 
@@ -34,7 +34,7 @@ public final class i extends View {
     }
 
     public final boolean a() {
-        for (Map.Entry entry : this.f48462a.entrySet()) {
+        for (Map.Entry entry : this.f48487a.entrySet()) {
             if (!((h) entry.getValue()).O) {
                 return true;
             }
@@ -53,22 +53,22 @@ public final class i extends View {
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        HashMap hashMap = this.f48462a;
+        HashMap hashMap = this.f48487a;
         for (Map.Entry entry : hashMap.entrySet()) {
             ((h) entry.getValue()).d();
         }
         hashMap.clear();
-        this.f48463b.clear();
+        this.f48488b.clear();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        HashMap hashMap = this.f48462a;
+        HashMap hashMap = this.f48487a;
         for (Map.Entry entry : hashMap.entrySet()) {
             ((h) entry.getValue()).draw(canvas);
         }
-        ArrayList arrayList = this.f48463b;
+        ArrayList arrayList = this.f48488b;
         if (!arrayList.isEmpty()) {
             int size = arrayList.size();
             int i10 = 0;
@@ -87,7 +87,7 @@ public final class i extends View {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        for (Map.Entry entry : this.f48462a.entrySet()) {
+        for (Map.Entry entry : this.f48487a.entrySet()) {
             ((h) entry.getValue()).setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
     }

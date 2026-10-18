@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class o31 extends e61 {
-    public static final int f28883a = 0;
+    public static final int f28890a = 0;
 
     static {
         e61.setup(new e61());
@@ -15,30 +15,30 @@ public final class o31 extends e61 {
         boolean z11;
         p31 p31Var = (p31) view;
         boolean z12 = false;
-        if (f61Var.f26146r) {
+        if (f61Var.f26153r) {
             p31Var.e();
         } else {
             Object obj = f61Var.G;
             if (obj == null) {
                 if (f61Var.B == -2) {
-                    p31Var.b(f61Var.f26145q, f61Var.e);
+                    p31Var.b(f61Var.f26152q, f61Var.e);
                 } else {
-                    if ((f61Var.f26152y & 1) != 0) {
+                    if ((f61Var.f26159y & 1) != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    p31Var.c(z11, f61Var.f26145q, f61Var.e);
+                    p31Var.c(z11, f61Var.f26152q, f61Var.e);
                 }
             } else if (obj instanceof TLRPC.TL_forumTopic) {
                 if (!f61Var.I) {
                     p31Var.f((TLRPC.TL_forumTopic) obj, f61Var.e);
                 } else {
-                    p31Var.a(f61Var.f26151x, (TLRPC.TL_forumTopic) obj, f61Var.e);
+                    p31Var.a(f61Var.f26158x, (TLRPC.TL_forumTopic) obj, f61Var.e);
                 }
             }
         }
-        if (a71Var != null && a71Var.f24513a3 && p31Var.f29164y) {
+        if (a71Var != null && a71Var.f24520a3 && p31Var.f29171y) {
             z12 = true;
         }
         p31Var.setReorder(z12);

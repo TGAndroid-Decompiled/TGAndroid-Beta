@@ -13,16 +13,16 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.n9;
 public final class k0 {
-    public final h1 f15345a;
-    public final org.telegram.ui.ActionBar.d6 f15346b;
-    public final j0 f15347c;
+    public final h1 f15352a;
+    public final org.telegram.ui.ActionBar.d6 f15353b;
+    public final j0 f15354c;
     public boolean d;
 
     public k0(Context context, org.telegram.ui.ActionBar.d6 d6Var, j0 j0Var) {
-        this.f15346b = d6Var;
-        this.f15347c = j0Var;
+        this.f15353b = d6Var;
+        this.f15354c = j0Var;
         h1 h1Var = new h1(context, d6Var);
-        this.f15345a = h1Var;
+        this.f15352a = h1Var;
         h1Var.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
         h1Var.setAllowNewlines(false);
         h1Var.setInputType(147457);
@@ -30,7 +30,7 @@ public final class k0 {
         h1Var.setTextSize(1, Math.max(8, SharedConfig.fontSize - 2));
         h1Var.setHint(LocaleController.getString(R.string.AddCaption));
         h1Var.setListener(new qf.b(this, j0Var, false, 27));
-        h1Var.setDelegate(new ah.h0(22, this, j0Var));
+        h1Var.setDelegate(new ah.h0(23, this, j0Var));
         a();
     }
 
@@ -51,21 +51,21 @@ public final class k0 {
     }
 
     public final void a() {
-        h1 h1Var = this.f15345a;
+        h1 h1Var = this.f15352a;
         h1Var.t();
-        int w02 = h6.w0(h6.G6, this.f15346b);
+        int w02 = h6.w0(h6.G6, this.f15353b);
         h1Var.setTextColor(h6.m1(0.5f, w02));
         h1Var.setHintTextColor(h6.m1(0.35f, w02));
     }
 
     public final void b() {
         TL_iv.PageBlock pageBlock;
-        a F = this.f15347c.F();
-        if (F != null && (pageBlock = F.f15089b) != null) {
+        a F = this.f15354c.F();
+        if (F != null && (pageBlock = F.f15096b) != null) {
             d(pageBlock);
-            TL_iv.RichText richText = F.f15089b.caption.text;
+            TL_iv.RichText richText = F.f15096b.caption.text;
             String l4 = e6.l(richText);
-            h1 h1Var = this.f15345a;
+            h1 h1Var = this.f15352a;
             if (!String.valueOf(h1Var.getText()).equals(l4)) {
                 h1Var.setTextSilently(e6.r(richText, null, true));
                 h1Var.invalidateEffects();
@@ -74,10 +74,10 @@ public final class k0 {
     }
 
     public final void c(Canvas canvas) {
-        j0 j0Var = this.f15347c;
+        j0 j0Var = this.f15354c;
         n9 t10 = j0Var.t();
         if (t10 != null) {
-            h1 h1Var = this.f15345a;
+            h1 h1Var = this.f15352a;
             if (h1Var.getLayout() != null) {
                 canvas.save();
                 canvas.translate(h1Var.getPaddingLeft() + h1Var.getLeft(), h1Var.getPaddingTop() + h1Var.getTop());
@@ -88,7 +88,7 @@ public final class k0 {
     }
 
     public final void e(ArrayList arrayList) {
-        h1 h1Var = this.f15345a;
+        h1 h1Var = this.f15352a;
         Layout layout = h1Var.getLayout();
         if (layout == null) {
             return;
@@ -98,7 +98,7 @@ public final class k0 {
 
     public final boolean f(int i10, int i11) {
         int lineForVertical;
-        h1 h1Var = this.f15345a;
+        h1 h1Var = this.f15352a;
         Layout layout = h1Var.getLayout();
         if (layout == null) {
             return false;
@@ -117,24 +117,24 @@ public final class k0 {
     public final void g(int i10, int i11, int i12, int i13) {
         int dp = AndroidUtilities.dp(16.0f) + i10;
         int max = Math.max(dp, (i12 - i11) - AndroidUtilities.dp(16.0f));
-        h1 h1Var = this.f15345a;
+        h1 h1Var = this.f15352a;
         h1Var.layout(dp, i13, max, h1Var.getMeasuredHeight() + i13);
     }
 
     public final int h(int i10, int i11, int i12) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, ((i12 - i10) - i11) - (AndroidUtilities.dp(16.0f) * 2)), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
-        h1 h1Var = this.f15345a;
+        h1 h1Var = this.f15352a;
         h1Var.measure(makeMeasureSpec, makeMeasureSpec2);
         return h1Var.getMeasuredHeight();
     }
 
     public final void i() {
         TL_iv.PageBlock pageBlock;
-        a F = this.f15347c.F();
-        if (F != null && (pageBlock = F.f15089b) != null) {
+        a F = this.f15354c.F();
+        if (F != null && (pageBlock = F.f15096b) != null) {
             d(pageBlock);
-            F.f15089b.caption.text = e6.f(this.f15345a.getText());
+            F.f15096b.caption.text = e6.f(this.f15352a.getText());
         }
     }
 }

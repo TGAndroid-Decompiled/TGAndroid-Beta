@@ -1,60 +1,70 @@
 package ig;
 
-import android.location.Address;
-import android.location.Geocoder;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.pc0;
-public final class u0 implements Runnable {
-    public final int f13052a = 0;
-    public final b1 f13053b;
-    public final pc0 f13054c;
-    public final org.telegram.ui.ActionBar.b2 d;
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.sn;
+public final class u0 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5 {
+    public final int f13048a;
+    public final v0 f13049b;
 
-    public u0(b1 b1Var, org.telegram.ui.ActionBar.b2 b2Var, pc0 pc0Var) {
-        this.f13053b = b1Var;
-        this.d = b2Var;
-        this.f13054c = pc0Var;
+    public u0(v0 v0Var, int i10) {
+        this.f13048a = i10;
+        this.f13049b = v0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f13052a) {
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f13048a) {
             case 0:
-                b1 b1Var = this.f13053b;
-                b1Var.getClass();
-                this.d.dismiss();
-                b1Var.presentFragment(this.f13054c);
+                this.f13049b.X();
                 return;
             default:
-                b1 b1Var2 = this.f13053b;
-                pc0 pc0Var = this.f13054c;
-                try {
-                    List<Address> fromLocationName = new Geocoder(b1Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(b1Var2.f12842y, 1);
-                    if (!fromLocationName.isEmpty()) {
-                        Address address = fromLocationName.get(0);
-                        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-                        tL_channelLocation.address = b1Var2.f12842y;
-                        TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
-                        tL_channelLocation.geo_point = tL_geoPoint;
-                        tL_geoPoint.lat = address.getLatitude();
-                        tL_channelLocation.geo_point._long = address.getLongitude();
-                        pc0Var.A0 = tL_channelLocation;
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                AndroidUtilities.runOnUIThread(new u0(b1Var2, this.d, pc0Var));
+                this.f13049b.finishFragment();
                 return;
         }
     }
 
-    public u0(b1 b1Var, pc0 pc0Var, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f13053b = b1Var;
-        this.f13054c = pc0Var;
-        this.d = b2Var;
+    @Override
+    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        f61 f61Var = (f61) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        v0 v0Var = this.f13049b;
+        if (!v0Var.d.h(f61Var)) {
+            int i10 = f61Var.d;
+            if (i10 != 2 && f61Var.f44334a != 17) {
+                if (i10 == 1) {
+                    v0Var.f13063s = !v0Var.f13063s;
+                    v0Var.f13059c.W2.N(true);
+                    v0Var.V(true);
+                    return;
+                } else if (i10 == 3) {
+                    a0 a0Var = v0Var.d;
+                    v0Var.v = true;
+                    a0Var.h = true;
+                    v0Var.f13059c.W2.N(true);
+                    v0Var.V(true);
+                    return;
+                } else if (i10 == 4) {
+                    a0 a0Var2 = v0Var.d;
+                    v0Var.v = false;
+                    a0Var2.h = false;
+                    v0Var.f13059c.W2.N(true);
+                    v0Var.V(true);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", v0Var.getUserConfig().getClientUserId());
+            bundle.putInt("chatMode", 5);
+            bundle.putString("quick_reply", "hello");
+            v0Var.presentFragment(new sn(bundle));
+        }
     }
 }

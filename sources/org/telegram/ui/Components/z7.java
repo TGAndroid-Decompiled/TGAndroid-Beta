@@ -16,22 +16,22 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.SecretMediaViewer;
 public final class z7 extends org.telegram.ui.ActionBar.k {
-    public final int f32849u1;
-    public final Object f32850v1;
+    public final int f32856u1;
+    public final Object f32857v1;
 
     public z7(Object obj, Context context, int i10) {
         super(context, null);
-        this.f32849u1 = i10;
-        this.f32850v1 = obj;
+        this.f32856u1 = i10;
+        this.f32857v1 = obj;
     }
 
     @Override
     public void C(int i10, boolean z10) {
         ImageView imageView;
         ImageView imageView2;
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 5:
-                ProfileActivity profileActivity = (ProfileActivity) this.f32850v1;
+                ProfileActivity profileActivity = (ProfileActivity) this.f32857v1;
                 super.C(i10, z10);
                 if (!z10 && (imageView2 = profileActivity.Z0) != null) {
                     imageView2.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
@@ -49,9 +49,9 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     @Override
     public boolean N(View view) {
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 3:
-                if (!super.N(view) && view != ((org.telegram.ui.ey) this.f32850v1).m0) {
+                if (!super.N(view) && view != ((org.telegram.ui.ey) this.f32857v1).m0) {
                     return false;
                 }
                 return true;
@@ -62,10 +62,10 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     @Override
     public void O(View[] viewArr, boolean[] zArr) {
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 3:
                 super.O(viewArr, zArr);
-                ((org.telegram.ui.ey) this.f32850v1).h.a(true, true);
+                ((org.telegram.ui.ey) this.f32857v1).h.a(true, true);
                 return;
             default:
                 super.O(viewArr, zArr);
@@ -75,11 +75,11 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 3:
-                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) this.f32850v1;
+                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) this.f32857v1;
                 org.telegram.ui.tx txVar = eyVar.X;
-                if (txVar != null && txVar.getAlpha() > 0.0f && eyVar.f36613b.f17380f) {
+                if (txVar != null && txVar.getAlpha() > 0.0f && eyVar.f36636b.f17387f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -90,14 +90,14 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     @Override
     public void h(boolean z10) {
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 3:
-                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) this.f32850v1;
-                eyVar.X.f27712r.getText().clear();
-                if (z10 && eyVar.X.f27712r.isFocused()) {
-                    AndroidUtilities.hideKeyboard(eyVar.X.f27712r);
+                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) this.f32857v1;
+                eyVar.X.f27719r.getText().clear();
+                if (z10 && eyVar.X.f27719r.isFocused()) {
+                    AndroidUtilities.hideKeyboard(eyVar.X.f27719r);
                 }
-                eyVar.X.f27712r.clearFocus();
+                eyVar.X.f27719r.clearFocus();
                 eyVar.Y.b(false);
                 return;
             default:
@@ -108,10 +108,10 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 5:
                 super.onLayout(z10, i10, i11, i12, i13);
-                ((ProfileActivity) this.f32850v1).l5(false);
+                ((ProfileActivity) this.f32857v1).l5(false);
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -121,9 +121,9 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 5:
-                ProfileActivity profileActivity = (ProfileActivity) this.f32850v1;
+                ProfileActivity profileActivity = (ProfileActivity) this.f32857v1;
                 org.telegram.ui.m0 m0Var = profileActivity.Y;
                 Rect rect = profileActivity.M2;
                 m0Var.getHitRect(rect);
@@ -138,10 +138,10 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     @Override
     public void r() {
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 3:
                 super.r();
-                ((org.telegram.ui.ey) this.f32850v1).h.a(false, true);
+                ((org.telegram.ui.ey) this.f32857v1).h.a(false, true);
                 return;
             default:
                 super.r();
@@ -154,15 +154,15 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
         ViewGroup viewGroup;
         int i10;
         ViewGroup viewGroup2;
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 0:
                 super.setAlpha(f7);
-                k8.g0((k8) this.f32850v1).invalidate();
+                k8.g0((k8) this.f32857v1).invalidate();
                 return;
             case 1:
-                ti tiVar = (ti) this.f32850v1;
+                ti tiVar = (ti) this.f32857v1;
                 wh whVar = tiVar.G0;
-                TextView textView = tiVar.f30594m1;
+                TextView textView = tiVar.f30601m1;
                 wh whVar2 = tiVar.A1;
                 float alpha = getAlpha();
                 super.setAlpha(f7);
@@ -208,7 +208,7 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
                 return;
             case 2:
                 super.setAlpha(f7);
-                kh0.K((kh0) this.f32850v1).invalidate();
+                kh0.K((kh0) this.f32857v1).invalidate();
                 return;
             case 3:
             case 5:
@@ -217,18 +217,18 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
                 return;
             case 4:
                 super.setAlpha(f7);
-                ((PhotoViewer) this.f32850v1).f33266e0.invalidate();
+                ((PhotoViewer) this.f32857v1).f33273e0.invalidate();
                 return;
             case 6:
                 super.setAlpha(f7);
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f32850v1;
-                secretMediaViewer.f33806r.setAlpha(f7);
-                secretMediaViewer.f33797n.setAlpha(f7);
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f32857v1;
+                secretMediaViewer.f33813r.setAlpha(f7);
+                secretMediaViewer.f33804n.setAlpha(f7);
                 return;
             case 7:
                 if (getAlpha() != f7) {
                     super.setAlpha(f7);
-                    viewGroup2 = ((org.telegram.ui.ActionBar.f3) ((sg.x0) this.f32850v1)).containerView;
+                    viewGroup2 = ((org.telegram.ui.ActionBar.f3) ((sg.x0) this.f32857v1)).containerView;
                     viewGroup2.invalidate();
                     return;
                 }
@@ -239,13 +239,13 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
     @Override
     public void setTag(Object obj) {
         boolean z10;
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 7:
                 super.setTag(obj);
-                sg.x0 x0Var = (sg.x0) this.f32850v1;
+                sg.x0 x0Var = (sg.x0) this.f32857v1;
                 z7 z7Var = x0Var.N;
                 if (z7Var != null && z7Var.getTag() != null) {
-                    if (i0.b.h(x0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21057h5)) > 0.699999988079071d) {
+                    if (i0.a.h(x0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21064h5)) > 0.699999988079071d) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -253,7 +253,7 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
                     AndroidUtilities.setLightStatusBar(x0Var, z10);
                     return;
                 }
-                org.telegram.ui.ActionBar.n2 n2Var = x0Var.f46505b;
+                org.telegram.ui.ActionBar.n2 n2Var = x0Var.f46525b;
                 if (n2Var != null) {
                     AndroidUtilities.setLightStatusBar(x0Var, n2Var.isLightStatusBar());
                     return;
@@ -268,9 +268,9 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
     @Override
     public void setTranslationY(float f7) {
         View view;
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 3:
-                if (f7 != getTranslationY() && (view = ((org.telegram.ui.ey) this.f32850v1).fragmentView) != null) {
+                if (f7 != getTranslationY() && (view = ((org.telegram.ui.ey) this.f32857v1).fragmentView) != null) {
                     view.invalidate();
                 }
                 super.setTranslationY(f7);
@@ -283,10 +283,10 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     @Override
     public void setVisibility(int i10) {
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 1:
                 super.setVisibility(i10);
-                ti.O((ti) this.f32850v1);
+                ti.O((ti) this.f32857v1);
                 return;
             default:
                 super.setVisibility(i10);
@@ -296,9 +296,9 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     @Override
     public boolean v() {
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 3:
-                org.telegram.ui.yw ywVar = ((org.telegram.ui.ey) this.f32850v1).G3;
+                org.telegram.ui.yw ywVar = ((org.telegram.ui.ey) this.f32857v1).G3;
                 if (ywVar != null && ywVar.c()) {
                     return true;
                 }
@@ -311,9 +311,9 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
     @Override
     public void w(boolean z10) {
         float f7;
-        switch (this.f32849u1) {
+        switch (this.f32856u1) {
             case 3:
-                org.telegram.ui.yw ywVar = ((org.telegram.ui.ey) this.f32850v1).G3;
+                org.telegram.ui.yw ywVar = ((org.telegram.ui.ey) this.f32857v1).G3;
                 if (ywVar != null && ywVar.c() && getBackButton() != null) {
                     ViewPropertyAnimator animate = getBackButton().animate();
                     if (z10) {
@@ -333,7 +333,7 @@ public final class z7 extends org.telegram.ui.ActionBar.k {
 
     public z7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
         super(context, d6Var);
-        this.f32849u1 = i10;
-        this.f32850v1 = notificationCenterDelegate;
+        this.f32856u1 = i10;
+        this.f32857v1 = notificationCenterDelegate;
     }
 }

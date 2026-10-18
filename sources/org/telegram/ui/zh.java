@@ -13,7 +13,7 @@ public final class zh extends org.telegram.ui.Components.aw {
     @Override
     public final void dismiss() {
         super.dismiss();
-        sn snVar = this.W.f35448p;
+        sn snVar = this.W.f35468p;
         snVar.getClass();
         snVar.j8(false, true, 0.0f);
     }

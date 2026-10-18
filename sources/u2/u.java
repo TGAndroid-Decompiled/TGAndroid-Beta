@@ -1,28 +1,63 @@
 package u2;
+public final class u extends r {
+    public final int f47487f;
 
-import android.net.Uri;
-import java.util.Collections;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
-public final class u {
-    public static final AtomicLong f47460g = new AtomicLong();
-    public final g2.m f47461a;
-    public final Uri f47462b;
-    public final Map f47463c;
-    public final long d;
-    public final long e;
-    public final long f47464f;
-
-    public u(g2.m mVar, long j10) {
-        this(mVar, mVar.f10792a, Collections.EMPTY_MAP, j10, 0L, 0L);
+    public u(b2.o1 o1Var, int i10) {
+        super(o1Var);
+        this.f47487f = i10;
     }
 
-    public u(g2.m mVar, Uri uri, Map map, long j10, long j11, long j12) {
-        this.f47461a = mVar;
-        this.f47462b = uri;
-        this.f47463c = map;
-        this.d = j10;
-        this.e = j11;
-        this.f47464f = j12;
+    @Override
+    public int e(int i10, int i11, boolean z10) {
+        switch (this.f47487f) {
+            case 0:
+                b2.o1 o1Var = this.e;
+                int e = o1Var.e(i10, i11, z10);
+                if (e == -1) {
+                    return o1Var.a(z10);
+                }
+                return e;
+            default:
+                return super.e(i10, i11, z10);
+        }
+    }
+
+    @Override
+    public b2.l1 f(int i10, b2.l1 l1Var, boolean z10) {
+        switch (this.f47487f) {
+            case 1:
+                super.f(i10, l1Var, z10);
+                l1Var.f3827f = true;
+                return l1Var;
+            default:
+                return super.f(i10, l1Var, z10);
+        }
+    }
+
+    @Override
+    public int k(int i10, int i11, boolean z10) {
+        switch (this.f47487f) {
+            case 0:
+                b2.o1 o1Var = this.e;
+                int k10 = o1Var.k(i10, i11, z10);
+                if (k10 == -1) {
+                    return o1Var.c(z10);
+                }
+                return k10;
+            default:
+                return super.k(i10, i11, z10);
+        }
+    }
+
+    @Override
+    public b2.n1 m(int i10, b2.n1 n1Var, long j10) {
+        switch (this.f47487f) {
+            case 1:
+                super.m(i10, n1Var, j10);
+                n1Var.f3878k = true;
+                return n1Var;
+            default:
+                return super.m(i10, n1Var, j10);
+        }
     }
 }

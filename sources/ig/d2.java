@@ -1,178 +1,210 @@
 package ig;
 
-import android.content.SharedPreferences;
+import ai.o2;
+import android.content.Context;
 import android.text.TextUtils;
-import j$.time.Instant;
-import j$.time.ZoneId;
-import j$.time.format.TextStyle;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.SerializedData;
+import org.telegram.messenger.R;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.TLRPC;
-public final class d2 {
-    public static volatile d2[] e = new d2[4];
-    public static final Object[] f12873f = new Object[4];
-    public final int f12874a;
-    public boolean f12875b;
-    public boolean f12876c;
-    public final ArrayList d = new ArrayList();
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Cells.v8;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.w9;
+import w7.z5;
+public final class d2 extends n2 implements NotificationCenter.NotificationCenterDelegate {
+    public a71 f12864a;
+    public LinearLayout f12865b;
+    public o2 f12866c;
+    public boolean d;
+    public String e;
+    public String f12867f;
+    public boolean h;
+    public String f12868n;
 
-    static {
-        for (int i10 = 0; i10 < 4; i10++) {
-            f12873f[i10] = new Object();
-        }
-    }
-
-    public d2(int i10) {
-        this.f12874a = i10;
-    }
-
-    public static d2 b(int i10) {
-        d2 d2Var;
-        d2 d2Var2 = e[i10];
-        if (d2Var2 == null) {
-            synchronized (f12873f[i10]) {
-                try {
-                    d2Var = e[i10];
-                    if (d2Var == null) {
-                        d2[] d2VarArr = e;
-                        d2 d2Var3 = new d2(i10);
-                        d2VarArr[i10] = d2Var3;
-                        d2Var = d2Var3;
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
+    public static void U(d2 d2Var, f61 f61Var, View view) {
+        if (f61Var.d == -1) {
+            boolean z10 = d2Var.h;
+            d2Var.h = !z10;
+            if (!z10) {
+                String str = d2Var.f12867f;
+                d2Var.f12868n = str;
+                o2 o2Var = d2Var.f12866c;
+                if (o2Var != null) {
+                    o2Var.run(str);
                 }
             }
-            return d2Var;
+            ((v8) view).setChecked(d2Var.h);
+            d2Var.f12864a.W2.N(true);
+        } else if (view.isEnabled()) {
+            f2 b10 = f2.b(d2Var.currentAccount);
+            ArrayList arrayList = b10.d;
+            int i10 = f61Var.d;
+            if (i10 >= 0) {
+                b10.g();
+                if (i10 < arrayList.size()) {
+                    b10.g();
+                    d2Var.h = false;
+                    String str2 = ((TLRPC.TL_timezone) arrayList.get(f61Var.d)).f20417id;
+                    d2Var.f12868n = str2;
+                    o2 o2Var2 = d2Var.f12866c;
+                    if (o2Var2 != null) {
+                        o2Var2.run(str2);
+                    }
+                    if (d2Var.d) {
+                        d2Var.actionBar.h(true);
+                    }
+                    d2Var.f12864a.W2.N(true);
+                }
+            }
         }
-        return d2Var2;
     }
 
-    public static String e(TLRPC.TL_timezone tL_timezone, boolean z10) {
-        if (tL_timezone == null) {
-            return null;
-        }
-        if (z10) {
-            return tL_timezone.name + ", " + f(tL_timezone);
-        }
-        return tL_timezone.name;
-    }
-
-    public static String f(TLRPC.TL_timezone tL_timezone) {
-        String str;
-        String str2;
-        int i10 = tL_timezone.utc_offset;
-        if (i10 == 0) {
-            return "GMT";
-        }
-        if (i10 < 0) {
-            str = "-";
+    public static void V(d2 d2Var, ArrayList arrayList, s61 s61Var) {
+        boolean z10;
+        boolean z11;
+        if (d2Var.d && !TextUtils.isEmpty(d2Var.e)) {
+            z10 = true;
         } else {
-            str = "+";
+            z10 = false;
         }
-        String concat = "GMT".concat(str);
-        int abs = Math.abs(tL_timezone.utc_offset) / 60;
-        int i11 = abs / 60;
-        int i12 = abs % 60;
-        StringBuilder u10 = a1.g.u(concat);
-        String str3 = "";
-        if (i11 >= 10) {
-            str2 = "";
-        } else {
-            str2 = "0";
+        f2 b10 = f2.b(d2Var.currentAccount);
+        ArrayList arrayList2 = b10.d;
+        if (!z10) {
+            s61Var.U();
+            String string = LocaleController.getString(R.string.TimezoneDetectAutomatically);
+            f61 f61Var = new f61(9);
+            f61Var.d = -1;
+            f61Var.f26147l = string;
+            f61Var.K(d2Var.h);
+            arrayList.add(f61Var);
+            s61Var.T();
+            arrayList.add(f61.B(LocaleController.formatString(R.string.TimezoneDetectAutomaticallyInfo, b10.d(d2Var.f12868n, true))));
         }
-        u10.append(str2);
-        u10.append(i11);
-        StringBuilder u11 = a1.g.u(r.c.u(u10.toString(), ":"));
-        if (i12 < 10) {
-            str3 = "0";
+        s61Var.U();
+        if (!z10) {
+            i2.d.p(R.string.TimezoneHeader, arrayList);
         }
-        u11.append(str3);
-        u11.append(i12);
-        return u11.toString();
-    }
-
-    public final TLRPC.TL_timezone a(String str) {
-        if (str == null) {
-            return null;
-        }
-        g();
+        boolean z12 = true;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.d;
-            if (i10 >= arrayList.size()) {
-                return null;
+            b10.g();
+            if (i10 >= arrayList2.size()) {
+                break;
             }
-            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i10);
-            if (TextUtils.equals(tL_timezone.f20410id, str)) {
-                return tL_timezone;
+            b10.g();
+            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList2.get(i10);
+            CharSequence e = f2.e(tL_timezone, false);
+            if (z10) {
+                String replace = AndroidUtilities.translitSafe(tL_timezone.name).toLowerCase().replace("/", " ");
+                String lowerCase = AndroidUtilities.translitSafe(d2Var.e).toLowerCase();
+                if (org.telegram.messenger.g0.w(" ", lowerCase, replace) || replace.startsWith(lowerCase)) {
+                    e = AndroidUtilities.highlightText(e, d2Var.e, d2Var.resourceProvider);
+                } else {
+                    i10++;
+                }
             }
+            String f7 = f2.f(tL_timezone);
+            f61 f61Var2 = new f61(10);
+            f61Var2.d = i10;
+            f61Var2.f26147l = e;
+            f61Var2.f26149n = f7;
+            f61Var2.K(TextUtils.equals(tL_timezone.f20417id, d2Var.f12868n));
+            if (d2Var.h && !z10) {
+                z11 = false;
+            } else {
+                z11 = true;
+            }
+            f61Var2.f26143g = z11;
+            arrayList.add(f61Var2);
+            z12 = false;
             i10++;
         }
-    }
-
-    public final java.lang.String c() {
-        throw new UnsupportedOperationException("Method not decompiled: ig.d2.c():java.lang.String");
-    }
-
-    public final String d(String str, boolean z10) {
-        String str2;
-        TLRPC.TL_timezone a2 = a(str);
-        if (a2 != null) {
-            return e(a2, z10);
-        }
-        ZoneId of2 = ZoneId.of(str);
-        String str3 = "";
-        if (of2 == null) {
-            return "";
-        }
-        if (z10) {
-            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-            str2 = "GMT";
-            if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
-                str2 = "GMT".concat(displayName);
-            }
+        s61Var.T();
+        if (z12) {
+            arrayList.add(f61.l(d2Var.f12865b));
         } else {
-            str2 = null;
+            arrayList.add(f61.B(null));
         }
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(of2.getId().replace("/", ", ").replace("_", " "));
-        if (str2 != null) {
-            str3 = ", ".concat(str2);
-        }
-        sb2.append(str3);
-        return sb2.toString();
     }
 
-    public final void g() {
-        if (!this.f12875b && !this.f12876c) {
-            this.f12875b = true;
-            int i10 = this.f12874a;
-            SharedPreferences mainSettings = MessagesController.getInstance(i10).getMainSettings();
-            TLRPC.help_timezonesList help_timezoneslist = null;
-            String string = mainSettings.getString("timezones", null);
-            int i11 = 0;
-            if (string != null) {
-                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-                help_timezoneslist = TLRPC.help_timezonesList.TLdeserialize(serializedData, serializedData.readInt32(false), false);
-            }
-            ArrayList arrayList = this.d;
-            arrayList.clear();
-            if (help_timezoneslist != null) {
-                arrayList.addAll(help_timezoneslist.timezones);
-            }
-            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.timezonesUpdated, new Object[0]);
-            TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
-            if (help_timezoneslist != null) {
-                i11 = help_timezoneslist.hash;
-            }
-            tL_help_getTimezonesList.hash = i11;
-            ConnectionsManager.getInstance(i10).sendRequest(tL_help_getTimezonesList, new ai.g(22, this, mainSettings));
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.TimezoneTitle));
+        this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 18));
+        org.telegram.ui.ActionBar.u0 a2 = this.actionBar.n().a(1, R.drawable.outline_header_search);
+        a2.F();
+        a2.H = new c2(this, 0);
+        a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20935a7, false));
+        a71 a71Var = new a71(this, new hg.o(this, 10), new e1.c(this, 23), null);
+        this.f12864a = a71Var;
+        a71Var.p1();
+        this.actionBar.setAdaptiveBackground(this.f12864a);
+        frameLayout.addView(this.f12864a, z5.d(-1.0f, -1));
+        this.f12864a.setOnScrollListener(new ah.d0(this, 15));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f12865b = linearLayout;
+        linearLayout.setOrientation(1);
+        this.f12865b.setMinimumHeight(AndroidUtilities.dp(500.0f));
+        w9 w9Var = new w9(context);
+        w9Var.getImageReceiver().setAllowLoadingOnAttachedOnly(false);
+        MediaDataController.getInstance(this.currentAccount).setPlaceholderImage(w9Var, "RestrictedEmoji", "🌖", "130_130");
+        this.f12865b.addView(w9Var, z5.t(130, 130, 49, 0, 42, 0, 12));
+        TextView textView = new TextView(context);
+        textView.setText(LocaleController.getString(R.string.TimezoneNotFound));
+        kk.o(h6.f21381y6, this.resourceProvider, textView, 1, 15.0f);
+        this.f12865b.addView(textView, z5.t(-2, -2, 49, 0, 0, 0, 0));
+        this.fragmentView = frameLayout;
+        return frameLayout;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        a71 a71Var;
+        s61 s61Var;
+        if (i10 == NotificationCenter.timezonesUpdated && (a71Var = this.f12864a) != null && (s61Var = a71Var.W2) != null) {
+            s61Var.N(true);
         }
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        String c10 = f2.b(this.currentAccount).c();
+        this.f12867f = c10;
+        this.h = TextUtils.equals(c10, this.f12868n);
+        getNotificationCenter().addObserver(this, NotificationCenter.timezonesUpdated);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        getNotificationCenter().removeObserver(this, NotificationCenter.timezonesUpdated);
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final void onInsets(int i10, int i11, int i12, int i13) {
+        this.f12864a.setPadding(0, 0, 0, i13);
+        this.f12864a.setClipToPadding(false);
     }
 }

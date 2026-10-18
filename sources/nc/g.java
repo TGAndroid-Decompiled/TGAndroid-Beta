@@ -5,19 +5,19 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 public final class g extends b {
-    public static final Logger f17363p = Logger.getLogger(g.class.getName());
+    public static final Logger f17370p = Logger.getLogger(g.class.getName());
     public int d;
     public int e;
-    public int f17364f;
-    public int f17365g;
+    public int f17371f;
+    public int f17372g;
     public int h;
-    public int f17366i;
-    public String f17367j;
-    public int f17368k;
-    public int f17369l;
-    public d f17370m;
-    public m f17371n;
-    public ArrayList f17372o;
+    public int f17373i;
+    public String f17374j;
+    public int f17375k;
+    public int f17376l;
+    public d f17377m;
+    public m f17378n;
+    public ArrayList f17379o;
 
     @Override
     public final void b(ByteBuffer byteBuffer) {
@@ -27,27 +27,27 @@ public final class g extends b {
         int a2 = e5.b.a(byteBuffer.get());
         int i12 = a2 >>> 7;
         this.e = i12;
-        this.f17364f = (a2 >>> 6) & 1;
-        this.f17365g = (a2 >>> 5) & 1;
+        this.f17371f = (a2 >>> 6) & 1;
+        this.f17372g = (a2 >>> 5) & 1;
         this.h = a2 & 31;
         if (i12 == 1) {
-            this.f17368k = e5.b.h(byteBuffer);
+            this.f17375k = e5.b.h(byteBuffer);
         }
-        if (this.f17364f == 1) {
+        if (this.f17371f == 1) {
             int a10 = e5.b.a(byteBuffer.get());
-            this.f17366i = a10;
+            this.f17373i = a10;
             byte[] bArr = new byte[a10];
             byteBuffer.get(bArr);
             try {
-                this.f17367j = new String(bArr, "UTF-8");
+                this.f17374j = new String(bArr, "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 throw new Error(e);
             }
         }
-        if (this.f17365g == 1) {
-            this.f17369l = e5.b.h(byteBuffer);
+        if (this.f17372g == 1) {
+            this.f17376l = e5.b.h(byteBuffer);
         }
-        int i13 = this.f17352c + 4;
+        int i13 = this.f17359c + 4;
         int i14 = 0;
         if (this.e == 1) {
             i10 = 2;
@@ -55,20 +55,20 @@ public final class g extends b {
             i10 = 0;
         }
         int i15 = i13 + i10;
-        if (this.f17364f == 1) {
-            i11 = this.f17366i + 1;
+        if (this.f17371f == 1) {
+            i11 = this.f17373i + 1;
         } else {
             i11 = 0;
         }
         int i16 = i15 + i11;
-        if (this.f17365g == 1) {
+        if (this.f17372g == 1) {
             i14 = 2;
         }
         int i17 = i16 + i14;
         int position = byteBuffer.position();
         int a11 = a();
         int i18 = i17 + 2;
-        Logger logger = f17363p;
+        Logger logger = f17370p;
         if (a11 > i18) {
             b a12 = k.a(-1, byteBuffer);
             logger.finer(a12 + " - ESDescriptor1 read: " + (byteBuffer.position() - position) + ", size: " + Integer.valueOf(a12.a()));
@@ -76,7 +76,7 @@ public final class g extends b {
             byteBuffer.position(position + a13);
             i17 += a13;
             if (a12 instanceof d) {
-                this.f17370m = (d) a12;
+                this.f17377m = (d) a12;
             }
         }
         int position2 = byteBuffer.position();
@@ -87,7 +87,7 @@ public final class g extends b {
             byteBuffer.position(position2 + a15);
             i17 += a15;
             if (a14 instanceof m) {
-                this.f17371n = (m) a14;
+                this.f17378n = (m) a14;
             }
         } else {
             logger.warning("SLConfigDescriptor is missing!");
@@ -99,7 +99,7 @@ public final class g extends b {
             int a17 = a16.a();
             byteBuffer.position(position3 + a17);
             i17 += a17;
-            this.f17372o.add(a16);
+            this.f17379o.add(a16);
         }
     }
 
@@ -111,13 +111,13 @@ public final class g extends b {
         } else {
             i10 = 5;
         }
-        if (this.f17364f > 0) {
-            i10 += this.f17366i + 1;
+        if (this.f17371f > 0) {
+            i10 += this.f17373i + 1;
         }
-        if (this.f17365g > 0) {
+        if (this.f17372g > 0) {
             i10 += 2;
         }
-        a aVar = this.f17370m.f17360j;
+        a aVar = this.f17377m.f17367j;
         if (aVar == null) {
             i11 = 0;
         } else if (aVar.e == 2) {
@@ -126,7 +126,7 @@ public final class g extends b {
             throw new UnsupportedOperationException("can't serialize that yet");
         }
         int i12 = i11 + 15 + i10;
-        this.f17371n.getClass();
+        this.f17378n.getClass();
         return i12 + 3;
     }
 
@@ -134,25 +134,25 @@ public final class g extends b {
         if (this != obj) {
             if (obj != null && g.class == obj.getClass()) {
                 g gVar = (g) obj;
-                ArrayList arrayList = gVar.f17372o;
-                if (this.f17364f == gVar.f17364f && this.f17366i == gVar.f17366i && this.f17368k == gVar.f17368k && this.d == gVar.d && this.f17369l == gVar.f17369l && this.f17365g == gVar.f17365g && this.e == gVar.e && this.h == gVar.h) {
-                    String str = this.f17367j;
+                ArrayList arrayList = gVar.f17379o;
+                if (this.f17371f == gVar.f17371f && this.f17373i == gVar.f17373i && this.f17375k == gVar.f17375k && this.d == gVar.d && this.f17376l == gVar.f17376l && this.f17372g == gVar.f17372g && this.e == gVar.e && this.h == gVar.h) {
+                    String str = this.f17374j;
                     if (str != null) {
-                        if (!str.equals(gVar.f17367j)) {
+                        if (!str.equals(gVar.f17374j)) {
                             return false;
                         }
-                    } else if (gVar.f17367j != null) {
+                    } else if (gVar.f17374j != null) {
                         return false;
                     }
-                    d dVar = this.f17370m;
+                    d dVar = this.f17377m;
                     if (dVar != null) {
-                        if (!dVar.equals(gVar.f17370m)) {
+                        if (!dVar.equals(gVar.f17377m)) {
                             return false;
                         }
-                    } else if (gVar.f17370m != null) {
+                    } else if (gVar.f17377m != null) {
                         return false;
                     }
-                    ArrayList arrayList2 = this.f17372o;
+                    ArrayList arrayList2 = this.f17379o;
                     if (arrayList2 != null) {
                         if (!arrayList2.equals(arrayList)) {
                             return false;
@@ -160,8 +160,8 @@ public final class g extends b {
                     } else if (arrayList != null) {
                         return false;
                     }
-                    m mVar = this.f17371n;
-                    m mVar2 = gVar.f17371n;
+                    m mVar = this.f17378n;
+                    m mVar2 = gVar.f17378n;
                     if (mVar != null) {
                         if (mVar.equals(mVar2)) {
                             return true;
@@ -184,30 +184,30 @@ public final class g extends b {
         int i10;
         int i11;
         int i12;
-        int i13 = ((((((((((this.d * 31) + this.e) * 31) + this.f17364f) * 31) + this.f17365g) * 31) + this.h) * 31) + this.f17366i) * 31;
-        String str = this.f17367j;
+        int i13 = ((((((((((this.d * 31) + this.e) * 31) + this.f17371f) * 31) + this.f17372g) * 31) + this.h) * 31) + this.f17373i) * 31;
+        String str = this.f17374j;
         int i14 = 0;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        int i15 = (((((i13 + i10) * 961) + this.f17368k) * 31) + this.f17369l) * 31;
-        d dVar = this.f17370m;
+        int i15 = (((((i13 + i10) * 961) + this.f17375k) * 31) + this.f17376l) * 31;
+        d dVar = this.f17377m;
         if (dVar != null) {
             i11 = dVar.hashCode();
         } else {
             i11 = 0;
         }
         int i16 = (i15 + i11) * 31;
-        m mVar = this.f17371n;
+        m mVar = this.f17378n;
         if (mVar != null) {
             i12 = mVar.d;
         } else {
             i12 = 0;
         }
         int i17 = (i16 + i12) * 31;
-        ArrayList arrayList = this.f17372o;
+        ArrayList arrayList = this.f17379o;
         if (arrayList != null) {
             i14 = arrayList.hashCode();
         }
@@ -215,6 +215,6 @@ public final class g extends b {
     }
 
     public final String toString() {
-        return "ESDescriptor{esId=" + this.d + ", streamDependenceFlag=" + this.e + ", URLFlag=" + this.f17364f + ", oCRstreamFlag=" + this.f17365g + ", streamPriority=" + this.h + ", URLLength=" + this.f17366i + ", URLString='" + this.f17367j + "', remoteODFlag=0, dependsOnEsId=" + this.f17368k + ", oCREsId=" + this.f17369l + ", decoderConfigDescriptor=" + this.f17370m + ", slConfigDescriptor=" + this.f17371n + '}';
+        return "ESDescriptor{esId=" + this.d + ", streamDependenceFlag=" + this.e + ", URLFlag=" + this.f17371f + ", oCRstreamFlag=" + this.f17372g + ", streamPriority=" + this.h + ", URLLength=" + this.f17373i + ", URLString='" + this.f17374j + "', remoteODFlag=0, dependsOnEsId=" + this.f17375k + ", oCREsId=" + this.f17376l + ", decoderConfigDescriptor=" + this.f17377m + ", slConfigDescriptor=" + this.f17378n + '}';
     }
 }

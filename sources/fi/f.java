@@ -1,9 +1,9 @@
 package fi;
 
-import ai.fa;
+import ai.ga;
 import ai.q;
-import ai.tc;
-import ai.va;
+import ai.uc;
+import ai.wa;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -23,39 +23,39 @@ import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.xa;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Wallet.p6;
+import org.telegram.ui.Wallet.s6;
 import org.telegram.ui.hk;
 import org.telegram.ui.sn;
 import s4.k;
 import w7.z5;
 public final class f extends bb implements NotificationCenter.NotificationCenterDelegate {
     public final ag.a X;
-    public final tc Y;
+    public final uc Y;
     public final FrameLayout Z;
-    public Runnable f10608a0;
-    public s61 f10609b0;
+    public Runnable f10610a0;
+    public s61 f10611b0;
 
     public f(Context context, d6 d6Var, ag.a aVar, boolean z10, Runnable runnable) {
         super(context, null, false, false, d6Var);
         this.v = 0.2f;
-        this.f10608a0 = runnable;
+        this.f10610a0 = runnable;
         fixNavigationBar();
         im0 im0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
         im0Var.setPadding(i10, 0, i10, 0);
-        this.d.setOnItemClickListener(new va(this, 11));
+        this.d.setOnItemClickListener(new wa(this, 11));
         k kVar = new k();
-        kVar.f45972m = false;
+        kVar.f45992m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
         this.d.setItemAnimator(kVar);
-        setBackgroundColor(h6.w0(h6.f21057h5, d6Var));
+        setBackgroundColor(h6.w0(h6.f21064h5, d6Var));
         this.X = aVar;
-        tc tcVar = new tc(context, 2, d6Var);
-        this.Y = tcVar;
-        ((TextView) tcVar.f2231c).setText(LocaleController.formatString(R.string.TonNeededTitle, ag.a.i(aVar.f632b - fa.y(this.currentAccount, true).s().f632b, ag.c.f636b).d()));
-        TextView textView = (TextView) tcVar.d;
+        uc ucVar = new uc(context, 2, d6Var);
+        this.Y = ucVar;
+        ((TextView) ucVar.f2279c).setText(LocaleController.formatString(R.string.TonNeededTitle, ag.a.i(aVar.f632b - ga.y(this.currentAccount, true).s().f632b, ag.c.f636b).d()));
+        TextView textView = (TextView) ucVar.d;
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.FragmentAddFunds)));
         textView.setMaxWidth(x3.a(textView.getText(), textView.getPaint()));
         this.e.setTitle(A());
@@ -66,20 +66,20 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
         if (!z10 && !g.C0()) {
             dVar.g(LocaleController.getString(R.string.Close), false, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final f f10607b;
+                public final f f10609b;
 
                 {
-                    this.f10607b = this;
+                    this.f10609b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            pf.d.t(this.f10607b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            pf.d.t(this.f10609b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                             return;
                         default:
-                            this.f10607b.dismiss();
+                            this.f10609b.dismiss();
                             return;
                     }
                 }
@@ -87,26 +87,26 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
         } else {
             dVar.g(LocaleController.getString(R.string.TopUpViaFragment), false, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final f f10607b;
+                public final f f10609b;
 
                 {
-                    this.f10607b = this;
+                    this.f10609b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            pf.d.t(this.f10607b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            pf.d.t(this.f10609b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                             return;
                         default:
-                            this.f10607b.dismiss();
+                            this.f10609b.dismiss();
                             return;
                     }
                 }
             });
         }
-        s61 s61Var = this.f10609b0;
+        s61 s61Var = this.f10611b0;
         if (s61Var != null) {
             s61Var.N(false);
         }
@@ -114,32 +114,32 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
 
     @Override
     public final CharSequence A() {
-        tc tcVar = this.Y;
-        if (tcVar == null) {
+        uc ucVar = this.Y;
+        if (ucVar == null) {
             return null;
         }
-        return ((TextView) tcVar.f2231c).getText();
+        return ((TextView) ucVar.f2279c).getText();
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         Runnable runnable;
         if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
-            s61 s61Var = this.f10609b0;
+            s61 s61Var = this.f10611b0;
             if (s61Var != null) {
                 s61Var.N(true);
             }
-            ag.a s10 = fa.y(this.currentAccount, true).s();
+            ag.a s10 = ga.y(this.currentAccount, true).s();
             int i12 = R.string.TonNeededTitle;
             ag.a aVar = this.X;
-            ((TextView) this.Y.f2231c).setText(LocaleController.formatString(i12, ag.a.i(aVar.f632b - s10.f632b, ag.c.f636b).d()));
+            ((TextView) this.Y.f2279c).setText(LocaleController.formatString(i12, ag.a.i(aVar.f632b - s10.f632b, ag.c.f636b).d()));
             xa xaVar = this.e;
             if (xaVar != null) {
                 xaVar.setTitle(A());
             }
-            if (s10.f632b >= aVar.f632b && (runnable = this.f10608a0) != null) {
+            if (s10.f632b >= aVar.f632b && (runnable = this.f10610a0) != null) {
                 runnable.run();
-                this.f10608a0 = null;
+                this.f10610a0 = null;
                 dismiss();
             }
         }
@@ -148,9 +148,9 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
     @Override
     public final void dismiss() {
         super.dismiss();
-        tc tcVar = this.Y;
-        if (tcVar != null) {
-            ((p6) tcVar.f2230b).setPaused(true);
+        uc ucVar = this.Y;
+        if (ucVar != null) {
+            ((s6) ucVar.f2278b).setPaused(true);
         }
     }
 
@@ -164,11 +164,11 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
     @Override
     public final void show() {
         hk hkVar;
-        if (fa.y(this.currentAccount, true).s().f632b >= this.X.f632b) {
-            Runnable runnable = this.f10608a0;
+        if (ga.y(this.currentAccount, true).s().f632b >= this.X.f632b) {
+            Runnable runnable = this.f10610a0;
             if (runnable != null) {
                 runnable.run();
-                this.f10608a0 = null;
+                this.f10610a0 = null;
                 return;
             }
             return;
@@ -188,7 +188,7 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
     @Override
     public final hm0 x(im0 im0Var) {
         s61 s61Var = new s61(this.d, getContext(), this.currentAccount, 0, true, new q(this, 22), this.resourcesProvider);
-        this.f10609b0 = s61Var;
+        this.f10611b0 = s61Var;
         return s61Var;
     }
 }

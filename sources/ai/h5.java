@@ -44,15 +44,15 @@ public final class h5 extends c91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                l2Var = k7Var.f1669c0;
-                if (l2Var != null && view2 == l2Var.Y && (k5Var3 = l2Var.f1673e0) != null) {
+                l2Var = k7Var.f1655c0;
+                if (l2Var != null && view2 == l2Var.Y && (k5Var3 = l2Var.f1659e0) != null) {
                     k5Var3.invalidate();
                 }
-                if (view2 == k7Var.Y && (k5Var2 = k7Var.f1673e0) != null) {
+                if (view2 == k7Var.Y && (k5Var2 = k7Var.f1659e0) != null) {
                     k5Var2.invalidate();
                 }
-                l2Var2 = k7Var.f1671d0;
-                if (l2Var2 == null && view2 == l2Var2.Y && (k5Var = l2Var2.f1673e0) != null) {
+                l2Var2 = k7Var.f1657d0;
+                if (l2Var2 == null && view2 == l2Var2.Y && (k5Var = l2Var2.f1659e0) != null) {
                     k5Var.invalidate();
                     return;
                 }
@@ -60,14 +60,14 @@ public final class h5 extends c91 {
             }
         }
         view2 = null;
-        l2Var = k7Var.f1669c0;
+        l2Var = k7Var.f1655c0;
         if (l2Var != null) {
             k5Var3.invalidate();
         }
         if (view2 == k7Var.Y) {
             k5Var2.invalidate();
         }
-        l2Var2 = k7Var.f1671d0;
+        l2Var2 = k7Var.f1657d0;
         if (l2Var2 == null) {
         }
     }
@@ -75,11 +75,11 @@ public final class h5 extends c91 {
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f25167b;
+        int i10 = this.f25174b;
         k7 k7Var = this.T;
         boolean z10 = false;
-        if (i10 != k7Var.Y1(false)) {
-            if (this.f25167b > k7Var.Y1(false)) {
+        if (i10 != k7Var.Z1(false)) {
+            if (this.f25174b > k7Var.Z1(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new ah.t(3, this, z10));
@@ -88,7 +88,7 @@ public final class h5 extends c91 {
 
     @Override
     public final boolean i(MotionEvent motionEvent) {
-        g6 g6Var = this.T.f1668b1;
+        g6 g6Var = this.T.f1654b1;
         if (g6Var != null && !g6Var.c(0)) {
             return false;
         }

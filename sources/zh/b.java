@@ -1,7 +1,7 @@
 package zh;
 public final class b {
-    public String f51662a;
-    public float f51663b;
-    public float f51664c;
+    public String f51682a;
+    public float f51683b;
+    public float f51684c;
     public boolean d;
 }

@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class ez0 extends bu0 {
-    public final ProfileActivity f36745a;
+    public final ProfileActivity f36768a;
 
     public ez0(ProfileActivity profileActivity) {
-        this.f36745a = profileActivity;
+        this.f36768a = profileActivity;
     }
 
     @Override
@@ -13,11 +13,11 @@ public final class ez0 extends bu0 {
 
     @Override
     public final void G() {
-        this.f36745a.f33606f0.getImageReceiver().setVisible(true, true);
+        this.f36768a.f33613f0.getImageReceiver().setVisible(true, true);
     }
 
     @Override
     public final void f(String str, String str2, boolean z10) {
-        this.f36745a.f33687r0.p(str, str2, z10);
+        this.f36768a.f33694r0.p(str, str2, z10);
     }
 }

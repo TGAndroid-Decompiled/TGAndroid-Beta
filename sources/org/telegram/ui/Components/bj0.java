@@ -10,47 +10,47 @@ import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class bj0 extends Drawable {
-    public final Drawable f24986a;
-    public final Drawable f24987b;
-    public final Paint f24988c;
+    public final Drawable f24993a;
+    public final Drawable f24994b;
+    public final Paint f24995c;
     public final RectF d;
     public int e;
-    public long f24989f;
-    public float f24990g;
+    public long f24996f;
+    public float f24997g;
     public boolean h;
-    public boolean f24991i;
+    public boolean f24998i;
 
     public bj0(Context context) {
         Paint paint = new Paint(1);
-        this.f24988c = paint;
+        this.f24995c = paint;
         this.d = new RectF();
         this.e = 0;
-        this.f24986a = context.getResources().getDrawable(R.drawable.outline_shield_plain_24).mutate();
-        this.f24987b = context.getResources().getDrawable(R.drawable.outline_shield_check).mutate();
+        this.f24993a = context.getResources().getDrawable(R.drawable.outline_shield_plain_24).mutate();
+        this.f24994b = context.getResources().getDrawable(R.drawable.outline_shield_check).mutate();
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        this.f24989f = SystemClock.elapsedRealtime();
+        this.f24996f = SystemClock.elapsedRealtime();
     }
 
     public final void a(Drawable drawable) {
         Rect bounds = getBounds();
-        drawable.setBounds(org.telegram.ui.Cells.t0.w(2, bounds.centerX(), drawable), org.telegram.ui.Cells.t0.g(2, bounds.centerY(), drawable), org.telegram.ui.Cells.t0.B(2, bounds.centerX(), drawable), org.telegram.ui.Cells.t0.A(2, bounds.centerY(), drawable));
+        drawable.setBounds(org.telegram.ui.Cells.c1.w(2, bounds.centerX(), drawable), org.telegram.ui.Cells.c1.f(2, bounds.centerY(), drawable), org.telegram.ui.Cells.c1.B(2, bounds.centerX(), drawable), org.telegram.ui.Cells.c1.A(2, bounds.centerY(), drawable));
     }
 
     public final void b(boolean z10, boolean z11, boolean z12) {
         float f7;
-        this.f24991i = z10;
+        this.f24998i = z10;
         this.h = z11;
-        this.f24989f = SystemClock.elapsedRealtime();
+        this.f24996f = SystemClock.elapsedRealtime();
         if (!z12) {
             if (this.h) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            this.f24990g = f7;
+            this.f24997g = f7;
         }
         invalidateSelf();
     }
@@ -77,9 +77,9 @@ public final class bj0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f24986a.setColorFilter(colorFilter);
-        this.f24987b.setColorFilter(colorFilter);
-        this.f24988c.setColorFilter(colorFilter);
+        this.f24993a.setColorFilter(colorFilter);
+        this.f24994b.setColorFilter(colorFilter);
+        this.f24995c.setColorFilter(colorFilter);
     }
 
     @Override

@@ -1,19 +1,19 @@
 package f5;
 
-import com.google.android.gms.internal.cast.a6;
+import com.google.android.gms.internal.play_billing.k3;
 import java.nio.ByteBuffer;
 public final class z extends a {
     public static final le.b h;
-    public static final le.b f10460n;
-    public static final le.b f10461r;
+    public static final le.b f10462n;
+    public static final le.b f10463r;
     public int e;
-    public int[] f10462f;
+    public int[] f10464f;
 
     static {
         te.a aVar = new te.a(z.class, "VideoMediaHeaderBox.java");
         h = aVar.e(aVar.d("getGraphicsmode", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "int"));
-        f10460n = aVar.e(aVar.d("getOpcolor", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "[I"));
-        f10461r = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "java.lang.String"));
+        f10462n = aVar.e(aVar.d("getOpcolor", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "[I"));
+        f10463r = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("setOpcolor", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "[I", "opcolor", "void"));
         aVar.e(aVar.d("setGraphicsmode", "com.coremedia.iso.boxes.VideoMediaHeaderBox", "int", "graphicsmode", "void"));
     }
@@ -22,9 +22,9 @@ public final class z extends a {
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
         this.e = e5.b.h(byteBuffer);
-        this.f10462f = new int[3];
+        this.f10464f = new int[3];
         for (int i10 = 0; i10 < 3; i10++) {
-            this.f10462f[i10] = e5.b.h(byteBuffer);
+            this.f10464f[i10] = e5.b.h(byteBuffer);
         }
     }
 
@@ -32,7 +32,7 @@ public final class z extends a {
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
         e5.b.p(this.e, byteBuffer);
-        for (int i10 : this.f10462f) {
+        for (int i10 : this.f10464f) {
             e5.b.p(i10, byteBuffer);
         }
     }
@@ -43,21 +43,21 @@ public final class z extends a {
     }
 
     public final String toString() {
-        com.google.firebase.messaging.r b10 = te.a.b(f10461r, this, this);
+        com.google.firebase.messaging.r b10 = te.a.b(f10463r, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("VideoMediaHeaderBox[graphicsmode=");
-        a6.p(te.a.b(h, this, this));
+        k3.p(te.a.b(h, this, this));
         sb2.append(this.e);
         sb2.append(";opcolor0=");
-        le.b bVar = f10460n;
-        a6.p(te.a.b(bVar, this, this));
-        sb2.append(this.f10462f[0]);
+        le.b bVar = f10462n;
+        k3.p(te.a.b(bVar, this, this));
+        sb2.append(this.f10464f[0]);
         sb2.append(";opcolor1=");
-        a6.p(te.a.b(bVar, this, this));
-        sb2.append(this.f10462f[1]);
+        k3.p(te.a.b(bVar, this, this));
+        sb2.append(this.f10464f[1]);
         sb2.append(";opcolor2=");
-        a6.p(te.a.b(bVar, this, this));
-        return a1.g.n(this.f10462f[2], "]", sb2);
+        k3.p(te.a.b(bVar, this, this));
+        return a1.g.n(this.f10464f[2], "]", sb2);
     }
 }
